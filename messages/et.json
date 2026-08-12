@@ -3520,6 +3520,7 @@
       "invalid_payload": "Päringu sisu on vigane.",
       "not_found": "Dokumenti ei leitud.",
       "read_only_document": "Süsteemi loodud kinnituskirjet ei saa muuta ega kustutada.",
+      "retention_locked": "Esitatud Teenuspäeviku aruanne on raamatupidamise alusdokument ja seda ei saa enne säilitustähtaega kustutada.",
       "list_failed": "Dokumentide nimekirja laadimine ebaõnnestus.",
       "audio_sources_load_failed": "Helisalvestuste laadimine ebaõnnestus.",
       "audio_file_required": "Vali helifail.",
@@ -9327,8 +9328,15 @@
       "star_requires_statistics": "STAR-väljavõte tuleb statistikamallist. Vali mall D.",
       "narrative_no_entries": "Selles kuus ei ole kirjeid, millest mustandit koostada.",
       "visit_already_used": "Sellest külastusest on juba teenuskirje tehtud.",
+      "idempotency_payload_mismatch": "Sama saatmisvõti kirjeldab teist tööd. Kirjet ei märgitud salvestatuks; tõsta see ootejärjekorrast vormile ja kontrolli üle.",
+      "source_visit_mismatch": "Teenuskirje kliendi või aja andmed ei vasta lähtekülastusele.",
+      "external_client_ref_required": "Väliskliendi püsiv viide on puudu; nime järgi ei saa kliendi narratiivi turvaliselt eristada.",
+      "narrative_selection_changed": "Klient või kuu muutus. Kontrolli värskelt laaditud vormi enne salvestamist.",
       "client_month_too_large": "Selles kuus on rohkem kirjeid, kui vaade kannab. Võta ühendust osutajaga.",
+      "client_snapshot_required": "Kuu nähtud versioon on puudu. Laadi vaade uuesti.",
+      "client_month_changed": "Kuu kirjed muutusid vahepeal. Värske vaade laaditi; kontrolli see enne kinnitamist uuesti üle.",
       "report_not_found": "Aruannet ei leitud.",
+      "report_retention_invalid": "Aruande säilitustähtaeg puudub või on vigane; jagamine peatati.",
       "share_recipient_not_allowed": "Sellele inimesele ei saa aruannet saata.",
       "share_already_sent": "See aruanne on sellele inimesele juba saadetud.",
       "forbidden": "Toiming ei ole lubatud.",
@@ -9345,7 +9353,12 @@
     },
     "outbox": {
       "pending": "Ootel: {count}. Saadetakse ise, kui võrk tuleb tagasi.",
-      "rejected": "Üht ootel kirjet ei õnnestunud salvestada. Sisesta see uuesti."
+      "rejected": "Üht ootel kirjet ei õnnestunud salvestada. Sisesta see uuesti.",
+      "needs_attention": "Üks ootel töö vajab enne saatmist parandamist.",
+      "needs_attention_count": "Parandamist vajavaid ootel töid: {count}.",
+      "restore": "Tõsta vormile",
+      "full": "Seadme ootejärjekord on täis. Taasta ühendus või paranda ootel tööd; uus töö jäi vormile alles.",
+      "storage_failed": "Tööd ei õnnestunud sellesse seadmesse salvestada. Vorm jäi avatuks; ära sulge lehte enne uut katset."
     },
     "baseline": {
       "title": "Kui kaua kulub dokumenteerimisele",

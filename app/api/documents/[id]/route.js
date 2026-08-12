@@ -28,6 +28,7 @@ import {
   attemptDocumentRagRemoval,
   prepareDocumentRagPermissionChange
 } from "@/lib/documents/ragPermission"
+import { assertServiceLogReportDeletable } from "@/lib/serviceLog/reportRetention"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
@@ -219,7 +220,6 @@ export async function PATCH(request, { params }) {
     if (frameworkSchemaAvailable && existing.frameworkAcceptance) {
       return errorJson("documents.errors.read_only_document", 403, locale)
     }
-
     const kind = body?.kind == null ? existing.kind : normalizeDocumentKind(body.kind)
     const templateFor =
       body?.templateFor === undefined
@@ -387,6 +387,7 @@ export async function DELETE(request, { params }) {
     if (frameworkSchemaAvailable && existing.frameworkAcceptance) {
       return errorJson("documents.errors.read_only_document", 403, locale)
     }
+    assertServiceLogReportDeletable(existing)
 
     // A meeting-summary document has a sibling <jobId>.json snapshot holding the same summary
     // text. Purge it before the record so a failure blocks the delete (honest, retryable) instead
@@ -474,6 +475,9 @@ export async function DELETE(request, { params }) {
       id: deletedDocument.id
     })
   } catch (error) {
+    if (error?.status === 409) {
+      return errorJson(error.message, 409, locale)
+    }
     if (error?.status === 403) {
       return errorJson("api.common.forbidden", 403, locale)
     }

@@ -3945,6 +3945,27 @@ model UserDocument {
   @@index([sha256])
 }
 
+/// RPS § 12 alusel säilitatav väljastatud Teenuspäeviku fail pärast konto
+/// kustutamist. Teadlikult EI OLE User-seost ega ownerId-d: kohustuslik tõend
+/// säilib, kuid seda ei saa enam siduda aktiivse platvormikontoga.
+model ServiceLogReportLegalArchive {
+  id                      String   @id @default(cuid())
+  sourceDocumentId        String   @unique
+  title                   String
+  originalName            String
+  mime                    String
+  size                    Int
+  sha256                  String
+  storagePath             String
+  metadata                Json?
+  retentionEndsAt         DateTime
+  issuedDocumentCreatedAt DateTime
+  archivedAt              DateTime @default(now())
+
+  @@index([retentionEndsAt])
+  @@index([sha256])
+}
+
 model FrameworkAcceptance {
   id                         String    @id @default(cuid())
   userId                     String
@@ -5662,6 +5683,9 @@ model ServiceEntry {
   /// Nullable, sest võrgus sisestus seda ei vaja; unikaalsus on profiili SEES,
   /// et kahe osutaja seadmed ei saaks teineteise võtmeid blokeerida.
   clientRequestId    String?
+  /// Kanoniseeritud sisendi sha256. Sama idempotentsusvõti on replay ainult
+  /// siis, kui ta kirjeldab sama tööd; eri räsi annab 409.
+  clientRequestHash  String?
   /// LÄHTEKÜLASTUS Välitööst (leping 8.4).
   ///
   /// Eeltäide tekitas selle viite juba varem, aga teda ei saadetud ega
@@ -5744,6 +5768,10 @@ model ServiceMonthlyNarrative {
   clientUserId      String?
   clientErasedAt    DateTime?
   clientDisplayName String?
+  /// Väliskliendi stabiilne minimeeritud viide. Nimi ei ole identiteet.
+  clientExternalRef String?
+  /// Migratsioonieelne nimepõhine rida vajab inimese seostamist päris viitega.
+  clientIdentityNeedsReview Boolean @default(false)
   periodYear        Int
   periodMonth       Int
   /// Inimese KINNITATUD lõpptekst. AI mustand ei jõua siia ilma kinnituseta —
@@ -5769,7 +5797,7 @@ model ServiceMonthlyNarrative {
   /// AINULT suunamisega seotud narratiividel. Suunamiseta narratiivi ainusus
   /// tuleb migratsiooni KAHEST osalisest indeksist
   /// (`ServiceMonthlyNarrative_noreferral_clientuser_key` platvormi kliendile ja
-  /// `..._noreferral_clientname_key` välisele kliendile) — Prisma ei oska
+  /// `..._noreferral_externalref_key` välisele kliendile) — Prisma ei oska
   /// `WHERE`-iga indeksit väljendada. Sama lahendus, mida T25 kasutab profiili
   /// omandirežiimidel.
   @@unique([providerProfileId, referralId, periodYear, periodMonth])
@@ -5806,9 +5834,12 @@ model ServiceMonthlyNarrative {
 model ServiceReportShare {
   id                    String                   @id @default(cuid())
   documentId            String
-  ownerUserId           String
-  organizationId        String
-  recipientMembershipId String
+  ownerUserId           String?
+  organizationId        String?
+  recipientMembershipId String?
+  ownerErasedAt         DateTime?
+  organizationErasedAt  DateTime?
+  recipientErasedAt     DateTime?
   /// „AAAA-KK". Dubleerib dokumendi metaandmeid TEADLIKULT: juhi loend
   /// järjestatakse perioodi järgi ja JSON-välja järgi sortimine oleks aeglane
   /// ning indekseerimatu.
@@ -5816,6 +5847,7 @@ model ServiceReportShare {
   /// KÜLMUTATUD KOOPIA. Oma fail, oma nimi, oma räsi — juhi eksemplar ei sõltu
   /// sellest, mida omanik oma dokumendiga hiljem teeb.
   storagePath           String
+  stagingStoragePath    String?
   fileName              String
   mime                  String
   sizeBytes             Int
@@ -5829,12 +5861,13 @@ model ServiceReportShare {
   sentAt                DateTime                 @default(now())
   openedAt              DateTime?
   recalledAt            DateTime?
+  retentionEndsAt       DateTime
   createdAt             DateTime                 @default(now())
   updatedAt             DateTime                 @updatedAt
 
-  owner        User                   @relation("ServiceReportShareOwner", fields: [ownerUserId], references: [id], onDelete: Cascade)
-  organization Organization           @relation(fields: [organizationId], references: [id], onDelete: Cascade)
-  recipient    OrganizationMembership @relation("ServiceReportShareRecipient", fields: [recipientMembershipId], references: [id], onDelete: Cascade)
+  owner        User?                   @relation("ServiceReportShareOwner", fields: [ownerUserId], references: [id], onDelete: SetNull)
+  organization Organization?           @relation(fields: [organizationId], references: [id], onDelete: SetNull)
+  recipient    OrganizationMembership? @relation("ServiceReportShareRecipient", fields: [recipientMembershipId], references: [id], onDelete: SetNull)
 
   @@index([ownerUserId, sentAt])
   @@index([recipientMembershipId, status, sentAt])
@@ -5843,6 +5876,7 @@ model ServiceReportShare {
 }
 
 enum ServiceReportShareStatus {
+  PREPARING
   SENT
   OPENED
   /// Tagasi võetud. Rida JÄÄB ALLES: „ma ei saatnud seda kunagi" ja „ma võtsin

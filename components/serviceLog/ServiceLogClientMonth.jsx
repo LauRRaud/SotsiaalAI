@@ -60,16 +60,17 @@ export default function ServiceLogClientMonth() {
       const response = await fetch("/api/service-log/client", {
         method: "POST",
         headers: { "Content-Type": "application/json", "x-ui-locale": locale || "et" },
-        body: JSON.stringify({ month })
+        body: JSON.stringify({ month, snapshotToken: report?.snapshotToken })
       });
       if (response.ok) await load(month);
+      else if (response.status === 409) await load(month);
       else setState("error");
     } catch {
       setState("error");
     } finally {
       setSaving(false);
     }
-  }, [load, locale, month]);
+  }, [load, locale, month, report?.snapshotToken]);
 
   return (
     <div className="sl-day">

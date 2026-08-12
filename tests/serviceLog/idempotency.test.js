@@ -90,17 +90,26 @@ test("sama clientRequestId ei loo teist kirjet", async () => {
   assert.equal(second.replayed, true, "kutsuja peab saama teada, et see oli kordus");
 });
 
-/* Sisu ei tohi kordussaatmisel muutuda: kui võrguühendus katkes, on seadmes
-   olev koopia sama, ja server EI TOHI vana kirjet vaikselt üle kirjutada. */
-test("kordussaatmine ei kirjuta olemasolevat kirjet üle", async () => {
-  const db = makeDb();
-  const first = await createEntry("user-1", baseInput({ quantity: "2" }), { db, env: ENV });
-  const second = await createEntry("user-1", baseInput({ quantity: "9" }), { db, env: ENV });
+/* Sama võti on replay ainult sama kanoniseeritud sisuga. Eri töö ei tohi vana
+   rea taha „edukalt" kaduda. */
+for (const [label, change] of [
+  ["klient", { clientDisplayName: "Jüri" }],
+  ["kuupäev", { date: "2026-08-03" }],
+  ["kogus", { quantity: "9" }],
+  ["suunamine", { referralId: "referral-other" }]
+]) {
+  test(`sama clientRequestId ja erinev ${label} annab 409`, async () => {
+    const db = makeDb();
+    await createEntry("user-1", baseInput(), { db, env: ENV });
+    const error = await createEntry("user-1", baseInput(change), { db, env: ENV }).catch(
+      (caught) => caught
+    );
 
-  assert.equal(db.rows.length, 1);
-  assert.equal(second.id, first.id);
-  assert.equal(String(db.rows[0].quantity), String(first.quantity));
-});
+    assert.equal(error.status, 409);
+    assert.equal(error.messageKey, "service_log.errors.idempotency_payload_mismatch");
+    assert.equal(db.rows.length, 1);
+  });
+}
 
 test("samaaegne saatmine: P2002 annab sama kirje, mitte vea", async () => {
   const db = makeDb({ failFirstCreateWithP2002: true });

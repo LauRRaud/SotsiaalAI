@@ -40,6 +40,7 @@ export async function GET(req) {
         referralId: url.searchParams.get("referralId"),
         clientUserId: url.searchParams.get("clientUserId"),
         clientDisplayName: url.searchParams.get("clientDisplayName"),
+        clientExternalRef: url.searchParams.get("clientExternalRef"),
         periodYear: url.searchParams.get("periodYear"),
         periodMonth: url.searchParams.get("periodMonth")
       });

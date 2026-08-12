@@ -5741,6 +5741,8 @@ sisaldab teise konto ridu; meie sessioon ei näe ega saada neid).
 
 **Vastuvõtukriteerium.** Autentimis- ja ajutised olekuvead peavad järjekorda säilitama; parandatav payload peab liikuma püsivasse `needs_attention` olekusse koos põhjuse, redigeerimise ja uuesti saatmisega. Testida eraldi 400, 401, 403, 409 ja 5xx järel reload'i ning nõuda, et ükski rida ei kaoks ilma kasutaja kinnitatud lahenduseta.
 
+**Seis (12.08.2026): DONE — outbox eristab nüüd uuesti proovitavat ja parandamist vajavat tööd ning ei kustuta kumbagi vaikides.** Võrguviga, 401, 403, 408, 425, 429 ja 5xx jäävad järjekorda; 400/409 liiguvad püsivasse `needs_attention` olekusse koos põhjusega. UI näitab neid eraldi ja „Tõsta vormile” taastab payload'i redigeerimiseks; alles see kasutaja toiming eemaldab vana järjekorrarealt. Reload-test tõendas 400 payload'i ja põhjuse püsimise ning olekutestid katsid kõik nõutud vastuseklassid.
+
 ### SOL-SLOG-03 — 201. võrgujärjekorra kirje kustutab vanima teenuse vaikides — P1
 
 **Tõend.** Outbox'i piir on 200 ja `enqueue()` rakendab `current.slice(-OUTBOX_LIMIT)`, mis viskab vanima rea välja ilma veata või eraldi kadunud-rea olekuta (`lib/serviceLog/outbox.js:28-34`, `:80-91`). Test kinnitab praegu just vanima väljakukkumist (`tests/serviceLog/outbox.test.js:84-93`); UI kuvab ainult alles jäänud kirjete arvu.
@@ -5748,6 +5750,8 @@ sisaldab teise konto ridu; meie sessioon ei näe ega saada neid).
 **Mõju.** Pikema offline-perioodi või takerdunud sünkroonimise korral kaob kõige varem tehtud töö arve- ja aruandealusest, kuid kasutaja näeb ainult 200 ootel kirjet ega saa teada, milline klient või teenus kadus.
 
 **Vastuvõtukriteerium.** Täis järjekord peab uue sisestuse enne andmekadu blokeerima või vanima rea püsivasse taastatavasse arhiivi viima; UI peab näitama selget täitumis- ja sünkroonimistõrget. Piirtest peab tõendama, et 201. sisestus ei kustuta ühtegi varasemat tööd.
+
+**Seis (12.08.2026): DONE — 201. kirje blokeeritakse enne kirjutust ning kõik 200 varasemat payload'i jäävad muutmata alles.** Sama idempotentsusvõtmega rea parandamine on endiselt lubatud, kuid uue võtme lisamine täis järjekorda tagastab nähtava täitumisvea ja vorm jääb avatuks. Piirtest võrdleb kogu järjekorda enne ja pärast 201. katset, mitte ainult pikkust.
 
 ### SOL-SLOG-04 — korduv idempotentsusvõti ei kontrolli, kas uus payload kirjeldab sama tööd — P1
 
@@ -5757,6 +5761,8 @@ sisaldab teise konto ridu; meie sessioon ei näe ega saada neid).
 
 **Vastuvõtukriteerium.** Idempotentsusrea juurde tuleb salvestada kanoniseeritud sisendi räsi; sama võti ja sama räsi annavad replay, sama võti ja erinev räsi 409 koos taastatava payload'iga. Testida vähemalt kliendi, kuupäeva, koguse ja suunamise muutust.
 
+**Seis (12.08.2026): DONE — teenuskirje kannab kanoniseeritud SHA-256 sisendiräsi ning replay nõuab võtme ja sisu kokkulangevust.** Sama payload tagastub idempotentselt; kliendi, kuupäeva, koguse või suunamise muutus sama `clientRequestId` all annab `409 service_log.errors.idempotency_payload_mismatch`. Nullable migratsioon säilitab vanad read ning nende esimene kordus võrreldakse rea tegelikust sisust taastatud sõrmejäljega. Sihitud testid katsid kõik neli nõutud lahknevust.
+
 ### SOL-SLOG-05 — `sourceFieldVisitId` on kliendi usaldatud päritoluväide, mitte tõendatud Välitöö seos — P1
 
 **Tõend.** POST-sisendist võetud `sourceFieldVisitId` kärbitakse ja kirjutatakse otse teenuskirjele (`lib/serviceLog/entries.js:468-472`, `:548-559`). Loomisrada ei otsi vastavat Välitöö külastust ega kontrolli selle omanikku, olekut või sisu. Skeem loob ainult profiilisisese unikaalsuse ning dokumenteerib teadlikult FK puudumise (`prisma/schema.prisma:5366-5395`).
@@ -5764,6 +5770,8 @@ sisaldab teise konto ridu; meie sessioon ei näe ega saada neid).
 **Mõju.** Otsene API-kutsuja saab suvalise ID-ga väita, et arve alusdokument tuli konkreetsest külastusest, või hõivata päris külastuse ID nii, et hilisem õige kirje saab `visit_already_used`. Päritoluväli näeb auditile tõendina välja, kuid pole serveris tõendatud.
 
 **Vastuvõtukriteerium.** Loomise hetkel peab server tõendama, et lähtekülastus kuulub samale kasutajale/profiilile, on sobivas lõppolekus ja vastab kliendi/aja põhiandmetele; FK puudumine retention'i tõttu võib jääda. Negatiivtest peab proovima võõrast, olematut, lõpetamata ja juba kasutatud külastust.
+
+**Seis (12.08.2026): DONE — `sourceFieldVisitId` seos tõendatakse nüüd serveris enne teenuskirje loomist.** Külastus peab kuuluma samale profiilile ja omanikule, olema `COMPLETED`, kasutamata ning vastama kliendi, kuupäeva, suunamise, teenuse ja aja põhiandmetele; olematu ja võõras ID annavad ühtemoodi 404. Negatiivtestid katsid olematut, võõrast, lõpetamata, juba kasutatud ja sisult lahknevat külastust. FK-ta retention'i piir jäi teadlikult alles, kuid päritoluväidet ei saa enam kliendist vabalt kirjutada.
 
 ### SOL-SLOG-06 — sama nimega väliskliendi suunamist saab kasutada teise välisviitega kirjel — P1
 
@@ -5823,6 +5831,8 @@ sisaldab teise konto ridu; meie sessioon ei näe ega saada neid).
 
 **Vastuvõtukriteerium.** Kinnitus peab kandma kliendile kuvatud külmutatud ID-loendit või serveri väljastatud snapshot-versiooni ning muutunud kuu korral 409-ga uut ülevaatust nõudma. Paralleeltest peab lisama FINAL-rea count'i ja update'i vahele ning tõendama, et see ei kinnitu.
 
+**Seis (12.08.2026): DONE — kliendi kuuvaade annab nähtavate ID-de ja sisu sha256-snapshoti ning POST nõuab sama võtit, külmutab ID-loendi ja kinnitab ainult need read serialiseeritavas tehingus.** Lühike PostgreSQL-i SHARE-lukk sulgeb FINAL-fantoomirea akna; enne tehingut muutunud kuu saab 409 ja UI laadib värske vaate. `npm run slog:confirmation-retention:probe` lisas FINAL-rea deterministlikult snapshoti lugemise ja update'i vahele: lisamine ootas lukku, kliendi nähtud rida kinnitus, uus rida jäi kinnitamata ning vana snapshoti kordus sai 409.
+
 ### SOL-SLOG-12 — seitsmeaastase säilitusega kuuaruande saab tavalisest dokumendi-DELETE rajast kohe kustutada — P1
 
 **Tõend.** Arhiveerija märgib Teenuspäeviku aruande `SERVICE_LOG_REPORT` dokumendiks ja paneb metaandmetesse RPS §12 põhise `retentionEndsAt` (`lib/serviceLog/reportArchive.js:129-160`). Üldine dokumendi DELETE kontrollib omanikku ja framework-read-only olekut, kuid mitte kind'i ega retention-tähtaega, ning kustutab rea ja faili kohe (`app/api/documents/[id]/route.js:313-405`). Konto kustutuse kogur valib samuti kõik omaniku `UserDocument` read ilma retentsioonierandita (`lib/privacy/userDeletion.js:17-36`).
@@ -5830,6 +5840,8 @@ sisaldab teise konto ridu; meie sessioon ei näe ega saada neid).
 **Mõju.** Platvormi enda sõnul väljastatud aruanne ja tema baitidest tõend võivad kaduda aastaid enne lubatud tähtaega nii käsitsi kui konto kustutamisel. Hilisem kirjeparandus tähendab, et sama kuu uus eksport ei tõenda, mis varem esitati.
 
 **Vastuvõtukriteerium.** Teenuspäeviku aruande füüsiline/DB kustutus peab enne tähtaega fail-closed olema või minema anonüümitud juriidilisse arhiivi; konto kustutus peab säilitama vajaliku dokumendi ilma aktiivse kasutajaidentiteedita. Testida DELETE-i ja konto kustutust enne ning pärast retentionEndsAt aega.
+
+**Seis (12.08.2026): DONE — tavapärane dokumendi DELETE annab aktiivse RPS § 12 tähtajaga raportile 409 ning puuduv või vigane tähtaeg lukustab kustutuse fail-closed.** Konto kustutus eraldab säilitatava faili tavakustutuse sihtidest ja teisaldab `UserDocument` rea enne kasutajakaskaadi `ServiceLogReportLegalArchive` tabelisse, millel ei ole `ownerId`-d, `userId`-d ega User-seost. Olemasolev retention-sweep kustutab pärast tähtaega esmalt faili ja siis arhiivirea. Päris PostgreSQL-i sond tõendas omaniku-`UserDocument` kadumise, identiteediväljadeta arhiivirea ja tähtajajärgse fail+DB koristuse; Teenuspäeviku ning konto-kustutuse testslice 366/366 PASS. Vajab migratsiooni `20260812213000_sol_slog_12_report_legal_archive`.
 
 ### SOL-SLOG-13 — pelk otsese juhi seos annab tundliku kliendiaruande sisuõiguse vastupidiselt org-lepingule — P0
 
@@ -5895,6 +5907,8 @@ WHERE-d.
 
 **Vastuvõtukriteerium.** Fail peab sündima ajutisse asukohta ning liikuma lõplikuks ainult koos taastatava DB-olekuga; veal tuleb fail kindlasti puhastada või püsiv cleanup-job luua. Jagamise põhitegu ja audit peavad olema sama tehingu/transactional-outbox'i osa. Veasüstitestid peavad katma store→DB, DB→audit ja P2002 rajad.
 
+**Seis (12.08.2026): DONE — jagamine loob enne failikirjutust püsiva `PREPARING` rea, kirjutab koopia staging-asukohta, promob selle lõplikuks ning commitib alles siis `SENT` siirde ja kohustusliku org-auditi samas tehingus.** Store-, promote-, DB- või auditivea kompensatsioon puhastab mõlemad võimalikud failiteed; puhastuse enda tõrkel jääb `PREPARING` rida retention-sweepile taastatavaks cleanup-job'iks. P2002 tekib enne ühtegi uut faili. Ka tagasivõtmise `RECALLED` ja audit commitivad nüüd koos. Veasüstitestid katsid store→DB, DB→audit, cleanup-tõrke ja P2002; `npm run slog:share-integrity:probe` tõendas päris PostgreSQL-is SENT+auditi, staging-promote'i, failita P2002 ja RECALLED auditi rollbacki.
+
 ### SOL-SLOG-16 — liikmesuse, organisatsiooni või omaniku kustutus kaskaadib juhile saadetud külmutatud aruande — P1
 
 **Tõend.** `ServiceReportShare` kannab ainsat juhile kuuluvat külmutatud faili ja lubab tagasivõtmisel rea alles jätta, kuid kõik kolm seost — owner User, Organization ja recipient OrganizationMembership — on `onDelete: Cascade` (`prisma/schema.prisma:5507-5544`; migratsioonis `20260803000000_service_report_share/migration.sql:51-59`). Teenuskihis pole enne neid kustutusi koopiat anonüümivasse/retentsiooni säilitavasse rada.
@@ -5902,6 +5916,8 @@ WHERE-d.
 **Mõju.** Töötaja konto kustutus, juhi liikmesuse lõpetamise tehniline kustutus või organisatsiooni kustutus eemaldab nii aruande ligipääsu kui saatmise/avamise/tagasivõtu tõendi, sõltumata aruande säilitustähtajast. Kettale jääva faili puhastus pole cascade'i osa, mistõttu võib sama tegu jätta ka orvufaili.
 
 **Vastuvõtukriteerium.** Säilitatava jagamise identiteediseosed peavad kasutama SetNull + erased-at snapshot'i või eraldi retentsiooniarhiivi; liikmesuse/konto kustutus peab puhastama või säilitama faili koos DB reaga ühe tõendatava poliitika järgi. Testida kõigi kolme vanema kustutust.
+
+**Seis (12.08.2026): DONE — `ServiceReportShare` omaniku, organisatsiooni ja saajaliikmesuse FK-d on nüüd nullable `SetNull` seosed ning DB-trigger kirjutab iga kadunud vanema jaoks vastava erased-at ajatempli.** Külmutatud fail, räsi, periood, jagamisolek ja aruandest pärit `retentionEndsAt` jäävad alles; retention-sweep kustutab faili ja rea alles tähtaja järel. Päris PostgreSQL-i sond kustutas järjest omaniku, saajaliikmesuse ja organisatsiooni: rida elas kõik kolm kaskaadi üle, iga seos muutus nulliks koos erased-at jäljega ning faili räsi ja tähtaeg säilisid. Teenuspäeviku ja konto-kustutuse testslice 373/373 PASS. Vajab migratsiooni `20260812223000_sol_slog_15_16_share_integrity`.
 
 ### SOL-SLOG-17 — mitme organisatsiooniga töötaja kaudu näeb üks juht teise organisatsiooni klienditöid — P0
 
@@ -6002,6 +6018,8 @@ Olemasolev `dispatchAssign.test.js` hoiab kahekordse õiguse piiri edasi.
 
 **Vastuvõtukriteerium.** Andmebaas peab jõustama ühe aktiivse külastuse route/profiili kohta või siirded tuleb serialiseerida; kaotaja saab 409. Paralleeltest peab käivitama kaks eri külastust samal route'il.
 
+**Seis (12.08.2026): DONE — kõik külastuse siirded võtavad nüüd `ServiceWorkRoute` rea `FOR UPDATE` luku ning loevad luku järel nii külastuse kui route'i uuesti.** Aktiivse teise külastuse kontroll ja olekukirjutus toimuvad samas tehingus, seega kahe eri külastuse paralleelsel alustamisel saab ainult üks võita ja teine 409. `npm run slog:route-race:probe` käivitas päris PostgreSQL-is kaks sama route'i eri `PLANNED` külastust paralleelse `depart`-iga: üks õnnestus, teine sai 409 ning andmebaasi jäi täpselt üks aktiivne rida. Kogu sond 10/10 PASS.
+
 ### SOL-SLOG-20 — päeva sulgemine ja külastuse alustamine võivad jätta aktiivse külastuse suletud route'ile — P1
 
 **Tõend.** `closeRoute()` kontrollib aktiivse külastuse puudumist ja sulgeb route'i kahe eraldi päringuga (`lib/serviceLog/dayRoute.js:508-531`). `transitionVisit()` ei kontrolli, et seotud route oleks endiselt OPEN, ja kirjutab külastuse oleku eraldi (`dayRoute.js:370-474`). Nende vahele pole lukku ega tingimuslikku seost.
@@ -6009,6 +6027,8 @@ Olemasolev `dispatchAssign.test.js` hoiab kahekordse õiguse piiri edasi.
 **Mõju.** Töötaja saab ühe samaaegse kutsega päeva edukalt lõpetada ja teisega külastuse EN_ROUTE/ARRIVED olekusse viia. Järgmine `openRoute()` loob uue päeva, kuid vana aktiivne töö jääb suletud route'ile ning turva- ja tööajaloogika lahknevad.
 
 **Vastuvõtukriteerium.** Route'i sulgemine ja visiidisiirded peavad lukustama sama route'i või kontrollima atomaarse tingimusena route.status väärtust. Paralleeltest peab võistlema close/depart ja close/arrive ning lubama ainult ühe koherentse lõpptulemuse.
+
+**Seis (12.08.2026): DONE — `closeRoute()` ja `transitionVisit()` serialiseeruvad nüüd sama `ServiceWorkRoute` realuku kaudu; siire nõuab luku järel endiselt `OPEN` route'i.** Kui sulgemine võidab, jääb visiit `PLANNED`; kui siire võidab, näeb sulgemine aktiivset visiiti ja annab 409. Päris PostgreSQL-i sond võistles eraldi `close/depart` ja `close/arrive`: mõlemas oli täpselt üks võitja, kaotaja sai 409 ning lõppseis oli vastavalt ainult `CLOSED/PLANNED` või `OPEN/EN_ROUTE|ARRIVED`, mitte kunagi aktiivne visiit suletud route'il. Struktuurivalvur hoiab mõlema toimingu ühise luku, luku järel tehtava korduslugemise ja `OPEN` kontrolli alles.
 
 ### SOL-SLOG-21 — erineva kliendi idempotentsusvõtmega saab ühest lõpetatud külastusest kaks arvekirjet — P1
 
@@ -6018,6 +6038,8 @@ Olemasolev `dispatchAssign.test.js` hoiab kahekordse õiguse piiri edasi.
 
 **Vastuvõtukriteerium.** Server peab tuletama idempotentsusvõtme ise visitId-st või kirjutama visitId teenuskirje unikaalsesse päritoluvälja; kirje loomine ja linkimine vajavad ühe taastatava tehingu/olekumasina lepingut. Testida kahte samaaegset eri võtmega create_entry kutset.
 
+**Seis (12.08.2026): DONE — külastusest kirje loomise võti on nüüd ainult serveri tuletatud `visit-entry-<visitId>` ning sama unikaalne `sourceFieldVisitId` seob tulemuse külastusega.** Kutsuja võtit API enam edasi ei anna; juba lingitud külastus tagastab sama kirje idempotentselt. `npm run slog:entry-origin:probe` läbis päris PostgreSQL-is **12/12**, sealhulgas kaks paralleelset eri kliendivõtmega kutset: mõlemad said sama kirje, andmebaasi jäi üks teenuskirje ja üks tagasilink.
+
 ### SOL-SLOG-22 — suunamiseta kuunarratiiv ühendab sama nimega väliskliendid üheks looks — P1
 
 **Tõend.** `ServiceMonthlyNarrative` ei kanna `clientExternalRef` välja ning suunamiseta väliskliendi osaline unikaalindeks kasutab nime (`prisma/schema.prisma:5441-5476`, `prisma/migrations/20260802100000_service_log_v1/migration.sql:161-166`). `getNarrativeSeed()` filtreerib samuti ainult `clientDisplayName` järgi ja `upsertNarrative()` leiab/uuendab sama nimega kuu rea (`lib/serviceLog/narratives.js:69-115`, `:140-208`).
@@ -6025,6 +6047,8 @@ Olemasolev `dispatchAssign.test.js` hoiab kahekordse õiguse piiri edasi.
 **Mõju.** Kahe sama nimega väliskliendi faktid, märkmed ja AI sisend võivad koonduda ühte narratiivi ning ühe kliendi salvestus kirjutab teise loo üle. Ekspordi mallide parandatud grupivõti seda eraldi tabelit ei kaitse.
 
 **Vastuvõtukriteerium.** Narratiivi väliskliendi identiteet peab sisaldama stabiilset minimeeritud viidet/snapshot-võtit ja osaline unikaalsus peab kasutama seda, mitte nime. Migratsioon peab olemasolevad nimepõhised konfliktid käsitsi lahendatavaks märgistama. Testida sama nime ja eri välisviitega kahte narratiivi ning seed'i.
+
+**Seis (12.08.2026): DONE — suunamiseta väliskliendi narratiiv kasutab nime asemel stabiilset `clientExternalRef` identiteeti.** Uus osaline unikaalindeks on profiil+välisviide+aasta+kuu; vana nimepõhine indeks eemaldati. Migratsioon annab olemasolevatele nimepõhistele ridadele unikaalse `legacy:<id>` viite ja märgib need `clientIdentityNeedsReview=true`, nii et võimalikku identiteedivõlga ei peideta. `npm run slog:narrative-identity:probe` läbis päris PostgreSQL-is **6/6**: kaks sama nime ja eri viitega narratiivi ning nende seed'id jäid lahus.
 
 ### SOL-SLOG-23 — hiline narratiivi vastus võib ühe kliendi teksti teise kliendi alla salvestada — P1
 
@@ -6034,6 +6058,8 @@ Olemasolev `dispatchAssign.test.js` hoiab kahekordse õiguse piiri edasi.
 
 **Vastuvõtukriteerium.** Iga laadimine/genereerimine peab olema seotud referralId+month sõrmejäljega ja tohib olekut muuta ainult aktiivse request-ID korral; valiku vahetus peab vana mustandi tühistama või kinnitust küsima. Brauseritest peab lahendama A/B seed-, list- ja AI-päringud mõlemas järjekorras ning proovima salvestust.
 
+**Seis (12.08.2026): DONE — seed, olemasolev narratiiv ja AI-mustand on seotud `referralId+month` sõrmejälje, request-ID ja AbortControlleriga.** Valiku vahetus tühistab vana töö ning puhastab editori kohe; hiline vastus ei tohi olekut muuta ja salvestus on blokeeritud, kui editori sõrmejälg ei vasta aktiivsele valikule. Päris brauseris lahendati seed-, list- ja AI-päringud nii A→B kui B→A järjekorras: kõik kuus jätsid ekraanile viimase valiku teksti ning salvestus saatis ainult nähtava A valiku ja `A SAFE` teksti.
+
 ### SOL-SLOG-24 — kuu-, saldo- ja narratiivivaated kärbivad alusandmeid vaikides — P1
 
 **Tõend.** Kuuaruanne loeb kuni 5000 kuu kirjet ja kuni 5000 suunamiskirjet ning kuni 500 suunamist, kuid ei tagasta `truncated` olekut (`lib/serviceLog/monthReport.js:47-102`). Suunamiste saldo teeb sama 500/5000 piiriga (`lib/serviceLog/referrals.js:140-172`). Narratiivi seed võtab 2000 kirjet ja list 500 narratiivi ilma kärpeindikaatorita (`lib/serviceLog/narratives.js:99-115`, `:216-233`). Ekspordikiht oskab seevastu 5001. rea küsimisega kärpe nähtavaks teha (`lib/serviceLog/exportService.js:74-90`, `:152-157`).
@@ -6041,6 +6067,8 @@ Olemasolev `dispatchAssign.test.js` hoiab kahekordse õiguse piiri edasi.
 **Mõju.** Suuremas teenuseosutuses võivad kuu summad, jäägid, kinnitamata arv ja narratiivi faktibaas olla poolikud, kuid UI ning AI esitavad neid täieliku kuuna. Kõige vanemad/uuemad puuduvad read sõltuvad päringute erinevast või määramata järjestusest.
 
 **Vastuvõtukriteerium.** Rahalised koondid peavad kasutama täielikku DB-agregatsiooni või stabiilset lehekülgitamist; igal kaitsepiiril peab olema fail-closed või selge `truncated/incomplete` leping. Testida vähemalt 5001 kirjet, 501 suunamist ja 2001 narratiivikirjet nii, et piiri taha jääv rida muudab tulemust.
+
+**Seis (12.08.2026): DONE — kuu-, saldo-, suunamis- ja narratiivipäringud kasutavad nüüd stabiilset ID-kursoriga lehekülgitamist ega lõpeta vaikides vana `take` piiri juures.** Ühine abifunktsioon nõuab igalt lehelt kasvavat viimast ID-d ja viskab seiskunud kursori korral, selle asemel et tagastada näiliselt täielik tulemus. Piirtestid tõendasid, et 5001. kuurida ja saldorida muudavad summat, 501. suunamine ja narratiiv jõuavad vastusesse ning 2001. seed'i kirje jõuab faktibaasi.
 
 ### SOL-RAGSVC-01 — kaks ingest-rada võimaldavad kirjutada faili väljapoole RAG-hoidlat — P0
 

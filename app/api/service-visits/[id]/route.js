@@ -45,8 +45,7 @@ export async function PATCH(req, context) {
     if (body?.action === "create_entry") {
       const result = await createEntryFromVisit(userId, await routeId(context), {
         unit: body?.unit || null,
-        quantity: body?.quantity ?? null,
-        clientRequestId: body?.clientRequestId || null
+        quantity: body?.quantity ?? null
       });
       return json({ entry: result.entry, visit: result.visit }, 201);
     }

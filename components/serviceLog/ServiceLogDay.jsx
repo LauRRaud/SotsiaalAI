@@ -38,7 +38,17 @@ import Dropdown from "@/components/ui/Dropdown";
 import Form from "@/components/ui/Form";
 import Input from "@/components/ui/Input";
 import { PROVENANCE, SERVICE_UNITS, VISIT_STAMP } from "@/lib/serviceLog/constants";
-import { dequeue, enqueue, outboxCount, readOutbox, shouldRetry } from "@/lib/serviceLog/outbox";
+import {
+  OUTBOX_STATE,
+  attentionItems,
+  dequeue,
+  enqueueResult,
+  markNeedsAttention,
+  outboxItemState,
+  outboxPayload,
+  readOutbox,
+  shouldRetry
+} from "@/lib/serviceLog/outbox";
 import { SAMPLE_KIND } from "@/lib/serviceLog/measurement";
 import {
   isServiceLogDayRouteUiEnabled,
@@ -183,6 +193,7 @@ export default function ServiceLogDay() {
   const [stamps, setStamps] = useState({});
   const [withTravel, setWithTravel] = useState(false);
   const [pending, setPending] = useState(0);
+  const [outboxAttention, setOutboxAttention] = useState([]);
   /* Välitöö sild: `null` = eeltäidet ei ole; objekt = kirje sünnib külastusest. */
   const [fromVisit, setFromVisit] = useState(null);
   const [fromVisitError, setFromVisitError] = useState(false);
@@ -373,6 +384,7 @@ export default function ServiceLogDay() {
       /* Loendur kuulus eelmise konto järjekorrale; uue oma tuleb `flushOutbox`
          effectist, mis sõltub samuti omanikust. */
       setPending(0);
+      setOutboxAttention([]);
     }
 
     /* Ilma omanikuta ei loeta ega kirjutata midagi: `draftOwner` jääb tühjaks
@@ -667,7 +679,7 @@ export default function ServiceLogDay() {
    * järjekorra puhul on just see otsus kõige kallim: vale otsus jätab kirje
    * igaveseks järjekorda või kustutab tehtud töö ära.
    *
-   * @returns {"sent"|"retry"|"rejected"}
+   * @returns {"sent"|"retry"|"attention"}
    */
   const postEntry = useCallback(
     async (payload) => {
@@ -686,7 +698,7 @@ export default function ServiceLogDay() {
       const body = await response.json().catch(() => ({}));
       if (response.ok) return { outcome: "sent", body };
       if (shouldRetry({ status: response.status })) return { outcome: "retry" };
-      return { outcome: "rejected", body };
+      return { outcome: "attention", body, status: response.status };
     },
     [locale]
   );
@@ -717,21 +729,31 @@ export default function ServiceLogDay() {
     let sentAny = false;
     try {
       for (const item of queued) {
-        const { outcome } = await postEntry(item);
+        /* Parandamist vajav rida ei lähe reload'i järel samasse 4xx-tsüklisse.
+           Ta ootab, kuni inimene tõstab ta vormile, muudab ja saadab uuesti. */
+        if (outboxItemState(item) === OUTBOX_STATE.NEEDS_ATTENTION) continue;
+        const payload = outboxPayload(item);
+        const { outcome, body, status } = await postEntry(payload);
         if (outcome === "retry") break;
-        /* „rejected" kustutab samuti: server vaatas kirje üle ja ütles ei, seega
-           kordamine annaks igavesti sama vastuse ja järjekord ei tühjeneks enam.
-           Kadu on nähtav — pending-loendur langeb ja teade jääb ekraanile. */
-        dequeue(store, item.clientRequestId);
-        if (outcome === "sent") sentAny = true;
-        else setFormError(t("service_log.outbox.rejected", ""));
+        if (outcome === "sent") {
+          dequeue(store, item.clientRequestId);
+          sentAny = true;
+        } else {
+          markNeedsAttention(store, item.clientRequestId, {
+            status,
+            message: body?.message || null
+          });
+          setFormError(t("service_log.outbox.needs_attention", ""));
+        }
       }
     } finally {
       /* `finally`, sest lahti jäänud lukk oleks hullem kui topeltsaatmine:
          järjekord ei tühjeneks enam kunagi. */
       flushingRef.current = false;
     }
-    setPending(outboxCount(store));
+    const remaining = readOutbox(store);
+    setPending(remaining.length);
+    setOutboxAttention(attentionItems(store));
     if (sentAny) await loadEntries();
   }, [deviceStore, loadEntries, postEntry, t]);
 
@@ -749,7 +771,9 @@ export default function ServiceLogDay() {
      * kolmest halvast valikust kõige väiksem on.
      */
     purgeUnscopedRows(window.localStorage);
-    setPending(outboxCount(deviceStore()));
+    const initialStore = deviceStore();
+    setPending(readOutbox(initialStore).length);
+    setOutboxAttention(attentionItems(initialStore));
     flushOutbox();
     const onOnline = () => flushOutbox();
     window.addEventListener("online", onOnline);
@@ -801,8 +825,20 @@ export default function ServiceLogDay() {
         if (outcome === "retry") {
           /* KIRJE EI KAO. Ta on seadmes ja läheb teele, kui võrk tuleb —
              vorm tühjendatakse, sest töötaja jaoks on see külastus tehtud. */
-          enqueue(store, payload);
-          setPending(outboxCount(store));
+          const queued = enqueueResult(store, payload);
+          setPending(queued.items.length);
+          setOutboxAttention(attentionItems(store));
+          if (!queued.ok) {
+            setFormError(
+              t(
+                queued.reason === "full"
+                  ? "service_log.outbox.full"
+                  : "service_log.outbox.storage_failed",
+                ""
+              )
+            );
+            return;
+          }
           /* Ka jaerjekorda laeinud kirje sisestamisele kulus paeris aeg — vork
              ei ole osa sellest, mida me moodame. */
           finishInputTimer();
@@ -812,7 +848,7 @@ export default function ServiceLogDay() {
           return;
         }
 
-        if (outcome === "rejected") {
+        if (outcome === "attention") {
           setFormError(body?.message || t("service_log.errors.invalid_input", ""));
           return;
         }
@@ -834,6 +870,46 @@ export default function ServiceLogDay() {
     },
     [clientName, date, deviceStore, finishInputTimer, fromVisit, loadEntries, locationStamps, note, noteProvenance, postEntry, quantity, referralId, resetForm, serviceId, stamps, t, unit]
   );
+
+  /**
+   * Toob esimese parandamist vajava rea tagasi TAVALISSE vormi. Alles selle
+   * sõnaselge kliki järel eemaldatakse vana järjekorrarida; vorm jääb seadme
+   * mustandina alles ja kasutaja saab välju muuta enne uut saatmist.
+   */
+  const restoreAttentionItem = useCallback(() => {
+    const store = deviceStore();
+    const item = attentionItems(store)[0];
+    const payload = outboxPayload(item);
+    if (!item || !payload) return;
+
+    setClientName(payload.clientDisplayName || "");
+    setDate(payload.date || todayIso());
+    setQuantity(payload.quantity ?? "");
+    setUnit(payload.unit || "HOUR");
+    setServiceId(payload.serviceId || "");
+    setReferralId(payload.referralId || "");
+    setNote(payload.note || "");
+    setNoteProvenance(payload.noteProvenance || PROVENANCE.TOOTAJA_TAHELEPANEK);
+    setStamps(
+      Object.fromEntries(
+        Object.values(VISIT_STAMP)
+          .filter((key) => payload[key])
+          .map((key) => [key, payload[key]])
+      )
+    );
+    setLocationStamps(payload.locationStamps || {});
+    setFromVisit(
+      payload.sourceFieldVisitId
+        ? { sourceFieldVisitId: payload.sourceFieldVisitId, hasDuration: true }
+        : null
+    );
+    setRestoredDraft(true);
+    dequeue(store, item.clientRequestId);
+    const remaining = readOutbox(store);
+    setPending(remaining.length);
+    setOutboxAttention(attentionItems(store));
+    setFormError("");
+  }, [deviceStore]);
 
   if (!isRoleResolved) return null;
 
@@ -1176,6 +1252,21 @@ export default function ServiceLogDay() {
           <p className="sl-pending" role="status">
             {t("service_log.outbox.pending", "", { count: pending })}
           </p>
+        ) : null}
+        {outboxAttention.length > 0 ? (
+          <div className="sl-load-error" role="alert">
+            <p className="sl-error">
+              {t("service_log.outbox.needs_attention_count", "", {
+                count: outboxAttention.length
+              })}
+              {outboxAttention[0]?.__outbox?.message
+                ? ` ${outboxAttention[0].__outbox.message}`
+                : ""}
+            </p>
+            <button type="button" className="sl-tab" onClick={restoreAttentionItem}>
+              {t("service_log.outbox.restore", "")}
+            </button>
+          </div>
         ) : null}
       </Form>
 

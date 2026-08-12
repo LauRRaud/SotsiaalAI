@@ -21,8 +21,27 @@ const ENV_MEASURE = { SERVICE_LOG_ENABLED: "1", SERVICE_LOG_MEASUREMENT: "1" };
 const ENV_CLIENT = { SERVICE_LOG_ENABLED: "1", SERVICE_LOG_CLIENT_VIEW: "1" };
 const PROFILE = { id: "profile-1", ownershipMode: "SOLO" };
 
-function makeDb({ entries = [], samples = [], corrections = [] } = {}) {
+function completedVisit(overrides = {}) {
+  return {
+    id: "visit-1",
+    providerProfileId: PROFILE.id,
+    ownerUserId: "user-1",
+    status: "COMPLETED",
+    serviceEntryId: null,
+    clientUserId: null,
+    clientDisplayName: "Mari",
+    clientExternalRef: null,
+    referralId: null,
+    serviceId: null,
+    arrivedAt: new Date("2026-08-03T10:00:00.000Z"),
+    completedAt: new Date("2026-08-03T11:00:00.000Z"),
+    ...overrides
+  };
+}
+
+function makeDb({ entries = [], samples = [], corrections = [], visits = null } = {}) {
   let seq = 0;
+  const visitRows = visits || [completedVisit()];
   const db = {
     entries,
     samples,
@@ -32,6 +51,15 @@ function makeDb({ entries = [], samples = [], corrections = [] } = {}) {
     },
     serviceReferral: { findFirst: async () => null },
     serviceProviderService: { findFirst: async () => null },
+    serviceVisit: {
+      findFirst: async ({ where }) =>
+        visitRows.find(
+          (row) =>
+            row.id === where.id &&
+            row.providerProfileId === where.providerProfileId &&
+            row.ownerUserId === where.ownerUserId
+        ) || null
+    },
     serviceEntryCorrection: {
       create: async ({ data }) => {
         const row = { ...data, id: `correction-${corrections.length + 1}`, createdAt: new Date() };
@@ -152,6 +180,54 @@ test("kordussaatmine jääb kordussaatmiseks ka külastusega kirjel", async () =
   assert.equal(db.entries.length, 1);
 });
 
+test("võõras ja olematu lähtekülastus annavad mõlemad 404", async () => {
+  for (const visits of [[], [completedVisit({ ownerUserId: "user-2" })]]) {
+    const error = await createEntry(
+      "user-1",
+      entryInput({ sourceFieldVisitId: "visit-1" }),
+      { db: makeDb({ visits }), env: ENV }
+    ).catch((caught) => caught);
+    assert.equal(error.status, 404);
+  }
+});
+
+test("lõpetamata või juba kasutatud lähtekülastust ei saa päritoluks väita", async () => {
+  const unfinished = await createEntry(
+    "user-1",
+    entryInput({ sourceFieldVisitId: "visit-1" }),
+    { db: makeDb({ visits: [completedVisit({ status: "ARRIVED" })] }), env: ENV }
+  ).catch((caught) => caught);
+  assert.equal(unfinished.status, 409);
+  assert.equal(unfinished.messageKey, "service_log.errors.visit_not_completed");
+
+  const used = await createEntry(
+    "user-1",
+    entryInput({ sourceFieldVisitId: "visit-1" }),
+    { db: makeDb({ visits: [completedVisit({ serviceEntryId: "entry-old" })] }), env: ENV }
+  ).catch((caught) => caught);
+  assert.equal(used.status, 409);
+  assert.equal(used.messageKey, "service_log.errors.visit_already_used");
+});
+
+test("lähtekülastuse klient ja ajatemplid peavad kirje põhiandmetega sobima", async () => {
+  for (const input of [
+    entryInput({ sourceFieldVisitId: "visit-1", clientDisplayName: "Jüri" }),
+    entryInput({ sourceFieldVisitId: "visit-1", date: "2026-08-04" }),
+    entryInput({
+      sourceFieldVisitId: "visit-1",
+      arrivedAt: "2026-08-03T10:30:00.000Z",
+      leftAt: "2026-08-03T11:00:00.000Z"
+    })
+  ]) {
+    const error = await createEntry("user-1", input, {
+      db: makeDb(),
+      env: ENV
+    }).catch((caught) => caught);
+    assert.equal(error.status, 400);
+    assert.equal(error.messageKey, "service_log.errors.source_visit_mismatch");
+  }
+});
+
 /* LEID (P2): tavaline töökäik on „kinnita kirje → märgi paberil kinnitatuks".
    Põhjuse nõudmine tegi selle võimatuks: kasutaja oleks pidanud allkirja
    märkimist PÕHJENDAMA. */
@@ -250,8 +326,18 @@ test("väljas mõõtmine peidab ka baasjoone", async () => {
    klient oleks kinnitanud midagi, mida ta ei näinud. Kinnitus on pöördumatu. */
 test("kuud, mis vaatesse ei mahu, ei saa kinnitada", async () => {
   const db = makeDb();
-  db.serviceEntry.count = async () => CLIENT_VIEW_LIMIT + 1;
-  const error = await confirmClientMonth("client-1", { month: "2026-08" }, {
+  db.serviceEntry.findMany = async () => Array.from(
+    { length: CLIENT_VIEW_LIMIT + 1 },
+    (_, index) => ({
+      id: `entry-${index}`,
+      date: new Date("2026-08-01T00:00:00.000Z"),
+      unit: "HOUR",
+      quantity: 1,
+      confirmedByClientAt: null,
+      providerProfile: { organizationName: "OÜ Hooldus" }
+    })
+  );
+  const error = await confirmClientMonth("client-1", { month: "2026-08", snapshotToken: "shown" }, {
     db,
     env: ENV_CLIENT
   }).catch((e) => e);

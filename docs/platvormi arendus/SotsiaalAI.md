@@ -92,9 +92,17 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**Teenuspäeviku peatükis on `SOL-SLOG-06…10` DONE; järgmine sidus plokk on `SOL-SLOG-11…12` (kliendi kuusnapshot ja säilitatava aruande kustutuspiir).**
-`SOL-ORG-13`–`17`, `SOL-DOC-J-01`–`06` ja `SOL-SLOG-06…10` parandused ning kiirem plokipõhine töökord on koodipuus; serverisse deploy'mata. Arvud loetakse käsuga `npm run sol:tally`, neid siia ankrusse ei
+**Teenuspäeviku peatükk `SOL-SLOG-01…24` on tervikuna DONE; järgmine lahtine auditileid on `SOL-RAGSVC-03`.**
+`SOL-ORG-13`–`17`, `SOL-DOC-J-01`–`06` ja kogu `SOL-SLOG-01…24` parandused ning kiirem plokipõhine töökord on koodipuus; serverisse deploy'mata. Arvud loetakse käsuga `npm run sol:tally`, neid siia ankrusse ei
 kopeerita. Kui ülesanne ei ole SOL-parandus, loe S11 järel ainult vastavat S2–S10 sektsiooni.
+
+**SOL-SLOG-02…05 ja 21…24 tehtud 12.08 — Teenuspäeviku viimane plokk sulges võrgujärjekorra andmekao, idempotentsuse/päritolu, narratiivi identiteedi ja asünkroonse UI ning vaikse mahukärpe.** Päris PostgreSQL-i sondid: kirje päritolu/paralleelsus **12/12**, narratiivi identiteet **6/6**. Brauseris läbis narratiivi A/B seed-, list- ja AI-võistlus mõlemas järjekorras kõik kuus juhtu ning salvestus kasutas nähtavat valikut. Uued migratsioonid: `20260812233000_sol_slog_04_entry_request_hash` ja `20260812234000_sol_slog_22_narrative_identity`.
+
+**SOL-SLOG-19…20 tehtud 12.08 — samal päevateekonnal saab olla ainult üks aktiivne külastus ning päeva sulgemine ei saa enam võita paralleelselt külastuse alustamisega.** Mõlemad toimingud lukustavad sama route'i rea ja loevad luku järel värske seisu; kaotaja saab 409. `npm run slog:route-race:probe` **10/10** päris PostgreSQL-is: depart/depart, close/depart ja close/arrive jätsid kõik ainult ühe koherentse võitja. Uut migratsiooni ei vaja.
+
+**SOL-SLOG-11…12 tehtud 12.08 — kliendi kinnitus vastab nüüd nähtud kuule ja seitsmeaastane aruanne ei kao konto ega tavakustutuse kaudu.** Kuuvaade väljastab sisu-snapshoti, POST kinnitab ainult tema külmutatud ID-d ning muutunud kuu annab 409. Aktiivse säilitustähtajaga raporti DELETE annab samuti 409; konto kustutamisel liigub fail kasutajaseoseta juriidilisse arhiivi ja retention-sweep eemaldab ta alles tähtaja järel. `npm run slog:confirmation-retention:probe` **8/8** päris PostgreSQL-is, Teenuspäeviku ja konto-kustutuse testslice **366/366**, sihitud eslint, i18n ja Prisma valideerimine puhtad. Vajab migratsiooni `20260812213000_sol_slog_12_report_legal_archive`.
+
+**SOL-SLOG-15…16 tehtud 12.08 — juhile saadetav aruanne ei saa enam jääda orvufailiks ega kaduda vanemobjekti kaskaadiga.** `PREPARING` on püsiv taasteseis: fail liigub stagingust lõplikuks enne `SENT`+auditi ühistehingut ning cleanup-tõrke korjab retention-sweep. Kolm identiteedi-FK-d kasutavad `SetNull`-i ja DB-triggeri erased-at jälge; räsi, fail ja tähtaeg säilivad. Veasüstitestid **7/7**, `npm run slog:share-integrity:probe` **8/8** päris PostgreSQL-is ning kogu ploki testslice **373/373**; sihitud eslint, i18n ja Prisma valideerimine puhtad. Vajab migratsiooni `20260812223000_sol_slog_15_16_share_integrity`.
 
 **Viimati mõõdetud server on `387ebc5d`, `.next` 12.08 16:15:02** (seitsmeteistkümnes
 deploy, omaniku selgel loal). Välja läksid **SOL-PAY-09** ja **SOL-WB-06 täiendav

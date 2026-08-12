@@ -23,12 +23,16 @@
    Sama muster, mida kasutab admin-kiht (`x-ui-locale: locale`).
  */
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
 import Form from "@/components/ui/Form";
 import { PROVENANCE } from "@/lib/serviceLog/constants";
+import {
+  isCurrentNarrativeRequest,
+  narrativeRequestFingerprint
+} from "@/lib/serviceLog/narrativeRequest";
 
 const PROPOSALS = ["CONTINUE", "CHANGE_VOLUME", "END"];
 
@@ -48,6 +52,42 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
   const [isAiDraft, setIsAiDraft] = useState(false);
 
   const [year, monthNumber] = String(month || "").split("-");
+  const activeFingerprint = useMemo(
+    () => narrativeRequestFingerprint({ referralId, month }),
+    [month, referralId]
+  );
+  const activeFingerprintRef = useRef(activeFingerprint);
+  activeFingerprintRef.current = activeFingerprint;
+  const loadRequestRef = useRef(0);
+  const draftRequestRef = useRef(0);
+  const loadAbortRef = useRef(null);
+  const draftAbortRef = useRef(null);
+  const [editorFingerprint, setEditorFingerprint] = useState(activeFingerprint);
+
+  const resetEditor = useCallback((fingerprint) => {
+    setSeed(null);
+    setBodyText("");
+    setProposal("");
+    setLoadedId(null);
+    setIsAiDraft(false);
+    setSaved(false);
+    setError("");
+    setEditorFingerprint(fingerprint);
+  }, []);
+
+  const changeReferral = useCallback(
+    (nextReferralId) => {
+      loadAbortRef.current?.abort();
+      draftAbortRef.current?.abort();
+      loadRequestRef.current += 1;
+      draftRequestRef.current += 1;
+      setSaving(false);
+      setDrafting(false);
+      setReferralId(nextReferralId);
+      resetEditor(narrativeRequestFingerprint({ referralId: nextReferralId, month }));
+    },
+    [month, resetEditor]
+  );
 
   /**
    * MUSTAND EI SALVESTU ISE. Ta läheb samasse välja, mida inimene toimetab, ja
@@ -55,15 +95,30 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
    * inimese nimi, ei tohi tekkida ilma, et ta oleks selle läbi lugenud.
    */
   const generateDraft = useCallback(async () => {
+    if (!referralId) return;
+    draftAbortRef.current?.abort();
+    const controller = new AbortController();
+    draftAbortRef.current = controller;
+    const requestId = ++draftRequestRef.current;
+    const fingerprint = activeFingerprint;
     setDrafting(true);
     setError("");
     try {
       const response = await fetch("/api/service-narratives/draft", {
         method: "POST",
         headers: { "Content-Type": "application/json", "x-ui-locale": locale || "et" },
-        body: JSON.stringify({ month, referralId: referralId || null })
+        body: JSON.stringify({ month, referralId: referralId || null }),
+        signal: controller.signal
       });
       const body = await response.json().catch(() => ({}));
+      if (
+        !isCurrentNarrativeRequest({
+          requestId,
+          activeRequestId: draftRequestRef.current,
+          fingerprint,
+          activeFingerprint: activeFingerprintRef.current
+        })
+      ) return;
       if (!response.ok) {
         setError(body?.message || t("service_log.errors.invalid_input", ""));
         return;
@@ -71,16 +126,24 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
       setBodyText(body?.draft?.content || "");
       setIsAiDraft(true);
       setSaved(false);
-    } catch {
-      setError(t("service_log.errors.invalid_input", ""));
+      setEditorFingerprint(fingerprint);
+    } catch (caught) {
+      if (caught?.name !== "AbortError" && fingerprint === activeFingerprintRef.current) {
+        setError(t("service_log.errors.invalid_input", ""));
+      }
     } finally {
-      setDrafting(false);
+      if (requestId === draftRequestRef.current) setDrafting(false);
     }
-  }, [locale, month, referralId, t]);
+  }, [activeFingerprint, locale, month, referralId, t]);
 
   const load = useCallback(async () => {
+    loadAbortRef.current?.abort();
+    const controller = new AbortController();
+    loadAbortRef.current = controller;
+    const requestId = ++loadRequestRef.current;
+    const fingerprint = activeFingerprint;
+    resetEditor(fingerprint);
     if (!referralId || !year || !monthNumber) {
-      setSeed(null);
       return;
     }
     try {
@@ -90,9 +153,20 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
         periodYear: year,
         periodMonth: String(Number(monthNumber))
       });
-      const response = await fetch(`/api/service-narratives?${params}`, { headers: { "x-ui-locale": locale || "et" } });
+      const response = await fetch(`/api/service-narratives?${params}`, {
+        headers: { "x-ui-locale": locale || "et" },
+        signal: controller.signal
+      });
       if (!response.ok) return;
       const body = await response.json();
+      if (
+        !isCurrentNarrativeRequest({
+          requestId,
+          activeRequestId: loadRequestRef.current,
+          fingerprint,
+          activeFingerprint: activeFingerprintRef.current
+        })
+      ) return;
       setSeed(body.seed || null);
 
       /* OLEMASOLEV TEKST TULEB TAGASI. Ilma selleta avanes vorm TÜHJANA ka
@@ -100,10 +174,19 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
          kirjutas selle vaikselt üle. Kirjutaja peab saama teksti juurde
          PÄRISELT naasta, mitte alustada iga kord otsast. */
       const existing = await fetch(
-        `/api/service-narratives?${new URLSearchParams({ periodYear: year, periodMonth: String(Number(monthNumber)) })}`
+        `/api/service-narratives?${new URLSearchParams({ periodYear: year, periodMonth: String(Number(monthNumber)) })}`,
+        { headers: { "x-ui-locale": locale || "et" }, signal: controller.signal }
       );
       if (existing.ok) {
         const list = await existing.json();
+        if (
+          !isCurrentNarrativeRequest({
+            requestId,
+            activeRequestId: loadRequestRef.current,
+            fingerprint,
+            activeFingerprint: activeFingerprintRef.current
+          })
+        ) return;
         const match = (list.narratives || []).find((row) => row.referralId === referralId);
         if (match) {
           setBodyText(match.bodyText || "");
@@ -118,19 +201,26 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
           setLoadedId(null);
         }
       }
-    } catch {
+    } catch (caught) {
       /* Koondi puudumine ei tohi kirjutamist blokeerida — tekst on inimese oma
          ja ta võib kirjutada ka ilma koondita. */
+      if (caught?.name === "AbortError") return;
     }
-  }, [locale, referralId, year, monthNumber]);
+  }, [activeFingerprint, locale, referralId, resetEditor, year, monthNumber]);
 
   useEffect(() => {
     load();
+    return () => loadAbortRef.current?.abort();
   }, [load]);
 
   const submit = useCallback(
     async (event) => {
       event.preventDefault();
+      if (editorFingerprint !== activeFingerprint) {
+        setError(t("service_log.errors.narrative_selection_changed", ""));
+        return;
+      }
+      const fingerprint = activeFingerprint;
       setError("");
       setSaved(false);
       setSaving(true);
@@ -153,18 +243,21 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
           })
         });
         const body = await response.json().catch(() => ({}));
+        if (fingerprint !== activeFingerprintRef.current) return;
         if (!response.ok) {
           setError(body?.message || t("service_log.errors.invalid_input", ""));
           return;
         }
         setSaved(true);
       } catch {
-        setError(t("service_log.errors.invalid_input", ""));
+        if (fingerprint === activeFingerprintRef.current) {
+          setError(t("service_log.errors.invalid_input", ""));
+        }
       } finally {
-        setSaving(false);
+        if (fingerprint === activeFingerprintRef.current) setSaving(false);
       }
     },
-    [bodyText, isAiDraft, locale, monthNumber, proposal, referralId, t, year]
+    [activeFingerprint, bodyText, editorFingerprint, isAiDraft, locale, monthNumber, proposal, referralId, t, year]
   );
 
   if (!referrals.length) return null;
@@ -178,7 +271,7 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
         <Dropdown
           name="referralId"
           value={referralId}
-          onChange={setReferralId}
+          onChange={changeReferral}
           placeholder={t("service_log.narrative.choose", "")}
           options={referrals.map((referral) => ({
             value: referral.id,
@@ -306,7 +399,15 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
           <p className="sl-hint">{t("service_log.narrative.loaded", "")}</p>
         ) : null}
 
-        <Button type="submit" disabled={saving || !referralId || !bodyText.trim()}>
+        <Button
+          type="submit"
+          disabled={
+            saving ||
+            !referralId ||
+            !bodyText.trim() ||
+            editorFingerprint !== activeFingerprint
+          }
+        >
           {saving ? t("service_log.form.saving", "") : t("service_log.narrative.save", "")}
         </Button>
       </Form>

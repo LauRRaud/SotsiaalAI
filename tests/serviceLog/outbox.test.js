@@ -11,9 +11,15 @@ import assert from "node:assert/strict";
 import {
   OUTBOX_LIMIT,
   OUTBOX_ROW,
+  OUTBOX_STATE,
+  attentionItems,
   dequeue,
   enqueue,
+  enqueueResult,
+  markNeedsAttention,
   outboxCount,
+  outboxItemState,
+  outboxPayload,
   readOutbox,
   shouldRetry
 } from "../../lib/serviceLog/outbox.js";
@@ -97,28 +103,51 @@ test("rikutud salvestus ei lõhu lugemist", () => {
   assert.deepEqual(readOutbox(storage), []);
 });
 
-/* Ülempiir kaitseb selle eest, et katkine sünkroonimine täidaks salvestuskvoodi
-   ja seade ei saaks enam MITTE MIDAGI salvestada. Kukub VANIM. */
-test("ülempiiri ületamisel kukub vanim, mitte uusim", () => {
+/* Ülempiir kaitseb salvestuskvooti, aga ei tohi selleks tehtud tööd kustutada. */
+test("201. kirje blokeeritakse ja ükski varasem töö ei kao", () => {
   const storage = makeStorage();
-  for (let i = 0; i < OUTBOX_LIMIT + 5; i += 1) {
+  for (let i = 0; i < OUTBOX_LIMIT; i += 1) {
     enqueue(storage, { clientRequestId: `req-${i}` });
   }
+  const result = enqueueResult(storage, { clientRequestId: "req-200" });
   const items = readOutbox(storage);
   assert.equal(items.length, OUTBOX_LIMIT);
-  assert.equal(items[items.length - 1].clientRequestId, `req-${OUTBOX_LIMIT + 4}`);
-  assert.equal(items[0].clientRequestId, "req-5");
+  assert.equal(result.ok, false);
+  assert.equal(result.reason, "full");
+  assert.equal(items[0].clientRequestId, "req-0");
+  assert.equal(items.at(-1).clientRequestId, "req-199");
+  assert.equal(items.some((item) => item.clientRequestId === "req-200"), false);
+});
+
+test("parandatav 400 jääb reload'i järel needs_attention olekusse koos põhjusega", () => {
+  const storage = makeStorage();
+  enqueue(storage, { clientRequestId: "a", clientDisplayName: "Mari" });
+  markNeedsAttention(storage, "a", { status: 400, message: "Kogus puudub" });
+
+  const [item] = readOutbox(storage);
+  assert.equal(outboxItemState(item), OUTBOX_STATE.NEEDS_ATTENTION);
+  assert.equal(attentionItems(storage).length, 1);
+  assert.equal(item.__outbox.status, 400);
+  assert.equal(item.__outbox.message, "Kogus puudub");
+  assert.deepEqual(outboxPayload(item), {
+    clientRequestId: "a",
+    clientDisplayName: "Mari"
+  });
 });
 
 /* Kogu järjekorra mõte on selles vahes: võrguviga = „ei tea, kas jõudis",
    4xx = „server vaatas ja ütles ei". Kui 4xx-i korrataks, ei tühjeneks
    järjekord enam kunagi. */
-test("korratakse võrguviga ja 5xx-i, mitte 4xx-i", () => {
+test("autentimis- ja ajutised olekuvead säilivad retry-na", () => {
   assert.equal(shouldRetry({ networkError: true }), true);
   assert.equal(shouldRetry({ status: 503 }), true);
   assert.equal(shouldRetry({ status: 500 }), true);
+  assert.equal(shouldRetry({ status: 401 }), true);
+  assert.equal(shouldRetry({ status: 403 }), true);
+  assert.equal(shouldRetry({ status: 408 }), true);
+  assert.equal(shouldRetry({ status: 429 }), true);
   assert.equal(shouldRetry({ status: 400 }), false);
-  assert.equal(shouldRetry({ status: 404 }), false);
+  assert.equal(shouldRetry({ status: 409 }), false);
   assert.equal(shouldRetry({ status: 201 }), false);
 });
 

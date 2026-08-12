@@ -15,10 +15,11 @@ const ENV = { SERVICE_LOG_ENABLED: "1", SERVICE_LOG_CLIENT_VIEW: "1" };
 
 function makeDb(rows = []) {
   const calls = [];
-  return {
+  const db = {
     calls,
+    $transaction: async (work) => work(db),
     serviceEntry: {
-      findMany: async ({ where, select }) => {
+      findMany: async ({ where, select, take }) => {
         calls.push({ kind: "findMany", where, select });
         return rows.filter(
           (row) =>
@@ -26,7 +27,7 @@ function makeDb(rows = []) {
             row.status === where.status &&
             row.date >= where.date.gte &&
             row.date < where.date.lt
-        );
+        ).slice(0, take);
       },
       /* `count` on sama filtriga kui `findMany`, aga ilma kuvapiirita: just
          nende kahe LAHKNEMINE oli leid, mille pärast see väli tekkis. */
@@ -42,6 +43,7 @@ function makeDb(rows = []) {
         calls.push({ kind: "updateMany", where, data });
         let count = 0;
         for (const row of rows) {
+          if (where.id?.in && !where.id.in.includes(row.id)) continue;
           if (row.clientUserId !== where.clientUserId) continue;
           if (row.status !== where.status) continue;
           if (row.date < where.date.gte || row.date >= where.date.lt) continue;
@@ -53,6 +55,7 @@ function makeDb(rows = []) {
       }
     }
   };
+  return db;
 }
 
 function row(overrides = {}) {
@@ -107,15 +110,52 @@ test("teise kliendi kirjeid ei ole olemas", async () => {
 test("kinnitamine märgib kuu ja korduskinnitus ei muuda enam midagi", async () => {
   const rows = [row(), row({ id: "entry-2" })];
   const db = makeDb(rows);
-  const first = await confirmClientMonth("client-1", { month: "2026-08" }, { db, env: ENV });
+  const before = await readClientMonth("client-1", { month: "2026-08" }, { db, env: ENV });
+  const first = await confirmClientMonth(
+    "client-1",
+    { month: "2026-08", snapshotToken: before.snapshotToken },
+    { db, env: ENV }
+  );
   assert.equal(first.confirmedNow, 2);
 
-  const second = await confirmClientMonth("client-1", { month: "2026-08" }, { db, env: ENV });
+  const second = await confirmClientMonth(
+    "client-1",
+    { month: "2026-08", snapshotToken: before.snapshotToken },
+    { db, env: ENV }
+  );
   assert.equal(second.confirmedNow, 0, "kordussaatmine ei ole viga ega muutus");
 
   const report = await readClientMonth("client-1", { month: "2026-08" }, { db, env: ENV });
   assert.equal(report.confirmed, true);
   assert.equal(report.confirmedCount, 2);
+});
+
+test("kinnitamine nõuab kliendile kuvatud snapshot-võtit", async () => {
+  const error = await confirmClientMonth(
+    "client-1",
+    { month: "2026-08" },
+    { db: makeDb([row()]), env: ENV }
+  ).catch((value) => value);
+  assert.equal(error.status, 400);
+  assert.equal(error.messageKey, "service_log.errors.client_snapshot_required");
+});
+
+test("vaate järel lisatud lõplik kirje teeb kuu stale'iks ja ei kinnitu", async () => {
+  const rows = [row()];
+  const db = makeDb(rows);
+  const shown = await readClientMonth("client-1", { month: "2026-08" }, { db, env: ENV });
+  rows.push(row({ id: "entry-hidden", date: new Date(Date.UTC(2026, 7, 6)) }));
+
+  const error = await confirmClientMonth(
+    "client-1",
+    { month: "2026-08", snapshotToken: shown.snapshotToken },
+    { db, env: ENV }
+  ).catch((value) => value);
+
+  assert.equal(error.status, 409);
+  assert.equal(error.messageKey, "service_log.errors.client_month_changed");
+  assert.equal(rows[0].confirmedByClientAt, null);
+  assert.equal(rows[1].confirmedByClientAt, null);
 });
 
 /* Tühja kuud ei saa kinnitatuks lugeda: `every` tagastab tühjal massiivil

@@ -68,7 +68,12 @@ export async function POST(req) {
 
   try {
     const body = await req.json().catch(() => null);
-    return json({ result: await confirmClientMonth(userId, { month: body?.month }) });
+    return json({
+      result: await confirmClientMonth(userId, {
+        month: body?.month,
+        snapshotToken: body?.snapshotToken
+      })
+    });
   } catch (error) {
     return respondToError(locale, error, "service-log client POST");
   }

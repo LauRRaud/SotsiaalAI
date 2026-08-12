@@ -3520,6 +3520,7 @@
       "invalid_payload": "Invalid request payload.",
       "not_found": "Document not found.",
       "read_only_document": "A system-generated acceptance record cannot be changed or deleted.",
+      "retention_locked": "A submitted service-log report is an accounting source document and cannot be deleted before its retention deadline.",
       "list_failed": "Failed to list documents.",
       "audio_sources_load_failed": "Failed to load audio recordings.",
       "audio_file_required": "Select an audio file.",
@@ -9327,8 +9328,15 @@
       "star_requires_statistics": "The STAR extract comes from the statistics template. Choose template D.",
       "narrative_no_entries": "There are no entries this month to draft from.",
       "visit_already_used": "A service entry has already been created from this visit.",
+      "idempotency_payload_mismatch": "The same submission key describes different work. The entry was not marked as saved; return it from the queue to the form and review it.",
+      "source_visit_mismatch": "The service entry client or time details do not match the source visit.",
+      "external_client_ref_required": "The stable external client reference is missing; a narrative cannot be safely identified by name.",
+      "narrative_selection_changed": "The client or month changed. Review the freshly loaded form before saving.",
       "client_month_too_large": "This month has more entries than the view can carry. Please contact the provider.",
+      "client_snapshot_required": "The viewed month version is missing. Reload the view.",
+      "client_month_changed": "The month's entries changed in the meantime. The latest view was loaded; review it again before confirming.",
       "report_not_found": "The report was not found.",
+      "report_retention_invalid": "The report retention deadline is missing or invalid; sharing was stopped.",
       "share_recipient_not_allowed": "A report cannot be sent to this person.",
       "share_already_sent": "This report has already been sent to this person.",
       "forbidden": "This action is not allowed.",
@@ -9345,7 +9353,12 @@
     },
     "outbox": {
       "pending": "Waiting: {count}. They will be sent once the network is back.",
-      "rejected": "One waiting entry could not be saved. Please enter it again."
+      "rejected": "One waiting entry could not be saved. Please enter it again.",
+      "needs_attention": "One waiting work entry needs correction before it can be sent.",
+      "needs_attention_count": "Waiting work entries needing correction: {count}.",
+      "restore": "Return to form",
+      "full": "The device queue is full. Restore the connection or correct waiting work; the new work remains in the form.",
+      "storage_failed": "The work could not be stored on this device. The form remains open; do not close the page before retrying."
     },
     "baseline": {
       "title": "How long documenting takes",

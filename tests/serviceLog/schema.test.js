@@ -20,6 +20,10 @@ const migration = readFileSync(
   join(root, "prisma/migrations/20260802100000_service_log_v1/migration.sql"),
   "utf8"
 );
+const narrativeIdentityMigration = readFileSync(
+  join(root, "prisma/migrations/20260812234000_sol_slog_22_narrative_identity/migration.sql"),
+  "utf8"
+);
 
 const MODELS = ["ServiceReferral", "ServiceEntry", "ServiceMonthlyNarrative"];
 
@@ -176,9 +180,11 @@ test("üks kuunarratiiv kliendi kohta kuus — ka ilma suunamiseta", () => {
     /CREATE UNIQUE INDEX "ServiceMonthlyNarrative_noreferral_clientuser_key"[\s\S]*?WHERE "referralId" IS NULL AND "clientUserId" IS NOT NULL/
   );
   assert.match(
-    migration,
-    /CREATE UNIQUE INDEX "ServiceMonthlyNarrative_noreferral_clientname_key"[\s\S]*?WHERE "referralId" IS NULL AND "clientUserId" IS NULL/
+    narrativeIdentityMigration,
+    /CREATE UNIQUE INDEX "ServiceMonthlyNarrative_noreferral_externalref_key"[\s\S]*?WHERE "referralId" IS NULL[\s\S]*?"clientExternalRef" IS NOT NULL/
   );
+  assert.match(modelBlock("ServiceMonthlyNarrative"), /clientExternalRef\s+String\?/);
+  assert.match(narrativeIdentityMigration, /clientIdentityNeedsReview" = true/);
 });
 
 test("suunamine kannab mahtu JA perioodiloogikat — ilma nendeta ei saa saldot arvutada", () => {
