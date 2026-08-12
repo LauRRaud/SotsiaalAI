@@ -5,8 +5,8 @@ see fail on ainult ülevaade ja ta ei ole allikas. Numbrid on **loetud raportist
 käsitsi kokku pandud — ja alates 11.08 on sellel väitel ka kate: **`npm run sol:tally`**
 (`scripts/sol-audit-tally.mjs`) loendab `### SOL-XXX-NN — … — Pn` pealkirju ja loeb tehtuks
 ainult need, mille Seis-lõik ALGAB sõnaga `DONE`. Käsitsi siia numbreid enam ei kirjutata.
-Mõõdetud **12.08.2026** (kolmeteistkümnes mõõtmine, pärast SOL-NOTIF peatüki lõpetamist); eelmised olid pärast
-SOL-PAY-02/-03, SOL-AUTH-15, -09/-10, -08/-12/-13 ja -07/-11 koos loenduri enda parandusega.
+Mõõdetud **12.08.2026** (neljateistkümnes mõõtmine, pärast SOL-WB peatüki lõpetamist); eelmised olid pärast
+SOL-NOTIF-i, SOL-PAY-02/-03, SOL-AUTH-15, -09/-10, -08/-12/-13 ja -07/-11 koos loenduri enda parandusega.
 
 **Selle faili jutustav osa („Mis on tehtud") lõpeb SOL-CHAT-08 juures ja on sealt edasi
 maas.** SOL-VOICE, SOL-ROOM, SOL-CALL, SOL-INV ja SOL-PAY plokke siin lahti kirjutatud ei ole —
@@ -24,14 +24,39 @@ vaikselt väiksemat nimetajat ta enam anda ei saa (`tests/scripts/solAuditTally.
 
 | | |
 |---|---|
-| Tehtud leidu | **162 / 403** selle tööpuu loenduri järgi · **162 / 429** kogu auditikorpuse peale — **26 leidu üheksas failis ei ole `main`-is**, vt „Auditikorpus ei ole ühes puus" allpool |
-| Peatükke lõpuni | **14 / 39** — SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**, SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT, **SOL-VOICE**, **SOL-ROOM**, **SOL-CALL**, **SOL-INV**, **SOL-NOTIF**, **SOL-EVENT**, **SOL-URG** |
-| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 170 × P1 · 70 × P2 · 1 × P3 (selle puu loenduri järgi; kogu korpuses 267) |
+| Tehtud leidu | **180 / 403** selle tööpuu loenduri järgi · **180 / 429** kogu auditikorpuse peale — **26 leidu üheksas failis ei ole `main`-is**, vt „Auditikorpus ei ole ühes puus" allpool |
+| Peatükke lõpuni | **15 / 39** — SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**, SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT, **SOL-VOICE**, **SOL-ROOM**, **SOL-CALL**, **SOL-INV**, **SOL-NOTIF**, **SOL-EVENT**, **SOL-URG**, **SOL-WB** |
+| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 158 × P1 · 64 × P2 · 1 × P3 (selle puu loenduri järgi; kogu korpuses 249) |
 | Nimetaja kasvas 357 → 397 → **403** | **jätkuauditid, mis olid siit loendist täielikult väljas.** Vt eraldi lõiku allpool — see ei ole tagasiminek, vaid see, et loendus ei näinud esmalt seitset faili ja seejärel kuut leidu neist ühes. |
-| Toodangus | **DEPLOY'MATA JÄÄK: 12 leidu** — SOL-EVENT-01 ja kogu SOL-URG (03…13), **kaks migratsiooni**: `20260812060000` (`UrgentRequest.takenByUserId`) ja `20260812070000` (`UrgentDesk.lastVerifiedByUserId` + `verifiedConditionsHash`). Mõlemad on lisavad ja olemasolevaid ridu ei puuduta. Viimane deploy **12.08 08:12 omaniku loal: server = `1443b6a0`**, 34 commit'i ja seitse migratsiooni (kõik lisavad, olemasolevaid ridu ei puuduta). Mõõdetud kohe pärast: `.next` 08:12:44, kolm teenust `active`, `sotsiaal.ai` ja `127.0.0.1:3000` **200**, serveri tööpuu puhas, kolme teenuse veatasemel logi tühi. Mandaadi unikaalsust (`20260812030000`) mõõdeti toodangu pealt **enne** deploy'd — 0 duplikaati: `CREATE UNIQUE INDEX` ilma dedupeta oleks duplikaadi peal jätnud migratsiooni „failed" seisu ja blokeerinud iga järgmise deploy kuni käsitsi lahendamiseni. Toodangu PostgreSQL on 16.14, seega `ALTER TYPE … ADD VALUE` migratsioonitehingus on lubatud. `/etc/sotsiaalai/frontend.env`-is on jätkuvalt **`TRUSTED_PROXY_IP_HEADER=x-real-ip`**. **Enne seda deploy'd väitsid mõlemad seisufailid serveriks vale commit'i** (S1 `b7c9adf0`, see fail `1ed23452`; mõõdetuna oli ta `b7539345`, `.next` 11.08 18:53) — serveri seisu ei võeta failist, vaid mõõdetakse. |
-| Järgmine peatükk | **SOL-EVENT (1/1) ja SOL-URG (13/13) on lõpetatud** — neliteist täis peatükki, **auditis ei ole enam ühtegi lahtist P0-d ega P1-i kiire abi rajal**. **SOL-PAY on 10/11**: lahtine on ainult **PAY-09, mis ootab omaniku + juristi/raamatupidaja otsust** (konto kustutamine kaskaadib makseajaloo enne seitsmeaastast säilitustähtaega). Dokumendi järjekorras järgmine on **SOL-WB** (0/18, 12 × P1 · 6 × P2, neli jätkufailist). Vt ka lahtist jätkufailide otsust allpool. |
-| Suurimad lahtised sabad | SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-WB 18 · SOL-PRE 16 · SOL-JOUR 15 · SOL-SUP 15 · SOL-HELP 13 · SOL-MAT 13 · SOL-NET 11 · SOL-URG 11 |
+| Toodangus | **DEPLOY'MATA JÄÄK: 30 leidu** — SOL-EVENT-01, kogu SOL-URG (03…13) ja kogu SOL-WB (01…18), **viis migratsiooni**: `20260812060000` (`UrgentRequest.takenByUserId`), `20260812070000` (`UrgentDesk` kinnitaja), `20260812080000` (`WellbeingParticipation` tabel), `20260812090000` (`WellbeingRecord.checkpointAnsweredAt` + pärandridade korrastus), `20260812100000` (`WellbeingPilotViewer.claimedAt` + FK `SetNull` → `Cascade`). **Kolm viimast puudutavad tootmises 0 rida** (0 `WellbeingRecord`, 0 pilooti, 0 vaatajat — mõõdetud psql-iga 12.08), seega ka andmeid muutvad `UPDATE`-id on tühikäigud. Viimane deploy **12.08 08:12 omaniku loal: server = `1443b6a0`**. |
+| Järgmine peatükk | **SOL-WB on lõpetatud (18/18)** — viisteist täis peatükki. **SOL-PAY on 10/11**: lahtine ainult **PAY-09** (omaniku + juristi otsus). Dokumendi järjekorras järgmine on **SOL-SLOG** (5/24, 18 × P1) ja tema järel **SOL-RAGSVC** (2/28) — kaks suurimat lahtist sabat. Vt ka lahtist jätkufailide otsust allpool. |
+| Suurimad lahtised sabad | SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-PRE 16 · SOL-JOUR 15 · SOL-SUP 15 · SOL-HELP 13 · SOL-MAT 13 · SOL-NET 11 · SOL-SPROF 13 · SOL-COV 8 |
 | Lahtine tooteotsus | **kas jätkufailid liidetakse peaauditi dokumendijärjekorda või jäävad eraldi järjekorraks.** Kuni see on lahtine, ei ole „järgmine dokumendi järjekorras" üheselt määratud. |
+
+## SOL-WB lõpetatud (12.08) — ja kaks otsust, mis jäid omanikule
+
+Peatükk on 18/18 ja tema kaks suuremat parandust on **osalusprojektsioon** (kirje kuulub sellesse
+piloodikoondisse, kelle tööna ta sündis, ja seda ei otsusta enam kliendi saadetud string) ning
+**range väljaskeem** (tundmatu ohuväärtus ei muutu enam „ohtu ei ole" vastuseks). Kolmas suurem
+on **fikseeritud perioodivõrk**, mis võtab ära differencing-rünnaku eelduse.
+
+**Kaks asja OOTAVAD SINU OTSUST — kood on mõlemaks valmis, aga valik ei ole minu teha:**
+
+1. **SOL-WB-04 — analüüsiühik.** `analysisUnit` on nüüd andmestikus nähtav ja tal on kaks
+   teostust: `record` (vaikimisi, iga sisestus loeb — näitab sagedust, on tundlik ühele väga
+   aktiivsele kasutajale) ja `latest_per_person` (üks inimene, üks hääl töövoo kohta — näitab
+   inimeste seisu, kaotab sageduse info). Vaikeväärtust ma ei vahetanud, sest see muudaks kõigi
+   olemasolevate raportite tähendust. Vahetus on üks rida.
+
+2. **SOL-WB-06 — kui kaugele privaatsuskaitsega minna.** Künnis (3, koodis alampiiriga) ja
+   fikseeritud perioodivõrk on peal. Alles jääb see, et kaks ERI SUURUSEGA perioodi (kuu vs
+   kvartal) on sisestikud. Selle vastu aitavad päringueelarve, privaatsust säilitav müra või
+   „üks perioodiliik piloodi kohta" — kõik kolm kas piiravad kasutust või muudavad numbrid
+   ebatäpseks, seega nad on tootevalik.
+
+**Kolmas, väiksem:** liikmesuseta konto kirjed ei osale üheski piloodikoondis (SOL-WB-01
+otsene tagajärg). Kui piloot peab katma ka üksikkasutajaid, on vaja eraldi tõendatud
+osalusmehhanismi.
 
 ## Auditikorpus ei ole ühes puus (mõõdetud 11.08 hilisõhtul)
 
@@ -161,7 +186,7 @@ Jätkufailidest tulnud leiud on read sees ja märkuses eraldi välja toodud.
 | Teavitused | SOL-NOTIF | **7/7** | – | **tehtud** |
 | Domeenisündmused | SOL-EVENT | 1/1 | – | **tehtud** |
 | Kiireloomuline abi | SOL-URG | 13/13 | – | **tehtud** |
-| Tööheaolu | SOL-WB | 0/18 | 12 × P1 · 6 × P2 | 4 leidu jätkufailist |
+| Tööheaolu | SOL-WB | **18/18** | – | **tehtud** — 4 leidu jätkufailist; kaks lahtist OMANIKU OTSUST, vt allpool |
 | Teenuspäevik | SOL-SLOG | 5/24 | 18 × P1 · 1 × P2 | **P0-dest tühi**, SLOG-01/13/14/17/18 tehtud |
 | RAG-teenus ja ingest | SOL-RAGSVC | 2/28 | 19 × P1 · 7 × P2 | suurim peatükk; mõlemad P0 tehtud |
 | Migratsioonid | SOL-PRISMA | 0/4 | 3 × P1 · 1 × P2 | |
