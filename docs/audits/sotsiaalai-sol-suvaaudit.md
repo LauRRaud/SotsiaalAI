@@ -5208,6 +5208,30 @@ tõend on see, et värav ei lase seda väärtust temani. Sama string-boolean'iga
 
 **Vastuvõtukriteerium.** Omanik peab määrama analüüsiühiku: viimane kirje inimese/perioodi/töövoo kohta või selgelt sündmuspõhine trend. Loendurid, osakaalude nimetajad ja raportitekst peavad kasutama sama ühikut. Test peab andma ühele inimesele 100 kirjet ja kahele ühe ning kontrollima otsustatud kaalu.
 
+**Seis (12.08.2026): DONE koodi osas; ÜHIKU VALIK on omaniku otsus ja ta on lahti.**
+
+Leiul on kaks poolt ja neid tuleb eristada. **Esimene on viga ja ta on parandatud:** loendurid
+kasvasid iga KIRJE pealt, aga ainus vastusega kaasas käiv nimetaja oli `sampleSize` ehk INIMESTE
+arv. Aruande tabelis tähendas see rida „100/3" ja **3333%**. Nüüd kannab iga mõõdik oma
+`denominator`-it (sama ühik mis lugejal) ja raport kasutab teda — osakaal ei saa enam ületada
+100%. `sampleSize` jääb kaasa, aga ta ei ole enam nimetaja.
+
+**Teine pool on VALIK ja ta on nüüd tehtav, mitte sisse ehitatud.** Andmestik ütleb välja
+`analysisUnit`-i ja tal on kaks teostust:
+- **`record`** (vaikimisi, senine käitumine) — sündmuspõhine trend: iga sisestus loeb;
+- **`latest_per_person`** — üks inimene, üks hääl töövoo kohta: sada sisestust ei määra enam
+  prioriteedijärjestust.
+
+Mõlemad on kaetud kriteeriumi enda stsenaariumiga (üks inimene 100 kirjega, kaks ühega):
+`record` annab 100 punast 102-st, `latest_per_person` annab 1 punase ja 2 rohelist.
+**Negatiivkontroll:** vana nimetaja annab samal real 3333%.
+
+**OMANIKU OTSUS (lahtine):** kumb ühik on piloodi VAIKEVÄÄRTUS. `record` näitab koormuse
+sagedust ja on tundlik aktiivsele kasutajale; `latest_per_person` näitab inimeste seisu ja kaotab
+sageduse info. Vaikeväärtust ma ise ei vahetanud — see muudaks kõigi olemasolevate raportite
+tähendust. Kui otsus on tehtud, on vahetus üks rida (`analysisUnit`), sest raporti tekst ja
+nimetajad käivad juba ühiku järgi.
+
 ### SOL-WB-05 — 10 000 kirje piir kärbib tööheaolu koondit vaikides — P1
 
 **Tõend.** `buildWellbeingAggregateDataset()` rakendab `take: 10000` ilma `orderBy`, jätkukursori või `truncated` väljata (`lib/wellbeing/aggregate.js:3-5`, `:114-129`). Valimi suurus ja kõik meetrikad arvutatakse ainult tagastatud osast, kuid väljund esitatakse täieliku raportina.
