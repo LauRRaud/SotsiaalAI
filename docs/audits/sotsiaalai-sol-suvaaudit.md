@@ -4370,6 +4370,39 @@ lahendus käib praegu käsitsi andmebaasist. Osalise tagasimakse summa-loogika o
 
 **Vastuvõtukriteerium.** Mudel peab eristama PART_REFUNDED ja täielikku REFUNDED seisu ning säilitama tagastatud summa/ledger-seose; õiguse vähendamine vajab toote- ja raamatupidamisreeglit, mitte staatuse stringi kokkusurumist. Testid peavad katma 0,01 €, osalise ja täieliku tagastuse nii SELF kui sponsorkutse puhul.
 
+**Seis (12.08.2026): DONE — osaline tagastus on oma seis oma summaga ja ta EI lõpeta ligipääsu; `npm run pay:refund:probe` 22/22 päris PostgreSQL-is päris allkirjastatud webhookidega. Vajab migratsiooni `20260812020000`.**
+
+**Reegel on raamatupidamise oma, mitte leiutatud tootereegel:** *õigus lõpeb siis, kui makse on
+TÄIELIKULT tagastatud* — mitte siis, kui tagastati midagi. Kaks tagajärge:
+
+- **0,01 € tagastus ei võta enam kuud ega ruumiliikmesust.** Osaline tagastus märgitakse ära
+  (`PART_REFUNDED` + `refundedAmount`), on nähtav ja auditeeritud, aga ei vähenda ligipääsu.
+- **Osalised tagastused liidetakse:** kui summa jõuab kogu makseni, käivitub täisrada (tellimus
+  lõpeb, sponsorkutse clawback). `refundedAmount` EI VÄHENE — provideri sõnumid võivad korduda
+  ja me ei tea, kas summa on kumulatiivne või ühe tagastuse oma; maksimumi võtmine on ainus
+  tehe, mis on korduse suhtes ohutu mõlema tõlgenduse korral.
+
+**Osalise tagastuse MÕJU õigusele (kas pool kuud, kas krediit) on tooteotsus ja teda ei ole siin
+leiutatud** — kriteerium ütleb ise, et see vajab toote- ja raamatupidamisreeglit. Vaikimisi
+käitumine on valitud kasutaja kasuks ja on seatav (`SUBSCRIPTION_WEBHOOK_PART_REFUNDED_ACTION`).
+
+**Tagastusteade ei lähe enam „sama seis" otseteed** — teine osaline tagastus kannab uut summat ja
+võib koos eelmisega katta kogu makse. Lõplikust seisust edasi liigub AINULT tagastus.
+
+Sond mõõdab seda, mida kasutaja tunneb: kas tellimus kehtib ja kas ruumiliikmesus on alles.
+Kaetud on 0,01 € · osaline · kumulatiivne (3,00 + 7,99) · täielik, nii omamakse kui sponsorkutse
+peal. **Negatiivkontroll on vana kuju transkriptsioon:** sama 0,01 € sõnum `REFUNDED` seisuna
+lõpetab kogu ligipääsu (`ACTIVE → CANCELED`).
+
+Väravad: `npm test` **3917/3917** (Europe/Tallinn ja UTC) · i18n ja eslint puhtad ·
+`db:migrate:check` OK.
+
+**KATMATA:** kui provider saadab tagastuse summa DELTANA (mitte kumulatiivsena), alahindab
+maksimumi-reegel kogusummat ja rida jääb osaliseks — viga läheb siis kasutaja kasuks (ligipääs
+jääb) ja on omanikule nähtav, aga täpne kumulatsioon vajaks provideri kinnitust selle välja
+tähenduse kohta. Osalise tagastuse rahaline ledger elab `Payment.refundedAmount` peal;
+eraldi raamatupidamiskirjet see leid ei ehita.
+
 ### SOL-PAY-07 — tasutud sponsorkutse join-token võib outbox'i vea järel jäädavalt kaduda — P1
 
 **Tõend.** PAID webhook genereerib kutse toortokeni tehingu sees, salvestab ainult räsi ja tagastab toortokeni lokaalses `inviteEmail` objektis (`app/api/subscription/webhook/route.js:394-449`). Outbox-rida luuakse alles pärast maksetehingu commit'i; enqueue-viga neelatakse logiks ning webhook vastab ikkagi 200 (`:644-668`, `:743-746`). Sama webhooki kordus näeb makset juba PAID-na ja tagastab idempotentse tulemuse ilma `inviteEmail`/toortokenita (`:336-352`).
@@ -4377,6 +4410,47 @@ lahendus käib praegu käsitsi andmebaasist. Osalise tagasimakse summa-loogika o
 **Mõju.** Maksja raha ja kutse SENT-seis commit'ivad, kuid saajale vajalikku join-linki pole võimalik algsest räsist taastada. Provider ei saa kordusega outbox'i parandada; saatja peab vea ise avastama ja eraldi resend'iga uue tokeni looma. Edukas makse ei anna lubatud kasutajateed.
 
 **Vastuvõtukriteerium.** Kutse tokenihash ja krüptitud/minimaalselt kaitstud delivery-payloadiga outbox-rida peavad tekkima samas DB-tehingus; webhooki idempotentne kordus peab suutma puuduva delivery-kandja taastada ilma uue õiguse/makseta. Veasüstetest peab katkestama outbox create'i ning nõudma rollback'i või durable pending-delivery seisu.
+
+**Seis (12.08.2026): DONE — toortoken ja tema kandja sünnivad ühes tehingus ja kordus taastab kadunud kandja ilma uue õiguse või makseta; `npm run pay:refund:probe` 22/22 (jaam 7) päris PostgreSQL-is.**
+
+**Räsi ja kandja ei saa enam lahku minna.** Kutse-kiri EI ole enam „pärast commit'i" —
+`issueSponsoredInviteDelivery(tx, …)` mindib tokeni, kirjutab räsi ja loob outbox-rea SAMAS
+tehingus. Kui kandjat ei saa luua, ei jõustu ka räsi (nimeline `INVITE_DELIVERY_UNAVAILABLE`,
+algne viga `cause` küljes).
+
+**Kordus ei ole enam tupik.** Kui kandja on kadunud, aga kutse on veel elus (`SENT`, aegumata),
+teeb sama webhooki kordus uue lingi — ilma uue makse ja ilma uue õiguseta. Rotatsioon on ohutu
+just seetõttu, et ta käib AINULT siis, kui ühtegi kohaletoimetamise rida EI OLE: pärast seda
+parandust tähendab see, et kirja ei saadetud kunagi. Postkastis olevat linki see ei tapa (kui
+kandja on olemas, ei rotreerita midagi — vt AUTH-15 õppetund „mint → SAADA → alles siis
+rotatsioon"). Kutse eluiga on 7 päeva ja outbox'i retention 90, seega „kandjat ei ole, sest
+retention koristas ta" ei jõua kunagi elusa kutseni.
+
+**Minimaalne kaitse payloadile:** kui kiri on PÄRISELT välja läinud, kustutatakse toortoken
+outbox-realt (`joinTokenDelivered: true`) — koopia adressaadi postkastis on kandja, koopia meie
+andmebaasis on ainult risk. `FAILED`/`SKIPPED` read jäävad puutumata, sest neid saab operaator
+konfiguratsiooni parandades veel elustada.
+
+**SOND TABAS PÄRIS VEA MINU ENDA PARANDUSES ja see on siin kirjas, mitte peidus.** Esimene
+teostus lootis erindile: `enqueuePaymentEmail` püüab `P2002` kinni ja tagastab „duplikaat".
+Tehingu sees see EI TÖÖTA — **PostgreSQL märgib tehingu vigaseks juba unikaalsuse rikkumise
+hetkel**, seega JS-i `catch` päästab ainult protsessi ja kõik järgnevad laused pöörduvad vaikselt
+tagasi. Logi ütles „sponsored_invite_activated", aga kutse jäi `PENDING_PAYMENT`-i ja makse
+`INITIATED`-iks. Fake seda ei näinud; päris andmebaas nägi. Olemasolu kontrollitakse nüüd ENNE
+kirjutamist (makse rida on `FOR UPDATE` all, seega võistlust ei ole), ja ledgerisse jäi
+õppetund: **erindipõhine „duplikaat on ok" ei kõlba tehingu sees.**
+
+**Veasüst on päris:** sond hõivab kandja võtme ette, mõõdab et õigus jõustub ilma räsi
+rotatsioonita, kustutab siis kandja ja kordab sama webhooki — uus kandja kannab toortokenit, räsi
+vahetub, kutse seis ja makseridade arv EI muutu.
+
+Väravad: `npm test` **3917/3917** (Europe/Tallinn ja UTC) · eslint puhas · `db:migrate:check` OK.
+
+**KATMATA:** outbox'i payload ei ole krüptitud (kriteerium lubab „krüptitud VÕI minimaalselt
+kaitstud"). Krüpteerimine seoks kutse kohaletoimetamise `PAYMENT_TOKEN_ENC_KEY`-ga, mille
+puudumine teeks kogu kutseraja fail-closed'iks — see on suurem risk kui lühiajaline toortoken
+reas, mis kustutatakse saatmise hetkel. Omaniku- ja kliendikiri jäävad endiselt tehingust välja:
+nende payload kannab ainult `paymentId`-d ja on igal hetkel taastatav.
 
 ### SOL-PAY-08 — makseaudit pole põhitehingu osa ja kasutab süstitud tehingu asemel globaalset Prismat — P1
 

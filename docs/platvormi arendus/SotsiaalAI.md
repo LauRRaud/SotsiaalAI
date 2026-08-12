@@ -130,7 +130,7 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 138/403 leidu, 11/39 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**,
+**SOL-süvaaudit: 140/403 leidu, 11/39 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**,
 SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT, **SOL-VOICE**, **SOL-ROOM**, **SOL-CALL**, **SOL-INV**). **Auditis ei ole enam ühtegi lahtist P0-d.**
 Numbrid tulevad `npm run sol:tally` väljundist, käsitsi neid siia ei kirjutata.
 
@@ -214,12 +214,13 @@ fail maksis varem alati minuti, ka siis, kui ta oli tunni pikkune. `npm run voic
 **15/15 päris PostgreSQL-is**, mitte kunagi laheneva provideriga. Brauserikiht jääb
 **NOT_PROVEN** (DOM-testisviiti ei ole).
 
-`npm test` **3895/3895** (Europe/Tallinn ja UTC), i18n ja eslint puhtad, `db:migrate:check` OK.
+`npm test` **3917/3917** (Europe/Tallinn ja UTC), i18n ja eslint puhtad, `db:migrate:check` OK.
 **Deploy'mata: AUTH-14 (`b7539345`), AUTH-15, kogu SOL-VOICE, kogu SOL-ROOM, kogu SOL-CALL,
-kogu SOL-INV ja SOL-PAY-01…-05** — server on `1ed23452`. Deploy'mata on **kolm
+kogu SOL-INV ja SOL-PAY-01…-07** — server on `1ed23452`. Deploy'mata on **neli
 migratsiooni**: `20260811220000` (`VerificationLinkDispatch`), `20260811230000`
-(`PaymentStatus.RECONCILE_PENDING` + `Payment.clientIntentKey` unikaalsus) ja `20260812010000`
-(`PaymentStatus.REVIEW_REQUIRED`). Ükski neist ei puuduta olemasolevaid ridu. Toodangu
+(`PaymentStatus.RECONCILE_PENDING` + `Payment.clientIntentKey` unikaalsus), `20260812010000`
+(`PaymentStatus.REVIEW_REQUIRED`) ja `20260812020000` (`PaymentStatus.PART_REFUNDED` +
+`Payment.refundedAmount`). Ükski neist ei puuduta olemasolevaid ridu. Toodangu
 PostgreSQL on **16.14** — mõõdetud, sest `ALTER TYPE … ADD VALUE` migratsioonitehingus nõuab
 PG 12+.
 
@@ -240,9 +241,10 @@ laadimist, päris `P2002` pärast õnnestunud laadimist, 402) · `pay:checkout:p
 (deterministlik võistlus nõuandeluku peal, mõõdetud on makseridade JA provideri kutsete arv) ·
 `pay:origin:probe` **19/19** (aegunud hosti- ja organisatsioonisponsorlus → omamakse → PAID →
 cancel/refund) · `pay:verify:probe` **19/19** (iga väli eraldi muudetud, iga sõnum kehtiva
-allkirjaga). Igal sondil on negatiivkontroll vana kuju vastu; `pay:outcome` ja `pay:verify`
-kannavad lisaks vastassuunalist kontrolli — kinnitatud eitus peab jääma lõplikuks ja vastav
-sõnum peab endiselt õiguse andma.
+allkirjaga) · `pay:refund:probe` **22/22** (0,01 € · osaline · kumulatiivne · täielik, nii
+omamakse kui sponsorkutse peal, pluss kutse-kandja veasüst). Igal sondil on negatiivkontroll vana
+kuju vastu; `pay:outcome` ja `pay:verify` kannavad lisaks vastassuunalist kontrolli — kinnitatud
+eitus peab jääma lõplikuks ja vastav sõnum peab endiselt õiguse andma.
 
 **Mõõdetud serverist 11.08:** `sotsiaalai-payment-emails.timer` on toodangus **enabled ja
 active** (iga ~3 min). See on SOL-INV-03 eeldus — kirjade järjekord ei ole surnud postkast.
@@ -484,9 +486,9 @@ korratakse üle, kuni teenus kinnitab.
 teed tagasi. Elava edenemisvoo taastamine on veel tegemata: see nõuab vestluse voo-koodi
 väljatõstmist, mis on omaette töö. Seepärast loeb loend selle leiu endiselt lahtiseks.
 
-Lahtiseks jääb **187 P1, 77 P2 ja 1 P3** (nimetaja kasvas jätkufailidega, vt S1). **SOL-RES on
+Lahtiseks jääb **185 P1, 77 P2 ja 1 P3** (nimetaja kasvas jätkufailidega, vt S1). **SOL-RES on
 6/7.** **SOL-AUTH (15/15), SOL-VOICE (3/3), SOL-ROOM (7/7), SOL-CALL (13/13) ja SOL-INV (3/3)
-on 11.08 lõpetatud** — käsil on **SOL-PAY (5/11)**, kui just jätkufaile ette ei tõsteta.
+on 11.08 lõpetatud** — käsil on **SOL-PAY (7/11)**, kui just jätkufaile ette ei tõsteta.
 SOL-CW-09/-14/-19 seisavad sinu otsuse ja brauseri-QA taga.
 
 **SOL-PAY-01 tehtud: automaatne uuendamine ei anna enam alla esimese tõrke peale.** Üks
@@ -521,6 +523,23 @@ saanud lõpetada** (tühistus nõuab omamakset) ning sponsori hilisem tagasimaks
 sponsorlus jättis eelmise inimsponsori seosed rea külge. Nüüd kirjutatakse päritolu tervikuna,
 vahetus jätab ledgerisse jälje (kes maksis eelmise perioodi eest) ja **„lõpeta" ei vasta enam
 eduga siis, kui ta ei lõpetanud midagi**.
+
+**SOL-PAY-06 tehtud: ühe sendi tagastus ei võta enam tervet kuud.** Provideri osaline tagastus
+mapiti täistagastuseks ja täistagastus lõpetab ligipääsu kohe — seega 0,01 € korrigeerimine
+võttis kasutajalt kogu makstud kuu, sponsoreeritud inimeselt ruumiliikmesuse ja tappis
+korduvmakse mandaadi. Nüüd on reegel raamatupidamise oma: **õigus lõpeb siis, kui makse on
+täielikult tagastatud**. Osalised tagastused liidetakse; kui summa jõuab kogu makseni, käivitub
+täisrada. Mida osaline tagastus õigusega tegema peaks (pool kuud? krediit?) on tooteotsus ja
+seda ei ole koodiga ette otsustatud — vaikimisi jääb ligipääs alles ja seis on nähtav.
+
+**SOL-PAY-07 tehtud: tasutud kutse link ei saa enam kaduda.** Kutse toorlink sündis tehingu sees,
+aga tema kandja (kirja järjekorrarida) loodi alles pärast makse commit'i — kui see kukkus,
+neelati viga logisse ja webhook vastas ikkagi „ok". Räsist linki tagasi ei saa: sponsor oli
+maksnud, kutse seisis „saadetud", aga saajale ei olnud enam midagi saata. Nüüd sünnivad link ja
+tema kandja koos või mitte kumbki, ja kui kandja on kaduma läinud, teeb sama teate kordus uue
+lingi — ilma uue makse ja ilma uue õiguseta. **Sond leidis selle käigus päris vea minu enda
+paranduses:** unikaalsuse rikkumine mürgitab PostgreSQL-i tehingu, seega „püüa viga kinni ja
+jätka" ei tööta tehingu sees — logi ütles „tehtud", aga kõik pöördus vaikselt tagasi.
 
 **SOL-PAY-05 tehtud: allkiri tõendab päritolu, mitte summat.** „Makstud" otsuseks piisas seni
 kehtivast allkirjast ja leitavast viitest — makstud summat ja valuutat ei võrreldud kunagi
