@@ -5175,6 +5175,31 @@ see on tooteotsus, mitte viga.
 
 **Vastuvõtukriteerium.** Igal schemaVersion'il peab olema serveripoolne range skeem: täpsed enumid, booleanid, massiivielemendid, vabateksti pikkused ja unknown-key poliitika. Tundmatu safety-väärtus peab fail-closed katkestama. Testida iga töövoo kõiki välju vähemalt ühe vale tüübi ja tundmatu enumiga.
 
+**Seis (12.08.2026): DONE — teadmatust ei hinnata enam ohutuks.**
+
+Üheksa validaatorit küsisid täpselt üht asja: kas võti on objektis. Kuna skoorijad annavad
+tundmatule väärtusele `0`, tähendas see, et **vale kirjapilt oli ohutu vastus**:
+`dangerStatus: "ONGOING"` ei ole `ongoing` ega `uncertain`, seega `safetyNoticeRequired` jäi
+`false`, ühtki riskimarkerit ei tekkinud ja signaal oli `no_immediate_danger`. Sama
+`immediateDanger`-il, ja `"false"` (string) oli boolean-väljal tõene.
+
+Kontroll elab nüüd ühes deklaratiivses skeemis (`lib/wellbeing/fieldSchemas.js`): iga töövoo iga
+välja liik ja täpne lubatud väärtuste hulk, sh massiivielemendid, vabateksti piir (4000) ja
+**unknown-key poliitika** — vana kliendi lisatud võti annab 400, mitte vaikse läbipääsu. Veavõti
+ja `details.missing` jäid samaks, seega liidese tõlge ei murdu; juurde tulid `details.unknown` ja
+`details.invalid`. **Skeem on ühes failis, mitte üheksas** — lahknemise hind oleks siin vale
+ohuhinnang.
+
+**Kaks lepingutesti hoiavad skeemi ausana:** liidese `initialFields` peab läbima serveri skeemi
+ja väljade hulgad peavad olema identsed (muidu oleks „range skeem" kasutaja jaoks lihtsalt
+katkine salvestusnupp), ning skeemi `schemaVersion` peab võrduma builderi omaga — versiooni
+tõstmine ilma uue skeemita kukub testis, mitte toodangus.
+
+**48 ühikut** (`tests/wellbeing/fieldSchemas.test.js`), sh **iga töövoo IGA väli** vale tüübi ja
+tundmatu enumiga — valimit ei ole. **Negatiivkontroll on skoorija ise:** ta jäi teadlikult
+muutmata ja test mõõdab, et ta ANNAB endiselt `no_immediate_danger` tundmatu ohuväärtuse peale;
+tõend on see, et värav ei lase seda väärtust temani. Sama string-boolean'iga.
+
 ### SOL-WB-04 — koondi `sampleSize` on inimesed, kuid meetrikad on piiramata kirjete arvud — P1
 
 **Tõend.** Privaatsuskünnis arvutatakse eristuvate `ownerUserId` väärtuste arvust, kuid signaali-, töövoo-, nõudlus-, ressursi- ja riskiloendurid suurenevad iga kirje pealt (`lib/wellbeing/aggregate.js:118-140`, `:151-173`). Ühe kasutaja korduvate kirjete arvu ei piirata ega normaliseerita. Raport sõnastab tulemuse töötajate koondina, näiteks „N töötaja ... X punast signaali” (`lib/wellbeing/pilotReport.js:88-114`).
