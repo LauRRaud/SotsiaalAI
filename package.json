@@ -57,6 +57,7 @@
     "notif:progress:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/notification-progress-probe.mjs",
     "event:idempotency:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/domain-event-idempotency-probe.mjs",
     "urgent:race:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/urgent-transition-race-probe.mjs",
+    "wb:pilot:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/wellbeing-participation-probe.mjs",
     "org:recall:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/org-inbox-recall-probe.mjs",
     "net:share:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/network-share-race-probe.mjs",
     "sprof:consent:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/service-profile-consent-probe.mjs",

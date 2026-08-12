@@ -1578,6 +1578,11 @@ model WellbeingRecord {
   supersedes   WellbeingRecord? @relation("WellbeingRecordSupersede", fields: [supersedesRecordId], references: [id], onDelete: SetNull)
   supersededBy WellbeingRecord? @relation("WellbeingRecordSupersede")
 
+  /* SOL-WB-01 ja SOL-WB-02: osalusprojektsioon (vt `WellbeingParticipation`).
+     Kirje ise ei saa organisatsiooni võtit — §D8 keelab selle ja see keeld
+     jääb. Koond ei loe siit ühtki välja peale selle seose. */
+  participation WellbeingParticipation?
+
   @@index([ownerUserId, workflowType, createdAt])
   @@index([workflowType, createdAt])
   @@index([aggregationEligible, workflowType, createdAt])
@@ -1656,6 +1661,43 @@ model WellbeingOutputDraft {
   @@index([userId, outputType, createdAt])
   @@index([userId, recipientType, createdAt])
   @@index([sourceWorkflowType, outputType, createdAt])
+}
+
+/* SOL-WB-01 ja SOL-WB-02 — OSALUSPROJEKTSIOON.
+   Küsimus, millele see tabel vastab, on üksainus: **millise piloodi valimisse
+   see kirje kuulub?** Seni vastas sellele kliendi saadetud `roleGroup` string
+   ja piloodi organisatsioon/KOV ei jõudnud päringusse üldse.
+
+   MIKS ERALDI TABEL, MITTE VEERUD KIRJE PEAL. §D8 on kõva piir: `WellbeingRecord`
+   ei saa organisatsiooni omandivõtit ega juhi nähtavust, ja seda piiri hoiavad
+   lepingutestid (`tests/org/contracts.test.js`, `tests/org/profileSupport.test.js`).
+   Auditi vastuvõtukriteerium lubab teise haru — „koond kasutab eraldi
+   osalusprojektsiooni" — ja see on tema. Lähtekirje EI muutu organisatsiooni
+   varaks: ta ei kanna ühtki organisatsiooni välja, tema omanik ja nähtavus ei
+   muutu, ja juhile ei avane ühtki uut lugemisteed. Avaneb ainult see, mille
+   omandileping juba ette näeb — ANONÜÜMNE külmutatud koond piisava rühma kohta.
+
+   RIDA ON OLEMAS AINULT SIIS, KUI OSALUS ON TÕENDATUD. `organizationId` ja
+   `roleGroup` on kohustuslikud; rea puudumine tähendab „ei kuulu ühessegi
+   pilooti" ja see on kirje vaikeseis. Nii ei ole olemas poolikut osalust, mille
+   üle koond peaks mälus otsustama.
+
+   ORGANISATSIOONI KÜLGE VÕÕRVÕTIT EI OLE — väärtus on snapshot kirje sünni
+   hetkest (sama muster mis `ServiceVisit.assignedOrganizationId`). Kustutatud
+   või ümber nimetatud organisatsioon ei tohi tõendit kaasa võtta ega
+   kustutamisel blokeeruda. Kirje enda külge käib võõrvõti kaskaadiga: projektsioon
+   on kirje tuletis ja ta ei tohi elada kirjest kauem. */
+model WellbeingParticipation {
+  recordId       String   @id
+  organizationId String
+  municipalityId String?
+  roleGroup      String
+  frozenAt       DateTime @default(now())
+
+  record WellbeingRecord @relation(fields: [recordId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId, roleGroup])
+  @@index([municipalityId, roleGroup])
 }
 
 model WellbeingPilotScope {

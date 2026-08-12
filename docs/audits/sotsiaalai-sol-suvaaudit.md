@@ -5104,6 +5104,8 @@ asja, mida enam ei ole — mitte saama tühja vastust ja arvama, et järjekord o
 
 **Vastuvõtukriteerium.** Kirje peab saama serveris tõendatud ja ajaliselt külmutatud piloodi/organisatsiooni/KOV kuuluvuse või koond peab kasutama eraldi osalusprojektsiooni; kliendi enesedeklaratsioon ei sobi. Integratsioonitest peab looma sama rollirühma kahes organisatsioonis ning tõendama, et kummagi vaataja valimis pole teise asutuse ridu.
 
+**Seis (12.08.2026): DONE — koos SOL-WB-02-ga, üks juur ja üks parandus.** Vt SOL-WB-02 all.
+
 ### SOL-WB-02 — kliendi suvaline `roleGroup` määrab, millise piloodi koondisse kirje läheb — P1
 
 **Tõend.** Kõik loomisteenused annavad `payload.roleGroup` väärtuse muutmata builderile ja andmebaasi (`lib/wellbeing/records.js:216-483`). Route'id seovad ainult `ownerUserId` sessiooniga; rollirühma ei tuletata konto, organisatsiooniliikmesuse ega piloodiosaluse järgi. Koond filtreerib just seda stringi (`lib/wellbeing/aggregate.js:85-101`). UI saadab praegu fikseeritud `SOCIAL_WORKER`, kuid otsene API-kutse saab kasutada ükskõik millist väärtust.
@@ -5111,6 +5113,59 @@ asja, mida enam ei ole — mitte saama tühja vastust ja arvama, et järjekord o
 **Mõju.** Iga tööheaolu õigusega kasutaja saab oma kirjeid paigutada teise piloodi rollirühma, kasvatada või muuta selle signaale ja aidata valimil künnise ületada. Raport ei ole seetõttu tõendatud organisatsiooniline mõõdik.
 
 **Vastuvõtukriteerium.** Aggregatsioonis kasutatav rolli-/skoopvõti peab tulema serveri autoriteetsest ja ajaliselt külmutatud liikmesusest; payload'i roll võib olla üksnes kasutaja privaatne kirjeldus ega tohi juhtida pilootkoondit. Negatiivne HTTP-test peab proovima võõrast rollirühma.
+
+**Seis (12.08.2026): DONE — SOL-WB-01 ja SOL-WB-02 on üks juur: koond ei teadnud, kelle
+valimisse kirje kuulub, ja uskus selles küsimuses klienti.**
+
+Parandus on **osalusprojektsioon** `WellbeingParticipation` (migratsioon **`20260812080000`**),
+mitte veerud kirje peal — ja see ei ole stiilivalik. **§D8 on kõva piir: `WellbeingRecord` ei
+saa organisatsiooni omandivõtit** ja seda hoiavad kaks lepingutesti (`tests/org/contracts.test.js`,
+`tests/org/profileSupport.test.js`). Kriteerium ise pakub teise haru („või koond peab kasutama
+eraldi osalusprojektsiooni") ja tema sai valitud: **lepingutesti ma ümber ei kirjutanud.**
+Lähtekirje ei muutu organisatsiooni varaks — ta ei kanna ühtki organisatsiooni välja, omanik,
+nähtavus ja kustutusrada ei muutu ning juhile ei avane ühtki uut lugemisteed. Avaneb ainult see,
+mille omandileping juba ette näeb: anonüümne künnisega kaitstud koond.
+
+**Rida sünnib ainult tõendatud osalusest** (`lib/wellbeing/participation.js`): täpselt üks
+aktiivne `OrganizationMembership`. Kaks liikmesust = `null`, mitte esimene leitu — kahes majas
+töötaval inimesel on üks tööpäev ja platvormil ei ole allikat, mis ütleks, kumma maja koormus
+see oli. **Rea puudumine ei ole „kõigile", vaid „mitte ühelegi piloodile"**; sama piir mis
+külastuse päritolul (`lib/serviceLog/visitOrigin.js`, SOL-SLOG-17/-18).
+
+**Rollirühm tuleb istmerollist** (`seatRole`), mitte payload'ist. Kirje `roleGroup` veerg JÄÄB
+alles kasutaja enda kirjeldusena — koond lihtsalt ei küsi teda enam. Nii ei kao kasutajalt
+midagi ja tõend ei sõltu tema sõnadest.
+
+**Piloodi skoop jõuab nüüd PÄRINGUSSE:** `resolveWellbeingPilotAggregateFilters()` annab
+organisatsiooni/KOV piiri ja `buildWhere()` paneb ta WHERE-i. **Fail-closed:** skoop, mille tüüp
+on `organization`, aga `organizationId` puudub, annab `403 scope_incomplete` — teostamata piir
+tähendaks platvormiülest valimit ühe asutuse nime all. **Ka admin seotakse valitud piloodiga:**
+varem oli `pilotId` tema käes dekoratsioon, mis jõudis vastuse metaandmetesse, aga ei piiranud
+valimit. Vastus kannab nüüd `filters.organizationId` / `filters.municipalityId` — ta ütleb välja,
+millise piiri all ta arvutati.
+
+**Parandus PÄRIB osaluse, ei tuleta uuesti** (sama põhjus, mille pärast periood ja kontrollpunkt
+juba päritakse): vahepealne töökohavahetus koliks muidu mullused andmed uue tööandja raportisse.
+**Muutumatust jõustab andmebaas, mitte teenusekiht** — trigger `WellbeingParticipation_frozen`
+(sama muster mis SOL-ORG-01). Lisamine ja kustutamine jäävad lubatuks (kirje sünd ja kaskaad);
+muuta ei saa.
+
+**`npm run wb:pilot:probe` 28/28 päris PostgreSQL-is** — kaks maja, sama rollirühm, kolm inimest
+kummaski. Tõend on koondi enda väljund: A maja koondis 0 punast signaali, B maja omas 3, ja B
+maja riskimarker ei ilmu A maja koondisse ühelgi kujul. **Kaks negatiivkontrolli:** vana reegel
+(kirje enda `roleGroup` veerg, ilma osaluseta) loeb SAMADEST ridadest kõik üheksa — kuus kahest
+majast, üks võõrast rollirühma väitnud teeskleja ja kaks tõendamata kontot, samas kui uus loeb
+kolm · paranduse hetkel ANNAKS uuesti tuletamine juba B maja, aga parandus jääb A-sse.
+Ühikuid 7 (`tests/wellbeing/participation.test.js`).
+
+**Toodangus 0 `WellbeingRecord` rida, 0 pilooti ja 0 vaatajat** (mõõdetud enne migratsiooni
+kirjutamist), seega backfilli ei ole ja kelleltki midagi ei kao.
+
+**KATMATA ja omanikule teadmiseks:** liikmesuseta konto kirjed ei osale ÜHESKI piloodikoondis.
+See on kriteeriumi otsene tagajärg („kliendi enesedeklaratsioon ei sobi"), aga tähendab, et
+piloot mõõdab ainult organisatsiooni kaudu platvormil olevaid inimesi. Kui piloot peab katma ka
+üksikkasutajaid, on vaja eraldi tõendatud osalusmehhanismi (nt kutsepõhine piloodiliikmesus) —
+see on tooteotsus, mitte viga.
 
 ### SOL-WB-03 — server kontrollib ainult väljade olemasolu ning tundmatu ohuväärtus muutub madalaks riskiks — P1
 

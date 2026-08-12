@@ -49,6 +49,9 @@ test("wellbeing pilot aggregate filters reject disallowed role groups for pilot 
     /wellbeing\.pilot\.role_group_forbidden/
   );
 
+  /* SOL-WB-01: pärandrajal (`WELLBEING_PILOT_VIEWER_EMAILS`) ei ole
+     organisatsioonipiiri ja vastus ütleb selle VÄLJA — piir on `null`, mitte
+     puuduv võti, mille üle koond peaks ise oletama. */
   assert.deepEqual(
     resolveWellbeingPilotAggregateFilters({ workflowType: "quick-check" }, access),
     {
@@ -56,6 +59,8 @@ test("wellbeing pilot aggregate filters reject disallowed role groups for pilot 
       workflowType: "quick-check",
       periodStart: null,
       periodEnd: null,
+      organizationId: null,
+      municipalityId: null,
       aggregationLevel: "role_group"
     }
   );

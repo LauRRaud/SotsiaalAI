@@ -92,6 +92,11 @@ test("wellbeing pilot aggregate filters bind non-admin users to the selected DB 
       workflowType: "quick-check",
       periodStart: null,
       periodEnd: null,
+      /* SOL-WB-01: KOV-piloodi piir peab jõudma FILTRISSE, mitte jääma vastuse
+         metaandmetesse — ilma selleta luges sama rollirühma koond kogu
+         platvormi ja kandis ometi selle piloodi nime. */
+      organizationId: null,
+      municipalityId: "tartu_linn",
       aggregationLevel: "role_group",
       minimumGroupSize: 5
     }
@@ -100,5 +105,82 @@ test("wellbeing pilot aggregate filters bind non-admin users to the selected DB 
   assert.throws(
     () => resolveWellbeingPilotAggregateFilters({ pilotId: "missing_scope" }, access),
     /wellbeing\.pilot\.scope_forbidden/
+  );
+});
+
+/* SOL-WB-01 fail-closed: skoop, mille tüüp nõuab ID-d, mida tal ei ole, ei tohi
+   vaikselt laieneda platvormiüleseks valimiks ühe asutuse nime all. */
+test("wellbeing pilot aggregate filters refuse a scope whose own boundary is missing", () => {
+  const access = {
+    ok: true,
+    isAdmin: false,
+    allowedRoleGroups: ["child_protection"],
+    pilotScopes: [
+      {
+        id: "pilot_scope_2",
+        name: "Katkine organisatsioonipiloot",
+        scopeType: "organization",
+        municipalityId: null,
+        organizationId: null,
+        roleGroups: ["child_protection"],
+        minimumGroupSize: 3
+      }
+    ]
+  };
+
+  assert.throws(
+    () => resolveWellbeingPilotAggregateFilters({ pilotId: "pilot_scope_2" }, access),
+    /wellbeing\.pilot\.scope_incomplete/
+  );
+});
+
+/* Valitud piloot maksab ka admin'ile: varem oli `pilotId` tema käes puhas
+   dekoratsioon — jõudis vastusesse, aga ei piiranud valimit. */
+test("wellbeing pilot aggregate filters bind an admin to the pilot they selected", () => {
+  const access = {
+    ok: true,
+    isAdmin: true,
+    allowedRoleGroups: [],
+    pilotScopes: [
+      {
+        id: "pilot_scope_3",
+        name: "Harku organisatsioonipiloot",
+        scopeType: "organization",
+        municipalityId: null,
+        organizationId: "org_harku",
+        roleGroups: ["SOCIAL_WORKER"],
+        minimumGroupSize: 4
+      }
+    ]
+  };
+
+  assert.deepEqual(
+    resolveWellbeingPilotAggregateFilters({ pilotId: "pilot_scope_3" }, access),
+    {
+      pilotId: "pilot_scope_3",
+      roleGroup: "SOCIAL_WORKER",
+      workflowType: null,
+      periodStart: null,
+      periodEnd: null,
+      organizationId: "org_harku",
+      municipalityId: null,
+      aggregationLevel: "role_group",
+      minimumGroupSize: 4
+    }
+  );
+
+  /* Ilma piloodivalikuta jääb admin platvormiüleseks ega kanna ühegi piloodi
+     nime — piirid on `null` ja `pilotId` kaob vastusest. */
+  assert.deepEqual(
+    resolveWellbeingPilotAggregateFilters({ roleGroup: "SOCIAL_WORKER" }, access),
+    {
+      roleGroup: "SOCIAL_WORKER",
+      workflowType: null,
+      periodStart: null,
+      periodEnd: null,
+      organizationId: null,
+      municipalityId: null,
+      aggregationLevel: "role_group"
+    }
   );
 });
