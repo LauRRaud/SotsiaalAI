@@ -96,6 +96,11 @@ function db({
     async findFirst({ where }) {
       return rows.find((row) => matchWhere(row, where)) || null;
     },
+    /* SOL-EVENT-01: emitter küsib olemasolu ENNE kirjutamist, seega peab fake seda
+       oskama — muidu mõõdaks test klienti, mida kood ei kasuta. */
+    async findUnique({ where }) {
+      return rows.find((row) => matchWhere(row, where)) || null;
+    },
     async findMany({ where = {} }) {
       return rows.filter((row) => matchWhere(row, where));
     },
