@@ -130,8 +130,10 @@ Kolm tagajärge, mis ei ole kosmeetika:
 - **SOL-MAT-01 on serveripiiri puudumine tasulisel spetsialistifunktsioonil** — iga autentitud
   konto saab otse-API kaudu üles laadida. See ei ole ääreala ja ta ei olnud kunagi loendis.
 
-**Kõik 150 tehtud leidu on 12.08 08:12 seisuga tootmises — deploy'mata ei ole midagi.**
-Server on `1443b6a0`; `main` ja `origin/main` on ees ainult seisukirjete võrra. Välja läksid AUTH-14 ja -15, kogu
+**12.08 08:12 seisuga on tootmises 150 tehtud leidu; lisaks on 30 tehtud leidu deploy'mata (tally kokku 180).**
+Server on `1443b6a0`; `origin/main` on temast ees ainult kahe seisukirje võrra, aga **`main` on
+`origin/main`-ist 24 commit'i ees** ja just need kannavad ülalnimetatud 30 deploy'mata leidu ja
+viit migratsiooni (mõõdetud 12.08). Välja läksid AUTH-14 ja -15, kogu
 SOL-VOICE, SOL-ROOM, SOL-CALL ja SOL-INV, SOL-PAY-01…-08, -10, -11 ning kogu SOL-NOTIF —
 34 commit'i ja seitse migratsiooni, kõik lisavad.
 
