@@ -4716,6 +4716,50 @@ tasemel ja ühiktest mõõdab teda otse, aga „iga varasem etapp eraldi" täht 
 
 **Vastuvõtukriteerium.** Sama võti peab olema edukalt idempotentne ainult kanoniseeritult sama sündmuse puhul; teistsugune teoidentiteet peab andma selge konflikti ja katkestama sama tehingu. Testid peavad võrdlema vähemalt type/source/actor/action/meta erinevusi.
 
+**Seis (12.08.2026): DONE — sama võti annab edu ainult sama teo peal, teistsugune teoidentiteet
+katkestab tehingu; sond 13/13 päris PostgreSQL-is.**
+
+Olemasolu küsitakse nüüd **enne** kirjutamist. Identiteet on kogu salvestatav kuju ja ta on
+kokku pandud **välistamise, mitte lubamise kaudu**: uus väli `data`-s satub võrdlusesse
+iseenesest. Nii ei teki vaikset auku siis, kui sündmusele hiljem väli lisatakse — lubamisloend
+oleks selle unustanud ja vaikimine oleks tähendanud „sama tegu".
+
+**Ainus väljajäetu on `occurredAt` ja see on teadlik.** Ta ütleb, millal me sündmust MÄRKASIME,
+mitte mis juhtus. Kutsuja, kes aega ei anna (juhtumitugi, kelle võti on auditirea id), saab
+igal katsel uue `new Date()` — aja võrdlemine oleks muutnud just selle korduse, mille jaoks
+idempotentsus olemas on, kõvaks konfliktiks. Kutsujad, kelle jaoks aeg ON teo osa (teekond,
+eelpöördumine), panevad ta ise võtme sisse; seal eristab aja juba võti.
+
+**Suurem asi, mille see leid välja tõi, ei ole identiteet.** Vana kood lootis, et pärast
+`P2002` saab SAMAS tehingus rea `findUnique`-ga üles küsida. Postgres märgib tehingu pärast
+unikaalsusrikkumist vigaseks ja iga järgnev käsk selles tehingus kukub. Sondi jaam 4 mõõdab
+täpselt selle ja vastus on sõna-sõnalt `current transaction is aborted, commands ignored until
+end of transaction block`. Vana „leidsin rea, kõik hästi" haru **ei ole kunagi päris
+andmebaasis töötanud** — ta töötas ainult fake-Prisma peal, kelle `findUnique` vastab rõõmsalt
+ka pärast viga. Sama klass nagu SOL-PAY-08 juures: `catch (P2002)` tehingu sees on vaikne
+andmekadu, mitte taastumine.
+
+Seepärast **võidujooksu enam alla ei neelata**. Kui keegi jõudis meie kontrolli järel ette, on
+tehing sel hetkel juba vigane ja ainus aus vastus on kukkuda; kutsuja kordus leiab rea eespool
+oleva kontrolliga üles ja lõpeb idempotentselt. Veal on märgis (`domainEventRace`), et logis
+oleks võidujooks eristatav — päritav `P2002` jääb muutmata, sest kutsujad võivad teda ise
+tunda.
+
+Konflikti veas on **ainult väljanimed**, mitte väärtused (`differingFields`): väärtused võivad
+olla isikustatud ja logi ei ole nende koht.
+
+Väravad: `npm test` **3958/3958** (Europe/Tallinn ja UTC) · i18n · eslint · `db:migrate:check`
+OK · `npm run event:idempotency:probe` **13/13**. Migratsiooni ei ole vaja.
+**Negatiivkontroll: kaheksast uuest testist kukub vana teostuse peal kuus** — viis
+identiteedierinevust ja võidujooks. Ülejäänud kaks (tühi vs puuduv meta, hilisem märkamisaeg)
+läbivad ka vana koodi: nemad ei tõenda parandust, vaid **lukustavad otsuse**, et kumbki neist
+EI ole uus tegu.
+
+**KATMATA:** `version` tõus registris muudab vana võtme mittekorduvaks — see on tahtlik ja
+vali, aga tähendab, et versioonimuutuse päeval kukub sama võtmega kordus konfliktiga, mitte ei
+lähe vaikselt läbi. Sondi võidujooks on **järjestatud mähisega** (päringud on päris, aga
+põimingu panen mina paika), mitte kellaajapõhine — kellaajapõhine oleks olnud hüplik.
+
 ### SOL-NOTIF-07 — teavituste loendi fikseeritud kahekordne eelvalik võib peita vanemad kehtivad teated — P2
 
 **Tõend.** `listNotificationEvents()` loeb andmebaasist maksimaalselt `limit × 2` uusimat rida ja alles seejärel kontrollib iga rea praegust adressaadiõigust (`lib/notifications.js:963-1006`). Kui selles eelvalikus on pärast liikmesuse või allika oleku muutust piisavalt nähtamatuid ridu, neid lihtsalt vahele jäetakse; päring ei jätka järgmise andmebaasileheküljega ning API-l pole siin sisemist jätkukursorit.

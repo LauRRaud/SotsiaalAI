@@ -89,7 +89,10 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-**Seis 12.08 hommikul (mõõdetud, mitte mäletatud):** server on **`1443b6a0`**; `origin/main` on ees ainult selle faili seisukirjete võrra — **deploy'mata koodi EI OLE**. **Viieteistkümnes deploy 12.08 08:12 sinu selgel loal:** 34 commit'i — AUTH-14, AUTH-15, kogu SOL-VOICE, SOL-ROOM, SOL-CALL ja SOL-INV, SOL-PAY-01…-08, -10, -11 ning kogu SOL-NOTIF — ja **seitse migratsiooni**, kõik lisavad. Mõõdetud kohe pärast: `.next` 08:12:44, kolm teenust `active`, `sotsiaal.ai` ja `127.0.0.1:3000` **200**, serveri tööpuu puhas, kolme teenuse veatasemel logi tühi. Deploy jooksis serveris lahtiühendatuna (`setsid` + logifail), sest SSH-kanal katkes väljundivoo peale ka seekord — jälgija sai `Connection reset by peer`, deploy ise seda ei märganud. **Neljateistkümnes deploy 11.08 13:45** oli `b7c9adf0`: SOL-CHAT-09…-13 (peatükk LÕPETATUD, 13/13), migratsioone ei olnud; mõõdetud kohe pärast: `.next` 13:45:53, kolm teenust `active`, `/` `/vestlus` `/toolaud` **200**, frontend'i JA rag-teenuse veatasemel logi tühi. **Kolmeteistkümnes deploy 11.08 13:06** oli `27af4a02`: SOL-CHAT-01…-08 + SOL-MEET-05/-06 ja migratsioon `20260811160000` (uus tabel `ChatTurn`, ridu 0).
+**Seis 12.08 hommikul (mõõdetud, mitte mäletatud):** server on **`1443b6a0`**; `origin/main` on ees ainult selle faili seisukirjete võrra — **deploy'mata koodi EI OLE**. **Deploy 12.08 08:12 sinu selgel loal** (järjekorranumbrit siia ei kirjutata: S1 ja
+`parandusaudit.md` ei ole 11.08 õhtuse deploy osas nõus — üks ütles serveriks `b7c9adf0`, teine
+`1ed23452`, **mõõdetuna oli ta `b7539345`, `.next` 11.08 18:53**; kumbki number ei pidanud
+paika)**:** 34 commit'i — AUTH-14, AUTH-15, kogu SOL-VOICE, SOL-ROOM, SOL-CALL ja SOL-INV, SOL-PAY-01…-08, -10, -11 ning kogu SOL-NOTIF — ja **seitse migratsiooni**, kõik lisavad. Mõõdetud kohe pärast: `.next` 08:12:44, kolm teenust `active`, `sotsiaal.ai` ja `127.0.0.1:3000` **200**, serveri tööpuu puhas, kolme teenuse veatasemel logi tühi. Deploy jooksis serveris lahtiühendatuna (`setsid` + logifail), sest SSH-kanal katkes väljundivoo peale ka seekord — jälgija sai `Connection reset by peer`, deploy ise seda ei märganud. **Neljateistkümnes deploy 11.08 13:45** oli `b7c9adf0`: SOL-CHAT-09…-13 (peatükk LÕPETATUD, 13/13), migratsioone ei olnud; mõõdetud kohe pärast: `.next` 13:45:53, kolm teenust `active`, `/` `/vestlus` `/toolaud` **200**, frontend'i JA rag-teenuse veatasemel logi tühi. **Kolmeteistkümnes deploy 11.08 13:06** oli `27af4a02`: SOL-CHAT-01…-08 + SOL-MEET-05/-06 ja migratsioon `20260811160000` (uus tabel `ChatTurn`, ridu 0).
 
 **Kaheteistkümnes deploy 11.08 11:42** oli `ae1f2055`: kaheksa commit'i (SOL-MEET-01…-04 + docs)
 ja üks migratsioon. Mõõdetud kohe pärast: `.next` 11:42, kolm teenust `active`, viis lehte **200**,
@@ -130,8 +133,8 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 150/403 leidu, 12/39 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**,
-SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT, **SOL-VOICE**, **SOL-ROOM**, **SOL-CALL**, **SOL-INV**, **SOL-NOTIF**). **Auditis ei ole enam ühtegi lahtist P0-d.**
+**SOL-süvaaudit: 151/403 leidu, 13/39 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**,
+SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT, **SOL-VOICE**, **SOL-ROOM**, **SOL-CALL**, **SOL-INV**, **SOL-NOTIF**, **SOL-EVENT**). **Auditis ei ole enam ühtegi lahtist P0-d.**
 Numbrid tulevad `npm run sol:tally` väljundist, käsitsi neid siia ei kirjutata.
 
 **AUDIT ISE ON LÕPUNI VIIDUD** — kõik 20 funktsiooni, Haldus, Ruumid ja Töölaud on kaetud,
@@ -214,7 +217,14 @@ fail maksis varem alati minuti, ka siis, kui ta oli tunni pikkune. `npm run voic
 **15/15 päris PostgreSQL-is**, mitte kunagi laheneva provideriga. Brauserikiht jääb
 **NOT_PROVEN** (DOM-testisviiti ei ole).
 
-`npm test` **3950/3950** (Europe/Tallinn ja UTC), i18n ja eslint puhtad, `db:migrate:check` OK.
+**Sündmusel on 12.08 identiteet, mitte ainult võti (SOL-EVENT, peatükk täis).** Sama
+idempotentsusvõti annab edu ainult siis, kui ta kirjeldab sama tegu — teistsugune tegu sama
+võtme all katkestab tehingu selge veaga, mitte ei anna põhitehingule näilist sündmuse edu.
+Kõrvalleiuna sai parandatud rada, mis päris andmebaasis ei olnud kunagi töötanud: pärast
+unikaalsusrikkumist ei saa samas tehingus enam midagi küsida, sest Postgres on tehingu juba
+vigaseks märkinud. `npm run event:idempotency:probe` **13/13 päris PostgreSQL-is**.
+
+`npm test` **3958/3958** (Europe/Tallinn ja UTC), i18n ja eslint puhtad, `db:migrate:check` OK.
 **Deploy tehtud 12.08 08:12 (omaniku luba samal päeval) — deploy'mata ei ole midagi.** Välja
 läksid AUTH-14, AUTH-15, kogu SOL-VOICE, kogu SOL-ROOM, kogu SOL-CALL, kogu SOL-INV,
 SOL-PAY-01…-08, -10, -11 ja kogu SOL-NOTIF; server on `1443b6a0`. Peale läksid ka kõik **seitse
