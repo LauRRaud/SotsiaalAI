@@ -9,11 +9,19 @@ function matches(row, where = {}) {
     const value = row[key];
     if (condition && typeof condition === "object" && !(condition instanceof Date)) {
       if ("in" in condition) return condition.in.includes(value);
+      if ("notIn" in condition) return !condition.notIn.includes(value);
       if ("lte" in condition) return value != null && new Date(value) <= new Date(condition.lte);
       if ("gt" in condition) return value != null && new Date(value) > new Date(condition.gt);
       if ("equals" in condition) return value === condition.equals;
       if ("not" in condition) return value !== condition.not;
     }
+    /* SOL-URG-06: Postgresis ei ole `undefined`-it — kirjutamata veerg ON NULL.
+       Fake hoidis puuduvat välja `undefined`-ina, seega `readAt: null` tingimus ei
+       oleks kunagi tabanud ja tingimuslik siire oleks testis vaikselt „ei leidnud
+       rida". Võrdlus peab käituma nagu andmebaas. */
+    if (condition === null) return value === null || value === undefined;
+    // Kuupäevad võrreldakse VÄÄRTUSE, mitte viite järgi — nagu andmebaasis.
+    if (condition instanceof Date) return value instanceof Date && value.getTime() === condition.getTime();
     return value === condition;
   });
 }
@@ -53,15 +61,21 @@ export function createModel(initial = [], prefix = "row") {
   let counter = rows.length;
   return {
     rows,
+    /* Päring tagastab KOOPIA, mitte elava rea. Päris Prisma annab lahtiühendatud
+       objekti ja just see teeb „loe → kontrolli → kirjuta" akna nähtavaks: elava
+       viite peal muutuks juba loetud rida vaikselt kaasa ja võistlustest mõõdaks
+       JavaScripti viidet, mitte andmebaasi seisu. */
     async findFirst({ where } = {}) {
-      return rows.find((row) => matches(row, where)) || null;
+      const row = rows.find((candidate) => matches(candidate, where));
+      return row ? { ...row } : null;
     },
     async findMany({ where, take, orderBy, skip } = {}) {
       const found = rows.filter((row) => matches(row, where));
       if (orderBy) found.sort(compareBy(orderBy));
       const start = Number.isInteger(skip) && skip > 0 ? skip : 0;
       const sliced = found.slice(start);
-      return typeof take === "number" ? sliced.slice(0, take) : sliced;
+      const page = typeof take === "number" ? sliced.slice(0, take) : sliced;
+      return page.map((row) => ({ ...row }));
     },
     async count({ where } = {}) {
       return rows.filter((row) => matches(row, where)).length;
@@ -77,6 +91,14 @@ export function createModel(initial = [], prefix = "row") {
       if (!row) throw new Error("not_found");
       Object.assign(row, data);
       return { ...row };
+    },
+    /* SOL-URG-06: tingimuslik kirjutus on nüüd siirete AINUS kuju, seega fake peab
+       teda oskama — ja tagastama LOENDI, sest just loend ütleb, kas võistlus
+       võideti. `update({ where: { id } })` ei saa seda kunagi öelda. */
+    async updateMany({ where, data } = {}) {
+      const found = rows.filter((row) => matches(row, where));
+      for (const row of found) Object.assign(row, data);
+      return { count: found.length };
     }
   };
 }
@@ -101,14 +123,41 @@ export const READY_DESK = Object.freeze({
   lastVerifiedAt: new Date("2026-07-01T08:00:00Z")
 });
 
+/**
+ * SOL-URG-05: TAGASIVEEREMINE ON PÄRIS — hetktõmmis enne, taastamine erindi
+ * korral. Ilma selleta mõõdaks „seis ja jälg sünnivad koos" test ainult seda, et
+ * kood kutsub `$transaction`-it; kukkuv jälg jätaks seisu ikka alles ja roheline
+ * sviit tõendaks aatomsust, mida ei ole.
+ */
+export function createClient(models) {
+  const client = {
+    ...models,
+    txRuns: 0,
+    async $transaction(fn) {
+      client.txRuns += 1;
+      const snapshot = Object.values(models).map((model) => [model, model.rows.map((row) => ({ ...row }))]);
+      try {
+        return await fn(client);
+      } catch (error) {
+        for (const [model, rows] of snapshot) {
+          model.rows.length = 0;
+          model.rows.push(...rows);
+        }
+        throw error;
+      }
+    }
+  };
+  return client;
+}
+
 export function createPrisma({ desks = [READY_DESK], members = [{ id: "m1", deskId: "desk_kov", userId: "staff_1", isActive: true }] } = {}) {
-  return {
+  return createClient({
     urgentDesk: createModel(desks, "desk"),
     urgentDeskMember: createModel(members, "member"),
     urgentRequest: createModel([], "req"),
     urgentRequestEvent: createModel([], "evt"),
     preInquiry: createModel([], "pre")
-  };
+  });
 }
 
 export const NOW = new Date("2026-08-05T22:00:00Z");

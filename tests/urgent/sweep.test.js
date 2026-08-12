@@ -3,13 +3,14 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 import { runUrgentExpirySweep } from "../../lib/urgent/sweep.js";
-import { createModel, NOW } from "./fakePrisma.js";
+import { createClient, createModel, NOW } from "./fakePrisma.js";
 
 function createPrisma(requests = []) {
-  return {
+  // SOL-URG-05 järel käib iga aegumine oma tehingus — fake peab seda oskama.
+  return createClient({
     urgentRequest: createModel(requests, "req"),
     urgentRequestEvent: createModel([], "evt")
-  };
+  });
 }
 
 const overdue = (overrides = {}) => ({

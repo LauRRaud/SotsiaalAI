@@ -901,6 +901,7 @@ model User {
   urgentDesksOwned         UrgentDesk[]         @relation("UrgentDeskOwner")
   urgentDeskMemberships    UrgentDeskMember[]   @relation("UrgentDeskMemberUser")
   urgentRequestsAuthored   UrgentRequest[]      @relation("UrgentRequestAuthor")
+  urgentRequestsTaken      UrgentRequest[]      @relation("UrgentRequestAssignee")
   urgentRequestEvents      UrgentRequestEvent[] @relation("UrgentRequestEventActor")
 
   // JUHTUM-V1: KAKS ERI ROLLI ja neid ei tohi segada.
@@ -6247,6 +6248,11 @@ model UrgentRequest {
   sentAt        DateTime  @default(now())
   readAt        DateTime?
   takenAt       DateTime?
+  /// SOL-URG-07: KES vastutab. Varem elas see ainult sündmusreal, seega aktiivse
+  /// pöördumise praegust vastutajat ei saanud üheselt pärida ega kuvada —
+  /// sündmuslogist tuletamine ei ole turvaline, kui liikmesused liiguvad.
+  /// SetNull: konto kustutus ei kustuta pöördumist, aga ka ei võltsi vastutajat.
+  takenByUserId String?
   declinedAt    DateTime?
   /// E5: eitav vastus on KOHUSTUSLIK rada. Vaikus on halvim tulemus, seega
   /// keeldumine ilma põhjuseta ei ole võimalik.
@@ -6269,6 +6275,7 @@ model UrgentRequest {
   updatedAt DateTime @updatedAt
 
   author              User?                @relation("UrgentRequestAuthor", fields: [authorId], references: [id], onDelete: SetNull)
+  takenBy             User?                @relation("UrgentRequestAssignee", fields: [takenByUserId], references: [id], onDelete: SetNull)
   /// JUHTUM-V1 päritolu (L12). SetNull: abipalve kustutus ei hävita juhtumit.
   caseWorkAssists     CaseWorkAssist[]     @relation("CaseWorkAssistUrgentRequest")
   desk                UrgentDesk           @relation("UrgentRequestDesk", fields: [deskId], references: [id], onDelete: Restrict)
@@ -6279,6 +6286,7 @@ model UrgentRequest {
 
   @@index([deskId, status, sentAt])
   @@index([authorId, sentAt])
+  @@index([takenByUserId, status])
   @@index([status, expiresAt])
   @@index([municipalityId, sentAt])
   @@index([handoverDeskId, handoverAcceptedAt])
