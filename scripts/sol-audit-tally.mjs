@@ -4,16 +4,17 @@
  *
  *   npm run sol:tally             → koond + peatükkide tabel
  *   npm run sol:tally -- --open   → lisaks iga lahtise leiu pealkiri
- *   npm run sol:tally -- --write  → kirjutab „Mis on tehtud" ploki
+ *   npm run sol:tally -- --write  → kirjutab tagasiühilduvalt kolmeastmelise ploki
  *                                   `parandusaudit.md`-sse markerite vahele
+ *   npm run sol:progress          → eristab DONE / PARTIAL / NOT_DONE
+ *   npm run sol:progress -- --write → kirjutab kolmeastmelise ploki
  *
  * `parandusaudit.md` väidab enda kohta, et tema numbrid on RAPORTIST LOETUD, mitte
  * käsitsi kokku pandud. Seni ei olnud seda väidet millegagi katta — käesolev skript
  * on see kate, ja ta loeb täpselt sama reegli järgi, mille fail ise kirja paneb:
  *
  *   - leid  = `### SOL-XXX-NN — … — Pn` pealkiri;
- *   - tehtud = leiu Seis-lõik ALGAB sõnaga `DONE`. Kvalifitseeritud seis
- *     („kood DONE; brauseritest NOT_PROVEN", „mehhanism DONE…") on LAHTINE.
+ *   - tehtud = leiu Seis-lõik ALGAB sõnaga `DONE`; `PARTIAL` on ametlikult LAHTINE.
  *
  * Loeb ka jätkufailid (`…-jatk-*.md`). Nemad on peafailist väljas ja just seepärast
  * kadus SOL-MAT peatükk loendist täielikult — 13 leidu, mida tabelis ei olnud.
@@ -64,6 +65,36 @@ function statusOf(lines, from, to) {
   return "";
 }
 
+export const FINDING_STATE = Object.freeze({
+  DONE: "DONE",
+  PARTIAL: "PARTIAL",
+  NOT_DONE: "NOT_DONE"
+});
+
+/**
+ * Ametlik DONE-reegel ei muutu: ainult sõnaga DONE algav Seis sulgeb leiu.
+ * PARTIAL peab samuti olema Seis-lõigu alguses selgelt kirjas. Nii ei saa vabatekst
+ * nagu „EI OLE DONE" või väiketähega `done` edenemiseks muutuda. Tühi ja otsuse taha
+ * blokitud Seis on NOT_DONE.
+ */
+export function classifyFindingStatus(status = "") {
+  const value = String(status).trim();
+  if (/^DONE\b/.test(value)) return FINDING_STATE.DONE;
+  if (/^PARTIAL\b/.test(value)) return FINDING_STATE.PARTIAL;
+  return FINDING_STATE.NOT_DONE;
+}
+
+export function assertCanonicalProgressStates(findings) {
+  const ambiguous = findings.filter(
+    (row) => row.state === FINDING_STATE.NOT_DONE && row.status && /\bDONE\b/.test(row.status)
+  );
+  if (ambiguous.length === 0) return;
+  const detail = ambiguous.map((row) => `  ${row.id}: ${row.status}`).join("\n");
+  throw new Error(
+    "sol:progress — kvalifitseeritud DONE peab algama sõnaga PARTIAL; muidu ei ole seis üheselt loetav:\n" + detail
+  );
+}
+
 export function parseAuditFile(file, source) {
   const lines = source.split(/\r?\n/);
   const marks = [];
@@ -78,6 +109,7 @@ export function parseAuditFile(file, source) {
     const status = statusOf(lines, index + 1, end);
     const chapter = match[1];
     const number = Number(match[3]);
+    const state = classifyFindingStatus(status);
     return {
       file,
       chapter,
@@ -86,7 +118,9 @@ export function parseAuditFile(file, source) {
       title: match[4],
       priority: match[5],
       status,
-      done: status.startsWith("DONE")
+      state,
+      done: state === FINDING_STATE.DONE,
+      partial: state === FINDING_STATE.PARTIAL
     };
   });
 }
@@ -122,12 +156,17 @@ export function chapterRows(findings) {
 
   return chapters.map((chapter) => {
     const rows = findings.filter((row) => row.chapter === chapter);
-    const open = rows.filter((row) => !row.done);
+    const done = rows.filter((row) => row.state === FINDING_STATE.DONE);
+    const partial = rows.filter((row) => row.state === FINDING_STATE.PARTIAL);
+    const notDone = rows.filter((row) => row.state === FINDING_STATE.NOT_DONE);
+    const open = [...partial, ...notDone];
     const fromExtra = rows.filter((row) => row.file !== MAIN_FILE).length;
     return {
       chapter,
       total: rows.length,
-      done: rows.length - open.length,
+      done: done.length,
+      partial: partial.length,
+      notDone: notDone.length,
       open: open.length ? byPriority(open) : "–",
       note: [open.length === 0 ? "**tehtud**" : "", fromExtra ? `${fromExtra} jätkufailist` : ""]
         .filter(Boolean)
@@ -189,36 +228,66 @@ export const CHAPTER_NAMES = Object.freeze({
 export const BLOCK_START = "<!-- sol:tally algus — GENEREERITUD, ÄRA TOIMETA KÄSITSI -->";
 export const BLOCK_END = "<!-- sol:tally lõpp -->";
 
-export function renderDoneBlock(findings) {
-  const done = findings.filter((row) => row.done);
-  const open = findings.filter((row) => !row.done);
+export function progressCounts(findings) {
+  return {
+    done: findings.filter((row) => row.state === FINDING_STATE.DONE).length,
+    partial: findings.filter((row) => row.state === FINDING_STATE.PARTIAL).length,
+    notDone: findings.filter((row) => row.state === FINDING_STATE.NOT_DONE).length
+  };
+}
+
+export function renderProgressBlock(findings) {
+  assertCanonicalProgressStates(findings);
+  const done = findings.filter((row) => row.state === FINDING_STATE.DONE);
+  const partial = findings.filter((row) => row.state === FINDING_STATE.PARTIAL);
+  const notDone = findings.filter((row) => row.state === FINDING_STATE.NOT_DONE);
+  const open = [...partial, ...notDone];
   const rows = chapterRows(findings);
   const lines = [];
 
   lines.push(BLOCK_START);
   lines.push("");
-  lines.push("## Mis on tehtud");
+  lines.push("## Paranduste seis: DONE / PARTIAL / NOT_DONE");
   lines.push("");
   lines.push(
-    "**See plokk on genereeritud** (`npm run sol:tally -- --write`) raporti enda Seis-lõikudest.",
-    "Käsitsi siia ei kirjutata — varem kirjutati ja ta jäi üheksa peatüki võrra maha. Iga rea",
-    "lõpus on leiu Seis-lõigu esimene lause **sõna-sõnalt**, mitte ümberjutustus."
+    "**See plokk on genereeritud** (`npm run sol:progress -- --write`) raporti enda Seis-lõikudest.",
+    "Käsitsi siia ei kirjutata. DONE algab sõnaga `DONE`, PARTIAL sõnaga `PARTIAL` ja kõik muu",
+    "on NOT_DONE. Kvalifitseeritud DONE-väide vale algusega katkestab genereerimise, et ta ei",
+    "kaoks vaikselt valesse rühma. Iga loetletud leiu lõpus on Seis-lõik **sõna-sõnalt**."
   );
   lines.push("");
   lines.push(
-    `**${done.length} / ${findings.length} leidu · ` +
-      `${rows.filter((row) => row.done === row.total).length} / ${rows.length} peatükki · ` +
-      `lahtiseid ${open.length} — ${byPriority(open)}**`
+    `DONE **${done.length}** / ${findings.length} · PARTIAL **${partial.length}** / ${findings.length} · ` +
+      `NOT_DONE **${notDone.length}** / ${findings.length} · peatükke täielikult DONE ` +
+      `**${rows.filter((row) => row.done === row.total).length}** / ${rows.length} · ` +
+      `ametlikult lahtiseid ${open.length} — ${byPriority(open)}`
   );
   lines.push("");
-  lines.push("| Peatükk | Kood | Tehtud | Lahtised | Märkus |");
-  lines.push("|---|---|---|---|---|");
+  lines.push("| Peatükk | Kood | DONE | PARTIAL | NOT_DONE | Lahtiste prioriteedid | Märkus |");
+  lines.push("|---|---|---:|---:|---:|---|---|");
   for (const row of rows) {
     const name = CHAPTER_NAMES[row.chapter] || row.chapter;
-    lines.push(`| ${name} | ${row.chapter} | ${row.done}/${row.total} | ${row.open} | ${row.note} |`);
+    lines.push(
+      `| ${name} | ${row.chapter} | ${row.done}/${row.total} | ${row.partial} | ${row.notDone} | ` +
+        `${row.open} | ${row.note} |`
+    );
   }
   lines.push("");
-  lines.push("### Tehtud leiud peatükkide kaupa");
+  lines.push("### PARTIAL leiud peatükkide kaupa");
+  lines.push("");
+
+  for (const row of rows) {
+    const chapterPartial = partial.filter((item) => item.chapter === row.chapter);
+    if (chapterPartial.length === 0) continue;
+    lines.push(`**${CHAPTER_NAMES[row.chapter] || row.chapter}** (\`${row.chapter}\`, ${chapterPartial.length} PARTIAL)`);
+    lines.push("");
+    for (const item of chapterPartial) {
+      lines.push(`- \`${item.id}\` ${item.priority} — ${item.title} — ${item.status}`);
+    }
+    lines.push("");
+  }
+
+  lines.push("### DONE leiud peatükkide kaupa");
   lines.push("");
 
   for (const row of rows) {
@@ -236,8 +305,11 @@ export function renderDoneBlock(findings) {
   return lines.join("\n");
 }
 
+// Tagasiühilduv ekspordinimi olemasolevatele kasutajatele; sisu on nüüd kolmeastmeline.
+export const renderDoneBlock = renderProgressBlock;
+
 /* Asendus, mitte lisamine: puuduv marker VISKAB. Vaikne lisamine faili lõppu
-   tähendaks kahte „Mis on tehtud" plokki, millest vanem oleks eespool ja teda
+   tähendaks kahte „Paranduste seis" plokki, millest vanem oleks eespool ja teda
    loetaks esimesena — täpselt see viga, mille see plokk kaotama peaks. */
 export function replaceBlock(source, block) {
   const start = source.indexOf(BLOCK_START);
@@ -256,29 +328,54 @@ export async function main(argv = process.argv.slice(2)) {
   const extra = findings.filter((row) => row.file !== MAIN_FILE);
   const done = findings.filter((row) => row.done);
   const open = findings.filter((row) => !row.done);
+  const partial = findings.filter((row) => row.state === FINDING_STATE.PARTIAL);
+  const notDone = findings.filter((row) => row.state === FINDING_STATE.NOT_DONE);
+  const progress = argv.includes("--progress");
+
+  if (progress || argv.includes("--write")) assertCanonicalProgressStates(findings);
 
   console.log(`Peafail        : ${main_.length} leidu (${files[0]})`);
   console.log(`Jätkufailid    : ${extra.length} leidu ${files.length - 1} failis`);
   console.log(`KOKKU          : ${findings.length}`);
-  console.log(`Tehtud         : ${done.length}`);
-  console.log(`Lahtised       : ${open.length} — ${byPriority(open)}`);
+  if (progress) {
+    console.log(`DONE           : ${done.length}`);
+    console.log(`PARTIAL        : ${partial.length}`);
+    console.log(`NOT_DONE       : ${notDone.length}`);
+    console.log(`Ametlikult lahti: ${open.length} — ${byPriority(open)}`);
+  } else {
+    console.log(`Tehtud         : ${done.length}`);
+    console.log(`Lahtised       : ${open.length} — ${byPriority(open)}`);
+  }
   console.log("");
 
-  console.log("| Peatükk | Tehtud | Lahtised | Märkus |");
-  console.log("|---|---|---|---|");
-  for (const row of chapterRows(findings)) {
-    console.log(`| ${row.chapter} | ${row.done}/${row.total} | ${row.open} | ${row.note} |`);
+  if (progress) {
+    console.log("| Peatükk | DONE | PARTIAL | NOT_DONE | Lahtiste prioriteedid | Märkus |");
+    console.log("|---|---:|---:|---:|---|---|");
+    for (const row of chapterRows(findings)) {
+      console.log(
+        `| ${row.chapter} | ${row.done}/${row.total} | ${row.partial} | ${row.notDone} | ${row.open} | ${row.note} |`
+      );
+    }
+  } else {
+    console.log("| Peatükk | Tehtud | Lahtised | Märkus |");
+    console.log("|---|---|---|---|");
+    for (const row of chapterRows(findings)) {
+      console.log(`| ${row.chapter} | ${row.done}/${row.total} | ${row.open} | ${row.note} |`);
+    }
   }
 
   if (argv.includes("--write")) {
     const target = path.join(AUDIT_DIR, "parandusaudit.md");
     const source = await readFile(target, "utf8");
-    const next = replaceBlock(source, renderDoneBlock(findings));
+    const next = replaceBlock(source, renderProgressBlock(findings));
     if (next === source) {
       console.log(`\n[sol:tally --write] ${target} oli juba värske.`);
     } else {
       await writeFile(target, next);
-      console.log(`\n[sol:tally --write] ${target} uuendatud — ${done.length} tehtud leidu.`);
+      console.log(
+        `\n[sol:tally --write] ${target} uuendatud — ` +
+          `${done.length} DONE · ${partial.length} PARTIAL · ${notDone.length} NOT_DONE.`
+      );
     }
   }
 

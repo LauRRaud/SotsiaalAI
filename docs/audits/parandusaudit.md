@@ -1,20 +1,17 @@
 # Parandusaudit — SOL-süvaauditi seis
 
-**Tuletatud loend. Olekut kannab `sotsiaalai-sol-suvaaudit.md` ise** (Seis-lõik iga leiu all);
-see fail on ainult ülevaade ja ta ei ole allikas. Numbrid on **loetud raportist**, mitte
-käsitsi kokku pandud — ja alates 11.08 on sellel väitel ka kate: **`npm run sol:tally`**
-(`scripts/sol-audit-tally.mjs`) loendab `### SOL-XXX-NN — … — Pn` pealkirju ja loeb tehtuks
-ainult need, mille Seis-lõik ALGAB sõnaga `DONE`. Käsitsi siia numbreid enam ei kirjutata.
-Mõõdetud **12.08.2026** (neljateistkümnes mõõtmine, pärast SOL-WB peatüki lõpetamist); eelmised olid pärast
-SOL-NOTIF-i, SOL-PAY-02/-03, SOL-AUTH-15, -09/-10, -08/-12/-13 ja -07/-11 koos loenduri enda parandusega.
+**Tuletatud loend. Olekut kannavad auditiraportite Seis-lõigud; see fail ei ole allikas.**
+`npm run sol:tally` säilitab ametliku kaheosalise reegli: DONE on ainult leid, mille Seis algab
+sõnaga `DONE`, kõik ülejäänud on ametlikult lahtised. `npm run sol:progress` näitab sama allika
+kolmes astmes: **DONE / PARTIAL / NOT_DONE**. DONE ja PARTIAL peavad algama vastava täpse
+sõnaga; tühi Seis, `NOT_DONE` ja `BLOCKED_DECISION` jäävad NOT_DONE-iks. Vale algusega
+kvalifitseeritud DONE katkestab genereerimise, mitte ei kao vaikselt valesse rühma.
 
-**„Mis on tehtud" on 12.08 õhtust alates GENEREERITUD** (`npm run sol:tally -- --write`)
-raporti enda Seis-lõikudest ja ta ei saa enam maha jääda. Varem oli ta käsitsi kirjutatud
-jutustus, mis lõppes **SOL-CHAT-08 juures** — üheksa lõpetatud peatükki (SOL-VOICE, SOL-ROOM,
-SOL-CALL, SOL-INV, SOL-PAY, SOL-NOTIF, SOL-EVENT, SOL-URG, SOL-WB) ei olnud siin kunagi kirjas
-ja fail nimetas järelejõudmist „eraldi tööks", mida keegi ette ei võtnud. **Sama veaklass mis
-numbritel, ainult aeglasem.** Ploki värskust hoiab test: `parandusaudit.md` läheb punaseks
-kohe, kui mõni Seis-lõik raportis muutub ja plokki ei ole üle genereeritud.
+**„Paranduste seis" on genereeritud** (`npm run sol:progress -- --write`) ja sisaldab nii
+kolme koguarvu, peatükkide jaotust kui PARTIAL-leidude nimelist loendit. Vana
+`npm run sol:tally -- --write` kirjutab sama kolmeastmelise ploki, seega ei saa hilisem
+plokiring uut vaadet tagasi kaheosaliseks muuta. Värskust hoiab test: `parandusaudit.md` läheb
+punaseks kohe, kui mõni Seis-lõik muutub ja plokki ei ole üle genereeritud.
 
 **Käsitsi kirjutatud jutustus on alles**, aga uue nime all („Jutustus — MIKS, mitte MIS") ja
 tema roll on nüüd ainus, mida ta täita suudab: seletada, MIKS parandus selline on ja mis
@@ -29,16 +26,11 @@ vaikselt väiksemat nimetajat ta enam anda ei saa (`tests/scripts/solAuditTally.
 
 ## Kokkuvõte
 
-| | |
-|---|---|
-| Tehtud leidu | **181 / 403** selle tööpuu loenduri järgi · **181 / 429** kogu auditikorpuse peale — **26 leidu üheksas failis ei ole `main`-is**, vt „Auditikorpus ei ole ühes puus" allpool |
-| Peatükke lõpuni | **16 / 39** — SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**, SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT, **SOL-VOICE**, **SOL-ROOM**, **SOL-CALL**, **SOL-INV**, **SOL-PAY**, **SOL-NOTIF**, **SOL-EVENT**, **SOL-URG**, **SOL-WB** |
-| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 157 × P1 · 64 × P2 · 1 × P3 (selle puu loenduri järgi; kogu korpuses 248) |
-| Nimetaja kasvas 357 → 397 → **403** | **jätkuauditid, mis olid siit loendist täielikult väljas.** Vt eraldi lõiku allpool — see ei ole tagasiminek, vaid see, et loendus ei näinud esmalt seitset faili ja seejärel kuut leidu neist ühes. |
-| Toodangus | **DEPLOY'MATA JÄÄK: 30 leidu ja 27 commit'i.** Peale nende kolm 12.08 õhtu commit'i, mis EI ole uued leiud, vaid kahe omaniku otsuse teostus ja üks kõrvalleid: **analüüsiühik** (`latest_per_person` vaikimisi, nähtav aruandes ja kolmes ekspordis, valitav päringus), **privaatsuslävend 3 → 5** ja **makse säilituse põrand** (avaldatud 7 aastat ei ole enam env-iga langetatav). Ükski neist ei vaja migratsiooni. Leiud: SOL-EVENT-01, kogu SOL-URG (03…13) ja kogu SOL-WB (01…18), **viis migratsiooni**: `20260812060000` (`UrgentRequest.takenByUserId`), `20260812070000` (`UrgentDesk` kinnitaja), `20260812080000` (`WellbeingParticipation` tabel), `20260812090000` (`WellbeingRecord.checkpointAnsweredAt` + pärandridade korrastus), `20260812100000` (`WellbeingPilotViewer.claimedAt` + FK `SetNull` → `Cascade`). **Kolm viimast puudutavad tootmises 0 rida** (0 `WellbeingRecord`, 0 pilooti, 0 vaatajat — mõõdetud psql-iga 12.08), seega ka andmeid muutvad `UPDATE`-id on tühikäigud. Viimane deploy **12.08 08:12 omaniku loal: server = `1443b6a0`**. **AEGUNUD. 12.08 16:15 seisuga on server `387ebc5d` ja DEPLOY'MATA JÄÄKI EI OLE** — vahepeal läksid välja SOL-PAY-09 (koos migratsiooniga `20260812170000`) ja SOL-WB-06 täiendav lahtrisummutus. **Deploy-seisu allikas on S1 `SotsiaalAI.md`-s, mitte see rida.** |
-| Järgmine peatükk | **SOL-WB (18/18) ja SOL-PAY (11/11) on mõlemad lõpetatud** — kuusteist täis peatükki. Dokumendi järjekorras järgmine on **SOL-SLOG** (5/24, 18 × P1) ja tema järel **SOL-RAGSVC** (2/28) — kaks suurimat lahtist sabat. Vt ka lahtist jätkufailide otsust allpool. |
-| Suurimad lahtised sabad | SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-PRE 16 · SOL-JOUR 15 · SOL-SUP 15 · SOL-HELP 13 · SOL-MAT 13 · SOL-NET 11 · SOL-SPROF 13 · SOL-COV 8 |
-| Lahtine tooteotsus | **kas jätkufailid liidetakse peaauditi dokumendijärjekorda või jäävad eraldi järjekorraks.** Kuni see on lahtine, ei ole „järgmine dokumendi järjekorras" üheselt määratud. |
+Hetkeseisu kannab allolev genereeritud plokk „Paranduste seis: DONE / PARTIAL / NOT_DONE".
+Siin ei ole enam käsitsi kopeeritud numbreid, peatükkide järjekorda ega deploy-SHA-d, sest kõik
+kolm vananesid varem samal päeval. Järgmise tööotsa ja serveriseisu allikas on S1.0 failis
+`docs/platvormi arendus/SotsiaalAI.md`; allolev ajalooline jutustus seletab ainult varasemate
+otsuste põhjuseid ega kanna tänast seisu.
 
 ## SOL-WB lõpetatud (12.08) — ja kaks otsust, mis jäid omanikule
 
@@ -180,57 +172,73 @@ Teine jooks: **`PROBE_OK 8/8`**.
 
 <!-- sol:tally algus — GENEREERITUD, ÄRA TOIMETA KÄSITSI -->
 
-## Mis on tehtud
+## Paranduste seis: DONE / PARTIAL / NOT_DONE
 
-**See plokk on genereeritud** (`npm run sol:tally -- --write`) raporti enda Seis-lõikudest.
-Käsitsi siia ei kirjutata — varem kirjutati ja ta jäi üheksa peatüki võrra maha. Iga rea
-lõpus on leiu Seis-lõigu esimene lause **sõna-sõnalt**, mitte ümberjutustus.
+**See plokk on genereeritud** (`npm run sol:progress -- --write`) raporti enda Seis-lõikudest.
+Käsitsi siia ei kirjutata. DONE algab sõnaga `DONE`, PARTIAL sõnaga `PARTIAL` ja kõik muu
+on NOT_DONE. Kvalifitseeritud DONE-väide vale algusega katkestab genereerimise, et ta ei
+kaoks vaikselt valesse rühma. Iga loetletud leiu lõpus on Seis-lõik **sõna-sõnalt**.
 
-**236 / 403 leidu · 19 / 39 peatükki · lahtiseid 167 — 116 × P1 · 50 × P2 · 1 × P3**
+DONE **236** / 403 · PARTIAL **4** / 403 · NOT_DONE **163** / 403 · peatükke täielikult DONE **19** / 39 · ametlikult lahtiseid 167 — 116 × P1 · 50 × P2 · 1 × P3
 
-| Peatükk | Kood | Tehtud | Lahtised | Märkus |
-|---|---|---|---|---|
-| Skeemi ja Prisma mudeli vastavus | SOL-SCHEMA | 1/1 | – | **tehtud** |
-| Build | SOL-BUILD | 1/1 | – | **tehtud** |
-| Autentimine ja autoriseerimine | SOL-AUTH | 15/15 | – | **tehtud** |
-| Juhtumitöö (JTA-V1) | SOL-CW | 17/20 | 2 × P1 · 1 × P2 |  |
-| RAG-i admin ja failihaldus | SOL-RAGADMIN | 4/4 | – | **tehtud** |
-| Organisatsioonid ja skoop | SOL-ORG | 17/17 | – | **tehtud**, 5 jätkufailist |
-| Välitöö | SOL-FIELD | 6/6 | – | **tehtud** |
-| Dokumendid ja AI-kasutus | SOL-DOC | 14/15 | 1 × P1 | 6 jätkufailist |
-| Uuringud | SOL-RES | 6/7 | 1 × P2 |  |
-| Koosolekukokkuvõtted | SOL-MEET | 6/6 | – | **tehtud** |
-| Vestlus | SOL-CHAT | 13/13 | – | **tehtud** |
-| Hääl (STT/TTS) | SOL-VOICE | 3/3 | – | **tehtud** |
-| Ruumid | SOL-ROOM | 7/7 | – | **tehtud** |
-| Kõned ja salvestus | SOL-CALL | 13/13 | – | **tehtud** |
-| Kutsed ja sponsorlus | SOL-INV | 3/3 | – | **tehtud** |
-| Maksed | SOL-PAY | 11/11 | – | **tehtud** |
-| Teavitused | SOL-NOTIF | 7/7 | – | **tehtud** |
-| Domeenisündmused | SOL-EVENT | 1/1 | – | **tehtud** |
-| Kiireloomuline abi | SOL-URG | 13/13 | – | **tehtud** |
-| Tööheaolu | SOL-WB | 18/18 | – | **tehtud**, 4 jätkufailist |
-| Teenuspäevik | SOL-SLOG | 24/24 | – | **tehtud** |
-| RAG-teenus ja ingest | SOL-RAGSVC | 28/28 | – | **tehtud** |
-| Migratsioonid | SOL-PRISMA | 0/4 | 3 × P1 · 1 × P2 |  |
-| Mentorlus | SOL-MENT | 0/7 | 7 × P1 |  |
-| Supervisioon | SOL-SUP | 0/15 | 11 × P1 · 4 × P2 |  |
-| Kovisioon | SOL-COV | 0/8 | 8 × P1 |  |
-| Tõenduspõhised praktikad | SOL-PRAC | 0/8 | 8 × P1 |  |
-| Teemaseemned | SOL-SEED | 0/5 | 3 × P1 · 2 × P2 |  |
-| Teekond ja jagamine | SOL-JOUR | 2/17 | 12 × P1 · 3 × P2 |  |
-| Eelpöördumised | SOL-PRE | 2/18 | 15 × P1 · 1 × P2 |  |
-| Abikuulutused | SOL-HELP | 0/13 | 11 × P1 · 2 × P2 |  |
-| Võrgustikutöö | SOL-NET | 2/13 | 9 × P1 · 2 × P2 |  |
-| Refleksioonid | SOL-REF | 0/9 | 3 × P1 · 6 × P2 |  |
-| Otsing | SOL-SEARCH | 0/7 | 1 × P1 · 5 × P2 · 1 × P3 |  |
-| Teenuseosutaja profiil | SOL-SPROF | 2/15 | 6 × P1 · 7 × P2 |  |
-| Dokumendi koostamine | SOL-COMP | 0/5 | 3 × P1 · 2 × P2 | 5 jätkufailist |
-| Materjalid | SOL-MAT | 0/13 | 8 × P1 · 5 × P2 | 13 jätkufailist |
-| Minu jagamised | SOL-SHARE | 0/5 | 2 × P1 · 3 × P2 | 5 jätkufailist |
-| Teenusekaart | SOL-SMAP | 0/8 | 3 × P1 · 5 × P2 | 8 jätkufailist |
+| Peatükk | Kood | DONE | PARTIAL | NOT_DONE | Lahtiste prioriteedid | Märkus |
+|---|---|---:|---:|---:|---|---|
+| Skeemi ja Prisma mudeli vastavus | SOL-SCHEMA | 1/1 | 0 | 0 | – | **tehtud** |
+| Build | SOL-BUILD | 1/1 | 0 | 0 | – | **tehtud** |
+| Autentimine ja autoriseerimine | SOL-AUTH | 15/15 | 0 | 0 | – | **tehtud** |
+| Juhtumitöö (JTA-V1) | SOL-CW | 17/20 | 2 | 1 | 2 × P1 · 1 × P2 |  |
+| RAG-i admin ja failihaldus | SOL-RAGADMIN | 4/4 | 0 | 0 | – | **tehtud** |
+| Organisatsioonid ja skoop | SOL-ORG | 17/17 | 0 | 0 | – | **tehtud**, 5 jätkufailist |
+| Välitöö | SOL-FIELD | 6/6 | 0 | 0 | – | **tehtud** |
+| Dokumendid ja AI-kasutus | SOL-DOC | 14/15 | 1 | 0 | 1 × P1 | 6 jätkufailist |
+| Uuringud | SOL-RES | 6/7 | 1 | 0 | 1 × P2 |  |
+| Koosolekukokkuvõtted | SOL-MEET | 6/6 | 0 | 0 | – | **tehtud** |
+| Vestlus | SOL-CHAT | 13/13 | 0 | 0 | – | **tehtud** |
+| Hääl (STT/TTS) | SOL-VOICE | 3/3 | 0 | 0 | – | **tehtud** |
+| Ruumid | SOL-ROOM | 7/7 | 0 | 0 | – | **tehtud** |
+| Kõned ja salvestus | SOL-CALL | 13/13 | 0 | 0 | – | **tehtud** |
+| Kutsed ja sponsorlus | SOL-INV | 3/3 | 0 | 0 | – | **tehtud** |
+| Maksed | SOL-PAY | 11/11 | 0 | 0 | – | **tehtud** |
+| Teavitused | SOL-NOTIF | 7/7 | 0 | 0 | – | **tehtud** |
+| Domeenisündmused | SOL-EVENT | 1/1 | 0 | 0 | – | **tehtud** |
+| Kiireloomuline abi | SOL-URG | 13/13 | 0 | 0 | – | **tehtud** |
+| Tööheaolu | SOL-WB | 18/18 | 0 | 0 | – | **tehtud**, 4 jätkufailist |
+| Teenuspäevik | SOL-SLOG | 24/24 | 0 | 0 | – | **tehtud** |
+| RAG-teenus ja ingest | SOL-RAGSVC | 28/28 | 0 | 0 | – | **tehtud** |
+| Migratsioonid | SOL-PRISMA | 0/4 | 0 | 4 | 3 × P1 · 1 × P2 |  |
+| Mentorlus | SOL-MENT | 0/7 | 0 | 7 | 7 × P1 |  |
+| Supervisioon | SOL-SUP | 0/15 | 0 | 15 | 11 × P1 · 4 × P2 |  |
+| Kovisioon | SOL-COV | 0/8 | 0 | 8 | 8 × P1 |  |
+| Tõenduspõhised praktikad | SOL-PRAC | 0/8 | 0 | 8 | 8 × P1 |  |
+| Teemaseemned | SOL-SEED | 0/5 | 0 | 5 | 3 × P1 · 2 × P2 |  |
+| Teekond ja jagamine | SOL-JOUR | 2/17 | 0 | 15 | 12 × P1 · 3 × P2 |  |
+| Eelpöördumised | SOL-PRE | 2/18 | 0 | 16 | 15 × P1 · 1 × P2 |  |
+| Abikuulutused | SOL-HELP | 0/13 | 0 | 13 | 11 × P1 · 2 × P2 |  |
+| Võrgustikutöö | SOL-NET | 2/13 | 0 | 11 | 9 × P1 · 2 × P2 |  |
+| Refleksioonid | SOL-REF | 0/9 | 0 | 9 | 3 × P1 · 6 × P2 |  |
+| Otsing | SOL-SEARCH | 0/7 | 0 | 7 | 1 × P1 · 5 × P2 · 1 × P3 |  |
+| Teenuseosutaja profiil | SOL-SPROF | 2/15 | 0 | 13 | 6 × P1 · 7 × P2 |  |
+| Dokumendi koostamine | SOL-COMP | 0/5 | 0 | 5 | 3 × P1 · 2 × P2 | 5 jätkufailist |
+| Materjalid | SOL-MAT | 0/13 | 0 | 13 | 8 × P1 · 5 × P2 | 13 jätkufailist |
+| Minu jagamised | SOL-SHARE | 0/5 | 0 | 5 | 2 × P1 · 3 × P2 | 5 jätkufailist |
+| Teenusekaart | SOL-SMAP | 0/8 | 0 | 8 | 3 × P1 · 5 × P2 | 8 jätkufailist |
 
-### Tehtud leiud peatükkide kaupa
+### PARTIAL leiud peatükkide kaupa
+
+**Juhtumitöö (JTA-V1)** (`SOL-CW`, 2 PARTIAL)
+
+- `SOL-CW-09` P2 — URL-i olek ei toeta lubatud brauseri tagasinuppu — PARTIAL — kood DONE; brauseritest NOT_PROVEN, runtime: not_run.
+- `SOL-CW-14` P1 — casework'i säilitustöö ajastatud käivitamine ei ole tõendatud — PARTIAL — mehhanism DONE ja ALARM on tõendatud päris PostgreSQL-is; taimeri LUBAMINE ootab omaniku enda lukustatud järjekorda; säilitustähtaja staging-runtime: not_run.
+
+**Dokumendid ja AI-kasutus** (`SOL-DOC`, 1 PARTIAL)
+
+- `SOL-DOC-J-03` P1 — RAG-kasutusloa tagasivõtmine ei eemalda juba indekseeritud koopiat — PARTIAL — koodis on `agentAllowed true → false` nüüd auditeeritud ja idempotentne püsiv `DataDeletionJob`: töö ning `metadata.ragRemoval=pending` sünnivad enne kaugkatset samas CAS-tehingus, tõrge jääb `failed`-ina taastatavaks ja kinnitatud kustutus liigub `done`-iks. Lõpetamata töö blokeerib nii korduslubamise kui `ensureDocumentIndexed()` ingest'i; retry viib sama jobId-ga dokumendi seisu `done`, misjärel lubamine saab ingestida ainult värske SHA/`updatedAt` versiooni. Liides näitab pending/failed seisu ega luba seda lülitiga peita. Sihttestid 15/15 katsid järjekorra, tõrke, done-seisu, re-enable/ingest tõkke ja retry; `npm run doc:rag-removal:probe` 15/15 päris PostgreSQL-is kattis püsiva job'i, auditid, tõrke + retry, paralleelse keela/luba võistluse, idempotentsuse ning cleanup'i `users=0 jobs=0 audits=0`. Päris RAG-i ingest → keela → GET/search puudub ja konto kustutuse välisots on siiski NOT_PROVEN, sest kohalikus keskkonnas puuduvad RAG-võti ja kuulav teenus; leidu ei märgita enne seda DONE-iks.
+
+**Uuringud** (`SOL-RES`, 1 PARTIAL)
+
+- `SOL-RES-07` P2 — soft-nav'i järel pole aktiivse uuringuga taasühendumise ega Stop'i kasutajateed — PARTIAL — kood/refaktor DONE ja sihttestidega mõõdetud; nõutud brauserirada NOT_PROVEN lokaalse React hydration'i blokeeringu tõttu. Leid jääb loendis LAHTISEKS.
+
+### DONE leiud peatükkide kaupa
 
 **Skeemi ja Prisma mudeli vastavus** (`SOL-SCHEMA`, 1/1)
 
@@ -1117,9 +1125,9 @@ uuesti), sest analüüs on lepingu järgi efemeerne — vt leiu Seis-lõiku.
 
 ## Lahtised, mis EI OLE lihtsalt tegemata
 
-Neid nelja ei saa „järgmise tööna" ette võtta — nad ootavad kas otsust või tõendust, mida
-kood ei anna. **Viies, SOL-PAY-09, on 12.08 õhtul siit välja langenud** — blokk osutus
-kitsamaks kui kirjeldus:
+Neli PARTIAL-leidu ootavad veel runtime- või välisteenuse tõendit ja üks leid omaniku otsust.
+Neid ei käsitleta uue tavaparanduse plokina. **SOL-PAY-09 langes 12.08 õhtul siit välja** —
+blokk osutus kitsamaks kui kirjeldus:
 
 - ~~**SOL-PAY-09**~~ — **12.08 õhtul TEHTUD, peatükk 11/11.** Blokk oli kitsam, kui siin kirjas:
   mehhanism ei sõltunud otsusest üldse ja kriteeriumi tähtaja-pool oli juba vastatud
@@ -1127,25 +1135,26 @@ kitsamaks kui kirjeldus:
   saab teda muuta ilma, et miski muu liiguks. `npm run pay:archive:probe` **24/24** päris
   PostgreSQL-is, kaks negatiivkontrolli. Vt leiu Seis-lõiku raportis.
 
-- **SOL-CW-09** (P2) — *kood DONE, brauseritest NOT_PROVEN.* Parandus on olemas, aga
+- **SOL-CW-09** (P2, PARTIAL) — *kood DONE, brauseritest NOT_PROVEN.* Parandus on olemas, aga
   tagasinupu käitumist ei ole päris brauserist läbi käidud. Loendis on ta seepärast lahtine.
-- **SOL-CW-14** (P1) — *mehhanism DONE ja alarm tõendatud päris PostgreSQL-is; taimeri
+- **SOL-CW-14** (P1, PARTIAL) — *mehhanism DONE ja alarm tõendatud päris PostgreSQL-is; taimeri
   LUBAMINE ootab omaniku enda lukustatud järjekorda* (Õ2/Õ3 andmekaitseanalüüs → cron →
   kuivjooks → aktiveerimine). Unit-failid on serveris paigaldatud, taimer on `disabled`.
-- **SOL-RES-07** (P2) — *leidmine ja Stop DONE; elava edenemisvoo taastamine ja brauseritest
-  TEGEMATA.* Aktiivse töö saab nüüd vestluse avamisel üles leida ja peatada (ka „Minu dokumentide"
-  real on Stop-nupp), aga SSE-progressi taastamine nõuab `useChatStream`-i voo-tarbimise
-  väljatõstmist `sendMessage`-i seest — eraldi refaktor, mida P2 leid ei kanna.
+- **SOL-RES-07** (P2, PARTIAL) — *kood/refaktor DONE; brauserirada NOT_PROVEN.* Sama töö
+  edenemisvoog taastub ning create/Stopi ja vestlusevahetuse võistlused on suletud; eraldi
+  päris brauseri start → soft-nav → tagasi → progress → Stop rada jäi hydration'i tõrke taha.
+- **SOL-DOC-J-03** (P1, PARTIAL) — püsiv RAG-kustutustöö, retry, ligipääsutõkked ja päris
+  PostgreSQL on tõendatud; päris RAG-i ingest → keela → GET/search puudub ja konto kustutuse
+  välisots on teenusevõtme ning kuulava RAG-teenuse puudumise tõttu NOT_PROVEN.
 - **SOL-CW-19** (P1) — *BLOCKED_DECISION.* Leid on mõõdetud ja tõene, aga kriteerium algab
   tooteotsusest, mis on omaniku oma. Koodi ei ole muudetud.
 
 ## Kuidas seda loendit lugeda
 
-- **Loend on mehaaniline ja nüüd ka jooksutatav: `npm run sol:tally`.** Tehtuks loetakse ainult
-  leid, mille Seis-lõik ALGAB sõnaga `DONE`. Kvalifitseeritud seisud („kood DONE; brauseritest
-  NOT_PROVEN", „mehhanism DONE…") loetakse **lahtiseks**. Seepärast on SOL-CW siin **17/20**,
-  mitte varem kirjas olnud 18/20 — see ei ole tagasiminek, vaid rangem lugemine. Kolm
-  kvalifitseeritud leidu on ülal nimetatud.
+- **Loend on mehaaniline ja jooksutatav.** `npm run sol:tally` säilitab ametliku DONE/lahtise
+  vaate. `npm run sol:progress` eristab kolm täpset algussõna: `DONE`, `PARTIAL` ja kõik muu
+  `NOT_DONE`. Vale algusega kvalifitseeritud `DONE` katkestab progressi genereerimise, et ta ei
+  kaoks vaikselt valesse rühma. Praegused neli PARTIAL-leidu on ülal nimetatud.
 - **Loendur loeb ka jätkufaile** (`…-jatk-*.md`) ja just nende puudumine oli senise loenduse
   suurim viga: SOL-MAT peatükk (13 leidu) ei olnud siin tabelis kordagi. Kui uus jätkufail
   lisandub, muutub nimetaja — jooksuta loendur uuesti, ära paranda numbrit käsitsi.
@@ -1153,9 +1162,9 @@ kitsamaks kui kirjeldus:
   korda kitsamalt: `SOL-DOC-J-01…-06` ei vastanud rangele mustrile ja kadus. Nüüd nõuab
   loendur, et **iga** `### SOL-…` pealkiri oleks arvestatud, ja kukub muidu nimeliselt —
   seega „numbrid on raportist loetud" on kate ka tulevaste ID-vormingute peal.
-- **`runtime: not_run` ei tee leidu lahtiseks.** Enamik parandusi on tõendatud teenuse- ja
-  andmebaasitasemel; „päris admini sessioonist läbi käimata" on kirjas iga leiu Seis-lõigus
-  eraldi ja seda ei loeta siin puuduseks.
+- **Seisu määrab Seis-lõigu algussõna, mitte vabateksti üksik runtime-märge.** DONE-leiu
+  lisamärge `runtime: not_run` ei ava leidu; PARTIAL algab sõnaga PARTIAL siis, kui täitmata
+  runtime on vastuvõtukriteeriumi osa.
 - **Järjekorra reegel: P0 EES, dokumendi järjekord on tasavägiste vahel otsustaja.** Reegel
   tekkis 09.08, sest pelk dokumendijärjekord ei kannatanud tabelit välja. **P0-sid ei ole
   auditis enam ühtegi** (viimased kaks olid SPROF-01 ja -02, mõlemad 10.08 kaetud), seega
@@ -1165,8 +1174,8 @@ kitsamaks kui kirjeldus:
   liidetakse peaauditi järjekorda, tuleb SOL-ORG-13…-17 ette SOL-AUTH-i sabast; kui nad
   jäävad eraldi järjekorraks, tuleb kokku leppida, millal seda tehakse.
 - **Uue ploki alustamisel loe ENNE raportist**, mis juba tehtud on. Genereeritud plokk
-  („Mis on tehtud") on raportiga alati sünkroonis ja tema all olev jutustus EI OLE — kui nad
+  („Paranduste seis: DONE / PARTIAL / NOT_DONE") on raportiga alati sünkroonis ja tema all olev jutustus EI OLE — kui nad
   lahku lähevad, kehtib plokk ja tema taga raport.
-- **Kui muudad mõne leiu Seis-lõiku, jooksuta `npm run sol:tally -- --write`.** Muidu läheb
+- **Kui muudad mõne leiu Seis-lõiku, jooksuta `npm run sol:progress -- --write`.** Muidu läheb
   `tests/scripts/solAuditTally.test.js` punaseks — see on tahtlik ja ta on ainus asi, mis
   hoiab seda faili raporti küljes. Käsi ploki sisse ei lähe.

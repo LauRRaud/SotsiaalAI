@@ -7,9 +7,12 @@ import {
   AUDIT_DIR,
   BLOCK_END,
   BLOCK_START,
+  FINDING_STATE,
+  assertCanonicalProgressStates,
+  classifyFindingStatus,
   collectFindings,
   parseAuditFile,
-  renderDoneBlock,
+  renderProgressBlock,
   replaceBlock
 } from "../../scripts/sol-audit-tally.mjs";
 
@@ -24,7 +27,13 @@ const FIXTURE = [
   "",
   "### SOL-DOC-J-02 — kvalifitseeritud seis ei ole tehtud — P1",
   "",
-  "**Seis (11.08.2026): kood DONE, brauseritest NOT_PROVEN.**",
+  "**Seis (11.08.2026): PARTIAL — kood DONE, brauseritest NOT_PROVEN.**",
+  "",
+  "### SOL-DOC-J-03 — selgelt osaline leid — P2",
+  "",
+  "**Seis (11.08.2026): PARTIAL — teenus DONE, runtime not_run.**",
+  "",
+  "### SOL-DOC-J-04 — Seis-lõiguta leid — P1",
   ""
 ].join("\n");
 
@@ -32,13 +41,40 @@ test("jätkufaili `-J` leid loetakse sama peatüki alla, aga tema ID jääb terv
   const rows = parseAuditFile("fixture.md", FIXTURE);
 
   assert.deepEqual(
-    rows.map((row) => [row.id, row.chapter, row.priority, row.done]),
+    rows.map((row) => [row.id, row.chapter, row.priority, row.state, row.done]),
     [
-      ["SOL-DOC-01", "SOL-DOC", "P1", true],
-      ["SOL-DOC-J-01", "SOL-DOC", "P2", false],
-      ["SOL-DOC-J-02", "SOL-DOC", "P1", false]
+      ["SOL-DOC-01", "SOL-DOC", "P1", FINDING_STATE.DONE, true],
+      ["SOL-DOC-J-01", "SOL-DOC", "P2", FINDING_STATE.NOT_DONE, false],
+      ["SOL-DOC-J-02", "SOL-DOC", "P1", FINDING_STATE.PARTIAL, false],
+      ["SOL-DOC-J-03", "SOL-DOC", "P2", FINDING_STATE.PARTIAL, false],
+      ["SOL-DOC-J-04", "SOL-DOC", "P1", FINDING_STATE.NOT_DONE, false]
     ]
   );
+});
+
+test("kolmeastmeline seis ei aja NOT_DONE sõnaosa DONE-ga segamini", () => {
+  assert.equal(classifyFindingStatus("DONE — valmis."), FINDING_STATE.DONE);
+  assert.equal(classifyFindingStatus("PARTIAL — kood olemas."), FINDING_STATE.PARTIAL);
+  assert.equal(classifyFindingStatus("done — vale väiketäht."), FINDING_STATE.NOT_DONE);
+  assert.equal(classifyFindingStatus("kood DONE; brauseritest NOT_PROVEN."), FINDING_STATE.NOT_DONE);
+  assert.equal(classifyFindingStatus("EI OLE DONE."), FINDING_STATE.NOT_DONE);
+  assert.equal(classifyFindingStatus("NOT_DONE; runtime: not_run."), FINDING_STATE.NOT_DONE);
+  assert.equal(classifyFindingStatus("BLOCKED_DECISION — omaniku otsus puudub."), FINDING_STATE.NOT_DONE);
+  assert.equal(classifyFindingStatus(""), FINDING_STATE.NOT_DONE);
+});
+
+test("kvalifitseeritud DONE vale algusega katkestab progressi, mitte ei kao NOT_DONE sisse", () => {
+  const [ambiguous] = parseAuditFile(
+    "fixture.md",
+    ["### SOL-DOC-01 — ebaselge seis — P1", "", "**Seis.** kood DONE; runtime not_run."].join("\n")
+  );
+  assert.throws(() => assertCanonicalProgressStates([ambiguous]), /SOL-DOC-01.*kood DONE/s);
+
+  const [canonical] = parseAuditFile(
+    "fixture.md",
+    ["### SOL-DOC-01 — selge seis — P1", "", "**Seis.** PARTIAL — kood DONE; runtime not_run."].join("\n")
+  );
+  assert.doesNotThrow(() => assertCanonicalProgressStates([canonical]));
 });
 
 test("kattekontroll VISKAB tundmatu ID-vormingu peale, mitte ei jäta teda vaikselt loendusest välja", () => {
@@ -54,17 +90,20 @@ test("kattekontroll VISKAB tundmatu ID-vormingu peale, mitte ei jäta teda vaiks
   assert.equal(accepted[0].id, "SOL-DOC-J-01");
 });
 
-test("genereeritud plokk loetleb ainult tehtud leiud ja kannab Seis-lõiku SÕNA-SÕNALT", () => {
-  const block = renderDoneBlock(parseAuditFile("fixture.md", FIXTURE));
+test("genereeritud plokk eristab DONE, PARTIAL ja NOT_DONE ning kannab Seis-lõiku SÕNA-SÕNALT", () => {
+  const block = renderProgressBlock(parseAuditFile("fixture.md", FIXTURE));
 
   assert.match(block, /`SOL-DOC-01` P1 — peafaili leid — DONE\./);
-  assert.equal(block.includes("SOL-DOC-J-01"), false, "lahtine leid ei kuulu tehtute loendisse");
-  assert.equal(
-    block.includes("SOL-DOC-J-02"),
-    false,
-    "kvalifitseeritud seis (kood DONE, brauseritest NOT_PROVEN) on LAHTINE"
+  assert.match(
+    block,
+    /`SOL-DOC-J-02` P1 — kvalifitseeritud seis ei ole tehtud — PARTIAL — kood DONE, brauseritest NOT_PROVEN\./
   );
-  assert.match(block, /1 \/ 3 leidu/);
+  assert.match(block, /`SOL-DOC-J-03` P2 — selgelt osaline leid — PARTIAL — teenus DONE, runtime not_run\./);
+  assert.equal(block.includes("`SOL-DOC-J-01`"), false, "NOT_DONE leide ei dubleerita pikas loendis");
+  assert.equal(block.includes("`SOL-DOC-J-04`"), false, "Seis-lõiguta leide ei dubleerita pikas loendis");
+  assert.match(block, /DONE \*\*1\*\* \/ 5/);
+  assert.match(block, /PARTIAL \*\*2\*\* \/ 5/);
+  assert.match(block, /NOT_DONE \*\*2\*\* \/ 5/);
   /* Ümberjutustus on see, mis vanas käsitsi jutustuses maha jäi — plokk tsiteerib. */
   assert.match(block, /DONE\./);
 });
@@ -73,19 +112,22 @@ test("plokk ASENDATAKSE, ja markerite puudumine viskab, mitte ei lisa vaikselt t
   const findings = parseAuditFile("fixture.md", FIXTURE);
   const page = `# Pealkiri\n\n${BLOCK_START}\nVANA SISU\n${BLOCK_END}\n\n## Jutustus\n`;
 
-  const once = replaceBlock(page, renderDoneBlock(findings));
+  const once = replaceBlock(page, renderProgressBlock(findings));
   assert.equal(once.includes("VANA SISU"), false, "vana plokk peab kaduma");
   assert.match(once, /## Jutustus/, "ploki taga olev tekst peab alles jääma");
 
   /* Idempotentne: teine jooks ei kasvata faili ega tekita teist ploki. */
-  const twice = replaceBlock(once, renderDoneBlock(findings));
+  const twice = replaceBlock(once, renderProgressBlock(findings));
   assert.equal(twice, once);
   assert.equal(twice.split(BLOCK_START).length - 1, 1);
 
   /* NEGATIIVKONTROLL: markeriteta faili peale VISKAB. Vaikne lisamine faili lõppu
      tähendaks kahte „Mis on tehtud" ploki, millest VANEM oleks eespool ja teda
      loetaks esimesena — täpselt see viga, mille see plokk kaotama peab. */
-  assert.throws(() => replaceBlock("# Pealkiri\n\nilma markeriteta\n", renderDoneBlock(findings)), /markereid ei leitud/);
+  assert.throws(
+    () => replaceBlock("# Pealkiri\n\nilma markeriteta\n", renderProgressBlock(findings)),
+    /markereid ei leitud/
+  );
 });
 
 test("päris parandusaudit.md sisaldab markereid ja tema plokk on värske", async () => {
@@ -97,10 +139,15 @@ test("päris parandusaudit.md sisaldab markereid ja tema plokk on värske", asyn
      Just see kontroll teeb ta lagunemise NÄHTAVAKS: vana käsitsi jutustus lagunes
      üheksa peatüki võrra ja ükski test ei öelnud selle kohta midagi. */
   assert.equal(
-    replaceBlock(source, renderDoneBlock(findings)),
+    replaceBlock(source, renderProgressBlock(findings)),
     source,
-    "parandusaudit.md tehtute plokk ei ole värske — jooksuta: npm run sol:tally -- --write"
+    "parandusaudit.md kolmeastmeline plokk ei ole värske — jooksuta: npm run sol:progress -- --write"
   );
+});
+
+test("package.json pakub eraldi kolmeastmelist progressikäsku", async () => {
+  const pkg = JSON.parse(await readFile("package.json", "utf8"));
+  assert.equal(pkg.scripts?.["sol:progress"], "node scripts/sol-audit-tally.mjs --progress");
 });
 
 test("päris auditifailides ei jää ühtegi leiu pealkirja loendusest välja", async () => {

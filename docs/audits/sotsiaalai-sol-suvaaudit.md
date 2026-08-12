@@ -254,7 +254,7 @@ kirjutatud siia, et ta ei kaoks.*
 
 **Vastuvõtukriteerium.** Kasutada päris navigatsiooni või `pushState` + `popstate` sünkroniseerimist. Brauseritest peab katma loend → detail → Back → loend → Forward → sama detail.
 
-**Seis (09.08.2026): kood DONE; brauseritest NOT_PROVEN, runtime: not_run.**
+**Seis (12.08.2026): PARTIAL — kood DONE; brauseritest NOT_PROVEN, runtime: not_run.**
 - Parandus: juhtumi avamine kasutab nüüd `pushState`-i (avamine ON navigatsioon) ja komponent kuulab `popstate`-i, nii et Back/Forward sünkroniseerivad valiku URL-iga. Kuulaja koristatakse `useEffect` tagastuses.
 - **Sulgemine kasutab `history.back()`-i, mitte kolmandat ajalookirjet** — muidu viiks Forward juhtumisse, millest kasutaja just väljus. Erand: kui me ise ei ole ühtki kirjet lisanud (kasutaja tuli otselingiga `?juhtum=<id>`), kirjutatakse parameeter `replaceState`-iga üle, et Back ei viskaks teda platvormilt välja. Selle otsuse kannab `pushedDepth` loendur.
 - Otsus elab JSX-ist väljas (`components/casework/caseListState.js` → `planCaseNavigation`, `readCaseIdFromSearch`, `caseUrlWithCase`), sest JSX-failis elavat otsust ei saa selle projekti testijooksjaga tõendada.
@@ -350,7 +350,7 @@ kirjutatud siia, et ta ei kaoks.*
 
 **Vastuvõtukriteerium.** Hallatav deploy-konfiguratsioon peab paigaldama lukustatud, monitooritud ja retry'ga ajastuse ning smoke peab tõendama viimase eduka jooksu, järgmise jooksu ja alarmi. Stagingus tuleb läbida tähtaja mõlemad pooled ning nurjunud rea taastumine.
 
-**Seis (09.08.2026): mehhanism DONE ja ALARM on tõendatud päris PostgreSQL-is; taimeri LUBAMINE ootab omaniku enda lukustatud järjekorda; säilitustähtaja staging-runtime: not_run.**
+**Seis (12.08.2026): PARTIAL — mehhanism DONE ja ALARM on tõendatud päris PostgreSQL-is; taimeri LUBAMINE ootab omaniku enda lukustatud järjekorda; säilitustähtaja staging-runtime: not_run.**
 - **Ajastus elab nüüd repositooriumis:** `deploy/systemd/sotsiaalai-casework-retention.{service,timer}`. Ajastus, mis elab ainult ühe masina crontabis, ei ole platvormi oma — ja just tema puudumine oli see, mis jäi märkamatuks.
 - **Lukk** on `flock -n /var/lock/…` teenusefailis, mitte ainult systemd'i instantsipiir: käsitsi käivitatud `npm run casework:retention` ei tea systemd'ist midagi. Lisaks `TimeoutStartSec=900` — kinni jäänud jooks hoiaks LUKKU ja kõik järgmised jooksud jääksid vaikselt tegemata.
 - **Retry tuleb taimerilt,** sest `Type=oneshot` ei tohi `Restart`-i kanda: `OnCalendar=hourly` + `Persistent=true`. Tunnipõhine, mitte öine — kord ööpäevas tähendaks, et üks kukkunud jooks lükkab säilituse 24 tundi edasi; töö ise on idempotentne ja partii piiratud, seega tund on odav. `Persistent=true` teeb vahelejäänud jooksu järele: säilitustähtaeg ei oota hooldusakent.
@@ -1931,8 +1931,7 @@ tsükkel. Reaper'i enda käitumine on kaetud `tests/usage/reservationReaper.test
 
 **Vastuvõtukriteerium.** Vestluse avamisel peab klient leidma sama omaniku ja sama conversationId aktiivse job'i, taastama progressi/streami ning siduma Stop-nupu selle ID-ga. Minu dokumentide aktiivne rida peab võimaldama jätkamist ja selget Stop'i. Brauseritest peab tegema start → soft-nav → tagasi → progress → Stop ning tõendama, et uut job'i ei teki.
 
-**Seis (12.08.2026): PARTIAL — kood/refaktor DONE ja sihttestidega mõõdetud; nõutud brauserirada
-NOT_PROVEN lokaalse React hydration'i blokeeringu tõttu. Leid jääb loendis LAHTISEKS.**
+**Seis (12.08.2026): PARTIAL — kood/refaktor DONE ja sihttestidega mõõdetud; nõutud brauserirada NOT_PROVEN lokaalse React hydration'i blokeeringu tõttu. Leid jääb loendis LAHTISEKS.**
 
 **MIS MUUTUS.** Värske ja soft-nav'i järel taastatud uuring kasutavad nüüd sama SSE-tarbijat.
 Vestluse avamine leiab omaniku ning `conversationId` järgi aktiivse töö, loob ühe edenemisrea,

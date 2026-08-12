@@ -131,19 +131,21 @@ Leiu seisu kannab **raport ise** (`docs/audits/sotsiaalai-sol-suvaaudit.md` ja
 `…-jatk-*.md`), Seis-lõik iga leiu all. Tehtuks loetakse AINULT leid, mille Seis-lõik **algab
 sõnaga `DONE`** — kvalifitseeritud seis („kood DONE, brauseritest NOT_PROVEN") on lahtine.
 
-`docs/audits/parandusaudit.md` on **tuletatud** ülevaade. Tema peatükk „Mis on tehtud" on
-genereeritud; käsi sinna ei lähe.
+`docs/audits/parandusaudit.md` on **tuletatud** ülevaade. Tema peatükk „Paranduste seis:
+DONE / PARTIAL / NOT_DONE" on genereeritud; käsi sinna ei lähe.
 
 **Ploki lõpetamisel, kolm sammu ja kõik kolm on kohustuslikud:**
 
 1. uuenda kõigi lõpetatud leidude Seis-lõigud raportis;
-2. jooksuta ploki kohta **üks kord** `npm run sol:tally -- --write` (uuendab genereeritud ploki; tegemata jätmine
+2. jooksuta ploki kohta **üks kord** `npm run sol:progress -- --write` (uuendab genereeritud
+   DONE / PARTIAL / NOT_DONE ploki; vana `npm run sol:tally -- --write` jääb tagasiühilduvaks; tegemata jätmine
    viib `tests/scripts/solAuditTally.test.js` punaseks — see on tahtlik);
 3. uuenda S1.0 tööotsa ja vajadusel teemaseisundit. Koond on maksimaalselt üks lühike lõik:
    mis muutus inimese jaoks + järgmine plokk. Testi-, sondi- ja failidetail jääb raporti
    Seis-lõiku ning commit'i, mitte S1 teostuslooks.
 
-Numbrid tulevad `npm run sol:tally` väljundist. Käsitsi neid kuhugi ei kirjutata.
+Kolmeastmelised numbrid tulevad `npm run sol:progress` väljundist; ametliku DONE/lahtise vaate
+annab endiselt `npm run sol:tally`. Käsitsi neid kuhugi ei kirjutata.
 
 ## Kui leid on blokitud
 

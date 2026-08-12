@@ -93,7 +93,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
 **RAG-teenuse `SOL-RAGSVC-01…28` on DONE ja peatüki UTC täisvärav on roheline.**
-`SOL-ORG-13`–`17`, `SOL-DOC-J-01`–`06` ja kogu `SOL-SLOG-01…24` parandused ning kiirem plokipõhine töökord on koodipuus. Arvud loetakse käsuga `npm run sol:tally`, neid siia ankrusse ei
+`SOL-ORG-13`–`17`, `SOL-DOC-J-01`–`06` ja kogu `SOL-SLOG-01…24` parandused ning kiirem plokipõhine töökord on koodipuus. Kolmeastmelised arvud loetakse käsuga `npm run sol:progress`, neid siia ankrusse ei
 kopeerita. Kui ülesanne ei ole SOL-parandus, loe S11 järel ainult vastavat S2–S10 sektsiooni.
 
 **SOL-RES-07 kood on valmis; brauseritõend on NOT_PROVEN.** Aktiivne uuring leitakse vestlusse
@@ -273,13 +273,11 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 182/403 leidu, 16/39 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**,
-SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT, **SOL-VOICE**, **SOL-ROOM**, **SOL-CALL**, **SOL-INV**, **SOL-PAY**, **SOL-NOTIF**, **SOL-EVENT**, **SOL-URG**, **SOL-WB**). **Auditis ei ole enam ühtegi lahtist P0-d.**
-Numbrid tulevad `npm run sol:tally` väljundist, käsitsi neid siia ei kirjutata.
-**12.08 õhtust alates on `parandusaudit.md` peatükk „Mis on tehtud" samuti GENEREERITUD**
-(`npm run sol:tally -- --write`) — tehtud leiud peatükkide kaupa, iga rea lõpus leiu
-Seis-lõigu esimene lause sõna-sõnalt. Varem oli ta käsitsi kirjutatud ja maas üheksa lõpetatud
-peatüki võrra. Ploki värskust hoiab test, mitte lubadus. **Per-leiu loendit siia ei kopeerita:**
+**SOL-süvaauditi arvud ei ela S1 jutustuses.** `npm run sol:tally` annab ametliku
+DONE/lahtise vaate; `npm run sol:progress` eristab DONE / PARTIAL / NOT_DONE. Auditis ei ole
+enam ühtegi lahtist P0-d. `parandusaudit.md` kolmeastmeline plokk on samuti GENEREERITUD
+(`npm run sol:progress -- --write`) — PARTIAL ja DONE leiud peatükkide kaupa ning Seis-lõik
+sõna-sõnalt. Ploki värskust hoiab test, mitte lubadus. **Per-leiu loendit siia ei kopeerita:**
 S1 kannab kogusummat, raport kannab leiu enda seisu, `parandusaudit.md` kannab tuletatud
 ülevaadet — kolmas käsitsi hoitav koopia oleks järgmine lahknemine.
 
@@ -2717,7 +2715,7 @@ Miks need reeglid tekkisid — `git show db514ba0:"docs/platvormi arendus/SEIS.m
 - Fake-prisma piiri tabamisel kavandatakse üks plokisond **enne koodi lõpetamist**, mitte pärast
   esimest täissviiti. Brauser avatakse ainult siis, kui vastuvõtukriteerium või ligipääsupiir
   seda vajab; muidu märgitakse runtime ausalt `not_run`.
-- Ploki lõpus: kõik Seis-lõigud → **üks** `npm run sol:tally -- --write` → S1.0 tööots ja
+- Ploki lõpus: kõik Seis-lõigud → **üks** `npm run sol:progress -- --write` → S1.0 tööots ja
   vajadusel üks lühike teemakoond → väike värav. Peatüki viimase ploki järel üks täisvärav.
   Testi-/sondidetail jääb raportisse, mitte S1 teostuslooks. Kui pärast täisväravat muutus ainult
   see kolmik, piisab `solAuditTally.test.js`-ist.
