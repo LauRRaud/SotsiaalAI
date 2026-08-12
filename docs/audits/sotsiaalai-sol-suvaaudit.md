@@ -4504,6 +4504,32 @@ uus jälg algab sellest muudatusest. Admini vaated loevad endiselt telemeetriat 
 
 **Vastuvõtukriteerium.** Provider-mandaat vajab normaliseeritud unikaalset `(provider,userId,providerMandateId)` või eraldi attempt-ID piiri ning kõik callback/webhook rajad peavad kasutama sama lukustatud upsert'i. Paralleeltest peab võistlema token_return'i ja PAID webhooki ning tõendama ühe aktiivse rea ja ühe krüptitud tokeni.
 
+**Seis (12.08.2026): DONE — üks mandaat = üks rida, mõlemad rajad kasutavad sama lukustatud claim'i; `npm run pay:mandate:probe` 13/13 päris PostgreSQL-is deterministliku võistlusega. Vajab migratsiooni `20260812030000`.**
+
+Kaks kihti nagu SOL-PAY-03-l, sest kumbki üksinda ei kata: **unikaalsus**
+`(provider, userId, providerMandateId)` on püsiv piir, **kasutajapõhine nõuandelukk** (`4716`)
+hoiab ära selle, et piire üldse rikkuma jõutaks — ja see ei ole kosmeetika: unikaalsuse rikkumine
+tehingu sees MÜRGITAB tehingu (vt SOL-PAY-07 õppetund), seega „loo ja püüa viga kinni" oleks siin
+vaikne andmekadu.
+
+**Mandaadi salvestus elab nüüd ühes kohas** (`lib/payments/billingMethodClaim.js`); nii
+`token_return` callback kui PAID webhook kutsuvad sedasama. Callback sai ühtlasi selle, mis tal
+üldse puudus: **makse rida loetakse tehingu sees `FOR UPDATE` all.**
+
+**LUKUJÄRJEKORD on kirjas ja ühine: makse rida → nõuandelukk kasutaja peale.** Vastupidine
+järjekord ühes rajas tähendaks klassikalist ummikut callback'i ja webhooki vahel — see on täpselt
+see viga, mida kaks eraldi teostust kergesti teevad.
+
+Sond mõõdab kolme numbrit: mitu maksevahendi rida jäi (1), mitu neist on aktiivsed (1) ja kas
+token on dekrüptitav (on). **Negatiivkontroll:** teist rida sama mandaadiga andmebaas ei võta
+(`P2002`) — ja mandaadita read ei ole duplikaadid, seega piirang ei murra tavarada.
+
+Väravad: `npm test` **3932/3932** (Europe/Tallinn ja UTC) · eslint puhas · `db:migrate:check` OK.
+
+**KATMATA:** toodangus on üks `BillingMethod` rida ja duplikaate ei olnud (mõõdetud 12.08), seega
+piirang läks peale ilma koristuseta. Vanu ridu, mis kannavad sama mandaati eri kasutajate all,
+ei ole — aga kui neid kunagi tekib, keeldub migratsioon ja see on nähtav, mitte vaikne.
+
 ### SOL-PAY-11 — e-posti outbox'i timeout/recovery võib sama kirja mitu korda saata — P2
 
 **Tõend.** Worker piirab SMTP promise'i `Promise.race()` timeout'iga, kuid ei katkesta algset `sendMail()` tööd (`lib/payments/emailOutbox.js:311-314`). Timeout märgib rea RETRY-ks (`:323-333`); algne SMTP saatmine võib hiljem siiski õnnestuda. Samuti tõstab lease-recovery vana SENDING rea RETRY-ks teadmata, kas SMTP võttis kirja vastu (`:257-263`). Uus katse saadab sama customer/owner/invite kirja uuesti, sest SMTP sõnumil pole püsivat provider-idempotentsusvõtit.
@@ -4511,6 +4537,38 @@ uus jälg algab sellest muudatusest. Admini vaated loevad endiselt telemeetriat 
 **Mõju.** Kasutaja võib saada mitu maksekinnitust, clawback-teadet või sama sponsorkutse linki; halvemal juhul jõuab timeout'i järel esimene kiri ja hilisem retry teises järjekorras, mis teeb finants- või ligipääsuteate eksitavaks. Loendur nimetab lease'i õigesti `ambiguous`, kuid käitumine on ikkagi automaatne resend.
 
 **Vastuvõtukriteerium.** SMTP-transport vajab toetatud aborti või püsivat Message-ID/delivery-ledgerit ja teadlikku at-least-once lepingut; ebamäärane tulemus peab olema eraldi review/reconcile olek, mitte pime retry tundliku kirja puhul. Test peab laskma timeout'i järel esimesel send-promise'il õnnestuda ning tõendama otsustatud ühe-kirja või selgelt auditeeritud duplikaadilepingut.
+
+**Seis (12.08.2026): DONE — püsiv Message-ID + `AMBIGUOUS` oma seisuna; tundlik kiri EI lähe pimedale kordusele. Ühiktestid 8/8 (`tests/payments/emailOutboxAmbiguous.test.js`), sh timeout, mille järel esimene saatmine ikkagi õnnestub. Vajab migratsiooni `20260812040000`.**
+
+Kaks asja, mille peale leping saab toetuda:
+
+- **Püsiv Message-ID** (`PaymentEmailOutbox.messageId`, mindud koos reaga) — korduskatse kannab
+  sama tunnust, seega duplikaat on RFC mõttes SAMA sõnum ja postiklient tunneb ta ära. Vana kood
+  ei andnud tunnust üldse, seega iga kordus oli adressaadi jaoks uus kiri.
+- **`AMBIGUOUS` on oma seis**, mitte `RETRY`. `Promise.race()` ei katkesta SMTP tööd ja
+  lease-taaste ei tea, mis juhtus — see on TEADMATUS, mitte tõrge.
+
+**Kirja liik otsustab, mis teadmatuse järel juhtub, ja see valik on tooteotsuse-kujuline:**
+
+- **kandja-kirjad** (kutselink, sisemine omaniku teade) korratakse — saamata jäänud link on
+  suurem kahju kui topeltkiri, ja sisu on identne;
+- **inimesele suunatud uudised** (maksekinnitus, sponsorluse tagasivõtmine) jäävad
+  `AMBIGUOUS` seisu ilma järgmise katseta. Otsuse teeb inimene. Vastuvõtja on siin sageli
+  haavatavas olukorras — teine „sinu sponsorlus võeti tagasi" kiri ei ole kosmeetiline müra.
+
+Poliitika elab ANDMETES, mitte teises päringus: ülevaatust ootaval real on `nextAttemptAt = null`
+ja worker'i valik (`lte: now`) ei näe teda kunagi. Worker'i vastuses on eraldi `ambiguous` ja
+`review` loendurid.
+
+**Selge tõrge (SMTP ütles „ei") käitub nagu enne** — `RETRY` backoff'iga. Teadmatus ja tõrge on
+kaks eri asja ja see vahe on nüüd koodis.
+
+Väravad: `npm test` **3932/3932** (Europe/Tallinn ja UTC) · eslint puhas · `db:migrate:check` OK.
+
+**KATMATA:** SMTP-transpordil ei ole endiselt päris `abort`-i — `Promise.race` jääb ootamise
+piiriks, mitte katkestuseks. See on transpordikihi muudatus (`lib/mailer.js` socket-tasand) ja
+selle leiu ulatusest väljas; `AMBIGUOUS` on täpselt selle piiri aus nimi. Ülevaatust ootava rea
+lahendamiseks ei ole admini nuppu — seis on nähtav worker'i vastuses ja real endal.
 
 ### SOL-NOTIF-01 — notification-worker ei anna päris SMTP-transpordile saatja aadressi — P1
 
