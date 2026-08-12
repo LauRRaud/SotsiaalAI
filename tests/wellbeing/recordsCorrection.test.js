@@ -264,3 +264,94 @@ test("deleting the original leaves the correction readable", async () => {
   assert.ok(correction, "parandus jääb alles ka siis, kui parandatav kustutatakse");
   assert.equal(correction.aggregationEligible, true);
 });
+
+/* SOL-WB-08: kokkulepe LIIGUB parandusega kaasa, mitte ei jää kahte kohta.
+   Vana rada kopeeris `checkpointDueOn`/`checkpoint` uuele reale ja jättis need
+   ka vanale — taimer nägi mõlemat, sourceId erines ja kasutaja sai sama
+   kokkuleppe kohta kaks badge'i ning kaks iseseisvalt vastatavat kontrollpunkti. */
+test("correction moves the checkpoint instead of leaving one on each row", async () => {
+  const dueOn = new Date("2026-08-01T09:00:00.000Z");
+  const store = createLiveStore([
+    {
+      id: "rec_1",
+      ownerUserId: "user_1",
+      workflowType: "quick-check",
+      schemaVersion: "1.0",
+      scoringVersion: "quick-check-v1",
+      period: "current",
+      roleGroup: "SOCIAL_WORKER",
+      standardizedFields: quickCheckFields(),
+      computedSignal: { signalLevel: "yellow" },
+      loadFactors: [],
+      resourceFactors: [],
+      riskMarkers: [],
+      recommendedActions: [],
+      visibility: "private",
+      aggregationEligible: true,
+      checkpointDueOn: dueOn,
+      checkpointAnsweredAt: null,
+      checkpoint: { id: "cp_1", nextStep: "räägin juhiga", setAt: "2026-07-20T09:00:00.000Z", followUp: null },
+      createdAt: new Date("2026-07-20T09:00:00.000Z")
+    }
+  ]);
+
+  const { record } = await createWellbeingRecordCorrectionForUser(
+    "user_1",
+    "rec_1",
+    { standardizedFields: quickCheckFields({ workloadLevel: "moderate" }) },
+    { prisma: store.prisma }
+  );
+
+  const original = store.rows.find((row) => row.id === "rec_1");
+  assert.equal(original.checkpointDueOn, null);
+  assert.equal(original.checkpoint, null);
+  assert.deepEqual(record.checkpointDueOn, dueOn);
+  assert.equal(record.checkpoint.id, "cp_1");
+
+  const active = store.rows.filter((row) => row.checkpointDueOn);
+  assert.equal(active.length, 1, "aktiivne kontrollpunkt peab olema täpselt üks");
+  assert.equal(active[0].id, record.id);
+});
+
+/* Juba VASTATUD kokkulepe ei tohi paranduse peale taimeris uuesti ellu ärgata. */
+test("an answered checkpoint stays answered after a correction", async () => {
+  const answeredAt = new Date("2026-08-02T09:00:00.000Z");
+  const store = createLiveStore([
+    {
+      id: "rec_2",
+      ownerUserId: "user_1",
+      workflowType: "quick-check",
+      schemaVersion: "1.0",
+      scoringVersion: "quick-check-v1",
+      period: "current",
+      roleGroup: "SOCIAL_WORKER",
+      standardizedFields: quickCheckFields(),
+      computedSignal: { signalLevel: "yellow" },
+      loadFactors: [],
+      resourceFactors: [],
+      riskMarkers: [],
+      recommendedActions: [],
+      visibility: "private",
+      aggregationEligible: true,
+      checkpointDueOn: new Date("2026-08-01T09:00:00.000Z"),
+      checkpointAnsweredAt: answeredAt,
+      checkpoint: {
+        id: "cp_2",
+        nextStep: "räägin juhiga",
+        setAt: "2026-07-20T09:00:00.000Z",
+        followUp: { state: "kept", notedAt: answeredAt.toISOString() }
+      },
+      createdAt: new Date("2026-07-20T09:00:00.000Z")
+    }
+  ]);
+
+  const { record } = await createWellbeingRecordCorrectionForUser(
+    "user_1",
+    "rec_2",
+    { standardizedFields: quickCheckFields({ workloadLevel: "low" }) },
+    { prisma: store.prisma }
+  );
+
+  assert.deepEqual(record.checkpointAnsweredAt, answeredAt);
+  assert.equal(record.checkpoint.followUp.state, "kept");
+});

@@ -1563,6 +1563,12 @@ model WellbeingRecord {
      `checkpointDueOn` on skalaar ja indekseeritud, sest U1 taimer peab leidma
      saabunud kontrollpunktid ilma JSON-skaneeringuta. */
   checkpointDueOn     DateTime?
+  /* SOL-WB-07: „kas vastatud?" elas AINULT `checkpoint` JSON-i sees, seega
+     taimer ei saanud vastatuid SQL-is välja jätta — ta luges 1000 vanimat ja
+     filtreeris mälus, mistõttu piisav hulk vastatud vanu ridu näljutas kõik
+     hilisemad tähtajad taimerist välja. Skalaar on siin selleks, et päring
+     vastaks küsimusele, mitte kandidaadid. */
+  checkpointAnsweredAt DateTime?
   checkpoint          Json?
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
@@ -1587,6 +1593,7 @@ model WellbeingRecord {
   @@index([workflowType, createdAt])
   @@index([aggregationEligible, workflowType, createdAt])
   @@index([checkpointDueOn])
+  @@index([checkpointDueOn, checkpointAnsweredAt])
 }
 
 /* T21 P3 Meetodipeegel V1 (O-CW-3, analüüsidoc ptk 3).

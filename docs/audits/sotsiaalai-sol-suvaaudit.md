@@ -5235,6 +5235,19 @@ tervikuna.** Vt SOL-WB-10 all.
 
 **Vastuvõtukriteerium.** Vastatud kontrollpunkt peab SQL-päringust välja jääma eraldi skalaarse oleku/aja abil või kandidaatide lugemine peab jätkuma lehekülgede kaupa. Test peab paigutama batch'i jagu vastatud vanu ridu ühe vastamata uue ette ja tõendama uue teavituse.
 
+**Seis (12.08.2026): DONE — vastatud read ei ole enam kandidaadid.**
+
+„Kas vastatud?" elas AINULT `checkpoint` JSON-i sees, seega SQL ei saanud teda küsida: päring
+võttis 1000 VANIMAT due-rida ja viskas vastatud alles pärast `take`-i mälus välja. Piisav hulk
+vastatud vanu ridu tõrjus kõik hilisemad tähtajad batch'ist välja — ja tagajärg oli **vaikne**:
+taimer tagastas iga jooksu null uut kirjet, ilma veata.
+
+Skalaar `checkpointAnsweredAt` (migratsioon **`20260812090000`**, backfill JSON-i `notedAt`-ist,
+seega midagi ei oletata) viib otsuse WHERE-i. Mälufilter jäi teiseks väravaks pärandridade jaoks.
+**Ühik kriteeriumi sõnastuses:** 200 vastatud vana rida ühe vastamata uue ees — uus tuleb
+välja. **Negatiivkontroll:** sama andmestik vana WHERE-iga täidab batch'i vastatutega ja uus jääb
+päringust välja.
+
 ### SOL-WB-08 — kirje parandamine jätab sama kontrollpunkti aktiivseks nii vanal kui uuel real — P2
 
 **Tõend.** Parandustehing märgib algse kirje ainult `aggregationEligible: false`, seejärel kopeerib `checkpointDueOn` ja `checkpoint` uuele kirjereale (`lib/wellbeing/records.js:607-633`). Kontrollpunktitaimer ei filtreeri `aggregationEligible` ega `supersededBy` olekut (`lib/wellbeing/checkpoint.js:191-201`). Kuna vana ja uue rea sourceId on erinev, loob dedupe mõlemale eraldi teavituse (`:217-234`). Olemasolev test kinnitab pärimist, kuid mitte vana kontrollpunkti sulgemist.
@@ -5243,6 +5256,21 @@ tervikuna.** Vt SOL-WB-10 all.
 
 **Vastuvõtukriteerium.** Parandustehing peab kontrollpunkti omandi üheselt uuele reale liigutama või taimer peab arvestama ainult ahela kehtivat tippu. Testida due-parandust enne ja pärast teavituse loomist ning nõuda üht aktiivset kontrollpunkti.
 
+**Seis (12.08.2026): DONE — kokkulepe LIIGUB parandusega, mitte ei kopeeru.**
+
+Parandus kopeeris `checkpointDueOn` ja `checkpoint` uuele reale, jättes need ka vanale. Vana rida
+kukkus koondist välja (`aggregationEligible`), aga taimer teda ei filtreerinud ja kuna dedupe'i
+võti on `type:sourceId:userId:suffix` ehk REA id-ga seotud, tekkis kaks teavitust. Kasutaja sai
+sama kokkuleppe kohta kaks badge'i ja sai vastata kahele iseseisvalt lahknevale kontrollpunktile.
+
+Parandustehing tühjendab nüüd kokkuleppe asendatud kirjelt: omand on üheselt ahela kehtiva tipu
+peal. Vastuse aeg liigub kaasa — muidu ärkaks juba vastatud kokkulepe paranduse peale taimeris
+uuesti ellu. **Teavituse identiteet liigub samuti kokkuleppe sees** (`checkpoint.notifiedFor`),
+sest dedupe'i võti üksi on rea, mitte kokkuleppe oma; ilma selleta oleks juba teavitatud
+kokkulepe pärast parandust teist korda teavitatud. **Pärandread korrastab migratsioon.**
+Kaks ühikut: parandus jätab täpselt ÜHE aktiivse kontrollpunkti, ja juba vastatud kokkulepe jääb
+vastatuks.
+
 ### SOL-WB-09 — kontrollpunkti ja soovituse read-modify-write rajad võivad uuema muudatuse vana snapshotiga üle kirjutada — P2
 
 **Tõend.** Follow-up loeb kogu `checkpoint` JSON-i ja kirjutab selle hiljem `updateMany({ where: { id, ownerUserId } })` abil tagasi ilma versioonitingimuseta (`lib/wellbeing/checkpoint.js:102-135`). Soovituse märkimine teeb sama kogu `recommendedActions` massiiviga (`:142-184`). Paralleelne uue checkpoint'i seadmine või teise soovituse märkimine võib toimuda kahe sammu vahel.
@@ -5250,6 +5278,23 @@ tervikuna.** Vt SOL-WB-10 all.
 **Mõju.** Hiline follow-up võib taastada vana järgmise sammu ning kahe soovituse kiire märkimise korral jääb ainult ühe muudatus alles. UI näitab õnnestumist, kuigi teine kasutaja enda toiming kadus.
 
 **Vastuvõtukriteerium.** Kasutada versiooni/`updatedAt` CAS-i või advisory-lock'iga tehingut ning tagastada stale muudatusele 409. Paralleeltestid peavad võistlema SET↔FOLLOW_UP ja kahe eri recommendation'i toimingud.
+
+**Seis (12.08.2026): DONE — kokkuleppel on nüüd identiteet ja kirjutamine on jagamatu.**
+
+Mõlemad rajad olid read-modify-write terve JSON-i peal ilma ühegi tingimuseta. Kaks eri soovituse
+märkimist lugesid sama massiivi ja kirjutasid oma versiooni tagasi — alles jäi ainult viimane,
+kuigi UI näitas mõlemale õnnestumist.
+
+Lugemine ja kirjutamine käivad nüüd ühe advisory-lukuga tehingus (`wellbeingRecord:checkpoint:<id>`,
+sama mehhanism mis kirje loomisel ja parandusel). **Soovituste juures 409 ei ole vaja ega õige:**
+hiline kirjutaja loeb värsket seisu ja tema märge LISANDUB. **Kontrollpunkti juures on 409 õige,**
+sest vastus käib konkreetse KOKKULEPPE kohta: kontrollpunkt sai identiteedi (`checkpoint.id`),
+klient saadab `expectedCheckpointId` ja vahepeal välja vahetatud plaanile antud vastus annab
+`wellbeing.errors.checkpoint_conflict`, mitte vaikse kirjutuse uue plaani külge.
+
+**Neli ühikut**, sh mõlemad kriteeriumi võistlused päris `$transaction`-i serialiseeriva fake'i
+vastu (ilma temata langeks lukuümbris tagavarateele ja test ei tõendaks midagi).
+**Negatiivkontroll:** sama kaks märget ilma serialiseerimiseta kaotab ühe.
 
 ### SOL-WB-10 — „Kõik” tööheaolu ülevaade kasutab vaikides ainult 100 uusimat kirjet — P2
 

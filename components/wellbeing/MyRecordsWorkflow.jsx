@@ -417,7 +417,10 @@ function RecordDetail({
       fetch(`/api/wellbeing/records/${encodeURIComponent(record.id)}/checkpoint/follow-up`, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ state })
+        /* SOL-WB-09: vastus käib SELLE kokkuleppe kohta, mida ekraan näitab.
+           Kui plaan on vahepeal välja vahetatud, ütleb server 409, mitte ei
+           kirjuta vana vastust uue plaani külge. */
+        body: JSON.stringify({ state, expectedCheckpointId: record?.checkpoint?.id || undefined })
       }));
   }
 
