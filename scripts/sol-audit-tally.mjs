@@ -133,7 +133,21 @@ export async function collectFindings(auditDir = AUDIT_DIR) {
   const parsed = await Promise.all(
     files.map(async (file) => parseAuditFile(file, await readFile(path.join(auditDir, file), "utf8")))
   );
-  return { files, findings: parsed.flat() };
+  const findings = parsed.flat();
+  assertUniqueFindingIds(findings);
+  return { files, findings };
+}
+
+export function assertUniqueFindingIds(findings) {
+  const seen = new Map();
+  const duplicates = [];
+  for (const finding of findings) {
+    const previous = seen.get(finding.id);
+    if (previous) duplicates.push(`${finding.id}: ${previous} + ${finding.file}`);
+    else seen.set(finding.id, finding.file);
+  }
+  if (duplicates.length === 0) return;
+  throw new Error(`sol:tally — dubleeritud leiu-ID-d:\n  ${duplicates.join("\n  ")}`);
 }
 
 const byPriority = (rows) =>
@@ -222,7 +236,8 @@ export const CHAPTER_NAMES = Object.freeze({
   "SOL-COMP": "Dokumendi koostamine",
   "SOL-MAT": "Materjalid",
   "SOL-SHARE": "Minu jagamised",
-  "SOL-SMAP": "Teenusekaart"
+  "SOL-SMAP": "Teenusekaart",
+  "SOL-XFUNC": "Funktsioonideülene lõpetusring"
 });
 
 export const BLOCK_START = "<!-- sol:tally algus — GENEREERITUD, ÄRA TOIMETA KÄSITSI -->";

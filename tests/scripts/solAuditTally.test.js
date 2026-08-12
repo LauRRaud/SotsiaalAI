@@ -9,6 +9,7 @@ import {
   BLOCK_START,
   FINDING_STATE,
   assertCanonicalProgressStates,
+  assertUniqueFindingIds,
   classifyFindingStatus,
   collectFindings,
   parseAuditFile,
@@ -75,6 +76,18 @@ test("kvalifitseeritud DONE vale algusega katkestab progressi, mitte ei kao NOT_
     ["### SOL-DOC-01 — selge seis — P1", "", "**Seis.** PARTIAL — kood DONE; runtime not_run."].join("\n")
   );
   assert.doesNotThrow(() => assertCanonicalProgressStates([canonical]));
+});
+
+test("dubleeritud leiu-ID katkestab loenduse, mitte ei kasvata nimetajat", () => {
+  const [finding] = parseAuditFile(
+    "esimene.md",
+    ["### SOL-DOC-01 — esimene — P1", "", "**Seis.** NOT_DONE."].join("\n")
+  );
+  assert.throws(
+    () => assertUniqueFindingIds([finding, { ...finding, file: "teine.md" }]),
+    /SOL-DOC-01.*esimene\.md.*teine\.md/s
+  );
+  assert.doesNotThrow(() => assertUniqueFindingIds([finding]));
 });
 
 test("kattekontroll VISKAB tundmatu ID-vormingu peale, mitte ei jäta teda vaikselt loendusest välja", () => {
@@ -150,11 +163,56 @@ test("package.json pakub eraldi kolmeastmelist progressikäsku", async () => {
   assert.equal(pkg.scripts?.["sol:progress"], "node scripts/sol-audit-tally.mjs --progress");
 });
 
-test("päris auditifailides ei jää ühtegi leiu pealkirja loendusest välja", async () => {
+test("päris auditikorpus sisaldab kõik 429 unikaalset leidu", async () => {
   const { files, findings } = await collectFindings();
 
-  assert.ok(files.length >= 8, "peafail + jätkufailid peavad olema leitud");
-  assert.ok(findings.length >= 403, `oodatud vähemalt 403 leidu, loeti ${findings.length}`);
+  assert.deepEqual(files, [
+    "sotsiaalai-sol-suvaaudit.md",
+    "sotsiaalai-sol-suvaaudit-jatk-dokumendid.md",
+    "sotsiaalai-sol-suvaaudit-jatk-funktsioonideulene-lopetus.md",
+    "sotsiaalai-sol-suvaaudit-jatk-koosta-dokument.md",
+    "sotsiaalai-sol-suvaaudit-jatk-materjalid.md",
+    "sotsiaalai-sol-suvaaudit-jatk-minu-jagamised-lopetus.md",
+    "sotsiaalai-sol-suvaaudit-jatk-minu-jagamised.md",
+    "sotsiaalai-sol-suvaaudit-jatk-organisatsioonid-lopetus.md",
+    "sotsiaalai-sol-suvaaudit-jatk-organisatsioonid.md",
+    "sotsiaalai-sol-suvaaudit-jatk-teenusekaart-lopetus.md",
+    "sotsiaalai-sol-suvaaudit-jatk-teenusekaart.md",
+    "sotsiaalai-sol-suvaaudit-jatk-teenuspaevik.md",
+    "sotsiaalai-sol-suvaaudit-jatk-tooheaolu.md",
+    "sotsiaalai-sol-suvaaudit-jatk-valitoo.md"
+  ]);
+  assert.equal(findings.length, 429, `oodatud täpselt 429 leidu, loeti ${findings.length}`);
+  assert.equal(new Set(findings.map((row) => row.id)).size, 429, "kõik leiu-ID-d peavad olema unikaalsed");
+
+  const importedIdsByFile = {
+    "sotsiaalai-sol-suvaaudit-jatk-valitoo.md": Array.from(
+      { length: 11 },
+      (_, index) => `SOL-FIELD-J-${String(index + 1).padStart(2, "0")}`
+    ),
+    "sotsiaalai-sol-suvaaudit-jatk-teenuspaevik.md": Array.from(
+      { length: 7 },
+      (_, index) => `SOL-SLOG-J-${String(index + 1).padStart(2, "0")}`
+    ),
+    "sotsiaalai-sol-suvaaudit-jatk-organisatsioonid-lopetus.md": ["SOL-ORG-18", "SOL-ORG-19"],
+    "sotsiaalai-sol-suvaaudit-jatk-minu-jagamised-lopetus.md": ["SOL-SHARE-06", "SOL-SHARE-07"],
+    "sotsiaalai-sol-suvaaudit-jatk-teenusekaart-lopetus.md": ["SOL-SMAP-09"],
+    "sotsiaalai-sol-suvaaudit-jatk-funktsioonideulene-lopetus.md": [
+      "SOL-XFUNC-01",
+      "SOL-XFUNC-02",
+      "SOL-XFUNC-03"
+    ]
+  };
+  for (const [file, expectedIds] of Object.entries(importedIdsByFile)) {
+    assert.deepEqual(
+      findings
+        .filter((row) => row.file === file)
+        .map((row) => row.id)
+        .sort(),
+      [...expectedIds].sort(),
+      `${file} peab sisaldama täpselt imporditud leiu-ID-sid`
+    );
+  }
 
   const docJ = findings.filter((row) => row.id.startsWith("SOL-DOC-J-"));
   assert.equal(docJ.length, 6);

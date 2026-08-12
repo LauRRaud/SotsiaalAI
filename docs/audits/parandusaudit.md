@@ -66,110 +66,16 @@ omakorda 12 testi viies failis, sest kõik fikstuurid olid ehitatud kolme inimes
 otsene tagajärg). Kui piloot peab katma ka üksikkasutajaid, on vaja eraldi tõendatud
 osalusmehhanismi.
 
-## Auditikorpus ei ole ühes puus (mõõdetud 11.08 hilisõhtul)
+## Auditikorpus on nüüd ühes puus (12.08)
 
-**Audit ise on lõpuni viidud** — kõik 20 funktsiooni, Haldus, Ruumid ja Töölaud on kaetud ning
-lisandus funktsioonideülene ring (kustutus, andmekoopia, retention, RAG, failid, SMTP,
-süvalingid, rolli- ja organisatsioonivahetus, samaaegsus). **Tema failid on aga laiali seitsmes
-tööpuus ja üheksa neist ei ole `main`-is.** Seepärast ei saa ükski loendurijooks praegu anda
-tervikpilti: `npm run sol:tally` loeb ainult neid faile, mis on TEMA puus.
+Kõik leide kandvad SOL-auditiraportid on nüüd `main`-is. Kuus eraldi tööpuudesse jäänud faili
+andsid juurde 26 unikaalset NOT_DONE leidu: Välitöö 11, Teenuspäevik 7, Organisatsioonid 2,
+Minu jagamised 2, Teenusekaart 1 ja funktsioonideülene lõpetusring 3. Tööheaolu lõpetus ei
+lisanud uusi ID-sid, sest WB-15…18 olid juba põhikorpuses; register ja lõppkoond ei kanna leide.
 
-| Fail | Leiud | Kus ta on | Seis |
-|---|---|---|---|
-| `…-jatk-valitoo.md` | 11 | `SotsiaalAI-sol-audit-field-eaca270` | commit `335fa002`, **lahtine pea** |
-| `…-jatk-teenuspaevik.md` | 7 | `SotsiaalAI-sol-audit-slog-11bc4f3` | commit `e82fc587`, **lahtine pea** |
-| `…-funktsioonideulene-lopetus.md` | 3 (`SOL-XFUNC-01…-03`) | `SotsiaalAI-sol-audit-smapclose-a4e00e4` | **jälgimata fail** |
-| `…-jatk-organisatsioonid-lopetus.md` | 2 | `SotsiaalAI-sol-audit-orgclose-a4e00e4` | commit `d0892171`, **lahtine pea** |
-| `…-jatk-minu-jagamised-lopetus.md` | 2 | `SotsiaalAI-sol-audit-shares-a4e00e4` | commit `116c99e6`, **lahtine pea** |
-| `…-jatk-teenusekaart-lopetus.md` | 1 | `SotsiaalAI-sol-audit-smapclose-a4e00e4` | **jälgimata fail** |
-| `…-jatk-tooheaolu-lopetus.md` | 0 | `SotsiaalAI-sol-audit-wellclose-11bc4f3` | commit `ecc0cdb6`, **lahtine pea** |
-| `…-jatk-register.md` (raportiregister) | 0 | `SotsiaalAI-sol-audit-smapclose-a4e00e4` | commit `fc34d636`, **lahtine pea** |
-| `…-loppkoond.md` | 0 | `SotsiaalAI-sol-audit-smapclose-a4e00e4` | **jälgimata fail** |
-
-**Kokku 26 leidu, mida selle puu loendur ei ole kordagi näinud** — seega tegelik nimetaja on
-**429**, mitte 403, ja lahtiseid on **312**, mitte 286. Prioriteedijaotust ei saa siia kirjutada
-enne, kui failid on ühes puus ja loendur jookseb korra terve korpuse peal: käsitsi kokku pandud
-jaotus on täpselt see viga, mille pärast loendur üldse kirjutati.
-
-**Kolm uut leidu** on funktsioonideülesest ringist: `SOL-XFUNC-01` (P2, Haldus ei ole URL-iga
-taastatav ja jätab kolm halduspinda menüüst välja) · `SOL-XFUNC-02` (P2, Ruumid eirab serveri
-tegevuslippe ja peidab keelatud kustutuse vea) · `SOL-XFUNC-03` (P1, isikuandmete koopia
-registril puudub skeemiülene täielikkusvärav).
-
-**See on andmekao risk, mitte korrastusküsimus.** „Lahtine pea" tähendab detached HEAD-i, mille
-peale ei näita ükski haru — kui tööpuu kustutatakse või `git gc` jookseb, kaob commit. Kolm
-faili ei ole üldse commit'itud. **Kuus commit'i on lisaks tehtud `a4e00e43` pealt, mis on
-rebase-EELNE koopia** (`main`-is on tema sisu `1ed23452` all), seega nende `parandusaudit.md`
-ja `sotsiaalai-sol-suvaaudit.md` versioonid on **vanemad kui siinsed** — koondamisel võetakse
-neist AINULT uued failid, mitte nende versioonid nendest kahest.
-
-**Sama klassi lahtine asi kõrval:** teenusekaardi klaaskujunduse parandus (`workspace.css`,
-`ServiceMapLeaflet.jsx`, `WorkspaceFeaturePage.jsx` + kaks visuaallepingu testi, +307/−85) elab
-tööpuus `SotsiaalAI-service-map-glass-a4e00e4` **commit'imata**. Haru
-`codex/service-map-glass-visual-fix` on olemas, aga ta ei kanna ühtki oma commit'i — ta on
-lihtsalt silt `a4e00e43` peal. „Parandus on harus" ei pea mõõdetuna paika.
-
-**Autenditud tervikruntime jäi selles auditiringis `NOT_PROVEN`:** viis sünteetilist kontot olid
-olemas, aga 0/5 credential'ist kehtis. Kontosid ega seansse ei muudetud. Lokaalse testkeskkonna
-taastamine (vt SotsiaalAI.md S11) on eeldus, mitte kõrvalmärkus.
-
-## Jätkuauditid — miks nimetaja muutus
-
-Loendus luges ainult peafaili pealkirju, seega **iga jätkufail oli tema alt väljas**. 11.08
-õhtuks on neid seitse, kokku **46 leidu, kõik NOT_DONE**:
-
-| Jätkufail | Peatükk | Leiud | Mida ta teeb |
-|---|---|---|---|
-| `…-jatk-materjalid.md` | SOL-MAT | 13 | **uus peatükk** |
-| `…-jatk-teenusekaart.md` | SOL-SMAP | 8 | **uus peatükk** |
-| `…-jatk-minu-jagamised.md` | SOL-SHARE | 5 | **uus peatükk** |
-| `…-jatk-koosta-dokument.md` | SOL-COMP | 5 | **uus peatükk** |
-| `…-jatk-organisatsioonid.md` | SOL-ORG | 5 | laiendab **lõpetatuks loetud** peatükki |
-| `…-jatk-tooheaolu.md` | SOL-WB | 4 | laiendab olemasolevat (14 → 18) |
-| `…-jatk-dokumendid.md` | SOL-DOC | 6 | laiendab **lõpetatuks loetud** peatükki (9 → 15); ainus **`-J` nimeruumiga** fail |
-
-Kolm tagajärge, mis ei ole kosmeetika:
-
-- **„SOL-ORG 12/12 tehtud" ei kehti enam** — SOL-ORG-13…-17 on lahtised.
-- **„SOL-DOC 9/9 tehtud" ei kehti enam** — `SOL-DOC-J-01…-06` on lahtised, sh **`-02`
-  paralleelsed muudatused kirjutavad vaikides üksteise üle** ja **`-03` RAG-kasutusloa
-  tagasivõtmine ei eemalda indekseeritud koopiat** (mõlemad P1). Koos SOL-ORG-iga on
-  lõpetatud peatükke **6**, mitte 8.
-- **SOL-MAT-01 on serveripiiri puudumine tasulisel spetsialistifunktsioonil** — iga autentitud
-  konto saab otse-API kaudu üles laadida. See ei ole ääreala ja ta ei olnud kunagi loendis.
-
-**12.08 08:12 seisuga on tootmises 150 tehtud leidu; lisaks on 30 tehtud leidu deploy'mata (tally kokku 180).**
-Server on `1443b6a0`; `origin/main` on temast ees ainult kahe seisukirje võrra, aga **`main` on
-`origin/main`-ist 24 commit'i ees** ja just need kannavad ülalnimetatud 30 deploy'mata leidu ja
-viit migratsiooni (mõõdetud 12.08). Välja läksid AUTH-14 ja -15, kogu
-SOL-VOICE, SOL-ROOM, SOL-CALL ja SOL-INV, SOL-PAY-01…-08, -10, -11 ning kogu SOL-NOTIF —
-34 commit'i ja seitse migratsiooni, kõik lisavad.
-
-**Üks asi, mille see ring välja tõi ja mis on siia varem valesti kirjutatud:** eelmine
-versioon väitis, et „AUTH-03…-07 ja -11 on `origin/main`-is". Mõõdetuna oli **`a4e00e43`
-(AUTH-07/-11) push'imata** ja harud olid lahknenud — teine sessioon oli sama vanema (`58e379a8`)
-pealt push'inud kaks PWA-commit'i. Rebase tehti eraldi worktree's, et peatöölaua võõrast
-poolelolevat tööd mitte puutuda, ja mõlema commit'i sisu on rebase'i järel bait-täpselt sama.
-Reegel jääb: **serveri ja `origin/main`-i seisu ei võeta selle faili pealt, vaid mõõdetakse.**
-Kolmeteistkümnes deploy
-(11.08 13:06, server `27af4a02`) viis välja kogu SOL-CHAT-01…-08 ploki koos migratsiooniga
-**`20260811160000`** (uus tabel `ChatTurn` + enum `ChatTurnStatus`; olemasolevaid ridu ei
-puudutatud) ning ühtlasi eelmisest ringist üle jäänud SOL-MEET-05/-06.
-Üheteistkümnes deploy (11.08 10:17) oli kogu SOL-DOC (01…09) ja SOL-RES-01…-07 kahe
-migratsiooniga. `ResearchJob` ja `MeetingSummaryJobClaim` on toodangus mõlemad 0 rida, seega
-mõlemad unikaalsed indeksid läksid läbi triviaalselt — esimesed päris kinnitused tulevad alles
-päris koormusega. **Enne deploy'd mõõdetud:** SOL-MEET-03 snapshotikataloog oli toodangus tühi,
-seega uuel koristusel ei olnud midagi kustutada.
-Ainus P3 kogu auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
-
-**Deploy-järgne kontroll tõi ühe asja välja:** `npm run rag:path:probe` — RAGSVC-01/02
-HTTP-negatiivtest, mis oli teadlikult deploy'd ootamas — andis esimesel jooksul
-`PROBE_FAIL 6/7`, **aga viga oli sondis, mitte serveris**. Kettalt mõõdetuna ei olnud ühtki
-faili hoidlast väljas. Sondi otsustusreegel oli iseenesest tõene (`/rag-escape-probe/`
-vastab vaenuliku faili enda nimele ka pärast korrektset puhastust). Parandatud: sond õpib
-hoidla juure kontrollfailist ja küsib „kus fail on", mitte „kas nimi näeb kahtlane välja".
-Teine jooks: **`PROBE_OK 8/8`**.
-
+Loendur nõuab nüüd täpselt 429 unikaalset leiu-ID-d ning katkestab nii tundmatu pealkirjavormi
+kui dubleeritud ID korral. Hetkeseisu ja prioriteedid kannab allolev genereeritud plokk; vanade
+eraldi tööpuude peaauditit, parandusauditit ega S1 koopiaid ei imporditud.
 <!-- sol:tally algus — GENEREERITUD, ÄRA TOIMETA KÄSITSI -->
 
 ## Paranduste seis: DONE / PARTIAL / NOT_DONE
@@ -179,7 +85,7 @@ Käsitsi siia ei kirjutata. DONE algab sõnaga `DONE`, PARTIAL sõnaga `PARTIAL`
 on NOT_DONE. Kvalifitseeritud DONE-väide vale algusega katkestab genereerimise, et ta ei
 kaoks vaikselt valesse rühma. Iga loetletud leiu lõpus on Seis-lõik **sõna-sõnalt**.
 
-DONE **236** / 403 · PARTIAL **4** / 403 · NOT_DONE **163** / 403 · peatükke täielikult DONE **19** / 39 · ametlikult lahtiseid 167 — 116 × P1 · 50 × P2 · 1 × P3
+DONE **236** / 429 · PARTIAL **4** / 429 · NOT_DONE **189** / 429 · peatükke täielikult DONE **16** / 40 · ametlikult lahtiseid 193 — 135 × P1 · 57 × P2 · 1 × P3
 
 | Peatükk | Kood | DONE | PARTIAL | NOT_DONE | Lahtiste prioriteedid | Märkus |
 |---|---|---:|---:|---:|---|---|
@@ -188,8 +94,8 @@ DONE **236** / 403 · PARTIAL **4** / 403 · NOT_DONE **163** / 403 · peatükke
 | Autentimine ja autoriseerimine | SOL-AUTH | 15/15 | 0 | 0 | – | **tehtud** |
 | Juhtumitöö (JTA-V1) | SOL-CW | 17/20 | 2 | 1 | 2 × P1 · 1 × P2 |  |
 | RAG-i admin ja failihaldus | SOL-RAGADMIN | 4/4 | 0 | 0 | – | **tehtud** |
-| Organisatsioonid ja skoop | SOL-ORG | 17/17 | 0 | 0 | – | **tehtud**, 5 jätkufailist |
-| Välitöö | SOL-FIELD | 6/6 | 0 | 0 | – | **tehtud** |
+| Organisatsioonid ja skoop | SOL-ORG | 17/19 | 0 | 2 | 1 × P1 · 1 × P2 | 7 jätkufailist |
+| Välitöö | SOL-FIELD | 6/17 | 0 | 11 | 8 × P1 · 3 × P2 | 11 jätkufailist |
 | Dokumendid ja AI-kasutus | SOL-DOC | 14/15 | 1 | 0 | 1 × P1 | 6 jätkufailist |
 | Uuringud | SOL-RES | 6/7 | 1 | 0 | 1 × P2 |  |
 | Koosolekukokkuvõtted | SOL-MEET | 6/6 | 0 | 0 | – | **tehtud** |
@@ -203,7 +109,7 @@ DONE **236** / 403 · PARTIAL **4** / 403 · NOT_DONE **163** / 403 · peatükke
 | Domeenisündmused | SOL-EVENT | 1/1 | 0 | 0 | – | **tehtud** |
 | Kiireloomuline abi | SOL-URG | 13/13 | 0 | 0 | – | **tehtud** |
 | Tööheaolu | SOL-WB | 18/18 | 0 | 0 | – | **tehtud**, 4 jätkufailist |
-| Teenuspäevik | SOL-SLOG | 24/24 | 0 | 0 | – | **tehtud** |
+| Teenuspäevik | SOL-SLOG | 24/31 | 0 | 7 | 7 × P1 | 7 jätkufailist |
 | RAG-teenus ja ingest | SOL-RAGSVC | 28/28 | 0 | 0 | – | **tehtud** |
 | Migratsioonid | SOL-PRISMA | 0/4 | 0 | 4 | 3 × P1 · 1 × P2 |  |
 | Mentorlus | SOL-MENT | 0/7 | 0 | 7 | 7 × P1 |  |
@@ -220,8 +126,9 @@ DONE **236** / 403 · PARTIAL **4** / 403 · NOT_DONE **163** / 403 · peatükke
 | Teenuseosutaja profiil | SOL-SPROF | 2/15 | 0 | 13 | 6 × P1 · 7 × P2 |  |
 | Dokumendi koostamine | SOL-COMP | 0/5 | 0 | 5 | 3 × P1 · 2 × P2 | 5 jätkufailist |
 | Materjalid | SOL-MAT | 0/13 | 0 | 13 | 8 × P1 · 5 × P2 | 13 jätkufailist |
-| Minu jagamised | SOL-SHARE | 0/5 | 0 | 5 | 2 × P1 · 3 × P2 | 5 jätkufailist |
-| Teenusekaart | SOL-SMAP | 0/8 | 0 | 8 | 3 × P1 · 5 × P2 | 8 jätkufailist |
+| Minu jagamised | SOL-SHARE | 0/7 | 0 | 7 | 4 × P1 · 3 × P2 | 7 jätkufailist |
+| Teenusekaart | SOL-SMAP | 0/9 | 0 | 9 | 3 × P1 · 6 × P2 | 9 jätkufailist |
+| Funktsioonideülene lõpetusring | SOL-XFUNC | 0/3 | 0 | 3 | 1 × P1 · 2 × P2 | 3 jätkufailist |
 
 ### PARTIAL leiud peatükkide kaupa
 
@@ -293,7 +200,7 @@ DONE **236** / 403 · PARTIAL **4** / 403 · NOT_DONE **163** / 403 · peatükke
 - `SOL-RAGADMIN-03` P1 — `INGESTING` lukk ei ole atomaarne ega taastuv — DONE — claim + lease, lepitus, kolm rada, migratsioon, 17 testi ja 21/21 päris PostgreSQL-i sond; rakenduse runtime: not_run.
 - `SOL-RAGADMIN-04` P2 — hävitav RAG reset ei seo dry-run plaani serveripoolse kinnitusega — DONE — jagatud värav, sõrmejälg täisloendina, ühekordne broneering ja 13 testi; rakenduse runtime: not_run.
 
-**Organisatsioonid ja skoop** (`SOL-ORG`, 17/17)
+**Organisatsioonid ja skoop** (`SOL-ORG`, 17/19)
 
 - `SOL-ORG-01` P1 — töötaja kaudu tuletatud graafikuskoop lekib mitme organisatsiooni töö üle tenantide piiri — DONE — kood, migratsioon ja testid; tõendatud päris PostgreSQL-i vastu (`npm run slog:org:probe` 19/19).
 - `SOL-ORG-02` P1 — graafiku kirjutusrada möödub peatatud organisatsiooni ja mooduli väravast — DONE — kood ja testid; tõendatud päris PostgreSQL-i vastu (`npm run slog:org:probe` 24/24).
@@ -313,7 +220,7 @@ DONE **236** / 403 · PARTIAL **4** / 403 · NOT_DONE **163** / 403 · peatükke
 - `SOL-ORG-16` P2 — aruande „avatud” seis võib tekkida enne ühegi baidi väljastamist — DONE — aruande GET autoriseerib, loeb ja kontrollib enne väljastust külmutatud faili suuruse ning SHA-256 räsi, kirjutab kohustusliku `access_attempted` auditi ja loob `OPENED` seisu alles kogu vastuse vastuvõtu järel allkirjastatud delivery-kinnitusega. Audititõrke korral ei väljasta GET ühtegi faili baiti; pahatahtlikult kinnitamata jäetud täielik lugemine jääb ausalt ligipääsukatseks, mitte avatuks. Eelvaade ja allalaadimine kinnitavad serverile alles pärast täielikku `json()`/`blob()` lugemist; katkenud stream ei kinnita ega muuda UI seisu. Kinnitus lukustab jagamisrea ning kirjutab `OPENED` ja delivered-tähendusega auditi samas tehingus, seega selle audititõrge pöörab seisu tagasi. Veasüsti sihttest 7/7 kattis puuduva faili, räsivea, streami katkestuse, mõlema auditikihi vea ja eduka tarne; `npm run org:report-delivery:probe` 5/5 kinnitas OPENED-aatomilisuse päris PostgreSQL-is, cleanup `shares=0 audits=0 org=0 user=0`. Peatükilõpu `TZ=UTC npm test` 4199/4199; autentitud brauserivoog `not_run`.
 - `SOL-ORG-17` P2 — organisatsiooni loomisel puuduvad idempotentsus ja serveri rate-limit — DONE — organisatsiooni loomine nõuab kasutaja `clientActionId`-d, mille `(createdByUserId, creationClientActionId)` unikaalsus ja payload-räsi on andmebaasi leping; sama võtme eri sisu annab 409. Muutmata vormi retry kasutab kliendis sama võtit, route rakendab kasutajapõhist ja olemasolul usaldatud-IP põhist tunnist rate-limit’i. `npm run org:create:probe` 7/7 saatis neli paralleelpäringut ning tõendas ühe organisatsiooni, ühe liikmesuse, ühe grantide komplekti ja ühe auditi; konflikt ei loonud teist rida, cleanup `org=0 audits=0 user=0`. Rate-limit’i ja kliendi retry sihttest 3/3; migratsioon `20260812200000_sol_org_17_creation_idempotency` rakendus kohalikus PostgreSQL-is ja `prisma migrate status` on puhas. Peatükilõpu `TZ=UTC npm test` 4199/4199, lint 0 viga, i18n puhas; autentitud brauserivoog `not_run`.
 
-**Välitöö** (`SOL-FIELD`, 6/6)
+**Välitöö** (`SOL-FIELD`, 6/17)
 
 - `SOL-FIELD-01` P1 — saatmata kohalik sisu võib kustuda ilma kolme kasutajale näidatud hoiatuseta — DONE — kood ja testid; brauserikiht NOT_PROVEN (vt allpool).
 - `SOL-FIELD-02` P1 — tundlikud külastuspaketid ei läbi automaatset kohalikku retention’it — DONE — kood, testid ja runtime-tõend PÄRIS IndexedDB vastu.
@@ -476,7 +383,7 @@ DONE **236** / 403 · PARTIAL **4** / 403 · NOT_DONE **163** / 403 · peatükke
 - `SOL-WB-17` P1 — kolm neljast toevalikust ei jõua tegeliku adressaadini — DONE kriteeriumi MÕLEMA haru kaudu — üks rada ehitati, kolm said ausa nime.
 - `SOL-WB-18` P1 — kasutaja andmekoopia jätab mustandid ja kirjete elutsükliandmed välja — DONE — koopia kannab nüüd elutsüklit, mitte hetketõmmist.
 
-**Teenuspäevik** (`SOL-SLOG`, 24/24)
+**Teenuspäevik** (`SOL-SLOG`, 24/31)
 
 - `SOL-SLOG-01` P0 — seadme mustand ja saatmisjärjekord võivad järgmise konto andmed eelmise konto päevikusse saata — DONE. Seadme read on nüüd konto omad, mitte brauseri omad.
 - `SOL-SLOG-02` P1 — iga 4xx vastus kustutab võrgujärjekorrast tehtud töö taastamisvõimaluseta — DONE — outbox eristab nüüd uuesti proovitavat ja parandamist vajavat tööd ning ei kustuta kumbagi vaikides. Võrguviga, 401, 403, 408, 425, 429 ja 5xx jäävad järjekorda; 400/409 liiguvad püsivasse `needs_attention` olekusse koos põhjusega. UI näitab neid eraldi ja „Tõsta vormile” taastab payload'i redigeerimiseks; alles see kasutaja toiming eemaldab vana järjekorrarealt. Reload-test tõendas 400 payload'i ja põhjuse püsimise ning olekutestid katsid kõik nõutud vastuseklassid.
