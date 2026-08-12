@@ -89,12 +89,32 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-**DEPLOY'MATA EI OLE ENAM MIDAGI. Server on `954289fc`, `.next` 12.08 15:12** (kaks deploy'd
-omaniku selgel loal: `c169ca70` 15:07 ja `954289fc` 15:12). Mõõdetud kohe pärast mõlemat: kolm
-teenust `active`, `/` `/vestlus` `/toolaud` **200**, veatasemel logi tühi, **viis migratsiooni
-rakendatud** (uus tabel `WellbeingParticipation` + neli veergu; blokeerivaid migratsioonuridu 0).
-Välja läks **30 auditileidu** (SOL-EVENT-01, kogu SOL-URG, kogu SOL-WB) ning lisaks tänase õhtu
-töö. Tööpuu on puhas ja `origin/main..main` = 0.
+**DEPLOY'MATA ON KAKS COMMIT'I JA ÜKS MIGRATSIOON — SOL-PAY-09.** Mõõdetud 12.08 hilisõhtul:
+`main` = `909c7645`, `origin/main..main` = **2**, server on endiselt `954289fc`. Jääk on
+`82722bbc` (mehhanism + migratsioon `20260812170000`) ja `909c7645` (sond + raporti Seis-lõik).
+**Migratsioon ainult lõdvendab piiri** — `Payment.userId` `DROP NOT NULL` ja kaks võõrvõtme
+reeglit `Cascade` → `SetNull` — ega muuda ühtki olemasolevat väärtust; toodangus mõõdetud enne
+kirjutamist: 4 `Payment` rida, kõigil `userId` täidetud, 11 `Subscription`, 1 `BillingMethod`.
+
+**Kaks deploy'd 12.08 omaniku selgel loal: `c169ca70` 15:07 ja `954289fc` 15:12**, `.next`
+15:12. Mõõdetud kohe pärast mõlemat: kolm teenust `active`, `/` `/vestlus` `/toolaud` **200**,
+veatasemel logi tühi, **viis migratsiooni rakendatud** (uus tabel `WellbeingParticipation` +
+neli veergu; blokeerivaid migratsioonuridu 0). Välja läks **30 auditileidu** (SOL-EVENT-01,
+kogu SOL-URG, kogu SOL-WB) ning lisaks selle päeva õhtune töö.
+
+**SOL-PAY-09 on tehtud ja peatükk lõpetatud (11/11).** Leid ei olnud tingimuste ja koodi
+vastuolu, vaid koodi ja koodi oma: `lib/retention.js` hoiab makseid seitse aastat ja
+privaatsustingimuste punkt 7.9 lubab kasutajale sedasama, aga `ON DELETE CASCADE` võttis selle
+ühe konto kustutusega vaikselt tagasi. Maksekirje elab nüüd maksjast kauem, koosseis on ühes
+kohas (`PAYMENT_ARCHIVE_FIELDS`) ja külmutatakse **sisemine tootekood, mitte paketi nimi** —
+„supervisioonipakett" tõendaks seitse aastat, et see inimene oli supervisioonis.
+**`npm run pay:archive:probe` 24/24 päris PostgreSQL-is, kaks negatiivkontrolli:** kustutus ilma
+eelneva külmutamiseta (tõendab, et järjekord kannab — pärast `user.delete`-i ei leia arhiveerija
+enam ühtki rida) ja vana kaskaadireegel samas andmebaasis sama andmestiku peal (0 rida alles vs
+2). **Sond leidis vea iseendas:** struktuurikontroll otsis võõrvõtit tabelipaari järgi, aga
+`Subscription` viitab `User`-ile kahest veerust vastupidiste reeglitega. **Lahtiseks jääb ainult
+koosseisu õiguslik kinnitus** (jurist/raamatupidaja) — see ei muuda mehhanismi, vaid ühe
+konstandi loendit.
 
 **Teise sessiooni PWA/a11y töö on samuti väljas** (`cb93e8e0`) — ta seisis tööpuus commit'imata:
 paigaldusviip, ligipääsetavuse modaal, taustaheli sammunupud, lühem sõnastus. Väravad enne
@@ -157,8 +177,8 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 180/403 leidu, 15/39 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**,
-SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT, **SOL-VOICE**, **SOL-ROOM**, **SOL-CALL**, **SOL-INV**, **SOL-NOTIF**, **SOL-EVENT**, **SOL-URG**, **SOL-WB**). **Auditis ei ole enam ühtegi lahtist P0-d.**
+**SOL-süvaaudit: 181/403 leidu, 16/39 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**,
+SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT, **SOL-VOICE**, **SOL-ROOM**, **SOL-CALL**, **SOL-INV**, **SOL-PAY**, **SOL-NOTIF**, **SOL-EVENT**, **SOL-URG**, **SOL-WB**). **Auditis ei ole enam ühtegi lahtist P0-d.**
 Numbrid tulevad `npm run sol:tally` väljundist, käsitsi neid siia ei kirjutata.
 
 **SOL-WB (Tööheaolu) lõpetatud 12.08 — 18/18, sh neli leidu jätkufailist.** Kandvad parandused:

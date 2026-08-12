@@ -24,12 +24,12 @@ vaikselt väiksemat nimetajat ta enam anda ei saa (`tests/scripts/solAuditTally.
 
 | | |
 |---|---|
-| Tehtud leidu | **180 / 403** selle tööpuu loenduri järgi · **180 / 429** kogu auditikorpuse peale — **26 leidu üheksas failis ei ole `main`-is**, vt „Auditikorpus ei ole ühes puus" allpool |
-| Peatükke lõpuni | **15 / 39** — SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**, SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT, **SOL-VOICE**, **SOL-ROOM**, **SOL-CALL**, **SOL-INV**, **SOL-NOTIF**, **SOL-EVENT**, **SOL-URG**, **SOL-WB** |
-| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 158 × P1 · 64 × P2 · 1 × P3 (selle puu loenduri järgi; kogu korpuses 249) |
+| Tehtud leidu | **181 / 403** selle tööpuu loenduri järgi · **181 / 429** kogu auditikorpuse peale — **26 leidu üheksas failis ei ole `main`-is**, vt „Auditikorpus ei ole ühes puus" allpool |
+| Peatükke lõpuni | **16 / 39** — SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**, SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT, **SOL-VOICE**, **SOL-ROOM**, **SOL-CALL**, **SOL-INV**, **SOL-PAY**, **SOL-NOTIF**, **SOL-EVENT**, **SOL-URG**, **SOL-WB** |
+| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 157 × P1 · 64 × P2 · 1 × P3 (selle puu loenduri järgi; kogu korpuses 248) |
 | Nimetaja kasvas 357 → 397 → **403** | **jätkuauditid, mis olid siit loendist täielikult väljas.** Vt eraldi lõiku allpool — see ei ole tagasiminek, vaid see, et loendus ei näinud esmalt seitset faili ja seejärel kuut leidu neist ühes. |
-| Toodangus | **DEPLOY'MATA JÄÄK: 30 leidu ja 27 commit'i.** Peale nende kolm 12.08 õhtu commit'i, mis EI ole uued leiud, vaid kahe omaniku otsuse teostus ja üks kõrvalleid: **analüüsiühik** (`latest_per_person` vaikimisi, nähtav aruandes ja kolmes ekspordis, valitav päringus), **privaatsuslävend 3 → 5** ja **makse säilituse põrand** (avaldatud 7 aastat ei ole enam env-iga langetatav). Ükski neist ei vaja migratsiooni. Leiud: SOL-EVENT-01, kogu SOL-URG (03…13) ja kogu SOL-WB (01…18), **viis migratsiooni**: `20260812060000` (`UrgentRequest.takenByUserId`), `20260812070000` (`UrgentDesk` kinnitaja), `20260812080000` (`WellbeingParticipation` tabel), `20260812090000` (`WellbeingRecord.checkpointAnsweredAt` + pärandridade korrastus), `20260812100000` (`WellbeingPilotViewer.claimedAt` + FK `SetNull` → `Cascade`). **Kolm viimast puudutavad tootmises 0 rida** (0 `WellbeingRecord`, 0 pilooti, 0 vaatajat — mõõdetud psql-iga 12.08), seega ka andmeid muutvad `UPDATE`-id on tühikäigud. Viimane deploy **12.08 08:12 omaniku loal: server = `1443b6a0`**. |
-| Järgmine peatükk | **SOL-WB on lõpetatud (18/18)** — viisteist täis peatükki. **SOL-PAY on 10/11**: lahtine ainult **PAY-09** (omaniku + juristi otsus). Dokumendi järjekorras järgmine on **SOL-SLOG** (5/24, 18 × P1) ja tema järel **SOL-RAGSVC** (2/28) — kaks suurimat lahtist sabat. Vt ka lahtist jätkufailide otsust allpool. |
+| Toodangus | **DEPLOY'MATA JÄÄK: 30 leidu ja 27 commit'i.** Peale nende kolm 12.08 õhtu commit'i, mis EI ole uued leiud, vaid kahe omaniku otsuse teostus ja üks kõrvalleid: **analüüsiühik** (`latest_per_person` vaikimisi, nähtav aruandes ja kolmes ekspordis, valitav päringus), **privaatsuslävend 3 → 5** ja **makse säilituse põrand** (avaldatud 7 aastat ei ole enam env-iga langetatav). Ükski neist ei vaja migratsiooni. Leiud: SOL-EVENT-01, kogu SOL-URG (03…13) ja kogu SOL-WB (01…18), **viis migratsiooni**: `20260812060000` (`UrgentRequest.takenByUserId`), `20260812070000` (`UrgentDesk` kinnitaja), `20260812080000` (`WellbeingParticipation` tabel), `20260812090000` (`WellbeingRecord.checkpointAnsweredAt` + pärandridade korrastus), `20260812100000` (`WellbeingPilotViewer.claimedAt` + FK `SetNull` → `Cascade`). **Kolm viimast puudutavad tootmises 0 rida** (0 `WellbeingRecord`, 0 pilooti, 0 vaatajat — mõõdetud psql-iga 12.08), seega ka andmeid muutvad `UPDATE`-id on tühikäigud. Viimane deploy **12.08 08:12 omaniku loal: server = `1443b6a0`**. **AEGUNUD alates 12.08 15:12: pärast seda on olnud kaks deploy'd (server = `954289fc`) ja jääk on nüüd kaks SOL-PAY-09 commit'i koos migratsiooniga `20260812170000`. Deploy-seisu allikas on S1 `SotsiaalAI.md`-s, mitte see rida.** |
+| Järgmine peatükk | **SOL-WB (18/18) ja SOL-PAY (11/11) on mõlemad lõpetatud** — kuusteist täis peatükki. Dokumendi järjekorras järgmine on **SOL-SLOG** (5/24, 18 × P1) ja tema järel **SOL-RAGSVC** (2/28) — kaks suurimat lahtist sabat. Vt ka lahtist jätkufailide otsust allpool. |
 | Suurimad lahtised sabad | SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-PRE 16 · SOL-JOUR 15 · SOL-SUP 15 · SOL-HELP 13 · SOL-MAT 13 · SOL-NET 11 · SOL-SPROF 13 · SOL-COV 8 |
 | Lahtine tooteotsus | **kas jätkufailid liidetakse peaauditi dokumendijärjekorda või jäävad eraldi järjekorraks.** Kuni see on lahtine, ei ole „järgmine dokumendi järjekorras" üheselt määratud. |
 
@@ -782,15 +782,15 @@ uuesti), sest analüüs on lepingu järgi efemeerne — vt leiu Seis-lõiku.
 
 ## Lahtised, mis EI OLE lihtsalt tegemata
 
-Neid viit ei saa „järgmise tööna" ette võtta — nad ootavad kas otsust või tõendust, mida
-kood ei anna:
+Neid nelja ei saa „järgmise tööna" ette võtta — nad ootavad kas otsust või tõendust, mida
+kood ei anna. **Viies, SOL-PAY-09, on 12.08 õhtul siit välja langenud** — blokk osutus
+kitsamaks kui kirjeldus:
 
-- **SOL-PAY-09** (P1) — *BLOCKED_DECISION, õiguslik.* Konto kustutamine kaskaadib makseajaloo
-  (`Payment`, `Subscription`, `BillingMethod`) kohe, kuigi `lib/retention.js` hoiaks makseid
-  seitse aastat ja raamatupidamise seadus § 12 nõuab algdokumentide säilitamist seitse aastat.
-  Vastuvõtukriteerium ütleb ise, et jurist/raamatupidaja peab kinnitama, **milline minimaalne
-  finantsdokument säilib ja kui kaua** — seda ei saa koodiga ette otsustada. Ülejäänud
-  SOL-PAY leiud sellest ei sõltu.
+- ~~**SOL-PAY-09**~~ — **12.08 õhtul TEHTUD, peatükk 11/11.** Blokk oli kitsam, kui siin kirjas:
+  mehhanism ei sõltunud otsusest üldse ja kriteeriumi tähtaja-pool oli juba vastatud
+  (privaatsustingimuste p 7.9 on avaldatud). Külmutatud koosseis on ühes konstandis ja jurist
+  saab teda muuta ilma, et miski muu liiguks. `npm run pay:archive:probe` **24/24** päris
+  PostgreSQL-is, kaks negatiivkontrolli. Vt leiu Seis-lõiku raportis.
 
 - **SOL-CW-09** (P2) — *kood DONE, brauseritest NOT_PROVEN.* Parandus on olemas, aga
   tagasinupu käitumist ei ole päris brauserist läbi käidud. Loendis on ta seepärast lahtine.
