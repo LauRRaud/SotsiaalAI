@@ -1,9 +1,10 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { AdminSlidersIcon, PrivacyShieldIcon } from "@/components/brand/icons/CardIcons";
 import Button from "@/components/ui/Button";
+import { shouldSettleRequest } from "@/lib/chat/sidebarListState";
 import Checkbox from "@/components/ui/Checkbox";
 import Dropdown from "@/components/ui/Dropdown";
 import Form from "@/components/ui/Form";
@@ -83,18 +84,30 @@ export default function AdminWellbeingClient() {
     aggregationLevel
   }), [aggregationLevel, periodEnd, periodStart, roleGroup, workflowType]);
 
+  /* SOL-WB-14 sama klass admini pinnal: aeglane vastus kirjutas ekraanile
+     eelmise filtri koondi, samal ajal kui valikud näitasid juba uut. */
+  const abortRef = useRef(null);
+
   const loadAggregate = useCallback(async () => {
+    abortRef.current?.abort();
+    const controller = new AbortController();
+    abortRef.current = controller;
+    const isCurrent = () => shouldSettleRequest(abortRef.current, controller);
+
     setStatus("loading");
     setError("");
     try {
       const response = await fetch(buildAggregateUrl(filters), {
-        headers: { Accept: "application/json" }
+        headers: { Accept: "application/json" },
+        signal: controller.signal
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || !payload?.ok) throw new Error(payload?.message || "Koondandmestiku laadimine ebaõnnestus.");
+      if (!isCurrent()) return;
       setDataset(payload.dataset);
       setStatus("ready");
     } catch (loadError) {
+      if (loadError?.name === "AbortError" || !isCurrent()) return;
       setError(loadError?.message || "Koondandmestiku laadimine ebaõnnestus.");
       setStatus("error");
     }
@@ -102,6 +115,7 @@ export default function AdminWellbeingClient() {
 
   useEffect(() => {
     loadAggregate();
+    return () => abortRef.current?.abort();
   }, [loadAggregate]);
 
   const loadPilotScopes = useCallback(async () => {

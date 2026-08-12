@@ -1,8 +1,9 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { PrivacyShieldIcon, TermsDocIcon } from "@/components/brand/icons/CardIcons";
+import { shouldSettleRequest } from "@/lib/chat/sidebarListState";
 import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
 import Input from "@/components/ui/Input";
@@ -136,19 +137,43 @@ export default function WellbeingPilotClient({ allowedRoleGroups = [], pilotScop
     aggregationLevel
   }), [aggregationLevel, periodEnd, periodStart, pilotId, roleGroup, workflowType]);
 
+  /* SOL-WB-14: iga filtrimuudatus käivitas uue päringu, aga ükski vastus ei
+     küsinud, kas ta on veel see, mida oodatakse. Aeglane esimene vastus jõudis
+     kohale PÄRAST kiiret teist ja kirjutas ekraanile eelmise skoobi raporti,
+     samal ajal kui valikuribad näitasid juba uut — kasutaja oleks eksportinud
+     vale valimi õige piloodi nime all. See võimendas SOL-WB-01 vale omistamist.
+
+     Kaks väravat, sest kumbki üksi ei piisa: `AbortController` katkestab
+     eelmise päringu VÕRGU tasemel, ja omandikontroll hoiab ära selle, et
+     katkestamise ja lahenemise vahele jäänud vastus veel kirjutaks.
+
+     Otsus ise on `shouldSettleRequest` (`lib/chat/sidebarListState.js`) — sama
+     leping oli koodibaasis juba olemas (SOL-U6-P1-2) ja teda tõendavad
+     omaenda ühiktestid. Uut ei ehitatud. */
+  const abortRef = useRef(null);
+
   const loadAggregate = useCallback(async () => {
+    abortRef.current?.abort();
+    const controller = new AbortController();
+    abortRef.current = controller;
+    const isCurrent = () => shouldSettleRequest(abortRef.current, controller);
+
     setStatus("loading");
     setError("");
     try {
       const response = await fetch(buildPilotAggregateUrl(filters), {
-        headers: { Accept: "application/json" }
+        headers: { Accept: "application/json" },
+        signal: controller.signal
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || !payload?.ok) throw new Error(payload?.message || "Piloodi koondandmestiku laadimine ebaõnnestus.");
+      if (!isCurrent()) return;
       setDataset(payload.dataset);
       setReport(payload.report || null);
       setStatus("ready");
     } catch (loadError) {
+      /* Katkestatud päring EI OLE viga: tema koha võttis juba uuem valik. */
+      if (loadError?.name === "AbortError" || !isCurrent()) return;
       setError(loadError?.message || "Piloodi koondandmestiku laadimine ebaõnnestus.");
       setStatus("error");
     }
@@ -156,6 +181,7 @@ export default function WellbeingPilotClient({ allowedRoleGroups = [], pilotScop
 
   useEffect(() => {
     loadAggregate();
+    return () => abortRef.current?.abort();
   }, [loadAggregate]);
 
   const csvUrl = buildPilotAggregateUrl({ ...filters, format: "csv" });

@@ -5432,6 +5432,28 @@ töötava auditiga läheb läbi (muidu mõõdaks süst lihtsalt seda, et erind l
 
 **Vastuvõtukriteerium.** Iga laadimine peab katkestama eelmise või kirjutama olekut ainult siis, kui request-ID ja filtrisõrmejälg on endiselt aktiivsed. Brauseritest peab lahendama A ja B päringud mõlemas järjekorras ning kontrollima raporti ja valikute vastavust.
 
+**Seis (12.08.2026): DONE — kaks väravat, sest kumbki üksi ei piisa.**
+
+`AbortController` katkestab eelmise päringu VÕRGU tasemel ja omandikontroll hoiab ära selle, et
+katkestamise ja lahenemise vahele jäänud vastus veel kirjutaks — ei andmestikku ega viga.
+Lahkumisel katkestatakse ka viimane päring.
+
+**Otsust ennast ei ehitatud uuesti:** `shouldSettleRequest` (`lib/chat/sidebarListState.js`) on
+sama leping, mis SOL-U6-P1-2 juures juba kirjutati ja mida tõendavad tema omad ühiktestid.
+Muster oli koodibaasis olemas ja kasutamata.
+
+**Sama klass parandati ka admini koondivaates** (`AdminWellbeingClient`), kus ta oli täpselt
+samasugune — leid nimetas ainult piloodivaadet, aga jätta teine pool katki oleks tähendanud sama
+vea teadlikku alleshoidmist.
+
+**Neli ühikut:** kriteeriumi stsenaarium (A ja B **mõlemas lahenemisjärjekorras**, aegunud
+vastus ei kirjuta kummalgi juhul) + mõlema vaate delegeerimisleping. **Negatiivkontroll:** ilma
+omandikontrollita („kirjuta alati") oleks vastus mõlemal juhul jah.
+
+**NOT_PROVEN:** päris brauseritest kahe võistleva päringuga jäi tegemata — ta nõuab autenditud
+piloodivaataja seanssi ja aeglustatud endpoint'i. Loogika on tõendatud puhta moodulina ja
+komponendi delegeerimine lepingutestiga, aga kliki-tasemel läbisõitu ei ole.
+
 ### SOL-SLOG-01 — seadme mustand ja saatmisjärjekord võivad järgmise konto andmed eelmise konto päevikusse saata — P0
 
 **Tõend.** Nii outbox kui pooleli külastuse mustand kasutavad kogu brauseriprofiili kohta üht fikseeritud `localStorage` võtit, milles pole kasutaja- ega profiili-ID-d (`lib/serviceLog/outbox.js:26-50`, `lib/serviceLog/visitDraft.js:27-40`, `:61-81`). Teenuspäeviku avamisel loeb komponent järjekorra ja saadab iga payload'i praeguse sessiooniga serverisse (`components/serviceLog/ServiceLogDay.jsx:606-635`); koodibaasis ei ole nende võtmete logout'i- ega kasutajavahetuse puhastust.
