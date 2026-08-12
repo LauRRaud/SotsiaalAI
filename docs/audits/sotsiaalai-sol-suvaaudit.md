@@ -4877,6 +4877,18 @@ otsus, mitte kood, ja ma ei ole seda enda eest teinud.
 
 **Vastuvõtukriteerium.** Nii UI kui server peavad nõudma eksplitsiitset boolean-vastust; `true` viib alati hädaabirajale ning ainult otsene `false` lubab järgmise sammu. Testid peavad katma puuduva, `null`, stringi, 0, `false` ja `true` sisendi nii domeenis kui HTTP-route'is.
 
+**Seis (12.08.2026): DONE — edasi pääseb ainult OTSENE „ei".**
+
+Puuduv, `null`, string ja `0` on teadmatus, mitte eitus. Vaikeväärtus `false` ja marsruudi
+`=== true` teisendus tegid koos seda, et vastamata ohuküsimus libises vaikselt eitusesse ja
+pöördumine läks tavajärjekorda. `true` ja tekstituvastaja tabamus lähevad endiselt esimesena
+hädaabirajale; teadmatus on VALIDEERIMISVIGA, mitte 112-ekraan — 112 antakse siis, kui midagi
+VIITAB ohule, mitte siis, kui vastus on lihtsalt puudu. Ka vorm ei lase vastamata küsimust enam
+kinnitusekraanile ja saadab väärtuse toorelt, sest server peab teadmatust NÄGEMA.
+
+Testid katavad kõik kuus kuju (puuduv, `null`, string, `0`, `false`, `true`) NII domeenis KUI
+päris HTTP-kutses — marsruut võtab selleks süstitavad sõltuvused nagu `app/api/register/route.js`.
+
 ### SOL-URG-04 — klient saab suvalise teksti vastuvõtjale „AI koostatud mustandina” salvestada — P1
 
 **Tõend.** POST-route võtab `assistantStructured` otse päringu kehast ja domeenikiht salvestab selle üksnes pikkust kärpides (`app/api/urgent-requests/route.js:34-47`, `lib/urgent/request.js:201-239`). Laua projektsioon kannab väärtuse edasi (`request.js:617-639`) ning UI märgistab selle sõnaselgelt „AI koostatud mustandiks” ja „Masina mustandiks” (`components/urgent/UrgentDeskView.jsx:46-55`). Tavaline vorm seda välja ei saada, kuid serveril puudub päritolutõend.
@@ -4884,6 +4896,17 @@ otsus, mitte kood, ja ma ei ole seda enda eest teinud.
 **Mõju.** Muudetud klient või otsene API-kutse saab panna töötajale nähtava autoriteetse AI-sildi alla inimese enda või ründaja koostatud teksti. See võib moonutada kiire abi vastuvõtja arusaama ja rikub verbatim/AI päritolupiiri.
 
 **Vastuvõtukriteerium.** Avalik loomise endpoint ei tohi AI-välja usaldada. Mustand peab tekkima serveris kontrollitud protsessist koos mudeli/provenance'i ja sisendiseosega või jääma tühjaks; test peab tõendama, et kliendi `assistantStructured` lükatakse tagasi või ignoreeritakse.
+
+**Seis (12.08.2026): DONE — AI-mustandit ei võeta kliendilt.**
+
+Väli oli avalikust päringu kehast läbi kirjutatav ja laua vaade märgistab ta „AI koostatud
+mustandiks". Muudetud klient sai seega panna oma teksti masina autoriteedi alla. Serveripoolset
+tootjat, kes kannaks mudelit, päritolu ja sisendiseost, EI OLE OLEMAS — mõõdetud, mitte
+eeldatud: ainus kirjutaja oli see endpoint. Väli jääb seetõttu TÜHJAKS kuni tootja tekib. Tühi
+mustand on aus; tõendamata mustand ei ole.
+
+**KATMATA:** pärandread, mis said väärtuse vana raja kaudu, jäävad alles — nende puhastus on
+andmetöö, mitte koodiparandus. Kuvalepe (verbatim ja mustand on kaks eri välja) kehtib edasi.
 
 ### SOL-URG-05 — kiire abi olekumuutus ja kohustuslik vastutusjälg ei ole üks tehing — P1
 
@@ -4893,6 +4916,16 @@ otsus, mitte kood, ja ma ei ole seda enda eest teinud.
 
 **Vastuvõtukriteerium.** Põhirida ja vastutusjälg peavad sündima samas andmebaasitehingus ning toimingul peab olema stabiilne idempotentsusvõti. Veasüstitest peab katkestama iga sündmuse kirjutuse ja tõendama kas täielikku rollback'i või taastatavat outbox-seisu.
 
+**Seis (12.08.2026): DONE — iga siire on üks tehing.**
+
+Seis muutus ühes kirjutuses ja vastutusjälg tekkis teises: jälje viga andis 500, aga seis oli
+juba muutunud. Kohustuslik „kes mida millal" võis puududa pöördumise kohta, mis oli loodud,
+loetud, võetud, lõpetatud või üle antud — ja loomise kordus tegi TEISE pöördumise, sest inimene
+arvas, et esimene ei läinud.
+
+Veasüst tabab teist sammu (jäljekirjutust) ja mõõdab, et esimene ei jää alles. Sondi jaam teeb
+sama PÄRIS andmebaasi trigger-iga.
+
 ### SOL-URG-06 — olekusiirded on kontrolli järel tingimusteta kirjutused ja võivad paralleelselt üksteist üle kirjutada — P1
 
 **Tõend.** Funktsioonid loevad rea, kontrollivad JavaScriptis vana `status`/`readAt`/handover seisu ning teevad seejärel `update({ where: { id } })` ilma oodatud olekut WHERE-tingimusse lisamata (`lib/urgent/request.js:307-421`, `:433-456`, `:469-535`). Näiteks recall võib pärast enda SENT kontrolli võita vahepealse READ-i; expiry võib pärast valikut võita TAKEN-i; kaks TAKE'i võivad mõlemad õnnestuda; vana handover-accept võib võita vahepealse uue üleandmise.
@@ -4900,6 +4933,17 @@ otsus, mitte kood, ja ma ei ole seda enda eest teinud.
 **Mõju.** Töötaja loetud või võetud pöördumine võib muutuda tagasi võetuks/aegunuks, kaks töötajat võivad mõlemad arvata, et nad võtsid vastutuse, ja üleandmine võib liikuda vale laua kätte. Auditiread võivad kirjeldada omavahel võimatut järjestust.
 
 **Vastuvõtukriteerium.** Kõik siirded peavad olema võrreldava versiooni või tingimusliku `updateMany` abil atomaarsed ning vastutusjäljega samas tehingus. Päris DB paralleeltestid peavad võistlema vähemalt READ↔RECALL, TAKE↔EXPIRE, TAKE↔TAKE ja HANDOVER↔ACCEPT rajad ning lubama ainult ühe korrektse võitja.
+
+**Seis (12.08.2026): DONE — oodatav seis elab WHERE-tingimuses.**
+
+Kontroll käis JavaScriptis ja kirjutus oli tingimusteta `update({ where: { id } })`. Kahe sammu
+vahele mahtus võõras siire. Nüüd on oodatav seis päringus ja VÕITU MÕÕDETAKSE LOENDIGA: `count`
+0 tähendab „keegi jõudis ette" ja see on vastus võistlusele, mitte viga andmebaasis.
+
+`npm run urgent:race:probe` võistleb kõik neli kriteeriumis nõutud rada PÄRIS PostgreSQL-is ja
+deterministlikult — kaotaja klient on mähitud nii, et ta LOEB rea enne võitja tehingut ja
+KIRJUTAB alles pärast teda. Aegumine on ainus, mis kaotuse peale ei kuku: ta jätab selle rea
+rahule ja liigub edasi, sest üks võistlus ei tohi terve korje ette jääda.
 
 ### SOL-URG-07 — „Võtan” ei salvesta pöördumise vastutavat töötajat — P1
 
@@ -4909,6 +4953,24 @@ otsus, mitte kood, ja ma ei ole seda enda eest teinud.
 
 **Vastuvõtukriteerium.** Põhiseis vajab nimelist ja FK-ga seotud assignee/vastutaja välja ning selget ümbervõtmise lepingut. TAKE peab selle atomaarselt seadma; resolve/decline õigused peavad vastama omaniku otsusele. Paralleeltest peab tõendama üht vastutajat.
 
+**Seis (12.08.2026): DONE — vastutaja on põhirea peal, mitte ainult sündmuslogis.**
+
+`takenByUserId` on FK-ga ja `SetNull`-iga: konto kustutus ei hävita pöördumist ega võltsi
+vastutajat. „Võtan" seab ta ATOMAARSELT ja tingimus `takenByUserId: null` teeb kahest samaaegsest
+võtmisest ühe võitja.
+
+Ta on LAUA tööinfo: `deskProjection` kannab teda, `authorProjection` EI KANNA — pöördujale
+lubati lugemisaeg, mitte töötaja nimi.
+
+Migratsioon ei puuduta olemasolevaid ridu. Sündmusreast tuletatud backfill oleks täpselt see
+turvamatu tuletus, mille pärast veerg üldse tekkis; vana TAKEN rida ilma vastutajata on aus seis
+(„me ei tea, kes"), mitte tagasiulatuv oletus.
+
+**OMANIKU OTSUS (O-URG-1):** ümbervõtmist EI OLE — võetud pöördumise uuesti võtmine annab
+konflikti. Ka `resolve` ja `decline` jäävad LAUALIIKMESUSE, mitte vastutaja õiguseks: öine
+vahetus peab saama töö lõpetada. Kui vastutus peab olema ainuõigus või ümbervõetav, on see
+tooteotsus, mitte tehniline valik.
+
 ### SOL-URG-08 — üleandmine lubab aktiivset, kuid tegelikult mittevalmis sihtlauda — P1
 
 **Tõend.** Uue pöördumise loomine lubatakse ainult täieliku `deskReadiness` kontrolli järel: aktiivne liige, värske kinnitus, otsekontakt, tingimused ja kehtiv eluiga (`lib/urgent/desk.js:63-106`, `lib/urgent/request.js:127-157`). Üleandmine kontrollib sihtlaual ainult olemasolu ja `isActive === true` (`request.js:469-505`). Ta ei kontrolli aktiivset mehitajat, kinnituse värskust ega muid valmisolekutingimusi.
@@ -4916,6 +4978,15 @@ otsus, mitte kood, ja ma ei ole seda enda eest teinud.
 **Mõju.** Kiire abipalve saab anda lauale, mille viimane töötaja on eemaldatud või mille tingimused/kinnitus on aegunud. Saabuv üleandmine võib seetõttu jääda ilma reaalse vastuvõtjata.
 
 **Vastuvõtukriteerium.** Üleandmise siht peab läbima asjakohase serveripoolse vastuvõtuvalmiduse kontrolli tehingu hetkel; kui suletud lauale üleandmine on erandina vajalik, peab selleks olema eraldi põhjendatud ja auditeeritud leping. Test peab katma mehitamata, stale, kinnitamata ja toimingu ajal suletud sihtlaua.
+
+**Seis (12.08.2026): DONE — siht läbib sama vastuvõtuvalmiduse kontrolli mis uue pöördumise loomine.**
+
+Vana kood küsis ainult „kas laud on olemas ja aktiivne". Juhtumi sai anda lauale, mille viimane
+töötaja oli eemaldatud või mille kinnitus oli aegunud, ja saabuv üleandmine jäi ilma päris
+vastuvõtjata. Kontroll käib nüüd TEHINGU HETKEL ja laua rea luku all, mitte hetk varem.
+
+**KATMATA:** eraldi põhjendatud ja auditeeritud erandirada suletud lauale üleandmiseks EI OLE
+tehtud. Kui üleandmine kinnisele lauale on päris vajadus, on see oma leping oma jäljega.
 
 ### SOL-URG-09 — laua valmidus võib loomise kontrolli ja kirjutuse vahel kaduda — P1
 
@@ -4925,6 +4996,21 @@ otsus, mitte kood, ja ma ei ole seda enda eest teinud.
 
 **Vastuvõtukriteerium.** Valmiduse autoriteetsed read tuleb lukustada või loomine siduda versioonitud desk-seisuga ühes tehingus. Päris DB test peab võistlema create'i laua deaktiveerimise, tingimuse muutmise ja viimase liikme eemaldamisega.
 
+**Seis (12.08.2026): DONE — laua rida ON valmiduse mutex.**
+
+Valmidus koosneb kahest allikast (laua väljad ja aktiivsete liikmete arv) ja neid loeti eraldi
+päringutega ilma lukuta. Admini sulgemine, tingimuse muutmine või viimase mehitaja eemaldamine
+mahtus kontrolli ja kirjutuse vahele — inimesele öeldi „saadetud" lauale, mis lubadust enam ei
+kandnud.
+
+Lukk on MÕLEMAL pool: `updateUrgentDesk`, `setUrgentDeskActive`, `addUrgentDeskMember` ja
+`removeUrgentDeskMember` võtavad sama `FOR UPDATE` luku. Ainult ühel pool lukustamine ei ole
+lukk — teine pool sõidaks mööda. Avalik nähtavuspäring lukku EI võta: tema vastus on nagunii
+hetkepilt ja lugemine ei tohi adminitoiminguid oodata.
+
+Sondi kaks jaama mõõdavad luku PÄRIS mõju: admin hoiab tehingut lahti ja loomine PEATUB —
+ootamine ise on tõend. Vana kood oleks samal ajal lõpuni jõudnud.
+
 ### SOL-URG-10 — paralleelne konversioon võib luua mitu eelpöördumise mustandit ja osalise tulemuse — P1
 
 **Tõend.** Konversioon kontrollib esmalt `convertedPreInquiryId`, loob siis eraldi `PreInquiry` rea, uuendab kiire abi viite ja lõpuks kirjutab sündmuse (`lib/urgent/request.js:548-579`). Tehingut, request-row lukku ega toimingu idempotentsusvõtit ei ole. Skeemi unikaalsus kehtib ainult juba requesti külge kirjutatud `convertedPreInquiryId` väärtusele, mitte ühe requesti konversioonikatsete arvule (`prisma/schema.prisma:6008-6021`).
@@ -4932,6 +5018,13 @@ otsus, mitte kood, ja ma ei ole seda enda eest teinud.
 **Mõju.** Topeltklõps või retry võib luua mitu sama tundliku verbatim-tekstiga mustandit; viimane request update võidab ning ülejäänud mustandid jäävad kasutaja kontole orphan-andmetena. Vahepealne viga võib jätta mustandi ilma päritoluseoseta ja tagastada 500.
 
 **Vastuvõtukriteerium.** Konversioon peab olema ühe tehingu, ühe stabiilse võtme ja request-row tingimusliku lukuga täpselt üks kord. Paralleeltest peab tõendama ühe `PreInquiry`, ühe viite ja ühe CONVERTED sündmuse.
+
+**Seis (12.08.2026): DONE — konversioon on täpselt üks kord.**
+
+Mustand sünnib tehingu sees ja viide kirjutatakse tingimuslikult (`convertedPreInquiryId: null`
+WHERE-is). Kaotaja tehing veereb TERVIKUNA tagasi, seega tema mustandit ei jää kuhugi. Vana rada
+tegi kolm eraldi kirjutust: topeltklõps lõi mitu mustandit sama tundliku verbatim-tekstiga,
+viimane `update` võitis ja ülejäänud jäid kasutaja kontole päritoluseoseta koopiatena.
 
 ### SOL-URG-11 — kiire abi koond kärbib 20 000 rea järel vaikides ja kasutab Eesti kellaaja asemel UTC-d — P1
 
@@ -4941,6 +5034,20 @@ otsus, mitte kood, ja ma ei ole seda enda eest teinud.
 
 **Vastuvõtukriteerium.** Koond peab töötlema kogu valimi DB-agregatsiooni või kontrollitud lehekülgitamisega ja kandma tõendatud timezone'i lepingut; ülempiiri korral tuleb fail-closed/truncated seis nähtavaks teha. Testid peavad katma üle 20 000 rea ning Tallinna suve- ja talveaja piirid.
 
+**Seis (12.08.2026): DONE — kogu valim ja Eesti kell.**
+
+`take: 20000` ilma `orderBy`-ta tähendas, et otsustajale tagastati TÄIELIKU koondi kujuline
+vastus, millest oli teadmata osa välja jäänud — ja isegi see, MILLINE osa sisse jäi, oli
+määramata. Koond liigub nüüd `id` kursoriga läbi kogu valimi. Ülempiir (200 × 5000) on
+ohutusventiil, mitte lehekülg, ja tema täitumine tuleb vastuses välja (`truncated`) — sama
+põhimõte nagu `suppressedGroups` ja SOL-URG-01 `activeTruncated`.
+
+Kellaaja ämber tuleb EESTI seinakellast jagatud mooduli kaudu (`lib/time/estonianDay.js`), mitte
+`getUTCHours()`-ist ega kohalikust getter-ist, mis loeks masina vööndit. Suvel nihutas UTC iga
+öise pöördumise ämbri võrra valesti — ja „öö" on kogu funktsiooni mõte. Vastus ütleb ka välja,
+MILLISE kella järgi ämbrid on. Testid katavad 20 001 rida, kärpeseisu ning suve- ja talveaja
+mõlemad pooled.
+
 ### SOL-URG-12 — kiire abi partnerikinnitus ja kriitilised lauamuudatused ei salvesta otsustajat ega auditit — P1
 
 **Tõend.** `verifyUrgentDesk()` kirjutab ainult `lastVerifiedAt` aja (`lib/urgent/deskAdmin.js:172-187`) ja skeemis pole `lastVerifiedByUserId` välja (`prisma/schema.prisma:5878-5943`). Verify-route nõuab üldist platvormiadmini õigust, kuid ei anna `authz.userId` funktsioonile edasi (`app/api/admin/urgent-desks/[deskId]/verify/route.js:23-31`). Sama puudutab tingimuste muutmist, aktiveerimist ning liikmete lisamist/eemaldamist; `app/api/admin/urgent-desks/**` ei kirjuta platvormi auditilogisse.
@@ -4949,6 +5056,24 @@ otsus, mitte kood, ja ma ei ole seda enda eest teinud.
 
 **Vastuvõtukriteerium.** Kinnitaja identiteet, roll/organisatsioon ja kinnitatud tingimuste versioon peavad olema püsivalt seotud kinnitusega. Kõik valmisolekut mõjutavad adminitoimingud vajavad kohustuslikku, põhimuudatusega atomaarset auditit ning negatiivset auditirea veatesti.
 
+**Seis (12.08.2026): DONE — kinnitusel on kinnitaja ja tekstiversioon; igal adminitoimingul on jälg.**
+
+Kinnitus on nüüd kolm asja: MILLAL, KES ja MILLIST teksti (`VERIFIED_CONDITION_FIELDS`
+kanooniline sha256). Räsi on vajalik ka siis, kui tingimuse muutmine juba nullib kinnituse: see
+reegel elab koodis ja võib muutuda, räsi aga on kinnituse enda juures ja vastab tagantjärele ka
+siis, kui reegel oleks katki olnud. Tingimuse muutmine võtab nüüd ka KINNITAJA — vana kinnitaja
+ei seisa uue teksti taga.
+
+Iga valmisolekut mõjutav toiming kirjutab `DataAuditLog` rea PÕHIMUUDATUSEGA SAMAS tehingus.
+Tegija on KOHUSTUSLIK: puuduva `actorUserId` peale ei kirjutata midagi — vaikimisi `null` oleks
+tähendanud „keegi tegi" ja just see seis oli enne, sest marsruut teadis admini, aga ei andnud
+teda edasi. Jälg kannab väljanimesid, mitte väärtusi; mehitaja eemaldamise real on
+`remainingActiveMembers`, sest viimase mehitaja kadumine sulgeb piirkonna vaikselt.
+
+**KATMATA:** kinnitaja ROLL ja ORGANISATSIOON ei ole kinnituse küljes eraldi väljadena — nad on
+tuletatavad kasutaja ja auditirea kaudu. Kui partnerisuhe peab olema kinnituse enda peal
+(nt „see inimene esindas SEDA organisatsiooni SEL päeval"), on see oma mudel.
+
 ### SOL-URG-13 — tundliku pöördumise täisloendi API möödub „iga vaatamine jätab jälje” lepingust — P1
 
 **Tõend.** Üksikdetaili route kasutab teadlikult `viewUrgentRequest()` funktsiooni, mis kontrollib laualiikmelisust ja kirjutab VIEWED sündmuse (`app/api/urgent-requests/[requestId]/route.js:22-39`, `lib/urgent/request.js:289-303`). Kuid `GET /api/urgent-requests?role=desk` tagastab kuni 200 reale `deskProjection()` kuju otse (`app/api/urgent-requests/route.js:56-76`). See projektsioon sisaldab verbatim-teksti, AI-mustandit, nime, telefoni ja keeldumise põhjust (`lib/urgent/request.js:617-661`) ning ühegi rea kohta VIEWED sündmust ei teki.
@@ -4956,6 +5081,20 @@ otsus, mitte kood, ja ma ei ole seda enda eest teinud.
 **Mõju.** Volitatud lauatöötaja saab ühe päringuga lugeda kuni 200 inimese tundlikku sisu ilma lepingus nõutud isikulise vaatamisjäljeta. Olemasolev route-kuju test kontrollib ainult `[requestId]` detailirada ega tuvasta loendi bypass'i (`tests/urgent/requestRoutes.test.js:63-66`).
 
 **Vastuvõtukriteerium.** Loendi endpoint peab tagastama ainult sisuta järjekorraprojektsiooni või kirjutama iga tegelikult avaldatud detaili kohta atomaarse vaatamisauditi; eelistatult eemaldada dubleeriv täisloendi rada. HTTP-test peab kontrollima nii vastuse välju kui VIEWED sündmuste teket.
+
+**Seis (12.08.2026): DONE — dubleeriv täisloend on eemaldatud.**
+
+`GET /api/urgent-requests?role=desk` tagastas kuni 200 rida laua projektsiooni kujul ilma ühegi
+VIEWED sündmuseta, kuigi üksikvaate rada käib teadlikult `viewUrgentRequest()` kaudu just
+selleks, et iga vaatamine oleks seotud inimese ja kellaajaga.
+
+Rada on EEMALDATUD, mitte auditeeritud — see on ka kriteeriumi eelistatud lahendus. Mõõdetud:
+laual on juba oma endpoint `/api/urgent-requests/desk-queue` SISUTA järjekorraprojektsiooniga ja
+liides kasutab teda; `role=desk` kutsujat ei olnud üheski kliendis. Dubleeriv rada ei kandnud
+ühtegi vajadust, ainult riski.
+
+`410`, mitte vaikne ümbersuunamine autori loendile: vana klient peab saama teada, et ta küsib
+asja, mida enam ei ole — mitte saama tühja vastust ja arvama, et järjekord on tühi.
 
 ### SOL-WB-01 — piloodi organisatsiooni- ja omavalitsusskoop ei jõua andmepäringusse — P1
 

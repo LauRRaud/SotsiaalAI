@@ -89,7 +89,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-**Seis 12.08 hommikul (mõõdetud, mitte mäletatud):** server on **`1443b6a0`**; `origin/main` on ees ainult selle faili seisukirjete võrra — **deploy'mata koodi EI OLE**. **Deploy 12.08 08:12 sinu selgel loal** (järjekorranumbrit siia ei kirjutata: S1 ja
+**Seis 12.08 hommikul (mõõdetud, mitte mäletatud):** server on **`1443b6a0`**. **Pärast seda deploy'd on `main`-i tulnud SOL-EVENT-01 ja kogu SOL-URG — 12 leidu ja kaks migratsiooni, mis on push'imata ja deploy'mata** (vt allpool). **Deploy 12.08 08:12 sinu selgel loal** (järjekorranumbrit siia ei kirjutata: S1 ja
 `parandusaudit.md` ei ole 11.08 õhtuse deploy osas nõus — üks ütles serveriks `b7c9adf0`, teine
 `1ed23452`, **mõõdetuna oli ta `b7539345`, `.next` 11.08 18:53**; kumbki number ei pidanud
 paika)**:** 34 commit'i — AUTH-14, AUTH-15, kogu SOL-VOICE, SOL-ROOM, SOL-CALL ja SOL-INV, SOL-PAY-01…-08, -10, -11 ning kogu SOL-NOTIF — ja **seitse migratsiooni**, kõik lisavad. Mõõdetud kohe pärast: `.next` 08:12:44, kolm teenust `active`, `sotsiaal.ai` ja `127.0.0.1:3000` **200**, serveri tööpuu puhas, kolme teenuse veatasemel logi tühi. Deploy jooksis serveris lahtiühendatuna (`setsid` + logifail), sest SSH-kanal katkes väljundivoo peale ka seekord — jälgija sai `Connection reset by peer`, deploy ise seda ei märganud. **Neljateistkümnes deploy 11.08 13:45** oli `b7c9adf0`: SOL-CHAT-09…-13 (peatükk LÕPETATUD, 13/13), migratsioone ei olnud; mõõdetud kohe pärast: `.next` 13:45:53, kolm teenust `active`, `/` `/vestlus` `/toolaud` **200**, frontend'i JA rag-teenuse veatasemel logi tühi. **Kolmeteistkümnes deploy 11.08 13:06** oli `27af4a02`: SOL-CHAT-01…-08 + SOL-MEET-05/-06 ja migratsioon `20260811160000` (uus tabel `ChatTurn`, ridu 0).
@@ -133,8 +133,8 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 151/403 leidu, 13/39 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**,
-SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT, **SOL-VOICE**, **SOL-ROOM**, **SOL-CALL**, **SOL-INV**, **SOL-NOTIF**, **SOL-EVENT**). **Auditis ei ole enam ühtegi lahtist P0-d.**
+**SOL-süvaaudit: 162/403 leidu, 14/39 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**,
+SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT, **SOL-VOICE**, **SOL-ROOM**, **SOL-CALL**, **SOL-INV**, **SOL-NOTIF**, **SOL-EVENT**, **SOL-URG**). **Auditis ei ole enam ühtegi lahtist P0-d.**
 Numbrid tulevad `npm run sol:tally` väljundist, käsitsi neid siia ei kirjutata.
 
 **AUDIT ISE ON LÕPUNI VIIDUD** — kõik 20 funktsiooni, Haldus, Ruumid ja Töölaud on kaetud,
@@ -217,6 +217,21 @@ fail maksis varem alati minuti, ka siis, kui ta oli tunni pikkune. `npm run voic
 **15/15 päris PostgreSQL-is**, mitte kunagi laheneva provideriga. Brauserikiht jääb
 **NOT_PROVEN** (DOM-testisviiti ei ole).
 
+**Kiire abi rada sai 12.08 üksteist parandust (SOL-URG, peatükk täis 13/13).** Vastamata
+ohuküsimus ei ole enam vastus „ei" — edasi pääseb ainult otsene eitus, ja kliendi tekst ei saa
+enam laual „AI koostatud mustandi" silti. Iga olekumuutus ja tema vastutusjälg sünnivad koos või
+mitte kumbki, ja oodatav seis on päringus: kaks töötajat ei saa mõlemad vastutust võtta, vahepealne
+lugemine võidab tagasivõtu, aegumine ei võta juba võetud tööd ja vana kinnitus ei vii juhtumit
+uue üleandmise vale laua kätte. „Võtan" kirjutab nüüd vastutaja nimeliselt põhirea peale (see on
+laua tööinfo, mitte pöörduja oma). Laua rida on valmiduse lukk: pöördumist ei saa enam jätta
+lauale, mis kontrolli ja kirjutuse vahel kinni pandi, ja üleandmise siht peab kandma sama
+vastuvõtulubadust mis uus pöördumine. Konversioon eelpöördumiseks on täpselt üks kord. Koond
+loeb kogu valimi (kärpimine on nähtav) ja liigitab Eesti seinakella, mitte UTC järgi. Partneri
+kinnitusel on nüüd kinnitaja ja kinnitatud tekstiversioon, ning iga valmisolekut mõjutav
+adminitoiming jätab auditirea. Laua täisloendi rada, mis möödus „iga vaatamine jätab jälje"
+lepingust, on eemaldatud — laual on juba sisuta järjekord oma marsruudil.
+`npm run urgent:race:probe` **42/42 päris PostgreSQL-is**. Brauserikiht jääb **NOT_PROVEN**.
+
 **Sündmusel on 12.08 identiteet, mitte ainult võti (SOL-EVENT, peatükk täis).** Sama
 idempotentsusvõti annab edu ainult siis, kui ta kirjeldab sama tegu — teistsugune tegu sama
 võtme all katkestab tehingu selge veaga, mitte ei anna põhitehingule näilist sündmuse edu.
@@ -224,8 +239,14 @@ Kõrvalleiuna sai parandatud rada, mis päris andmebaasis ei olnud kunagi tööt
 unikaalsusrikkumist ei saa samas tehingus enam midagi küsida, sest Postgres on tehingu juba
 vigaseks märkinud. `npm run event:idempotency:probe` **13/13 päris PostgreSQL-is**.
 
-`npm test` **3958/3958** (Europe/Tallinn ja UTC), i18n ja eslint puhtad, `db:migrate:check` OK.
-**Deploy tehtud 12.08 08:12 (omaniku luba samal päeval) — deploy'mata ei ole midagi.** Välja
+`npm test` **4032/4032** (Europe/Tallinn ja UTC), i18n ja eslint puhtad, `db:migrate:check` OK.
+
+**Deploy'mata: SOL-EVENT-01 ja kogu SOL-URG (03…13) — 12 leidu ja kaks migratsiooni**
+(`20260812060000` `UrgentRequest.takenByUserId`, `20260812070000` `UrgentDesk.lastVerifiedByUserId`
++ `verifiedConditionsHash`). Mõlemad on lisavad ja olemasolevaid ridu ei puuduta; kumbki ei loo
+unikaalindeksit, seega toodangu andmete eelkontrolli nad ei vaja.
+
+**Eelmine deploy tehtud 12.08 08:12 (omaniku luba samal päeval).** Välja
 läksid AUTH-14, AUTH-15, kogu SOL-VOICE, kogu SOL-ROOM, kogu SOL-CALL, kogu SOL-INV,
 SOL-PAY-01…-08, -10, -11 ja kogu SOL-NOTIF; server on `1443b6a0`. Peale läksid ka kõik **seitse
 migratsiooni**: `20260811220000` (`VerificationLinkDispatch`), `20260811230000`
