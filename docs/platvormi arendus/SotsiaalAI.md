@@ -89,7 +89,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-**Seis 12.08 hommikul (mõõdetud, mitte mäletatud):** server on **`1443b6a0`**. **Pärast seda deploy'd on `main`-i tulnud SOL-EVENT-01 ja kogu SOL-URG — 12 leidu ja kaks migratsiooni, mis on push'imata ja deploy'mata** (vt allpool). **Deploy 12.08 08:12 sinu selgel loal** (järjekorranumbrit siia ei kirjutata: S1 ja
+**Seis 12.08 (mõõdetud, mitte mäletatud):** server on **`1443b6a0`**. **Pärast seda deploy'd on `main`-i tulnud SOL-EVENT-01, kogu SOL-URG ja kogu SOL-WB — 30 leidu ja VIIS migratsiooni, mis on push'imata ja deploy'mata.** Kolm uuemat migratsiooni (`…080000` osalusprojektsioon, `…090000` kontrollpunkti skalaar, `…100000` vaataja kutse + FK `SetNull` → `Cascade`) puudutavad tootmises **0 rida** — 0 `WellbeingRecord`, 0 pilooti, 0 vaatajat, mõõdetud psql-iga enne migratsioonide kirjutamist. **Deploy 12.08 08:12 sinu selgel loal** (järjekorranumbrit siia ei kirjutata: S1 ja
 `parandusaudit.md` ei ole 11.08 õhtuse deploy osas nõus — üks ütles serveriks `b7c9adf0`, teine
 `1ed23452`, **mõõdetuna oli ta `b7539345`, `.next` 11.08 18:53**; kumbki number ei pidanud
 paika)**:** 34 commit'i — AUTH-14, AUTH-15, kogu SOL-VOICE, SOL-ROOM, SOL-CALL ja SOL-INV, SOL-PAY-01…-08, -10, -11 ning kogu SOL-NOTIF — ja **seitse migratsiooni**, kõik lisavad. Mõõdetud kohe pärast: `.next` 08:12:44, kolm teenust `active`, `sotsiaal.ai` ja `127.0.0.1:3000` **200**, serveri tööpuu puhas, kolme teenuse veatasemel logi tühi. Deploy jooksis serveris lahtiühendatuna (`setsid` + logifail), sest SSH-kanal katkes väljundivoo peale ka seekord — jälgija sai `Connection reset by peer`, deploy ise seda ei märganud. **Neljateistkümnes deploy 11.08 13:45** oli `b7c9adf0`: SOL-CHAT-09…-13 (peatükk LÕPETATUD, 13/13), migratsioone ei olnud; mõõdetud kohe pärast: `.next` 13:45:53, kolm teenust `active`, `/` `/vestlus` `/toolaud` **200**, frontend'i JA rag-teenuse veatasemel logi tühi. **Kolmeteistkümnes deploy 11.08 13:06** oli `27af4a02`: SOL-CHAT-01…-08 + SOL-MEET-05/-06 ja migratsioon `20260811160000` (uus tabel `ChatTurn`, ridu 0).
@@ -133,9 +133,27 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 162/403 leidu, 14/39 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**,
-SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT, **SOL-VOICE**, **SOL-ROOM**, **SOL-CALL**, **SOL-INV**, **SOL-NOTIF**, **SOL-EVENT**, **SOL-URG**). **Auditis ei ole enam ühtegi lahtist P0-d.**
+**SOL-süvaaudit: 180/403 leidu, 15/39 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**,
+SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT, **SOL-VOICE**, **SOL-ROOM**, **SOL-CALL**, **SOL-INV**, **SOL-NOTIF**, **SOL-EVENT**, **SOL-URG**, **SOL-WB**). **Auditis ei ole enam ühtegi lahtist P0-d.**
 Numbrid tulevad `npm run sol:tally` väljundist, käsitsi neid siia ei kirjutata.
+
+**SOL-WB (Tööheaolu) lõpetatud 12.08 — 18/18, sh neli leidu jätkufailist.** Kandvad parandused:
+**osalusprojektsioon** (`WellbeingParticipation`) — kirje kuulub sellesse piloodikoondisse, kelle
+tööna ta sündis, ja seda ei otsusta enam kliendi saadetud `roleGroup` string; §D8 piir jäi
+puutumata, sest projektsioon on eraldi tabel, mitte veerg kirje peal · **range väljaskeem** —
+tundmatu ohuväärtus ei muutu enam „ohtu ei ole" vastuseks (`dangerStatus: "ONGOING"` vale
+kirjapildiga andis varem `no_immediate_danger`) · **fikseeritud perioodivõrk**, mis võtab ära
+differencing-rünnaku eelduse, ja künnise alampiir koodis (`WELLBEING_MIN_GROUP_SIZE=1` eemaldas
+varem kaitse täielikult) · **kontrollpunkt** — vastatud read ei näljuta enam taimerit, kokkulepe
+liigub parandusega kaasa ja tal on identiteet · **erindi tekst ei jõua enam kasutajani** ·
+**piloodivaataja ligipääsu saab ära võtta** ja iga andmine jätab jälje · **andmekoopia kannab
+elutsüklit ja mustandeid**. `npm run wb:pilot:probe` **28/28** päris PostgreSQL-is.
+
+**KAKS OTSUST OOTAB SIND** (kood on mõlemaks valmis, valik ei ole minu teha): **analüüsiühik**
+(`record` vs `latest_per_person` — vaikeväärtust ei vahetatud, sest see muudaks kõigi
+olemasolevate raportite tähendust) ja **kui kaugele privaatsuskaitsega minna** (päringueelarve,
+müra või „üks perioodiliik piloodi kohta"). Kolmas, väiksem: liikmesuseta konto kirjed ei osale
+üheski piloodikoondis — see on SOL-WB-01 otsene tagajärg.
 
 **AUDIT ISE ON LÕPUNI VIIDUD** — kõik 20 funktsiooni, Haldus, Ruumid ja Töölaud on kaetud,
 pluss funktsioonideülene ring (kustutus, andmekoopia, retention, RAG, failid, SMTP, süvalingid,
