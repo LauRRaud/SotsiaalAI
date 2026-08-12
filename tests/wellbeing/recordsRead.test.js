@@ -94,16 +94,16 @@ test("deleteWellbeingRecordForUser deletes only the owner's record and reports 4
   ]);
 
   const foreign = await deleteWellbeingRecordForUser("user_1", "rec_theirs", { prisma });
-  assert.deepEqual(foreign, { deleted: false, count: 0 });
+  assert.deepEqual(foreign, { deleted: false, count: 0, draftsDeleted: 0 });
   assert.equal(rows.length, 2, "a foreign delete must not remove anything");
 
   const own = await deleteWellbeingRecordForUser("user_1", "rec_mine", { prisma });
-  assert.deepEqual(own, { deleted: true, count: 1 });
+  assert.deepEqual(own, { deleted: true, count: 1, draftsDeleted: 0 });
   assert.equal(rows.length, 1);
   assert.equal(rows[0].id, "rec_theirs");
 
   const repeat = await deleteWellbeingRecordForUser("user_1", "rec_mine", { prisma });
-  assert.deepEqual(repeat, { deleted: false, count: 0 });
+  assert.deepEqual(repeat, { deleted: false, count: 0, draftsDeleted: 0 });
 });
 
 test("deleting a record changes the live aggregate without a materialized layer", async () => {

@@ -15,12 +15,13 @@ export async function GET(request) {
 
   const requestUrl = new URL(request.url);
   try {
-    const drafts = await listWellbeingOutputDraftsForUser(auth.userId, {
+    const { drafts, hasMore, nextCursor } = await listWellbeingOutputDraftsForUser(auth.userId, {
       outputType: requestUrl.searchParams.get("outputType"),
       recipientType: requestUrl.searchParams.get("recipientType"),
+      cursor: requestUrl.searchParams.get("cursor"),
       take: requestUrl.searchParams.get("take")
     });
-    return wellbeingJson({ ok: true, drafts });
+    return wellbeingJson({ ok: true, drafts, hasMore, nextCursor });
   } catch (error) {
     console.error("[wellbeing] output draft list failed", safeError(error));
     return wellbeingJson({ ok: false, message: "wellbeing.errors.output_drafts_failed" }, 500);

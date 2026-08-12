@@ -63,6 +63,11 @@ export default function MyRecordsWorkflow({ onNavigate, locale = "et" }) {
   const [detail, setDetail] = useState(null);
   const [detailStatus, setDetailStatus] = useState("idle");
   const [deleteStatus, setDeleteStatus] = useState("idle");
+  const [recordsCursor, setRecordsCursor] = useState(null);
+  const [draftsCursor, setDraftsCursor] = useState(null);
+  const [moreStatus, setMoreStatus] = useState("idle");
+  const [openedDraft, setOpenedDraft] = useState(null);
+  const [openDraftStatus, setOpenDraftStatus] = useState("idle");
   const [focusDraftId, setFocusDraftId] = useState("");
   const [reloadToken, setReloadToken] = useState(0);
   // Nähtud töövoo-tüübid akumuleeruvad, et filtri nupud ei kaoks filtreerimisel
@@ -123,9 +128,12 @@ export default function MyRecordsWorkflow({ onNavigate, locale = "et" }) {
         }
         if (alive) {
           setRecords(Array.isArray(recordsPayload.records) ? recordsPayload.records : []);
+          /* SOL-WB-15: „kas on veel" tuleb serverilt, mitte ei arvata pikkusest. */
+          setRecordsCursor(recordsPayload.hasMore ? recordsPayload.nextCursor : null);
           setDrafts(draftsResponse.ok && draftsPayload?.ok && Array.isArray(draftsPayload.drafts)
             ? draftsPayload.drafts
             : []);
+          setDraftsCursor(draftsPayload?.hasMore ? draftsPayload.nextCursor : null);
           setStatus("ready");
         }
       } catch {
@@ -186,11 +194,89 @@ export default function MyRecordsWorkflow({ onNavigate, locale = "et" }) {
     [knownWorkflowTypes]
   );
 
-  async function deleteRecord(recordId) {
+  /* SOL-WB-15: „laadi veel" jätkab kursorilt, ei alusta otsast peale. Uued
+     read LISATAKSE, sest kasutaja loeb parasjagu vanemaid. */
+  async function loadMoreRecords() {
+    if (!recordsCursor || moreStatus === "loading") return;
+    setMoreStatus("loading");
+    try {
+      const params = new URLSearchParams();
+      if (workflowFilter !== "all") params.set("workflowType", workflowFilter);
+      params.set("cursor", recordsCursor);
+      const response = await fetch(`/api/wellbeing/records?${params.toString()}`, {
+        headers: { Accept: "application/json" }
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload?.ok) throw new Error(payload?.message || "wellbeing.errors.records_failed");
+      setRecords((current) => [...current, ...(Array.isArray(payload.records) ? payload.records : [])]);
+      setRecordsCursor(payload.hasMore ? payload.nextCursor : null);
+      setMoreStatus("idle");
+    } catch {
+      setMoreStatus("error");
+    }
+  }
+
+  async function loadMoreDrafts() {
+    if (!draftsCursor || moreStatus === "loading") return;
+    setMoreStatus("loading");
+    try {
+      const response = await fetch(`/api/wellbeing/output-drafts?cursor=${encodeURIComponent(draftsCursor)}`, {
+        headers: { Accept: "application/json" }
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload?.ok) throw new Error(payload?.message || "wellbeing.errors.output_drafts_failed");
+      setDrafts((current) => [...current, ...(Array.isArray(payload.drafts) ? payload.drafts : [])]);
+      setDraftsCursor(payload.hasMore ? payload.nextCursor : null);
+      setMoreStatus("idle");
+    } catch {
+      setMoreStatus("error");
+    }
+  }
+
+  /* SOL-WB-16: mustandi AVAMINE — tekst tuleb tagasi, mitte ainult tema
+     olemasolu fakt. */
+  async function openDraft(draftId) {
+    setOpenDraftStatus("loading");
+    try {
+      const response = await fetch(`/api/wellbeing/output-drafts/${encodeURIComponent(draftId)}`, {
+        headers: { Accept: "application/json" }
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload?.ok) throw new Error(payload?.message || "wellbeing.errors.output_draft_not_found");
+      setOpenedDraft(payload.draft);
+      setOpenDraftStatus("ready");
+    } catch {
+      setOpenDraftStatus("error");
+    }
+  }
+
+  /* SOL-WB-16: mustandi KUSTUTAMINE. Üleantud mustandi puhul ütleb vastus, et
+     jagatud koopia jääb kovisiooni juhtumisse — seda ei varjata. */
+  async function deleteDraft(draftId) {
+    setOpenDraftStatus("deleting");
+    try {
+      const response = await fetch(`/api/wellbeing/output-drafts/${encodeURIComponent(draftId)}`, {
+        method: "DELETE",
+        headers: { Accept: "application/json" }
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload?.ok) throw new Error(payload?.message || "wellbeing.errors.output_draft_not_found");
+      setOpenedDraft(null);
+      setOpenDraftStatus(payload.handedOff ? "deleted_handed_off" : "deleted");
+      setReloadToken((token) => token + 1);
+    } catch {
+      setOpenDraftStatus("error");
+    }
+  }
+
+  async function deleteRecord(recordId, { deleteDrafts = false } = {}) {
     if (!recordId || deleteStatus === "deleting") return;
     setDeleteStatus("deleting");
     try {
-      const response = await fetch(`/api/wellbeing/records/${encodeURIComponent(recordId)}`, {
+      /* SOL-WB-16: mustandite saatus on teadlik valik ja ta läheb serverile
+         kaasa — vaikimisi jäävad nad alles. */
+      const query = deleteDrafts ? "?drafts=delete" : "";
+      const response = await fetch(`/api/wellbeing/records/${encodeURIComponent(recordId)}${query}`, {
         method: "DELETE",
         headers: { Accept: "application/json" }
       });
@@ -242,6 +328,17 @@ export default function MyRecordsWorkflow({ onNavigate, locale = "et" }) {
                     {t("wellbeing.my_records.open_related_record", "Ava seotud kirje")}
                   </Button>
                 ) : null}
+                {/* SOL-WB-16: mustandit sai varem ainult NÄHA, mitte avada ega
+                    kustutada — tundlik tekst jäi kättesaamatuks. */}
+                <Button type="button" size="sm" onClick={() => openDraft(draft.id)}>
+                  {t("wellbeing.my_records.open_draft", "Ava mustand")}
+                </Button>
+                <Button type="button" size="sm" onClick={() => deleteDraft(draft.id)}>
+                  {t("wellbeing.my_records.delete_draft", "Kustuta mustand")}
+                </Button>
+                {openedDraft?.id === draft.id ? (
+                  <p>{openedDraft.editedText || openedDraft.generatedText}</p>
+                ) : null}
               </li>
             ))}
           </ul>
@@ -252,6 +349,23 @@ export default function MyRecordsWorkflow({ onNavigate, locale = "et" }) {
               : t("wellbeing.my_records.drafts_empty", "Pooleli jäänud mustandeid ei ole.")}
           </p>
         )}
+        {draftsCursor ? (
+          <Button type="button" size="sm" onClick={loadMoreDrafts} disabled={moreStatus === "loading"}>
+            {t("wellbeing.my_records.load_more", "Laadi veel")}
+          </Button>
+        ) : null}
+        {openDraftStatus === "deleted_handed_off" ? (
+          <p role="status">
+            {t(
+              "wellbeing.my_records.draft_deleted_handed_off",
+              "Mustand kustutati. Kovisiooni juba üle antud koopia jääb kovisiooni juhtumisse alles."
+            )}
+          </p>
+        ) : openDraftStatus === "deleted" ? (
+          <p role="status">{t("wellbeing.my_records.draft_deleted", "Mustand kustutati.")}</p>
+        ) : openDraftStatus === "error" ? (
+          <p role="status">{t("wellbeing.my_records.draft_action_failed", "Mustandi toiming ebaõnnestus.")}</p>
+        ) : null}
       </section>
 
       <div aria-label={t("wellbeing.my_records.filters_label", "Kirjete filtrid")}>
@@ -320,6 +434,7 @@ export default function MyRecordsWorkflow({ onNavigate, locale = "et" }) {
                     detailStatus={detailStatus}
                     deleteStatus={deleteStatus}
                     onDelete={() => deleteRecord(record.id)}
+                    onDeleteWithDrafts={() => deleteRecord(record.id, { deleteDrafts: true })}
                     onClose={() => setSelectedId(null)}
                     onChanged={() => setReloadToken((token) => token + 1)}
                     onOpenRecord={(id) => setSelectedId(id)}
@@ -334,6 +449,11 @@ export default function MyRecordsWorkflow({ onNavigate, locale = "et" }) {
             ))}
           </ul>
         )}
+        {recordsCursor ? (
+          <Button type="button" size="sm" onClick={loadMoreRecords} disabled={moreStatus === "loading"}>
+            {t("wellbeing.my_records.load_more", "Laadi veel")}
+          </Button>
+        ) : null}
         {deleteStatus === "deleted" ? (
           <p role="status">{t("wellbeing.my_records.deleted", "Kirje kustutati.")}</p>
         ) : deleteStatus === "error" ? (
@@ -356,7 +476,7 @@ function factorList(values) {
 }
 
 function RecordDetail({
-  detail, detailStatus, deleteStatus, onDelete, onClose, onChanged, onOpenRecord,
+  detail, detailStatus, deleteStatus, onDelete, onDeleteWithDrafts, onClose, onChanged, onOpenRecord,
   workflowLabel, signalLabel, formatDate, onNavigate, t
 }) {
   const record = detail?.record || null;
@@ -656,6 +776,18 @@ function RecordDetail({
             ? t("wellbeing.my_records.deleting", "Kustutan…")
             : t("wellbeing.my_records.delete", "Kustuta kirje")}
         </Button>
+        {/* SOL-WB-16: mustandite saatus on TEADLIK valik. Vaikimisi jäävad nad
+            alles — mustand on eraldi kirjutatud tekst, mitte kirje tuletis. */}
+        {(detail?.drafts || []).length > 0 ? (
+          <Button
+            type="button"
+            size="sm"
+            onClick={onDeleteWithDrafts}
+            disabled={deleteStatus === "deleting"}
+          >
+            {t("wellbeing.my_records.delete_with_drafts", "Kustuta koos mustanditega")}
+          </Button>
+        ) : null}
       </div>
     </div>
   );

@@ -37,7 +37,20 @@
 
 **Vastuvõtukriteerium.** Mõlemal omaniku loendil peab olema stabiilne cursor-paginatsioon, deterministlik sekundaarne järjestus, `hasMore` ja UI jätkamistoiming. Negatiivtest peab looma üle 100 kirje ja üle 50 mustandi, läbima kõik lehed täpselt ühe korra ning kontrollima lisamist/kustutamist lehtede vahel.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis (12.08.2026): DONE — loend ei lõpe enam vaikselt.**
+
+Mõlemal loendil on nüüd kursor, **deterministlik teisene järjestus `(createdAt desc, id desc)`**
+ja `hasMore`. `createdAt` üksi ei ole unikaalne: sama sekundi read hüppaksid lehtede vahel
+edasi-tagasi. Kursor on `skip: 1` mustriga, mitte offset — offset triivib, kui vahepeal rida
+lisandub või kustub. Server küsib **ühe rea üle lehe**, seega „kas on veel" ei nõua teist päringut
+ega arva midagi pikkusest. `records` ja `drafts` jäid vastuses samale kohale, seega vana klient ei
+murdu — ta lihtsalt ei tea, et veel on. Liideses on „Laadi veel" mõlemal loendil ja ta LISAB
+read, ei alusta otsast.
+
+**Kuus ühikut kursorit austava fake'i vastu** (ilma selleta „läbiks" iga lehekülgitus): 137 kirjet
+ja 63 mustandit loetakse **täpselt üks kord**, ja kriteeriumi mõlemad vahepealsed muudatused —
+juba loetud rea KUSTUTAMINE ei libista ülejäänuid (offset oleks ühe vahele jätnud) ja uue,
+KÕIGE VÄRSKEMA rea lisamine ei pane teist lehte esimest kordama.
 
 ### SOL-WB-16 — salvestatud mustandit ei saa avada, jätkata ega kustutada — P1
 
@@ -47,7 +60,28 @@
 
 **Vastuvõtukriteerium.** Omanik-skoobitud detail, jätkamine ja idempotentne kustutus peavad olema API-s ja UI-s; lähtekirje kustutamisel peab leping selgelt pakkuma mustandite kaasakustutust või säilitamise teadlikku valikut. Negatiivtestid peavad katma võõra ID 404, stale CAS-i, handed-off mustandi kustutuspoliitika, katkenud `sourceRecordId` ning lehelt lahkumise järel jätkamise.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis (12.08.2026): DONE — mustand on nüüd avatav, jätkatav ja kustutatav.**
+
+`[id]` marsruut eksportis ainult `PUT`-i ja `PATCH`-i: pärast lehelt lahkumist nägi kasutaja
+ainult SEDA, et mustand on olemas. Tundlikku teksti ei saanud tagasi ega kustutada. Nüüd on
+**`GET`** (omanik-skoop `findFirst`-iga — võõras ID annab 404, mitte „ei ole õigust") ja
+**`DELETE`** (idempotentne: teine kustutus ei viska). Liideses on mõlemad nupud ja avatud mustandi
+tekst.
+
+**ÜLEANTUD MUSTANDI POLIITIKA on kirja pandud, mitte välja jäetud:** kustutada TOHIB ka siis, kui
+mustand on kovisiooni üle antud — see on kasutaja enda privaatne tuletis ja tema õigus oma andmeid
+kustutada ei sõltu sellest, et ta kunagi midagi jagas. AGA kustutus EI VÕTA jagatut tagasi:
+kovisiooni juhtum on eraldi objekt oma elutsükliga. Vastus ütleb selle välja (`handedOff: true`)
+ja liides ütleb kasutajale sama.
+
+**Lähtekirje kustutamine on nüüd TEADLIK valik:** `sourceRecordId` on FK-ta tekstiväli, seega
+kaskaad mustandeid ei puuduta ja nad jäid katkenud naasmispunktiga alles. `?drafts=delete` viib
+nad kaasa; **vaikimisi jäävad**, sest mustand on eraldi kirjutatud tekst, mitte kirje tuletis,
+mille saab uuesti genereerida. Liides pakub teist nuppu ainult siis, kui kirjel mustandeid ON.
+
+**NOT_PROVEN:** stale CAS-i ja lehelt lahkumise järgse jätkamise päris brauseriläbisõit — CAS ise
+on olemasolev ja testitud rada (`saveWellbeingOutputDraftForUser`), aga selle ploki uued rajad on
+tõendatud ühikutega, mitte klikkidega.
 
 ### SOL-WB-17 — kolm neljast toevalikust ei jõua tegeliku adressaadini — P1
 

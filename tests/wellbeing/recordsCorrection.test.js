@@ -258,7 +258,7 @@ test("deleting the original leaves the correction readable", async () => {
   }, { prisma });
 
   const deleted = await deleteWellbeingRecordForUser("user_1", "rec_a", { prisma });
-  assert.deepEqual(deleted, { deleted: true, count: 1 });
+  assert.deepEqual(deleted, { deleted: true, count: 1, draftsDeleted: 0 });
 
   const correction = await getWellbeingRecordForUser("user_1", record.id, { prisma });
   assert.ok(correction, "parandus jääb alles ka siis, kui parandatav kustutatakse");

@@ -101,8 +101,11 @@ test("listWellbeingRecordsForUser only lists the current user's private records 
       lt: new Date("2026-06-01T00:00:00.000Z")
     }
   });
-  assert.equal(calls[0].take, 80);
-  assert.deepEqual(calls[0].orderBy, { createdAt: "desc" });
+  /* SOL-WB-15: üks rida üle küsitud lehe — nii saab „kas on veel" vastuse
+     ilma teise päringuta, ja järjestus on totaalne (`id` teisese võtmena),
+     muidu hüppaksid sama sekundi read lehtede vahel. */
+  assert.equal(calls[0].take, 81);
+  assert.deepEqual(calls[0].orderBy, [{ createdAt: "desc" }, { id: "desc" }]);
 });
 
 test("createRecoveryRecordForUser stores a private recovery workflow record", async () => {

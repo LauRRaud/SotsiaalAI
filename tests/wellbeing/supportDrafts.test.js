@@ -278,11 +278,15 @@ test("listWellbeingOutputDraftsForUser only returns the current user's filtered 
     context: quickCheckResult
   }, { prisma });
 
-  const drafts = await listWellbeingOutputDraftsForUser("user-1", {
+  /* SOL-WB-15: loend tagastab nüüd ka kursori ja `hasMore`-i — vaikne lõpp 50
+     rea juures oli leid. */
+  const { drafts, hasMore, nextCursor } = await listWellbeingOutputDraftsForUser("user-1", {
     outputType: "covision_input",
     recipientType: "covision"
   }, { prisma });
 
+  assert.equal(hasMore, false);
+  assert.equal(nextCursor, null);
   assert.equal(drafts.length, 1);
   assert.equal(drafts[0].userId, "user-1");
   assert.equal(drafts[0].outputType, "covision_input");

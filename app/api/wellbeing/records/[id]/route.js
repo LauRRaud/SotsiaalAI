@@ -37,11 +37,14 @@ export async function DELETE(request, context) {
 
   try {
     const id = await readId(context);
-    const { deleted } = await deleteWellbeingRecordForUser(auth.userId, id);
+    /* SOL-WB-16: mustandite saatus on kutsuja TEADLIK valik, mitte vaikimisi
+       otsus. Liides küsib seda siis, kui kirjel mustandeid on. */
+    const deleteDrafts = new URL(request.url).searchParams.get("drafts") === "delete";
+    const { deleted, draftsDeleted } = await deleteWellbeingRecordForUser(auth.userId, id, { deleteDrafts });
     if (!deleted) {
       return wellbeingJson({ ok: false, message: "wellbeing.errors.record_not_found" }, 404);
     }
-    return wellbeingJson({ ok: true, deleted: true });
+    return wellbeingJson({ ok: true, deleted: true, draftsDeleted });
   } catch (error) {
     return wellbeingErrorResponse(error, { label: "record delete failed" });
   }
