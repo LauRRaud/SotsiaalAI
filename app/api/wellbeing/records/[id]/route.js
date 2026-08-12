@@ -3,8 +3,7 @@ import {
   getWellbeingRecordForUser
 } from "@/lib/wellbeing/records";
 import { listWellbeingOutputDraftsForRecord } from "@/lib/wellbeing/supportDrafts";
-import { safeError } from "@/lib/privacy/safeError";
-import { requireWellbeingApiUser, wellbeingJson } from "../../_shared";
+import { requireWellbeingApiUser, wellbeingErrorResponse, wellbeingJson } from "../../_shared";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -28,14 +27,7 @@ export async function GET(request, context) {
     const drafts = await listWellbeingOutputDraftsForRecord(auth.userId, id);
     return wellbeingJson({ ok: true, record, drafts });
   } catch (error) {
-    const status = Number(error?.status) || 500;
-    if (status >= 500) {
-      console.error("[wellbeing] record detail failed", safeError(error));
-    }
-    return wellbeingJson({
-      ok: false,
-      message: error?.message || "wellbeing.errors.records_failed"
-    }, status);
+    return wellbeingErrorResponse(error, { label: "record detail failed" });
   }
 }
 
@@ -51,13 +43,6 @@ export async function DELETE(request, context) {
     }
     return wellbeingJson({ ok: true, deleted: true });
   } catch (error) {
-    const status = Number(error?.status) || 500;
-    if (status >= 500) {
-      console.error("[wellbeing] record delete failed", safeError(error));
-    }
-    return wellbeingJson({
-      ok: false,
-      message: error?.message || "wellbeing.errors.record_delete_failed"
-    }, status);
+    return wellbeingErrorResponse(error, { label: "record delete failed" });
   }
 }

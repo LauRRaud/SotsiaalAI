@@ -1,6 +1,5 @@
 import { recordWellbeingCheckpointFollowUpForUser } from "@/lib/wellbeing/checkpoint";
-import { safeError } from "@/lib/privacy/safeError";
-import { requireWellbeingApiUser, wellbeingJson } from "../../../../_shared";
+import { requireWellbeingApiUser, wellbeingErrorResponse, wellbeingJson } from "../../../../_shared";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -23,14 +22,6 @@ export async function POST(request, context) {
     await recordWellbeingCheckpointFollowUpForUser(auth.userId, id, body);
     return wellbeingJson({ ok: true });
   } catch (error) {
-    const status = Number(error?.status) || 500;
-    if (status >= 500) {
-      console.error("[wellbeing] checkpoint follow-up failed", safeError(error));
-    }
-    return wellbeingJson({
-      ok: false,
-      message: error?.message || "wellbeing.errors.checkpoint_follow_up_failed",
-      ...(error?.details ? { details: error.details } : {})
-    }, status);
+    return wellbeingErrorResponse(error, { label: "checkpoint follow-up failed" });
   }
 }

@@ -2,6 +2,8 @@ import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
 import { authConfig } from "@/auth";
+import { safeError } from "@/lib/privacy/safeError";
+import { isWellbeingDomainError, newWellbeingCorrelationId, WELLBEING_UNEXPECTED_ERROR } from "@/lib/wellbeing/apiErrors";
 import {
   buildWellbeingExportDataset,
   exportWellbeingCsv
@@ -38,6 +40,19 @@ function errorJson(message, status = 400) {
   return json({ ok: false, message }, status);
 }
 
+/* SOL-WB-11: ligipääsu- ja skoobivead on tuntud domeenivead ja tohivad oma võtme
+   välja anda; kõik muu (nt Prisma erind skoopide lugemisel) on ootamatu ja
+   annab fikseeritud võtme koos korrelatsiooni-ID-ga. Vahet teeb `isWellbeingDomainError`,
+   mitte see, kas erindil juhtus `message` olema. */
+function accessErrorJson(error) {
+  if (isWellbeingDomainError(error)) {
+    return errorJson(error.message, Number(error.status));
+  }
+  const correlationId = newWellbeingCorrelationId();
+  console.error("[wellbeing] pilot aggregate failed", safeError(error, { correlationId }));
+  return json({ ok: false, message: WELLBEING_UNEXPECTED_ERROR, correlationId }, 500);
+}
+
 function filtersFromRequest(request) {
   const url = new URL(request.url);
   return {
@@ -52,16 +67,16 @@ function filtersFromRequest(request) {
 
 export async function GET(request) {
   const session = await getServerSession(authConfig).catch(() => null);
-  const access = await resolveWellbeingPilotAccess(session);
-  if (!access.ok) {
-    return errorJson(access.message || "wellbeing.pilot.forbidden", access.status || 403);
-  }
-
+  let access;
   let filters;
   try {
+    access = await resolveWellbeingPilotAccess(session);
+    if (!access.ok) {
+      return errorJson(access.message || "wellbeing.pilot.forbidden", access.status || 403);
+    }
     filters = resolveWellbeingPilotAggregateFilters(filtersFromRequest(request), access);
   } catch (error) {
-    return errorJson(error?.message || "wellbeing.pilot.forbidden", error?.status || 403);
+    return accessErrorJson(error);
   }
 
   const url = new URL(request.url);
@@ -69,8 +84,16 @@ export async function GET(request) {
   const datasetOptions = filters.minimumGroupSize
     ? { env: { ...process.env, WELLBEING_MIN_GROUP_SIZE: String(filters.minimumGroupSize) } }
     : {};
-  const dataset = await buildWellbeingExportDataset(filters, datasetOptions);
-  const report = buildWellbeingPilotReport(dataset);
+  /* Koondi arvutamine oli varem KOGU try-plokist väljas: Prisma tõrge siin
+     lendas käsitlemata välja. Sama värav kehtib ka temale. */
+  let dataset;
+  let report;
+  try {
+    dataset = await buildWellbeingExportDataset(filters, datasetOptions);
+    report = buildWellbeingPilotReport(dataset);
+  } catch (error) {
+    return accessErrorJson(error);
+  }
 
   if (format === "csv") {
     return new NextResponse(exportWellbeingCsv(dataset), {

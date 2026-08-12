@@ -3,7 +3,7 @@ import {
   listWellbeingOutputDraftsForUser
 } from "@/lib/wellbeing/supportDrafts";
 import { safeError } from "@/lib/privacy/safeError";
-import { requireWellbeingApiUser, wellbeingJson } from "../_shared";
+import { requireWellbeingApiUser, wellbeingErrorResponse, wellbeingJson } from "../_shared";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -36,13 +36,6 @@ export async function POST(request) {
     const draft = await createWellbeingOutputDraftForUser(auth.userId, body);
     return wellbeingJson({ ok: true, draft }, 201);
   } catch (error) {
-    const status = Number(error?.status) || 500;
-    if (status >= 500) {
-      console.error("[wellbeing] output draft create failed", safeError(error));
-    }
-    return wellbeingJson({
-      ok: false,
-      message: error?.message || "wellbeing.errors.output_draft_failed"
-    }, status);
+    return wellbeingErrorResponse(error, { label: "output draft create failed" });
   }
 }

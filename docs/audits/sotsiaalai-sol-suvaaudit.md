@@ -5343,6 +5343,32 @@ lehitsemine on UI-töö ja tal ei ole täna kasutajat: piir on 20 000 kirjet üh
 
 **Vastuvõtukriteerium.** Ainult tuntud 4xx domeenivead tohivad oma messageKey/details välja anda; kõik ootamatud vead peavad tagastama fikseeritud üldvõtme ja korrelatsiooni-ID. Veasüstitest peab kasutama Prisma-laadset tundliku tekstiga viga kõigis jagatud route-mustrites.
 
+**Seis (12.08.2026): DONE — 4xx staatus üksi ei ole enam luba rääkida.**
+
+Kõik seitseteist rada logisid 500-vea `safeError()` kaudu õigesti, aga panid vastusesse ikkagi
+`error?.message`. Prisma erind kannab tabelinime, veerunime, failiteed ja sageli ka väärtust —
+ja liides proovib sama välja tõlkevõtmena kasutada, mis tegi juhuslikust veatekstist avaliku
+API lepingu osa.
+
+Otsus elab nüüd ühes puhtas moodulis (`lib/wellbeing/apiErrors.js`): oma sõnumi ja `details`
+saab välja anda AINULT erind, millel on **4xx staatus JA tõlkevõtme kujuga sõnum**
+(`^[a-z][a-z0-9_]*(\.[a-z0-9_]+)+$`). Kõik muu annab `wellbeing.errors.unexpected` +
+korrelatsiooni-ID, mille järgi logist tegelik viga üles leiab. **`details` on sama otsuse teine
+pool** — kui sõnum ei kvalifitseerunud, ei tule ka detailid kaasa.
+
+Moodul on `_shared.js`-ist LAHUS teadlikult: `_shared.js` impordib `next-auth`-i ja teda ei saa
+ühiktestis kutsuda. Värav, mida ei saa testida, ei ole värav.
+
+Kaks kohta said katte, mida neil üldse ei olnud: **piloodi koondi arvutus oli try-plokist väljas**
+ja admini koondil ei olnud `try`-d üldse — Prisma tõrge lendas mõlemas käsitlemata välja.
+
+**Viis ühikut.** Veasüst on päris Prisma vea kujuga (`P2009`, `prisma.wellbeingRecord.create()`
+invocation, failitee, väärtus ja e-posti aadress) ja test nõuab, et ükski neist kuuest stringist
+vastuses ei esineks. **Kõige tähtsam piir on eraldi kaetud:** võõras erind 4xx staatusega EI
+kvalifitseeru. Ja kate on tõendatud eraldi — test käib kõik 20+ marsruudifaili läbi ja nõuab, et
+mitte ükski neist ei kirjutaks `error?.message` vastusesse; ilma selleta kehtiks parandus ainult
+nendes failides, mida ma juhtusin avama.
+
 ### SOL-WB-12 — piloodivaataja ligipääsu ei saa platvormi API kaudu tühistada — P1
 
 **Tõend.** Admini piloodi API pakub ainult scope'ide GET/POST-i ning vaataja lisamise POST-i (`app/api/admin/wellbeing/pilots/route.js:38-61`, `app/api/admin/wellbeing/pilots/[id]/viewers/route.js:30-44`). `pilotScopes.js` sisaldab ainult list/create/add teenuseid (`lib/wellbeing/pilotScopes.js:133-215`); puuduvad viewer DELETE, scope PATCH/deactivate ja aegumise muutmise rajad. E-posti põhine `WellbeingPilotViewer` rida säilib ka seotud User kustumisel `SetNull`-iga (`prisma/schema.prisma:1560-1573`).

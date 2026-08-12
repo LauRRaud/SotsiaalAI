@@ -1,6 +1,5 @@
 import { createRoleBoundariesRecordForUser } from "@/lib/wellbeing/records";
-import { safeError } from "@/lib/privacy/safeError";
-import { requireWellbeingApiUser, wellbeingJson } from "../_shared";
+import { requireWellbeingApiUser, wellbeingErrorResponse, wellbeingJson } from "../_shared";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -19,14 +18,6 @@ export async function POST(request) {
       ...(deduplicated ? { deduplicated: true } : {})
     }, deduplicated ? 200 : 201);
   } catch (error) {
-    const status = Number(error?.status) || 500;
-    if (status >= 500) {
-      console.error("[wellbeing] role-boundaries save failed", safeError(error));
-    }
-    return wellbeingJson({
-      ok: false,
-      message: error?.message || "wellbeing.errors.role_boundaries_save_failed",
-      details: error?.details
-    }, status);
+    return wellbeingErrorResponse(error, { label: "role-boundaries save failed" });
   }
 }

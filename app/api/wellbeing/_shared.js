@@ -2,6 +2,8 @@ import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 import { authConfig } from "@/auth";
 import { requireSubscription, resolveSessionRoleState } from "@/lib/authz";
+import { safeError } from "@/lib/privacy/safeError";
+import { wellbeingErrorBody } from "@/lib/wellbeing/apiErrors";
 import { canUseWellbeingRole } from "@/lib/wellbeingTools";
 
 const NO_STORE_HEADERS = {
@@ -62,4 +64,21 @@ export async function requireWellbeingApiUser(request) {
     userId,
     roleState
   };
+}
+
+/* SOL-WB-11 — TUNTUD DOMEENIVIGA VÕI MITTE MIDAGI.
+ *
+ * Otsus ise elab `lib/wellbeing/apiErrors.js`-is, sest see fail impordib
+ * `next-auth`-i ja teda ei saa ühiktestis kutsuda. Siin on ainult ümbris, mis
+ * paneb otsuse `wellbeingJson`-i sisse ja kirjutab logirea sama
+ * korrelatsiooni-ID-ga, mille kasutaja ekraanil näeb.
+ */
+export { isWellbeingDomainError, WELLBEING_UNEXPECTED_ERROR } from "@/lib/wellbeing/apiErrors";
+
+export function wellbeingErrorResponse(error, { label } = {}) {
+  const { body, status, correlationId } = wellbeingErrorBody(error);
+  if (correlationId) {
+    console.error(`[wellbeing] ${label || "request failed"}`, safeError(error, { correlationId }));
+  }
+  return wellbeingJson(body, status);
 }

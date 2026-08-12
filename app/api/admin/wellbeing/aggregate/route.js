@@ -3,6 +3,8 @@ import { NextResponse } from "next/server";
 
 import { authConfig } from "@/auth";
 import { assertAdmin } from "@/lib/authz";
+import { safeError } from "@/lib/privacy/safeError";
+import { newWellbeingCorrelationId, WELLBEING_UNEXPECTED_ERROR } from "@/lib/wellbeing/apiErrors";
 import {
   buildWellbeingExportDataset,
   exportWellbeingCsv
@@ -50,7 +52,17 @@ export async function GET(request) {
 
   const url = new URL(request.url);
   const format = String(url.searchParams.get("format") || "json").toLowerCase();
-  const dataset = await buildWellbeingExportDataset(filtersFromRequest(request));
+  /* SOL-WB-11: koondi arvutus oli täiesti katteta — Prisma või skeemi tõrge
+     lendas käsitlemata välja. Vastus on nüüd fikseeritud võti koos
+     korrelatsiooni-ID-ga, sisemine tekst jääb logisse. */
+  let dataset;
+  try {
+    dataset = await buildWellbeingExportDataset(filtersFromRequest(request));
+  } catch (error) {
+    const correlationId = newWellbeingCorrelationId();
+    console.error("[wellbeing] admin aggregate failed", safeError(error, { correlationId }));
+    return json({ ok: false, message: WELLBEING_UNEXPECTED_ERROR, correlationId }, 500);
+  }
 
   if (format === "csv") {
     return new NextResponse(exportWellbeingCsv(dataset), {

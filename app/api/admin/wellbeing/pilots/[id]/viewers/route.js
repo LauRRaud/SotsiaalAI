@@ -3,6 +3,12 @@ import { NextResponse } from "next/server";
 
 import { authConfig } from "@/auth";
 import { assertAdmin } from "@/lib/authz";
+import { safeError } from "@/lib/privacy/safeError";
+import {
+  isWellbeingDomainError,
+  newWellbeingCorrelationId,
+  WELLBEING_UNEXPECTED_ERROR
+} from "@/lib/wellbeing/apiErrors";
 import { addWellbeingPilotViewer } from "@/lib/wellbeing/pilotScopes";
 
 export const runtime = "nodejs";
@@ -27,6 +33,17 @@ function errorJson(message, status = 400) {
   return json({ ok: false, message }, status);
 }
 
+/* SOL-WB-11: tuntud domeeniviga tohib oma võtme välja anda, kõik muu (Prisma,
+   skeem, infrastruktuur) annab fikseeritud võtme ja korrelatsiooni-ID. */
+function failureJson(error, label) {
+  if (isWellbeingDomainError(error)) {
+    return errorJson(error.message, Number(error.status));
+  }
+  const correlationId = newWellbeingCorrelationId();
+  console.error(`[wellbeing] ${label}`, safeError(error, { correlationId }));
+  return json({ ok: false, message: WELLBEING_UNEXPECTED_ERROR, correlationId }, 500);
+}
+
 export async function POST(request, context) {
   const session = await getServerSession(authConfig).catch(() => null);
   const authz = assertAdmin(session);
@@ -40,6 +57,6 @@ export async function POST(request, context) {
     const viewer = await addWellbeingPilotViewer(params.id, body);
     return json({ ok: true, viewer }, 201);
   } catch (error) {
-    return errorJson(error?.message || "wellbeing.pilot.viewer_add_failed", error?.status || 400);
+    return failureJson(error, "pilot viewer add failed");
   }
 }
