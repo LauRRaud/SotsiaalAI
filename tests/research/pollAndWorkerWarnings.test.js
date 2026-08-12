@@ -5,7 +5,10 @@ import { join } from "node:path";
 import { spawnSync } from "node:child_process";
 import test from "node:test";
 
-import { scheduleResearchPollTimeout } from "../../app/api/research/jobs/[id]/stream/route.js";
+import {
+  attachResearchJobEvents,
+  scheduleResearchPollTimeout
+} from "../../app/api/research/jobs/[id]/stream/route.js";
 import { scheduleResearchPersistencePollTimeout } from "../../components/chat/hooks/useChatStream.js";
 
 function fakeTimers() {
@@ -52,6 +55,55 @@ for (const [name, schedule] of [
     assert.equal(timedOut, 1);
   });
 }
+
+test("a terminal in-memory job replays the same result snapshot as DB polling", () => {
+  const terminalJob = {
+    id: "job-terminal-race",
+    status: "done",
+    result: { report_text: "Race'i järel valmis" },
+    metrics: { total_ms: 42 }
+  };
+  const emitted = [];
+  let subscribeCalls = 0;
+  attachResearchJobEvents({
+    job: terminalJob,
+    emit: event => emitted.push(event),
+    subscribe: () => {
+      subscribeCalls += 1;
+      return () => {};
+    }
+  });
+  assert.equal(subscribeCalls, 0, "a job that completed before GET must use its durable snapshot");
+  assert.deepEqual(
+    emitted,
+    [
+      {
+        type: "result",
+        result: { report_text: "Race'i järel valmis" },
+        metrics: { total_ms: 42 }
+      },
+      { type: "status", status: "done" },
+      { type: "done" }
+    ]
+  );
+});
+
+test("completion while GET subscribes still delivers result before done", () => {
+  const emitted = [];
+  const job = { id: "job-subscribe-race", status: "running" };
+  attachResearchJobEvents({
+    job,
+    emit: event => emitted.push(event),
+    subscribe: (_jobId, emit) => {
+      job.status = "done";
+      emit({ type: "result", result: { report_text: "Valmis subscribe'i ajal" } });
+      emit({ type: "status", status: "done" });
+      emit({ type: "done" });
+      return () => {};
+    }
+  });
+  assert.deepEqual(emitted.map(event => event.type), ["result", "status", "done"]);
+});
 
 function environmentFile(mode) {
   return [

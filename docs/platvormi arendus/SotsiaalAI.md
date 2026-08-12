@@ -93,8 +93,13 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
 **RAG-teenuse `SOL-RAGSVC-01…28` on DONE ja peatüki UTC täisvärav on roheline.**
-`SOL-ORG-13`–`17`, `SOL-DOC-J-01`–`06` ja kogu `SOL-SLOG-01…24` parandused ning kiirem plokipõhine töökord on koodipuus; serverisse deploy'mata. Arvud loetakse käsuga `npm run sol:tally`, neid siia ankrusse ei
+`SOL-ORG-13`–`17`, `SOL-DOC-J-01`–`06` ja kogu `SOL-SLOG-01…24` parandused ning kiirem plokipõhine töökord on koodipuus. Arvud loetakse käsuga `npm run sol:tally`, neid siia ankrusse ei
 kopeerita. Kui ülesanne ei ole SOL-parandus, loe S11 järel ainult vastavat S2–S10 sektsiooni.
+
+**SOL-RES-07 kood on valmis; brauseritõend on NOT_PROVEN.** Aktiivne uuring leitakse vestlusse
+naastes üles, elav progress jätkub ühe voona ja Stop jääb sama tööga seotuks; lokaalse dev-serveri
+React hydration'i rike takistas päris brauseriraja lõpetamist, mistõttu leid jääb lahtiseks.
+Järgmine sidus paranduste plokk on `SOL-SHARE-04/05`.
 
 **SOL-RAGSVC-03 tehtud 12.08 — RAG-teenus ei käivitu enam puuduva või nõrga teenusevõtmega.**
 Võtmeta arendus on eraldi loopback-only lipp ning kogu kaitstud endpointide inventuur annab
@@ -784,13 +789,14 @@ lõplik arvestus käis pärast töö valmiks märkimist ja tema vead kadusid vai
 leitud arveldusvõtit üldse üles. Nüüd jääb arvelduse tulemus tööle kirja ja pooleli jäänu
 korratakse üle, kuni teenus kinnitab.
 
-**SOL-RES-07 on osaliselt tehtud.** Aktiivse uuringu saab nüüd vestluse avamisel üles leida ja
-**peatada** (ka „Minu dokumentide" aktiivsel real on Stop-nupp) — varem ei olnud tema juurde ühtki
-teed tagasi. Elava edenemisvoo taastamine on veel tegemata: see nõuab vestluse voo-koodi
-väljatõstmist, mis on omaette töö. Seepärast loeb loend selle leiu endiselt lahtiseks.
+**SOL-RES-07 koodiosa on lõpetatud; brauserirada jääb eraldi QA-ks.** Aktiivse uuringu saab
+vestluse avamisel üles leida, sama edenemisvooga jätkata ja **peatada** (ka „Minu dokumentide"
+aktiivsel real on Stop-nupp). Taasühendumise, create/Stopi ja vestlusevahetuse võistlused on
+serveritöö ID ning vestluse identiteediga suletud. Audit loeb leiu ametlikult PARTIAL-iks ainult
+seetõttu, et nõutud päris brauserirada on lokaalse React hydration'i rikke tõttu NOT_PROVEN.
 
-Lahtiseks jääb **181 P1, 71 P2 ja 1 P3** (nimetaja kasvas jätkufailidega, vt S1). **SOL-RES on
-6/7.** **SOL-AUTH (15/15), SOL-VOICE (3/3), SOL-ROOM (7/7), SOL-CALL (13/13) ja SOL-INV (3/3)
+Täpsed lahtiste leidude arvud loetakse S1 juhise järgi käsuga `npm run sol:tally`. **SOL-RES on
+ametlikult 6/7.** **SOL-AUTH (15/15), SOL-VOICE (3/3), SOL-ROOM (7/7), SOL-CALL (13/13) ja SOL-INV (3/3)
 on 11.08 lõpetatud** — käsil on **SOL-PAY (10/11)**, kui just jätkufaile ette ei tõsteta.
 SOL-CW-09/-14/-19 seisavad sinu otsuse ja brauseri-QA taga.
 

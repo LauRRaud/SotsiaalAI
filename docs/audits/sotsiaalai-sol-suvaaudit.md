@@ -1931,32 +1931,34 @@ tsükkel. Reaper'i enda käitumine on kaetud `tests/usage/reservationReaper.test
 
 **Vastuvõtukriteerium.** Vestluse avamisel peab klient leidma sama omaniku ja sama conversationId aktiivse job'i, taastama progressi/streami ning siduma Stop-nupu selle ID-ga. Minu dokumentide aktiivne rida peab võimaldama jätkamist ja selget Stop'i. Brauseritest peab tegema start → soft-nav → tagasi → progress → Stop ning tõendama, et uut job'i ei teki.
 
-**Seis (11.08.2026): leidmine ja Stop DONE ja mõõdetud; ELAVA EDENEMISVOO taastamine ning
-brauseritest on TEGEMATA — loend loeb selle leiu ENDISELT LAHTISEKS.**
+**Seis (12.08.2026): PARTIAL — kood/refaktor DONE ja sihttestidega mõõdetud; nõutud brauserirada
+NOT_PROVEN lokaalse React hydration'i blokeeringu tõttu. Leid jääb loendis LAHTISEKS.**
 
-**MIS OLI VALESTI.** `detach()` jätab serveritöö teadlikult käima (see on T07 leping), aga
-taasavamisel ei otsinud teda **mitte keegi**: uuring jooksis edasi, ilma et kasutajal oleks olnud
-ühtki teed tema juurde tagasi — ei jälgimiseks ega peatamiseks. Uue uuringu käivitamine andis siis
-„üks aktiivne töö" vea ja inimene pidi ootama lõppu või kasutama otse-API-d. „Minu dokumentide"
-aktiivsel real oli ainult vestluse link; Stop/Delete renderdus alles terminalolekus.
+**MIS MUUTUS.** Värske ja soft-nav'i järel taastatud uuring kasutavad nüüd sama SSE-tarbijat.
+Vestluse avamine leiab omaniku ning `conversationId` järgi aktiivse töö, loob ühe edenemisrea,
+taastab progressi ja seob Stopi sama töö ID-ga; samaaegsed/StrictMode'i loendivastused ei saa luua
+teist placeholderit, streami ega tasulist POST-i. „Minu dokumentide" aktiivsel real säilib eraldi
+Stop-nupp.
 
-**MIS ON TEHTUD.** (1) Server oskab anda sama omaniku ja sama vestluse **aktiivse** töö:
-`listResearchJobsForOwner` sai `convId` ja `activeOnly` filtrid (convId elab payload'is, seega
-filtreeritakse JSON-tee järgi) ja marsruut võtab nad vastu. (2) Vestluse avamisel küsib klient selle
-töö ja **seob Stopi tema ID-ga** — peatamine ei ole enam kättesaamatu. (3) „Minu dokumentide"
-aktiivsel real on nüüd **Stop-nupp** (POST `.../stop`), mitte ainult link.
+**VÕISTLUS- JA TERVIKLUSPIIRID.** Persistence fallback aktsepteerib ainult vestlussõnumi täpselt
+sama `researchJobId`-d, mitte korduvat või loendis kärbitud päringuteksti. Stop enne create-POST-i
+vastust jätab kavatsuse võtme elama, taastab kadunud vastuse järel selle täpse töö ja tühistab
+selle; Stopi 5xx ei peida job'i ega streami, vaid jätab toimingu kordamiseks nähtavaks. Terminalne
+mälus olev töö ja DB-poll emiteerivad mõlemad `result → status → done`, sh GET/valmimise võistluses.
 
-**MIS ON TEGEMATA JA MIKS.** Elava SSE-edenemisvoo taastamine nõuab `useChatStream`-i
-voo-tarbimise osa väljatõstmist `sendMessage`-i seest (ta on seal ~200 rida, seotud
-`streamingMessageId`, `controller` ja tõlkefunktsiooniga). See on eraldi refaktor, mida P2 leid ei
-kanna, ja poolik väljatõste oleks halvem kui puuduv funktsioon. Samuti puudub kriteeriumi nõutud
-brauseritest (start → soft-nav → tagasi → progress → Stop). Seepärast ei ole see leid loendis
-tehtud — vaatamata sellele, et kasutaja olukord on nüüd oluliselt parem kui „ei mingit teed".
+**MÕÕDETUD.** Kogu chat+research sihtlõik koos dokumendilepinguga läbis **519/519** testi. Kandev
+käitumistest katab olemasoleva töö ühe GET-streami ja progressi, samaaegsete vastuste ühe tarbija,
+korduva/pika päringu vana tulemuse tõrje, kadunud või ajapiiri ületanud create-vastuse Stopi,
+Stopi vea järel ainult kasutaja algatatud korduskatse, hiljem nähtavaks muutuva töö algse
+Stop-kavatsuse ning vana vestluse hilise Stop-vastuse isoleerimise uuest tööst. Mõlemad terminalse
+streami võistlused on samuti kaetud. Muudetud failide ESLint ja `git diff --check` on rohelised;
+sõltumatu lõppreview ei leidnud pärast parandusi ühtki blockerit. Peatüki lõplik muutumatu
+koodipuu läbis UTC täissviidi **4299/4299**.
 
-**Mõõdetud.** Filtrid on kontrollitud päris andmebaasi vastu (sama vestluse aktiivne töö leitakse,
-teise vestluse ja lõppenud töö ei satu vastusesse); ülejäänu — et marsruut filtreid kasutab, et
-klient seob Stopi ja et aktiivsel real on nupp — lähtekoodi-lepinguga. Omanikuskoobi vana leping
-sai uue kuju: `where` on nüüd muutuja, aga `userId` peab olema tema esimene tingimus.
+**BRAUSER NOT_PROVEN.** Kahel värske dev-serveri katsel vastas SSR-leht 200-ga, kuid React ei
+hüdreerunud: textarea DOM-väärtus muutus, saatmine jäi disabled, React fiber-sõlmi oli 0 ning HMR
+WebSocket lõppes `ERR_INVALID_HTTP_RESPONSE`-iga. Seetõttu ei saanud ausalt läbida nõutud
+start → soft-nav → tagasi → progress → Stop rada ega brauseris tõendada, et uut job'i ei teki.
 
 ### SOL-DOC-08 — salvestatud analüüside sisu ei lähe salvestuskvoodi arvestusse — P1
 

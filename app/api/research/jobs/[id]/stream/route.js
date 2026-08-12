@@ -67,6 +67,42 @@ function toSse(event, payload) {
   return `event: ${event}\ndata: ${JSON.stringify(payload || {})}\n\n`;
 }
 
+export function terminalResearchSnapshotEvents(snapshot) {
+  const status = String(snapshot?.status || "").trim();
+  if (status === "done") {
+    return [
+      { type: "result", result: snapshot?.result || null, metrics: snapshot?.metrics || null },
+      { type: "status", status: "done" },
+      { type: "done" }
+    ];
+  }
+  if (status === "error" || status === "cancelled") {
+    return [
+      {
+        type: "error",
+        message: snapshot?.error || "research.error.failed",
+        metrics: snapshot?.metrics || null
+      },
+      { type: "status", status },
+      { type: "done" }
+    ];
+  }
+  return [];
+}
+
+export function attachResearchJobEvents({
+  job,
+  emit,
+  subscribe = subscribeResearchJob
+} = {}) {
+  const terminalEvents = terminalResearchSnapshotEvents(job);
+  if (terminalEvents.length) {
+    for (const event of terminalEvents) emit?.(event);
+    return () => {};
+  }
+  return subscribe?.(job?.id, emit) || (() => {});
+}
+
 async function getResearchJobId(params) {
   const resolvedParams = await params;
   return String(resolvedParams?.id || "").trim();
@@ -148,30 +184,15 @@ export async function GET(req, { params }) {
           closeStream();
           return;
         }
-        if (
-          eventType === "done" ||
-          (eventType === "status" &&
-            (evt?.status === "done" || evt?.status === "error" || evt?.status === "cancelled"))
-        ) {
+        if (eventType === "done") {
           closeStream();
         }
       };
 
       const emitSnapshot = snapshot => {
-        const status = String(snapshot?.status || "").trim();
-        if (status === "done") {
-          emit({ type: "result", result: snapshot.result || null, metrics: snapshot.metrics || null });
-          emit({ type: "status", status: "done" });
-          emit({ type: "done" });
-          return true;
-        }
-        if (status === "error" || status === "cancelled") {
-          emit({ type: "error", message: snapshot.error || "research.error.failed", metrics: snapshot.metrics || null });
-          emit({ type: "status", status });
-          emit({ type: "done" });
-          return true;
-        }
-        return false;
+        const events = terminalResearchSnapshotEvents(snapshot);
+        for (const event of events) emit(event);
+        return events.length > 0;
       };
 
       try {
@@ -225,7 +246,15 @@ export async function GET(req, { params }) {
         return;
       }
 
-      unsub = subscribeResearchJob(jobId, emit);
+      unsub = attachResearchJobEvents({ job, emit });
+      if (closed) {
+        // A terminal job may replay its complete event history synchronously during subscribe.
+        // `closeStream()` ran before `unsub` was assigned, so release that subscription here and
+        // do not install a heartbeat that could never be cleared.
+        unsub?.();
+        unsub = null;
+        return;
+      }
       heartbeat = setInterval(() => {
         if (closed) return;
         try {
@@ -234,10 +263,6 @@ export async function GET(req, { params }) {
           closeStream();
         }
       }, 15_000);
-
-      if (job.status === "done" || job.status === "error" || job.status === "cancelled") {
-        emit({ type: "done" });
-      }
     },
     cancel() {
       try {

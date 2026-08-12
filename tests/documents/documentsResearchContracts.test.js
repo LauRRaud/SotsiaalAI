@@ -301,7 +301,8 @@ test("one client intent binds one research job", () => {
   assert.match(store, /target\.includes\("clientIntentKey"\)/);
 
   // Klient saadab stabiilse võtme ja kustutab ta alles serveri kindla vastuse peale.
-  assert.match(hook, /idempotencyKey: researchIntentRef\.current\.key/);
+  assert.match(hook, /createAttempt\.intentKey = researchIntentRef\.current\.key/);
+  assert.match(hook, /idempotencyKey: createAttempt\.intentKey/);
   assert.match(hook, /researchIntentRef\.current = null/);
 });
 
@@ -377,13 +378,13 @@ test("usage settlement leaves a durable mark and is retried", () => {
   assert.match(store, /await maybeRetryPendingSettlements\(\);/);
 });
 
-// SOL-RES-07 (osaline). `detach()` jätab serveritöö teadlikult käima, aga taasavamisel ei otsinud
-// teda mitte keegi — ei jälgimiseks ega peatamiseks. Siin mõõdetakse seda osa, mis on tehtud:
-// aktiivse töö LEIDMINE ja Stopi kättesaadavus. Elava edenemisvoo taastamine on veel tegemata.
+// SOL-RES-07. `detach()` jätab serveritöö teadlikult käima; taasavamisel leitakse sama vestluse
+// aktiivne töö, tarbitakse tema elavat voogu ja seotakse Stop uuesti sama töö ID-ga.
 test("an active research job can be found again and stopped after a soft nav", () => {
   const store = read("lib/research/jobStore.js");
   const route = read("app/api/research/jobs/route.js");
   const hook = read("components/chat/hooks/useChatStream.js");
+  const chatRun = read("app/api/chat/run/route.js");
   const documents = read("components/documents/DocumentsPage.jsx");
 
   // Server oskab anda sama vestluse aktiivse töö.
@@ -391,10 +392,23 @@ test("an active research job can be found again and stopped after a soft nav", (
   assert.match(store, /payload: \{ path: \["convId"\], equals: conversationId \}/);
   assert.match(store, /activeOnly \? \{ status: \{ in: ACTIVE_STATUSES \} \}/);
   assert.match(route, /convId: requestUrl\.searchParams\.get\("convId"\)/);
+  assert.match(route, /intentKey: requestUrl\.searchParams\.get\("intentKey"\)/);
+  assert.match(store, /clientIntentKey: normalizedIntentKey/);
 
-  // Vestluse avamisel seotakse Stop uuesti selle töö ID-ga.
-  assert.match(hook, /status=active&limit=1/);
-  assert.match(hook, /researchJobIdRef\.current = jobId/);
+  // Vestluse avamisel seotakse Stop uuesti selle töö ID-ga ja avatakse olemasoleva töö GET-voog.
+  assert.match(hook, /const lookupAttempt = researchLookupGateRef\.current\.begin\(convId\)/);
+  assert.match(hook, /signal: withRequestTimeout\(lookupAttempt\.signal, RESEARCH_ACTIVE_LOOKUP_TIMEOUT_MS\)/);
+  assert.match(hook, /claimActiveResearchLookupResult\(\{/);
+  assert.match(hook, /researchLookupGateRef\.current\?\.invalidate\(\)/);
+  assert.match(hook, /startResearchJobStream\(\{/);
+  assert.match(hook, /researchJobIdRef\.current = id/);
+  assert.equal(
+    (hook.match(/\/api\/research\/jobs\/\$\{encodeURIComponent\(id\)\}\/stream/g) || []).length,
+    1,
+    "fresh and resumed jobs must share one stream consumer"
+  );
+  assert.match(chatRun, /researchJobId: readResearchJobId\(currentAssistant\?\.metadata\)/);
+  assert.match(hook, /expectedResearchJobId: id/);
 
   // „Minu dokumentide" aktiivsel real on nüüd Stop, mitte ainult vestluse link.
   assert.match(documents, /async function stopResearch\(id\)/);
@@ -409,7 +423,22 @@ test("the chat stream hook cancels the durable job only on explicit stop, never 
   assert.match(hook, /const teardownLocalStream = useCallback/);
   assert.match(hook, /const detach = useCallback\(\(\) => \{\s*teardownLocalStream\(\);/);
   // SOL-RES-01: tühistus läheb nüüd stop-marsruudile, mitte DELETE-le (DELETE kustutab).
-  assert.match(hook, /const stop = useCallback[\s\S]*?\/stop`, \{\s*method: "POST"[\s\S]*?teardownLocalStream\(\);/);
+  assert.match(hook, /createResearchActiveStopRegistry\(\)/);
+  assert.match(hook, /researchActiveStopRegistryRef\.current\.requestStop\(\{/);
+  assert.match(hook, /currentClaim === target\.claim/);
+  assert.match(hook, /currentClaim\.jobId === target\.jobId/);
+  assert.match(hook, /currentClaim\.convId === target\.convId/);
+  assert.match(hook, /requestResearchJobStop[\s\S]*?\/stop`, \{\s*method: "POST"/);
+  assert.match(hook, /pendingCreate\.stopRequested = true;\s*void pendingCreate\.requestStop\?\.\(\)/);
+  assert.match(hook, /createResearchCreateStopCoordinator\(\{\s*convId: createAttempt\.convId/);
+  assert.match(hook, /createResearchJobRequest\(\{\s*controller,\s*payload:/);
+  assert.match(hook, /signal: timeoutSignalImpl\(controller\?\.signal \|\| null, timeoutMs\)/);
+  assert.match(hook, /createAttempt\.stopCoordinator\.recordCreateJob\(\{/);
+  assert.match(hook, /createAttempt\.stopCoordinator\?\.recordCreateFailure\(\)/);
+  assert.match(hook, /if \(createAttempt\.stopRecoveryPromise\) return createAttempt\.stopRecoveryPromise/);
+  assert.match(hook, /stopAttemptGate: createResearchExplicitStopAttemptGate\(\)/);
+  assert.match(hook, /stopAttemptGate\.begin\(\{ explicit \}\)/);
+  assert.match(hook, /createAttempt\.requestStop = \(\) => requestPendingCreateStop\(null, \{ explicit: true \}\)/);
   // detach ei tohi tühistada: ainus stop-kutse failis on selle sees.
   assert.equal((hook.match(/\/stop`, \{\s*method: "POST"/g) || []).length, 1, "there is exactly one stop call (the explicit stop)");
   assert.equal((hook.match(/method:\s*"DELETE"/g) || []).length, 0, "the hook must never delete a research job");

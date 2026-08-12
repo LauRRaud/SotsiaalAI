@@ -108,6 +108,11 @@ function readCompletionStatus(metadata, fallback = "COMPLETED") {
   return normalizeCompletionStatus(metadata?.completionStatus, fallback);
 }
 
+function readResearchJobId(metadata) {
+  const value = String(metadata?.researchJobId || "").trim();
+  return value || null;
+}
+
 // Aus pöörde-elutsükkel (T03 E2): kui viimane sõnum on kasutajalt ja pööre on tegelikult
 // aegunud (server suri enne lõppmarkeri kirjutamist), ei jää olek igavesse RUNNING-usse.
 // Sünkroonis kliendi 180s stream-timeoutiga.
@@ -224,7 +229,8 @@ export async function GET(req) {
                 ? {
                     completionStatus: readCompletionStatus(msg.metadata),
                     retryOf: msg.metadata?.retryOf ? String(msg.metadata.retryOf) : null,
-                    isCrisis: !!msg.metadata?.isCrisis
+                    isCrisis: !!msg.metadata?.isCrisis,
+                    researchJobId: readResearchJobId(msg.metadata)
                   }
                 : {}),
               createdAt: msg.createdAt
@@ -259,6 +265,7 @@ export async function GET(req) {
       cards: normalizeCards(currentAssistant?.metadata?.cards),
       workflow: normalizeWorkflow(currentAssistant?.metadata?.workflow),
       isCrisis: !!currentAssistant?.metadata?.isCrisis,
+      researchJobId: readResearchJobId(currentAssistant?.metadata),
       updatedAt: conversation.lastActivityAt,
       createdAt: conversation.createdAt,
       messagesTruncated,
