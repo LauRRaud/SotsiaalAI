@@ -26,7 +26,18 @@ async function readRoute(name) {
 test("iga marsruut nõuab sessiooni ja keeldub enne mistahes tööd", async () => {
   for (const name of ROUTES) {
     const source = await readRoute(name);
-    assert.match(source, /requireUrgentUser\(\)/, `${name}: sessioonikontroll puudub`);
+    /* SOL-URG-03/-13 järel on `/api/urgent-requests` kontroll süstitav
+       (`requireUser = requireUrgentUser`), et rada saaks mõõta päris kutsena.
+       Leping on sama ja mõõdetakse mõlemat poolt: PÄRIS kontroll peab olema
+       vaikeväärtus, ja tulemus peab olema esimene asi, mille peale marsruut
+       väljub. Ainult ühte neist mõõta ei tohi — süstitav vaikeväärtus ilma
+       väljumiseta või väljumine ilma päris kontrollita on kumbki auk. */
+    assert.match(
+      source,
+      /requireUrgentUser(\(\)|\s*[;,}])/,
+      `${name}: sessioonikontroll puudub või ei ole vaikeväärtus`
+    );
+    assert.match(source, /const auth = await require(UrgentUser|User)\(\)/, `${name}: kontrolli tulemust ei loeta`);
     assert.match(
       source,
       /if \(!auth\.ok\) return urgentError\(auth\.message, auth\.status\)/,
