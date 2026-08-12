@@ -4460,6 +4460,34 @@ nende payload kannab ainult `paymentId`-d ja on igal hetkel taastatav.
 
 **Vastuvõtukriteerium.** Nõutud makseaudit/outbox tuleb kirjutada sama `tx` kliendiga põhiseisuga samas tehingus; välise logi eksport võib jääda hilisemaks idempotentseks workeriks. Veasüstetest peab katkestama auditirea loomise ja tõendama kas kogu tehingu rollback'i või sama commit'i durable outbox'i.
 
+**Seis (12.08.2026): DONE — otsus ja tema püsiv jälg commit'ivad koos või mitte kumbki; `npm run pay:audit:probe` 11/11 päris PostgreSQL-is, veasüst on päris andmebaasi trigger.**
+
+**Kaks kihti, mille vahe on nüüd nimes** (`lib/payments/observability.js`):
+
+- **`writePaymentAudit(tx, …)`** — püsiv jälg `DataAuditLog`-is, kirjutatud SAMA tehinguga, mis
+  kannab otsust. Ta on `await`-itud ja tema viga pöörab tehingu tagasi. **Funktsioon VISKAB, kui
+  talle antakse globaalne klient** — vana viga ei saa enam kogemata tagasi tulla.
+- **`logPaymentAudit`/`logPaymentEvent`** — telemeetria (konsool + `ChatLog`), millest elavad
+  admini loendurid ja häireraport. Ta jääb best-effort'iks ja tehingust VÄLJA, nagu telemeetria
+  peabki. Kriteeriumi lubatud „väline logi eksport" ongi see kiht.
+
+Kaetud on kõik tehingusisesed otsused: webhooki üheksa auditit, reconciliation'i kolm, kutse
+kandja taastamine ja **kasutaja enda tühistus** — viimane sai ühtlasi tehingu, mida tal varem
+üldse ei olnud (kaks `updateMany`-t eraldi ja audit väljaspool).
+
+**Veasüst on päris andmebaas, mitte mock:** sond paigaldab `DataAuditLog`-i peale ajutise
+trigger'i, mis viskab erindi ainult selle sondi rea peale. Tulemus: makse jääb `INITIATED`-iks,
+tellimus aktiveerimata, auditiridu null ja webhook vastab ausalt 500-ga. Trigger maha → sama sõnum
+jõustab makse, õiguse JA jälje. **Negatiivkontroll on vana kuju transkriptsioon:** telemeetriarida
+kirjutatakse tehingu sees globaalse kliendiga, tehing pöördub tagasi — jälg jääb alles ja
+kirjeldab muudatust, mida kunagi ei toimunud.
+
+Väravad: `npm test` **3924/3924** (Europe/Tallinn ja UTC) · eslint puhas.
+
+**KATMATA:** vanad `ChatLog` auditiread jäävad alles ja neid ei migreerita `DataAuditLog`-i —
+uus jälg algab sellest muudatusest. Admini vaated loevad endiselt telemeetriat (`ChatLog`);
+`DataAuditLog` on ledger, mitte veel eraldi admini pind.
+
 ### SOL-PAY-09 — konto kustutamine kaskaadib makseajaloo enne seadistatud seitsmeaastast retentsiooni — P1, õiguslik ulatus runtime NOT_PROVEN
 
 **Tõend.** Subscription, Payment ja BillingMethod seosed kasutajaga on `onDelete: Cascade`; Payment kustub lisaks subscriptioni kustumisel (`prisma/schema.prisma:935-986`, `:1141-1165`, `:1173-1200`). Konto kustutamise lõpptehing teeb päris `tx.user.delete()` ning eraldi finantsarhiivi/anonymiseeritud ledgerit selles ahelas pole (`lib/privacy/effectivePracticeAccountCleanup.js:144-175`). Üldretention säilitaks Payment kirjeid vaikimisi seitse aastat ja kustutab need alles `paymentCutoff` järel (`lib/retention.js:20-28`, `:585-613`), kuid kasutaja cascade möödub sellest. Kehtiva Raamatupidamise seaduse § 12 järgi tuleb raamatupidamise algdokumente säilitada seitse aastat majandusaasta lõpust: [Riigi Teataja](https://www.riigiteataja.ee/akt/107012025012?tegevus=salvesta-link). Repo ei tõenda, kas nõutav täielik arvestusdokument säilib eraldi raamatupidamissüsteemis/provideris, mistõttu lõplik õiguslik rikkumine on `NOT_PROVEN`.

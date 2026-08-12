@@ -5,7 +5,7 @@ see fail on ainult ülevaade ja ta ei ole allikas. Numbrid on **loetud raportist
 käsitsi kokku pandud — ja alates 11.08 on sellel väitel ka kate: **`npm run sol:tally`**
 (`scripts/sol-audit-tally.mjs`) loendab `### SOL-XXX-NN — … — Pn` pealkirju ja loeb tehtuks
 ainult need, mille Seis-lõik ALGAB sõnaga `DONE`. Käsitsi siia numbreid enam ei kirjutata.
-Mõõdetud **12.08.2026** (kümnes mõõtmine, pärast SOL-PAY-06/-07); eelmised olid pärast
+Mõõdetud **12.08.2026** (üheteistkümnes mõõtmine, pärast SOL-PAY-08); eelmised olid pärast
 SOL-PAY-02/-03, SOL-AUTH-15, -09/-10, -08/-12/-13 ja -07/-11 koos loenduri enda parandusega.
 
 **Selle faili jutustav osa („Mis on tehtud") lõpeb SOL-CHAT-08 juures ja on sealt edasi
@@ -24,12 +24,12 @@ vaikselt väiksemat nimetajat ta enam anda ei saa (`tests/scripts/solAuditTally.
 
 | | |
 |---|---|
-| Tehtud leidu | **140 / 403** selle tööpuu loenduri järgi · **140 / 429** kogu auditikorpuse peale — **26 leidu üheksas failis ei ole `main`-is**, vt „Auditikorpus ei ole ühes puus" allpool |
+| Tehtud leidu | **141 / 403** selle tööpuu loenduri järgi · **141 / 429** kogu auditikorpuse peale — **26 leidu üheksas failis ei ole `main`-is**, vt „Auditikorpus ei ole ühes puus" allpool |
 | Peatükke lõpuni | **11 / 39** — SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**, SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT, **SOL-VOICE**, **SOL-ROOM**, **SOL-CALL**, **SOL-INV** |
-| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 185 × P1 · 77 × P2 · 1 × P3 (selle puu loenduri järgi; kogu korpuses 289) |
+| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 184 × P1 · 77 × P2 · 1 × P3 (selle puu loenduri järgi; kogu korpuses 288) |
 | Nimetaja kasvas 357 → 397 → **403** | **jätkuauditid, mis olid siit loendist täielikult väljas.** Vt eraldi lõiku allpool — see ei ole tagasiminek, vaid see, et loendus ei näinud esmalt seitset faili ja seejärel kuut leidu neist ühes. |
-| Toodangus | **DEPLOY'MATA JÄÄK: 25 leidu** — SOL-AUTH-14 (`b7539345`, `origin/main`-is), SOL-AUTH-15 (**vajab migratsiooni `20260811220000`**), kogu SOL-VOICE (01…03), kogu SOL-ROOM (01…07), kogu SOL-CALL (07…09), kogu SOL-INV (01…03) ja SOL-PAY-01…-07 (**vajab migratsioone `20260811230000`, `20260812010000` ja `20260812020000`**; toodangu PostgreSQL on mõõdetuna 16.14, seega `ALTER TYPE … ADD VALUE` migratsioonitehingus on lubatud). Viimane deploy oli viieteistkümnes, 11.08 18:31: server = `1ed23452`. Kõik 115 selle-eelset tehtud leidu on tootmises — see deploy viis välja kogu ülejäänud SOL-AUTH ploki (-07, -11 ja -08…-10, -12, -13). Mõõdetud: `.next` 18:31:01, kolm teenust `active`, `/` `/vestlus` `/toolaud` **200**, veatasemel logi tühi. Migratsioon **`20260811210000`** rakendatud 18:30:20 (`AuthThrottleCounter` olemas) ja `/etc/sotsiaalai/frontend.env`-i lisatud **`TRUSTED_PROXY_IP_HEADER=x-real-ip`** (varukoopia tehtud; nginx `proxy_set_header X-Real-IP $remote_addr` kirjutab päise üle, seega ta ei ole kliendi juhitav). **Läbiv smoke toodangus:** tundmatu e-post annab `401 INVALID_CREDENTIALS` 0,38 s (bcrypt jookseb) ja tekitab **mõlemad** loendurid `pin:email` + `pin:ip` — seega usaldatud IP luges päriselt. Sondi read koristatud. |
-| Järgmine peatükk | **SOL-AUTH (15/15), SOL-VOICE (3/3), SOL-ROOM (7/7), SOL-CALL (13/13) ja SOL-INV (3/3) on lõpetatud** — üksteist täis peatükki. Käsil on **SOL-PAY (7/11)**: lahtised on PAY-08, -10 ja -11 ning **PAY-09, mis ootab omaniku + juristi/raamatupidaja otsust** (konto kustutamine kaskaadib makseajaloo enne seitsmeaastast säilitustähtaega). Vt ka lahtist jätkufailide otsust allpool. |
+| Toodangus | **DEPLOY'MATA JÄÄK: 26 leidu** — SOL-AUTH-14 (`b7539345`, `origin/main`-is), SOL-AUTH-15 (**vajab migratsiooni `20260811220000`**), kogu SOL-VOICE (01…03), kogu SOL-ROOM (01…07), kogu SOL-CALL (07…09), kogu SOL-INV (01…03) ja SOL-PAY-01…-08 (**vajab migratsioone `20260811230000`, `20260812010000` ja `20260812020000`**; toodangu PostgreSQL on mõõdetuna 16.14, seega `ALTER TYPE … ADD VALUE` migratsioonitehingus on lubatud). Viimane deploy oli viieteistkümnes, 11.08 18:31: server = `1ed23452`. Kõik 115 selle-eelset tehtud leidu on tootmises — see deploy viis välja kogu ülejäänud SOL-AUTH ploki (-07, -11 ja -08…-10, -12, -13). Mõõdetud: `.next` 18:31:01, kolm teenust `active`, `/` `/vestlus` `/toolaud` **200**, veatasemel logi tühi. Migratsioon **`20260811210000`** rakendatud 18:30:20 (`AuthThrottleCounter` olemas) ja `/etc/sotsiaalai/frontend.env`-i lisatud **`TRUSTED_PROXY_IP_HEADER=x-real-ip`** (varukoopia tehtud; nginx `proxy_set_header X-Real-IP $remote_addr` kirjutab päise üle, seega ta ei ole kliendi juhitav). **Läbiv smoke toodangus:** tundmatu e-post annab `401 INVALID_CREDENTIALS` 0,38 s (bcrypt jookseb) ja tekitab **mõlemad** loendurid `pin:email` + `pin:ip` — seega usaldatud IP luges päriselt. Sondi read koristatud. |
+| Järgmine peatükk | **SOL-AUTH (15/15), SOL-VOICE (3/3), SOL-ROOM (7/7), SOL-CALL (13/13) ja SOL-INV (3/3) on lõpetatud** — üksteist täis peatükki. Käsil on **SOL-PAY (8/11)**: lahtised on PAY-10 ja -11 ning **PAY-09, mis ootab omaniku + juristi/raamatupidaja otsust** (konto kustutamine kaskaadib makseajaloo enne seitsmeaastast säilitustähtaega). Vt ka lahtist jätkufailide otsust allpool. |
 | Suurimad lahtised sabad | SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-WB 18 · SOL-PRE 16 · SOL-JOUR 15 · SOL-SUP 15 · SOL-HELP 13 · SOL-MAT 13 · SOL-NET 11 · SOL-URG 11 |
 | Lahtine tooteotsus | **kas jätkufailid liidetakse peaauditi dokumendijärjekorda või jäävad eraldi järjekorraks.** Kuni see on lahtine, ei ole „järgmine dokumendi järjekorras" üheselt määratud. |
 
@@ -156,7 +156,7 @@ Jätkufailidest tulnud leiud on read sees ja märkuses eraldi välja toodud.
 | Ruumid | SOL-ROOM | **7/7** | – | **tehtud** |
 | Kõned ja salvestus | SOL-CALL | **13/13** | – | **tehtud** |
 | Kutsed ja sponsorlus | SOL-INV | **3/3** | – | **tehtud** |
-| Maksed | SOL-PAY | 7/11 | 2 × P1 · 2 × P2 | käsil; PAY-09 ootab otsust, vt allpool |
+| Maksed | SOL-PAY | 8/11 | 1 × P1 · 2 × P2 | käsil; PAY-09 ootab otsust, vt allpool |
 | Teavitused | SOL-NOTIF | 0/7 | 3 × P1 · 4 × P2 | |
 | Domeenisündmused | SOL-EVENT | 0/1 | 1 × P2 | |
 | Kiireloomuline abi | SOL-URG | 2/13 | 11 × P1 | mõlemad P0-d tehtud |

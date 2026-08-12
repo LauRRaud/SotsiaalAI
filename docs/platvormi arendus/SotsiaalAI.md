@@ -130,7 +130,7 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 140/403 leidu, 11/39 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**,
+**SOL-süvaaudit: 141/403 leidu, 11/39 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**,
 SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT, **SOL-VOICE**, **SOL-ROOM**, **SOL-CALL**, **SOL-INV**). **Auditis ei ole enam ühtegi lahtist P0-d.**
 Numbrid tulevad `npm run sol:tally` väljundist, käsitsi neid siia ei kirjutata.
 
@@ -214,9 +214,9 @@ fail maksis varem alati minuti, ka siis, kui ta oli tunni pikkune. `npm run voic
 **15/15 päris PostgreSQL-is**, mitte kunagi laheneva provideriga. Brauserikiht jääb
 **NOT_PROVEN** (DOM-testisviiti ei ole).
 
-`npm test` **3917/3917** (Europe/Tallinn ja UTC), i18n ja eslint puhtad, `db:migrate:check` OK.
+`npm test` **3924/3924** (Europe/Tallinn ja UTC), i18n ja eslint puhtad, `db:migrate:check` OK.
 **Deploy'mata: AUTH-14 (`b7539345`), AUTH-15, kogu SOL-VOICE, kogu SOL-ROOM, kogu SOL-CALL,
-kogu SOL-INV ja SOL-PAY-01…-07** — server on `1ed23452`. Deploy'mata on **neli
+kogu SOL-INV ja SOL-PAY-01…-08** — server on `1ed23452`. Deploy'mata on **neli
 migratsiooni**: `20260811220000` (`VerificationLinkDispatch`), `20260811230000`
 (`PaymentStatus.RECONCILE_PENDING` + `Payment.clientIntentKey` unikaalsus), `20260812010000`
 (`PaymentStatus.REVIEW_REQUIRED`) ja `20260812020000` (`PaymentStatus.PART_REFUNDED` +
@@ -486,9 +486,9 @@ korratakse üle, kuni teenus kinnitab.
 teed tagasi. Elava edenemisvoo taastamine on veel tegemata: see nõuab vestluse voo-koodi
 väljatõstmist, mis on omaette töö. Seepärast loeb loend selle leiu endiselt lahtiseks.
 
-Lahtiseks jääb **185 P1, 77 P2 ja 1 P3** (nimetaja kasvas jätkufailidega, vt S1). **SOL-RES on
+Lahtiseks jääb **184 P1, 77 P2 ja 1 P3** (nimetaja kasvas jätkufailidega, vt S1). **SOL-RES on
 6/7.** **SOL-AUTH (15/15), SOL-VOICE (3/3), SOL-ROOM (7/7), SOL-CALL (13/13) ja SOL-INV (3/3)
-on 11.08 lõpetatud** — käsil on **SOL-PAY (7/11)**, kui just jätkufaile ette ei tõsteta.
+on 11.08 lõpetatud** — käsil on **SOL-PAY (8/11)**, kui just jätkufaile ette ei tõsteta.
 SOL-CW-09/-14/-19 seisavad sinu otsuse ja brauseri-QA taga.
 
 **SOL-PAY-01 tehtud: automaatne uuendamine ei anna enam alla esimese tõrke peale.** Üks
@@ -540,6 +540,13 @@ tema kandja koos või mitte kumbki, ja kui kandja on kaduma läinud, teeb sama t
 lingi — ilma uue makse ja ilma uue õiguseta. **Sond leidis selle käigus päris vea minu enda
 paranduses:** unikaalsuse rikkumine mürgitab PostgreSQL-i tehingu, seega „püüa viga kinni ja
 jätka" ei tööta tehingu sees — logi ütles „tehtud", aga kõik pöördus vaikselt tagasi.
+
+**SOL-PAY-08 tehtud: makse jälg ei saa enam otsusest lahku minna.** Auditijälg kirjutati
+telemeetriana — globaalse ühendusega, tehingust väljas ja vea neelates. Kolm vaikset tagajärge:
+makse võis jõustuda ilma jäljeta, jälg võis kirjeldada muudatust, mis pöördus tagasi, või kaduda
+ise. Nüüd on püsiv jälg sama tehingu osa (`DataAuditLog`) ja tema kirjutamise viga pöörab kogu
+otsuse tagasi; telemeetria jääb eraldi kihiks, millest elavad halduse loendurid. Kasutaja enda
+tühistus sai ühtlasi tehingu, mida tal varem üldse ei olnud.
 
 **SOL-PAY-05 tehtud: allkiri tõendab päritolu, mitte summat.** „Makstud" otsuseks piisas seni
 kehtivast allkirjast ja leitavast viitest — makstud summat ja valuutat ei võrreldud kunagi
