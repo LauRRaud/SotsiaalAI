@@ -130,8 +130,8 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 143/403 leidu, 11/39 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**,
-SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT, **SOL-VOICE**, **SOL-ROOM**, **SOL-CALL**, **SOL-INV**). **Auditis ei ole enam ühtegi lahtist P0-d.**
+**SOL-süvaaudit: 150/403 leidu, 12/39 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**,
+SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT, **SOL-VOICE**, **SOL-ROOM**, **SOL-CALL**, **SOL-INV**, **SOL-NOTIF**). **Auditis ei ole enam ühtegi lahtist P0-d.**
 Numbrid tulevad `npm run sol:tally` väljundist, käsitsi neid siia ei kirjutata.
 
 **AUDIT ISE ON LÕPUNI VIIDUD** — kõik 20 funktsiooni, Haldus, Ruumid ja Töölaud on kaetud,
@@ -214,14 +214,14 @@ fail maksis varem alati minuti, ka siis, kui ta oli tunni pikkune. `npm run voic
 **15/15 päris PostgreSQL-is**, mitte kunagi laheneva provideriga. Brauserikiht jääb
 **NOT_PROVEN** (DOM-testisviiti ei ole).
 
-`npm test` **3932/3932** (Europe/Tallinn ja UTC), i18n ja eslint puhtad, `db:migrate:check` OK.
+`npm test` **3950/3950** (Europe/Tallinn ja UTC), i18n ja eslint puhtad, `db:migrate:check` OK.
 **Deploy'mata: AUTH-14 (`b7539345`), AUTH-15, kogu SOL-VOICE, kogu SOL-ROOM, kogu SOL-CALL,
-kogu SOL-INV ja SOL-PAY-01…-08, -10, -11** — server on `1ed23452`. Deploy'mata on **kuus
+kogu SOL-INV, SOL-PAY-01…-08, -10, -11 ja kogu SOL-NOTIF** — server on `1ed23452`. Deploy'mata on **seitse
 migratsiooni**: `20260811220000` (`VerificationLinkDispatch`), `20260811230000`
 (`PaymentStatus.RECONCILE_PENDING` + `Payment.clientIntentKey` unikaalsus), `20260812010000`
 (`PaymentStatus.REVIEW_REQUIRED`), `20260812020000` (`PaymentStatus.PART_REFUNDED` +
-`Payment.refundedAmount`), `20260812030000` (mandaadi unikaalsus) ja `20260812040000`
-(outbox'i püsiv Message-ID). Ükski neist ei puuduta olemasolevaid ridu. Toodangu
+`Payment.refundedAmount`), `20260812030000` (mandaadi unikaalsus) `20260812040000`
+(outbox'i püsiv Message-ID) ja `20260812050000` (teavituste reconcile-kursor). Ükski neist ei puuduta olemasolevaid ridu. Toodangu
 PostgreSQL on **16.14** — mõõdetud, sest `ALTER TYPE … ADD VALUE` migratsioonitehingus nõuab
 PG 12+.
 
@@ -489,7 +489,7 @@ korratakse üle, kuni teenus kinnitab.
 teed tagasi. Elava edenemisvoo taastamine on veel tegemata: see nõuab vestluse voo-koodi
 väljatõstmist, mis on omaette töö. Seepärast loeb loend selle leiu endiselt lahtiseks.
 
-Lahtiseks jääb **184 P1, 75 P2 ja 1 P3** (nimetaja kasvas jätkufailidega, vt S1). **SOL-RES on
+Lahtiseks jääb **181 P1, 71 P2 ja 1 P3** (nimetaja kasvas jätkufailidega, vt S1). **SOL-RES on
 6/7.** **SOL-AUTH (15/15), SOL-VOICE (3/3), SOL-ROOM (7/7), SOL-CALL (13/13) ja SOL-INV (3/3)
 on 11.08 lõpetatud** — käsil on **SOL-PAY (10/11)**, kui just jätkufaile ette ei tõsteta.
 SOL-CW-09/-14/-19 seisavad sinu otsuse ja brauseri-QA taga.
@@ -543,6 +543,20 @@ tema kandja koos või mitte kumbki, ja kui kandja on kaduma läinud, teeb sama t
 lingi — ilma uue makse ja ilma uue õiguseta. **Sond leidis selle käigus päris vea minu enda
 paranduses:** unikaalsuse rikkumine mürgitab PostgreSQL-i tehingu, seega „püüa viga kinni ja
 jätka" ei tööta tehingu sees — logi ütles „tehtud", aga kõik pöördus vaikselt tagasi.
+
+**Teavituste peatükk on täis (SOL-NOTIF 7/7).** Kolm asja, mis olid vaikselt katki: **ükski
+teavituskiri ei oleks päris seadistusega välja läinud** (worker ei andnud SMTP-le saatja aadressi
+ja platvormi transport katkeb ilma temata) · **teavituste kokkukorjaja alustas iga käivitusega
+otsast** ja katkes 100 lehekülje järel, seega esimese ~10 000 rea taha jäänud teated ei jõudnud
+kunagi kellenigi · **ohutuskriitilised sweep'id olid ühises `try` plokis viimased**, seega
+tavalise teavituse või SMTP rike blokeeris välitöö check-in eskalatsiooni ja kiire abipalve
+nähtava lõpetamise. Nüüd: saatja tuleb ühest kohast ja puuduv saatja ei jää lõputusse
+korduskatsesse; kokkukorjaja edenemine elab andmebaasis ja käib ringi (hiljem sobivaks muutuv
+vana rida ei jää vesimärgi taha); iga etapp jookseb oma veapiiri sees ja **ohutusetapid
+käivituvad alati**, ka siis, kui varasem etapp kukkus. Lisaks: ruumiaktiivsuse teade ei tule enam
+inimesele, kes ise kirjutas (autorid loeti varem ainult ühelt leheküljelt), sama aktiivsus ei anna
+kuue tunni piiri taga teist teadet, timeout ei tähenda enam pimedat kordussaatmist, ja teavituste
+loend ei peida vanemaid kehtivaid teateid uuemate nähtamatute taha.
 
 **SOL-PAY-10 ja -11 tehtud (mõlemad P2).** Sama kaardimandaat sai andmebaasi kaks aktiivset
 rida — kaks rada (makse tagasitulek ja webhook) kirjutasid teda kumbki oma koodiga ja kumbki ei

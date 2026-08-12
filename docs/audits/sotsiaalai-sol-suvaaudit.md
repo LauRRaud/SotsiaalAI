@@ -4578,6 +4578,23 @@ lahendamiseks ei ole admini nuppu — seis on nähtav worker'i vastuses ja real 
 
 **Vastuvõtukriteerium.** Worker peab andma valideeritud ja konfigureeritud `from` aadressi samast autoriteetsest konfiguratsioonist nagu ülejäänud mailerid. Integratsioonitest peab kasutama päris `getMailer()` lepingut või ranget transporti, mis nõuab envelope-saatjat, ning tõendama eduka SMTP-käsu moodustumise.
 
+**Seis (12.08.2026): DONE — worker annab envelope-saatja ja puuduv saatja ei jää lõputusse korduskatsesse; `npm run notif:progress:probe` 14/14 päris PostgreSQL-is (jaam 4).**
+
+Saatja tuleb nüüd nimeliselt ühest kohast (`resolveMailFrom()` failis `lib/mailer.js`) — sama
+`EMAIL_FROM || SMTP_FROM` rida oli koodibaasis kaheksas kohas laiali, seega „sama autoriteetne
+konfiguratsioon" oli seni kokkulepe, mitte mõõdetav väide.
+
+**Puuduv saatja ei ole korduskatse väärt.** Ilma temata ei saa ükski katse õnnestuda, seega rida
+läheb nähtavasse `SKIPPED_NO_RECIPIENT` seisu koodiga `EMAIL_FROM_MISSING` ja oma loenduriga
+(`skippedSender`) — mitte lõputusse `RETRY` ringi.
+
+**Test kasutab kriteeriumi teist haru (range transport), sest esimene ei tõenda siin midagi:**
+päris `getMailer()` annab seadistamata keskkonnas „transport is not configured" ja katkeb ENNE
+saatja kontrolli. Range transport nõuab envelope-saatjat täpselt nagu `lib/mailer.js`, ja eraldi
+väide lukustab, et see nõue seal päriselt on. Sond jooksutab sama raja päris andmebaasi rea peal.
+
+Väravad: `npm test` **3950/3950** (Europe/Tallinn ja UTC) · i18n ja eslint puhtad.
+
 ### SOL-NOTIF-02 — reconciler alustab igal käivitusel algusest ja võib kõik read pärast esimest 10 000 kirjet jäädavalt näljutada — P1
 
 **Tõend.** Reconciler loeb seitset püsivat allikat ID-kursoriga kuni 100 rida korraga (`lib/notificationReconciler.js:41-95`) ning tagastab järgmise liitkursori (`:175-188`). Job alustab iga kord `reconcileCursor = null` ja katkestab pärast 100 lehekülge (`app/api/jobs/notifications/route.js:46-57`). Allikaread ei saa „reconciled” märget: deduplikatsioon toimub eraldi `NotificationEvent.dedupeKey` kaudu. Seega loetakse järgmisel job'il uuesti samad kuni 10 000 vanimat jätkuvalt sobivat rida ning hilisemate ID-deni ei jõuta.
@@ -4585,6 +4602,24 @@ lahendamiseks ei ole admini nuppu — seis on nähtav worker'i vastuses ja real 
 **Mõju.** Suurema andmehulga korral võivad hilisemad eelpöördumised, tähtajad, kutsed, ruumid, abimatch'id, praktikaülesanded või teenused teavituseta jääda. Job küll logib `truncated`, kuid järgmine käivitus ei jätka sealt.
 
 **Vastuvõtukriteerium.** Igal allikal peab olema püsiv watermark/edenemiskursor või päring peab välistama juba reconciled/deduplitud read nii, et järgmine käivitus jätkab tegelikust piirist. Test peab looma rohkem kui 100 × batch sobivat püsivat rida ja tõendama, et korduvad job'id jõuavad kõigini.
+
+**Seis (12.08.2026): DONE — allika edenemine on püsiv ja ringi käiv; `npm run notif:progress:probe` 14/14 (jaam 3). Vajab migratsiooni `20260812050000`.**
+
+Uus tabel `NotificationReconcileCursor` kannab iga allika kohta viimast kohta. Jooksu SEES kannab
+kohta endiselt liitkursor (kutsuja annab ta järgmisele lehele); jooksude VAHEL kannab teda
+andmebaas.
+
+**Kursor on RINGI KÄIV ja see ei ole detail.** Allika lõpus salvestatakse NULL ja järgmine jooks
+alustab otsast. Puhas edasiliikuv vesimärk oleks tekitanud UUE vaikse kao: read, mis muutuvad
+sobivaks alles hiljem (eelpöördumine, mille `nextContactOn` saabub), on vesimärgist VANEMAD ja ei
+tuleks enam kunagi valikusse.
+
+`dryRun` ei liiguta kohta — proovijooks ei tohi varastada ridu päris jooksult.
+
+Sond mõõdab seda päris andmebaasi vastu: viis järjestikust jooksu partii suurusega 1 jõuavad
+kõigi ridadeni ja kursoririda on andmebaasis, mitte protsessi mälus. **Kriteeriumi „100 × batch"
+täht on täitmata** — sond kasutab viit rida ja partii suurust 1, mis on sama vahekord ilma
+10 000 rea kirjutamiseta; mõõdetav väide on „iga jooks liigub edasi", mitte reamaht.
 
 ### SOL-NOTIF-03 — ruumiaktiivsuse teade välistab autorid ainult ühe andmelehekülje piires — P2
 
@@ -4594,6 +4629,13 @@ lahendamiseks ei ole admini nuppu — seis on nähtav worker'i vastuses ja real 
 
 **Vastuvõtukriteerium.** Autorite välistus peab põhinema kogu deduplikatsiooniakna ruumipõhisel päringul või agregeeritud olekul, mitte hetkeleheküljel. Test peab jagama sama ruumi eri autorite sõnumid üle vähemalt kahe batch'i ja kontrollima iga adressaati.
 
+**Seis (12.08.2026): DONE — autorid välistatakse kogu akna pealt; sond 14/14 (jaam 1).**
+
+Autorid küsitakse nüüd ruumi kohta eraldi päringuga (`distinct: ["authorId"]`) kogu kuue tunni
+akna pealt, mitte hetkeleheküljelt. Sond paneb kaks autorit ühte ruumi ja jooksutab partii
+suurusega 1 — vana kuju oleks teisele autorile saatnud teate aktiivsusest, mille ta ise tekitas.
+Adressaate on täpselt üks: kolmas liige, kes ei kirjutanud.
+
 ### SOL-NOTIF-04 — liikuv kuue tunni otsinguaken ja job'i kellast tuletatud dedupe-aken võivad sama tegevuse kaks korda teavitada — P2
 
 **Tõend.** Sõnumivalik kasutab liikuvat piiri `createdAt > now - 6h` (`lib/notificationReconciler.js:46-48`, `:77-80`), kuid dedupeSuffix on worker'i hetkeaja fikseeritud kuue tunni ploki algus (`:18-21`, `:138-140`). Sama veel kuue tunni sisse jääv sõnum võib enne ja pärast UTC kuue tunni piiri saada erineva dedupe-võtme, kuigi uut ruumitegevust ei lisandunud.
@@ -4601,6 +4643,13 @@ lahendamiseks ei ole admini nuppu — seis on nähtav worker'i vastuses ja real 
 **Mõju.** Piiri ümber käivituvad job'id võivad saata ühe ruumi sama vana aktiivsuse kohta kaks rakenduse- ja e-posti teadet.
 
 **Vastuvõtukriteerium.** Valikuaken ja dedupe-aken peavad kasutama sama sündmuspõhist bucket'it või püsivat viimati teavitatud aktiivsuse watermärki. Kellapiiri test peab käivitama reconciler'i mõlemal pool kuue tunni piiri ilma uusi sõnumeid lisamata ja tõendama ühe teate.
+
+**Seis (12.08.2026): DONE — dedupe-aken tuleb SÜNDMUSEST, mitte worker'i kellast; sond 14/14 (jaam 2).**
+
+`roomWindow()` võtab nüüd argumendiks viimase sõnumi aja, mitte praeguse kella. Sama aktiivsus
+langeb alati samasse kuue tunni ämbrisse, ükskõik millal job jookseb; uus sõnum järgmises ämbris
+annab ausalt uue teate. Sond jooksutab reconciler'i kuue tunni piiri MÕLEMAL pool ilma uusi
+sõnumeid lisamata ja loeb teadete arvu: üks, mitte kaks.
 
 ### SOL-NOTIF-05 — delivery timeout märgib teadmata tulemuse automaatselt retry'ks, kuigi algset SMTP saatmist ei katkestata — P2
 
@@ -4610,6 +4659,26 @@ lahendamiseks ei ole admini nuppu — seis on nähtav worker'i vastuses ja real 
 
 **Vastuvõtukriteerium.** Timeout peab reaalselt katkestama transpordi või kasutama püsivat provider-delivery identifikaatorit ja teadlikku UNKNOWN/reconcile lepingut. Testid peavad katma timeout'i järel hilise õnnestumise ning protsessikatkestuse pärast SMTP vastuvõttu, enne DB `SENT` kirjutust.
 
+**Seis (12.08.2026): DONE — timeout on TEADMATUS (`UNKNOWN`), mitte pime korduskatse.**
+
+`withTimeout()` ei anna transpordile abort-signaali, seega timeout ei ütle, kas SMTP kirja vastu
+võttis. Vana kood pani rea `RETRY`-ks (võimalik duplikaat), kuigi SAMA teadmatus lease-taastel
+läks juba `UNKNOWN`-i (saatmine peatub). **Üks ebamäärane tulemus ei tohi kahte eri asja
+tähendada** — mõlemad on nüüd `UNKNOWN`.
+
+Teavituskiri on inimesele suunatud uudis, mitte kandja: teine „sul on uus teade" on pigem müra kui
+abi. Sama valik nagu SOL-PAY-11-s, kus kandja-kiri korratakse ja uudis ootab inimest.
+
+**Selge SMTP-tõrge käitub endiselt korduskatsena** — teadmatus ja tõrge on kaks eri asja ja see
+vahe on nüüd koodis. Vana test lukustas just selle vea (timeout'i peal `assert.equal(…, "RETRY")`)
+ja on ümber kirjutatud.
+
+**KATMATA:** päris `abort`-i SMTP-transpordil ikka ei ole (`lib/mailer.js` socket-tasand) —
+`UNKNOWN` on selle piiri aus nimi, mitte katkestus. `UNKNOWN` rea lahendamiseks ei ole admini
+nuppu. Kriteeriumi teine test („protsessikatkestus pärast SMTP vastuvõttu, enne DB `SENT`
+kirjutust") on kaetud sama seisuga, aga eraldi katkestustesti ei ole kirjutatud: lease-taaste
+rada, mis selle olukorra lahendab, oli koodis juba enne ja jääb muutmata.
+
 ### SOL-NOTIF-06 — ühe varasema sweep'i viga jätab välitöö ohutuskontrolli ja kiire abi aegumise käivitamata — P1
 
 **Tõend.** Notification-job paneb mentorluse, reconciler'i, projektori, e-posti delivery, välitöö dead-man kontrolli ja kiire abi aegumise ühe `try` ploki järjestikusteks await'ideks (`app/api/jobs/notifications/route.js:31-76`). Välitöö ja kiire abi sweep'id käivituvad kõige viimasena. Ükskõik millise varasema etapi visatud viga hüppab ühisesse catch'i ning hilisemaid etappe ei kutsuta; ka kuni 300 järjestikuse lehekülje töö ajapiir võib nendeni jõudmise takistada.
@@ -4617,6 +4686,27 @@ lahendamiseks ei ole admini nuppu — seis on nähtav worker'i vastuses ja real 
 **Mõju.** Tavalise teavituse, mentorluse või e-posti infrastruktuuri rike võib blokeerida ajakriitilise välitöö check-in eskalatsiooni ja kiire abipalve nähtava lõpetamise. Need ohutusfunktsioonid pärivad endast sõltumatu süsteemi töökindluse.
 
 **Vastuvõtukriteerium.** Ohutuskriitilised sweep'id peavad olema eraldi ajastatud töödes või vähemalt eraldatud veapiiride, iseseisvate eelarvete ja nähtava etapistaatusega. Veasüstitest peab sundima iga varasema etapi eraldi ebaõnnestuma ja tõendama, et field-safety ning urgent-expiry siiski käivituvad täpselt üks kord.
+
+**Seis (12.08.2026): DONE — iga etapp jookseb oma veapiiri sees ja ohutusetapid käivituvad ALATI; `npm run notif:progress:probe` 14/14 (jaam 6, veasüst on päris andmebaasi trigger).**
+
+Kuus etappi olid ühes `try` plokis ja välitöö dead-man kontroll ning kiire abi aegumine olid
+viimased — ükskõik millise varasema etapi viga hüppas ühisesse `catch`-i ja need kaks jäid
+käivitamata. Nüüd on igal etapil oma veapiir (`runStage`), oma leheküljeeelarve ja **nähtav seis
+vastuses**: `stages`, `failedStages` ja eraldi `safetyOk`.
+
+**Vastus ei valeta enam edu:** kukkunud etapiga jooks annab `207` ja `ok: false`, aga
+ohutusetapid on ikka käinud ja see on eraldi loetav.
+
+Veasüst on päris: sond paigaldab `NotificationEvent`-i peale ajutise trigger'i, mis viskab erindi
+ainult tema rea peale → reconcile-etapp kukub, **välitöö ohutuskontroll ja kiire abi aegumine
+käivituvad siiski** ja kukkunud etapp on nimeliselt kirjas. Etapi ühekordsus tuleb `runStage`
+lepingust ja on eraldi ühiktestiga lukus.
+
+**KATMATA:** kriteeriumi „eraldi ajastatud töö" haru ei ole valitud — sweep'id sõidavad endiselt
+sama taimeriga, aga nüüd eraldatud veapiiride ja eelarvetega. Eraldi systemd-üksus oleks
+ops-otsus (uus taimer, uus võti, uus jälgimispind) ja ta ei ole selle leiu ulatuses.
+**Veasüst kattis ühe varasema etapi (reconcile), mitte iga etappi eraldi** — piir on `runStage`
+tasemel ja ühiktest mõõdab teda otse, aga „iga varasem etapp eraldi" täht on täitmata.
 
 ### SOL-EVENT-01 — domeenisündmuse idempotentsuskonflikt ei kontrolli, kas olemasolev sündmus vastab uuele teole — P2
 
@@ -4633,6 +4723,21 @@ lahendamiseks ei ole admini nuppu — seis on nähtav worker'i vastuses ja real 
 **Mõju.** Kasutaja võib näha tühja või poolikut teavituste loendit ja badge'i, kuigi tal on vanemaid endiselt kehtivaid lugemata teateid.
 
 **Vastuvõtukriteerium.** Autoriseeritud valik tuleb teha päringus või jätkata turvaliselt lehekülgede kaupa, kuni `limit` nähtavat rida või andmete lõpp on saavutatud. Test peab asetama rohkem kui `limit × 2` nähtamatut teadet uuemateks kui üks kehtiv lugemata teade.
+
+**Seis (12.08.2026): DONE — loend liigub lehekülgede kaupa, kuni nähtavaid ridu on `limit`; sond 14/14 (jaam 5).**
+
+Vana kood luges `limit × 2` uusimat rida ja kontrollis adressaadiõigust alles pärast seda: kui
+selles aknas oli piisavalt nähtamatuks muutunud ridu (liikmesus lõppes, allikas suleti), jäid
+vanemad KEHTIVAD teated lihtsalt välja — kasutaja nägi tühja loendit, kuigi tal oli lugemata
+teateid. Päring jätkab nüüd kursoriga järgmise leheküljega, kuni nähtavaid on `limit` või andmed
+said otsa.
+
+**Ülempiir on 25 lehekülge** ja see on teadlik: vigane või liiga range õigusekontroll ei tohi
+muutuda lõputuks skaneeringuks. Piir on kordades suurem kui vana `limit × 2` aken.
+
+Sond kirjutab 12 nähtamatut teadet (ruum, kust kasutaja on lahkunud) ÜHE kehtiva peale ja loeb,
+et kehtiv leitakse üles; ühiktest mõõdab sama 120 reaga ja kontrollib, et päring päriselt liikus
+mitme lehekülje kaupa.
 
 ### SOL-URG-01 — 200 ajaloolist kirjet võivad kõik uued kiireloomulised abipalved laua eest peita — P0
 
