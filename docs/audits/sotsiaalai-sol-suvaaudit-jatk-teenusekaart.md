@@ -102,7 +102,7 @@
 
 **Vastuvõtukriteerium.** Omanik peab määrama fail-closed vs osalise tulemuse lepingu. Kui andmeallika tehniline rike lubab osalist vastust, tuleb kasutada liigipõhist settled-tulemust, tagastada `partial:true` ja allika stabiilne veakood ning näidata UI-s ausat hoiatust; autentimis-/õigusevead jäävad fail-closed. Testida teenuse-, help- ja mõlema allika eraldi viga ning tõendada, et ükski tundlik sisemine veatekst ei leki.
 
-**Seis.** PARTIAL; BLOCKED_OWNER_DECISION. Liigipõhine `allSettled`-leping, stabiilsed allikakoodid, vigase vastuse kuju tõrje, konstantne vealogimine ja osalise vastuse UI on tehniliselt valmis. Teenuse-, help-, mõlema allika, 401/403, andmebaasi õiguse, sessiooniteenuse ja sisemise saladuse negatiivkontrollid läbisid; hiline vana 500/append ei saa uuemat tulemust kustutada ning tehniline teenuseallika viga ei võta autenditud kasutajalt peer-võimekust. Toodangu vaikeleping säilitab praegu fail-closed käitumise: osaline vastus aktiveerub ainult süstitud testipoliitikaga, kuni omanik otsustab, kas ühe sõltumatu tehnilise allika rikke korral tohib terve allika tulemused nähtava `partial` hoiatusega tagastada. Autentimis- ja õigusevead jäävad mõlemal juhul kogu vastuse ulatuses fail-closed; runtime partial-vaade `NOT_PROVEN`.
+**Seis.** DONE. Omanik kinnitas osalise tulemuse lepingu: kombineeritud „Kõik” vaates jätab ühe sõltumatu tehnilise allika rike terve allika tulemused nähtavaks koos `partial` hoiatuse ja stabiilse allikakoodiga; mõlema allika rike, sessiooniteenuse tõrge, 401/403 ning andmebaasi õigusevead jäävad kogu vastuse ulatuses fail-closed. Kahe allika eraldi, filtriga seotud cursorid lehitsevad terveid allikaid ilma esimese lehe korduseta; vigane alamcursor annab 400 ning püsiv allikatõrge ei tekita lõputut „Laadi veel” tsüklit. Sihtlõige 86/86 PASS. Päris Chromium tõendas terve rea + osalise hoiatuse, osalise nulltulemuse ausa teksti, järgmise täisvastuse hoiatuse kadumise ning hilise vana 500/append-vastuse tõrjumise; sisemine veatekst ei jõudnud vastusesse ega logisse.
 
 ### SOL-SMAP-08 — anonüümsele kasutajale näidatakse keelatud abikuulutuste filtreid tühja tulemusena — P2
 
@@ -116,9 +116,9 @@
 
 ## Testid ja negatiivkontrollid
 
-- Parandatud muutumatu koodipuu Teenusekaardi sihtlõige: **85/85 PASS**; sellest allikavea, fail-closed ja mitteläbiva veateksti puhas/route-leping **11/11 PASS**.
+- Parandatud muutumatu koodipuu Teenusekaardi sihtlõige: **86/86 PASS**; sellest allikavea, fail-closed ja mitteläbiva veateksti puhas/route-leping **11/11 PASS**.
 - Päris PostgreSQL-i sondid: allika elutsükkel ja paralleelsus **5/5 PASS**, anonüümse peer-ligipääsu piir **4/4 PASS**, 501+ rea paginatsioon ja peidetud siht **4/4 PASS**; kõik ajutised andmebaasid koristati.
-- Peatüki muutumatu koodipuu UTC täissviit: **4346/4346 PASS**. `npm run i18n:check`, muudetud koodifailide ESLint, `npm run db:migrate:check` kõigi 173 migratsiooniga ja `git diff --check` läbisid.
+- Peatüki lõplik muutumatu koodipuu UTC täissviit: **4347/4347 PASS**. `npm run i18n:check`, muudetud koodifailide ESLint, `npm run db:migrate:check` kõigi 173 migratsiooniga ja `git diff --check` läbisid.
 
 - Esimene sihttestide käivitus enne auditi worktree lokaalse genereeritud Prisma kliendi taastamist: **35 testi läbis**, **7 testifaili ei laadinud** veaga `ERR_MODULE_NOT_FOUND: generated/prisma/client.ts`. See oli worktree setup'i, mitte tootmiskoodi testitulemus.
 - `npx prisma generate` fikseeritud koopias: **õnnestus**, Prisma Client genereeriti; genereeritud failid on ignoreeritud ja auditikoodi ei muudetud.

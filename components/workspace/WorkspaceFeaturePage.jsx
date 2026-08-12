@@ -3120,7 +3120,7 @@ function readInitialServiceMapFilters() {
   return {
     keyword: params.get("q") || params.get("keyword") || "",
     region: params.get("municipalityName") || params.get("municipality") || params.get("county") || "",
-    entryType: ["KOV_SOCIAL_CONTACT", "SERVICE_PROVIDER", "HELP_REQUEST", "HELP_OFFER"].includes(normalizedEntryType) ? normalizedEntryType : "KOV_SOCIAL_CONTACT"
+    entryType: ["ALL", "KOV_SOCIAL_CONTACT", "SERVICE_PROVIDER", "HELP_REQUEST", "HELP_OFFER"].includes(normalizedEntryType) ? normalizedEntryType : "KOV_SOCIAL_CONTACT"
   };
 }
 
@@ -3450,6 +3450,7 @@ function ServiceMapSurface({
 
           <div className="service-map-types" role="radiogroup" aria-label="Kirje liik">
             {[
+              ["ALL", readText(t, "workspace_feature_pages.service_map.types.all", "Kõik")],
               ["KOV_SOCIAL_CONTACT", readText(t, "workspace_feature_pages.service_map.types.kov", "KOV")],
               ["SERVICE_PROVIDER", readText(t, "workspace_feature_pages.service_map.types.provider", "Teenused")],
               ...(peerListingsAvailable === true ? [

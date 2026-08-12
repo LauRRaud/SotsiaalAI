@@ -5,7 +5,11 @@ import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
 import { listPublishedHelpMapEntries } from "@/lib/help";
 import { listPublishedServiceMapEntries } from "@/lib/serviceProviderProfiles";
 import { isAdmin } from "@/lib/authz";
-import { readServiceMapEntriesQuery } from "@/lib/serviceMap/entriesQueryPolicy";
+import {
+  decodeServiceMapCursor,
+  encodeServiceMapCombinedCursor,
+  readServiceMapEntriesQuery
+} from "@/lib/serviceMap/entriesQueryPolicy";
 import { consumeRateLimit } from "@/lib/rate-limit";
 import { getRequestIpFromRequest } from "@/lib/request-ip";
 import { loadPeerServiceMapEntries } from "@/lib/serviceMap/peerAccess";
@@ -21,7 +25,6 @@ export async function GET(request, deps = {}) {
   const loadServices = deps.loadServices || listPublishedServiceMapEntries;
   const loadPeerListings = deps.loadPeerListings || loadPeerServiceMapEntries;
   const applyRateLimit = deps.consumeRateLimit || consumeRateLimit;
-  const allowPartialResults = deps.allowPartialResults === true;
 
   let session;
   try {
@@ -53,10 +56,33 @@ export async function GET(request, deps = {}) {
     const shouldLoadServices = !requestedType || requestedType === "ALL" || serviceOnlyTypes.has(requestedType);
     const shouldLoadHelp = !requestedType || requestedType === "ALL" || helpOnlyTypes.has(requestedType);
     const canReadPeerListings = Boolean(session?.user?.id);
+    const combinedCursor = query.combinedCursor || {};
+    const serviceQuery = {
+      ...query,
+      cursorRaw: query.combinedCursor ? combinedCursor.serviceCursor || "" : query.cursorRaw,
+      cursor: query.combinedCursor
+        ? decodeServiceMapCursor(combinedCursor.serviceCursor, query, "service")
+        : query.cursor
+    };
+    const peerQuery = {
+      ...query,
+      cursorRaw: query.combinedCursor ? combinedCursor.peerCursor || "" : query.cursorRaw,
+      cursor: query.combinedCursor
+        ? decodeServiceMapCursor(combinedCursor.peerCursor, query, "help")
+        : query.cursor
+    };
+    if (query.combinedCursor && (
+      (combinedCursor.serviceCursor && !serviceQuery.cursor) ||
+      (combinedCursor.peerCursor && !peerQuery.cursor)
+    )) {
+      return errorJson("workspace_feature_pages.service_map.errors.invalid_cursor", 400, locale);
+    }
     const [serviceSettled, peerListingsSettled] = await Promise.allSettled([
-      shouldLoadServices ? loadServices(query) : Promise.resolve({ entries: [], page: null }),
-      shouldLoadHelp && canReadPeerListings
-        ? loadPeerListings({ userId: session?.user?.id || "", query: { ...query, locale }, loadHelpEntries: listPublishedHelpMapEntries })
+      shouldLoadServices && combinedCursor.serviceDone !== true
+        ? loadServices(serviceQuery)
+        : Promise.resolve({ entries: [], page: { hasMore: false, nextCursor: null } }),
+      shouldLoadHelp && canReadPeerListings && combinedCursor.peerDone !== true
+        ? loadPeerListings({ userId: session?.user?.id || "", query: { ...peerQuery, locale }, loadHelpEntries: listPublishedHelpMapEntries })
         : Promise.resolve({ entries: [], page: null, peerListingsAvailable: canReadPeerListings, peerListingsAccess: canReadPeerListings ? "AUTHORIZED" : "AUTH_REQUIRED" })
     ]);
     const combined = combineServiceMapSourceResults({
@@ -66,12 +92,6 @@ export async function GET(request, deps = {}) {
       serviceSettled,
       peerListingsSettled
     });
-    if (combined.partial && !allowPartialResults) {
-      const error = new Error("SERVICE_MAP_PARTIAL_RESULTS_NOT_APPROVED");
-      error.code = "SERVICE_MAP_SOURCES_UNAVAILABLE";
-      error.status = 503;
-      throw error;
-    }
     for (const [source, state] of Object.entries(combined.sources)) {
       if (state.status !== "unavailable") continue;
       console.error("[service-map] independent source unavailable", {
@@ -88,13 +108,27 @@ export async function GET(request, deps = {}) {
       ? serviceResult.page
       : shouldLoadHelp && !shouldLoadServices
         ? helpResult.page
-        : {
-            hasMore: Boolean(serviceResult?.page?.hasMore || helpResult?.page?.hasMore),
-            nextCursor: null,
-            returnedCount: entries.length,
-            truncated: Boolean(serviceResult?.page?.hasMore || helpResult?.page?.hasMore),
-            requiresSourceFilter: true
-          };
+        : (() => {
+            const serviceUnavailable = combined.sources.services.status === "unavailable";
+            const peerUnavailable = combined.sources.peerListings.status === "unavailable";
+            const serviceHasMore = Boolean(serviceResult?.page?.hasMore);
+            const peerHasMore = Boolean(helpResult?.page?.hasMore);
+            const hasMore = serviceHasMore || peerHasMore;
+            return {
+              hasMore,
+              nextCursor: hasMore ? encodeServiceMapCombinedCursor({
+                serviceCursor: serviceHasMore ? serviceResult.page.nextCursor : null,
+                peerCursor: peerHasMore ? helpResult.page.nextCursor : null,
+                serviceDone: !serviceUnavailable && !serviceHasMore,
+                peerDone: combined.sources.peerListings.status === "auth_required" || (!peerUnavailable && !peerHasMore)
+              }, query) : null,
+              returnedCount: entries.length,
+              truncated: hasMore,
+              requiresSourceFilter: false,
+              limitScope: "per_source",
+              requestedLimitPerSource: query.limit
+            };
+          })();
     return json({
       ok: true,
       entries,

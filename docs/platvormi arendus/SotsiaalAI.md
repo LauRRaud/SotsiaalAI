@@ -102,12 +102,12 @@ tagasivõtt on ausad ning jagamisajalugu jõuab sisuta andmekoopiasse. Tööheao
 kolmeaastase minimaalse kviitungi elutsükkel järgib omaniku otsustatud poliitikat; juristi
 kinnitus on enne selle production-jõustumist väljalaske kontrollpunkt.
 
-**Teenusekaardi `SOL-SMAP-01…06` ja `08` on lõpetatud; `07` ja `09` on päriselt blokeeritud.**
+**Teenusekaardi `SOL-SMAP-01…08` on lõpetatud; ainult `09` on päriselt blokeeritud.**
 Kaardi avaldamine, allikast kadumine, teenuse kanalid, paginatsioon, grupid, süvalingid ja
 anonüümne peer-piir on nüüd serveri-, PostgreSQL-i ja brauseritõendiga kaetud ning tile'id
-liiguvad lõppkasutaja asemel sama päritolu proxy kaudu. `SOL-SMAP-07` turvaline settled-teostus
-on valmis, kuid tootmises jääb vaikimisi fail-closed, kuni omanik otsustab ühe tehniliselt rikkis
-allika osalise vastuse lepingu; `SOL-SMAP-09` lõpetamiseks on
+liiguvad lõppkasutaja asemel sama päritolu proxy kaudu. Omaniku kinnitatud `SOL-SMAP-07` leping
+hoiab ühe tehniliselt rikkis allika korral terve allika tulemused nähtaval koos ausa hoiatusega,
+kuid turva- ja õigusevead jäävad fail-closed. `SOL-SMAP-09` lõpetamiseks on
 vaja Maa- ja Ruumiameti rolli, logide, säilituse ning proxy/cache'i tingimuste õiguslikku tõendit.
 
 **SOL-RES-07 kood on valmis; brauseritõend on NOT_PROVEN.** Aktiivne uuring leitakse vestlusse

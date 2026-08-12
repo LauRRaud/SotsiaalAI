@@ -21,6 +21,7 @@ test("map UI pages server results and rejects stale append responses", () => {
   assert.match(page, /setLoading\(true\);\s*setLoadingMore\(false\);\s*setLoadMoreError\(""\);/);
   assert.doesNotMatch(page.slice(page.indexOf("const loadServiceMapPage"), page.indexOf("const filteredEntries")), /setPeerListingsAvailable\(null\)/);
   assert.match(page, /isAuthenticated=\{Boolean\(session\?\.user\?\.id\)\}/);
+  assert.match(page, /\["ALL", readText\(t, "workspace_feature_pages\.service_map\.types\.all"/);
 });
 
 test("browser uses only the same-origin tile proxy and handles tile failures", () => {

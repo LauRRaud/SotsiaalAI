@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 
 import { GET } from "../../../app/api/service-map/entries/route.js";
+import { encodeServiceMapCursor } from "../../../lib/serviceMap/entriesQueryPolicy.js";
 
 function routeDeps(overrides = {}) {
   return {
@@ -34,21 +35,60 @@ try {
   assert.deepEqual(anonymous.body.entries, [{ id: "service" }]);
 
   const partial = await readResponse("http://localhost/api/service-map/entries?type=ALL", routeDeps({
-    allowPartialResults: true,
     loadServices: async () => { throw Object.assign(new Error("SECRET query on private_table"), { stack: "SECRET stack" }); }
   }));
   assert.equal(partial.response.status, 200);
   assert.equal(partial.body.partial, true);
   assert.deepEqual(partial.body.entries, [{ id: "peer" }]);
   assert.equal(partial.body.sources.services.errorCode, "SERVICE_MAP_SERVICES_UNAVAILABLE");
+  assert.equal(partial.body.page.hasMore, false);
+  assert.equal(partial.body.page.nextCursor, null);
 
-  const pendingDecision = await readResponse("http://localhost/api/service-map/entries?type=ALL", routeDeps({
-    loadServices: async () => { throw new Error("SECRET pending owner decision"); }
-  }));
-  assert.equal(pendingDecision.response.status, 503);
-  assert.equal(pendingDecision.body.code, "SERVICE_MAP_SOURCES_UNAVAILABLE");
-  assert.equal(pendingDecision.body.partial, false);
-  assert.equal("entries" in pendingDecision.body, false);
+  const sourcePositions = [];
+  const peerPositions = [];
+  const pagedDeps = routeDeps({
+    loadServices: async (query) => {
+      sourcePositions.push(query.cursor?.id || null);
+      return query.cursor
+        ? { entries: [{ id: "service-2" }], page: { hasMore: false, nextCursor: null } }
+        : {
+            entries: [{ id: "service-1" }],
+            page: {
+              hasMore: true,
+              nextCursor: encodeServiceMapCursor({ kind: "service", title: "Service 1", id: "service-1" }, query)
+            }
+          };
+    },
+    loadPeerListings: async ({ query }) => {
+      peerPositions.push(query.cursor?.id || null);
+      return query.cursor
+        ? { entries: [{ id: "peer-2" }], page: { hasMore: false, nextCursor: null } }
+        : {
+            entries: [{ id: "peer-1" }],
+            page: {
+              hasMore: true,
+              nextCursor: encodeServiceMapCursor({ kind: "help", updatedAt: "2026-08-13T00:00:00.000Z", id: "peer-1" }, query)
+            }
+          };
+    }
+  });
+  const firstPage = await readResponse("http://localhost/api/service-map/entries?type=ALL&q=abi", pagedDeps);
+  assert.deepEqual(firstPage.body.entries.map((entry) => entry.id), ["service-1", "peer-1"]);
+  assert.equal(firstPage.body.page.hasMore, true);
+  assert.equal(firstPage.body.page.limitScope, "per_source");
+  assert.equal(firstPage.body.page.requestedLimitPerSource, 24);
+  const secondPage = await readResponse(`http://localhost/api/service-map/entries?type=ALL&q=abi&cursor=${encodeURIComponent(firstPage.body.page.nextCursor)}`, pagedDeps);
+  assert.deepEqual(secondPage.body.entries.map((entry) => entry.id), ["service-2", "peer-2"]);
+  assert.equal(secondPage.body.page.hasMore, false);
+  assert.deepEqual(sourcePositions, [null, "service-1"]);
+  assert.deepEqual(peerPositions, [null, "peer-1"]);
+
+  const decodedCombined = JSON.parse(Buffer.from(firstPage.body.page.nextCursor, "base64url").toString("utf8"));
+  decodedCombined.peerCursor = "malformed-child";
+  const malformedCombined = Buffer.from(JSON.stringify(decodedCombined), "utf8").toString("base64url");
+  const malformed = await readResponse(`http://localhost/api/service-map/entries?type=ALL&q=abi&cursor=${malformedCombined}`, pagedDeps);
+  assert.equal(malformed.response.status, 400);
+  assert.equal(malformed.body.messageKey, "workspace_feature_pages.service_map.errors.invalid_cursor");
 
   let loaderCalls = 0;
   const authFailure = await readResponse("http://localhost/api/service-map/entries?type=ALL", routeDeps({
@@ -85,7 +125,7 @@ try {
   assert.equal("entries" in dbDenied.body, false);
 
   assert.doesNotMatch(
-    JSON.stringify({ anonymous: anonymous.body, partial: partial.body, pendingDecision: pendingDecision.body, authFailure: authFailure.body, bothFail: bothFail.body, denied: denied.body, dbDenied: dbDenied.body, logs }),
+    JSON.stringify({ anonymous: anonymous.body, partial: partial.body, authFailure: authFailure.body, bothFail: bothFail.body, denied: denied.body, dbDenied: dbDenied.body, logs }),
     /SECRET|private_table|query|stack|recipient|db user|auth backend/i
   );
 } finally {
