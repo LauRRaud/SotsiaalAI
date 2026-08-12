@@ -8,18 +8,38 @@ import ContentTrustBadge from "@/components/ui/ContentTrustBadge";
 import { createLatestRequestGate, isAbortError } from "@/lib/client/latestRequestGate";
 import { buildWellbeingShareableDraft } from "@/lib/wellbeing/supportDraftText";
 
+/* SOL-WB-17: neljast valikust oli teostatud AINULT kovisiooni üleandmine.
+   Ülejäänud kolm lubasid „jagatav versioon kinnitatud", aga juht, pilooditugi
+   ega mentor ei saanud midagi — üleandmisrada ei olnud olemas ja lõputekst ei
+   öelnud seda välja.
+
+   Kaks ausat vastust, kriteeriumi mõlemad harud:
+     `handoff: "..."` — valikul ON õigustega piiratud adressaadi-rada;
+     `copyOnly: true` — valik ON privaatne mustand, mille kasutaja ise edastab,
+                        ja liides ütleb seda otse, mitte ei jäta arvata. */
 const supportOptions = [
   {
     outputType: "manager_memo",
     recipientType: "manager",
+    copyOnly: true,
     labelKey: "wellbeing.support.manager_memo_label",
     labelFallback: "Koosta juhiga arutelu memo",
     descriptionKey: "wellbeing.support.manager_memo_meta",
-    descriptionFallback: "Neutraalne kokkuvõte juhiga arutamiseks"
+    descriptionFallback: "Privaatne mustand, mille sa ise juhiga jagad — platvorm seda ei saada"
+  },
+  {
+    outputType: "support_request",
+    recipientType: "supervisor",
+    handoff: "supervision",
+    labelKey: "wellbeing.support.supervisor_input_label",
+    labelFallback: "Anna supervisioonile üle",
+    descriptionKey: "wellbeing.support.supervisor_input_meta",
+    descriptionFallback: "Kinnitatud tekst liigub sinu valitud supervisiooniprotsessi"
   },
   {
     outputType: "covision_input",
     recipientType: "covision",
+    handoff: "covision",
     labelKey: "wellbeing.support.covision_input_label",
     labelFallback: "Koosta kovisiooni sisend",
     descriptionKey: "wellbeing.support.covision_input_meta",
@@ -28,18 +48,20 @@ const supportOptions = [
   {
     outputType: "support_request",
     recipientType: "pilot_support_contact",
+    copyOnly: true,
     labelKey: "wellbeing.support.support_request_label",
     labelFallback: "Koosta abipalve",
     descriptionKey: "wellbeing.support.support_request_meta",
-    descriptionFallback: "Lühike sisend toe või nõu küsimiseks"
+    descriptionFallback: "Privaatne mustand, mille sa ise tugikontaktile edastad — platvorm seda ei saada"
   },
   {
     outputType: "support_request",
     recipientType: "mentor",
+    copyOnly: true,
     labelKey: "wellbeing.support.mentor_input_label",
     labelFallback: "Koosta mentorile sisend",
     descriptionKey: "wellbeing.support.mentor_input_meta",
-    descriptionFallback: "Küsimused ja teemad mentorlussuhtesse üleandmiseks"
+    descriptionFallback: "Privaatne mustand, mille sa ise mentoriga jagad — platvorm seda ei saada"
   }
 ];
 
@@ -56,6 +78,11 @@ export default function SupportRequestPanel({
   const [userReviewed, setUserReviewed] = useState(false);
   const [userConfirmed, setUserConfirmed] = useState(false);
   const [confirmedNoIdentifiers, setConfirmedNoIdentifiers] = useState(false);
+  /* SOL-WB-17: supervisiooni üleandmisrada oli serveris OLEMAS ja liidesest
+     kättesaamatu. Protsessi valik on kohustuslik — üleandmine käib konkreetsesse
+     protsessi, mitte „supervisioonile" üldiselt. */
+  const [supervisionProcesses, setSupervisionProcesses] = useState([]);
+  const [supervisionProcessId, setSupervisionProcessId] = useState("");
   const [status, setStatus] = useState("idle");
   /* Serveri tuvastajakontrolli leiu TÜÜBID (mitte kunagi tekst/väärtus) —
      kuvatakse covision_identifiers staatuse all i18n kaudu. */
@@ -193,6 +220,63 @@ export default function SupportRequestPanel({
     } catch (error) {
       if (isAbortError(error) || !request.isCurrent()) return;
       setStatus(Number(error?.status) === 409 ? "draft_conflict" : "error");
+    }
+  }
+
+  async function loadSupervisionProcesses() {
+    try {
+      const response = await fetch("/api/supervision/processes", { headers: { Accept: "application/json" } });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload?.ok) return;
+      const processes = Array.isArray(payload.processes) ? payload.processes : [];
+      setSupervisionProcesses(processes);
+      setSupervisionProcessId((current) => current || processes[0]?.id || "");
+    } catch {
+      /* Nimekirja puudumine ei ole viga: nupp jääb lihtsalt keelatuks ja
+         kasutaja näeb, et protsessi ei ole. */
+      setSupervisionProcesses([]);
+    }
+  }
+
+  async function startSupervisionHandoff() {
+    if (!draft?.id || !draft?.updatedAt || !supervisionProcessId || hasUnconfirmedEdits || isBusy) return;
+    const request = requestGateRef.current.begin("start-supervision");
+    setStatus("starting_supervision");
+    try {
+      const response = await fetch(
+        `/api/wellbeing/output-drafts/${encodeURIComponent(draft.id)}/supervision`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          signal: request.signal,
+          body: JSON.stringify({
+            processId: supervisionProcessId,
+            expectedUpdatedAt: draft.updatedAt
+          })
+        }
+      );
+      const payload = await response.json().catch(() => ({}));
+      if (!request.isCurrent()) return;
+      if (!response.ok || !payload?.ok) {
+        const error = new Error(payload?.message || "supervision.errors.handoff_failed");
+        error.status = response.status;
+        throw error;
+      }
+      setStatus("supervision_started");
+    } catch (error) {
+      if (isAbortError(error) || !requestGateRef.current.isCurrent(request)) return;
+      setStatus(Number(error?.status) === 409 ? "draft_conflict" : "error");
+    }
+  }
+
+  async function copyDraftText() {
+    const text = String(editedText || preview || "").trim();
+    if (!text) return;
+    try {
+      await navigator.clipboard.writeText(text);
+      setStatus("copied");
+    } catch {
+      setStatus("copy_failed");
     }
   }
 
@@ -349,6 +433,56 @@ export default function SupportRequestPanel({
             >
               {t("wellbeing.support.confirm_draft", "Kinnita jagatav versioon")}
             </Button>
+            {/* SOL-WB-17: valik, millel EI OLE adressaadi-rada, ütleb seda välja
+                ja annab selle asemel päris toimingu — teksti kopeerimise. */}
+            {selected.copyOnly ? (
+              <div>
+                <p>
+                  {t(
+                    "wellbeing.support.copy_only_notice",
+                    "Sellel valikul ei ole platvormisisest adressaati: tekst jääb sinu privaatseks mustandiks ja sina otsustad, kellega ja millal ta jagad."
+                  )}
+                </p>
+                <Button type="button" onClick={copyDraftText} disabled={isBusy}>
+                  {t("wellbeing.support.copy_text", "Kopeeri tekst")}
+                </Button>
+              </div>
+            ) : null}
+            {selected.handoff === "supervision"
+              && draft?.status === "ready_to_share"
+              && userReviewed
+              && userConfirmed
+              && !hasUnconfirmedEdits ? (
+              <div>
+                <Button type="button" onClick={loadSupervisionProcesses} disabled={isBusy}>
+                  {t("wellbeing.support.load_supervision_processes", "Vali supervisiooniprotsess")}
+                </Button>
+                {supervisionProcesses.length > 0 ? (
+                  <label>
+                    {t("wellbeing.support.supervision_process", "Supervisiooniprotsess")}
+                    <select
+                      value={supervisionProcessId}
+                      onChange={(event) => setSupervisionProcessId(event.target.value)}
+                    >
+                      {supervisionProcesses.map((process) => (
+                        <option key={process.id} value={process.id}>
+                          {process.title || process.id}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                ) : null}
+                <Button
+                  type="button"
+                  onClick={startSupervisionHandoff}
+                  disabled={!supervisionProcessId || isBusy}
+                >
+                  {status === "starting_supervision"
+                    ? t("wellbeing.support.starting_supervision", "Annan üle…")
+                    : t("wellbeing.support.start_supervision", "Anna supervisioonile üle")}
+                </Button>
+              </div>
+            ) : null}
             {selected.outputType === "covision_input"
               && draft?.status === "ready_to_share"
               && userReviewed
@@ -390,6 +524,12 @@ export default function SupportRequestPanel({
           ? t("wellbeing.support.status_private", "Sisestus jääb privaatseks.")
           : status === "draft_saved"
             ? t("wellbeing.support.status_saved", "Privaatne mustand salvestati. Enne kasutamist kinnita jagatav versioon.")
+            : status === "supervision_started"
+              ? t("wellbeing.support.status_supervision_started", "Tekst on antud üle valitud supervisiooniprotsessi.")
+              : status === "copied"
+                ? t("wellbeing.support.status_copied", "Tekst on kopeeritud. Sina otsustad, kellega ja millal ta jagad.")
+                : status === "copy_failed"
+                  ? t("wellbeing.support.status_copy_failed", "Kopeerimine ebaõnnestus. Vali tekst ja kopeeri käsitsi.")
             : status === "ready"
               ? t("wellbeing.support.status_ready", "Jagatav versioon on kinnitatud, kuid seda ei saadeta automaatselt.")
               : status === "needs_reconfirm"

@@ -91,7 +91,36 @@ tõendatud ühikutega, mitte klikkidega.
 
 **Vastuvõtukriteerium.** Iga nähtav valik peab viima konkreetsesse, õigustega piiratud adressaadi-/ruumivoo toimingusse või olema ausalt nimetatud ainult kopeeritavaks privaatmustandiks. Supervisiooni valik peab kasutama olemasolevat CAS/handoff-lepingut; organisatsiooni ja mentorluse rajad peavad kasutama oma kinnitatud snapshot'i, mitte lähteandmeid. E2E-negatiivtest peab tõendama adressaadi puudumise, võõra organisatsiooni/protsessi, stale mustandi, topeltkliki ja osalise vea käitumise.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis (12.08.2026): DONE kriteeriumi MÕLEMA haru kaudu — üks rada ehitati, kolm said ausa nime.**
+
+Kriteerium annab valiku: kas valik viib õigustega piiratud adressaadi-rajale VÕI on ausalt
+nimetatud kopeeritavaks privaatmustandiks. Kolmandat varianti — „lubab adressaati, aga ei tee
+midagi" — ei tohi jääda ühtegi, ja täpselt see oli seis.
+
+**SUPERVISIOON ON NÜÜD ÜHENDATUD.** Server (`POST …/output-drafts/[id]/supervision` +
+`lib/supervision/wellbeingHandoff.js`) oli **olemas ja liidesest kättesaamatu** — see oli leiu
+kõige teravam osa. Paneelil on nüüd `supervisor` valik, protsessi valija ja üleandmisnupp;
+kasutatakse **olemasolevat CAS-lepingut** (`expectedUpdatedAt`) ja uut rada ei ehitatud.
+Protsess on kohustuslik: üleandmine käib konkreetsesse protsessi, mitte „supervisioonile"
+üldiselt — ilma valikuta on nupp keelatud, nagu server niikuinii nõuab.
+
+**KOLM ÜLEJÄÄNUT SAID AUSA NIME.** Juhi memol, pilooditoe abipalvel ja mentori sisendil ei ole
+platvormisisest adressaadi-rada. Nad on nüüd deklaratsioonis `copyOnly` ja liides ütleb otse
+välja: „Sellel valikul ei ole platvormisisest adressaati: tekst jääb sinu privaatseks mustandiks
+ja sina otsustad, kellega ja millal ta jagad." Lubaduse asemel on **päris toiming** — teksti
+kopeerimine. Vana lõputekst („ei saadeta automaatselt") jättis mulje, et adressaat on olemas ja
+saatmine on lihtsalt käsitsi.
+
+**Viis ühikut**, sh värav „iga valik on kas rajaga või ausalt copy-only" ja **negatiivkontroll**,
+mis näitab, et vana valikute komplekt seda väravat EI läbi (kolm valikut olid ilma rajata ja ilma
+nimetuseta).
+
+**KATMATA (tooteotsus, mitte viga):** organisatsiooni toeavalduse rada ON platvormil olemas
+(`sendSupportShare`, `/api/org/[orgId]/tugi/avaldused`, ja ta võtab isegi `sourceDraftId`), aga
+tema kasutamine nõuab organisatsiooni ja SAAJA LIIKMESUSE valikut — see on eraldi valija ja
+eraldi õigusteleping, mitte nupp. Mentorluse rada ei ole veel olemas. Kuni need on ehitamata, on
+juhi ja mentori valik ausalt copy-only. **E2E-negatiivtestid** (võõras protsess, stale mustand,
+topeltklikk, osaline viga) on `not_run`: nad nõuavad autenditud supervisiooniprotsessiga kontot.
 
 ### SOL-WB-18 — kasutaja andmekoopia jätab mustandid ja kirjete elutsükliandmed välja — P1
 
