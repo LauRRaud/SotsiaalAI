@@ -28,7 +28,7 @@ vaikselt väiksemat nimetajat ta enam anda ei saa (`tests/scripts/solAuditTally.
 | Peatükke lõpuni | **15 / 39** — SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**, SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT, **SOL-VOICE**, **SOL-ROOM**, **SOL-CALL**, **SOL-INV**, **SOL-NOTIF**, **SOL-EVENT**, **SOL-URG**, **SOL-WB** |
 | Lahtised prioriteedi järgi | **P0-sid EI OLE** · 158 × P1 · 64 × P2 · 1 × P3 (selle puu loenduri järgi; kogu korpuses 249) |
 | Nimetaja kasvas 357 → 397 → **403** | **jätkuauditid, mis olid siit loendist täielikult väljas.** Vt eraldi lõiku allpool — see ei ole tagasiminek, vaid see, et loendus ei näinud esmalt seitset faili ja seejärel kuut leidu neist ühes. |
-| Toodangus | **DEPLOY'MATA JÄÄK: 30 leidu** — SOL-EVENT-01, kogu SOL-URG (03…13) ja kogu SOL-WB (01…18), **viis migratsiooni**: `20260812060000` (`UrgentRequest.takenByUserId`), `20260812070000` (`UrgentDesk` kinnitaja), `20260812080000` (`WellbeingParticipation` tabel), `20260812090000` (`WellbeingRecord.checkpointAnsweredAt` + pärandridade korrastus), `20260812100000` (`WellbeingPilotViewer.claimedAt` + FK `SetNull` → `Cascade`). **Kolm viimast puudutavad tootmises 0 rida** (0 `WellbeingRecord`, 0 pilooti, 0 vaatajat — mõõdetud psql-iga 12.08), seega ka andmeid muutvad `UPDATE`-id on tühikäigud. Viimane deploy **12.08 08:12 omaniku loal: server = `1443b6a0`**. |
+| Toodangus | **DEPLOY'MATA JÄÄK: 30 leidu ja 27 commit'i.** Peale nende kolm 12.08 õhtu commit'i, mis EI ole uued leiud, vaid kahe omaniku otsuse teostus ja üks kõrvalleid: **analüüsiühik** (`latest_per_person` vaikimisi, nähtav aruandes ja kolmes ekspordis, valitav päringus), **privaatsuslävend 3 → 5** ja **makse säilituse põrand** (avaldatud 7 aastat ei ole enam env-iga langetatav). Ükski neist ei vaja migratsiooni. Leiud: SOL-EVENT-01, kogu SOL-URG (03…13) ja kogu SOL-WB (01…18), **viis migratsiooni**: `20260812060000` (`UrgentRequest.takenByUserId`), `20260812070000` (`UrgentDesk` kinnitaja), `20260812080000` (`WellbeingParticipation` tabel), `20260812090000` (`WellbeingRecord.checkpointAnsweredAt` + pärandridade korrastus), `20260812100000` (`WellbeingPilotViewer.claimedAt` + FK `SetNull` → `Cascade`). **Kolm viimast puudutavad tootmises 0 rida** (0 `WellbeingRecord`, 0 pilooti, 0 vaatajat — mõõdetud psql-iga 12.08), seega ka andmeid muutvad `UPDATE`-id on tühikäigud. Viimane deploy **12.08 08:12 omaniku loal: server = `1443b6a0`**. |
 | Järgmine peatükk | **SOL-WB on lõpetatud (18/18)** — viisteist täis peatükki. **SOL-PAY on 10/11**: lahtine ainult **PAY-09** (omaniku + juristi otsus). Dokumendi järjekorras järgmine on **SOL-SLOG** (5/24, 18 × P1) ja tema järel **SOL-RAGSVC** (2/28) — kaks suurimat lahtist sabat. Vt ka lahtist jätkufailide otsust allpool. |
 | Suurimad lahtised sabad | SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-PRE 16 · SOL-JOUR 15 · SOL-SUP 15 · SOL-HELP 13 · SOL-MAT 13 · SOL-NET 11 · SOL-SPROF 13 · SOL-COV 8 |
 | Lahtine tooteotsus | **kas jätkufailid liidetakse peaauditi dokumendijärjekorda või jäävad eraldi järjekorraks.** Kuni see on lahtine, ei ole „järgmine dokumendi järjekorras" üheselt määratud. |
@@ -40,7 +40,16 @@ piloodikoondisse, kelle tööna ta sündis, ja seda ei otsusta enam kliendi saad
 **range väljaskeem** (tundmatu ohuväärtus ei muutu enam „ohtu ei ole" vastuseks). Kolmas suurem
 on **fikseeritud perioodivõrk**, mis võtab ära differencing-rünnaku eelduse.
 
-**Kaks asja OOTAVAD SINU OTSUST — kood on mõlemaks valmis, aga valik ei ole minu teha:**
+**MÕLEMAD ALLPOOL OLNUD OTSUSED ON 12.08 ÕHTUL TEHTUD JA TEOSTATUD** (commit `285686ad`):
+vaikeühik on `latest_per_person` ja lävend on 5. Otsuste sisu ja see, mis nende teostamisel välja
+tuli, on leidude enda Seis-lõikudes; allolev kirjeldab, MIS otsustati.
+
+**Üks lause allpool ei pidanud paika ja ta on mõõdetud:** „vahetus on üks rida" — `analysisUnit`
+ei esinenud kordagi aruandes ega üheski ekspordis ja teda ei saanud päringuga valida, seega
+vaikeväärtuse vahetus üksi oleks teinud sagedusvaate kättesaamatuks. Lävendi tõstmine kukutas
+omakorda 12 testi viies failis, sest kõik fikstuurid olid ehitatud kolme inimese peale.
+
+**Kaks asja, mis OOTASID otsust (nüüd tehtud):**
 
 1. **SOL-WB-04 — analüüsiühik.** `analysisUnit` on nüüd andmestikus nähtav ja tal on kaks
    teostust: `record` (vaikimisi, iga sisestus loeb — näitab sagedust, on tundlik ühele väga

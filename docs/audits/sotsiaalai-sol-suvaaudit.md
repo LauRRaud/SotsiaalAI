@@ -5208,7 +5208,7 @@ tõend on see, et värav ei lase seda väärtust temani. Sama string-boolean'iga
 
 **Vastuvõtukriteerium.** Omanik peab määrama analüüsiühiku: viimane kirje inimese/perioodi/töövoo kohta või selgelt sündmuspõhine trend. Loendurid, osakaalude nimetajad ja raportitekst peavad kasutama sama ühikut. Test peab andma ühele inimesele 100 kirjet ja kahele ühe ning kontrollima otsustatud kaalu.
 
-**Seis (12.08.2026): DONE koodi osas; ÜHIKU VALIK on omaniku otsus ja ta on lahti.**
+**Seis (12.08.2026): DONE — ühik on valitud, nähtav ja valitav. Commit `285686ad`.**
 
 Leiul on kaks poolt ja neid tuleb eristada. **Esimene on viga ja ta on parandatud:** loendurid
 kasvasid iga KIRJE pealt, aga ainus vastusega kaasas käiv nimetaja oli `sampleSize` ehk INIMESTE
@@ -5226,11 +5226,34 @@ Mõlemad on kaetud kriteeriumi enda stsenaariumiga (üks inimene 100 kirjega, ka
 `record` annab 100 punast 102-st, `latest_per_person` annab 1 punase ja 2 rohelist.
 **Negatiivkontroll:** vana nimetaja annab samal real 3333%.
 
-**OMANIKU OTSUS (lahtine):** kumb ühik on piloodi VAIKEVÄÄRTUS. `record` näitab koormuse
-sagedust ja on tundlik aktiivsele kasutajale; `latest_per_person` näitab inimeste seisu ja kaotab
-sageduse info. Vaikeväärtust ma ise ei vahetanud — see muudaks kõigi olemasolevate raportite
-tähendust. Kui otsus on tehtud, on vahetus üks rida (`analysisUnit`), sest raporti tekst ja
-nimetajad käivad juba ühiku järgi.
+**OMANIKU OTSUS (tehtud 12.08): vaikeühik on `latest_per_person`.** Põhjus on aruande LUGEJA,
+mitte andmed — juhtimisraporti loomulik keel loetakse alati inimeste osakaaluna. NIST SP 800-226
+sõnastab sama asja teisest otsast: inimese taseme kaitse on sündmuse taseme omast tugevam.
+Vahetus tehti ajal, mil tootmises oli **0 `WellbeingRecord` rida, 0 pilooti ja 0 vaatajat**,
+seega ühegi olemasoleva aruande tähendus ei muutunud; iga hilisem vahetus muudaks kõigi seniste
+oma. `record` **ei kadunud** — ta on eraldi sagedusvaade ja teda saab päringus küsida.
+
+**„Vahetus on üks rida" EI PIDANUD PAIKA ja see oli mõõtmise, mitte oletuse asi.** Kolm asja olid
+puudu: (1) `analysisUnit` ei esinenud kordagi `pilotReport.js`-is ega `pilotReportExport.js`-is,
+seega aruanne ja kõik kolm eksporti jätsid ühiku välja; (2) `app/` all ei olnud ühtki viidet,
+seega ühikut ei saanud päringuga valida ja vaikeväärtuse vahetus oleks teinud sagedusvaate
+KÄTTESAAMATUKS; (3) `resolveWellbeingPilotAggregateFilters` on range valge nimekiri ja oleks
+parameetri vaikselt ära neelanud.
+
+**CSV-s käivad ühik ja nimetaja IGA REAGA kaasa.** Tabelis sorteeritakse ja filtreeritakse, seega
+päisekommentaar või eraldi metaandmete plokk oleks kadunud esimese sortimisega ja alles oleks
+jäänud paljas arv. Vana veerukogum andis `metricValue` kõrvale ainult `sampleSize` — täpselt selle
+sisendi, millest „100/3 = 3333%" sünnib.
+
+**Tundmatu ühik annab 400**, mitte vaikset tagasilangust: klient, kes küsib sagedusvaadet ja saab
+inimeste vaate sama nime all, on sama vaikimise klass, mille SOL-WB-03 ohuväärtuse pealt välja
+võttis.
+
+**Kaks kõrvalleidu, mida raportis ei olnud:** XLSX-i veerupealkiri „Valim" seisis `denominator`
+veeru peal ja ütles sedasama vale, mille see leid osakaaludest välja võttis; `countedRecordCount`
+arvutati kaks korda.
+
+**Väravad:** `TZ=UTC npm test` **4155/4155** · `i18n:check` OK · eslint puhas. Migratsiooni ei ole.
 
 ### SOL-WB-05 — 10 000 kirje piir kärbib tööheaolu koondit vaikides — P1
 
@@ -5275,12 +5298,41 @@ valim summutatakse, ühtki riskimarkerit vastuses ei ole) ja **kattuv N ja N−1
 päring ei ole enam väljendatav, ka mitte segavariandina, kus klient annab korraga võrgu ja vaba
 piiri.
 
+**LÄVEND ON 12.08 TÕSTETUD 3 → 5 (omaniku otsus), commit `285686ad`.** Kolm oli liiga madal
+kohas, kus aruande vaataja on tööandja määratud inimene, kes tunneb kõiki oma töötajaid nimepidi:
+kolme inimese koondist on kahe teadmisel kolmas tuletatav ilma ühegi lisapäringuta. **Viis on ka
+koodibaasi enda pretsedent** — `lib/urgent/aggregate.js` hoiab võrreldava tundlikkusega pinda
+`URGENT_MIN_GROUP_SIZE = 5` peal sama „ainult tõsta" lepinguga, ja kaks eri lävendit kahel kõrvuti
+pinnal oleks olnud lahknemine, mitte valik. **Põrand tuleb nüüd ÜHEST kohast** — sama arv seisis
+käsitsi teise koopiana ka `pilotScopes.js`-is.
+
+**Kümme oli laual ja jäi VÕTMATA.** Piloot on kümneid inimesi ning ristlõigetega töövoo ja
+rollirühma järgi summutaks kümme enamiku lahtreid — juht näeks tühja aruannet. Selle otsuse eeldus
+on piloodi päris pealiikmete arv, mida veel ei ole.
+
+**Testid on seotud eksporditud konstandiga, mitte kirjutatud numbriga**, ja fikstuurid tuletavad
+oma suuruse temast — järgmine otsus ei tee neid valeks asja pärast, mida nad ei mõõda. Lävendi
+tõstmine kukutas esmalt **12 testi viies failis**: kõik fikstuurid olid ehitatud kolme inimese
+peale. See on mõõt, kui palju „üks konstant" tegelikult maksab.
+
 **LAHTINE HARU (omaniku otsus):** kaks ERI SUURUSEGA lubatud perioodi (kuu vs kvartal) on
 endiselt sisestikud ja piisavalt kannatlik vaataja saab neid võrrelda. Selle vastu aitavad
 **päringueelarve** või **privaatsust säilitav müra** — mõlemad muudavad kas numbrid ebatäpseks või
 kasutuse piiratuks, seega nad on tootevalik, mitte tehniline detail. Kolmas võimalus on lubada
 korraga ainult ÜHT perioodiliiki piloodi kohta (skoobi seadistus). Kuni otsust ei ole, on kaitse
-tase: künnis 3 + fikseeritud võrk.
+tase: **künnis 5** + fikseeritud võrk.
+
+**LÄVEND EI OLE ANONÜÜMSUSE TÕEND ja teda ei tohi nii nimetada.** Kolme kriteeriumi test —
+eristamine, linkimine, järeldamine — pärineb WP29 arvamusest 05/2014 anonüümimistehnikate kohta
+ja seda ei läbi ükski künnis üksi. Väljundit tuleb käsitleda **kontrollitud ligipääsuga
+isikuandmete koondina**, mitte anonüümse infona. See ei ole tehniline järeldus, vaid õigusliku
+asendi otsus koos oma tagajärgedega (õiguslik alus, säilitustähtaeg, andmesubjekti õigused koondi
+enda vastu, tõenäoliselt DPIA ja see, mida osalejale piloodi alguses lubatakse) — **ta on omanikul
+lahti ja ta ei kuulu selle leiu alla.**
+
+**Täiendav lahtrisummutus** (avaldatud üldsummast ei tohi summutatud väikest rühma lahutamise teel
+taastada) on eraldi töö ja teda selles plokis ei tehtud: ta ei ole lipp, vaid algoritm avaldatud
+lahtrite peal.
 
 ### SOL-WB-07 — vastatud vanad kontrollpunktid võivad hilisemad tähtajad taimerist välja näljutada — P1
 

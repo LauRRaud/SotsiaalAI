@@ -89,6 +89,18 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
+**12.08 õhtu, pärast SOL-WB lõpetamist: kaks lahtist otsust on tehtud ja teostatud, üks uus
+kõrvalleid parandatud.** (1) **WB-04 analüüsiühik** — vaikimisi `latest_per_person`; ühik on nüüd
+nähtav aruandes ja kõigis kolmes ekspordis ning valitav päringus. „Vahetus on üks rida" ei pidanud
+paika: ühik ei jõudnud kuhugi väljundisse ega olnud `app/` all kordagi olemas. (2) **WB-06
+lävend 3 → 5**, üks allikas kahe käsitsi koopia asemel; 10 jäi teadlikult võtmata, sest ta
+summutaks kümnete inimestega piloodis enamiku lahtreid. (3) **Makse säilituse põrand** —
+`PAYMENT_RETENTION_DAYS=90` oleks vaikselt langetanud privaatsustingimuste punktis 7.9 AVALDATUD
+seitsme aasta lubaduse; auditis seda leidu ei ole. Kolm commit'i, migratsioone ei ole,
+`TZ=UTC npm test` **4155/4155**. **Lahtiseks jäi õigusliku asendi otsus:** kas tööheaolu koond on
+kontrollitud ligipääsuga isikuandmed (WP29 05/2014 järgi ei tee ükski lävend teda anonüümseks) —
+sellel on tagajärjed õiguslikule alusele, säilitusele ja osalejale antud lubadusele.
+
 **Seis 12.08 (mõõdetud, mitte mäletatud):** server on **`1443b6a0`**. **Pärast seda deploy'd on `main`-i tulnud SOL-EVENT-01, kogu SOL-URG ja kogu SOL-WB — 30 leidu ja VIIS migratsiooni, mis on push'imata ja deploy'mata.** Kolm uuemat migratsiooni (`…080000` osalusprojektsioon, `…090000` kontrollpunkti skalaar, `…100000` vaataja kutse + FK `SetNull` → `Cascade`) puudutavad tootmises **0 rida** — 0 `WellbeingRecord`, 0 pilooti, 0 vaatajat, mõõdetud psql-iga enne migratsioonide kirjutamist. **Deploy 12.08 08:12 sinu selgel loal** (järjekorranumbrit siia ei kirjutata: S1 ja
 `parandusaudit.md` ei ole 11.08 õhtuse deploy osas nõus — üks ütles serveriks `b7c9adf0`, teine
 `1ed23452`, **mõõdetuna oli ta `b7539345`, `.next` 11.08 18:53**; kumbki number ei pidanud
