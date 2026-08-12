@@ -1,6 +1,5 @@
 export const runtime = "nodejs";
 
-import crypto from "node:crypto";
 import { NextResponse } from "next/server";
 import {
   BillingInterval,
@@ -25,6 +24,11 @@ import {
 import { enqueuePaymentEmail } from "@/lib/payments/emailOutbox";
 import { isTerminalPaymentStatus } from "@/lib/payments/providerOutcome";
 import { describeMismatches, verifyPaidPayload } from "@/lib/payments/paymentVerification";
+import { isRefundStatus, resolveRefundOutcome } from "@/lib/payments/refunds";
+import {
+  issueSponsoredInviteDelivery,
+  restoreMissingSponsoredInviteDelivery
+} from "@/lib/payments/sponsoredInviteDelivery";
 import {
   buildRenewalFailureSubscriptionUpdate,
   planRenewalFailure
@@ -46,6 +50,10 @@ const WEBHOOK_SECRET = String(getMaksekeskusSecretKey() || "").trim();
 const SUBSCRIPTION_WEBHOOK_RATE_LIMIT_WINDOW_MS = Number(process.env.SUBSCRIPTION_WEBHOOK_RATE_LIMIT_WINDOW_MS || 60_000);
 const SUBSCRIPTION_WEBHOOK_RATE_LIMIT_MAX = Number(process.env.SUBSCRIPTION_WEBHOOK_RATE_LIMIT_MAX || 120);
 const REFUNDED_ACTION = normalizeSubscriptionAction(process.env.SUBSCRIPTION_WEBHOOK_REFUNDED_ACTION, "cancel");
+const PART_REFUNDED_ACTION = normalizeSubscriptionAction(
+  process.env.SUBSCRIPTION_WEBHOOK_PART_REFUNDED_ACTION,
+  "none"
+);
 const CANCELED_ACTION = normalizeSubscriptionAction(process.env.SUBSCRIPTION_WEBHOOK_CANCELED_ACTION, "none");
 const FAILED_ACTION = normalizeSubscriptionAction(process.env.SUBSCRIPTION_WEBHOOK_FAILED_ACTION, "none");
 /* SOL-PAY-02: lõplikkuse definitsioon elab ühes kohas. `RECONCILE_PENDING` EI
@@ -104,6 +112,9 @@ function normalizeSubscriptionAction(value, fallback) {
 
 function actionForStatus(status) {
   if (status === PaymentStatus.REFUNDED) return REFUNDED_ACTION;
+  /* SOL-PAY-06: osaline tagastus EI lõpeta ligipääsu. Õigus lõpeb siis, kui makse
+     on täielikult tagastatud — mitte siis, kui tagastati üks sent. */
+  if (status === PaymentStatus.PART_REFUNDED) return PART_REFUNDED_ACTION;
   if (status === PaymentStatus.CANCELED) return CANCELED_ACTION;
   if (status === PaymentStatus.FAILED) return FAILED_ACTION;
   return "none";
@@ -352,7 +363,10 @@ export async function POST(request) {
         };
       }
 
-      const sameStatus = payment.status === nextStatus;
+      /* SOL-PAY-06: tagastusteade ei tohi minna „sama seis" otseteed, sest teine
+         osaline tagastus kannab uut summat ja võib koos eelmisega katta kogu
+         makse. Tagastused käivad alati läbi otsuse. */
+      const sameStatus = payment.status === nextStatus && !isRefundStatus(nextStatus);
       if (sameStatus) {
         await tx.payment.update({
           where: { id: payment.id },
@@ -363,15 +377,24 @@ export async function POST(request) {
             )
           }
         });
+        /* SOL-PAY-07: kordus on ka viimane võimalus märgata, et tasutud kutse
+           delivery-kandja on kadunud. Uut õigust ega makset siin ei sünni. */
+        const restored = await restoreMissingSponsoredInviteDelivery(tx, {
+          payment,
+          locale: paymentLocale
+        });
         return {
           idempotent: true,
           paymentId: payment.id,
           status: payment.status,
+          inviteDeliveryRestored: restored,
           paymentLocale
         };
       }
 
-      if (isFinalStatus(payment.status) && nextStatus !== PaymentStatus.REFUNDED) {
+      /* Lõplikust seisust edasi liigub AINULT tagastus — see on ainus asi, mis
+         lõppenud makse peale legitiimselt järgneb. */
+      if (isFinalStatus(payment.status) && !isRefundStatus(nextStatus)) {
         return {
           ignored: true,
           paymentId: payment.id,
@@ -423,17 +446,46 @@ export async function POST(request) {
         }
       }
 
-      const paidAt = nextStatus === PaymentStatus.PAID ? parsePaidAt(payload) : null;
-      const subscriptionAction = nextStatus === PaymentStatus.PAID ? "activate" : actionForStatus(nextStatus);
+      /* SOL-PAY-06: tagastuse tulemus otsustatakse ENNE kirjutamist — kas see on
+         osaline (õigus jääb) või katab kogu makse (õigus lõpeb). Provideri enda
+         `REFUNDED` on täistagastus ka ilma summata. */
+      const refundOutcome = isRefundStatus(nextStatus)
+        ? resolveRefundOutcome({ payment, payload, incomingStatus: nextStatus })
+        : null;
+      const effectiveStatus = refundOutcome ? refundOutcome.status : nextStatus;
+
+      const paidAt = effectiveStatus === PaymentStatus.PAID ? parsePaidAt(payload) : null;
+      const subscriptionAction =
+        effectiveStatus === PaymentStatus.PAID ? "activate" : actionForStatus(effectiveStatus);
       const updatedPayment = await tx.payment.update({
         where: { id: payment.id },
         data: {
-          status: nextStatus,
+          status: effectiveStatus,
           ...(paidAt ? { paidAt } : {}),
-          ...(nextStatus === PaymentStatus.FAILED || nextStatus === PaymentStatus.CANCELED ? { failedAt: new Date() } : {}),
-          ...(nextStatus === PaymentStatus.REFUNDED ? { refundedAt: new Date() } : {}),
+          ...(effectiveStatus === PaymentStatus.FAILED || effectiveStatus === PaymentStatus.CANCELED
+            ? { failedAt: new Date() }
+            : {}),
+          ...(refundOutcome
+            ? {
+                refundedAt: new Date(),
+                ...(refundOutcome.refundedAmount ? { refundedAmount: refundOutcome.refundedAmount } : {})
+              }
+            : {}),
           raw: buildPaymentRawRecord(
-            { ...asPlainObject(payment.raw), source: "maksekeskus_webhook", subscriptionAction },
+            {
+              ...asPlainObject(payment.raw),
+              source: "maksekeskus_webhook",
+              subscriptionAction,
+              ...(refundOutcome
+                ? {
+                    refund: {
+                      full: refundOutcome.full,
+                      reason: refundOutcome.reason,
+                      refundedAmount: refundOutcome.refundedAmount
+                    }
+                  }
+                : {})
+            },
             payload
           )
         },
@@ -448,13 +500,23 @@ export async function POST(request) {
         }
       });
 
+      if (refundOutcome && !refundOutcome.full) {
+        logPaymentAudit({
+          action: "payment_part_refunded",
+          result: String(refundOutcome.refundedAmount || "unknown"),
+          paymentId: updatedPayment.id,
+          subscriptionId: updatedPayment.subscriptionId,
+          inviteId: updatedPayment.inviteId
+        });
+      }
+
       let subscription = null;
       let inviteEmail = null;
       let clawbackNotify = null;
       let billingMethod = null;
 
       if (updatedPayment.inviteId) {
-        if (nextStatus === PaymentStatus.PAID) {
+        if (effectiveStatus === PaymentStatus.PAID) {
           // O-M6/L-07: hilise PAID korral ei ärka terminaalne kutse. Ainult
           // PENDING_PAYMENT läheb SENT-iks; REVOKED/EXPIRED/ACCEPTED jäävad terminaliks.
           const currentInvite = await tx.invite.findUnique({
@@ -469,54 +531,26 @@ export async function POST(request) {
               inviteId: updatedPayment.inviteId
             });
           } else {
-            const token = crypto.randomBytes(48).toString("base64url");
-            const tokenHash = crypto
-              .createHash("sha256")
-              .update(token)
-              .digest("base64");
-            const invite = await tx.invite.update({
-              where: { id: updatedPayment.inviteId },
-              data: {
-                status: "SENT",
-                sponsoredPaidAt: paidAt || new Date(),
-                tokenHash
-              },
-              select: {
-                id: true,
-                sponsoredRole: true,
-                inviteeEmail: true,
-                room: {
-                  select: {
-                    title: true
-                  }
-                },
-                inviter: {
-                  select: {
-                    email: true
-                  }
-                }
-              }
+            /* SOL-PAY-07: toortoken ja tema kandja sünnivad ÜHES tehingus. Varem
+               kanti toortoken tehingust välja ja outbox-rida loodi alles pärast
+               commit'i — enqueue-viga tähendas, et makse ja kutse `SENT` seis
+               jäid alles, aga linki ei olnud enam kuskilt võtta (räsist teda
+               tagasi ei saa). */
+            inviteEmail = await issueSponsoredInviteDelivery(tx, {
+              paymentId: updatedPayment.id,
+              inviteId: updatedPayment.inviteId,
+              locale: paymentLocale,
+              activate: true,
+              paidAt
             });
-
-            inviteEmail = {
-              to: invite.inviteeEmail,
-              token,
-              roomTitle: invite.room?.title || "Room",
-              inviterName: invite.inviter?.email || "SotsiaalAI",
-              locale:
-                normalizeServerLocale(payment?.raw?.locale) ||
-                normalizeServerLocale(payment?.raw?.lang) ||
-                "en",
-              targetRole: invite.sponsoredRole || "CLIENT"
-            };
             logPaymentAudit({
               action: "sponsored_invite_activated",
-              result: "sent",
+              result: inviteEmail.reason,
               paymentId: updatedPayment.id,
-              inviteId: invite.id
+              inviteId: updatedPayment.inviteId
             });
           }
-        } else if (nextStatus === PaymentStatus.REFUNDED) {
+        } else if (effectiveStatus === PaymentStatus.REFUNDED) {
           // L-12/O-M3: tagasimakse pärast accept'i → revoke kutse + juba antud
           // sponsoreeritud tellimus + ruumiliikmesus ÜHES lukustatud tehingus.
           // Idempotentne: updateMany tingimused väldivad topeltkustutust/-grant'i.
@@ -578,8 +612,8 @@ export async function POST(request) {
             });
           }
         } else if (
-          nextStatus === PaymentStatus.CANCELED ||
-          nextStatus === PaymentStatus.FAILED
+          effectiveStatus === PaymentStatus.CANCELED ||
+          effectiveStatus === PaymentStatus.FAILED
         ) {
           await tx.invite.updateMany({
             where: {
@@ -595,7 +629,7 @@ export async function POST(request) {
             inviteId: updatedPayment.inviteId
           });
         }
-      } else if (nextStatus === PaymentStatus.PAID) {
+      } else if (effectiveStatus === PaymentStatus.PAID) {
         if (payment.kind === PaymentKind.SUBSCRIPTION_INITIAL) {
           billingMethod = await upsertRecurringBillingMethod(tx, payment, payload, paidAt || new Date());
 
@@ -635,14 +669,14 @@ export async function POST(request) {
       } else if (subscriptionAction === "cancel") {
         subscription = await cancelSubscriptionFromPayment(tx, updatedPayment);
         logPaymentAudit({
-          action: nextStatus === PaymentStatus.REFUNDED ? "subscription_refund_cancel" : "subscription_cancel",
+          action: effectiveStatus === PaymentStatus.REFUNDED ? "subscription_refund_cancel" : "subscription_cancel",
           result: "canceled",
           paymentId: updatedPayment.id,
           subscriptionId: updatedPayment.subscriptionId
         });
       } else if (
         payment.kind === PaymentKind.SUBSCRIPTION_RENEWAL &&
-        (nextStatus === PaymentStatus.FAILED || nextStatus === PaymentStatus.CANCELED) &&
+        (effectiveStatus === PaymentStatus.FAILED || effectiveStatus === PaymentStatus.CANCELED) &&
         payment.subscriptionId
       ) {
         /* SOL-PAY-01/-02: providerilt KINNITATUD eitus on tõrge nagu iga teine
@@ -723,32 +757,14 @@ export async function POST(request) {
       mismatchedFields: result?.mismatchedFields || ""
     });
 
-    // T09 E6/L-06: kõik makse-/kutse e-kirjad lähevad idempotentse outbox'i
-    // kaudu (mitte inline SMTP). Outbox worker saadab; kordus ei korda makset
-    // ega õiguse andmist. dedupeKey väldib duplikaate webhook-korduse korral.
-    if (result?.inviteEmail?.to && result?.status === PaymentStatus.PAID) {
-      try {
-        await enqueuePaymentEmail(prisma, {
-          dedupeKey: `invite:${result.paymentId}`,
-          template: "invite_sponsored",
-          toEmail: result.inviteEmail.to,
-          locale: result.inviteEmail.locale,
-          paymentId: result.paymentId,
-          payload: {
-            joinToken: result.inviteEmail.token,
-            roomTitle: result.inviteEmail.roomTitle,
-            inviterName: result.inviteEmail.inviterName,
-            targetRole: result.inviteEmail.targetRole
-          }
-        });
-      } catch (inviteError) {
-        logPaymentEvent("subscription_webhook_invite_email_enqueue_failed", {
-          paymentId: result?.paymentId || "",
-          providerPaymentId,
-          error: inviteError
-        });
-      }
-    }
+    /* T09 E6/L-06: kõik makse-/kutse e-kirjad lähevad idempotentse outbox'i kaudu
+       (mitte inline SMTP). Outbox worker saadab; kordus ei korda makset ega
+       õiguse andmist.
+
+       SOL-PAY-07: kutse-kiri EI OLE enam siin. Tema rida sünnib maksetehingu
+       SEES koos toortokeniga — commit'ivad koos või mitte kumbki. Allpool
+       jäävad ainult need kirjad, mille payload on taastatav (omanik ja klient
+       kannavad ainult `paymentId`-d, clawback ruumi nime). */
 
     if (result?.updated && result?.status === PaymentStatus.PAID && result?.paymentId) {
       try {

@@ -69,12 +69,17 @@ enum PaymentProvider {
 /// SOL-PAY-05: `REVIEW_REQUIRED` = allkiri oli kehtiv, aga sõnum ei vasta sellele
 /// maksele (summa, valuuta, viide, merchant_data või makseliik). Õigust EI anta ja
 /// automaatika ei lahenda seda ise — otsuse teeb inimene.
+///
+/// SOL-PAY-06: `PART_REFUNDED` on provideri oma seis ja tema kokkusurumine
+/// `REFUNDED`-iks tegi 0,01 € tagastusest täismahus clawback'i. Osaline tagastus
+/// EI lõpeta ligipääsu; õigus lõpeb siis, kui makse on TÄIELIKULT tagastatud.
 enum PaymentStatus {
   INITIATED
   PAID
   CANCELED
   FAILED
   REFUNDED
+  PART_REFUNDED
   RECONCILE_PENDING
   REVIEW_REQUIRED
 }
@@ -1223,6 +1228,10 @@ model Payment {
   paidAt            DateTime?
   failedAt          DateTime?
   refundedAt        DateTime?
+  /// SOL-PAY-06: kui palju sellest maksest on tagastatud. Ilma temata ei saa
+  /// eristada 0,01 € korrigeerimist täielikust tagastusest — vana kood surus
+  /// mõlemad `REFUNDED` alla ja lõpetas kogu ligipääsu.
+  refundedAmount    Decimal?        @db.Decimal(10, 2)
   attemptNumber     Int             @default(1)
   raw               Json?
   createdAt         DateTime        @default(now())

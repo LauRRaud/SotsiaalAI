@@ -3195,6 +3195,8 @@ export default function AnalyticsDashboard() {
                       "REVIEW_REQUIRED",
                       "FAILED",
                       "CANCELED",
+                      // SOL-PAY-06: osaline tagastus on oma seis, mitte täistagastus.
+                      "PART_REFUNDED",
                       "REFUNDED"
                     ]) || "-"
               }
