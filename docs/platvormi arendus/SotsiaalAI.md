@@ -169,11 +169,11 @@ ning peatüki UTC täisvärav on roheline; järgmine SOL-paranduste peatükk val
 
 **SOL-SLOG-15…16 tehtud 12.08 — juhile saadetav aruanne ei saa enam jääda orvufailiks ega kaduda vanemobjekti kaskaadiga.** `PREPARING` on püsiv taasteseis: fail liigub stagingust lõplikuks enne `SENT`+auditi ühistehingut ning cleanup-tõrke korjab retention-sweep. Kolm identiteedi-FK-d kasutavad `SetNull`-i ja DB-triggeri erased-at jälge; räsi, fail ja tähtaeg säilivad. Veasüstitestid **7/7**, `npm run slog:share-integrity:probe` **8/8** päris PostgreSQL-is ning kogu ploki testslice **373/373**; sihitud eslint, i18n ja Prisma valideerimine puhtad. Vajab migratsiooni `20260812223000_sol_slog_15_16_share_integrity`.
 
-**Viimati mõõdetud server on `387ebc5d`, `.next` 12.08 16:15:02** (seitsmeteistkümnes
-deploy, omaniku selgel loal). Välja läksid **SOL-PAY-09** ja **SOL-WB-06 täiendav
-lahtrisummutus** — viis commit'i ja üks migratsioon (`20260812170000`). Tööpuu on puhas ka
-serveris. Selle deploy mõõtmise hetkel deploy'mata koodi ei olnud; **praegune lokaalne tööots on
-ainult S1.0-s** ning `origin/main`/serveri suhe mõõdetakse käsuga enne järgmist push'i või deploy'd.
+**Viimati mõõdetud server on `a79c68b7`, `.next` 12.08 21:23:06** (kaheksateistkümnes
+deploy, omaniku selgel loal). Välja läksid eelnenud SOL-ORG/DOC/SLOG parandused ja kogu
+**SOL-RAGSVC-01…28** peatükk koos kuue uue migratsiooniga. Frontend, RAG ja research-worker on
+aktiivsed; avalik HTTPS ning RAG health vastavad 200, RAG võtmeta/vale võtmega 401 ja õige võtmega
+200. Serveri tööpuu on puhas; järgmine SOL-paranduste peatükk valitakse eraldi.
 
 **Mõõdetud ENNE ja PÄRAST, sest migratsioon puudutas tootmisandmetega tabelit.** Enne: 4
 `Payment` rida, `userId` kõigil täidetud, `Payment_userId_fkey` ja `Payment_subscriptionId_fkey`
