@@ -1,7 +1,11 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { buildWellbeingAggregateDataset, resolveWellbeingMinimumGroupSize } from "../../lib/wellbeing/aggregate.js";
+import {
+  WELLBEING_MINIMUM_GROUP_SIZE_FLOOR,
+  buildWellbeingAggregateDataset,
+  resolveWellbeingMinimumGroupSize
+} from "../../lib/wellbeing/aggregate.js";
 import { resolveWellbeingPilotAggregateFilters } from "../../lib/wellbeing/pilotAccess.js";
 import {
   assertNoFreeFormPeriod,
@@ -13,11 +17,22 @@ import {
    päringuid ning env-väärtust 1." */
 
 test("the minimum group size has a floor in code that the environment cannot lower", () => {
-  assert.equal(resolveWellbeingMinimumGroupSize({ env: { WELLBEING_MIN_GROUP_SIZE: "1" } }), 3);
-  assert.equal(resolveWellbeingMinimumGroupSize({ env: { WELLBEING_MIN_GROUP_SIZE: "0" } }), 3);
-  assert.equal(resolveWellbeingMinimumGroupSize({ env: { WELLBEING_MIN_GROUP_SIZE: "-5" } }), 3);
+  /* Põrand on seotud konstandiga, mitte kirjutatud numbriga: 12.08 tõsteti ta
+     3-lt 5-le ja järgmine otsus (võimalik 10) ei tohi seda testi valeks teha
+     asja pärast, mida ta ei mõõda. Mõõdetav omadus on „ei saa langetada". */
+  for (const attempt of ["1", "0", "-5", "3", "bad"]) {
+    assert.equal(
+      resolveWellbeingMinimumGroupSize({ env: { WELLBEING_MIN_GROUP_SIZE: attempt } }),
+      WELLBEING_MINIMUM_GROUP_SIZE_FLOOR,
+      `${attempt} langetas privaatsuslävendit`
+    );
+  }
   /* Tõsta tohib. */
-  assert.equal(resolveWellbeingMinimumGroupSize({ env: { WELLBEING_MIN_GROUP_SIZE: "10" } }), 10);
+  const higher = WELLBEING_MINIMUM_GROUP_SIZE_FLOOR + 5;
+  assert.equal(
+    resolveWellbeingMinimumGroupSize({ env: { WELLBEING_MIN_GROUP_SIZE: String(higher) } }),
+    higher
+  );
 });
 
 test("a suppressed sample carries no counts at all, whatever the environment says", async () => {
@@ -34,7 +49,7 @@ test("a suppressed sample carries no counts at all, whatever the environment say
     env: { WELLBEING_MIN_GROUP_SIZE: "1" }
   });
 
-  assert.equal(dataset.minimumGroupSize, 3);
+  assert.equal(dataset.minimumGroupSize, WELLBEING_MINIMUM_GROUP_SIZE_FLOOR);
   assert.equal(dataset.suppressed, true);
   assert.deepEqual(dataset.metrics, []);
   assert.equal(JSON.stringify(dataset).includes("risk.difficult_case"), false);

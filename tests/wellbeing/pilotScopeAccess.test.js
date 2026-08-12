@@ -94,6 +94,7 @@ test("wellbeing pilot aggregate filters bind non-admin users to the selected DB 
       periodLabel: "kõik",
       periodStart: null,
       periodEnd: null,
+      analysisUnit: "latest_per_person",
       /* SOL-WB-01: KOV-piloodi piir peab jõudma FILTRISSE, mitte jääma vastuse
          metaandmetesse — ilma selleta luges sama rollirühma koond kogu
          platvormi ja kandis ometi selle piloodi nime. */
@@ -166,6 +167,7 @@ test("wellbeing pilot aggregate filters bind an admin to the pilot they selected
       periodLabel: "kõik",
       periodStart: null,
       periodEnd: null,
+      analysisUnit: "latest_per_person",
       organizationId: "org_harku",
       municipalityId: null,
       aggregationLevel: "role_group",
@@ -184,6 +186,7 @@ test("wellbeing pilot aggregate filters bind an admin to the pilot they selected
       periodLabel: "kõik",
       periodStart: null,
       periodEnd: null,
+      analysisUnit: "latest_per_person",
       organizationId: null,
       municipalityId: null,
       aggregationLevel: "role_group"

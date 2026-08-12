@@ -10,6 +10,7 @@ import {
   WELLBEING_UNEXPECTED_ERROR
 } from "@/lib/wellbeing/apiErrors";
 import { assertNoFreeFormPeriod, resolveWellbeingPeriod } from "@/lib/wellbeing/periodGrid";
+import { normalizeWellbeingAnalysisUnit } from "@/lib/wellbeing/aggregate";
 import {
   buildWellbeingExportDataset,
   exportWellbeingCsv
@@ -58,6 +59,9 @@ function filtersFromRequest(request) {
     periodEnd: period.periodEnd,
     roleGroup: url.searchParams.get("roleGroup"),
     workflowType: url.searchParams.get("workflowType"),
+    /* SOL-WB-04: ühik on valitav ka admini pinnal — sama argument mis
+       perioodivõrgul, leid nimetas mõlemat marsruuti. */
+    analysisUnit: normalizeWellbeingAnalysisUnit(url.searchParams.get("analysisUnit")),
     aggregationLevel: url.searchParams.get("aggregationLevel") || "role_group"
   };
 }

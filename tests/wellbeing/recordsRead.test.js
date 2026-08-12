@@ -6,7 +6,10 @@ import {
   getWellbeingRecordForUser
 } from "../../lib/wellbeing/records.js";
 import { listWellbeingOutputDraftsForRecord } from "../../lib/wellbeing/supportDrafts.js";
-import { buildWellbeingAggregateDataset } from "../../lib/wellbeing/aggregate.js";
+import {
+  WELLBEING_MINIMUM_GROUP_SIZE_FLOOR,
+  buildWellbeingAggregateDataset
+} from "../../lib/wellbeing/aggregate.js";
 
 /* Elus jagatud pood: sama massiiv teenindab loendit, agregaati ja kustutust,
    nii et kustutuse koondimõju on tõestatav ilma materialiseeritud kihita. */
@@ -107,22 +110,25 @@ test("deleteWellbeingRecordForUser deletes only the owner's record and reports 4
 });
 
 test("deleting a record changes the live aggregate without a materialized layer", async () => {
-  const { prisma } = createLiveStore([
-    aggregatableRecord("rec_a", "user_1"),
-    aggregatableRecord("rec_b", "user_2"),
-    aggregatableRecord("rec_c", "user_3")
-  ]);
+  /* Valim on TÄPSELT lävendi jagu, sest testi mõte on see, et üks kustutus viib
+     ta alla piiri. Suurus tuleb konstandist, mitte kirjutatud numbrist: lävend
+     on tootevalik ja ta on juba korra muutunud (3 → 5, SOL-WB-06). */
+  const size = WELLBEING_MINIMUM_GROUP_SIZE_FLOOR;
+  const owners = Array.from({ length: size }, (_, index) => `user_${index + 1}`);
+  const { prisma } = createLiveStore(
+    owners.map((owner, index) => aggregatableRecord(`rec_${index + 1}`, owner))
+  );
 
   const before = await buildWellbeingAggregateDataset({}, { prisma });
   assert.equal(before.suppressed, false);
-  assert.equal(before.recordCount, 3);
-  assert.equal(before.sampleSize, 3);
+  assert.equal(before.recordCount, size);
+  assert.equal(before.sampleSize, size);
 
-  await deleteWellbeingRecordForUser("user_3", "rec_c", { prisma });
+  await deleteWellbeingRecordForUser(owners[size - 1], `rec_${size}`, { prisma });
 
   const after = await buildWellbeingAggregateDataset({}, { prisma });
-  assert.equal(after.recordCount, 2);
-  assert.equal(after.sampleSize, 2);
+  assert.equal(after.recordCount, size - 1);
+  assert.equal(after.sampleSize, size - 1);
   assert.equal(after.suppressed, true, "dropping below the min group size suppresses the aggregate live");
 });
 

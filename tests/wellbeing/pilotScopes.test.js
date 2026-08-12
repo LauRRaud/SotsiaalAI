@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
+import { WELLBEING_MINIMUM_GROUP_SIZE_FLOOR } from "../../lib/wellbeing/aggregate.js";
 import {
   createWellbeingPilotScope,
   listWellbeingPilotScopes,
@@ -28,7 +29,9 @@ test("wellbeing pilot scope input normalizes role groups, viewers, dates and min
       organizationId: null,
       roleGroups: ["child_protection", "family_support"],
       viewerEmails: ["kov@example.test", "juht@example.test"],
-      minimumGroupSize: 3,
+      /* Piloodi seadistus ei saa põrandast alla minna: sisend oli „2". Põrand
+         tuleb ühest kohast (`aggregate.js`), mitte teisest käsitsi koopiast. */
+      minimumGroupSize: WELLBEING_MINIMUM_GROUP_SIZE_FLOOR,
       active: true,
       startsAt: new Date("2026-05-01T00:00:00.000Z"),
       endsAt: null

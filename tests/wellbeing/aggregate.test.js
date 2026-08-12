@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import {
+  WELLBEING_MINIMUM_GROUP_SIZE_FLOOR,
   buildWellbeingAggregateDataset,
   resolveWellbeingMinimumGroupSize
 } from "../../lib/wellbeing/aggregate.js";
@@ -26,10 +27,26 @@ function record(overrides = {}) {
   };
 }
 
-test("wellbeing aggregate defaults to pilot-friendly minimum group size 3", () => {
-  assert.equal(resolveWellbeingMinimumGroupSize({}), 3);
-  assert.equal(resolveWellbeingMinimumGroupSize({ env: { WELLBEING_MIN_GROUP_SIZE: "5" } }), 5);
-  assert.equal(resolveWellbeingMinimumGroupSize({ env: { WELLBEING_MIN_GROUP_SIZE: "bad" } }), 3);
+/* Lävend on seotud EKSPORDITUD konstandiga, mitte kirjutatud numbriga: kui
+   omanik otsustab hiljem 10 kasuks, ei tohi see test valeks minna asja pärast,
+   mida ta ei mõõda. Mõõdetav omadus on „keskkond saab ainult tõsta". */
+test("wellbeing aggregate has a minimum group size floor the environment cannot lower", () => {
+  assert.equal(resolveWellbeingMinimumGroupSize({}), WELLBEING_MINIMUM_GROUP_SIZE_FLOOR);
+  assert.equal(
+    resolveWellbeingMinimumGroupSize({ env: { WELLBEING_MIN_GROUP_SIZE: "bad" } }),
+    WELLBEING_MINIMUM_GROUP_SIZE_FLOOR
+  );
+  /* Tõstmine jääb võimalikuks. */
+  const higher = WELLBEING_MINIMUM_GROUP_SIZE_FLOOR + 4;
+  assert.equal(
+    resolveWellbeingMinimumGroupSize({ env: { WELLBEING_MIN_GROUP_SIZE: String(higher) } }),
+    higher
+  );
+  /* Vana lävend 3 ei ole enam seadistatav — just see on 12.08 otsuse sisu. */
+  assert.equal(
+    resolveWellbeingMinimumGroupSize({ env: { WELLBEING_MIN_GROUP_SIZE: "3" } }),
+    WELLBEING_MINIMUM_GROUP_SIZE_FLOOR
+  );
 });
 
 test("wellbeing aggregate suppresses detail categories below minimum distinct users", async () => {
@@ -47,7 +64,7 @@ test("wellbeing aggregate suppresses detail categories below minimum distinct us
     { prisma, env: { WELLBEING_MIN_GROUP_SIZE: "3" } }
   );
 
-  assert.equal(dataset.minimumGroupSize, 3);
+  assert.equal(dataset.minimumGroupSize, WELLBEING_MINIMUM_GROUP_SIZE_FLOOR);
   assert.equal(dataset.sampleSize, 2);
   assert.equal(dataset.suppressed, true);
   assert.deepEqual(dataset.metrics, []);
@@ -61,15 +78,18 @@ test("wellbeing aggregate emits only anonymous counts and shares at sufficient g
       findMany: async () => [
         record({ id: "r1", ownerUserId: "user_1", computedSignal: { signalLevel: "red" } }),
         record({ id: "r2", ownerUserId: "user_2", computedSignal: { signalLevel: "yellow" } }),
-        record({
-          id: "r3",
-          ownerUserId: "user_3",
+        /* Kolm rohelist ühesugust rida, et valim ulatuks lävendini ja mõõdikute
+           NIMEKIRI jääks samaks — muidu mõõdaks test lävendi muutust, mitte
+           koondi kuju. */
+        ...["user_3", "user_4", "user_5"].map((ownerUserId, index) => record({
+          id: `r${index + 3}`,
+          ownerUserId,
           workflowType: "work-processes",
           computedSignal: { signalLevel: "green" },
           loadFactors: ["documentation.high", "interruptions.high"],
           resourceFactors: ["processes.single_entry_needed"],
           riskMarkers: []
-        })
+        }))
       ]
     }
   };
@@ -79,7 +99,7 @@ test("wellbeing aggregate emits only anonymous counts and shares at sufficient g
     { prisma, env: { WELLBEING_MIN_GROUP_SIZE: "3" }, now: new Date("2026-05-26T12:00:00.000Z") }
   );
 
-  assert.equal(dataset.sampleSize, 3);
+  assert.equal(dataset.sampleSize, 5);
   assert.equal(dataset.suppressed, false);
   assert.deepEqual(
     dataset.metrics.map((metric) => metric.metricKey),
@@ -99,9 +119,12 @@ test("wellbeing aggregate emits only anonymous counts and shares at sufficient g
       "risk_event.risk.difficult_case.count"
     ]
   );
-  assert.equal(dataset.metrics.find((metric) => metric.metricKey === "signal.red.share")?.metricValue, 1 / 3);
-  assert.equal(dataset.metrics.find((metric) => metric.metricKey === "work_demand.documentation.high.count")?.metricValue, 3);
-  assert.equal(dataset.metrics.every((metric) => metric.sampleSize === 3), true);
+  /* Üks punane viiest. Nimetaja on arvestatud ühikute arv, mis on siin sama mis
+     valim, sest iga inimene andis täpselt ühe kirje. */
+  assert.equal(dataset.metrics.find((metric) => metric.metricKey === "signal.red.share")?.metricValue, 1 / 5);
+  /* `documentation.high` on kõigil viiel real. */
+  assert.equal(dataset.metrics.find((metric) => metric.metricKey === "work_demand.documentation.high.count")?.metricValue, 5);
+  assert.equal(dataset.metrics.every((metric) => metric.sampleSize === 5), true);
   assert.equal(dataset.metrics.every((metric) => metric.exportEligible === true), true);
 });
 

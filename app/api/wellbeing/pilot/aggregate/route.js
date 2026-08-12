@@ -68,6 +68,12 @@ function filtersFromRequest(request) {
     periodIndex: url.searchParams.get("periodIndex"),
     roleGroup: url.searchParams.get("roleGroup"),
     workflowType: url.searchParams.get("workflowType"),
+    /* SOL-WB-04: ühik on päringu osa, mitte konstant. Ilma selleta oleks
+       vaikeväärtuse vahetus teinud sagedusvaate kättesaamatuks — „record jääb
+       alles" peab tähendama, et teda saab küsida. Tundmatu väärtus annab 400
+       (vt `normalizeWellbeingAnalysisUnit`), sest vaikne tagasilangus annaks
+       kliendile teise vaate sama nime all. */
+    analysisUnit: url.searchParams.get("analysisUnit"),
     aggregationLevel: url.searchParams.get("aggregationLevel") || "role_group"
   };
 }
