@@ -33,7 +33,7 @@ import {
   buildRenewalFailureSubscriptionUpdate,
   planRenewalFailure
 } from "@/lib/payments/recurring";
-import { logPaymentAudit, logPaymentEvent } from "@/lib/payments/observability";
+import { logPaymentEvent, writePaymentAudit } from "@/lib/payments/observability";
 import { buildPaymentRawRecord } from "@/lib/payments/rawProjection";
 import { safeError } from "@/lib/privacy/safeError";
 import {
@@ -429,7 +429,7 @@ export async function POST(request) {
             },
             select: { id: true, status: true }
           });
-          logPaymentAudit({
+          await writePaymentAudit(tx, {
             action: "payment_review_required",
             result: describeMismatches(verdict.mismatches),
             paymentId: payment.id,
@@ -501,7 +501,7 @@ export async function POST(request) {
       });
 
       if (refundOutcome && !refundOutcome.full) {
-        logPaymentAudit({
+        await writePaymentAudit(tx, {
           action: "payment_part_refunded",
           result: String(refundOutcome.refundedAmount || "unknown"),
           paymentId: updatedPayment.id,
@@ -524,7 +524,7 @@ export async function POST(request) {
             select: { status: true }
           });
           if (currentInvite?.status !== "PENDING_PAYMENT") {
-            logPaymentAudit({
+            await writePaymentAudit(tx, {
               action: "sponsored_invite_paid_terminal_ignored",
               result: String(currentInvite?.status || "unknown").toLowerCase(),
               paymentId: updatedPayment.id,
@@ -543,7 +543,7 @@ export async function POST(request) {
               activate: true,
               paidAt
             });
-            logPaymentAudit({
+            await writePaymentAudit(tx, {
               action: "sponsored_invite_activated",
               result: inviteEmail.reason,
               paymentId: updatedPayment.id,
@@ -603,7 +603,7 @@ export async function POST(request) {
                 locale: paymentLocale
               };
             }
-            logPaymentAudit({
+            await writePaymentAudit(tx, {
               action: "sponsored_invite_refund_clawback",
               result: `sub:${clawedSub.count},member:${clawedMember.count}`,
               paymentId: updatedPayment.id,
@@ -622,7 +622,7 @@ export async function POST(request) {
             },
             data: { status: "REVOKED" }
           });
-          logPaymentAudit({
+          await writePaymentAudit(tx, {
             action: "sponsored_invite_payment_failed",
             result: String(nextStatus).toLowerCase(),
             paymentId: updatedPayment.id,
@@ -660,7 +660,7 @@ export async function POST(request) {
         }
 
         subscription = await activateSubscriptionFromPayment(tx, updatedPayment);
-        logPaymentAudit({
+        await writePaymentAudit(tx, {
           action: "subscription_activate",
           result: "active",
           paymentId: updatedPayment.id,
@@ -668,7 +668,7 @@ export async function POST(request) {
         });
       } else if (subscriptionAction === "cancel") {
         subscription = await cancelSubscriptionFromPayment(tx, updatedPayment);
-        logPaymentAudit({
+        await writePaymentAudit(tx, {
           action: effectiveStatus === PaymentStatus.REFUNDED ? "subscription_refund_cancel" : "subscription_cancel",
           result: "canceled",
           paymentId: updatedPayment.id,
@@ -713,7 +713,7 @@ export async function POST(request) {
             data: { status: failurePlan.billingMethodStatus }
           });
         }
-        logPaymentAudit({
+        await writePaymentAudit(tx, {
           action: failurePlan.cancel ? "subscription_renewal_canceled" : "subscription_past_due",
           result: failurePlan.cancel ? "canceled" : "past_due",
           paymentId: updatedPayment.id,

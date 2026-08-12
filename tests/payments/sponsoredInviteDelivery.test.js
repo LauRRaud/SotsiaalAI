@@ -22,10 +22,18 @@ function fakeTx({ invite, outboxRow = null, enqueueFails = false } = {}) {
     invite: { ...invite },
     outbox: outboxRow ? { ...outboxRow } : null,
     enqueued: [],
-    inviteUpdates: []
+    inviteUpdates: [],
+    audits: []
   };
   return {
     state,
+    // SOL-PAY-08: auditijälg käib sama tehinguga; ilma selleta kirjutus kukub.
+    dataAuditLog: {
+      async create({ data }) {
+        state.audits.push(data);
+        return { id: `audit_${state.audits.length}`, ...data };
+      }
+    },
     invite: {
       async findUnique() {
         return state.invite ? { ...state.invite } : null;
@@ -141,6 +149,8 @@ test("KANDEV: kordus taastab kadunud kandja ilma uue õiguse või makseta", asyn
   assert.ok(tx.state.enqueued[0].payload.joinToken);
   assert.equal(tx.state.invite.status, "SENT", "seis ei liigu — uut õigust ei anta");
   assert.notEqual(tx.state.invite.tokenHash, "vana", "uus link, sest vana ei läinud kunagi välja");
+  assert.equal(tx.state.audits.length, 1, "taastamine jätab püsiva jälje samas tehingus");
+  assert.equal(tx.state.audits[0].action, "payment.sponsored_invite_delivery_restored");
 });
 
 test("olemasoleva kandja peale ei rotreerita midagi", async () => {

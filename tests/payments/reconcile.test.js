@@ -16,8 +16,9 @@ function applyData(target, data) {
   }
 }
 
-function fakeDb(payments, subscriptions = new Map(), invites = new Map()) {
+function fakeDb(payments, subscriptions = new Map(), invites = new Map(), audits = []) {
   const db = {
+    audits,
     async $transaction(fn) {
       return fn(db);
     },
@@ -67,6 +68,14 @@ function fakeDb(payments, subscriptions = new Map(), invites = new Map()) {
       },
       async update({ data }) {
         return { id: "bm_upd", ...data };
+      }
+    },
+    /* SOL-PAY-08: auditijälg kirjutatakse SAMA tehinguga. Kui fake seda ei paku,
+       kukub kirjutus — see ongi leping: audit ei ole valikuline kõrvalmõju. */
+    dataAuditLog: {
+      async create({ data }) {
+        audits.push(data);
+        return { id: `audit_${audits.length}`, ...data };
       }
     },
     invite: {
@@ -219,9 +228,31 @@ test("verified FAILED marks the payment terminal and revokes a pending invite", 
     ["p1", { id: "p1", status: "INITIATED", provider: "MAKSEKESKUS", kind: "INVITE_SPONSORED", inviteId: "i1", subscriptionId: null, createdAt: new Date(NOW.getTime() - 2 * HOUR), raw: {} }]
   ]);
   const invites = new Map([["i1", { id: "i1", status: "PENDING_PAYMENT" }]]);
-  const db = fakeDb(payments, new Map(), invites);
+  const audits = [];
+  const db = fakeDb(payments, new Map(), invites, audits);
   const result = await reconcileStuckPayments({ db, now: NOW, stuckAfterMs: HOUR, queryProviderStatus: async () => ({ status: "FAILED" }) });
   assert.equal(result.failed, 1);
   assert.equal(payments.get("p1").status, "FAILED");
   assert.equal(invites.get("i1").status, "REVOKED");
+  // SOL-PAY-08: otsus ja tema püsiv jälg tulevad samast tehingust.
+  assert.equal(audits.length, 1);
+  assert.equal(audits[0].action, "payment.reconcile_terminal");
+  assert.equal(audits[0].resourceId, "p1");
+});
+
+test("SOL-PAY-06: osaline tagastus ei revoke'i kutset ka reconciliation'is", async () => {
+  const payments = new Map([
+    ["p1", { id: "p1", status: "INITIATED", provider: "MAKSEKESKUS", kind: "INVITE_SPONSORED", inviteId: "i1", subscriptionId: null, createdAt: new Date(NOW.getTime() - 2 * HOUR), raw: {} }]
+  ]);
+  const invites = new Map([["i1", { id: "i1", status: "SENT" }]]);
+  const db = fakeDb(payments, new Map(), invites);
+  const result = await reconcileStuckPayments({
+    db,
+    now: NOW,
+    stuckAfterMs: HOUR,
+    queryProviderStatus: async () => ({ status: "PART_REFUNDED" })
+  });
+  assert.equal(result.part_refunded, 1);
+  assert.equal(payments.get("p1").status, "PART_REFUNDED");
+  assert.equal(invites.get("i1").status, "SENT", "osaline tagastus ei ole clawback");
 });

@@ -12,7 +12,7 @@ import {
   resolveRoleBoundSubscriptionPlan
 } from "@/lib/subscriptionPlans";
 import { isSponsoredBillingSource, serializeSubscription } from "@/lib/subscriptionView";
-import { logPaymentAudit } from "@/lib/payments/observability";
+import { logPaymentAudit, writePaymentAudit } from "@/lib/payments/observability";
 import { safeError } from "@/lib/privacy/safeError";
 
 const ACTIVE_STATUS = SubscriptionStatus.ACTIVE;
@@ -211,50 +211,58 @@ export async function DELETE(request) {
 
   try {
     const now = new Date();
-    // O-M4: kasutaja tühistus = cancelAtPeriodEnd. Makstud ligipääs kestab
-    // validUntil-ini, uusi uuendusmakseid ei alustata (nextBilling nulli).
-    // Ainult omamaksega (SELF) ACTIVE tellimus; sponsoreeritut kasutaja ei tühista.
-    const periodEnd = await prisma.subscription.updateMany({
-      where: {
-        userId: session.userId,
-        status: ACTIVE_STATUS,
-        billingSource: "SELF"
-      },
-      data: {
-        cancelAtPeriodEnd: true,
-        nextBilling: null
-      }
-    });
-    // PAST_DUE (ligipääs juba lõppenud): tühistus peatab retry'd kohe.
-    const pastDueCanceled = await prisma.subscription.updateMany({
-      where: {
-        userId: session.userId,
-        status: SubscriptionStatus.PAST_DUE,
-        billingSource: "SELF"
-      },
-      data: {
-        status: CANCELED_STATUS,
-        canceledAt: now,
-        cancelAtPeriodEnd: true,
-        nextBilling: null
-      }
-    });
-
-    const subscription = await prisma.subscription.findFirst({
-      where: { userId: session.userId },
-      orderBy: [{ updatedAt: "desc" }]
-    });
-
-    const canceledSomething = periodEnd.count > 0 || pastDueCanceled.count > 0;
-
-    if (subscription && canceledSomething) {
-      logPaymentAudit({
-        action: "subscription_cancel_requested",
-        result: pastDueCanceled.count > 0 ? "canceled" : "cancel_at_period_end",
-        subscriptionId: subscription.id,
-        userId: session.userId
+    /* SOL-PAY-08: otsus ja tema jälg ühes tehingus. Varem käisid kaks
+       `updateMany`-t eraldi ja audit kirjutati globaalse kliendiga tehingust
+       väljas — tühistus võis jõustuda ilma jäljeta või jälg kirjeldada muudatust,
+       mida ei toimunud. */
+    const { subscription, canceledSomething } = await prisma.$transaction(async (tx) => {
+      // O-M4: kasutaja tühistus = cancelAtPeriodEnd. Makstud ligipääs kestab
+      // validUntil-ini, uusi uuendusmakseid ei alustata (nextBilling nulli).
+      // Ainult omamaksega (SELF) ACTIVE tellimus; sponsoreeritut kasutaja ei tühista.
+      const periodEnd = await tx.subscription.updateMany({
+        where: {
+          userId: session.userId,
+          status: ACTIVE_STATUS,
+          billingSource: "SELF"
+        },
+        data: {
+          cancelAtPeriodEnd: true,
+          nextBilling: null
+        }
       });
-    }
+      // PAST_DUE (ligipääs juba lõppenud): tühistus peatab retry'd kohe.
+      const pastDueCanceled = await tx.subscription.updateMany({
+        where: {
+          userId: session.userId,
+          status: SubscriptionStatus.PAST_DUE,
+          billingSource: "SELF"
+        },
+        data: {
+          status: CANCELED_STATUS,
+          canceledAt: now,
+          cancelAtPeriodEnd: true,
+          nextBilling: null
+        }
+      });
+
+      const current = await tx.subscription.findFirst({
+        where: { userId: session.userId },
+        orderBy: [{ updatedAt: "desc" }]
+      });
+
+      const changed = periodEnd.count > 0 || pastDueCanceled.count > 0;
+      if (current && changed) {
+        await writePaymentAudit(tx, {
+          action: "subscription_cancel_requested",
+          result: pastDueCanceled.count > 0 ? "canceled" : "cancel_at_period_end",
+          subscriptionId: current.id,
+          userId: session.userId,
+          actorUserId: session.userId
+        });
+      }
+
+      return { subscription: current, canceledSomething: changed };
+    });
 
     /* SOL-PAY-04 kõrvalparandus: tühistus nõuab `billingSource: "SELF"`, aga
        vastus oli seni `ok` ka siis, kui ükski rida ei liikunud. Just see vaikimine
