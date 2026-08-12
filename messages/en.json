@@ -1707,6 +1707,8 @@
     "motion": "Motion and performance",
     "theme": "Theme",
     "ambient": "Background sound",
+    "ambient_previous": "Previous background sound",
+    "ambient_next": "Next background sound",
     "install": "SotsiaalAI app",
     "install_nav": "App",
     "options": {
@@ -1743,11 +1745,11 @@
       },
       "ambient": {
         "off": "Silence",
-        "a": "Melody I — Dusk",
-        "b": "Melody II — Softness",
-        "c": "Melody III — Delicate",
-        "d": "Melody IV — Satie, Gymnopédie No. 1",
-        "e": "Melody V — Bach, Prelude in C major"
+        "a": "Melody I",
+        "b": "Melody II",
+        "c": "Melody III",
+        "d": "Melody IV",
+        "e": "Melody V"
       }
     },
     "save": "Save",
@@ -4125,10 +4127,9 @@
     "fullscreen_body": "For the best experience, use SotsiaalAI full screen.",
     "installed_heading": "App view is in use",
     "installed_body": "SotsiaalAI is open in this window as an installed app.",
-    "promotion_title": "Open SotsiaalAI as its own space",
-    "promotion_body": "Install the platform on this device to open it directly and full screen next time.",
-    "promotion_cta": "Install app",
-    "promotion_later": "Not now",
+    "promotion_title": "Open SotsiaalAI full screen",
+    "promotion_cta": "Install",
+    "promotion_later": "Later",
     "promotion_announcement": "SotsiaalAI can be opened as a full-screen app.",
     "instructions": {
       "ios": "1. Tap \"Share\". 2. Choose \"More\". 3. Tap \"Add to Home Screen\".",

@@ -8,14 +8,14 @@ Mootor: `components/room/AmbientAudio.jsx` (kaardistus `FILE_SRC`-is).
 
 | mode | fail (`public/audio/…`) | Menüü (ET) | kestus | allikas |
 |------|--------------------------|------------|--------|---------|
-| a | `atlasaudio-ambient-cinematic-510518.mp3` | Meloodia I — Hämarik | 2:04 | Pixabay |
-| b | `atlasaudio-cinematic-softness-511863.mp3` | Meloodia II — Pehmus | 2:00 | Pixabay |
-| c | `the_mountain-delicate-cinematic-512628.mp3` | Meloodia III — Õrnus | 2:06 | Pixabay |
-| d | `satie-gymnopedie-1-alciatore-pd.mp3` | Meloodia IV — Satie, Gymnopédie nr 1 | 3:04 | Wikimedia Commons |
-| e | `bach-wtc1-prelude-bwv846-ishizaka-cc0.mp3` | Meloodia V — Bach, prelüüd C-duur | 2:43 | Internet Archive |
+| a | `atlasaudio-ambient-cinematic-510518.mp3` | Meloodia I | 2:04 | Pixabay |
+| b | `atlasaudio-cinematic-softness-511863.mp3` | Meloodia II | 2:00 | Pixabay |
+| c | `the_mountain-delicate-cinematic-512628.mp3` | Meloodia III | 2:06 | Pixabay |
+| d | `satie-gymnopedie-1-alciatore-pd.mp3` | Meloodia IV | 3:04 | Wikimedia Commons |
+| e | `bach-wtc1-prelude-bwv846-ishizaka-cc0.mp3` | Meloodia V | 2:43 | Internet Archive |
 
-a–c nimed on meeleolu järgi pandud; d–e kannavad teose päris nime, sest
-konkreetset kompositsiooni ei tohi meeleolusõna taha peita. Sildid:
+Valikuaknas on kõigil lugudel ühetaolised nummerdatud nimed. Täpsed teosed,
+esitajad, failid ja litsentsid jäävad siinsesse kaardistusse jälgitavaks. Sildid:
 `messages/{et,en,ru}.json` → `accessibility.options.ambient.{a..e}`.
 Helitase: `FILE_LEVELS` AmbientAudio.jsx-is (a=0.32, b/c=0.30, d/e=0.40).
 

@@ -499,16 +499,17 @@ export default function InstallAppLink({
   if (variant === "quickIcon") {
     return (
       <>
-        <button
+        <Button
           type="button"
           ref={triggerRef}
+          variant="primary"
           className={className || "pwa-install-action"}
           onClick={handleClick}
           aria-label={ariaLabel || installCta}
           tabIndex={tabIndex}
         >
           {children || installCta}
-        </button>
+        </Button>
         {helpPopover}
       </>
     );

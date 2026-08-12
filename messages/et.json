@@ -1707,6 +1707,8 @@
     "motion": "Liikumine ja jõudlus",
     "theme": "Teema",
     "ambient": "Taustaheli",
+    "ambient_previous": "Eelmine taustaheli",
+    "ambient_next": "Järgmine taustaheli",
     "install": "SotsiaalAI rakendus",
     "install_nav": "Rakendus",
     "options": {
@@ -1743,11 +1745,11 @@
       },
       "ambient": {
         "off": "Vaikus",
-        "a": "Meloodia I — Hämarik",
-        "b": "Meloodia II — Pehmus",
-        "c": "Meloodia III — Õrnus",
-        "d": "Meloodia IV — Satie, Gymnopédie nr 1",
-        "e": "Meloodia V — Bach, prelüüd C-duur"
+        "a": "Meloodia I",
+        "b": "Meloodia II",
+        "c": "Meloodia III",
+        "d": "Meloodia IV",
+        "e": "Meloodia V"
       }
     },
     "save": "Salvesta",
@@ -4125,10 +4127,9 @@
     "fullscreen_body": "Parima kasutuskogemuse saad täisekraanil.",
     "installed_heading": "Rakendusvaade on kasutusel",
     "installed_body": "SotsiaalAI on selles aknas avatud paigaldatud rakendusena.",
-    "promotion_title": "Ava SotsiaalAI omaette ruumina",
-    "promotion_body": "Paigalda platvorm seadmesse, et avada see edaspidi otse ja täisekraanil.",
-    "promotion_cta": "Paigalda rakendus",
-    "promotion_later": "Mitte praegu",
+    "promotion_title": "Ava SotsiaalAI täisekraanil",
+    "promotion_cta": "Paigalda",
+    "promotion_later": "Hiljem",
     "promotion_announcement": "SotsiaalAI saab avada täisekraanilise rakendusena.",
     "instructions": {
       "ios": "Vajuta \"Jaga\" ja seejärel \"Vaata veel\". Ekraanile lisamiseks vajuta.",

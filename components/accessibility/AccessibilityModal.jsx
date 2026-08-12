@@ -23,6 +23,8 @@ import Button from "@/components/ui/Button";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { useRouter } from "next/navigation";
 import OptionCard from "@/components/ui/OptionCard";
+import IconButton from "@/components/glass/IconButton";
+import ChevronIcon from "@/components/brand/icons/ChevronIcon";
 /* Tagasi kannab SAMA noolt mis ruumi dokk (BackArrowIcon, 24-ruudustik).
    ChevronIcon on karusselli servanool: tema ruudustik on 4,8 × 8,6 ja
    joon 1,45 selle sees — samas ringis loeb see hoopis jämedama ja
@@ -67,6 +69,7 @@ const AUTO_ADVANCE_STATIONS = new Set([
    kaamera liikuma hakkab (lend ise algab ease-in'iga aeglaselt). Käib
    lennutempoga kaasa — 02.08 tõmmatud 380 → 260 ms. */
 const AUTO_ADVANCE_DELAY_MS = 260;
+const AMBIENT_CHOICES = ["off", ...AMBIENT_MODES];
 
 /* Auto-edasi AINULT osutiga tehtud valikul. Klaviatuuriga käiakse
    raadionuppude vahel nooltega ja OptionCard „valib" iga vahepeatuse
@@ -120,6 +123,26 @@ export default function AccessibilityModal({
   const chooseAmbient = (value) => {
     setAmbient(value);
     setAmbientMode(value);
+  };
+  const ambientIndex = Math.max(0, AMBIENT_CHOICES.indexOf(ambient));
+  const moveAmbient = (direction) => {
+    const nextIndex = (ambientIndex + direction + AMBIENT_CHOICES.length) % AMBIENT_CHOICES.length;
+    chooseAmbient(AMBIENT_CHOICES[nextIndex]);
+  };
+  const onAmbientKeyDown = (event) => {
+    let nextIndex = null;
+    if (event.key === "ArrowLeft" || event.key === "ArrowDown") {
+      nextIndex = (ambientIndex - 1 + AMBIENT_CHOICES.length) % AMBIENT_CHOICES.length;
+    } else if (event.key === "ArrowRight" || event.key === "ArrowUp") {
+      nextIndex = (ambientIndex + 1) % AMBIENT_CHOICES.length;
+    } else if (event.key === "Home") {
+      nextIndex = 0;
+    } else if (event.key === "End") {
+      nextIndex = AMBIENT_CHOICES.length - 1;
+    }
+    if (nextIndex === null) return;
+    event.preventDefault();
+    chooseAmbient(AMBIENT_CHOICES[nextIndex]);
   };
   const [reduceTransparency, setReduceTransparency] = useState(!!prefs.reduceTransparency);
   const [theme, setTheme] = useState(initialTheme);
@@ -575,27 +598,57 @@ export default function AccessibilityModal({
             </div>
           </fieldset>
         );
-      case "ambient":
+      case "ambient": {
+        const ambientLabel = t(`accessibility.options.ambient.${ambient}`);
+        const ambientPosition = t("room.position")
+          .replace("{current}", String(ambientIndex + 1))
+          .replace("{total}", String(AMBIENT_CHOICES.length));
         return (
-          <fieldset className="csp-step">
+          <fieldset className="csp-step a11f-ambient">
             <legend>{t("accessibility.ambient")}</legend>
-            <div>
-              {["off", ...AMBIENT_MODES].map((value, i) => (
-                <OptionCard
-                  key={value}
-                  {...(i === 0 ? { "data-autofocus": "" } : {})}
-                  type="radio"
-                  name="amb"
-                  value={value}
-                  checked={ambient === value}
-                  onChange={onPick(() => chooseAmbient(value))}
-                >
-                  <span>{t(`accessibility.options.ambient.${value}`)}</span>
-                </OptionCard>
-              ))}
+            <div className="a11f-ambient-carousel" role="group" aria-label={t("accessibility.ambient")}>
+              <IconButton
+                layoutClassName="a11f-ambient-arrow a11f-ambient-arrow--left"
+                aria-label={t("accessibility.ambient_previous")}
+                onClick={() => moveAmbient(-1)}
+              >
+                <ChevronIcon direction="left" strokeWidth={1.05} />
+              </IconButton>
+              <button
+                type="button"
+                className="a11f-ambient-choice"
+                data-autofocus=""
+                role="slider"
+                aria-orientation="horizontal"
+                aria-valuemin={1}
+                aria-valuemax={AMBIENT_CHOICES.length}
+                aria-valuenow={ambientIndex + 1}
+                aria-valuetext={`${ambientLabel}, ${ambientPosition}`}
+                aria-keyshortcuts="ArrowLeft ArrowRight ArrowUp ArrowDown Home End Enter Space"
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    goTo(activeIndex + 1);
+                    return;
+                  }
+                  onAmbientKeyDown(event);
+                }}
+                onClick={() => goTo(activeIndex + 1)}
+              >
+                <span key={ambient} className="a11f-ambient-choice-label">{ambientLabel}</span>
+                <span className="a11f-ambient-position" aria-hidden="true">({ambientPosition})</span>
+              </button>
+              <IconButton
+                layoutClassName="a11f-ambient-arrow a11f-ambient-arrow--right"
+                aria-label={t("accessibility.ambient_next")}
+                onClick={() => moveAmbient(1)}
+              >
+                <ChevronIcon direction="right" strokeWidth={1.05} />
+              </IconButton>
             </div>
           </fieldset>
         );
+      }
       case "install":
         return (
           <div className="csp-step a11f-install">

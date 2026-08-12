@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import useT from "@/components/i18n/useT";
 import InstallAppLink from "@/components/pwa/InstallAppLink";
+import Button from "@/components/ui/Button";
 import {
   detectPwaEnvironment,
   nextInstallSnoozeAt,
@@ -141,32 +142,22 @@ export default function InstallPromotion({ authenticated = false, suppressed = f
       <div className="sr-only" aria-live="polite">
         {t("pwa.promotion_announcement")}
       </div>
-      <span className="pwa-install-promotion-orbit" aria-hidden="true" />
       <div className="pwa-install-promotion-copy">
         <strong id="pwa-promotion-title">{t("pwa.promotion_title")}</strong>
-        <p>{t("pwa.promotion_body")}</p>
       </div>
       <div className="pwa-install-promotion-actions">
         <InstallAppLink
           variant="quickIcon"
-          className="pwa-install-action"
+          className="pwa-install-promotion-action"
           showWhenUnavailable
           onInstallChoice={handleInstallChoice}
         >
           {t("pwa.promotion_cta")}
         </InstallAppLink>
-        <button type="button" className="pwa-install-later" onClick={dismiss}>
+        <Button type="button" variant="secondary" className="pwa-install-later" onClick={dismiss}>
           {t("pwa.promotion_later")}
-        </button>
+        </Button>
       </div>
-      <button
-        type="button"
-        className="pwa-install-promotion-close"
-        aria-label={t("buttons.close")}
-        onClick={dismiss}
-      >
-        <span aria-hidden="true">{t("symbols.times")}</span>
-      </button>
     </aside>
   );
 }
