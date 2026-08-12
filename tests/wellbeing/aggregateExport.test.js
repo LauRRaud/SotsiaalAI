@@ -27,12 +27,12 @@ test("buildWellbeingExportDataset returns export metadata and anonymous metrics"
       findMany: async () => [
         record({ ownerUserId: "user_1" }),
         record({ ownerUserId: "user_2", computedSignal: { signalLevel: "yellow" } }),
-        /* Valim lävendini välja, muidu mõõdaks see fail summutust, mitte
-           ekspordi metaandmeid. */
+        /* Valim lävendini välja JA sama riskimarker kõigil, muidu mõõdaks see
+           fail summutust, mitte ekspordi metaandmeid: SOL-WB-06 saba paneb
+           kinni ka üksiku lahtri, mitte ainult liiga väikese valimi. */
         ...["user_3", "user_4", "user_5"].map((ownerUserId) => record({
           ownerUserId,
-          workflowType: "work-processes",
-          riskMarkers: []
+          workflowType: "work-processes"
         }))
       ]
     }

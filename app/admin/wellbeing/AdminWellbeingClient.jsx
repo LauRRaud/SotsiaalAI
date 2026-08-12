@@ -475,6 +475,17 @@ export default function AdminWellbeingClient() {
             Andmed on summutatud, sest valim on alla miinimumgrupi. Detailseid töö nõudmiste, ressursside ja riskide võtmeid ei kuvata.
           </p>
         ) : null}
+        {/* SOL-WB-06 saba: valim võib lävendi ületada ja üksik lahter olla ikka
+            liiga väike. Puuduv rida EI ole null ja seda peab tabeli kõrval
+            ütlema, muidu loeb lugeja vaikuse „ei ole" vastuseks. */}
+        {dataset?.cellSuppression?.withheldCellCount > 0 ? (
+          <p>
+            Väikesed lahtrid on avaldamata ({dataset.cellSuppression.withheldCellCount} tk,
+            miinimumgrupp {dataset.minimumGroupSize}) — puuduv rida ei tähenda nulli. Kui üks
+            lahter jäi kinni, läks kinni ka teine, et esimest ei saaks üldsummast lahutades
+            tagasi arvutada.
+          </p>
+        ) : null}
       </section>
 
       <section>

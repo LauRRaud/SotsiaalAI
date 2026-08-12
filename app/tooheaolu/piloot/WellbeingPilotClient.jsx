@@ -33,6 +33,9 @@ const copy = {
   open: "Avatud",
   suppressedNotice:
     "Andmed on summutatud, sest valim on alla miinimumgrupi. Väikese tiimi tulemusi ei kuvata äratuntaval kujul.",
+  /* SOL-WB-06 saba: valim võib lävendi ületada ja ÜKSIK lahter olla ikka liiga
+     väike. Ilma selle lauseta loeks juht puuduva rea „ei ole" vastuseks. */
+  cellSuppressedNotice: "Osa lahtreid on avaldamata",
   metrics: "Mõõdikud",
   rows: "rida",
   metric: "Metric",
@@ -315,6 +318,11 @@ export default function WellbeingPilotClient({ allowedRoleGroups = [], pilotScop
       {dataset?.suppressed ? (
           <p>
             {copy.suppressedNotice}
+          </p>
+        ) : null}
+        {report?.cellSuppressionNotice ? (
+          <p>
+            <strong>{copy.cellSuppressedNotice}</strong> {report.cellSuppressionNotice}
           </p>
         ) : null}
       </section>

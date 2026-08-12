@@ -73,24 +73,28 @@ test("wellbeing aggregate suppresses detail categories below minimum distinct us
 });
 
 test("wellbeing aggregate emits only anonymous counts and shares at sufficient group size", async () => {
+  /* Fikstuuri suuruse määrab SOL-WB-06 saba lahtrisummutus: iga lahter peab
+     lävendi ületama, muidu läheb ta kinni ja see test hakkaks mõõtma summutust,
+     mitte koondi kuju. Viis inimest signaali kohta, viis kõige väiksema töövoo
+     ja iga teguri taga. */
   const prisma = {
     wellbeingRecord: {
-      findMany: async () => [
-        record({ id: "r1", ownerUserId: "user_1", computedSignal: { signalLevel: "red" } }),
-        record({ id: "r2", ownerUserId: "user_2", computedSignal: { signalLevel: "yellow" } }),
-        /* Kolm rohelist ühesugust rida, et valim ulatuks lävendini ja mõõdikute
-           NIMEKIRI jääks samaks — muidu mõõdaks test lävendi muutust, mitte
-           koondi kuju. */
-        ...["user_3", "user_4", "user_5"].map((ownerUserId, index) => record({
-          id: `r${index + 3}`,
-          ownerUserId,
-          workflowType: "work-processes",
-          computedSignal: { signalLevel: "green" },
-          loadFactors: ["documentation.high", "interruptions.high"],
-          resourceFactors: ["processes.single_entry_needed"],
-          riskMarkers: []
-        }))
-      ]
+      findMany: async () => Array.from({ length: 15 }, (unused, index) => {
+        const band = index < 5 ? "red" : index < 10 ? "yellow" : "green";
+        return record({
+          id: `r${index + 1}`,
+          ownerUserId: `user_${index + 1}`,
+          workflowType: band === "red" ? "quick-check" : "work-processes",
+          computedSignal: { signalLevel: band },
+          loadFactors: band === "green"
+            ? ["documentation.high", "interruptions.high"]
+            : ["documentation.high"],
+          resourceFactors: band === "green"
+            ? ["processes.single_entry_needed"]
+            : ["support.unclear_or_missing"],
+          riskMarkers: band === "green" ? [] : ["risk.difficult_case"]
+        });
+      })
     }
   };
 
@@ -99,8 +103,12 @@ test("wellbeing aggregate emits only anonymous counts and shares at sufficient g
     { prisma, env: { WELLBEING_MIN_GROUP_SIZE: "3" }, now: new Date("2026-05-26T12:00:00.000Z") }
   );
 
-  assert.equal(dataset.sampleSize, 5);
+  assert.equal(dataset.sampleSize, 15);
   assert.equal(dataset.suppressed, false);
+  /* Enesekontroll: kui fikstuur libiseb lävendist alla, kaob mõni võti allolevast
+     loendist ja test läheks punaseks põhjusel, mida ta ei mõõda. See rida ütleb
+     selle põhjuse kohe välja. */
+  assert.equal(dataset.cellSuppression.withheldCellCount, 0);
   assert.deepEqual(
     dataset.metrics.map((metric) => metric.metricKey),
     [
@@ -119,12 +127,12 @@ test("wellbeing aggregate emits only anonymous counts and shares at sufficient g
       "risk_event.risk.difficult_case.count"
     ]
   );
-  /* Üks punane viiest. Nimetaja on arvestatud ühikute arv, mis on siin sama mis
-     valim, sest iga inimene andis täpselt ühe kirje. */
-  assert.equal(dataset.metrics.find((metric) => metric.metricKey === "signal.red.share")?.metricValue, 1 / 5);
-  /* `documentation.high` on kõigil viiel real. */
-  assert.equal(dataset.metrics.find((metric) => metric.metricKey === "work_demand.documentation.high.count")?.metricValue, 5);
-  assert.equal(dataset.metrics.every((metric) => metric.sampleSize === 5), true);
+  /* Viis punast viieteistkümnest. Nimetaja on arvestatud ühikute arv, mis on siin
+     sama mis valim, sest iga inimene andis täpselt ühe kirje. */
+  assert.equal(dataset.metrics.find((metric) => metric.metricKey === "signal.red.share")?.metricValue, 5 / 15);
+  /* `documentation.high` on kõigil viieteistkümnel real. */
+  assert.equal(dataset.metrics.find((metric) => metric.metricKey === "work_demand.documentation.high.count")?.metricValue, 15);
+  assert.equal(dataset.metrics.every((metric) => metric.sampleSize === 15), true);
   assert.equal(dataset.metrics.every((metric) => metric.exportEligible === true), true);
 });
 
