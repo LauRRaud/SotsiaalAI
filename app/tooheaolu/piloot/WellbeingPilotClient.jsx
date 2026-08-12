@@ -21,8 +21,7 @@ const copy = {
   pilotScope: "Piloot",
   roleGroup: "Rolligrupp",
   workflowType: "Töövoog",
-  periodStart: "Algus",
-  periodEnd: "Lõpp",
+  period: "Periood",
   aggregationLevel: "Tase",
   refresh: "Värskenda",
   csv: "CSV",
@@ -69,23 +68,46 @@ function formatMetricValue(metric) {
   return String(value);
 }
 
-function buildPilotAggregateUrl({ pilotId, roleGroup, workflowType, periodStart, periodEnd, aggregationLevel, format }) {
+
+/* SOL-WB-06: periood ei ole vabalt nihutatav vahemik, vaid valik fikseeritud
+   võrgust. Kaks lubatud perioodi erinevad alati terve kuu, kvartali või aasta
+   võrra — ühe inimese võrra erinevat paari, mille lahutamine tema signaalid
+   välja annaks, ei ole olemas. */
+function periodOptions(now = new Date()) {
+  const year = now.getFullYear();
+  const options = [{ value: "all", label: "Kõik" }];
+  for (const offset of [0, 1]) {
+    for (let quarter = 4; quarter >= 1; quarter -= 1) {
+      options.push({ value: `quarter:${year - offset}:${quarter}`, label: `${year - offset} Q${quarter}` });
+    }
+    options.push({ value: `year:${year - offset}:0`, label: `${year - offset}` });
+  }
+  for (let month = 12; month >= 1; month -= 1) {
+    options.push({
+      value: `month:${year}:${month}`,
+      label: `${year}-${String(month).padStart(2, "0")}`
+    });
+  }
+  return options;
+}
+
+function periodParams(period) {
+  const [periodKind, periodYear, periodIndex] = String(period || "all").split(":");
+  if (periodKind === "all") return { periodKind: "all" };
+  return { periodKind, periodYear, periodIndex };
+}
+
+function buildPilotAggregateUrl({ pilotId, roleGroup, workflowType, period, aggregationLevel, format }) {
   const params = new URLSearchParams();
   if (pilotId) params.set("pilotId", pilotId);
   if (roleGroup) params.set("roleGroup", roleGroup);
   if (workflowType) params.set("workflowType", workflowType);
-  if (periodStart) params.set("periodStart", periodStart);
-  if (periodEnd) params.set("periodEnd", periodEnd);
+  for (const [key, value] of Object.entries(periodParams(period))) {
+    if (value) params.set(key, value);
+  }
   if (aggregationLevel) params.set("aggregationLevel", aggregationLevel);
   if (format) params.set("format", format);
   return `/api/wellbeing/pilot/aggregate${params.size ? `?${params.toString()}` : ""}`;
-}
-
-function periodLabel(periodStart, periodEnd) {
-  if (periodStart && periodEnd) return `${periodStart} kuni ${periodEnd}`;
-  if (periodStart) return `alates ${periodStart}`;
-  if (periodEnd) return `kuni ${periodEnd}`;
-  return "Kõik piloodi andmed";
 }
 
 function scopeMeta(scope) {
@@ -104,8 +126,7 @@ export default function WellbeingPilotClient({ allowedRoleGroups = [], pilotScop
   const scopedRoleGroups = Array.isArray(selectedPilotScope?.roleGroups) ? selectedPilotScope.roleGroups : allowedRoleGroups;
   const [roleGroup, setRoleGroup] = useState(scopedRoleGroups[0] || "");
   const [workflowType, setWorkflowType] = useState("");
-  const [periodStart, setPeriodStart] = useState("");
-  const [periodEnd, setPeriodEnd] = useState("");
+  const [period, setPeriod] = useState("all");
   const [aggregationLevel, setAggregationLevel] = useState("role_group");
   const [dataset, setDataset] = useState(null);
   const [report, setReport] = useState(null);
@@ -132,10 +153,9 @@ export default function WellbeingPilotClient({ allowedRoleGroups = [], pilotScop
     pilotId: pilotId.trim(),
     roleGroup: roleGroup.trim(),
     workflowType: workflowType.trim(),
-    periodStart,
-    periodEnd,
+    period,
     aggregationLevel
-  }), [aggregationLevel, periodEnd, periodStart, pilotId, roleGroup, workflowType]);
+  }), [aggregationLevel, period, pilotId, roleGroup, workflowType]);
 
   /* SOL-WB-14: iga filtrimuudatus käivitas uue päringu, aga ükski vastus ei
      küsinud, kas ta on veel see, mida oodatakse. Aeglane esimene vastus jõudis
@@ -189,7 +209,7 @@ export default function WellbeingPilotClient({ allowedRoleGroups = [], pilotScop
   const xlsxUrl = buildPilotAggregateUrl({ ...filters, format: "xlsx" });
   const metrics = dataset?.metrics || [];
   const currentMunicipalityId = selectedPilotScope?.municipalityId || "";
-  const currentPeriodLabel = periodLabel(periodStart, periodEnd);
+  const currentPeriodLabel = dataset?.filters?.periodLabel || "kõik";
   const currentScopeMeta = currentMunicipalityId ? `KOV: ${currentMunicipalityId}` : scopeMeta(selectedPilotScope);
 
   return (
@@ -250,12 +270,13 @@ export default function WellbeingPilotClient({ allowedRoleGroups = [], pilotScop
             <Input value={workflowType} onChange={(event) => setWorkflowType(event.target.value)} placeholder="nt quick-check" />
           </label>
           <label>
-            {copy.periodStart}
-            <Input type="date" value={periodStart} onChange={(event) => setPeriodStart(event.target.value)} />
-          </label>
-          <label>
-            {copy.periodEnd}
-            <Input type="date" value={periodEnd} onChange={(event) => setPeriodEnd(event.target.value)} />
+            {copy.period}
+            <Dropdown
+              value={period}
+              onChange={setPeriod}
+              ariaLabel={copy.period}
+              options={periodOptions()}
+            />
           </label>
           <label>
             {copy.aggregationLevel}

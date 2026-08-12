@@ -30,12 +30,42 @@ function formatMetricValue(metric) {
   return String(value);
 }
 
-function buildAggregateUrl({ roleGroup, workflowType, periodStart, periodEnd, aggregationLevel, format }) {
+
+/* SOL-WB-06: periood ei ole vabalt nihutatav vahemik, vaid valik fikseeritud
+   võrgust. Kaks lubatud perioodi erinevad alati terve kuu, kvartali või aasta
+   võrra — ühe inimese võrra erinevat paari, mille lahutamine tema signaalid
+   välja annaks, ei ole olemas. */
+function periodOptions(now = new Date()) {
+  const year = now.getFullYear();
+  const options = [{ value: "all", label: "Kõik" }];
+  for (const offset of [0, 1]) {
+    for (let quarter = 4; quarter >= 1; quarter -= 1) {
+      options.push({ value: `quarter:${year - offset}:${quarter}`, label: `${year - offset} Q${quarter}` });
+    }
+    options.push({ value: `year:${year - offset}:0`, label: `${year - offset}` });
+  }
+  for (let month = 12; month >= 1; month -= 1) {
+    options.push({
+      value: `month:${year}:${month}`,
+      label: `${year}-${String(month).padStart(2, "0")}`
+    });
+  }
+  return options;
+}
+
+function periodParams(period) {
+  const [periodKind, periodYear, periodIndex] = String(period || "all").split(":");
+  if (periodKind === "all") return { periodKind: "all" };
+  return { periodKind, periodYear, periodIndex };
+}
+
+function buildAggregateUrl({ roleGroup, workflowType, period, aggregationLevel, format }) {
   const params = new URLSearchParams();
   if (roleGroup) params.set("roleGroup", roleGroup);
   if (workflowType) params.set("workflowType", workflowType);
-  if (periodStart) params.set("periodStart", periodStart);
-  if (periodEnd) params.set("periodEnd", periodEnd);
+  for (const [key, value] of Object.entries(periodParams(period))) {
+    if (value) params.set(key, value);
+  }
   if (aggregationLevel) params.set("aggregationLevel", aggregationLevel);
   if (format) params.set("format", format);
   return `/api/admin/wellbeing/aggregate${params.size ? `?${params.toString()}` : ""}`;
@@ -52,8 +82,7 @@ function buildPilotScopeViewersUrl(pilotScopeId) {
 export default function AdminWellbeingClient() {
   const [roleGroup, setRoleGroup] = useState("");
   const [workflowType, setWorkflowType] = useState("");
-  const [periodStart, setPeriodStart] = useState("");
-  const [periodEnd, setPeriodEnd] = useState("");
+  const [period, setPeriod] = useState("all");
   const [aggregationLevel, setAggregationLevel] = useState("role_group");
   const [dataset, setDataset] = useState(null);
   const [status, setStatus] = useState("idle");
@@ -79,10 +108,9 @@ export default function AdminWellbeingClient() {
   const filters = useMemo(() => ({
     roleGroup: roleGroup.trim(),
     workflowType: workflowType.trim(),
-    periodStart,
-    periodEnd,
+    period,
     aggregationLevel
-  }), [aggregationLevel, periodEnd, periodStart, roleGroup, workflowType]);
+  }), [aggregationLevel, period, roleGroup, workflowType]);
 
   /* SOL-WB-14 sama klass admini pinnal: aeglane vastus kirjutas ekraanile
      eelmise filtri koondi, samal ajal kui valikud näitasid juba uut. */
@@ -277,12 +305,13 @@ export default function AdminWellbeingClient() {
             <Input value={workflowType} onChange={(event) => setWorkflowType(event.target.value)} placeholder="nt quick-check" />
           </label>
           <label>
-            Algus
-            <Input type="date" value={periodStart} onChange={(event) => setPeriodStart(event.target.value)} />
-          </label>
-          <label>
-            Lõpp
-            <Input type="date" value={periodEnd} onChange={(event) => setPeriodEnd(event.target.value)} />
+            Periood
+            <Dropdown
+              value={period}
+              onChange={setPeriod}
+              ariaLabel="Periood"
+              options={periodOptions()}
+            />
           </label>
           <label>
             Tase

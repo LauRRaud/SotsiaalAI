@@ -57,8 +57,15 @@ function filtersFromRequest(request) {
   const url = new URL(request.url);
   return {
     pilotId: url.searchParams.get("pilotId"),
+    /* SOL-WB-06: periood on valik fikseeritud võrgust. Vabad `periodStart`/
+       `periodEnd` võetakse teadlikult VASTU ja lükatakse tagasi 400-ga —
+       vaikne ignoreerimine tähendaks, et vana klient saab teistsuguse valimi
+       kui ta küsis, ilma et keegi seda ütleks. */
     periodStart: url.searchParams.get("periodStart"),
     periodEnd: url.searchParams.get("periodEnd"),
+    periodKind: url.searchParams.get("periodKind"),
+    periodYear: url.searchParams.get("periodYear"),
+    periodIndex: url.searchParams.get("periodIndex"),
     roleGroup: url.searchParams.get("roleGroup"),
     workflowType: url.searchParams.get("workflowType"),
     aggregationLevel: url.searchParams.get("aggregationLevel") || "role_group"

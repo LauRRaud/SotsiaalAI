@@ -5227,6 +5227,37 @@ tervikuna.** Vt SOL-WB-10 all.
 
 **Vastuvõtukriteerium.** Künnis peab olema koodis alampiiriga jõustatud ning privaatsusleping vajab differencing-/small-cell kaitset: lubatud fikseeritud perioodid ja dimensioonid, alamrühmade summutus, päringueelarve või privaatsust säilitav müra. Negatiivne test peab proovima kattuvaid N ja N−1 päringuid ning env-väärtust 1.
 
+**Seis (12.08.2026): DONE osas, mis on kood; üks haru jäi teadlikult lahti (vt allpool).**
+
+**Künnis on nüüd koodis alampiiriga.** `WELLBEING_MIN_GROUP_SIZE=1` eemaldas varem
+privaatsuskaitse täielikult, ilma et ükski logirida oleks seda öelnud; env saab künnist ainult
+TÕSTA. Piloodi skoobi enda künnis oli juba alampiiriga (`normalizeMinimumGroupSize`), aga
+üldfunktsioon ei olnud — ja tema all käib admini koond.
+
+**Rünnaku eeldus oli vabalt nihutatav ajapiir** ja ta on ära võetud: periood ei ole enam vaba
+vahemik, vaid **valik fikseeritud võrgust** — terve kalendrikuu, kvartal või aasta **Eesti
+kalendri järgi** (`lib/wellbeing/periodGrid.js`), või „kõik". Kahte lubatud perioodi, mis
+erinevad ühe inimese võrra, ei ole olemas: nad erinevad alati terve kuu, kvartali või aasta
+võrra. Vanad `periodStart`/`periodEnd` võetakse teadlikult vastu ja **lükatakse tagasi 400-ga** —
+vaikne ümardamine tähendaks, et vastus katab muud kui küsitud. Sama võrk kehtib **admini pinnal**,
+sest leid nimetas mõlemat marsruuti. Mõlemas liideses on kuupäevaväljade asemel perioodivalik.
+
+**Ajavöönd on siin sisuline, mitte vormistuslik:** kuu algab Eesti keskööl (suvel UTC 21:00
+eelmisel päeval). UTC-kesköö oleks lasknud iga kuu esimese kolme tunni töö eelmisse kuusse — ja
+see nihe ise oleks olnud uus differencing-pind. Test käib läbi ka `TZ=UTC` all.
+
+**Seitse ühikut**, sh kriteeriumi mõlemad negatiivsed juhud: **env-väärtus 1** (künnis jääb 3,
+valim summutatakse, ühtki riskimarkerit vastuses ei ole) ja **kattuv N ja N−1 paar** — teine
+päring ei ole enam väljendatav, ka mitte segavariandina, kus klient annab korraga võrgu ja vaba
+piiri.
+
+**LAHTINE HARU (omaniku otsus):** kaks ERI SUURUSEGA lubatud perioodi (kuu vs kvartal) on
+endiselt sisestikud ja piisavalt kannatlik vaataja saab neid võrrelda. Selle vastu aitavad
+**päringueelarve** või **privaatsust säilitav müra** — mõlemad muudavad kas numbrid ebatäpseks või
+kasutuse piiratuks, seega nad on tootevalik, mitte tehniline detail. Kolmas võimalus on lubada
+korraga ainult ÜHT perioodiliiki piloodi kohta (skoobi seadistus). Kuni otsust ei ole, on kaitse
+tase: künnis 3 + fikseeritud võrk.
+
 ### SOL-WB-07 — vastatud vanad kontrollpunktid võivad hilisemad tähtajad taimerist välja näljutada — P1
 
 **Tõend.** Due-päring valib `checkpointDueOn <= now` järgi kõige varasemad kuni 1000 rida ja alles pärast `take` piiri filtreerib mälus välja need, mille `followUp` on juba vastatud (`lib/wellbeing/checkpoint.js:187-202`). Vastamisel `checkpointDueOn` ei nullitu (`:102-135`), seega jäävad vastatud vanad read igal käivitusel kandidaatide algusse.

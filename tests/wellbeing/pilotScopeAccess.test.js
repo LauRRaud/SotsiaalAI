@@ -90,6 +90,8 @@ test("wellbeing pilot aggregate filters bind non-admin users to the selected DB 
       pilotId: "pilot_scope_1",
       roleGroup: "family_support",
       workflowType: "quick-check",
+      periodKind: "all",
+      periodLabel: "kõik",
       periodStart: null,
       periodEnd: null,
       /* SOL-WB-01: KOV-piloodi piir peab jõudma FILTRISSE, mitte jääma vastuse
@@ -160,6 +162,8 @@ test("wellbeing pilot aggregate filters bind an admin to the pilot they selected
       pilotId: "pilot_scope_3",
       roleGroup: "SOCIAL_WORKER",
       workflowType: null,
+      periodKind: "all",
+      periodLabel: "kõik",
       periodStart: null,
       periodEnd: null,
       organizationId: "org_harku",
@@ -176,6 +180,8 @@ test("wellbeing pilot aggregate filters bind an admin to the pilot they selected
     {
       roleGroup: "SOCIAL_WORKER",
       workflowType: null,
+      periodKind: "all",
+      periodLabel: "kõik",
       periodStart: null,
       periodEnd: null,
       organizationId: null,

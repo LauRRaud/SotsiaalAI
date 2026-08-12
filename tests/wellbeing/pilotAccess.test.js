@@ -57,6 +57,10 @@ test("wellbeing pilot aggregate filters reject disallowed role groups for pilot 
     {
       roleGroup: "child_protection",
       workflowType: "quick-check",
+      /* SOL-WB-06: periood on valik fikseeritud võrgust; „kõik" on selle võrgu
+         liige, mitte vaba vahemik. */
+      periodKind: "all",
+      periodLabel: "kõik",
       periodStart: null,
       periodEnd: null,
       organizationId: null,

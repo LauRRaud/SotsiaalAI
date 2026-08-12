@@ -4,7 +4,12 @@ import { NextResponse } from "next/server";
 import { authConfig } from "@/auth";
 import { assertAdmin } from "@/lib/authz";
 import { safeError } from "@/lib/privacy/safeError";
-import { newWellbeingCorrelationId, WELLBEING_UNEXPECTED_ERROR } from "@/lib/wellbeing/apiErrors";
+import {
+  isWellbeingDomainError,
+  newWellbeingCorrelationId,
+  WELLBEING_UNEXPECTED_ERROR
+} from "@/lib/wellbeing/apiErrors";
+import { assertNoFreeFormPeriod, resolveWellbeingPeriod } from "@/lib/wellbeing/periodGrid";
 import {
   buildWellbeingExportDataset,
   exportWellbeingCsv
@@ -32,11 +37,25 @@ function errorJson(message, status = 400) {
   return json({ ok: false, message }, status);
 }
 
+/* SOL-WB-06: sama perioodivõrk kehtib ka admini pinnal. Leid nimetas mõlemat
+   marsruuti ja platvormiülene vaade ei ole differencing'i vastu immuunne —
+   temas on rohkem inimesi, aga ka rohkem kitsaid alamrühmi. */
 function filtersFromRequest(request) {
   const url = new URL(request.url);
-  return {
+  const selection = {
     periodStart: url.searchParams.get("periodStart"),
     periodEnd: url.searchParams.get("periodEnd"),
+    periodKind: url.searchParams.get("periodKind"),
+    periodYear: url.searchParams.get("periodYear"),
+    periodIndex: url.searchParams.get("periodIndex")
+  };
+  assertNoFreeFormPeriod(selection);
+  const period = resolveWellbeingPeriod(selection);
+  return {
+    periodKind: period.periodKind,
+    periodLabel: period.label,
+    periodStart: period.periodStart,
+    periodEnd: period.periodEnd,
     roleGroup: url.searchParams.get("roleGroup"),
     workflowType: url.searchParams.get("workflowType"),
     aggregationLevel: url.searchParams.get("aggregationLevel") || "role_group"
@@ -59,6 +78,16 @@ export async function GET(request) {
   try {
     dataset = await buildWellbeingExportDataset(filtersFromRequest(request));
   } catch (error) {
+    /* Perioodivalik ja muud tuntud domeenivead tohivad oma võtme välja anda —
+       muidu paistaks „vale periood" serveriveana ja klient ei saaks teada, mida
+       parandada. */
+    if (isWellbeingDomainError(error)) {
+      return json({
+        ok: false,
+        message: error.message,
+        ...(error.details ? { details: error.details } : {})
+      }, Number(error.status));
+    }
     const correlationId = newWellbeingCorrelationId();
     console.error("[wellbeing] admin aggregate failed", safeError(error, { correlationId }));
     return json({ ok: false, message: WELLBEING_UNEXPECTED_ERROR, correlationId }, 500);
