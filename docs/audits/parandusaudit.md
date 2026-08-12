@@ -186,7 +186,7 @@ Teine jooks: **`PROBE_OK 8/8`**.
 Käsitsi siia ei kirjutata — varem kirjutati ja ta jäi üheksa peatüki võrra maha. Iga rea
 lõpus on leiu Seis-lõigu esimene lause **sõna-sõnalt**, mitte ümberjutustus.
 
-**210 / 403 leidu · 18 / 39 peatükki · lahtiseid 193 — 135 × P1 · 57 × P2 · 1 × P3**
+**236 / 403 leidu · 19 / 39 peatükki · lahtiseid 167 — 116 × P1 · 50 × P2 · 1 × P3**
 
 | Peatükk | Kood | Tehtud | Lahtised | Märkus |
 |---|---|---|---|---|
@@ -211,7 +211,7 @@ lõpus on leiu Seis-lõigu esimene lause **sõna-sõnalt**, mitte ümberjutustus
 | Kiireloomuline abi | SOL-URG | 13/13 | – | **tehtud** |
 | Tööheaolu | SOL-WB | 18/18 | – | **tehtud**, 4 jätkufailist |
 | Teenuspäevik | SOL-SLOG | 24/24 | – | **tehtud** |
-| RAG-teenus ja ingest | SOL-RAGSVC | 2/28 | 19 × P1 · 7 × P2 |  |
+| RAG-teenus ja ingest | SOL-RAGSVC | 28/28 | – | **tehtud** |
 | Migratsioonid | SOL-PRISMA | 0/4 | 3 × P1 · 1 × P2 |  |
 | Mentorlus | SOL-MENT | 0/7 | 7 × P1 |  |
 | Supervisioon | SOL-SUP | 0/15 | 11 × P1 · 4 × P2 |  |
@@ -495,10 +495,36 @@ lõpus on leiu Seis-lõigu esimene lause **sõna-sõnalt**, mitte ümberjutustus
 - `SOL-SLOG-23` P1 — hiline narratiivi vastus võib ühe kliendi teksti teise kliendi alla salvestada — DONE — seed, olemasolev narratiiv ja AI-mustand on seotud `referralId+month` sõrmejälje, request-ID ja AbortControlleriga. Valiku vahetus tühistab vana töö ning puhastab editori kohe; hiline vastus ei tohi olekut muuta ja salvestus on blokeeritud, kui editori sõrmejälg ei vasta aktiivsele valikule. Päris brauseris lahendati seed-, list- ja AI-päringud nii A→B kui B→A järjekorras: kõik kuus jätsid ekraanile viimase valiku teksti ning salvestus saatis ainult nähtava A valiku ja `A SAFE` teksti.
 - `SOL-SLOG-24` P1 — kuu-, saldo- ja narratiivivaated kärbivad alusandmeid vaikides — DONE — kuu-, saldo-, suunamis- ja narratiivipäringud kasutavad nüüd stabiilset ID-kursoriga lehekülgitamist ega lõpeta vaikides vana `take` piiri juures. Ühine abifunktsioon nõuab igalt lehelt kasvavat viimast ID-d ja viskab seiskunud kursori korral, selle asemel et tagastada näiliselt täielik tulemus. Piirtestid tõendasid, et 5001. kuurida ja saldorida muudavad summat, 501. suunamine ja narratiiv jõuavad vastusesse ning 2001. seed'i kirje jõuab faktibaasi.
 
-**RAG-teenus ja ingest** (`SOL-RAGSVC`, 2/28)
+**RAG-teenus ja ingest** (`SOL-RAGSVC`, 28/28)
 
 - `SOL-RAGSVC-01` P0 — kaks ingest-rada võimaldavad kirjutada faili väljapoole RAG-hoidlat — DONE (kood); HTTP-negatiivtest deploy-järgne, vt allpool.
 - `SOL-RAGSVC-02` P0 — tekstidokumendi `source_path` annab serverifaili lugemise primitiivi — DONE — HTTP-negatiivtest jooksutatud toodangus, `PROBE_OK 8/8`.
+- `SOL-RAGSVC-03` P1 — puuduva teenusevõtmega lülitub RAG autentimine välja — DONE. RAG loeb käivitumisel autentimiskonfiguratsiooni
+- `SOL-RAGSVC-04` P1 — üks üldine adminiproksi annab kõik RAG-i hävitavad õigused ilma toimingupõhise loata või auditita — DONE. Brauseri catch-all kasutab nüüd täpset meetod+tee maatriksit:
+- `SOL-RAGSVC-05` P1 — katkine registrifail tõlgendatakse tühja registrina ja järgmine kirjutus matab vana loendi — DONE koos SOL-RAGSVC-06-ga. Register elab nüüd eraldi
+- `SOL-RAGSVC-06` P1 — registri lukk ja fikseeritud `.tmp` fail ei kaitse mitme protsessi kaotatud uuenduste eest — DONE koos SOL-RAGSVC-05-ga. Protsessisisene `threading.Lock` ja ühine
+- `SOL-RAGSVC-07` P1 — dokumendi vektorite asendamine võib jätta vana ja uue indeksi osaliselt kadunuks — DONE koos SOL-RAGSVC-08-ga. Asendus ei kustuta enam vana indeksit
+- `SOL-RAGSVC-08` P1 — toorfail, Chroma vektorid ja JSON-register commit'ivad eri aegadel — DONE koos SOL-RAGSVC-07-ga. FILE, TEXT ja URL allikad kirjutatakse
+- `SOL-RAGSVC-09` P1 — delete tagastab edu ka siis, kui vektor või allikafail jäi alles — DONE. Delete kirjutab enne hävitamist registrisse
+- `SOL-RAGSVC-10` P1 — metadata patch muudab registri enne Chroma edu ja jätab vea korral lahkneva tõe — DONE. Metadata patch kasutab sama OS-ülest docId lukku ja pagib kõik
+- `SOL-RAGSVC-11` P1 — failide ja tekstide suurusepiirid rakenduvad pärast kogu keha mällu laadimist või puuduvad — DONE. Nexti RAG-proksi loendab nüüd tegelikke `ReadableStream` baite
+- `SOL-RAGSVC-12` P1 — deklareeritud MIME ja piiramatud dokumendiparserid võimaldavad CPU/mälu ammendamist — DONE. Signatuuri ja konteineri kontroll rakendub nüüd ka püsiva ingest'i
+- `SOL-RAGSVC-13` P1 — URL-ingest'i SSRF-kaitses on DNS-rebindingu ajavahemik — DONE. URL-fetch lahendab hosti ühe korra, lükkab tagasi kogu
+- `SOL-RAGSVC-14` P1 — Chroma päringuviga muutub HTTP 200 tühjaks tõendiks — DONE. Dense Chroma exception annab nüüd HTTP 503 ja stabiilse
+- `SOL-RAGSVC-15` P1 — hübriidotsing tagastab rohkem tulemusi kui `top_k` lubab — DONE. Dense- ja leksikaalkandidaadid ühendatakse enne hübriidskoori;
+- `SOL-RAGSVC-16` P1 — leksikaalotsing skannib vaikides ainult suvalist esimest 2000 chunk'i — DONE. Leksikaalrada pagib Chroma tulemeid offset'iga kuni korpuse
+- `SOL-RAGSVC-17` P1 — artiklite ingest ei ole asendav, idempotentne ega ühe tervikuna atomaarne — DONE. Kogu artiklipakk ehitatakse nüüd mälus valmis enne esimest
+- `SOL-RAGSVC-18` P1 — kliendi antud chunk-ID võib üle kirjutada teise dokumendi globaalse Chroma rea — DONE. Eksplitsiitse chunki füüsilise alus-ID tuletab server nüüd
+- `SOL-RAGSVC-19` P1 — märgipõhine chunker jätab lausepiiril teksti vahele — DONE. Märgipõhise chunkeri järgmine algus arvutatakse nüüd tegelikust
+- `SOL-RAGSVC-20` P1 — lühikese mitmeleheküljelise PDF-i üks chunk omistatakse ainult esimesele lehele — DONE. Single-chunk PDF kogub nüüd kõigi sisendlehtede unikaalse loendi
+- `SOL-RAGSVC-21` P1 — tekstita uus versioon kustutab vana indeksi ja märgitakse siiski lõpetatuks — DONE. Ühine vektorasenduse piir annab null-chunk payload'ile enne
+- `SOL-RAGSVC-22` P2 — liiga pikk eksplitsiitne chunk talletatakse muu tekstiga kui selle embedding — DONE. `/ingest/text` piirab eksplitsiitse chunki juba Pydanticu
+- `SOL-RAGSVC-23` P2 — tervise- ja dokumendivaated maskeerivad Chroma vea terveks olekuks ning lekitavad siseteid — DONE. `/health` annab nii registri- kui Chroma count-tõrkel 503,
+- `SOL-RAGSVC-24` P2 — tag-tokeni filter kirjutab kasutaja muu `$or` filtri üle — DONE. Otsingufiltri kompilaator lisab iga OR-rühma eraldi
+- `SOL-RAGSVC-25` P2 — `tags` ja `authors` filtreid võrreldakse formaadiga, milles neid ei salvestata — DONE. Ingest kirjutab autorid 12 eraldi `author_token_N` slotti ning
+- `SOL-RAGSVC-26` P2 — base64 ingest aktsepteerib tühja või vigase sisu ilma korrektse kliendiveata — DONE. JSON faili-ingest kasutab nüüd `base64.b64decode(...,
+- `SOL-RAGSVC-27` P2 — üldine valideerimisvea handler annab kõigile endpointidele vale upload-lepingu — DONE. Üldine handler tagastab nüüd marsruudiklassi täpse koodi,
+- `SOL-RAGSVC-28` P2 — metadata patch ei võimalda vigast väärtust eemaldada — DONE. Patch eristab nüüd puuduvat võtit ja saadetud `null` väärtust:
 
 **Teekond ja jagamine** (`SOL-JOUR`, 2/17)
 

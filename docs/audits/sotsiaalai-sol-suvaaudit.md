@@ -6174,6 +6174,17 @@ ingestitakse. Otsing ja vastused ei sõltu sellest — vektorid on juba baasis.
 
 **Vastuvõtukriteerium.** Teenus peab production-laadses režiimis puuduva või liiga nõrga võtmega käivitumast keelduma; võtmeta arendusrežiim peab olema eraldi eksplitsiitne lipp ja ainult loopback-bind. Käivitustest peab tõendama fail-closed oleku ning iga kaitstud endpointi 401 vale/puuduva võtmega.
 
+**Seis (12.08.2026): DONE.** RAG loeb käivitumisel autentimiskonfiguratsiooni
+`auth_config.py` kaudu ja katkestab protsessi, kui `RAG_SERVICE_API_KEY` puudub või on alla
+32 märgi. Võtmeta arendus nõuab nüüd eraldi `RAG_ALLOW_INSECURE_NO_AUTH=1` lippu ning lubab
+ainult loopback `RAG_BIND_HOST` väärtust; võtme võrdlus on konstantse ajaga. Kandev
+negatiivkontroll kukkus enne parandust juba puuduva mooduli peal ning käivitussubprocess
+tõendab, et `main` ise ei impordi võtmeta lõpuni. `test_endpoint_auth.py` hoiab 18 kaitstud
+meetod+tee inventuuri ja tegi igaühele nii puuduva kui vale võtmega päringu: kõik 401.
+Sihttestid `test_auth_config.py`, `test_endpoint_auth.py` ja olemasolev
+`test_search_observability.py` **16/16**; runtime: not_run (käivituskäitumine tõendati lokaalse
+ASGI rakenduse ja eraldi protsessiga, toodangut ei muudetud).
+
 ### SOL-RAGSVC-04 — üks üldine adminiproksi annab kõik RAG-i hävitavad õigused ilma toimingupõhise loata või auditita — P1
 
 **Tõend.** `app/api/rag/[...path]/route.js:118-186` kontrollib ainult globaalset `assertAdmin()`-i, koostab kasutaja antud alamteest siht-URL-i ja edastab GET/POST/PUT/PATCH/DELETE/HEAD meetodid (`:223-245`). Marsruudil puudub lubatud tee+meetodi maatriks, eraldi knowledge-steward/platform-admin capability, CSRF-teoleping ja sisuline audit. RAG-teenus näeb kõiki kutsujaid sama `X-API-Key` võtmena.
@@ -6181,6 +6192,19 @@ ingestitakse. Otsing ja vastused ei sõltu sellest — vektorid on juba baasis.
 **Mõju.** Iga globaalne administraator saab otse kustutada või ümber kirjutada kogu teadmistebaasi, käivitada URL-fetch'i ja kasutada failiallika endpoint'e; hiljem pole võimalik tõendada, milline inimene millise dokumendiga mida tegi. RAGSVC-01/02 muudavad selle ka serverifailide kompromiteerimise pinnaks.
 
 **Vastuvõtukriteerium.** Avalik adminiproksi peab kasutama eksplitsiitset endpoint/meetod allowlist'i, toimingupõhist capability't ja kohustuslikku kasutaja-ID, sihtdokumendi, meetodi ning tulemusega auditit. Toore ingest'i, allikatee ja kustutuse jaoks peab olema kitsas serveri enda teenusliides või eraldi kõrge õigusega haldusvoog. Negatiivtestid peavad kontrollima tavalist ADMIN-i, lubatud teadmistehalduri ja platform-admini erisust.
+
+**Seis (12.08.2026): DONE.** Brauseri catch-all kasutab nüüd täpset meetod+tee maatriksit:
+teadmistehaldur saab dokumente lugeda ning hallatud PDF-i/artikleid ingestida, platform-admin
+lisaks kustutada ja URL-ingest'i käivitada. Toored `/ingest/file`, `/ingest/text`, otsingu- ja
+analyze-pinnad ei ole enam avaliku proksi kaudu saavutatavad. Tavaline `ADMIN` ei saa RAG-õigust
+rollist; püsiv `User.ragAdminCapability` on `NONE`, `KNOWLEDGE_STEWARD` või `PLATFORM_ADMIN`.
+Migratsioon säilitab olemasolevate administraatorite ligipääsu platform-adminina, uued kontod
+algavad `NONE`-ist. Kõik mutatsioonid nõuavad täpset same-origin `Origin`-päist. Iga lubatud
+upstream-kutse saab enne käivitust kohustusliku `rag_proxy_operation_started` rea ning tulemuse
+järel lõpetava rea kasutaja, toimingu, meetodi, lubataseme, sihtdokumendi/tee ja HTTP-tulemusega;
+algusauditi viga ei käivita toimingut, lõppauditita edu kliendile ei tagastata. Sihttestid
+**8/8**, sh ADMIN/steward/platform-admin eristus ja audititõrked; 171 migratsiooni täisahel
+puhtas PostgreSQL-is OK. Runtime: not_run (päris adminisessiooni ja RAG-teenust ei käivitatud).
 
 ### SOL-RAGSVC-05 — katkine registrifail tõlgendatakse tühja registrina ja järgmine kirjutus matab vana loendi — P1
 
@@ -6190,6 +6214,15 @@ ingestitakse. Otsing ja vastused ei sõltu sellest — vektorid on juba baasis.
 
 **Vastuvõtukriteerium.** Olemasoleva registri lugemis-/skeemiviga peab teenuse kirjutused fail-closed peatama ja tervise punaseks muutma; säilitada tuleb viimane kontrollitud snapshot/backup ning taastamisjuhis. Veasüstitest peab katkestama JSON-i, proovima loendit, ingest'i ja delete'i ning tõendama, et vana fail ei asendu.
 
+**Seis (12.08.2026): DONE koos SOL-RAGSVC-06-ga.** Register elab nüüd eraldi
+`RegistryStore`-is: puuduv fail tähendab esimest käivitust, kuid olemasoleva faili JSON-,
+UTF-8-, juurkuju-, kirjerea- või `docId` vastuolu annab `REGISTRY_CORRUPT`, `/health` 503 ning
+kõik püsivad ingest/patch/reindex/delete rajad peatuvad enne Chroma või faili muutmist.
+Veasüstitest rikkus töötava registri, proovis health/list/ingest/delete rada ja tõendas, et
+ükski vector-kutse ei toimunud, katkine baitijada ei asendunud ning `registry.json.last-good`
+jäi muutmata. Taastejuhis on `rag-service/REGISTRY_RECOVERY.md`; automaatset vaikset taastamist
+ei tehta. Sama ploki testid **21/21** (sh varasem auth/observability slice); runtime: not_run.
+
 ### SOL-RAGSVC-06 — registri lukk ja fikseeritud `.tmp` fail ei kaitse mitme protsessi kaotatud uuenduste eest — P1
 
 **Tõend.** `REGISTRY_LOCK` on protsessisisene `threading.Lock` (`rag-service/main.py:148`). Salvestus kasutab alati sama `registry.json.tmp` nime ja `os.replace()`-i (`:617-624`); register/update/pop on read-modify-write ainult selle kohaliku luku all (`:626-633`, `:2406-2416`, `:4464-4471`). Kui teenus käivitatakse mitme Uvicorni worker'i või kahe kattuva protsessiga, pole neil ühist lukku ega unikaalset ajutist faili.
@@ -6197,6 +6230,13 @@ ingestitakse. Otsing ja vastused ei sõltu sellest — vektorid on juba baasis.
 **Mõju.** Paralleelsed protsessid võivad lugeda sama vana registri, kirjutada teineteise `.tmp` faili või viimase salvestusega teise dokumendi muudatuse kaotada. Repo ei sisalda RAG systemd unit'i täpset `ExecStart`/worker-arvu, seega tootmises avaldumine on `NOT_PROVEN`, kuid koodileping ei ole protsessiohutu.
 
 **Vastuvõtukriteerium.** Registri tõeallikas peab olema transaktsiooniline andmebaas või kasutama OS-ülest faililukku, unikaalset temp-faili, fsync'i ja versiooni/CAS-i. Mitme protsessi test peab tegema samaaegseid eri dokumendi register/patch/delete toiminguid ja säilitama kõik uuendused.
+
+**Seis (12.08.2026): DONE koos SOL-RAGSVC-05-ga.** Protsessisisene `threading.Lock` ja ühine
+`.tmp` fail on eemaldatud. `filelock`-i OS-ülene lukufail katab kogu read-modify-write tsükli;
+iga kirjutus kasutab PID+UUID tempfaili, faili `fsync`-i, atomaarset `os.replace`-i ja võimalusel
+kataloogi `fsync`-i. Nelja päris protsessi test tegi korraga 100 register-, 100 patch- ja 20
+delete-toimingut: alles jäi täpselt 80 õige omaniku ning patchiga kirjet ja tempjääke 0.
+Lukutimeout ja I/O-viga on fail-closed `REGISTRY_IO_ERROR`, mitte tühi register.
 
 ### SOL-RAGSVC-07 — dokumendi vektorite asendamine võib jätta vana ja uue indeksi osaliselt kadunuks — P1
 
@@ -6206,6 +6246,17 @@ ingestitakse. Otsing ja vastused ei sõltu sellest — vektorid on juba baasis.
 
 **Vastuvõtukriteerium.** Uus versioon tuleb kirjutada eraldi versioonilise doc-ID/kollektsiooni alla, kontrollida terviklikuks ja alles siis atomaarse aktiivversiooni viitega vahetada; vana versioon säilib kuni commit'ini. Veasüstitestid peavad katkestama backup-get'i, delete'i, iga upsert-batch'i ja aktiveerimise.
 
+**Seis (12.08.2026): DONE koos SOL-RAGSVC-08-ga.** Asendus ei kustuta enam vana indeksit
+enne kirjutamist. Uue versiooni kõik füüsilised chunk-ID-d ja metadata saavad juhusliku
+`document_version` tunnuse, upsert toimub vana kõrval, seejärel loetakse uus ID-komplekt
+stabiilse paginguga tagasi ja nõutakse täpset võrdsust. Alles `registry.activeVersion` commit
+teeb versiooni dense- ja leksikaalotsingule nähtavaks; otsing filtreerib stagingu ja cleanup'i
+ootavad vanad read välja. Backup-get, osalise upsert'i, verifitseerimise ja registri commit'i
+veasüst jättis vana aktiivse versiooni puutumata ning eemaldas ainult staging-ID-d. Pärast
+commit'i ebaõnnestunud vana cleanup jääb nähtava `cleanupState=PENDING` olekuna, kuid ei sega
+aktiivset otsingut. Dokumendiversiooni testid **10/10**, kogu RAG slice **31/31**; runtime:
+not_run (päris Chroma protsessi ei käivitatud).
+
 ### SOL-RAGSVC-08 — toorfail, Chroma vektorid ja JSON-register commit'ivad eri aegadel — P1
 
 **Tõend.** Faili ingest kirjutab toorfaili enne teksti eraldamist ja vektoriasendust (`rag-service/main.py:3403-3451`), seejärel kirjutab registri alles pärast Chroma edu (`:3460-3507`). Olemasoleva dokumendi vea korral uut/ülekirjutatud toorfaili ei taastata (`:3438-3458`); registrivea korral jäävad uus fail ja vektorid registrita. URL-ingest kordab sama järjekorda (`:3878-3926`, `:3951`). Ühegi dokumendi operatsioonil pole per-doc lukku.
@@ -6213,6 +6264,14 @@ ingestitakse. Otsing ja vastused ei sõltu sellest — vektorid on juba baasis.
 **Mõju.** Ebaõnnestunud või konkureeriv ingest võib jätta registri, allikafaili ja otsingusisu kirjeldama kolme eri versiooni. Reindex võib hiljem indekseerida faili, mida kasutaja algse vea järel edukaks ei pidanud, või adminiloend ei näe otsingus endiselt leitavat sisu.
 
 **Vastuvõtukriteerium.** Kasutada tuleb dokumendiversiooni olekumasinat (`STAGING` → kontrollitud `ACTIVE`), ajutisi faile ja atomaarset aktiivversiooni vahetust; kõik vead puhastavad staging-versiooni ning vana aktiivne versioon jääb puutumata. Testida iga sammu viga ja kahte sama docId samaaegset ingest'i.
+
+**Seis (12.08.2026): DONE koos SOL-RAGSVC-07-ga.** FILE, TEXT ja URL allikad kirjutatakse
+`docs/<hash>/versions/<version>/` alla; sama docId kogu stage→verify→activate rada on
+protsessideülese dokumendiluku sees. Registrisse commit'ib korraga uue allikatee ja sama
+`activeVersion`, vea korral kutsutakse vektorstagingu abort ning versioonifail eemaldatakse.
+Vana allikas kustutatakse alles pärast aktiivviite vahetust; cleanup-tõrge saab
+`fileCleanupState=PENDING`. Reindex kasutab sama lepingut. Protsessi katkestuse järel registrita
+staging jääb otsingule nähtamatuks ning on operatsioonijälje järgi lepitatav.
 
 ### SOL-RAGSVC-09 — delete tagastab edu ka siis, kui vektor või allikafail jäi alles — P1
 
@@ -6222,6 +6281,14 @@ ingestitakse. Otsing ja vastused ei sõltu sellest — vektorid on juba baasis.
 
 **Vastuvõtukriteerium.** Kustutus peab olema püsiva tombstone'i ja retry-olekuga; edu tohib tagastada alles pärast vektori ja faili puudumise järelkontrolli. Osalise vea korral peab register säilitama `DELETE_FAILED` oleku. Veasüstitestid peavad eraldi rikkuma Chroma, faili ja registri kustutuse.
 
+**Seis (12.08.2026): DONE.** Delete kirjutab enne hävitamist registrisse
+`DELETE_PENDING` tombstone'i sama docId lukus, kustutab kõik loogilise dokumendi vektorid,
+loeb ID-d puudumise tõendamiseks tagasi ning eemaldab kogu tõendatud dokumendikausta.
+Vektori-, kontroll- või failivea järel jääb püsiv `DELETE_FAILED` koos stabiilse veakoodiga ja
+endpoint annab 503; eduks märgitakse alles `DELETED`, kus `path=null` ja otsingufilter välistab
+dokumendi. Registririda jääb retry ja auditisihtmärgiks alles. Veasüstitest kattis Chroma tõrke
+ning edukas test nii vektorite, allika kui tombstone'i järelkontrolli.
+
 ### SOL-RAGSVC-10 — metadata patch muudab registri enne Chroma edu ja jätab vea korral lahkneva tõe — P1
 
 **Tõend.** `patch_document_metadata()` uuendab ja salvestab registri esmalt (`rag-service/main.py:4443-4471`), alles seejärel loeb ning uuendab kuni 100 000 Chroma metadatarida (`:4473-4484`). Chroma vea korral tagastatakse sõnaselgelt 500 tekstiga `Registry updated but chunk metadata update failed`, kuid registrimuudatust ei pöörata tagasi (`:4485-4486`).
@@ -6229,6 +6296,14 @@ ingestitakse. Otsing ja vastused ei sõltu sellest — vektorid on juba baasis.
 **Mõju.** Admin näeb dokumendiloendis uut staatust/kehtivust, kuid otsing filtreerib vana chunk-metadata järgi. Eriti `source_status`, `historical`, `valid_to` ja `collection_id` korral võib haldusvaade kinnitada ühe tõe, samal ajal kui vastused kasutavad teist.
 
 **Vastuvõtukriteerium.** Patch peab kasutama versioonilist staging+commit lepingut või vähemalt taastama registri Chroma vea korral ja jätma retry-oleku. Üle piiri jäävaid chunk'e ei tohi vaikida. Veasüstitest peab kontrollima registri, Chroma ja korduskatse kooskõla.
+
+**Seis (12.08.2026): DONE.** Metadata patch kasutab sama OS-ülest docId lukku ja pagib kõik
+chunk'id 1000 kaupa. Chroma saab uue metadata enne registrit ning loetakse võtme kaupa tagasi;
+osalise update'i või verifitseerimisvea järel taastatakse kõigi chunk'ide vana metadata.
+Registri commit'i vea järel toimub sama rollback. Kui rollback ise ebaõnnestub, jääb registrisse
+`metadataState=REPAIR_REQUIRED`; tavapärane kordus kasutab sama koherentset rada. Toorest
+erinditeksti API enam ei tagasta. Veasüstitest tõendas osalise Chroma update'i rollback'i ja
+edukas test chunkide/registri sama väärtust.
 
 ### SOL-RAGSVC-11 — failide ja tekstide suurusepiirid rakenduvad pärast kogu keha mällu laadimist või puuduvad — P1
 
@@ -6238,6 +6313,15 @@ ingestitakse. Otsing ja vastused ei sõltu sellest — vektorid on juba baasis.
 
 **Vastuvõtukriteerium.** Reverse-proxy ja ASGI tasemel peab olema keha kõva piir; failid tuleb voogedastada ajutisse faili koos loenduri ja varase 413-ga. Teksti, query, chunk'ide arvu ja üksiku chunk'i jaoks peavad olema põhjendatud piirid ning kululimiit. Testida chunked transfer'it, valet/puuduvat Content-Length'i ja paralleelseid suuri päringuid.
 
+**Seis (12.08.2026): DONE.** Nexti RAG-proksi loendab nüüd tegelikke `ReadableStream` baite
+ning FastAPI ees olev ASGI middleware loendab sõltumatult iga `http.request` chunk'i; deklareeritud
+liigmaht katkeb enne body lugemist ja päise puudumine, vale väiksem väärtus või chunked transfer ei
+möödu piirist. Multipart-fail loetakse 64 KiB osadena kettal olevasse unikaalsesse ajutisse faili,
+loendur annab varase 413 ning alles piiratud fail teisendatakse parseri sisendiks. JSON/base64,
+teksti, koguchunkide mahu, chunkide arvu, üksiku chunki ja otsingupäringu piirid on serveri
+lepingus. Negatiivkontrollid katsid puuduva/vale `Content-Length`-i ja kaheksa paralleelset
+liigmahus voogu nii proksi kui ASGI kihis.
+
 ### SOL-RAGSVC-12 — deklareeritud MIME ja piiramatud dokumendiparserid võimaldavad CPU/mälu ammendamist — P1
 
 **Tõend.** `_detect_mime()` usaldab deklareeritud MIME-i enne maagilise sisu kontrolli (`rag-service/main.py:804-812`). DOCX töödeldakse `docx2txt.process()`-iga ilma ZIP-i entry-arvu, paisutatud mahu, compression-ratio või ajapiirita; PDF-i kõik lehed parsitakse ja ekstraheeritakse samas päringuprotsessis piiranguta (`:988-1010`). Faili kokkusurutud maht võib jääda `MAX_MB` alla, samal ajal kui paisutatud/parsimistöö on kordades suurem.
@@ -6245,6 +6329,15 @@ ingestitakse. Otsing ja vastused ei sõltu sellest — vektorid on juba baasis.
 **Mõju.** Autenditud üleslaadija saab esitada valesti märgistatud või zip-bomb DOCX/PDF-i ja blokeerida või tappa RAG-protsessi. Sama protsess teenindab vestluste otsingut, seega ingest-DoS katkestab ka tavakasutajate teadmistepõhised vastused.
 
 **Vastuvõtukriteerium.** MIME tuleb tõendada signatuuri ja konteineri struktuuriga; ZIP-il piirata entry-arvu, kogupaisutust ja suhet, PDF-il lehti/objekte ning parser käivitada ressursipiiriga eraldi worker'is. Pahatahtliku konteineri test peab lõppema kontrollitud 4xx-ga, mitte protsessi mälu/CPU ammendumisega.
+
+**Seis (12.08.2026): DONE.** Signatuuri ja konteineri kontroll rakendub nüüd ka püsiva ingest'i
+ühises worker'is enne ühegi versioonifaili või vektori muutmist. DOCX-i kirjete arv, kogupaisutus
+ja compression-ratio kontrollitakse enne lahtipakkimist. PDF-i lehtede ning xref-objektide arvul
+on eraldi lagi. PDF, DOCX ja HTML parser töötavad eraldi spawn-protsessis, millele Linuxis seatakse
+aadressiruumi ja CPU piir ning mille parent tapab tähtaja ületamisel. MIME-valet ja ZIP-pommi
+testiti nii, et parserit ei kutsutud ning tulemus oli kontrollitud 415/413; eraldi kontroll tõendas
+PDF-i mõlemad struktuurilimiidid ja timeout'i järel lapse lõpetamise. Päris pahatahtliku PDF-parseri
+runtime: not_run.
 
 ### SOL-RAGSVC-13 — URL-ingest'i SSRF-kaitses on DNS-rebindingu ajavahemik — P1
 
@@ -6254,6 +6347,15 @@ ingestitakse. Otsing ja vastused ei sõltu sellest — vektorid on juba baasis.
 
 **Vastuvõtukriteerium.** Ühendus peab kasutama kontrollitud IP-d, säilitades Host/SNI õigesti, ning pärast connect'i kontrollima tegelikku peer-aadressi; redirectidel kordub sama. Keelata tuleb proxy-env'i ootamatu mõju. DNS-rebindingu test peab andma eri aadressi check/connect faasis ja tõendama, et privaatühendust ei tehta.
 
+**Seis (12.08.2026): DONE.** URL-fetch lahendab hosti ühe korra, lükkab tagasi kogu
+aadressikomplekti, kui selles on mitteavalik aadress, ning loob otsese urllib3 connection pool'i
+kontrollitud IP-le. HTTPS säilitab algse hosti nii `Host` päises, SNI-s kui sertifikaadi
+hostname-kontrollis; pärast ühendust peab socket'i peer-aadress võrduma pin'itud avaliku IP-ga.
+Keskkonna proxy-seadeid see rada ei kasuta. Iga redirect läbib uue resolve→pin→connect→peer
+kontrolli. Rebindingu negatiivtest andis lahendamisel avaliku ja võimalikul teisel DNS-kutsel
+loopback-aadressi: teist DNS-kutset ei tehtud ning ühendus sihtis ainult esimest kontrollitud IP-d;
+eraldi peer-mismatch test lükkas loopback-ühenduse tagasi.
+
 ### SOL-RAGSVC-14 — Chroma päringuviga muutub HTTP 200 tühjaks tõendiks — P1
 
 **Tõend.** `_execute_search()` püüab `collection.query()` vea kinni ning tagastab tavavastuse `results: []` ja tekstilise `error` välja HTTP staatust muutmata (`rag-service/main.py:4687-4726`). Vestluse klient kontrollib ainult `res.ok`, märgib 200 vastuse observability outcome'iks `ok` ja kasutab tühja tulemust; `data.error`-it ei kontrollita (`lib/chat/retrievalOrchestrator.js:711-737`). Privaatdokumendi klient teeb samuti ainult `payload.results` massiivi (`lib/documents/search.js:15-48`).
@@ -6261,6 +6363,12 @@ ingestitakse. Otsing ja vastused ei sõltu sellest — vektorid on juba baasis.
 **Mõju.** Katkine vektorandmebaas või vigane filter on rakenduse jaoks eristamatu olukorrast „asjakohast tõendit pole”. AI võib anda vähem põhjendatud vastuse, kasutaja ei näe degradeerumist ning mõõdik märgib vea edukaks otsinguks.
 
 **Vastuvõtukriteerium.** Infrastruktuuri-/päringuviga peab andma mitte-2xx staatuse ja struktureeritud veakoodi; kui osaline leksikaalne fallback on lubatud, peab vastus kandma `partial/degraded` olekut, mida klient kohustuslikult kuvab ja mõõdab. Testida Chroma exception'i nii vestluse kui agentdokumendi tervikahelas.
+
+**Seis (12.08.2026): DONE.** Dense Chroma exception annab nüüd HTTP 503 ja stabiilse
+`RAG_RETRIEVAL_UNAVAILABLE` koodi koos request ID ning sisuta timingutega; toorest erindit vastuses
+ei ole. Vestluse klient viskab mitte-2xx vastuse erindina edasi, mitte ei teisenda seda tühjaks
+tõendiks. Agentdokumendi rada kasutas juba ühist `ragServiceRequest()` mitte-2xx erindilepingut.
+Negatiivtest kattis teenuse exception→503 ning vestluse 503→erind tervikahela.
 
 ### SOL-RAGSVC-15 — hübriidotsing tagastab rohkem tulemusi kui `top_k` lubab — P1
 
@@ -6270,6 +6378,12 @@ ingestitakse. Otsing ja vastused ei sõltu sellest — vektorid on juba baasis.
 
 **Vastuvõtukriteerium.** Pärast kõigi kanalite merge'i ja lõplikku rankimist tuleb tulemused deterministlikult `top_k` piirini lõigata; channel_stats peab eristama kandidaate ja tagastatud tulemusi. Testida kattuvaid ning täiesti eri dense/leksikaal kandidaate piiridel 1, 5, 20 ja 50.
 
+**Seis (12.08.2026): DONE.** Dense- ja leksikaalkandidaadid ühendatakse enne hübriidskoori;
+alles pärast `_apply_hybrid_ranking()`-ut lõigatakse `flat` normaliseeritud `top_k` pikkuseks.
+Sama lõigatud hulk juhib vastuse tulemiarvu, channel-statistikat ja gruppe. Test tõendas, et kolm
+kandidaati ning `top_k=2` annavad nii vastuses kui statistikas täpselt kaks lõplikult järjestatud
+tulemust; serveri skeem piirab sama väärtuse vahemikku 1…50.
+
 ### SOL-RAGSVC-16 — leksikaalotsing skannib vaikides ainult suvalist esimest 2000 chunk'i — P1
 
 **Tõend.** `_fetch_lexical_candidates()` teeb ühe `collection.get(... limit=RAG_LEXICAL_SCAN_LIMIT)` päringu, mille vaikeväärtus on 2000 ja millel puudub offset, paging või stabiilse valimi strateegia (`rag-service/main.py:94-102`, `:3255-3276`). Seejärel arvutab BM25-laadse skoori ainult saadud ridadel ja vastus ei kanna kärpeinfot.
@@ -6277,6 +6391,12 @@ ingestitakse. Otsing ja vastused ei sõltu sellest — vektorid on juba baasis.
 **Mõju.** Üle 2000 chunk'iga teadmistebaasis sõltub pealkirja-, täppisfraasi- ja BM25 leidmine Chroma tagastusjärjekorrast. Uuem või sisuliselt parim allikas võib jääda alati valimist välja, kuid vastus ja observability väidavad täisväärtuslikku hübriidotsingut.
 
 **Vastuvõtukriteerium.** Leksikaalindeks peab olema päris indekseeritud otsing või läbima kogu filtreeritud korpuse stabiilse paginguga väljaspool kasutajapäringu kuuma rada. Kui kaitsepiir rakendub, peab vastus olema `partial` koos skannitud/koguarvuga. Testida, et 2001. ja hilisem ainus täppisvaste leitakse või kärbe on nähtav.
+
+**Seis (12.08.2026): DONE.** Leksikaalrada pagib Chroma tulemeid offset'iga kuni korpuse
+lõpuni või eraldi `RAG_LEXICAL_MAX_SCAN` turvalaeni. Vastus kannab
+`lexical_scan.scanned/complete/error`; turvalaeni või vea korral on `partial=true` ning vea korral
+lisaks `degraded=true`, seega kärbe ei ole vaikne. Test paigutas read üle esimese 2-realise akna,
+tõendas offsetid 0/2/4, viie rea skanni ja täielikkuse.
 
 ### SOL-RAGSVC-17 — artiklite ingest ei ole asendav, idempotentne ega ühe tervikuna atomaarne — P1
 
@@ -6286,6 +6406,14 @@ ingestitakse. Otsing ja vastused ei sõltu sellest — vektorid on juba baasis.
 
 **Vastuvõtukriteerium.** Batch tuleb ehitada staging-versioonina; chunk-ID peab sisaldama stabiilset artikliidentiteeti ning sama artikli uus versioon asendama täpselt vana kogumi. Kõik artiklid aktiveeritakse atomaarse manifestiga või vastus kirjeldab taastatavat osalist olekut. Testida muutunud sisu, sama sisuga eri articleId-sid ja viga teise artikli ajal.
 
+**Seis (12.08.2026): DONE.** Kogu artiklipakk ehitatakse nüüd mälus valmis enne esimest
+Chroma kirjutust, igal artiklil on eksplitsiitne või pealkirjast/lehekülgedest tuletatud stabiilne
+identiteet ning loogiline ID sisaldab `docId + articleId + chunk index + text hash`. Seejärel läheb
+kogu pakk ühe dokumendiversioonina olemasolevasse stage→verify→registry.activeVersion→old cleanup
+lepingusse ja registriga commit'ib sama `articleManifest`. Teise artikli veasüst tõendas, et
+upsert'i ei toimunud; sama tekst eri articleId-ga andis eri ID-d. Uus sama artikli sisu saab uue
+versiooni ning vana kogum eemaldatakse alles atomaarse aktiveerimise järel.
+
 ### SOL-RAGSVC-18 — kliendi antud chunk-ID võib üle kirjutada teise dokumendi globaalse Chroma rea — P1
 
 **Tõend.** Eksplitsiitsete `/ingest/text` chunk'ide korral valitakse Chroma ID otse chunk metadata `canonical_chunk_id`, `chunk_id` või `chunkId` väljast (`rag-service/main.py:2253-2273`). Kontroll väldib duplikaati ainult sama request'i `ids` loendis; puudub nõue, et ID algaks praeguse `doc_id`-ga või et see ei kuuluks teisele dokumendile. Chroma `upsert(ids=...)` käsitleb ID-d kollektsioonis globaalsena (`:2294-2308`, `:2351-2358`).
@@ -6293,6 +6421,13 @@ ingestitakse. Otsing ja vastused ei sõltu sellest — vektorid on juba baasis.
 **Mõju.** Vigane ingest või teenusevõtme/admini kuritarvitus saab teadaoleva chunk-ID-ga teise dokumendi teksti ja metadata üle kirjutada. Ohvri registririda jääb alles, kuid tema chunk kaob või omandab ründaja doc_id, rikkudes allikate terviklust.
 
 **Vastuvõtukriteerium.** Füüsilise vektori-ID peab tuletama server `doc_id + article/chunk identity` väärtustest ja kliendi ID säilitama eraldi metadata väljana. Upsert peab kontrollima olemasoleva ID omanikku ja võõra konflikti korral 409 andma. Negatiivtest peab proovima sama ID-d kahe docId-ga.
+
+**Seis (12.08.2026): DONE.** Eksplitsiitse chunki füüsilise alus-ID tuletab server nüüd
+`docId + chunk key + request index + text hash` väärtustest; dokumendiversiooni kiht lisab sellele
+serveri version ID. Kliendi `canonical_chunk_id/chunk_id/chunkId` säilib ainult
+`client_chunk_id` metadatas ega saa enam valida globaalset Chroma võtit. Sama kliendi ID kahe
+docId-ga andis testis erinevad serveri ID-d ja säilitas mõlema metadata päritolusildi; sama batch'i
+duplikaatse articleId korral annab server enne stage'i 409 `DUPLICATE_ARTICLE_ID`.
 
 ### SOL-RAGSVC-19 — märgipõhine chunker jätab lausepiiril teksti vahele — P1
 
@@ -6302,6 +6437,11 @@ ingestitakse. Otsing ja vastused ei sõltu sellest — vektorid on juba baasis.
 
 **Vastuvõtukriteerium.** Järgmine start peab lähtuma tegelikust lõikekohast miinus overlap või kasutama tõendatud splitterit; test peab rekonstrueerima lähte katvuse mitme lausepiiri ja väga pika lauseta teksti korral ning keelama positiivse pikkusega vahed.
 
+**Seis (12.08.2026): DONE.** Märgipõhise chunkeri järgmine algus arvutatakse nüüd tegelikust
+lausekatkestusest miinus overlap; nominaalse akna samm ei saa vahepealset teksti vahele jätta.
+Test tõendas varem kadunud unikaalse keskmise lõigu olemasolu, järjestikuste chunkide nullvahe ning
+ilma ühegi lausepiirita pika teksti täpse rekonstrueerimise overlap'i eemaldamisel.
+
 ### SOL-RAGSVC-20 — lühikese mitmeleheküljelise PDF-i üks chunk omistatakse ainult esimesele lehele — P1
 
 **Tõend.** Kui PDF-i kogu puhastatud tekst mahub single-chunk piiridesse, ühendab `_build_ingest_payload()` kõik lehed üheks tekstiks, kuid `page_nums` väärtuseks pannakse ainult esimene lehekülg (`rag-service/main.py:1928-1944`). Chunk'i `page` metadata ja hilisem grupi leheküljeviide kasutavad seda ühte väärtust (`:2040-2048`, `:4962-5003`).
@@ -6309,6 +6449,11 @@ ingestitakse. Otsing ja vastused ei sõltu sellest — vektorid on juba baasis.
 **Mõju.** Teiselt või hilisemalt lehelt pärinev väide kuvatakse esimese lehe tõendina. Sotsiaal- ja õigusmaterjali allikaviide näeb täpne välja, kuid juhatab valele lehele, mis raskendab inimkontrolli ja võib anda vale auditijälje.
 
 **Vastuvõtukriteerium.** Mitme lehe teksti ei tohi ühe lehe numbriga kokku sulatada; ühe chunk'i korral peab metadata kandma tegelikku lehevahemikku/listi või chunk tuleb lehepiiril jagada. Testida lühikest 2–3-leheküljelist PDF-i, kus vastesõna on ainult viimasel lehel.
+
+**Seis (12.08.2026): DONE.** Single-chunk PDF kogub nüüd kõigi sisendlehtede unikaalse loendi
+ning kirjutab chunk'i metadatasse nii `pages` kui kokkusurutud `pageRange`; esimese lehe `page`
+jääb tagasiühilduvaks ankruväljaks, kuid ei väida enam ainsat lehte. Kolmeleheküljelise lühifaili
+test kinnitas `pages=1,2,3`, `pageRange=1–3` ja ainult viimasel lehel olnud märksõna samas chunk'is.
 
 ### SOL-RAGSVC-21 — tekstita uus versioon kustutab vana indeksi ja märgitakse siiski lõpetatuks — P1
 
@@ -6318,6 +6463,11 @@ ingestitakse. Otsing ja vastused ei sõltu sellest — vektorid on juba baasis.
 
 **Vastuvõtukriteerium.** Null loetava chunk'iga ingest peab enne aktiivversiooni muutmist 422/`EXTRACTION_EMPTY` andma ja vana versiooni säilitama. Kui tekstita dokument on teadlikult lubatud, peab staatus olema eraldi `NO_TEXT`, mitte `COMPLETED`. Testida uut ja olemasolevat docId-d skannitud/tühja failiga.
 
+**Seis (12.08.2026): DONE.** Ühine vektorasenduse piir annab null-chunk payload'ile enne
+`stage_document_version()` kutset 422 `EXTRACTION_EMPTY`. Seega ei loeta vana ID-komplekti, ei
+kirjutata Chroma ridu ega muudeta registri aktiivversiooni; faili-ingest puhastab juba loodud
+versiooniallika oma olemasolevas exception-harus. Negatiivtest tõendas, et stage'i ei kutsutud.
+
 ### SOL-RAGSVC-22 — liiga pikk eksplitsiitne chunk talletatakse muu tekstiga kui selle embedding — P2
 
 **Tõend.** Eksplitsiitse chunk'i payload jätab kliendi kogu puhastatud teksti `documents` massiivi (`rag-service/main.py:2253-2274`). `_pack_embedding_subbatches()` kärbib embeddingu sisendi `RAG_EMBED_MAX_TOKENS_PER_INPUT` piirini, kuid tagastab ainult embeddingud ega asenda salvestatavat dokumenti (`:1137-1169`, `:2294-2308`). Tavachunker hoiab chunk'id piirist all, ent `/ingest/text` eksplitsiitset chunk'i ei jaga ega valideeri.
@@ -6325,6 +6475,13 @@ ingestitakse. Otsing ja vastused ei sõltu sellest — vektorid on juba baasis.
 **Mõju.** Chroma tagastab täispika chunk'i, mille hilisem osa ei mõjutanud vektorit üldse. Seal oleva ainsa asjakohase väite dense-leidmine ebaõnnestub, kuigi admin näeb teksti indeksis; leksikaalrada võib anda teistsuguse tulemuse.
 
 **Vastuvõtukriteerium.** Eksplitsiitse chunk'i suurus peab olema kõva piiriga või server peab salvestama täpselt sama kärbitud/jagatud teksti, mille embedding arvutati. Testida märksõna enne ja pärast tokenipiiri ning tõendada embedding-document üksühesust.
+
+**Seis (12.08.2026): DONE.** `/ingest/text` piirab eksplitsiitse chunki juba Pydanticu
+char-lävega; embeddingu pakendaja kontrollib lisaks tegelikku tokeniläve ja annab enne providerit
+413 `EMBEDDING_INPUT_TOO_LARGE`, kui tekst vajaks kärpimist. Vaikne `_truncate_to_tokens()` ei saa
+seega enam luua täisteksti ja osalise embeddingu paari. Test asetas märksõnad tokenipiiri mõlemale
+poolele, tõendas 413 ning selle, et providerit ei kutsutud; lubatud PDF payload'i test kinnitas
+embeddingu sisendi ja salvestatava `documents` massiivi üksühesuse.
 
 ### SOL-RAGSVC-23 — tervise- ja dokumendivaated maskeerivad Chroma vea terveks olekuks ning lekitavad siseteid — P2
 
@@ -6334,6 +6491,14 @@ ingestitakse. Otsing ja vastused ei sõltu sellest — vektorid on juba baasis.
 
 **Vastuvõtukriteerium.** Health peab kontrollima registrit ja Chroma lugemist, tagastama degradeerumisel mitte-2xx või `ok:false`, ning avalik vastus ei tohi sisaldada absoluutteid ega sisekonfiguratsiooni. Dokumendi staatus peab olema `DEGRADED/UNKNOWN`, mitte `COMPLETED`. Testida Chroma count/get exception'e.
 
+**Seis (12.08.2026): DONE.** `/health` annab nii registri- kui Chroma count-tõrkel 503,
+`ok:false`, stabiilse veakoodi ja `Cache-Control:no-store`; edukast vastusest eemaldati embeddingu
+mudel, kollektsiooni nimi, MIME-loend, chunkiseadistus ja absoluutne storage path. Dokumentide
+loendi/detaili Chroma get-tõrge annab `status=DEGRADED`, `chunks=null` ja
+`VECTOR_STORE_UNAVAILABLE`, mitte null chunk'i ning `COMPLETED`. Vastused ehitatakse nüüd
+avalike väljade allowlistist; `path` ja `source_path` ei välju. Testid katsid count/get exception'i
+ning absoluutse sisetee puudumise.
+
 ### SOL-RAGSVC-24 — tag-tokeni filter kirjutab kasutaja muu `$or` filtri üle — P2
 
 **Tõend.** `_execute_search()` normaliseerib esmalt `payload.where.$or` ja salvestab selle `md_where["$or"]` alla (`rag-service/main.py:4551-4559`). Kui sama päring sisaldab `tag_tokens`/`tagTokens` filtrit, ehitatakse uus token-slot'ide OR ja omistatakse samale võtmele, kirjutades varasema tingimuse üle (`:4564-4576`).
@@ -6341,6 +6506,13 @@ ingestitakse. Otsing ja vastused ei sõltu sellest — vektorid on juba baasis.
 **Mõju.** Kombineeritud geograafia-, allika- või staatusealternatiivid võivad päringust vaikides kaduda. Tulemused vastavad ainult tagile ja võivad tulla laiemast sisulisest skoobist, kui upstream eeldas mõlema filtri rakendumist.
 
 **Vastuvõtukriteerium.** Iga OR-grupp peab saama eraldi klausli ühise `$and` all; normaliseerimine ei tohi samanimelist võtit üle kirjutada. Testida üld-OR + tag_tokens kombinatsiooni nii dense kui leksikaalrajal.
+
+**Seis (12.08.2026): DONE.** Otsingufiltri kompilaator lisab iga OR-rühma eraldi
+`{"$or": ...}` klauslina ühise `$and` alla; järgnev autorite või tagide rühm ei omista enam
+olemasolevat `$or` võtit üle. Sama lõpuks komponeeritud `chroma_where` antakse nii
+`collection.query()` dense-rajale kui pagitud `collection.get()` leksikaalrajale. Test ühendas
+riigi üld-OR-i, autori ja tagi ning tõendas vähemalt kolme säilinud OR-rühma ja mõlema raja täpselt
+sama filtripuu.
 
 ### SOL-RAGSVC-25 — `tags` ja `authors` filtreid võrreldakse formaadiga, milles neid ei salvestata — P2
 
@@ -6350,6 +6522,13 @@ ingestitakse. Otsing ja vastused ei sõltu sellest — vektorid on juba baasis.
 
 **Vastuvõtukriteerium.** Filtreeritavad korduvväljad peavad saama eraldi normaliseeritud slotid/indeksi või päris otsinguandmemudeli; API peab dokumenteerima ja rakendama sama semantikat. Testida ühe- ja mitmeväärtuselist autorit/tagi ning diakriitikuid.
 
+**Seis (12.08.2026): DONE.** Ingest kirjutab autorid 12 eraldi `author_token_N` slotti ning
+tagid olemasolevatesse 8 `tag_token_N` slotti; mõlemad normaliseeritakse väiketäheks ja
+diakriitikata. Otsingu `authors`/`tags` scalar või `$in` sisend kompileeritakse samade slotiväljade
+OR-rühmaks ega võrdle enam komadega ühendatud kuvateksti. Test kattis kaks autorit ja kaks tagi,
+`Jüri Öö`→`juri oo`, `Mari Mägi`→`mari magi`, `Töövõime`→`toovoime` ning üheväärtuselise
+filtri dense/leksikaal ühise puu.
+
 ### SOL-RAGSVC-26 — base64 ingest aktsepteerib tühja või vigase sisu ilma korrektse kliendiveata — P2
 
 **Tõend.** `/ingest/file` kasutab `base64.b64decode(payload.data)` ilma `validate=True`-ta ja ei kontrolli tühja tulemust (`rag-service/main.py:3532-3541`). Erinevalt `/upload`-ist pole `Empty file` haru. Ühine worker võib kirjutada nullbaidise faili, eemaldada vana vektori ja registreerida `inserted:0`; osa vigaseid stringe neelatakse permissiivselt, teised dekodeerimisvead jõuavad üldise 500-ni.
@@ -6357,6 +6536,12 @@ ingestitakse. Otsing ja vastused ei sõltu sellest — vektorid on juba baasis.
 **Mõju.** Kliendi transport-/kodeerimisviga võib muuta olemasoleva dokumendi tühjaks või saada serverivea, mitte taastatava 400. Vigane payload pole idempotentselt eristatav päriselt tühjast dokumendist.
 
 **Vastuvõtukriteerium.** Nõuda ranget base64 valideerimist, mitte-tühja sisu ja enne aktiivversiooni muutmist MIME/signatuuri kontrolli; vead peavad olema 400/422 stabiilse koodiga. Testida tühja, vale padding'u, mitte-base64 märke ja nullbaite olemasoleva docId puhul.
+
+**Seis (12.08.2026): DONE.** JSON faili-ingest kasutab nüüd `base64.b64decode(...,
+validate=True)` ning teisendab padding'u või tähestiku vea 400 `BASE64_INVALID` vastuseks. Tühi ja
+ainult nullbaitidest sisu annab 400 `FILE_EMPTY`; muu sisu läbib seejärel ühise MIME/signatuuri
+kontrolli enne source stagingut. Olemasoleva docId-ga testid katsid tühja stringi, vale padding'ut,
+mitte-base64 märke ja nullbaite ning tõendasid, et ingest-workerit ega aktiivversiooni ei puudutatud.
 
 ### SOL-RAGSVC-27 — üldine valideerimisvea handler annab kõigile endpointidele vale upload-lepingu — P2
 
@@ -6366,6 +6551,12 @@ ingestitakse. Otsing ja vastused ei sõltu sellest — vektorid on juba baasis.
 
 **Vastuvõtukriteerium.** Handler peab tagastama sisuvabu, kuid endpointi ja välja suhtes täpseid veakoode/asukohti; tundlikku keha ei logita. Negatiivtestid peavad katma vähemalt search, agent search, ingest/text, patch-meta ja upload vead.
 
+**Seis (12.08.2026): DONE.** Üldine handler tagastab nüüd marsruudiklassi täpse koodi,
+tegeliku route'i ning iga vea `location/field/code` kolmikud; vastuses ega logis ei ole keha,
+keharäsi või upload-spetsiifilist eksitavat teksti. Negatiivtestid katsid `/search`, agent search,
+`/ingest/text`, `/documents/{id}/patch-meta` ja `/upload` ning tõendasid vastavalt `query`,
+`doc_ids`, `doc_id`, `metadata` ja `file` väljad.
+
 ### SOL-RAGSVC-28 — metadata patch ei võimalda vigast väärtust eemaldada — P2
 
 **Tõend.** `PatchMetadata.metadata` lubab `null` väärtusi (`rag-service/main.py:1705-1707`), kuid `patch_document_metadata()` jätab iga `None` väärtuse lihtsalt vahele ja annab lõpuks `No patchable metadata values provided` (`:4450-4462`). Seega API kuju lubab välja tühjendamist näivat sisendit, kuid register ja chunk-metadata jäävad muutmata.
@@ -6373,6 +6564,13 @@ ingestitakse. Otsing ja vastused ei sõltu sellest — vektorid on juba baasis.
 **Mõju.** Vale `valid_to`, URL, authority, collection_id või ajaloolisuse metadata ei ole sama odava patch-rajaga eemaldatav; administraator võib arvata, et `null` puhastas väärtuse, või peab tegema kuluka reingest'i.
 
 **Vastuvõtukriteerium.** Leping peab eristama „puudub muudatus” ja „eemalda väli”; lubatud nullable väljade null peab eemaldama väärtuse nii registrist kui kõigist chunk'idest ühe koherentse commit'ina. Testida iga nullable välja set → clear tsüklit ja Chroma vea rollback'i.
+
+**Seis (12.08.2026): DONE.** Patch eristab nüüd puuduvat võtit ja saadetud `null` väärtust:
+null kogutakse `clear_fields` hulka, Chroma uued metadatad ehitatakse võtmeta, puudumine
+verifitseeritakse ning register eemaldab samad võtmed alles pärast Chroma edu. Vea korral taastub
+vana chunk-metadata ning register jääb vanaks. Set→clear test kattis kõik allowlisti nullable väljad,
+sh `valid_from/valid_to`, URL-id, authority, collection, ajaloolisus, riik ja aasta; eraldi Chroma
+veasüst tõendas vana väärtuse rollback'i.
 
 ### SOL-PRISMA-01 — MTR-i parandav migratsioon kaotab pärandpõhjuse ja võib kinnistada vale allikatulemuse — P1
 

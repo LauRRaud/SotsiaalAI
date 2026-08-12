@@ -92,9 +92,74 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**Teenuspäeviku peatükk `SOL-SLOG-01…24` on tervikuna DONE; järgmine lahtine auditileid on `SOL-RAGSVC-03`.**
+**RAG-teenuse `SOL-RAGSVC-01…28` on DONE ja peatüki UTC täisvärav on roheline.**
 `SOL-ORG-13`–`17`, `SOL-DOC-J-01`–`06` ja kogu `SOL-SLOG-01…24` parandused ning kiirem plokipõhine töökord on koodipuus; serverisse deploy'mata. Arvud loetakse käsuga `npm run sol:tally`, neid siia ankrusse ei
 kopeerita. Kui ülesanne ei ole SOL-parandus, loe S11 järel ainult vastavat S2–S10 sektsiooni.
+
+**SOL-RAGSVC-03 tehtud 12.08 — RAG-teenus ei käivitu enam puuduva või nõrga teenusevõtmega.**
+Võtmeta arendus on eraldi loopback-only lipp ning kogu kaitstud endpointide inventuur annab
+puuduva või vale võtmega 401. Järgmine plokk on adminiproksi toimingupõhine luba ja audit.
+
+**SOL-RAGSVC-04 tehtud 12.08 — RAG haldus ei ole enam iga administraatori piiramatu catch-all.**
+Teadmistehalduril ja platform-adminil on eraldi püsiv õigus, brauseriproksil täpne allowlist ja
+same-origin mutatsioonipiir ning iga upstream-toiming saab kohustusliku algus- ja tulemusauditi.
+Järgmine plokk teeb registri ja aktiivse dokumendiversiooni rikke- ning protsessiohutuks.
+
+**SOL-RAGSVC-05/06 tehtud 12.08 — katkine register ei muutu enam tühjaks ega kaota mitme protsessi uuendusi.**
+Olemasoleva registri viga teeb tervise punaseks ja peatab kirjutused; viimane kontrollitud snapshot
+jääb taastamiseks alles. OS-ülene lukk, unikaalsed tempfailid ja fsync säilitasid nelja protsessi
+register/patch/delete koormuses kõik uuendused. Järgmine plokk on vektorite, faili ja registri
+ühine versiooniline commit.
+
+**SOL-RAGSVC-07…10 tehtud 12.08 — fail, vektorid ja register vahetuvad nüüd ühe aktiivversiooni lepinguga.**
+Uus sisu on otsingule nähtamatu kuni terviklikkuse kontrolli ja registri commit'ini; vana versioon
+säilib selle hetkeni. Kustutusel on retry-tombstone ning metadata patch taastab vea korral vana
+terviku. Järgmine plokk seab päris keha-, parseri- ja võrguressursi piirid.
+
+**SOL-RAGSVC-11/12 tehtud 12.08 — keha- ja parserikulu on nüüd päriselt piiratud enne kallist tööd.**
+Proksi ja ASGI loendavad voo tegelikke baite, upload spulitakse piiratud ajutisse faili ning teksti,
+chunkide ja query kululagi on serveri leping. MIME/ZIP/PDF struktuur kontrollitakse enne parserit;
+parser töötab tapetavas ressursipiiriga alamprotsessis. Järgmine plokk sulgeb URL-fetch'i
+DNS-kontrolli ja ühenduse vahelise rebindingu akna.
+
+**SOL-RAGSVC-13 tehtud 12.08 — URL-ingest ühendub ainult eelkontrollitud avaliku IP-ga.**
+Algne hostname säilib Host/SNI/sertifikaadikontrollis, socket'i tegelik peer peab võrduma pin'itud
+IP-ga ning proxy-env ei sekku. Redirect kordab sama lepingut. Järgmine plokk teeb otsingu
+infrastruktuurivea nähtavaks ja jõustab tulemuste ning leksikaalse korpuse täielikkuse lepingu.
+
+**SOL-RAGSVC-14…16 tehtud 12.08 — RAG-i rike ei näi enam tühja eduka otsinguna.**
+Chroma tõrge annab struktureeritud 503, hübriidtulemus lõigatakse pärast lõppskoori täpselt
+`top_k` järgi ning leksikaalrada pagib korpuse või märgib turvalaeni/vea nähtava partial/degraded
+seisuna. Järgmine plokk seob artiklipaki ja eksplitsiitsete chunkide identiteedi dokumendiga.
+
+**SOL-RAGSVC-17/18 tehtud 12.08 — artiklipakk aktiveerub ühe versioonina ja klient ei vali enam Chroma ID-d.**
+Kõik artiklid ehitatakse enne kirjutust, ID sisaldab dokumendi ja artikli identiteeti ning manifest
+commit'ib koos aktiivversiooniga. Eksplitsiitse chunki kliendi-ID jääb ainult päritolumetadataks;
+füüsilise võtme tuletab server. Järgmine plokk tõendab teksti katvuse, PDF-leheküljed, nulltulemuse
+ja embeddingusse saadetud/salvestatud chunki samasuse.
+
+**SOL-RAGSVC-19…22 tehtud 12.08 — chunkide tekst, leheküljeviide ja embedding kirjeldavad sama sisu.**
+Lausekatkestus ei jäta enam vahet, lühike mitmeleheküljeline PDF kannab kogu lehevahemikku,
+tekstita asendus katkeb 422-ga enne aktiivversiooni ning embeddingule liiga pikk eksplitsiitne
+chunk lükatakse kärpimise asemel tagasi. Järgmine plokk teeb Chroma tõrke tervise- ja
+dokumendivaadetes nähtavaks ning eemaldab siseteed vastustest.
+
+**SOL-RAGSVC-23 tehtud 12.08 — katkine vektorkiht on punane, mitte tühi ja roheline.**
+Health annab Chroma tõrkel 503 ilma sisekonfiguratsiooni või teedeta; dokumendiloend ja detail
+annavad `DEGRADED`, tundmatu chunk-arvu ning stabiilse veakoodi. Avalikud dokumendiväljad on
+allowlistis ja hoidlateed ei välju. Järgmine plokk ühendab OR-grupid kadudeta ning teeb
+autorite/tagide filtri vastavaks nende tegelikule salvestuskujule.
+
+**SOL-RAGSVC-24/25 tehtud 12.08 — kombineeritud filtrid ei kirjuta üksteist üle.**
+Iga OR-rühm säilib ühise AND-i all ning dense/leksikaal kasutavad sama puud. Autorid ja tagid
+salvestatakse ning filtreeritakse diakriitikata scalar-slot'ide kaudu, mitte komadega kuvateksti
+vastu. Järgmine plokk sulgeb base64, valideerimisvea ja metadata välja tühjendamise lepingud.
+
+**SOL-RAGSVC-26…28 tehtud 12.08 — vigane sisend ei jõua kallisse töötlusse ja metadata saab päriselt tühjaks.**
+Faili base64 on range ning tühi või nullbaitidest sisu katkeb enne workerit. Valideerimisvastus annab
+marsruudi, välja ja stabiilse veakoodi ilma keha või räsita. Nullable metadata väljad eemaldatakse
+registrist ja kõigist chunkidest ühe rollback'itava muudatusena. RAG-teenuse peatükk on 28/28 DONE
+ning peatüki UTC täisvärav on roheline; järgmine SOL-paranduste peatükk valitakse eraldi.
 
 **SOL-SLOG-02…05 ja 21…24 tehtud 12.08 — Teenuspäeviku viimane plokk sulges võrgujärjekorra andmekao, idempotentsuse/päritolu, narratiivi identiteedi ja asünkroonse UI ning vaikse mahukärpe.** Päris PostgreSQL-i sondid: kirje päritolu/paralleelsus **12/12**, narratiivi identiteet **6/6**. Brauseris läbis narratiivi A/B seed-, list- ja AI-võistlus mõlemas järjekorras kõik kuus juhtu ning salvestus kasutas nähtavat valikut. Uued migratsioonid: `20260812233000_sol_slog_04_entry_request_hash` ja `20260812234000_sol_slog_22_narrative_identity`.
 
