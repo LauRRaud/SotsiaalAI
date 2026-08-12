@@ -93,7 +93,11 @@ test("laua kaart näitab lugemisaega ja 112 piiri, mitte reageerimisaega", async
 test("server saab safetyAnswer'i kaasa — klient ei otsusta kriisi üksinda", async () => {
   const s = await source();
   const send = s.slice(s.indexOf("async function send("), s.indexOf('if (stage === "confirm")'));
-  assert.match(send, /safetyAnswer: form\.safetyAnswer === true/);
+  /* SOL-URG-03: väärtus läheb TOORELT. Vana `=== true` tegi vastamata küsimusest
+     juba kliendis eituse, seega server ei saanud teadmatust kunagi näha. */
+  assert.match(send, /safetyAnswer: form\.safetyAnswer\b(?! === true)/);
+  const review = s.slice(s.indexOf("function review("), s.indexOf("async function send("));
+  assert.match(review, /form\.safetyAnswer !== false/, "vastamata küsimus peab kinnitusekraani ette jääma");
   // Serveri eluohu-vastus viib samale ekraanile — kliendipoolne kontroll on
   // kiirus, mitte kaitse.
   assert.match(send, /payload\?\.emergency/);

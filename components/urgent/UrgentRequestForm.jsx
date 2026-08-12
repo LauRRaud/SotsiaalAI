@@ -209,6 +209,13 @@ export default function UrgentRequestForm() {
       setStage("emergency");
       return;
     }
+    /* SOL-URG-03: vastamata ohuküsimus ei tohi jõuda kinnitusekraanile. Vana
+       kontroll vaatas ainult `=== true`, seega `null` libises edasi ja saatmisel
+       muutus eituseks. Server ütleb sama asja teist korda — see ei ole dubleerimine,
+       vaid see, et liides ei ole kunagi ainus värav. */
+    if (form.safetyAnswer !== false) {
+      return setError(txt(t, "urgent.errors.safety_answer_required", "Vasta, kas keegi on praegu ohus."));
+    }
     if (!form.municipalityId) return setError(txt(t, "urgent.errors.municipality_required", "Vali omavalitsus."));
     if (!form.situationVerbatim.trim()) return setError(txt(t, "urgent.errors.situation_required", "Kirjelda, mis toimub."));
     if (!form.contactName.trim()) return setError(txt(t, "urgent.errors.contact_name_required", "Lisa nimi."));
@@ -229,7 +236,8 @@ export default function UrgentRequestForm() {
           situationVerbatim: form.situationVerbatim,
           contactName: form.contactName,
           contactPhone: form.contactPhone,
-          safetyAnswer: form.safetyAnswer === true
+          // SOL-URG-03: toorelt, mitte `=== true` — server peab nägema teadmatust.
+          safetyAnswer: form.safetyAnswer
         })
       });
       const payload = await response.json().catch(() => ({}));

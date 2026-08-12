@@ -28,23 +28,31 @@ export const revalidate = 0;
  * `municipalityId` tuleb kehast, aga LAUD tuletatakse serveris — klient ei saa
  * valida, kellele pöördumine läheb.
  */
-export async function POST(req) {
-  const auth = await requireUrgentUser();
+export async function POST(req, context = {}) {
+  /* Süstitavad sõltuvused nagu `app/api/register/route.js`-is: nii saab seda rada
+     testida PÄRIS kutsena, mitte lähtekoodi lugedes. Next annab teise argumendina
+     `{ params }`, seega puuduvad võtmed langevad vaikeväärtustele. */
+  const { db = prisma, requireUser = requireUrgentUser } = context;
+
+  const auth = await requireUser();
   if (!auth.ok) return urgentError(auth.message, auth.status);
 
   const body = await req.json().catch(() => ({}));
 
   return handleUrgentRoute(async () => {
     const request = await createUrgentRequest({
-      prisma,
+      prisma: db,
       authorId: auth.userId,
       municipalityId: body?.municipalityId,
       recipientType: body?.recipientType || undefined,
       situationVerbatim: body?.situationVerbatim,
       contactName: body?.contactName,
       contactPhone: body?.contactPhone,
-      safetyAnswer: body?.safetyAnswer === true,
-      assistantStructured: body?.assistantStructured || ""
+      /* SOL-URG-03: väärtus antakse edasi TOORELT. Vana `=== true` tegi puuduvast
+         ja vigasest vastusest siinsamas eituse ning domeen ei saanud enam vahet
+         teha, kas inimene vastas „ei" või ei vastanud üldse.
+         SOL-URG-04: `assistantStructured` ei tule enam kehast — vt domeenikihti. */
+      safetyAnswer: body?.safetyAnswer
     });
     return urgentJson({ ok: true, request: authorProjection(request) }, 201);
   });

@@ -9663,6 +9663,7 @@
       "contact_name_required": "Lisa nimi, et vastuvõtja teaks, kellega ta räägib.",
       "contact_phone_required": "Lisa telefon, millelt sind kätte saab.",
       "municipality_required": "Vali omavalitsus.",
+      "safety_answer_required": "Vasta, kas keegi on praegu ohus.",
       "generic": "Saatmine ebaõnnestus. Proovi uuesti."
     },
     "auth_required": "Abipalve saatmiseks logi sisse. Nii saad selle hiljem tagasi võtta ja näed, mis sellest sai.",

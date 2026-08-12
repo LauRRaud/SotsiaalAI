@@ -183,10 +183,15 @@ test("hilisem laua muudatus EI muuda seda, mida inimesele lubati", async () => {
 
 test("AI mustand seisab verbatim-teksti KÕRVAL, mitte selle asemel", async () => {
   const prisma = createPrisma();
-  const request = await sentRequest(prisma, {
+  const request = await sentRequest(prisma);
+  /* SOL-URG-04 järel EI SAA mustandit loomise kaudu sisse panna — avalik rada ei
+     usalda seda välja enam. Kuvalepe (kaks eri välja, mitte üks) kehtib aga
+     endiselt pärandridade ja tulevase serveripoolse mustandi kohta, seega väärtus
+     pannakse siin otse reale, mitte päringu kehast. */
+  const projection = deskProjection({
+    ...request,
     assistantStructured: "Isik väljendas ebakindlust ööbimiskoha osas."
   });
-  const projection = deskProjection(request);
   assert.equal(projection.situationVerbatim, "Mul ei ole täna öösel kuhugi minna ja ma ei tea, mis ma teen.");
   assert.equal(projection.assistantStructured, "Isik väljendas ebakindlust ööbimiskoha osas.");
   assert.notEqual(projection.situationVerbatim, projection.assistantStructured);
