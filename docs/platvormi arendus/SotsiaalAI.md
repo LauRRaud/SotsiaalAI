@@ -89,9 +89,10 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-**DEPLOY'MATA ON KAKS COMMIT'I JA ÜKS MIGRATSIOON — SOL-PAY-09.** Mõõdetud 12.08 hilisõhtul:
-`main` = `909c7645`, `origin/main..main` = **2**, server on endiselt `954289fc`. Jääk on
-`82722bbc` (mehhanism + migratsioon `20260812170000`) ja `909c7645` (sond + raporti Seis-lõik).
+**DEPLOY'MATA ON NELI COMMIT'I JA ÜKS MIGRATSIOON — SOL-PAY-09 ja SOL-WB-06 saba.** Mõõdetud
+12.08 hilisõhtul: server on endiselt `954289fc`. Jääk on `82722bbc` (PAY-09 mehhanism +
+migratsioon `20260812170000`), `909c7645` (PAY-09 sond + raporti Seis-lõik), `27dc45f3` (seis) ja
+`db97a10b` (**täiendav lahtrisummutus**, migratsioonita).
 **Migratsioon ainult lõdvendab piiri** — `Payment.userId` `DROP NOT NULL` ja kaks võõrvõtme
 reeglit `Cascade` → `SetNull` — ega muuda ühtki olemasolevat väärtust; toodangus mõõdetud enne
 kirjutamist: 4 `Payment` rida, kõigil `userId` täidetud, 11 `Subscription`, 1 `BillingMethod`.
@@ -193,10 +194,21 @@ liigub parandusega kaasa ja tal on identiteet · **erindi tekst ei jõua enam ka
 **piloodivaataja ligipääsu saab ära võtta** ja iga andmine jätab jälje · **andmekoopia kannab
 elutsüklit ja mustandeid**. `npm run wb:pilot:probe` **28/28** päris PostgreSQL-is.
 
-**KAKS OTSUST OOTAB SIND** (kood on mõlemaks valmis, valik ei ole minu teha): **analüüsiühik**
-(`record` vs `latest_per_person` — vaikeväärtust ei vahetatud, sest see muudaks kõigi
-olemasolevate raportite tähendust) ja **kui kaugele privaatsuskaitsega minna** (päringueelarve,
-müra või „üks perioodiliik piloodi kohta"). Kolmas, väiksem: liikmesuseta konto kirjed ei osale
+**TÄIENDAV LAHTRISUMMUTUS ON 12.08 HILISÕHTUL TEHTUD** (`db97a10b`) — ta oli WB-06 sabas kirjas
+kui „eraldi töö" ja ta ei vajanud migratsiooni ega otsust. **Lävend 5 mõõtis kogu koondit ja
+lahter jäi katmata:** kaheteistkümne inimese aruandes läks ühe inimese riskimarker välja täpse
+arvuna. Nüüd on kaks kihti — väike lahter ei jõua välja ÜLDSE (rida ei teki, osakaal kaob koos
+loenduriga) ja **kui lahtrid liituvad avaldatud üldsummaks, peab kinni minema vähemalt kaks**,
+muidu on ainus summutatud lahter lahutamise teel tagasi arvutatav. Kolm kohta oleksid teinud
+summutusest vaikse nulli — aruande lugemisreegel, XLSX ja prindivaade — ja kõik kolm ütlevad nüüd
+„avaldamata". `TZ=UTC npm test` **4175/4175**, kolm negatiivkontrolli.
+
+**SIIN OLNUD „KAKS OTSUST" ON MÕLEMAD TEHTUD** (analüüsiühik `latest_per_person`, lävend 5 —
+vt selle lõigu ülemist osa) ja lahtrisummutus, mis nende kõrval kolmandana laual seisis, on nüüd
+samuti tehtud. **Privaatsuskaitse sabast jääb alles kaks:** kaks ERI SUURUSEGA lubatud perioodi
+(kuu vs kvartal) on endiselt sisestikud — selle vastu aitavad päringueelarve, privaatsust
+säilitav müra või „üks perioodiliik piloodi kohta", ja kõik kolm on tootevalik — ning
+**lävend 10**, mille eeldus on piloodi päris pealiikmete arv, mida ei ole olemas. Kolmas, väiksem: liikmesuseta konto kirjed ei osale
 üheski piloodikoondis — see on SOL-WB-01 otsene tagajärg.
 
 **AUDIT ISE ON LÕPUNI VIIDUD** — kõik 20 funktsiooni, Haldus, Ruumid ja Töölaud on kaetud,

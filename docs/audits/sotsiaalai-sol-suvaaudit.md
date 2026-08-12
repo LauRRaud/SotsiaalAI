@@ -5399,9 +5399,51 @@ asendi otsus koos oma tagajärgedega (õiguslik alus, säilitustähtaeg, andmesu
 enda vastu, tõenäoliselt DPIA ja see, mida osalejale piloodi alguses lubatakse) — **ta on omanikul
 lahti ja ta ei kuulu selle leiu alla.**
 
-**Täiendav lahtrisummutus** (avaldatud üldsummast ei tohi summutatud väikest rühma lahutamise teel
-taastada) on eraldi töö ja teda selles plokis ei tehtud: ta ei ole lipp, vaid algoritm avaldatud
-lahtrite peal.
+**TÄIENDAV LAHTRISUMMUTUS ON 12.08 HILISÕHTUL TEHTUD** (commit `db97a10b`). Ta ei vajanud
+migratsiooni ega omaniku otsust — ta on algoritm avaldatud lahtrite peal, nagu siin all varem
+kirjas oli.
+
+**Lävend mõõtis kogu koondit ja lahter jäi katmata.** Kaheteistkümne inimese aruandes läks
+`risk_event.risk.workplace_violence.count = 1` välja täpselt nii: valim ületas lävendi, seega
+summutust ei olnud, ja vaataja on tööandja määratud inimene, kes tunneb kõiki oma töötajaid
+nimepidi. Lävend 5 ei puutunud sellesse kordagi — ta mõõdab valimit, mitte lahtrit.
+
+**Kaks kihti, sest üks üksi ei tööta.** *Esmane:* lahter, mille loendur on 0 < n < lävend, ei
+jõua välja ja rida ei teki ÜLDSE — null väärtusega rida ütleks lugejale sama asja („see rühm on
+olemas ja väike"), mille pärast summutus käib. Osakaal kaob koos loenduriga, sest `share ×
+avaldatud nimetaja` annab loenduri tagasi. *Täiendav:* kui perekonna lahtrid liituvad AVALDATUD
+üldsummaks, on ainus summutatud lahter lahutamise teel tagasi arvutatav (12 − 9 = 3), seega
+summutatud lahtreid peab olema vähemalt KAKS ja nende summa vähemalt lävendi jagu. Kinni läheb ka
+suur lahter, kui ta on ainus teine — see on summutuse hind ja teadlik: alternatiiv oleks jätta
+üldsumma avaldamata, aga üldsumma on kogu aruande nimetaja.
+
+**Mitme valikuga perekonnad** (koormustegurid, ressursid, riskimarkerid) ei liitu ühekski
+avaldatud summaks — üks kirje kannab neid mitu — seega seal ei ole lahutamisvõrrandit ja teine
+kiht ei käi. Null jääb avaldatuks: ta ei kirjelda ühtki inimest.
+
+**Vaikus oleks olnud uus viga.** Summutus on vastuse omadus (`cellSuppression`) ja aruande oma
+(`cellSuppressionNotice`): puuduv rida EI tähenda nulli. **Võtmed avaldatakse ainult SULETUD
+sõnavaraga perekonnal** (signaal) — aruanne nimetab niikuinii kõiki kolme, seega puuduv rida on
+lugejale nähtav ka ilma loendita ja tema varjamine oleks vaikimine, mitte kaitse; avatud
+sõnavaraga perekonnal läheb välja ainult ARV.
+
+**Kolm kohta oleksid teinud summutusest vaikse nulli ja kõik kolm on parandatud:**
+`pilotReport` lugemisreegel („puuduv rida → 0"), XLSX kokkuvõttelehe signaaliread ja prindivaate
+KPI-kaardid. Teadmata arv on nüüd `null` ja ütleb ennast sõnadega välja; „Juhitav" nõuab, et
+MÕLEMAD signaalid oleksid teada, muidu ütleks aruanne rahu seal, kus ta lihtsalt ei näe.
+
+**Kolm fikstuuri mõõtsid pärast seda summutust, mitte oma asja, ja on kasvatatud:**
+`aggregate.test` 5 → 15 inimest (enesekontrolliga `withheldCellCount === 0`), `analysisUnit`
+96 + 4 punast viielt inimeselt (mõõdetav kontrast `record` 100 vs `person` 5 jäi täpselt samaks),
+`aggregateExport` sama riskimarker kõigil. **Sama õppetund mis lävendi tõstmisel 3 → 5.**
+
+**Väravad:** `TZ=UTC npm test` **4175/4175** · `i18n:check` OK · eslint puhas. Kolm
+negatiivkontrolli: üks summutamata lahter on üldsummast täpselt lahutatav (12 − 9 = 3) · vana
+lugemisreegel annab summutatud signaalist `0` · vana prindiavaldis paneb paberile lõpliku nulli.
+
+**Lahtiseks jääb endiselt ainult see, mis ülal LAHTINE HARU all kirjas** — kaks eri suurusega
+perioodi (päringueelarve, müra või üks perioodiliik piloodi kohta) ja õigusliku asendi otsus.
+Kumbki ei ole lahtrisummutus.
 
 ### SOL-WB-07 — vastatud vanad kontrollpunktid võivad hilisemad tähtajad taimerist välja näljutada — P1
 
