@@ -8,8 +8,10 @@ tõendaks „kõik lükatakse tagasi" sama hästi.
 """
 
 import io
+import os
 import unittest
 import zipfile
+from unittest.mock import patch
 
 from upload_limits import (
     DOCX_MIME,
@@ -102,6 +104,43 @@ def test_unreadable_zip_is_rejected_not_ignored():
     ok, reason, _total = zip_expansion_guard(b"PK\x03\x04 aga mitte zip")
     assert ok is False
     assert reason == "unreadable_zip"
+
+
+def test_persistent_ingest_rejects_mime_lie_and_zip_bomb_before_parser():
+    os.environ.setdefault("OPENAI_API_KEY", "test-key")
+    os.environ.setdefault("RAG_SERVICE_API_KEY", "test-rag-service-key-32-characters-minimum")
+    from rag_test_stubs import install_chromadb_stub_if_missing
+    install_chromadb_stub_if_missing()
+    import main
+    from fastapi import HTTPException
+
+    with patch.object(main, "_extract_text_from_pdf") as pdf_parser:
+        try:
+            main._process_ingest_file("mime-lie", "fake.pdf", b"ordinary text", "application/pdf", {})
+        except HTTPException as exc:
+            assert exc.status_code == 415
+        else:
+            raise AssertionError("MIME lie passed persistent ingest")
+        pdf_parser.assert_not_called()
+
+    bomb = make_zip([
+        ("[Content_Types].xml", "<x/>"),
+        ("word/document.xml", "0" * (50 * 1024 * 1024)),
+    ])
+    with patch.object(main, "_extract_text_from_docx") as docx_parser:
+        try:
+            main._process_ingest_file(
+                "zip-bomb",
+                "bomb.docx",
+                bomb,
+                DOCX_MIME,
+                {},
+            )
+        except HTTPException as exc:
+            assert exc.status_code == 413
+        else:
+            raise AssertionError("ZIP bomb reached persistent parser")
+        docx_parser.assert_not_called()
 
 
 # --- kärped --------------------------------------------------------------------

@@ -8,12 +8,17 @@ import unittest
 from unittest.mock import patch
 
 os.environ.setdefault("OPENAI_API_KEY", "test-key")
+os.environ.setdefault("RAG_ALLOW_INSECURE_NO_AUTH", "1")
+os.environ.setdefault("RAG_BIND_HOST", "127.0.0.1")
 _TEST_STORAGE = tempfile.mkdtemp(prefix="sotsiaalai-rag-b0b-")
 os.environ.setdefault("RAG_STORAGE_DIR", _TEST_STORAGE)
 atexit.register(shutil.rmtree, _TEST_STORAGE, ignore_errors=True)
 
 from starlette.requests import Request
 
+from rag_test_stubs import install_chromadb_stub_if_missing
+
+install_chromadb_stub_if_missing()
 import main
 
 
@@ -163,16 +168,18 @@ class SearchObservabilityTests(unittest.TestCase):
         self.assertEqual(records[0]["error_class"], "HTTPException")
         self.assertNotIn("embedding failed", captured.output[0])
 
-    def test_chroma_error_preserves_failure_result_and_timings(self):
+    def test_chroma_error_is_structured_503_not_an_empty_success(self):
         with self.assertLogs(main.stage_logger, level="INFO") as captured:
-            result = self.run_search(
-                main.SearchIn(query="retrieval failure"),
-                collection=FakeCollection(error=RuntimeError("chroma private response")),
-            )
+            with self.assertRaises(main.HTTPException) as raised:
+                self.run_search(
+                    main.SearchIn(query="retrieval failure"),
+                    collection=FakeCollection(error=RuntimeError("chroma private response")),
+                )
 
-        self.assertEqual(result["results"], [])
-        self.assertEqual(result["timings"]["outcome"], "query_failed")
-        self.assertIn("query_failed: RuntimeError", result["error"])
+        self.assertEqual(raised.exception.status_code, 503)
+        self.assertEqual(raised.exception.detail["code"], "RAG_RETRIEVAL_UNAVAILABLE")
+        self.assertEqual(raised.exception.detail["timings"]["outcome"], "query_failed")
+        self.assertNotIn("chroma private response", str(raised.exception.detail))
         records = stage_records(captured.records)
         self.assertEqual(
             [(item["stage"], item["outcome"]) for item in records],
@@ -226,6 +233,49 @@ class SearchObservabilityTests(unittest.TestCase):
         for secret in (query, source_content, "private-source-id", "PRIVATE SOURCE TITLE"):
             self.assertNotIn(secret, serialized)
         self.assertEqual(result["request_id"], records[-1]["request_id"])
+
+    def test_hybrid_results_are_ranked_then_limited_to_top_k(self):
+        dense = chroma_result([f"dense-{index}" for index in range(60)])
+        for top_k in (1, 5, 20, 50):
+            with self.subTest(top_k=top_k):
+                result = self.run_search(
+                    main.SearchIn(query="private query", top_k=top_k),
+                    collection=FakeCollection(dense),
+                )
+                self.assertEqual(len(result["results"]), top_k)
+                self.assertEqual(result["channel_stats"]["result_count"], top_k)
+
+    def test_lexical_scan_pages_and_exposes_the_completeness_contract(self):
+        class PagedCollection:
+            def __init__(self):
+                self.offsets = []
+
+            def get(self, **kwargs):
+                offset = kwargs["offset"]
+                limit = kwargs["limit"]
+                self.offsets.append(offset)
+                ids = [f"id-{index}" for index in range(offset, min(offset + limit, 5))]
+                return {
+                    "ids": ids,
+                    "documents": ["needle"] * len(ids),
+                    "metadatas": [{} for _ in ids],
+                }
+
+        paged = PagedCollection()
+        with patch.object(main, "collection", paged), patch.object(main, "RAG_LEXICAL_SCAN_LIMIT", 2), patch.object(
+            main, "RAG_LEXICAL_MAX_SCAN", 10
+        ), patch.object(main, "_lexical_match", return_value={
+            "channels": ["bm25"], "score": 1, "bm25_score": 1,
+            "bm25_coverage": 1, "bm25_matches": 1,
+            "bm25_title_matches": 0, "bm25_body_matches": 1,
+            "bm25_query_tokens": 1,
+        }):
+            fetched = main._fetch_lexical_candidates("needle", None, 2, ["bm25"])
+
+        self.assertEqual(paged.offsets, [0, 2, 4])
+        self.assertEqual(fetched["scanned"], 5)
+        self.assertTrue(fetched["complete"])
+        self.assertEqual(len(fetched["candidates"]), 2)
 
     def test_agent_document_search_forwards_payload_request_id_to_searchin(self):
         payload = main.AgentDocumentSearchIn(
