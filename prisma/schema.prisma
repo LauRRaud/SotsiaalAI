@@ -4289,6 +4289,7 @@ model MaterialSubmission {
   batchId           String?
   duplicateOfId     String?
   status            String    @default("pending")
+  reviewRevision    Int       @default(0)
   reviewedAt        DateTime?
   reviewedBy        String?
   reviewNote        String?   @db.Text

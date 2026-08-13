@@ -85,7 +85,7 @@ Käsitsi siia ei kirjutata. DONE algab sõnaga `DONE`, PARTIAL sõnaga `PARTIAL`
 on NOT_DONE. Kvalifitseeritud DONE-väide vale algusega katkestab genereerimise, et ta ei
 kaoks vaikselt valesse rühma. Iga loetletud leiu lõpus on Seis-lõik **sõna-sõnalt**.
 
-DONE **284** / 429 · PARTIAL **4** / 429 · NOT_DONE **141** / 429 · peatükke täielikult DONE **22** / 40 · ametlikult lahtiseid 145 — 105 × P1 · 39 × P2 · 1 × P3
+DONE **286** / 429 · PARTIAL **4** / 429 · NOT_DONE **139** / 429 · peatükke täielikult DONE **22** / 40 · ametlikult lahtiseid 143 — 103 × P1 · 39 × P2 · 1 × P3
 
 | Peatükk | Kood | DONE | PARTIAL | NOT_DONE | Lahtiste prioriteedid | Märkus |
 |---|---|---:|---:|---:|---|---|
@@ -125,7 +125,7 @@ DONE **284** / 429 · PARTIAL **4** / 429 · NOT_DONE **141** / 429 · peatükke
 | Otsing | SOL-SEARCH | 0/7 | 0 | 7 | 1 × P1 · 5 × P2 · 1 × P3 |  |
 | Teenuseosutaja profiil | SOL-SPROF | 2/15 | 0 | 13 | 6 × P1 · 7 × P2 |  |
 | Dokumendi koostamine | SOL-COMP | 5/5 | 0 | 0 | – | **tehtud**, 5 jätkufailist |
-| Materjalid | SOL-MAT | 7/13 | 0 | 6 | 4 × P1 · 2 × P2 | 13 jätkufailist |
+| Materjalid | SOL-MAT | 9/13 | 0 | 4 | 2 × P1 · 2 × P2 | 13 jätkufailist |
 | Minu jagamised | SOL-SHARE | 7/7 | 0 | 0 | – | **tehtud**, 7 jätkufailist |
 | Teenusekaart | SOL-SMAP | 9/9 | 0 | 0 | – | **tehtud**, 9 jätkufailist |
 | Funktsioonideülene lõpetusring | SOL-XFUNC | 0/3 | 0 | 3 | 1 × P1 · 2 × P2 | 3 jätkufailist |
@@ -489,7 +489,7 @@ DONE **284** / 429 · PARTIAL **4** / 429 · NOT_DONE **141** / 429 · peatükke
 - `SOL-COMP-04` P1 — kliendi lähtefail võib jääda peidetult alles ja kasutajal puudub selle haldamisvaade — DONE — kliendi upload saadab nüüd soovitud `agentAllowed:true` POST-is ning server
 - `SOL-COMP-05` P1 — FINAL-artefakti provenants ja allalaaditav dokument ei ole kinnitamise hetke suhtes muutumatud — DONE — FINAL-kinnitus loob nüüd sama tehingu sees muutumatu
 
-**Materjalid** (`SOL-MAT`, 7/13)
+**Materjalid** (`SOL-MAT`, 9/13)
 
 - `SOL-MAT-01` P1 — tasulise spetsialistifunktsiooni serveripiir puudub — DONE — 13.08.2026. `POST /api/materials` kasutab nüüd `requireMaterialUploadAccess()` väravat: autentimata saab 401, `CLIENT` 403, aegunud spetsialistitellimus 402 ning aktiivne `SOCIAL_WORKER`, `SERVICE_PROVIDER` ja admin pääsevad edasi. `tests/materials/routeAccess.test.js` mõõdab päris `Response.status` väärtused ja sama kasutaja rolli muutmise korduskontrolli; omaniku GET/download/withdraw jäävad tellimusest sõltumatuks. Sihttestid 15/15 PASS.
 - `SOL-MAT-02` P1 — MIME-kontroll aktsepteerib päisega maskeeritud ja tühje faile — DONE — 13.08.2026. Materjalide route valideerib nüüd kogu puhverdatud faili enne staging'ut. Nullpikk fail on keelatud; TXT läbib fatal UTF-8 dekodeerimise ja kogu faili kontrollmärkide kontrolli; DOCX kasutab kirjete arvu, tegeliku lahtipakitud mahu, tihendussuhte, tee, CRC ja puuduva OOXML-põhistruktuuri piire; PDF nõuab terviklikku xref/EOF struktuuri ning `pdf-parse` parseriga vähemalt üht ja kuni 500 lehekülge, eval keelatud ja pildipikslite lagi. Negatiivtestid katsid päisega ZIP/PDF-i, puuduva OOXML-osa, deklareeritud ZIP-pommi, hilise NUL-baidi, vigase UTF-8 ja tühjad failid; Materjalide sihttestid 20/20 PASS.
@@ -498,6 +498,8 @@ DONE **284** / 429 · PARTIAL **4** / 429 · NOT_DONE **141** / 429 · peatükke
 - `SOL-MAT-05` P2 — korduskatse loob uued failid, read, kvoodikulu ja teavituse — DONE — 13.08.2026. Klient säilitab ühe kasutajakavatsuse vältel UUID idempotentsusvõtme; server seob `(submittedByUserId,idempotencyKey)` payload'i hash'i ja ühe batch-tulemusega. Sama võti/teine sisu annab 409, neli sama võtme paralleelpäringut koonduvad üheks reaks, response-loss retry tagastab sama ID ning sama sha teise võtmega kannab `duplicateOfId` viidet. Jagatud rate-limit loetakse batch'idest kasutaja advisory-lock'i all. PostgreSQL-i sond 23/23 PASS.
 - `SOL-MAT-06` P1 — esitaja ei näe oma esitisi, staatust ega saa esitist tagasi võtta — DONE — 13.08.2026. `MaterialsPage` kuvab omaniku pagineeritud esitised, seisundi, omaniku download'i ja pending/rejected tagasivõtmise; GET/download/delete kasutavad serveris omaniku skoopi ja töötavad tellimuseta. Imported tagasivõtmine annab ausa 409, ristkasutaja download/delete 404 ning korduv delete tagastab idempotentse edu. PostgreSQL-i sond tõendas eemaldamise, retry, auditi ja cross-user piiri; 23/23 PASS.
 - `SOL-MAT-07` P2 — adminijärjekord lõpeb vaikides 100 uusima rea juures — DONE — 13.08.2026. Admini ja omaniku loend kasutab stabiilset kahanevat `(createdAt,id)` cursor'it, tagastab `hasMore`, `nextCursor`, `total` ja seisundiloendurid; adminipaneelil on seisundifilter ja järgmise lehe laadimine. PostgreSQL-i sond lõi 106 sama ajatempliga rida ning läbis kõik ID-d ühe korra, ilma kao või korduseta; 23/23 PASS.
+- `SOL-MAT-09` P1 — ülevaatuse olekumasin lubab suvalisi ja stale üleminekuid — DONE. `MaterialSubmission.reviewRevision` ja DB CHECK/triger jõustavad lubatud olekud,
+- `SOL-MAT-10` P1 — admini allalaadimise, ülevaatuse ja kustutuse audit pole kohustuslik — DONE. Faili väljastamise eel kirjutatakse nüüd kohustuslik owner/admin audit ning
 
 **Minu jagamised** (`SOL-SHARE`, 7/7)
 

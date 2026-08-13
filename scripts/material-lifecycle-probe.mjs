@@ -51,9 +51,10 @@ try {
   process.env.DATABASE_URL = probeUrl.toString()
   migrate()
 
-  const [{ default: prisma }, lifecycle, quotaModule, usageModule] = await Promise.all([
+  const [{ default: prisma }, lifecycle, reviewModule, quotaModule, usageModule] = await Promise.all([
     import("../lib/prisma.js"),
     import("../lib/materials/lifecycle.js"),
+    import("../lib/materials/review.js"),
     import("../lib/documents/storageQuota.js"),
     import("../lib/storageUsage.js")
   ])
@@ -64,6 +65,7 @@ try {
     reconcileMaterialFileJobs,
     requestMaterialSubmissionDeletion
   } = lifecycle
+  const { reviewMaterialSubmission } = reviewModule
   const { withStorageQuota } = quotaModule
   const { getUserStorageUsageBytes } = usageModule
   const store = new Map()
@@ -175,6 +177,64 @@ try {
   expect("database transaction failure creates no submission rows", dbFailed[0].status === "rejected" && (await prisma.materialSubmission.count({ where: { submittedByUserId: dbFailOwner.id } })) === 0)
   expect("database transaction failure removes every staged file", dbFailBatch.status === "FAILED" && dbFailJobs.every((job) => job.status === "done" && !store.has(job.storagePath)))
 
+  const reviewOwner = await prisma.user.create({ data: { email: `review-${randomUUID()}@sol-mat.invalid`, role: "SOCIAL_WORKER" } })
+  const reviewAdminA = await prisma.user.create({ data: { email: `review-admin-a-${randomUUID()}@sol-mat.invalid`, role: "ADMIN" } })
+  const reviewAdminB = await prisma.user.create({ data: { email: `review-admin-b-${randomUUID()}@sol-mat.invalid`, role: "ADMIN" } })
+  const reviewCreated = await createMaterialSubmissions({
+    userId: reviewOwner.id,
+    role: "SOCIAL_WORKER",
+    idempotencyKey: `probe-review-${randomUUID()}`,
+    comment: "review race",
+    files: [makeFile("review-race", 20)]
+  }, { db: prisma, fileOps })
+  const reviewId = reviewCreated.submissions[0].id
+  const reviewRace = await Promise.allSettled([
+    reviewMaterialSubmission({ id: reviewId, action: "mark_reviewed", expectedRevision: 0, reviewedBy: reviewAdminA.email, actorUserId: reviewAdminA.id }, { db: prisma }),
+    reviewMaterialSubmission({ id: reviewId, action: "reject", expectedRevision: 0, reviewedBy: reviewAdminB.email, reviewNote: "not suitable", actorUserId: reviewAdminB.id }, { db: prisma })
+  ])
+  const reviewWon = reviewRace.filter((row) => row.status === "fulfilled").length
+  const reviewLost = reviewRace.filter((row) => row.status === "rejected" && row.reason?.status === 409).length
+  const reviewed = await prisma.materialSubmission.findUnique({ where: { id: reviewId } })
+  const reviewRaceDetail = reviewRace.map((row) => row.status === "fulfilled"
+    ? `fulfilled:${row.value.status}`
+    : `rejected:${row.reason?.status || row.reason?.code}:${row.reason?.message}:${row.reason?.current?.status || "no-current"}`).join(", ")
+  expect("two concurrent review actions have exactly one CAS winner", reviewWon === 1 && reviewLost === 1, reviewRaceDetail)
+  expect("review winner increments revision exactly once", reviewed.reviewRevision === 1)
+  expect("review transition and audit commit together", (await prisma.dataAuditLog.count({ where: { resourceId: reviewId, action: { startsWith: "MATERIAL_REVIEW_" } } })) === 1)
+
+  const rollbackOwner = await prisma.user.create({ data: { email: `review-rollback-${randomUUID()}@sol-mat.invalid`, role: "SOCIAL_WORKER" } })
+  const rollbackCreated = await createMaterialSubmissions({
+    userId: rollbackOwner.id,
+    role: "SOCIAL_WORKER",
+    idempotencyKey: `probe-review-rollback-${randomUUID()}`,
+    comment: "review rollback",
+    files: [makeFile("review-rollback", 20)]
+  }, { db: prisma, fileOps })
+  const rollbackId = rollbackCreated.submissions[0].id
+  const auditFailed = await Promise.allSettled([reviewMaterialSubmission(
+    { id: rollbackId, action: "mark_reviewed", expectedRevision: 0, reviewedBy: reviewAdminA.email, actorUserId: reviewAdminA.id },
+    { db: prisma, audit: async () => { throw new Error("probe_review_audit_failure") } }
+  )])
+  const rolledBack = await prisma.materialSubmission.findUnique({ where: { id: rollbackId } })
+  expect("review audit failure rolls back status and revision", auditFailed[0].status === "rejected" && rolledBack.status === "pending" && rolledBack.reviewRevision === 0)
+  const longNote = await Promise.allSettled([reviewMaterialSubmission({
+    id: rollbackId, action: "reject", expectedRevision: 0, reviewedBy: reviewAdminA.email, reviewNote: "x".repeat(2001), actorUserId: reviewAdminA.id
+  }, { db: prisma })])
+  expect("overlong review note is rejected without truncation", longNote[0].status === "rejected" && longNote[0].reason?.status === 400)
+
+  let terminalRevision = reviewed.reviewRevision
+  let terminalStatus = reviewed.status
+  if (terminalStatus === "rejected") {
+    const reopened = await reviewMaterialSubmission({ id: reviewId, action: "mark_reviewed", expectedRevision: terminalRevision, reviewedBy: reviewAdminA.email, actorUserId: reviewAdminA.id }, { db: prisma })
+    terminalRevision = reopened.reviewRevision
+    terminalStatus = reopened.status
+  }
+  const imported = await reviewMaterialSubmission({ id: reviewId, action: "mark_imported", expectedRevision: terminalRevision, reviewedBy: reviewAdminA.email, actorUserId: reviewAdminA.id }, { db: prisma })
+  const triggerRejected = await Promise.allSettled([prisma.materialSubmission.update({
+    where: { id: reviewId }, data: { status: "pending", reviewRevision: { increment: 1 } }
+  })])
+  expect("database trigger rejects imported-to-pending bypass", imported.status === "imported" && triggerRejected[0].status === "rejected")
+
   const fixedTime = new Date("2026-08-13T22:00:00.000Z")
   await prisma.materialSubmission.createMany({
     data: Array.from({ length: 105 }, (_, index) => ({
@@ -195,24 +255,39 @@ try {
   expect("stable (createdAt,id) cursor returns every row once", pageIds.length === 106 && new Set(pageIds).size === 106)
   expect("owner total and hasMore are explicit", page1.total === 106 && page1.hasMore && !page2.hasMore)
 
-  const privateRow = recovered
+  const privateRow = imported
   const hidden = await Promise.allSettled([getMaterialSubmissionDownload({ id: privateRow.id, userId: stranger.id }, { db: prisma })])
   expect("cross-user download is indistinguishable from missing", hidden[0].status === "rejected" && hidden[0].reason?.status === 404)
-  await prisma.materialSubmission.update({ where: { id: privateRow.id }, data: { status: "imported" } })
-  const terminal = await Promise.allSettled([requestMaterialSubmissionDeletion({ id: privateRow.id, userId: failOwner.id }, { db: prisma, files: fileOps })])
+  const terminal = await Promise.allSettled([requestMaterialSubmissionDeletion({ id: privateRow.id, userId: reviewOwner.id }, { db: prisma, files: fileOps })])
   expect("imported material cannot be silently withdrawn", terminal[0].status === "rejected" && terminal[0].reason?.status === 409)
-  await prisma.materialSubmission.update({ where: { id: privateRow.id }, data: { status: "rejected" } })
+
+  const deleteCreated = await createMaterialSubmissions({
+    userId: failOwner.id,
+    role: "SOCIAL_WORKER",
+    idempotencyKey: `probe-delete-${randomUUID()}`,
+    comment: "delete",
+    files: [makeFile("delete-candidate", 20)]
+  }, { db: prisma, fileOps })
+  const deleteReviewed = await reviewMaterialSubmission({
+    id: deleteCreated.submissions[0].id, action: "reject", expectedRevision: 0, reviewedBy: reviewAdminA.email, actorUserId: reviewAdminA.id
+  }, { db: prisma })
+  const deleteId = deleteReviewed.id
   const deleteFailed = await Promise.allSettled([requestMaterialSubmissionDeletion(
-    { id: privateRow.id, userId: failOwner.id },
+    { id: deleteId, userId: failOwner.id },
     { db: prisma, files: { ...fileOps, async remove() { throw new Error("probe_delete_failure") } } }
   )])
-  const pendingDelete = await prisma.materialSubmission.findUnique({ where: { id: privateRow.id } })
+  const pendingDelete = await prisma.materialSubmission.findUnique({ where: { id: deleteId } })
   expect("file deletion failure reports 503 and keeps a retryable pending row", deleteFailed[0].status === "rejected" && deleteFailed[0].reason?.status === 503 && pendingDelete?.storageStatus === "DELETE_PENDING")
-  const removed = await requestMaterialSubmissionDeletion({ id: privateRow.id, userId: failOwner.id }, { db: prisma, files: fileOps })
-  const removedAgain = await requestMaterialSubmissionDeletion({ id: privateRow.id, userId: failOwner.id }, { db: prisma, files: fileOps })
-  expect("owner withdrawal deletes file and row", removed.deleted && !(await prisma.materialSubmission.findUnique({ where: { id: privateRow.id } })))
+  const deleteAuditFailed = await Promise.allSettled([requestMaterialSubmissionDeletion(
+    { id: deleteId, userId: failOwner.id },
+    { db: prisma, files: fileOps, audit: async () => { throw new Error("probe_delete_audit_failure") } }
+  )])
+  expect("deletion audit failure reports 503 and keeps the row retryable", deleteAuditFailed[0].status === "rejected" && deleteAuditFailed[0].reason?.status === 503 && Boolean(await prisma.materialSubmission.findUnique({ where: { id: deleteId } })))
+  const removed = await requestMaterialSubmissionDeletion({ id: deleteId, userId: failOwner.id }, { db: prisma, files: fileOps })
+  const removedAgain = await requestMaterialSubmissionDeletion({ id: deleteId, userId: failOwner.id }, { db: prisma, files: fileOps })
+  expect("owner withdrawal deletes file and row", removed.deleted && !(await prisma.materialSubmission.findUnique({ where: { id: deleteId } })))
   expect("owner withdrawal is idempotent", removedAgain.deleted && removedAgain.replay)
-  expect("durable deletion writes mandatory audit", (await prisma.dataAuditLog.count({ where: { action: "MATERIAL_SUBMISSION_DELETED", resourceId: privateRow.id } })) === 1)
+  expect("durable deletion writes mandatory audit", (await prisma.dataAuditLog.count({ where: { action: "MATERIAL_SUBMISSION_DELETED", resourceId: deleteId } })) === 1)
 
   const legacyOwner = await prisma.user.create({ data: { email: `legacy-${randomUUID()}@sol-mat.invalid`, role: "SOCIAL_WORKER" } })
   const legacy = async (index) => {

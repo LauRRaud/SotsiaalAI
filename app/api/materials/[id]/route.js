@@ -2,12 +2,11 @@ import { getServerSession } from "next-auth"
 
 import { authConfig } from "@/auth"
 import { assertAdmin } from "@/lib/authz"
-import { prisma } from "@/lib/prisma"
 import { errorJson, json, localeFromRequest } from "@/lib/documents/server"
 import { requireMaterialReadAccess } from "@/lib/materials/access"
 import { getMaterialSubmissionSchemaMessage, isMaterialSubmissionSchemaError } from "@/lib/materials/compat"
 import { requestMaterialSubmissionDeletion } from "@/lib/materials/lifecycle"
-import { buildMaterialReviewUpdate, serializeMaterialSubmission } from "@/lib/materials/submissions"
+import { reviewMaterialSubmission } from "@/lib/materials/review"
 import { safeError } from "@/lib/privacy/safeError"
 
 export const runtime = "nodejs"
@@ -45,38 +44,31 @@ export async function PATCH(request, { params }) {
   }
 
   try {
-    const reviewUpdate = buildMaterialReviewUpdate({
+    const submission = await reviewMaterialSubmission({
+      id,
       action: body?.action,
       status: body?.status,
+      expectedRevision: body?.expectedRevision,
       reviewedBy: resolveAdminIdentity(session),
-      reviewNote: body?.reviewNote
-    })
-    const submission = await prisma.materialSubmission.update({
-      where: { id },
-      data: reviewUpdate,
-      include: {
-        submittedByUser: {
-          select: {
-            id: true,
-            email: true
-          }
-        }
-      }
+      reviewNote: body?.reviewNote,
+      actorUserId: session?.user?.id || null
     })
 
     return json({
       ok: true,
-      submission: serializeMaterialSubmission(submission)
+      submission
     })
   } catch (error) {
     console.error("[materials] review update failed", safeError(error))
     if (isMaterialSubmissionSchemaError(error)) {
       return errorJson(getMaterialSubmissionSchemaMessage(locale), 503, locale)
     }
-    if (error?.code === "P2025") {
-      return errorJson("Materjali ei leitud.", 404, locale)
-    }
-    return errorJson(error?.message || "Materjali ülevaatuse salvestamine ebaõnnestus.", Number(error?.status) || 500, locale)
+    return errorJson(
+      error?.message || "Materjali ülevaatuse salvestamine ebaõnnestus.",
+      Number(error?.status) || 500,
+      locale,
+      error?.current ? { current: error.current } : {}
+    )
   }
 }
 

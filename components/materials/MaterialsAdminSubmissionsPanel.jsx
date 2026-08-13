@@ -144,10 +144,13 @@ export default function MaterialsAdminSubmissionsPanel({
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ action, reviewNote })
+        body: JSON.stringify({ action, reviewNote, expectedRevision: items.find((item) => item.id === id)?.reviewRevision })
       })
       const payload = await response.json().catch(() => ({}))
       if (!response.ok) {
+        if (response.status === 409 && payload?.current?.id) {
+          setItems((current) => current.map((item) => (item.id === payload.current.id ? payload.current : item)))
+        }
         throw new Error(payload?.message || t("materials_page.errors.review_failed", "Materjali ulevaatuse salvestamine ebaonnestus."))
       }
       const updated = payload?.submission

@@ -5,8 +5,8 @@ import { requireMaterialReadAccess } from "@/lib/materials/access"
 import { errorJson, localeFromRequest } from "@/lib/documents/server"
 import { getMaterialSubmissionSchemaMessage, isMaterialSubmissionSchemaError } from "@/lib/materials/compat"
 import { getMaterialSubmissionDownload } from "@/lib/materials/lifecycle"
+import { auditMaterialDownload } from "@/lib/materials/review"
 import { buildDownloadHeaders, readStoredMaterial } from "@/lib/materials/server"
-import { logDataAudit } from "@/lib/privacy/audit"
 import { safeError } from "@/lib/privacy/safeError"
 
 export const runtime = "nodejs"
@@ -40,18 +40,11 @@ export async function GET(request, { params }) {
     })
 
     const fileBuffer = await readStoredMaterial(submission.storagePath)
-    await logDataAudit({
+    await auditMaterialDownload(submission, {
       actorUserId: session?.user?.id || null,
-      targetUserId: submission.submittedByUserId || null,
-      action: "FILE_DOWNLOAD_ADMIN",
-      resourceType: "MaterialSubmission",
-      resourceId: submission.id,
+      admin: authz.admin,
       ipAddress: request.headers.get("x-forwarded-for") || request.headers.get("x-real-ip") || null,
-      userAgent: request.headers.get("user-agent") || null,
-      meta: {
-        mime: submission.mime,
-        size: submission.size
-      }
+      userAgent: request.headers.get("user-agent") || null
     })
     return new Response(fileBuffer, {
       status: 200,

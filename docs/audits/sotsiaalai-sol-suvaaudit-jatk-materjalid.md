@@ -128,7 +128,14 @@ Audit ei kasutanud vana `SotsiaalAI-sol-audit-cfa62ea` koopiat ega põhiprojekti
 
 **Vastuvõtukriteerium.** Defineerida DB-ga jõustatud olekud ja lubatud üleminekud, eristada `reviewed`, `rejected` ja `ingested` sündmused ning nõuda `expectedRevision/updatedAt` CAS-i; kaotaja saab 409 ja värske rea. Iga üleminek ja täispikk valideeritud põhjendus peab sündima sama tehingu auditikirjes. Paralleelsustestid peavad katma iga kahe action'i võistluse, stale retry ja terminalse imported/removed oleku.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE. `MaterialSubmission.reviewRevision` ja DB CHECK/triger jõustavad lubatud olekud,
+üleminekugraafi ning täpselt ühe revisjonisammu; `imported` on terminalne. PATCH nõuab
+`expectedRevision`-it, teeb olekumuutuse CAS-iga ja tagastab kaotajale 409 koos värske reaga;
+adminivaade võtab värske rea üle. Üle 2000 märgi pikkune põhjendus lükatakse veaga tagasi,
+mitte ei kärbita. `tests/materials/reviewAudit.test.js` ja Materjalide sihttestid olid 24/24
+PASS. Päris PostgreSQL-i `npm run materials:lifecycle:probe` oli 30/30 PASS: kahest sama
+revisjoniga paralleelotsusest võitis üks, audit ja revisjon commit'isid koos, auditiviga
+veeretas otsuse tagasi ning otsene `imported → pending` DB-möödaminek ebaõnnestus.
 
 ### SOL-MAT-10 — admini allalaadimise, ülevaatuse ja kustutuse audit pole kohustuslik — P1
 
@@ -138,7 +145,12 @@ Audit ei kasutanud vana `SotsiaalAI-sol-audit-cfa62ea` koopiat ega põhiprojekti
 
 **Vastuvõtukriteerium.** Download peab enne faili väljastamist kirjutama kohustusliku minimaalse auditi või keelduma; review peab kirjutama vana/uue staatuse, revision'i ja otsustaja sama DB-tehinguga; kustutus vajab püsiva deletion-job'i ning selle auditit. Negatiivtest peab süstima auditikirjutuse vea igal toimingul ja tõendama, et põhitoiming ei raporteeri edu ega kao jäljeta.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE. Faili väljastamise eel kirjutatakse nüüd kohustuslik owner/admin audit ning
+auditivea korral vastust ei väljastata. Review vana/uus olek, vana/uus revisjon, otsustaja ja
+valideeritud märkus kirjutatakse olekumuutusega samas tehingus. Püsiva kustutusjob'i lõpus on
+kohustuslik audit; auditivea korral jääb rida retry'itavaks ega raporteeri edu.
+`tests/materials/reviewAudit.test.js` süstis download-auditi vea; päris PostgreSQL-i 30/30 sond
+tõendas review rollback'i, kustutusauditi rollback/retry rada ja täpselt ühe deletion-auditi.
 
 ### SOL-MAT-11 — kasutaja andmekoopia jätab esitised ja originaalfailid välja — P1
 
