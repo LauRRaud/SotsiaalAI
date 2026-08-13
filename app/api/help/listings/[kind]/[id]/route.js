@@ -9,6 +9,8 @@ import {
   getHelpRequestById,
   loadHelpListingDetailForViewer,
   toHelpListingDetailView,
+  transitionHelpOfferStatus,
+  transitionHelpRequestStatus,
   updateHelpOffer,
   updateHelpRequest
 } from "@/lib/help";
@@ -62,6 +64,14 @@ function mapHelpRouteError(error, fallbackMessage = "HELP_LISTING_FAILED") {
     };
   }
 
+  if (code.endsWith("_CONFLICT")) {
+    return {
+      status: 409,
+      message: code,
+      current: error?.current || null
+    };
+  }
+
   return {
     status: 500,
     message: fallbackMessage
@@ -93,9 +103,50 @@ async function loadRecord(kind, id) {
 }
 
 async function updateRecord(kind, id, payload) {
+  const statusAction = String(payload?.statusAction || "").trim();
+  if (statusAction) {
+    const allowedFields = new Set(["statusAction", "reason", "expectedUpdatedAt"]);
+    if (Object.keys(payload).some((field) => !allowedFields.has(field))) {
+      const error = new Error("HELP_LISTING_TRANSITION_PAYLOAD_INVALID");
+      error.code = "HELP_LISTING_TRANSITION_PAYLOAD_INVALID";
+      throw error;
+    }
+    const transitionInput = {
+      action: statusAction,
+      reason: payload?.reason,
+      expectedUpdatedAt: payload?.expectedUpdatedAt
+    };
+    if (kind === "request") return transitionHelpRequestStatus(id, transitionInput);
+    if (kind === "offer") return transitionHelpOfferStatus(id, transitionInput);
+    return null;
+  }
   if (kind === "request") return updateHelpRequest(id, payload);
   if (kind === "offer") return updateHelpOffer(id, payload);
   return null;
+}
+
+function toConflictView(record, kind) {
+  if (!record) return null;
+  return {
+    id: record.id,
+    kind,
+    updatedAt: record.updatedAt,
+    status: record.status,
+    title: record.title,
+    description: record.description,
+    primaryCategoryId: record.primaryCategoryId,
+    municipalityId: record.municipalityId,
+    mapSettings: record.mapEntry
+      ? {
+          mapVisible: record.mapEntry.mapVisible,
+          mapMode: record.mapEntry.mapMode,
+          contactMode: record.mapEntry.contactMode,
+          status: record.mapEntry.status,
+          serviceArea: record.mapEntry.serviceArea,
+          deliveryModes: record.mapEntry.deliveryModes
+        }
+      : null
+  };
 }
 
 async function deleteRecord(kind, id) {
@@ -194,7 +245,11 @@ export async function PATCH(request, context) {
     updated = await updateRecord(kind, id, payload);
   } catch (error) {
     const mapped = mapHelpRouteError(error, "HELP_LISTING_UPDATE_FAILED");
-    return json({ ok: false, message: mapped.message }, mapped.status);
+    return json({
+      ok: false,
+      message: mapped.message,
+      ...(mapped.current ? { current: toConflictView(mapped.current, kind) } : {})
+    }, mapped.status);
   }
 
   return json({
