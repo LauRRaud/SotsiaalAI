@@ -19,6 +19,7 @@ const offer = {
 function createPrisma() {
   const matches = [];
   const rooms = [];
+  const notifications = [];
   const client = {
     async $transaction(run) { return run(client); },
     helpRequest: { async findUnique({ where }) { return where.id === request.id ? request : null; } },
@@ -29,6 +30,14 @@ function createPrisma() {
         const pair = where.requestId_offerId;
         return matches.find((row) => row.requestId === pair.requestId && row.offerId === pair.offerId) || null;
       },
+      async findFirst({ where }) {
+        return matches.find((row) => (
+          row.id === where.id
+          && row.status === where.status
+          && row.initiatedByUserId !== where.initiatedByUserId.not
+          && (row.requesterId === where.OR[0].requesterId || row.offererId === where.OR[1].offererId)
+        )) || null;
+      },
       async create({ data }) {
         const row = { id: `match-${matches.length + 1}`, roomId: null, createdAt: new Date(), updatedAt: new Date(), ...data };
         matches.push(row);
@@ -38,6 +47,16 @@ function createPrisma() {
         const row = matches.find((item) => item.id === where.id);
         Object.assign(row, data, { updatedAt: new Date() });
         return row;
+      }
+    },
+    notificationEvent: {
+      async create({ data }) {
+        const row = { id: `notification-${notifications.length + 1}`, ...data };
+        notifications.push(row);
+        return row;
+      },
+      async findUnique({ where }) {
+        return notifications.find((row) => row.dedupeKey === where.dedupeKey) || null;
       }
     },
     room: {
@@ -54,7 +73,7 @@ function createPrisma() {
       }
     }
   };
-  return { client, matches, rooms };
+  return { client, matches, rooms, notifications };
 }
 
 test("peer match stays pending without a room until the other participant accepts", async () => {

@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
-import { createHelpMatchAndRoom, listIncomingHelpMatches } from "@/lib/help";
-import { createNotificationEvent, NOTIFICATION_EVENT_TYPES } from "@/lib/notifications";
+import { createHelpMatchAndRoom, listIncomingHelpMatches, toPublicHelpMatchProjection } from "@/lib/help";
 import { consumeRateLimit } from "@/lib/rate-limit";
 import { getRequestIpFromRequest } from "@/lib/request-ip";
 import { logDataAudit } from "@/lib/privacy/audit";
@@ -64,19 +63,7 @@ export async function POST(request) {
       return json({ ok: false, message: "HELP_MATCH_NOT_AVAILABLE" }, 409);
     }
 
-    const recipientUserId = match.initiatedByUserId === match.requesterId
-      ? match.offererId
-      : match.requesterId;
-    if (match.wasCreated && match.status === "PENDING" && recipientUserId) {
-      await createNotificationEvent({
-        userId: recipientUserId,
-        type: NOTIFICATION_EVENT_TYPES.HELP_MATCH_CONSENT_REQUEST,
-        sourceId: match.id,
-        targetId: match.id,
-        dedupeSuffix: "pending",
-        emailPolicy: "NONE"
-      });
-    }
+    const recipientUserId = match.initiatedByUserId === match.requesterId ? match.offererId : match.requesterId;
     if (match.wasCreated) {
       void logDataAudit({
         actorUserId: auth.userId,
@@ -91,7 +78,7 @@ export async function POST(request) {
 
     return json({
       ok: true,
-      match
+      match: toPublicHelpMatchProjection(match)
     });
   } catch (error) {
     const status = error?.code === "HELP_MATCH_NOT_COMPATIBLE" ? 409 : error?.code === "HELP_MATCH_INITIATOR_INVALID" ? 404 : 400;
@@ -102,12 +89,18 @@ export async function POST(request) {
   }
 }
 
-export async function GET() {
+export async function GET(request) {
   const auth = await requireUser();
   if (!auth) return json({ ok: false, message: "api.common.unauthorized" }, 401);
   try {
-    return json({ ok: true, items: await listIncomingHelpMatches(auth.userId) });
-  } catch {
-    return json({ ok: false, message: "HELP_MATCH_LIST_FAILED" }, 500);
+    const url = new URL(request.url);
+    const result = await listIncomingHelpMatches(auth.userId, {
+      limit: url.searchParams.get("limit"),
+      cursor: url.searchParams.get("cursor")
+    });
+    return json({ ok: true, items: result.items, page: result.page });
+  } catch (error) {
+    const code = error?.code || "HELP_MATCH_LIST_FAILED";
+    return json({ ok: false, message: code }, code === "HELP_MATCH_CURSOR_INVALID" ? 400 : 500);
   }
 }

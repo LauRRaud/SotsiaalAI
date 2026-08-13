@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 
 import { authConfig } from "@/auth";
-import { decideHelpMatch } from "@/lib/help";
+import { decideHelpMatch, toPublicHelpMatchProjection, withdrawHelpMatch } from "@/lib/help";
 import { consumeRateLimit } from "@/lib/rate-limit";
 import { getRequestIpFromRequest } from "@/lib/request-ip";
 import { createNotificationEvent, NOTIFICATION_EVENT_TYPES } from "@/lib/notifications";
@@ -32,11 +32,14 @@ export async function POST(request, { params }) {
   if (!limiter.allowed) return json({ ok: false, message: "api.common.rate_limited" }, 429);
   const body = await request.json().catch(() => ({}));
   try {
-    const match = await decideHelpMatch({
-      matchId: params?.matchId,
-      decidedByUserId: userId,
-      decision: body?.decision
-    });
+    const decision = String(body?.decision || "").trim().toUpperCase();
+    const match = decision === "WITHDRAW"
+      ? await withdrawHelpMatch({ matchId: params?.matchId, initiatedByUserId: userId })
+      : await decideHelpMatch({
+          matchId: params?.matchId,
+          decidedByUserId: userId,
+          decision
+        });
     const otherUserId = match.initiatedByUserId === match.requesterId
       ? match.offererId
       : match.requesterId;
@@ -55,10 +58,14 @@ export async function POST(request, { params }) {
       ipAddress: getRequestIpFromRequest(request),
       meta: { requestId: match.requestId, offerId: match.offerId, roomId: match.roomId || null }
     });
-    return json({ ok: true, match });
+    return json({ ok: true, match: toPublicHelpMatchProjection(match) });
   } catch (error) {
     const code = error?.code || "HELP_MATCH_DECISION_FAILED";
-    const status = code === "HELP_MATCH_NOT_FOUND" || code === "HELP_MATCH_FORBIDDEN" || code === "HELP_MATCH_INITIATOR_CANNOT_DECIDE" ? 404 : 400;
+    const status = code === "HELP_MATCH_NOT_FOUND" || code === "HELP_MATCH_FORBIDDEN" || code === "HELP_MATCH_INITIATOR_CANNOT_DECIDE"
+      ? 404
+      : code === "HELP_MATCH_BASIS_CHANGED" || code === "HELP_MATCH_NOT_PENDING"
+        ? 409
+        : 400;
     return json({ ok: false, message: code }, status);
   }
 }
