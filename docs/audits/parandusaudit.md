@@ -85,7 +85,7 @@ Käsitsi siia ei kirjutata. DONE algab sõnaga `DONE`, PARTIAL sõnaga `PARTIAL`
 on NOT_DONE. Kvalifitseeritud DONE-väide vale algusega katkestab genereerimise, et ta ei
 kaoks vaikselt valesse rühma. Iga loetletud leiu lõpus on Seis-lõik **sõna-sõnalt**.
 
-DONE **345** / 429 · PARTIAL **5** / 429 · NOT_DONE **79** / 429 · peatükke täielikult DONE **28** / 40 · ametlikult lahtiseid 84 — 1 × P0 · 51 × P1 · 31 × P2 · 1 × P3
+DONE **354** / 429 · PARTIAL **4** / 429 · NOT_DONE **71** / 429 · peatükke täielikult DONE **28** / 40 · ametlikult lahtiseid 75 — 44 × P1 · 30 × P2 · 1 × P3
 
 | Peatükk | Kood | DONE | PARTIAL | NOT_DONE | Lahtiste prioriteedid | Märkus |
 |---|---|---:|---:|---:|---|---|
@@ -117,9 +117,9 @@ DONE **345** / 429 · PARTIAL **5** / 429 · NOT_DONE **79** / 429 · peatükke 
 | Kovisioon | SOL-COV | 8/8 | 0 | 0 | – | **tehtud** |
 | Tõenduspõhised praktikad | SOL-PRAC | 8/8 | 0 | 0 | – | **tehtud** |
 | Teemaseemned | SOL-SEED | 5/5 | 0 | 0 | – | **tehtud** |
-| Teekond ja jagamine | SOL-JOUR | 3/17 | 1 | 13 | 1 × P0 · 10 × P1 · 3 × P2 |  |
+| Teekond ja jagamine | SOL-JOUR | 8/17 | 0 | 9 | 7 × P1 · 2 × P2 |  |
 | Eelpöördumised | SOL-PRE | 11/18 | 0 | 7 | 6 × P1 · 1 × P2 |  |
-| Abikuulutused | SOL-HELP | 0/13 | 0 | 13 | 11 × P1 · 2 × P2 |  |
+| Abikuulutused | SOL-HELP | 4/13 | 0 | 9 | 7 × P1 · 2 × P2 |  |
 | Võrgustikutöö | SOL-NET | 2/13 | 0 | 11 | 9 × P1 · 2 × P2 |  |
 | Refleksioonid | SOL-REF | 0/9 | 0 | 9 | 3 × P1 · 6 × P2 |  |
 | Otsing | SOL-SEARCH | 0/7 | 0 | 7 | 1 × P1 · 5 × P2 · 1 × P3 |  |
@@ -144,10 +144,6 @@ DONE **345** / 429 · PARTIAL **5** / 429 · NOT_DONE **79** / 429 · peatükke 
 **Uuringud** (`SOL-RES`, 1 PARTIAL)
 
 - `SOL-RES-07` P2 — soft-nav'i järel pole aktiivse uuringuga taasühendumise ega Stop'i kasutajateed — PARTIAL — kood/refaktor DONE ja sihttestidega mõõdetud; nõutud brauserirada NOT_PROVEN lokaalse React hydration'i blokeeringu tõttu. Leid jääb loendis LAHTISEKS.
-
-**Teekond ja jagamine** (`SOL-JOUR`, 1 PARTIAL)
-
-- `SOL-JOUR-02` P0 — seadmesse salvestatud tundlik Teekonna mustand võib samas vahekaardis järgmisele kontole taastuda — PARTIAL — Teekonna kohalik mustand on kasutaja ID-ga omanikuskoobitud, omanikuta seade on lukus ning vana sildistamata rida kustutatakse. Jagatud `ownerScopedStorage` primitiivi negatiivkontrollid kinnitavad, et kaks kontot ei loe teineteise mustandit ja koristus ei puuduta omaniku ridu. NOT_PROVEN: täielikku sama vahekaardi brauserirada — A logout → B login, rollivahetus, aegunud sessioon ja vahekaardi taastamine — ei ole veel läbi käidud; seepärast ei ole leid DONE.
 
 ### DONE leiud peatükkide kaupa
 
@@ -530,11 +526,16 @@ DONE **345** / 429 · PARTIAL **5** / 429 · NOT_DONE **79** / 429 · peatükke 
 - `SOL-SEED-04` P2 — `updatedAt`-põhine optimistlik lukk võib sama millisekundi kirjutused kokku lasta — DONE — TopicSeed kasutab monotoonset täisarvulist `version` CAS-i; `updatedAt` on ainult kuvamise metaandmed. Muutmine, järjekorda lisamine, Kovisiooni alustamine ja järjekorrast eemaldamine nõuavad oodatud versiooni ning edukas mutatsioon suurendab seda. PostgreSQL-i sond tõendas PATCH/PATCH, PATCH/queue, queue/PATCH, start/withdraw ja withdraw/start võistlustes täpselt ühe võitja; vana millisekundipõhise fingerprint'i negatiivkontroll lubas mõlemad kirjutajad läbi.
 - `SOL-SEED-05` P2 — omaniku kogu Teemaseemnete ajalugu laaditakse ühe piiritlemata vastusena — DONE — omaniku ajaloo API kasutab piiratud cursor-paginatsiooni, serveripoolseid olekuloendureid ja stabiilset `updatedAt,id` järjestust; Kovisioonil on eraldi ainult sidumata `WAITING`-seemnete minimaalne järjekorra-API. PostgreSQL-i sond 20 005 reaga tõendas alla 64 KiB vastused, alla viie sekundi päringud ja duplikaadivabad cursor-lehed. Brauser renderdas algul 24 ja järgmise lehe järel 48 kaarti (`runtime: local_browser_run`, kontrollitud sünteetiline vastus).
 
-**Teekond ja jagamine** (`SOL-JOUR`, 3/17)
+**Teekond ja jagamine** (`SOL-JOUR`, 8/17)
 
 - `SOL-JOUR-01` P0 — eelpöördumise teine jagamisvalik ei juhi tegelikult salvestatavat ega saadetavat teksti — DONE. Valitud on kriteeriumi TEINE haru: valikuid jääb kaks, aga
+- `SOL-JOUR-02` P0 — seadmesse salvestatud tundlik Teekonna mustand võib samas vahekaardis järgmisele kontole taastuda — DONE — Teekonna kohalik mustand on kasutaja ID-ga omanikuskoobitud, omanikuta seade on lukus ning vana sildistamata rida kustutatakse. Sama vahekaardi brauserirada tõendas sünteetiliste kontodega, et A mustand taastus ainult A-le; serveripoolne sessiooni tühistamine, väljalogimine ja taaslaadimine ei näidanud seda B-le; CLIENT → SOCIAL_WORKER rollivahetus ei näidanud kliendimustandeid ning CLIENT-i naasmine ja vahekaardi taastamine tõid tagasi ainult B enda mustandi. Mõlemad sessioonid tühistati ja testandmed koristati; tootmisandmeid ei kasutatud (`runtime: local authenticated browser`).
 - `SOL-JOUR-03` P1 — salvestusnormaliseerija hävitab Teekonna struktureeritud konteksti — DONE — Teekonna `context` kasutab versioonitud `schemaVersion: 1` lepingut ja väljade kaupa sügavusteadlikku normaliseerimist. `assistiveDevices`, `activityLog`, `helpMediation` ja `serviceContinuity` objektid ning objektimassiivid säilivad draft → create-normalize → serialize → update-normalize ringis; mitteskalaarsed väärtused ei muutu tekstiväljades `[object Object]` väärtuseks. Tõend: `tests/journey/contextRoundTrip.test.js`; DB-sondi ega brauserit ei ole vaja, sest invariant on deterministlikus DB-eelses normaliseerimises.
 - `SOL-JOUR-04` P1 — tavaline detailvaate salvestus kustutab soovitatud tegevuste masinloetavad tüübid — DONE — detailvaate salvestus seob redigeeritud pealkirjaread olemasolevate tegevusobjektidega. Ainult pealkirja muutmisel säilivad `id`, `type` ja `description`; muutmata tegevused säilitavad kogu masinloetava struktuuri ning uus rida ei päri teise tegevuse metaandmeid. Serveri normaliseerija säilitab ka tegevuse ID. Tõend: `tests/journey/suggestedActionEditing.test.js`.
+- `SOL-JOUR-05` P1 — kaks nähtavat Teekonna toimingut kirjutavad vana kliendiseisu konfliktita üle — DONE — kõik Journey PATCH-id nõuavad kliendile nähtavat `expectedUpdatedAt` versiooni; puuduv, vigane, aegunud või võistluse kaotanud versioon annab 409. Detaili teenuse jätkumise salvestus ja loendikaardi arhiveerimine saadavad versiooni kaasa. Päris PostgreSQL-i sond tõendas edit-vs-continuity, edit-vs-archive ja continuity-vs-continuity võistlustes iga kord täpselt ühe võitja ja ühe 409 kaotaja; vana rada võttis versioonita kirjutuse vastu.
+- `SOL-JOUR-06` P1 — arhiveeritud Teekond jääb täielikult muudetavaks ilma taasavamata — DONE — `ARCHIVED` Teekonna sisumuudatus sulgub serveris 409-ga ning ainus lubatud muutmine on eraldi kehtiva versiooniga taasavamine; aegunud taasavamine saab samuti 409. UI peidab nii põhi- kui teenuse jätkumise redaktori ja selgitab taasavamise vajadust. Regressioonitest katab otsese PATCH-i, stale taasavamise ning archive → reopen → edit sündmusjada.
+- `SOL-JOUR-07` P1 — vigane olekuväärtus taasavab Teekonna vaikimisi ACTIVE-ks — DONE — kliendi kaasa pandud `status`, `sharingStatus` ja `primaryPath` valideeritakse fail-closed: tühi või tundmatu väärtus annab stabiilse 400 väljavea ning vaikeväärtus rakendub ainult puuduvale create-väljale. Testid katavad iga enumi puuduva, tühja, kehtiva ja tundmatu väärtuse; `ARCHIVED` rea `{status:"TYPO"}` jääb muutmata. Vana normaliseerija oleks tundmatu staatuse `ACTIVE`-ks ja tundmatu suuna `null`-iks muutnud.
+- `SOL-JOUR-08` P2 — klient saab Teekonna rollikontekstiks väita suvalise lubatud rolli — DONE — Journey `roleContext` pärineb ainult serveri lahendatud sessioonirollist; POST-keha samanimelist väärtust ei usaldata. Regressioonitest tõendab, et serveri CLIENT-kontekst jääb CLIENT-iks ka kliendi ADMIN, SOCIAL_WORKER, tühja või tundmatu väärtuse korral. Vana rada eelistas kliendi rolliväidet serveri faktile.
 
 **Eelpöördumised** (`SOL-PRE`, 11/18)
 
@@ -549,6 +550,13 @@ DONE **345** / 429 · PARTIAL **5** / 429 · NOT_DONE **79** / 429 · peatükke 
 - `SOL-PRE-09` P1 — arhiveeritud saatmata eelpöördumine on endiselt muudetav ja tavalisel salvestusel taasavatav — DONE — `ARCHIVED` on üldise PATCH-i jaoks terminalne ning lubatud autori siirded on serveris tabelina jõustatud. Eraldi `/reopen` toiming viib kirje CAS-kaitstult tagasi `READY` olekusse; aegunud taasavamine saab 409. UI ei paku arhiveeritud kirjele tavalist muutmist, vaid teadlikku taasavamist. Otsene PATCH, archive→reopen→edit ja stale reopen-võistlus on regressioonitestidega kaetud (`runtime: not_run`; brauserit ei nõutud, sest UI lepingut kontrollib lähtekooditest ja võistlust päris DB sond).
 - `SOL-PRE-10` P1 — autor saab luua vestlusruumi veel saatmata mustandist — DONE — vestlusruumi saab luua ainult sisemisest, adressaadile kohale toimetatud, tagasi võtmata ja adressaadi poolt vastu võetud eelpöördumisest. Autor ega adressaat ei saa ruumi enne vastuvõttu; tingimuste värske kontroll ja deduplikeeritud ruumiloome toimuvad samas tehingus ning route'i eraldi veaneelav järel-UPDATE on eemaldatud. Author-on-DRAFT, author-on-SENT, recipient-before/after-accept, deduplikatsioon ja veapiirid on sihttestidega kaetud (`runtime: not_run`).
 - `SOL-PRE-11` P1 — välise e-kirja kasutajavoog ei märgi saatmist, serveri saatmisrada võib aga duplitseerida kirju — DONE — lukustatud leping on teadlik kasutajakinnitus pärast `mailto:` üleandmist: server ei saada selle raja kaudu ühtegi provider-kirja ega väida automaatset kättetoimetamist. Kinnitus salvestab advisory lock'i ja CAS-i all idempotentselt `SENT` oleku ning `externalSendConfirmedAt` aja; katkestus, DB-viga või aegunud versioon jätab kirje ausalt `READY` olekusse. `/send` tähendus on nüüd üksnes kasutaja välise saatmise kinnitus. Paralleel- ja veasüst-testid tõendavad null provider-send'i, ühe kinnituse ning taastatava oleku (`runtime: not_run`).
+
+**Abikuulutused** (`SOL-HELP`, 4/13)
+
+- `SOL-HELP-01` P1 — tavaline kuulutuse tekstiparandus võib peidetud kaardikirje uuesti avaldada — DONE — osaline kuulutuse PATCH kasutab puuduvate kaardiväljade alusena olemasolevat `HelpMapEntry` kirjet ning muudab ainult teadlikult saadetud väärtusi. Tekstiparandus säilitab nähtavuse, kaardirežiimi, kontaktiviisi, staatuse, aadressi/geokodeeringu, teenindusala ja tarneviisid; kogu PATCH nõuab sama revisjoni. Negatiivkontrollis avaldas vana kood peidetud kirje uuesti; uus request/offer test katab `HIDDEN`, `mapVisible:false`, `PHYSICAL` ja kõik kontaktiviisid.
+- `SOL-HELP-02` P1 — kuulutuse ja selle kaardikirje kirjutus ei ole atomaarne — DONE — `HelpRequest`/`HelpOffer` create või update ja vastava `HelpMapEntry` upsert commit'ivad ühes Prisma tehingus. Kaardikirjutuse vea korral pöörduvad põhikirje sisu ja revisjon tagasi ning sama create kordus jätab ühe kuulutuse ja ühe kaardikirje. Vana käitumise negatiivkontroll jättis nurjunud kirjutuse järel põhikirje püsima; päris PostgreSQL-i veasüst kattis mõlema liigi create/update rollback'i ja korduspäringu.
+- `SOL-HELP-03` P1 — kuulutuse redigeerimine kirjutab vana brauseriseisu konfliktita üle — DONE — PATCH nõuab kehtivat `expectedUpdatedAt` väärtust ja põhikirjutus kasutab `id + updatedAt` CAS-i samas tehingus kaardisünkrooniga. Aegunud parandus saab 409 koos värske minimaalse kuulutuse ja kaardiseadete vaatega. Kahe sama revisjoniga paralleelparanduse test ja päris PostgreSQL-i sond annavad ühe võitja ning ühe konflikti nii abisoovile kui abipakkumisele.
+- `SOL-HELP-04` P1 — omanik saab API kaudu teha suvalise kuulutuse olekusiirde — DONE — üld-PATCH lükkab otsese `status` muutmise tagasi. Nimetatud `PUBLISH`, `MARK_MATCHED`, `CLOSE`, `CANCEL`, `ARCHIVE` ja `REOPEN` toimingud järgivad serveri lähte- ja sihtolekute tabelit, nõuavad põhjust ning kirjutavad samas tehingus sisuminimaalse auditi ja kaardiseisu. Testid katavad mõlema kuulutuseliigi kõik lubatud ja lubamatud lähteolekud, puuduva põhjuse, aegunud versiooni, auditivea rollback'i ja route'i otsekutse lepingu.
 
 **Võrgustikutöö** (`SOL-NET`, 2/13)
 

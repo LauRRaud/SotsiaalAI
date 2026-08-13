@@ -7125,7 +7125,7 @@ konto lisamine mõõdaks omanikuskoopi, mis on juba mujal kaetud.
 
 **Vastuvõtukriteerium.** Mustandivõti peab olema seotud vähemalt stabiilse kasutaja ID ja sessioonikontekstiga; identiteedi muutumisel ei tohi eelmise identiteedi mustandit lugeda ning vana võti tuleb turvaliselt eemaldada. Kahe konto brauseritest peab tõendama logout/login, rollivahetuse, aegunud sessiooni ja vahekaardi taastamise negatiivjuhud.
 
-**Seis (13.08.2026): PARTIAL —** Teekonna kohalik mustand on kasutaja ID-ga omanikuskoobitud, omanikuta seade on lukus ning vana sildistamata rida kustutatakse. Jagatud `ownerScopedStorage` primitiivi negatiivkontrollid kinnitavad, et kaks kontot ei loe teineteise mustandit ja koristus ei puuduta omaniku ridu. **NOT_PROVEN:** täielikku sama vahekaardi brauserirada — A logout → B login, rollivahetus, aegunud sessioon ja vahekaardi taastamine — ei ole veel läbi käidud; seepärast ei ole leid DONE.
+**Seis (13.08.2026): DONE —** Teekonna kohalik mustand on kasutaja ID-ga omanikuskoobitud, omanikuta seade on lukus ning vana sildistamata rida kustutatakse. Sama vahekaardi brauserirada tõendas sünteetiliste kontodega, et A mustand taastus ainult A-le; serveripoolne sessiooni tühistamine, väljalogimine ja taaslaadimine ei näidanud seda B-le; CLIENT → SOCIAL_WORKER rollivahetus ei näidanud kliendimustandeid ning CLIENT-i naasmine ja vahekaardi taastamine tõid tagasi ainult B enda mustandi. Mõlemad sessioonid tühistati ja testandmed koristati; tootmisandmeid ei kasutatud (`runtime: local authenticated browser`).
 
 ### SOL-JOUR-03 — salvestusnormaliseerija hävitab Teekonna struktureeritud konteksti — P1
 
@@ -7155,6 +7155,8 @@ konto lisamine mõõdaks omanikuskoopi, mis on juba mujal kaetud.
 
 **Vastuvõtukriteerium.** Kõik Journey PATCH-id peavad nõudma kehtivat versiooni/`expectedUpdatedAt` väärtust ja tagastama puuduva või vana versiooni korral 409. Päris PostgreSQL-i kahe kliendi test peab katma edit-vs-continuity, edit-vs-archive ja continuity-vs-continuity järjestused ning lubama ainult ühe sama algversiooni võitja.
 
+**Seis (13.08.2026): DONE —** kõik Journey PATCH-id nõuavad kliendile nähtavat `expectedUpdatedAt` versiooni; puuduv, vigane, aegunud või võistluse kaotanud versioon annab 409. Detaili teenuse jätkumise salvestus ja loendikaardi arhiveerimine saadavad versiooni kaasa. Päris PostgreSQL-i sond tõendas edit-vs-continuity, edit-vs-archive ja continuity-vs-continuity võistlustes iga kord täpselt ühe võitja ja ühe 409 kaotaja; vana rada võttis versioonita kirjutuse vastu.
+
 ### SOL-JOUR-06 — arhiveeritud Teekond jääb täielikult muudetavaks ilma taasavamata — P1
 
 **Tõend.** Detailvaate „Muuda” nupp on aktiivne sõltumata `journey.status` väärtusest; ARCHIVED muudab ainult arhiveerimisnupu taasavamisnupuks (`components/journey/JourneyDetail.jsx:1123-1166`, `:1600-1673`). Serveri `updateJourneyForUser()` ei keela arhiveeritud rea title/summary/context/tegevuste muutmist ega nõua enne olekut ACTIVE (`lib/journey/service.js:162-225`). Samal ajal on tootelepingus arhiveerimine pehme lõpetamine ja eraldi taasavamine teadlik elutsüklitoiming (`docs/platvormi arendus/fable-5-teekond-ja-eelpoordumine-v1-arendusleping.md:141-154`).
@@ -7162,6 +7164,8 @@ konto lisamine mõõdaks omanikuskoopi, mis on juba mujal kaetud.
 **Mõju.** Arhiiv ei ole stabiilne ajalookiht: kasutaja saab lõpetatuks märgitud olukorra sisu muuta, ilma et olek või sündmuslogi näitaks taasavamist. See muudab seotud eelpöördumiste ja ekspordi konteksti tagantjärele raskesti tõlgendatavaks.
 
 **Vastuvõtukriteerium.** ARCHIVED olekus peab sisumuudatus serveris 409-ga sulguma kuni eraldi taasavamise tehinguni; UI peab muutmise blokeerima ja selgitama taasavamist. Testida otsest PATCH-i, stale taasavamist ning archive → reopen → edit sündmusjada.
+
+**Seis (13.08.2026): DONE —** `ARCHIVED` Teekonna sisumuudatus sulgub serveris 409-ga ning ainus lubatud muutmine on eraldi kehtiva versiooniga taasavamine; aegunud taasavamine saab samuti 409. UI peidab nii põhi- kui teenuse jätkumise redaktori ja selgitab taasavamise vajadust. Regressioonitest katab otsese PATCH-i, stale taasavamise ning archive → reopen → edit sündmusjada.
 
 ### SOL-JOUR-07 — vigane olekuväärtus taasavab Teekonna vaikimisi ACTIVE-ks — P1
 
@@ -7171,6 +7175,8 @@ konto lisamine mõõdaks omanikuskoopi, mis on juba mujal kaetud.
 
 **Vastuvõtukriteerium.** Kõik kliendi poolt kaasa pandud enumid peavad tundmatu väärtuse korral tagastama stabiilse 400 välja-veaga; vaikeväärtus on lubatud ainult välja puudumisel create-operatsioonis. Testida iga enumiga puuduv, tühi, kehtiv ja tundmatu väärtus ning ARCHIVED rea negatiivjuht.
 
+**Seis (13.08.2026): DONE —** kliendi kaasa pandud `status`, `sharingStatus` ja `primaryPath` valideeritakse fail-closed: tühi või tundmatu väärtus annab stabiilse 400 väljavea ning vaikeväärtus rakendub ainult puuduvale create-väljale. Testid katavad iga enumi puuduva, tühja, kehtiva ja tundmatu väärtuse; `ARCHIVED` rea `{status:"TYPO"}` jääb muutmata. Vana normaliseerija oleks tundmatu staatuse `ACTIVE`-ks ja tundmatu suuna `null`-iks muutnud.
+
 ### SOL-JOUR-08 — klient saab Teekonna rollikontekstiks väita suvalise lubatud rolli — P2
 
 **Tõend.** POST-route annab teenusele serveri sessiooni rolli (`app/api/journeys/route.js:47-58`), kuid `normalizeJourneyCreateInput()` eelistab sellele kliendi `input.roleContext` väärtust (`lib/journey/validation.js:117-150`). Auditijooksu kontrollis salvestusnormaliseerija valis CLIENT-sessiooni optsiooni asemel kliendi saadetud `ADMIN`. Serializer tagastab selle väärtuse hiljem tavapärase Journey omadusena (`lib/journey/serializers.js:1-22`).
@@ -7178,6 +7184,8 @@ konto lisamine mõõdaks omanikuskoopi, mis on juba mujal kaetud.
 **Mõju.** Kuigi praegused omanikuõigused ei sõltu sellest väljast, muutub rollipäritolu ebausaldusväärseks ning tulevane analüütika, migratsioon või töövooharu võib tõlgendada kasutaja enda väidet serveri faktina.
 
 **Vastuvõtukriteerium.** `roleContext` peab tulema ainult serveri lahendatud sessiooni-/effective-role otsusest või olema selgelt eraldi kasutaja valitud „vaate” väli, mida ei käsitleta autoriseerimisfaktina. Test peab tõendama, et CLIENT ei saa POST-kehaga ADMIN/SOCIAL_WORKER väärtust salvestada.
+
+**Seis (13.08.2026): DONE —** Journey `roleContext` pärineb ainult serveri lahendatud sessioonirollist; POST-keha samanimelist väärtust ei usaldata. Regressioonitest tõendab, et serveri CLIENT-kontekst jääb CLIENT-iks ka kliendi ADMIN, SOCIAL_WORKER, tühja või tundmatu väärtuse korral. Vana rada eelistas kliendi rolliväidet serveri faktile.
 
 ### SOL-JOUR-09 — vestluses loodud Teekond on eraldi kaduv rada ega talleta lähtevestluse seost — P1
 
@@ -7506,6 +7514,8 @@ tagasivõetud pakett. Peidetud on ainult `RECALLED`. Töörajad sulguvad kõigil
 
 **Vastuvõtukriteerium.** Osaline PATCH peab säilitama kõik puuduvad kaardiväljad. Kaardiseadete muutmine peab nõudma väljade teadlikku saatmist ja stale-versiooni kontrolli; testida tekstiparandust vähemalt `HIDDEN`, `mapVisible:false`, `PHYSICAL` ja iga kontaktiviisi korral.
 
+**Seis (13.08.2026): DONE —** osaline kuulutuse PATCH kasutab puuduvate kaardiväljade alusena olemasolevat `HelpMapEntry` kirjet ning muudab ainult teadlikult saadetud väärtusi. Tekstiparandus säilitab nähtavuse, kaardirežiimi, kontaktiviisi, staatuse, aadressi/geokodeeringu, teenindusala ja tarneviisid; kogu PATCH nõuab sama revisjoni. Negatiivkontrollis avaldas vana kood peidetud kirje uuesti; uus request/offer test katab `HIDDEN`, `mapVisible:false`, `PHYSICAL` ja kõik kontaktiviisid.
+
 ### SOL-HELP-02 — kuulutuse ja selle kaardikirje kirjutus ei ole atomaarne — P1
 
 **Tõend.** Loomisel tehakse `helpRequest/helpOffer.create`, alles pärast seda eraldi `syncHelp*MapEntry`; muutmisel tehakse samamoodi põhikirje `update` ja seejärel eraldi `HelpMapEntry.upsert` (`lib/help/requests.js:203-239`, `:352-374`; `lib/help/offers.js:202-237`, `:347-369`). Ümber puudub ühine Prisma tehing.
@@ -7513,6 +7523,8 @@ tagasivõetud pakett. Peidetud on ainult `RECALLED`. Töörajad sulguvad kõigil
 **Mõju.** Geokodeerimise või map-entry kirjutusvea korral on kuulutus juba loodud/muudetud, kuid API või vestlus võib näidata ebaõnnestumist. Kordus võib luua teise kuulutuse; paranduse vea järel on ekraanil vana, andmebaasis uus sisu ning kaardil kolmas seis.
 
 **Vastuvõtukriteerium.** Põhikirje ja tuletatud kaardikirje peavad valitud lepingus kas commit'ima ühes tehingus või kasutama idempotentset outbox/reconciler rada, mis tagastab tegeliku osalise seisu. Véasüst peab katma create/update järel nurjuva upsert'i ja korduspäringu.
+
+**Seis (13.08.2026): DONE —** `HelpRequest`/`HelpOffer` create või update ja vastava `HelpMapEntry` upsert commit'ivad ühes Prisma tehingus. Kaardikirjutuse vea korral pöörduvad põhikirje sisu ja revisjon tagasi ning sama create kordus jätab ühe kuulutuse ja ühe kaardikirje. Vana käitumise negatiivkontroll jättis nurjunud kirjutuse järel põhikirje püsima; päris PostgreSQL-i veasüst kattis mõlema liigi create/update rollback'i ja korduspäringu.
 
 ### SOL-HELP-03 — kuulutuse redigeerimine kirjutab vana brauseriseisu konfliktita üle — P1
 
@@ -7522,6 +7534,8 @@ tagasivõetud pakett. Peidetud on ainult `RECALLED`. Töörajad sulguvad kõigil
 
 **Vastuvõtukriteerium.** PATCH peab nõudma `expectedUpdatedAt` või versiooni ja tegema tingimusliku põhikirje ning kaardikirje uuenduse; konflikt tagastab 409 koos värske minimaalse vaatega. Lisada kahe paralleelse paranduse test.
 
+**Seis (13.08.2026): DONE —** PATCH nõuab kehtivat `expectedUpdatedAt` väärtust ja põhikirjutus kasutab `id + updatedAt` CAS-i samas tehingus kaardisünkrooniga. Aegunud parandus saab 409 koos värske minimaalse kuulutuse ja kaardiseadete vaatega. Kahe sama revisjoniga paralleelparanduse test ja päris PostgreSQL-i sond annavad ühe võitja ning ühe konflikti nii abisoovile kui abipakkumisele.
+
 ### SOL-HELP-04 — omanik saab API kaudu teha suvalise kuulutuse olekusiirde — P1
 
 **Tõend.** `normalizeStatus` lubab kõiki kuut olekut ning `updateHelpRequest/updateHelpOffer` kirjutab kliendi `status` väärtuse otse (`lib/help/requests.js:118-125`, `:310-334`; `lib/help/offers.js:117-124`, `:306-329`). Route kontrollib omanikku, kuid mitte lähteolekut, lubatud siiret, kinnitust ega põhjendust (`app/api/help/listings/[kind]/[id]/route.js:173-203`).
@@ -7529,6 +7543,8 @@ tagasivõetud pakett. Peidetud on ainult `RECALLED`. Töörajad sulguvad kõigil
 **Mõju.** `ARCHIVED`, `CANCELLED`, `CLOSED` või `MATCHED` kirje saab otse `OPEN`-iks muuta ja uuesti avaldada; `DRAFT` saab avaldada väljaspool vestluse kinnitusvoogu. Ajalugu ei erista parandust, taasavamist ega süsteemi olekut.
 
 **Vastuvõtukriteerium.** Defineerida serveris olekumasin ja eraldi nimetatud toimingud koos põhjuse/auditiga. Üld-PATCH ei tohi muuta olekut; negatiivtestid peavad katma iga lubamatu siirde ja otse-URL-i.
+
+**Seis (13.08.2026): DONE —** üld-PATCH lükkab otsese `status` muutmise tagasi. Nimetatud `PUBLISH`, `MARK_MATCHED`, `CLOSE`, `CANCEL`, `ARCHIVE` ja `REOPEN` toimingud järgivad serveri lähte- ja sihtolekute tabelit, nõuavad põhjust ning kirjutavad samas tehingus sisuminimaalse auditi ja kaardiseisu. Testid katavad mõlema kuulutuseliigi kõik lubatud ja lubamatud lähteolekud, puuduva põhjuse, aegunud versiooni, auditivea rollback'i ja route'i otsekutse lepingu.
 
 ### SOL-HELP-05 — vana nõusolekupäringu saab vastu võtta pärast kuulutuste sulgemist, aegumist või kokkusobimatuks muutmist — P1
 
