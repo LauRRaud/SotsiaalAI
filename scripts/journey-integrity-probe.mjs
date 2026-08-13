@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * SOL-JOUR-05 — Journey optimistliku lukustuse päris PostgreSQL-i sond.
+ * SOL-JOUR-05/09 — Journey kirjutus- ja päritoluseose päris PostgreSQL-i sond.
  *
  * Fake-Prisma ei tõenda kahe sama `updatedAt` versiooniga kirjutaja võistlust.
  * Sond loob ainult localhosti ajutise andmebaasi, rakendab olemasolevad
@@ -16,7 +16,7 @@ import dotenv from "dotenv";
 import pg from "pg";
 
 import { PrismaClient } from "../generated/prisma/client.ts";
-import { updateJourneyForUser } from "../lib/journey/service.js";
+import { createJourneyForUser, updateJourneyForUser } from "../lib/journey/service.js";
 
 dotenv.config({ path: ".env.local", quiet: true });
 dotenv.config({ path: ".env", quiet: true });
@@ -162,6 +162,58 @@ try {
     { context: { schemaVersion: 1, serviceContinuity: { serviceName: "Variant B" } } },
     (row) => ["Variant A", "Variant B"].includes(row.context?.serviceContinuity?.serviceName)
   );
+
+  const foreignOwner = await db.user.create({
+    data: { email: `journey-probe-foreign-${Date.now()}@sotsiaalai.test`, role: "CLIENT" }
+  });
+  const ownConversation = await db.conversation.create({
+    data: {
+      id: crypto.randomUUID(),
+      userId: owner.id,
+      role: "CLIENT"
+    }
+  });
+  const foreignConversation = await db.conversation.create({
+    data: {
+      id: crypto.randomUUID(),
+      userId: foreignOwner.id,
+      role: "CLIENT"
+    }
+  });
+
+  const originJourney = await createJourneyForUser(owner.id, {
+    summary: "Sünteetiline vestlusest loodud Teekond",
+    conversationId: ownConversation.id
+  }, { db, roleContext: "CLIENT" });
+  if (originJourney.conversationId !== ownConversation.id) {
+    throw new Error("Omaniku vestluse päritoluseos ei salvestunud");
+  }
+  process.stdout.write("OK omaniku conversationId: seos salvestus\n");
+
+  const beforeForeignAttempt = await db.journey.count({ where: { ownerUserId: owner.id } });
+  await createJourneyForUser(owner.id, {
+    summary: "Võõra vestluse päritolukatse",
+    conversationId: foreignConversation.id
+  }, { db, roleContext: "CLIENT" })
+    .then(() => { throw new Error("Võõra vestluse seos võeti vastu"); })
+    .catch((error) => {
+      if (error.status !== 400 || error.message !== "journeys.errors.conversation_not_found") throw error;
+    });
+  const afterForeignAttempt = await db.journey.count({ where: { ownerUserId: owner.id } });
+  if (afterForeignAttempt !== beforeForeignAttempt) {
+    throw new Error("Võõra conversationId katse lõi Journey kirje");
+  }
+  process.stdout.write("OK võõras conversationId: 400 ja Journey kirjet ei loodud\n");
+
+  await db.conversation.delete({ where: { id: ownConversation.id } });
+  const afterConversationDelete = await db.journey.findUnique({
+    where: { id: originJourney.id },
+    select: { id: true, conversationId: true }
+  });
+  if (!afterConversationDelete || afterConversationDelete.conversationId !== null) {
+    throw new Error("Vestluse kustutus ei jätnud Journey kirjet SetNull seosega alles");
+  }
+  process.stdout.write("OK vestluse kustutus: Journey jäi alles ja conversationId=null\n");
 } finally {
   await db.$disconnect().catch(() => {});
   await admin.query(

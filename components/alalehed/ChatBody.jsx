@@ -35,6 +35,11 @@ import { isActiveDocumentWorkflowState } from "@/lib/chat/documentWorkflowState"
 import { getHelpListingsReturnTarget } from "@/lib/chat/helpListingsReturnTarget";
 import { createHelpWorkflowDraftState, isActiveHelpWorkflowState } from "@/lib/help/workflowState";
 import {
+  clearChatJourneyDraft,
+  readChatJourneyDraft,
+  writeChatJourneyDraft
+} from "@/lib/journey/chatDraftStorage";
+import {
   resolveMobileChatKeyboardOffset,
   resolveMobileChatKeyboardVisibilityOffset
 } from "./chat/mobileViewportUtils";
@@ -415,6 +420,7 @@ export default function ChatBody({
     [searchParams]
   );
   const [journeyWorkflowDraft, setJourneyWorkflowDraft] = useState(null);
+  const journeyDraftReadyScopeRef = useRef("");
   const [isJourneyGenerating, setIsJourneyGenerating] = useState(false);
   const [showSourcesPanel, setShowSourcesPanel] = useState(false);
   const [scopedSources, setScopedSources] = useState(null);
@@ -1195,7 +1201,52 @@ export default function ChatBody({
     userRole: sessionUserRole,
     getVisibleMessages
   });
+  const journeyDraftScope = sessionUserId && convId
+    ? `${sessionUserId}:${convId}`
+    : "";
+  useIsomorphicLayoutEffect(() => {
+    journeyDraftReadyScopeRef.current = "";
+    if (!conversationLocalReady || !sessionUserId || !convId || typeof window === "undefined") {
+      setJourneyWorkflowDraft(null);
+      return;
+    }
+    const restored = readChatJourneyDraft(window.sessionStorage, sessionUserId, convId);
+    setJourneyWorkflowDraft(restored);
+    if (restored) setActiveWorkflow("journey");
+    journeyDraftReadyScopeRef.current = journeyDraftScope;
+  }, [convId, conversationLocalReady, journeyDraftScope, sessionUserId]);
+  useEffect(() => {
+    if (
+      typeof window === "undefined" ||
+      !journeyWorkflowDraft ||
+      !journeyDraftScope ||
+      journeyDraftReadyScopeRef.current !== journeyDraftScope
+    ) return;
+    writeChatJourneyDraft(
+      window.sessionStorage,
+      sessionUserId,
+      convId,
+      journeyWorkflowDraft
+    );
+  }, [convId, journeyDraftScope, journeyWorkflowDraft, sessionUserId]);
   const visibleMessages = useMemo(() => getVisibleMessages(messages), [getVisibleMessages, messages]);
+  useEffect(() => {
+    if (
+      !journeyWorkflowDraft ||
+      !journeyDraftScope ||
+      journeyDraftReadyScopeRef.current !== journeyDraftScope
+    ) return;
+    const hasDraftMessage = visibleMessages.some(
+      (message) => message?.workflow?.journeyDraft?.conversationId === convId
+    );
+    if (hasDraftMessage) return;
+    appendMessage({
+      role: "ai",
+      text: formatJourneyDraftMessage(t, journeyWorkflowDraft.draft),
+      aiVisible: true,
+      workflow: { journeyDraft: { conversationId: convId } }
+    });
+  }, [appendMessage, convId, journeyDraftScope, journeyWorkflowDraft, t, visibleMessages]);
   const latestHelpWorkflowState = useMemo(() => {
     for (let i = visibleMessages.length - 1; i >= 0; i -= 1) {
       const message = visibleMessages[i];
@@ -2195,19 +2246,38 @@ export default function ChatBody({
     return payload.draft || null;
   }, []);
   const saveJourneyWorkflowDraft = useCallback(async (draft) => {
+    if (!convId) throw new Error("journeys.errors.conversation_not_found");
+    const conversationResponse = await fetch("/api/chat/conversations", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ id: convId, role: userRole })
+    });
+    const conversationPayload = await conversationResponse.json().catch(() => ({}));
+    if (
+      !conversationResponse.ok ||
+      conversationPayload?.ok === false ||
+      conversationPayload?.conversation?.id !== convId
+    ) {
+      throw new Error(conversationPayload?.message || "journeys.errors.conversation_not_found");
+    }
     const response = await fetch("/api/journeys", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(draft || {})
+      body: JSON.stringify({
+        ...(draft || {}),
+        conversationId: convId
+      })
     });
     const payload = await response.json().catch(() => ({}));
     if (!response.ok || !payload?.ok) {
       throw new Error(payload?.message || "journeys.errors.save_failed");
     }
     return payload.journey || null;
-  }, []);
+  }, [convId, userRole]);
   const handleJourneyWorkflowMessage = useCallback(async (text) => {
     appendMessage({
       role: "user",
@@ -2216,6 +2286,9 @@ export default function ChatBody({
     });
 
     if (isJourneyCancelCommand(text)) {
+      if (typeof window !== "undefined") {
+        clearChatJourneyDraft(window.sessionStorage, sessionUserId, convId);
+      }
       setJourneyWorkflowDraft(null);
       setActiveWorkflow("default");
       appendMessage({
@@ -2231,6 +2304,9 @@ export default function ChatBody({
       try {
         const saved = await saveJourneyWorkflowDraft(journeyWorkflowDraft.draft);
         const href = saved?.id ? localizePath(`/teekond/${saved.id}`, locale) : localizePath("/teekond", locale);
+        if (typeof window !== "undefined") {
+          clearChatJourneyDraft(window.sessionStorage, sessionUserId, convId);
+        }
         setJourneyWorkflowDraft(null);
         setActiveWorkflow("default");
         appendMessage({
@@ -2286,6 +2362,7 @@ export default function ChatBody({
       mutateMessage(streamingMessageId, (message) => ({
         ...message,
         text: formatJourneyDraftMessage(t, draft),
+        workflow: { journeyDraft: { conversationId: convId } },
         isStreaming: false
       }));
       return true;
@@ -2301,12 +2378,14 @@ export default function ChatBody({
     }
   }, [
     appendMessage,
+    convId,
     createJourneyDraftFromText,
     journeyWorkflowDraft,
     locale,
     mutateMessage,
     requestConversationsRefresh,
     saveJourneyWorkflowDraft,
+    sessionUserId,
     t
   ]);
   const handleSendMessage = useCallback(async (rawText, options = {}) => {
