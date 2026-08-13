@@ -17,6 +17,7 @@ import {
   reflectionSourceKindLabelKey,
   supportNeedLabelKey
 } from "@/lib/reflection/constants";
+import { isLatestReflectionDetailRequest } from "@/lib/reflection/requestSequence";
 import { provenanceLabelKey } from "@/lib/workspaces/provenance";
 import styles from "./ReflectionPage.module.css";
 
@@ -237,7 +238,7 @@ export default function ReflectionPage() {
       const { ok, status, payload } = await reflectionRequest(`/api/reflections/${id}`, {
         signal: controller.signal
       });
-      if (requestSequence !== detailRequestSequence.current) return;
+      if (!isLatestReflectionDetailRequest(requestSequence, detailRequestSequence.current)) return;
       if (!ok) {
         setStatusIsError(true);
         setStatusMessage(message({ status, payload }));
@@ -255,7 +256,10 @@ export default function ReflectionPage() {
       setForm(formFromReflection(reflection));
       setFormOpen(true);
     } catch (error) {
-      if (error?.name === "AbortError" || requestSequence !== detailRequestSequence.current) return;
+      if (
+        error?.name === "AbortError"
+        || !isLatestReflectionDetailRequest(requestSequence, detailRequestSequence.current)
+      ) return;
       setStatusIsError(true);
       setStatusMessage(t("reflection.errors.load_failed"));
     } finally {

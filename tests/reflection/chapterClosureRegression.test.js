@@ -3,6 +3,7 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 import { DATA_EXPORT_REGISTRY } from "../../lib/dataExport/registry.js";
+import { isLatestReflectionDetailRequest } from "../../lib/reflection/requestSequence.js";
 
 const records = await readFile(new URL("../../lib/reflection/records.js", import.meta.url), "utf8");
 const page = await readFile(new URL("../../components/reflection/ReflectionPage.jsx", import.meta.url), "utf8");
@@ -80,10 +81,28 @@ test("REF-08 deletion is recoverable and no longer hard-deletes immediately", as
   assert.match(records, /undoUntil/);
   const undoRoute = await readFile(new URL("../../app/api/reflections/[id]/undo/route.js", import.meta.url), "utf8");
   assert.match(undoRoute, /undoPracticeReflectionDeletionForUser/);
+  assert.match(page, /<ModalConfirm[\s\S]*message=\{t\("reflection\.deletion\.confirm"\)\}/);
+  assert.match(page, /onClick=\{\(\) => \{ setDeleteCandidateId\(reflection\.id\); \}\}/);
+  assert.match(page, /onCancel=\{\(\) => \{ if \(!deleting\) setDeleteCandidateId\(null\); \}\}/);
+  assert.match(page, /onConfirm=\{\(\) => \{ void remove\(\); \}\}/);
+  assert.match(page, /data-reflection-undo="available"[\s\S]*void undoRemove\(\)/);
+  assert.match(page, /new Date\(undoDeletion\.undoUntil\)[\s\S]*window\.setTimeout/);
 });
 
 test("REF-09 only the latest detail request may write the form", () => {
   assert.match(page, /detailRequestSequence/);
   assert.match(page, /detailAbortController/);
-  assert.match(page, /requestSequence !== detailRequestSequence\.current/);
+  assert.match(page, /isLatestReflectionDetailRequest\(requestSequence, detailRequestSequence\.current\)/);
+
+  const responses = [
+    { requestSequence: 2, reflection: { id: "B", method: "Detail B" } },
+    { requestSequence: 1, reflection: { id: "A", method: "Detail A" } }
+  ];
+  let active = null;
+  for (const response of responses) {
+    if (isLatestReflectionDetailRequest(response.requestSequence, 2)) {
+      active = response.reflection;
+    }
+  }
+  assert.deepEqual(active, { id: "B", method: "Detail B" });
 });
