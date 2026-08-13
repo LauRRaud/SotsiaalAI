@@ -7,7 +7,11 @@
 import { spawnSync } from "node:child_process";
 import path from "node:path";
 
+import dotenv from "dotenv";
 import pg from "pg";
+
+dotenv.config({ path: ".env.local", quiet: true });
+dotenv.config({ path: ".env", quiet: true });
 
 const sourceUrl = String(process.env.DATABASE_URL || "").trim();
 if (!sourceUrl) throw new Error("DATABASE_URL puudub");

@@ -7245,6 +7245,8 @@ konto lisamine mõõdaks omanikuskoopi, mis on juba mujal kaetud.
 
 **Vastuvõtukriteerium.** Kasutajale esitletav tegevusajalugu peab tulema append-only serverisündmustest või rangelt serveri hallatavast struktuurist, mitte kliendi muudetavast kontekstist. Kuvada tuleb määratud järjestuses viimased sündmused lokaliseeritud `type` järgi; testida üle 50 sündmuse, konteksti PATCH-i ja archive/reopen jada.
 
+**Seis (13.08.2026): DONE —** Teekonna tegevusajalugu tuleb omaniku järgi skoobitud append-only `DomainEvent` kirjetest; kliendi `context.activityLog` eiratakse loomisel ja PATCH-il. Detail kuvab serveri määratud järjestuses uusimad kaheksa lokaliseeritud sündmust ning create/update/archive/reopen kirjutavad sündmuse samas tehingus. Päris PostgreSQL-i sond tõendas 61 sündmust, uusima kaheksa järjestust ja konteksti PATCH-i võimetust ajalugu muuta.
+
 ### SOL-JOUR-15 — Teekonna põhi- ja seoseloendid kasvavad piiritlemata ning kirjutusradadel puudub mahupiir — P2
 
 **Tõend.** `listJourneysForUser()` tagastab kõik omaniku Journey-read ilma `take`/cursor'i/olekufiltrita ning detail laadib kõik seotud eelpöördumised samal viisil (`lib/journey/service.js:59-72`, `:133-159`). API ei võta paginatsiooni ega tagasta `hasMore` väärtust (`app/api/journeys/route.js:32-44`). Neljas Journey-route'is puudub rate-limit või omaniku aktiivsete/üldkirjete ülempiir; POST loob iga kord uue rea (`app/api/journeys/**`, `lib/journey/service.js:74-98`). Eraldi continuity kiht kärbib vaid töölaua kandidaate seitsmeni ega lahenda põhiloendi mahtu (`lib/workspaceContinuity.js:95-102`, `:142-147`, `:416-434`).
@@ -7252,6 +7254,8 @@ konto lisamine mõõdaks omanikuskoopi, mis on juba mujal kaetud.
 **Mõju.** Pika ajaloo, topeltklikkide või automatiseeritud autentitud päringute korral kasvavad DB, JSON-vastus ja brauseri renderdus piiritlemata. Ühe Journey detail võib muutuda aeglaseks üksnes seotud pöördumiste arvu tõttu ning kirjutusmahule pole rakenduse tasemel pidurit.
 
 **Vastuvõtukriteerium.** Põhiloend ja linked-pre-inquiry loend peavad kasutama stabiilset cursor-paginatsiooni, minimaalseid projektsioone ja tervikloendurit. Loomine/draft-preview vajab kasutaja-/sessioonipõhist mõistlikku limiiti ning korduv loomine idempotentsusvõtit või topelt-submit kaitset. Koormustestida vähemalt kümneid tuhandeid Journey-ridu ja seotud pöördumisi.
+
+**Seis (13.08.2026): DONE —** Journey põhiloend ja seotud eelpöördumised kasutavad stabiilset `updatedAt + id` cursor-paginatsiooni, minimaalseid projektsioone, `totalCount`/`hasMore`/`nextCursor` lepingut ja olekufiltrit; UI laadib lehti nõudmisel. Draft-preview ja loomine on kasutajapõhiselt piiratud, omanikul kehtib 200 aktiivse ja 10 000 kogukirje piir ning loomine on klienditoimingu võtmega kordusohutu. PostgreSQL-i sond läbis 10 005 Journey-rida ja 10 005 seotud eelpöördumist ning viis paralleelkatset lõid ühe rea.
 
 ### SOL-JOUR-16 — enne jäädavat kustutamist pakutav eksport ei sisalda kogu Teekonda — P1
 
@@ -7261,6 +7265,8 @@ konto lisamine mõõdaks omanikuskoopi, mis on juba mujal kaetud.
 
 **Vastuvõtukriteerium.** Dialoog peab ausalt nimetama ekspordi ulatuse või eksportima kõik kasutajale nähtavad Journey-väljad ja seoste minimaalse registri masinloetavas, versioonitud formaadis. Test peab võrdlema täidetud Journey serialiseeringut ekspordiga ning tõendama iga välja kaasamise või teadlikult dokumenteeritud väljajätmise.
 
+**Seis (13.08.2026): DONE —** kustutuseelne omaniku kontrollitud serverieksport annab versioonitud `sotsiaalai.journey.export` JSON-i kõigi kasutajale nähtavate väljade, struktureeritud konteksti, riskisignaalide, päritoluviite, serveriajaloo ja seotud eelpöördumiste minimaalse registriga; teadlikud väljajätud on failis nimetatud. Kohustuslik `JOURNEY_EXPORT` audit kirjutatakse enne failibaitide tagastamist samas tehingus ning auditiviga katkestab ekspordi fail-closed. Täidetud Journey võrdlustest tõendab ulatust.
+
 ### SOL-JOUR-17 — pikem Teekonna sisu ja loendid kärbitakse serveris vaikides — P1
 
 **Tõend.** Kõik tekstinormaliseerijad kasutavad üle piiri sisendi tagasilükkamise asemel `slice()`-i; loendid lõpetavad 8/12/20 elemendi juures ilma hoiatuseta (`lib/journey/validation.js:18-25`, `:37-79`, `:84-114`). Kokkuvõtte piir on 12 000 märki, kuid nii loomise kui detaili textarea'l puudub `maxLength`, loendivormidel puuduvad elemendi- ja kogusepiirid (`components/journey/JourneyDashboard.jsx:219-228`, `:787-797`; `components/journey/JourneyDetail.jsx:623-635`, `:1613-1662`). API tagastab tavalise edu koos kärbitud objektiga.
@@ -7268,6 +7274,8 @@ konto lisamine mõõdaks omanikuskoopi, mis on juba mujal kaetud.
 **Mõju.** Pika olukirjelduse lõpus olev oluline risk, erand või inimese enda soov võib kaduda; üheksas tegevus või kolmeteistkümnes puuduva info punkt jäetakse välja. Kasutaja võib kärbitud versiooni edasi jagada või originaali kustutada teadmata, et salvestus ei olnud täielik.
 
 **Vastuvõtukriteerium.** Üle piiri sisend tuleb stabiilse välja-veaga tagasi lükata või tagastada väljade kaupa teadliku kinnituse nõudev truncation-raport; vaikne edu pole lubatud. UI peab näitama piire ja allesjäänud mahtu. Testida iga teksti/listi piir-1, piir ja piir+1 ning tõendada, et edukas round-trip ei erine sisendist vaikides.
+
+**Seis (13.08.2026): DONE —** Journey valideerimine ei kärbi enam teksti ega loendeid vaikides. Üle piiri sisend tagastab stabiilse `JOURNEY_FIELD_TOO_LONG` või `JOURNEY_LIST_TOO_LONG` vea välja ja piiriga; UI näitab väljade piire ja kasutatud mahtu. Piiritest katab kõik teksti- ja loendiklassid väärtustel piir−1, piir ja piir+1 ning tõendab eduka normaliseerimise round-trip samasust.
 
 ### SOL-PRE-01 — konto kustutamine jätab saatmata eelpöördumiste tundliku sisu autorita alles — P0
 
@@ -7804,6 +7812,8 @@ taga veel ei ole.
 
 **Vastuvõtukriteerium.** Lähteallika lubatud olek, saajasuhe ja parandusahela aktiivne versioon tuleb defineerida ning kontrollida loomisel ja uuesti saatmisel. RECALLED/superseded/saatmata allika test peab fail-closed keelduma.
 
+**Seis (13.08.2026): DONE —** võrgustikujagamise loomine ja saatmine kontrollivad esialgsel laadimisel ja tehingu sees, et lähte-eelpöördumine kuulub praegusele töötajale, on päriselt saadetud, pole tagasi võetud ega uuema parandusega asendatud. Sihttestid ja päris PostgreSQL-i sond tõendasid RECALLED-, superseded- ja saatmata allika fail-closed keeldumist. Production runtime: NOT_PROVEN.
+
 ### SOL-NET-08 — rolli kaotanud endine töötaja säilitab jagamiste täisvaate ja muutmistoimingud — P1
 
 **Tõend.** Töötajarolli kontroll `isNetworkWorker` on ainult juur-POST-is ja worker-loendis (`app/api/network-shares/route.js:24-28`, `:114-120`). Detail-PATCH, submit, attest, send ja recall nõuavad ainult autentitud kasutajat; domeen kontrollib, et ID võrdub algse `workerId`-ga (`app/api/network-shares/[shareId]/**`; `lib/network/share.js:261-265`). Detail-GET tagastab algsele workerId-le täisprojektsiooni sõltumata praegusest rollist (`app/api/network-shares/[shareId]/route.js:20-35`).
@@ -7811,6 +7821,8 @@ taga veel ei ole.
 **Mõju.** Teenuseosutaja/sotsiaaltöötaja rollist eemaldatud konto saab jätkuvalt lugeda kliendi identiteeti ja otsuse tõendit, muuta kokkuvõtet, kanda välise kliendi nõusolekut üle ning saata andmed.
 
 **Vastuvõtukriteerium.** Iga töötajatoiming ja täisvaade peab kontrollima praegust rolli ning vajadusel organisatsiooni/ülesande aktiivset seost. Rolli kaotuse järel peavad detail ja kõik mutatsioonid fail-closed sulguma; lisada sessioonist sõltumatu serveritest.
+
+**Seis (13.08.2026): DONE —** töötaja täisdetail, PATCH, submit, attestation, send ja recall kontrollivad lisaks algsele `workerId` seosele sessiooni praegust lubatud töötajarolli. Rolli kaotanud konto detail sulgub üldise 404-ga ja mutatsioonid 403-ga; sessioonist sõltumatu serveritest kontrollib väravat kõigis töötajaradades. Production autentitud runtime: NOT_PROVEN.
 
 ### SOL-NET-09 — kontoga klient saab otse-API kaudu näha veel esitamata töötaja mustandit — P1
 
@@ -7820,6 +7832,8 @@ taga veel ei ole.
 
 **Vastuvõtukriteerium.** Kliendi list/detail peab lubama vähemalt `AWAITING_CLIENT` ja teadlikult defineeritud hilisemad olekud, mitte DRAFT-i. Kõik kliendipinnad kasutavad üht projektsiooni- ja olekupoliitikat; lisada otse-API DRAFT negatiivtest.
 
+**Seis (13.08.2026): DONE —** kliendi list ja detail kasutavad sama allowlist-projektsiooni ning lubavad ainult `AWAITING_CLIENT` ja teadlikult defineeritud hilisemad olekud. DRAFT ei jõua kummastki otse-API pinnast kliendini; negatiivtest tõendab fail-closed null/404 käitumist. Production autentitud runtime: NOT_PROVEN.
+
 ### SOL-NET-10 — võrgustikujagamise elutsüklis puuduvad teavitused, outbox ja audit — P1
 
 **Tõend.** Kaheksa `app/api/network-shares/**` route'i ei impordi ega kirjuta `NotificationEvent`, `DomainEvent` ega andmeauditit. Submit, kliendi otsus, attestation, send, open ja recall teevad ainult põhirea/ruumi muutuse. Kliendi ja saaja UI-d leiavad töö üksnes lehe avamisel tehtava polling-GET-iga (`components/sharings/MySharingsPage.jsx:173-204`; `components/network/NetworkShareInbox.jsx:34-51`).
@@ -7827,6 +7841,8 @@ taga veel ei ole.
 **Mõju.** Klient ei pruugi teada, et temalt oodatakse otsust; saaja ei pruugi teada, et jagamine saabus; töötaja ei pruugi teada otsusest. Hilisem audit ei näita usaldusväärselt, kes millise jagamispiiri millal aktiveeris või tagasi võttis.
 
 **Vastuvõtukriteerium.** Iga oluline siire peab kirjutama samas tehingus minimaalse DomainEvent/outbox'i; projector loob idempotentse teavituse. Nõusoleku- ja saatmisaudit säilitab ID-d/koodid, mitte vabateksti. Testida projector maas, kordus ja osaline delivery-viga.
+
+**Seis (13.08.2026): DONE —** CREATE, UPDATE, SUBMIT, DECIDE, ATTEST, SEND, OPEN, RECALL, RESPOND ja END siirded kirjutavad olekuga samas DB-tehingus minimaalse `DomainEvent`/outbox-rea ja `DataAuditLog`-i ilma vabatekstita. Projector loob adressaadipõhised idempotentsed teavitused; testid ja päris PostgreSQL tõendasid projectori seisu, kordust ning osalise tarne vea järel taastumist. Production projectori käitus: NOT_PROVEN.
 
 ### SOL-NET-11 — ühelgi kaheksast võrgustikujagamise route'il pole sageduspiiri — P1
 
@@ -7836,6 +7852,8 @@ taga veel ei ole.
 
 **Vastuvõtukriteerium.** Rakendada kasutaja+IP+toimingu limiter ning mutatsioonidele idempotency key/replay-kaitse. Testida paralleelset limiidi ületamist mitme protsessi vastu.
 
+**Seis (13.08.2026): DONE —** kõik võrgustikujagamise route'id kasutavad püsivat PostgreSQL-i kasutaja+toimingu piirangut ning usaldatud proxy-aadressi korral ka IP+toimingu piirangut. Mutatsioonid nõuavad `Idempotency-Key` päist, leiavad püsiva replay uues protsessis ja seovad korduse õige ressursiga. PostgreSQL-i sondi kaheksa eraldi protsessi lubasid täpselt kolm katset ja tõrjusid viis; ühine IP-piir rakendus eri kasutajatele. Production proxy-headeri seadistus: NOT_PROVEN.
+
 ### SOL-NET-12 — võrgustikujagamise loendid lõpevad 100 rea juures ilma paginatsioonita — P2
 
 **Tõend.** Recipient-, client- ja worker-loendid kasutavad kõik `take:100`; vastus ei sisalda cursor'it, `nextOffset`-i ega koguarvu (`app/api/network-shares/route.js:70-120`). UI filtreerib worker-loendi alles brauseris ühe eelpöördumise ID järgi (`components/network/NetworkShareComposer.jsx:48-58`).
@@ -7843,6 +7861,8 @@ taga veel ei ole.
 **Mõju.** Pika ajalooga töötaja konkreetne aktiivne jagamine või kliendi otsust ootav rida võib uuemate 100 kirje taha kaduda. Sama endpoint veab iga eelpöördumise komponendi jaoks kogu 100-realise täisprojektsiooni.
 
 **Vastuvõtukriteerium.** Lisada serveripoolne source/status filter ja stabiilne cursor-paginatsioon minimaalse loendiprojektsiooniga. Testida 101+ rida, vanemat aktiivset jagamist ja võrdse ajatempliga järjestust.
+
+**Seis (13.08.2026): DONE —** worker-, client- ja recipient-loendid kasutavad stabiilset `updatedAt + id` cursor-paginatsiooni, serveripoolseid source/status filtreid, rollipõhist minimaalset projektsiooni ja `nextCursor` vastust. Mõlemad UI-tarbijad loevad kõik lehed; PostgreSQL-i sond ja sihttest tõendasid 103 võrdse ajatempliga kirje täielikku duplikaadivaba läbimist. Production suurandmete runtime: NOT_PROVEN.
 
 ### SOL-NET-13 — `RESPONDED` ja `ENDED` olekud ning tähtajaline ligipääsu lõpetamine on teostamata — P2
 
@@ -7852,6 +7872,8 @@ taga veel ei ole.
 
 **Vastuvõtukriteerium.** Siduda esimene lubatud vastus idempotentselt `RESPONDED` siirdega ning tähtaja/sulgemise töövoog `ENDED` oleku ja RoomMember ligipääsu lõpetamisega. Kui neid olekuid ei vajata, eemaldada need ja dokumenteerida tegelik leping.
 
+**Seis (13.08.2026): DONE —** saaja esimene lubatud ruumisõnum viib seotud jagamise idempotentselt `RESPONDED` olekusse samas sõnumitehingus. Tähtaja sweep viib jagamise `ENDED` olekusse, kirjutab elutsüklisündmuse ja lõpetab samas tehingus aktiivsed ruumiliikmesused. Sihttestid ja PostgreSQL-i sond tõendasid RESPONDED siirde, ENDED rollback/retry ning kogu ruumipääsu eemaldamise. Production ajastatud sweep: NOT_PROVEN.
+
 ### SOL-REF-01 — sama refleksiooni paralleelsed muutmised kirjutavad üksteise vaikides üle — P1
 
 **Tõend.** PATCH-payload ei kanna `updatedAt`-i ega versiooni ning `updatePracticeReflectionForUser()` teeb tingimusteta `updateMany({ where:{id,ownerUserId}, data })` (`lib/reflection/records.js:201-228`). UI saadab ainult vormiväljad (`components/reflection/ReflectionPage.jsx:195-225`). Fake-DB negatiivkontrollis võeti kaks samast vanast seisust PATCH-i vastu ja lõppväärtuseks jäi üksnes teise kirjutaja `TAB-B`.
@@ -7859,6 +7881,8 @@ taga veel ei ole.
 **Mõju.** Kaks vahekaarti või aeglane vana vorm võivad professionaalse refleksiooni uuema paranduse jäljetult hävitada. Kasutaja saab mõlemal salvestusel eduteate ning varasemat teksti ega konflikti pole taastada.
 
 **Vastuvõtukriteerium.** PATCH peab nõudma kliendi nähtud muutumatut versiooni (`updatedAt`/revision), kontrollima seda samas DB-kirjutuses ja tagastama stale-konflikti 409. Testida kahe päris DB-ühendusega sama kirje muutmist ning UI konfliktivaadet, mis ei kaota kumbagi teksti.
+
+**Seis (13.08.2026): DONE —** PATCH nõuab `expectedUpdatedAt` väärtust ja teeb omanikuskoobitud CAS-kirjutuse. Aegunud kirjutus tagastab 409 koos serveri praeguse avaliku kirjega; UI säilitab kasutaja mustandi ning kuvab kohaliku ja serveri versiooni kõrvuti. Kahe ühenduse PostgreSQL-i sond kinnitas täpselt ühe võitja ja ühe 409 ning brauseritõend mõlema konfliktiteksti säilimise.
 
 ### SOL-REF-02 — Meetodipeegel talletab kontrollimata allikaviite ja kolm lubatud allikaliiki on kasutajateelt sisuliselt surnud — P2
 
@@ -7868,6 +7892,8 @@ taga veel ei ole.
 
 **Vastuvõtukriteerium.** Iga source-kind peab loomisel kasutama oma autoritatiivset owner/member-kontrolli ja salvestama ainult tõendatud seose; puuduva või võõra allika vastus on generic 404. Lisada reaalsed sisenemispunktid või eemaldada enneaegsed liigid lepingust. Testida võõrast artefakti, eelpöördumist, kohtumist ja kõnet ning allika hilisemat kustutust.
 
+**Seis (13.08.2026): DONE —** uute allikaviidete leping piirati päriselt kasutajateega `PRE_INQUIRY` liigile; enneaegsed ARTIFACT, MEETING ja CALL liigid lükatakse 400-ga tagasi. PRE_INQUIRY olemasolu ja adressaadipoolne omand kontrollitakse serveris ning puuduv ja võõras allikas annavad sama üldise 404. PostgreSQL-i sond kinnitas omandipiiri ja allika hilisema kustutuse järel refleksiooni säilimise `deleted` olekuga; ajalooliste liikide lugemistugi säilis.
+
 ### SOL-REF-03 — vigane allikafilter avardub vaikides kõigile omaniku refleksioonidele — P2
 
 **Tõend.** `listPracticeReflectionsForUser()` püüab `normalizeSourceRef()` vea kinni ja muudab vigase filtri `null`-iks, mille järel päring sisaldab ainult `ownerUserId` tingimust (`lib/reflection/records.js:155-179`). Negatiivkontrollis tagastas `sourceKind=PRE_INQUIRY&sourceId=` mõlemad omaniku kirjed `A` ja `B`.
@@ -7875,6 +7901,8 @@ taga veel ei ole.
 **Mõju.** Tegevuse kontekstis minimaalset alamhulka küsiv klient võib vigase või pooliku viite korral saada vastuses kogu kasutaja tundliku refleksioonikogu. Praegune põhivaade filtrit ei kasuta, kuid endpointi leping on tulevaste tegevuspaneelide jaoks fail-open.
 
 **Vastuvõtukriteerium.** Filtri puudumine ja filtri vigasus peavad olema eri olekud; osaline/tundmatu source-filter tagastab 400 ega tohi teha avaramat päringut. Lisada route-testid kõigi puuduvate, vigaste ja õigete kind/ID kombinatsioonidega.
+
+**Seis (13.08.2026): DONE —** mõlema allikaparameetri puudumine tähendab filtreerimata omanikuloendit, kuid ainult ühe parameetri olemasolu või tundmatu liik annab 400. Sihttest katab puuduvad, poolikud ja tundmatu liigi kombinatsioonid; vigane filter ei saa enam päringut kõigile omaniku kirjetele laiendada.
 
 ### SOL-REF-04 — Meetodipeegli loend lõpeb 50 kirje juures ja veab iga rea täissisu brauserisse — P2
 
@@ -7884,6 +7912,8 @@ taga veel ei ole.
 
 **Vastuvõtukriteerium.** Lisada stabiilne cursor-paginatsioon ning minimaalne loendiprojektsioon; detailtekst tuleb ainult `/api/reflections/:id` kaudu. Testida 51+ kirjet, võrdseid ajatempleid, järgmise lehe laadimist ja ID-põhist deduplikatsiooni.
 
+**Seis (13.08.2026): DONE —** refleksiooniloend kasutab stabiilset `(createdAt DESC, id DESC)` keyset-cursorit, tagastab `page.nextCursor` ning laeb ainult kaardivaate minimaalsed väljad. UI-l on „Näita veel” ja ID-põhine deduplikatsioon. PostgreSQL-i sond läbis 51+ sama ajatempliga kirjet kadude ja duplikaatideta; brauseritõend kinnitas järgmise lehe lisamise ja kattuva ID deduplikatsiooni.
+
 ### SOL-REF-05 — tühje ja korduvaid refleksioone saab piiramatult luua — P2
 
 **Tõend.** `normalizePayload({})` annab tühja andmeobjekti ja create ei nõua ühtegi sisuvälja (`lib/reflection/records.js:64-90`, `:138-152`). `PracticeReflection` mudelil pole sisulist ega idempotentsustõket (`prisma/schema.prisma:1477-1509`); POST-route ei kasuta idempotency key'd ega `consumeRateLimit`-i (`app/api/reflections/route.js:31-48`).
@@ -7891,6 +7921,8 @@ taga veel ei ole.
 **Mõju.** Kordusvajutus, võrgu-retry või kompromiteeritud konto võib tekitada hulga tühje/duplikaatkirjeid ja kasvatada privaatset andmemahtu. Hiljem peidab 50 rea piir just päris vanemad kirjed.
 
 **Vastuvõtukriteerium.** Loomine peab nõudma vähemalt üht sisulist välja, kasutama kasutaja+toimingu rate-limit'i ning toetama replay-kindlat idempotency key'd. Testida sama võtmega sama ja erinevat payload'i, paralleelset POST-i ning tühja/ainult tühikutega vormi.
+
+**Seis (13.08.2026): DONE —** loomine nõuab vähemalt üht sisulist välja ja `Idempotency-Key` päist. `(ownerUserId, idempotencyKey)` unikaalsus ja päringuräsi muudavad korduse replay-safe'iks ning sama võtme erinev sisu annab 409; kasutaja+toimingu mahupiir püsib PostgreSQL-is. Päris DB sond kinnitas paralleelse sama võtmega loomise üheks reaks, erineva sisu konflikti, tühikukirje keelu ning 21. katse täieliku rollback'iga blokeerimise.
 
 ### SOL-REF-06 — kasutaja andmekoopia jätab kõik Meetodipeegli kirjed välja — P1
 
