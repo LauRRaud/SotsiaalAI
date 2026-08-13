@@ -2168,6 +2168,9 @@ export default function ChatBody({
     userRole,
     locale,
     activeWorkflow,
+    // A workspace surface (including "Minu dokumendid") is not the chat consumer. Resuming
+    // there would create a hidden stream/placeholder before the user explicitly returns to chat.
+    researchResumeEnabled: !workspaceOpen,
     helpWorkflowState: effectiveHelpWorkflowState,
     getLatestHelpWorkflowState: getEffectiveLatestHelpWorkflowState,
     docOnlyMode: analysis.docOnlyMode,

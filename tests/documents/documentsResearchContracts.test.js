@@ -392,6 +392,7 @@ test("an active research job can be found again and stopped after a soft nav", (
   const store = read("lib/research/jobStore.js");
   const route = read("app/api/research/jobs/route.js");
   const hook = read("components/chat/hooks/useChatStream.js");
+  const chatBody = read("components/alalehed/ChatBody.jsx");
   const chatRun = read("app/api/chat/run/route.js");
   const documents = read("components/documents/DocumentsPage.jsx");
 
@@ -417,6 +418,9 @@ test("an active research job can be found again and stopped after a soft nav", (
   );
   assert.match(chatRun, /researchJobId: readResearchJobId\(currentAssistant\?\.metadata\)/);
   assert.match(hook, /expectedResearchJobId: id/);
+  assert.match(chatBody, /researchResumeEnabled: !workspaceOpen/);
+  assert.match(hook, /const researchResumeEnabled = config\?\.researchResumeEnabled !== false/);
+  assert.match(hook, /if \(!researchResumeEnabled\) \{[\s\S]{0,400}teardownLocalStream\(\);/);
 
   // „Minu dokumentide" aktiivsel real on nüüd Stop, mitte ainult vestluse link.
   assert.match(documents, /async function stopResearch\(id\)/);

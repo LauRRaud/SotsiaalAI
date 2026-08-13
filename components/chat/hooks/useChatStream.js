@@ -1150,6 +1150,13 @@ export function useChatStream(config) {
    */
   useEffect(() => {
     const convId = String(config?.convId || "").trim();
+    const researchResumeEnabled = config?.researchResumeEnabled !== false;
+    if (!researchResumeEnabled) {
+      // Workspace routes reuse ChatBody but are not a visible chat surface. Detach any local
+      // reader and leave the durable server job running until the user returns or presses Stop.
+      teardownLocalStream();
+      return undefined;
+    }
     if (!convId || typeof fetch !== "function") return undefined;
     if (researchConsumerRef.current) return undefined;
 
@@ -1182,7 +1189,7 @@ export function useChatStream(config) {
     return () => {
       if (lookupAttempt.isCurrent()) researchLookupGateRef.current?.invalidate();
     };
-  }, [config?.convId, startResearchJobStream]);
+  }, [config?.convId, config?.researchResumeEnabled, startResearchJobStream, teardownLocalStream]);
 
   const sendMessage = useCallback(async (rawText, options = {}) => {
     const cfg = cfgRef.current;
