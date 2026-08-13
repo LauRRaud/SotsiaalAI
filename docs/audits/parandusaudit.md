@@ -85,7 +85,7 @@ Käsitsi siia ei kirjutata. DONE algab sõnaga `DONE`, PARTIAL sõnaga `PARTIAL`
 on NOT_DONE. Kvalifitseeritud DONE-väide vale algusega katkestab genereerimise, et ta ei
 kaoks vaikselt valesse rühma. Iga loetletud leiu lõpus on Seis-lõik **sõna-sõnalt**.
 
-DONE **330** / 429 · PARTIAL **4** / 429 · NOT_DONE **95** / 429 · peatükke täielikult DONE **27** / 40 · ametlikult lahtiseid 99 — 65 × P1 · 33 × P2 · 1 × P3
+DONE **341** / 429 · PARTIAL **5** / 429 · NOT_DONE **83** / 429 · peatükke täielikult DONE **28** / 40 · ametlikult lahtiseid 88 — 1 × P0 · 55 × P1 · 31 × P2 · 1 × P3
 
 | Peatükk | Kood | DONE | PARTIAL | NOT_DONE | Lahtiste prioriteedid | Märkus |
 |---|---|---:|---:|---:|---|---|
@@ -116,9 +116,9 @@ DONE **330** / 429 · PARTIAL **4** / 429 · NOT_DONE **95** / 429 · peatükke 
 | Supervisioon | SOL-SUP | 15/15 | 0 | 0 | – | **tehtud** |
 | Kovisioon | SOL-COV | 8/8 | 0 | 0 | – | **tehtud** |
 | Tõenduspõhised praktikad | SOL-PRAC | 8/8 | 0 | 0 | – | **tehtud** |
-| Teemaseemned | SOL-SEED | 0/5 | 0 | 5 | 3 × P1 · 2 × P2 |  |
-| Teekond ja jagamine | SOL-JOUR | 2/17 | 0 | 15 | 12 × P1 · 3 × P2 |  |
-| Eelpöördumised | SOL-PRE | 2/18 | 0 | 16 | 15 × P1 · 1 × P2 |  |
+| Teemaseemned | SOL-SEED | 5/5 | 0 | 0 | – | **tehtud** |
+| Teekond ja jagamine | SOL-JOUR | 3/17 | 1 | 13 | 1 × P0 · 10 × P1 · 3 × P2 |  |
+| Eelpöördumised | SOL-PRE | 7/18 | 0 | 11 | 10 × P1 · 1 × P2 |  |
 | Abikuulutused | SOL-HELP | 0/13 | 0 | 13 | 11 × P1 · 2 × P2 |  |
 | Võrgustikutöö | SOL-NET | 2/13 | 0 | 11 | 9 × P1 · 2 × P2 |  |
 | Refleksioonid | SOL-REF | 0/9 | 0 | 9 | 3 × P1 · 6 × P2 |  |
@@ -144,6 +144,10 @@ DONE **330** / 429 · PARTIAL **4** / 429 · NOT_DONE **95** / 429 · peatükke 
 **Uuringud** (`SOL-RES`, 1 PARTIAL)
 
 - `SOL-RES-07` P2 — soft-nav'i järel pole aktiivse uuringuga taasühendumise ega Stop'i kasutajateed — PARTIAL — kood/refaktor DONE ja sihttestidega mõõdetud; nõutud brauserirada NOT_PROVEN lokaalse React hydration'i blokeeringu tõttu. Leid jääb loendis LAHTISEKS.
+
+**Teekond ja jagamine** (`SOL-JOUR`, 1 PARTIAL)
+
+- `SOL-JOUR-02` P0 — seadmesse salvestatud tundlik Teekonna mustand võib samas vahekaardis järgmisele kontole taastuda — PARTIAL — Teekonna kohalik mustand on kasutaja ID-ga omanikuskoobitud, omanikuta seade on lukus ning vana sildistamata rida kustutatakse. Jagatud `ownerScopedStorage` primitiivi negatiivkontrollid kinnitavad, et kaks kontot ei loe teineteise mustandit ja koristus ei puuduta omaniku ridu. NOT_PROVEN: täielikku sama vahekaardi brauserirada — A logout → B login, rollivahetus, aegunud sessioon ja vahekaardi taastamine — ei ole veel läbi käidud; seepärast ei ole leid DONE.
 
 ### DONE leiud peatükkide kaupa
 
@@ -518,15 +522,29 @@ DONE **330** / 429 · PARTIAL **4** / 429 · NOT_DONE **95** / 429 · peatükke 
 - `SOL-PRAC-07` P1 — RAG-i taastetöödel puudub repos tõendatud automaatne käivitaja — DONE — viieminutiline notification systemd service/timer on nüüd repos versioonitud ja käitab piiratud partiiga RAG-taastet: advisory-lukuga claim, aegunud claim'i ülevõtt, eksponentsiaalne backoff, `dead_letter`, terviseloendurid ning 207/systemd failed-alarm. Ühiktest katab batch'i, claim'i, backoff'i, dead-letter'i ja pooleli jäänud processorit; päris PostgreSQL-i katkestussond viib nii ingest'i kui delete'i pärast teenuse taastumist lõpuni ja eemaldab vana RAG-viite. Serveris kontrolliti timer `enabled` + `active`, viieminutiline unit ja edukas journalijooks.
 - `SOL-PRAC-08` P1 — ülevaatustähtaja möödumine ei käivita uut kontrolli ega eemalda aegunud juhist RAG-ist — DONE — tähtaja saabumine loob ühe aktiivse ja skoobitud ETHICS-ülesande, mille olemasolev reconciler muudab idempotentseks teavituseks; aegunud pädevus ei saa ülesannet ning kordusjooks ei dubleeri seda. 14-päevase grace-period'i järel liigub praktika CAS-iga `RE_REVIEW` olekusse, vana tsükli ülesanded suletakse, uus rollitsükkel luuakse ja durable RAG_DELETE eemaldab aegunud juhise. Päris PostgreSQL-i 23/23 jadasond katab scheduler → assignment → notification → grace → RAG-taaste terviktee.
 
-**Teekond ja jagamine** (`SOL-JOUR`, 2/17)
+**Teemaseemned** (`SOL-SEED`, 5/5)
+
+- `SOL-SEED-01` P1 — Kovisioonis, järelvaates ja suletud seemned muutuvad Teemaseemnete UI-s uuesti mustanditeks — DONE — kõik viis `TopicSeedStatus` olekut kasutavad üht kanoonilist olekukaarti, mille järgi renderdatakse silt, filter ja lubatud toimingud. `DRAFT` lubab muuta, järjekorda lisada ja kustutada; `WAITING` vaadata ja tagasi võtta; `IN_COVISION` avab seotud Kovisiooni, `FOLLOW_UP` järelvaate ning `CLOSED` on read-only ajalugu. Sihttestid 118/118; autenditud lokaalne brauser kontrollitud API-fixtuuriga näitas kõiki viit olekut ja nende eristuvaid toiminguid (`runtime: local_browser_run`, kontrollitud sünteetiline vastus).
+- `SOL-SEED-02` P1 — omanik ei saa tundlikku mustandit kustutada ega WAITING üldistust tagasi võtta — DONE — omanik saab versioonikindlalt kustutada ainult sidumata `DRAFT`-seemne ning viia ainult sidumata `WAITING`-seemne tagasi privaatsesse `DRAFT`-olekusse. Mõlemad toimingud on transaktsioonilised ja auditeeritud; seotud ja hilisemates olekutes seemned on kaitstud. PostgreSQL-i sond tõendas auditi rollback'i, start/withdraw võistluse ühe võitjaga, sisurea kustumise ja sisuta auditikviitungi säilimise pärast konto kustutamist.
+- `SOL-SEED-03` P1 — Kovisiooni mineva üldistuse isikustamatust tõendab ainult kliendi linnuke — DONE — enne `DRAFT → WAITING` üleminekut töötab serveripoolne deterministlik privaatsuse eelsõel. E-post, Eesti või välismaa telefon, kehtiv isikukood, nimi, täpne aadress ja juhtuminumber blokeeritakse; haruldaste kaudsete tunnuste kombinatsioon nõuab tavakinnitusest eraldi inimese privaatsusülevaadet. Püsivasse tõendisse lähevad ainult kategooriakoodid, mitte leitud isikuandmed. Negatiivkontroll tõendas, et vana rada lubas e-posti sisaldava seemne edasi.
+- `SOL-SEED-04` P2 — `updatedAt`-põhine optimistlik lukk võib sama millisekundi kirjutused kokku lasta — DONE — TopicSeed kasutab monotoonset täisarvulist `version` CAS-i; `updatedAt` on ainult kuvamise metaandmed. Muutmine, järjekorda lisamine, Kovisiooni alustamine ja järjekorrast eemaldamine nõuavad oodatud versiooni ning edukas mutatsioon suurendab seda. PostgreSQL-i sond tõendas PATCH/PATCH, PATCH/queue, queue/PATCH, start/withdraw ja withdraw/start võistlustes täpselt ühe võitja; vana millisekundipõhise fingerprint'i negatiivkontroll lubas mõlemad kirjutajad läbi.
+- `SOL-SEED-05` P2 — omaniku kogu Teemaseemnete ajalugu laaditakse ühe piiritlemata vastusena — DONE — omaniku ajaloo API kasutab piiratud cursor-paginatsiooni, serveripoolseid olekuloendureid ja stabiilset `updatedAt,id` järjestust; Kovisioonil on eraldi ainult sidumata `WAITING`-seemnete minimaalne järjekorra-API. PostgreSQL-i sond 20 005 reaga tõendas alla 64 KiB vastused, alla viie sekundi päringud ja duplikaadivabad cursor-lehed. Brauser renderdas algul 24 ja järgmise lehe järel 48 kaarti (`runtime: local_browser_run`, kontrollitud sünteetiline vastus).
+
+**Teekond ja jagamine** (`SOL-JOUR`, 3/17)
 
 - `SOL-JOUR-01` P0 — eelpöördumise teine jagamisvalik ei juhi tegelikult salvestatavat ega saadetavat teksti — DONE. Valitud on kriteeriumi TEINE haru: valikuid jääb kaks, aga
-- `SOL-JOUR-02` P0 — seadmesse salvestatud tundlik Teekonna mustand võib samas vahekaardis järgmisele kontole taastuda — DONE.
+- `SOL-JOUR-03` P1 — salvestusnormaliseerija hävitab Teekonna struktureeritud konteksti — DONE — Teekonna `context` kasutab versioonitud `schemaVersion: 1` lepingut ja väljade kaupa sügavusteadlikku normaliseerimist. `assistiveDevices`, `activityLog`, `helpMediation` ja `serviceContinuity` objektid ning objektimassiivid säilivad draft → create-normalize → serialize → update-normalize ringis; mitteskalaarsed väärtused ei muutu tekstiväljades `[object Object]` väärtuseks. Tõend: `tests/journey/contextRoundTrip.test.js`; DB-sondi ega brauserit ei ole vaja, sest invariant on deterministlikus DB-eelses normaliseerimises.
+- `SOL-JOUR-04` P1 — tavaline detailvaate salvestus kustutab soovitatud tegevuste masinloetavad tüübid — DONE — detailvaate salvestus seob redigeeritud pealkirjaread olemasolevate tegevusobjektidega. Ainult pealkirja muutmisel säilivad `id`, `type` ja `description`; muutmata tegevused säilitavad kogu masinloetava struktuuri ning uus rida ei päri teise tegevuse metaandmeid. Serveri normaliseerija säilitab ka tegevuse ID. Tõend: `tests/journey/suggestedActionEditing.test.js`.
 
-**Eelpöördumised** (`SOL-PRE`, 2/18)
+**Eelpöördumised** (`SOL-PRE`, 7/18)
 
 - `SOL-PRE-01` P0 — konto kustutamine jätab saatmata eelpöördumiste tundliku sisu autorita alles — DONE — saatmata mustandid kustutatakse samas lukustatud tehingus. Commit `97b28080`.
 - `SOL-PRE-02` P0 — tagasivõetud organisatsioonipöördumise sisu saab hiljem avada ja uuesti töötajale määrata — DONE — terminalne seis ei anna sisu ega tööd. Sond `npm run org:recall:probe` 42/42 päris PostgreSQL-is.
+- `SOL-PRE-03` P1 — eelpöördumine möödub teenusekaardi avaldamis- ja moderatsioonipiirist — DONE — eelpöördumise assistent ja create/update resolverid kasutavad tavakasutajale ainult `PUBLISHED` teenusekaardiridu; `NEEDS_REVIEW`, `DRAFT`, `HIDDEN` ja puuduv ID annavad ühetaolise 404 enne kirjutust. Väline saatmine kontrollib avaldamisseisu uuesti vahetult enne kõrvalmõju. `tests/preInquiries/recipientPolicy.test.js` katab rollid, kõik avaldamata seisud ning nullkirjutuse/nullsaatmise; ploki testslice 115/115 (`runtime: not_run`, invariant on serveripäringu tasandil).
+- `SOL-PRE-04` P1 — klient saab teenusekaardi adressaadi e-posti ja nime serveris teise väärtusega asendada — DONE — teenusekaardi ID korral tulevad adressaadi nimi, e-post, tüüp ja platvormisisene omanik ainult värskelt avaldatud serverirealt. Vastuoluline kliendiväärtus annab 400 enne create/update kirjutust; entry A + email B ei tekita kirjet ega saatmist. Käsitsi e-post jääb eraldi rajaks ainult ilma `recipientEntryId`-ta ning saatmine võrdleb identiteeti uuesti aktuaalse avaldatud reaga. Tõend: `tests/preInquiries/recipientPolicy.test.js`, testslice 115/115 (`runtime: not_run`).
+- `SOL-PRE-05` P1 — levinud eestikeelsed vägivallakirjeldused jäävad kriisiriskita — DONE — kriisirisk kasutab UTF-8 puhast ja diakriitikakindlalt normaliseeritud ühist riskiväravat. ET/EN/RU korpus katab lähisuhte- ja koduvägivalla, ähvarduse, enesevigastuse, eituse, ajaloolise juhtumi ning vahetu ohu; otsese ohu korral säilib kiire abi info sõltumata kontaktisoovitusest. Negatiivkontroll tõendas vana eestikeelse vale-negatiivse käitumise; `tests/preInquiries/assessment.test.js` on testslice'i 115/115 osa (`runtime: not_run`).
+- `SOL-PRE-06` P1 — sõnad „pere”, „vanem” ja „noor” tekitavad ilma lapseta lastekaitsesuuna — DONE — lapsekaitsesuund nõuab nüüd lapse või alaealise selget semantilist konteksti; sõnad „pere”, „vanem” ja „noor” üksi seda ei käivita. Korpus eristab eakat vanemat, lapsevanemat, noort spetsialisti, noorukit, pere eelarvet ja otsest lapse turvariski ning säilitab samaaegselt muud tuvastatud eluvaldkonnad. Vana vale-positiivne käitumine kukkus negatiivkontrollis; testslice 115/115 (`runtime: not_run`).
+- `SOL-PRE-07` P1 — piirkonnaga mitteseotud kontakt võib saada eksitava „kõrge kindluse” — DONE — iga soovitus kannab eraldi piirkonna-, vajaduse- ja kanalivaste tõendit ning `HIGH` on lubatud ainult nõutud vastete olemasolul. KOV-kontakt peab kattuma kasutaja KOV-iga; sama maakonna ja üleriigilise teenuse rajad on eraldi tähistatud ning puuduv piirkond või null sisulist vastet ei saa kõrget kindlust. Negatiivkontroll kattis vale KOV-i; testslice 115/115 (`runtime: not_run`).
 
 **Võrgustikutöö** (`SOL-NET`, 2/13)
 

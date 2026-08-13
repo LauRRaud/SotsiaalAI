@@ -7029,6 +7029,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 
 **Vastuvõtukriteerium.** Kõigil viiel serverioleku väärtusel peab olema üks kanooniline kliendikaardistus, silt, filter ja lubatud toimingute maatriks. `IN_COVISION` peab avama seotud sessiooni, `FOLLOW_UP` õige järelvaate ning `CLOSED` ainult lubatud read-only ajaloo. Testida päris API payload iga olekuga ja tõendada, et ükski terminalne/aktiivne rida ei saa DRAFT-toiminguid.
 
+**Seis (13.08.2026): DONE —** kõik viis `TopicSeedStatus` olekut kasutavad üht kanoonilist olekukaarti, mille järgi renderdatakse silt, filter ja lubatud toimingud. `DRAFT` lubab muuta, järjekorda lisada ja kustutada; `WAITING` vaadata ja tagasi võtta; `IN_COVISION` avab seotud Kovisiooni, `FOLLOW_UP` järelvaate ning `CLOSED` on read-only ajalugu. Sihttestid 118/118; autenditud lokaalne brauser kontrollitud API-fixtuuriga näitas kõiki viit olekut ja nende eristuvaid toiminguid (`runtime: local_browser_run`, kontrollitud sünteetiline vastus).
+
 ### SOL-SEED-02 — omanik ei saa tundlikku mustandit kustutada ega WAITING üldistust tagasi võtta — P1
 
 **Tõend.** TopicSeed API pakub ainult list/create, DRAFT PATCH-i, queue't ja Kovisiooni alustamist; DELETE-, archive-, withdraw- või unqueue-route puudub (`app/api/topic-seeds/**`; `lib/topicSeeds.js:289-411`). UI DRAFT- ja WAITING-kaartidel puudub samuti kustutamise/tagasivõtmise tegevus (`components/teemaseeme/TeemaseemnedPage.jsx:924-965`, `:1709-1804`). Toote alus lubab omanikul mustandi kustutada ja elemendi pärast kasutamist kustutatavaks märkida (`Kovisioon/teemaseeme-professionaalne-funktsioon.md:138-149`, `:1926-1946`). Skeemis on TopicSeed kasutajakonto suhtes Cascade, mistõttu ainus koodis tõendatud lõplik kustutustee on kogu konto kustutamine (`prisma/schema.prisma:2453-2478`).
@@ -7036,6 +7038,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 **Mõju.** Ekslikult loodud või hiljem tundlikuks osutunud juhtumiseeme jääb kasutaja kontole määramata ajaks. Kord WAITING-uks külmutatud üldistust ei saa enne Kovisiooni loomist järjekorrast eemaldada, isegi kui anonüümsuskinnitus või professionaalne otsus oli vale.
 
 **Vastuvõtukriteerium.** Lisada owner-only, auditeeritud ja versioonikindel DRAFT delete ning WAITING withdraw/archive rada; seotud `IN_COVISION` või hilisemaid objekte ei tohi pimesi kustutada. UI peab enne pöördumatut toimingut näitama täpset mõju. Testida DRAFT kustutust, WAITING tagasivõttu, start-vs-withdraw võidujooksu, seotud juhtumi kaitset ja konto kustutuse retentsioonireeglit.
+
+**Seis (13.08.2026): DONE —** omanik saab versioonikindlalt kustutada ainult sidumata `DRAFT`-seemne ning viia ainult sidumata `WAITING`-seemne tagasi privaatsesse `DRAFT`-olekusse. Mõlemad toimingud on transaktsioonilised ja auditeeritud; seotud ja hilisemates olekutes seemned on kaitstud. PostgreSQL-i sond tõendas auditi rollback'i, start/withdraw võistluse ühe võitjaga, sisurea kustumise ja sisuta auditikviitungi säilimise pärast konto kustutamist.
 
 ### SOL-SEED-03 — Kovisiooni mineva üldistuse isikustamatust tõendab ainult kliendi linnuke — P1
 
@@ -7045,6 +7049,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 
 **Vastuvõtukriteerium.** Enne WAITING üleminekut peab server tegema kõigi snapshot-väljade riskikontrolli ja eristama automaatset leidu inimese kinnitusest; otsene identifikaator peab ülemineku blokeerima ning kaudne/ebakindel juhtum nõudma teadlikku parandust või eraldi privaatsuskontrolli. Testikorpus peab sisaldama e-posti, Eesti ja välismaa telefoni, isikukoodi, nime, aadressi, juhtuminumbrit ning haruldaste tunnuste kombinatsiooni.
 
+**Seis (13.08.2026): DONE —** enne `DRAFT → WAITING` üleminekut töötab serveripoolne deterministlik privaatsuse eelsõel. E-post, Eesti või välismaa telefon, kehtiv isikukood, nimi, täpne aadress ja juhtuminumber blokeeritakse; haruldaste kaudsete tunnuste kombinatsioon nõuab tavakinnitusest eraldi inimese privaatsusülevaadet. Püsivasse tõendisse lähevad ainult kategooriakoodid, mitte leitud isikuandmed. Negatiivkontroll tõendas, et vana rada lubas e-posti sisaldava seemne edasi.
+
 ### SOL-SEED-04 — `updatedAt`-põhine optimistlik lukk võib sama millisekundi kirjutused kokku lasta — P2
 
 **Tõend.** PATCH ja queue kasutavad ainsa versioonifingerprint'ina `updatedAt` aega ning tingimuslikku `updateMany` päringut (`lib/topicSeeds.js:318-353`, `:372-411`). TopicSeed migratsioon salvestab selle välja `TIMESTAMP(3)` täpsusega ehk ainult millisekundini (`prisma/migrations/20260714040000_topic_seed/migration.sql:21`). Eraldi integer-versioni ega kliendi idempotentsusvõtit pole. Olemasolevad ordering-testid muudavad fake-DB aega järjestikku, kuid ei kata kaht sama millisekundi write'i (`tests/topicSeeds/topicSeedsService.test.js:442-493`).
@@ -7053,6 +7059,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 
 **Vastuvõtukriteerium.** Lisada monotoonne integer `version` ja kasutada seda kõigi muutvate päringute CAS-is; `updatedAt` jäägu kuvamisajaks. Kahe päris DB-ühendusega test peab sundima sama algversiooni PATCH-vs-PATCH ja PATCH-vs-queue järjekorrad ning tõendama täpselt ühe võitja ja snapshot'i vastavuse võitnud sisule.
 
+**Seis (13.08.2026): DONE —** TopicSeed kasutab monotoonset täisarvulist `version` CAS-i; `updatedAt` on ainult kuvamise metaandmed. Muutmine, järjekorda lisamine, Kovisiooni alustamine ja järjekorrast eemaldamine nõuavad oodatud versiooni ning edukas mutatsioon suurendab seda. PostgreSQL-i sond tõendas PATCH/PATCH, PATCH/queue, queue/PATCH, start/withdraw ja withdraw/start võistlustes täpselt ühe võitja; vana millisekundipõhise fingerprint'i negatiivkontroll lubas mõlemad kirjutajad läbi.
+
 ### SOL-SEED-05 — omaniku kogu Teemaseemnete ajalugu laaditakse ühe piiritlemata vastusena — P2
 
 **Tõend.** `listTopicSeeds()` pärib kõik kasutaja read `findMany` abil, ainsa tingimuse ja järjestusega, kuid ilma `take`, cursor'i või olekupõhise prioriteedita (`lib/topicSeeds.js:289-296`). GET-route tagastab kogu massiivi (`app/api/topic-seeds/route.js:27-37`) ning nii Teemaseemnete leht kui Kovisiooni tööruum laadivad selle tervikuna ühe fetch'iga (`components/teemaseeme/TeemaseemnedPage.jsx:216-249`; `components/covision/CovisionWorkspace.jsx:58-81`). Iga rida võib sisaldada nii top-level `whyNow` kui ka sama tekstiga JSON snapshot'i.
@@ -7060,6 +7068,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 **Mõju.** Pika kasutusajaloo korral kasvavad päring, JSON, brauserimälu ja renderdamine piiritlemata; Kovisiooni tööruumi avamine muutub aeglaseks ka siis, kui vaja on ainult mõnda WAITING seemet. Vastupidiselt kõva kärpega loenditele ei kao siin read vaikides, kuid üks suur konto võib põhjustada käideldavusprobleemi.
 
 **Vastuvõtukriteerium.** Teemaseemnete põhileht peab kasutama stabiilset cursor-paginatsiooni ja serveri loendureid; Kovisiooni queue peab pärima eraldi ainult `status=WAITING AND covisionCaseId=null` minimaalse snapshot-projektsiooniga. Koormustestida vähemalt kümneid tuhandeid seemneid ning kontrollida vastuse suurust, päringuaega ja brauseri renderduse piiri.
+
+**Seis (13.08.2026): DONE —** omaniku ajaloo API kasutab piiratud cursor-paginatsiooni, serveripoolseid olekuloendureid ja stabiilset `updatedAt,id` järjestust; Kovisioonil on eraldi ainult sidumata `WAITING`-seemnete minimaalne järjekorra-API. PostgreSQL-i sond 20 005 reaga tõendas alla 64 KiB vastused, alla viie sekundi päringud ja duplikaadivabad cursor-lehed. Brauser renderdas algul 24 ja järgmise lehe järel 48 kaarti (`runtime: local_browser_run`, kontrollitud sünteetiline vastus).
 
 ### SOL-JOUR-01 — eelpöördumise teine jagamisvalik ei juhi tegelikult salvestatavat ega saadetavat teksti — P0
 
@@ -7115,31 +7125,7 @@ konto lisamine mõõdaks omanikuskoopi, mis on juba mujal kaetud.
 
 **Vastuvõtukriteerium.** Mustandivõti peab olema seotud vähemalt stabiilse kasutaja ID ja sessioonikontekstiga; identiteedi muutumisel ei tohi eelmise identiteedi mustandit lugeda ning vana võti tuleb turvaliselt eemaldada. Kahe konto brauseritest peab tõendama logout/login, rollivahetuse, aegunud sessiooni ja vahekaardi taastamise negatiivjuhud.
 
-**Seis (10.08.2026): DONE.**
-
-- **Rida on konto oma.** `sotsiaalai:journey-v1:draft` on nüüd ALUSNIMI, millele lisatakse
-  kasutaja ID. Omanik tuleb toorest sessioonist; ilma temata on seade LUKUS — ei loeta ega
-  kirjutata.
-- **Sama primitiiv, mis teenuspäevikul.** SOL-SLOG-01 ja see leid olid sama viga eri
-  failides, seega kaitse kolis `lib/device/ownerScopedStorage.js`-i ja
-  `lib/serviceLog/deviceStore.js` delegeerib sinna. Kaks koopiat lahkneksid — see on täpselt
-  see muster, mille RAG-admini peatükk juba korra kätte õpetas.
-- **Kasutajavahetus tühjendab ekraani MÄLUS**, salvestust puutumata: `clear` läheks juba uue
-  omaniku reale ja kustutaks tema õige mustandi.
-- **Vana sildistamata rida kustutatakse**, mitte ei anta järgmisele sisselogijale.
-- **Kirjutamine ootab taastamist** (`draftReadyRef`) — ilma selleta kirjutaks tühi vorm üle
-  rea, mida keegi ei puutunud. See lõks on SOL-SLOG-01 juures mõõdetud ja siia ei lastud.
-
-**Tõend (päris brauser, päris sessioon).** Seadmesse pandi korraga vana sildistamata rida ja
-VÕÕRA omaniku rida → lehe avamisel: vana rida kustutati, võõra omaniku rida jäi baidilt
-puutumata ja **kumbagi ei olnud ekraanil ega üheski väljas**. Seejärel oma rida → taastus
-õigesti („Taastasime selle sessiooni pooleli jäänud töö") ja **rida jäi alles**.
-
-**runtime osaliselt: `A logib välja → B logib sisse` samas vahekaardis on läbi käimata.**
-Vahetuse haru on koodis olemas (omaniku muutus tühjendab vormi ja loeb uue omaniku rea) ja
-ülal kirjeldatud võõra omaniku katse mõõdab sedasama invarianti teisest otsast: seade
-sisaldab teise konto rida, meie sessioon ei näe seda. Aegunud sessioon annab `status !==
-"authenticated"` ehk tühja omaniku → lukus seade, sama haru.
+**Seis (13.08.2026): PARTIAL —** Teekonna kohalik mustand on kasutaja ID-ga omanikuskoobitud, omanikuta seade on lukus ning vana sildistamata rida kustutatakse. Jagatud `ownerScopedStorage` primitiivi negatiivkontrollid kinnitavad, et kaks kontot ei loe teineteise mustandit ja koristus ei puuduta omaniku ridu. **NOT_PROVEN:** täielikku sama vahekaardi brauserirada — A logout → B login, rollivahetus, aegunud sessioon ja vahekaardi taastamine — ei ole veel läbi käidud; seepärast ei ole leid DONE.
 
 ### SOL-JOUR-03 — salvestusnormaliseerija hävitab Teekonna struktureeritud konteksti — P1
 
@@ -7149,6 +7135,8 @@ sisaldab teise konto rida, meie sessioon ei näe seda. Aegunud sessioon annab `s
 
 **Vastuvõtukriteerium.** `context` peab omama versioonitud, väljade kaupa skeemi ja sügavuselt teadlikku normaliseerimist; objektimassiive ei tohi stringistada. Round-trip test peab võrdlema draft → create-normalize → serialize → update-normalize tulemust assistiveDevices, activityLog, helpMediation ja serviceContinuity täisstruktuuridega ning keelama `[object Object]` väärtuse kogu payload'is.
 
+**Seis (13.08.2026): DONE —** Teekonna `context` kasutab versioonitud `schemaVersion: 1` lepingut ja väljade kaupa sügavusteadlikku normaliseerimist. `assistiveDevices`, `activityLog`, `helpMediation` ja `serviceContinuity` objektid ning objektimassiivid säilivad draft → create-normalize → serialize → update-normalize ringis; mitteskalaarsed väärtused ei muutu tekstiväljades `[object Object]` väärtuseks. Tõend: `tests/journey/contextRoundTrip.test.js`; DB-sondi ega brauserit ei ole vaja, sest invariant on deterministlikus DB-eelses normaliseerimises.
+
 ### SOL-JOUR-04 — tavaline detailvaate salvestus kustutab soovitatud tegevuste masinloetavad tüübid — P1
 
 **Tõend.** Detailvorm teisendab `suggestedActions` objektid ainult pealkirjadeks ja salvestamisel loob iga rea uuesti kujul `{ title }`, jättes ära `type` ja `description` (`components/journey/JourneyDetail.jsx:95-115`, `:842-862`). Handoff'id kasutavad aga tegevuse `type` väärtusi, et avada teenusekaart või tervisekontakti rada (`lib/journey/serviceMapHandoff.js:61-72`, `lib/journey/healthContact.js:37-50`). Server aktsepteerib kadunud tüüpideta massiivi edukalt (`lib/journey/validation.js:58-81`, `:184-188`).
@@ -7156,6 +7144,8 @@ sisaldab teise konto rida, meie sessioon ei näe seda. Aegunud sessioon annab `s
 **Mõju.** Kasutaja võib muuta ainult pealkirja või kokkuvõtet, kuid sama „Salvesta” kustutab kõigi järgmiste sammude tüübid ja kirjeldused. Osa hilisemaid tööriistakaarte või handoff'e võib seejärel kaduda või sõltuda juhuslikust vabateksti tuletusest.
 
 **Vastuvõtukriteerium.** Redigeerimisvorm peab säilitama muutmata tegevuste ID/type/description väljad või server peab rakendama väljade kaupa patch'i olemasolevale struktuurile. Regressioonitest peab muutma ainult pealkirja ning tõendama, et kõik tegevuste tüübid ja kirjeldused jäävad bititäpselt alles.
+
+**Seis (13.08.2026): DONE —** detailvaate salvestus seob redigeeritud pealkirjaread olemasolevate tegevusobjektidega. Ainult pealkirja muutmisel säilivad `id`, `type` ja `description`; muutmata tegevused säilitavad kogu masinloetava struktuuri ning uus rida ei päri teise tegevuse metaandmeid. Serveri normaliseerija säilitab ka tegevuse ID. Tõend: `tests/journey/suggestedActionEditing.test.js`.
 
 ### SOL-JOUR-05 — kaks nähtavat Teekonna toimingut kirjutavad vana kliendiseisu konfliktita üle — P1
 
@@ -7370,6 +7360,8 @@ tagasivõetud pakett. Peidetud on ainult `RECALLED`. Töörajad sulguvad kõigil
 
 **Vastuvõtukriteerium.** Kõik eelpöördumise adressaadiresolverid peavad kasutama ühist avaldamispoliitikat: tavakasutajale ainult `PUBLISHED`, administraatori eelvaade eraldi ja saatmises alati keelatud. Testida PUBLISHED/NEEDS_REVIEW/DRAFT/HIDDEN iga rolliga nii assistendi, create'i kui update'i kaudu ning kontrollida, et keelatud ID ei leki 404-vastuses.
 
+**Seis (13.08.2026): DONE —** eelpöördumise assistent ja create/update resolverid kasutavad tavakasutajale ainult `PUBLISHED` teenusekaardiridu; `NEEDS_REVIEW`, `DRAFT`, `HIDDEN` ja puuduv ID annavad ühetaolise 404 enne kirjutust. Väline saatmine kontrollib avaldamisseisu uuesti vahetult enne kõrvalmõju. `tests/preInquiries/recipientPolicy.test.js` katab rollid, kõik avaldamata seisud ning nullkirjutuse/nullsaatmise; ploki testslice 115/115 (`runtime: not_run`, invariant on serveripäringu tasandil).
+
 ### SOL-PRE-04 — klient saab teenusekaardi adressaadi e-posti ja nime serveris teise väärtusega asendada — P1
 
 **Tõend.** `resolveRecipient()` eelistab POST/PATCH-kehast tulevaid `selectedRecipientEmail` ja `selectedRecipientName` väärtusi teenusekaardi rea autoriteetsetele väljadele; sama kliendi e-posti järgi otsitakse suvaline `User` ning tema opt-in määrab sisemise adressaadi (`lib/preInquiries.js:481-518`, `:503-510`). `recipientEntryId` ja tegelik `recipientOwnerId`/e-posti siht ei pea omavahel sobima. UI saadab küll nähtava rea väärtused (`components/workspace/WorkspaceFeaturePage.jsx:1524-1543`), kuid server ei jõusta seda seost.
@@ -7377,6 +7369,8 @@ tagasivõetud pakett. Peidetud on ainult `RECALLED`. Töörajad sulguvad kõigil
 **Mõju.** Muudetud klient või integratsioon saab näidata ja salvestada ühe KOV-i/teenuseosutaja nime, kuid suunata tundliku pöördumise teisele e-posti aadressile või teise opt-in kasutaja kontole. Auditijälg ja kasutaja eelvaade võivad nimetada vale adressaati.
 
 **Vastuvõtukriteerium.** Kui `recipientEntryId` on antud, peab nimi, e-post, tüüp ja platvormisisene omanik tulema ainult värskelt avaldatud serverirealt; vastuoluline kliendiväärtus peab olema 400 või täielikult ignoreeritud. Käsitsi e-posti sisestus peab olema eraldi, selgelt nimetatud rada ilma teenusekaardi identiteedita. Negatiivtest peab püüdma entry A + email B ja tõendama null kirjutust/saatmist.
+
+**Seis (13.08.2026): DONE —** teenusekaardi ID korral tulevad adressaadi nimi, e-post, tüüp ja platvormisisene omanik ainult värskelt avaldatud serverirealt. Vastuoluline kliendiväärtus annab 400 enne create/update kirjutust; entry A + email B ei tekita kirjet ega saatmist. Käsitsi e-post jääb eraldi rajaks ainult ilma `recipientEntryId`-ta ning saatmine võrdleb identiteeti uuesti aktuaalse avaldatud reaga. Tõend: `tests/preInquiries/recipientPolicy.test.js`, testslice 115/115 (`runtime: not_run`).
 
 ### SOL-PRE-05 — levinud eestikeelsed vägivallakirjeldused jäävad kriisiriskita — P1
 
@@ -7386,6 +7380,8 @@ tagasivõetud pakett. Peidetud on ainult `RECALLED`. Töörajad sulguvad kõigil
 
 **Vastuvõtukriteerium.** Märksõnakorpus peab olema UTF-8 puhas, käände- ja diakriitikakindel ning ühendatud üheks auditeeritavaks riskiväravaks. ET/EN/RU negatiiv- ja positiivkorpus peab katma vähemalt lähisuhtevägivalla, koduvägivalla, ähvarduse, enesevigastuse, eituse, ajaloolise juhtumi ja vahetu ohu; otsese ohu korral peab kiire abi info jääma nähtavaks sõltumata kontaktisoovitusest.
 
+**Seis (13.08.2026): DONE —** kriisirisk kasutab UTF-8 puhast ja diakriitikakindlalt normaliseeritud ühist riskiväravat. ET/EN/RU korpus katab lähisuhte- ja koduvägivalla, ähvarduse, enesevigastuse, eituse, ajaloolise juhtumi ning vahetu ohu; otsese ohu korral säilib kiire abi info sõltumata kontaktisoovitusest. Negatiivkontroll tõendas vana eestikeelse vale-negatiivse käitumise; `tests/preInquiries/assessment.test.js` on testslice'i 115/115 osa (`runtime: not_run`).
+
 ### SOL-PRE-06 — sõnad „pere”, „vanem” ja „noor” tekitavad ilma lapseta lastekaitsesuuna — P1
 
 **Tõend.** `CHILD_KEYWORDS` sisaldab kontekstita alamstringe `noor`, `vanem` ja `pere`; ükskõik milline vaste seab `childProtection=true`, asendab muud eluvaldkonnad ainsa väärtusega „lapse heaolu ja pere” ning valib `CHILD_PROTECTION` suuna (`lib/preInquiriesAssessment.js:34-53`, `:145-193`). Auditi kontrollis muutus „Aitan eakat vanemat ja pere vajab hoolduskoormuse tuge” lapse ohutusjuhtumiks ning „Noor spetsialist aitab eakat inimest” sai nii `CHILD_SAFETY` kui `YOUTH_SAFETY` lipu.
@@ -7394,6 +7390,8 @@ tagasivõetud pakett. Peidetud on ainult `RECALLED`. Töörajad sulguvad kõigil
 
 **Vastuvõtukriteerium.** Lapse suund peab nõudma lapse/alaealise selget semantilist konteksti või kasutaja kinnitust; üldsõnad üksi ei tohi otsustada. Testkorpus peab sisaldama eakat vanemat, lapsevanemat, noort spetsialisti, noorukit, pere eelarvet ja otsest lapse turvariski ning säilitama samaaegselt kõik muud eluvaldkonnad.
 
+**Seis (13.08.2026): DONE —** lapsekaitsesuund nõuab nüüd lapse või alaealise selget semantilist konteksti; sõnad „pere”, „vanem” ja „noor” üksi seda ei käivita. Korpus eristab eakat vanemat, lapsevanemat, noort spetsialisti, noorukit, pere eelarvet ja otsest lapse turvariski ning säilitab samaaegselt muud tuvastatud eluvaldkonnad. Vana vale-positiivne käitumine kukkus negatiivkontrollis; testslice 115/115 (`runtime: not_run`).
+
 ### SOL-PRE-07 — piirkonnaga mitteseotud kontakt võib saada eksitava „kõrge kindluse” — P1
 
 **Tõend.** Assistendi soovitused saavad punkte juba pelga e-posti/telefoni olemasolu eest ning jäävad loendisse, kui skoor on üle nulli; piirkonnakattuvus ei ole kohustuslik (`lib/preInquiries.js:275-303`, `:1809-1884`). `buildPreInquiryRoutingConfidence()` annab `HIGH`, kui sisendis on lihtsalt municipality, vähemalt üks vajadus ja vähemalt üks suggestion — ta ei kontrolli, kas soovitus kattus piirkonna või vajadusega (`lib/preInquiryRouting.js:109-149`). Auditi kontrollis sai suvaline `{id:"wrong-region"}` soovitus Tartu + eluaseme sisendiga `HIGH` ja teksti, et soovitus põhineb piirkonnal ning vajadussignaalidel.
@@ -7401,6 +7399,8 @@ tagasivõetud pakett. Peidetud on ainult `RECALLED`. Töörajad sulguvad kõigil
 **Mõju.** Kasutaja võib saada kõrge usaldussildiga vale KOV-i või teeninduspiirkonna kontakti. Selgitus väidab tõendit, mida arvutus ei kontrollinud, ning võib suunata tundliku info valele asutusele.
 
 **Vastuvõtukriteerium.** Iga soovitus peab kandma eraldi tõendatud piirkonna-, vajaduse- ja kanalivastet; `HIGH` on lubatud ainult nõutud vastete olemasolul. KOV-kontakt peab vaikimisi kattuma kasutaja KOV-iga, üleriigiline teenus peab olema selgelt märgitud. Testida vale KOV, sama maakond, üleriigiline teenus, puuduv piirkond ja null sisulist vastet.
+
+**Seis (13.08.2026): DONE —** iga soovitus kannab eraldi piirkonna-, vajaduse- ja kanalivaste tõendit ning `HIGH` on lubatud ainult nõutud vastete olemasolul. KOV-kontakt peab kattuma kasutaja KOV-iga; sama maakonna ja üleriigilise teenuse rajad on eraldi tähistatud ning puuduv piirkond või null sisulist vastet ei saa kõrget kindlust. Negatiivkontroll kattis vale KOV-i; testslice 115/115 (`runtime: not_run`).
 
 ### SOL-PRE-08 — eelpöördumise üldsalvestus kirjutab vana brauseriseisu konfliktita üle — P1
 

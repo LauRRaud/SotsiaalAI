@@ -202,6 +202,17 @@ function db({
       async findMany({ where }) {
         if (!where?.ownerId) throw new Error("skoopimata päring: ownerId puudub");
         return seeds.filter((row) => row.ownerId === where.ownerId);
+      },
+      async groupBy({ where }) {
+        if (!where?.ownerId) throw new Error("skoopimata päring: ownerId puudub");
+        const counts = new Map();
+        for (const row of seeds.filter((item) => item.ownerId === where.ownerId)) {
+          counts.set(row.status, (counts.get(row.status) || 0) + 1);
+        }
+        return [...counts.entries()].map(([status, count]) => ({
+          status,
+          _count: { _all: count }
+        }));
       }
     },
     /* SOL-CW-17: KAKS PUUDUVAT MUDELIT. `draftsAwaitingTransfer` ja
