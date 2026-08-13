@@ -7,6 +7,7 @@ const PROFILE = { id: "profile-1", ownershipMode: "SOLO" };
 
 function makeDb() {
   const narratives = [];
+  let revisionTick = new Date("2026-08-13T00:00:00.000Z").getTime();
   const entries = [
     {
       clientDisplayName: "Mari",
@@ -60,16 +61,23 @@ function makeDb() {
         narratives.push({
           ...candidate,
           id: `narrative-${narratives.length + 1}`,
-          createdAt: new Date(),
-          updatedAt: new Date()
+          createdAt: new Date(revisionTick),
+          updatedAt: new Date(revisionTick)
         });
         return { count: 1 };
       },
       findFirst: async ({ where }) => narratives.find((row) => matches(row, where)) || null,
-      update: async ({ where, data }) => {
-        const row = narratives.find((item) => item.id === where.id);
-        Object.assign(row, data, { updatedAt: new Date() });
-        return row;
+      updateMany: async ({ where, data }) => {
+        const row = narratives.find(
+          (item) =>
+            item.id === where.id &&
+            item.providerProfileId === where.providerProfileId &&
+            item.updatedAt.getTime() === where.updatedAt.getTime()
+        );
+        if (!row) return { count: 0 };
+        revisionTick += 1;
+        Object.assign(row, data, { updatedAt: new Date(revisionTick) });
+        return { count: 1 };
       }
     }
   };
@@ -139,4 +147,69 @@ test("suunamiseta väliskliendi narratiiv ei sünni ainult nime põhjal", async 
   ).catch((caught) => caught);
   assert.equal(error.status, 400);
   assert.equal(error.messageKey, "service_log.errors.external_client_ref_required");
+});
+
+test("SOL-SLOG-J-04: sama revision'i kaks muutjat annavad ühe võitja ja värske projektsiooniga 409", async () => {
+  const db = makeDb();
+  const created = await upsertNarrative(
+    "user-1",
+    {
+      clientDisplayName: "Mari",
+      clientExternalRef: "external-a",
+      periodYear: 2026,
+      periodMonth: 8,
+      bodyText: "Algtekst"
+    },
+    { db, env: ENV }
+  );
+
+  const first = await upsertNarrative(
+    "user-1",
+    {
+      clientDisplayName: "Mari",
+      clientExternalRef: "external-a",
+      periodYear: 2026,
+      periodMonth: 8,
+      bodyText: "Esimene muudatus",
+      expectedUpdatedAt: created.updatedAt
+    },
+    { db, env: ENV }
+  );
+  const stale = await upsertNarrative(
+    "user-1",
+    {
+      clientDisplayName: "Mari",
+      clientExternalRef: "external-a",
+      periodYear: 2026,
+      periodMonth: 8,
+      bodyText: "Vaikne ülekirjutus",
+      expectedUpdatedAt: created.updatedAt
+    },
+    { db, env: ENV }
+  ).catch((error) => error);
+
+  assert.equal(first.bodyText, "Esimene muudatus");
+  assert.equal(stale.status, 409);
+  assert.equal(stale.messageKey, "service_log.errors.narrative_version_conflict");
+  assert.equal(stale.details.narrative.bodyText, "Esimene muudatus");
+  assert.equal(db.narratives[0].bodyText, "Esimene muudatus");
+});
+
+test("SOL-SLOG-J-04: create/create kaotaja ei muutu vaikseks update'iks", async () => {
+  const db = makeDb();
+  const input = {
+    clientDisplayName: "Mari",
+    clientExternalRef: "external-a",
+    periodYear: 2026,
+    periodMonth: 8
+  };
+  const results = await Promise.allSettled([
+    upsertNarrative("user-1", { ...input, bodyText: "Looja A" }, { db, env: ENV }),
+    upsertNarrative("user-1", { ...input, bodyText: "Looja B" }, { db, env: ENV })
+  ]);
+
+  assert.equal(results.filter((result) => result.status === "fulfilled").length, 1);
+  const rejected = results.find((result) => result.status === "rejected");
+  assert.equal(rejected.reason.status, 409);
+  assert.equal(db.narratives.length, 1);
 });

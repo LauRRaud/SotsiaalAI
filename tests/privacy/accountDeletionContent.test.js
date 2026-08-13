@@ -88,6 +88,14 @@ function createDb({ urgentRequests = [], preInquiries = [] } = {}) {
        mudelite olemasolu — puuduv mudel peab kukutama, mitte vaikima. */
     serviceProviderProfile: { findMany: async () => [], updateMany: async () => ({ count: 0 }) },
     serviceMapEntry: { updateMany: async () => ({ count: 0 }) },
+    serviceReferral: model(),
+    serviceEntry: model(),
+    serviceEntryCorrection: model(),
+    serviceMonthlyNarrative: model(),
+    serviceWorkRoute: model(),
+    serviceVisit: model(),
+    serviceLogTimeSample: model(),
+    serviceReportShare: model(),
     dataDeletionJob: { findFirst: async () => null, create: async () => ({ id: "job_1" }) },
     user: {
       delete: async ({ where }) => ({ id: where.id })

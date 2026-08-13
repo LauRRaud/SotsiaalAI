@@ -37,6 +37,7 @@ import ServiceLogNarrative from "./ServiceLogNarrative";
 import ServiceLogShare from "./ServiceLogShare";
 import ServiceLogExport from "./ServiceLogExport";
 import ServiceLogBaseline from "./ServiceLogBaseline";
+import ServiceLogEntryActions from "./ServiceLogEntryActions";
 import { isServiceLogMeasurementUiEnabled } from "@/lib/serviceLog/flags";
 
 function unitLabel(t, unit) {
@@ -270,6 +271,7 @@ export default function ServiceLogMonth({ month, onMonthChange }) {
                     </button>
                   ) : null}
                 </div>
+                <ServiceLogEntryActions entry={entry} onChanged={load} />
               </li>
             ))}
           </ul>

@@ -42,7 +42,7 @@
 
 **Vastuvõtukriteerium.** Päeva- või kuuvaates peab olema owner-only detail/toiming, mis lubab DRAFT-i redigeerida/kustutada ning FINAL-rida põhjusega parandada või tühistada; enne kinnitamist peab kuvama kogu muudetava sisu. Lisada owner-skoobitud paranduste ajaloo GET ja nähtav ajajoon. Negatiivtestid: võõras kirje 404, DRAFT delete, FINAL delete enne tähtaega 409, põhjuseta parandus/void 400, VOID muutmine 409, stale revision 409 ja parandusajaloo reload.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE — kuu kirjel on nüüd olekupõhine owner-toiming: DRAFT-i saab kogu muudetava sisuga parandada või kinnituse järel kustutada, FINAL-i saab ainult põhjusega parandada või tühistada ning VOID jääb read-only. Uus owner-skoobitud `GET /api/service-entries/[id]/corrections` kuvab põhjuse, aja ja muudetud väljad; ka tühistamine kirjutab parandustabelisse põhjuse ning võõras omanik saab 404. Auditispetsiifiline negatiivkontroll oli enne parandust **0/3** ja pärast parandust Teenuspäeviku sihtslice **40/40 PASS**. Päris lokaalses sünteetilises brauserirajas läbisid DRAFT edit/reload/delete, FINAL põhjuseta paranduse tõke, põhjusega parandus/reload/ajalugu ja void; loodud kirjed, suunamine ning kaks ajaproovi koristati pärast tõendit. `npm run build`, sihitud ESLint ja i18n kontroll läbisid.
 
 ### SOL-SLOG-J-02 — suunamist saab luua ja vaadata, kuid mitte parandada ega lõpetada — P1
 
@@ -52,7 +52,7 @@
 
 **Vastuvõtukriteerium.** Iga aktiivse suunamise juures peab olema muutmine ja teadliku kinnitusega lõpetamine; serveri lukureeglid tuleb kuvada arusaadava põhjusena ning lõpetatud suunamine jääb read-only ajalukku. Testida kasutamata ja kasutatud suunamise muutmist, perioodi kitsendamist üle olemasoleva kirje, end-vs-create võidujooksu, topeltlõpetamist, reload'i ja seda, et ENDED suunamine ei ilmu uue kirje valikusse.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE — aktiivse suunamise kaardil on muutmine ja teadliku kinnitusega lõpetamine; kasutamata otsuse välju saab muuta, kasutatud otsuse identiteet jääb lukku, olemasolevaid kirjeid välja jätva perioodikitsenduse veateade on nähtav ning ENDED jääb reload'i järel read-only ajalukku ega lähe uue kirje vaikimisi valikusse. Kirje loomine ja lõpetamine lukustavad sama `ServiceReferral` rea: `npm run slog:referral-race:probe` läbis päris ajutises PostgreSQL-is **11/11**, sh mõlemad järjekorrad, 409 kaotaja, topeltlõpetamine sihttestis ja puhas cleanup. Lokaalne sünteetiline brauserirada tõendas muutmise püsimist, teadlikku lõpetamist ja reload'i; ülesande andmed koristati.
 
 ### SOL-SLOG-J-03 — üks tekstimuudatus kustutab AI-mustandi päritolu salvestatud kuunarratiivilt — P1
 
@@ -62,7 +62,7 @@
 
 **Vastuvõtukriteerium.** `draftSource` peab tähistama teksti päritolu, mitte seda, kas baitidentne mustand on puutumata; AI-st alustatud narratiiv jääb AI-abistatuks ka pärast toimetamist. Kui soovitakse eristada ulatuslikku ümberkirjutust, vajab see eraldi tõendatavat olekut, mitte esimest klahvivajutust. Komponendi-/brauseritest peab genereerima, muutma ühe märgi, salvestama, reload'ima ja tõendama AI-abistatuse säilimist; täiesti käsitsi alustatud tekst peab jääma `null`-iks.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE — `draftSource` kirjeldab nüüd algallikat: AI-ga alustatud narratiiv jääb `AI_MUSTAND`-märgisega ka pärast inimese toimetust ja reload'i, täiesti käsitsi alustatud tekst jääb märgiseta. Sihttestid kinnitavad olekulepingu ning ehitatud rakenduse päris brauserirajas säilis märk pärast ühe märgi muutmist, päris API-sse salvestamist ja reload'i. Lokaalne väline AI-teenus ei olnud saadaval; brauseris asendati ainult draft-endpointi vastus deterministliku `AI_MUSTAND` sünteetilise vastusega, seed, salvestus, andmebaas ja reload olid päris. Ülesande narratiiv, kirje ja suunamine koristati.
 
 ### SOL-SLOG-J-04 — kuunarratiivi paralleelsed muudatused kirjutavad üksteist revision/CAS-ita üle — P1
 
@@ -72,7 +72,7 @@
 
 **Vastuvõtukriteerium.** GET peab tagastama revision'i/`updatedAt`, PUT nõudma seda ning tegema tingimusliku update'i; stale kirjutaja saab 409 koos värske projektsiooniga ja saab teadlikult ühendada. Loomise upsert ja muutmise CAS peavad jääma eri lepinguteks. Päris PostgreSQL-i test peab võistlema create/create, update/update ja AI-vastus-vs-käsimuudatus ning tõendama, et ükski kinnitatud tekst ei kao vaikides.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE — GET-i `updatedAt` jõuab nüüd PUT-i `expectedUpdatedAt`-ina ning olemasoleva rea muutmine kasutab owner-skoobitud `updateMany` CAS-i. Loomise võistluse kaotaja ja stale muutja saavad 409 koos värske narratiiviprojektsiooniga; UI hoiab vana teksti vormil, näitab värsket kõrvutuseks ja laseb selle teadlikult üle võtta. `npm run slog:narrative-race:probe` läbis ajutises päris PostgreSQL-is **10/10**: create/create, update/update ja AI-vastus-vs-käsimuudatus, üks CAS-võitja, värske 409 projektsioon, säilinud tekst ja puhas cleanup. Ehitatud rakenduse brauserirada tõendas stale teksti säilimise, värske teksti kõrvutuse ja teadliku ülevõtu.
 
 ### SOL-SLOG-J-05 — kasutaja andmekoopia jätab kogu Teenuspäeviku töö välja — P1
 
@@ -82,7 +82,7 @@
 
 **Vastuvõtukriteerium.** Lisada rolli- ja omandipõhised Teenuspäeviku eksportpinnad: töötaja professionaalne kirje/referral/narrative/route/visit/correction ning kliendi minimaalne enda kirje/kinnitus; kolmandate isikute andmed tuleb projitseerida või selgelt põhjendatult välistada. Testida töötajat ja klienti, kahte omanikku, välisklienti, jagatud aruande saatja/saaja vaadet, parandusi, faili metaandmeid ning koopiat vahetult enne konto kustutust.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE — andmekoopia registris on nüüd eraldi Teenuspäeviku pind: osutaja saab ainult enda profiili suunamised, kirjed koos parandusahelaga, narratiivid, teekonnad, külastused, ajaproovid ning saadetud/saadud aruande metaandmed; klient saab ainult read, kus tema on klient. Professionaalsest koopiast on kliendi identiteet, täpne asukoht ja failitee eemaldatud ning jagatud aruande sisu asemel väljastatakse metaandmed. Sihttestid katavad töötaja ja kliendi, paranduse, väliskliendi projektsiooni ja jagamise mõlemad vaated. `npm run slog:privacy-retention:probe` tõendas päris PostgreSQL-is kaht omanikku, kliendi kinnitust, saatja/saaja vaadet ja kolmanda isiku andmete mitteläbimist.
 
 ### SOL-SLOG-J-06 — konto kustutus ei anonüümi Teenuspäeviku identiteete ja jätab külastustesse toored kasutaja-ID-d — P1
 
@@ -92,7 +92,7 @@
 
 **Vastuvõtukriteerium.** Konto kustutuse tehing peab enne User-rida idempotentselt töötlema kõik Teenuspäeviku rollid: kliendi snapshot'id minimeerida/anonüümida vastavalt õiguslikule alusele ja seada `clientErasedAt`; omaniku/parandaja seosed nullida koos vastava tombstone'iga; route/visit toored kasutaja-ID-d nullida või muuta tõendatud retentsioonisnapshot'iks. Retry peab olema fail-closed ning tagastama loendurid. Päris FK-test peab kustutama eraldi kliendi, töötaja ja juhi konto ning kontrollima kõiki mudeleid, aruandefaile ja jagatud koopiat enne/pärast retry'd.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE — konto lõplik kustutustehing nullib enne `User`-rida kõik Teenuspäeviku kliendi-, omaniku-, parandaja-, route/visit-, ajaproovi- ja aruandejagamise identiteedid, eemaldab kliendi snapshot'id ning kirjutab vastavad tombstone'id; loendurid jõuavad kustutuse auditi tulemusse. Töö on idempotentne ja mudeli- või User-kustutuse tõrge on fail-closed. `npm run slog:privacy-retention:probe` kustutas päris PostgreSQL-is eraldi kliendi, töötaja ja juhi ning kontrollis referral/entry/correction/narrative/route/visit/sample/share lõppseisu ja retry't; süstitud User-delete tõrge tõendas kogu tombstone'i tehingu rollback'i.
 
 ### SOL-SLOG-J-07 — seitsmeaastase klassiga Teenuspäeviku andmetel puudub tähtajajärgne retention-worker — P1
 
@@ -102,7 +102,7 @@
 
 **Vastuvõtukriteerium.** Defineerida iga Teenuspäeviku objekti retention-ankur ja sõltuvusjärjekord ning lisada batch'itud, idempotentne, auditeeritud sweep koos failide staging/retry/reconcile'iga. Referral/narrative/route/visit/share ei tohi kustuda enne sõltuvat raamatupidamistõendit ega jääda pärast enda lubatud tähtaega. Testida piir-1/piir/piir+1, VOID/FINAL/DRAFT, parandusahel, suunamise lõpp, kasutaja kustutus, puuduva faili/DB vea retry, üle batch-piiri nälgimine ja päris PostgreSQL-i samaaegsus.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE — referral, narrative, route ja visit kannavad nüüd domeeniankrust arvutatud indekseeritud `retentionEndsAt` väärtust; ankruhilisem muutus uuendab tähtaega. Üldine auditeeritud retention-worker kustutab batch'itult ja idempotentselt järjekorras kirje/parandusahel → narratiiv → külastus → teekond → suunamine ning eraldi 180 päeva ajaproovid; jagatud aruandefail jääb olemasolevale staging/retry/reconcile rajale. `npm run slog:privacy-retention:probe` läbis päris PostgreSQL-is **16/16**: suunamise lõpu ankru uuendus, piir-1/piir/piir+1, DRAFT/FINAL/VOID, parandusahel, väike batch, kasutaja kustutus ja kaks samaaegset sweep'i. Sihttestid tõendasid lisaks puuduva faili, store→DB, DB→audit, cleanup-retry ja PREPARING-reconcile rajad.
 
 ## Testid ja negatiivkontrollid
 

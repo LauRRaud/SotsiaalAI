@@ -92,6 +92,15 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Teenuspäeviku jätkuauditi `SOL-SLOG-J-01…07` on lõpetatud.** Kirje parandamine,
+tühistamine, mustandi kustutamine ja owner-skoobitud ajalugu on nüüd päris kasutajateed;
+suunamist saab parandada või teadlikult lõpetada ning jagatud PostgreSQL-i lukk sulgeb
+end-vs-create võistluse. AI-abiga alustatud narratiivi päritolu säilib toimetamisel ning
+revision/CAS peatab paralleelse vaikse ülekirjutuse. Andmekoopia hõlmab nüüd rolli- ja
+omandipõhiselt Teenuspäevikut, konto kustutus tombstone'ib kõik identiteedipinnad samas
+tehingus ning auditeeritud retention-worker koristab tähtaja järel sõltuvused ja failikoopiad.
+Järgmine peatükk on `SOL-ORG-18/19`.
+
 **RAG-teenuse `SOL-RAGSVC-01…28` on DONE ja peatüki UTC täisvärav on roheline.**
 `SOL-ORG-13`–`17`, `SOL-DOC-J-01`–`06` ja kogu `SOL-SLOG-01…24` parandused ning kiirem plokipõhine töökord on koodipuus. Kolmeastmelised arvud loetakse käsuga `npm run sol:progress`, neid siia ankrusse ei
 kopeerita. Kui ülesanne ei ole SOL-parandus, loe S11 järel ainult vastavat S2–S10 sektsiooni.

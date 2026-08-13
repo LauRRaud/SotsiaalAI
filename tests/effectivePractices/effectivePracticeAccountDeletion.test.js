@@ -235,6 +235,14 @@ test("final user-row lock sweeps pre-lock candidates and prevents post-delete pr
         return { count: 1 };
       }
     },
+    serviceReferral: { updateMany: async () => ({ count: 0 }) },
+    serviceEntry: { updateMany: async () => ({ count: 0 }) },
+    serviceEntryCorrection: { updateMany: async () => ({ count: 0 }) },
+    serviceMonthlyNarrative: { updateMany: async () => ({ count: 0 }) },
+    serviceWorkRoute: { updateMany: async () => ({ count: 0 }) },
+    serviceVisit: { updateMany: async () => ({ count: 0 }) },
+    serviceLogTimeSample: { updateMany: async () => ({ count: 0 }) },
+    serviceReportShare: { updateMany: async () => ({ count: 0 }) },
     dataDeletionJob: {
       findFirst: async () => null,
       create: async (input) => {

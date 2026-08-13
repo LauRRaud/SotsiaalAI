@@ -9182,7 +9182,11 @@
       "period_start": "Valid from",
       "period_end": "Valid until",
       "goals": "Referral goals",
-      "goals_hint": "The narrative report measures progress against these."
+      "goals_hint": "The narrative report measures progress against these.",
+      "edit": "Edit referral",
+      "end": "End referral",
+      "end_confirm": "End this referral? Existing entries remain and no new entry can be added under it.",
+      "save_changes": "Save changes"
     },
     "month": {
       "pick": "Month",
@@ -9232,7 +9236,10 @@
       "saved": "Report saved.",
       "draft_button": "Generate an AI draft",
       "drafting": "Drafting…",
-      "draft_marker": "This text is an AI draft. Read it through and correct it before saving — the responsibility is yours."
+      "draft_marker": "This text was started with AI assistance. Read it through and correct it before saving — the responsibility is yours.",
+      "conflict_title": "The report changed elsewhere",
+      "conflict_hint": "Your text remains in the form. Compare it with the latest text below and merge the changes deliberately.",
+      "use_fresh": "Use latest text"
     },
     "proposals": {
       "CONTINUE": "Continue at the same volume",
@@ -9329,6 +9336,23 @@
       "retry": "Try again",
       "manual_confirm": "Client's paper confirmation"
     },
+    "entry_actions": {
+      "edit": "Correct entry",
+      "delete": "Delete draft",
+      "delete_confirm": "Delete this draft? This cannot be undone.",
+      "void": "Void entry",
+      "void_reason": "Add the reason for voiding. The entry remains in the history.",
+      "history": "Correction history",
+      "history_title": "Correction timeline",
+      "history_empty": "No corrections have been made yet.",
+      "loading": "Loading…",
+      "worker": "Worker name",
+      "money": "Client money amount",
+      "money_note": "Money note",
+      "reason": "Correction reason",
+      "save": "Save correction",
+      "cancel": "Cancel"
+    },
     "errors": {
       "not_found": "Service entry not found.",
       "profile_not_found": "Service provider profile not found.",
@@ -9357,6 +9381,7 @@
       "month_invalid": "The month must be in YYYY-MM format.",
       "narrative_required": "Write the monthly narrative text.",
       "narrative_conflict": "Saving the narrative failed. Please try again.",
+      "narrative_version_conflict": "The report changed elsewhere. Your text remains; compare it with the latest version.",
       "proposal_invalid": "The proposal must be continue, change volume or end.",
       "template_invalid": "Unknown report template.",
       "referral_required_for_narrative": "The narrative report is per referral — choose a referral.",

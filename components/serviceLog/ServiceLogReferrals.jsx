@@ -51,6 +51,10 @@ export default function ServiceLogReferrals({ month }) {
   const [avatud, setAvatud] = useState(false);
   const [saving, setSaving] = useState(false);
   const [formError, setFormError] = useState("");
+  const [editingId, setEditingId] = useState("");
+  const [rowBusy, setRowBusy] = useState("");
+  const [rowError, setRowError] = useState("");
+  const [rowErrorId, setRowErrorId] = useState("");
   const [vorm, setVorm] = useState({
     kovName: "",
     referralNumber: "",
@@ -64,6 +68,23 @@ export default function ServiceLogReferrals({ month }) {
   });
 
   const muuda = (vali, vaartus) => setVorm((eelmine) => ({ ...eelmine, [vali]: vaartus }));
+
+  const startEdit = (referral) => {
+    setRowError("");
+    setRowErrorId("");
+    setEditingId(referral.id);
+    setVorm({
+      kovName: referral.kovName || "",
+      referralNumber: referral.referralNumber || "",
+      clientDisplayName: referral.clientDisplayName || "",
+      unit: referral.unit || "HOUR",
+      allocatedQuantity: referral.allocatedQuantity ?? "",
+      allocationPeriod: referral.allocationPeriod || "MONTH",
+      periodStart: referral.periodStart || "",
+      periodEnd: referral.periodEnd || "",
+      goalsText: referral.goalsText || ""
+    });
+  };
 
   const load = useCallback(async () => {
     try {
@@ -140,6 +161,75 @@ export default function ServiceLogReferrals({ month }) {
       }
     },
     [load, locale, t, vorm]
+  );
+
+  const saveExisting = useCallback(
+    async (event, referral) => {
+      event.preventDefault();
+      setRowBusy(referral.id);
+      setRowError("");
+      setRowErrorId("");
+      try {
+        const response = await fetch(`/api/service-referrals/${referral.id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json", "x-ui-locale": locale || "et" },
+          body: JSON.stringify({
+            kovName: vorm.kovName.trim(),
+            referralNumber: vorm.referralNumber.trim() || null,
+            unit: vorm.unit,
+            allocatedQuantity: vorm.allocatedQuantity === "" ? null : vorm.allocatedQuantity,
+            allocationPeriod: vorm.allocationPeriod,
+            periodStart: vorm.periodStart || null,
+            periodEnd: vorm.periodEnd || null,
+            goalsText: vorm.goalsText.trim() || null
+          })
+        });
+        const body = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          setRowError(body?.message || t("service_log.errors.invalid_input", ""));
+          setRowErrorId(referral.id);
+          return;
+        }
+        setEditingId("");
+        await load();
+      } catch {
+        setRowError(t("service_log.errors.invalid_input", ""));
+        setRowErrorId(referral.id);
+      } finally {
+        setRowBusy("");
+      }
+    },
+    [load, locale, t, vorm]
+  );
+
+  const endReferral = useCallback(
+    async (referral) => {
+      if (!window.confirm(t("service_log.referrals.end_confirm", ""))) return;
+      setRowBusy(referral.id);
+      setRowError("");
+      setRowErrorId("");
+      try {
+        const response = await fetch(`/api/service-referrals/${referral.id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json", "x-ui-locale": locale || "et" },
+          body: JSON.stringify({ action: "end" })
+        });
+        const body = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          setRowError(body?.message || t("service_log.errors.invalid_input", ""));
+          setRowErrorId(referral.id);
+          return;
+        }
+        setEditingId("");
+        await load();
+      } catch {
+        setRowError(t("service_log.errors.invalid_input", ""));
+        setRowErrorId(referral.id);
+      } finally {
+        setRowBusy("");
+      }
+    },
+    [load, locale, t]
   );
 
   const lisamisplokk = (
@@ -350,7 +440,40 @@ export default function ServiceLogReferrals({ month }) {
 
             {referral.status === "ENDED" ? (
               <p className="sl-referral-note">{t("service_log.referrals.ended", "")}</p>
+            ) : (
+              <div className="sl-entry-actions">
+                <button type="button" className="sl-entry-btn" disabled={rowBusy === referral.id} onClick={() => startEdit(referral)}>
+                  {t("service_log.referrals.edit", "")}
+                </button>
+                <button type="button" className="sl-entry-btn is-danger" disabled={rowBusy === referral.id} onClick={() => endReferral(referral)}>
+                  {t("service_log.referrals.end", "")}
+                </button>
+              </div>
+            )}
+
+            {editingId === referral.id && referral.status !== "ENDED" ? (
+              <Form className="sl-entry-editor" noValidate validate={false} onSubmit={(event) => saveExisting(event, referral)}>
+                <div className="sl-row">
+                  <label className="sl-field"><span className="sl-label">{t("service_log.referrals.kov", "")}</span><Input value={vorm.kovName} onChange={(event) => muuda("kovName", event.target.value)} /></label>
+                  <label className="sl-field"><span className="sl-label">{t("service_log.referrals.number", "")}</span><Input value={vorm.referralNumber} onChange={(event) => muuda("referralNumber", event.target.value)} /></label>
+                  <label className="sl-field"><span className="sl-label">{t("service_log.referrals.allocated", "")}</span><Input type="number" step="0.01" min="0" value={vorm.allocatedQuantity} onChange={(event) => muuda("allocatedQuantity", event.target.value)} /></label>
+                </div>
+                <div className="sl-row">
+                  <label className="sl-field"><span className="sl-label">{t("service_log.form.unit", "")}</span><Dropdown value={vorm.unit} onChange={(value) => muuda("unit", value)} ariaLabel={t("service_log.form.unit", "")} options={SERVICE_UNITS.map((value) => ({ value, label: t(`service_log.units.${value.toLowerCase()}`, value) }))} /></label>
+                  <label className="sl-field"><span className="sl-label">{t("service_log.referrals.period_kind", "")}</span><Dropdown value={vorm.allocationPeriod} onChange={(value) => muuda("allocationPeriod", value)} ariaLabel={t("service_log.referrals.period_kind", "")} options={ALLOCATION_PERIODS.map((value) => ({ value, label: t(`service_log.allocation.${value.toLowerCase()}`, value) }))} /></label>
+                </div>
+                <div className="sl-row">
+                  <label className="sl-field"><span className="sl-label">{t("service_log.referrals.period_start", "")}</span><DateField value={vorm.periodStart} onChange={(value) => muuda("periodStart", value)} /></label>
+                  <label className="sl-field"><span className="sl-label">{t("service_log.referrals.period_end", "")}</span><DateField value={vorm.periodEnd} onChange={(value) => muuda("periodEnd", value)} /></label>
+                </div>
+                <label className="sl-field"><span className="sl-label">{t("service_log.referrals.goals", "")}</span><textarea className="sl-input sl-textarea" rows={3} value={vorm.goalsText} onChange={(event) => muuda("goalsText", event.target.value)} /></label>
+                <div className="sl-entry-actions">
+                  <button type="submit" className="sl-entry-btn is-primary" disabled={rowBusy === referral.id}>{t("service_log.referrals.save_changes", "")}</button>
+                  <button type="button" className="sl-entry-btn" onClick={() => setEditingId("")}>{t("service_log.referrals.cancel", "")}</button>
+                </div>
+              </Form>
             ) : null}
+            {rowError && rowErrorId === referral.id ? <p className="sl-error" role="alert">{rowError}</p> : null}
           </li>
         );
       })}

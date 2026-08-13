@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 
 import {
   finalizeEntry,
+  listEntryCorrections,
   setManualConfirmation,
   updateEntry,
   voidEntry
@@ -131,6 +132,59 @@ test("SOL-SLOG-08: finalize ja void ei saa tekitada segaväljadega lõppseisu", 
     assert.equal(row.recordedFiscalYear, null);
     assert.ok(row.voidedAt);
   }
+});
+
+test("SOL-SLOG-J-01: FINAL-kirje tühistamise põhjus jääb paranduste ajalukku", async () => {
+  const db = makeDb([
+    makeEntry({ status: "FINAL", finalizedAt: new Date("2026-08-12T09:30:00.000Z"), recordedFiscalYear: 2026 })
+  ]);
+
+  const row = await voidEntry("user-1", "entry-1", {
+    reason: "Vale teenuse kuupäev",
+    db,
+    env: ENV
+  });
+
+  assert.equal(row.status, "VOID");
+  assert.equal(db.corrections.length, 1);
+  assert.equal(db.corrections[0].reason, "Vale teenuse kuupäev");
+  assert.deepEqual(db.corrections[0].changedFields, ["status", "voidedAt", "voidReason"]);
+  assert.equal(db.corrections[0].previousValues.status, "FINAL");
+});
+
+test("SOL-SLOG-J-01: paranduste ajalugu on omaniku piires ja võõras saab 404", async () => {
+  const correction = {
+    id: "correction-1",
+    reason: "Täpsustus",
+    changedFields: ["note"],
+    previousValues: { note: null },
+    createdAt: new Date("2026-08-12T11:00:00.000Z"),
+    actorUserId: "user-1"
+  };
+  const db = {
+    serviceProviderProfile: {
+      findFirst: async ({ where }) => ({
+        id: where.ownerId === "user-1" ? "profile-1" : "profile-2",
+        ownershipMode: "SOLO"
+      })
+    },
+    serviceEntry: {
+      findFirst: async ({ where }) =>
+        where.id === "entry-1" && where.providerProfileId === "profile-1" ? { id: "entry-1" } : null
+    },
+    serviceEntryCorrection: {
+      findMany: async ({ where }) => (where.entryId === "entry-1" ? [correction] : [])
+    }
+  };
+
+  const own = await listEntryCorrections("user-1", "entry-1", { db, env: ENV });
+  const foreign = await listEntryCorrections("user-2", "entry-1", { db, env: ENV }).catch(
+    (error) => error
+  );
+
+  assert.equal(own.length, 1);
+  assert.equal(own[0].reason, "Täpsustus");
+  assert.equal(foreign.status, 404);
 });
 
 test("SOL-SLOG-09: stale parandus saab 409 koos värske reaga ja ühe ausa correction'iga", async () => {

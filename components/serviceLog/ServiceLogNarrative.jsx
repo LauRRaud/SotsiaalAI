@@ -46,9 +46,11 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
   const [saved, setSaved] = useState(false);
   const [error, setError] = useState("");
   const [loadedId, setLoadedId] = useState(null);
+  const [loadedUpdatedAt, setLoadedUpdatedAt] = useState(null);
+  const [conflictNarrative, setConflictNarrative] = useState(null);
   const [drafting, setDrafting] = useState(false);
-  /* Kas praegune tekst tuli masinalt. Kaob niipea, kui inimene teksti
-     puudutab — siis on ta juba tema oma. */
+  /* Kas praegune tekst ALGAS masinamustandist. Inimese toimetus ei muuda
+     teksti päritolu olematuks; täiesti käsitsi alustatud tekst jääb false. */
   const [isAiDraft, setIsAiDraft] = useState(false);
 
   const [year, monthNumber] = String(month || "").split("-");
@@ -69,6 +71,8 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
     setBodyText("");
     setProposal("");
     setLoadedId(null);
+    setLoadedUpdatedAt(null);
+    setConflictNarrative(null);
     setIsAiDraft(false);
     setSaved(false);
     setError("");
@@ -195,10 +199,12 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
              jaeaeb margistatuks ka jaergmisel avamisel. */
           setIsAiDraft(match.draftSource === PROVENANCE.AI_MUSTAND);
           setLoadedId(match.id);
+          setLoadedUpdatedAt(match.updatedAt || null);
         } else {
           setBodyText("");
           setProposal("");
           setLoadedId(null);
+          setLoadedUpdatedAt(null);
         }
       }
     } catch (caught) {
@@ -234,6 +240,7 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
             periodMonth: Number(monthNumber),
             bodyText,
             proposal: proposal || null,
+            expectedUpdatedAt: loadedUpdatedAt,
             /* AI-PAERITOLU EI TOHI SALVESTAMISEL KAUDA. Ilma selleta naeb
                AI abil alustatud aruanne hiljem valja taeiesti inimese
                kirjutatuna — ja `draftSource` on olemas taepselt selleks, et
@@ -245,9 +252,15 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
         const body = await response.json().catch(() => ({}));
         if (fingerprint !== activeFingerprintRef.current) return;
         if (!response.ok) {
+          if (response.status === 409 && body?.narrative) {
+            setConflictNarrative(body.narrative);
+          }
           setError(body?.message || t("service_log.errors.invalid_input", ""));
           return;
         }
+        setLoadedId(body?.narrative?.id || loadedId);
+        setLoadedUpdatedAt(body?.narrative?.updatedAt || null);
+        setConflictNarrative(null);
         setSaved(true);
       } catch {
         if (fingerprint === activeFingerprintRef.current) {
@@ -257,7 +270,7 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
         if (fingerprint === activeFingerprintRef.current) setSaving(false);
       }
     },
-    [activeFingerprint, bodyText, editorFingerprint, isAiDraft, locale, monthNumber, proposal, referralId, t, year]
+    [activeFingerprint, bodyText, editorFingerprint, isAiDraft, loadedId, loadedUpdatedAt, locale, monthNumber, proposal, referralId, t, year]
   );
 
   if (!referrals.length) return null;
@@ -336,10 +349,7 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
             className="sl-input sl-textarea"
             rows={6}
             value={bodyText}
-            onChange={(event) => {
-              setBodyText(event.target.value);
-              setIsAiDraft(false);
-            }}
+            onChange={(event) => setBodyText(event.target.value)}
             required
           />
           <span className="sl-hint">{t("service_log.narrative.body_hint", "")}</span>
@@ -359,8 +369,8 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
                   ? t("service_log.narrative.drafting", "")
                   : t("service_log.narrative.draft_button", "")}
               </button>
-              {/* MASINA TEKST ON MÄRGISTATUD kuni inimene teda puudutab. Ilma
-                  selleta oleks masina lõik aruandes eristamatu inimese omast. */}
+              {/* Masinast alustatud tekst jääb märgistatuks ka toimetamisel.
+                  Esimene klahvivajutus ei kirjuta päritolu tagasiulatuvalt ümber. */}
               {isAiDraft ? (
                 <p className="sl-source" role="status">
                   {t("service_log.narrative.draft_marker", "")}
@@ -389,6 +399,28 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
           <p className="sl-error" role="alert">
             {error}
           </p>
+        ) : null}
+        {conflictNarrative ? (
+          <div className="sl-conflict" role="status">
+            <strong>{t("service_log.narrative.conflict_title", "")}</strong>
+            <p>{t("service_log.narrative.conflict_hint", "")}</p>
+            <pre>{conflictNarrative.bodyText}</pre>
+            <button
+              type="button"
+              className="sl-tab"
+              onClick={() => {
+                setBodyText(conflictNarrative.bodyText || "");
+                setProposal(conflictNarrative.proposal || "");
+                setIsAiDraft(conflictNarrative.draftSource === PROVENANCE.AI_MUSTAND);
+                setLoadedId(conflictNarrative.id || null);
+                setLoadedUpdatedAt(conflictNarrative.updatedAt || null);
+                setConflictNarrative(null);
+                setError("");
+              }}
+            >
+              {t("service_log.narrative.use_fresh", "")}
+            </button>
+          </div>
         ) : null}
         {saved ? (
           <p className="sl-warn" role="status" aria-live="polite">

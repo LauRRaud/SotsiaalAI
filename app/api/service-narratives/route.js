@@ -23,7 +23,7 @@ export const revalidate = 0;
 
 function respondToError(locale, error, route) {
   if (error instanceof ServiceLogDisabledError || error instanceof ServiceLogError) {
-    return errorJson(error.messageKey, error.status, locale);
+    return errorJson(error.messageKey, error.status, locale, error.details || {});
   }
   console.error(`[${route}] unexpected`, safeError(error));
   return errorJson("api.common.server_error", 500, locale);

@@ -683,6 +683,36 @@
   border-color: var(--accent-fg, #7fd1ff);
 }
 
+.sl-entry-btn.is-danger {
+  border-color: var(--danger-border, rgb(255 154 154 / 55%));
+}
+
+.sl-entry-tools,
+.sl-entry-editor,
+.sl-entry-history {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 0.5rem);
+}
+
+.sl-entry-editor,
+.sl-entry-history {
+  margin-top: var(--space-2, 0.5rem);
+  padding: var(--space-3, 0.75rem);
+  border: 1px solid var(--panel-border, rgb(255 255 255 / 18%));
+  border-radius: var(--radius-md, 0.5rem);
+}
+
+.sl-entry-history ol {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.sl-entry-history li small {
+  display: block;
+  opacity: 0.7;
+}
+
 
 /* ASUKOHATEATE UUS KUJU: üks vaikne rida, mitte hoiatuspaneel.
  * Ainus asi, mida töötajal on päriselt vaja teada, on kas asukoht märgitakse.
@@ -789,4 +819,21 @@
 .sl-form:has(.sl-manual:not([open])) .sl-manual-field,
 .sl-form:has(.sl-manual:not([open])) .sl-manual-field ~ * {
   display: none;
+}
+
+.sl-conflict {
+  display: grid;
+  gap: 0.6rem;
+  padding: 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--sl-danger, #9f3232) 55%, transparent);
+  border-radius: 0.75rem;
+}
+
+.sl-conflict pre {
+  margin: 0;
+  padding: 0.7rem;
+  white-space: pre-wrap;
+  font: inherit;
+  background: color-mix(in srgb, currentColor 6%, transparent);
+  border-radius: 0.5rem;
 }

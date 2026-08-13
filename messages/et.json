@@ -9182,7 +9182,11 @@
       "period_start": "Kehtib alates",
       "period_end": "Kehtib kuni",
       "goals": "Suunamise eesmärgid",
-      "goals_hint": "Sisuline aruanne mõõdab edenemist nende vastu."
+      "goals_hint": "Sisuline aruanne mõõdab edenemist nende vastu.",
+      "edit": "Muuda suunamist",
+      "end": "Lõpeta suunamine",
+      "end_confirm": "Kas lõpetad selle suunamise? Olemasolevad kirjed jäävad alles ja uut kirjet selle alla enam lisada ei saa.",
+      "save_changes": "Salvesta muudatused"
     },
     "month": {
       "pick": "Kuu",
@@ -9232,7 +9236,10 @@
       "saved": "Aruanne salvestatud.",
       "draft_button": "Koosta AI-mustand",
       "drafting": "Koostan…",
-      "draft_marker": "See tekst on AI-mustand. Loe läbi ja paranda enne salvestamist — vastutus on sinu."
+      "draft_marker": "See tekst on AI-abiga alustatud. Loe läbi ja paranda enne salvestamist — vastutus on sinu.",
+      "conflict_title": "Aruannet muudeti vahepeal mujal",
+      "conflict_hint": "Sinu tekst jäi vormile alles. Võrdle seda alloleva värske tekstiga ja ühenda muudatused teadlikult.",
+      "use_fresh": "Kasuta värsket teksti"
     },
     "proposals": {
       "CONTINUE": "Jätka samas mahus",
@@ -9329,6 +9336,23 @@
       "retry": "Proovi uuesti",
       "manual_confirm": "Kliendi paberkinnitus"
     },
+    "entry_actions": {
+      "edit": "Paranda kirjet",
+      "delete": "Kustuta mustand",
+      "delete_confirm": "Kas kustutad selle mustandi? Seda toimingut ei saa tagasi võtta.",
+      "void": "Tühista kirje",
+      "void_reason": "Lisa tühistamise põhjus. Kirje jääb ajalukku.",
+      "history": "Paranduste ajalugu",
+      "history_title": "Paranduste ajajoon",
+      "history_empty": "Parandusi ei ole veel tehtud.",
+      "loading": "Laadin…",
+      "worker": "Töötaja nimi",
+      "money": "Kliendi raha summa",
+      "money_note": "Rahasumma märkus",
+      "reason": "Paranduse põhjus",
+      "save": "Salvesta parandus",
+      "cancel": "Loobu"
+    },
     "errors": {
       "not_found": "Teenuskirjet ei leitud.",
       "profile_not_found": "Teenuseprofiili ei leitud.",
@@ -9357,6 +9381,7 @@
       "month_invalid": "Kuu peab olema kujul AAAA-KK.",
       "narrative_required": "Kirjuta kuunarratiivi tekst.",
       "narrative_conflict": "Narratiivi salvestamine ebaõnnestus. Proovi uuesti.",
+      "narrative_version_conflict": "Aruannet muudeti vahepeal mujal. Sinu tekst jäi alles; võrdle seda värske versiooniga.",
       "proposal_invalid": "Ettepanek peab olema jätka, muuda mahtu või lõpeta.",
       "template_invalid": "Tundmatu aruandemall.",
       "referral_required_for_narrative": "Sisuline aruanne käib ühe suunamise kohta — vali suunamine.",
