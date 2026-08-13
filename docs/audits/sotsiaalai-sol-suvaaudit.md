@@ -7490,6 +7490,8 @@ tagasivõetud pakett. Peidetud on ainult `RECALLED`. Töörajad sulguvad kõigil
 
 **Vastuvõtukriteerium.** Kõik eelpöördumise route'id peavad avaldama ainult kinnise stabiilsete 4xx võtmete allowlist'i; kõik muu on üldine 500 ja logis `safeError`. Route-testid peavad süstima Prisma ja maileri tundliku markeriga vea ning tõendama markeriteta vastuse.
 
+**Seis (13.08.2026): DONE —** kõik eelpöördumise avalikud kirjutavad API-rajad kasutavad suletud veavastuste allowlist'i: lubatud 4xx võtmed säilitavad kontrollitud vastuse, tundmatu Prisma-, maileri- või muu sisemine viga muutub üldiseks 500 vastuseks ja logitakse `safeError` kujul. Negatiivtest süstis andmebaasiühendust ja SMTP saladust sisaldava markeri ning tõendas, et marker ei jõua vastusesse; neli varem lekkivat marsruuti ei väljasta enam `error.message` väärtust.
+
 ### SOL-PRE-16 — ühelgi 12 eelpöördumise route'il pole mahu- ega sageduspiiri — P1
 
 **Tõend.** Staatiline kontroll leidis `app/api/pre-inquiries/**` all 12 route'i ja mitte üheski ei kasutata `consumeRateLimit`-i. Autenditud POST võib luua iga kord uue rea (`app/api/pre-inquiries/route.js:47-60`; `lib/preInquiries.js:1152-1248`), assistent loeb ühe päringuga kuni 1500 teenusekaardirida (`lib/preInquiries.js:1747-1789`), SENT-loomine saadab adressaadile saabumiskirja ning `/send` käivitab välise SMTP-kirja. Loomisel puudub idempotentsusvõti või kasutajapõhine aktiivsete kirjete piir.
@@ -7497,6 +7499,8 @@ tagasivõetud pakett. Peidetud on ainult `RECALLED`. Töörajad sulguvad kõigil
 **Mõju.** Üks autentitud konto saab tekitada piiramatult tundlikke mustandeid, pommitada opt-in adressaate uute pöördumiste/teavitustega, koormata teenusekaardi assistenti ja proovida väliseid kirju. UI topeltklikk võib samuti luua eraldi kirjed.
 
 **Vastuvõtukriteerium.** Lisada toimingupõhised kasutaja/IP rate-limit'id, SENT/correction/send idempotentsusvõtmed ning mõistlikud aktiivse mahu piirid; lugemisdetail ja kasutaja enda andmete eksport ei tohi põhjendamatult sulguda. Testida topelt-submit, paralleelne sama võti, limiidi päised, adressaadi spam ja assistendi korduspäring.
+
+**Seis (13.08.2026): DONE —** kõigil 12 kirjutaval eelpöördumise marsruudil on tegevuspõhine kasutaja- ja IP-piir koos 429, `Retry-After` ja `X-RateLimit` päistega. Aktiivseid DRAFT/READY/DOWNLOADED kirjeid võib olla kuni 250 ning piir jõustatakse kasutajapõhise PostgreSQL advisory lock'i all. Loomine kasutab kliendi UUID-võtit, sisu SHA-256 räsi ja unikaalset `[authorId, clientActionId]` piirangut: sama võti sama sisuga tagastab sama rea, teise sisuga 409. Päris PostgreSQL-i sond tõendas paralleelse loomise ühe rea, konfliktse korduse ja 251. aktiivse mustandi tagasilükkamise (`production runtime: NOT_PROVEN`).
 
 ### SOL-PRE-17 — pikk eelpöördumise sisu kärbitakse serveris vaikides — P1
 
@@ -7506,6 +7510,8 @@ tagasivõetud pakett. Peidetud on ainult `RECALLED`. Töörajad sulguvad kõigil
 
 **Vastuvõtukriteerium.** Üle piiri väärtus peab saama välja-põhise 400/413 vea või teadliku kinnitusega truncation-raporti; vaikne edu pole lubatud. UI peab näitama piire ja allesjäänud mahtu. Testida iga välja ja loendi piir-1/piir/piir+1 ning markerit täpselt kärbitava saba sees.
 
+**Seis (13.08.2026): DONE —** kasutaja sisendi vaikne `slice`-kärbe eemaldati eelpöördumise ja struktureeritud eelkaardistuse normaliseerijatest. Teema, olukord, mustandid, parandustekst, assistendi sisend, küsimustiku tekstiväljad ja loendid valideeritakse enne töötlemist ning piir+1 annab välja- või hindamispõhise 413 vastuse ilma sabamarkerit kaotamata. UI kannab vastavaid `maxLength` piire ja järelejäänud märkide loendureid; testid katavad piiri, piir+1, sabamarkeri ja loendimahu.
+
 ### SOL-PRE-18 — eelpöördumiste loendid lõpevad vaikides 100/250 rea juures — P2
 
 **Tõend.** Põhiloend võtab vaikimisi 100 ja maksimaalselt 250 kirjet ilma cursor'i või `hasMore` väljundita (`lib/preInquiries.js:686-698`; `app/api/pre-inquiries/route.js:28-40`). Vastuvõtja K1 adapteril on eraldi `take:100` (`lib/workspaces/adapters/preInquiryReceiverAdapter.js:101-114`) ning „Minu jagamised” loeb saadetud pöördumisi `take:250` (`lib/mySharings.js:208-241`). UI renderdab saadud massiivi täieliku tõena ega paku lehekülgi; ainult Journey `openInquiry` süvalink teeb ühe detail-fallback'i (`components/workspace/WorkspaceFeaturePage.jsx:1310-1356`).
@@ -7513,6 +7519,8 @@ tagasivõetud pakett. Peidetud on ainult `RECALLED`. Töörajad sulguvad kõigil
 **Mõju.** Pika ajalooga kasutaja vanemad mustandid, saabunud töö, parandusahelad või tagasivõetavad kirjed kaovad tavavaatest. Sama inimene näeb eri pindadel 100 ja 250 rea tõttu erinevat „kogu” ajalugu.
 
 **Vastuvõtukriteerium.** Kõik kolm pinda peavad kasutama stabiilset cursor-paginatsiooni, minimaalset loendiprojektsiooni, koguarvu/`hasMore` märget ja detaili ID-lugejat. Testida üle 250 rea, võrdse ajatempliga järjestust, parandusahelat lehepiiril ja aktiivse/tagasivõetava kirje leitavust.
+
+**Seis (13.08.2026): DONE —** eelpöördumise põhiloend, Minu jagamiste eelpöördumised ja K1 vastuvõtja adapter kasutavad stabiilset `(updatedAt, id)` kursorit, piiratud projektsiooni ning `total/hasMore/nextCursor` metaandmeid; ID-detaililugeja jääb autoriteetseks detailipinnaks. Põhivaade ja K1 läbivad kõik lehed ning Minu jagamised pakub jätkulaadimist. Testid ja päris PostgreSQL-i sond tõendasid 257 kirje täieliku leidmise, võrdsed ajatemplid, duplikaatide puudumise, arhiveeritud piirirea ning üle lehepiiri kulgeva parandusahela mõlemad otsad (`production runtime: NOT_PROVEN`).
 
 ### SOL-HELP-01 — tavaline kuulutuse tekstiparandus võib peidetud kaardikirje uuesti avaldada — P1
 
