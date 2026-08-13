@@ -16,6 +16,7 @@ import { buildServiceMapHandoff } from "@/lib/journey/serviceMapHandoff";
 import { buildAssistiveDevicesHandoff } from "@/lib/journey/assistiveDevices";
 import { buildHelpMediationHandoff } from "@/lib/journey/helpMediationHandoff";
 import { buildHealthContactQuestionsDraft, hasHealthContactSignal } from "@/lib/journey/healthContact";
+import { reconcileSuggestedActionTitles } from "@/lib/journey/suggestedActions";
 import { pushWithTransition } from "@/lib/routeTransition";
 
 const PRIMARY_PATH_VALUES = Object.freeze([
@@ -98,10 +99,6 @@ function actionsToText(value) {
     .map((item) => item?.title || item)
     .filter(Boolean)
     .join("\n");
-}
-
-function textToActions(value) {
-  return textToLines(value).map((title) => ({ title }));
 }
 
 function createFormState(journey) {
@@ -857,7 +854,7 @@ export default function JourneyDetail({ journeyId }) {
           primaryPath: form.primaryPath,
           domains: textToLines(form.domains),
           missingInfo: textToLines(form.missingInfo),
-          suggestedActions: textToActions(form.suggestedActions),
+          suggestedActions: reconcileSuggestedActionTitles(journey?.suggestedActions, form.suggestedActions),
           expectedUpdatedAt: journey?.updatedAt
         })
       });
@@ -875,7 +872,7 @@ export default function JourneyDetail({ journeyId }) {
     } finally {
       setBusy(false);
     }
-  }, [form, journey?.updatedAt, journeyId, t]);
+  }, [form, journey?.suggestedActions, journey?.updatedAt, journeyId, t]);
 
   const handleArchive = useCallback(async () => {
     if (!journeyId || journey?.status === "ARCHIVED") return;
