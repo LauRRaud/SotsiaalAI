@@ -5269,6 +5269,7 @@
       "pre_inquiry_arrived": "A pre-inquiry has arrived for you",
       "org_support_share_received": "A support message was sent to you",
       "org_work_assigned": "Work was assigned to you in an organisation",
+      "network_share_received": "You received a network share",
       "pre_inquiry_status_changed": "The status of your pre-inquiry changed",
       "pre_inquiry_opened": "Your pre-inquiry was opened",
       "pre_inquiry_replied": "Your pre-inquiry received a response",
@@ -9786,7 +9787,7 @@
       "attest": "Client confirmed verbally",
       "send": "Send to recipient",
       "recall": "Recall",
-      "mark_opened": "I have read this",
+      "mark_opened": "Open share",
       "open_room": "Open discussion"
     },
     "fields": {
@@ -9825,7 +9826,9 @@
     },
     "inbox": {
       "title": "Network work shared with you",
-      "intro": "Network summaries have been shared with you. You see only what was shared with you."
+      "intro": "Network summaries have been shared with you. You see only what was shared with you.",
+      "pending_title": "A new share was sent to you",
+      "open_to_view": "The content appears after you deliberately open it."
     }
   },
   "subsistence": {

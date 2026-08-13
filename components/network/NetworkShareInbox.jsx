@@ -8,10 +8,9 @@
  * laual, mitte omaette postkastis — teine postkast tähendaks, et osutaja peab
  * valvama kahte kohta.
  *
- * Kuvatakse AINULT `recipientProjection`, mille server ehitab valgest
- * nimekirjast. Lähte-eelpöördumist, kliendi identiteeti ega töötaja sisemisi
- * välju siia ei jõua — ja kui keegi tulevikus mudelile veeru lisab, ei leki ta
- * siia iseenesest.
+ * Esmane nimekiri kannab ainult ümbrikku. Tundlik `recipientProjection` jõuab
+ * brauserisse alles POST /open vastuses, pärast seda, kui server on sama rea
+ * avatuks märkinud. Nii ei saa postkasti render ise olla varjatud lugemine.
  */
 
 import { useCallback, useEffect, useState } from "react";
@@ -28,6 +27,7 @@ function txt(t, key, fallback) {
 export default function NetworkShareInbox() {
   const { t, locale } = useI18n();
   const [shares, setShares] = useState([]);
+  const [openedShares, setOpenedShares] = useState({});
   const [busyId, setBusyId] = useState("");
   const [error, setError] = useState("");
 
@@ -67,13 +67,18 @@ export default function NetworkShareInbox() {
           fallbackKey: "network_share.errors.action_failed"
         }));
       }
-      await load();
+      if (payload?.share?.id) {
+        setOpenedShares((current) => ({ ...current, [payload.share.id]: payload.share }));
+        setShares((current) => current.map((item) => (
+          item.id === payload.share.id ? { ...item, status: payload.share.status } : item
+        )));
+      }
     } catch (err) {
       setError(err?.message || txt(t, "network_share.errors.action_failed", "Toiming ebaõnnestus."));
     } finally {
       setBusyId("");
     }
-  }, [busyId, load, locale, t]);
+  }, [busyId, locale, t]);
 
   // Pealkiri elab siin, mitte kutsuja `SectionCard`-is: tühi sektsioon, mille
   // pealkiri on nähtav ja sisu ei ole, on halvem kui sektsiooni puudumine.
@@ -85,39 +90,44 @@ export default function NetworkShareInbox() {
       <p>{txt(t, "network_share.inbox.intro", "Sulle on jagatud võrgustikutöö kokkuvõtteid. Näed ainult seda, mis on sinuga jagatud.")}</p>
       {error ? <p role="alert">{error}</p> : null}
 
-      {shares.map((share) => (
+      {shares.map((share) => {
+        const openedShare = openedShares[share.id] || null;
+        return (
         <article key={share.id}>
-          <h3>{share.purpose}</h3>
-          <p>{share.summaryText}</p>
+          <h3>{openedShare?.purpose || txt(t, "network_share.inbox.pending_title", "Sulle saadeti uus jagamine")}</h3>
+          {openedShare ? <p>{openedShare.summaryText}</p> : (
+            <p>{txt(t, "network_share.inbox.open_to_view", "Sisu kuvatakse pärast teadlikku avamist.")}</p>
+          )}
 
-          <dl>
+          {openedShare ? <dl>
             <div>
               <dt>{txt(t, "network_share.fields.boundary", "Jagamispiir")}</dt>
               {/* Jagamispiir on saaja jaoks kohustuslik lugemine: ta ütleb,
                   mida temaga EI jagatud ja mida ta seega eeldada ei tohi. */}
-              <dd>{share.sharingBoundary}</dd>
+              <dd>{openedShare.sharingBoundary}</dd>
             </div>
             <div>
               <dt>{txt(t, "network_share.fields.ends_on", "Kaasamine lõpeb")}</dt>
               <dd>{String(share.participationEndsOn || "").slice(0, 10)}</dd>
             </div>
-          </dl>
+          </dl> : null}
 
           <div>
-            {share.status === "SENT" ? (
+            {!openedShare ? (
               <Button type="button" size="sm" variant="primary" disabled={busyId === share.id}
                 onClick={() => void markOpened(share)}>
-                {txt(t, "network_share.actions.mark_opened", "Olen läbi lugenud")}
+                {txt(t, "network_share.actions.mark_opened", "Ava jagamine")}
               </Button>
             ) : null}
-            {share.roomId ? (
-              <Button as="a" size="sm" href={localizePath(`/ruum/${encodeURIComponent(share.roomId)}`, locale)}>
+            {openedShare?.roomId ? (
+              <Button as="a" size="sm" href={localizePath(`/ruum/${encodeURIComponent(openedShare.roomId)}`, locale)}>
                 {txt(t, "network_share.actions.open_room", "Ava arutelu")}
               </Button>
             ) : null}
           </div>
         </article>
-      ))}
+        );
+      })}
     </div>
   );
 }

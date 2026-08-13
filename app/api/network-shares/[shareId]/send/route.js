@@ -1,5 +1,13 @@
 import {
-  createRoomPort, handleShareRoute, readShareId, requireShareUser, shareError, shareJson, workerProjection
+  createRoomPort,
+  createShareOutboxPort,
+  handleShareRoute,
+  hasFrameworkAcceptance,
+  readShareId,
+  requireShareUser,
+  shareError,
+  shareJson,
+  workerProjection
 } from "@/lib/network/shareRoutes";
 import { sendNetworkShare } from "@/lib/network/share";
 import { prisma } from "@/lib/prisma";
@@ -18,7 +26,9 @@ export async function POST(_req, { params }) {
       prisma,
       shareId,
       workerId: auth.userId,
-      createRoom: createRoomPort()
+      createRoom: createRoomPort(),
+      createOutbox: createShareOutboxPort(),
+      hasFrameworkAcceptance
     });
     return shareJson({ ok: true, share: workerProjection(share) });
   });

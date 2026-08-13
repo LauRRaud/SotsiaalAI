@@ -65,7 +65,8 @@ function createPrisma() {
       { id: "worker_1" },
       { id: "client_1" },
       { id: "provider_1" }
-    ])
+    ]),
+    roomMember: createModel()
   };
 }
 
@@ -306,8 +307,13 @@ test("saaja projektsioon ei kanna lähteallikat ega osapoolte identiteete", asyn
   const prisma = createPrisma();
   const confirmed = await confirmedShare(prisma);
   const sent = await sendNetworkShare({ prisma, shareId: confirmed.id, workerId: "worker_1", now });
-
-  const view = recipientProjection(sent, { viewerUserId: "provider_1" });
+  const opened = await markShareOpened({
+    prisma,
+    shareId: sent.id,
+    recipientUserId: "provider_1",
+    now
+  });
+  const view = recipientProjection(opened, { viewerUserId: "provider_1" });
   assert.deepEqual(Object.keys(view).sort(), [...RECIPIENT_VISIBLE_FIELDS].sort());
 
   // Nimeliselt: need EI TOHI kunagi saajani jõuda.
@@ -528,6 +534,7 @@ test("töötaja saab välise kliendi otsuse üle kanda, aga see jääb ERISTATAV
     decision: "CONFIRMED",
     method: "IN_PERSON",
     note: "Kinnitas kodukülastusel.",
+    hasFrameworkAcceptance: frameworkOk,
     now
   });
 
@@ -840,4 +847,128 @@ test("SOL-NET-02: ruumi port saab tehingukliendi, mitte globaalse", async () => 
     now
   });
   assert.equal(handedDb, prisma, "ruum peab sündima saatmise enda tehingus");
+});
+
+test("SOL-NET-05: lõppkuupäevale järgneval päeval ei saa kinnitatud jagamist saata", async () => {
+  const prisma = createPrisma();
+  const share = await confirmedShare(prisma);
+  await assert.rejects(
+    () => sendNetworkShare({
+      prisma,
+      shareId: share.id,
+      workerId: "worker_1",
+      createRoom: async () => ({ id: "room_expired" }),
+      now: () => new Date("2027-01-01T00:00:00.000Z")
+    }),
+    (error) => error.code === "network_share.participation_ended"
+  );
+});
+
+test("SOL-NET-05: lõppkuupäeva enda viimasel hetkel on jagamine veel aktiivne", async () => {
+  const prisma = createPrisma();
+  const share = await confirmedShare(prisma);
+  const sent = await sendNetworkShare({
+    prisma,
+    shareId: share.id,
+    workerId: "worker_1",
+    createRoom: async () => ({ id: "room_boundary" }),
+    now: () => new Date("2026-12-31T23:59:59.999Z")
+  });
+  assert.equal(sent.status, NetworkShareStatus.SENT);
+});
+
+test("SOL-NET-04/-05: aegunud jagamist ei saa avada ega detailina projitseerida", async () => {
+  const prisma = createPrisma();
+  const share = await confirmedShare(prisma);
+  const sent = await sendNetworkShare({
+    prisma,
+    shareId: share.id,
+    workerId: "worker_1",
+    createRoom: async () => ({ id: "room_open_expired" }),
+    now
+  });
+  const expiredNow = () => new Date("2027-01-01T00:00:00.000Z");
+  await assert.rejects(
+    () => markShareOpened({ prisma, shareId: sent.id, recipientUserId: "provider_1", now: expiredNow }),
+    (error) => error.code === "network_share.participation_ended"
+  );
+  assert.equal(recipientProjection(sent, {
+    viewerUserId: "provider_1",
+    now: expiredNow()
+  }), null);
+});
+
+test("SOL-NET-04: tagasivõtmine eemaldab avamata saaja päris ruumiliikmesuse", async () => {
+  const prisma = createPrisma();
+  const share = await confirmedShare(prisma);
+  const sent = await sendNetworkShare({
+    prisma,
+    shareId: share.id,
+    workerId: "worker_1",
+    createRoom: async () => ({ id: "room_recall" }),
+    now
+  });
+  await prisma.roomMember.create({
+    data: { id: "member_recipient", roomId: sent.roomId, userId: "provider_1", leftAt: null }
+  });
+  await recallNetworkShare({ prisma, shareId: sent.id, workerId: "worker_1", now });
+  assert.equal(prisma.roomMember.rows[0].leftAt, NOW);
+});
+
+test("SOL-NET-06: välise kliendi ülekantud otsus kontrollib raamlepinguid uuesti", async () => {
+  const { attestClientDecision } = await import("../../lib/network/share.js");
+  const prisma = createPrisma();
+  const share = await createNetworkShare(baseInput(prisma, {
+    sourcePreInquiryId: "pre_ext",
+    clientUserId: null,
+    clientDisplayName: "Mari M.",
+    hasFrameworkAcceptance: frameworkOk
+  }));
+  await submitToClient({ prisma, shareId: share.id, workerId: "worker_1", now });
+
+  await assert.rejects(
+    () => attestClientDecision({
+      prisma,
+      shareId: share.id,
+      workerId: "worker_1",
+      decision: "CONFIRMED",
+      method: "IN_PERSON",
+      hasFrameworkAcceptance: async (userId) => userId !== "worker_1",
+      now
+    }),
+    (error) => error.code === "network_share.worker_framework_agreement_required"
+  );
+});
+
+test("SOL-NET-06: välise kliendi saatmine kontrollib saaja raamlepingut tehingus uuesti", async () => {
+  const { attestClientDecision } = await import("../../lib/network/share.js");
+  const prisma = createPrisma();
+  const share = await createNetworkShare(baseInput(prisma, {
+    sourcePreInquiryId: "pre_ext",
+    clientUserId: null,
+    clientDisplayName: "Mari M.",
+    hasFrameworkAcceptance: frameworkOk
+  }));
+  await submitToClient({ prisma, shareId: share.id, workerId: "worker_1", now });
+  await attestClientDecision({
+    prisma,
+    shareId: share.id,
+    workerId: "worker_1",
+    decision: "CONFIRMED",
+    method: "IN_PERSON",
+    hasFrameworkAcceptance: frameworkOk,
+    now
+  });
+  await assert.rejects(
+    () => sendNetworkShare({
+      prisma,
+      shareId: share.id,
+      workerId: "worker_1",
+      createRoom: async () => ({ id: "room_framework_lost" }),
+      hasFrameworkAcceptance: async (userId) => userId !== "provider_1",
+      now
+    }),
+    (error) => error.code === "network_share.recipient_framework_agreement_required"
+  );
+  assert.equal(prisma.networkShare.rows[0].status, NetworkShareStatus.CONFIRMED);
 });

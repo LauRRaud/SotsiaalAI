@@ -7,7 +7,7 @@ import {
   shareJson,
   workerProjection
 } from "@/lib/network/shareRoutes";
-import { createNetworkShare, recipientProjection } from "@/lib/network/share";
+import { createNetworkShare, recipientInboxProjection } from "@/lib/network/share";
 import { prisma } from "@/lib/prisma";
 
 export const runtime = "nodejs";
@@ -75,14 +75,23 @@ export async function GET(req) {
   const role = String(url.searchParams.get("role") || "worker").toLowerCase();
 
   if (role === "recipient") {
+    const now = new Date();
+    const today = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
     const rows = await prisma.networkShare.findMany({
-      where: { recipientUserId: auth.userId, status: { in: ["SENT", "OPENED", "RESPONDED"] } },
+      where: {
+        recipientUserId: auth.userId,
+        status: { in: ["SENT", "OPENED", "RESPONDED"] },
+        participationEndsOn: { gte: today }
+      },
       orderBy: { sentAt: "desc" },
       take: 100
     });
     return shareJson({
       ok: true,
-      shares: rows.map((row) => recipientProjection(row, { viewerUserId: auth.userId })).filter(Boolean)
+      shares: rows.map((row) => recipientInboxProjection(row, {
+        viewerUserId: auth.userId,
+        now
+      })).filter(Boolean)
     });
   }
 

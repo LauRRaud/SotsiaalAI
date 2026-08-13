@@ -20,6 +20,7 @@ function makeDb({ room, member, subscription = true }) {
   return {
     room: { findUnique: async () => room },
     roomMember: { findFirst: async () => member },
+    networkShare: { findFirst: async () => null },
     subscription: { findFirst: async () => (subscription ? { id: "sub-1" } : null) }
   };
 }
@@ -122,6 +123,71 @@ test("isArchivedRoom on sama otsus ka väljaspool väravat", () => {
   assert.equal(isArchivedRoom(ARCHIVED_ROOM), true);
   assert.equal(isArchivedRoom(OPEN_ROOM), false);
   assert.equal(isArchivedRoom(null), false);
+});
+
+test("SOL-NET-04: SENT võrgustikuruumi otselink ei möödu avamisoperatsioonist", async () => {
+  const room = { ...OPEN_ROOM, originType: "NETWORK_SHARE", originId: "share-1" };
+  const db = makeDb({ room, member: ACTIVE_MEMBER });
+  db.networkShare.findFirst = async () => ({
+    id: "share-1",
+    roomId: "r1",
+    recipientUserId: "u1",
+    status: "SENT",
+    participationEndsOn: new Date("2026-12-31T00:00:00.000Z")
+  });
+  const result = await resolveRoomAccess({
+    userId: "u1",
+    userRole: "SOCIAL_WORKER",
+    roomId: "r1",
+    intent: ROOM_READ,
+    db,
+    now: new Date("2026-08-13T00:00:00.000Z")
+  });
+  assert.equal(result.ok, false);
+  assert.equal(result.message, "api.rooms.network_share_not_opened");
+});
+
+test("SOL-NET-05: lõppenud kuupäev sulgeb võrgustikuruumi ka olemasolevale liikmele", async () => {
+  const room = { ...OPEN_ROOM, originType: "NETWORK_SHARE", originId: "share-1" };
+  const db = makeDb({ room, member: ACTIVE_MEMBER });
+  db.networkShare.findFirst = async () => ({
+    id: "share-1",
+    roomId: "r1",
+    recipientUserId: "u1",
+    status: "OPENED",
+    participationEndsOn: new Date("2026-08-12T00:00:00.000Z")
+  });
+  const result = await resolveRoomAccess({
+    userId: "u1",
+    userRole: "SOCIAL_WORKER",
+    roomId: "r1",
+    intent: ROOM_READ,
+    db,
+    now: new Date("2026-08-13T00:00:00.000Z")
+  });
+  assert.equal(result.ok, false);
+  assert.equal(result.message, "api.rooms.access_denied");
+});
+
+test("SOL-NET-05: lõppkuupäeval endal jääb avatud võrgustikuruum ligipääsetavaks", async () => {
+  const room = { ...OPEN_ROOM, originType: "NETWORK_SHARE", originId: "share-1" };
+  const db = makeDb({ room, member: ACTIVE_MEMBER });
+  db.networkShare.findFirst = async () => ({
+    id: "share-1",
+    roomId: "r1",
+    recipientUserId: "u1",
+    status: "OPENED",
+    participationEndsOn: new Date("2026-08-13T00:00:00.000Z")
+  });
+  const result = await resolveRoomAccess({
+    userId: "u1",
+    userRole: "SOCIAL_WORKER",
+    roomId: "r1",
+    intent: ROOM_READ,
+    db,
+    now: new Date("2026-08-13T23:59:59.999Z")
+  });
+  assert.equal(result.ok, true);
 });
 
 // --- Katvus: ükski ruumimarsruut ei tohi väravast mööda minna --------------

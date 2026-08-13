@@ -14,6 +14,7 @@ import { repairEffectivePracticeAssignments } from "@/lib/effectivePractices";
 import { runEffectivePracticeRagRecovery } from "@/lib/effectivePracticeRagRecovery";
 import { runFieldSafetySweep } from "@/lib/field/safety";
 import { runUrgentExpirySweep } from "@/lib/urgent/sweep";
+import { endExpiredNetworkShares } from "@/lib/network/shareExpiry";
 import { safeError } from "@/lib/privacy/safeError";
 
 const NO_STORE = { "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0" };
@@ -130,6 +131,10 @@ export async function POST(request) {
      halvim võimalik tulemus inimesele, kes kirjutas kell 23:47. */
   const fieldSafety = await runStage("fieldSafety", stages, () => runFieldSafetySweep({ dryRun, batchSize }));
   const urgentExpiry = await runStage("urgentExpiry", stages, () => runUrgentExpirySweep({ dryRun, batchSize }));
+  const networkShares = await runStage("networkShares", stages, () => endExpiredNetworkShares({
+    dryRun,
+    batchSize
+  }));
 
   const truncated = Boolean(reconcileCursor || projectorCursor || deliveryCursor);
   projected.truncated = Boolean(projectorCursor);
@@ -161,6 +166,7 @@ export async function POST(request) {
     practiceRagRecovery,
     delivery,
     fieldSafety,
-    urgentExpiry
+    urgentExpiry,
+    networkShares
   }, failedStages.length === 0 ? 200 : 207);
 }

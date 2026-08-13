@@ -1,5 +1,5 @@
 import {
-  handleShareRoute, readShareId, requireShareUser, shareError, shareJson, workerProjection
+  handleShareRoute, hasFrameworkAcceptance, readShareId, requireShareUser, shareError, shareJson, workerProjection
 } from "@/lib/network/shareRoutes";
 import { attestClientDecision } from "@/lib/network/share";
 import { prisma } from "@/lib/prisma";
@@ -28,7 +28,8 @@ export async function POST(req, { params }) {
       workerId: auth.userId,
       decision: body?.decision,
       method: body?.method,
-      note: body?.note || ""
+      note: body?.note || "",
+      hasFrameworkAcceptance
     });
     return shareJson({ ok: true, share: workerProjection(share) });
   });

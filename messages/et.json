@@ -5269,6 +5269,7 @@
       "pre_inquiry_arrived": "Sulle saabus eelpöördumine",
       "org_support_share_received": "Sulle saadeti toeavaldus",
       "org_work_assigned": "Sulle määrati organisatsioonis töö",
+      "network_share_received": "Sulle saabus võrgustikujagamine",
       "pre_inquiry_status_changed": "Sinu eelpöördumise olek muutus",
       "pre_inquiry_opened": "Sinu eelpöördumine avati",
       "pre_inquiry_replied": "Sinu eelpöördumisele vastati",
@@ -9788,7 +9789,7 @@
       "attest": "Klient kinnitas suuliselt",
       "send": "Saada saajale",
       "recall": "Võta tagasi",
-      "mark_opened": "Olen läbi lugenud",
+      "mark_opened": "Ava jagamine",
       "open_room": "Ava arutelu"
     },
     "fields": {
@@ -9827,7 +9828,9 @@
     },
     "inbox": {
       "title": "Sinuga jagatud võrgustikutöö",
-      "intro": "Sulle on jagatud võrgustikutöö kokkuvõtteid. Näed ainult seda, mis on sinuga jagatud."
+      "intro": "Sulle on jagatud võrgustikutöö kokkuvõtteid. Näed ainult seda, mis on sinuga jagatud.",
+      "pending_title": "Sulle saadeti uus jagamine",
+      "open_to_view": "Sisu kuvatakse pärast teadlikku avamist."
     }
   },
   "subsistence": {

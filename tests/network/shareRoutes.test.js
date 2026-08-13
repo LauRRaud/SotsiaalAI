@@ -50,6 +50,13 @@ test("mustandi loomine annab raamlepingu kontrolli edasi — O-CO-6 värav ei j�
 test("saatmine annab kaasa ruumi avamise pordi", async () => {
   const source = await readRoute("[shareId]/send/route.js");
   assert.match(source, /createRoom: createRoomPort\(\)/);
+  assert.match(source, /createOutbox: createShareOutboxPort\(\)/);
+  assert.match(source, /hasFrameworkAcceptance/);
+});
+
+test("välise kliendi otsuse rada annab raamlepingu korduskontrolli edasi", async () => {
+  const source = await readRoute("[shareId]/attest/route.js");
+  assert.match(source, /hasFrameworkAcceptance/);
 });
 
 test("saaja rajad EI kasuta kunagi töötaja täisvaadet", async () => {
@@ -128,7 +135,7 @@ test("saaja postkast kuvab AINULT saaja-projektsiooni välju", async () => {
     assert.doesNotMatch(source, new RegExp(`share[.]${forbidden}`), `${forbidden} lekkis saaja vaatesse`);
   }
   // Ja jagamispiir PEAB seal olema: ta ütleb saajale, mida temaga ei jagatud.
-  assert.match(source, /share\.sharingBoundary/);
+  assert.match(source, /openedShare\.sharingBoundary/);
 });
 
 test("saaja postkast küsib ainult oma rolli nimekirja", async () => {
@@ -138,6 +145,17 @@ test("saaja postkast küsib ainult oma rolli nimekirja", async () => {
   );
   assert.match(source, /role=recipient/);
   assert.doesNotMatch(source, /role=worker/);
+});
+
+test("SOL-NET-04: postkasti laadimine ei tagasta tundlikku detaili enne avamist", async () => {
+  const route = await readRoute("route.js");
+  assert.match(route, /recipientInboxProjection/);
+  const source = await readFile(
+    new URL("../../components/network/NetworkShareInbox.jsx", import.meta.url),
+    "utf8"
+  );
+  assert.match(source, /openedShare/);
+  assert.doesNotMatch(source, /<p>\{share\.summaryText\}<\/p>/);
 });
 
 test("koostamisvorm ei saada klienti kaasa — server tuletab ta", async () => {
