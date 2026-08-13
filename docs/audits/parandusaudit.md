@@ -85,7 +85,7 @@ Käsitsi siia ei kirjutata. DONE algab sõnaga `DONE`, PARTIAL sõnaga `PARTIAL`
 on NOT_DONE. Kvalifitseeritud DONE-väide vale algusega katkestab genereerimise, et ta ei
 kaoks vaikselt valesse rühma. Iga loetletud leiu lõpus on Seis-lõik **sõna-sõnalt**.
 
-DONE **341** / 429 · PARTIAL **5** / 429 · NOT_DONE **83** / 429 · peatükke täielikult DONE **28** / 40 · ametlikult lahtiseid 88 — 1 × P0 · 55 × P1 · 31 × P2 · 1 × P3
+DONE **345** / 429 · PARTIAL **5** / 429 · NOT_DONE **79** / 429 · peatükke täielikult DONE **28** / 40 · ametlikult lahtiseid 84 — 1 × P0 · 51 × P1 · 31 × P2 · 1 × P3
 
 | Peatükk | Kood | DONE | PARTIAL | NOT_DONE | Lahtiste prioriteedid | Märkus |
 |---|---|---:|---:|---:|---|---|
@@ -118,7 +118,7 @@ DONE **341** / 429 · PARTIAL **5** / 429 · NOT_DONE **83** / 429 · peatükke 
 | Tõenduspõhised praktikad | SOL-PRAC | 8/8 | 0 | 0 | – | **tehtud** |
 | Teemaseemned | SOL-SEED | 5/5 | 0 | 0 | – | **tehtud** |
 | Teekond ja jagamine | SOL-JOUR | 3/17 | 1 | 13 | 1 × P0 · 10 × P1 · 3 × P2 |  |
-| Eelpöördumised | SOL-PRE | 7/18 | 0 | 11 | 10 × P1 · 1 × P2 |  |
+| Eelpöördumised | SOL-PRE | 11/18 | 0 | 7 | 6 × P1 · 1 × P2 |  |
 | Abikuulutused | SOL-HELP | 0/13 | 0 | 13 | 11 × P1 · 2 × P2 |  |
 | Võrgustikutöö | SOL-NET | 2/13 | 0 | 11 | 9 × P1 · 2 × P2 |  |
 | Refleksioonid | SOL-REF | 0/9 | 0 | 9 | 3 × P1 · 6 × P2 |  |
@@ -536,7 +536,7 @@ DONE **341** / 429 · PARTIAL **5** / 429 · NOT_DONE **83** / 429 · peatükke 
 - `SOL-JOUR-03` P1 — salvestusnormaliseerija hävitab Teekonna struktureeritud konteksti — DONE — Teekonna `context` kasutab versioonitud `schemaVersion: 1` lepingut ja väljade kaupa sügavusteadlikku normaliseerimist. `assistiveDevices`, `activityLog`, `helpMediation` ja `serviceContinuity` objektid ning objektimassiivid säilivad draft → create-normalize → serialize → update-normalize ringis; mitteskalaarsed väärtused ei muutu tekstiväljades `[object Object]` väärtuseks. Tõend: `tests/journey/contextRoundTrip.test.js`; DB-sondi ega brauserit ei ole vaja, sest invariant on deterministlikus DB-eelses normaliseerimises.
 - `SOL-JOUR-04` P1 — tavaline detailvaate salvestus kustutab soovitatud tegevuste masinloetavad tüübid — DONE — detailvaate salvestus seob redigeeritud pealkirjaread olemasolevate tegevusobjektidega. Ainult pealkirja muutmisel säilivad `id`, `type` ja `description`; muutmata tegevused säilitavad kogu masinloetava struktuuri ning uus rida ei päri teise tegevuse metaandmeid. Serveri normaliseerija säilitab ka tegevuse ID. Tõend: `tests/journey/suggestedActionEditing.test.js`.
 
-**Eelpöördumised** (`SOL-PRE`, 7/18)
+**Eelpöördumised** (`SOL-PRE`, 11/18)
 
 - `SOL-PRE-01` P0 — konto kustutamine jätab saatmata eelpöördumiste tundliku sisu autorita alles — DONE — saatmata mustandid kustutatakse samas lukustatud tehingus. Commit `97b28080`.
 - `SOL-PRE-02` P0 — tagasivõetud organisatsioonipöördumise sisu saab hiljem avada ja uuesti töötajale määrata — DONE — terminalne seis ei anna sisu ega tööd. Sond `npm run org:recall:probe` 42/42 päris PostgreSQL-is.
@@ -545,6 +545,10 @@ DONE **341** / 429 · PARTIAL **5** / 429 · NOT_DONE **83** / 429 · peatükke 
 - `SOL-PRE-05` P1 — levinud eestikeelsed vägivallakirjeldused jäävad kriisiriskita — DONE — kriisirisk kasutab UTF-8 puhast ja diakriitikakindlalt normaliseeritud ühist riskiväravat. ET/EN/RU korpus katab lähisuhte- ja koduvägivalla, ähvarduse, enesevigastuse, eituse, ajaloolise juhtumi ning vahetu ohu; otsese ohu korral säilib kiire abi info sõltumata kontaktisoovitusest. Negatiivkontroll tõendas vana eestikeelse vale-negatiivse käitumise; `tests/preInquiries/assessment.test.js` on testslice'i 115/115 osa (`runtime: not_run`).
 - `SOL-PRE-06` P1 — sõnad „pere”, „vanem” ja „noor” tekitavad ilma lapseta lastekaitsesuuna — DONE — lapsekaitsesuund nõuab nüüd lapse või alaealise selget semantilist konteksti; sõnad „pere”, „vanem” ja „noor” üksi seda ei käivita. Korpus eristab eakat vanemat, lapsevanemat, noort spetsialisti, noorukit, pere eelarvet ja otsest lapse turvariski ning säilitab samaaegselt muud tuvastatud eluvaldkonnad. Vana vale-positiivne käitumine kukkus negatiivkontrollis; testslice 115/115 (`runtime: not_run`).
 - `SOL-PRE-07` P1 — piirkonnaga mitteseotud kontakt võib saada eksitava „kõrge kindluse” — DONE — iga soovitus kannab eraldi piirkonna-, vajaduse- ja kanalivaste tõendit ning `HIGH` on lubatud ainult nõutud vastete olemasolul. KOV-kontakt peab kattuma kasutaja KOV-iga; sama maakonna ja üleriigilise teenuse rajad on eraldi tähistatud ning puuduv piirkond või null sisulist vastet ei saa kõrget kindlust. Negatiivkontroll kattis vale KOV-i; testslice 115/115 (`runtime: not_run`).
+- `SOL-PRE-08` P1 — eelpöördumise üldsalvestus kirjutab vana brauseriseisu konfliktita üle — DONE — autori PATCH nõuab nüüd `expectedUpdatedAt` väärtust ning võrdleb seda advisory lock'i all värske reaga enne CAS-kirjutust; puuduva või aegunud versiooni korral vastab server 409 ja ei kirjuta midagi. Vorm saadab kasutaja nähtud versiooni. Päris PostgreSQL-i sond kattis content-vs-content, recipient-vs-content, download-vs-edit ja archive-vs-edit võistlused: igas paaris võitis täpselt üks klient ning teine sai 409; vana tingimusteta kirjutus lasi mõlemad läbi ja kaotas esimese tulemuse. Sihttestid ja sond rohelised (`runtime: PostgreSQL probe`).
+- `SOL-PRE-09` P1 — arhiveeritud saatmata eelpöördumine on endiselt muudetav ja tavalisel salvestusel taasavatav — DONE — `ARCHIVED` on üldise PATCH-i jaoks terminalne ning lubatud autori siirded on serveris tabelina jõustatud. Eraldi `/reopen` toiming viib kirje CAS-kaitstult tagasi `READY` olekusse; aegunud taasavamine saab 409. UI ei paku arhiveeritud kirjele tavalist muutmist, vaid teadlikku taasavamist. Otsene PATCH, archive→reopen→edit ja stale reopen-võistlus on regressioonitestidega kaetud (`runtime: not_run`; brauserit ei nõutud, sest UI lepingut kontrollib lähtekooditest ja võistlust päris DB sond).
+- `SOL-PRE-10` P1 — autor saab luua vestlusruumi veel saatmata mustandist — DONE — vestlusruumi saab luua ainult sisemisest, adressaadile kohale toimetatud, tagasi võtmata ja adressaadi poolt vastu võetud eelpöördumisest. Autor ega adressaat ei saa ruumi enne vastuvõttu; tingimuste värske kontroll ja deduplikeeritud ruumiloome toimuvad samas tehingus ning route'i eraldi veaneelav järel-UPDATE on eemaldatud. Author-on-DRAFT, author-on-SENT, recipient-before/after-accept, deduplikatsioon ja veapiirid on sihttestidega kaetud (`runtime: not_run`).
+- `SOL-PRE-11` P1 — välise e-kirja kasutajavoog ei märgi saatmist, serveri saatmisrada võib aga duplitseerida kirju — DONE — lukustatud leping on teadlik kasutajakinnitus pärast `mailto:` üleandmist: server ei saada selle raja kaudu ühtegi provider-kirja ega väida automaatset kättetoimetamist. Kinnitus salvestab advisory lock'i ja CAS-i all idempotentselt `SENT` oleku ning `externalSendConfirmedAt` aja; katkestus, DB-viga või aegunud versioon jätab kirje ausalt `READY` olekusse. `/send` tähendus on nüüd üksnes kasutaja välise saatmise kinnitus. Paralleel- ja veasüst-testid tõendavad null provider-send'i, ühe kinnituse ning taastatava oleku (`runtime: not_run`).
 
 **Võrgustikutöö** (`SOL-NET`, 2/13)
 

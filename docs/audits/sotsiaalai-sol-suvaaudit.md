@@ -7410,6 +7410,8 @@ tagasivõetud pakett. Peidetud on ainult `RECALLED`. Töörajad sulguvad kõigil
 
 **Vastuvõtukriteerium.** Iga author PATCH peab nõudma kehtivat `expectedUpdatedAt`/versiooni ja tegema CAS-kirjutuse; puuduva või vana väärtuse korral 409 ilma osalise muutuseta. Kahe kliendi päris PostgreSQL-i test peab katma content-vs-content, recipient-vs-content, download-vs-edit ja archive-vs-edit järjestused.
 
+**Seis (13.08.2026): DONE —** autori PATCH nõuab nüüd `expectedUpdatedAt` väärtust ning võrdleb seda advisory lock'i all värske reaga enne CAS-kirjutust; puuduva või aegunud versiooni korral vastab server 409 ja ei kirjuta midagi. Vorm saadab kasutaja nähtud versiooni. Päris PostgreSQL-i sond kattis content-vs-content, recipient-vs-content, download-vs-edit ja archive-vs-edit võistlused: igas paaris võitis täpselt üks klient ning teine sai 409; vana tingimusteta kirjutus lasi mõlemad läbi ja kaotas esimese tulemuse. Sihttestid ja sond rohelised (`runtime: PostgreSQL probe`).
+
 ### SOL-PRE-09 — arhiveeritud saatmata eelpöördumine on endiselt muudetav ja tavalisel salvestusel taasavatav — P1
 
 **Tõend.** `updatePreInquiry()` keelab ainult `SENT` ning avatud/asendatud kirje muutmise; `ARCHIVED` ei ole terminalne kontroll (`lib/preInquiries.js:1274-1295`, `:1328-1337`). Olekunormaliseerija lubab kliendil küsida DRAFT/READY/SENT/ARCHIVED üleminekut ilma siirdemaatriksita (`lib/preInquiries.js:1379-1450`). Salvestatud kirjete UI näitab „Muuda” nuppu ka ARCHIVED kirjel; avamine täidab vormi ja tavaline „Salvesta” saadab vaikimisi `status:DRAFT` (`components/workspace/WorkspaceFeaturePage.jsx:1476-1509`, `:2875-2917`).
@@ -7417,6 +7419,8 @@ tagasivõetud pakett. Peidetud on ainult `RECALLED`. Töörajad sulguvad kõigil
 **Mõju.** Ajalukku viidud pöördumise sisu saab muuta või see taasavatakse vaikse DRAFT-salvestusega, ilma teadliku reopen-toimingu ja sündmuseta. Arhiiv ei ole usaldatav lõpetatud seis.
 
 **Vastuvõtukriteerium.** ARCHIVED peab olema serveris read-only kuni eraldi versioonikindla reopen-toiminguni; UI peab muutmise peitma või nõudma taasavamist. Lubatud olekusiirded tuleb jõustada tabelina ning testida otsest PATCH-i, archive→reopen→edit rada ja stale reopen-võistlust.
+
+**Seis (13.08.2026): DONE —** `ARCHIVED` on üldise PATCH-i jaoks terminalne ning lubatud autori siirded on serveris tabelina jõustatud. Eraldi `/reopen` toiming viib kirje CAS-kaitstult tagasi `READY` olekusse; aegunud taasavamine saab 409. UI ei paku arhiveeritud kirjele tavalist muutmist, vaid teadlikku taasavamist. Otsene PATCH, archive→reopen→edit ja stale reopen-võistlus on regressioonitestidega kaetud (`runtime: not_run`; brauserit ei nõutud, sest UI lepingut kontrollib lähtekooditest ja võistlust päris DB sond).
 
 ### SOL-PRE-10 — autor saab luua vestlusruumi veel saatmata mustandist — P1
 
@@ -7426,6 +7430,8 @@ tagasivõetud pakett. Peidetud on ainult `RECALLED`. Töörajad sulguvad kõigil
 
 **Vastuvõtukriteerium.** Ruumi loomine peab nõudma kohale toimetatud, tagasi võtmata sisemist pöördumist ja lukustatud tooteotsuse järgi kas adressaadi explicit accept'i või samas tehingus usaldusväärset avamist. Ruumi loomine ja võimalik olekumuutus peavad olema üks tehing; vigu ei tohi neelata. Testida author-on-DRAFT, author-on-SENT, recipient-before/after-accept ja DB-update veasüsti.
 
+**Seis (13.08.2026): DONE —** vestlusruumi saab luua ainult sisemisest, adressaadile kohale toimetatud, tagasi võtmata ja adressaadi poolt vastu võetud eelpöördumisest. Autor ega adressaat ei saa ruumi enne vastuvõttu; tingimuste värske kontroll ja deduplikeeritud ruumiloome toimuvad samas tehingus ning route'i eraldi veaneelav järel-UPDATE on eemaldatud. Author-on-DRAFT, author-on-SENT, recipient-before/after-accept, deduplikatsioon ja veapiirid on sihttestidega kaetud (`runtime: not_run`).
+
 ### SOL-PRE-11 — välise e-kirja kasutajavoog ei märgi saatmist, serveri saatmisrada võib aga duplitseerida kirju — P1
 
 **Tõend.** Tegelik UI avab ainult `mailto:` lingi „Ava e-kirjana”; ta ei kutsu `/api/pre-inquiries/[id]/send` route'i ega saa teada, kas kasutaja saatis, muutis või sulges kirja (`components/workspace/WorkspaceFeaturePage.jsx:539-545`, `:2793-2828`). Seetõttu jääb kirje DRAFT/READY-ks ja ei ilmu saadetud jagamiste registrisse. Eraldi serverifunktsioon saadab SMTP-kirja enne andmebaasi `status=SENT` uuendust, ilma advisory lock'i, CAS-i või idempotentsusvõtmeta (`lib/preInquiries.js:1570-1634`). Kaks paralleelset POST-i võivad mõlemad läbida `existing.status !== SENT` kontrolli ja saata kaks kirja; DB-vea järel on kiri väljas, kuid rida jätkuvalt saatmata.
@@ -7433,6 +7439,8 @@ tagasivõetud pakett. Peidetud on ainult `RECALLED`. Töörajad sulguvad kõigil
 **Mõju.** Välise saatmise kohta pole üht tõde: tavakasutaja päris tegevus jääb platvormis jälitamata, samas otsene serverirada võib saata topelt või tekitada „kiri saadetud, süsteem ütleb saatmata” seisu. Paranduse/tagasivõtu ja „Minu jagamised” lubadused ei kehti selle kanali jaoks usaldusväärselt.
 
 **Vastuvõtukriteerium.** Lukustada üks välise saatmise leping: kas kasutaja kinnitab pärast mailto-väljumist teadlikult välise saatmise (ilma valet automaatset tõendit loomata) või kasutatakse durable outbox'i/idempotentset serverisaatmist. Paralleel- ja veasüst-testid peavad tõendama maksimaalselt ühe provider-send'i ning ausa taastatava DB/outbox seisu.
+
+**Seis (13.08.2026): DONE —** lukustatud leping on teadlik kasutajakinnitus pärast `mailto:` üleandmist: server ei saada selle raja kaudu ühtegi provider-kirja ega väida automaatset kättetoimetamist. Kinnitus salvestab advisory lock'i ja CAS-i all idempotentselt `SENT` oleku ning `externalSendConfirmedAt` aja; katkestus, DB-viga või aegunud versioon jätab kirje ausalt `READY` olekusse. `/send` tähendus on nüüd üksnes kasutaja välise saatmise kinnitus. Paralleel- ja veasüst-testid tõendavad null provider-send'i, ühe kinnituse ning taastatava oleku (`runtime: not_run`).
 
 ### SOL-PRE-12 — organisatsiooni vastuvõtulauda ei saa platvormi enda eelpöördumise UI-st valida — P1
 
