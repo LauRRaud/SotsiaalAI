@@ -112,6 +112,7 @@ function createDb() {
     serviceReportShare: { findMany: async () => [] },
     userDocument: { findMany: async () => [] },
     materialSubmission: { findMany: async () => [] },
+    caseWorkAssist: { findMany: async () => [] },
     agentArtifact: { findMany: async () => [] },
     savedAnalysis: { findMany: async ({ where }) => where.ownerId === "owner" ? [{
       id: "analysis-own",
@@ -265,7 +266,10 @@ test("materials export includes only owner rows and marks a missing original in 
     archivePath: null,
     sha256: "b".repeat(64),
     importedRelation: null,
-    retentionUntil: null
+    retentionUntil: null,
+    retentionClass: "DECISION_PENDING",
+    retentionState: "DECISION_PENDING",
+    retentionDecision: "decision_pending"
   });
   assert.match(exported, /own comment|Accepted after review|not_recorded/);
   assert.doesNotMatch(exported, /other-admin@example\.test|storagePath|submittedByUserId/);

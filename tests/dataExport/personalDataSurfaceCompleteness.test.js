@@ -17,10 +17,10 @@ const schema = fs.readFileSync(new URL("../../prisma/schema.prisma", import.meta
 const exportSurfaceNames = DATA_EXPORT_REGISTRY.map(surface => surface.name);
 
 test("XFUNC-03: every current Prisma User relation and copy marker is classified", () => {
-  assert.equal(discoverPrismaUserRelations(schema).length, 157);
-  assert.equal(PRISMA_USER_RELATION_CLASSIFICATIONS.length, 157);
-  assert.equal(discoverPersonalDataCopyFields(schema).length, 41);
-  assert.equal(PERSONAL_DATA_COPY_CLASSIFICATIONS.length, 43);
+  assert.equal(discoverPrismaUserRelations(schema).length, 158);
+  assert.equal(PRISMA_USER_RELATION_CLASSIFICATIONS.length, 158);
+  assert.equal(discoverPersonalDataCopyFields(schema).length, 42);
+  assert.equal(PERSONAL_DATA_COPY_CLASSIFICATIONS.length, 44);
   assert.doesNotThrow(() => assertPersonalDataSurfaceRegistryComplete({ schemaText: schema, exportSurfaceNames }));
 });
 
