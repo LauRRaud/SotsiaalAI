@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**Paralleelsete parandustööpuude järgmine laine on integreeritud lokaalsesse `main`-i.** `SOL-JOUR-01…17` ja `SOL-NET-01…13` on täielikult lõpetatud: Teekonna ajalugu, mahupiirid, terviklik eksport ja aus valideerimine ning võrgustikujagamise lähte-, rolli-, nähtavus-, sündmus-, limiidi-, paginatsiooni- ja lõppolekupiirid on serveris jõustatud. Meetodipeegli `SOL-REF-01…05` sulgeb kadunud uuendused, vigased allikaviited/filtrid, piiratud loendi ja kordusloomise; järgmine REF-plokk on `SOL-REF-06…09`.
+**Paralleelsete parandustööpuude järgmine laine liigub plokkhaaval lokaalsesse `main`-i.** `SOL-JOUR-01…17`, `SOL-NET-01…13`, `SOL-REF-01…09` ja `SOL-SEARCH-01…07` on lõpetatud. Meetodipeegel hõlmab nüüd turvalist andmekoopiat, lepingutähtajast retention'it ja taastatavat kustutamist; isiklik otsing kasutab sisu mitte kandvat POST-i, jagatud limiterit, täielikku paginatsiooni, owner-skoobitud dokumendilinke ning tõrketaluvat lokaliseeritud vastust. Toodangu logi-/proxy- ja taimerirajad on ausalt `NOT_PROVEN`. Järgmine integratsiooniplokk on `SOL-SPROF-03…08`.
 
 **Teenuspäeviku jätkuauditi `SOL-SLOG-J-01…07` on lõpetatud.** Kirje parandamine,
 tühistamine, mustandi kustutamine ja owner-skoobitud ajalugu on nüüd päris kasutajateed;

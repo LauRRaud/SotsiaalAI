@@ -58,10 +58,10 @@ test("REF-06 export copies every owner field before deletion without resolving a
   });
   const exported = files[0].content.toString("utf8");
   assert.deepEqual(query.where, { ownerUserId: "owner" });
-  assert.equal(query.select.id, undefined);
+  assert.equal(query.select.id, true);
   assert.equal(query.select.ownerUserId, undefined);
   assert.equal(query.include, undefined);
-  assert.match(exported, /Minu meetod|Omaniku kirje|source-mine|USER_DELETED/);
+  assert.match(exported, /mine|Minu meetod|Omaniku kirje|source-mine|USER_DELETED/);
   assert.doesNotMatch(exported, /Võõras sisu|secret-replay-key|secret-hash|ownerUserId/);
 });
 

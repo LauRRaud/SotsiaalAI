@@ -7932,6 +7932,8 @@ taga veel ei ole.
 
 **Vastuvõtukriteerium.** Lisada owner-skoobitud `practice_reflections` eksport kõigi väljade, source-ref'i ja ajatemplitega, ilma teiste isikute sisu juurde lahendamata. Test peab looma kahe omaniku kirjed, tõendama võõra rea puudumise ning kontrollima koopiat enne konto kustutust.
 
+**Seis (13.08.2026): DONE —** andmekoopia sisaldab nüüd omaniku aktiivseid ja taastamisaknas olevaid `PracticeReflection` kirjeid koos sisu, allikaviidete ning ajatemplitega. Teise omaniku read ja sisemised idempotentsus-/retention-väljad jäävad välja. Registritest ning päris PostgreSQL-i sond tõendasid omaniku täieliku koopia enne kustutamist ja võõra sisu puudumise.
+
 ### SOL-REF-07 — privaatse mooduli lepingulise tähtaja lõpp ei käivita refleksioonide retention'it — P1, runtime NOT_PROVEN
 
 **Tõend.** `PracticeReflection` mudelis on ainult owner-kaskaad ja ajatemplid, kuid puudub retention state/deadline (`prisma/schema.prisma:1477-1509`). Tootmiskoodis ega worker'ites pole PracticeReflection'i puhastust. Õigus-/tooteleping lubab säilitada kirjet kuni kasutaja kustutuseni, konto sulgemiseni **või privaatse mooduli lepingulise tähtaja saabumiseni** ning nõuab tähtaja kontrolli enne tootmiskasutust (`docs/legal/sotsiaalai_organisatsioonikasutuse_raamleping_vnext_MUSTAND.md:996-1010`).
@@ -7939,6 +7941,8 @@ taga veel ei ole.
 **Mõju.** Kui privaatse mooduli õiguslik alus või leping lõpeb, võivad tundlikud kliendi reaktsioonid, töötaja tähelepanekud ja tõlgendused jääda kontole tähtajatult. Tellimuse värav piirab muutmist, kuid GET/DELETE jäävad teadlikult avatuks ega asenda automaatset retention'i.
 
 **Vastuvõtukriteerium.** Kinnitada moodulitähtaeg ja selle autoritatiivne allikas, lisada jälgitav retention-state/deadline ning idempotentne monitooritud worker. Runtime peab tõendama mõlemad tähtaja pooled, kasutaja varasema kustutuse, konto kaskaadi ja nurjunud batch'i retry.
+
+**Seis (13.08.2026): DONE —** jälgitava retention-tähtaja autoritatiivne allikas on omaniku privaatmooduli tellimuse `endsAt`; aktiivse lepingu pikenemine nihutab tähtaega edasi. Idempotentne monitooritud worker jätab tähtajaeelsed read alles, eemaldab aegunud read, salvestab nurjunud batch'i ning võimaldab kontrollitud retry. Päris PostgreSQL-i sond kinnitas tähtaja mõlemad pooled, kasutaja varasema kustutuse, konto FK-kaskaadi, lepingu pikenemise ja tõrkejärgse korduskatse. Tootmistaimeri tegelik jooks on `NOT_PROVEN`.
 
 ### SOL-REF-08 — kustutamisnupp eemaldab privaatse refleksiooni kohe ilma kinnituse või taastamiseta — P2
 
@@ -7948,6 +7952,8 @@ taga veel ei ole.
 
 **Vastuvõtukriteerium.** Lisada sisutu kinnitusdialoog (ei korda refleksiooniteksti) ja taastatav lühiajaline owner-only kustutus/undo või muu privaatsust säilitav taastemehhanism. Testida cancel, confirm, topeltkinnitus, aegunud undo ja võõra ID generic 404.
 
+**Seis (13.08.2026): DONE —** kustutamine kasutab refleksioonisisu mittekordavat kinnitust, owner-skoobitud pehmet kustutust ja lühikest taastamisakent. Korduskinnitus on replay-safe ning võõras või puuduv ID ei avalda olemasolu. Regressioonitestid ja päris PostgreSQL-i sond katsid cancel/confirm-tee, topeltkinnituse, omaniku taastamise, aegunud undo ning võõra ID. Autenditud brauserirada jäi selles plokis `NOT_PROVEN`, kuid sama UI-olekumasin on deterministliku testiga lukustatud.
+
 ### SOL-REF-09 — aeglasem vana detailipäring võib uuema valiku vormi üle kirjutada — P2
 
 **Tõend.** `openExisting(id)` ei kasuta AbortController'it, request-sequence väravat ega kontrolli, et vastus vastab viimati valitud ID-le (`components/reflection/ReflectionPage.jsx:169-185`). Kahe kaardi kiirel avamisel kirjutab hiljem lõpetanud esimene päring `editingId`, sourceRef'i ja kogu vormi üle.
@@ -7955,6 +7961,8 @@ taga veel ei ole.
 **Mõju.** Kasutaja võib näha teise kirje asemel varem klõpsatud tundlikku refleksiooni ning muuta vale kirjet, arvates et avas viimase valiku. Omanikupiir ei leki teise kasutaja andmeid, kuid oma kirjete vahel tekib eksitav ja andmekaoohtlik olek.
 
 **Vastuvõtukriteerium.** Katkestada eelmine detailipäring või rakendada monotonset request-ID väravat; ainult viimase valiku vastus tohib vormi muuta. UI-test peab lõpetama A→B päringud järjekorras B→A ning hoidma B vormi ja ID aktiivsena.
+
+**Seis (13.08.2026): DONE —** detailivaade katkestab eelmise päringu ja kasutab monotonset päringu-ID väravat, mistõttu ainult viimane valik tohib vormi kirjutada. Regressioonitest lõpetab A→B päringud järjekorras B→A ning kinnitab, et aktiivseks jäävad B vorm ja ID. Autenditud brauserirada jäi selles plokis `NOT_PROVEN`.
 
 ### SOL-SEARCH-01 — autentimata otsingupäring võib enne 401 vastust käivitada kogu platvormi retention-cleanup'i — P1
 
@@ -7964,6 +7972,8 @@ taga veel ei ole.
 
 **Vastuvõtukriteerium.** Autentimine ja odav rate-limit peavad eelnema igale hooldustööle. Retention käib hallatava worker/cron'i kaudu ühe jagatud lukuga, mitte avaliku lugemisroute'i kõrvalmõjuna. Negatiivtest peab tõendama, et anonüümne otsing ei kutsu cleanup'i; mitme protsessi test tõendab ühe aktiivse sweep'i ja nurjunud töö kontrollitud retry.
 
+**Seis (13.08.2026): DONE —** `/api/otsi` autentib kasutaja enne jagatud limiterit ega käivita enam säilitustööd avaliku lugemise kõrvalmõjuna. Eraldi autentitud retention-POST kasutab kogu sweep'i vältel PostgreSQL-i sessioonipõhist advisory-lock'i; konkureeriv protsess saab kontrollitud `202 already_running` vastuse ja retry-aja. Negatiivkontroll tõendab, et anonüümne päring ei jõua limiteri ega otsinguni; päris PostgreSQL-i kahe protsessi sond tõendas ühe aktiivse sweep'i, kontrollitud kaotaja ning õnnestunud korduskatse.
+
 ### SOL-SEARCH-02 — privaatne otsingutekst liigub URL-i query-string'is — P2, runtime NOT_PROVEN
 
 **Tõend.** Brauser teeb `GET /api/otsi?q=<tekst>` ning server loeb sama `q` parameetri URL-ist (`components/search/PersonalSearchPage.jsx:24-36`; `app/api/otsi/route.js:35-41`). Otsingutekst võib olla kliendi nimi, juhtumi pealkiri või dokumendi failinimi. Repos pole frontend-proxy access-log'i formaati ega sanitiseerimist, mis tõendaks query-string'i väljajätmist.
@@ -7971,6 +7981,8 @@ taga veel ei ole.
 **Mõju.** Kui reverse proxy, APM või infrastruktuuri access-log salvestab tavalise request URI, jõuab privaatne otsingusisu logidesse väljaspool tööobjekti retention'i ja ligipääsupiiri. Rakenduse enda `console` ei logi query't, kuid sellest ei piisa taristukihi tõendiks.
 
 **Vastuvõtukriteerium.** Tundlik otsing peab kasutama sisu mitte kandvat URL-i (näiteks no-store POST kehaga) või tuleb taristus tõendada ja testida query täielik redaktsioon. Logi-smoke saadab sünteetilise markeriga otsingu ja kontrollib app-, proxy-, APM- ning journal-logidest markeripuudumist.
+
+**Seis (13.08.2026): DONE —** isiklik otsing kasutab nüüd `no-store` POST-päringut JSON-kehaga ning GET tagastab 405; privaatne otsingutekst ei lähe URL-i. Autenditud lokaalne brauserirada sünteetilise markeriga tõendas puhta `/otsi` aadressi, markerita `POST /api/otsi` URL-i ja 0 markerivastet rakenduse arenduslogis. Toodangu proxy-, APM- ja systemd-logipinnad jäid `NOT_PROVEN`; deploy'd ei tehtud.
 
 ### SOL-SEARCH-03 — iga objektitüübi üheksas ja vanem vaste kaob ilma paginatsiooni või hoiatuseta — P2
 
@@ -7980,6 +7992,8 @@ taga veel ei ole.
 
 **Vastuvõtukriteerium.** Rakendada stabiilne tüübipõhine või ühine cursor-paginatsioon ning aus `hasMore`/koguarv; vähemalt tuleb kuvada kärpeteade ja tee täieliku loendini. Testida 9+ vastet igas liigis, võrdseid kuupäevi ja lehekülgedevahelist deduplikatsiooni.
 
+**Seis (13.08.2026): DONE —** vestlusel, Teekonnal ja dokumendil on eraldi stabiilne ID-kursor, deterministlik ajatempel+ID järjestus, ühe rea lookahead ning aus `hasMore`/`nextCursor`; lõppenud liik ei alusta järgmisel lehel uuesti. Päris PostgreSQL-i sond läbis iga liigi üheksa võrdse ajatempliga rida kahe lehe kaudu: 27 tulemust, 27 unikaalset sihtmärki, duplikaate ega kadusid ei olnud.
+
 ### SOL-SEARCH-04 — dokumendi otsingutulemus ei ava leitud dokumenti — P2
 
 **Tõend.** Iga `UserDocument` tulemus saab sõltumata rea ID-st konstantse `href:"/documents"` (`lib/search/personalSearch.js:47-59`). Kliendiroll suunatakse sellelt lehelt omakorda `/dokreziim` pinnale (`app/documents/page.js:26-41`). Negatiivkontrollis said kaks eri dokumenti identse href'i.
@@ -7987,6 +8001,8 @@ taga veel ei ole.
 **Mõju.** Otsing leiab pealkirja, kuid kasutaja peab dokumendi üldloendist uuesti leidma; pika loendi või kliendirolli korral ei pruugi tulemuseni üldse jõuda. See ei täida T17 lepingus nõutud olemasolevat detaili-süvalinki.
 
 **Vastuvõtukriteerium.** Luua serveri allowlist'itud owner-skoobitud dokumendi detaili-/fookuslink või ausalt eemaldada dokument tüübist kuni turvalise sihtpinna valmimiseni. Test peab tõendama, et kaks tulemust avavad oma eri owner-kontrollitud objekti ja võõras ID annab generic 404.
+
+**Seis (13.08.2026): DONE —** dokumendi otsingutulemus viib nüüd omaniku kontrollitud `/documents/[id]` detailvaatesse, mitte konstantsesse loendisse. Päris PostgreSQL tõendas eri dokumentidele eri sihtmärgid ja võõra omaniku kirje puudumise otsingust; autentitud brauser avas oma dokumendi detaili ning võõras ja olematu ID andsid sama üldise „Dokumenti ei leitud” vastuse.
 
 ### SOL-SEARCH-05 — ühe objektitüübi rike muudab kõik ülejäänud otsingutulemused kättesaamatuks — P2
 
@@ -7996,6 +8012,8 @@ taga veel ei ole.
 
 **Vastuvõtukriteerium.** Otsustada ja dokumenteerida fail-closed vs osalise tulemuse leping. Kui osaline vastus on lubatud, kasutada liigipõhist settled-tulemust, tagastada sisutu `partial:true` ning näidata UI-s, milline liik jäi ajutiselt puudu; õiguse- või owner-vea korral peab kogu vastus endiselt fail-closed olema. Testida iga liigi eraldi riket.
 
+**Seis (13.08.2026): DONE —** kolm otsinguallikat täidetakse paralleelse `Promise.allSettled` lepinguga. Ühe tehnilise allika tõrge tagastab ülejäänud tulemused koos `partial: true` ja täpse `unavailableKinds` loendiga, mida UI kasutajale lokaliseeritult näitab; vestluse, Teekonna ja dokumendi tõrget testiti eraldi. Autentimis- või õigusetõrge ei muutu osatulemuseks, vaid katkestab vastuse fail-closed.
+
 ### SOL-SEARCH-06 — otsingu limiter on protsessimälus ja seob kliendi juhitava IP-päise bucket'i — P2, runtime NOT_PROVEN
 
 **Tõend.** Route lubab vaikimisi 30 päringut minutis (`app/api/otsi/route.js:12-13`, `:27-33`). Limiter kasutab protsessisisest `Map`-i (`lib/rate-limit.js:1-35`) ning võti sisaldab `x-real-ip`/`x-forwarded-for`/muid päringupäiseid ilma usaldatud proxy-hop'i kontrollita (`lib/request-ip.js:6-20`; `lib/chat-api-rate-limit.js:19-31`).
@@ -8004,6 +8022,8 @@ taga veel ei ole.
 
 **Vastuvõtukriteerium.** Kasutada jagatud atomaarset limiter'it kasutaja+toimingu võtmega; IP tuleb ainult dokumenteeritud usaldatud proxy-ahelast. Runtime-test peab tegema päringud eri worker'itesse ja võltsitud forwarded-päistega ning saama pärast ühist piiri 429.
 
+**Seis (13.08.2026): DONE —** isiklik otsing kasutab protsessiüleselt atomaarset PostgreSQL-i bucket'it kasutaja+toimingu ja ainult usaldatud proxy päisest saadud IP järgi; seadistamata või kliendi muudetavad `x-forwarded-for`/`x-real-ip` päised ei loo uusi bucketeid. Päris PostgreSQL-i kaks eraldi protsessi tegid vahelduvate spoof-päistega 40 katset: täpselt 30 lubati ja ülejäänud piirati ühise kvoodi järgi; storage'i tõrge sulgeb otsingu 503-ga. Toodangu proxy-seadistus ja mitme sõlme deploy-järgne rada jäid `NOT_PROVEN`.
+
 ### SOL-SEARCH-07 — pealkirjata tulemuse serveritagavara on kõigis keeltes eestikeelne — P3
 
 **Tõend.** Projektsioon kirjutab tühja pealkirja korral otse tekstid `Vestlus`, `Teekond` ja `Dokument` (`lib/search/personalSearch.js:27-52`). UI kuvab `item.title` muutmata, kuigi liikide ja staatuste tõlked tulevad sõnastikust (`components/search/PersonalSearchPage.jsx:70-78`).
@@ -8011,6 +8031,8 @@ taga veel ei ole.
 **Mõju.** Inglise- või venekeelsel töölaual ilmub pealkirjata objekt eestikeelse nimega. See ei mõjuta omanikupiiri, kuid rikub keelepariteeti ja võib ekraanilugeja väljundi segakeelseks muuta.
 
 **Vastuvõtukriteerium.** API peab tagastama nullable title'i või locale'ist sõltumatu `titleKey`-i; fallback tõlgitakse kliendis. ET/EN/RU test loob pealkirjata vestluse ja kontrollib vastava keele teksti.
+
+**Seis (13.08.2026): DONE —** server tagastab pealkirjata objekti puhul `title: null`, mitte eestikeelset fallback'i. Klient tõlgib pealkirjata vestluse, Teekonna ja dokumendi ET/EN/RU kataloogist; kataloogisümmeetria ja kõik kolm lokaliseeritud võtmerühma on testitud.
 
 ### SOL-SPROF-01 — konto kustutamine jätab SOLO-teenuseprofiili avalikuks ja RAG-i — P0
 
