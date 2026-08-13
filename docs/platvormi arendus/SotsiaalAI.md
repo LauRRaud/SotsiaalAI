@@ -130,8 +130,9 @@ spetsialisti serveripiiri taga, idempotentne ja atomaarse kvoodiga; faili/DB elu
 taastub katkestusest püsiva job'i kaudu. Esitaja näeb ja saab tagasi võtta oma ootel või
 tagasilükatud faile ning admini järjekord on täielikult lehitatav ja filtreeritav. Faili sisu
 valideeritakse tervikuna. Ülevaatuse CAS ja DB olekumasin väldivad otsuste ülekirjutamist ning
-allalaadimine, otsus ja kustutus ei õnnestu kohustusliku auditita. Järgmine plokk on
-`SOL-MAT-08` päris RAG-ingesti kinnitus ja õiguste alus.
+allalaadimine, otsus ja kustutus ei õnnestu kohustusliku auditita. `SOL-MAT-08` vale
+impordilubadus on fail-closed, kuid ootab omaniku otsust õiguste, sihtrühma ja kustutusjärgse
+säilituse kohta. Järgmine plokk on `SOL-MAT-11/12/13` andmekoopia, retention ja teavituse outbox.
 
 **RAG-teenuse `SOL-RAGSVC-01…28` on DONE ja peatüki UTC täisvärav on roheline.**
 `SOL-ORG-13`–`17`, `SOL-DOC-J-01`–`06` ja kogu `SOL-SLOG-01…24` parandused ning kiirem plokipõhine töökord on koodipuus. Kolmeastmelised arvud loetakse käsuga `npm run sol:progress`, neid siia ankrusse ei

@@ -1713,6 +1713,7 @@
       "review_revision_required": "The material review version is missing or invalid.",
       "review_transition_invalid": "This material cannot be moved from its current status to the selected status.",
       "review_conflict": "The material status changed in the meantime. The view was refreshed; check the new status.",
+      "rag_ingest_decision_required": "The material cannot yet be marked as imported: rights, audience, and removal rules require an owner decision and a confirmed RAG receipt.",
       "storage_dir_missing": "Materials storage directory is not configured on the server.",
       "delete_failed": "Failed to delete material.",
       "file_count_exceeded": "You can send at most 10 files per request.",
@@ -1733,6 +1734,7 @@
       "download": "Download",
       "mark_reviewed": "Mark reviewed",
       "mark_imported": "Mark imported",
+      "import_requires_policy": "Import becomes available after the rights, audience, and removal rules are approved.",
       "reject": "Reject",
       "review_note_prompt": "Review note (optional):",
       "status": {

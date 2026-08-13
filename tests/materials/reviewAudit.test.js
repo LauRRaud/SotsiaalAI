@@ -4,7 +4,8 @@ import assert from "node:assert/strict"
 import {
   assertMaterialReviewTransition,
   auditMaterialDownload,
-  normalizeExpectedMaterialRevision
+  normalizeExpectedMaterialRevision,
+  reviewMaterialSubmission
 } from "../../lib/materials/review.js"
 import { buildMaterialReviewUpdate } from "../../lib/materials/submissions.js"
 
@@ -26,6 +27,19 @@ test("material review rejects an overlong note instead of truncating it", () => 
   assert.throws(
     () => buildMaterialReviewUpdate({ action: "reject", reviewNote: "x".repeat(2001) }),
     /review_note_too_long/
+  )
+})
+
+test("material cannot claim imported before the rights and RAG receipt flow exists", async () => {
+  await assert.rejects(
+    reviewMaterialSubmission({
+      id: "mat-1",
+      action: "mark_imported",
+      expectedRevision: 1,
+      reviewedBy: "admin-1",
+      actorUserId: "admin-1"
+    }),
+    /rag_ingest_decision_required/
   )
 })
 

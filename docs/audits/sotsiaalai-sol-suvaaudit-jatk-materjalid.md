@@ -118,7 +118,13 @@ Audit ei kasutanud vana `SotsiaalAI-sol-audit-cfa62ea` koopiat ega põhiprojekti
 
 **Vastuvõtukriteerium.** `imported` peab sündima ainult ühe versioonitud ingest-teenuse kinnitatud tulemuse järel ning kandma püsivat `source_id/doc_id`, sisu hash'i, collection/audience'i, `ingestedAt`, vea/retry seisu, autorit ja õiguste alust/omanikku. Kustutus/withdraw peab kasutama seotud RAG_DELETE job'i ning imported staatus ei tohi tekkida ilma `chunk_count > 0` kviteeringuta. Negatiivtestid: ingest 4xx/5xx/timeout, DB lõpuviga, null-chunk ingest, duplikaat, konto kustutus ja RAG-delete retry.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** NOT_DONE — omaniku- ja õigusotsus on vastamata. Otsustada tuleb (1) millise
+tõendiga on esitajal õigus anda faili sisu professionaalse RAG-i kasutusse, (2) milline on
+lubatud collection/audience, (3) kas ja kui kaua tohib teadmuskoopia säilida pärast esitise või
+konto kustutamist ning (4) kellel on õigus seda otsust tagasi võtta. Otsusest sõltumatu
+turvapiir on valmis: `mark_imported` on serveris fail-closed ja admininupp blokeeritud, seega
+ei saa süsteem enam väita importi ilma ingest'i, `doc_id` ja positiivse chunk-kviteeringuta.
+`tests/materials/reviewAudit.test.js` negatiivkontroll PASS; päris RAG-i rada ei käivitatud.
 
 ### SOL-MAT-09 — ülevaatuse olekumasin lubab suvalisi ja stale üleminekuid — P1
 

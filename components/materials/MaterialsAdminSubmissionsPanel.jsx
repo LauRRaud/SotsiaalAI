@@ -257,8 +257,8 @@ export default function MaterialsAdminSubmissionsPanel({
                 <Button
                   variant="primary"
                   size={actionButtonSize}
-                  disabled={reviewingId === item.id || item.status === "imported"}
-                  onClick={() => void handleReview(item.id, "mark_imported")}
+                  disabled
+                  title={t("materials_page.admin.import_requires_policy")}
                 >
                   {t("materials_page.admin.mark_imported", "Margi impordituks")}
                 </Button>
