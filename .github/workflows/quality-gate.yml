@@ -103,6 +103,9 @@ jobs:
       - name: Verify migration status
         run: npx prisma migrate status
 
+      - name: Upgrade legacy Prisma fixtures with real PostgreSQL
+        run: npm run db:migrate:upgrade:probe
+
       - name: Run tests
         run: npm test
 

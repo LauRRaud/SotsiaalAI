@@ -134,7 +134,13 @@ allalaadimine, otsus ja kustutus ei õnnestu kohustusliku auditita. `SOL-MAT-08`
 impordilubadus on fail-closed, kuid ootab omaniku otsust õiguste, sihtrühma ja kustutusjärgse
 säilituse kohta. Andmekoopia hõlmab nüüd esitisi, originaale ja puuduva faili manifestimärget;
 adminiteavitus on püsiva Message-ID, retry ja auditiga minimaalne outbox. `SOL-MAT-12` ootab
-omaniku kinnitatud retention'i tähtaegu. Järgmine soovitatav sidus plokk on `SOL-PRISMA-01…04`.
+omaniku kinnitatud retention'i tähtaegu.
+
+**Prisma ja deploy' `SOL-PRISMA-01…04` on lõpetatud.** Pärand-MTR tõend ei muutu upgrade'il
+enam valeks ega kaota teadaolevat põhjust, HelpMatchi mõlemad osapooled on valideeritud ning
+deploy ehitab taastatava artefakti enne skeemimuutust. Pending-migratsioonide värav mõõdab
+andmemahu ja lukud ning peatab teadmata või liiga suure lukustusriski; järgmine soovitatav sidus
+plokk on `SOL-MENT-01…07`.
 
 **RAG-teenuse `SOL-RAGSVC-01…28` on DONE ja peatüki UTC täisvärav on roheline.**
 `SOL-ORG-13`–`17`, `SOL-DOC-J-01`–`06` ja kogu `SOL-SLOG-01…24` parandused ning kiirem plokipõhine töökord on koodipuus. Kolmeastmelised arvud loetakse käsuga `npm run sol:progress`, neid siia ankrusse ei

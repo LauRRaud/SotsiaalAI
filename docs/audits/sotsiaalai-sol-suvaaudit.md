@@ -6581,6 +6581,15 @@ veasüst tõendas vana väärtuse rollback'i.
 
 **Vastuvõtukriteerium.** Migratsioon peab enne destruktiivset sammu kas SQL-is tõendama tabeli tühjust ja ootamatute ridade korral katkema või tegema tähendust säilitava backfill'i: tuletama üldise/allikatulemuse `entityResolved` ja teadaolevate väljade järgi ning kandma vana põhjuse dokumenteeritud sihtvälja. Upgrade-test peab alustama vana skeemi seemnetega, mis sisaldavad nii õnnestunud, ebaõnnestunud kui `result=OK/entityResolved=false` rida.
 
+**Seis (13.08.2026): DONE.** Ajalooline migratsioon ei eelda enam tühja tabelit: ta tuletab
+üld- ja allikatulemuse `entityResolved` järgi, kannab vana põhjuse enne veeru kustutamist
+dokumenteeritud allikaväljale ning nullib vale üldise kinnitusaja. Juba vana migratsiooni
+rakendanud andmebaasidele parandab uus forward-migratsioon deterministlikult vale
+`OK/entityResolved=false` seisu, kuid ei mõtle pöördumatult kadunud põhjust välja. Päris
+PostgreSQL-i upgrade-sond alustab tegelikust migratsiooniahelast enne A4 parandust ja läbib
+õnnestunud, allikatõrke ning identiteedivastuolu read; vana kuju negatiivkontroll on punane ja
+`npm run db:migrate:upgrade:probe` on **14/14**.
+
 ### SOL-PRISMA-02 — kaks HelpMatchi välisvõtit jäid püsivalt valideerimata — P1
 
 **Tõend.** `HelpMatch_requesterId_fkey` ja `HelpMatch_offererId_fkey` lisatakse `NOT VALID` kujul, et olemasolev triiv migratsiooni ei peataks (`prisma/migrations/20260423173000_strengthen_integrity_guards/migration.sql:18-33`). Üheski 135 migratsioonis ei ole nende jaoks `VALIDATE CONSTRAINT` sammu. Lõppskeem käsitleb mõlemat kohustusliku `User` seosena ja eeldab kasutaja kustutamisel kaskaadi (`prisma/schema.prisma:3263-3285`).
@@ -6588,6 +6597,13 @@ veasüst tõendas vana väärtuse rollback'i.
 **Mõju.** Uued kirjutused on kaitstud, kuid enne piirangu lisamist tekkinud orvud võivad jääda lõppandmebaasi määramata ajaks. Selline HelpMatch võib rikkuda kohustusliku Prisma relation'i lugemise, jääda kasutaja kustutamisel alles ning kanda osapoolte/ruumi andmeid ilma enam eksisteeriva omanikuta.
 
 **Vastuvõtukriteerium.** Eelmigratsioon peab raporteerima ja teadliku poliitika järgi parandama või karantiini viima kõik orvud; seejärel tuleb mõlemad piirangud `VALIDATE CONSTRAINT` abil jõustada. Upgrade-test peab sisaldama tervet ja orvustatud pärandrida ning kontrollima nii parandust kui lõpp-piirangute valideeritud olekut `pg_constraint.convalidated` kaudu.
+
+**Seis (13.08.2026): DONE.** `HelpMatch` osapoolte ID-d on sama rea `HelpRequest.userId` ja
+`HelpOffer.userId` denormaliseeritud koopiad; need vanemseosed on juba FK-ga kaitstud ja on
+seetõttu paranduse deterministlik allikas. Migratsioon parandab mõlemad koopiad, katkeb, kui
+ükski orb siiski alles jääb, ning valideerib mõlemad piirangud. Upgrade-sond külvab mõlema
+osapoole triivi, säilitab matši ja tõendab lõpuks mõlemal FK-l
+`pg_constraint.convalidated=true` (`db:migrate:upgrade:probe` **14/14**).
 
 ### SOL-PRISMA-03 — tootmisdeploy muudab skeemi enne vana rakenduse peatamist ja enne uue build'i õnnestumist — P1
 
@@ -6597,6 +6613,16 @@ veasüst tõendas vana väärtuse rollback'i.
 
 **Vastuvõtukriteerium.** Deploy peab kasutama expand/contract-ühilduvaid migratsioone või selget hooldus-/versiooniväravat: uus artefakt ehitatakse ja valideeritakse enne destruktiivset skeemimuutust, vana ning uue rakenduse ühisosa on tõendatud ja contract-samm toimub alles pärast vana versiooni eemaldamist. Veasüstiga staging-test peab katkestama build'i pärast migratsiooni ning tõendama, et vana versioon töötab või automaatne taastamisplaan taastab ka skeemi ohutult.
 
+**Seis (13.08.2026): DONE.** Deploy siseneb nüüd selgesse hooldusväravasse ja ehitab uue
+artefakti enne ühtki migratsiooni; seega varasem „migratsioon õnnestus, järgnev build kukkus”
+järjestus ei ole enam võimalik. Vana `.next` artefakt varundatakse ning build'i või preflight'i
+vea korral taastatakse ainult siis, kui Prisma migratsiooniseis on mõõdetult muutumata; osalise
+migratsiooni järel ei käivitata valelikult vana artefakti. `--skip-build` on pending-migratsiooni
+korral fail-closed. Hermetiline bash-veasüst jooksutab päris genereeritud deploy-skripti:
+build rikub kandidaadi ja väljub koodiga 42, migratsioonikutseid on 0, vana marker taastub ning
+frontend käivitatakse uuesti. Production deploy: **not_run** — push/deploy vajab eraldi omaniku
+luba ega ole leiu mehhanismi tõendamiseks vajalik.
+
 ### SOL-PRISMA-04 — migratsioonivärav tõendab tühja skeemi, kuid mitte pärandandmeid ega tootmislukke — P2
 
 **Tõend.** CI loob tühja PostgreSQL 16 andmebaasi ja rakendab sinna kogu ahela (`.github/workflows/quality-gate.yml:16-31`, `:65-69`); eraldi kohalik kontroll teeb samuti uue ajutise tühja andmebaasi (`scripts/check-clean-migrations.mjs:21-54`). Seetõttu ei käivitu olemasolevate ridade duplikaadi-, backfill'i-, `NOT NULL`-, tüübimuutuse ega kustutusriskid. Ahelas on 663 tavalist `CREATE INDEX` lauset ja mitte ühtegi `CREATE INDEX CONCURRENTLY`; deploy käivitab need otse ilma lock-timeout'i või migratsiooniohu eelanalüüsita. Ka migratsiooni enda kommentaar nõuab vähemalt ühe indeksi puhul tootmisandmete auditit vahetult enne deploy'd, kuid deploy-skript seda kontrolli ei käivita (`prisma/migrations/20260713193000_room_origin_partial_unique/migration.sql:15-23`). Prisma ametlik tootmisdeploy juhis soovitab enne `migrate deploy` sammu analüüsida just raskeid lukke tekitavaid mustreid, sealhulgas `CREATE INDEX` ilma `CONCURRENTLY`-ta ja `ALTER COLUMN TYPE`: [Deploying database changes with Prisma Migrate](https://docs.prisma.io/docs/orm/prisma-client/deployment/deploy-database-changes-with-prisma-migrate).
@@ -6604,6 +6630,16 @@ veasüst tõendas vana väärtuse rollback'i.
 **Mõju.** Roheline quality gate tõendab, et nullandmetega SQL-ahel on rakendatav, kuid ei tõenda päris upgrade'i õigsust ega teenuse saadavust migratsiooni ajal. Olemasolevad duplikaadid võivad deploy peatada; tavaline indeks või tüübi muutus võib suurel tabelil kirjutused blokeerida. Konkreetne tootmisluku kestus on `NOT_PROVEN`, sest tabelimahte ja päris runtime'i selles auditis ei mõõdetud.
 
 **Vastuvõtukriteerium.** CI/staging peab lisaks tühjale ahelale käivitama vähemalt eelmise väljalaske skeemi realistlike piir- ja pärandandmetega upgrade'i ning kontrollima semantilist tulemit. Pre-deploy peab tegema andme-eeltingimused, migratsiooniohu analüüsi, sobiva `lock_timeout`/`statement_timeout` poliitika ja suurte indeksite ohutu loomise; blokeeriva riski või teadmata mahu korral peab deploy fail-closed peatuma.
+
+**Seis (13.08.2026): DONE.** Quality gate käivitab nüüd lisaks tühjale täisahelale päris
+PostgreSQL-is eelmise A4 skeemiversiooni migratsiooniahela koos õnnestunud, tõrkunud,
+semantiliselt vastuolulise ja FK-triiviga pärandandmestikuga. Deploy preflight loeb ainult
+pending-migratsioone, klassifitseerib lukustavad/destruktiivsed laused, mõõdab sihttabelite
+baidid ja read, kontrollib ootel lukke ning üle 60 sekundi tehinguid ja peatub teadmata või
+üle 100 MiB / 100 000 rea mahu korral; suur lukustav indeks tuleb enne deploy'd ümber teha või
+eraldi teadlikult lubada. Tegelik `migrate deploy` saab `lock_timeout=5s` ja
+`statement_timeout=15min`. Kohalik preflight mõõtis ka kõik neli parajasti arendusbaasis
+pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ahel on roheline.
 
 ### SOL-MENT-01 — aktiivse avaliku mentoriprofiili sisu saab pärast heakskiitu modereerimata ümber kirjutada — P1
 

@@ -1,6 +1,9 @@
--- A4 — sõltumatu ülevaatuse järgne karastus. Tabelid on 05.08 loodud ja
--- TÜHJAD (funktsioon ei ole ühegi vaate küljes), seega andmete migreerimist
--- ei ole vaja — aga semantika muutub oluliselt.
+-- A4 — sõltumatu ülevaatuse järgne karastus.
+--
+-- See migratsioon EI eelda enam, et eelmise skeemiversiooni tabelid on tühjad.
+-- Vana `result` kirjeldas ainult loapäringut ning vana `reason` eelistas
+-- loapäringu põhjust identiteedipõhjusele. Backfill säilitab selle teadaoleva
+-- tähenduse enne vana veeru eemaldamist; teadmata põhjust ei mõelda juurde.
 --
 -- MIS OLI KATKI JA MIDA SEE ANDMETES TÄHENDAS:
 --
@@ -31,7 +34,29 @@ ALTER TABLE "LicenceCheck"
   ADD COLUMN "licenceSourceCheckedAt" TIMESTAMP(3),
   ADD COLUMN "consecutiveFailureCount" INTEGER NOT NULL DEFAULT 0;
 
-UPDATE "LicenceCheck" SET "licenceSourceResult" = "result", "entitySourceResult" = "result";
+UPDATE "LicenceCheck"
+SET
+  "licenceSourceResult" = "result",
+  "entitySourceResult" = CASE
+    WHEN "entityResolved" THEN 'OK'::"LicenceCheckResult"
+    ELSE 'UNCONFIRMED'::"LicenceCheckResult"
+  END,
+  "licenceReason" = CASE
+    WHEN "result" = 'UNCONFIRMED'::"LicenceCheckResult" THEN "reason"
+    ELSE NULL
+  END,
+  "entityReason" = CASE
+    WHEN "result" = 'OK'::"LicenceCheckResult" AND NOT "entityResolved" THEN "reason"
+    ELSE NULL
+  END,
+  "result" = CASE
+    WHEN "result" = 'OK'::"LicenceCheckResult" AND "entityResolved" THEN 'OK'::"LicenceCheckResult"
+    ELSE 'UNCONFIRMED'::"LicenceCheckResult"
+  END,
+  "verifiedAt" = CASE
+    WHEN "result" = 'OK'::"LicenceCheckResult" AND "entityResolved" THEN "verifiedAt"
+    ELSE NULL
+  END;
 
 ALTER TABLE "LicenceCheck"
   ALTER COLUMN "licenceSourceResult" SET NOT NULL,

@@ -21,6 +21,8 @@
     "css:budget": "node scripts/css-cleanup/important-budget.mjs",
     "db:push:local": "dotenv -e .env.local -- prisma db push",
     "db:migrate:check": "node scripts/check-clean-migrations.mjs",
+    "db:migrate:upgrade:probe": "node scripts/prisma-legacy-upgrade-probe.mjs",
+    "db:migrate:preflight": "node scripts/prisma-migration-preflight.mjs",
     "urgent:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/urgent-request-probe.mjs",
     "sol:tally": "node scripts/sol-audit-tally.mjs",
     "sol:progress": "node scripts/sol-audit-tally.mjs --progress",

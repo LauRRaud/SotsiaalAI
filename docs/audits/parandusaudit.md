@@ -85,7 +85,7 @@ Käsitsi siia ei kirjutata. DONE algab sõnaga `DONE`, PARTIAL sõnaga `PARTIAL`
 on NOT_DONE. Kvalifitseeritud DONE-väide vale algusega katkestab genereerimise, et ta ei
 kaoks vaikselt valesse rühma. Iga loetletud leiu lõpus on Seis-lõik **sõna-sõnalt**.
 
-DONE **288** / 429 · PARTIAL **4** / 429 · NOT_DONE **137** / 429 · peatükke täielikult DONE **22** / 40 · ametlikult lahtiseid 141 — 102 × P1 · 38 × P2 · 1 × P3
+DONE **292** / 429 · PARTIAL **4** / 429 · NOT_DONE **133** / 429 · peatükke täielikult DONE **23** / 40 · ametlikult lahtiseid 137 — 99 × P1 · 37 × P2 · 1 × P3
 
 | Peatükk | Kood | DONE | PARTIAL | NOT_DONE | Lahtiste prioriteedid | Märkus |
 |---|---|---:|---:|---:|---|---|
@@ -111,7 +111,7 @@ DONE **288** / 429 · PARTIAL **4** / 429 · NOT_DONE **137** / 429 · peatükke
 | Tööheaolu | SOL-WB | 18/18 | 0 | 0 | – | **tehtud**, 4 jätkufailist |
 | Teenuspäevik | SOL-SLOG | 31/31 | 0 | 0 | – | **tehtud**, 7 jätkufailist |
 | RAG-teenus ja ingest | SOL-RAGSVC | 28/28 | 0 | 0 | – | **tehtud** |
-| Migratsioonid | SOL-PRISMA | 0/4 | 0 | 4 | 3 × P1 · 1 × P2 |  |
+| Migratsioonid | SOL-PRISMA | 4/4 | 0 | 0 | – | **tehtud** |
 | Mentorlus | SOL-MENT | 0/7 | 0 | 7 | 7 × P1 |  |
 | Supervisioon | SOL-SUP | 0/15 | 0 | 15 | 11 × P1 · 4 × P2 |  |
 | Kovisioon | SOL-COV | 0/8 | 0 | 8 | 8 × P1 |  |
@@ -460,6 +460,13 @@ DONE **288** / 429 · PARTIAL **4** / 429 · NOT_DONE **137** / 429 · peatükke
 - `SOL-RAGSVC-26` P2 — base64 ingest aktsepteerib tühja või vigase sisu ilma korrektse kliendiveata — DONE. JSON faili-ingest kasutab nüüd `base64.b64decode(...,
 - `SOL-RAGSVC-27` P2 — üldine valideerimisvea handler annab kõigile endpointidele vale upload-lepingu — DONE. Üldine handler tagastab nüüd marsruudiklassi täpse koodi,
 - `SOL-RAGSVC-28` P2 — metadata patch ei võimalda vigast väärtust eemaldada — DONE. Patch eristab nüüd puuduvat võtit ja saadetud `null` väärtust:
+
+**Migratsioonid** (`SOL-PRISMA`, 4/4)
+
+- `SOL-PRISMA-01` P1 — MTR-i parandav migratsioon kaotab pärandpõhjuse ja võib kinnistada vale allikatulemuse — DONE. Ajalooline migratsioon ei eelda enam tühja tabelit: ta tuletab
+- `SOL-PRISMA-02` P1 — kaks HelpMatchi välisvõtit jäid püsivalt valideerimata — DONE. `HelpMatch` osapoolte ID-d on sama rea `HelpRequest.userId` ja
+- `SOL-PRISMA-03` P1 — tootmisdeploy muudab skeemi enne vana rakenduse peatamist ja enne uue build'i õnnestumist — DONE. Deploy siseneb nüüd selgesse hooldusväravasse ja ehitab uue
+- `SOL-PRISMA-04` P2 — migratsioonivärav tõendab tühja skeemi, kuid mitte pärandandmeid ega tootmislukke — DONE. Quality gate käivitab nüüd lisaks tühjale täisahelale päris
 
 **Teekond ja jagamine** (`SOL-JOUR`, 2/17)
 

@@ -9,6 +9,7 @@ const frontendEnv = process.env.DEPLOY_FRONTEND_ENV || "/etc/sotsiaalai/frontend
 const buildTimeoutSeconds = Number.parseInt(String(process.env.DEPLOY_BUILD_TIMEOUT_SECONDS || "900"), 10) || 900;
 const discardTracked = args.has("--discard-tracked");
 const skipBuild = args.has("--skip-build");
+const printScript = args.has("--print-script");
 
 function fail(message, code = 1) {
   console.error(`[deploy:server] ${message}`);
@@ -34,13 +35,38 @@ BACKUP_DIR="$(dirname "$APP_DIR")/sotsiaalai-deploy-backups"
 
 frontend_was_active="0"
 frontend_stopped_for_build="0"
+schema_migrated="0"
+migration_started="0"
+migration_state_file=""
 build_log=""
+artifact_backup=""
 
 restore_frontend_on_failure() {
   status="$?"
-  if [ "$frontend_stopped_for_build" = "1" ] && [ "$status" != "0" ]; then
-    echo "[deploy:server] Deploy interrupted/failed; restarting previous frontend state" >&2
-    sudo systemctl start sotsiaalai-frontend.service || true
+  if [ "$status" != "0" ]; then
+    database_unchanged="1"
+    if [ "$migration_started" = "1" ] && [ -n "$migration_state_file" ] && [ -f "$migration_state_file" ]; then
+      if node scripts/prisma-migration-state.mjs compare "$migration_state_file"; then
+        database_unchanged="1"
+      else
+        database_unchanged="0"
+      fi
+    fi
+    if [ "$schema_migrated" = "0" ] && [ "$database_unchanged" = "1" ] && [ -n "$artifact_backup" ] && [ -f "$artifact_backup" ]; then
+      echo "[deploy:server] Deploy failed before schema change; restoring previous frontend artifact" >&2
+      if [ "$APP_DIR" = "/" ] || [ -z "$APP_DIR" ]; then
+        echo "[deploy:server] Unsafe APP_DIR; refusing artifact restore" >&2
+        exit 90
+      fi
+      rm -rf -- "$APP_DIR/.next"
+      tar -xzf "$artifact_backup" -C "$APP_DIR"
+    elif [ "$database_unchanged" = "0" ]; then
+      echo "[deploy:server] Migration state changed; keeping the validated candidate artifact" >&2
+    fi
+    if [ "$frontend_was_active" = "1" ] && [ "$frontend_stopped_for_build" = "1" ]; then
+      echo "[deploy:server] Deploy interrupted/failed; restarting frontend" >&2
+      sudo systemctl start sotsiaalai-frontend.service || true
+    fi
   fi
 }
 
@@ -135,12 +161,16 @@ fi
 echo "[deploy:server] Installing locked dependencies"
 npm ci --include=dev --no-audit --no-fund
 
-echo "[deploy:server] Applying Prisma migrations"
-npx prisma migrate deploy
-
 if [ "$SKIP_BUILD" != "1" ]; then
+  mkdir -p "$BACKUP_DIR"
+  if [ -d "$APP_DIR/.next" ]; then
+    artifact_backup="$BACKUP_DIR/frontend-artifact-$(date -u +%Y%m%dT%H%M%SZ).tar.gz"
+    tar -czf "$artifact_backup" -C "$APP_DIR" .next
+    echo "[deploy:server] Previous frontend artifact: $artifact_backup"
+  fi
+
   if [ "$frontend_was_active" = "1" ]; then
-    echo "[deploy:server] Stopping frontend before in-place build"
+    echo "[deploy:server] Entering maintenance gate before build"
     sudo systemctl stop sotsiaalai-frontend.service
     frontend_stopped_for_build="1"
   fi
@@ -156,14 +186,26 @@ if [ "$SKIP_BUILD" != "1" ]; then
     if [ "$build_status" = "124" ]; then
       echo "[deploy:server] Build timed out after \${BUILD_TIMEOUT_SECONDS}s" >&2
     fi
-    if [ "$frontend_was_active" = "1" ]; then
-      echo "[deploy:server] Build failed; restarting previous frontend state" >&2
-      sudo systemctl start sotsiaalai-frontend.service || true
-      frontend_stopped_for_build="0"
-    fi
     exit "$build_status"
   fi
 fi
+
+echo "[deploy:server] Checking pending migration data, size and lock risks"
+if [ "$SKIP_BUILD" = "1" ]; then
+  npm run db:migrate:preflight -- --require-no-pending
+else
+  npm run db:migrate:preflight
+fi
+
+echo "[deploy:server] Applying Prisma migrations with bounded locks"
+migration_state_file="$(mktemp "$APP_DIR/.migration-state.XXXXXX")"
+rm -f -- "$migration_state_file"
+node scripts/prisma-migration-state.mjs write "$migration_state_file"
+migration_started="1"
+PGOPTIONS="\${PGOPTIONS:-} -c lock_timeout=5s -c statement_timeout=15min" npx prisma migrate deploy
+schema_migrated="1"
+rm -f -- "$migration_state_file"
+migration_state_file=""
 
 # HALLATAVAD AJASTUSED (SOL-CW-14). Unit-failid elavad repositooriumis
 # (\`deploy/systemd/\`), sest ajastus, mis elab ainult ühe masina crontabis, ei ole
@@ -210,6 +252,11 @@ systemctl is-active sotsiaalai-frontend.service
 echo "[deploy:server] Deployed $(git rev-parse --short HEAD)"
 git status --short
 `;
+
+if (printScript) {
+  process.stdout.write(remoteScript);
+  process.exit(0);
+}
 
 const result = spawnSync("ssh", [remote, "bash -s"], {
   input: remoteScript,
