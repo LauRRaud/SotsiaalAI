@@ -8168,6 +8168,8 @@ suletud), negatiivkontrolli (kehtiva loaga profiil JÄÄB) ja fail-closed haru.
 
 **Vastuvõtukriteerium.** Asukohalingi projektsioon tohib lahendada ainult juba allowlist'itud avalikke teenuseid; `link.providerService` varuvariant tuleb eemaldada või samade status/mapVisible tingimustega filtreerida. Negatiivtest peab siduma nähtava asukohaga PUBLISHED, HIDDEN, DRAFT ja mapVisible=false teenused ning lubama vastuses ainult esimese.
 
+**Seis (13.08.2026): DONE —** avalik profiili- ja asukohaprojektsioon lahendab teenuselingid ainult samast kesksest allowlist'ist, kus teenus on `PUBLISHED` ja `mapVisible:true`; piiranguta `providerService` varuteed enam pole. Regressioonitest ja päris PostgreSQL-i sond sidusid nähtava asukohaga avaliku, peidetud, mustandi ning kaardilt eemaldatud teenuse ja kinnitasid, et vastuses säilis ainult avalik teenus ning ainult selle seose-ID.
+
 ### SOL-SPROF-04 — RAG metadata saadab peidetud ja mustandteenuste täissisu — P1
 
 **Tõend.** RAG-i tekst filtreerib teenuseid vähemalt `status:PUBLISHED` järgi, kuid `serviceProviderProfileRagMetadata()` map'ib erandita kõik `profile.serviceItems` read ja lisab kirjelduse, piirangud, sihtrühmad, dokumendinõuded, kontaktiväljad, nähtavuse ning staatuse (`lib/serviceProviderProfiles.js:292-347`, `:374-451`). Sama metadata saadetakse `/ingest/text` payload'is välisele RAG-teenusele (`:519-535`). Negatiivkontrollis sisaldas payload täies mahus `HIDDEN`/`mapVisible:false` teenust.
@@ -8175,6 +8177,8 @@ suletud), negatiivkontrolli (kehtiva loaga profiil JÄÄB) ja fail-closed haru.
 **Mõju.** Avaldamata teenuse detailid lahkuvad rakenduse privaatsuspiirist RAG-hoidlasse. Isegi kui põhitekst seda teenust ei indekseeri, võib metadata olla administraatorile, allikavaatele või retrieval-vastusele nähtav ning selle kustutamisel puudub eraldi teenuseversiooni jälg.
 
 **Vastuvõtukriteerium.** RAG-payload peab moodustuma ühest kesksest avalikust teenuseprojektsioonist; HIDDEN/DRAFT teenust ei tohi olla ei tekstis, metadatas ega loendurites. Lisada payload-test segaprofiiliga ning RAG-teenuse integratsioonitest, mis otsib peidetud teenuse unikaalset markerit ja ootab 0 tulemust.
+
+**Seis (13.08.2026): DONE —** RAG-i tekst, metadata ja teenuseloendur kasutavad nüüd üht keskset avalikku teenuseprojektsiooni. Segaprofiili test ja PostgreSQL-i koondsondi ingest/search-harness kinnitasid, et HIDDEN-, DRAFT- ja `mapVisible:false` markerid ei jõua payload'i ning peidetud markerile on 0 otsingutulemust. Eraldiseisva välise RAG-teenuse production-runtime jäi `NOT_PROVEN`.
 
 ### SOL-SPROF-05 — vana täisvorm võib uuema profiili, teenused ja asukohad vaikides üle kirjutada — P1
 
@@ -8184,6 +8188,8 @@ suletud), negatiivkontrolli (kehtiva loaga profiil JÄÄB) ja fail-closed haru.
 
 **Vastuvõtukriteerium.** PUT peab nõudma profiili revision'i või `expectedUpdatedAt` väärtust ja rakendama selle atomaarse update/CAS-i sees; lapsread peavad kuuluma samasse versioonivalvesse. Päris PostgreSQL-i test kahe ühendusega peab lubama ainult ühe stale-vormi commit'i ning UI peab näitama ühendatavat konfliktivaadet.
 
+**Seis (13.08.2026): DONE —** PUT nõuab `expectedUpdatedAt` väärtust ning lukustab profiili ja lapsread sama atomaarse CAS-i sisse. Päris PostgreSQL-i kahe konkureeriva täisvormi sond lubas täpselt ühe commit'i, tagastas kaotajale 409 ning kinnitas, et profiil, teenused ja asukohad pärinevad samast võitnud revision'ist. UI säilitab kohaliku vormi ja näitab serveri värske seisuga konfliktivaadet.
+
 ### SOL-SPROF-06 — klient saab suvalised koordinaadid serveris ametlikuks `MATCHED` asukohaks muuta — P1
 
 **Tõend.** Asukoha normaliseerija kontrollib ainult, kas latitude/longitude on lõplikud arvud; puudub vahemik, Eesti piir, adsObjectId või serveripoolne geokooderi tõend. Iga selline paar saab `geocodingStatus:"MATCHED"` ja vaikimisi provider'i `maaruum` (`lib/serviceProviderProfiles.js:211-265`). Ka profiili põhiaadressi valik usaldab samal viisil kliendi koordinaate (`:559-580`). Negatiivkontroll aktsepteeris `latitude:999, longitude:-999`, märkis selle `MATCHED` ning allikaks `maaruum`.
@@ -8191,6 +8197,8 @@ suletud), negatiivkontrolli (kehtiva loaga profiil JÄÄB) ja fail-closed haru.
 **Mõju.** Otse-API kasutaja saab avaldada vale teeninduskoha ja esitada seda ametliku aadressivastena. See kahjustab teenuse leidmist, võib rikkuda kaardi renderdust ning loob eksitava usaldussignaali abivajajale.
 
 **Vastuvõtukriteerium.** Server peab kontrollima WGS84 vahemikku ja kas uuesti lahendama aadressi autoritatiivse geokooderiga või valideerima lühiealise allkirjastatud suggestion-tokeni. Kliendi provider/status välju ei tohi usaldada. Testida piirväärtusi, NaN/Infinity't, Eesti-välist punkti, võltsitud adsObjectId-d ja aegunud tokenit.
+
+**Seis (13.08.2026): DONE —** server väljastab omaniku ja kõigi autoritatiivsete aadressiväljadega seotud lühiealise allkirjastatud suggestion-tokeni; ainult kehtiv token võib salvestada `MATCHED` koordinaadid ja provider'i. WGS84/Eesti piiri, NaN/Infinity, omanikuvahetuse, võltsitud `adsObjectId` ja aegumise kontrollid sulguvad fail-closed. PostgreSQL-i sond kinnitas, et võltsitud toorsisend jääb koordinaatideta `PENDING` olekusse.
 
 ### SOL-SPROF-07 — RAG-i edukas ingest ja kohaliku profiililingi kirjutus ei ole taastatav tervik — P1
 
@@ -8200,6 +8208,8 @@ suletud), negatiivkontrolli (kehtiva loaga profiil JÄÄB) ja fail-closed haru.
 
 **Vastuvõtukriteerium.** Kasutada deterministliku dokumendi-ID-ga püsivat ingest-job'i, profiili revision-valvet ja reconcile/deploy-kontrolli, mis võrdleb DB snapshot'i RAG-registriga. Testida ingest-edu + DB-viga, vastuse kadu, restart, stale-job ning uue versiooni võit vana retry üle.
 
+**Seis (13.08.2026): DONE —** profiili RAG-sünk kasutab deterministliku dokumendi-ID, payload-räsi ja revision'iga püsivat `ServiceProviderProfileRagJob` järjekorda. Leasitud worker teeb retry, märgib aegunud töö `SUPERSEDED` ning uuendab profiililinki ainult sama revision'i CAS-iga; reconcile võrdleb püsivat snapshot'i RAG-registriga. PostgreSQL-i sond kattis ingest-edu+järgne DB-vea, vastuse kao, restardi, stale-job'i ja uue revision'i võidu. Välise production-RAG-i tegelik worker/reconcile jooks jäi `NOT_PROVEN`.
+
 ### SOL-SPROF-08 — kasutaja andmekoopia jätab tema SOLO-teenuseprofiili välja — P1
 
 **Tõend.** `profile_and_consents` eksport sisaldab ainult User-konto, Profile nime/telefoni ja raamlepingu nõusolekuid; ülejäänud viis kogu ei käsitle ServiceProviderProfile'i (`lib/dataExport/registry.js:6-31`, `:104-178`). Teenuseprofiili GET annab omanikule küll jooksva vaate, kuid ZIP-andmekoopia ei sisalda profiili, teenuseid, asukohti, avaldamis-/soovitusvalikuid, tegevusloa seoseid ega RAG-meta seisu. Andmekoopia 7/7 testid läbivad, sest seda kogu ei oodata.
@@ -8207,6 +8217,8 @@ suletud), negatiivkontrolli (kehtiva loaga profiil JÄÄB) ja fail-closed haru.
 **Mõju.** Üksikosutaja ei saa enne konto sulgemist oma teenuseandmeid masinloetava koopiana kaasa võtta. Koos SOL-SPROF-01-ga tekib vastupidine olukord: kasutaja koopias andmeid pole, kuid platvormi avalikus ja RAG-koopias võivad need alles jääda.
 
 **Vastuvõtukriteerium.** Lisada owner-skoobitud SOLO-teenuseprofiili eksport koos lapsridade ja ajatemplitega; kolmandate isikute ning sisemiste registrivigade väljad tuleb eraldi projitseerida. Testida kahte omanikku, omanikuta/orgranžimi profiili välistamist ja koopiat vahetult enne konto kustutust.
+
+**Seis (13.08.2026): DONE —** andmekoopia sisaldab nüüd owner-skoobitud SOLO-teenuseprofiili koos teenuste, asukohtade, seoste, avaldamis-/soovitusvalikute ning ajatemplitega; sisemised registri- ja tööjärjekorraväljad on eraldi projektsiooniga välistatud. PostgreSQL-i sond tõendas kahe omaniku eraldatust, omanikuta ja organisatsiooniprofiili puudumist ning koopia kättesaadavust vahetult enne konto kustutust.
 
 ### SOL-SPROF-09 — server kärbib teksti ja kukutab üleliigsed teenused/asukohad ilma hoiatuseta — P2
 
