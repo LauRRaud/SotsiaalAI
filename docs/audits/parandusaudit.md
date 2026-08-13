@@ -85,14 +85,14 @@ Käsitsi siia ei kirjutata. DONE algab sõnaga `DONE`, PARTIAL sõnaga `PARTIAL`
 on NOT_DONE. Kvalifitseeritud DONE-väide vale algusega katkestab genereerimise, et ta ei
 kaoks vaikselt valesse rühma. Iga loetletud leiu lõpus on Seis-lõik **sõna-sõnalt**.
 
-DONE **425** / 429 · PARTIAL **1** / 429 · NOT_DONE **3** / 429 · peatükke täielikult DONE **38** / 40 · ametlikult lahtiseid 4 — 3 × P1 · 1 × P2
+DONE **426** / 429 · PARTIAL **1** / 429 · NOT_DONE **2** / 429 · peatükke täielikult DONE **38** / 40 · ametlikult lahtiseid 3 — 2 × P1 · 1 × P2
 
 | Peatükk | Kood | DONE | PARTIAL | NOT_DONE | Lahtiste prioriteedid | Märkus |
 |---|---|---:|---:|---:|---|---|
 | Skeemi ja Prisma mudeli vastavus | SOL-SCHEMA | 1/1 | 0 | 0 | – | **tehtud** |
 | Build | SOL-BUILD | 1/1 | 0 | 0 | – | **tehtud** |
 | Autentimine ja autoriseerimine | SOL-AUTH | 15/15 | 0 | 0 | – | **tehtud** |
-| Juhtumitöö (JTA-V1) | SOL-CW | 18/20 | 1 | 1 | 2 × P1 |  |
+| Juhtumitöö (JTA-V1) | SOL-CW | 19/20 | 1 | 0 | 1 × P1 |  |
 | RAG-i admin ja failihaldus | SOL-RAGADMIN | 4/4 | 0 | 0 | – | **tehtud** |
 | Organisatsioonid ja skoop | SOL-ORG | 19/19 | 0 | 0 | – | **tehtud**, 7 jätkufailist |
 | Välitöö | SOL-FIELD | 17/17 | 0 | 0 | – | **tehtud**, 11 jätkufailist |
@@ -164,7 +164,7 @@ DONE **425** / 429 · PARTIAL **1** / 429 · NOT_DONE **3** / 429 · peatükke t
 - `SOL-AUTH-14` P1 — ühe seadme logout ei garanteeri kopeeritud JWT tühistamist — DONE. Migratsiooni ei ole vaja.
 - `SOL-AUTH-15` P2 — paralleelsed paroolitaaste päringud võivad mõlemad välja saadetud lingid tühistada — DONE. Vajab migratsiooni (`20260811220000`, uus tabel
 
-**Juhtumitöö (JTA-V1)** (`SOL-CW`, 18/20)
+**Juhtumitöö (JTA-V1)** (`SOL-CW`, 19/20)
 
 - `SOL-CW-01` P2 — tasulise juhtumitöö UI ja serveri ligipääsureegel räägivad eri tõde — DONE — kood ja testid; runtime: not_run.
 - `SOL-CW-02` P2 — juhtumitöö suletud lehed ei ole tõendatult olematust marsruudist eristamatud — DONE — koos päris production-build'i runtime-tõendiga.
@@ -183,6 +183,7 @@ DONE **425** / 429 · PARTIAL **1** / 429 · NOT_DONE **3** / 429 · peatükke t
 - `SOL-CW-16` P1 — STAR2 kopeerimisaudit ei ole seotud kopeeritud tekstiversiooniga — DONE — kood, migratsioon ja testid; migratsiooniahel tõendatud päris PostgreSQL-i vastu, rakenduse runtime: not_run.
 - `SOL-CW-17` P2 — workbench'i rohelised privaatsustestid ei läbi kahte uut sektsiooni — DONE — testid; tootmiskoodi see leid ei muutnud.
 - `SOL-CW-18` P2 — workbench'i timeout ei lõpeta aegunud päringuid — DONE — kood, testid ja KOORMUSSOND päris PostgreSQL-i vastu; rakenduse brauseri-runtime: not_run.
+- `SOL-CW-19` P1 — töötaja konto kustutamine hävitab kogu juhtumitöö ja selle auditid kohe — DONE — kehtiv kanooniline leping määrab CaseWorkAssisti töötaja rangelt isiklikuks töömaterjaliks; konto kustutus eemaldab selle tervikuna, organisatsiooni ametlik tööajalugu ja sisuvaba kustutustõend säilivad ning töötaja saab oma juhtumitöö enne kustutust andmekoopiasse.
 - `SOL-CW-20` P2 — juhtumiloendi cursor tugineb muutlikule järjestusväljale — DONE — kood, testid ja päris PostgreSQL-i sond; rakenduse brauseri-runtime: not_run.
 
 **RAG-i admin ja failihaldus** (`SOL-RAGADMIN`, 4/4)
