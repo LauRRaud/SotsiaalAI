@@ -1932,7 +1932,7 @@ tsükkel. Reaper'i enda käitumine on kaetud `tests/usage/reservationReaper.test
 
 **Vastuvõtukriteerium.** Vestluse avamisel peab klient leidma sama omaniku ja sama conversationId aktiivse job'i, taastama progressi/streami ning siduma Stop-nupu selle ID-ga. Minu dokumentide aktiivne rida peab võimaldama jätkamist ja selget Stop'i. Brauseritest peab tegema start → soft-nav → tagasi → progress → Stop ning tõendama, et uut job'i ei teki.
 
-**Seis (12.08.2026): PARTIAL — kood/refaktor DONE ja sihttestidega mõõdetud; nõutud brauserirada NOT_PROVEN lokaalse React hydration'i blokeeringu tõttu. Leid jääb loendis LAHTISEKS.**
+**Seis (13.08.2026): DONE — nõutud autentitud production-build brauserirada on päris ajutise PostgreSQL-i ja sünteetilise kohaliku kasutajaga tõendatud.** Uuringu käivitamine muutis `ResearchJob`-ide arvu 0 → 1; kogu soft-nav'i, „Minu dokumentide” vaate ja vestlusse naasmise vältel jäi alles sama üks job samas vestluses ning võrgus oli täpselt üks loomise POST. Dokumentide tööruum ei avanud enam peidetud streami, vestlusse naasmine taastas progressi sama job ID GET-streamist ja Stop lõpetas sama serverirea olekuga `cancelled`. „Minu dokumentide” aktiivse rea „Ava vestluses” ja „Peata” kontrolliti samuti brauseris; rea Stop muutis oleku „Katkestatud”. Runtime paljastas ja commit `9e0912ba` parandas peidetud tööruumi duplikaatse SSE-tarbija. Production-build, sihttestid 57/57, ESLint ja diff-check on rohelised; väliseid OpenAI/RAG-kutseid ei tehtud.
 
 **MIS MUUTUS.** Värske ja soft-nav'i järel taastatud uuring kasutavad nüüd sama SSE-tarbijat.
 Vestluse avamine leiab omaniku ning `conversationId` järgi aktiivse töö, loob ühe edenemisrea,

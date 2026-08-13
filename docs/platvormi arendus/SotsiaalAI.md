@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**Paralleelsete parandustööpuude runtime-laine liigub lokaalses `main`-is edasi.** `SOL-DOC-J-03` on nüüd isoleeritud päris PostgreSQL-i ja RAG/Chroma tervikraja järel DONE: loa tagasivõtmine, tõrke retry, värske kordusindekseerimine ning konto kustutus ei jäta otsitavat koopiat. Ametlik seis on **424 DONE / 2 PARTIAL / 3 NOT_DONE**; lahti on `SOL-CW-14`, `SOL-RES-07`, `SOL-CW-19`, `SOL-MAT-08` ja `SOL-MAT-12`. Viimane toodangu väljalase on endiselt `3735789e`; järgmised plokid valmivad parandustööpuudes ja push/deploy ootab eraldi luba.
+**Paralleelsete parandustööpuude runtime-laine liigub lokaalses `main`-is edasi.** `SOL-DOC-J-03` päris RAG/Chroma eemaldamisrada ja `SOL-RES-07` autentitud production-build'i soft-nav → taastamine → Stop kasutajatee on nüüd DONE; Uuringute peatükk on 7/7 lõpetatud. Ametlik seis on **425 DONE / 1 PARTIAL / 3 NOT_DONE**; lahti on `SOL-CW-14`, `SOL-CW-19`, `SOL-MAT-08` ja `SOL-MAT-12`. Viimane toodangu väljalase on endiselt `3735789e`; omanik on andnud loa järgmise muutumatu lõpp-puu täisvärava järel GitHubi push'iks ja serverisse viimiseks.
 
 **Teenuspäeviku jätkuauditi `SOL-SLOG-J-01…07` on lõpetatud.** Kirje parandamine,
 tühistamine, mustandi kustutamine ja owner-skoobitud ajalugu on nüüd päris kasutajateed;
