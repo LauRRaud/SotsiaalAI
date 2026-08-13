@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**Paralleelsete parandustööpuude järgmine A/B/C laine on integreeritud lokaalsesse `main`-i.** Teekonna `SOL-JOUR-02…09` katab vestluse taastuva omanikuskoobitud mustandi ja kontrollitud päritoluseose. Abivahenduse `SOL-HELP-01…08` katab nõusoleku värske aluse kontrolli, atomaarse teavituse, privaatse sobitusprojektsiooni, tagasivõtu, aegumise ja lehekülgimise. Eelpöördumise peatükk `SOL-PRE-01…18` on nüüd täielikult lõpetatud: viimases plokis sulgusid vealeke, mahu- ja sageduspiirid, vaikne kärbe ning kõik loendipiirid. A jätkab `SOL-HELP-09`, B `SOL-JOUR-10…13`; repair-c järgmine teema algab pärast sünkroonimist.
+**Paralleelsete parandustööpuude järgmine laine on integreeritud lokaalsesse `main`-i.** Eelpöördumise peatükk `SOL-PRE-01…18` on täielikult lõpetatud. Teekonna `SOL-JOUR-02…09` katab vestluse taastuva omanikuskoobitud mustandi ja kontrollitud päritoluseose. Abivahenduse `SOL-HELP-01…09` säilitab nüüd ka ACCEPTED-sobituse nõusolekutõendi, ruumi ja liikmesusajaloo allikakuulutuse eemaldamisel ning takistab välisvõtmega kaskaadkadu. B jätkab `SOL-JOUR-10…13`, C `SOL-NET-03…06`; A järgmine plokk algab pärast sünkroonimist.
 
 **Teenuspäeviku jätkuauditi `SOL-SLOG-J-01…07` on lõpetatud.** Kirje parandamine,
 tühistamine, mustandi kustutamine ja owner-skoobitud ajalugu on nüüd päris kasutajateed;

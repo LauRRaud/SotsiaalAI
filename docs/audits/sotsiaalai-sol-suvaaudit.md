@@ -7610,6 +7610,8 @@ tagasivõetud pakett. Peidetud on ainult `RECALLED`. Töörajad sulguvad kõigil
 
 **Vastuvõtukriteerium.** Aktiivse/accepted sobitusega kuulutust ei tohi kõva kustutusega eemaldada. Sulgemine peab säilitama minimaalse nõusolekutõendi, lõpetama või teadlikult säilitama ruumi ja kirjutama ühe atomaarse sündmuse; lisada accepted-listingu delete-test.
 
+**Seis (13.08.2026): DONE —** ACCEPTED-sobitusega abisoovi või abipakkumise DELETE ei tee enam kõvakustutust: kuulutus viiakse atomaarse Serializable-tehinguga `CLOSED` olekusse ja kaardikirje peidetakse, samal ajal säilivad `HelpMatch` nõusolekutõend, ruum ning mõlema osalise liikmesusajalugu teadliku `PRESERVE_ROOM_AND_MEMBERSHIP_HISTORY` poliitikaga. Enne sulgemist kontrollitakse ruumi ja osaliste liikmesuste kooskõla; puudulik seos vastab 409 ega kirjuta osalist edu. Kohustuslik põhjusega audit tekib samas tehingus ja kordus ei dubleeri seda. Mõlemad HelpMatch-allikaseosed kasutavad nüüd `ON DELETE RESTRICT`; päris PostgreSQL-i sond kattis säilimise, välisvõtme ja rollback'i (`production runtime: NOT_PROVEN`).
+
 ### SOL-HELP-10 — mitmel abi- ja aadressiotsingu rajal puudub sageduspiir — P1
 
 **Tõend.** Help'i juurloendil puudub limiter; detailfailis piiratakse ainult GET-i, mitte PATCH-i ega DELETE-i (`app/api/help/listings/route.js`; `app/api/help/listings/[kind]/[id]/route.js:132-143`, `:173-233`). Teenusekaardi aadressisoovituste route kutsub välist geokodeerijat ilma mahu- või sageduspiirita (`app/api/service-map/address-suggestions/route.js:35-69`).

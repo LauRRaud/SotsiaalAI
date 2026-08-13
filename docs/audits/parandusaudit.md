@@ -85,7 +85,7 @@ Käsitsi siia ei kirjutata. DONE algab sõnaga `DONE`, PARTIAL sõnaga `PARTIAL`
 on NOT_DONE. Kvalifitseeritud DONE-väide vale algusega katkestab genereerimise, et ta ei
 kaoks vaikselt valesse rühma. Iga loetletud leiu lõpus on Seis-lõik **sõna-sõnalt**.
 
-DONE **366** / 429 · PARTIAL **4** / 429 · NOT_DONE **59** / 429 · peatükke täielikult DONE **29** / 40 · ametlikult lahtiseid 63 — 33 × P1 · 29 × P2 · 1 × P3
+DONE **367** / 429 · PARTIAL **4** / 429 · NOT_DONE **58** / 429 · peatükke täielikult DONE **29** / 40 · ametlikult lahtiseid 62 — 32 × P1 · 29 × P2 · 1 × P3
 
 | Peatükk | Kood | DONE | PARTIAL | NOT_DONE | Lahtiste prioriteedid | Märkus |
 |---|---|---:|---:|---:|---|---|
@@ -119,7 +119,7 @@ DONE **366** / 429 · PARTIAL **4** / 429 · NOT_DONE **59** / 429 · peatükke 
 | Teemaseemned | SOL-SEED | 5/5 | 0 | 0 | – | **tehtud** |
 | Teekond ja jagamine | SOL-JOUR | 9/17 | 0 | 8 | 6 × P1 · 2 × P2 |  |
 | Eelpöördumised | SOL-PRE | 18/18 | 0 | 0 | – | **tehtud** |
-| Abikuulutused | SOL-HELP | 8/13 | 0 | 5 | 3 × P1 · 2 × P2 |  |
+| Abikuulutused | SOL-HELP | 9/13 | 0 | 4 | 2 × P1 · 2 × P2 |  |
 | Võrgustikutöö | SOL-NET | 2/13 | 0 | 11 | 9 × P1 · 2 × P2 |  |
 | Refleksioonid | SOL-REF | 0/9 | 0 | 9 | 3 × P1 · 6 × P2 |  |
 | Otsing | SOL-SEARCH | 0/7 | 0 | 7 | 1 × P1 · 5 × P2 · 1 × P3 |  |
@@ -559,7 +559,7 @@ DONE **366** / 429 · PARTIAL **4** / 429 · NOT_DONE **59** / 429 · peatükke 
 - `SOL-PRE-17` P1 — pikk eelpöördumise sisu kärbitakse serveris vaikides — DONE — kasutaja sisendi vaikne `slice`-kärbe eemaldati eelpöördumise ja struktureeritud eelkaardistuse normaliseerijatest. Teema, olukord, mustandid, parandustekst, assistendi sisend, küsimustiku tekstiväljad ja loendid valideeritakse enne töötlemist ning piir+1 annab välja- või hindamispõhise 413 vastuse ilma sabamarkerit kaotamata. UI kannab vastavaid `maxLength` piire ja järelejäänud märkide loendureid; testid katavad piiri, piir+1, sabamarkeri ja loendimahu.
 - `SOL-PRE-18` P2 — eelpöördumiste loendid lõpevad vaikides 100/250 rea juures — DONE — eelpöördumise põhiloend, Minu jagamiste eelpöördumised ja K1 vastuvõtja adapter kasutavad stabiilset `(updatedAt, id)` kursorit, piiratud projektsiooni ning `total/hasMore/nextCursor` metaandmeid; ID-detaililugeja jääb autoriteetseks detailipinnaks. Põhivaade ja K1 läbivad kõik lehed ning Minu jagamised pakub jätkulaadimist. Testid ja päris PostgreSQL-i sond tõendasid 257 kirje täieliku leidmise, võrdsed ajatemplid, duplikaatide puudumise, arhiveeritud piirirea ning üle lehepiiri kulgeva parandusahela mõlemad otsad (`production runtime: NOT_PROVEN`).
 
-**Abikuulutused** (`SOL-HELP`, 8/13)
+**Abikuulutused** (`SOL-HELP`, 9/13)
 
 - `SOL-HELP-01` P1 — tavaline kuulutuse tekstiparandus võib peidetud kaardikirje uuesti avaldada — DONE — osaline kuulutuse PATCH kasutab puuduvate kaardiväljade alusena olemasolevat `HelpMapEntry` kirjet ning muudab ainult teadlikult saadetud väärtusi. Tekstiparandus säilitab nähtavuse, kaardirežiimi, kontaktiviisi, staatuse, aadressi/geokodeeringu, teenindusala ja tarneviisid; kogu PATCH nõuab sama revisjoni. Negatiivkontrollis avaldas vana kood peidetud kirje uuesti; uus request/offer test katab `HIDDEN`, `mapVisible:false`, `PHYSICAL` ja kõik kontaktiviisid.
 - `SOL-HELP-02` P1 — kuulutuse ja selle kaardikirje kirjutus ei ole atomaarne — DONE — `HelpRequest`/`HelpOffer` create või update ja vastava `HelpMapEntry` upsert commit'ivad ühes Prisma tehingus. Kaardikirjutuse vea korral pöörduvad põhikirje sisu ja revisjon tagasi ning sama create kordus jätab ühe kuulutuse ja ühe kaardikirje. Vana käitumise negatiivkontroll jättis nurjunud kirjutuse järel põhikirje püsima; päris PostgreSQL-i veasüst kattis mõlema liigi create/update rollback'i ja korduspäringu.
@@ -569,6 +569,7 @@ DONE **366** / 429 · PARTIAL **4** / 429 · NOT_DONE **59** / 429 · peatükke 
 - `SOL-HELP-06` P1 — sobituse teavitus ei ole sobituse loomisega usaldusväärselt seotud — DONE — PENDING-sobitus ja `HELP_MATCH_CONSENT_REQUEST` teavitussündmus luuakse samas teenuse tehingus ning nii route kui vestluse connect-rada kasutavad sama teenust. Teavituse veasüst pöörab tagasi sobituse ja teavituse; kordus ei loo duplikaati ning taastab puuduva teavituse idempotentselt. Päris PostgreSQL-i sond kattis tehingu ja taastamise (`production runtime: NOT_PROVEN`).
 - `SOL-HELP-07` P1 — sobituse API lekitab privaatse vabateksti kattuvad märksõnad — DONE — sobituse loomise ja otsuse API-vastused läbivad täpse allowlist-projektsiooni: `id`, `status`, `roomId`, `createdAt`, `updatedAt` ja `wasCreated`. `reasonsJson`, skoor, osapoolte ja kuulutuste ID-d ning vabateksti kattuvused jäävad serverisse. Tundlike kattuvussõnade ja privaatsete ID-de negatiivtest tõendab nende puudumise vastusest (`production runtime: NOT_PROVEN`).
 - `SOL-HELP-08` P1 — PENDING-sobitust ei saa tagasi võtta ega automaatselt aeguma panna — DONE — algataja saab PENDING-sobituse `WITHDRAW` toiminguga terminalsesse `CLOSED` olekusse viia ning hilisem ACCEPT vastab 409 ega loo ruumi. Saabuvate nimekiri sulgeb serveris aegunud või mitteavatud allikaga PENDING-sobitused ja kasutab stabiilset `createdAt + id` cursor-pagination'it. Test ja päris PostgreSQL-i sond läbisid kõik 27 rida kahe lehega ning tõendasid aegunud sobituse eemaldamist ja sulgemist (`production runtime: NOT_PROVEN`).
+- `SOL-HELP-09` P1 — kuulutuse kustutamine eemaldab accepted-match'i, kuid jätab ruumi elama — DONE — ACCEPTED-sobitusega abisoovi või abipakkumise DELETE ei tee enam kõvakustutust: kuulutus viiakse atomaarse Serializable-tehinguga `CLOSED` olekusse ja kaardikirje peidetakse, samal ajal säilivad `HelpMatch` nõusolekutõend, ruum ning mõlema osalise liikmesusajalugu teadliku `PRESERVE_ROOM_AND_MEMBERSHIP_HISTORY` poliitikaga. Enne sulgemist kontrollitakse ruumi ja osaliste liikmesuste kooskõla; puudulik seos vastab 409 ega kirjuta osalist edu. Kohustuslik põhjusega audit tekib samas tehingus ja kordus ei dubleeri seda. Mõlemad HelpMatch-allikaseosed kasutavad nüüd `ON DELETE RESTRICT`; päris PostgreSQL-i sond kattis säilimise, välisvõtme ja rollback'i (`production runtime: NOT_PROVEN`).
 
 **Võrgustikutöö** (`SOL-NET`, 2/13)
 
