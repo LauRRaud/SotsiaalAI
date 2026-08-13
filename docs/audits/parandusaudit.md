@@ -85,14 +85,14 @@ Käsitsi siia ei kirjutata. DONE algab sõnaga `DONE`, PARTIAL sõnaga `PARTIAL`
 on NOT_DONE. Kvalifitseeritud DONE-väide vale algusega katkestab genereerimise, et ta ei
 kaoks vaikselt valesse rühma. Iga loetletud leiu lõpus on Seis-lõik **sõna-sõnalt**.
 
-DONE **418** / 429 · PARTIAL **8** / 429 · NOT_DONE **3** / 429 · peatükke täielikult DONE **35** / 40 · ametlikult lahtiseid 11 — 5 × P1 · 6 × P2
+DONE **423** / 429 · PARTIAL **3** / 429 · NOT_DONE **3** / 429 · peatükke täielikult DONE **36** / 40 · ametlikult lahtiseid 6 — 4 × P1 · 2 × P2
 
 | Peatükk | Kood | DONE | PARTIAL | NOT_DONE | Lahtiste prioriteedid | Märkus |
 |---|---|---:|---:|---:|---|---|
 | Skeemi ja Prisma mudeli vastavus | SOL-SCHEMA | 1/1 | 0 | 0 | – | **tehtud** |
 | Build | SOL-BUILD | 1/1 | 0 | 0 | – | **tehtud** |
 | Autentimine ja autoriseerimine | SOL-AUTH | 15/15 | 0 | 0 | – | **tehtud** |
-| Juhtumitöö (JTA-V1) | SOL-CW | 17/20 | 2 | 1 | 2 × P1 · 1 × P2 |  |
+| Juhtumitöö (JTA-V1) | SOL-CW | 18/20 | 1 | 1 | 2 × P1 |  |
 | RAG-i admin ja failihaldus | SOL-RAGADMIN | 4/4 | 0 | 0 | – | **tehtud** |
 | Organisatsioonid ja skoop | SOL-ORG | 19/19 | 0 | 0 | – | **tehtud**, 7 jätkufailist |
 | Välitöö | SOL-FIELD | 17/17 | 0 | 0 | – | **tehtud**, 11 jätkufailist |
@@ -123,7 +123,7 @@ DONE **418** / 429 · PARTIAL **8** / 429 · NOT_DONE **3** / 429 · peatükke t
 | Võrgustikutöö | SOL-NET | 13/13 | 0 | 0 | – | **tehtud** |
 | Refleksioonid | SOL-REF | 9/9 | 0 | 0 | – | **tehtud** |
 | Otsing | SOL-SEARCH | 7/7 | 0 | 0 | – | **tehtud** |
-| Teenuseosutaja profiil | SOL-SPROF | 11/15 | 4 | 0 | 1 × P1 · 3 × P2 |  |
+| Teenuseosutaja profiil | SOL-SPROF | 15/15 | 0 | 0 | – | **tehtud** |
 | Dokumendi koostamine | SOL-COMP | 5/5 | 0 | 0 | – | **tehtud**, 5 jätkufailist |
 | Materjalid | SOL-MAT | 11/13 | 0 | 2 | 1 × P1 · 1 × P2 | 13 jätkufailist |
 | Minu jagamised | SOL-SHARE | 7/7 | 0 | 0 | – | **tehtud**, 7 jätkufailist |
@@ -132,25 +132,17 @@ DONE **418** / 429 · PARTIAL **8** / 429 · NOT_DONE **3** / 429 · peatükke t
 
 ### PARTIAL leiud peatükkide kaupa
 
-**Juhtumitöö (JTA-V1)** (`SOL-CW`, 2 PARTIAL)
+**Juhtumitöö (JTA-V1)** (`SOL-CW`, 1 PARTIAL)
 
-- `SOL-CW-09` P2 — URL-i olek ei toeta lubatud brauseri tagasinuppu — PARTIAL — kood DONE; brauseritest NOT_PROVEN, runtime: not_run.
 - `SOL-CW-14` P1 — casework'i säilitustöö ajastatud käivitamine ei ole tõendatud — PARTIAL — mehhanism DONE ja ALARM on tõendatud päris PostgreSQL-is; taimeri LUBAMINE ootab omaniku enda lukustatud järjekorda; säilitustähtaja staging-runtime: not_run.
 
 **Dokumendid ja AI-kasutus** (`SOL-DOC`, 1 PARTIAL)
 
-- `SOL-DOC-J-03` P1 — RAG-kasutusloa tagasivõtmine ei eemalda juba indekseeritud koopiat — PARTIAL — koodis on `agentAllowed true → false` nüüd auditeeritud ja idempotentne püsiv `DataDeletionJob`: töö ning `metadata.ragRemoval=pending` sünnivad enne kaugkatset samas CAS-tehingus, tõrge jääb `failed`-ina taastatavaks ja kinnitatud kustutus liigub `done`-iks. Lõpetamata töö blokeerib nii korduslubamise kui `ensureDocumentIndexed()` ingest'i; retry viib sama jobId-ga dokumendi seisu `done`, misjärel lubamine saab ingestida ainult värske SHA/`updatedAt` versiooni. Liides näitab pending/failed seisu ega luba seda lülitiga peita. Sihttestid 15/15 katsid järjekorra, tõrke, done-seisu, re-enable/ingest tõkke ja retry; `npm run doc:rag-removal:probe` 15/15 päris PostgreSQL-is kattis püsiva job'i, auditid, tõrke + retry, paralleelse keela/luba võistluse, idempotentsuse ning cleanup'i `users=0 jobs=0 audits=0`. Päris RAG-i ingest → keela → GET/search puudub ja konto kustutuse välisots on siiski NOT_PROVEN, sest kohalikus keskkonnas puuduvad RAG-võti ja kuulav teenus; leidu ei märgita enne seda DONE-iks.
+- `SOL-DOC-J-03` P1 — RAG-kasutusloa tagasivõtmine ei eemalda juba indekseeritud koopiat — PARTIAL — koodis on `agentAllowed true → false` auditeeritud ja idempotentne püsiv `DataDeletionJob`: töö ning `metadata.ragRemoval=pending` sünnivad enne kaugkatset samas CAS-tehingus, tõrge jääb `failed`-ina taastatavaks ja kinnitatud kustutus liigub `done`-iks. Lõpetamata töö blokeerib nii korduslubamise kui `ensureDocumentIndexed()` ingest'i; retry viib sama jobId-ga dokumendi seisu `done`, misjärel lubamine saab ingestida ainult värske SHA/`updatedAt` versiooni. Liides näitab pending/failed seisu ega luba seda lülitiga peita. Varasemad sihttestid 15/15 ning päris PostgreSQL-i sond 15/15 katsid järjekorra, auditid, tõrke + retry, done-seisu, re-enable/ingest tõkke, paralleelse keela/luba võistluse ja idempotentsuse; cleanup oli `users=0 jobs=0 audits=0`. Puuduv välisotsa kontroll on nüüd ühe käsu harness `npm run doc:rag-removal:live-probe`: see lubab ainult loopback-PostgreSQL-i ja loopback-RAG-i, teeb sünteetilise ingest → olemasolu negatiivkontrolli → keela → püsiva failed töö → päris retry-delete → GET/search puudumise → värske re-ingest'i → konto kustutuse päris RAG-välisotsa ning koristab `finally` plokis nii RAG-koopia kui DB-read. Harness'i ohutus-/negatiivtest 1/1 ja seotud regressioonilõik 25/25 PASS. Päris RAG-tulemus on endiselt NOT_PROVEN: 13.08 käivituses puudusid `DATABASE_URL`, `RAG_INTERNAL_HOST`/`RAG_API_BASE` ja `RAG_SERVICE_API_KEY`, vaikimisi loopback-port 8000 ei kuulanud ning olemasolev DB-sond katkeb enne fikstuuri autentimise seadistuse puudumise tõttu. Live-harness peatus enne mutatsiooni ja raporteeris `cleanup remote=not_touched users=0 documents=0 jobs=0 audits=0`; leidu ei märgita enne eduka sama käsu `runtime=PROVEN ... account_delete=absent` tõendit DONE-iks.
 
 **Uuringud** (`SOL-RES`, 1 PARTIAL)
 
 - `SOL-RES-07` P2 — soft-nav'i järel pole aktiivse uuringuga taasühendumise ega Stop'i kasutajateed — PARTIAL — kood/refaktor DONE ja sihttestidega mõõdetud; nõutud brauserirada NOT_PROVEN lokaalse React hydration'i blokeeringu tõttu. Leid jääb loendis LAHTISEKS.
-
-**Teenuseosutaja profiil** (`SOL-SPROF`, 4 PARTIAL)
-
-- `SOL-SPROF-04` P1 — RAG metadata saadab peidetud ja mustandteenuste täissisu — PARTIAL — RAG-i tekst, metadata ja teenuseloendur kasutavad nüüd üht keskset avalikku teenuseprojektsiooni. Segaprofiili test ja PostgreSQL-i koondsondi sünteetiline ingest/search-harness kinnitasid, et HIDDEN-, DRAFT- ja `mapVisible:false` markerid ei jõua payload'i ning peidetud markerile on 0 otsingutulemust. Vastuvõtukriteeriumi eraldiseisva päris RAG-teenuse ingest–search runtime jäi `NOT_PROVEN`, mistõttu leid ei ole veel täielikult DONE.
-- `SOL-SPROF-09` P2 — server kärbib teksti ja kukutab üleliigsed teenused/asukohad ilma hoiatuseta — PARTIAL — serveripoolne piirileping lükkab üle piiri tekstid, loendid, 41. teenuse ja 31. asukoha välja-/rea-põhise 413 veaga tagasi ega kärbi või kustuta vaikides olemasolevaid sabaridu. PostgreSQL-i sond tõendas ülepiiriliste lapsridade ja teksti sabas oleva kriitilise markeri säilimise; UI kuvab loendurid ja piiripõhise keelamise. Brauseris nähti loendureid ja blokeeritud avaldamist, kuid autentitud piirini täitmise läbisõit jäi `NOT_PROVEN`.
-- `SOL-SPROF-10` P2 — profiili- ja kättesaadavusroute võivad tagastada kliendile toore serverivea — PARTIAL — profiili- ja kättesaadavusroute lubavad kliendile ainult allowlist'itud 4xx domeenivigu; tundmatu 4xx ja kõik 5xx kasutavad lokaliseeritud üldkoodi ning korrelatsiooni-ID-d. Unikaalne salajane marker puudus veadeskriptorist, serialiseeritud RAG-metaandmetest ja UI lepingust. Täielik Prisma/RAG veasüst läbi autentitud HTTP- ja brauseriraja jäi `NOT_PROVEN`.
-- `SOL-SPROF-15` P2 — avaldamise kontrollid on informatiivsed, server lubab tühja teenuseprofiili RAG-i — PARTIAL — serveripoolne avaldamisleping nõuab `PUBLISHED`+AI profiililt vähemalt üht avaldamiseks sobivat teenust ja teadlikku kontakt- või platvormipõhist ligipääsuteed; veebiteenusele ei nõuta kaardiasukohta. UI kuvab vastavad vead ja blokeerib sobimatu avaldamise. Serveri kirjutusraja ja UI lepingutest tõendavad tühja payload'i tagasilükkamist, kuid autentitud route-taseme otse-PUT API-test jäi `NOT_PROVEN`.
 
 ### DONE leiud peatükkide kaupa
 
@@ -180,7 +172,7 @@ DONE **418** / 429 · PARTIAL **8** / 429 · NOT_DONE **3** / 429 · peatükke t
 - `SOL-AUTH-14` P1 — ühe seadme logout ei garanteeri kopeeritud JWT tühistamist — DONE. Migratsiooni ei ole vaja.
 - `SOL-AUTH-15` P2 — paralleelsed paroolitaaste päringud võivad mõlemad välja saadetud lingid tühistada — DONE. Vajab migratsiooni (`20260811220000`, uus tabel
 
-**Juhtumitöö (JTA-V1)** (`SOL-CW`, 17/20)
+**Juhtumitöö (JTA-V1)** (`SOL-CW`, 18/20)
 
 - `SOL-CW-01` P2 — tasulise juhtumitöö UI ja serveri ligipääsureegel räägivad eri tõde — DONE — kood ja testid; runtime: not_run.
 - `SOL-CW-02` P2 — juhtumitöö suletud lehed ei ole tõendatult olematust marsruudist eristamatud — DONE — koos päris production-build'i runtime-tõendiga.
@@ -190,6 +182,7 @@ DONE **418** / 429 · PARTIAL **8** / 429 · NOT_DONE **3** / 429 · peatükke t
 - `SOL-CW-06` P2 — kopeerimisauditi idempotentsusvõti ei kontrolli algse payload’i vastavust — DONE — kood ja testid; runtime: not_run.
 - `SOL-CW-07` P1 — retention-hoiatuste fikseeritud batch võib uuemad juhtumid näljutada — DONE — kood ja testid; runtime: not_run.
 - `SOL-CW-08` P2 — tundmatu `retentionState` muutub kliendivea asemel 500-ks — DONE — kood ja testid; runtime: not_run.
+- `SOL-CW-09` P2 — URL-i olek ei toeta lubatud brauseri tagasinuppu — DONE — URL, vaade ja päris brauseriajalugu taastuvad kooskõlaliselt.
 - `SOL-CW-10` P3 — „Näita rohkem” lubab paralleelseid sama kursori päringuid — DONE — kood ja testid; runtime: not_run.
 - `SOL-CW-11` P1 — tagasivõetud või saatmata päritoluobjektist saab endiselt juhtumi luua — DONE — kood ja testid; runtime: not_run.
 - `SOL-CW-12` P2 — juhtumi loomise kordus võib tekitada ühest lähteobjektist mitu juhtumit — DONE — kood, migratsioon ja testid; migratsiooniahel tõendatud päris PostgreSQL-i vastu, rakenduse runtime: not_run.
@@ -628,19 +621,23 @@ DONE **418** / 429 · PARTIAL **8** / 429 · NOT_DONE **3** / 429 · peatükke t
 - `SOL-SEARCH-06` P2 — otsingu limiter on protsessimälus ja seob kliendi juhitava IP-päise bucket'i — DONE — isiklik otsing kasutab protsessiüleselt atomaarset PostgreSQL-i bucket'it kasutaja+toimingu ja ainult usaldatud proxy päisest saadud IP järgi; seadistamata või kliendi muudetavad `x-forwarded-for`/`x-real-ip` päised ei loo uusi bucketeid. Päris PostgreSQL-i kaks eraldi protsessi tegid vahelduvate spoof-päistega 40 katset: täpselt 30 lubati ja ülejäänud piirati ühise kvoodi järgi; storage'i tõrge sulgeb otsingu 503-ga. Toodangu proxy-seadistus ja mitme sõlme deploy-järgne rada jäid `NOT_PROVEN`.
 - `SOL-SEARCH-07` P3 — pealkirjata tulemuse serveritagavara on kõigis keeltes eestikeelne — DONE — server tagastab pealkirjata objekti puhul `title: null`, mitte eestikeelset fallback'i. Klient tõlgib pealkirjata vestluse, Teekonna ja dokumendi ET/EN/RU kataloogist; kataloogisümmeetria ja kõik kolm lokaliseeritud võtmerühma on testitud.
 
-**Teenuseosutaja profiil** (`SOL-SPROF`, 11/15)
+**Teenuseosutaja profiil** (`SOL-SPROF`, 15/15)
 
 - `SOL-SPROF-01` P0 — konto kustutamine jätab SOLO-teenuseprofiili avalikuks ja RAG-i — DONE — kood, testid ja päris PostgreSQL-i runtime (`npm run sprof:consent:probe` 22/22).
 - `SOL-SPROF-02` P0 — soovitusloa tagasivõtmine võib vastata eduga, kuigi vana RAG-dokument jääb aktiivseks — DONE — kood, testid ja päris PostgreSQL-i runtime (`npm run sprof:consent:probe` 22/22).
 - `SOL-SPROF-03` P1 — nähtav teeninduskoht võib avalikustada temaga seotud peidetud teenuse — DONE — avalik profiili- ja asukohaprojektsioon lahendab teenuselingid ainult samast kesksest allowlist'ist, kus teenus on `PUBLISHED` ja `mapVisible:true`; piiranguta `providerService` varuteed enam pole. Regressioonitest ja päris PostgreSQL-i sond sidusid nähtava asukohaga avaliku, peidetud, mustandi ning kaardilt eemaldatud teenuse ja kinnitasid, et vastuses säilis ainult avalik teenus ning ainult selle seose-ID.
+- `SOL-SPROF-04` P1 — RAG metadata saadab peidetud ja mustandteenuste täissisu — DONE — RAG-i tekst, metadata ja loendurid kasutavad keskset avalikku teenuseprojektsiooni. Eraldatud päris RAG-teenuse ja Chroma runtime koos kohaliku deterministliku embedding-teenusega ingestis sünteetilise segaprofiili: avalik marker oli otsingus leitav, kuid HIDDEN-, DRAFT- ega `mapVisible:false` marker ei esinenud otsinguvastustes.
 - `SOL-SPROF-05` P1 — vana täisvorm võib uuema profiili, teenused ja asukohad vaikides üle kirjutada — DONE — PUT nõuab `expectedUpdatedAt` väärtust ning lukustab profiili ja lapsread sama atomaarse CAS-i sisse. Päris PostgreSQL-i kahe konkureeriva täisvormi sond lubas täpselt ühe commit'i, tagastas kaotajale 409 ning kinnitas, et profiil, teenused ja asukohad pärinevad samast võitnud revision'ist. UI säilitab kohaliku vormi ja näitab serveri värske seisuga konfliktivaadet.
 - `SOL-SPROF-06` P1 — klient saab suvalised koordinaadid serveris ametlikuks `MATCHED` asukohaks muuta — DONE — server väljastab omaniku ja kõigi autoritatiivsete aadressiväljadega seotud lühiealise allkirjastatud suggestion-tokeni; ainult kehtiv token võib salvestada `MATCHED` koordinaadid ja provider'i. WGS84/Eesti piiri, NaN/Infinity, omanikuvahetuse, võltsitud `adsObjectId` ja aegumise kontrollid sulguvad fail-closed. PostgreSQL-i sond kinnitas, et võltsitud toorsisend jääb koordinaatideta `PENDING` olekusse.
 - `SOL-SPROF-07` P1 — RAG-i edukas ingest ja kohaliku profiililingi kirjutus ei ole taastatav tervik — DONE — profiili RAG-sünk kasutab deterministliku dokumendi-ID, payload-räsi ja revision'iga püsivat `ServiceProviderProfileRagJob` järjekorda. Leasitud worker teeb retry, märgib aegunud töö `SUPERSEDED` ning uuendab profiililinki ainult sama revision'i CAS-iga; reconcile võrdleb püsivat snapshot'i RAG-registriga. PostgreSQL-i sond kattis ingest-edu+järgne DB-vea, vastuse kao, restardi, stale-job'i ja uue revision'i võidu. Välise production-RAG-i tegelik worker/reconcile jooks jäi `NOT_PROVEN`.
 - `SOL-SPROF-08` P1 — kasutaja andmekoopia jätab tema SOLO-teenuseprofiili välja — DONE — andmekoopia sisaldab nüüd owner-skoobitud SOLO-teenuseprofiili koos teenuste, asukohtade, seoste, avaldamis-/soovitusvalikute ning ajatemplitega; sisemised registri- ja tööjärjekorraväljad on eraldi projektsiooniga välistatud. PostgreSQL-i sond tõendas kahe omaniku eraldatust, omanikuta ja organisatsiooniprofiili puudumist ning koopia kättesaadavust vahetult enne konto kustutust.
+- `SOL-SPROF-09` P2 — server kärbib teksti ja kukutab üleliigsed teenused/asukohad ilma hoiatuseta — DONE — server lükkab üle piiri sisendi tagasi ega kärbi teksti või lapsridu vaikides; UI kuvab piirid ja keelab lisamise nende täitumisel. Autenditud production-build brauserirada täitis profiili täpselt 8000 märgi, 40 teenuse ja 30 asukohani. Reload ning päris PostgreSQL kinnitasid kriitilise tekstisaba, viimase teenuse, viimase asukoha ja varasemate HIDDEN/DRAFT/kaardilt peidetud ridade säilimise.
+- `SOL-SPROF-10` P2 — profiili- ja kättesaadavusroute võivad tagastada kliendile toore serverivea — DONE — tundmatud serverivead ei jõua autentitud kliendile toortekstina. Prisma unikaalse salajase markeriga veasüst andis üldise lokaliseeritud 500 vastuse ja päisega kattuva korrelatsiooni-ID; marker puudus HTTP-kehas ja UI-s. RAG-i markeriga veasüst jäi püsivas tööjärjekorras ohutuks `rag_ingest_failed` koodiks ning marker puudus vastusest, UI-st ja tööjärjekorra kirjest; järgnev taastöö õnnestus.
 - `SOL-SPROF-11` P2 — avaldamise ja AI-soovitusloa muutmisel puudub püsiv auditijälg — DONE — avaldamise ja assistendi soovitusloa siirded kirjutatakse profiili, lapsridade ja RAG-tööga samas tehingus sisutu `DomainEvent`-ina koos actor'i, profiili ID, vana/uue oleku, revision'i ja korrelatsiooni-ID-ga. PostgreSQL-i sond tõendas auditivea täielikku rollback'i, kordussalvestuse duplikaadivabadust, tagasivõtmise järjekorda ning seda, et kirjeldusi ega kontakte auditisse ei kopeerita.
 - `SOL-SPROF-12` P2 — kulukatel profiili-, RAG- ja aadressitoimingutel puudub ühine serveripoolne koormuspiir — DONE — profiili GET/PUT, kättesaadavuse kinnitus ja aadressiotsing kasutavad püsivat kasutaja+toimingu koormuspiiri; aadressipäringul on pikkusepiir ning profiili PUT nõuab replay-kindlat `Idempotency-Key` lepingut. PostgreSQL-i mitme protsessi sond tõendas ühist 429 piiri ning sama võtmega samaaegsete ja korduvate PUT-ide puhul ühe profiilirevision'i, receipt'i ja RAG-töö; erineva kehaga sama võti saab 409 konflikti.
 - `SOL-SPROF-13` P2 — MTR-i 15 minuti jahtumise vastus näitab ainult kuupäeva ja alati eesti formaati — DONE — MTR-i jahtumise 429 vastus annab standardse `Retry-After` päise ning UI vormindab retry-hetke kasutaja ET/EN/RU lokaadi, kuupäeva, kellaaja ja `Europe/Tallinn` ajavööndi järgi. Sihttestid katavad sama päeva, järgmise päeva ja Tallinna suveajapiiri.
 - `SOL-SPROF-14` P2 — profiili tavapärane salvestus võib individuaalselt peidetud teenuse või asukoha uuesti avaldada — DONE — profiili tavapärane salvestus säilitab olemasoleva teenuse ja asukoha individuaalse staatuse ning UI võimaldab lapsrea staatust eraldi hallata; üldprofiili avaldamine ei kirjuta enam kõiki lapsi automaatselt `PUBLISHED`/`DRAFT` olekusse. PostgreSQL-i sond tõendas, et telefoninumbri muutmise järel jäävad HIDDEN teenus ja asukoht peidetuks.
+- `SOL-SPROF-15` P2 — avaldamise kontrollid on informatiivsed, server lubab tühja teenuseprofiili RAG-i — DONE — serveripoolne avaldamisleping nõuab avaldamiseks sobivat teenust ja teadlikku ligipääsuteed. Autenditud route-taseme otse-PUT tühja `PUBLISHED`+AI payload'iga tagastas 400 `service_provider_profile.errors.publish_service_required` ning ei muutnud olemasolevat profiili ega lapsridu.
 
 **Dokumendi koostamine** (`SOL-COMP`, 5/5)
 

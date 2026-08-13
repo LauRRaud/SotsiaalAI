@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**Paralleelsete parandustööpuude uus laine on integreeritud ning sisuline väljalase `3735789e` on GitHubis ja toodangus.** Funktsioonideülene `SOL-XFUNC-01…03` on lõpetatud: Haldus on URL-iga taastatav, Ruumid järgib serveri tegevuslippe ning andmekoopia CI-värav klassifitseerib kõik kasutajaseosed ja väliskoopiad. Teenuseprofiili `SOL-SPROF-11…14` on DONE; `SOL-SPROF-04,09,10,15` jäävad puuduvate välise RAG-i või autentitud brauseri/HTTP runtime-tõendite tõttu ausalt PARTIAL. Väljalaske värav oli 4715/4715 testi ja 196/196 migratsiooni; kolm teenust ning teavitustaimer on aktiivsed, teavitusjob `ok:true` ja avalikud põhilehed vastavad HTTP 200. Järgmine töö valitakse ametliku koondi allesjäänud kolmest NOT_DONE leiust.
+**Paralleelsete parandustööpuude uus runtime-laine on integreerimisel lokaalsesse `main`-i.** `SOL-CW-09` päris Back/Forward/deep-link rada ning `SOL-SPROF-04,09,10,15` isoleeritud RAG/Chroma, autentitud brauseri, PostgreSQL-i ja HTTP veasüstid on nüüd DONE; Teenuseprofiili peatükk on 15/15 lõpetatud. `SOL-DOC-J-03` jääb ausalt PARTIAL, kuid puuduva päris RAG-välisotsa tõendi jaoks on loopback-only ühe käsu harness. Viimane toodangu väljalase on endiselt `3735789e`; järgmine töö valitakse ametliku koondi allesjäänud kolmest NOT_DONE ning neljast PARTIAL leiust.
 
 **Teenuspäeviku jätkuauditi `SOL-SLOG-J-01…07` on lõpetatud.** Kirje parandamine,
 tühistamine, mustandi kustutamine ja owner-skoobitud ajalugu on nüüd päris kasutajateed;

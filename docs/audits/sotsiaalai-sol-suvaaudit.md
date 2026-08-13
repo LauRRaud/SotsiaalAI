@@ -8177,7 +8177,7 @@ suletud), negatiivkontrolli (kehtiva loaga profiil JÄÄB) ja fail-closed haru.
 
 **Vastuvõtukriteerium.** RAG-payload peab moodustuma ühest kesksest avalikust teenuseprojektsioonist; HIDDEN/DRAFT teenust ei tohi olla ei tekstis, metadatas ega loendurites. Lisada payload-test segaprofiiliga ning RAG-teenuse integratsioonitest, mis otsib peidetud teenuse unikaalset markerit ja ootab 0 tulemust.
 
-**Seis (13.08.2026): PARTIAL —** RAG-i tekst, metadata ja teenuseloendur kasutavad nüüd üht keskset avalikku teenuseprojektsiooni. Segaprofiili test ja PostgreSQL-i koondsondi sünteetiline ingest/search-harness kinnitasid, et HIDDEN-, DRAFT- ja `mapVisible:false` markerid ei jõua payload'i ning peidetud markerile on 0 otsingutulemust. Vastuvõtukriteeriumi eraldiseisva päris RAG-teenuse ingest–search runtime jäi `NOT_PROVEN`, mistõttu leid ei ole veel täielikult DONE.
+**Seis (13.08.2026): DONE —** RAG-i tekst, metadata ja loendurid kasutavad keskset avalikku teenuseprojektsiooni. Eraldatud päris RAG-teenuse ja Chroma runtime koos kohaliku deterministliku embedding-teenusega ingestis sünteetilise segaprofiili: avalik marker oli otsingus leitav, kuid HIDDEN-, DRAFT- ega `mapVisible:false` marker ei esinenud otsinguvastustes.
 
 ### SOL-SPROF-05 — vana täisvorm võib uuema profiili, teenused ja asukohad vaikides üle kirjutada — P1
 
@@ -8227,7 +8227,7 @@ suletud), negatiivkontrolli (kehtiva loaga profiil JÄÄB) ja fail-closed haru.
 
 **Vastuvõtukriteerium.** Üle piiri sisend peab saama välja-/rea-põhise 400/413 vea; UI näitab loendurit ja keelab lisamise enne serveripiiri. Testida piir-1/piir/piir+1, olemasoleva 41. rea säilimist ning kriitilist markerit teksti kärbitavas sabas.
 
-**Seis (13.08.2026): PARTIAL —** serveripoolne piirileping lükkab üle piiri tekstid, loendid, 41. teenuse ja 31. asukoha välja-/rea-põhise 413 veaga tagasi ega kärbi või kustuta vaikides olemasolevaid sabaridu. PostgreSQL-i sond tõendas ülepiiriliste lapsridade ja teksti sabas oleva kriitilise markeri säilimise; UI kuvab loendurid ja piiripõhise keelamise. Brauseris nähti loendureid ja blokeeritud avaldamist, kuid autentitud piirini täitmise läbisõit jäi `NOT_PROVEN`.
+**Seis (13.08.2026): DONE —** server lükkab üle piiri sisendi tagasi ega kärbi teksti või lapsridu vaikides; UI kuvab piirid ja keelab lisamise nende täitumisel. Autenditud production-build brauserirada täitis profiili täpselt 8000 märgi, 40 teenuse ja 30 asukohani. Reload ning päris PostgreSQL kinnitasid kriitilise tekstisaba, viimase teenuse, viimase asukoha ja varasemate HIDDEN/DRAFT/kaardilt peidetud ridade säilimise.
 
 ### SOL-SPROF-10 — profiili- ja kättesaadavusroute võivad tagastada kliendile toore serverivea — P2
 
@@ -8237,7 +8237,7 @@ suletud), negatiivkontrolli (kehtiva loaga profiil JÄÄB) ja fail-closed haru.
 
 **Vastuvõtukriteerium.** Ainult allowlist'itud 4xx domeenikoodid tohivad kliendile jõuda; kõik 5xx vastused kasutavad lokaliseeritud üldkoodi ja korrelatsiooni-ID-d. Veasüsttestid peavad panema Prisma ja RAG-i viskama unikaalse salajase markeri ning tõendama selle puudumise HTTP-kehas ja UI-s.
 
-**Seis (13.08.2026): PARTIAL —** profiili- ja kättesaadavusroute lubavad kliendile ainult allowlist'itud 4xx domeenivigu; tundmatu 4xx ja kõik 5xx kasutavad lokaliseeritud üldkoodi ning korrelatsiooni-ID-d. Unikaalne salajane marker puudus veadeskriptorist, serialiseeritud RAG-metaandmetest ja UI lepingust. Täielik Prisma/RAG veasüst läbi autentitud HTTP- ja brauseriraja jäi `NOT_PROVEN`.
+**Seis (13.08.2026): DONE —** tundmatud serverivead ei jõua autentitud kliendile toortekstina. Prisma unikaalse salajase markeriga veasüst andis üldise lokaliseeritud 500 vastuse ja päisega kattuva korrelatsiooni-ID; marker puudus HTTP-kehas ja UI-s. RAG-i markeriga veasüst jäi püsivas tööjärjekorras ohutuks `rag_ingest_failed` koodiks ning marker puudus vastusest, UI-st ja tööjärjekorra kirjest; järgnev taastöö õnnestus.
 
 ### SOL-SPROF-11 — avaldamise ja AI-soovitusloa muutmisel puudub püsiv auditijälg — P2
 
@@ -8287,7 +8287,7 @@ suletud), negatiivkontrolli (kehtiva loaga profiil JÄÄB) ja fail-closed haru.
 
 **Vastuvõtukriteerium.** Lukustada serveripoolne minimaalne avaldamisleping: vähemalt üks sobiva staatusega teenus ning teadlikult määratud kontakt-/ligipääsutee; kaardiasukoht võib olla valikuline veebiteenusele. UI peab näitama välja-põhiseid vigu ja API-test peab otse-PUT tühja PUBLISHED+AI payload'i tagasi lükkama.
 
-**Seis (13.08.2026): PARTIAL —** serveripoolne avaldamisleping nõuab `PUBLISHED`+AI profiililt vähemalt üht avaldamiseks sobivat teenust ja teadlikku kontakt- või platvormipõhist ligipääsuteed; veebiteenusele ei nõuta kaardiasukohta. UI kuvab vastavad vead ja blokeerib sobimatu avaldamise. Serveri kirjutusraja ja UI lepingutest tõendavad tühja payload'i tagasilükkamist, kuid autentitud route-taseme otse-PUT API-test jäi `NOT_PROVEN`.
+**Seis (13.08.2026): DONE —** serveripoolne avaldamisleping nõuab avaldamiseks sobivat teenust ja teadlikku ligipääsuteed. Autenditud route-taseme otse-PUT tühja `PUBLISHED`+AI payload'iga tagastas 400 `service_provider_profile.errors.publish_service_required` ning ei muutnud olemasolevat profiili ega lapsridu.
 
 ## Järgmine auditijärjekord
 
