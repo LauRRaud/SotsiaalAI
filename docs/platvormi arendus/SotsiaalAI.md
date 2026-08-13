@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**Viimane otsuseplokk on kohalikku `main`-i integreeritud ja väljalaskeväravas.** `SOL-MAT-12` on DONE: originaalil, sanitiseeritud derivaadil ja RAG-koopial on eraldi 7/365 päeva kellad ning kinnitatud 14/30/30/7/1/365 poliitika. `SOL-CW-14` 12 kalendrikuu ja 30 päeva hoiatus on lepingus, kasutajatekstis ning hallatavas taimeris kooskõlas, kuid tootmistaimeri kontrolljooks on veel tegemata. `SOL-MAT-08` kasutab kinnitatud dokumenteeritud litsentsi / sotsiaaltöötaja sihtrühma poliitikat; TXT liigub ainult sanitiseeritud derivaadina ja isoleeritud RAG/Chroma `ingest → search → delete` sond oli puhas. Lahti jäävad kohaliku PDF/DOCX CDR-mootori valik ning päris eraldi `nodev,nosuid,noexec` tootmisköide. Enne väljalaset olid ühendatud sihttestid **92/92**, casework'i PostgreSQL-sond **28/28**, Materjalide kihiline sond **21/21** ja migratsiooniahel **200/200**. Ametlik seis on **427 DONE / 2 PARTIAL / 0 NOT_DONE**; järgmine samm on puhas UTC täisvärav, push/deploy, CW-taimeri kontrollitud aktiveerimine ning toodangu smoke.
+**Viimane otsuseplokk on commit'iga `422679c360404022aa86d2d0ce4d91ef7aff7a32` GitHubis ja toodangus.** `SOL-MAT-12` on DONE: originaalil, sanitiseeritud derivaadil ja RAG-koopial on eraldi 7/365 päeva kellad ning kinnitatud 14/30/30/7/1/365 poliitika. `SOL-CW-14` on DONE: 12 kalendrikuu ja 30 päeva hoiatus on lepingus, kasutajatekstis ning hallatavas ajastuses kooskõlas; tootmise kuivjooks oli puhas, esimene päris systemd-jooks edukas, smoke `OK` ning taimer **enabled / active**. `SOL-MAT-08` kasutab kinnitatud dokumenteeritud litsentsi ja sotsiaaltöötaja sihtrühma poliitikat; TXT liigub ainult sanitiseeritud derivaadina ning isoleeritud RAG/Chroma `ingest → search → delete` sond oli puhas. Lahti jäävad kohaliku PDF/DOCX CDR-mootori valik, päris eraldi `nodev,nosuid,noexec` tootmisköide ja autentitud brauseritõend. Ühendatud sihttestid olid **92/92**, casework'i PostgreSQL-sond **28/28**, Materjalide kihiline sond **21/21**, migratsiooniahel **200/200** ning muutumatu väljalaskepuu UTC täisvärav **4751/4751**. Ametlik seis on **428 DONE / 1 PARTIAL / 0 NOT_DONE**; järgmine tööots on `SOL-MAT-08` järelejäänud infrastruktuuri- ja brauseritõend.
 
 **Teenuspäeviku jätkuauditi `SOL-SLOG-J-01…07` on lõpetatud.** Kirje parandamine,
 tühistamine, mustandi kustutamine ja owner-skoobitud ajalugu on nüüd päris kasutajateed;
@@ -127,16 +127,17 @@ eraldi päriselt kustutada. Kinnitamisel külmuvad päritolumanifest ning DOCX/P
 allika või malli hilisem muutmine ja kustutamine ei muuda kinnitatud dokumendi tõendit ega
 kordusallalaadimist.
 
-**Materjalide `SOL-MAT-01/02/03/04/05/06/07/09/10` on lõpetatud.** Uus esitis on nüüd tasulise
+**Materjalide `SOL-MAT-01/02/03/04/05/06/07/09/10/12` on lõpetatud.** Uus esitis on nüüd tasulise
 spetsialisti serveripiiri taga, idempotentne ja atomaarse kvoodiga; faili/DB elutsükkel
 taastub katkestusest püsiva job'i kaudu. Esitaja näeb ja saab tagasi võtta oma ootel või
 tagasilükatud faile ning admini järjekord on täielikult lehitatav ja filtreeritav. Faili sisu
 valideeritakse tervikuna. Ülevaatuse CAS ja DB olekumasin väldivad otsuste ülekirjutamist ning
 allalaadimine, otsus ja kustutus ei õnnestu kohustusliku auditita. `SOL-MAT-08` vale
-impordilubadus on fail-closed, kuid ootab omaniku otsust õiguste, sihtrühma ja kustutusjärgse
-säilituse kohta. Andmekoopia hõlmab nüüd esitisi, originaale ja puuduva faili manifestimärget;
-adminiteavitus on püsiva Message-ID, retry ja auditiga minimaalne outbox. `SOL-MAT-12` ootab
-omaniku kinnitatud retention'i tähtaegu.
+impordilubadus, õiguste- ja sihtrühmapoliitika, sanitiseeritud TXT-derivaat ning RAG-i
+`ingest → search → delete` elutsükkel on tõendatud; lahti on PDF/DOCX CDR, tootmise eraldi
+turvaköide ja autentitud brauserirada. Andmekoopia hõlmab nüüd esitisi, originaale ja puuduva
+faili manifestimärget; adminiteavitus on püsiva Message-ID, retry ja auditiga minimaalne
+outbox. Kinnitatud kihiline retention eristab originaali, derivaadi ja RAG-koopia kellad.
 
 **Prisma ja deploy' `SOL-PRISMA-01…04` on lõpetatud.** Pärand-MTR tõend ei muutu upgrade'il
 enam valeks ega kaota teadaolevat põhjust, HelpMatchi mõlemad osapooled on valideeritud ning

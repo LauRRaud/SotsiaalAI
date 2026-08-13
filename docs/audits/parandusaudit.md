@@ -85,14 +85,14 @@ Käsitsi siia ei kirjutata. DONE algab sõnaga `DONE`, PARTIAL sõnaga `PARTIAL`
 on NOT_DONE. Kvalifitseeritud DONE-väide vale algusega katkestab genereerimise, et ta ei
 kaoks vaikselt valesse rühma. Iga loetletud leiu lõpus on Seis-lõik **sõna-sõnalt**.
 
-DONE **427** / 429 · PARTIAL **2** / 429 · NOT_DONE **0** / 429 · peatükke täielikult DONE **38** / 40 · ametlikult lahtiseid 2 — 2 × P1
+DONE **428** / 429 · PARTIAL **1** / 429 · NOT_DONE **0** / 429 · peatükke täielikult DONE **39** / 40 · ametlikult lahtiseid 1 — 1 × P1
 
 | Peatükk | Kood | DONE | PARTIAL | NOT_DONE | Lahtiste prioriteedid | Märkus |
 |---|---|---:|---:|---:|---|---|
 | Skeemi ja Prisma mudeli vastavus | SOL-SCHEMA | 1/1 | 0 | 0 | – | **tehtud** |
 | Build | SOL-BUILD | 1/1 | 0 | 0 | – | **tehtud** |
 | Autentimine ja autoriseerimine | SOL-AUTH | 15/15 | 0 | 0 | – | **tehtud** |
-| Juhtumitöö (JTA-V1) | SOL-CW | 19/20 | 1 | 0 | 1 × P1 |  |
+| Juhtumitöö (JTA-V1) | SOL-CW | 20/20 | 0 | 0 | – | **tehtud** |
 | RAG-i admin ja failihaldus | SOL-RAGADMIN | 4/4 | 0 | 0 | – | **tehtud** |
 | Organisatsioonid ja skoop | SOL-ORG | 19/19 | 0 | 0 | – | **tehtud**, 7 jätkufailist |
 | Välitöö | SOL-FIELD | 17/17 | 0 | 0 | – | **tehtud**, 11 jätkufailist |
@@ -132,10 +132,6 @@ DONE **427** / 429 · PARTIAL **2** / 429 · NOT_DONE **0** / 429 · peatükke t
 
 ### PARTIAL leiud peatükkide kaupa
 
-**Juhtumitöö (JTA-V1)** (`SOL-CW`, 1 PARTIAL)
-
-- `SOL-CW-14` P1 — casework'i säilitustöö ajastatud käivitamine ei ole tõendatud — PARTIAL — omaniku kinnitatud säilituspoliitika on koodis, kasutajatekstides, privaatsusteavituses, raamlepingus ja hallatavas ajastuses vastuoludeta ning kohalikult väljalaskevalmis; tootmistaimeri aktiveerimine ja kontrollitud systemd-jooks on runtime: NOT_PROVEN.
-
 **Materjalid** (`SOL-MAT`, 1 PARTIAL)
 
 - `SOL-MAT-08` P1 — `imported` on vale RAG-lubadus ilma ingest'i, `doc_id`, õiguste või eemaldamiseta — PARTIAL — vale `imported` lubadus, õigusteotsus, sanitiseeritud tekstiderivaat ja päris isoleeritud RAG-elutsükkel on DONE; PDF/DOCX CDR ning tootmise eraldi turvaköide on NOT_PROVEN. Kinnitatud muutumatu poliitika on `rightsEvidenceMode=DOCUMENTED_LICENSE`, `collection=materials_reviewed_social_work`, `audience=SOCIAL_WORKER`, `retentionMode=DELETE_WITH_SUBMISSION_OR_ACCOUNT`, `withdrawalAuthority=SUBMITTER_RIGHTS_HOLDER_OR_ADMIN`, versioon `materials-rag-v1-2026-08`. Shared-RAG lubab ainult public domain'i, selget avatud litsentsi või dokumenteeritud luba ning keelab kliendijuhtumi, konfidentsiaalse ja isikuandmetega materjali; pelk esitaja kinnitus ei ava importi. `imported` sünnib ainult sanitiseeritud derivaadi versioonitud ingest'i, `inserted > 0` kviteeringu ja järgneva `chunks > 0` kontrolli järel. Admin näeb auditeeritud preview-rajalt ainult derivaati, mitte toororiginaali. Ebaõnnestumine, null-chunk, DB lõpuviga, withdraw ja konto kustutus kasutavad püsivaid retry/kompensatsiooni/RAG_DELETE radu.
@@ -168,7 +164,7 @@ DONE **427** / 429 · PARTIAL **2** / 429 · NOT_DONE **0** / 429 · peatükke t
 - `SOL-AUTH-14` P1 — ühe seadme logout ei garanteeri kopeeritud JWT tühistamist — DONE. Migratsiooni ei ole vaja.
 - `SOL-AUTH-15` P2 — paralleelsed paroolitaaste päringud võivad mõlemad välja saadetud lingid tühistada — DONE. Vajab migratsiooni (`20260811220000`, uus tabel
 
-**Juhtumitöö (JTA-V1)** (`SOL-CW`, 19/20)
+**Juhtumitöö (JTA-V1)** (`SOL-CW`, 20/20)
 
 - `SOL-CW-01` P2 — tasulise juhtumitöö UI ja serveri ligipääsureegel räägivad eri tõde — DONE — kood ja testid; runtime: not_run.
 - `SOL-CW-02` P2 — juhtumitöö suletud lehed ei ole tõendatult olematust marsruudist eristamatud — DONE — koos päris production-build'i runtime-tõendiga.
@@ -183,6 +179,7 @@ DONE **427** / 429 · PARTIAL **2** / 429 · NOT_DONE **0** / 429 · peatükke t
 - `SOL-CW-11` P1 — tagasivõetud või saatmata päritoluobjektist saab endiselt juhtumi luua — DONE — kood ja testid; runtime: not_run.
 - `SOL-CW-12` P2 — juhtumi loomise kordus võib tekitada ühest lähteobjektist mitu juhtumit — DONE — kood, migratsioon ja testid; migratsiooniahel tõendatud päris PostgreSQL-i vastu, rakenduse runtime: not_run.
 - `SOL-CW-13` P2 — „aktiivsed ettevalmistused” ei loe kohtumise ettevalmistusi — DONE — kood ja testid; runtime: not_run.
+- `SOL-CW-14` P1 — casework'i säilitustöö ajastatud käivitamine ei ole tõendatud — DONE — omaniku kinnitatud säilituspoliitika on koodis, kasutajatekstides, privaatsusteavituses ja raamlepingus vastuoludeta; hallatav taimer on tootmises aktiveeritud ning kontrollitud systemd-jooks, tervisesond ja järgmine ajastus on tõendatud.
 - `SOL-CW-15` P1 — kohtumise „kustutamatu” märkme sisu saab jäljetult muuta ja täielikult eemaldada — DONE — kood, migratsioon ja testid; migratsiooniahel tõendatud päris PostgreSQL-i vastu, rakenduse runtime: not_run.
 - `SOL-CW-16` P1 — STAR2 kopeerimisaudit ei ole seotud kopeeritud tekstiversiooniga — DONE — kood, migratsioon ja testid; migratsiooniahel tõendatud päris PostgreSQL-i vastu, rakenduse runtime: not_run.
 - `SOL-CW-17` P2 — workbench'i rohelised privaatsustestid ei läbi kahte uut sektsiooni — DONE — testid; tootmiskoodi see leid ei muutnud.
