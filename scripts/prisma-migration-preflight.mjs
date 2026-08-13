@@ -16,6 +16,8 @@ import process from "node:process";
 import dotenv from "dotenv";
 import pg from "pg";
 
+import { classifyMigrationStatements, createdMigrationTables } from "../lib/prismaMigrationRisk.js";
+
 dotenv.config({ path: ".env.local", quiet: true });
 dotenv.config({ path: ".env", quiet: true });
 
@@ -27,34 +29,6 @@ const maxRows = Number(process.env.MIGRATION_PREFLIGHT_MAX_LOCKING_ROWS || 100_0
 const allowLarge = process.env.MIGRATION_PREFLIGHT_ALLOW_LARGE_LOCKING === "true";
 const requireNoPending = process.argv.includes("--require-no-pending");
 const migrationsDir = path.resolve("prisma", "migrations");
-
-function classifyStatements(sql) {
-  const statements = sql
-    .replace(/--[^\n]*/g, " ")
-    .split(";")
-    .map((statement) => statement.replace(/\s+/g, " ").trim())
-    .filter(Boolean);
-  const risks = [];
-
-  for (const statement of statements) {
-    const rules = [
-      { kind: "nonconcurrent_index", pattern: /CREATE\s+(?:UNIQUE\s+)?INDEX\s+(?!CONCURRENTLY\b)[\s\S]*?\sON\s+"([^"]+)"/i },
-      { kind: "alter_column_type", pattern: /ALTER\s+TABLE\s+"([^"]+)"[\s\S]*?ALTER\s+COLUMN[\s\S]*?\sTYPE\s/i },
-      { kind: "set_not_null", pattern: /ALTER\s+TABLE\s+"([^"]+)"[\s\S]*?ALTER\s+COLUMN[\s\S]*?SET\s+NOT\s+NULL/i },
-      { kind: "validate_constraint", pattern: /ALTER\s+TABLE\s+"([^"]+)"[\s\S]*?VALIDATE\s+CONSTRAINT/i },
-      { kind: "add_constraint", pattern: /ALTER\s+TABLE\s+"([^"]+)"[\s\S]*?ADD\s+CONSTRAINT/i },
-      { kind: "drop_column", pattern: /ALTER\s+TABLE\s+"([^"]+)"[\s\S]*?DROP\s+COLUMN/i, destructive: true },
-      { kind: "drop_table", pattern: /DROP\s+TABLE(?:\s+IF\s+EXISTS)?\s+"([^"]+)"/i, destructive: true },
-      { kind: "data_update", pattern: /UPDATE\s+"([^"]+)"/i },
-      { kind: "data_delete", pattern: /DELETE\s+FROM\s+"([^"]+)"/i, destructive: true }
-    ];
-    for (const rule of rules) {
-      const match = statement.match(rule.pattern);
-      if (match) risks.push({ kind: rule.kind, table: match[1], destructive: Boolean(rule.destructive) });
-    }
-  }
-  return risks;
-}
 
 function quoteIdentifier(value) {
   return `"${String(value).replaceAll('"', '""')}"`;
@@ -108,9 +82,9 @@ try {
   const pendingCreatedTables = new Set();
   for (const name of pending) {
     const sql = await readFile(path.join(migrationsDir, name, "migration.sql"), "utf8");
-    const risks = classifyStatements(sql);
-    for (const match of sql.matchAll(/CREATE\s+TABLE(?:\s+IF\s+NOT\s+EXISTS)?\s+"([^"]+)"/gi)) {
-      pendingCreatedTables.add(match[1]);
+    const risks = classifyMigrationStatements(sql);
+    for (const table of createdMigrationTables(sql)) {
+      pendingCreatedTables.add(table);
     }
     if (
       risks.some((risk) => risk.destructive) &&

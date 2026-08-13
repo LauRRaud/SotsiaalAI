@@ -5,6 +5,8 @@ import path from "node:path";
 import { spawnSync } from "node:child_process";
 import test from "node:test";
 
+import { classifyMigrationStatements, createdMigrationTables } from "../../lib/prismaMigrationRisk.js";
+
 async function repoFile(path) {
   return readFile(new URL(`../../${path}`, import.meta.url), "utf8");
 }
@@ -120,4 +122,20 @@ test("SOL-PRISMA-04: CI and package scripts run the legacy upgrade probe", async
   assert.ok(pkg.scripts["db:migrate:upgrade:probe"]);
   assert.ok(pkg.scripts["db:migrate:preflight"]);
   assert.match(workflow, /npm run db:migrate:upgrade:probe/);
+});
+
+test("migration preflight measures the relation rather than the quoted public schema", () => {
+  const sql = `
+    ALTER TABLE "public"."HelpMatch"
+      DROP CONSTRAINT "old_fk",
+      ADD CONSTRAINT "new_fk" FOREIGN KEY ("requestId") REFERENCES "public"."HelpRequest"("id");
+    CREATE INDEX "example_idx" ON "public"."HelpRequest" ("createdAt");
+    CREATE TABLE "public"."HelpRateLimitBucket" ("id" TEXT PRIMARY KEY);
+  `;
+
+  assert.deepEqual(classifyMigrationStatements(sql), [
+    { kind: "add_constraint", table: "HelpMatch", destructive: false },
+    { kind: "nonconcurrent_index", table: "HelpRequest", destructive: false }
+  ]);
+  assert.deepEqual(createdMigrationTables(sql), ["HelpRateLimitBucket"]);
 });
