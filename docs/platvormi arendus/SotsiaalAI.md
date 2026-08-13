@@ -99,7 +99,11 @@ end-vs-create võistluse. AI-abiga alustatud narratiivi päritolu säilib toimet
 revision/CAS peatab paralleelse vaikse ülekirjutuse. Andmekoopia hõlmab nüüd rolli- ja
 omandipõhiselt Teenuspäevikut, konto kustutus tombstone'ib kõik identiteedipinnad samas
 tehingus ning auditeeritud retention-worker koristab tähtaja järel sõltuvused ja failikoopiad.
-Järgmine peatükk on `SOL-ORG-18/19`.
+
+**Organisatsioonide `SOL-ORG-18/19` on lõpetatud.** Konto kustutus järgib nüüd sama
+lukustatud offboardingulepingut: viimane omanik ja elav töö peatuvad parandatava põhjusega,
+ajalooline liikmesus säilib identiteedita ning inimese andmekoopia sisaldab tema enda
+liikmesuse, õiguste, üksuste ja koha elutsüklit. Järgmine plokk on `SOL-FIELD-J-01/02/03`.
 
 **RAG-teenuse `SOL-RAGSVC-01…28` on DONE ja peatüki UTC täisvärav on roheline.**
 `SOL-ORG-13`–`17`, `SOL-DOC-J-01`–`06` ja kogu `SOL-SLOG-01…24` parandused ning kiirem plokipõhine töökord on koodipuus. Kolmeastmelised arvud loetakse käsuga `npm run sol:progress`, neid siia ankrusse ei

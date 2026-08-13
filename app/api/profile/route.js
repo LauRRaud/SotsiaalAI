@@ -355,6 +355,9 @@ export async function DELETE(request) {
     if (error?.code === "P2025") {
       return errorJson("profile.errors.user_not_found", 404, fallbackLocale);
     }
+    if (error?.status === 409 && String(error?.messageKey || "").startsWith("org.errors.")) {
+      return errorJson(error.messageKey, 409, fallbackLocale, error.details);
+    }
 
     console.error("profile DELETE error", safeError(error));
     return errorJson("profile.delete_failed", 500, fallbackLocale);

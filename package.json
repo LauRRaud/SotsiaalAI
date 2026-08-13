@@ -73,6 +73,7 @@
     "slog:entry-origin:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/service-entry-origin-probe.mjs",
     "slog:narrative-identity:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/service-narrative-identity-probe.mjs",
     "org:seat:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/org-seat-race-probe.mjs",
+    "org:account-lifecycle:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/org-account-lifecycle-probe.mjs",
     "org:sponsor:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/org-sponsorship-race-probe.mjs",
     "org:inbox:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/org-inbox-terminal-probe.mjs",
     "org:invite:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/org-invite-race-probe.mjs",

@@ -243,6 +243,7 @@ test("final user-row lock sweeps pre-lock candidates and prevents post-delete pr
     serviceVisit: { updateMany: async () => ({ count: 0 }) },
     serviceLogTimeSample: { updateMany: async () => ({ count: 0 }) },
     serviceReportShare: { updateMany: async () => ({ count: 0 }) },
+    organizationMembership: { findMany: async () => [] },
     dataDeletionJob: {
       findFirst: async () => null,
       create: async (input) => {

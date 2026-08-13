@@ -85,7 +85,7 @@ Käsitsi siia ei kirjutata. DONE algab sõnaga `DONE`, PARTIAL sõnaga `PARTIAL`
 on NOT_DONE. Kvalifitseeritud DONE-väide vale algusega katkestab genereerimise, et ta ei
 kaoks vaikselt valesse rühma. Iga loetletud leiu lõpus on Seis-lõik **sõna-sõnalt**.
 
-DONE **259** / 429 · PARTIAL **4** / 429 · NOT_DONE **166** / 429 · peatükke täielikult DONE **19** / 40 · ametlikult lahtiseid 170 — 121 × P1 · 48 × P2 · 1 × P3
+DONE **261** / 429 · PARTIAL **4** / 429 · NOT_DONE **164** / 429 · peatükke täielikult DONE **20** / 40 · ametlikult lahtiseid 168 — 120 × P1 · 47 × P2 · 1 × P3
 
 | Peatükk | Kood | DONE | PARTIAL | NOT_DONE | Lahtiste prioriteedid | Märkus |
 |---|---|---:|---:|---:|---|---|
@@ -94,7 +94,7 @@ DONE **259** / 429 · PARTIAL **4** / 429 · NOT_DONE **166** / 429 · peatükke
 | Autentimine ja autoriseerimine | SOL-AUTH | 15/15 | 0 | 0 | – | **tehtud** |
 | Juhtumitöö (JTA-V1) | SOL-CW | 17/20 | 2 | 1 | 2 × P1 · 1 × P2 |  |
 | RAG-i admin ja failihaldus | SOL-RAGADMIN | 4/4 | 0 | 0 | – | **tehtud** |
-| Organisatsioonid ja skoop | SOL-ORG | 17/19 | 0 | 2 | 1 × P1 · 1 × P2 | 7 jätkufailist |
+| Organisatsioonid ja skoop | SOL-ORG | 19/19 | 0 | 0 | – | **tehtud**, 7 jätkufailist |
 | Välitöö | SOL-FIELD | 6/17 | 0 | 11 | 8 × P1 · 3 × P2 | 11 jätkufailist |
 | Dokumendid ja AI-kasutus | SOL-DOC | 14/15 | 1 | 0 | 1 × P1 | 6 jätkufailist |
 | Uuringud | SOL-RES | 6/7 | 1 | 0 | 1 × P2 |  |
@@ -200,7 +200,7 @@ DONE **259** / 429 · PARTIAL **4** / 429 · NOT_DONE **166** / 429 · peatükke
 - `SOL-RAGADMIN-03` P1 — `INGESTING` lukk ei ole atomaarne ega taastuv — DONE — claim + lease, lepitus, kolm rada, migratsioon, 17 testi ja 21/21 päris PostgreSQL-i sond; rakenduse runtime: not_run.
 - `SOL-RAGADMIN-04` P2 — hävitav RAG reset ei seo dry-run plaani serveripoolse kinnitusega — DONE — jagatud värav, sõrmejälg täisloendina, ühekordne broneering ja 13 testi; rakenduse runtime: not_run.
 
-**Organisatsioonid ja skoop** (`SOL-ORG`, 17/19)
+**Organisatsioonid ja skoop** (`SOL-ORG`, 19/19)
 
 - `SOL-ORG-01` P1 — töötaja kaudu tuletatud graafikuskoop lekib mitme organisatsiooni töö üle tenantide piiri — DONE — kood, migratsioon ja testid; tõendatud päris PostgreSQL-i vastu (`npm run slog:org:probe` 19/19).
 - `SOL-ORG-02` P1 — graafiku kirjutusrada möödub peatatud organisatsiooni ja mooduli väravast — DONE — kood ja testid; tõendatud päris PostgreSQL-i vastu (`npm run slog:org:probe` 24/24).
@@ -214,6 +214,8 @@ DONE **259** / 429 · PARTIAL **4** / 429 · NOT_DONE **166** / 429 · peatükke
 - `SOL-ORG-10` P1 — offboarding võib lõppeda aktiivse töö või kohaga — DONE — kood ja paralleelsussond (`npm run org:offboard:probe` 39/39; vana koodi vastu 13 punast).
 - `SOL-ORG-11` P1 — viimase organisatsiooniomaniku õiguse saab eemaldada — DONE — kood ja sond (`npm run org:offboard:probe` 48/48).
 - `SOL-ORG-12` P1 — paralleelne olekusiire võib arhiveeritud organisatsiooni taas aktiveerida — DONE — kood ja sond (`npm run org:offboard:probe` 60/60; vana koodi vastu 6 punast).
+- `SOL-ORG-18` P1 — konto kustutus kas jätab organisatsiooni omanikuta või ebaõnnestub ajaloolise töö tõttu — DONE — konto kustutuse eelkontroll kasutab sama organisatsiooni→liikmesuse lukujärjekorda kui offboarding ja tagastab viimase omaniku või elava töö puhul enne ligipääsu sulgemist parandatava 409 põhjuse. Lõplik User-kustutustehing kordab kontrolle luku all, lõpetab aktiivse koha, capability'd ja üksuseseosed, kirjutab kaks append-only auditifakti ning säilitab liikmesuse `ENDED` SetNull-tombstone'ina, nii et lõpetatud töö FK ei blokeeri. `npm run org:account-lifecycle:probe` läbis ajutises päris PostgreSQL-is 12/12: viimane omanik, kaks omanikku, elav/lõpetatud töö, aktiivne koht, toe- ja aruandejagamise read, idempotentne retry ning assign-vs-delete mõlemad lukujärjekorrad; orvu, kadunud ajalugu ega poolikut lõppseisu ei jäänud.
+- `SOL-ORG-19` P2 — kasutaja andmekoopia jätab organisatsiooniliikmesuse, õigused ja kohaajaloo välja — DONE — kinnises andmekoopia registris on nüüd `organization_memberships` omanikuvaade. Iga rida sisaldab minimaalset organisatsiooniviidet/nime, liikmesuse staatust, seatRole'i, jobTitle'it ja aegu ning ainult küsija enda üksuse-, capability- ja kohaajaloo elutsüklit; teiste liikmete identiteedid, määramised, vabatekstilised põhjused ja organisatsiooni töövara on välistatud. Sihttestid kontrollivad owner-filtrit ja registrilepingut. Sama päris PostgreSQL-i sond võrdles aktiivse liikmesuse/õiguse/koha koopiat DB-ga ning tõendas järeltulija identiteedi ja ajaloolise töö puudumise koopiast vahetult enne konto kustutust.
 - `SOL-ORG-13` P1 — auditi vaade ja organisatsiooni eksport kärbivad vastutusjälje vaikides — DONE — auditivaade kasutab stabiilset `(createdAt,id)` cursorit koos serveri `total`/`hasMore`-ga ning organisatsiooni eksport läbib kogu auditi või katkeb fail-closed; manifest kannab täielikkust ja rea arvu. `npm run org:audit:probe` 14/14 päris PostgreSQL-is (205 rida, võrdsed ajatemplid, esimene ja viimane säilisid, cleanup 0/0); käitumistest 4/4, vana koodi vastas puuduva täieliku lehitsemislepingu tõttu punane; `TZ=UTC npm test` 4182/4182.
 - `SOL-ORG-14` P2 — vastuvõtu-, toe- ja aruandeloendid kaotavad vanemad aktiivsed read — DONE — vastuvõtu-, toe-, aruande-, kutse- ja sponsorlusloendid kasutavad nüüd stabiilset liitcursorit, serveri filtreid ja kasutajale nähtavat jätkamistoimingut. Sihttest 5/5 katab staatuse, saatja märgitud kiireloomulisuse, tähtaja ületuse ja avamata filtrid ning 201/101/201 rea duplikaadivaba läbimise; `npm run org:operational-pagination:probe` 6/6 kinnitas samad kolm piiri päris PostgreSQL-is ja koristas kõik sünteetilised read (0/0/0). Peatükilõpu `TZ=UTC npm test` 4199/4199; autentitud brauserivoog `not_run`.
 - `SOL-ORG-15` P1 — toeavalduse terminalseid seise saab otsese API-kutsega tagasi pöörata — DONE — toeavalduse `SENT → OPENED/RECALLED`, `SENT/OPENED → CLOSED` ja `OPENED → CORRECTED` siirded on rea `FOR UPDATE` luku all ning iga kirjutus nõuab lubatud lähteseisu ja sama `updatedAt` revisjoni. `RECALLED`, `CORRECTED` ja `CLOSED` ei pöördu enam ühegi mutatsiooniga tagasi; kaotaja saab 409 ja audit tekib ainult võitjale. `npm run org:support-share:probe` 12/12 päris PostgreSQL-is kattis open-vs-recall, close-vs-correct ja topelt-close võidujooksud ning cleanup jäi `shares=0 audits=0 org=0 user=0`; terminalsete tagasipöörete sihttest 4/4. Peatükilõpu `TZ=UTC npm test` 4199/4199; autentitud brauserivoog `not_run`.

@@ -51,7 +51,7 @@ Värske lokaalne PostgreSQL-proov rakendas kõik 151 migratsiooni ja kutsus pär
 
 **Vastuvõtukriteerium.** Konto kustutus peab enne User-rea eemaldamist läbima iga organisatsiooni kohta sama lukuprotokolli ja offboardingulepingu: viimane omanik peab andma omandi kontrollitud järeltulijale või kustutus peab selge parandatava seisuga peatuma; elav töö tuleb teadlikult üle anda; kohad ja aktiivsed õigused lõpetada ning append-only audit kirjutada põhitehingus. Ajalooline lõpetatud töö ei tohi kustutust FK-ga blokeerida: kasutada säilivat liikmesuse/tegija tombstone'i, SetNull-snapshot'i või muud dokumenteeritud retentsioonimudelit. Retry peab olema idempotentne. Päris PostgreSQL-testid peavad katma viimase omaniku, kahe omaniku, elava ja lõpetatud töö, aktiivse koha, report/support seosed ning delete-vs-assign/offboard võistluse.
 
-**Seis.** NOT_DONE; runtime: PostgreSQL reproduced.
+**Seis.** DONE — konto kustutuse eelkontroll kasutab sama organisatsiooni→liikmesuse lukujärjekorda kui offboarding ja tagastab viimase omaniku või elava töö puhul enne ligipääsu sulgemist parandatava 409 põhjuse. Lõplik User-kustutustehing kordab kontrolle luku all, lõpetab aktiivse koha, capability'd ja üksuseseosed, kirjutab kaks append-only auditifakti ning säilitab liikmesuse `ENDED` SetNull-tombstone'ina, nii et lõpetatud töö FK ei blokeeri. `npm run org:account-lifecycle:probe` läbis ajutises päris PostgreSQL-is **12/12**: viimane omanik, kaks omanikku, elav/lõpetatud töö, aktiivne koht, toe- ja aruandejagamise read, idempotentne retry ning assign-vs-delete mõlemad lukujärjekorrad; orvu, kadunud ajalugu ega poolikut lõppseisu ei jäänud.
 
 ### SOL-ORG-19 — kasutaja andmekoopia jätab organisatsiooniliikmesuse, õigused ja kohaajaloo välja — P2
 
@@ -63,7 +63,7 @@ Värske PostgreSQL-proovi kasutajal oli aktiivne organisatsiooniliikmesus, `ORG_
 
 **Vastuvõtukriteerium.** Isikuandmete registry peab lisama omaniku allowlist-projektsiooni: minimaalse organisatsiooniviite/nime, membership staatuse, seatRole/jobTitle ja ajad, kasutaja enda üksuseseosed, capability grantide kehtivus/tühistamine ning seat-assignment'i elutsükkel; teiste liikmete andmed ja organisatsiooni privaatne töövara tuleb välistada. Test peab kasutama kahte kasutajat kahes organisatsioonis, aktiivset ja lõppenud liikmesust, revokitud õigust ning lõppenud kohta, võrdlema koopiat DB omanikuvaatega ja tõendama võõraste andmete puudumise.
 
-**Seis.** NOT_DONE; runtime: PostgreSQL export reproduced.
+**Seis.** DONE — kinnises andmekoopia registris on nüüd `organization_memberships` omanikuvaade. Iga rida sisaldab minimaalset organisatsiooniviidet/nime, liikmesuse staatust, seatRole'i, jobTitle'it ja aegu ning ainult küsija enda üksuse-, capability- ja kohaajaloo elutsüklit; teiste liikmete identiteedid, määramised, vabatekstilised põhjused ja organisatsiooni töövara on välistatud. Sihttestid kontrollivad owner-filtrit ja registrilepingut. Sama päris PostgreSQL-i sond võrdles aktiivse liikmesuse/õiguse/koha koopiat DB-ga ning tõendas järeltulija identiteedi ja ajaloolise töö puudumise koopiast vahetult enne konto kustutust.
 
 ## Testide täpsed tulemused
 
