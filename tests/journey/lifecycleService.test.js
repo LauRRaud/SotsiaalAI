@@ -39,13 +39,19 @@ function lifecycleDb() {
   };
   const db = {
     journey: { async findFirst() { return structuredClone(row); } },
-    preInquiry: { async findMany() { return []; } },
+    preInquiry: { async findMany() { return []; }, async count() { return 0; } },
+    domainEvent: {
+      async findMany({ take }) {
+        return events.slice().reverse().slice(0, take).map((event, index) => ({ id: `event-${index}`, ...event }));
+      },
+      async count() { return events.length; }
+    },
     async $transaction(callback) { return callback(tx); }
   };
   return { db, events, isDeleted: () => deleted, row: () => structuredClone(row) };
 }
 
-test("journey update uses CAS, records archive activity and emits content-free event", async () => {
+test("journey update uses CAS and exposes owner-scoped archive activity", async () => {
   const old = process.env.U1_OUTBOX_ENABLED;
   process.env.U1_OUTBOX_ENABLED = "true";
   try {
@@ -55,7 +61,7 @@ test("journey update uses CAS, records archive activity and emits content-free e
       expectedUpdatedAt: UPDATED_AT.toISOString()
     }, { db: state.db });
     assert.equal(journey.status, "ARCHIVED");
-    assert.equal(journey.context.activityLog.at(-1).type, "archived");
+    assert.equal(journey.activity[0].type, "workspace.archived");
     assert.equal(state.events[0].type, "workspace.archived");
     assert.deepEqual(state.events[0].meta, { kind: "journey" });
     assert.doesNotMatch(JSON.stringify(state.events[0]), /Summary|Journey/u);
@@ -126,10 +132,9 @@ test("SOL-JOUR-06: archived content is read-only until a versioned reopen", asyn
 
   assert.equal(edited.status, "ACTIVE");
   assert.equal(edited.title, "Edited after reopen");
-  assert.deepEqual(
-    edited.context.activityLog.slice(-3).map((item) => item.type),
-    ["archived", "reopened", "updated"]
-  );
+  assert.deepEqual(edited.activity.map((item) => item.type), [
+    "workspace.updated", "workspace.activated", "workspace.archived"
+  ]);
 });
 
 test("permanent deletion requires explicit second-step confirmation and emits no content", async () => {

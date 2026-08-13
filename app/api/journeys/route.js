@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { authConfig } from "@/auth";
 import { createJourneyForUser, listJourneysForUser } from "@/lib/journey/service";
 import { safeError } from "@/lib/privacy/safeError";
+import { enforceChatRateLimit } from "@/lib/chat-api-rate-limit";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -29,18 +30,24 @@ async function requireJourneyUser() {
   return { session, userId };
 }
 
-export async function GET() {
+export async function GET(request) {
   const auth = await requireJourneyUser();
   if (!auth) {
     return json({ ok: false, message: "api.common.unauthorized" }, 401);
   }
 
   try {
-    const journeys = await listJourneysForUser(auth.userId);
-    return json({ ok: true, journeys });
+    const url = new URL(request.url);
+    const page = await listJourneysForUser(auth.userId, {
+      cursor: url.searchParams.get("cursor"),
+      limit: url.searchParams.get("limit"),
+      status: url.searchParams.get("status")
+    });
+    return json({ ok: true, journeys: page.items, page });
   } catch (error) {
-    console.error("[journeys] list failed", safeError(error));
-    return json({ ok: false, message: "journeys.errors.load_failed" }, 500);
+    const status = Number(error?.status) || 500;
+    if (status >= 500) console.error("[journeys] list failed", safeError(error));
+    return json({ ok: false, message: error?.message || "journeys.errors.load_failed" }, status);
   }
 }
 
@@ -49,6 +56,14 @@ export async function POST(request) {
   if (!auth) {
     return json({ ok: false, message: "api.common.unauthorized" }, 401);
   }
+  const limited = enforceChatRateLimit(request, {
+    scope: "journey_create",
+    userId: auth.userId,
+    limit: 30,
+    windowMs: 60 * 60 * 1000,
+    messageKey: "journeys.errors.rate_limited"
+  });
+  if (limited) return limited;
 
   try {
     const body = await request.json().catch(() => ({}));
@@ -61,6 +76,11 @@ export async function POST(request) {
     if (status >= 500) {
       console.error("[journeys] create failed", safeError(error));
     }
-    return json({ ok: false, message: error?.message || "journeys.errors.save_failed" }, status);
+    return json({
+      ok: false,
+      message: error?.message || "journeys.errors.save_failed",
+      ...(error?.code ? { code: error.code } : {}),
+      ...(error?.field ? { field: error.field, limit: error.limit } : {})
+    }, status);
   }
 }

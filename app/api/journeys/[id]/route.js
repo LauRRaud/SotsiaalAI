@@ -72,7 +72,12 @@ export async function PATCH(request, context) {
     if (status >= 500) {
       console.error("[journeys] update failed", safeError(error));
     }
-    return json({ ok: false, message: error?.message || "journeys.errors.save_failed" }, status);
+    return json({
+      ok: false,
+      message: error?.message || "journeys.errors.save_failed",
+      ...(error?.code ? { code: error.code } : {}),
+      ...(error?.field ? { field: error.field, limit: error.limit } : {})
+    }, status);
   }
 }
 

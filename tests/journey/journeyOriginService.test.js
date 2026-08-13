@@ -10,7 +10,12 @@ function journeyDb() {
   ];
   const journeys = [];
   const tx = {
+    async $executeRawUnsafe() {},
     journey: {
+      async findUnique({ where }) { return journeys.find((row) => row.id === where.id) || null; },
+      async count({ where }) {
+        return journeys.filter((row) => row.ownerUserId === where.ownerUserId).length;
+      },
       async create({ data }) {
         const row = {
           id: `journey-${journeys.length + 1}`,
@@ -21,6 +26,10 @@ function journeyDb() {
         journeys.push(row);
         return row;
       }
+    },
+    domainEvent: {
+      async findUnique() { return null; },
+      async create({ data }) { return { id: "event-1", ...data }; }
     }
   };
   return {
@@ -42,6 +51,7 @@ test("SOL-JOUR-09: Journey stores only an owner-scoped conversation origin", asy
   const state = journeyDb();
   const created = await createJourneyForUser("owner-a", {
     summary: "Sünteetiline teekond",
+    clientActionId: "origin-own",
     conversationId: "conversation-own"
   }, { db: state.db, roleContext: "CLIENT" });
 
@@ -51,6 +61,7 @@ test("SOL-JOUR-09: Journey stores only an owner-scoped conversation origin", asy
   await assert.rejects(
     createJourneyForUser("owner-a", {
       summary: "Võõra vestluse katse",
+      clientActionId: "origin-foreign",
       conversationId: "conversation-foreign"
     }, { db: state.db, roleContext: "CLIENT" }),
     { status: 400, message: "journeys.errors.conversation_not_found" }

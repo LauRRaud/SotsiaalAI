@@ -5288,6 +5288,7 @@
   "notifications": {
     "events": {
       "workspace_created": "A journey was created",
+      "workspace_updated": "A journey was updated",
       "workspace_activated": "A journey was reopened",
       "workspace_archived": "A journey was archived",
       "workspace_deleted": "A journey was deleted",
@@ -6767,12 +6768,16 @@
       "risk_signals": "Careful notes",
       "suggested_actions": "Suggested next steps",
       "situation": "Situation description",
-      "one_item_per_line": "One item per line"
+      "one_item_per_line": "One item per line",
+      "characters_per_item": "characters per item",
+      "character_count": "{current}/{limit}",
+      "item_limit_count": "{current}/{limit}, {characters} characters per item"
     },
     "actions": {
       "previous_step": "← Previous step",
       "reopen": "Reopen",
-      "export": "Export as text",
+      "export": "Export as JSON",
+      "load_more": "Load more",
       "delete": "Delete permanently",
       "archive": "Archive",
       "archive_named": "Archive journey {title}",
@@ -6792,6 +6797,7 @@
       "loading": "Loading journey...",
       "auth_required": "The journey is private. Log in to continue.",
       "load_failed": "Loading the journey failed.",
+      "export_failed": "Exporting the journey failed.",
       "draft_failed": "Creating the journey overview failed.",
       "save_failed": "Saving the journey failed.",
       "archive_failed": "Archiving the journey failed.",

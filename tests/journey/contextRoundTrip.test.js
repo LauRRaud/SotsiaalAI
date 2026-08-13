@@ -90,7 +90,7 @@ test("SOL-JOUR-03: structured context survives create, serialize and update norm
   assert.equal(created.context.schemaVersion, 1);
   assert.deepEqual(updated.context, created.context);
   assert.deepEqual(created.context.assistiveDevices, STRUCTURED_CONTEXT.assistiveDevices);
-  assert.deepEqual(created.context.activityLog, STRUCTURED_CONTEXT.activityLog);
+  assert.equal(created.context.activityLog, undefined, "client activity is never accepted as history");
   assert.deepEqual(created.context.helpMediation, STRUCTURED_CONTEXT.helpMediation);
   assert.deepEqual(created.context.serviceContinuity, STRUCTURED_CONTEXT.serviceContinuity);
   assert.equal(containsObjectString(updated), false);

@@ -1270,8 +1270,17 @@ export default function ChatBody({
       return;
     }
     const restored = readChatJourneyDraft(window.sessionStorage, sessionUserId, convId);
-    setJourneyWorkflowDraft(restored);
-    if (restored) setActiveWorkflow("journey");
+    const restoredWithActionId = restored ? {
+      ...restored,
+      draft: {
+        ...restored.draft,
+        clientActionId: restored.draft?.clientActionId
+          || globalThis.crypto?.randomUUID?.()
+          || `journey-${Date.now()}-${Math.random().toString(36).slice(2)}`
+      }
+    } : null;
+    setJourneyWorkflowDraft(restoredWithActionId);
+    if (restoredWithActionId) setActiveWorkflow("journey");
     journeyDraftReadyScopeRef.current = journeyDraftScope;
   }, [convId, conversationLocalReady, journeyDraftScope, sessionUserId]);
   useEffect(() => {
@@ -2415,7 +2424,11 @@ export default function ChatBody({
     try {
       const draft = await createJourneyDraftFromText(baseText);
       setJourneyWorkflowDraft({
-        draft,
+        draft: {
+          ...draft,
+          clientActionId: globalThis.crypto?.randomUUID?.()
+            || `journey-${Date.now()}-${Math.random().toString(36).slice(2)}`
+        },
         sourceText: baseText
       });
       mutateMessage(streamingMessageId, (message) => ({

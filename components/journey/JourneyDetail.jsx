@@ -46,15 +46,13 @@ function formatDate(value, locale = "et") {
   }
 }
 
-function downloadJourneyText(journey, filename = "journey.txt") {
-  const sections = [
-    journey?.title,
-    journey?.summary,
-    (journey?.domains || []).join("\n"),
-    (journey?.missingInfo || []).join("\n"),
-    (journey?.suggestedActions || []).map((item) => typeof item === "string" ? item : item?.title).filter(Boolean).join("\n")
-  ].filter(Boolean);
-  const url = URL.createObjectURL(new Blob([sections.join("\n\n")], { type: "text/plain;charset=utf-8" }));
+async function downloadJourneyExport(journey, filename = "journey.json") {
+  const response = await fetch(`/api/journeys/${encodeURIComponent(journey.id)}/export`, { cache: "no-store" });
+  if (!response.ok) {
+    const payload = await response.json().catch(() => ({}));
+    throw new Error(payload.message || "journeys.errors.export_failed");
+  }
+  const url = URL.createObjectURL(await response.blob());
   const link = document.createElement("a");
   link.href = url;
   link.download = filename;
@@ -160,25 +158,10 @@ function buildHelpOfferMatchApiHref(handoff) {
 }
 
 function journeyActivityItems(journey, t, locale) {
-  const contextItems = readContextArray(journey?.context, "activityLog")
-    .map((item) => ({
-      title: typeof item === "string" ? item : item?.title || "",
-      date: typeof item === "object" ? item?.date || item?.createdAt || "" : ""
-    }))
-    .filter((item) => item.title);
-  const base = [
-    {
-      title: t("journey.activity.created", "teekond loodud"),
-      date: journey?.createdAt
-    },
-    {
-      title: t("journey.activity.saved", "ülevaade salvestatud"),
-      date: journey?.updatedAt
-    }
-  ];
-  return [...base, ...contextItems].slice(0, 8).map((item) => ({
+  return (Array.isArray(journey?.activity) ? journey.activity : []).map((item) => ({
     ...item,
-    dateLabel: formatDate(item.date, locale)
+    title: t(`notifications.events.${String(item.type || "").replaceAll(".", "_")}`, item.type),
+    dateLabel: formatDate(item.occurredAt, locale)
   }));
 }
 
@@ -387,7 +370,7 @@ function preInquiryStatusLabel(t, status) {
   );
 }
 
-function LinkedPreInquiries({ journey, t, locale }) {
+function LinkedPreInquiries({ journey, t, locale, onLoadMore }) {
   const items = Array.isArray(journey?.linkedPreInquiries) ? journey.linkedPreInquiries : [];
 
   if (!items.length) {
@@ -420,11 +403,18 @@ function LinkedPreInquiries({ journey, t, locale }) {
           </li>
         );
       })}
+      {journey?.linkedPreInquiriesPage?.hasMore ? (
+        <li>
+          <Button onClick={onLoadMore} variant="linkBrand">
+            {t("journey.actions.load_more", "Laadi rohkem")}
+          </Button>
+        </li>
+      ) : null}
     </ul>
   );
 }
 
-function RelatedObjectsPanel({ journey, t, locale }) {
+function RelatedObjectsPanel({ journey, t, locale, onLoadMorePreInquiries }) {
   const context = journey?.context && typeof journey.context === "object" && !Array.isArray(journey.context)
     ? journey.context
     : {};
@@ -444,7 +434,7 @@ function RelatedObjectsPanel({ journey, t, locale }) {
       <div>
         <div>
           <h3>{t("journey.related.pre_inquiries", "Seotud eelpöördumised")}</h3>
-          <LinkedPreInquiries journey={journey} t={t} locale={locale} />
+          <LinkedPreInquiries journey={journey} t={t} locale={locale} onLoadMore={onLoadMorePreInquiries} />
         </div>
         {groups.map(([key, title]) => {
           const items = normalizeDisplayItems(context[key]);
@@ -657,7 +647,8 @@ function HelpRequestSharePanel({ journey, href, t }) {
   );
 }
 
-function FormListField({ id, label, value, onChange, t }) {
+function FormListField({ id, label, value, onChange, t, maxItems }) {
+  const itemCount = textToLines(value).length;
   return (
     <div>
       <label htmlFor={id}>
@@ -669,11 +660,25 @@ function FormListField({ id, label, value, onChange, t }) {
         onChange={(event) => onChange(event.target.value)}
         placeholder={t("journey.labels.one_item_per_line", "One item per line")}
       />
+      <small>{t(
+        "journey.labels.item_limit_count",
+        { current: itemCount, limit: maxItems, characters: 220 },
+        "{current}/{limit}, {characters} tähemärki kirje kohta"
+      )}</small>
     </div>
   );
 }
 
-function ContinuityTextField({ id, label, value, onChange, placeholder = "", type = "text" }) {
+function ContinuityTextField({
+  id,
+  label,
+  value,
+  onChange,
+  t,
+  maxLength = 12000,
+  placeholder = "",
+  type = "text"
+}) {
   return (
     <div>
       <label htmlFor={id}>
@@ -684,8 +689,10 @@ function ContinuityTextField({ id, label, value, onChange, placeholder = "", typ
         type={type}
         value={value}
         onChange={(event) => onChange(event.target.value)}
+        maxLength={maxLength}
         placeholder={placeholder}
       />
+      <small>{t("journey.labels.character_count", { current: value.length, limit: maxLength }, "{current}/{limit}")}</small>
     </div>
   );
 }
@@ -983,6 +990,35 @@ export default function JourneyDetail({ journeyId }) {
     setError("");
   }, [journey]);
 
+  const handleExport = useCallback(async () => {
+    if (!journey) return;
+    setBusy(true);
+    setError("");
+    try {
+      await downloadJourneyExport(journey, `teekond-${journey.id}.json`);
+    } catch (exportError) {
+      setError(exportError.message || t("journey.messages.export_failed", "Eksport ebaõnnestus."));
+    } finally {
+      setBusy(false);
+    }
+  }, [journey, t]);
+
+  const handleLoadMorePreInquiries = useCallback(async () => {
+    const cursor = journey?.linkedPreInquiriesPage?.nextCursor;
+    if (!journeyId || !cursor) return;
+    const response = await fetch(
+      `/api/journeys/${encodeURIComponent(journeyId)}/linked-pre-inquiries?cursor=${encodeURIComponent(cursor)}&limit=25`,
+      { cache: "no-store" }
+    );
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok || !payload.ok) throw new Error(payload.message || "journeys.errors.load_failed");
+    setJourney((current) => ({
+      ...current,
+      linkedPreInquiries: [...(current?.linkedPreInquiries || []), ...(payload.page?.items || [])],
+      linkedPreInquiriesPage: payload.page
+    }));
+  }, [journey?.linkedPreInquiriesPage?.nextCursor, journeyId]);
+
   const handleSaveContinuity = useCallback(async (event) => {
     event.preventDefault();
     if (!journey || !journeyId) return;
@@ -1199,8 +1235,8 @@ export default function JourneyDetail({ journeyId }) {
                         {t("journey.actions.reopen", "Taasava")}
                       </Button>
                     )}
-                    <Button onClick={() => downloadJourneyText(journey, `teekond-${journey.id}.txt`)} disabled={busy}>
-                      {t("journey.actions.export", "Ekspordi tekstina")}
+                    <Button onClick={handleExport} disabled={busy}>
+                      {t("journey.actions.export", "Ekspordi JSON-failina")}
                     </Button>
                     {!deleteArmed ? (
                       <Button variant="danger" onClick={() => setDeleteArmed(true)} disabled={busy}>
@@ -1215,8 +1251,8 @@ export default function JourneyDetail({ journeyId }) {
                 <section className="journey-risk-card" role="alertdialog" aria-labelledby="journey-delete-title">
                   <h2 id="journey-delete-title">{t("journey.delete.title", "Kustuta Teekond jäädavalt?")}</h2>
                   <p>{t("journey.delete.body", "Teekonna privaatne sisu kustub. Seotud eelpöördumised jäävad alles, kuid side Teekonnaga katkeb. Soovitame enne eksportida.")}</p>
-                  <Button onClick={() => downloadJourneyText(journey, `teekond-${journey.id}.txt`)}>
-                    {t("journey.actions.export", "Ekspordi tekstina")}
+                  <Button onClick={handleExport} disabled={busy}>
+                    {t("journey.actions.export", "Ekspordi JSON-failina")}
                   </Button>
                   <Button variant="danger" onClick={handleDelete} disabled={busy}>
                     {t("journey.delete.confirm", "Jah, kustuta jäädavalt")}
@@ -1481,6 +1517,7 @@ export default function JourneyDetail({ journeyId }) {
                         label={t("journey.serviceContinuity.serviceName", "Teenuse või toe nimetus")}
                         value={continuityForm.serviceName}
                         onChange={(value) => updateContinuityForm("serviceName", value)}
+                        t={t}
                         placeholder={t("journey.serviceContinuity.serviceNamePlaceholder", "Näiteks koduteenus, tugiisik, rehabilitatsioon")}
                       />
                       <ContinuityTextField
@@ -1488,6 +1525,7 @@ export default function JourneyDetail({ journeyId }) {
                         label={t("journey.serviceContinuity.currentProvider", "Praegune teenuseosutaja või kontakt")}
                         value={continuityForm.currentProvider}
                         onChange={(value) => updateContinuityForm("currentProvider", value)}
+                        t={t}
                         placeholder={t("journey.serviceContinuity.currentProviderPlaceholder", "Teenuseosutaja, KOV kontakt või muu osapool")}
                       />
                       <ContinuityTextField
@@ -1495,6 +1533,7 @@ export default function JourneyDetail({ journeyId }) {
                         label={t("journey.serviceContinuity.municipality", "KOV või piirkond")}
                         value={continuityForm.municipality}
                         onChange={(value) => updateContinuityForm("municipality", value)}
+                        t={t}
                         placeholder={t("journey.serviceContinuity.municipalityPlaceholder", "Näiteks Tartu linn või oma vald")}
                       />
                       <ContinuityTextField
@@ -1502,6 +1541,8 @@ export default function JourneyDetail({ journeyId }) {
                         label={t("journey.serviceContinuity.endDate", "Lõppkuupäev, kui teada")}
                         value={continuityForm.endDate}
                         onChange={(value) => updateContinuityForm("endDate", value)}
+                        t={t}
+                        maxLength={80}
                         placeholder={t("journey.serviceContinuity.endDatePlaceholder", "Kuupäev või vaba kirjeldus")}
                       />
                     </div>
@@ -1559,8 +1600,10 @@ export default function JourneyDetail({ journeyId }) {
                         id="journey-continuity-user-goal"
                         value={continuityForm.userGoal}
                         onChange={(event) => updateContinuityForm("userGoal", event.target.value)}
+                        maxLength={12000}
                         placeholder={t("journey.serviceContinuity.userGoalPlaceholder", "Näiteks soovin saada selgust, küsida jätkumise võimalust, koostada eelpöördumise või lisada dokumendi analüüsiks.")}
                       />
+                      <small>{t("journey.labels.character_count", { current: continuityForm.userGoal.length, limit: 12000 }, "{current}/{limit}")}</small>
                     </div>
 
                     <div>
@@ -1654,6 +1697,7 @@ export default function JourneyDetail({ journeyId }) {
                       maxLength={160}
                       required
                     />
+                    <small>{t("journey.labels.character_count", { current: form.title.length, limit: 160 }, "{current}/{limit}")}</small>
                   </div>
 
                   <div>
@@ -1665,7 +1709,9 @@ export default function JourneyDetail({ journeyId }) {
                       value={form.summary}
                       onChange={(event) => updateForm("summary", event.target.value)}
                       required
+                      maxLength={12000}
                     />
+                    <small>{t("journey.labels.character_count", { current: form.summary.length, limit: 12000 }, "{current}/{limit}")}</small>
                   </div>
 
                   <div>
@@ -1691,6 +1737,7 @@ export default function JourneyDetail({ journeyId }) {
                       value={form.domains}
                       onChange={(value) => updateForm("domains", value)}
                       t={t}
+                      maxItems={12}
                     />
                     <FormListField
                       id="journey-detail-missing-info"
@@ -1698,6 +1745,7 @@ export default function JourneyDetail({ journeyId }) {
                       value={form.missingInfo}
                       onChange={(value) => updateForm("missingInfo", value)}
                       t={t}
+                      maxItems={12}
                     />
                     <FormListField
                       id="journey-detail-risk-signals"
@@ -1705,6 +1753,7 @@ export default function JourneyDetail({ journeyId }) {
                       value={form.riskSignals}
                       onChange={(value) => updateForm("riskSignals", value)}
                       t={t}
+                      maxItems={8}
                     />
                     <FormListField
                       id="journey-detail-actions"
@@ -1712,6 +1761,7 @@ export default function JourneyDetail({ journeyId }) {
                       value={form.suggestedActions}
                       onChange={(value) => updateForm("suggestedActions", value)}
                       t={t}
+                      maxItems={8}
                     />
                   </div>
 
@@ -1762,7 +1812,12 @@ export default function JourneyDetail({ journeyId }) {
                   </div>
                   <div>
                     <ActivityHistory journey={journey} t={t} locale={locale} />
-                    <RelatedObjectsPanel journey={journey} t={t} locale={locale} />
+                    <RelatedObjectsPanel
+                      journey={journey}
+                      t={t}
+                      locale={locale}
+                      onLoadMorePreInquiries={() => handleLoadMorePreInquiries().catch((loadError) => setError(loadError.message))}
+                    />
                   </div>
                 </>
               )}

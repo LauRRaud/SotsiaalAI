@@ -53,6 +53,11 @@ const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAALAI_CHAT_WORKSPACE_RESTORE_
  */
 const JOURNEY_DRAFT_ROW = "sotsiaalai:journey-v1:draft";
 
+function createJourneyActionId() {
+  return globalThis.crypto?.randomUUID?.()
+    || `journey-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+}
+
 function setJourneyStepInUrl(step = "") {
   if (typeof window === "undefined") return;
   const url = new URL(window.location.href);
@@ -75,22 +80,6 @@ function readDraftLifeDomains(draft) {
     : {};
   const lifeDomains = normalizeListItems(context.lifeDomains);
   return lifeDomains.length ? lifeDomains : DEFAULT_LIFE_DOMAINS.slice(0, 4);
-}
-
-function ensureDraftActivityLog(draft) {
-  const context = draft?.context && typeof draft.context === "object" && !Array.isArray(draft.context)
-    ? draft.context
-    : {};
-  const existing = Array.isArray(context.activityLog) ? context.activityLog : [];
-  return {
-    ...draft,
-    context: {
-      ...context,
-      activityLog: existing.length
-        ? existing
-        : [{ type: "created_overview", title: "teekonna ülevaade koostatud" }]
-    }
-  };
 }
 
 function formatDate(value, locale = "et") {
@@ -228,6 +217,7 @@ function DraftReview({ draft, setDraft, onSave, onEditDescription, onDecline, bu
           maxLength={160}
           required
         />
+        <small>{t("journey.labels.character_count", { current: draft.title.length, limit: 160 }, "{current}/{limit}")}</small>
       </div>
 
       <ReviewBlock title={t("journey.review.summary_title", "Olukorra kokkuvõte")}>
@@ -239,7 +229,9 @@ function DraftReview({ draft, setDraft, onSave, onEditDescription, onDecline, bu
           value={draft.summary}
           onChange={(event) => updateField("summary", event.target.value)}
           required
+          maxLength={12000}
         />
+        <small>{t("journey.labels.character_count", { current: draft.summary.length, limit: 12000 }, "{current}/{limit}")}</small>
       </ReviewBlock>
 
       <div>
@@ -423,6 +415,7 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
   );
   const { effectiveRole, isRoleResolved } = useEffectiveRole();
   const [journeys, setJourneys] = useState([]);
+  const [journeyPage, setJourneyPage] = useState({ totalCount: 0, hasMore: false, nextCursor: null });
   const [mode, setMode] = useState("list");
   const [situation, setSituation] = useState("");
   const [draft, setDraft] = useState(DEFAULT_DRAFT);
@@ -430,6 +423,7 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
   const situationInputRef = useRef(null);
+  const createActionIdRef = useRef("");
 
   const activeJourneys = useMemo(
     () => journeys.filter((journey) => journey.status !== "ARCHIVED"),
@@ -478,17 +472,21 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
     window.requestAnimationFrame(navigateBack);
   }, [locale, onBack, router]);
 
-  const loadJourneys = useCallback(async () => {
+  const loadJourneys = useCallback(async ({ cursor = "", append = false } = {}) => {
     if (status !== "authenticated" || !isRoleResolved || !isClientRole) return;
     setError("");
-    const response = await fetch("/api/journeys", {
+    const query = new URLSearchParams({ limit: "25" });
+    if (cursor) query.set("cursor", cursor);
+    const response = await fetch(`/api/journeys?${query.toString()}`, {
       cache: "no-store"
     });
     const payload = await response.json().catch(() => ({}));
     if (!response.ok || !payload.ok) {
       throw new Error(payload.message || t("journey.messages.load_failed", "Loading the journey failed."));
     }
-    setJourneys(Array.isArray(payload.journeys) ? payload.journeys : []);
+    const items = Array.isArray(payload.journeys) ? payload.journeys : [];
+    setJourneys((current) => append ? [...current, ...items] : items);
+    setJourneyPage(payload.page || { totalCount: items.length, hasMore: false, nextCursor: null });
   }, [isClientRole, isRoleResolved, status, t]);
 
   useEffect(() => {
@@ -532,7 +530,11 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
       saved = JSON.parse(draftStore()?.getItem(JOURNEY_DRAFT_ROW) || "null");
     } catch {}
     if (saved?.situation) setSituation(String(saved.situation));
-    if (saved?.draft && typeof saved.draft === "object") setDraft(saved.draft);
+    if (saved?.draft && typeof saved.draft === "object") {
+      const clientActionId = saved.draft.clientActionId || createJourneyActionId();
+      createActionIdRef.current = clientActionId;
+      setDraft({ ...saved.draft, clientActionId });
+    }
     if (step === "kirjelda" || step === "ulevaade") {
       setMode(step === "ulevaade" && saved?.draft ? "review" : "start");
       if (saved) setNotice(t("journey.autosave.restored", "Taastasime selle sessiooni pooleli jäänud töö."));
@@ -585,10 +587,13 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
       if (!response.ok || !payload.ok) {
         throw new Error(payload.message || t("journey.messages.draft_failed", "Teekonna ülevaate koostamine ebaõnnestus."));
       }
-      setDraft(ensureDraftActivityLog({
+      const clientActionId = createJourneyActionId();
+      createActionIdRef.current = clientActionId;
+      setDraft({
         ...DEFAULT_DRAFT,
-        ...payload.draft
-      }));
+        ...payload.draft,
+        clientActionId
+      });
       setMode("review");
       setJourneyStepInUrl("ulevaade");
     } catch (draftError) {
@@ -611,7 +616,8 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          ...ensureDraftActivityLog(draft),
+          ...draft,
+          clientActionId: draft.clientActionId || createActionIdRef.current,
           status: "ACTIVE",
           sharingStatus: "PRIVATE"
         })
@@ -622,6 +628,7 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
       }
       setSituation("");
       setDraft(DEFAULT_DRAFT);
+      createActionIdRef.current = "";
       setMode("list");
       draftStore()?.removeItem(JOURNEY_DRAFT_ROW);
       setJourneyStepInUrl("");
@@ -664,6 +671,7 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
     setError("");
     setNotice("");
     setDraft(DEFAULT_DRAFT);
+    createActionIdRef.current = "";
     setJourneyStepInUrl("kirjelda");
   }, []);
 
@@ -848,7 +856,9 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
                   onChange={(event) => setSituation(event.target.value)}
                   placeholder={t("journey.placeholders.situation", "Näiteks: hooldan ema ja ei jaksa enam üksi. Ta vajab abi pesemisel ja söögi tegemisel. Ma ei tea, kas peaksin pöörduma KOV-i või teenuseosutaja poole.")}
                   required
+                  maxLength={12000}
                 />
+                <small>{t("journey.labels.character_count", { current: situation.length, limit: 12000 }, "{current}/{limit}")}</small>
               </label>
 
               <div>
@@ -946,6 +956,15 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
                 </p>
               )}
             </aside>
+            {journeyPage.hasMore ? (
+              <Button
+                onClick={() => loadJourneys({ cursor: journeyPage.nextCursor, append: true }).catch((loadError) => setError(loadError.message))}
+                disabled={busy}
+              >
+                {t("journey.actions.load_more", "Laadi rohkem")}
+              </Button>
+            ) : null}
+            <p>{journeys.length}/{journeyPage.totalCount}</p>
           </div>
         ) : null}
           </>

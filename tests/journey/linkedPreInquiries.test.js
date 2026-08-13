@@ -62,7 +62,7 @@ function createFakeDb({ journeys = [], preInquiries = [], onFindMany } = {}) {
       }
     },
     preInquiry: {
-      async findMany({ where, select }) {
+      async findMany({ where, select, take }) {
         if (onFindMany) onFindMany();
         const selectKeys = Object.keys(select || {});
         const rows = preInquiries
@@ -72,11 +72,17 @@ function createFakeDb({ journeys = [], preInquiries = [], onFindMany } = {}) {
           .slice()
           .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
         // emulate Prisma `select`: only requested columns come back
-        return rows.map((row) =>
+        return rows.slice(0, take).map((row) =>
           Object.fromEntries(selectKeys.map((key) => [key, row[key]]))
         );
+      },
+      async count({ where }) {
+        return preInquiries.filter(
+          (p) => p.sourceJourneyId === where.sourceJourneyId && p.authorId === where.authorId
+        ).length;
       }
-    }
+    },
+    domainEvent: { async findMany() { return []; }, async count() { return 0; } }
   };
 }
 
@@ -92,7 +98,7 @@ test("#5 listLinkedPreInquiriesForJourney returns only that journey's inquiries,
     ]
   });
 
-  const rows = await listLinkedPreInquiriesForJourney(OWNER, "journey_a", { db });
+  const { items: rows } = await listLinkedPreInquiriesForJourney(OWNER, "journey_a", { db });
   const ids = rows.map((r) => r.id);
 
   assert.deepEqual(ids, ["pi_a2", "pi_a1"], "only journey_a's own inquiries, newest first");
@@ -106,7 +112,7 @@ test("#5 minimal info only: id/topic/status/timestamps, never the pre-inquiry bo
     preInquiries: [preInquiryRow("pi_a1", { sourceJourneyId: "journey_a", authorId: OWNER, topic: "Eluase", status: "READY" })]
   });
 
-  const [row] = await listLinkedPreInquiriesForJourney(OWNER, "journey_a", { db });
+  const { items: [row] } = await listLinkedPreInquiriesForJourney(OWNER, "journey_a", { db });
 
   assert.deepEqual(Object.keys(row).sort(), ["createdAt", "id", "status", "topic", "updatedAt"]);
   assert.equal(row.topic, "Eluase");
@@ -133,7 +139,7 @@ test("#7 status feedback passes through the active enum values correctly", async
     )
   });
 
-  const rows = await listLinkedPreInquiriesForJourney(OWNER, "journey_a", { db });
+  const { items: rows } = await listLinkedPreInquiriesForJourney(OWNER, "journey_a", { db });
   assert.deepEqual(rows.map((r) => r.status).sort(), statuses.slice().sort());
 });
 
@@ -179,8 +185,9 @@ test("listLinkedPreInquiriesForJourney returns an empty list for a journey with 
     journeys: [journeyRow("journey_a", OWNER)],
     preInquiries: []
   });
-  const rows = await listLinkedPreInquiriesForJourney(OWNER, "journey_a", { db });
-  assert.deepEqual(rows, []);
+  const page = await listLinkedPreInquiriesForJourney(OWNER, "journey_a", { db });
+  assert.deepEqual(page.items, []);
+  assert.equal(page.totalCount, 0);
 });
 
 test("journey pre-inquiry UI clears a stale source before starting an unrelated inquiry", async () => {

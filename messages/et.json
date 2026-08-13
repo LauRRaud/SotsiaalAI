@@ -5288,6 +5288,7 @@
   "notifications": {
     "events": {
       "workspace_created": "Teekond loodi",
+      "workspace_updated": "Teekonda uuendati",
       "workspace_activated": "Teekond taasavati",
       "workspace_archived": "Teekond arhiveeriti",
       "workspace_deleted": "Teekond kustutati",
@@ -6767,12 +6768,16 @@
       "risk_signals": "Ettevaatlikud tähelepanekud",
       "suggested_actions": "Võimalikud järgmised sammud",
       "situation": "Olukorra kirjeldus",
-      "one_item_per_line": "Üks kirje reale"
+      "one_item_per_line": "Üks kirje reale",
+      "characters_per_item": "tähemärki kirje kohta",
+      "character_count": "{current}/{limit}",
+      "item_limit_count": "{current}/{limit}, {characters} tähemärki kirje kohta"
     },
     "actions": {
       "previous_step": "← Eelmine samm",
       "reopen": "Taasava",
-      "export": "Ekspordi tekstina",
+      "export": "Ekspordi JSON-failina",
+      "load_more": "Laadi rohkem",
       "delete": "Kustuta jäädavalt",
       "archive": "Arhiveeri",
       "archive_named": "Arhiveeri teekond {title}",
@@ -6792,6 +6797,7 @@
       "loading": "Laen teekonda...",
       "auth_required": "Teekond on privaatne. Jätkamiseks logi sisse.",
       "load_failed": "Teekonna laadimine ebaõnnestus.",
+      "export_failed": "Teekonna eksportimine ebaõnnestus.",
       "draft_failed": "Teekonna ülevaate koostamine ebaõnnestus.",
       "save_failed": "Teekonna salvestamine ebaõnnestus.",
       "archive_failed": "Teekonna arhiveerimine ebaõnnestus.",

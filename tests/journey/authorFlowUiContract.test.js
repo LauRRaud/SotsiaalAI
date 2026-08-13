@@ -22,7 +22,8 @@ test("author flow exposes one server-backed sharing preview and reversible lifec
   assert.match(detail, /pre-inquiry-draft/u);
   assert.match(detail, /recipient_preview/u);
   assert.match(detail, /person_context_ack/u);
-  assert.match(detail, /downloadJourneyText/u);
+  assert.match(detail, /downloadJourneyExport/u);
+  assert.match(detail, /\/export/u);
   assert.match(detail, /confirmation: "DELETE"/u);
   assert.match(detail, /status: "ACTIVE"/u);
   assert.match(detail, /showBack=\{false\}/u);

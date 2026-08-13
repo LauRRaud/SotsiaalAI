@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { authConfig } from "@/auth";
 import { buildJourneyDraft } from "@/lib/journey/draft";
 import { safeError } from "@/lib/privacy/safeError";
+import { enforceChatRateLimit } from "@/lib/chat-api-rate-limit";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -32,6 +33,14 @@ export async function POST(request) {
   if (!session) {
     return json({ ok: false, message: "api.common.unauthorized" }, 401);
   }
+  const limited = enforceChatRateLimit(request, {
+    scope: "journey_draft",
+    userId: session.user.id,
+    limit: 30,
+    windowMs: 60 * 60 * 1000,
+    messageKey: "journeys.errors.rate_limited"
+  });
+  if (limited) return limited;
 
   try {
     const body = await request.json().catch(() => ({}));
@@ -46,6 +55,11 @@ export async function POST(request) {
     if (status >= 500) {
       console.error("[journeys] draft failed", safeError(error));
     }
-    return json({ ok: false, message: error?.message || "journeys.errors.draft_failed" }, status);
+    return json({
+      ok: false,
+      message: error?.message || "journeys.errors.draft_failed",
+      ...(error?.code ? { code: error.code } : {}),
+      ...(error?.field ? { field: error.field, limit: error.limit } : {})
+    }, status);
   }
 }
