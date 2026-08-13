@@ -103,3 +103,42 @@ test("zero-recipient events are still marked projected", async () => {
     else process.env.U1_PROJECTOR_ENABLED = previous;
   }
 });
+
+test("network-share projector retries after a partial delivery failure without losing the outbox event", async () => {
+  const previous = process.env.U1_PROJECTOR_ENABLED;
+  process.env.U1_PROJECTOR_ENABLED = "true";
+  try {
+    const db = fakeDb();
+    Object.assign(db.event, {
+      type: "network_share.changed",
+      sourceType: "NETWORK_SHARE",
+      sourceId: "share-1",
+      workspaceKind: "network_share",
+      workspaceId: null,
+      audienceRule: "network_share_participant",
+      meta: { statusCode: "RESPONDED", actionCode: "RESPOND", recipientKind: "WORKER" }
+    });
+    db.client.networkShare = {
+      async findFirst() { return { workerId: "worker-1", clientUserId: "client-1", recipientUserId: "recipient-1" }; }
+    };
+    const create = db.client.notificationEvent.create.bind(db.client.notificationEvent);
+    let failOnce = true;
+    db.client.notificationEvent.create = async (input) => {
+      if (failOnce) {
+        failOnce = false;
+        throw new Error("INJECTED_DELIVERY_FAILURE");
+      }
+      return create(input);
+    };
+
+    const failed = await projectDomainEvents({ db: db.client, now: new Date("2026-08-13T10:05:00.000Z") });
+    assert.equal(failed.failed, 1);
+    assert.equal(db.event.projectedAt, null);
+    const retried = await projectDomainEvents({ db: db.client, now: new Date("2026-08-13T10:06:00.000Z") });
+    assert.equal(retried.created, 1);
+    assert.ok(db.event.projectedAt);
+  } finally {
+    if (previous === undefined) delete process.env.U1_PROJECTOR_ENABLED;
+    else process.env.U1_PROJECTOR_ENABLED = previous;
+  }
+});

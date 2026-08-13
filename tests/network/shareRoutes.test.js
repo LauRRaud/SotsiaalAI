@@ -69,7 +69,10 @@ test("saaja rajad EI kasuta kunagi töötaja täisvaadet", async () => {
 test("mitteosaline saab 404, mitte 403 — jagamise OLEMASOLU ei lekita", async () => {
   const source = await readRoute("[shareId]/route.js");
   // Viimane haru enne sulgu peab olema not_found, mitte forbidden.
-  const tail = source.slice(source.indexOf("clientUserId && share.clientUserId === auth.userId"));
+  const tail = source.slice(
+    source.indexOf("clientUserId && share.clientUserId === auth.userId"),
+    source.indexOf("export async function PATCH")
+  );
   assert.match(tail, /network_share\.not_found", 404/);
   assert.doesNotMatch(tail, /api\.common\.forbidden/);
 });
@@ -143,7 +146,7 @@ test("saaja postkast küsib ainult oma rolli nimekirja", async () => {
     new URL("../../components/network/NetworkShareInbox.jsx", import.meta.url),
     "utf8"
   );
-  assert.match(source, /role=recipient/);
+  assert.match(source, /role:\s*"recipient"/);
   assert.doesNotMatch(source, /role=worker/);
 });
 

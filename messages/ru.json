@@ -5296,6 +5296,7 @@
       "org_support_share_received": "Вам отправлено обращение за поддержкой",
       "org_work_assigned": "Вам назначена работа в организации",
       "network_share_received": "Вы получили сетевую публикацию",
+      "network_share_changed": "Статус сетевой публикации изменился",
       "pre_inquiry_status_changed": "Статус вашего предобращения изменился",
       "pre_inquiry_opened": "Ваше предобращение открыли",
       "pre_inquiry_replied": "На ваше предобращение ответили",

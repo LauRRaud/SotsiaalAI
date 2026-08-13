@@ -1,5 +1,5 @@
 import {
-  handleShareRoute, readShareId, requireShareUser, shareError, shareJson
+  guardShareRequest, handleShareRoute, readShareId, requireShareUser, shareError, shareJson
 } from "@/lib/network/shareRoutes";
 import { clientRespondToShare } from "@/lib/network/share";
 import { prisma } from "@/lib/prisma";
@@ -16,6 +16,11 @@ export async function POST(req, { params }) {
   const shareId = await readShareId(params);
   const auth = await requireShareUser();
   if (!auth.ok) return shareError(auth.message, auth.status);
+  const guard = await guardShareRequest(req, auth, "DECIDE", { mutation: true, resourceId: shareId });
+  if (!guard.ok) return shareError(guard.message, guard.status);
+  if (guard.replayedShare) {
+    return shareJson({ ok: true, share: { id: guard.replayedShare.id, status: guard.replayedShare.status }, replayed: true });
+  }
   const body = await req.json().catch(() => ({}));
 
   return handleShareRoute(async () => {
@@ -29,7 +34,8 @@ export async function POST(req, { params }) {
          SEDA teksti, mitte lihtsalt seda rida (SOL-NET-01). Valikuline, sest
          vana klient ei tea temast midagi — tingimuslik kirjutus katab
          võistluse niikuinii. */
-      expectedContentHash: typeof body?.expectedContentHash === "string" ? body.expectedContentHash : null
+      expectedContentHash: typeof body?.expectedContentHash === "string" ? body.expectedContentHash : null,
+      mutationKey: guard.mutationKey
     });
     return shareJson({
       ok: true,

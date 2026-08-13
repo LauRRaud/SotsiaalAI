@@ -57,9 +57,9 @@ function createPrisma() {
     networkShare: createModel(),
     preInquiry: createModel([
       // Autoriga pöördumine -> klient on kasutaja ja tuletatakse siit.
-      { id: "pre_1", authorId: "client_1", recipientOwnerId: "worker_1" },
+      { id: "pre_1", authorId: "client_1", recipientOwnerId: "worker_1", status: "SENT", sentAt: NOW },
       // Autorita pöördumine -> väline klient, kuvanimi tuleb töötajalt.
-      { id: "pre_ext", authorId: null, recipientOwnerId: "worker_1" }
+      { id: "pre_ext", authorId: null, recipientOwnerId: "worker_1", status: "SENT", sentAt: NOW }
     ]),
     user: createModel([
       { id: "worker_1" },
@@ -628,7 +628,7 @@ test("klient TULETATAKSE eelpöördumise autorist — liides ei pea teda nimetam
 
 test("autorita eelpöördumine annab välise kliendi raja", async () => {
   const prisma = createPrisma();
-  prisma.preInquiry.rows.push({ id: "pre_anon", authorId: null, recipientOwnerId: "worker_1" });
+  prisma.preInquiry.rows.push({ id: "pre_anon", authorId: null, recipientOwnerId: "worker_1", status: "SENT", sentAt: NOW });
   const share = await createNetworkShare(baseInput(prisma, {
     sourcePreInquiryId: "pre_anon",
     sourcePreInquiryId: "pre_ext",
@@ -642,7 +642,7 @@ test("autorita eelpöördumine annab välise kliendi raja", async () => {
 
 test("autorita eelpöördumine ilma kuvanimeta keeldub", async () => {
   const prisma = createPrisma();
-  prisma.preInquiry.rows.push({ id: "pre_anon2", authorId: null, recipientOwnerId: "worker_1" });
+  prisma.preInquiry.rows.push({ id: "pre_anon2", authorId: null, recipientOwnerId: "worker_1", status: "SENT", sentAt: NOW });
   await assert.rejects(
     () => createNetworkShare(baseInput(prisma, {
       sourcePreInquiryId: "pre_anon2",

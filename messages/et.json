@@ -5296,6 +5296,7 @@
       "org_support_share_received": "Sulle saadeti toeavaldus",
       "org_work_assigned": "Sulle määrati organisatsioonis töö",
       "network_share_received": "Sulle saabus võrgustikujagamine",
+      "network_share_changed": "Võrgustikujagamise olek muutus",
       "pre_inquiry_status_changed": "Sinu eelpöördumise olek muutus",
       "pre_inquiry_opened": "Sinu eelpöördumine avati",
       "pre_inquiry_replied": "Sinu eelpöördumisele vastati",

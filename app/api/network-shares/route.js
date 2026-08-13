@@ -1,5 +1,6 @@
 import {
   handleShareRoute,
+  guardShareRequest,
   hasFrameworkAcceptance,
   isNetworkWorker,
   requireShareUser,
@@ -7,7 +8,12 @@ import {
   shareJson,
   workerProjection
 } from "@/lib/network/shareRoutes";
-import { createNetworkShare, recipientInboxProjection } from "@/lib/network/share";
+import {
+  clientProjection,
+  createNetworkShare,
+  listNetworkShares,
+  recipientInboxProjection
+} from "@/lib/network/share";
 import { prisma } from "@/lib/prisma";
 
 export const runtime = "nodejs";
@@ -25,6 +31,9 @@ export async function POST(req) {
   const auth = await requireShareUser();
   if (!auth.ok) return shareError(auth.message, auth.status);
   if (!isNetworkWorker(auth)) return shareError("api.common.forbidden", 403);
+  const guard = await guardShareRequest(req, auth, "CREATE", { mutation: true });
+  if (!guard.ok) return shareError(guard.message, guard.status);
+  if (guard.replayedShare) return shareJson({ ok: true, share: workerProjection(guard.replayedShare), replayed: true });
 
   const body = await req.json().catch(() => ({}));
 
@@ -57,7 +66,8 @@ export async function POST(req) {
       purpose: body?.purpose,
       sharingBoundary: body?.sharingBoundary,
       participationEndsOn: body?.participationEndsOn,
-      hasFrameworkAcceptance
+      hasFrameworkAcceptance,
+      mutationKey: guard.mutationKey
     });
     return shareJson({ ok: true, share: workerProjection(share) }, 201);
   });
@@ -73,58 +83,41 @@ export async function GET(req) {
 
   const url = new URL(req.url);
   const role = String(url.searchParams.get("role") || "worker").toLowerCase();
+  if (!["worker", "client", "recipient"].includes(role)) return shareError("network_share.invalid_role", 400);
+  if (role === "worker" && !isNetworkWorker(auth)) return shareError("api.common.forbidden", 403);
+  const guard = await guardShareRequest(req, auth, `LIST_${role.toUpperCase()}`);
+  if (!guard.ok) return shareError(guard.message, guard.status);
+  const sourcePreInquiryId = String(url.searchParams.get("sourcePreInquiryId") || "").trim() || null;
+  const status = String(url.searchParams.get("status") || "").trim() || null;
+  const page = await listNetworkShares({
+    prisma,
+    viewerUserId: auth.userId,
+    role,
+    sourcePreInquiryId,
+    status,
+    cursor: url.searchParams.get("cursor"),
+    limit: url.searchParams.get("limit")
+  });
 
   if (role === "recipient") {
     const now = new Date();
-    const today = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
-    const rows = await prisma.networkShare.findMany({
-      where: {
-        recipientUserId: auth.userId,
-        status: { in: ["SENT", "OPENED", "RESPONDED"] },
-        participationEndsOn: { gte: today }
-      },
-      orderBy: { sentAt: "desc" },
-      take: 100
-    });
     return shareJson({
       ok: true,
-      shares: rows.map((row) => recipientInboxProjection(row, {
+      shares: page.rows.map((row) => recipientInboxProjection(row, {
         viewerUserId: auth.userId,
         now
-      })).filter(Boolean)
+      })).filter(Boolean),
+      nextCursor: page.nextCursor
     });
   }
 
   if (role === "client") {
-    const rows = await prisma.networkShare.findMany({
-      where: { clientUserId: auth.userId },
-      orderBy: { updatedAt: "desc" },
-      take: 100
-    });
-    // Klient näeb TÄPSELT seda, mille kohta ta otsustab: kokkuvõtet, eesmärki,
-    // jagamispiiri ja lõppu. Töötaja siseseid välju siin ei ole.
     return shareJson({
       ok: true,
-      shares: rows.map((row) => ({
-        id: row.id,
-        summaryText: row.summaryText,
-        purpose: row.purpose,
-        sharingBoundary: row.sharingBoundary,
-        participationEndsOn: row.participationEndsOn,
-        status: row.status,
-        clientConfirmedAt: row.clientConfirmedAt,
-        clientDeclinedAt: row.clientDeclinedAt,
-        sentAt: row.sentAt,
-        roomId: row.roomId
-      }))
+      shares: page.rows.map((row) => clientProjection(row, { viewerUserId: auth.userId })).filter(Boolean),
+      nextCursor: page.nextCursor
     });
   }
 
-  if (!isNetworkWorker(auth)) return shareError("api.common.forbidden", 403);
-  const rows = await prisma.networkShare.findMany({
-    where: { workerId: auth.userId },
-    orderBy: { updatedAt: "desc" },
-    take: 100
-  });
-  return shareJson({ ok: true, shares: rows.map(workerProjection) });
+  return shareJson({ ok: true, shares: page.rows.map(workerProjection), nextCursor: page.nextCursor });
 }

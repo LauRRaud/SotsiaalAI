@@ -236,7 +236,11 @@ export default function MySharingsPage() {
     try {
       const response = await fetch(`/api/network-shares/${encodeURIComponent(share.id)}/decision`, {
         method: "POST",
-        headers: { "Content-Type": "application/json", "x-ui-locale": locale || "et" },
+        headers: {
+          "Content-Type": "application/json",
+          "x-ui-locale": locale || "et",
+          "Idempotency-Key": crypto.randomUUID()
+        },
         body: JSON.stringify({ decision })
       });
       const payload = await response.json().catch(() => ({}));

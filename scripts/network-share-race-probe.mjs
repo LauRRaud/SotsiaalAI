@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * SOL-NET-01…06 — kinnitus, saatmistehing, avamine, tähtaeg ja raamleping.
+ * SOL-NET-01…13 — kogu võrgustikujagamise peatüki PostgreSQL-i koondsond.
  *
  *   npm run net:share:probe
  *
@@ -16,12 +16,15 @@
  */
 
 import prisma from "../lib/prisma.js";
+import { spawn } from "node:child_process";
 import {
   attestClientDecision,
   clientRespondToShare,
   computeShareContentHash,
   createNetworkShare,
   markShareOpened,
+  markNetworkShareRespondedByRoom,
+  listNetworkShares,
   recallNetworkShare,
   recipientInboxProjection,
   recipientProjection,
@@ -29,6 +32,12 @@ import {
   submitToClient,
   updateNetworkShareDraft
 } from "../lib/network/share.js";
+import { guardShareRequest } from "../lib/network/shareRequestGuard.js";
+import {
+  findNetworkShareMutationReplay,
+  recordNetworkShareLifecycle
+} from "../lib/network/shareLifecycle.js";
+import { projectDomainEvents } from "../lib/events/projector.js";
 import { createRoomForNetworkShare } from "../lib/network/shareRoom.js";
 import { createNetworkShareOutbox } from "../lib/network/shareOutbox.js";
 import { endExpiredNetworkShares } from "../lib/network/shareExpiry.js";
@@ -52,6 +61,28 @@ const ok = (label) => { passed += 1; console.log(`  PASS  ${label}`); };
 const bad = (label, detail) => { failed += 1; console.error(`  FAIL  ${label}${detail ? ` — ${detail}` : ""}`); };
 const expect = (label, cond, detail) => (cond ? ok(label) : bad(label, detail));
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+function runRateLimitProcess({ actionCode, userId }) {
+  return new Promise((resolve) => {
+    const child = spawn(process.execPath, [
+      "--import",
+      "./scripts/register-node-test-loader.mjs",
+      process.argv[1],
+      "--limit-attempt"
+    ], {
+      cwd: process.cwd(),
+      env: {
+        ...process.env,
+        NET_PROBE_LIMIT_ACTION: actionCode,
+        NET_PROBE_LIMIT_USER: userId,
+        NETWORK_SHARE_READ_RATE_LIMIT: "3"
+      },
+      stdio: ["ignore", "ignore", "ignore"],
+      shell: false
+    });
+    child.on("close", (code) => resolve(code));
+  });
+}
 
 async function makeUser(local, role) {
   const user = await prisma.user.create({
@@ -113,6 +144,12 @@ function watch(promise) {
 }
 
 async function purge() {
+  if (created.shareIds.length) {
+    await prisma.notificationEvent.deleteMany({ where: { sourceId: { in: created.shareIds } } });
+    await prisma.domainEvent.deleteMany({ where: { sourceType: "NETWORK_SHARE", sourceId: { in: created.shareIds } } });
+    await prisma.dataAuditLog.deleteMany({ where: { resourceType: "NETWORK_SHARE", resourceId: { in: created.shareIds } } });
+  }
+  await prisma.authThrottleCounter.deleteMany({ where: { scope: { startsWith: "network-share:probe" } } });
   const users = await prisma.user.findMany({ where: { email: { endsWith: SUFFIX } }, select: { id: true } });
   const ids = users.map((u) => u.id);
   if (ids.length) {
@@ -192,7 +229,7 @@ async function freshExternalAwaiting(label, { beforeSubmit = null } = {}) {
 }
 
 async function main() {
-  console.log("SOL-NET-01…06 — kinnitus, saatmine ja ligipääsupiir\n");
+  console.log("SOL-NET-01…13 — võrgustikujagamise tervikinvariandid\n");
   await purge();
 
   worker = await makeUser("worker", "SOCIAL_WORKER");
@@ -634,6 +671,227 @@ async function main() {
       await prisma.networkShare.findUnique({ where: { id: sendLoss.id } })
     ).status === "CONFIRMED");
   }
+
+  // === 13. SOL-NET-07: lähte-eelpöördumine on elav volitus, mitte vana ID ===
+  {
+    await acceptFramework(recipient);
+    const share = await freshAwaiting("aktiivne-lahtepiir");
+    await clientRespondToShare({ prisma, shareId: share.id, clientUserId: client.id, decision: "CONFIRMED" });
+    await prisma.preInquiry.update({
+      where: { id: share.sourcePreInquiryId },
+      data: { recalledAt: new Date() }
+    });
+    let sendCode = null;
+    try {
+      await sendNetworkShare({ prisma, shareId: share.id, workerId: worker.id, createRoom: roomPort });
+    } catch (error) {
+      sendCode = error?.code || null;
+    }
+    expect("tagasivõetud lähte pealt saatmine sulgub", sendCode === "network_share.source_inactive", sendCode);
+    const rooms = await prisma.room.count({ where: { originType: "NETWORK_SHARE", originId: share.id } });
+    expect("tagasivõetud lähte tõrge ei loo ruumi", rooms === 0, `${rooms}`);
+    let createCode = null;
+    try {
+      await createNetworkShare({
+        prisma,
+        workerId: worker.id,
+        sourcePreInquiryId: share.sourcePreInquiryId,
+        recipientUserId: recipient.id,
+        summaryText: "Keelatud kordus",
+        purpose: "Kontroll",
+        sharingBoundary: "Minimaalne",
+        participationEndsOn: "2026-12-31"
+      });
+    } catch (error) {
+      createCode = error?.code || null;
+    }
+    expect("tagasivõetud lähte pealt uut mustandit ei looda", createCode === "network_share.source_inactive", createCode);
+  }
+
+  // === 14. SOL-NET-10/-11: püsiv replay ja klastriülene piir ===============
+  {
+    const share = await freshAwaiting("replay");
+    const mutationKey = "probe-replay-0001";
+    const first = await prisma.$transaction((tx) => recordNetworkShareLifecycle({
+      db: tx,
+      share,
+      actorUserId: worker.id,
+      actionCode: "UPDATE",
+      fromStatus: share.status,
+      mutationKey,
+      now: new Date("2026-08-13T10:00:00.000Z")
+    }));
+    const second = await prisma.$transaction((tx) => recordNetworkShareLifecycle({
+      db: tx,
+      share,
+      actorUserId: worker.id,
+      actionCode: "UPDATE",
+      fromStatus: share.status,
+      mutationKey,
+      now: new Date("2026-08-13T10:01:00.000Z")
+    }));
+    const replay = await findNetworkShareMutationReplay({
+      db: prisma, actorUserId: worker.id, actionCode: "UPDATE", mutationKey
+    });
+    expect("sama mutatsioonivõti loob ühe püsiva sündmuse", first.created && !second.created);
+    expect("replay leiab sama jagamise ka uues päringus", replay?.id === share.id, replay?.id);
+
+    const oldLimit = process.env.NETWORK_SHARE_READ_RATE_LIMIT;
+    process.env.NETWORK_SHARE_READ_RATE_LIMIT = "3";
+    try {
+      const attempts = await Promise.all(Array.from({ length: 8 }, () => runRateLimitProcess({
+        actionCode: "PROBE_PROCESS",
+        userId: worker.id
+      })));
+      expect("eri protsesside DB-piir lubab täpselt limiidi", attempts.filter((code) => code === 0).length === 3);
+      expect("eri protsesside DB-piir tõrjub ülejäänud katsed", attempts.filter((code) => code === 2).length === 5);
+
+      const oldHeader = process.env.TRUSTED_PROXY_IP_HEADER;
+      process.env.TRUSTED_PROXY_IP_HEADER = "x-real-ip";
+      try {
+        const ipRequest = { headers: new Headers({ "x-real-ip": "192.0.2.44" }) };
+        const ipAttempts = await Promise.all(Array.from({ length: 6 }, (_, index) => guardShareRequest({
+          db: prisma,
+          request: ipRequest,
+          userId: `synthetic-user-${index}`,
+          actionCode: "PROBE_IP",
+          mutation: false
+        })));
+        expect("ühine usaldatud IP piir kehtib eri kasutajatele", ipAttempts.filter((item) => item.ok).length === 3);
+      } finally {
+        if (oldHeader === undefined) delete process.env.TRUSTED_PROXY_IP_HEADER;
+        else process.env.TRUSTED_PROXY_IP_HEADER = oldHeader;
+      }
+    } finally {
+      if (oldLimit === undefined) delete process.env.NETWORK_SHARE_READ_RATE_LIMIT;
+      else process.env.NETWORK_SHARE_READ_RATE_LIMIT = oldLimit;
+    }
+  }
+
+  // === 15. SOL-NET-12: 103 kirjet, võrdsed ajatemplid, serverifiltrid ======
+  {
+    const source = await prisma.preInquiry.create({
+      data: {
+        authorId: client.id,
+        recipientOwnerId: worker.id,
+        recipientType: "SERVICE_PROVIDER",
+        status: "SENT",
+        topic: "NET pagination probe",
+        situation: "Sünteetiline lehekülgimise lähtepöördumine.",
+        sentAt: new Date()
+      }
+    });
+    const stamp = new Date("2026-08-13T11:00:00.000Z");
+    await prisma.networkShare.createMany({
+      data: Array.from({ length: 103 }, (_, index) => ({
+        sourcePreInquiryId: source.id,
+        workerId: worker.id,
+        clientUserId: client.id,
+        recipientUserId: recipient.id,
+        summaryText: `Lehekülg ${index}`,
+        purpose: "Paginatsiooni kontroll",
+        sharingBoundary: "Sünteetiline",
+        participationEndsOn: new Date("2026-12-31T00:00:00.000Z"),
+        contentHash: `probe-hash-${index}`,
+        status: "SENT",
+        sentAt: stamp,
+        createdAt: stamp,
+        updatedAt: stamp
+      }))
+    });
+    const pageIds = [];
+    let cursor = null;
+    do {
+      const page = await listNetworkShares({
+        prisma,
+        viewerUserId: worker.id,
+        role: "worker",
+        sourcePreInquiryId: source.id,
+        status: "SENT",
+        cursor,
+        limit: 40
+      });
+      pageIds.push(...page.rows.map((row) => row.id));
+      cursor = page.nextCursor;
+    } while (cursor);
+    created.shareIds.push(...pageIds);
+    expect("103 võrdselt ajatempliga kirjet jõuavad kõik lehtedelt läbi", pageIds.length === 103, `${pageIds.length}`);
+    expect("stabiilne id-lisajärjestus ei dubleeri kirjeid", new Set(pageIds).size === 103);
+  }
+
+  // === 16. SOL-NET-10/-13: esimene vastus + outboxi osaline tõrge/retry ===
+  {
+    const share = await freshAwaiting("vastus-ja-projector");
+    await clientRespondToShare({ prisma, shareId: share.id, clientUserId: client.id, decision: "CONFIRMED" });
+    const sent = await sendNetworkShare({
+      prisma, shareId: share.id, workerId: worker.id, createRoom: roomPort, createOutbox: outboxPort
+    });
+    created.roomIds.push(sent.roomId);
+    const responded = await prisma.$transaction(async (tx) => {
+      const message = await tx.roomMessage.create({
+        data: { roomId: sent.roomId, authorId: recipient.id, content: "Sünteetiline vastus", senderType: "USER" }
+      });
+      return markNetworkShareRespondedByRoom({
+        db: tx, roomId: sent.roomId, authorUserId: recipient.id, messageId: message.id, now: message.createdAt
+      });
+    });
+    expect("saaja esimene ruumivastus viib jagamise RESPONDED olekusse", responded?.status === "RESPONDED");
+
+    await prisma.domainEvent.updateMany({
+      where: { sourceType: "NETWORK_SHARE", sourceId: { in: created.shareIds }, projectedAt: null },
+      data: { projectedAt: new Date() }
+    });
+    await prisma.networkShare.update({ where: { id: share.id }, data: { status: "ENDED" } });
+    const lifecycle = await prisma.$transaction((tx) => recordNetworkShareLifecycle({
+      db: tx,
+      share: { ...responded, status: "ENDED" },
+      actorKind: "job",
+      actionCode: "END",
+      fromStatus: "RESPONDED",
+      mutationKey: "probe-projector-partial",
+      now: new Date("2026-08-13T12:00:00.000Z")
+    }));
+    const oldEnabled = process.env.U1_PROJECTOR_ENABLED;
+    const projectorDb = new Proxy(prisma, {
+      get(target, prop) {
+        if (prop !== "domainEvent") return target[prop];
+        return new Proxy(target.domainEvent, {
+          get(model, method) {
+            if (method !== "findMany") return model[method];
+            return (query) => model.findMany({ ...query, where: { id: lifecycle.event.id, projectedAt: null } });
+          }
+        });
+      }
+    });
+    process.env.U1_PROJECTOR_ENABLED = "false";
+    const down = await projectDomainEvents({ db: projectorDb, batchSize: 100 });
+    expect("projectori seisk ei kaota outboxi rida", down.disabled === true && lifecycle.event.projectedAt === null);
+    process.env.U1_PROJECTOR_ENABLED = "true";
+    let creates = 0;
+    const failingDb = new Proxy(projectorDb, {
+      get(target, prop) {
+        if (prop !== "notificationEvent") return target[prop];
+        return new Proxy(target.notificationEvent, {
+          get(model, method) {
+            if (method !== "create") return model[method];
+            return async (...args) => {
+              creates += 1;
+              if (creates === 2) throw new Error("INJECTED_PARTIAL_DELIVERY_FAILURE");
+              return model.create(...args);
+            };
+          }
+        });
+      }
+    });
+    const failedProjection = await projectDomainEvents({ db: failingDb, batchSize: 100 });
+    const partialCount = await prisma.notificationEvent.count({ where: { eventId: lifecycle.event.id } });
+    expect("osaline tarne jätab sündmuse korduseks", failedProjection.failed === 1 && partialCount === 1);
+    const retry = await projectDomainEvents({ db: projectorDb, batchSize: 100 });
+    const delivered = await prisma.notificationEvent.count({ where: { eventId: lifecycle.event.id } });
+    expect("projectori kordus täidab puuduva tarne idempotentselt", retry.failed === 0 && delivered === 3, `${delivered}`);
+    if (oldEnabled === undefined) delete process.env.U1_PROJECTOR_ENABLED;
+    else process.env.U1_PROJECTOR_ENABLED = oldEnabled;
+  }
 }
 
 async function cleanup() {
@@ -646,14 +904,26 @@ async function cleanup() {
   console.log(`  leftovers: ${leftUsers} users, ${leftRooms} rooms`);
 }
 
-try {
-  await main();
-} catch (error) {
-  failed += 1;
-  console.error("\nUNCAUGHT", error);
-} finally {
-  await cleanup();
+if (process.argv.includes("--limit-attempt")) {
+  const result = await guardShareRequest({
+    db: prisma,
+    request: { headers: new Headers() },
+    userId: process.env.NET_PROBE_LIMIT_USER,
+    actionCode: process.env.NET_PROBE_LIMIT_ACTION,
+    mutation: false
+  });
   await prisma.$disconnect();
-  console.log(`\n${passed} passed, ${failed} failed`);
-  process.exit(failed ? 1 : 0);
+  process.exit(result.ok ? 0 : 2);
+} else {
+  try {
+    await main();
+  } catch (error) {
+    failed += 1;
+    console.error("\nUNCAUGHT", error);
+  } finally {
+    await cleanup();
+    await prisma.$disconnect();
+    console.log(`\n${passed} passed, ${failed} failed`);
+    process.exit(failed ? 1 : 0);
+  }
 }

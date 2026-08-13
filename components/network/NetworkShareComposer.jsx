@@ -48,10 +48,22 @@ export default function NetworkShareComposer({ preInquiryId }) {
   const load = useCallback(async () => {
     if (!preInquiryId) return;
     try {
-      const res = await fetch("/api/network-shares?role=worker", { cache: "no-store" });
-      const payload = await res.json().catch(() => ({}));
-      if (!res.ok || payload?.ok === false) return;
-      setShares((payload.shares || []).filter((s) => s.sourcePreInquiryId === preInquiryId));
+      const collected = [];
+      let cursor = "";
+      do {
+        const query = new URLSearchParams({
+          role: "worker",
+          sourcePreInquiryId: preInquiryId,
+          limit: "100",
+          ...(cursor ? { cursor } : {})
+        });
+        const res = await fetch(`/api/network-shares?${query}`, { cache: "no-store" });
+        const payload = await res.json().catch(() => ({}));
+        if (!res.ok || payload?.ok === false) return;
+        collected.push(...(payload.shares || []));
+        cursor = String(payload.nextCursor || "");
+      } while (cursor);
+      setShares(collected);
     } catch {
       /* nimekirja puudumine ei tohi vormi blokeerida */
     }
@@ -67,7 +79,11 @@ export default function NetworkShareComposer({ preInquiryId }) {
     try {
       const res = await fetch(url, {
         method: "POST",
-        headers: { "Content-Type": "application/json", "x-ui-locale": locale || "et" },
+        headers: {
+          "Content-Type": "application/json",
+          "x-ui-locale": locale || "et",
+          "Idempotency-Key": crypto.randomUUID()
+        },
         body: JSON.stringify(body || {})
       });
       const payload = await res.json().catch(() => ({}));

@@ -33,10 +33,17 @@ export default function NetworkShareInbox() {
 
   const load = useCallback(async ({ signal } = {}) => {
     try {
-      const res = await fetch("/api/network-shares?role=recipient", { cache: "no-store", signal });
-      const payload = await res.json().catch(() => ({}));
-      if (!res.ok || payload?.ok === false) return;
-      setShares(payload.shares || []);
+      const collected = [];
+      let cursor = "";
+      do {
+        const query = new URLSearchParams({ role: "recipient", limit: "100", ...(cursor ? { cursor } : {}) });
+        const res = await fetch(`/api/network-shares?${query}`, { cache: "no-store", signal });
+        const payload = await res.json().catch(() => ({}));
+        if (!res.ok || payload?.ok === false) return;
+        collected.push(...(payload.shares || []));
+        cursor = String(payload.nextCursor || "");
+      } while (cursor);
+      setShares(collected);
     } catch (err) {
       if (err?.name !== "AbortError") {
         setError(txt(t, "network_share.errors.action_failed", "Toiming ebaõnnestus."));
@@ -57,7 +64,7 @@ export default function NetworkShareInbox() {
     try {
       const res = await fetch(`/api/network-shares/${encodeURIComponent(share.id)}/open`, {
         method: "POST",
-        headers: { "x-ui-locale": locale || "et" }
+        headers: { "x-ui-locale": locale || "et", "Idempotency-Key": crypto.randomUUID() }
       });
       const payload = await res.json().catch(() => ({}));
       if (!res.ok || payload?.ok === false) {

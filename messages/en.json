@@ -5296,6 +5296,7 @@
       "org_support_share_received": "A support message was sent to you",
       "org_work_assigned": "Work was assigned to you in an organisation",
       "network_share_received": "You received a network share",
+      "network_share_changed": "A network share changed status",
       "pre_inquiry_status_changed": "The status of your pre-inquiry changed",
       "pre_inquiry_opened": "Your pre-inquiry was opened",
       "pre_inquiry_replied": "Your pre-inquiry received a response",

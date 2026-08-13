@@ -13,6 +13,7 @@ import { logDocumentsAudit } from "@/lib/documents/audit";
 import { safeError } from "@/lib/privacy/safeError";
 import { evaluateTextPrivacy, privacyConfirmationResponsePayload } from "@/lib/privacy/privacyGuard";
 import { markHelpMatchContactedByRoom } from "@/lib/help/matches";
+import { markNetworkShareRespondedByRoom } from "@/lib/network/share";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -370,6 +371,13 @@ export async function POST(req, { params }) {
         });
       }
       await markHelpMatchContactedByRoom({ roomId }, tx);
+      await markNetworkShareRespondedByRoom({
+        db: tx,
+        roomId,
+        authorUserId: auth.userId,
+        messageId: created.id,
+        now: created.createdAt
+      });
       return created;
     });
 
