@@ -7205,6 +7205,8 @@ konto lisamine mõõdaks omanikuskoopi, mis on juba mujal kaetud.
 
 **Vastuvõtukriteerium.** Abisoovi handoff peab kasutama serveri allowlist-projektsiooni või kandma allkirjastatud/ühekordset mustandi-ID-d, mitte usaldama URL-i täisväärtusi. Iga valiku sisse-/väljalülitamise test peab tõendama vastava markeri olemasolu või puudumist abisoovi päris salvestuspayload'is.
 
+**Seis (13.08.2026): DONE —** abisoovi handoff ei kanna enam Journey täisväärtusi URL-is. Autenditud omaniku-piiriga serverimarsruut koostab lubatud väljadest fail-closed projektsiooni ning välistab alati riskisignaalid. Autenditud kohalik runtime tõendas kõik kuus jagamisvalikut eraldi päriselt salvestatud abipalves, märkimata markerite ja riskimarkeri puudumise ning võõra või puuduva Journey üldise 404; sünteetiline sisu koristati nulljäägiga. Production runtime ja kahe eraldi konto brauseri-IDOR on NOT_PROVEN.
+
 ### SOL-JOUR-11 — ohu eitamine tekitab kriisihoiatuse ja kasutaja ei saa valet riskisignaali parandada — P1
 
 **Tõend.** Riskireeglid kasutavad pelka alamstringiotsingut ega arvesta eitust: sõnad `oht`, `vägivald`, `ähvard` või `kriis` loovad 112-sõnumi ning ükskõik milline riskisignaal sunnib primaarraja `PRE_INQUIRY`-ks (`lib/journey/draft.js:31-34`, `:58-97`). Auditijooksus tekitas „Olukord ei ole ohtlik ja vahetut ohtu ei ole” 112-hoiatuse ja PRE_INQUIRY suuna. Detaili muutmisvorm ei sisalda `riskSignals` välja, kuigi vaaterežiim kuvab selle kasutajale (`components/journey/JourneyDetail.jsx:107-115`, `:1600-1663`, `:1699-1707`).
@@ -7212,6 +7214,8 @@ konto lisamine mõõdaks omanikuskoopi, mis on juba mujal kaetud.
 **Mõju.** Rahulik eitav kirjeldus võib saada kriisimärgise ja vale töövoosuunanäitamise. Kasutaja saab muuta kokkuvõtet, kuid salvestatud vale „ettevaatlik tähelepanek” jääb alles ning võib mõjutada tema edasisi valikuid.
 
 **Vastuvõtukriteerium.** Kriisituletus peab eristama vähemalt otsest ja eitavat/ajaloolist/kolmanda isiku konteksti ning jääma selgelt soovituslikuks; vahetu ohu korral peab fail-closed kiirabiinfo siiski säilima. Kasutaja peab saama valesignaali parandada või paluda uuesti tuletamist. Negatiivkorpus peab sisaldama „ei ole ohtu”, „oli varem”, „kardan, et võib” ja otsese vahetu ohu näiteid ET/EN/RU-s.
+
+**Seis (13.08.2026): DONE —** ohu tuletus eristab ET/EN/RU tekstis otsest vahetut ohtu, eitust, ajaloolist või võimalikku ohtu ning kolmanda isiku konteksti. Otsene vahetu oht säilitab fail-closed 112 teate ja `PRE_INQUIRY` raja; muud kontekstid ei saa valet 112 teadet ega sundrada. Teekonna omanik saab salvestatud riskisignaale detailvormis parandada või eemaldada ning positiiv- ja negatiivkorpus on roheline.
 
 ### SOL-JOUR-12 — ühe abivahendi seis omistatakse kõigile tekstist leitud abivahenditele — P1
 
@@ -7221,6 +7225,8 @@ konto lisamine mõõdaks omanikuskoopi, mis on juba mujal kaetud.
 
 **Vastuvõtukriteerium.** Seis ja probleem tuleb tuletada seadme lokaalsest lause-/fraasikontekstist või jätta `UNSURE`, kui seost pole võimalik usaldusväärselt teha. Mitme seadme vastandlike seisudega testkorpus peab tõendama, et ühe seadme omadus ei kandu teisele.
 
+**Seis (13.08.2026): DONE —** abivahendi seis, probleem, kasutuskontekst ja toe vajadus tuletatakse seadme lokaalsest lause- või fraasikontekstist ning lähimast seisuvihjest; usaldusväärse seose puudumisel jääb seis `UNSURE`. Vastandlike seisudega test tõendab, et katkise rollaatori olek ei kandu prillidele ega teadmata seisuga kuuldeaparaadile.
+
 ### SOL-JOUR-13 — piirkonnatuletus kohtleb Pärnut eri handoff'ides vastuoluliselt — P2
 
 **Tõend.** Teenusekaardi handoff tunneb nii `Pärnu/Pärnus` kui diakriitikata variante (`lib/journey/serviceMapHandoff.js:31-42`), kuid eelpöördumise handoff'i aliaseloendis on ainult `parnu/parnus`; „Pärnus” ei sobitu ka üldise `vald|linn` mustriga (`lib/journey/preInquiryHandoff.js:4-13`, `:80-87`). Auditijooksus jäi „Vajan abi Pärnus” eelpöördumise `municipality` väärtuseks tühi. Abivahenduse handoff võib lisaks kasutada `municipalityId` väärtust sõna-sõnalt `municipalityName` päringuparameetrina (`lib/journey/helpMediationHandoff.js:40-60`).
@@ -7228,6 +7234,8 @@ konto lisamine mõõdaks omanikuskoopi, mis on juba mujal kaetud.
 **Mõju.** Sama Teekond võib avada Teenusekaardi Pärnu filtriga, kuid koostada eelpöördumise ilma piirkonnata; ID-põhise konteksti korral võib abipakkumiste otsing kasutada nime asemel tehnilist identifikaatorit ja näidata null vastet.
 
 **Vastuvõtukriteerium.** Kõik handoff'id peavad kasutama ühist KOV/maakonna resolverit, mis eristab ID-d ja kuvanime ning toetab käändeid ja diakriitikat. Lepingutest peab sama sisendi puhul võrdlema teenusekaardi, eelpöördumise ja abisoovi piirkonnatulemust.
+
+**Seis (13.08.2026): DONE —** Teenusekaardi, eelpöördumise ja abisoovi Journey-handoff'id kasutavad ühist KOV/maakonna resolverit. Resolver eristab tehnilise `municipalityId` väärtuse kuvanimest, ei esita ID-d nimena ning toetab Pärnu/Pärnus ja diakriitikata variante koos `vald`, `linn` ja `maakond` kujudega. Lepingutest tõendab sama Pärnu tulemuse kõigis kolmes handoff'is ja ID-põhise konteksti fail-closed käitumise.
 
 ### SOL-JOUR-14 — Teekonna „tehtud sammud” ei ole usaldatav tegevusajalugu — P1
 
@@ -7620,6 +7628,8 @@ tagasivõetud pakett. Peidetud on ainult `RECALLED`. Töörajad sulguvad kõigil
 
 **Vastuvõtukriteerium.** Rakendada kasutaja+IP+toimingu põhine jagatud limiter kõigile loetletud radadele, tagastada 429 ja piirata väliskutseid eraldi kvoodiga. Testida eri meetodeid, paralleelpäringuid ja mitut protsessi.
 
+**Seis (13.08.2026): DONE —** kõik leius nimetatud rajad kasutavad PostgreSQL-is jagatud kasutaja+IP+toimingu põhist limiterit; välise geokodeerija kutsel on eraldi kvoot, ületamine tagastab 429 ja salvestuskihi puudumine sulgeb raja 503-ga. Migratsioon `20260814008000_sol_help_durable_rate_limit` lisab atomaarse loenduri ning päris PostgreSQL-i koondsond tõendas kahe paralleelse protsessi ühist limiiti ja toimingute eraldi kvoote. Production runtime: NOT_PROVEN.
+
 ### SOL-HELP-11 — pikk kuulutuse sisu kärbitakse edukal salvestusel vaikides — P1
 
 **Tõend.** Pealkiri, kirjeldus ja kõik lisaväljad lõigatakse `slice`-iga 120–5000 märgini (`lib/help/requests.js:96-115`, `:208-225`; `lib/help/offers.js:95-114`, `:207-223`). ChatBody redaktor ei saada serverile versiooni ega piiride teadet ning käsitleb 200 vastust täieliku eduna (`components/alalehed/ChatBody.jsx:1728-1768`).
@@ -7627,6 +7637,8 @@ tagasivõetud pakett. Peidetud on ainult `RECALLED`. Töörajad sulguvad kõigil
 **Mõju.** Kirjelduse lõpus olev piirang, oht, tasutingimus, aeg või ligipääsetavusnõue võib kaduda ilma hoiatuseta; hilisem sobitamine ja jagamine kasutavad kärbitud teksti.
 
 **Vastuvõtukriteerium.** Üle piiri sisend peab saama välja-põhise 400/413 vea või kasutajale nähtava truncation-raporti. UI näitab limiite; testida piir-1/piir/piir+1 ning kriitilist markerit kärbitavas sabas.
+
+**Seis (13.08.2026): DONE —** abisoovi ja abipakkumise kasutajateksti ei kärbita enam edukal salvestamisel vaikides. Keskseid piire ületav sisend saab välja, piiri ja tegeliku pikkusega 413 vastuse; redaktor rakendab `maxLength` piirid ja näitab tähemärgiloendurit. Piir-1, piiri ja piir+1 kontrollid katavad kõik tekstiväljad ning sabamarker ei salvestu kärbitult. HELP-eelvaate vigased kodeeringufallback'id parandati ja inimkeelsed tekstid lisati ET/EN/RU kataloogidesse. Brauseri kordustest: NOT_PROVEN.
 
 ### SOL-HELP-12 — Teenusekaardi abiotsing filtreerib alles pärast 1000 uusima kirje võtmist — P2
 
@@ -7636,6 +7648,8 @@ tagasivõetud pakett. Peidetud on ainult `RECALLED`. Töörajad sulguvad kõigil
 
 **Vastuvõtukriteerium.** Filtrid tuleb viia DB-päringusse või otsinguindeksisse ning kasutada stabiilset cursor-paginatsiooni. Testida 1001+ kirjet, vanemat täpset vastet ja võrdse `updatedAt`-ga ridu.
 
+**Seis (13.08.2026): DONE —** HELP-kaardikirjete märksõna- ja piirkonnafiltrid rakenduvad DB-päringus enne `take`-piiri ning lehitsemine kasutab stabiilset `(updatedAt,id)` cursor'it koos `page` plokiga. Päris PostgreSQL-i sond leidis täpse vanema vaste 1002 kirje tagant ning läbis võrdse `updatedAt` väärtusega read kadude ja duplikaatideta. Production runtime: NOT_PROVEN.
+
 ### SOL-HELP-13 — abi vahendamise olekumudeli mitu seisundit ei ole tootmiskoodis saavutatavad — P2
 
 **Tõend.** `HelpRecordStatus.MATCHED` ning `HelpMatchStatus.CONTACTED/CLOSED` on skeemis olemas (`prisma/schema.prisma:499-560`), kuid abi tootmiskood ei kirjuta neid üheski nimetatud toimingus. ACCEPT uuendab ainult `HelpMatch`-i `ACCEPTED`-iks ega muuda request/offer olekut (`lib/help/matches.js:890-906`). Omaniku OPEN-kirje jääb pärast sobitamist avalikuks ja uuesti sobitatavaks.
@@ -7643,6 +7657,8 @@ tagasivõetud pakett. Peidetud on ainult `RECALLED`. Töörajad sulguvad kõigil
 **Mõju.** UI/analüütika olekud ei kirjelda tegelikku elutsüklit ning ühekordne või juba lahendatud vajadus võib jätkata avalikku sobitamist. Pole serveripoolset „kontakt alustatud” ega „sobitus lõpetatud” rada.
 
 **Vastuvõtukriteerium.** Otsustada, kas üks kuulutus lubab üht või mitut aktiivset sobitust, ning rakendada vastav olekumasin. Kasutamata enumid eemaldada või siduda atomaarsete toimingute ja testidega.
+
+**Seis (13.08.2026): DONE —** rakendatud poliitika on üks aktiivne aktsepteeritud sobitus kuulutuse kohta. ACCEPT viib mõlemad allikad samas Serializable-tehingus `MATCHED` olekusse, peidab kaardikirjed ning loob ja seob ruumi; esimene HELP_MATCH-ruumi sõnum viib sobituse `CONTACTED` olekusse ning ruumi arhiiv lõpetab sobituse ja allikad `CLOSED` olekusse. Nõusolekutõend, ruum ja liikmesusajalugu säilivad allikakuulutuse kustutussoovi järel. Sihttestid ja päris PostgreSQL-i koondsond tõendasid olekud, kaardinähtavuse ja rollback'i. Production/browser runtime: NOT_PROVEN.
 
 ### SOL-NET-01 — paralleelne muutmine võib kinnitada teksti, mida klient ei näinud — P0
 
@@ -7748,6 +7764,8 @@ taga veel ei ole.
 
 **Vastuvõtukriteerium.** Ruum, liikmed, share'i olek ja outbox peavad sündima ühes DB-tehingus või kompenseeriva idempotentse protsessiga. Andmebaas peab takistama mitut ruumi sama origin'i kohta; testida room-create järel update-viga ja kahte paralleelset send'i.
 
+**Seis (13.08.2026): DONE —** `sendNetworkShare` nõuab jagamise tingimuslikult endale ja loob `SENT` oleku, ruumi, liikmed, `roomId` seose ning sisuvaba outbox-rea ühes Serializable PostgreSQL-i tehingus. Ruumi- või outbox-tõrge pöörab kogu saatmise tagasi ning kirjutuskonflikt muutub avalikuks veaks. Migratsioon `20260813235900_sol_net_03_room_origin_unique` laiendab osalise unikaalindeksi `NETWORK_SHARE` päritolule. Päris PostgreSQL-i sond tõendas rollback'id, kahe paralleelse saatmise ühe võitja ja DB-tasandi ühe ruumi piiri. NOT_PROVEN: toodangu migratsioon ja deploy.
+
 ### SOL-NET-04 — saaja loeb kogu sisu enne, kui süsteem märgib selle avatuks — P1
 
 **Tõend.** Recipient-list tagastab juba `SENT` olekus `summaryText`, eesmärgi ja jagamispiiri (`app/api/network-shares/route.js:77-86`; `lib/network/share.js:471-486`). Inbox renderdab need kohe ja pakub eraldi käsitsi nuppu „Olen läbi lugenud”; ruumi saab avada ka seda nuppu vajutamata (`components/network/NetworkShareInbox.jsx:88-117`). Tagasivõtmine kontrollib ainult formaalset olekut `SENT` ning muudab üksnes share'i staatust, mitte olemasolevat RoomMember ligipääsu (`lib/network/share.js:440-460`).
@@ -7755,6 +7773,8 @@ taga veel ei ole.
 **Mõju.** Töötaja võib jagamise edukalt tagasi võtta pärast seda, kui saaja on sisu tegelikult näinud. `openedAt` on enesekinnitus, mitte esimese avaldamise audit; tagasivõetud saaja jääb loodud ruumi liikmeks.
 
 **Vastuvõtukriteerium.** Tundlik detail tuleb väljastada eraldi serveritoiminguga, mis märgib avamise atomaarseks enne sisu vastust. Recall peab eemaldama veel avamata saaja ruumiligipääsu või ruum ei tohi enne avamist eksisteerida. Testida inbox-load'i, room deep-link'i ja recall'i võidujooksu.
+
+**Seis (13.08.2026): DONE —** saaja nimekiri tagastab enne avamist ainult sisuvaba ümbriku; tundlik sisu ja ruumiviide jõuavad brauserisse eraldi `/open` operatsiooni vastuses pärast tingimuslikku `OPENED` kirjutust. Keskne ruumivärav keelab saaja `SENT` ruumi otselingi ning tagasivõtmine eemaldab avamata saaja ruumiligipääsu samas tehingus. Sihttestid ja päris PostgreSQL-i sond tõendasid ümbriku, avamise, detaili, otselingi ning avamise/recall'i võistluse. Autenditud visuaalne brauserirada ja production runtime: NOT_PROVEN.
 
 ### SOL-NET-05 — kohustuslik kaasamise lõppkuupäev ei lõpeta ligipääsu — P1
 
@@ -7764,6 +7784,8 @@ taga veel ei ole.
 
 **Vastuvõtukriteerium.** Saatmine peab aegunud jagamisest keelduma; scheduler lõpetab tähtajal share'i ja seotud välise ligipääsu idempotentselt. Kõik detaili/ruumi autoriseerimised peavad lõppkuupäeva jõustama serveris. Testida piiri eel, piiril, järel ja nurjunud sweep'i taastamist.
 
+**Seis (13.08.2026): DONE —** lõppkuupäev on serveripoolne ligipääsupiir: saatmine ja avamine keelduvad tähtajale järgneval UTC päeval, detailiprojektsioon ja keskset väravat kasutavad ruumirajad sulguvad ning lõppkuupäeva enda jooksul jääb ligipääs kehtima. Teavitustööga ühendatud idempotentne sweep viib aegunud jagamise `ENDED` olekusse, eemaldab aktiivsed ruumiliikmed ja arhiveerib ruumi ühes tehingus; tõrke järel saab töö korduda. Sihttestid ja päris PostgreSQL-i sond tõendasid piire, rollback'i ja kordust. Production cron ja monitooring: NOT_PROVEN.
+
 ### SOL-NET-06 — välise kliendi raamlepingut kontrollitakse ainult mustandi loomisel — P1
 
 **Tõend.** Välise kliendi korral küsib `createNetworkShare` töötaja ja saaja kehtivat raamlepingu staatust (`lib/network/share.js:213-240`). Hilisem submit, attestation ja send ei kutsu kontrolli uuesti (`:310-437`); send-route annab kaasa ainult ruumi loomise pordi (`app/api/network-shares/[shareId]/send/route.js:12-23`).
@@ -7771,6 +7793,8 @@ taga veel ei ole.
 **Mõju.** Pärast mustandi loomist aegunud või tagasi võetud raamlepingu alusel saab mittekasutaja andmed hiljem ikkagi saata ja ruumi avada.
 
 **Vastuvõtukriteerium.** Kehtiv alus tuleb uuesti kontrollida vähemalt kliendi otsuse ülekandmisel ja saatmise atomaarse commit'i sees. Testida töötaja ning saaja lepingu kehtivuse kadumist pärast DRAFT-i ja pärast CONFIRMED olekut.
+
+**Seis (13.08.2026): DONE —** välise kliendi rajal kontrollitakse töötaja ja saaja kehtivat praeguse versiooni raamlepingu aktsepti uuesti nii kliendi otsuse ülekandmisel kui ka Serializable saatmistehingu sees enne `SENT`, ruumi ja outbox'i loomist. Sihttestid ja päris PostgreSQL-i sond tõendasid töötaja aktsepti kadumist pärast DRAFT-i ning saaja aktsepti kadumist pärast CONFIRMED olekut; mõlemad suleti 403 veaga ilma ruumi või saatmisolekuta. Production runtime ja deploy: NOT_PROVEN.
 
 ### SOL-NET-07 — tagasivõetud või saatmata eelpöördumisest saab luua uue võrgustikujagamise — P1
 
