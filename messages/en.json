@@ -1744,7 +1744,14 @@
     "submit_success": "Material has been sent. Thank you for contributing.",
     "retention": {
       "until": "Retention deadline: {date}",
-      "decision_pending": "Retention deadline: decision pending"
+      "decision_pending": "Retention deadline: decision pending",
+      "layer_until": "{layer}: until {date}",
+      "layer_state": "{layer}: {state}",
+      "layers": {
+        "original": "Original file",
+        "derivative": "Sanitized derivative",
+        "rag": "RAG copy"
+      }
     },
     "mine": {
       "title": "My submitted materials",

@@ -39,6 +39,16 @@ function materialStatusLabel(t, status) {
   return t(`materials_page.admin.status.${normalized}`, normalized)
 }
 
+function materialRetentionLines(t, retention, locale) {
+  return ["original", "derivative", "rag"].map(layer => {
+    const value = retention?.[layer]
+    const label = t(`materials_page.retention.layers.${layer}`)
+    return value?.until
+      ? t("materials_page.retention.layer_until", { layer: label, date: formatDate(value.until, locale) })
+      : t("materials_page.retention.layer_state", { layer: label, state: value?.state || "NOT_PRESENT" })
+  })
+}
+
 export default function MaterialsAdminSubmissionsPanel({
   variant = "materials",
   locale = "et",
@@ -238,9 +248,7 @@ export default function MaterialsAdminSubmissionsPanel({
                   </p>
                 ) : null}
                 <p>
-                  {item.retention?.until
-                    ? t("materials_page.retention.until", { date: formatDate(item.retention.until, resolvedLocale) })
-                    : t("materials_page.retention.decision_pending")}
+                  {materialRetentionLines(t, item.retention, resolvedLocale).map(line => <span key={line}>{line}</span>)}
                 </p>
                 {item.notification ? (
                   <p>

@@ -24,6 +24,17 @@ function markChatWorkspaceRestore() {
   } catch {}
 }
 
+function materialRetentionLines(t, retention, locale) {
+  const format = value => new Intl.DateTimeFormat(locale).format(new Date(value))
+  return ["original", "derivative", "rag"].map(layer => {
+    const value = retention?.[layer]
+    const label = t(`materials_page.retention.layers.${layer}`)
+    return value?.until
+      ? t("materials_page.retention.layer_until", { layer: label, date: format(value.until) })
+      : t("materials_page.retention.layer_state", { layer: label, state: value?.state || "NOT_PRESENT" })
+  })
+}
+
 export default function MaterialsPage({ locale = "et", embedded = false, onBack = null, hideHeader = false }) {
   const router = useRouter()
   const { t, locale: activeLocale } = useI18n()
@@ -217,9 +228,7 @@ export default function MaterialsPage({ locale = "et", embedded = false, onBack 
                 <strong>{item.originalName}</strong>
                 <span>{t(`materials_page.admin.status.${item.status}`, item.status)}</span>
                 <span>
-                  {item.retention?.until
-                    ? t("materials_page.retention.until", { date: new Intl.DateTimeFormat(resolvedLocale).format(new Date(item.retention.until)) })
-                    : t("materials_page.retention.decision_pending")}
+                  {materialRetentionLines(t, item.retention, resolvedLocale).map(line => <span key={line}>{line}</span>)}
                 </span>
                 <a href={`/api/materials/${encodeURIComponent(item.id)}/download`}>
                   {t("materials_page.admin.download")}

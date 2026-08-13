@@ -64,19 +64,27 @@ test("material import route delegates to the versioned receipt-gated RAG lifecyc
   assert.match(ragMigrationSource, /"ragIngestStatus" = 'IMPORTED'/)
 })
 
-test("material retention reuses the quarantine and RAG lifecycles and stays decision-gated", () => {
-  assert.match(schemaSource, /retentionClass\s+String\s+@default\("DECISION_PENDING"\)/)
-  assert.match(schemaSource, /@@index\(\[retentionState, retentionUntil\]\)/)
+test("material retention keeps original, derivative, and RAG clocks independent", () => {
+  assert.match(schemaSource, /originalRetentionUntil\s+DateTime\?/)
+  assert.match(schemaSource, /derivativeRetentionUntil\s+DateTime\?/)
+  assert.match(schemaSource, /ragRetentionUntil\s+DateTime\?/)
+  assert.match(schemaSource, /derivativeStoragePath\s+String\?/)
+  assert.match(schemaSource, /@@index\(\[ragRetentionState, ragRetentionUntil\]\)/)
   assert.match(lifecycleSource, /retentionFieldsForSubmission\("pending"/)
   assert.match(reviewSource, /retentionFieldsForSubmission\(update\.status/)
-  assert.match(ragLifecycleSource, /retentionFieldsForSubmission\("imported"/)
-  assert.match(retentionPolicySource, /MATERIALS_RETENTION_POLICY_STATUS/)
+  assert.match(ragLifecycleSource, /retentionFieldsForImportedLayers\(importedAt/)
+  assert.match(ragLifecycleSource, /policy\.retentionMode !== "DELETE_WITH_SUBMISSION_OR_ACCOUNT"/)
+  assert.match(retentionPolicySource, /importedOriginal:\s*7/)
+  assert.match(retentionPolicySource, /ragCopy:\s*365/)
   assert.match(retentionSource, /queueMaterialRagDeletion/)
   assert.match(retentionSource, /retryMaterialRagDeletion/)
+  assert.doesNotMatch(retentionSource, /materialSubmission\.deleteMany/)
   assert.match(userDeletionSource, /removeMaterialForAccountDeletion/)
 })
 
-test("material UI/export are honest while policy is pending and SMTP remains minimized", () => {
-  assert.match(exportSource, /retentionDecision:\s*row\.retentionUntil \? "configured" : "decision_pending"/)
+test("material export exposes every storage layer deadline and SMTP remains minimized", () => {
+  assert.match(exportSource, /originalRetentionUntil/)
+  assert.match(exportSource, /derivativeRetentionUntil/)
+  assert.match(exportSource, /ragRetentionUntil/)
   assert.doesNotMatch(notificationSource, /originalName|comment|submittedByUser.*email/)
 })

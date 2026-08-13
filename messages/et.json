@@ -1744,7 +1744,14 @@
     "submit_success": "Materjal on saadetud. Aitäh panuse eest.",
     "retention": {
       "until": "Säilitamise tähtaeg: {date}",
-      "decision_pending": "Säilitamise tähtaeg: otsus ootel"
+      "decision_pending": "Säilitamise tähtaeg: otsus ootel",
+      "layer_until": "{layer}: kuni {date}",
+      "layer_state": "{layer}: {state}",
+      "layers": {
+        "original": "Originaalfail",
+        "derivative": "Sanitiseeritud derivaat",
+        "rag": "RAG-koopia"
+      }
     },
     "mine": {
       "title": "Minu saadetud materjalid",

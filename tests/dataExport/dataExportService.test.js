@@ -234,14 +234,20 @@ test("materials export includes only owner rows and marks a missing original in 
         originalName: "guide.txt", mime: "text/plain", size: 5, sha256: "a".repeat(64),
         storagePath: "materials/guide.txt", storageStatus: "ACTIVE", status: "reviewed",
         reviewRevision: 1, reviewedAt: at, reviewedBy: "other-admin@example.test",
-        reviewNote: "Accepted after review", createdAt: at, updatedAt: at
+        reviewNote: "Accepted after review", originalRetentionClass: "MATERIAL_REVIEWED",
+        originalRetentionState: "SCHEDULED", originalRetentionUntil: at,
+        derivativeRetentionState: "NOT_PRESENT", ragRetentionState: "NOT_PRESENT",
+        createdAt: at, updatedAt: at
       },
       {
         id: "material-own-missing", submittedByUserId: "owner", comment: "missing original",
         originalName: "missing.pdf", mime: "application/pdf", size: 25, sha256: "b".repeat(64),
         storagePath: "materials/missing.pdf", storageStatus: "ACTIVE", status: "imported",
         reviewRevision: 2, reviewedAt: at, reviewedBy: "other-admin@example.test",
-        reviewNote: "Imported in a legacy flow", createdAt: at, updatedAt: at
+        reviewNote: "Imported in a legacy flow", originalRetentionClass: "MATERIAL_IMPORTED_ORIGINAL",
+        originalRetentionState: "SCHEDULED", originalRetentionUntil: at,
+        derivativeRetentionState: "NOT_PRESENT", ragRetentionState: "SCHEDULED", ragRetentionUntil: at,
+        createdAt: at, updatedAt: at
       }
     ];
   };
@@ -266,10 +272,9 @@ test("materials export includes only owner rows and marks a missing original in 
     archivePath: null,
     sha256: "b".repeat(64),
     importedRelation: null,
-    retentionUntil: null,
-    retentionClass: "DECISION_PENDING",
-    retentionState: "DECISION_PENDING",
-    retentionDecision: "decision_pending"
+    retentionUntil: at.toISOString(),
+    retentionClass: "MATERIAL_IMPORTED_ORIGINAL",
+    retentionState: "SCHEDULED"
   });
   assert.match(exported, /own comment|Accepted after review|not_recorded/);
   assert.doesNotMatch(exported, /other-admin@example\.test|storagePath|submittedByUserId/);

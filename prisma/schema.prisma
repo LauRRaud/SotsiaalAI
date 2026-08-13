@@ -4433,7 +4433,7 @@ model MaterialSubmission {
   mime                    String
   size                    Int
   sha256                  String
-  storagePath             String
+  storagePath             String?
   storageStatus           String    @default("ACTIVE")
   scanState              String    @default("LEGACY_UNKNOWN")
   validationState        String    @default("LEGACY_UNKNOWN")
@@ -4474,11 +4474,32 @@ model MaterialSubmission {
   rightsEvidence          String?   @db.Text
   rightsConfirmedAt       DateTime?
   rightsConfirmedByUserId String?
-  retentionClass          String    @default("DECISION_PENDING")
-  retentionUntil          DateTime?
-  retentionPolicyVersion  String?
-  retentionState          String    @default("DECISION_PENDING")
-  retentionAnchorAt       DateTime?
+  originalRetentionClass         String    @default("MATERIAL_PENDING")
+  originalRetentionUntil         DateTime?
+  originalRetentionPolicyVersion String?
+  originalRetentionState         String    @default("SCHEDULED")
+  originalRetentionAnchorAt      DateTime?
+  originalDeletedAt              DateTime?
+  derivativeStoragePath          String?
+  derivativeSha256               String?
+  derivativeSize                 Int?
+  derivativeRetentionClass       String    @default("MATERIAL_SANITIZED_DERIVATIVE")
+  derivativeRetentionUntil       DateTime?
+  derivativeRetentionPolicyVersion String?
+  derivativeRetentionState       String    @default("NOT_PRESENT")
+  derivativeRetentionAnchorAt    DateTime?
+  derivativeDeletedAt            DateTime?
+  ragRetentionClass              String    @default("MATERIAL_RAG_COPY")
+  ragRetentionUntil              DateTime?
+  ragRetentionPolicyVersion      String?
+  ragRetentionState              String    @default("NOT_PRESENT")
+  ragRetentionAnchorAt           DateTime?
+  ragRightsReviewedAt            DateTime?
+  ragFreshnessReviewedAt         DateTime?
+  rightsValidUntil               DateTime?
+  sourceValidUntil               DateTime?
+  ragDeletedAt                   DateTime?
+  contentSafetyState             String    @default("NOT_REVIEWED")
   createdAt               DateTime  @default(now())
   updatedAt               DateTime  @updatedAt
 
@@ -4497,7 +4518,11 @@ model MaterialSubmission {
   @@index([ragIngestStatus, ragIngestNextAt])
   @@index([ragRemovalStatus])
   @@index([scanState, validationState, storageStatus])
-  @@index([retentionState, retentionUntil])
+  @@index([originalRetentionState, originalRetentionUntil])
+  @@index([derivativeRetentionState, derivativeRetentionUntil])
+  @@index([ragRetentionState, ragRetentionUntil])
+  @@index([rightsValidUntil])
+  @@index([sourceValidUntil])
 }
 
 model MaterialUploadQuarantine {

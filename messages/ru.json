@@ -1744,7 +1744,14 @@
     "submit_success": "Материал отправлен. Спасибо за вклад.",
     "retention": {
       "until": "Срок хранения: {date}",
-      "decision_pending": "Срок хранения: решение ожидается"
+      "decision_pending": "Срок хранения: решение ожидается",
+      "layer_until": "{layer}: до {date}",
+      "layer_state": "{layer}: {state}",
+      "layers": {
+        "original": "Исходный файл",
+        "derivative": "Санитизированная производная копия",
+        "rag": "Копия RAG"
+      }
     },
     "mine": {
       "title": "Мои отправленные материалы",

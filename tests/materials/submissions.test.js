@@ -50,6 +50,8 @@ test("material review status rejects unknown action", () => {
 test("serialized material submission includes status and safe review fields", () => {
   const createdAt = new Date("2026-05-02T09:00:00.000Z")
   const reviewedAt = new Date("2026-05-02T10:00:00.000Z")
+  const originalUntil = new Date("2026-05-09T10:00:00.000Z")
+  const ragUntil = new Date("2027-05-02T10:00:00.000Z")
   const serialized = serializeMaterialSubmission({
     id: "mat_1",
     comment: "A short note",
@@ -61,6 +63,17 @@ test("serialized material submission includes status and safe review fields", ()
     reviewedAt,
     reviewedBy: "admin@example.test",
     reviewNote: "Imported into review queue",
+    originalRetentionClass: "MATERIAL_IMPORTED_ORIGINAL",
+    originalRetentionUntil: originalUntil,
+    originalRetentionPolicyVersion: "SOL-MAT-12-2026-08-13",
+    originalRetentionState: "SCHEDULED",
+    derivativeRetentionState: "NOT_PRESENT",
+    ragRetentionClass: "MATERIAL_RAG_COPY",
+    ragRetentionUntil: ragUntil,
+    ragRetentionPolicyVersion: "SOL-MAT-12-2026-08-13",
+    ragRetentionState: "SCHEDULED",
+    ragRightsReviewedAt: reviewedAt,
+    ragFreshnessReviewedAt: reviewedAt,
     createdAt,
     updatedAt: reviewedAt,
     submittedByUser: {
@@ -74,6 +87,10 @@ test("serialized material submission includes status and safe review fields", ()
   assert.equal(serialized.reviewedAt, reviewedAt)
   assert.equal(serialized.reviewedBy, "admin@example.test")
   assert.equal(serialized.reviewNote, "Imported into review queue")
+  assert.equal(serialized.retention.original.until, originalUntil)
+  assert.equal(serialized.retention.derivative.state, "NOT_PRESENT")
+  assert.equal(serialized.retention.rag.until, ragUntil)
+  assert.equal(serialized.retention.rag.rightsReviewedAt, reviewedAt)
   assert.deepEqual(serialized.submittedByUser, {
     id: "user_1",
     email: "user@example.test"

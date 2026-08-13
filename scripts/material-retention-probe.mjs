@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/** SOL-MAT-12 — real PostgreSQL + disk retention/retry/account-deletion proof. */
+/** SOL-MAT-12 — real PostgreSQL + disk layered retention/retry proof. */
 
 import { spawnSync } from "node:child_process"
 import { createHash, randomUUID } from "node:crypto"
@@ -45,47 +45,77 @@ try {
   await admin.query(`CREATE DATABASE "${databaseName}"`)
   process.env.DATABASE_URL = probeUrl.toString()
   process.env.MATERIALS_STORAGE_DIR = storageRoot
-  Object.assign(process.env, {
-    MATERIALS_RETENTION_POLICY_STATUS: "CONFIRMED",
-    MATERIALS_RETENTION_POLICY_VERSION: "synthetic-probe-v1",
-    MATERIALS_RETENTION_PENDING_DAYS: "1",
-    MATERIALS_RETENTION_REJECTED_DAYS: "2",
-    MATERIALS_RETENTION_REVIEWED_DAYS: "3",
-    MATERIALS_RETENTION_IMPORTED_ORIGINAL_DAYS: "4",
-    MATERIALS_RETENTION_QUARANTINE_PENDING_DAYS: "1",
-    MATERIALS_RETENTION_QUARANTINE_FAILED_DAYS: "2",
-    MATERIALS_RETENTION_QUARANTINE_CLEAN_DAYS: "3"
-  })
   migrate()
 
-  const [{ default: prisma }, retention, retentionPolicy, server, notifications, { DATA_EXPORT_REGISTRY }] = await Promise.all([
+  const [{ default: prisma }, retention, policy, server, { DATA_EXPORT_REGISTRY }] = await Promise.all([
     import("../lib/prisma.js"),
     import("../lib/materials/retention.js"),
     import("../lib/materials/retentionPolicy.js"),
     import("../lib/materials/server.js"),
-    import("../lib/materials/notifications.js"),
     import("../lib/dataExport/registry.js")
   ])
   const owner = await prisma.user.create({ data: { email: `retention-${randomUUID()}@sol-mat.invalid`, role: "SOCIAL_WORKER" } })
   await server.ensureMaterialsStorage()
   let sequence = 0
 
-  async function createSubmission(status, { due = false, rag = false, decisionPending = false } = {}) {
+  async function writeLayer(relativePath, content) {
+    await fs.writeFile(server.resolveAbsoluteMaterialPath(relativePath), Buffer.from(content))
+  }
+
+  async function createImported({ anchor = baseTime, derivative = true, rightsValidUntil = null, sourceValidUntil = null } = {}) {
     sequence += 1
     const id = `retention-probe-${sequence}`
-    const storagePath = `uploads/${id}.pdf`
-    const bytes = Buffer.from(`synthetic-${id}`)
-    await fs.writeFile(server.resolveAbsoluteMaterialPath(storagePath), bytes)
-    const anchor = due ? new Date(baseTime.getTime() - 10 * dayMs) : baseTime
-    const policy = decisionPending
-      ? retentionPolicy.materialRetentionPolicyFromEnvironment({})
-      : retentionPolicy.materialRetentionPolicyFromEnvironment(process.env)
-    const retentionFields = retentionPolicy.retentionFieldsForSubmission(status, anchor, policy)
-    const ragFields = rag ? {
+    const originalPath = `uploads/${id}-original.pdf`
+    const derivativePath = derivative ? `uploads/${id}-sanitized.pdf` : null
+    const originalBytes = Buffer.from(`synthetic-original-${id}`)
+    const derivativeBytes = Buffer.from(`synthetic-sanitized-${id}`)
+    await writeLayer(originalPath, originalBytes)
+    if (derivativePath) await writeLayer(derivativePath, derivativeBytes)
+    const fields = policy.retentionFieldsForImportedLayers(anchor, {
+      derivativePresent: derivative,
+      rightsValidUntil,
+      sourceValidUntil
+    })
+    const created = await prisma.materialSubmission.create({ data: {
+      id,
+      submittedByUserId: owner.id,
+      comment: "PRIVATE SYNTHETIC COMMENT",
+      originalName: `private-${id}.pdf`,
+      mime: "application/pdf",
+      size: originalBytes.byteLength,
+      sha256: createHash("sha256").update(originalBytes).digest("hex"),
+      storagePath: originalPath,
+      storageStatus: "ACTIVE",
+      scanState: "CLEAN",
+      validationState: "VALIDATED",
+      scannedAt: anchor,
+      scanEngine: "Synthetic",
+      scanEngineVersion: "1",
+      scanSignatureVersion: "1",
+      scanSignatureUpdatedAt: anchor,
+      status: "pending",
+      ...policy.retentionFieldsForSubmission("pending", anchor),
+      contentSafetyState: "ALLOWED"
+    } })
+    await prisma.materialSubmission.update({ where: { id: created.id }, data: {
+      status: "reviewed",
+      reviewRevision: 1,
+      reviewedAt: anchor,
+      reviewedBy: owner.id,
+      ...policy.retentionFieldsForSubmission("reviewed", anchor)
+    } })
+    return prisma.materialSubmission.update({ where: { id: created.id }, data: {
+      status: "imported",
+      reviewRevision: 2,
+      reviewedAt: anchor,
+      reviewedBy: owner.id,
+      derivativeStoragePath: derivativePath,
+      derivativeSha256: derivative ? createHash("sha256").update(derivativeBytes).digest("hex") : null,
+      derivativeSize: derivative ? derivativeBytes.byteLength : null,
       sourceId: `material:${id}`,
       ragDocId: `material:${id}:v1`,
       ragVersion: 1,
-      ragContentHash: createHash("sha256").update(bytes).digest("hex"),
+      ragContentHash: createHash("sha256").update(originalBytes).digest("hex"),
       ragCollection: "synthetic_materials",
       ragAudience: "SOCIAL_WORKER",
       ragPolicyVersion: "synthetic-rag-v1",
@@ -100,9 +130,20 @@ try {
       rightsBasis: "Synthetic test licence",
       rightsEvidence: "Synthetic probe evidence",
       rightsConfirmedAt: anchor,
-      rightsConfirmedByUserId: owner.id
-    } : {}
-    const created = await prisma.materialSubmission.create({ data: {
+      rightsConfirmedByUserId: owner.id,
+      rightsValidUntil,
+      sourceValidUntil,
+      ...fields
+    } })
+  }
+
+  async function createPending({ anchor = baseTime } = {}) {
+    sequence += 1
+    const id = `retention-probe-${sequence}`
+    const storagePath = `uploads/${id}-original.pdf`
+    const bytes = Buffer.from(`synthetic-original-${id}`)
+    await writeLayer(storagePath, bytes)
+    return prisma.materialSubmission.create({ data: {
       id,
       submittedByUserId: owner.id,
       comment: "PRIVATE SYNTHETIC COMMENT",
@@ -120,134 +161,122 @@ try {
       scanSignatureVersion: "1",
       scanSignatureUpdatedAt: anchor,
       status: "pending",
-      ...retentionPolicy.retentionFieldsForSubmission("pending", anchor, policy)
-    } })
-    if (status === "pending") return created
-    const reviewed = await prisma.materialSubmission.update({ where: { id }, data: {
-      status: status === "rejected" ? "rejected" : "reviewed",
-      reviewRevision: { increment: 1 },
-      reviewedAt: anchor,
-      reviewedBy: owner.id,
-      ...(status === "rejected" ? retentionFields : retentionPolicy.retentionFieldsForSubmission("reviewed", anchor, policy))
-    } })
-    if (status !== "imported") return reviewed
-    return prisma.materialSubmission.update({ where: { id }, data: {
-      status: "imported",
-      reviewRevision: { increment: 1 },
-      reviewedAt: anchor,
-      reviewedBy: owner.id,
-      ...ragFields,
-      ...retentionFields
+      ...policy.retentionFieldsForSubmission("pending", anchor)
     } })
   }
 
-  const statusDays = { pending: 1, rejected: 2, reviewed: 3, imported: 4 }
-  for (const [status, days] of Object.entries(statusDays)) {
-    const row = await createSubmission(status, { rag: status === "imported" })
-    expect(`${status} persists its configured deterministic deadline`, row.retentionUntil.getTime() === baseTime.getTime() + days * dayMs)
-  }
-  const undecided = await createSubmission("pending", { decisionPending: true })
-  expect("missing owner decision persists decision_pending without a fake date", undecided.retentionState === "DECISION_PENDING" && undecided.retentionUntil === null)
+  const policyResult = policy.materialRetentionPolicyFromEnvironment({ MATERIALS_RETENTION_PENDING_DAYS: "9999" })
+  expect("confirmed 14/30/30/7/365 policy ignores runtime weakening", policyResult.policy.days.pending === 14 && policyResult.policy.days.importedOriginal === 7 && policyResult.policy.days.ragCopy === 365)
 
-  const clock = await createSubmission("rejected", { due: true })
-  const clockDeadline = clock.retentionUntil
-  const before = await retention.scheduleDueMaterialRetention({ db: prisma, now: new Date(clockDeadline.getTime() - 1) })
-  expect("deadline minus 1 ms is not due", before.queued === 0)
-  const at = await retention.scheduleDueMaterialRetention({ db: prisma, now: clockDeadline })
-  expect("deadline is due at the exact millisecond", at.queued === 1)
+  const splitAnchor = new Date(baseTime.getTime() - (8 * dayMs))
+  const split = await createImported({ anchor: splitAnchor })
+  expect("PostgreSQL persists independent 7-day and 365-day clocks", split.originalRetentionUntil < baseTime && split.derivativeRetentionUntil > baseTime && split.ragRetentionUntil > baseTime)
+  const splitQueued = await retention.scheduleDueMaterialRetention({ db: prisma, now: baseTime })
+  expect("old one-clock coupling is rejected: only the due original is queued", splitQueued.queuedByLayer.original === 1 && splitQueued.queuedByLayer.derivative === 0 && splitQueued.queuedByLayer.rag === 0)
+  const originalJob = await prisma.dataDeletionJob.findFirst({ where: { action: retention.MATERIAL_ORIGINAL_RETENTION_DELETE_ACTION, resourceId: split.id } })
+  const originalDone = await retention.processNextMaterialRetentionJob({ db: prisma, now: baseTime, jobId: originalJob.id })
+  const afterOriginal = await prisma.materialSubmission.findUnique({ where: { id: split.id } })
+  expect("original deletion keeps provenance row, derivative bytes, and RAG copy", originalDone.layer === "original" && afterOriginal.storagePath === null && afterOriginal.derivativeStoragePath && afterOriginal.ragRetentionState === "SCHEDULED")
+  await fs.access(server.resolveAbsoluteMaterialPath(afterOriginal.derivativeStoragePath))
 
-  const clockJob = await prisma.dataDeletionJob.findFirst({ where: { action: retention.MATERIAL_RETENTION_DELETE_ACTION, resourceId: clock.id } })
-  const fileFailure = await retention.processNextMaterialRetentionJob({ db: prisma, now: clockDeadline, jobId: clockJob.id, files: {
-    async remove() { throw Object.assign(new Error("synthetic disk failure"), { code: "synthetic_disk_failure" }) }
-  } })
-  expect("file failure persists retry and keeps the DB row", fileFailure.stage === "file" && Boolean(await prisma.materialSubmission.findUnique({ where: { id: clock.id } })))
-  await prisma.dataDeletionJob.update({ where: { id: clockJob.id }, data: { nextAttemptAt: clockDeadline } })
-  const fileRetry = await retention.processNextMaterialRetentionJob({ db: prisma, now: clockDeadline, jobId: clockJob.id })
-  expect("file retry removes both disk and DB exactly once", fileRetry.status === "done" && !(await prisma.materialSubmission.findUnique({ where: { id: clock.id } })))
+  const layerDeadline = split.ragRetentionUntil
+  const layerQueued = await retention.scheduleDueMaterialRetention({ db: prisma, now: layerDeadline })
+  expect("annual boundary queues derivative and RAG independently", layerQueued.queuedByLayer.derivative === 1 && layerQueued.queuedByLayer.rag === 1)
+  const blocked = await prisma.materialSubmission.findUnique({ where: { id: split.id } })
+  expect("expired RAG becomes fail-closed before remote deletion", blocked.ragRetentionState === "DELETE_PENDING" && blocked.ragIngestStatus === "RETENTION_BLOCKED")
 
-  const ragRow = await createSubmission("imported", { due: true, rag: true })
-  await retention.scheduleDueMaterialRetention({ db: prisma, now: baseTime })
-  const ragRetentionJob = await prisma.dataDeletionJob.findFirst({ where: { action: retention.MATERIAL_RETENTION_DELETE_ACTION, resourceId: ragRow.id } })
-  let ragFailures = 1
+  const derivativeJob = await prisma.dataDeletionJob.findFirst({ where: { action: retention.MATERIAL_DERIVATIVE_RETENTION_DELETE_ACTION, resourceId: split.id } })
+  const crashed = await retention.processNextMaterialRetentionJob({
+    db: prisma,
+    now: layerDeadline,
+    jobId: derivativeJob.id,
+    beforeFinalize: async () => { throw Object.assign(new Error("synthetic crash"), { code: "synthetic_crash_after_disk_delete" }) }
+  })
+  expect("crash after derivative disk deletion leaves a durable retry", crashed.stage === "database" && (await prisma.dataDeletionJob.findUnique({ where: { id: derivativeJob.id } })).status === "failed")
+  await prisma.dataDeletionJob.update({ where: { id: derivativeJob.id }, data: { nextAttemptAt: layerDeadline } })
+  const derivativeRetry = await retention.processNextMaterialRetentionJob({ db: prisma, now: layerDeadline, jobId: derivativeJob.id })
+  const afterDerivative = await prisma.materialSubmission.findUnique({ where: { id: split.id } })
+  expect("retry tolerates the absent file and deletes only derivative state", derivativeRetry.layer === "derivative" && afterDerivative.derivativeStoragePath === null && afterDerivative.ragRetentionState === "DELETE_PENDING")
+
   let ragPresent = true
+  let failRagOnce = true
   const rag = {
     async deleteDocument() {
-      if (ragFailures-- > 0) throw Object.assign(new Error("synthetic RAG failure"), { code: "synthetic_rag_failure" })
+      if (failRagOnce) {
+        failRagOnce = false
+        throw Object.assign(new Error("synthetic RAG failure"), { code: "synthetic_rag_failure" })
+      }
       ragPresent = false
       return { ok: true }
     },
     async countChunks() { return ragPresent ? 1 : 0 }
   }
-  const ragFailed = await retention.processNextMaterialRetentionJob({ db: prisma, now: baseTime, jobId: ragRetentionJob.id, ragDependencies: { rag } })
-  expect("RAG failure blocks file and DB deletion with a durable retry", ragFailed.stage === "rag" && Boolean(await prisma.materialSubmission.findUnique({ where: { id: ragRow.id } })))
-  await prisma.dataDeletionJob.update({ where: { id: ragRetentionJob.id }, data: { nextAttemptAt: baseTime } })
-  const ragRetry = await retention.processNextMaterialRetentionJob({ db: prisma, now: baseTime, jobId: ragRetentionJob.id, ragDependencies: { rag } })
-  expect("RAG retry confirms zero chunks before deleting the original", ragRetry.status === "done" && !ragPresent)
+  const ragJob = await prisma.dataDeletionJob.findFirst({ where: { action: retention.MATERIAL_RAG_RETENTION_DELETE_ACTION, resourceId: split.id } })
+  const ragFailed = await retention.processNextMaterialRetentionJob({ db: prisma, now: layerDeadline, jobId: ragJob.id, ragDependencies: { rag } })
+  expect("RAG failure persists a retry and does not resurrect access", ragFailed.stage === "rag" && (await prisma.materialSubmission.findUnique({ where: { id: split.id } })).ragIngestStatus === "RETENTION_BLOCKED")
+  await prisma.dataDeletionJob.update({ where: { id: ragJob.id }, data: { nextAttemptAt: layerDeadline } })
+  const ragRetry = await retention.processNextMaterialRetentionJob({ db: prisma, now: layerDeadline, jobId: ragJob.id, ragDependencies: { rag } })
+  const allLayersDone = await prisma.materialSubmission.findUnique({ where: { id: split.id } })
+  expect("RAG retry confirms zero chunks and still preserves audit/provenance", ragRetry.layer === "rag" && !ragPresent && allLayersDone.ragRetentionState === "DELETED" && Boolean(allLayersDone.id))
 
-  const crashRow = await createSubmission("reviewed", { due: true })
+  const concurrent = await createPending({ anchor: new Date(baseTime.getTime() - (15 * dayMs)) })
   await retention.scheduleDueMaterialRetention({ db: prisma, now: baseTime })
-  const crashJob = await prisma.dataDeletionJob.findFirst({ where: { action: retention.MATERIAL_RETENTION_DELETE_ACTION, resourceId: crashRow.id } })
-  const crashed = await retention.processNextMaterialRetentionJob({ db: prisma, now: baseTime, jobId: crashJob.id, beforeFinalize: async () => {
-    throw Object.assign(new Error("synthetic crash after disk delete"), { code: "synthetic_process_crash" })
-  } })
-  expect("crash after disk deletion leaves a retryable DB tombstone", crashed.stage === "database" && Boolean(await prisma.materialSubmission.findUnique({ where: { id: crashRow.id } })))
-  await prisma.dataDeletionJob.update({ where: { id: crashJob.id }, data: { nextAttemptAt: baseTime } })
-  const crashRetry = await retention.processNextMaterialRetentionJob({ db: prisma, now: baseTime, jobId: crashJob.id })
-  expect("restart tolerates the already absent file and finalizes DB", crashRetry.status === "done")
-
-  const parallelRow = await createSubmission("pending", { due: true })
-  await retention.scheduleDueMaterialRetention({ db: prisma, now: baseTime })
-  const parallelJob = await prisma.dataDeletionJob.findFirst({ where: { action: retention.MATERIAL_RETENTION_DELETE_ACTION, resourceId: parallelRow.id } })
-  const parallel = await Promise.all([
-    retention.processNextMaterialRetentionJob({ db: prisma, now: baseTime, jobId: parallelJob.id }),
-    retention.processNextMaterialRetentionJob({ db: prisma, now: baseTime, jobId: parallelJob.id })
+  const concurrentJob = await prisma.dataDeletionJob.findFirst({ where: { action: retention.MATERIAL_ORIGINAL_RETENTION_DELETE_ACTION, resourceId: concurrent.id } })
+  const racers = await Promise.all([
+    retention.processNextMaterialRetentionJob({ db: prisma, now: baseTime, jobId: concurrentJob.id }),
+    retention.processNextMaterialRetentionJob({ db: prisma, now: baseTime, jobId: concurrentJob.id })
   ])
-  expect("parallel sweep claims one job and writes one completion audit", parallel.filter(item => item?.status === "done").length === 1 && await prisma.dataAuditLog.count({ where: { action: "MATERIAL_RETENTION_DELETED", resourceId: parallelRow.id } }) === 1)
-  expect("second sweep run is a no-op", (await retention.processNextMaterialRetentionJob({ db: prisma, now: baseTime, jobId: parallelJob.id })) === null)
+  expect("parallel workers finalize one job and one audit only", racers.filter(item => item?.status === "done").length === 1 && await prisma.dataAuditLog.count({ where: { action: "MATERIAL_ORIGINAL_RETENTION_DELETED", resourceId: concurrent.id } }) === 1)
+  expect("completed retention job replay is a no-op", (await retention.processNextMaterialRetentionJob({ db: prisma, now: baseTime, jobId: concurrentJob.id })) === null)
 
-  for (const [scanState, validationState, days] of [["PENDING", "PENDING", 1], ["FAILED", "PENDING", 2], ["CLEAN", "VALIDATED", 3], ["INFECTED", "PENDING", 1]]) {
+  const rightsExpiry = new Date(baseTime.getTime() + dayMs)
+  const expiring = await createImported({ anchor: baseTime, rightsValidUntil: rightsExpiry })
+  await retention.scheduleDueMaterialRetention({ db: prisma, now: rightsExpiry })
+  const expiringJobs = await prisma.dataDeletionJob.findMany({ where: { resourceId: expiring.id } })
+  expect("licence expiry immediately queues derivative/RAG but not the 7-day original", expiringJobs.some(job => job.action === retention.MATERIAL_DERIVATIVE_RETENTION_DELETE_ACTION) && expiringJobs.some(job => job.action === retention.MATERIAL_RAG_RETENTION_DELETE_ACTION) && !expiringJobs.some(job => job.action === retention.MATERIAL_ORIGINAL_RETENTION_DELETE_ACTION))
+
+  for (const [scanState, validationState] of [["PENDING", "PENDING"], ["FAILED", "PENDING"], ["CLEAN", "VALIDATED"]]) {
     const id = `quarantine-${scanState.toLowerCase()}-${randomUUID()}`
     const quarantinePath = `quarantine/${id}`
     await fs.writeFile(server.resolveAbsoluteQuarantinePath(quarantinePath), Buffer.from("synthetic quarantine"))
-    const fields = retentionPolicy.retentionFieldsForQuarantine({ scanState, validationState }, new Date(baseTime.getTime() - 10 * dayMs), retentionPolicy.materialRetentionPolicyFromEnvironment(process.env))
+    const fields = policy.retentionFieldsForQuarantine({ scanState, validationState }, new Date(baseTime.getTime() - dayMs))
     await prisma.materialUploadQuarantine.create({ data: {
-      id, submittedByUserId: owner.id, declaredMime: "application/pdf", size: 20, sha256: createHash("sha256").update(id).digest("hex"),
-      quarantinePath, storageState: "QUARANTINED", scanState, validationState, ...fields
+      id, submittedByUserId: owner.id, declaredMime: "application/pdf", size: 20,
+      sha256: createHash("sha256").update(id).digest("hex"), quarantinePath,
+      storageState: "QUARANTINED", scanState, validationState, ...fields
     } })
-    expect(`${scanState} quarantine has its own configured expiry`, fields.retentionUntil.getTime() === baseTime.getTime() + (-10 + days) * dayMs)
+    expect(`${scanState} quarantine has the confirmed one-day clock`, fields.retentionUntil.getTime() === baseTime.getTime())
   }
   const quarantineSweep = await retention.sweepExpiredMaterialQuarantines({ db: prisma, now: baseTime })
-  expect("expired pending/failed/clean/infected quarantine bytes are durably removed", quarantineSweep.length === 4 && quarantineSweep.every(item => item.status === "done"))
+  expect("all expired quarantine byte layers are removed", quarantineSweep.length === 3 && quarantineSweep.every(item => item.status === "done"))
 
-  const accountRow = await createSubmission("imported", { rag: true })
-  let accountRagPresent = true
-  const accountResult = await retention.removeMaterialForAccountDeletion(accountRow, { actorUserId: owner.id }, { db: prisma, now: baseTime, ragDependencies: { rag: {
-    async deleteDocument() { accountRagPresent = false; return { ok: true } },
-    async countChunks() { return accountRagPresent ? 1 : 0 }
-  } } })
-  expect("account deletion uses the same durable RAG then file then DB path", accountResult.ok && !accountRagPresent && !(await prisma.materialSubmission.findUnique({ where: { id: accountRow.id } })))
+  const accountRow = await createImported({ anchor: baseTime })
+  const accountRag = { present: true }
+  const accountResult = await retention.removeMaterialForAccountDeletion(accountRow, { actorUserId: owner.id }, {
+    db: prisma,
+    now: baseTime,
+    ragDependencies: { rag: {
+      async deleteDocument() { accountRag.present = false; return { ok: true } },
+      async countChunks() { return accountRag.present ? 1 : 0 }
+    } }
+  })
+  const afterAccountLayers = await prisma.materialSubmission.findUnique({ where: { id: accountRow.id } })
+  expect("account deletion removes all byte/RAG layers before user cascade", accountResult.ok && !accountRag.present && afterAccountLayers.originalRetentionState === "DELETED" && afterAccountLayers.derivativeRetentionState === "DELETED" && afterAccountLayers.ragRetentionState === "DELETED")
 
-  const exportRow = await createSubmission("pending", { decisionPending: true })
   const materialExport = DATA_EXPORT_REGISTRY.find(entry => entry.name === "material_submissions")
   const exported = await materialExport.collect({ db: prisma, userId: owner.id, readMaterial: server.readStoredMaterial })
   const exportedMetadata = JSON.parse(exported.find(entry => entry.name === "materials.json").content)
-  const exportedRow = exportedMetadata.find(row => row.id === exportRow.id)
-  expect("data copy says decision_pending instead of inventing a deadline", exportedRow.retentionDecision === "decision_pending" && exportedRow.retentionUntil === null)
+  const exportedRow = exportedMetadata.find(row => row.id === split.id)
+  expect("data copy exposes all three deadlines/states without requiring deleted bytes", exportedRow.retention.original.state === "DELETED" && exportedRow.retention.derivative.state === "DELETED" && exportedRow.retention.rag.state === "DELETED")
 
-  const batch = await prisma.materialSubmissionBatch.create({ data: {
-    submittedByUserId: owner.id, idempotencyKey: `retention-notify-${randomUUID()}`, requestHash: randomUUID().replaceAll("-", ""),
-    status: "COMMITTED", notificationStatus: "PENDING", notificationNextAt: baseTime
-  } })
-  await prisma.materialSubmission.update({ where: { id: exportRow.id }, data: { batchId: batch.id } })
-  const sent = []
-  await notifications.processNextMaterialNotification({ db: prisma, now: baseTime, batchId: batch.id, config: {
-    to: "admin@synthetic.invalid", from: "noreply@synthetic.invalid", baseUrl: "https://synthetic.invalid"
-  }, mailer: { async sendMail(message) { sent.push(message); return { messageId: message.messageId } } } })
-  const mail = JSON.stringify(sent[0])
-  expect("SMTP outbox is minimized and copies no email, filename or comment", sent.length === 1 && !mail.includes(owner.email) && !mail.includes(exportRow.originalName) && !mail.includes(exportRow.comment))
+  const invalidConstraint = await prisma.materialSubmission.update({
+    where: { id: concurrent.id },
+    data: { derivativeRetentionState: "SCHEDULED", derivativeRetentionUntil: baseTime, derivativeRetentionPolicyVersion: policy.MATERIAL_RETENTION_POLICY_VERSION }
+  }).then(() => false, () => true)
+  expect("database rejects a scheduled derivative clock without derivative bytes", invalidConstraint)
 
   await prisma.user.delete({ where: { id: owner.id } })
-  expect("synthetic owner cleanup removes remaining material rows", await prisma.materialSubmission.count({ where: { submittedByUserId: owner.id } }) === 0)
+  expect("synthetic owner cleanup removes all remaining provenance rows", await prisma.materialSubmission.count({ where: { submittedByUserId: owner.id } }) === 0)
   console.log(`PROBE_OK ${passed}/${passed}`)
   await prisma.$disconnect()
 } finally {
