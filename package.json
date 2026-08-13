@@ -117,6 +117,7 @@
     "doc:staging:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/document-staging-probe.mjs",
     "doc:mutation:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/document-mutation-race-probe.mjs",
     "doc:rag-removal:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/document-rag-removal-probe.mjs",
+    "doc:rag-removal:live-probe": "node --import ./scripts/register-node-test-loader.mjs --import ./scripts/register-document-rag-live-loader.mjs scripts/document-rag-removal-live-probe.mjs",
     "doc:saved-analysis-export:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/data-export-saved-analysis-probe.mjs",
     "doc:missing-export-file:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/data-export-missing-file-probe.mjs",
     "doc:artifact-audit:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/artifact-deletion-audit-probe.mjs",
