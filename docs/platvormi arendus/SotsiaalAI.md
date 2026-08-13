@@ -2777,7 +2777,11 @@ Töökaust: `C:\Users\rauds\Desktop\SotsiaalAI`.
 
 ### Reeglid
 
-1. **Töö käib otse `main`-is.** Harusid ega worktree-kaustu ei tehta. Üks teema korraga.
+1. **`main` on integratsioonipuu; parandused käivad kolmes püsivas tööpuus.**
+   `SotsiaalAI-repair-a/b/c` kasutavad harusid `codex/repair-a/b/c`. Ühes tööpuus on korraga üks
+   kirjutaja ja üks failipiiridega sidus teema. Enne uut teemat peab haru olema puhas ning
+   integreeritud `main`-iga samal lähte-SHA-l; ametlik DONE tekib alles integreeritud ja
+   kontrollitud `main`-is. Täpne integratsiooni- ja konfliktikord on `AGENTS.md`-s.
 2. **Ploki järel väike värav, peatüki lõpus täisvärav.** Ploki järel: sihttestid, nõutud sond,
    eslint muudetud koodifailidel ja `git diff --check`; i18n ainult tõlkemuudatusel ning
    `db:migrate:check` kohe skeemimuudatusel. `TZ=UTC npm test` käib peatüki lõpus ning alati enne
@@ -2795,6 +2799,10 @@ Miks need reeglid tekkisid — `git show db514ba0:"docs/platvormi arendus/SEIS.m
 
 ### Kiirrežiim SOL-parandustele (omanik 12.08: üle 100 leiu, liigume plokkidena)
 
+- Kuni kolm sõltumatut peatükki/plokki võivad liikuda paralleelselt püsivates
+  `repair-a/b/c` tööpuudes. Enne väljastamist lukustatakse iga ploki failipiir; skeemi,
+  migratsioone, shared-helpereid, privaatsus- ja koondfaile puudutavad kattuvad plokid liiguvad
+  järjestikku või ühe omaniku all.
 - **Tööühik on 2–8 seotud leidu**, millel on sama helper, teenus, andmemudel või runtime-rada.
   Üks suur mitmekihiline leid võib olla omaette plokk; seoseta leide ei liideta.
 - Alguses üks lühike kaart: vastuvõtukriteerium → failid → sihttest → DB/brauseri vajadus.
