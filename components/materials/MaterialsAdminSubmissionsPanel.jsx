@@ -174,6 +174,56 @@ export default function MaterialsAdminSubmissionsPanel({
     }
   }
 
+  async function handleRagImport(item) {
+    if (reviewingId || item.status !== "reviewed") return
+    const authorName = window.prompt(t("materials_page.admin.rag_author_prompt", "Autor"), "")
+    if (!authorName) return
+    const rightsHolder = window.prompt(t("materials_page.admin.rag_rights_holder_prompt", "Õiguste omaja"), "")
+    if (!rightsHolder) return
+    const rightsBasis = window.prompt(
+      t("materials_page.admin.rag_rights_basis_prompt", "Õiguste alus: PUBLIC_DOMAIN, OPEN_LICENSE või DOCUMENTED_PERMISSION"),
+      ""
+    )
+    if (!rightsBasis) return
+    const rightsEvidence = window.prompt(t("materials_page.admin.rag_rights_evidence_prompt", "Dokumenteeritud tõendi viide"), "")
+    if (!rightsEvidence) return
+    if (!window.confirm(t(
+      "materials_page.admin.rag_classification_confirm",
+      "Kinnitan, et materjal ei sisalda kliendijuhtumit, konfidentsiaalset teavet ega isikuandmeid."
+    ))) return
+
+    setReviewingId(item.id)
+    setAdminError("")
+    try {
+      const response = await fetch(`/api/materials/${encodeURIComponent(item.id)}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "import_rag",
+          expectedRevision: item.reviewRevision,
+          rights: {
+            authorName,
+            rightsHolder,
+            rightsBasis,
+            rightsEvidence,
+            clientCaseMaterial: false,
+            confidential: false,
+            containsPersonalData: false
+          }
+        })
+      })
+      const payload = await response.json().catch(() => ({}))
+      if (!response.ok) throw new Error(payload?.message || t("materials_page.errors.rag_ingest_failed"))
+      if (payload?.submission?.id) {
+        setItems(current => current.map(row => row.id === payload.submission.id ? payload.submission : row))
+      }
+    } catch (error) {
+      setAdminError(error?.message || t("materials_page.errors.rag_ingest_failed"))
+    } finally {
+      setReviewingId("")
+    }
+  }
+
   const actionButtonSize = isRagAdmin ? "sm" : "md"
 
   const header = (
@@ -264,9 +314,9 @@ export default function MaterialsAdminSubmissionsPanel({
                 <Button
                   as="a"
                   size={actionButtonSize}
-                  href={`/api/materials/${encodeURIComponent(item.id)}/download`}
+                  href={`/api/materials/${encodeURIComponent(item.id)}/preview`}
                 >
-                  {t("materials_page.admin.download")}
+                  {t("materials_page.admin.sanitized_preview")}
                 </Button>
                 <Button
                   variant="primary"
@@ -279,8 +329,8 @@ export default function MaterialsAdminSubmissionsPanel({
                 <Button
                   variant="primary"
                   size={actionButtonSize}
-                  disabled
-                  title={t("materials_page.admin.import_requires_policy")}
+                  disabled={reviewingId === item.id || item.status !== "reviewed"}
+                  onClick={() => void handleRagImport(item)}
                 >
                   {t("materials_page.admin.mark_imported", "Margi impordituks")}
                 </Button>

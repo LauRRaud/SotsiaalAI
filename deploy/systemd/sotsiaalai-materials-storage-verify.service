@@ -1,0 +1,14 @@
+[Unit]
+Description=Verify SotsiaalAI materials storage isolation
+Requires=sotsiaalai-materials-storage.mount
+After=sotsiaalai-materials-storage.mount
+Before=sotsiaalai-frontend.service
+
+[Service]
+Type=oneshot
+User=root
+ExecStart=/usr/bin/bash -ceu 'options=$(/usr/bin/findmnt -n -o OPTIONS --target /var/lib/sotsiaalai/materials); for required in nodev nosuid noexec; do case ",${options}," in *",${required},"*) ;; *) echo "missing mount option: ${required}" >&2; exit 1;; esac; done; /usr/bin/install -d -o sotsiaalai -g sotsiaalai -m 0750 /var/lib/sotsiaalai/materials; /usr/bin/install -d -o sotsiaalai -g sotsiaalai -m 0700 /var/lib/sotsiaalai/materials/uploads /var/lib/sotsiaalai/materials/quarantine /var/lib/sotsiaalai/materials/sanitized; test "$(/usr/bin/stat -c %%U:%%G:%%a /var/lib/sotsiaalai/materials)" = "sotsiaalai:sotsiaalai:750"'
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

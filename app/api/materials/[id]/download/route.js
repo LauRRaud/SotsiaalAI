@@ -6,7 +6,7 @@ import { errorJson, localeFromRequest } from "@/lib/documents/server"
 import { getMaterialSubmissionSchemaMessage, isMaterialSubmissionSchemaError } from "@/lib/materials/compat"
 import { getMaterialSubmissionDownload } from "@/lib/materials/lifecycle"
 import { auditMaterialDownload } from "@/lib/materials/review"
-import { buildDownloadHeaders, readStoredMaterial } from "@/lib/materials/server"
+import { buildDownloadHeaders, readSanitizedMaterial, readStoredMaterial } from "@/lib/materials/server"
 import { safeError } from "@/lib/privacy/safeError"
 
 export const runtime = "nodejs"
@@ -39,7 +39,9 @@ export async function GET(request, { params }) {
       admin: authz.admin
     })
 
-    const fileBuffer = await readStoredMaterial(submission.storagePath)
+    const fileBuffer = authz.admin
+      ? await readSanitizedMaterial(submission.storagePath)
+      : await readStoredMaterial(submission.storagePath)
     await auditMaterialDownload(submission, {
       actorUserId: session?.user?.id || null,
       admin: authz.admin,
@@ -48,7 +50,9 @@ export async function GET(request, { params }) {
     })
     return new Response(fileBuffer, {
       status: 200,
-      headers: buildDownloadHeaders(submission.originalName, submission.mime)
+      headers: authz.admin
+        ? buildDownloadHeaders(`${submission.originalName}.sanitized.txt`, "text/plain; charset=utf-8")
+        : buildDownloadHeaders(submission.originalName, submission.mime)
     })
   } catch (error) {
     console.error("[materials] download failed", safeError(error))

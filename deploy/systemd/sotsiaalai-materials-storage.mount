@@ -1,0 +1,12 @@
+[Unit]
+Description=SotsiaalAI isolated materials storage
+Before=sotsiaalai-frontend.service
+
+[Mount]
+What=/dev/disk/by-label/SOTSIAALAI_MATERIALS
+Where=/var/lib/sotsiaalai/materials
+Type=ext4
+Options=rw,nodev,nosuid,noexec,noatime
+
+[Install]
+WantedBy=multi-user.target

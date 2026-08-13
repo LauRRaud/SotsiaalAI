@@ -82,10 +82,13 @@ test("quarantine write and CLEAN scan happen before the parser", async () => {
         state: "CLEAN", engine: "ClamAV", engineVersion: "1", signatureVersion: "2", signatureUpdatedAt: new Date()
       } } },
       validate: async () => { events.push("parse") },
+      sanitizer: { async sanitize() { events.push("sanitize"); return {
+        buffer: Buffer.from("safe text\n"), mime: "text/plain; charset=utf-8", sha256: "b".repeat(64), version: "test-v1"
+      } } },
       audit
     }
   )
-  assert.deepEqual(events, ["write:quarantine", "scan", "parse"])
+  assert.deepEqual(events, ["write:quarantine", "scan", "parse", "sanitize"])
   assert.equal(result.scanState, "CLEAN")
   assert.equal(result.validationState, "VALIDATED")
   assert.equal(db.receipts.get(result.quarantineReceiptId).quarantinePath.includes("safe.pdf"), false)
