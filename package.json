@@ -103,6 +103,7 @@
     "help:match-lifecycle:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/help-match-lifecycle-probe.mjs",
     "help:accepted-listing-delete:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/help-accepted-listing-delete-probe.mjs",
     "help:chapter-closure:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/help-chapter-closure-probe.mjs",
+    "search:chapter:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/search-chapter-probe.mjs",
     "reflection:lifecycle:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/reflection-lifecycle-probe.mjs",
     "reflection:retention": "node --import ./scripts/register-node-test-loader.mjs scripts/reflection-retention.mjs",
     "reflection:chapter-closure:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/reflection-chapter-closure-probe.mjs",

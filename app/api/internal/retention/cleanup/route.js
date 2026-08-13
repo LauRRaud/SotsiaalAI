@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { assertRetentionAccess, maybeRunRetentionCleanup } from "@/lib/retention";
 import { logDataAudit } from "@/lib/privacy/audit";
+import { runRetentionMaintenanceWithSharedLock } from "@/lib/search/retentionMaintenance";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -17,7 +18,7 @@ function json(payload, status = 200) {
   });
 }
 
-export async function POST(request) {
+export async function POST(request, deps = {}) {
   const access = await assertRetentionAccess(request);
   if (!access?.ok) {
     return json(
@@ -30,7 +31,21 @@ export async function POST(request) {
     );
   }
 
-  const result = await maybeRunRetentionCleanup({ force: true });
+  const runWithLock = deps.runWithLock || runRetentionMaintenanceWithSharedLock;
+  const cleanup = deps.cleanup || maybeRunRetentionCleanup;
+  const maintenance = await runWithLock({
+    run: () => cleanup({ force: true })
+  });
+  if (!maintenance.ran) {
+    return json({
+      ok: true,
+      scope: access.scope,
+      ran: false,
+      reason: maintenance.reason,
+      retryAfterSeconds: maintenance.retryAfterSeconds
+    }, 202);
+  }
+  const result = maintenance.result;
   await logDataAudit({
     action: "RETENTION_CLEANUP_TRIGGERED",
     resourceType: "Retention",
@@ -44,6 +59,7 @@ export async function POST(request) {
   return json({
     ok: true,
     scope: access.scope,
+    ran: true,
     result
   });
 }

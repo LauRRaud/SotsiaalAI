@@ -1,90 +1,99 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { GET } from "../../app/api/otsi/route.js";
+import { GET, POST } from "../../app/api/otsi/route.js";
 
 const OWNER = "user-a";
-const req = (q) => ({ url: `https://x.test/api/otsi${q}` });
+const req = (body = {}) => new Request("https://x.test/api/otsi", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(body)
+});
 
 function makeDeps(overrides = {}) {
   return {
     requireUser: async () => ({ ok: true, userId: OWNER }),
-    enforceRateLimit: () => null,
-    search: async () => [],
+    enforceRateLimit: async () => ({ allowed: true }),
+    search: async () => ({
+      results: [], partial: false, unavailableKinds: [],
+      pagination: { hasMore: false, nextCursor: {} }
+    }),
     prisma: {},
     ...overrides
   };
 }
 
-test("unauthenticated request is rejected with 401 and never searches", async () => {
+test("GET never accepts private search text", async () => {
+  const response = await GET();
+  assert.equal(response.status, 405);
+  assert.equal(response.headers.get("allow"), "POST");
+});
+
+test("unauthenticated request is rejected before limiter and search", async () => {
+  let limited = false;
   let searched = false;
-  const res = await GET(req("?q=abi"), makeDeps({
+  const response = await POST(req({ query: "abi" }), makeDeps({
     requireUser: async () => ({ ok: false, status: 401, message: "api.common.unauthorized" }),
-    search: async () => { searched = true; return []; }
+    enforceRateLimit: async () => { limited = true; return { allowed: true }; },
+    search: async () => { searched = true; return {}; }
   }));
-  assert.equal(res.status, 401);
-  const body = await res.json();
-  assert.equal(body.ok, false);
-  assert.equal(body.messageKey, "api.common.unauthorized");
+  assert.equal(response.status, 401);
+  assert.equal(limited, false);
   assert.equal(searched, false);
 });
 
-test("a rate-limited request returns the limiter response and never searches", async () => {
+test("durable limiter runs before payload parsing and scanning", async () => {
   let searched = false;
-  const sentinel = { status: 429, __limiter: true };
-  const res = await GET(req("?q=abi"), makeDeps({
-    enforceRateLimit: () => sentinel,
-    search: async () => { searched = true; return []; }
+  const response = await POST(req({ query: "abi" }), makeDeps({
+    enforceRateLimit: async () => ({ allowed: false, retryAfterSeconds: 7 }),
+    search: async () => { searched = true; return {}; }
   }));
-  assert.equal(res, sentinel);
+  assert.equal(response.status, 429);
+  assert.equal(response.headers.get("retry-after"), "7");
   assert.equal(searched, false);
 });
 
-test("a too-long query is rejected with 400 before any search", async () => {
-  let searched = false;
-  const res = await GET(req(`?q=${"x".repeat(200)}`), makeDeps({
-    search: async () => { searched = true; return []; }
+test("limiter storage failure is fail-closed", async () => {
+  const response = await POST(req({ query: "abi" }), makeDeps({
+    enforceRateLimit: async () => { throw new Error("database offline"); }
   }));
-  assert.equal(res.status, 400);
-  const body = await res.json();
-  assert.equal(body.ok, false);
-  assert.equal(body.messageKey, "api.search.query_too_long");
-  assert.equal(searched, false);
+  assert.equal(response.status, 503);
 });
 
-test("an empty query returns an empty result without scanning", async () => {
-  let searched = false;
-  const res = await GET(req("?q=%20%20"), makeDeps({
-    search: async () => { searched = true; return []; }
-  }));
-  assert.equal(res.status, 200);
-  const body = await res.json();
-  assert.deepEqual(body, { ok: true, results: [] });
-  assert.equal(searched, false);
+test("invalid, too-long and blank payloads never scan", async () => {
+  let searches = 0;
+  const deps = makeDeps({ search: async () => { searches += 1; return {}; } });
+  const invalid = await POST(new Request("https://x.test/api/otsi", { method: "POST", body: "{" }), deps);
+  const long = await POST(req({ query: "x".repeat(200) }), deps);
+  const blank = await POST(req({ query: "  " }), deps);
+  assert.equal(invalid.status, 400);
+  assert.equal(long.status, 400);
+  assert.equal(blank.status, 200);
+  assert.equal(searches, 0);
 });
 
-test("a server-side failure is reported as a safe 500, not a false empty result", async () => {
-  const res = await GET(req("?q=abi"), makeDeps({
-    search: async () => { throw new Error("boom secret detail"); }
-  }));
-  assert.equal(res.status, 500);
-  const body = await res.json();
-  assert.equal(body.ok, false);
-  assert.equal(body.messageKey, "api.search.unavailable");
-  assert.equal(JSON.stringify(body).includes("secret"), false);
-});
-
-test("a successful search passes the normalized query + owner through and returns only its results", async () => {
+test("normalized private query and source cursors reach the owner-scoped service via body", async () => {
   const seen = [];
-  const results = [{ kind: "journey", title: "Abi", status: "ACTIVE", updatedAt: "2026-07-17T00:00:00.000Z", href: "/teekond/j1" }];
-  const res = await GET(req("?q=%20%20abi%20%20plaan%20"), makeDeps({
-    search: async (args) => { seen.push(args); return results; }
+  const result = {
+    results: [{ kind: "journey", title: "Abi", href: "/teekond/j1" }],
+    partial: true,
+    unavailableKinds: ["document"],
+    pagination: { hasMore: true, nextCursor: { journey: "j1" } }
+  };
+  const response = await POST(req({ query: "  abi   plaan ", cursor: { journey: "j0" } }), makeDeps({
+    search: async (args) => { seen.push(args); return result; }
   }));
-  assert.equal(res.status, 200);
-  const body = await res.json();
-  assert.equal(body.ok, true);
-  assert.deepEqual(body.results, results);
-  assert.equal(seen.length, 1);
+  assert.equal(response.status, 200);
+  assert.deepEqual(await response.json(), { ok: true, ...result });
   assert.equal(seen[0].userId, OWNER);
   assert.equal(seen[0].query, "abi plaan");
+  assert.deepEqual(seen[0].cursor, { journey: "j0" });
+});
+
+test("authorization failures fail the whole response closed", async () => {
+  const response = await POST(req({ query: "abi" }), makeDeps({
+    search: async () => { throw Object.assign(new Error("FORBIDDEN"), { status: 403 }); }
+  }));
+  assert.equal(response.status, 403);
+  assert.equal((await response.json()).messageKey, "api.common.forbidden");
 });

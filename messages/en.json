@@ -3320,6 +3320,9 @@
     "updated_at": "Updated",
     "approved_at": "Approved",
     "artifact_detail_title": "Agent result",
+    "detail_title": "Document",
+    "file_label": "File",
+    "size_label": "File size",
     "draft_notice": "This draft is editable. Download becomes available after approval.",
     "template_label": "Selected template",
     "sources_section_title": "Sources",
@@ -8481,6 +8484,14 @@
     "error": "Search is unavailable right now. Please try again.",
     "retry": "Try again",
     "results": "Search results",
+    "partial": "Some results are temporarily unavailable: {kinds}.",
+    "load_more": "Show more",
+    "loading_more": "Loading…",
+    "untitled": {
+      "conversation": "Untitled conversation",
+      "journey": "Untitled Journey",
+      "document": "Untitled document"
+    },
     "kinds": {
       "conversation": "Conversation",
       "journey": "Journey",

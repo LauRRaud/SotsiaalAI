@@ -18,27 +18,56 @@ export default function PersonalSearchPage() {
   const [query, setQuery] = useState("");
   const [state, setState] = useState("idle");
   const [results, setResults] = useState([]);
+  const [pagination, setPagination] = useState({ hasMore: false, nextCursor: null });
+  const [unavailableKinds, setUnavailableKinds] = useState([]);
+  const [loadingMore, setLoadingMore] = useState(false);
   const abortRef = useRef(null);
   const requestRef = useRef(0);
 
-  const search = useCallback(async (nextQuery) => {
+  const search = useCallback(async (nextQuery, { append = false, cursor = null } = {}) => {
     const normalized = String(nextQuery || "").trim();
     abortRef.current?.abort();
-    if (!normalized) { setResults([]); setState("idle"); return; }
+    if (!normalized) {
+      setResults([]);
+      setPagination({ hasMore: false, nextCursor: null });
+      setUnavailableKinds([]);
+      setState("idle");
+      return;
+    }
     const token = ++requestRef.current;
     const controller = new AbortController();
     abortRef.current = controller;
-    setState("loading");
+    if (append) setLoadingMore(true);
+    else setState("loading");
     try {
-      const response = await fetch(`/api/otsi?q=${encodeURIComponent(normalized)}`, { cache: "no-store", signal: controller.signal });
+      const response = await fetch("/api/otsi", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query: normalized, cursor }),
+        cache: "no-store",
+        signal: controller.signal
+      });
       const payload = await response.json().catch(() => ({}));
       if (token !== requestRef.current) return;
       if (!response.ok || payload?.ok !== true) throw new Error(payload?.messageKey || "api.search.unavailable");
-      setResults(Array.isArray(payload.results) ? payload.results : []);
-      setState(Array.isArray(payload.results) && payload.results.length ? "results" : "empty");
+      const nextResults = Array.isArray(payload.results) ? payload.results : [];
+      setResults((current) => {
+        if (!append) return nextResults;
+        const byTarget = new Map(current.map((item) => [`${item.kind}:${item.href}`, item]));
+        nextResults.forEach((item) => byTarget.set(`${item.kind}:${item.href}`, item));
+        return Array.from(byTarget.values());
+      });
+      setPagination({
+        hasMore: Boolean(payload?.pagination?.hasMore),
+        nextCursor: payload?.pagination?.nextCursor || null
+      });
+      setUnavailableKinds(Array.isArray(payload?.unavailableKinds) ? payload.unavailableKinds : []);
+      setState(append || nextResults.length ? "results" : "empty");
     } catch (error) {
       if (error?.name === "AbortError" || token !== requestRef.current) return;
       setState("error");
+    } finally {
+      if (token === requestRef.current) setLoadingMore(false);
     }
   }, []);
 
@@ -66,19 +95,39 @@ export default function PersonalSearchPage() {
           <button type="button" onClick={() => search(query)}>{t("personal_search.retry", "Proovi uuesti")}</button>
         </div>
       ) : null}
+      {unavailableKinds.length ? (
+        <p role="alert">
+          {t("personal_search.partial", {
+            kinds: unavailableKinds.map((kind) => t(`personal_search.kinds.${kind}`, kind)).join(", ")
+          })}
+        </p>
+      ) : null}
       {state === "results" ? (
-        <ol aria-label={t("personal_search.results", "Otsingutulemused")}>
-          {results.map((item, index) => (
-            <li key={`${item.kind}-${index}`}>
-              <a href={localizePath(item.href, locale)}>
-                <span>{item.title}</span>
-                <span>{t(`personal_search.kinds.${item.kind}`, item.kind)}</span>
-                <span>{item.status ? t(`personal_search.status.${String(item.status).toLowerCase()}`, item.status) : ""}</span>
-                <time dateTime={item.updatedAt || undefined}>{formatDate(item.updatedAt, locale)}</time>
-              </a>
-            </li>
-          ))}
-        </ol>
+        <>
+          <ol aria-label={t("personal_search.results", "Otsingutulemused")}>
+            {results.map((item) => (
+              <li key={`${item.kind}:${item.href}`}>
+                <a href={localizePath(item.href, locale)}>
+                  <span>{item.title || t(`personal_search.untitled.${item.kind}`, item.kind)}</span>
+                  <span>{t(`personal_search.kinds.${item.kind}`, item.kind)}</span>
+                  <span>{item.status ? t(`personal_search.status.${String(item.status).toLowerCase()}`, item.status) : ""}</span>
+                  <time dateTime={item.updatedAt || undefined}>{formatDate(item.updatedAt, locale)}</time>
+                </a>
+              </li>
+            ))}
+          </ol>
+          {pagination.hasMore ? (
+            <button
+              type="button"
+              disabled={loadingMore}
+              onClick={() => search(query, { append: true, cursor: pagination.nextCursor })}
+            >
+              {loadingMore
+                ? t("personal_search.loading_more", "Laadin…")
+                : t("personal_search.load_more", "Näita rohkem")}
+            </button>
+          ) : null}
+        </>
       ) : null}
     </main>
   );

@@ -3320,6 +3320,9 @@
     "updated_at": "Uuendatud",
     "approved_at": "Kinnitatud",
     "artifact_detail_title": "Agendi tulemus",
+    "detail_title": "Dokument",
+    "file_label": "Fail",
+    "size_label": "Faili suurus",
     "draft_notice": "See mustand on muudetav. Allalaadimine muutub kättesaadavaks pärast kinnitamist.",
     "template_label": "Valitud mall",
     "sources_section_title": "Allikdokumendid",
@@ -8483,6 +8486,14 @@
     "error": "Otsingut ei saanud praegu teha. Proovi uuesti.",
     "retry": "Proovi uuesti",
     "results": "Otsingutulemused",
+    "partial": "Osa tulemusi ei ole praegu saadaval: {kinds}.",
+    "load_more": "Näita rohkem",
+    "loading_more": "Laadin…",
+    "untitled": {
+      "conversation": "Pealkirjata vestlus",
+      "journey": "Pealkirjata Teekond",
+      "document": "Pealkirjata dokument"
+    },
     "kinds": {
       "conversation": "Vestlus",
       "journey": "Teekond",
