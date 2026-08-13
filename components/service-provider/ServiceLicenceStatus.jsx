@@ -16,6 +16,7 @@
 */
 
 import { useCallback, useState } from "react";
+import { formatLicenceRetryAfter, formatLicenceVerifiedDate } from "@/lib/mtr/licenceCooldown";
 
 function readText(t, key, fallback) {
   return typeof t === "function" ? t(key, fallback) : fallback;
@@ -25,17 +26,10 @@ function readTextWithVars(t, key, vars, fallback = "") {
   return typeof t === "function" ? t(key, vars, fallback) : fallback;
 }
 
-export function formatLicenceDate(value) {
-  if (!value) return "";
-  const date = value instanceof Date ? value : new Date(value);
-  if (Number.isNaN(date.getTime())) return "";
-  return new Intl.DateTimeFormat("et-EE", { dateStyle: "long", timeZone: "Europe/Tallinn" }).format(date);
-}
-
 const ENDPOINT = "/api/service-provider/profile/licence-check";
 
 /** Loaseisude laadimine, käsitsi kontroll ja jahtumisaeg ühes kohas. */
-export function useServiceLicenceStatuses({ t }) {
+export function useServiceLicenceStatuses({ t, locale = "et" }) {
   const [statuses, setStatuses] = useState(() => new Map());
   const [checking, setChecking] = useState(false);
   const [notice, setNotice] = useState("");
@@ -71,7 +65,7 @@ export function useServiceLicenceStatuses({ t }) {
       if (response.status === 429) {
         setNotice(
           readTextWithVars(t, "service_provider_profile.licence.internal.cooldown", {
-            time: formatLicenceDate(payload?.retryAfter)
+            time: formatLicenceRetryAfter(payload?.retryAfter, locale)
           })
         );
         return;
@@ -100,7 +94,7 @@ export function useServiceLicenceStatuses({ t }) {
     } finally {
       setChecking(false);
     }
-  }, [applyRows, checking, t]);
+  }, [applyRows, checking, locale, t]);
 
   /* Profiili salvestamine teeb teenustele delete + create, seega hinnangud
      kaovad kaskaadis. Vana märgis ei tohi ekraanile jääda. */
@@ -109,7 +103,7 @@ export function useServiceLicenceStatuses({ t }) {
   return { statuses, checking, notice, load, recheck, reset };
 }
 
-export default function ServiceLicenceStatus({ t, row }) {
+export default function ServiceLicenceStatus({ t, locale = "et", row }) {
   if (!row) return null;
   const badge = row.badge || null;
   const internal = row.internal || null;
@@ -145,7 +139,7 @@ export default function ServiceLicenceStatus({ t, row }) {
             )
           : readTextWithVars(t, badge.key, {
               /* 2. reegel: kuupäev MÄRGISELT, mitte viimaselt katselt. */
-              date: formatLicenceDate(badge.params?.date || row.verifiedAt),
+              date: formatLicenceVerifiedDate(badge.params?.date || row.verifiedAt, locale),
               activity: badge.params?.activity || ""
             })}
       </p>

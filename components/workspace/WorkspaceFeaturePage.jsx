@@ -53,6 +53,7 @@ import AdminRoleViewCycleButton from "./AdminRoleViewCycleButton";
 import HelpMatchDecisionPanel from "./HelpMatchDecisionPanel";
 import ServiceMapLeaflet from "./ServiceMapLeaflet";
 import ServiceLicenceStatus, { useServiceLicenceStatuses } from "@/components/service-provider/ServiceLicenceStatus";
+import { SERVICE_PROFILE_LIMITS } from "@/lib/serviceProviderProfileLimits";
 
 const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAALAI_CHAT_WORKSPACE_RESTORE__";
 const SERVICE_MAP_RESULT_BUTTON_LIMIT = 24;
@@ -4163,23 +4164,29 @@ function ServiceProfileChipField({
   );
 }
 
-function ServiceProfileInput({ className, ...props }) {
+function ServiceProfileInput({ className, maxLength = SERVICE_PROFILE_LIMITS.shortText, ...props }) {
+  const valueLength = typeof props.value === "string" ? props.value.length : 0;
   return (
     <ServiceProfileGlowField>
       <Input
         className={className}
+        maxLength={maxLength}
         {...props}
       />
+      <span aria-live="polite">{valueLength} / {maxLength}</span>
     </ServiceProfileGlowField>
   );
 }
 
-function ServiceProfileTextarea({ className, ...props }) {
+function ServiceProfileTextarea({ className, maxLength = SERVICE_PROFILE_LIMITS.text, ...props }) {
+  const valueLength = typeof props.value === "string" ? props.value.length : 0;
   return (
     <ServiceProfileGlowField className={className}>
       <textarea
+        maxLength={maxLength}
         {...props}
       />
+      <span aria-live="polite">{valueLength} / {maxLength}</span>
     </ServiceProfileGlowField>
   );
 }
@@ -4256,6 +4263,7 @@ function ServiceProfileAddressInput({ t, form, onTyping, onSelect }) {
     <div>
       <ServiceProfileInput
         value={query}
+        maxLength={SERVICE_PROFILE_LIMITS.addressQuery}
         autoComplete="off"
         placeholder={readText(t, "workspace_feature_pages.service_profile.address_search.placeholder", "Alusta aadressi kirjutamist")}
         onFocus={() => setOpen(true)}
@@ -4299,13 +4307,13 @@ function ServiceProfileAddressInput({ t, form, onTyping, onSelect }) {
   );
 }
 
-function ServiceProfileSurface({ t }) {
+function ServiceProfileSurface({ t, locale }) {
   const [form, setForm] = useState(() => createServiceProfileForm());
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [confirmingServiceId, setConfirmingServiceId] = useState("");
-  const licence = useServiceLicenceStatuses({ t });
+  const licence = useServiceLicenceStatuses({ t, locale });
   const [notice, setNotice] = useState("");
   const [error, setError] = useState("");
   const [conflictProfile, setConflictProfile] = useState(null);
@@ -4367,7 +4375,8 @@ function ServiceProfileSurface({ t }) {
         const response = await fetch("/api/service-provider/profile", { cache: "no-store" });
         const payload = await response.json().catch(() => ({}));
         if (!response.ok) {
-          throw new Error(payload?.message || readText(t, "workspace_feature_pages.service_profile.errors.load_failed", "Teenuseprofiili ei saanud laadida."));
+          const message = payload?.message || readText(t, "workspace_feature_pages.service_profile.errors.load_failed", "Teenuseprofiili ei saanud laadida.");
+          throw new Error(payload?.correlationId ? `${message} (${payload.correlationId})` : message);
         }
         if (!cancelled) {
           const loadedProfile = payload?.profile || null;
@@ -4413,10 +4422,12 @@ function ServiceProfileSurface({ t }) {
   const addServiceLocation = useCallback(() => {
     setForm((current) => ({
       ...current,
-      serviceLocations: [
-        ...current.serviceLocations,
-        createServiceProfileLocationForm(null, current.serviceLocations.length, current)
-      ]
+      serviceLocations: current.serviceLocations.length >= SERVICE_PROFILE_LIMITS.locations
+        ? current.serviceLocations
+        : [
+            ...current.serviceLocations,
+            createServiceProfileLocationForm(null, current.serviceLocations.length, current)
+          ]
     }));
   }, []);
   const removeServiceLocation = useCallback((index) => {
@@ -4466,10 +4477,12 @@ function ServiceProfileSurface({ t }) {
   const addServiceItem = useCallback(() => {
     setForm((current) => ({
       ...current,
-      serviceItems: [
-        ...current.serviceItems,
-        createServiceProfileServiceForm(null, current.serviceItems.length, current)
-      ]
+      serviceItems: current.serviceItems.length >= SERVICE_PROFILE_LIMITS.services
+        ? current.serviceItems
+        : [
+            ...current.serviceItems,
+            createServiceProfileServiceForm(null, current.serviceItems.length, current)
+          ]
     }));
   }, []);
   const removeServiceItem = useCallback((index) => {
@@ -4506,7 +4519,8 @@ function ServiceProfileSurface({ t }) {
         throw new Error(readText(t, "workspace_feature_pages.service_profile.errors.availability_conflict", "Kättesaadavuse info muutus vahepeal. Laadisin värske seisu; vaata see üle ja kinnita uuesti."));
       }
       if (!response.ok) {
-        throw new Error(payload?.message || readText(t, "workspace_feature_pages.service_profile.errors.availability_confirmation_failed", "Kättesaadavust ei saanud kinnitada."));
+        const message = payload?.message || readText(t, "workspace_feature_pages.service_profile.errors.availability_confirmation_failed", "Kättesaadavust ei saanud kinnitada.");
+        throw new Error(payload?.correlationId ? `${message} (${payload.correlationId})` : message);
       }
       applyLoadedProfile(payload?.profile || null);
       setNotice(readText(t, "workspace_feature_pages.service_profile.availability.confirmed", "Kättesaadavuse info kinnitati."));
@@ -4533,7 +4547,8 @@ function ServiceProfileSurface({ t }) {
       const response = await fetch("/api/service-provider/profile", {
         method: "PUT",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "Idempotency-Key": globalThis.crypto?.randomUUID?.() || `profile-save-${Date.now()}`
         },
         body: JSON.stringify({
           ...form,
@@ -4554,7 +4569,7 @@ function ServiceProfileSurface({ t }) {
           serviceLocations: form.serviceLocations
             .map((item, index) => ({
               ...item,
-              status: form.status === "PUBLISHED" ? "PUBLISHED" : "DRAFT",
+              status: item.status,
               sortOrder: index
             }))
             .filter((item) => String(item.address || item.normalizedAddress || item.label || "").trim()),
@@ -4580,7 +4595,7 @@ function ServiceProfileSurface({ t }) {
                 inquiryLanguages: splitList(item.inquiryLanguages),
                 communicationSupport: splitList(item.communicationSupport),
                 locationIds: Array.isArray(item.locationIds) ? item.locationIds : [],
-                status: form.status === "PUBLISHED" ? "PUBLISHED" : "DRAFT",
+                status: item.status,
                 sortOrder: index
               };
             })
@@ -4589,13 +4604,14 @@ function ServiceProfileSurface({ t }) {
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok) {
-        if (response.status === 409 && payload?.message === "service_provider_profile.errors.profile_conflict") {
+        if (response.status === 409 && payload?.messageKey === "service_provider_profile.errors.profile_conflict") {
           const freshResponse = await fetch("/api/service-provider/profile", { cache: "no-store" });
           const freshPayload = await freshResponse.json().catch(() => ({}));
           if (freshResponse.ok) setConflictProfile(freshPayload?.profile || null);
           throw new Error(readText(t, "workspace_feature_pages.service_profile.errors.profile_conflict", "Profiili muudeti vahepeal. Sinu vorm säilis; võrdle värske versiooniga või laadi see vormile."));
         }
-        throw new Error(payload?.message || readText(t, "workspace_feature_pages.service_profile.errors.save_failed", "Teenuseprofiili ei saanud salvestada."));
+        const message = payload?.message || readText(t, "workspace_feature_pages.service_profile.errors.save_failed", "Teenuseprofiili ei saanud salvestada.");
+        throw new Error(payload?.correlationId ? `${message} (${payload.correlationId})` : message);
       }
       const savedProfile = payload?.profile || null;
       applyLoadedProfile(savedProfile);
@@ -4620,13 +4636,30 @@ function ServiceProfileSurface({ t }) {
   const hasPublishableService = form.serviceItems.some((service) =>
     String(service.name || "").trim() &&
     service.mapVisible !== false &&
-    String(service.status || form.status || "").toUpperCase() !== "HIDDEN"
+    String(service.status || "").toUpperCase() === "PUBLISHED"
   );
   const hasMappableLocation = form.serviceLocations.some((location) =>
     location.mapVisible !== false &&
     String(location.address || location.normalizedAddress || "").trim()
   );
-  const hasContact = Boolean(String(form.email || form.phone || "").trim());
+  const hasContact = Boolean(
+    String(form.email || form.phone || form.website || "").trim() ||
+    form.acceptsPlatformPreInquiries ||
+    form.serviceItems.some((service) =>
+      String(service.email || service.phone || service.website || service.contactMode || "").trim() ||
+      service.acceptsPlatformPreInquiries
+    )
+  );
+  const publishContractErrors = form.status === "PUBLISHED"
+    ? [
+        !hasPublishableService
+          ? readText(t, "workspace_feature_pages.service_profile.publish_checks.service_missing", "Lisa vähemalt üks avaldatav teenus.")
+          : "",
+        !hasContact
+          ? readText(t, "workspace_feature_pages.service_profile.publish_checks.contact_missing", "Vali vähemalt üks kontakt või platvormisisene pöördumisviis.")
+          : ""
+      ].filter(Boolean)
+    : [];
   const publishChecks = [
     {
       ok: form.status === "PUBLISHED",
@@ -4825,7 +4858,16 @@ function ServiceProfileSurface({ t }) {
                 <span>{readText(t, "workspace_feature_pages.service_profile.service_items.name", "Teenuse nimi")}</span>
                 <ServiceProfileInput value={service.name} onChange={(event) => updateServiceItem(index, "name", event.target.value)} />
               </Label>
-              <ServiceLicenceStatus t={t} row={service.id ? licence.statuses.get(service.id) : null} />
+              <Label>
+                <span>{readText(t, "workspace_feature_pages.service_profile.service_items.status", "Teenuse olek")}</span>
+                <ServiceProfileDropdown
+                  ariaLabel={readText(t, "workspace_feature_pages.service_profile.service_items.status", "Teenuse olek")}
+                  value={service.status}
+                  onChange={(nextValue) => updateServiceItem(index, "status", nextValue)}
+                  options={statusOptions}
+                />
+              </Label>
+              <ServiceLicenceStatus t={t} locale={locale} row={service.id ? licence.statuses.get(service.id) : null} />
               <Label>
                 <span>{readText(t, "workspace_feature_pages.service_profile.service_items.description", "Kirjeldus")}</span>
                 <ServiceProfileTextarea
@@ -5212,7 +5254,13 @@ function ServiceProfileSurface({ t }) {
               {readText(t, "workspace_feature_pages.service_profile.service_items.empty", "Eraldi teenuseid ei ole veel lisatud.")}
             </p>
           )}
-          <Button type="button" variant="primary" onClick={addServiceItem}>
+          <p aria-live="polite">{form.serviceItems.length} / {SERVICE_PROFILE_LIMITS.services}</p>
+          <Button
+            type="button"
+            variant="primary"
+            onClick={addServiceItem}
+            disabled={form.serviceItems.length >= SERVICE_PROFILE_LIMITS.services}
+          >
             {readText(t, "workspace_feature_pages.service_profile.service_items.add", "Lisa teenus")}
           </Button>
         </div>
@@ -5242,6 +5290,15 @@ function ServiceProfileSurface({ t }) {
                 <Label>
                   <span>{readText(t, "workspace_feature_pages.service_profile.locations.label", "Nimetus")}</span>
                   <ServiceProfileInput value={location.label} onChange={(event) => updateServiceLocation(index, "label", event.target.value)} />
+                </Label>
+                <Label>
+                  <span>{readText(t, "workspace_feature_pages.service_profile.locations.status", "Teeninduskoha olek")}</span>
+                  <ServiceProfileDropdown
+                    ariaLabel={readText(t, "workspace_feature_pages.service_profile.locations.status", "Teeninduskoha olek")}
+                    value={location.status}
+                    onChange={(nextValue) => updateServiceLocation(index, "status", nextValue)}
+                    options={statusOptions}
+                  />
                 </Label>
                 <Label>
                   <span>{readText(t, "workspace_feature_pages.service_profile.locations.address", "Aadress")}</span>
@@ -5285,7 +5342,13 @@ function ServiceProfileSurface({ t }) {
               {readText(t, "workspace_feature_pages.service_profile.locations.empty", "Teeninduskohti ei ole veel lisatud.")}
             </p>
           )}
-          <Button type="button" variant="primary" onClick={addServiceLocation}>
+          <p aria-live="polite">{form.serviceLocations.length} / {SERVICE_PROFILE_LIMITS.locations}</p>
+          <Button
+            type="button"
+            variant="primary"
+            onClick={addServiceLocation}
+            disabled={form.serviceLocations.length >= SERVICE_PROFILE_LIMITS.locations}
+          >
             {readText(t, "workspace_feature_pages.service_profile.locations.add", "Lisa teeninduskoht")}
           </Button>
         </div>
@@ -5348,6 +5411,11 @@ function ServiceProfileSurface({ t }) {
                 </p>
               ))}
             </div>
+            {publishContractErrors.length ? (
+              <div role="alert">
+                {publishContractErrors.map((message) => <p key={message}>{message}</p>)}
+              </div>
+            ) : null}
             <div>
               <p>
                 {readText(t, "workspace_feature_pages.service_profile.map_status.title", "Aadressi seis")}
@@ -5357,7 +5425,7 @@ function ServiceProfileSurface({ t }) {
                 <p className={bodyTextClassName}>{mapEntry.normalizedAddress || mapEntry.address}</p>
               ) : null}
             </div>
-            <Button type="submit" disabled={loading || saving || !form.organizationName.trim()}>
+            <Button type="submit" disabled={loading || saving || !form.organizationName.trim() || publishContractErrors.length > 0}>
               {saveLabel}
             </Button>
           </div>
@@ -5476,7 +5544,7 @@ export default function WorkspaceFeaturePage({ feature, embedded = false, onBack
           ) : null}
           {featureKey === "pre_inquiries" ? <PreInquiriesSurface t={t} locale={locale} activeRole={activeWorkspaceRole} isAdmin={isAdmin} currentUserId={session?.user?.id || ""} embedded={embedded} /> : null}
           {featureKey === "service_map" ? <ServiceMapSurface t={t} locale={locale} activeRole={activeWorkspaceRole} isAdmin={isAdmin} isAuthenticated={Boolean(session?.user?.id)} onRoleChange={handleAdminWorkspaceRoleChange} onBack={handleBack} /> : null}
-          {featureKey === "service_profile" ? <ServiceProfileSurface t={t} /> : null}
+          {featureKey === "service_profile" ? <ServiceProfileSurface t={t} locale={locale} /> : null}
         </div>
       </div>
     </>

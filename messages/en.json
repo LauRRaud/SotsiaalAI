@@ -1996,7 +1996,21 @@
       "availability_confirmation_invalid": "The availability confirmation was incomplete.",
       "availability_confirmation_failed": "Availability could not be confirmed.",
       "availability_conflict": "Availability changed in the meantime. Load the latest state and confirm again.",
-      "service_not_found": "The service was not found in your service profile."
+      "service_not_found": "The service was not found in your service profile.",
+      "address_query_too_long": "The address search is too long. Shorten the query.",
+      "field_too_long": "One field exceeds the allowed length. Shorten it and try again.",
+      "idempotency_conflict": "The same save key was used with different data. Load the latest profile and try again.",
+      "idempotency_key_required": "The save request key is missing or invalid. Try again.",
+      "invalid_request": "The service profile request was not valid.",
+      "organization_name_required": "Enter the organisation name.",
+      "profile_conflict": "The profile changed in the meantime. Load the latest state and compare the changes.",
+      "publish_contact_required": "Choose at least one contact or an in-platform inquiry path before publishing.",
+      "publish_service_required": "Add at least one visible published service before publishing.",
+      "save_failed": "The service profile could not be saved. Try again; if the error persists, give support the correlation ID.",
+      "load_failed": "The service profile could not be loaded.",
+      "too_many_list_items": "One list contains too many choices.",
+      "too_many_locations": "The service-location limit has been reached. Remove one before adding another.",
+      "too_many_services": "The service limit has been reached. Remove one before adding another."
     },
     "licence": {
       "public": {
@@ -2444,6 +2458,7 @@
       "service_items": {
         "item_title": "Service",
         "name": "Service name",
+        "status": "Service status",
         "category": "Category",
         "categories": "Service categories",
         "description": "Description",
@@ -2487,6 +2502,7 @@
       "locations": {
         "item_title": "Service location",
         "label": "Label",
+        "status": "Service location status",
         "address": "Address",
         "opening_hours": "Opening hours",
         "visible_on_map": "Show on service map",

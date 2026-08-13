@@ -6,6 +6,7 @@ import { splitServiceLocationMapEntries } from "../../lib/serviceProviderService
 
 const source = fs.readFileSync(new URL("../../lib/serviceProviderProfiles.js", import.meta.url), "utf8");
 const route = fs.readFileSync(new URL("../../app/api/service-provider/profile/route.js", import.meta.url), "utf8");
+const boundary = fs.readFileSync(new URL("../../lib/serviceProviderProfileBoundary.js", import.meta.url), "utf8");
 const ui = fs.readFileSync(new URL("../../components/workspace/WorkspaceFeaturePage.jsx", import.meta.url), "utf8");
 const schema = fs.readFileSync(new URL("../../prisma/schema.prisma", import.meta.url), "utf8");
 const registry = fs.readFileSync(new URL("../../lib/dataExport/registry.js", import.meta.url), "utf8");
@@ -59,7 +60,7 @@ test("SPROF-04: RAG text, metadata and counters share the public-service project
 test("SPROF-05: full profile save requires an atomic expectedUpdatedAt CAS and preserves local UI on conflict", () => {
   assert.match(source, /expectedUpdatedAt/u);
   assert.match(source, /updateMany\([\s\S]*updatedAt:\s*expectedUpdatedAt/u);
-  assert.match(route, /profile_conflict/u);
+  assert.match(`${route}\n${boundary}`, /profile_conflict/u);
   assert.match(ui, /expectedUpdatedAt:\s*profile\?\.updatedAt/u);
   assert.match(ui, /conflictProfile/u);
 });

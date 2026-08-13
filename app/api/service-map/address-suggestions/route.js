@@ -7,6 +7,7 @@ import { safeError } from "@/lib/privacy/safeError";
 import { consumeHelpRateLimit } from "@/lib/help/rateLimit";
 import { getRequestIpFromRequest } from "@/lib/request-ip";
 import { signServiceMapSuggestion } from "@/lib/serviceMap/addressSuggestionToken";
+import { SERVICE_PROFILE_LIMITS } from "@/lib/serviceProviderProfileLimits";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -58,11 +59,16 @@ export async function GET(request) {
       ok: false,
       message: "api.common.rate_limited",
       retryAfterSeconds: requestLimit.retryAfterSeconds
-    }, 429);
+    }, 429, { "Retry-After": String(requestLimit.retryAfterSeconds) });
   }
 
   const requestUrl = new URL(request.url);
   const query = String(requestUrl.searchParams.get("query") || "").trim();
+  if (query.length > SERVICE_PROFILE_LIMITS.addressQuery) {
+    return errorJson("service_provider_profile.errors.address_query_too_long", 413, locale, {
+      details: { field: "query", maxLength: SERVICE_PROFILE_LIMITS.addressQuery }
+    });
+  }
   if (query.length < 2) {
     return json({
       ok: true,
@@ -86,7 +92,7 @@ export async function GET(request) {
       ok: false,
       message: "api.common.rate_limited",
       retryAfterSeconds: providerLimit.retryAfterSeconds
-    }, 429);
+    }, 429, { "Retry-After": String(providerLimit.retryAfterSeconds) });
   }
 
   try {

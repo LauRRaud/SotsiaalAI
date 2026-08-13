@@ -1996,7 +1996,21 @@
       "availability_confirmation_invalid": "Kättesaadavuse kinnitus ei olnud täielik.",
       "availability_confirmation_failed": "Kättesaadavust ei saanud kinnitada.",
       "availability_conflict": "Kättesaadavuse info muutus vahepeal. Laadi värske seis ja kinnita uuesti.",
-      "service_not_found": "Teenust ei leitud sinu teenuseprofiilist."
+      "service_not_found": "Teenust ei leitud sinu teenuseprofiilist.",
+      "address_query_too_long": "Aadressiotsing on liiga pikk. Lühenda päringut.",
+      "field_too_long": "Ühe välja tekst on lubatust pikem. Lühenda teksti ja proovi uuesti.",
+      "idempotency_conflict": "Sama salvestusvõtit kasutati teistsuguste andmetega. Laadi värske profiil ja proovi uuesti.",
+      "idempotency_key_required": "Salvestuspäringu võti puudub või on vigane. Proovi uuesti.",
+      "invalid_request": "Teenuseprofiili päring ei olnud sobival kujul.",
+      "organization_name_required": "Sisesta organisatsiooni nimi.",
+      "profile_conflict": "Profiili muudeti vahepeal. Laadi värske seis ja võrdle muudatusi.",
+      "publish_contact_required": "Avaldamiseks vali vähemalt üks kontakt või platvormisisene pöördumisviis.",
+      "publish_service_required": "Avaldamiseks lisa vähemalt üks nähtav avaldatud teenus.",
+      "save_failed": "Teenuseprofiili ei saanud salvestada. Proovi uuesti; vea kordumisel anna toele korrelatsiooni-ID.",
+      "load_failed": "Teenuseprofiili ei saanud laadida.",
+      "too_many_list_items": "Ühes loendis on liiga palju valikuid.",
+      "too_many_locations": "Teeninduskohtade ülempiir on täis. Eemalda enne uue koha lisamist mõni olemasolev.",
+      "too_many_services": "Teenuste ülempiir on täis. Eemalda enne uue teenuse lisamist mõni olemasolev."
     },
     "licence": {
       "public": {
@@ -2444,6 +2458,7 @@
       "service_items": {
         "item_title": "Teenus",
         "name": "Teenuse nimi",
+        "status": "Teenuse olek",
         "category": "Kategooria",
         "categories": "Teenuse kategooriad",
         "description": "Kirjeldus",
@@ -2487,6 +2502,7 @@
       "locations": {
         "item_title": "Teeninduskoht",
         "label": "Nimetus",
+        "status": "Teeninduskoha olek",
         "address": "Aadress",
         "visible_on_map": "Näita teenusekaardil",
         "add": "Lisa teeninduskoht",

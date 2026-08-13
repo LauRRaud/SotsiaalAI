@@ -8,6 +8,12 @@ import {
   upsertServiceProviderProfileForOwner
 } from "@/lib/serviceProviderProfiles";
 import { safeError } from "@/lib/privacy/safeError";
+import {
+  consumeServiceProviderProfileRateLimit,
+  normalizeIdempotencyKey,
+  serviceProviderCorrelationId,
+  serviceProviderProfileErrorDescriptor
+} from "@/lib/serviceProviderProfileBoundary";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -44,12 +50,22 @@ async function requireServiceProviderProfileUser() {
 
 export async function GET(request) {
   const locale = localeFromRequest(request);
+  const correlationId = serviceProviderCorrelationId(request);
   const auth = await requireServiceProviderProfileUser();
   if (!auth.ok) {
     return errorJson(auth.message, auth.status, locale);
   }
 
   try {
+    const limit = await consumeServiceProviderProfileRateLimit({ operation: "profile:read", userId: auth.userId });
+    if (!limit.allowed) {
+      return errorJson("api.common.rate_limited", 429, locale, {
+        retryAfterSeconds: limit.retryAfterSeconds
+      }, {
+        "Retry-After": String(limit.retryAfterSeconds),
+        "X-Correlation-ID": correlationId
+      });
+    }
     const profile = await getServiceProviderProfileForOwner(auth.userId);
     return json({
       ok: true,
@@ -57,36 +73,53 @@ export async function GET(request) {
       canManageServiceProfile: true
     });
   } catch (error) {
-    console.error("[service-provider-profile] load failed", safeError(error));
-    return errorJson("service_provider_profile.errors.load_failed", 500, locale);
+    console.error("[service-provider-profile] load failed", { correlationId, error: safeError(error) });
+    return errorJson("service_provider_profile.errors.load_failed", 500, locale, { correlationId }, {
+      "X-Correlation-ID": correlationId
+    });
   }
 }
 
 export async function PUT(request) {
   const locale = localeFromRequest(request);
+  const correlationId = serviceProviderCorrelationId(request);
   const auth = await requireServiceProviderProfileUser();
   if (!auth.ok) {
     return errorJson(auth.message, auth.status, locale);
   }
 
   try {
+    const idempotencyKey = normalizeIdempotencyKey(request.headers.get("Idempotency-Key"));
+    const limit = await consumeServiceProviderProfileRateLimit({ operation: "profile:write", userId: auth.userId });
+    if (!limit.allowed) {
+      return errorJson("api.common.rate_limited", 429, locale, {
+        retryAfterSeconds: limit.retryAfterSeconds
+      }, {
+        "Retry-After": String(limit.retryAfterSeconds),
+        "X-Correlation-ID": correlationId
+      });
+    }
     const body = await request.json().catch(() => ({}));
-    const profile = await upsertServiceProviderProfileForOwner(auth.userId, body);
+    const profile = await upsertServiceProviderProfileForOwner(auth.userId, body, {
+      actorUserId: auth.userId,
+      correlationId,
+      idempotencyKey
+    });
     return json({
       ok: true,
       profile: serializeServiceProviderProfile(profile, { includeAvailabilityOperations: true })
     });
   } catch (error) {
-    const status = Number(error?.status) || 500;
-    if (status >= 500) {
-      console.error("[service-provider-profile] save failed", safeError(error));
-    }
-    return errorJson(
-      status === 409 && error?.message === "service_provider_profile.errors.profile_conflict"
-        ? "service_provider_profile.errors.profile_conflict"
-        : error?.message || "service_provider_profile.errors.save_failed",
-      status,
-      locale
+    const descriptor = serviceProviderProfileErrorDescriptor(
+      error,
+      "service_provider_profile.errors.save_failed",
+      correlationId
     );
+    if (descriptor.status >= 500) {
+      console.error("[service-provider-profile] save failed", { correlationId, error: safeError(error) });
+    }
+    return errorJson(descriptor.messageKey, descriptor.status, locale, descriptor.extras, {
+      "X-Correlation-ID": correlationId
+    });
   }
 }
