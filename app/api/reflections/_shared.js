@@ -25,7 +25,7 @@ export function reflectionJson(payload, status = 200) {
    NB see värav annab ligipääsu AINULT kasutaja ENDA kirjetele — iga lib-päring
    on omanik-skoobitud; admin-erand siin tähendab admini OMA kirjeid, mitte
    teiste nägemist (ptk 3.6 p3: kirjete olemasolu ei näe ka admin). */
-export async function requireReflectionApiUser(request) {
+export async function requireReflectionApiUser(request, options = {}) {
   const session = await getServerSession(authConfig).catch(() => null);
   const userId = session?.user?.id ? String(session.user.id) : "";
   if (!userId) {
@@ -47,7 +47,8 @@ export async function requireReflectionApiUser(request) {
      kustutamine (DELETE) ei sõltu tellimusest; loomine jääb värava taha. */
   const method = String(request?.method || "").toUpperCase();
   const gate = await requireSubscription(session, roleState.effectiveRole, {
-    allowWithoutSubscription: method === "GET" || method === "DELETE"
+    allowWithoutSubscription:
+      method === "GET" || method === "DELETE" || options.allowWithoutSubscription === true
   });
   if (!gate.ok) {
     return {

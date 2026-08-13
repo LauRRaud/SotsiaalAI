@@ -1665,15 +1665,21 @@ model WellbeingRecord {
  * soovitused BLOKEERITUD kuni O-CW-5, ptk 3.4) ja veerg tuleb koos rajaga.
  */
 model PracticeReflection {
-  id                String   @id @default(cuid())
+  id                String    @id @default(cuid())
   ownerUserId       String
-  schemaVersion     String   @default("1.0")
+  schemaVersion     String    @default("1.0")
   sourceKind        String?
   sourceId          String?
   // SOL-REF-05: sama kasutaja sama loomiskatse on üks püsiv DB-identiteet.
   // Nullable jätab migratsiooni tagasiühilduvaks olemasolevate kirjetega.
   idempotencyKey    String?
   requestHash       String?
+  // SOL-REF-07/08: lepingulise säilituse tähtaeg on kirje juures jälgitav;
+  // kasutaja kustutus on lühiajaliselt taastatav ega muutu kohe pöördumatuks.
+  retentionState    String    @default("ACTIVE")
+  retentionDeadline DateTime?
+  deletedAt         DateTime?
+  undoUntil         DateTime?
   // Valik — nelja tasandi mudel (ptk 3.2) + valiku põhjus
   approach          String?
   method            String?
@@ -1693,14 +1699,32 @@ model PracticeReflection {
   nextStep          String?
   supportNeed       String?
   interimOutcome    String?
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
 
   owner User @relation(fields: [ownerUserId], references: [id], onDelete: Cascade)
 
   @@unique([ownerUserId, idempotencyKey])
   @@index([ownerUserId, createdAt])
   @@index([ownerUserId, sourceKind, sourceId])
+  @@index([retentionState, retentionDeadline, id])
+  @@index([retentionState, undoUntil, id])
+}
+
+// SOL-REF-07: iga workerikäik jätab jälgitava, sisutu tulemuse. Kirje sisu,
+// omaniku tunnust ega kustutatud ridade identiteete siia ei kopeerita.
+model PracticeReflectionRetentionRun {
+  id         String    @id @default(cuid())
+  startedAt  DateTime  @default(now())
+  finishedAt DateTime?
+  ok         Boolean   @default(false)
+  scanned    Int       @default(0)
+  purged     Int       @default(0)
+  deferred   Int       @default(0)
+  failed     Int       @default(0)
+  errorCode  String?
+
+  @@index([startedAt])
 }
 
 // SOL-REF-05: protsessimälust sõltumatu kasutaja + operatsiooni kirjutuspiir.

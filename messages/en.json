@@ -765,6 +765,16 @@
       "source_label": "Linked activity:",
       "source_deleted": "(the source has been deleted — the entry remains)"
     },
+    "deletion": {
+      "confirm": "Delete this reflection entry? Its content is not shown here. You can undo the deletion for 30 seconds.",
+      "confirm_action": "Delete entry",
+      "cancel": "Cancel",
+      "deleting": "Deleting…",
+      "deleted": "Entry deleted. You can undo the deletion right away if needed.",
+      "undo": "Undo deletion",
+      "restoring": "Restoring…",
+      "restored": "Entry restored."
+    },
     "group": {
       "choice": "Choice",
       "choice_hint": "Four levels kept apart: approach, method, concrete action and your support technique — plus why you chose this. Method is free text; there is no confirmed catalogue yet.",
@@ -854,6 +864,7 @@
       "create_failed": "Saving failed.",
       "update_failed": "Saving failed.",
       "delete_failed": "Deleting failed.",
+      "undo_failed": "Undoing the deletion failed.",
       "save_failed": "Saving failed."
     }
   },

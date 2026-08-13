@@ -104,6 +104,8 @@
     "help:accepted-listing-delete:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/help-accepted-listing-delete-probe.mjs",
     "help:chapter-closure:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/help-chapter-closure-probe.mjs",
     "reflection:lifecycle:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/reflection-lifecycle-probe.mjs",
+    "reflection:retention": "node --import ./scripts/register-node-test-loader.mjs scripts/reflection-retention.mjs",
+    "reflection:chapter-closure:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/reflection-chapter-closure-probe.mjs",
     "org:report-delivery:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/org-report-delivery-probe.mjs",
     "org:create:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/org-creation-idempotency-probe.mjs",
     "artifact:race:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/artifact-approval-race-probe.mjs",

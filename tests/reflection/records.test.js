@@ -6,6 +6,7 @@ import {
   deletePracticeReflectionForUser,
   getPracticeReflectionForUser,
   listPracticeReflectionsForUser,
+  undoPracticeReflectionDeletionForUser,
   updatePracticeReflectionForUser
 } from "../../lib/reflection/records.js";
 import {
@@ -19,7 +20,7 @@ import { PROVENANCE } from "../../lib/workspaces/provenance.js";
 /* Fake-prisma pood samas stiilis mis tests/wellbeing/recordsRead.test.js:
    elus massiiv, omanik-skoop where-filtriga. */
 function createStore(seed = []) {
-  const rows = seed.map((row) => ({ ...row }));
+  const rows = seed.map((row) => ({ retentionState: "ACTIVE", ...row }));
   const preInquiryIds = new Set(["pi_1", "pi_gone"]);
   let nextId = 1;
   const matches = (row, where = {}) =>
@@ -27,6 +28,12 @@ function createStore(seed = []) {
     && (where.ownerUserId === undefined || row.ownerUserId === where.ownerUserId)
     && (where.sourceKind === undefined || row.sourceKind === where.sourceKind)
     && (where.sourceId === undefined || row.sourceId === where.sourceId)
+    && (where.retentionState === undefined || row.retentionState === where.retentionState)
+    && (where.undoUntil === undefined || (
+      where.undoUntil.gt ? row.undoUntil > where.undoUntil.gt
+        : where.undoUntil.lte ? row.undoUntil <= where.undoUntil.lte
+          : row.undoUntil === where.undoUntil
+    ))
     && (where.updatedAt === undefined || row.updatedAt.getTime() === new Date(where.updatedAt).getTime());
 
   const practiceReflection = {
@@ -197,17 +204,45 @@ test("update is owner-scoped, source ref is immutable, empty update rejected", a
   assert.equal(updated.sourceKind, "PRE_INQUIRY");
 });
 
-test("delete is owner-scoped: foreign delete reports not-deleted and the row survives", async () => {
+test("delete is owner-scoped, replay-safe and recoverable only inside the undo window", async () => {
   const { prisma } = createStore();
   const { reflection } = await createPracticeReflectionForUser("user_1", { method: "A" }, createOptions(prisma));
+  const now = new Date("2026-08-14T10:00:00.000Z");
 
-  const foreign = await deletePracticeReflectionForUser("user_2", reflection.id, { prisma });
+  const foreign = await deletePracticeReflectionForUser("user_2", reflection.id, { prisma, now });
   assert.equal(foreign.deleted, false);
   const stillThere = await getPracticeReflectionForUser("user_1", reflection.id, { prisma });
   assert.equal(stillThere?.id, reflection.id);
 
-  const own = await deletePracticeReflectionForUser("user_1", reflection.id, { prisma });
+  const own = await deletePracticeReflectionForUser("user_1", reflection.id, { prisma, now });
   assert.equal(own.deleted, true);
+  assert.equal(await getPracticeReflectionForUser("user_1", reflection.id, { prisma }), null);
+
+  const replay = await deletePracticeReflectionForUser("user_1", reflection.id, {
+    prisma,
+    now: new Date(now.getTime() + 1_000)
+  });
+  assert.equal(replay.deleted, true);
+  assert.equal(replay.replayed, true);
+
+  const foreignUndo = await undoPracticeReflectionDeletionForUser("user_2", reflection.id, {
+    prisma,
+    now: new Date(now.getTime() + 2_000)
+  });
+  assert.equal(foreignUndo.restored, false);
+  const restored = await undoPracticeReflectionDeletionForUser("user_1", reflection.id, {
+    prisma,
+    now: new Date(now.getTime() + 2_000)
+  });
+  assert.equal(restored.restored, true);
+  assert.equal((await getPracticeReflectionForUser("user_1", reflection.id, { prisma }))?.id, reflection.id);
+
+  await deletePracticeReflectionForUser("user_1", reflection.id, { prisma, now });
+  const expired = await undoPracticeReflectionDeletionForUser("user_1", reflection.id, {
+    prisma,
+    now: new Date(now.getTime() + 31_000)
+  });
+  assert.equal(expired.restored, false);
 });
 
 test("record keeps living when its source is gone: sourceState marks deletion, record stays readable", async () => {

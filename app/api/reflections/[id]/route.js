@@ -61,7 +61,7 @@ export async function DELETE(request, context) {
     if (!result.deleted) {
       return reflectionJson({ ok: false, message: "reflection.errors.record_missing" }, 404);
     }
-    return reflectionJson({ ok: true });
+    return reflectionJson({ ok: true, undoUntil: result.undoUntil, replayed: result.replayed });
   } catch (error) {
     console.error("[reflection] delete failed", safeError(error));
     return reflectionErrorResponse(error, "reflection.errors.delete_failed");

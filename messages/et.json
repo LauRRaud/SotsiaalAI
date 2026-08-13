@@ -765,6 +765,16 @@
       "source_label": "Seotud tegevus:",
       "source_deleted": "(allikas on kustutatud — kirje jääb alles)"
     },
+    "deletion": {
+      "confirm": "Kas kustutada see refleksioonikirje? Kirje sisu siin ei kuvata. Saad kustutamise 30 sekundi jooksul tagasi võtta.",
+      "confirm_action": "Kustuta kirje",
+      "cancel": "Katkesta",
+      "deleting": "Kustutan…",
+      "deleted": "Kirje kustutati. Soovi korral saad kustutamise kohe tagasi võtta.",
+      "undo": "Võta kustutamine tagasi",
+      "restoring": "Taastan…",
+      "restored": "Kirje taastati."
+    },
     "group": {
       "choice": "Valik",
       "choice_hint": "Neli tasandit eraldi: lähenemisviis, meetod, konkreetne tegevus ja sinu tugimeetod — ning miks sa nii valisid. Meetod on vabatekst; kinnitatud kataloogi veel ei ole.",
@@ -854,6 +864,7 @@
       "create_failed": "Salvestamine ebaõnnestus.",
       "update_failed": "Salvestamine ebaõnnestus.",
       "delete_failed": "Kustutamine ebaõnnestus.",
+      "undo_failed": "Kustutamise tagasivõtmine ebaõnnestus.",
       "save_failed": "Salvestamine ebaõnnestus."
     }
   },

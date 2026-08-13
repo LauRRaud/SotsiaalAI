@@ -1,10 +1,11 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
+import ModalConfirm from "@/components/ui/ModalConfirm";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import {
@@ -120,6 +121,12 @@ export default function ReflectionPage() {
   const [saving, setSaving] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");
   const [statusIsError, setStatusIsError] = useState(false);
+  const [deleteCandidateId, setDeleteCandidateId] = useState(null);
+  const [deleting, setDeleting] = useState(false);
+  const [undoDeletion, setUndoDeletion] = useState(null);
+  const [restoring, setRestoring] = useState(false);
+  const detailAbortController = useRef(null);
+  const detailRequestSequence = useRef(0);
 
   const formatter = useMemo(
     () => new Intl.DateTimeFormat(locale || "et", { dateStyle: "medium", timeStyle: "short" }),
@@ -170,6 +177,22 @@ export default function ReflectionPage() {
     return () => controller.abort();
   }, [load]);
 
+  useEffect(() => () => {
+    detailRequestSequence.current += 1;
+    detailAbortController.current?.abort();
+  }, []);
+
+  useEffect(() => {
+    if (!undoDeletion?.undoUntil) return undefined;
+    const remaining = new Date(undoDeletion.undoUntil).getTime() - Date.now();
+    if (remaining <= 0) {
+      setUndoDeletion(null);
+      return undefined;
+    }
+    const timer = window.setTimeout(() => setUndoDeletion(null), remaining);
+    return () => window.clearTimeout(timer);
+  }, [undoDeletion]);
+
   /* Sisenemispunkt tegevuse juurest (doc ptk 3.1): ?sourceKind=PRE_INQUIRY
      &sourceId=... avab uue kirje vormi, side salvestub loomisel ja on pärast
      muutumatu. */
@@ -177,6 +200,8 @@ export default function ReflectionPage() {
     const kind = String(searchParams?.get("sourceKind") || "").trim().toUpperCase();
     const id = String(searchParams?.get("sourceId") || "").trim();
     if (isReflectionSourceKind(kind) && id) {
+      detailRequestSequence.current += 1;
+      detailAbortController.current?.abort();
       setSourceRef({ sourceKind: kind, sourceId: id });
       setFormOpen(true);
       setEditingId(null);
@@ -188,6 +213,8 @@ export default function ReflectionPage() {
   }, [searchParams]);
 
   const openNew = useCallback(() => {
+    detailRequestSequence.current += 1;
+    detailAbortController.current?.abort();
     setEditingId(null);
     setEditingUpdatedAt(null);
     setCreateKey(newIdempotencyKey());
@@ -200,27 +227,45 @@ export default function ReflectionPage() {
   }, []);
 
   const openExisting = useCallback(async (id) => {
+    const requestSequence = detailRequestSequence.current + 1;
+    detailRequestSequence.current = requestSequence;
+    detailAbortController.current?.abort();
+    const controller = new AbortController();
+    detailAbortController.current = controller;
     setStatusMessage("");
-    const { ok, status, payload } = await reflectionRequest(`/api/reflections/${id}`);
-    if (!ok) {
+    try {
+      const { ok, status, payload } = await reflectionRequest(`/api/reflections/${id}`, {
+        signal: controller.signal
+      });
+      if (requestSequence !== detailRequestSequence.current) return;
+      if (!ok) {
+        setStatusIsError(true);
+        setStatusMessage(message({ status, payload }));
+        return;
+      }
+      const reflection = payload?.reflection || {};
+      setEditingId(reflection.id || null);
+      setEditingUpdatedAt(reflection.updatedAt || null);
+      setCreateKey(null);
+      setConflictReflection(null);
+      setSourceRef(reflection.sourceKind
+        ? { sourceKind: reflection.sourceKind, sourceId: reflection.sourceId }
+        : null);
+      setSourceState(reflection.sourceState || null);
+      setForm(formFromReflection(reflection));
+      setFormOpen(true);
+    } catch (error) {
+      if (error?.name === "AbortError" || requestSequence !== detailRequestSequence.current) return;
       setStatusIsError(true);
-      setStatusMessage(message({ status, payload }));
-      return;
+      setStatusMessage(t("reflection.errors.load_failed"));
+    } finally {
+      if (detailAbortController.current === controller) detailAbortController.current = null;
     }
-    const reflection = payload?.reflection || {};
-    setEditingId(reflection.id || null);
-    setEditingUpdatedAt(reflection.updatedAt || null);
-    setCreateKey(null);
-    setConflictReflection(null);
-    setSourceRef(reflection.sourceKind
-      ? { sourceKind: reflection.sourceKind, sourceId: reflection.sourceId }
-      : null);
-    setSourceState(reflection.sourceState || null);
-    setForm(formFromReflection(reflection));
-    setFormOpen(true);
-  }, [message]);
+  }, [message, t]);
 
   const closeForm = useCallback(() => {
+    detailRequestSequence.current += 1;
+    detailAbortController.current?.abort();
     setFormOpen(false);
     setEditingId(null);
     setEditingUpdatedAt(null);
@@ -272,19 +317,58 @@ export default function ReflectionPage() {
     }
   }, [createKey, editingId, editingUpdatedAt, form, load, message, sourceRef, t]);
 
-  const remove = useCallback(async (id) => {
+  const remove = useCallback(async () => {
+    const id = deleteCandidateId;
+    if (!id || deleting) return;
+    setDeleting(true);
     setStatusMessage("");
-    const { ok, status, payload } = await reflectionRequest(`/api/reflections/${id}`, { method: "DELETE" });
-    if (!ok) {
+    try {
+      const { ok, status, payload } = await reflectionRequest(`/api/reflections/${id}`, { method: "DELETE" });
+      if (!ok) {
+        setStatusIsError(true);
+        setStatusMessage(message({ status, payload }));
+        return;
+      }
+      setStatusIsError(false);
+      setStatusMessage(t("reflection.deletion.deleted"));
+      setUndoDeletion({ id, undoUntil: payload?.undoUntil || null });
+      setDeleteCandidateId(null);
+      if (editingId === id) closeForm();
+      await load();
+    } catch {
       setStatusIsError(true);
-      setStatusMessage(message({ status, payload }));
-      return;
+      setStatusMessage(t("reflection.errors.delete_failed"));
+    } finally {
+      setDeleting(false);
     }
-    setStatusIsError(false);
-    setStatusMessage(t("reflection.form.deleted"));
-    if (editingId === id) closeForm();
-    await load();
-  }, [closeForm, editingId, load, message, t]);
+  }, [closeForm, deleteCandidateId, deleting, editingId, load, message, t]);
+
+  const undoRemove = useCallback(async () => {
+    if (!undoDeletion?.id || restoring) return;
+    setRestoring(true);
+    setStatusMessage("");
+    try {
+      const { ok, status, payload } = await reflectionRequest(
+        `/api/reflections/${undoDeletion.id}/undo`,
+        { method: "POST" }
+      );
+      if (!ok) {
+        setStatusIsError(true);
+        setStatusMessage(message({ status, payload }));
+        setUndoDeletion(null);
+        return;
+      }
+      setStatusIsError(false);
+      setStatusMessage(t("reflection.deletion.restored"));
+      setUndoDeletion(null);
+      await load();
+    } catch {
+      setStatusIsError(true);
+      setStatusMessage(t("reflection.errors.undo_failed"));
+    } finally {
+      setRestoring(false);
+    }
+  }, [load, message, restoring, t, undoDeletion]);
 
   const updateField = useCallback((field, value) => {
     setForm((current) => ({ ...current, [field]: value }));
@@ -306,6 +390,20 @@ export default function ReflectionPage() {
             <p>{loadError}</p>
             <Button onClick={() => { setLoading(true); void load(); }} variant="secondary">
               {t("reflection.common.retry")}
+            </Button>
+          </div>
+        ) : null}
+
+        {!formOpen && statusMessage ? (
+          <div aria-live="polite" className={styles.statusRow} role="status">
+            <span className={statusIsError ? styles.errorText : undefined}>{statusMessage}</span>
+          </div>
+        ) : null}
+
+        {!formOpen && undoDeletion ? (
+          <div className={styles.actions} data-reflection-undo="available">
+            <Button disabled={restoring} onClick={() => { void undoRemove(); }} variant="secondary">
+              {restoring ? t("reflection.deletion.restoring") : t("reflection.deletion.undo")}
             </Button>
           </div>
         ) : null}
@@ -339,7 +437,7 @@ export default function ReflectionPage() {
                   <Button onClick={() => { void openExisting(reflection.id); }} variant="secondary">
                     {t("reflection.list.open")}
                   </Button>
-                  <Button onClick={() => { void remove(reflection.id); }} variant="ghost">
+                  <Button onClick={() => { setDeleteCandidateId(reflection.id); }} variant="ghost">
                     {t("reflection.list.delete")}
                   </Button>
                 </div>
@@ -470,6 +568,17 @@ export default function ReflectionPage() {
           </div>
         ) : null}
       </div>
+      {deleteCandidateId ? (
+        <ModalConfirm
+          busy={deleting}
+          busyLabel={t("reflection.deletion.deleting")}
+          cancelLabel={t("reflection.deletion.cancel")}
+          confirmLabel={t("reflection.deletion.confirm_action")}
+          message={t("reflection.deletion.confirm")}
+          onCancel={() => { if (!deleting) setDeleteCandidateId(null); }}
+          onConfirm={() => { void remove(); }}
+        />
+      ) : null}
     </main>
   );
 }
