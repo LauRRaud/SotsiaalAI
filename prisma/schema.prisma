@@ -2852,7 +2852,10 @@ model TopicSeed {
   importance         Int?
   safetyGate         String?
   status             TopicSeedStatus @default(DRAFT)
+  version            Int             @default(1)
   sharedCardSnapshot Json?
+  privacyAssessment  Json?
+  privacyReviewedAt  DateTime?
   ownerConfirmedAt   DateTime?
   sharedAt           DateTime?
   covisionCaseId     String?         @unique
@@ -2865,6 +2868,8 @@ model TopicSeed {
   continuationForClosure CovisionClosure?  @relation("CovisionClosureContinuationTopicSeed")
 
   @@index([ownerId, updatedAt])
+  @@index([ownerId, updatedAt, id])
+  @@index([ownerId, status, updatedAt, id])
   @@index([status])
   @@index([createdAt])
 }

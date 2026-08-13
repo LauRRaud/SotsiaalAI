@@ -20,7 +20,6 @@ function makeDb() {
   let clock = SEED_AT.getTime();
   const now = () => new Date((clock += 1000));
   const id = (prefix) => `${prefix}_${++sequence}`;
-  const same = (a, b) => new Date(a).getTime() === new Date(b).getTime();
   const store = {
     users: [
       { id: OWNER, email: "mari@example.test", profile: { firstName: "Mari", lastName: "Maasikas" } },
@@ -31,6 +30,7 @@ function makeDb() {
       ownerId: OWNER,
       title: "Kooliskäimise tugi",
       status: "WAITING",
+      version: 1,
       sharedCardSnapshot: {
         title: "Kooliskäimise tugi",
         contextType: "child",
@@ -112,7 +112,7 @@ function makeDb() {
           && item.ownerId === where.ownerId
           && item.status === where.status
           && item.covisionCaseId === where.covisionCaseId
-          && same(item.updatedAt, where.updatedAt));
+          && item.version === where.version);
         if (!row) return { count: 0 };
         applyData(row, data);
         return { count: 1 };
@@ -450,7 +450,7 @@ function makeDb() {
 
 async function start(db) {
   return startCovisionFromTopicSeed(OWNER, "seed_1", {
-    expectedUpdatedAt: SEED_AT.toISOString(),
+    expectedVersion: 1,
     db
   });
 }
@@ -758,17 +758,17 @@ test("SOL-COV-02/03: invite lifecycle and readiness are server-enforced", async 
   });
 });
 
-test("TopicSeed handoff is owner-only, fingerprint-safe and idempotent", async () => {
+test("TopicSeed handoff is owner-only, integer-version-safe and idempotent", async () => {
   const foreignDb = makeDb();
   const foreign = await startCovisionFromTopicSeed(OTHER, "seed_1", {
-    expectedUpdatedAt: SEED_AT.toISOString(), db: foreignDb
+    expectedVersion: 1, db: foreignDb
   }).then(() => null, (error) => error);
   assert.equal(foreign.status, 404);
   assert.equal(foreignDb.store.cases.length, 0);
 
   const staleDb = makeDb();
   const stale = await startCovisionFromTopicSeed(OWNER, "seed_1", {
-    expectedUpdatedAt: "2026-01-01T00:00:00.000Z", db: staleDb
+    expectedVersion: 2, db: staleDb
   }).then(() => null, (error) => error);
   assert.equal(stale.status, 409);
   assert.equal(staleDb.store.cases.length, 0);
@@ -776,7 +776,7 @@ test("TopicSeed handoff is owner-only, fingerprint-safe and idempotent", async (
   const db = makeDb();
   const first = await start(db);
   const second = await startCovisionFromTopicSeed(OWNER, "seed_1", {
-    expectedUpdatedAt: SEED_AT.toISOString(), db
+    expectedVersion: 1, db
   });
   assert.equal(second.created, false);
   assert.equal(second.covisionCaseId, first.covisionCaseId);
@@ -1137,9 +1137,9 @@ test("stale expectedVersion and unsafe action bodies fail before a write", async
   }]) {
     assert.throws(() => normalizeCovisionSessionActionRequest(body));
   }
-  assert.throws(() => normalizeCovisionStartRequest({ expectedUpdatedAt: null }));
+  assert.throws(() => normalizeCovisionStartRequest({ expectedVersion: null }));
   assert.throws(() => normalizeCovisionStartRequest({
-    expectedUpdatedAt: SEED_AT.toISOString(), ownerId: OTHER
+    expectedVersion: 1, ownerId: OTHER
   }));
 });
 

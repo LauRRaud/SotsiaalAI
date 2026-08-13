@@ -29,7 +29,7 @@ export async function POST(request, context) {
     const result = await startCovisionFromTopicSeed(
       auth.userId,
       String(params?.id || "").trim(),
-      { expectedUpdatedAt: body.expectedUpdatedAt }
+      { expectedVersion: body.expectedVersion }
     );
     return json({ ok: true, ...result }, result.created ? 201 : 200);
   } catch (error) {

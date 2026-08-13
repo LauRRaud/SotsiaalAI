@@ -7612,6 +7612,21 @@
       "importance": "Importance",
       "importance_unset": "Not selected"
     },
+    "status": {
+      "draft": "Draft",
+      "waiting": "Waiting",
+      "in_covision": "In covision",
+      "follow_up": "Follow-up",
+      "closed": "Closed"
+    },
+    "filters": { "all": "All" },
+    "meta": {
+      "draft": "Private draft",
+      "waiting": "Confirmed for the queue",
+      "in_covision": "Linked to an active covision",
+      "follow_up": "Linked to follow-up",
+      "closed": "Read-only history"
+    },
     "spatial": {
       "move_hint": "Grab the top corner of a card to move it, or the bottom right corner to resize it. Arrow keys adjust precisely, Shift + arrow takes a larger step.",
       "resize_hint": "Drag the handle in the bottom right corner to change the card's width and height.",
@@ -7681,7 +7696,9 @@
       "draft_saved": "Draft saved. It is visible only to you.",
       "created": "The topic seed is created and currently visible only to you. To share it, choose “Add to covision queue” on the card.",
       "updated": "The topic seed changes have been saved.",
-      "queued": "The generalization is confirmed and frozen. It is not yet visible to others — group visibility will come in a later covision linking."
+      "queued": "The generalization is confirmed and frozen. It is not yet visible to others — group visibility will come in a later covision linking.",
+      "deleted": "The private draft has been permanently deleted.",
+      "withdrawn": "The generalization was removed from the queue and is a private draft again."
     },
     "ui": {
       "boundary": "Mapping a topic seed helps make sense of a professional situation. It does not replace a statutory assessment, an official case plan or a risk assessment.",
@@ -7715,15 +7732,32 @@
       "create_error_aria": "Topic seed save error",
       "share_error_aria": "Queue submission error",
       "detail_dialog_aria": "Confirmed topic seed card",
-      "share_dialog_aria": "Confirm adding to queue"
+      "share_dialog_aria": "Confirm adding to queue",
+      "delete_draft": "Delete draft",
+      "withdraw": "Remove from queue",
+      "open_covision": "Open linked covision",
+      "open_follow_up": "Open follow-up",
+      "open_history": "View read-only history",
+      "load_more": "Load next",
+      "loading_more": "Loading…"
     },
     "share": {
       "title": "Confirm the card to be frozen",
       "sub": "Confirming freezes this seed card for the covision queue. Your private preparation stays unshared.",
       "not_shared_note": "Confirming does not yet share the seed with other users — group visibility is added later.",
       "confirm_no_identifiers": "I confirm this card contains no name, personal ID, exact address, or other direct identifier.",
+      "confirm_privacy_review": "The automatic check found an uncertain identification risk. I reviewed the card separately and confirm that the combination of details does not identify a person.",
       "confirm_action": "Confirm the generalization and add to the queue",
       "keep_private": "Keep it to myself for now"
+    },
+    "lifecycle": {
+      "dialog_aria": "Topic seed lifecycle action",
+      "delete_title": "Delete the private draft?",
+      "delete_impact": "The draft content will be permanently deleted. Only a content-free audit receipt remains so the deletion can be proven.",
+      "delete_confirm": "Delete permanently",
+      "withdraw_title": "Remove the generalization from the queue?",
+      "withdraw_impact": "The generalization is removed from the covision queue, the frozen copy and confirmations are cleared, and the seed becomes a private editable draft again. If covision has already started, the server refuses.",
+      "withdraw_confirm": "Remove from queue"
     },
     "preview": {
       "not_shared": "Not shared yet",
@@ -7742,6 +7776,9 @@
       "confirmation_required": "Confirm that the card contains no direct identifiers.",
       "queue_conflict": "The seed changed in the meantime. Refresh and try again.",
       "edit_conflict": "The seed changed in the meantime or can no longer be edited. Reload the page.",
+      "lifecycle_conflict": "The seed changed or its lifecycle no longer allows this action. Reload the page.",
+      "direct_identifier_detected": "The automatic check found a direct identifier. Remove the name, contact detail, personal code, address or case number and try again.",
+      "privacy_review_required": "The automatic check found an uncertain identification risk. Revise the generalization or complete a separate privacy review.",
       "save_failed": "The topic seed could not be saved. Please try again.",
       "load_failed": "Topic seeds could not be loaded."
     }

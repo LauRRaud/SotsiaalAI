@@ -11,6 +11,10 @@ import { dirname, join } from "node:path";
 const root = join(dirname(fileURLToPath(import.meta.url)), "../..");
 const schema = readFileSync(join(root, "prisma/schema.prisma"), "utf8");
 const migration = readFileSync(join(root, "prisma/migrations/20260714040000_topic_seed/migration.sql"), "utf8");
+const lifecycleMigration = readFileSync(
+  join(root, "prisma/migrations/20260814006000_topic_seed_lifecycle_integrity/migration.sql"),
+  "utf8"
+);
 
 test("schema: TopicSeedStatus keeps A6.1 states and adds the Kovisioon lifecycle", () => {
   const match = schema.match(/enum TopicSeedStatus \{([^}]*)\}/);
@@ -26,14 +30,22 @@ test("schema: TopicSeed is a separate owner-cascaded model with the required fie
   for (const field of [
     "ownerId", "title", "contextType", "caseType", "whyNow",
     "requestedSupport", "importance", "safetyGate", "sharedCardSnapshot",
-    "ownerConfirmedAt", "sharedAt"
+    "ownerConfirmedAt", "sharedAt", "version", "privacyAssessment", "privacyReviewedAt"
   ]) {
     assert.match(model, new RegExp(`\\b${field}\\b`), `field ${field} missing`);
   }
   assert.match(model, /status\s+TopicSeedStatus\s+@default\(DRAFT\)/);
   assert.match(model, /requestedSupport\s+String\[\]\s+@default\(\[\]\)/);
+  assert.match(model, /version\s+Int\s+@default\(1\)/);
   assert.match(model, /onDelete:\s*Cascade/);
   assert.match(model, /@@index\(\[ownerId, updatedAt\]\)/);
+});
+
+test("lifecycle migration adds integer CAS, privacy evidence and cursor indexes", () => {
+  assert.match(lifecycleMigration, /ADD COLUMN "version" INTEGER NOT NULL DEFAULT 1/);
+  assert.match(lifecycleMigration, /ADD COLUMN "privacyAssessment" JSONB/);
+  assert.match(lifecycleMigration, /TopicSeed_ownerId_updatedAt_id_idx/);
+  assert.match(lifecycleMigration, /TopicSeed_ownerId_status_updatedAt_id_idx/);
 });
 
 test("schema: User back-relation to TopicSeed exists", () => {

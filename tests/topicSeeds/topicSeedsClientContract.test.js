@@ -22,13 +22,15 @@ test("client: DEMO_SEEDS is no longer the source of truth", () => {
 });
 
 test("client: the page loads the owner's seeds from GET /api/topic-seeds", () => {
-  assert.match(page, /fetch\("\/api\/topic-seeds"/);
+  assert.match(page, /fetch\(`\/api\/topic-seeds\?\$\{query\}`/);
   assert.match(page, /useEffect\(/);
+  assert.match(page, /setNextCursor\(payload\.nextCursor/);
+  assert.match(page, /setServerCounts\(payload\.counts/);
 });
 
 test("client: create/save write through POST or PATCH and server response defines id/status", () => {
   assert.match(page, /method:\s*isEditing \? "PATCH" : "POST"/);
-  assert.match(page, /expectedUpdatedAt:\s*editingUpdatedAt/);
+  assert.match(page, /expectedVersion:\s*editingVersion/);
   assert.match(page, /buildCreatePayload/);
   assert.match(page, /toCardSeed\(payload\.seed\)/);
   // No local id minting remains.
@@ -38,7 +40,7 @@ test("client: create/save write through POST or PATCH and server response define
 test("client: a DRAFT can be reopened losslessly in the quick form", () => {
   assert.match(page, /function openEdit\(seed\)/);
   assert.match(page, /setEditingSeedId\(seed\.id\)/);
-  assert.match(page, /setEditingUpdatedAt\(seed\.updatedAt \|\| null\)/);
+  assert.match(page, /setEditingVersion\(seed\.version \|\| null\)/);
   assert.match(page, /setTitle\(seed\.rawTitle \|\| ""\)/);
   assert.match(page, /setContextKey\(seed\.contextType \|\| null\)/);
   assert.match(page, /setKindKey\(seed\.caseType \|\| null\)/);
@@ -52,10 +54,10 @@ test("client: save-and-exit persists first and exits only after success", () => 
   assert.doesNotMatch(page, /Salvestan mustandi ja väljun[\s\S]{0,160}setView\("list"\)/);
 });
 
-test("client: WAITING cards render only the frozen snapshot and reject malformed snapshot arrays", () => {
-  assert.match(page, /seed\.status === "WAITING"/);
+test("client: every non-DRAFT lifecycle card renders the frozen snapshot", () => {
+  assert.match(page, /seed\.status !== "DRAFT"/);
   assert.match(page, /!Array\.isArray\(seed\.sharedCardSnapshot\)/);
-  assert.match(page, /const displaySeed = seed\.status === "WAITING" \? frozenSnapshot \|\| \{\} : seed/);
+  assert.match(page, /const displaySeed = seed\.status === "DRAFT" \? seed : frozenSnapshot \|\| \{\}/);
   assert.match(page, /title:\s*displaySeed\.title/);
   assert.match(page, /CONTEXT_LABEL\[displaySeed\.contextType\]/);
   assert.match(page, /displaySeed\.requestedSupport/);
@@ -85,11 +87,12 @@ test("client: fetches carry the active UI locale and initial GET cannot overwrit
   assert.match(page, /dataVersionRef\.current \+= 1/);
 });
 
-test("client: queue sends expectedUpdatedAt and a conscious confirmation, gated on the checkbox", () => {
+test("client: queue sends integer CAS and separate human privacy review", () => {
   assert.match(page, /\/topic-seeds\/\$\{encodeURIComponent\(shareSeed\.id\)\}\/queue/);
-  assert.match(page, /expectedUpdatedAt:\s*shareSeed\.updatedAt/);
+  assert.match(page, /expectedVersion:\s*shareSeed\.version/);
   assert.match(page, /confirmedNoIdentifiers:\s*true/);
-  assert.match(page, /if \(!shareSeed \|\| saving \|\| !shareConfirmed\) return/);
+  assert.match(page, /confirmedPrivacyReview:\s*privacyReviewed/);
+  assert.match(page, /privacyReviewRequired && !privacyReviewed/);
 });
 
 test("client: success is applied only after an ok response (no misleading WAITING)", () => {
@@ -100,6 +103,25 @@ test("client: local card layout state stays out of server domain data", () => {
   // The spatial layout lives in dedicated maps, not in the seed domain objects.
   assert.match(page, /const \[cardOffsets, setCardOffsets\] = useState\(\{\}\)/);
   assert.match(page, /const \[cardSizes, setCardSizes\] = useState\(\{\}\)/);
+});
+
+test("client: all five statuses share one action/filter map and terminal states have no DRAFT actions", () => {
+  assert.match(page, /TOPIC_SEED_STATUS_META/);
+  for (const status of ["DRAFT", "WAITING", "IN_COVISION", "FOLLOW_UP", "CLOSED"]) {
+    assert.match(page, new RegExp(`\\b${status}\\b`));
+  }
+  assert.match(page, /seed\.serverStatus === "IN_COVISION"/);
+  assert.match(page, /\["FOLLOW_UP", "CLOSED"\]\.includes\(seed\.serverStatus\)/);
+  assert.match(page, /seed\.status === "mustand"/);
+  assert.match(page, /kind: "delete"/);
+  assert.match(page, /kind: "withdraw"/);
+});
+
+test("client: bounded rendering appends only explicit cursor pages", () => {
+  assert.match(page, /const \[nextCursor, setNextCursor\] = useState\(null\)/);
+  assert.match(page, /async function loadMoreSeeds\(\)/);
+  assert.match(page, /cursor:\s*nextCursor/);
+  assert.match(page, /known = new Set\(current\.map/);
 });
 
 test("routes: list/create, edit, and queue routes are role-gated via requireCovisionAuth (401/403)", () => {

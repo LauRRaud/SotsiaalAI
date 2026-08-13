@@ -25,10 +25,11 @@ test("production Kovisioon entry mounts the real workspace, not the legacy demo"
 
 test("workspace uses the real case, Topic Seed and versioned session APIs", () => {
   assert.match(workspaceSource, /fetch\("\/api\/covision"/);
-  assert.match(workspaceSource, /fetch\("\/api\/topic-seeds"/);
+  assert.match(workspaceSource, /fetch\("\/api\/topic-seeds\/queue\?limit=50"/);
   assert.match(workspaceSource, /\/api\/topic-seeds\/\$\{encodeURIComponent\(seed\.id\)\}\/covision/);
   assert.match(workspaceSource, /\/api\/covision\/\$\{encodeURIComponent\(caseId\)\}\/session\/actions/);
   assert.match(workspaceSource, /expectedVersion/);
+  assert.match(workspaceSource, /queueNextCursor/);
 });
 
 test("session reads and writes are abortable and cannot cross a case switch", () => {
@@ -64,8 +65,8 @@ test("workspace follows browser history and respects server create capability", 
   assert.match(workspaceSource, /covision\.workspace\.queue\.invite_only/);
 });
 
-test("workspace never reads the mutable Topic Seed body when a frozen card exists", () => {
+test("workspace reads only the dedicated queue snapshot, never mutable Topic Seed fields", () => {
   assert.match(workspaceSource, /const shared = seed\.sharedCardSnapshot \|\| \{\}/);
-  assert.match(workspaceSource, /shared\.title \|\| seed\.title/);
-  assert.match(workspaceSource, /shared\.whyNow \|\| seed\.whyNow/);
+  assert.doesNotMatch(workspaceSource, /shared\.title \|\| seed\.title/);
+  assert.doesNotMatch(workspaceSource, /shared\.whyNow \|\| seed\.whyNow/);
 });

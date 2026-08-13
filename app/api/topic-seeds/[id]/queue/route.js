@@ -21,7 +21,7 @@ function topicSeedErrorResponse(error, locale, context) {
 }
 
 // A6.1: the owner deliberately queues a DRAFT, freezing a shareable generalized
-// snapshot. Version-safe (expectedUpdatedAt) and requires a conscious
+// snapshot. Version-safe (expectedVersion) and requires a conscious
 // no-identifiers confirmation. WAITING does NOT publish the seed to anyone else.
 export async function POST(request, context) {
   const locale = localeFromRequest(request);
@@ -30,8 +30,9 @@ export async function POST(request, context) {
     const params = await context?.params;
     const body = normalizeTopicSeedQueueRequest(await parseTopicSeedJsonBody(request));
     const seed = await queueTopicSeed(auth.userId, String(params?.id || "").trim(), {
-      expectedUpdatedAt: body.expectedUpdatedAt,
-      confirmedNoIdentifiers: body.confirmedNoIdentifiers
+      expectedVersion: body.expectedVersion,
+      confirmedNoIdentifiers: body.confirmedNoIdentifiers,
+      confirmedPrivacyReview: body.confirmedPrivacyReview
     });
     return json({ ok: true, seed });
   } catch (error) {

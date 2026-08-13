@@ -9,6 +9,8 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "../..");
 const collectionRoute = readFileSync(join(root, "app/api/topic-seeds/route.js"), "utf8");
 const itemRoute = readFileSync(join(root, "app/api/topic-seeds/[id]/route.js"), "utf8");
 const queueRoute = readFileSync(join(root, "app/api/topic-seeds/[id]/queue/route.js"), "utf8");
+const withdrawRoute = readFileSync(join(root, "app/api/topic-seeds/[id]/withdraw/route.js"), "utf8");
+const queueListRoute = readFileSync(join(root, "app/api/topic-seeds/queue/route.js"), "utf8");
 
 test("routes: every write uses the strict shared JSON body parser", () => {
   assert.match(collectionRoute, /parseTopicSeedJsonBody\(request\)/);
@@ -53,8 +55,18 @@ test("shared Kovisioon role gate behavior returns 401/403 and allows the two wor
 });
 
 test("routes: errors pass through the explicit public-error descriptor", () => {
-  for (const source of [collectionRoute, itemRoute, queueRoute]) {
+  for (const source of [collectionRoute, itemRoute, queueRoute, withdrawRoute, queueListRoute]) {
     assert.match(source, /topicSeedPublicError\(error\)/);
     assert.doesNotMatch(source, /error\?\.message\s*\|\|/);
   }
+});
+
+test("routes expose bounded list, minimal queue, delete and withdraw lifecycle operations", () => {
+  assert.match(collectionRoute, /listTopicSeedPage/);
+  assert.match(collectionRoute, /search\.get\("cursor"\)/);
+  assert.match(queueListRoute, /listWaitingTopicSeedPage/);
+  assert.match(itemRoute, /export async function DELETE/);
+  assert.match(itemRoute, /deleteTopicSeed/);
+  assert.match(withdrawRoute, /withdrawTopicSeed/);
+  assert.match(queueRoute, /expectedVersion:\s*body\.expectedVersion/);
 });

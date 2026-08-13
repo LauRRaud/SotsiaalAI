@@ -36,6 +36,8 @@ function sessionSnapshotFromPayload(payload) {
 export default function CovisionWorkspace() {
   const { locale, t } = useI18n();
   const [workspace, setWorkspace] = useState({ cases: [], seeds: [], capabilities: {} });
+  const [queueNextCursor, setQueueNextCursor] = useState(null);
+  const [queueLoadingMore, setQueueLoadingMore] = useState(false);
   const [selectedCaseId, setSelectedCaseId] = useState("");
   const [snapshot, setSnapshot] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -60,7 +62,7 @@ export default function CovisionWorkspace() {
     try {
       const [casesResponse, seedsResponse] = await Promise.all([
         fetch("/api/covision", { headers: apiHeaders, cache: "no-store" }),
-        fetch("/api/topic-seeds", { headers: apiHeaders, cache: "no-store" })
+        fetch("/api/topic-seeds/queue?limit=50", { headers: apiHeaders, cache: "no-store" })
       ]);
       const [casesPayload, seedsPayload] = await Promise.all([
         casesResponse.json().catch(() => ({})),
@@ -79,6 +81,7 @@ export default function CovisionWorkspace() {
           ? casesPayload.capabilities
           : {}
       });
+      setQueueNextCursor(seedsPayload?.nextCursor || null);
       setError("");
     } catch (requestError) {
       if (!quiet) {
@@ -229,7 +232,7 @@ export default function CovisionWorkspace() {
           ...apiHeaders,
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ expectedUpdatedAt: seed.updatedAt })
+        body: JSON.stringify({ expectedVersion: seed.version })
       });
       const payload = await response.json().catch(() => ({}));
       const covisionCaseId = String(payload?.covisionCaseId || payload?.case?.id || "").trim();
@@ -250,6 +253,40 @@ export default function CovisionWorkspace() {
       setActing(false);
     }
   }, [acting, apiHeaders, loadWorkspace, openCase, t, workspace.capabilities?.canCreate]);
+
+  const loadMoreQueue = useCallback(async () => {
+    if (!queueNextCursor || queueLoadingMore) return;
+    setQueueLoadingMore(true);
+    try {
+      const query = new URLSearchParams({ cursor: queueNextCursor, limit: "50" });
+      const response = await fetch(`/api/topic-seeds/queue?${query}`, {
+        headers: apiHeaders,
+        cache: "no-store"
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !Array.isArray(payload?.seeds)) {
+        setError(resolveApiMessage({
+          payload,
+          t,
+          fallbackKey: "covision.workspace.errors.load_failed",
+          fallbackText: "Kovisiooni järjekorda ei saanud laadida."
+        }));
+        return;
+      }
+      setWorkspace((current) => {
+        const known = new Set(current.seeds.map((seed) => seed.id));
+        return {
+          ...current,
+          seeds: [...current.seeds, ...payload.seeds.filter((seed) => !known.has(seed.id))]
+        };
+      });
+      setQueueNextCursor(payload.nextCursor || null);
+    } catch {
+      setError(message(t, "covision.workspace.errors.load_failed", "Kovisiooni järjekorda ei saanud laadida."));
+    } finally {
+      setQueueLoadingMore(false);
+    }
+  }, [apiHeaders, queueLoadingMore, queueNextCursor, t]);
 
   const runAction = useCallback(async (action, payload = {}) => {
     if (!selectedCaseId || acting) return null;
@@ -426,15 +463,16 @@ export default function CovisionWorkspace() {
               <span className="cvw-count">{waitingSeeds.length}</span>
             </header>
             {waitingSeeds.length ? (
-              <ul className="cvw-seed-list">
-                {waitingSeeds.map((seed) => {
+              <>
+                <ul className="cvw-seed-list">
+                  {waitingSeeds.map((seed) => {
                   const shared = seed.sharedCardSnapshot || {};
                   return (
                     <li key={seed.id}>
                       <article className="cvw-seed-card">
                         <p className="cvw-seed-label">{message(t, "covision.workspace.queue.ready", "Valmis Kovisiooniks")}</p>
-                        <h3>{shared.title || seed.title}</h3>
-                        <p>{shared.whyNow || seed.whyNow}</p>
+                        <h3>{shared.title || message(t, "topic_seeds.ui.untitled", "Pealkirjata üldistus")}</h3>
+                        <p>{shared.whyNow || message(t, "topic_seeds.ui.missing_value", "—")}</p>
                         {canCreate ? (
                           <button
                             type="button"
@@ -450,8 +488,16 @@ export default function CovisionWorkspace() {
                       </article>
                     </li>
                   );
-                })}
-              </ul>
+                  })}
+                </ul>
+                {queueNextCursor ? (
+                  <button type="button" data-variant disabled={queueLoadingMore} onClick={loadMoreQueue}>
+                    {queueLoadingMore
+                      ? message(t, "topic_seeds.ui.loading_more", "Laadin…")
+                      : message(t, "topic_seeds.ui.load_more", "Laadi järgmised")}
+                  </button>
+                ) : null}
+              </>
             ) : (
               <div className="cvw-empty">
                 <p>{message(t, "covision.workspace.queue.empty", "Järjekorras ei ole veel omaniku kinnitatud Teemaseemneid.")}</p>

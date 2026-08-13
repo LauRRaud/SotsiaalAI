@@ -3,7 +3,7 @@ import { requireCovisionAuth } from "@/lib/covisionApi";
 import { safeError } from "@/lib/privacy/safeError";
 import {
   createTopicSeed,
-  listTopicSeeds,
+  listTopicSeedPage,
   parseTopicSeedJsonBody,
   topicSeedPublicError
 } from "@/lib/topicSeeds";
@@ -24,8 +24,13 @@ export async function GET(request) {
   const locale = localeFromRequest(request);
   try {
     const auth = await requireCovisionAuth();
-    const seeds = await listTopicSeeds(auth.userId);
-    return json({ ok: true, seeds });
+    const search = new URL(request.url).searchParams;
+    const page = await listTopicSeedPage(auth.userId, {
+      cursor: search.get("cursor"),
+      limit: search.get("limit"),
+      status: search.get("status")
+    });
+    return json({ ok: true, ...page });
   } catch (error) {
     return topicSeedErrorResponse(error, locale, "[topic-seeds] list failed");
   }

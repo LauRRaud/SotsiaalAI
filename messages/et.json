@@ -7612,6 +7612,23 @@
       "importance": "Olulisus",
       "importance_unset": "Valimata"
     },
+    "status": {
+      "draft": "Mustand",
+      "waiting": "Ootel",
+      "in_covision": "Kovisioonis",
+      "follow_up": "Järelvaates",
+      "closed": "Suletud"
+    },
+    "filters": {
+      "all": "Kõik"
+    },
+    "meta": {
+      "draft": "Privaatne mustand",
+      "waiting": "Kinnitatud järjekorda",
+      "in_covision": "Seotud aktiivse Kovisiooniga",
+      "follow_up": "Seotud järelvaatega",
+      "closed": "Read-only ajalugu"
+    },
     "spatial": {
       "move_hint": "Haara kaardi ülanurgast liigutamiseks või paremast alanurgast suuruse muutmiseks. Nooleklahvid muudavad täpselt, Shift + nool suurema sammu.",
       "resize_hint": "Paremas alanurgas olevat pidet tirides muudad kaardi laiust ja kõrgust.",
@@ -7681,7 +7698,9 @@
       "draft_saved": "Mustand salvestatud. See on nähtav ainult sulle.",
       "created": "Teemaseeme on loodud ja praegu ainult sulle nähtav. Jagamiseks vali kaardil „Lisa kovisioonijärjekorda”.",
       "updated": "Teemaseemne muudatused on salvestatud.",
-      "queued": "Üldistus on kinnitatud ja külmutatud. Praegu pole see veel teistele nähtav — grupinähtavus tekib hilisemas Kovisiooni sidumises."
+      "queued": "Üldistus on kinnitatud ja külmutatud. Praegu pole see veel teistele nähtav — grupinähtavus tekib hilisemas Kovisiooni sidumises.",
+      "deleted": "Privaatne mustand on jäädavalt kustutatud.",
+      "withdrawn": "Üldistus eemaldati järjekorrast ja on taas privaatne mustand."
     },
     "ui": {
       "boundary": "Teemaseemne kaardistus aitab professionaalset olukorda mõtestada. See ei asenda seadusest tulenevat hindamist, ametlikku juhtumiplaani ega riskihindamist.",
@@ -7715,15 +7734,32 @@
       "create_error_aria": "Teemaseemne salvestamise viga",
       "share_error_aria": "Järjekorda lisamise viga",
       "detail_dialog_aria": "Kinnitatud seemnekaart",
-      "share_dialog_aria": "Järjekorda lisamise kinnitamine"
+      "share_dialog_aria": "Järjekorda lisamise kinnitamine",
+      "delete_draft": "Kustuta mustand",
+      "withdraw": "Eemalda järjekorrast",
+      "open_covision": "Ava seotud Kovisioon",
+      "open_follow_up": "Ava järelvaade",
+      "open_history": "Vaata read-only ajalugu",
+      "load_more": "Laadi järgmised",
+      "loading_more": "Laadin…"
     },
     "share": {
       "title": "Kinnita külmutatav üldistus",
       "sub": "Kinnitamisel külmutatakse see seemnekaart kovisioonijärjekorra jaoks. Privaatne ettevalmistus jääb jagamata.",
       "not_shared_note": "Kinnitamine ei jaga seemet veel teiste kasutajatega — grupinähtavus lisandub hiljem.",
       "confirm_no_identifiers": "Kinnitan, et see kaart ei sisalda nime, isikukoodi, täpset aadressi ega muud otsest tuvastajat.",
+      "confirm_privacy_review": "Automaatkontroll leidis ebakindla tuvastamisriski. Olen kaardi eraldi üle vaadanud ja kinnitan, et tunnuste kombinatsioon ei võimalda inimest ära tunda.",
       "confirm_action": "Kinnitan üldistuse ja lisan ootejärjekorda",
       "keep_private": "Jäta praegu ainult endale"
+    },
+    "lifecycle": {
+      "dialog_aria": "Teemaseemne elutsükli toiming",
+      "delete_title": "Kustuta privaatne mustand?",
+      "delete_impact": "Mustandi sisu kustutatakse jäädavalt. Alles jääb ainult sisuta auditikviitung, et kustutamine oleks tõendatav.",
+      "delete_confirm": "Kustuta jäädavalt",
+      "withdraw_title": "Eemalda üldistus järjekorrast?",
+      "withdraw_impact": "Üldistus eemaldatakse Kovisiooni järjekorrast, külmutatud koopia ja kinnitused tühjendatakse ning seeme muutub taas ainult sulle nähtavaks muudetavaks mustandiks. Kui Kovisioon on juba alanud, server keeldub.",
+      "withdraw_confirm": "Eemalda järjekorrast"
     },
     "preview": {
       "not_shared": "Pole veel jagatud",
@@ -7742,6 +7778,9 @@
       "confirmation_required": "Kinnita, et kaart ei sisalda otseseid tuvastajaid.",
       "queue_conflict": "Seeme muutus vahepeal. Värskenda ja proovi uuesti.",
       "edit_conflict": "Seeme muutus vahepeal või ei ole enam muudetav. Laadi leht uuesti.",
+      "lifecycle_conflict": "Seeme muutus vahepeal või selle elutsükkel ei luba enam seda toimingut. Laadi leht uuesti.",
+      "direct_identifier_detected": "Automaatkontroll leidis otsese tuvastaja. Eemalda nimi, kontakt, isikukood, aadress või juhtuminumber ja proovi uuesti.",
+      "privacy_review_required": "Automaatkontroll leidis ebakindla tuvastamisriski. Paranda üldistust või tee eraldi privaatsuskontroll.",
       "save_failed": "Teemaseemet ei saanud salvestada. Proovi uuesti.",
       "load_failed": "Teemaseemneid ei saanud laadida."
     }
