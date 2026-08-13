@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**Paralleelsete parandustööpuude uus runtime-laine on integreerimisel lokaalsesse `main`-i.** `SOL-CW-09` päris Back/Forward/deep-link rada ning `SOL-SPROF-04,09,10,15` isoleeritud RAG/Chroma, autentitud brauseri, PostgreSQL-i ja HTTP veasüstid on nüüd DONE; Teenuseprofiili peatükk on 15/15 lõpetatud. `SOL-DOC-J-03` jääb ausalt PARTIAL, kuid puuduva päris RAG-välisotsa tõendi jaoks on loopback-only ühe käsu harness. Viimane toodangu väljalase on endiselt `3735789e`; järgmine töö valitakse ametliku koondi allesjäänud kolmest NOT_DONE ning neljast PARTIAL leiust.
+**Paralleelsete parandustööpuude runtime-laine liigub lokaalses `main`-is edasi.** `SOL-DOC-J-03` on nüüd isoleeritud päris PostgreSQL-i ja RAG/Chroma tervikraja järel DONE: loa tagasivõtmine, tõrke retry, värske kordusindekseerimine ning konto kustutus ei jäta otsitavat koopiat. Ametlik seis on **424 DONE / 2 PARTIAL / 3 NOT_DONE**; lahti on `SOL-CW-14`, `SOL-RES-07`, `SOL-CW-19`, `SOL-MAT-08` ja `SOL-MAT-12`. Viimane toodangu väljalase on endiselt `3735789e`; järgmised plokid valmivad parandustööpuudes ja push/deploy ootab eraldi luba.
 
 **Teenuspäeviku jätkuauditi `SOL-SLOG-J-01…07` on lõpetatud.** Kirje parandamine,
 tühistamine, mustandi kustutamine ja owner-skoobitud ajalugu on nüüd päris kasutajateed;
