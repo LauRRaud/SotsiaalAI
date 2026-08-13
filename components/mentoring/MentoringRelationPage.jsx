@@ -11,6 +11,7 @@ import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import Form from "@/components/ui/Form";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import { localizePath } from "@/lib/localizePath";
+import { localDateTimeToIso } from "@/lib/mentoring/time";
 import styles from "./MentoringPage.module.css";
 
 const CLOSE_REASONS = ["completed", "changed_mentor", "other"];
@@ -38,8 +39,9 @@ export default function MentoringRelationPage({ relationId }) {
 
   const [goalDraft, setGoalDraft] = useState("");
   const [agreementDraft, setAgreementDraft] = useState("");
-  const [meetingForm, setMeetingForm] = useState({ occurredAt: "", mode: "EXTERNAL", topicSummary: "" });
+  const [meetingForm, setMeetingForm] = useState({ occurredAt: "", mode: "EXTERNAL", roomId: "", topicSummary: "" });
   const [summaryDraft, setSummaryDraft] = useState("");
+  const [correctionBySummary, setCorrectionBySummary] = useState({});
   const [noteDraft, setNoteDraft] = useState("");
   const [handoffCandidates, setHandoffCandidates] = useState([]);
   const [closePreview, setClosePreview] = useState(null);
@@ -385,12 +387,15 @@ export default function MentoringRelationPage({ relationId }) {
                   className={styles.form}
                   onSubmit={(event) => {
                     event.preventDefault();
+                    const occurredAt = localDateTimeToIso(meetingForm.occurredAt);
+                    if (!occurredAt) return;
                     void call(`${relationUrl}/meetings`, {
-                      occurredAt: meetingForm.occurredAt,
+                      occurredAt,
                       mode: meetingForm.mode,
+                      roomId: meetingForm.mode === "PLATFORM_ROOM" ? meetingForm.roomId : null,
                       topicSummary: meetingForm.topicSummary
                     }, "mentoring.relation.meeting_created_feedback").then((ok) => {
-                      if (ok) setMeetingForm({ occurredAt: "", mode: "EXTERNAL", topicSummary: "" });
+                      if (ok) setMeetingForm({ occurredAt: "", mode: "EXTERNAL", roomId: "", topicSummary: "" });
                     });
                   }}
                 >
@@ -403,6 +408,23 @@ export default function MentoringRelationPage({ relationId }) {
                       value={meetingForm.occurredAt}
                     />
                   </label>
+                  {meetingForm.mode === "PLATFORM_ROOM" ? (
+                    <label>
+                      <span>{t("mentoring.relation.meeting_room")}</span>
+                      <Dropdown
+                        ariaLabel={t("mentoring.relation.meeting_room")}
+                        onChange={(next) => setMeetingForm((prev) => ({ ...prev, roomId: next }))}
+                        options={(relation.commonRooms || []).map((room) => ({
+                          value: room.id,
+                          label: room.title || t("mentoring.relation.meeting_room_untitled")
+                        }))}
+                        value={meetingForm.roomId}
+                      />
+                      {!(relation.commonRooms || []).length ? (
+                        <span className={styles.fieldHint}>{t("mentoring.relation.meeting_room_empty")}</span>
+                      ) : null}
+                    </label>
+                  ) : null}
                   <label>
                     <span>{t("mentoring.relation.meeting_mode")}</span>
                     <Dropdown
@@ -425,7 +447,13 @@ export default function MentoringRelationPage({ relationId }) {
                     />
                   </label>
                   <div className={styles.actions}>
-                    <Button disabled={busy || !meetingForm.occurredAt} size="sm" type="submit" variant="secondary">
+                    <Button
+                      disabled={busy || !meetingForm.occurredAt
+                        || (meetingForm.mode === "PLATFORM_ROOM" && !meetingForm.roomId)}
+                      size="sm"
+                      type="submit"
+                      variant="secondary"
+                    >
                       {t("mentoring.relation.meeting_create")}
                     </Button>
                   </div>
@@ -487,6 +515,35 @@ export default function MentoringRelationPage({ relationId }) {
                             >
                               {t("mentoring.relation.summary_discard")}
                             </Button>
+                          ) : null}
+                          {summary.status === "CONFIRMED" && !summary.supersededById ? (
+                            <div className={styles.form}>
+                              <label>
+                                <span>{t("mentoring.relation.summary_correction")}</span>
+                                <Textarea
+                                  maxLength={4000}
+                                  onChange={(event) => setCorrectionBySummary((prev) => ({
+                                    ...prev,
+                                    [summary.id]: event.target.value
+                                  }))}
+                                  rows={3}
+                                  value={correctionBySummary[summary.id] || ""}
+                                />
+                              </label>
+                              <Button
+                                disabled={busy || !(correctionBySummary[summary.id] || "").trim()}
+                                onClick={() => call(`${relationUrl}/summaries/${encodeURIComponent(summary.id)}`, {
+                                  action: "supersede",
+                                  content: correctionBySummary[summary.id]
+                                }, "mentoring.relation.summary_correction_created_feedback").then((ok) => {
+                                  if (ok) setCorrectionBySummary((prev) => ({ ...prev, [summary.id]: "" }));
+                                })}
+                                size="sm"
+                                variant="secondary"
+                              >
+                                {t("mentoring.relation.summary_correction_create")}
+                              </Button>
+                            </div>
                           ) : null}
                         </div>
                       ) : null}

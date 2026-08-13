@@ -85,7 +85,7 @@ Käsitsi siia ei kirjutata. DONE algab sõnaga `DONE`, PARTIAL sõnaga `PARTIAL`
 on NOT_DONE. Kvalifitseeritud DONE-väide vale algusega katkestab genereerimise, et ta ei
 kaoks vaikselt valesse rühma. Iga loetletud leiu lõpus on Seis-lõik **sõna-sõnalt**.
 
-DONE **292** / 429 · PARTIAL **4** / 429 · NOT_DONE **133** / 429 · peatükke täielikult DONE **23** / 40 · ametlikult lahtiseid 137 — 99 × P1 · 37 × P2 · 1 × P3
+DONE **299** / 429 · PARTIAL **4** / 429 · NOT_DONE **126** / 429 · peatükke täielikult DONE **24** / 40 · ametlikult lahtiseid 130 — 92 × P1 · 37 × P2 · 1 × P3
 
 | Peatükk | Kood | DONE | PARTIAL | NOT_DONE | Lahtiste prioriteedid | Märkus |
 |---|---|---:|---:|---:|---|---|
@@ -112,7 +112,7 @@ DONE **292** / 429 · PARTIAL **4** / 429 · NOT_DONE **133** / 429 · peatükke
 | Teenuspäevik | SOL-SLOG | 31/31 | 0 | 0 | – | **tehtud**, 7 jätkufailist |
 | RAG-teenus ja ingest | SOL-RAGSVC | 28/28 | 0 | 0 | – | **tehtud** |
 | Migratsioonid | SOL-PRISMA | 4/4 | 0 | 0 | – | **tehtud** |
-| Mentorlus | SOL-MENT | 0/7 | 0 | 7 | 7 × P1 |  |
+| Mentorlus | SOL-MENT | 7/7 | 0 | 0 | – | **tehtud** |
 | Supervisioon | SOL-SUP | 0/15 | 0 | 15 | 11 × P1 · 4 × P2 |  |
 | Kovisioon | SOL-COV | 0/8 | 0 | 8 | 8 × P1 |  |
 | Tõenduspõhised praktikad | SOL-PRAC | 0/8 | 0 | 8 | 8 × P1 |  |
@@ -467,6 +467,16 @@ DONE **292** / 429 · PARTIAL **4** / 429 · NOT_DONE **133** / 429 · peatükke
 - `SOL-PRISMA-02` P1 — kaks HelpMatchi välisvõtit jäid püsivalt valideerimata — DONE. `HelpMatch` osapoolte ID-d on sama rea `HelpRequest.userId` ja
 - `SOL-PRISMA-03` P1 — tootmisdeploy muudab skeemi enne vana rakenduse peatamist ja enne uue build'i õnnestumist — DONE. Deploy siseneb nüüd selgesse hooldusväravasse ja ehitab uue
 - `SOL-PRISMA-04` P2 — migratsioonivärav tõendab tühja skeemi, kuid mitte pärandandmeid ega tootmislukke — DONE. Quality gate käivitab nüüd lisaks tühjale täisahelale päris
+
+**Mentorlus** (`SOL-MENT`, 7/7)
+
+- `SOL-MENT-01` P1 — aktiivse avaliku mentoriprofiili sisu saab pärast heakskiitu modereerimata ümber kirjutada — DONE — admini heakskiit külmutab avaliku snapshot'i; modereeritava välja muutus viib profiili `PENDING_REVIEW` olekusse, kuid kataloog ja taotlusrada kasutavad kuni uue otsuseni ainult eelmist kinnitatud versiooni. Test muudab korraga kõik avalikud väljad ja tõendab, et ükski uus väärtus ei leki; PostgreSQL-sond kinnitab sama päris ridadel. Vajab migratsiooni `20260814001000`.
+- `SOL-MENT-02` P1 — välise mentori nõusolek ei nõua tõendit ega aegu 12 kuu järel — DONE — `CONSENTED` nõuab tüübitud tõendit ja viidet ning server kirjutab kontrolli- ja fikseerimisaja; kataloog kontrollib igal lugemisel tõendit, tulevikuaega ja 12 kuu piiri fail-closed. Sweep muudab aegunud rea ühe korra `STALE`-iks, kirjutab auditi ja püsiva adminiteavituse. Piiri mõlemad pooled ning puuduv, tulevikuline ja vigane tõend on testitud; PostgreSQL-sond kinnitab ülemineku ja teavituse. Vajab migratsiooni `20260814001000`.
+- `SOL-MENT-03` P1 — mentor saab jagatud ettevalmistuse sisu lugeda enne, kui avamine fikseeritakse — DONE — tavaline suhte GET tagastab avamata ettevalmistuse metaandmed, kuid mitte `sharedContent` sisu; avamise POST fikseerib lukustatud tehingus `openedByOtherAt` enne sisu vastusesse panemist. Päris PostgreSQL-i paralleelses open/recall võistluses võidab täpselt üks rada ja lõppseis vastab võitjale.
+- `SOL-MENT-04` P1 — kinnitatud kokkuvõte märgitakse asendatuks enne paranduse kinnitamist ning parandusrada puudub UI-st — DONE — paranduse mustand kannab `correctionOfId` algviidet ja kasutajaliides pakub kinnitatud kokkuvõttel uue versiooni vormi. Algne `supersededById` tekib alles paranduse teise kinnitusega samas lukustatud tehingus; discard ei muuda algset. Mõlemad jadad on kaetud ühiktesti ja päris PostgreSQL-sondiga. Vajab migratsiooni `20260814001000`.
+- `SOL-MENT-05` P1 — PLATFORM_ROOM kohtumine luuakse UI-st ilma ruumita ja server ei nõua teise poole liikmesust — DONE — suhtevaade tagastab ainult mõlema poole ühised aktiivsed ruumid ning vorm nõuab PLATFORM_ROOM valikul üht neist. Server kontrollib lukustatud loomisel ja muutmisel ruumi olemasolu, arhiveerimata seisu ning mõlema suhtepoole aktiivset liikmesust; EXTERNAL nullib viite. Puuduv, ühepoolne, ühine ja lahkunud liikme juhtum on ühiktestis ja päris PostgreSQL-sondis kaetud.
+- `SOL-MENT-06` P1 — `datetime-local` kohtumisaeg tõlgendatakse serveri ajavööndis — DONE — brauser teisendab `datetime-local` väärtuse enne POST-i UTC ISO-stringiks ja server aktsepteerib ainult selge `Z` või offset'iga aega. Tallinna brauserikontekstis salvestus `2026-01-15 10:30` väärtuseks `08:30Z` ning `2026-07-15 10:30` väärtuseks `07:30Z`; mõlemad kuvati tagasi kohaliku `10:30` ajana. Offsetita serverisisend on ühiktestis ja PostgreSQL-sondis tagasi lükatud.
+- `SOL-MENT-07` P1 — lähenevate kohtumiste sweep võib jääda esimese 50 rea külge kinni — DONE — upcoming-sweep lehitseb kogu akna stabiilse `(occurredAt,id)` kursori järgi, loendab tööks ainult uue teavituse ning dedupe sisaldab täpset kohtumisaega. Nii ühiktest kui päris PostgreSQL-sond töötlevad 125 kohtumist 50-reases pakis, kordusjooks on vaikne ja sama päeva ümbertõstmine tekitab täpselt ühe uue teate kummalegi poolele.
 
 **Teekond ja jagamine** (`SOL-JOUR`, 2/17)
 

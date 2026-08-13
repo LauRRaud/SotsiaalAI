@@ -75,6 +75,7 @@ export function createMentoringDb() {
     mentoringAuditEvent: [],
     notificationEvent: [],
     wellbeingOutputDraft: [],
+    room: [],
     roomMember: []
   };
   const uniqueIndexes = {
@@ -127,6 +128,7 @@ export function createMentoringDb() {
     if (key === "mentorProfile") {
       return store.mentorProfile.find((p) => p.id === row.mentorProfileId) || null;
     }
+    if (key === "room") return store.room.find((room) => room.id === row.roomId) || null;
     if (key === "providerProfile") return null;
     return null;
   }
@@ -290,6 +292,11 @@ export function createMentoringDb() {
                   base[k] = store.mentoringAgreementAcceptance
                     .filter((a) => a.relationId === row.id && matchWhere("mentoringAgreementAcceptance", a, v.where))
                     .map((a) => ({ agreementVersion: a.agreementVersion }));
+                } else if (k === "relation") {
+                  const relation = store.mentoringRelation.find((candidate) => candidate.id === row.relationId);
+                  base[k] = relation
+                    ? Object.fromEntries(Object.keys(v.select || {}).filter((field) => v.select[field] === true).map((field) => [field, relation[field]]))
+                    : null;
                 }
               }
             }
@@ -370,6 +377,7 @@ export function createMentoringDb() {
     mentoringAuditEvent: makeTable("mentoringAuditEvent", "audit"),
     notificationEvent: makeTable("notificationEvent", "notif"),
     wellbeingOutputDraft: makeTable("wellbeingOutputDraft", "draft"),
+    room: makeTable("room", "room"),
     roomMember: makeTable("roomMember", "member"),
     async $executeRaw() {
       calls.advisoryLocks += 1;

@@ -94,6 +94,52 @@ test("sweep anonymizes terminal request messages after 90d", async () => {
   assert.ok(request.anonymizedAt);
 });
 
+test("SOL-MENT-02: sweep marks stale external consent once and notifies admins", async () => {
+  const db = baseDb();
+  seedUser(db, "admin", "ADMIN");
+  const now = new Date("2026-08-13T10:00:00.000Z");
+  db.store.mentorProfile.push({
+    id: "external-stale", userId: null, origin: "ESTA_IMPORT", status: "EXTERNAL_REFERENCE",
+    consentStatus: "CONSENTED", consentEvidenceType: "WRITTEN", consentEvidenceRef: "proof",
+    consentCapturedAt: new Date("2025-08-13T09:59:59.000Z"), checkedAt: new Date("2025-08-13T09:59:59.000Z"),
+    displayName: "External", version: 0, createdAt: now, updatedAt: now
+  });
+  const first = await runMentoringSweep({ db, now });
+  assert.equal(first.externalConsentsStaled, 1);
+  assert.equal(db.store.mentorProfile[0].consentStatus, "STALE");
+  assert.equal(db.store.notificationEvent.filter((event) => event.userId === "admin").length, 1);
+  const second = await runMentoringSweep({ db, now });
+  assert.equal(second.externalConsentsStaled, 0);
+  assert.equal(db.store.notificationEvent.filter((event) => event.userId === "admin").length, 1);
+});
+
+test("SOL-MENT-07: upcoming sweep paginates 2.5 batches, rerun is quiet, same-day reschedule emits once", async () => {
+  const db = baseDb();
+  const now = new Date("2026-08-13T10:00:00.000Z");
+  db.store.mentoringRelation.push({
+    id: "rel-bulk", mentorUserId: "mentor", menteeUserId: "mentee", status: "ACTIVE",
+    version: 0, agreementVersion: 1, lastActivityAt: now, createdAt: now, updatedAt: now
+  });
+  for (let index = 0; index < 125; index += 1) {
+    db.store.mentoringMeeting.push({
+      id: `bulk-${String(index).padStart(3, "0")}`,
+      relationId: "rel-bulk", occurredAt: new Date(now.getTime() + (index + 1) * 60_000),
+      status: "PLANNED", mode: "EXTERNAL", version: 0, createdAt: now, updatedAt: now
+    });
+  }
+  const first = await runMentoringSweep({ db, now, batchSize: 50 });
+  assert.equal(first.meetingsUpcoming, 125);
+  assert.equal(first.notificationsCreated, 250);
+  const second = await runMentoringSweep({ db, now, batchSize: 50 });
+  assert.equal(second.meetingsUpcoming, 0);
+  assert.equal(second.notificationsCreated, 0);
+
+  db.store.mentoringMeeting[0].occurredAt = new Date(now.getTime() + 30 * 60_000);
+  const third = await runMentoringSweep({ db, now, batchSize: 50 });
+  assert.equal(third.meetingsUpcoming, 1);
+  assert.equal(third.notificationsCreated, 2);
+});
+
 test("K1 adapter maps relation → descriptor (no content leaked)", async () => {
   const now = new Date("2026-07-18T10:00:00.000Z");
   const descriptor = toMentoringWorkspaceDescriptor({

@@ -4752,34 +4752,40 @@ model SupervisionAuditEvent {
 // välisele avalikule profiilile. publicContact on ADMIN-ONLY väli — see ei tohi
 // sisalduda üheski mitte-admin serializeris.
 model MentorProfile {
-  id                    String    @id @default(cuid())
-  userId                String?   @unique
-  origin                String    @default("SELF")
-  status                String    @default("DRAFT")
-  consentStatus         String?
-  displayName           String
-  title                 String?
-  organization          String?
-  fields                String[]  @default([])
-  topics                String[]  @default([])
-  languages             String[]  @default([])
-  formats               String[]  @default([])
-  bioShort              String?   @db.Text
-  bioFull               String?   @db.Text
-  experienceSummary     String?   @db.Text
-  capacity              String    @default("OPEN")
-  externalProfileUrl    String?
-  externalSlug          String?   @unique
-  publicContact         Json?
-  contactDisplayAllowed Boolean   @default(false)
-  checkedAt             DateTime?
-  consentNote           String?   @db.Text
-  reviewedByUserId      String?
-  reviewedAt            DateTime?
-  reviewReasonKey       String?
-  version               Int       @default(0)
-  createdAt             DateTime  @default(now())
-  updatedAt             DateTime  @updatedAt
+  id                      String    @id @default(cuid())
+  userId                  String?   @unique
+  origin                  String    @default("SELF")
+  status                  String    @default("DRAFT")
+  consentStatus           String?
+  displayName             String
+  title                   String?
+  organization            String?
+  fields                  String[]  @default([])
+  topics                  String[]  @default([])
+  languages               String[]  @default([])
+  formats                 String[]  @default([])
+  bioShort                String?   @db.Text
+  bioFull                 String?   @db.Text
+  experienceSummary       String?   @db.Text
+  capacity                String    @default("OPEN")
+  externalProfileUrl      String?
+  externalSlug            String?   @unique
+  publicContact           Json?
+  contactDisplayAllowed   Boolean   @default(false)
+  checkedAt               DateTime?
+  consentNote             String?   @db.Text
+  consentEvidenceType     String?
+  consentEvidenceRef      String?   @db.Text
+  consentCapturedAt       DateTime?
+  approvedSnapshot        Json?
+  approvedSnapshotAt      DateTime?
+  approvedSnapshotVisible Boolean   @default(false)
+  reviewedByUserId        String?
+  reviewedAt              DateTime?
+  reviewReasonKey         String?
+  version                 Int       @default(0)
+  createdAt               DateTime  @default(now())
+  updatedAt               DateTime  @updatedAt
 
   user       User?              @relation("MentorProfileUser", fields: [userId], references: [id], onDelete: Cascade)
   reviewedBy User?              @relation("MentorProfileReviewer", fields: [reviewedByUserId], references: [id], onDelete: SetNull)
@@ -4904,20 +4910,24 @@ model MentoringSummary {
   content         String    @db.Text
   status          String    @default("DRAFT")
   supersededById  String?
+  correctionOfId  String?
   createdByUserId String?
   confirmedAt     DateTime?
   version         Int       @default(0)
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
 
-  relation      MentoringRelation              @relation(fields: [relationId], references: [id], onDelete: Cascade)
-  meeting       MentoringMeeting?              @relation(fields: [meetingId], references: [id], onDelete: SetNull)
-  supersededBy  MentoringSummary?              @relation("MentoringSummarySupersedes", fields: [supersededById], references: [id], onDelete: SetNull)
-  supersedes    MentoringSummary[]             @relation("MentoringSummarySupersedes")
-  createdBy     User?                          @relation("MentoringSummaryCreator", fields: [createdByUserId], references: [id], onDelete: SetNull)
-  confirmations MentoringSummaryConfirmation[]
+  relation         MentoringRelation              @relation(fields: [relationId], references: [id], onDelete: Cascade)
+  meeting          MentoringMeeting?              @relation(fields: [meetingId], references: [id], onDelete: SetNull)
+  supersededBy     MentoringSummary?              @relation("MentoringSummarySupersedes", fields: [supersededById], references: [id], onDelete: SetNull)
+  supersedes       MentoringSummary[]             @relation("MentoringSummarySupersedes")
+  correctionOf     MentoringSummary?              @relation("MentoringSummaryCorrectionDraft", fields: [correctionOfId], references: [id], onDelete: SetNull)
+  correctionDrafts MentoringSummary[]             @relation("MentoringSummaryCorrectionDraft")
+  createdBy        User?                          @relation("MentoringSummaryCreator", fields: [createdByUserId], references: [id], onDelete: SetNull)
+  confirmations    MentoringSummaryConfirmation[]
 
   @@index([relationId, status, updatedAt])
+  @@index([correctionOfId, status])
 }
 
 // EM6b — kokkuvõtte kahepoolne kinnitus (append-only tõendikirjed).

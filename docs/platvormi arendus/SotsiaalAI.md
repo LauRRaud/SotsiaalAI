@@ -139,8 +139,14 @@ omaniku kinnitatud retention'i tähtaegu.
 **Prisma ja deploy' `SOL-PRISMA-01…04` on lõpetatud.** Pärand-MTR tõend ei muutu upgrade'il
 enam valeks ega kaota teadaolevat põhjust, HelpMatchi mõlemad osapooled on valideeritud ning
 deploy ehitab taastatava artefakti enne skeemimuutust. Pending-migratsioonide värav mõõdab
-andmemahu ja lukud ning peatab teadmata või liiga suure lukustusriski; järgmine soovitatav sidus
-plokk on `SOL-MENT-01…07`.
+andmemahu ja lukud ning peatab teadmata või liiga suure lukustusriski.
+
+**Mentorluse `SOL-MENT-01…07` on lõpetatud.** Avalik mentoriprofiil kasutab admini kinnitatud
+snapshot'i, välisnõusolek on tõendatud ja 12 kuu järel fail-closed, jagatud ettevalmistuse sisu
+avaneb atomaarse lugemisclaim'iga ning kokkuvõtte parandus asendab algse alles mõlema poole
+kinnitusel. Platvormiruumi kohtumine nõuab mõlema poole aktiivset liikmesust, aeg liigub
+ajavööndiga ISO-väärtusena ja lähenevate kohtumiste sweep läbib kogu järjekorra; järgmine
+soovitatav sidus plokk on `SOL-SUP-01…04`.
 
 **RAG-teenuse `SOL-RAGSVC-01…28` on DONE ja peatüki UTC täisvärav on roheline.**
 `SOL-ORG-13`–`17`, `SOL-DOC-J-01`–`06` ja kogu `SOL-SLOG-01…24` parandused ning kiirem plokipõhine töökord on koodipuus. Kolmeastmelised arvud loetakse käsuga `npm run sol:progress`, neid siia ankrusse ei

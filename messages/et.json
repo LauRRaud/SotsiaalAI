@@ -607,6 +607,9 @@
       "meeting_time": "Aeg",
       "meeting_mode": "Vorm",
       "meeting_mode_hint": "Platvormi ruumi valik lisab viite olemasolevale vestlusruumile; eraldi kõnesüsteemi mentorlusel ei ole.",
+      "meeting_room": "Ühine platvormiruum",
+      "meeting_room_untitled": "Nimetu ruum",
+      "meeting_room_empty": "Teil ei ole ühist aktiivset ruumi. Loo või taasta esmalt ruum, kus mõlemad olete liikmed.",
       "meeting_topic": "Teema (ühisala)",
       "meeting_create": "Lisa kohtumine",
       "meeting_created_feedback": "Kohtumine lisatud.",
@@ -625,6 +628,9 @@
       "summary_new": "Kokkuvõtte mustand",
       "summary_create": "Loo mustand",
       "summary_created_feedback": "Mustand loodud.",
+      "summary_correction": "Parandatud kokkuvõte",
+      "summary_correction_create": "Loo paranduse mustand",
+      "summary_correction_created_feedback": "Paranduse mustand loodud. Algne kokkuvõte jääb kehtima kuni uue versiooni mõlemapoolse kinnituseni.",
       "preparation_title": "Ettevalmistus (Tööheaolu sild)",
       "preparation_help_mentee": "Tööheaolu tööriista kinnitatud väljund tuleb siia SINU privaatalasse. Mentor näeb seda alles siis, kui sa selle teadlikult jagad.",
       "preparation_help_mentor": "Mentee jagatud ettevalmistus. Sisu on külmutatud koopia jagamise hetkest.",
@@ -705,6 +711,14 @@
       "consent_label": "Nõusolekustaatus",
       "consent_save": "Salvesta",
       "consent_saved_feedback": "Nõusolekustaatus uuendatud.",
+      "consent_evidence_type": "Nõusoleku tõendi liik",
+      "consent_evidence_ref": "Tõendi viide või kirjeldus",
+      "consent_evidence": {
+        "written": "Kirjalik nõusolek",
+        "email": "E-kiri",
+        "recorded_call": "Salvestatud kõne",
+        "in_person": "Kohtumisel kinnitatud"
+      },
       "delete_external": "Kustuta kirje",
       "deleted_feedback": "Väline kirje kustutatud."
     }
@@ -5272,6 +5286,7 @@
       "mentoring_profile_approved": "Sinu mentoriprofiil kinnitati kataloogi",
       "mentoring_profile_rejected": "Sinu mentoriprofiil lükati tagasi",
       "mentoring_profile_revoked": "Sinu mentoriprofiil suleti",
+      "mentoring_external_consent_stale": "Välise mentoriprofiili nõusolekukontroll aegus",
       "mentoring_share_recalled": "Mentee võttis jagatud ettevalmistuse tagasi",
       "room_summary_approval_requested": "Kohtumise kokkuvõte ootab sinu kinnitust",
       "room_summary_approval_response": "Osaleja vastas kokkuvõtte kinnitusringile",

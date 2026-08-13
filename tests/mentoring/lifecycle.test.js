@@ -24,6 +24,7 @@ import { createMentoringMeeting, updateMentoringMeeting } from "../../lib/mentor
 import {
   confirmMentoringSummary,
   createMentoringSummary,
+  discardMentoringSummary,
   submitMentoringSummary,
   superseedMentoringSummary
 } from "../../lib/mentoring/summaryService.js";
@@ -111,6 +112,42 @@ test("profile state machine: DRAFT → PENDING_REVIEW → ACTIVE; moderation gat
   assert.equal(catalog[0].canRequest, true);
 });
 
+test("SOL-MENT-01: every moderated edit returns ACTIVE profile to review and keeps only approved snapshot public", async () => {
+  const db = baseDb();
+  const now = new Date("2026-07-18T10:00:00.000Z");
+  await upsertOwnMentorProfile(MENTOR, {
+    displayName: "Approved name", title: "Approved title", organization: "Approved org",
+    fields: ["Approved field"], topics: ["Approved topic"], languages: ["et"], formats: ["video"],
+    bioShort: "Approved short", bioFull: "Approved full", experienceSummary: "Approved experience"
+  }, { db, now });
+  await submitOwnMentorProfile(MENTOR, { db, now });
+  const stored = db.store.mentorProfile.find((profile) => profile.userId === MENTOR.userId);
+  await reviewMentorProfile(ADMIN, stored.id, "APPROVE", {}, { db, now });
+
+  await upsertOwnMentorProfile(MENTOR, {
+    expectedVersion: db.store.mentorProfile.find((profile) => profile.id === stored.id).version,
+    displayName: "Unreviewed name", title: "Unreviewed title", organization: "Unreviewed org",
+    fields: ["Unreviewed field"], topics: ["Unreviewed topic"], languages: ["en"], formats: ["room"],
+    bioShort: "Unreviewed short", bioFull: "Unreviewed full", experienceSummary: "Unreviewed experience"
+  }, { db, now: new Date("2026-07-18T11:00:00.000Z") });
+
+  const own = await getOwnMentorProfile(MENTOR, { db });
+  assert.equal(own.status, "PENDING_REVIEW");
+  const detail = await getCatalogProfile(MENTEE, stored.id, { db, now });
+  assert.equal(detail.canRequest, true);
+  assert.deepEqual({
+    displayName: detail.displayName, title: detail.title, organization: detail.organization,
+    fields: detail.fields, topics: detail.topics, languages: detail.languages, formats: detail.formats,
+    bioShort: detail.bioShort, bioFull: detail.bioFull, experienceSummary: detail.experienceSummary
+  }, {
+    displayName: "Approved name", title: "Approved title", organization: "Approved org",
+    fields: ["Approved field"], topics: ["Approved topic"], languages: ["et"], formats: ["video"],
+    bioShort: "Approved short", bioFull: "Approved full", experienceSummary: "Approved experience"
+  });
+  const request = await createMentoringRequest(MENTEE, { mentorProfileId: stored.id, message: "Approved mentor request" }, { db, now });
+  assert.equal(request.status, "PENDING");
+});
+
 test("profile submit requires completeness", async () => {
   const db = baseDb();
   await upsertOwnMentorProfile(MENTOR, { displayName: "Vaid nimi" }, { db });
@@ -194,7 +231,7 @@ test("IDOR: stranger gets 404 on relation; both parties do not", async () => {
   assert.equal(asMentee.position, "mentee");
 });
 
-test("meeting lifecycle + roomId only for own room (SetNull reference)", async () => {
+test("SOL-MENT-05/06: platform room requires both active members and meeting time requires an offset", async () => {
   const db = baseDb();
   const now = new Date("2026-07-18T10:00:00.000Z");
   const relationId = await activatedRelation(db, now);
@@ -214,12 +251,25 @@ test("meeting lifecycle + roomId only for own room (SetNull reference)", async (
     }, { db, now }),
     (error) => error.status === 404
   );
-  // With a real membership it is stored.
+  await assert.rejects(() => createMentoringMeeting(MENTEE, relationId, {
+    occurredAt: "2026-07-26T09:00", mode: "EXTERNAL"
+  }, { db, now }), (error) => error.code === "INVALID_MEETING_TIME");
+  db.store.room.push({ id: "room1", title: "Shared", archivedAt: null, updatedAt: now });
   db.store.roomMember.push({ id: "rm1", roomId: "room1", userId: "mentee", leftAt: null });
+  await assert.rejects(() => createMentoringMeeting(MENTEE, relationId, {
+    occurredAt: "2026-07-26T09:00:00.000Z", mode: "PLATFORM_ROOM", roomId: "room1"
+  }, { db, now }), (error) => error.status === 404);
+  db.store.roomMember.push({ id: "rm2", roomId: "room1", userId: "mentor", leftAt: null });
   const linked = await createMentoringMeeting(MENTEE, relationId, {
     occurredAt: "2026-07-26T09:00:00.000Z", mode: "PLATFORM_ROOM", roomId: "room1"
   }, { db, now });
   assert.equal(linked.roomId, "room1");
+  const view = await getMentoringRelation(MENTEE, relationId, { db });
+  assert.deepEqual(view.commonRooms, [{ id: "room1", title: "Shared" }]);
+  db.store.roomMember.find((member) => member.id === "rm2").leftAt = now;
+  await assert.rejects(() => createMentoringMeeting(MENTEE, relationId, {
+    occurredAt: "2026-07-26T10:00:00.000Z", mode: "PLATFORM_ROOM", roomId: "room1"
+  }, { db, now }), (error) => error.status === 404);
 });
 
 test("summary two-sided confirmation + superseded chain", async () => {
@@ -239,10 +289,22 @@ test("summary two-sided confirmation + superseded chain", async () => {
   stored = db.store.mentoringSummary.find((s) => s.id === summary.id);
   assert.equal(stored.status, "CONFIRMED");
 
-  // Supersede creates a new DRAFT linked back.
+  // Correction draft points to the original but does not supersede it yet.
   const replacement = await superseedMentoringSummary(MENTOR, relationId, summary.id, { content: "Parandus" }, { db, now });
   stored = db.store.mentoringSummary.find((s) => s.id === summary.id);
-  assert.equal(stored.supersededById, replacement.id);
+  assert.equal(stored.supersededById, undefined);
+  assert.equal(db.store.mentoringSummary.find((s) => s.id === replacement.id).correctionOfId, summary.id);
+  await discardMentoringSummary(MENTOR, relationId, replacement.id, { db, now });
+  assert.equal(db.store.mentoringSummary.find((s) => s.id === summary.id).supersededById, undefined);
+
+  const acceptedReplacement = await superseedMentoringSummary(MENTOR, relationId, summary.id, { content: "Parandus 2" }, { db, now });
+  await submitMentoringSummary(MENTOR, relationId, acceptedReplacement.id, {
+    expectedVersion: db.store.mentoringSummary.find((s) => s.id === acceptedReplacement.id).version
+  }, { db, now });
+  await confirmMentoringSummary(MENTOR, relationId, acceptedReplacement.id, { db, now });
+  assert.equal(db.store.mentoringSummary.find((s) => s.id === summary.id).supersededById, undefined);
+  await confirmMentoringSummary(MENTEE, relationId, acceptedReplacement.id, { db, now });
+  assert.equal(db.store.mentoringSummary.find((s) => s.id === summary.id).supersededById, acceptedReplacement.id);
 });
 
 test("close purge atomicity: unconfirmed drops, confirmed + private notes persist", async () => {
@@ -323,6 +385,7 @@ test("wellbeing handoff → private target, recall before open, no recall after 
   // Mentor now sees the frozen copy.
   const afterShare = await getMentoringRelation(MENTOR, relationId, { db });
   assert.equal((afterShare.preparations || []).length, 1);
+  assert.equal(afterShare.preparations[0].sharedContent, null, "ordinary GET cannot deliver content before the open claim");
 
   // Recall before open succeeds.
   await recallMentoringPreparation(MENTEE, relationId, prep.id, { db, now });
@@ -331,7 +394,8 @@ test("wellbeing handoff → private target, recall before open, no recall after 
 
   // Re-share then mentor opens → recall blocked.
   await shareMentoringPreparation(MENTEE, relationId, prep.id, { confirmedNoClientData: true }, { db, now });
-  await markMentoringPreparationOpened(MENTOR, relationId, prep.id, { db, now });
+  const opened = await markMentoringPreparationOpened(MENTOR, relationId, prep.id, { db, now });
+  assert.equal(opened.sharedContent, "Üldistatud küsimused mentorile");
   await assert.rejects(
     () => recallMentoringPreparation(MENTEE, relationId, prep.id, { db, now }),
     (error) => error.status === 409
@@ -372,11 +436,40 @@ test("catalog: consented external visible; pending-consent 404 on direct lookup"
   assert.equal((await listMentorCatalog(MENTEE, {}, { db })).length, 0);
   await assert.rejects(() => getCatalogProfile(MENTEE, record.id, { db }), (error) => error.status === 404);
   // Consent → visible.
-  await setExternalConsentStatus(ADMIN, record.id, { consentStatus: "CONSENTED" }, { db, now });
+  await assert.rejects(
+    () => setExternalConsentStatus(ADMIN, record.id, { consentStatus: "CONSENTED" }, { db, now }),
+    (error) => error.code === "CONSENT_EVIDENCE_REQUIRED"
+  );
+  await setExternalConsentStatus(ADMIN, record.id, {
+    consentStatus: "CONSENTED", consentEvidenceType: "WRITTEN", consentEvidenceRef: "registry-2026-07-18"
+  }, { db, now });
   // Need status ACTIVE? No — external CONSENTED userId=null is catalog-visible by consentStatus.
   const catalog = await listMentorCatalog(MENTEE, {}, { db });
   assert.equal(catalog.length, 1);
   assert.equal(catalog[0].external, true);
+});
+
+test("SOL-MENT-02: external catalog fails closed at the 12-month boundary and on missing, future or invalid proof", async () => {
+  const db = baseDb();
+  const now = new Date("2026-08-13T10:00:00.000Z");
+  const base = {
+    origin: "ESTA_IMPORT", userId: null, status: "EXTERNAL_REFERENCE", consentStatus: "CONSENTED",
+    title: null, organization: null, fields: [], topics: [], languages: [], formats: [], capacity: "OPEN",
+    consentEvidenceType: "WRITTEN", consentEvidenceRef: "proof", consentCapturedAt: new Date("2025-08-13T10:00:00.000Z"),
+    version: 0, createdAt: now, updatedAt: now
+  };
+  db.store.mentorProfile.push(
+    { ...base, id: "boundary", displayName: "Boundary", checkedAt: new Date("2025-08-13T10:00:00.000Z") },
+    { ...base, id: "stale", displayName: "Stale", checkedAt: new Date("2025-08-13T09:59:59.999Z") },
+    { ...base, id: "future", displayName: "Future", checkedAt: new Date("2026-08-13T10:00:00.001Z") },
+    { ...base, id: "missing", displayName: "Missing", checkedAt: now, consentEvidenceRef: null },
+    { ...base, id: "invalid", displayName: "Invalid", checkedAt: now, consentEvidenceType: "CHAT" }
+  );
+  const catalog = await listMentorCatalog(MENTEE, {}, { db, now });
+  assert.deepEqual(catalog.map((profile) => profile.id), ["boundary"]);
+  for (const id of ["stale", "future", "missing", "invalid"]) {
+    await assert.rejects(() => getCatalogProfile(MENTEE, id, { db, now }), (error) => error.status === 404);
+  }
 });
 
 test("cancel request re-verify: CANCELLED request loses mentor's notification row", async () => {

@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
+import Input from "@/components/ui/Input";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import styles from "./MentoringPage.module.css";
@@ -22,6 +23,7 @@ export default function AdminMentoringPage() {
   const [busy, setBusy] = useState(false);
   const [reasonByProfile, setReasonByProfile] = useState({});
   const [consentByProfile, setConsentByProfile] = useState({});
+  const [evidenceByProfile, setEvidenceByProfile] = useState({});
 
   const formatter = useMemo(
     () => new Intl.DateTimeFormat(locale || "et", { dateStyle: "medium" }),
@@ -240,10 +242,13 @@ export default function AdminMentoringPage() {
                                 }))}
                               />
                               <Button
-                                disabled={busy}
+                                disabled={busy || ((consentByProfile[record.id] || record.consentStatus) === "CONSENTED"
+                                  && !(evidenceByProfile[record.id]?.reference || record.consentEvidenceRef || "").trim())}
                                 onClick={() => act(`/api/admin/mentoring/${encodeURIComponent(record.id)}`, {
                                   action: "consent",
                                   consentStatus: consentByProfile[record.id] || record.consentStatus || "PENDING_CONSENT",
+                                  consentEvidenceType: evidenceByProfile[record.id]?.type || record.consentEvidenceType || "WRITTEN",
+                                  consentEvidenceRef: evidenceByProfile[record.id]?.reference || record.consentEvidenceRef || "",
                                   refreshCheckedAt: true
                                 }, "mentoring.admin.consent_saved_feedback")}
                                 size="sm"
@@ -251,6 +256,32 @@ export default function AdminMentoringPage() {
                               >
                                 {t("mentoring.admin.consent_save")}
                               </Button>
+                              {(consentByProfile[record.id] || record.consentStatus) === "CONSENTED" ? (
+                                <>
+                                  <Dropdown
+                                    ariaLabel={t("mentoring.admin.consent_evidence_type")}
+                                    onChange={(next) => setEvidenceByProfile((prev) => ({
+                                      ...prev,
+                                      [record.id]: { ...prev[record.id], type: next }
+                                    }))}
+                                    options={["WRITTEN", "EMAIL", "RECORDED_CALL", "IN_PERSON"].map((type) => ({
+                                      value: type,
+                                      label: t(`mentoring.admin.consent_evidence.${type.toLowerCase()}`)
+                                    }))}
+                                    value={evidenceByProfile[record.id]?.type || record.consentEvidenceType || "WRITTEN"}
+                                  />
+                                  <Input
+                                    aria-label={t("mentoring.admin.consent_evidence_ref")}
+                                    maxLength={600}
+                                    onChange={(event) => setEvidenceByProfile((prev) => ({
+                                      ...prev,
+                                      [record.id]: { ...prev[record.id], reference: event.target.value }
+                                    }))}
+                                    placeholder={t("mentoring.admin.consent_evidence_ref")}
+                                    value={evidenceByProfile[record.id]?.reference ?? record.consentEvidenceRef ?? ""}
+                                  />
+                                </>
+                              ) : null}
                               <Button
                                 disabled={busy}
                                 onClick={() => act(`/api/admin/mentoring/${encodeURIComponent(record.id)}`, {

@@ -607,6 +607,9 @@
       "meeting_time": "Time",
       "meeting_mode": "Format",
       "meeting_mode_hint": "The platform-room option links an existing conversation room; mentoring has no separate call system.",
+      "meeting_room": "Shared platform room",
+      "meeting_room_untitled": "Untitled room",
+      "meeting_room_empty": "You do not have a shared active room. First create or restore a room where both of you are members.",
       "meeting_topic": "Topic (shared area)",
       "meeting_create": "Add meeting",
       "meeting_created_feedback": "Meeting added.",
@@ -625,6 +628,9 @@
       "summary_new": "Summary draft",
       "summary_create": "Create draft",
       "summary_created_feedback": "Draft created.",
+      "summary_correction": "Corrected summary",
+      "summary_correction_create": "Create correction draft",
+      "summary_correction_created_feedback": "Correction draft created. The original remains valid until both parties confirm the new version.",
       "preparation_title": "Preparation (Work wellbeing bridge)",
       "preparation_help_mentee": "The confirmed output of a Work wellbeing tool lands in YOUR private area here. The mentor sees it only after you deliberately share it.",
       "preparation_help_mentor": "Preparation shared by the mentee. The content is a frozen copy from the moment of sharing.",
@@ -705,6 +711,14 @@
       "consent_label": "Consent status",
       "consent_save": "Save",
       "consent_saved_feedback": "Consent status updated.",
+      "consent_evidence_type": "Consent evidence type",
+      "consent_evidence_ref": "Evidence reference or description",
+      "consent_evidence": {
+        "written": "Written consent",
+        "email": "Email",
+        "recorded_call": "Recorded call",
+        "in_person": "Confirmed in person"
+      },
       "delete_external": "Delete record",
       "deleted_feedback": "External record deleted."
     }
@@ -5272,6 +5286,7 @@
       "mentoring_profile_approved": "Your mentor profile was approved to the catalog",
       "mentoring_profile_rejected": "Your mentor profile was rejected",
       "mentoring_profile_revoked": "Your mentor profile was closed",
+      "mentoring_external_consent_stale": "An external mentor profile consent check expired",
       "mentoring_share_recalled": "The mentee recalled a shared preparation",
       "room_summary_approval_requested": "A meeting summary is waiting for your confirmation",
       "room_summary_approval_response": "A participant responded to the summary confirmation round",
