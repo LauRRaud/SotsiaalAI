@@ -751,6 +751,7 @@
       "empty": "Sul ei ole veel ühtegi refleksioonikirjet.",
       "open": "Ava",
       "delete": "Kustuta",
+      "load_more": "Näita veel",
       "untitled": "Refleksioonikirje"
     },
     "form": {
@@ -816,6 +817,13 @@
       "TAKE_TO_SUPERVISION": "Viin supervisiooni",
       "TAKE_TO_ETHICS": "Viin eetilisse arutellu"
     },
+    "conflict": {
+      "title": "Kirjet muudeti samal ajal",
+      "explanation": "Sinu tekst jäi alles. Võrdle seda serveris oleva uuema versiooniga. Võid oma versiooni uuesti salvestada või võtta aluseks serveri versiooni.",
+      "your_version": "Sinu salvestamata versioon",
+      "server_version": "Serveris olev versioon",
+      "use_server": "Kasuta serveri versiooni"
+    },
     "errors": {
       "unauthorized": "Palun logi sisse.",
       "forbidden": "See tööriist on spetsialisti rollile.",
@@ -827,6 +835,18 @@
       "invalid_interim_outcome": "Vigane vahehindamise valik.",
       "invalid_source_kind": "Vigane allikaviite liik.",
       "invalid_source_id": "Vigane allikaviide.",
+      "source_missing": "Seotud tegevust ei leitud.",
+      "invalid_source_filter": "Allikafilter peab sisaldama nii liiki kui ka tunnust.",
+      "invalid_cursor": "Lehekülje jätkamise viide on vigane.",
+      "invalid_page_size": "Lehekülje suurus on vigane.",
+      "content_required": "Kirjuta vähemalt ühele väljale sisuline vastus.",
+      "idempotency_key_required": "Salvestuskatse tunnus puudub. Palun proovi uuesti.",
+      "invalid_idempotency_key": "Salvestuskatse tunnus on vigane.",
+      "idempotency_conflict": "Sama salvestuskatse tunnusega saadeti teistsugune sisu.",
+      "rate_limited": "Liiga palju salvestuskatseid. Oota veidi ja proovi uuesti.",
+      "expected_updated_at_required": "Kirje versioon puudub. Ava kirje uuesti.",
+      "invalid_expected_updated_at": "Kirje versioon on vigane. Ava kirje uuesti.",
+      "stale_update": "Kirjet muudeti samal ajal. Võrdle mõlemat versiooni.",
       "source_ref_immutable": "Seotud tegevust ei saa hiljem muuta.",
       "empty_update": "Muudatusi ei olnud.",
       "list_failed": "Kirjete laadimine ebaõnnestus.",

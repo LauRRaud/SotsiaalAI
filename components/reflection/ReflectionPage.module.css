@@ -172,3 +172,47 @@
 .errorText {
   color: var(--danger-text, #f2b8b5);
 }
+
+.loadMore {
+  display: flex;
+  justify-content: center;
+  grid-column: 1 / -1;
+}
+
+.conflict {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem;
+  border: 1px solid var(--danger-text, #f2b8b5);
+  border-radius: 0.75rem;
+  background: rgba(120, 32, 32, 0.16);
+}
+
+.conflict h3,
+.conflict h4,
+.conflict p {
+  margin: 0;
+}
+
+.conflictColumns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.conflictColumns > div {
+  display: grid;
+  align-content: start;
+  gap: 0.45rem;
+  min-width: 0;
+  padding: 0.75rem;
+  border-radius: 0.55rem;
+  background: rgba(0, 0, 0, 0.16);
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 640px) {
+  .conflictColumns {
+    grid-template-columns: 1fr;
+  }
+}

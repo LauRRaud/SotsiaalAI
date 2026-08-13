@@ -15,12 +15,13 @@ export async function GET(request) {
 
   const requestUrl = new URL(request.url);
   try {
-    const reflections = await listPracticeReflectionsForUser(auth.userId, {
+    const result = await listPracticeReflectionsForUser(auth.userId, {
       sourceKind: requestUrl.searchParams.get("sourceKind"),
       sourceId: requestUrl.searchParams.get("sourceId"),
-      take: requestUrl.searchParams.get("take")
+      take: requestUrl.searchParams.get("take"),
+      cursor: requestUrl.searchParams.get("cursor")
     });
-    return reflectionJson({ ok: true, reflections });
+    return reflectionJson({ ok: true, reflections: result.items, page: result.page });
   } catch (error) {
     console.error("[reflection] list failed", safeError(error));
     return reflectionErrorResponse(error, "reflection.errors.list_failed");
@@ -39,8 +40,10 @@ export async function POST(request) {
   }
 
   try {
-    const { reflection } = await createPracticeReflectionForUser(auth.userId, payload);
-    return reflectionJson({ ok: true, reflection }, 201);
+    const { reflection, replayed } = await createPracticeReflectionForUser(auth.userId, payload, {
+      idempotencyKey: request.headers.get("Idempotency-Key")
+    });
+    return reflectionJson({ ok: true, reflection, replayed }, replayed ? 200 : 201);
   } catch (error) {
     console.error("[reflection] create failed", safeError(error));
     return reflectionErrorResponse(error, "reflection.errors.create_failed");

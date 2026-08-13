@@ -68,14 +68,21 @@ function formFromReflection(reflection) {
   return form;
 }
 
-async function reflectionRequest(url, { method = "GET", body, signal } = {}) {
+function newIdempotencyKey() {
+  if (globalThis.crypto?.randomUUID) return globalThis.crypto.randomUUID();
+  return `reflection-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+}
+
+async function reflectionRequest(url, { method = "GET", body, signal, idempotencyKey } = {}) {
   const response = await fetch(url, {
     method,
     cache: "no-store",
     signal,
-    ...(body === undefined
-      ? {}
-      : { headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) })
+    headers: {
+      ...(body === undefined ? {} : { "Content-Type": "application/json" }),
+      ...(idempotencyKey ? { "Idempotency-Key": idempotencyKey } : {})
+    },
+    ...(body === undefined ? {} : { body: JSON.stringify(body) })
   });
   const payload = await response.json().catch(() => ({}));
   return { ok: response.ok && payload?.ok !== false, status: response.status, payload };
@@ -98,9 +105,14 @@ export default function ReflectionPage() {
   const searchParams = useSearchParams();
 
   const [reflections, setReflections] = useState([]);
+  const [nextCursor, setNextCursor] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
   const [loadError, setLoadError] = useState("");
   const [editingId, setEditingId] = useState(null);
+  const [editingUpdatedAt, setEditingUpdatedAt] = useState(null);
+  const [createKey, setCreateKey] = useState(null);
+  const [conflictReflection, setConflictReflection] = useState(null);
   const [formOpen, setFormOpen] = useState(false);
   const [form, setForm] = useState(emptyForm);
   const [sourceRef, setSourceRef] = useState(null);
@@ -117,29 +129,44 @@ export default function ReflectionPage() {
   const message = useCallback(({ status, payload }) => {
     if (status === 401) return t("reflection.common.login_required");
     if (status === 404) return t("reflection.errors.record_missing");
+    const apiKey = typeof payload?.message === "string" ? payload.message.trim() : "";
+    if (apiKey.startsWith("reflection.")) {
+      const translated = t(apiKey);
+      if (translated && translated !== apiKey) return translated;
+    }
     return resolveApiMessage({ payload, t, fallbackKey: "reflection.errors.load_failed" });
   }, [t]);
 
-  const load = useCallback(async (signal) => {
+  const load = useCallback(async ({ signal, cursor = null, append = false } = {}) => {
     setLoadError("");
+    if (append) setLoadingMore(true);
     try {
-      const { ok, status, payload } = await reflectionRequest("/api/reflections", { signal });
+      const query = cursor ? `?cursor=${encodeURIComponent(cursor)}` : "";
+      const { ok, status, payload } = await reflectionRequest(`/api/reflections${query}`, { signal });
       if (!ok) {
         setLoadError(message({ status, payload }));
         return;
       }
-      setReflections(payload?.reflections || []);
+      const incoming = payload?.reflections || [];
+      setReflections((current) => {
+        if (!append) return incoming;
+        const byId = new Map(current.map((item) => [item.id, item]));
+        for (const item of incoming) byId.set(item.id, item);
+        return [...byId.values()];
+      });
+      setNextCursor(payload?.page?.nextCursor || null);
     } catch (error) {
       if (error?.name === "AbortError") return;
       setLoadError(t("reflection.errors.load_failed"));
     } finally {
       if (!signal?.aborted) setLoading(false);
+      if (!signal?.aborted) setLoadingMore(false);
     }
   }, [message, t]);
 
   useEffect(() => {
     const controller = new AbortController();
-    void load(controller.signal);
+    void load({ signal: controller.signal });
     return () => controller.abort();
   }, [load]);
 
@@ -153,12 +180,18 @@ export default function ReflectionPage() {
       setSourceRef({ sourceKind: kind, sourceId: id });
       setFormOpen(true);
       setEditingId(null);
+      setEditingUpdatedAt(null);
+      setCreateKey(newIdempotencyKey());
+      setConflictReflection(null);
       setForm(emptyForm());
     }
   }, [searchParams]);
 
   const openNew = useCallback(() => {
     setEditingId(null);
+    setEditingUpdatedAt(null);
+    setCreateKey(newIdempotencyKey());
+    setConflictReflection(null);
     setSourceRef(null);
     setSourceState(null);
     setForm(emptyForm());
@@ -176,6 +209,9 @@ export default function ReflectionPage() {
     }
     const reflection = payload?.reflection || {};
     setEditingId(reflection.id || null);
+    setEditingUpdatedAt(reflection.updatedAt || null);
+    setCreateKey(null);
+    setConflictReflection(null);
     setSourceRef(reflection.sourceKind
       ? { sourceKind: reflection.sourceKind, sourceId: reflection.sourceId }
       : null);
@@ -187,6 +223,9 @@ export default function ReflectionPage() {
   const closeForm = useCallback(() => {
     setFormOpen(false);
     setEditingId(null);
+    setEditingUpdatedAt(null);
+    setCreateKey(null);
+    setConflictReflection(null);
     setSourceRef(null);
     setSourceState(null);
     setStatusMessage("");
@@ -199,15 +238,21 @@ export default function ReflectionPage() {
     for (const field of ALL_TEXT_FIELDS) body[field] = form[field] || null;
     body.supportNeed = form.supportNeed || null;
     body.interimOutcome = form.interimOutcome || null;
+    if (editingId) body.expectedUpdatedAt = editingUpdatedAt;
 
     try {
       const { ok, status, payload } = editingId
         ? await reflectionRequest(`/api/reflections/${editingId}`, { method: "PATCH", body })
         : await reflectionRequest("/api/reflections", {
             method: "POST",
-            body: sourceRef ? { ...body, ...sourceRef } : body
+            body: sourceRef ? { ...body, ...sourceRef } : body,
+            idempotencyKey: createKey
           });
       if (!ok) {
+        if (status === 409 && payload?.message === "reflection.errors.stale_update" && payload?.details?.current) {
+          setConflictReflection(payload.details.current);
+          setEditingUpdatedAt(payload.details.current.updatedAt || null);
+        }
         setStatusIsError(true);
         setStatusMessage(message({ status, payload }));
         return;
@@ -215,6 +260,9 @@ export default function ReflectionPage() {
       setStatusIsError(false);
       setStatusMessage(t("reflection.form.saved"));
       setEditingId(payload?.reflection?.id || editingId);
+      setEditingUpdatedAt(payload?.reflection?.updatedAt || editingUpdatedAt);
+      setCreateKey(null);
+      setConflictReflection(null);
       await load();
     } catch {
       setStatusIsError(true);
@@ -222,7 +270,7 @@ export default function ReflectionPage() {
     } finally {
       setSaving(false);
     }
-  }, [editingId, form, load, message, sourceRef, t]);
+  }, [createKey, editingId, editingUpdatedAt, form, load, message, sourceRef, t]);
 
   const remove = useCallback(async (id) => {
     setStatusMessage("");
@@ -297,6 +345,17 @@ export default function ReflectionPage() {
                 </div>
               </article>
             ))}
+            {nextCursor ? (
+              <div className={styles.loadMore}>
+                <Button
+                  disabled={loadingMore}
+                  onClick={() => { void load({ cursor: nextCursor, append: true }); }}
+                  variant="secondary"
+                >
+                  {loadingMore ? t("reflection.common.loading") : t("reflection.list.load_more")}
+                </Button>
+              </div>
+            ) : null}
           </div>
         ) : null}
 
@@ -368,6 +427,37 @@ export default function ReflectionPage() {
                 <span className={statusIsError ? styles.errorText : undefined}>{statusMessage}</span>
               ) : null}
             </div>
+
+            {conflictReflection ? (
+              <section className={styles.conflict} aria-labelledby="reflection-conflict-title">
+                <h3 id="reflection-conflict-title">{t("reflection.conflict.title")}</h3>
+                <p>{t("reflection.conflict.explanation")}</p>
+                <div className={styles.conflictColumns}>
+                  <div>
+                    <h4>{t("reflection.conflict.your_version")}</h4>
+                    {ALL_TEXT_FIELDS.map((field) => form[field] ? (
+                      <p key={`local-${field}`}><strong>{t(`reflection.field.${field}`)}:</strong> {form[field]}</p>
+                    ) : null)}
+                  </div>
+                  <div>
+                    <h4>{t("reflection.conflict.server_version")}</h4>
+                    {ALL_TEXT_FIELDS.map((field) => conflictReflection[field] ? (
+                      <p key={`server-${field}`}><strong>{t(`reflection.field.${field}`)}:</strong> {conflictReflection[field]}</p>
+                    ) : null)}
+                  </div>
+                </div>
+                <Button
+                  onClick={() => {
+                    setForm(formFromReflection(conflictReflection));
+                    setConflictReflection(null);
+                    setStatusMessage("");
+                  }}
+                  variant="secondary"
+                >
+                  {t("reflection.conflict.use_server")}
+                </Button>
+              </section>
+            ) : null}
 
             <div className={styles.actions}>
               <Button disabled={saving} onClick={() => { void save(); }}>

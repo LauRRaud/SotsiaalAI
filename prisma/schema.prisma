@@ -1670,6 +1670,10 @@ model PracticeReflection {
   schemaVersion     String   @default("1.0")
   sourceKind        String?
   sourceId          String?
+  // SOL-REF-05: sama kasutaja sama loomiskatse on üks püsiv DB-identiteet.
+  // Nullable jätab migratsiooni tagasiühilduvaks olemasolevate kirjetega.
+  idempotencyKey    String?
+  requestHash       String?
   // Valik — nelja tasandi mudel (ptk 3.2) + valiku põhjus
   approach          String?
   method            String?
@@ -1694,8 +1698,21 @@ model PracticeReflection {
 
   owner User @relation(fields: [ownerUserId], references: [id], onDelete: Cascade)
 
+  @@unique([ownerUserId, idempotencyKey])
   @@index([ownerUserId, createdAt])
   @@index([ownerUserId, sourceKind, sourceId])
+}
+
+// SOL-REF-05: protsessimälust sõltumatu kasutaja + operatsiooni kirjutuspiir.
+// Võti on SHA-256(ownerUserId + "reflection:create"), seega tabel ei kanna
+// kasutaja tooridentifikaatorit ja aegunud ridu saab resetAt järgi koristada.
+model PracticeReflectionRateLimitBucket {
+  key       String   @id @db.VarChar(64)
+  count     Int
+  resetAt   DateTime
+  updatedAt DateTime @updatedAt
+
+  @@index([resetAt])
 }
 
 model WellbeingOutputDraft {

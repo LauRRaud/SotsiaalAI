@@ -751,6 +751,7 @@
       "empty": "You have no reflection entries yet.",
       "open": "Open",
       "delete": "Delete",
+      "load_more": "Show more",
       "untitled": "Reflection entry"
     },
     "form": {
@@ -816,6 +817,13 @@
       "TAKE_TO_SUPERVISION": "Taking it to supervision",
       "TAKE_TO_ETHICS": "Taking it to an ethics discussion"
     },
+    "conflict": {
+      "title": "This entry was changed at the same time",
+      "explanation": "Your text is still here. Compare it with the newer version on the server. You can save your version again or use the server version as your starting point.",
+      "your_version": "Your unsaved version",
+      "server_version": "Version on the server",
+      "use_server": "Use the server version"
+    },
     "errors": {
       "unauthorized": "Please sign in.",
       "forbidden": "This tool is for the specialist role.",
@@ -827,6 +835,18 @@
       "invalid_interim_outcome": "Invalid interim-outcome choice.",
       "invalid_source_kind": "Invalid source reference kind.",
       "invalid_source_id": "Invalid source reference.",
+      "source_missing": "The linked activity was not found.",
+      "invalid_source_filter": "A source filter must include both its kind and identifier.",
+      "invalid_cursor": "The page continuation reference is invalid.",
+      "invalid_page_size": "The page size is invalid.",
+      "content_required": "Write a meaningful response in at least one field.",
+      "idempotency_key_required": "The save-attempt identifier is missing. Please try again.",
+      "invalid_idempotency_key": "The save-attempt identifier is invalid.",
+      "idempotency_conflict": "Different content was sent with the same save-attempt identifier.",
+      "rate_limited": "Too many save attempts. Wait a moment and try again.",
+      "expected_updated_at_required": "The entry version is missing. Open the entry again.",
+      "invalid_expected_updated_at": "The entry version is invalid. Open the entry again.",
+      "stale_update": "The entry was changed at the same time. Compare both versions.",
       "source_ref_immutable": "The linked activity cannot be changed later.",
       "empty_update": "There were no changes.",
       "list_failed": "Loading the entries failed.",
