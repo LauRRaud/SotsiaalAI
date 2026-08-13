@@ -254,12 +254,11 @@ kirjutatud siia, et ta ei kaoks.*
 
 **Vastuvõtukriteerium.** Kasutada päris navigatsiooni või `pushState` + `popstate` sünkroniseerimist. Brauseritest peab katma loend → detail → Back → loend → Forward → sama detail.
 
-**Seis (12.08.2026): PARTIAL — kood DONE; brauseritest NOT_PROVEN, runtime: not_run.**
-- Parandus: juhtumi avamine kasutab nüüd `pushState`-i (avamine ON navigatsioon) ja komponent kuulab `popstate`-i, nii et Back/Forward sünkroniseerivad valiku URL-iga. Kuulaja koristatakse `useEffect` tagastuses.
-- **Sulgemine kasutab `history.back()`-i, mitte kolmandat ajalookirjet** — muidu viiks Forward juhtumisse, millest kasutaja just väljus. Erand: kui me ise ei ole ühtki kirjet lisanud (kasutaja tuli otselingiga `?juhtum=<id>`), kirjutatakse parameeter `replaceState`-iga üle, et Back ei viskaks teda platvormilt välja. Selle otsuse kannab `pushedDepth` loendur.
-- Otsus elab JSX-ist väljas (`components/casework/caseListState.js` → `planCaseNavigation`, `readCaseIdFromSearch`, `caseUrlWithCase`), sest JSX-failis elavat otsust ei saa selle projekti testijooksjaga tõendada.
-- Testid (`tests/casework/caseListState.test.js`, 6 CW-09 testi): ajaloopinu simulatsioon katab täpselt nõutud järjestuse **loend → detail → Back → loend → Forward → sama detail**; eraldi testid sulgemise `back`-rajale, otselingi erandile ja „sama juhtum uuesti" no-op-ile. Pinna leping kontrollib, et `pushState` on kasutusel, vana `replaceState`-rada on kadunud ja `popstate` kuulaja lisatakse **ja** eemaldatakse.
-- **NOT_PROVEN:** vastuvõtukriteerium nõuab **brauseritesti**. Tõend on praegu ajaloopinu simulatsioon puhaste funktsioonide peal, mitte päris `window.history`. Päris brauseriga (sisselogitud töötaja + `CASEWORK_V1_ENABLED=1`) läbimängu ei tehtud.
+**Seis (13.08.2026): DONE — URL, vaade ja päris brauseriajalugu taastuvad kooskõlaliselt.**
+- Juhtumi avamine kasutab `pushState`-i ja komponent kuulab `popstate`-i; detaili sulgemine kasutab enda lisatud kirje korral `history.back()`-i ning otselingi erand eemaldab juhtumiparameetri `replaceState`-iga ilma kasutajat platvormilt välja viimata.
+- Production-build käivitati eraldi kohalikul pordil 3101 `CASEWORK_V1_ENABLED=1` abil ja rada läbiti autentitud sünteetilise `ai.specialist.a@sotsiaalai.test` kontoga. URL `?filter=aktiivne&section=cases` säilis juhtumi avamisel; päris Back taastas sama sektsiooni ja filtriga loendi ning Forward sama juhtumi detaili. Kõigis kolmes olekus oli vaade olemas, vale sektsiooni ega valget vaadet ei tekkinud ja brauserikonsoolis polnud vigu.
+- Sama `filter`, `section` ja `juhtum` parameetritega otselink avati eraldi uues brauserivahekaardis ning see taastas kohe sama detaili. Testiks loodud kohalik sünteetiline juhtum kustutati pärast kontrolli.
+- `tests/casework/caseListState.test.js` jäi muutmata koodipuul 11/11 roheliseks; selle kuus CW-09 kontrolli katavad lisaks ajaloopinu, otselingi erandi, kordusavamise no-op-i ja `popstate` kuulaja elutsükli.
 
 ### SOL-CW-10 — „Näita rohkem” lubab paralleelseid sama kursori päringuid — P3
 
