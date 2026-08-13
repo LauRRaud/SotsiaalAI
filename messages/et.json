@@ -2891,7 +2891,7 @@
       "save": "Salvesta",
       "cancel": "Loobu",
       "delete": "Kustuta",
-      "deleteConfirm": "Kas kustutada see kuulutus?",
+      "deleteConfirm": "Kas eemaldada see kuulutus? Kui kuulutusega on vastu võetud sobitus, suletakse kuulutus, kuid nõusolekutõend ja vestlus säilivad.",
       "closeListing": "Sulge kuulutus",
       "askAi": "Küsi AI-lt nõu",
       "contact": "Võta ühendust",

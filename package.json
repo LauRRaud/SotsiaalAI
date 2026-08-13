@@ -101,6 +101,7 @@
     "covision:integrity:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/covision-integrity-probe.mjs",
     "topic-seeds:lifecycle:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/topic-seed-lifecycle-probe.mjs",
     "help:match-lifecycle:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/help-match-lifecycle-probe.mjs",
+    "help:accepted-listing-delete:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/help-accepted-listing-delete-probe.mjs",
     "org:report-delivery:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/org-report-delivery-probe.mjs",
     "org:create:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/org-creation-idempotency-probe.mjs",
     "artifact:race:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/artifact-approval-race-probe.mjs",

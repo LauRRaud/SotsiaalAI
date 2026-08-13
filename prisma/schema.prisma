@@ -3732,8 +3732,8 @@ model HelpMatch {
   createdAt         DateTime        @default(now())
   updatedAt         DateTime        @updatedAt
 
-  request   HelpRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
-  offer     HelpOffer   @relation(fields: [offerId], references: [id], onDelete: Cascade)
+  request   HelpRequest @relation(fields: [requestId], references: [id], onDelete: Restrict)
+  offer     HelpOffer   @relation(fields: [offerId], references: [id], onDelete: Restrict)
   requester User        @relation("HelpMatchRequester", fields: [requesterId], references: [id], onDelete: Cascade)
   offerer   User        @relation("HelpMatchOfferer", fields: [offererId], references: [id], onDelete: Cascade)
   room      Room?       @relation(fields: [roomId], references: [id], onDelete: SetNull)

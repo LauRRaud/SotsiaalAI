@@ -72,6 +72,20 @@ function mapHelpRouteError(error, fallbackMessage = "HELP_LISTING_FAILED") {
     };
   }
 
+  if (code === "HELP_LISTING_FORBIDDEN") {
+    return {
+      status: 403,
+      message: "api.common.forbidden"
+    };
+  }
+
+  if (code === "HELP_LISTING_ACCEPTED_MATCH_INCONSISTENT") {
+    return {
+      status: 409,
+      message: code
+    };
+  }
+
   return {
     status: 500,
     message: fallbackMessage
@@ -149,9 +163,9 @@ function toConflictView(record, kind) {
   };
 }
 
-async function deleteRecord(kind, id) {
-  if (kind === "request") return deleteHelpRequest(id);
-  if (kind === "offer") return deleteHelpOffer(id);
+async function deleteRecord(kind, id, options) {
+  if (kind === "request") return deleteHelpRequest(id, options);
+  if (kind === "offer") return deleteHelpOffer(id, options);
   return null;
 }
 
@@ -277,13 +291,17 @@ export async function DELETE(_request, context) {
   }
 
   try {
-    await deleteRecord(kind, id);
+    const result = await deleteRecord(kind, id, {
+      actorUserId: auth.userId,
+      isAdmin: auth.isAdmin,
+      ipAddress: getRequestIpFromRequest(_request)
+    });
+    return json({
+      ok: true,
+      ...result
+    });
   } catch (error) {
     const mapped = mapHelpRouteError(error, "HELP_LISTING_DELETE_FAILED");
     return json({ ok: false, message: mapped.message }, mapped.status);
   }
-  return json({
-    ok: true,
-    id
-  });
 }

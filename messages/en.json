@@ -2891,7 +2891,7 @@
       "save": "Save",
       "cancel": "Cancel",
       "delete": "Delete",
-      "deleteConfirm": "Delete this listing?",
+      "deleteConfirm": "Remove this listing? If it has an accepted match, the listing will be closed while the consent record and conversation are preserved.",
       "closeListing": "Close listing",
       "askAi": "Ask AI for guidance",
       "contact": "Contact",
