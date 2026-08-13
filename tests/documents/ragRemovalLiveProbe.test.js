@@ -1,7 +1,10 @@
 import assert from "node:assert/strict"
 import test from "node:test"
 
-import { assertLocalDocumentRagProbeConfig } from "../../scripts/document-rag-removal-live-safety.mjs"
+import {
+  assertLocalDocumentRagProbeConfig,
+  isRemoteDocumentCopyAbsent
+} from "../../scripts/document-rag-removal-live-safety.mjs"
 
 const localConfig = {
   databaseUrl: "postgresql://probe:secret@127.0.0.1:5432/sotsiaalai_probe",
@@ -35,4 +38,29 @@ test("live document RAG probe accepts only explicit loopback dependencies", () =
     () => assertLocalDocumentRagProbeConfig({ ...localConfig, ragServiceKey: "too-short" }),
     /at least 32 characters/
   )
+})
+
+test("live document RAG probe accepts only an absent copy or clean zero-chunk tombstone", () => {
+  assert.equal(isRemoteDocumentCopyAbsent(null), true)
+  assert.equal(isRemoteDocumentCopyAbsent({
+    chunks: 0,
+    lifecycleState: "DELETED",
+    cleanupState: "CLEAN"
+  }), true)
+
+  assert.equal(isRemoteDocumentCopyAbsent({
+    chunks: 1,
+    lifecycleState: "DELETED",
+    cleanupState: "CLEAN"
+  }), false)
+  assert.equal(isRemoteDocumentCopyAbsent({
+    chunks: 0,
+    lifecycleState: "DELETE_FAILED",
+    cleanupState: "CLEAN"
+  }), false)
+  assert.equal(isRemoteDocumentCopyAbsent({
+    chunks: 0,
+    lifecycleState: "DELETED",
+    cleanupState: "PENDING"
+  }), false)
 })

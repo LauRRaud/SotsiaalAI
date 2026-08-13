@@ -58,3 +58,10 @@ export function assertLocalDocumentRagProbeConfig({
     ragBaseUrl: rag.toString().replace(/\/$/, "")
   }
 }
+
+export function isRemoteDocumentCopyAbsent(remote) {
+  if (remote == null) return true
+  return Number(remote.chunks) === 0
+    && String(remote.lifecycleState || remote.status || "").toUpperCase() === "DELETED"
+    && String(remote.cleanupState || "").toUpperCase() === "CLEAN"
+}

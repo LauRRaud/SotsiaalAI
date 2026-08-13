@@ -1,279 +1,451 @@
 #!/usr/bin/env node
 /**
- * SOL-DOC-J-03 live boundary probe.
+ * SOL-DOC-J-03 isolated runtime orchestrator.
  *
- * The command refuses non-loopback PostgreSQL and RAG endpoints. It creates
- * only uniquely named synthetic rows/content and removes both the remote RAG
- * copy and local rows in finally, including after a failed assertion.
+ * Creates a temporary PostgreSQL database, starts the real local RAG service
+ * with isolated Chroma storage, and serves deterministic embeddings from a
+ * loopback-only OpenAI-compatible stub. The worker owns the document journey;
+ * this process owns every runtime dependency and removes it in finally.
  */
 
-import assert from "node:assert/strict"
 import crypto from "node:crypto"
+import { spawn, spawnSync } from "node:child_process"
+import { once } from "node:events"
+import { createServer } from "node:http"
+import { access, mkdtemp, rm } from "node:fs/promises"
+import { tmpdir } from "node:os"
+import path from "node:path"
 
-import prisma from "../lib/prisma.js"
-import { ensureDocumentIndexed } from "../lib/documents/embeddings.js"
-import { updateOwnedDocument } from "../lib/documents/documentMutation.js"
-import {
-  attemptDocumentRagRemoval,
-  prepareDocumentRagPermissionChange
-} from "../lib/documents/ragPermission.js"
-import {
-  deleteRagDocument,
-  ragServiceRequest,
-  buildRagHeaders
-} from "../lib/documents/ragService.js"
-import { searchDocumentChunks } from "../lib/documents/search.js"
-import { createDeletionJobRetryService } from "../lib/privacy/deletionJobRetryService.js"
-import { deleteUserWithPrivacyCleanup } from "../lib/privacy/userDeletion.js"
+import dotenv from "dotenv"
+import pg from "pg"
+
 import { assertLocalDocumentRagProbeConfig } from "./document-rag-removal-live-safety.mjs"
 
-const marker = `sol-doc-j03-live-${Date.now()}-${crypto.randomBytes(4).toString("hex")}`
-const email = `${marker}@synthetic.invalid`
-const content = `Sünteetiline RAG eemaldussond ${marker}. Sellel tekstil ei ole päris isiku andmeid.`
-const sha256 = crypto.createHash("sha256").update(content).digest("hex")
-const ragHost = process.env.RAG_INTERNAL_HOST || process.env.RAG_API_BASE
+dotenv.config({ path: ".env.local", quiet: true })
+dotenv.config({ path: ".env", quiet: true })
 
-let ownerId = null
-let documentId = null
-let ragDocId = null
-let remoteTouched = false
+const DEFAULT_LOCAL_DATABASE_URL = "postgresql://sotsiaal_user:sotsiaalai@127.0.0.1:5432/sotsiaal_ai?schema=public"
+const RAG_SERVICE_KEY = "sol-doc-j03-loopback-runtime-key"
+const sourceDatabaseUrl = String(
+  process.env.DOC_RAG_PROBE_DATABASE_URL
+  || process.env.DATABASE_URL
+  || DEFAULT_LOCAL_DATABASE_URL
+).trim()
+const bundledPython = path.join(
+  process.env.USERPROFILE || "",
+  ".cache", "codex-runtimes", "codex-primary-runtime", "dependencies", "python", "python.exe"
+)
+const pythonExecutable = String(process.env.DOC_RAG_PROBE_PYTHON || bundledPython).trim()
+const pipCacheRoot = path.join(process.env.LOCALAPPDATA || "", "pip", "cache", "http-v2")
+const repoRoot = process.cwd()
+const prismaCli = path.resolve("node_modules/prisma/build/index.js")
+const worker = path.resolve("scripts/document-rag-removal-live-probe-worker.mjs")
+const databaseName = `sol_doc_j03_live_${Date.now()}_${process.pid}`
 
-const select = {
-  id: true,
-  ownerId: true,
-  title: true,
-  originalName: true,
-  kind: true,
-  agentAllowed: true,
-  mime: true,
-  size: true,
-  sha256: true,
-  storagePath: true,
-  content: true,
-  metadata: true,
-  createdAt: true,
-  updatedAt: true
-}
+let ragProcess = null
+let embeddingServer = null
+let temporaryRoot = null
+let databaseCreated = false
+let embeddingRequests = 0
+let unexpectedStubRequests = 0
+let ragOutput = ""
+let pythonDependencies = null
 
-async function getRemoteDocument(id) {
-  try {
-    return await ragServiceRequest(`/documents/${encodeURIComponent(id)}`, {
-      method: "GET",
-      headers: buildRagHeaders()
-    })
-  } catch (error) {
-    if (Number(error?.status) === 404) return null
-    throw error
+function expectSafeDatabaseName(value) {
+  if (!/^sol_doc_j03_live_[0-9_]+$/u.test(value)) {
+    throw new Error("unsafe temporary database name")
   }
 }
 
-async function assertRemoteAbsent(document, label) {
-  const remote = await getRemoteDocument(ragDocId)
-  assert.equal(remote, null, `${label}: GET must return 404`)
-  const results = await searchDocumentChunks(marker, [document], 5, {
-    route: "probe/document-rag-removal",
-    stage: label,
-    userId: ownerId
+function appendRagOutput(chunk) {
+  ragOutput = `${ragOutput}${String(chunk || "")}`.slice(-12_000)
+}
+
+function deterministicEmbedding(value) {
+  const digest = crypto.createHash("sha256").update(String(value || "")).digest()
+  const vector = Array.from({ length: 64 }, (_, index) => (digest[index % digest.length] - 127.5) / 127.5)
+  const magnitude = Math.sqrt(vector.reduce((sum, item) => sum + (item * item), 0)) || 1
+  return vector.map(item => item / magnitude)
+}
+
+async function readJsonBody(request) {
+  const chunks = []
+  let bytes = 0
+  for await (const chunk of request) {
+    bytes += chunk.length
+    if (bytes > 1024 * 1024) throw new Error("embedding request too large")
+    chunks.push(chunk)
+  }
+  return JSON.parse(Buffer.concat(chunks).toString("utf8") || "{}")
+}
+
+async function startEmbeddingStub() {
+  const server = createServer(async (request, response) => {
+    try {
+      if (request.method !== "POST" || request.url !== "/v1/embeddings") {
+        unexpectedStubRequests += 1
+        response.writeHead(404, { "content-type": "application/json" })
+        response.end(JSON.stringify({ error: { message: "loopback stub endpoint not found" } }))
+        return
+      }
+      embeddingRequests += 1
+      const payload = await readJsonBody(request)
+      const inputs = Array.isArray(payload.input) ? payload.input : [payload.input]
+      const data = inputs.map((input, index) => ({
+        object: "embedding",
+        index,
+        embedding: deterministicEmbedding(input)
+      }))
+      response.writeHead(200, { "content-type": "application/json" })
+      response.end(JSON.stringify({
+        object: "list",
+        data,
+        model: String(payload.model || "synthetic-loopback-embedding"),
+        usage: { prompt_tokens: inputs.length, total_tokens: inputs.length }
+      }))
+    } catch (error) {
+      response.writeHead(400, { "content-type": "application/json" })
+      response.end(JSON.stringify({ error: { message: error?.message || "invalid request" } }))
+    }
   })
-  assert.equal(results.length, 0, `${label}: scoped search must return no chunks`)
+  server.listen(0, "127.0.0.1")
+  await once(server, "listening")
+  return server
+}
+
+async function reserveLoopbackPort() {
+  const server = createServer()
+  server.listen(0, "127.0.0.1")
+  await once(server, "listening")
+  const port = server.address().port
+  await new Promise((resolve, reject) => server.close(error => error ? reject(error) : resolve()))
+  return port
+}
+
+async function waitForRagHealth(baseUrl, timeoutMs = 60_000) {
+  const deadline = Date.now() + timeoutMs
+  while (Date.now() < deadline) {
+    if (ragProcess?.exitCode != null) {
+      throw new Error(`rag-service exited before health check\n${ragOutput}`)
+    }
+    try {
+      const response = await fetch(`${baseUrl}/health`, { cache: "no-store" })
+      if (response.ok) return
+    } catch {}
+    await new Promise(resolve => setTimeout(resolve, 250))
+  }
+  throw new Error(`rag-service health check timed out\n${ragOutput}`)
+}
+
+async function stopChild(child) {
+  if (!child || child.exitCode != null) return
+  const exited = once(child, "exit")
+  child.kill()
+  const stopped = await Promise.race([
+    exited.then(() => true),
+    new Promise(resolve => setTimeout(() => resolve(false), 15_000))
+  ])
+  if (!stopped) throw new Error("rag-service process did not stop")
+}
+
+async function closeServer(server) {
+  if (!server) return
+  await new Promise((resolve, reject) => server.close(error => error ? reject(error) : resolve()))
+}
+
+function runChecked(command, args, { env, label, echoOutput = true }) {
+  const result = spawnSync(command, args, {
+    cwd: repoRoot,
+    env,
+    encoding: "utf8",
+    shell: false,
+    timeout: 180_000
+  })
+  if (echoOutput || result.status !== 0) {
+    process.stdout.write(result.stdout || "")
+    process.stderr.write(result.stderr || "")
+  }
+  if (result.status !== 0) {
+    throw new Error(`${label} failed (${result.status ?? "no status"})${ragOutput ? `\n${ragOutput}` : ""}`)
+  }
+}
+
+async function runCheckedAsync(command, args, { env, label, timeoutMs = 240_000 }) {
+  const child = spawn(command, args, {
+    cwd: repoRoot,
+    env,
+    stdio: ["ignore", "pipe", "pipe"],
+    shell: false
+  })
+  let stdout = ""
+  let stderr = ""
+  child.stdout.on("data", chunk => {
+    stdout += String(chunk)
+    process.stdout.write(chunk)
+  })
+  child.stderr.on("data", chunk => {
+    stderr += String(chunk)
+    process.stderr.write(chunk)
+  })
+  const timeout = setTimeout(() => child.kill(), timeoutMs)
+  const [code, signal] = await once(child, "exit")
+  clearTimeout(timeout)
+  if (code !== 0) {
+    const timedOut = signal != null && code == null
+    throw new Error(
+      `${label} failed (${timedOut ? `timeout/${signal}` : code ?? signal ?? "no status"})`+
+      `${ragOutput ? `\n${ragOutput}` : ""}`+
+      `${!stdout && !stderr ? "\nworker produced no output" : ""}`
+    )
+  }
+}
+
+async function prepareOfflinePythonRuntime() {
+  await access(pythonExecutable)
+  await access(pipCacheRoot)
+  pythonDependencies = path.join(temporaryRoot, "pydeps")
+  const script = String.raw`
+import email
+from pathlib import Path
+from packaging.tags import parse_tag, sys_tags
+import re
+import sys
+import zipfile
+
+requirements, cache_root, target = map(Path, sys.argv[1:4])
+skip = {"uvloop", "chroma-hnswlib"}
+wanted = {}
+for raw in requirements.read_text(encoding="utf-8").splitlines():
+    line = raw.strip()
+    if not line or line.startswith("#") or "==" not in line:
+        continue
+    name, version = line.split("==", 1)
+    normalized = re.sub(r"[-_.]+", "-", name).lower()
+    if normalized not in skip:
+        wanted[normalized] = version
+
+target.mkdir(parents=True, exist_ok=True)
+tag_rank = {tag: index for index, tag in enumerate(sys_tags())}
+candidates = {}
+for body in cache_root.rglob("*.body"):
+    try:
+        with zipfile.ZipFile(body) as archive:
+            metadata_name = next(
+                (name for name in archive.namelist() if name.endswith(".dist-info/METADATA")),
+                None,
+            )
+            if not metadata_name:
+                continue
+            metadata = email.message_from_bytes(archive.read(metadata_name))
+            normalized = re.sub(r"[-_.]+", "-", str(metadata.get("Name", ""))).lower()
+            version = str(metadata.get("Version", ""))
+            if wanted.get(normalized) != version:
+                continue
+            wheel_name = next(
+                (name for name in archive.namelist() if name.endswith(".dist-info/WHEEL")),
+                None,
+            )
+            if not wheel_name:
+                continue
+            wheel = email.message_from_bytes(archive.read(wheel_name))
+            ranks = [
+                tag_rank[tag]
+                for raw_tag in wheel.get_all("Tag", [])
+                for tag in parse_tag(raw_tag)
+                if tag in tag_rank
+            ]
+            if not ranks:
+                continue
+            score = min(ranks)
+            if normalized not in candidates or score < candidates[normalized][0]:
+                candidates[normalized] = (score, body)
+    except (OSError, zipfile.BadZipFile):
+        continue
+
+missing = sorted(set(wanted) - set(candidates))
+if missing:
+    raise SystemExit("offline wheel cache missing: " + ", ".join(missing))
+for normalized, (_score, body) in candidates.items():
+    with zipfile.ZipFile(body) as archive:
+        archive.extractall(target)
+print(f"OFFLINE_PYTHON_DEPS_OK packages={len(candidates)} network=unused")
+`
+  const result = spawnSync(pythonExecutable, [
+    "-c", script,
+    path.resolve("rag-service/requirements.txt"),
+    pipCacheRoot,
+    pythonDependencies
+  ], { cwd: repoRoot, encoding: "utf8", shell: false, timeout: 120_000 })
+  process.stdout.write(result.stdout || "")
+  process.stderr.write(result.stderr || "")
+  if (result.status !== 0) throw new Error("offline Python RAG dependency restore failed")
+}
+
+async function verifyPythonRuntime(env) {
+  const result = spawnSync(pythonExecutable, [
+    "-c",
+    [
+      "import chromadb, fastapi, openai, uvicorn",
+      "assert hasattr(chromadb, 'PersistentClient')",
+      "assert hasattr(fastapi, 'FastAPI')",
+      "assert hasattr(openai, 'OpenAI')",
+      "assert hasattr(uvicorn, 'run')",
+      "print('PYTHON_RAG_RUNTIME_OK implementations=present')"
+    ].join("; ")
+  ], { cwd: repoRoot, env, encoding: "utf8", shell: false, timeout: 30_000 })
+  process.stdout.write(result.stdout || "")
+  process.stderr.write(result.stderr || "")
+  if (result.status !== 0) throw new Error("isolated Python RAG dependencies are unavailable")
 }
 
 async function main() {
-  const config = assertLocalDocumentRagProbeConfig({
-    databaseUrl: process.env.DATABASE_URL,
-    ragHost,
-    ragServiceKey: process.env.RAG_SERVICE_API_KEY
+  expectSafeDatabaseName(databaseName)
+  const source = new URL(sourceDatabaseUrl)
+  const adminUrl = new URL(source)
+  adminUrl.pathname = "/postgres"
+  adminUrl.search = ""
+  const probeUrl = new URL(source)
+  probeUrl.pathname = `/${databaseName}`
+  probeUrl.search = ""
+
+  temporaryRoot = await mkdtemp(path.join(tmpdir(), "sol-doc-j03-live-"))
+  await prepareOfflinePythonRuntime()
+  embeddingServer = await startEmbeddingStub()
+  const embeddingPort = embeddingServer.address().port
+  const ragPort = await reserveLoopbackPort()
+  const ragBaseUrl = `http://127.0.0.1:${ragPort}`
+  assertLocalDocumentRagProbeConfig({
+    databaseUrl: probeUrl.toString(),
+    ragHost: ragBaseUrl,
+    ragServiceKey: RAG_SERVICE_KEY
   })
 
-  const health = await fetch(`${config.ragBaseUrl}/health`, { cache: "no-store" })
-  assert.equal(health.ok, true, `loopback RAG health failed with ${health.status}`)
+  const pythonEnv = {
+    ...process.env,
+    PYTHONPATH: [pythonDependencies, process.env.PYTHONPATH].filter(Boolean).join(path.delimiter),
+    OPENAI_API_KEY: "synthetic-loopback-openai-key",
+    OPENAI_BASE_URL: `http://127.0.0.1:${embeddingPort}/v1`,
+    RAG_SERVICE_API_KEY: RAG_SERVICE_KEY,
+    RAG_BIND_HOST: "127.0.0.1",
+    RAG_STORAGE_DIR: path.join(temporaryRoot, "rag-storage"),
+    RAG_COLLECTION: `sol_doc_j03_${process.pid}`,
+    RAG_CHUNK_MODE: "chars",
+    RAG_CHUNK_SIZE: "400",
+    RAG_CHUNK_OVERLAP: "40",
+    RAG_ALLOW_PRIVATE_URL_FETCH: "0",
+    ANONYMIZED_TELEMETRY: "FALSE",
+    HTTP_PROXY: "",
+    HTTPS_PROXY: "",
+    ALL_PROXY: "",
+    NO_PROXY: "127.0.0.1,localhost"
+  }
+  await verifyPythonRuntime(pythonEnv)
 
-  const owner = await prisma.user.create({
-    data: { email, role: "SOCIAL_WORKER", emailVerified: new Date() }
-  })
-  ownerId = owner.id
-  const initial = await prisma.userDocument.create({
-    data: {
-      ownerId,
-      title: "Sünteetiline RAG eemaldussond",
-      originalName: "synthetic-transcript.txt",
-      kind: "CALL_TRANSCRIPT",
-      agentAllowed: true,
-      mime: "text/plain",
-      size: Buffer.byteLength(content),
-      sha256,
-      storagePath: `uploads/${marker}.txt`,
-      content
-    },
-    select
-  })
-  documentId = initial.id
+  const creator = new pg.Client({ connectionString: adminUrl.toString() })
+  await creator.connect()
+  try {
+    await creator.query(`CREATE DATABASE "${databaseName}"`)
+    databaseCreated = true
+  } finally {
+    await creator.end()
+  }
 
-  const indexed = await ensureDocumentIndexed(initial, {
-    route: "probe/document-rag-removal",
-    stage: "initial_ingest",
-    userId: ownerId
+  const runtimeEnv = {
+    ...process.env,
+    DATABASE_URL: probeUrl.toString(),
+    RAG_INTERNAL_HOST: `127.0.0.1:${ragPort}`,
+    RAG_API_BASE: ragBaseUrl,
+    RAG_SERVICE_API_KEY: RAG_SERVICE_KEY,
+    ALLOW_EXTERNAL_RAG: "0",
+    RAG_TIMEOUT_MS: "120000"
+  }
+  runChecked(process.execPath, [prismaCli, "migrate", "deploy"], {
+    env: runtimeEnv,
+    label: "temporary database migration",
+    echoOutput: false
   })
-  ragDocId = indexed.ragDocId
-  remoteTouched = true
-  const beforeDisable = await getRemoteDocument(ragDocId)
-  assert.ok(Number(beforeDisable?.chunks) > 0, "negative control: remote copy must exist before disable")
-  const beforeSearch = await searchDocumentChunks(marker, [initial], 5)
-  assert.ok(beforeSearch.some(result => result.docId === ragDocId), "negative control: scoped search must find the copy")
+  console.log("MIGRATIONS_OK temporary_database_full_chain")
 
-  const revokePlan = prepareDocumentRagPermissionChange({
-    document: initial,
-    nextAgentAllowed: false,
-    metadata: initial.metadata,
-    actorUserId: ownerId,
-    targetUserId: ownerId
-  })
-  const pending = await updateOwnedDocument({
-    documentId,
-    ownerId,
-    expectedUpdatedAt: initial.updatedAt,
-    data: { agentAllowed: false },
-    select,
-    prepareWithin: revokePlan.prepareWithin
-  })
-  const jobId = pending.metadata?.ragRemoval?.jobId
-  assert.ok(jobId, "disable must persist a deletion job before the remote attempt")
+  ragProcess = spawn(pythonExecutable, [
+    "-c",
+    [
+      "import sys, uvicorn",
+      "sys.path.insert(0, sys.argv[1])",
+      "uvicorn.run('main:app', host='127.0.0.1', port=int(sys.argv[2]), log_level='warning')"
+    ].join("; "),
+    path.resolve("rag-service"),
+    String(ragPort)
+  ], { cwd: repoRoot, env: pythonEnv, stdio: ["ignore", "pipe", "pipe"], shell: false })
+  ragProcess.stdout.on("data", appendRagOutput)
+  ragProcess.stderr.on("data", appendRagOutput)
+  await waitForRagHealth(ragBaseUrl)
+  console.log("RAG_RUNTIME_OK real_service=ready chroma=isolated embeddings=loopback")
 
-  const failed = await attemptDocumentRagRemoval(
-    { document: pending, actorUserId: ownerId, targetUserId: ownerId },
-    { deleteIndex: async () => ({ ok: false, reason: "synthetic_first_attempt_failure" }) }
-  )
-  const failedJob = await prisma.dataDeletionJob.findUnique({ where: { id: jobId } })
-  assert.equal(failed.metadata?.ragRemoval?.status, "failed")
-  assert.equal(failedJob?.status, "failed")
-  assert.ok(await getRemoteDocument(ragDocId), "failed attempt must leave the remote copy present for retry proof")
+  await runCheckedAsync(process.execPath, [
+    "--conditions=react-server",
+    "--import", "./scripts/register-node-test-loader.mjs",
+    "--import", "./scripts/register-document-rag-live-loader.mjs",
+    worker
+  ], { env: runtimeEnv, label: "document RAG live worker" })
 
-  const retry = createDeletionJobRetryService({
-    db: prisma,
-    deleteRag: (externalRef, observability) => deleteRagDocument(externalRef, observability)
-  })
-  await retry({ jobId, actorUserId: ownerId })
-  const removed = await prisma.userDocument.findUnique({ where: { id: documentId }, select })
-  const completedJob = await prisma.dataDeletionJob.findUnique({ where: { id: jobId } })
-  assert.equal(completedJob?.status, "done")
-  assert.equal(removed?.metadata?.ragRemoval?.status, "done")
-  await assertRemoteAbsent(removed, "permission_retry")
-
-  const allowPlan = prepareDocumentRagPermissionChange({
-    document: removed,
-    nextAgentAllowed: true,
-    metadata: removed.metadata,
-    actorUserId: ownerId,
-    targetUserId: ownerId
-  })
-  const reallowed = await updateOwnedDocument({
-    documentId,
-    ownerId,
-    expectedUpdatedAt: removed.updatedAt,
-    data: { agentAllowed: true },
-    select,
-    prepareWithin: allowPlan.prepareWithin
-  })
-  await ensureDocumentIndexed(reallowed, {
-    route: "probe/document-rag-removal",
-    stage: "fresh_reingest",
-    userId: ownerId
-  })
-  assert.ok(Number((await getRemoteDocument(ragDocId))?.chunks) > 0, "re-enable must create a fresh remote copy")
-
-  const accountRagJobsBefore = await prisma.dataDeletionJob.count({
-    where: {
-      action: "RAG_DELETE",
-      resourceType: "UserDocument",
-      resourceId: documentId,
-      externalRef: ragDocId
-    }
-  })
-
-  const accountDeletion = await deleteUserWithPrivacyCleanup({
-    actorUserId: ownerId,
-    targetUserId: ownerId,
-    reason: "synthetic_document_rag_live_probe"
-  })
-  assert.equal(accountDeletion.ok, true, "synthetic account deletion must cross the real RAG delete boundary")
-  assert.equal(await prisma.user.count({ where: { id: ownerId } }), 0)
-  await assertRemoteAbsent(reallowed, "account_deletion")
-
-  const accountRagJobs = await prisma.dataDeletionJob.findMany({
-    where: {
-      action: "RAG_DELETE",
-      resourceType: "UserDocument",
-      resourceId: documentId,
-      externalRef: ragDocId
-    },
-    orderBy: { createdAt: "asc" }
-  })
-  assert.equal(accountRagJobs.length, accountRagJobsBefore + 1, "account deletion must persist its own external deletion job")
-  assert.equal(accountRagJobs.at(-1)?.status, "done", "account deletion RAG job must carry provider-confirmed done state")
-
-  console.log("SOL-DOC-J-03 live RAG probe: PASS")
-  console.log("runtime=PROVEN ingest=present disable_retry=absent reingest=present account_delete=absent")
+  if (embeddingRequests < 4) {
+    throw new Error(`expected multiple local embedding calls, got ${embeddingRequests}`)
+  }
+  if (unexpectedStubRequests !== 0) {
+    throw new Error(`embedding stub received ${unexpectedStubRequests} unexpected requests`)
+  }
 }
 
 async function cleanup() {
-  let remoteCleanup = remoteTouched ? "pending" : "not_touched"
-  if (remoteTouched && ragDocId) {
-    const deletion = await deleteRagDocument(ragDocId, {
-      route: "probe/document-rag-removal",
-      stage: "finally_cleanup",
-      userId: ownerId
-    })
-    remoteCleanup = Boolean(deletion?.ok) && (await getRemoteDocument(ragDocId)) === null
-      ? "absent"
-      : "failed"
-  }
+  const failures = []
+  await stopChild(ragProcess).catch(error => failures.push(error))
+  await closeServer(embeddingServer).catch(error => failures.push(error))
 
-  if (ownerId || documentId || ragDocId) {
-    const jobs = await prisma.dataDeletionJob.findMany({
-      where: {
-        OR: [
-          ...(ownerId ? [{ targetUserId: ownerId }, { resourceId: ownerId }] : []),
-          ...(documentId ? [{ resourceId: documentId }] : []),
-          ...(ragDocId ? [{ externalRef: ragDocId }] : [])
-        ]
-      },
-      select: { id: true }
-    }).catch(() => [])
-    const jobIds = jobs.map(job => job.id)
-    await prisma.dataAuditLog.deleteMany({
-      where: {
-        OR: [
-          ...(ownerId ? [{ actorUserId: ownerId }, { targetUserId: ownerId }, { resourceId: ownerId }] : []),
-          ...(documentId ? [{ resourceId: documentId }] : []),
-          ...(jobIds.length ? [{ resourceId: { in: jobIds } }] : [])
-        ]
+  let databaseCount = databaseCreated ? -1 : 0
+  if (databaseCreated) {
+    try {
+      const source = new URL(sourceDatabaseUrl)
+      source.pathname = "/postgres"
+      source.search = ""
+      const cleanupClient = new pg.Client({ connectionString: source.toString() })
+      await cleanupClient.connect()
+      try {
+        await cleanupClient.query(
+          "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = $1",
+          [databaseName]
+        )
+        await cleanupClient.query(`DROP DATABASE IF EXISTS "${databaseName}"`)
+        const check = await cleanupClient.query(
+          "SELECT count(*)::int AS count FROM pg_database WHERE datname = $1",
+          [databaseName]
+        )
+        databaseCount = Number(check.rows[0]?.count ?? -1)
+      } finally {
+        await cleanupClient.end()
       }
-    }).catch(() => {})
-    if (jobIds.length) {
-      await prisma.dataDeletionJob.deleteMany({ where: { id: { in: jobIds } } }).catch(() => {})
+    } catch (error) {
+      failures.push(error)
     }
-    if (documentId) await prisma.userDocument.deleteMany({ where: { id: documentId } }).catch(() => {})
-    if (ownerId) await prisma.user.deleteMany({ where: { id: ownerId } }).catch(() => {})
   }
 
-  const [users, documents, jobs, audits] = await Promise.all([
-    ownerId ? prisma.user.count({ where: { id: ownerId } }).catch(() => -1) : 0,
-    documentId ? prisma.userDocument.count({ where: { id: documentId } }).catch(() => -1) : 0,
-    ragDocId ? prisma.dataDeletionJob.count({ where: { externalRef: ragDocId } }).catch(() => -1) : 0,
-    documentId ? prisma.dataAuditLog.count({ where: { resourceId: documentId } }).catch(() => -1) : 0
-  ])
-  console.log(`cleanup remote=${remoteCleanup} users=${users} documents=${documents} jobs=${jobs} audits=${audits}`)
+  if (temporaryRoot) {
+    await rm(temporaryRoot, { recursive: true, force: true }).catch(error => failures.push(error))
+  }
+  console.log(
+    `RUNTIME_CLEANUP remote_worker=absent database=${databaseCount} rag_storage=0 embedding_requests=${embeddingRequests} unexpected_requests=${unexpectedStubRequests}`
+  )
+  if (databaseCount !== 0) failures.push(new Error("temporary database cleanup was not proven"))
+  if (failures.length) throw new AggregateError(failures, "isolated runtime cleanup failed")
 }
 
 try {
   await main()
 } catch (error) {
-  console.error(`SOL-DOC-J-03 live RAG probe: NOT_PROVEN — ${error?.message || "unknown error"}`)
+  console.error(`SOL-DOC-J-03 isolated runtime: FAIL — ${error?.message || "unknown error"}`)
   process.exitCode = 1
 } finally {
   await cleanup().catch(error => {
-    console.error(`cleanup failed: ${error?.message || "unknown error"}`)
+    console.error(`SOL-DOC-J-03 cleanup: FAIL — ${error?.message || "unknown error"}`)
     process.exitCode = 1
   })
-  await prisma.$disconnect()
 }
