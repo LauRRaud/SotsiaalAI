@@ -3,12 +3,13 @@ import { getServerSession } from "next-auth"
 
 import { authConfig } from "@/auth"
 import { effectiveRoleFromSession } from "@/lib/authz"
-import { assertMimeMatchesBuffer, errorJson, json, localeFromRequest } from "@/lib/documents/server"
+import { errorJson, json, localeFromRequest } from "@/lib/documents/server"
 import { readDocumentsRateLimit } from "@/lib/documents/rateLimit"
 import { requireMaterialReadAccess, requireMaterialUploadAccess } from "@/lib/materials/access"
 import { getMaterialSubmissionSchemaMessage, isMaterialSubmissionSchemaError } from "@/lib/materials/compat"
 import { createMaterialSubmissions, listMaterialSubmissions } from "@/lib/materials/lifecycle"
 import { ensureAllowedUpload, normalizeMaterialComment } from "@/lib/materials/server"
+import { validateMaterialBuffer } from "@/lib/materials/validation"
 import { getMaterialsFileCountLimit } from "@/lib/storageGuardrails"
 import { safeError } from "@/lib/privacy/safeError"
 
@@ -87,7 +88,7 @@ export async function handleMaterialPost(
     for (const file of uploaded) {
       const mime = ensureAllowedUpload(file)
       const buffer = Buffer.from(await file.arrayBuffer())
-      assertMimeMatchesBuffer(buffer, mime)
+      await validateMaterialBuffer(buffer, mime)
       files.push({
         originalName: String(file.name || "material"),
         mime,

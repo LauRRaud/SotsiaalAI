@@ -21,6 +21,11 @@ test("material upload uses a durable batch, idempotency fingerprint, and atomic 
   assert.doesNotMatch(routeSource, /enforceDocumentsRateLimit\(/)
 })
 
+test("material upload validates the complete buffered document before storage", () => {
+  assert.match(routeSource, /await validateMaterialBuffer\(buffer, mime\)/)
+  assert.doesNotMatch(routeSource, /assertMimeMatchesBuffer\(/)
+})
+
 test("material list is owner scoped unless admin and uses a stable cursor", () => {
   assert.match(routeSource, /listMaterialSubmissions\(/)
   assert.match(lifecycleSource, /nextCursor/)

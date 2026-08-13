@@ -128,8 +128,9 @@ kordusallalaadimist.
 **Materjalide `SOL-MAT-01/03/04/05/06/07` on lõpetatud.** Uus esitis on nüüd tasulise
 spetsialisti serveripiiri taga, idempotentne ja atomaarse kvoodiga; faili/DB elutsükkel
 taastub katkestusest püsiva job'i kaudu. Esitaja näeb ja saab tagasi võtta oma ootel või
-tagasilükatud faile ning admini järjekord on täielikult lehitatav ja filtreeritav. Järgmine
-sidus plokk on `SOL-MAT-02` täielik faili- ja dokumendipaketi valideerimine.
+tagasilükatud faile ning admini järjekord on täielikult lehitatav ja filtreeritav. Faili sisu
+valideeritakse nüüd tervikuna: vigane või ressursipiire ületav PDF, DOCX ja TXT ei jõua
+salvestusse. Järgmine sidus plokk on `SOL-MAT-09/10` ülevaatuse olekumasin ja kohustuslik audit.
 
 **RAG-teenuse `SOL-RAGSVC-01…28` on DONE ja peatüki UTC täisvärav on roheline.**
 `SOL-ORG-13`–`17`, `SOL-DOC-J-01`–`06` ja kogu `SOL-SLOG-01…24` parandused ning kiirem plokipõhine töökord on koodipuus. Kolmeastmelised arvud loetakse käsuga `npm run sol:progress`, neid siia ankrusse ei

@@ -58,7 +58,7 @@ Audit ei kasutanud vana `SotsiaalAI-sol-audit-cfa62ea` koopiat ega põhiprojekti
 
 **Vastuvõtukriteerium.** Nullpikk fail tuleb keelata; DOCX peab sisaldama piiratud suuruse ja kirjete arvuga korrektset OOXML-paketti ning nõutud osi; PDF ja TXT vajavad kogu faili ulatuses kontrollitavat lepingut ja parseri ressursipiire. Negatiivtest peab sisaldama ainult päisega ZIP/PDF-i, ZIP-pommi, puuduvaid OOXML-osi, kontrollaknast väljaspool binaarsisu ja nullpikka faili.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE — 13.08.2026. Materjalide route valideerib nüüd kogu puhverdatud faili enne staging'ut. Nullpikk fail on keelatud; TXT läbib fatal UTF-8 dekodeerimise ja kogu faili kontrollmärkide kontrolli; DOCX kasutab kirjete arvu, tegeliku lahtipakitud mahu, tihendussuhte, tee, CRC ja puuduva OOXML-põhistruktuuri piire; PDF nõuab terviklikku xref/EOF struktuuri ning `pdf-parse` parseriga vähemalt üht ja kuni 500 lehekülge, eval keelatud ja pildipikslite lagi. Negatiivtestid katsid päisega ZIP/PDF-i, puuduva OOXML-osa, deklareeritud ZIP-pommi, hilise NUL-baidi, vigase UTF-8 ja tühjad failid; Materjalide sihttestid 20/20 PASS.
 
 ### SOL-MAT-03 — upload ja admini kustutus võivad faili ning DB-rea lahku viia — P1
 
