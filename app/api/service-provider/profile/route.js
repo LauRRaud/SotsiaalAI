@@ -82,7 +82,9 @@ export async function PUT(request) {
       console.error("[service-provider-profile] save failed", safeError(error));
     }
     return errorJson(
-      error?.message || "service_provider_profile.errors.save_failed",
+      status === 409 && error?.message === "service_provider_profile.errors.profile_conflict"
+        ? "service_provider_profile.errors.profile_conflict"
+        : error?.message || "service_provider_profile.errors.save_failed",
       status,
       locale
     );

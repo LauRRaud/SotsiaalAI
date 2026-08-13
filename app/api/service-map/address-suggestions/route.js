@@ -6,6 +6,7 @@ import { suggestServiceMapAddresses } from "@/lib/serviceMap/geocoding";
 import { safeError } from "@/lib/privacy/safeError";
 import { consumeHelpRateLimit } from "@/lib/help/rateLimit";
 import { getRequestIpFromRequest } from "@/lib/request-ip";
+import { signServiceMapSuggestion } from "@/lib/serviceMap/addressSuggestionToken";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -100,7 +101,10 @@ export async function GET(request) {
       ok: true,
       provider: result.provider,
       reason: result.reason,
-      suggestions: result.suggestions || []
+      suggestions: (result.suggestions || []).map((suggestion) => ({
+        ...suggestion,
+        suggestionToken: signServiceMapSuggestion(suggestion, { userId: auth.userId })
+      })).filter((suggestion) => suggestion.suggestionToken)
     });
   } catch (error) {
     console.error("[service-map-address-suggestions] failed", safeError(error));

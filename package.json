@@ -66,6 +66,8 @@
     "wb:pilot:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/wellbeing-participation-probe.mjs",
     "org:recall:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/org-inbox-recall-probe.mjs",
     "net:share:probe": "node scripts/network-share-chapter-probe.mjs",
+    "sprof:p1:probe": "node scripts/service-profile-p1-probe.mjs",
+    "sprof:rag:worker": "node --import ./scripts/register-node-test-loader.mjs scripts/service-profile-rag-worker.mjs",
     "sprof:consent:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/service-profile-consent-probe.mjs",
     "slog:org:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/service-log-org-scope-probe.mjs",
     "slog:entry:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/service-entry-integrity-probe.mjs",

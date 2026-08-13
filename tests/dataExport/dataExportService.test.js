@@ -85,6 +85,7 @@ function createDb() {
         return row;
       }
     },
+    serviceProviderProfile: { findFirst: async () => null },
     user: { findUnique: async () => ({ email: "owner@example.test", role: "CLIENT", acceptsPreInquiries: false, createdAt: new Date(), updatedAt: new Date(), profile: null, frameworkAcceptances: [] }) },
     conversation: { findMany: async () => [{ title: "Mine", role: "CLIENT", createdAt: new Date(), updatedAt: new Date(), messages: [
       { authorId: "owner", role: "USER", content: "own words" },
@@ -176,6 +177,49 @@ test("registry ZIP contains only owner allowlists and manifest excludes content 
   assert.equal(sharingSurface?.recordCount, 0);
   assert.equal(sharingSurface?.files[0]?.name, "sharing-history.ndjson");
   assert.match(sharingSurface?.files[0]?.sha256 || "", /^[a-f0-9]{64}$/);
+});
+
+test("SOLO service-provider export is owner scoped and strips internal registry fields", async () => {
+  const db = createDb();
+  const at = new Date("2026-08-13T21:00:00.000Z");
+  db.serviceProviderProfile.findFirst = async ({ where, include }) => {
+    assert.deepEqual(where, { ownerId: "owner", ownershipMode: "SOLO" });
+    assert.equal(Boolean(include?.serviceItems?.include?.licenceAssessment), true);
+    assert.equal(Boolean(include?.serviceLocations), true);
+    return {
+      id: "profile-owner",
+      ownerId: "owner",
+      organizationId: "must-not-export",
+      ownershipMode: "SOLO",
+      organizationName: "Omaniku teenus",
+      feeType: "FREE",
+      status: "DRAFT",
+      mapVisible: false,
+      ragSourceId: "service-profile:profile-owner",
+      ragMetadata: { syncStatus: "failed", reason: "retry", checkedAt: at.toISOString(), message: "PRIVATE-REGISTRY-ERROR" },
+      serviceItems: [{
+        id: "service-owner", name: "Oma teenus", feeType: "FREE", status: "DRAFT",
+        mapVisible: false, sortOrder: 0, createdAt: at, updatedAt: at,
+        locationLinks: [{ providerLocationId: "location-owner" }],
+        licenceAssessment: { publicStatus: "verified", coverage: ["service-owner"], publicStatusValidUntil: at }
+      }],
+      serviceLocations: [{
+        id: "location-owner", label: "Oma koht", geocodingStatus: "PENDING",
+        geocodingRaw: { providerPayload: "PRIVATE-GEOCODER-RAW" }, mapVisible: false,
+        status: "DRAFT", sortOrder: 0, createdAt: at, updatedAt: at
+      }],
+      createdAt: at,
+      updatedAt: at
+    };
+  };
+  const { entries, manifest } = await dataExportInternals.collectExportEntries(
+    { id: "job-sprof", userId: "owner" },
+    { db, now: at }
+  );
+  const exported = entries.find(entry => entry.name === "service-provider-profile.json").content.toString("utf8");
+  assert.match(exported, /Omaniku teenus|Oma teenus|location-owner|2026-08-13T21:00:00\.000Z/);
+  assert.doesNotMatch(exported, /must-not-export|PRIVATE-REGISTRY-ERROR|PRIVATE-GEOCODER-RAW|ownerId|organizationId/);
+  assert.equal(manifest.surfaces.find(surface => surface.name === "service_provider_profile")?.recordCount, 1);
 });
 
 test("materials export includes only owner rows and marks a missing original in the manifest", async () => {

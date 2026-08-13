@@ -3912,6 +3912,7 @@ function createServiceProfileLocationForm(location = null, index = 0, profile = 
     longitude: location?.longitude ?? (index === 0 ? mapEntry?.longitude ?? "" : ""),
     adsObjectId: location?.adsObjectId || (index === 0 ? mapEntry?.adsObjectId || "" : ""),
     geocodingProvider: location?.geocodingProvider || location?.geocodingRaw?.provider || (index === 0 ? mapEntry?.geocodingRaw?.provider || "" : ""),
+    geocodingSuggestionToken: location?.geocodingSuggestionToken || "",
     phone: location?.phone || "",
     email: location?.email || "",
     website: location?.website || "",
@@ -4016,6 +4017,7 @@ function createServiceProfileForm(profile = null) {
     longitude: mapEntry?.longitude ?? "",
     adsObjectId: mapEntry?.adsObjectId || "",
     geocodingProvider: mapEntry?.geocodingRaw?.provider || "",
+    geocodingSuggestionToken: profile?.geocodingSuggestionToken || "",
     phone: profile?.phone || "",
     email: profile?.email || "",
     website: profile?.website || "",
@@ -4306,6 +4308,7 @@ function ServiceProfileSurface({ t }) {
   const licence = useServiceLicenceStatuses({ t });
   const [notice, setNotice] = useState("");
   const [error, setError] = useState("");
+  const [conflictProfile, setConflictProfile] = useState(null);
   const feeOptions = useMemo(
     () => [
       { value: "UNKNOWN", label: readText(t, "workspace_feature_pages.service_profile.fee.unknown", "Täpsustamata") },
@@ -4352,6 +4355,7 @@ function ServiceProfileSurface({ t }) {
   const applyLoadedProfile = useCallback((loadedProfile) => {
     setProfile(loadedProfile || null);
     setForm(createServiceProfileForm(loadedProfile || null));
+    setConflictProfile(null);
   }, []);
 
   useEffect(() => {
@@ -4435,7 +4439,7 @@ function ServiceProfileSurface({ t }) {
       ...current,
       serviceLocations: current.serviceLocations.map((item, itemIndex) =>
         itemIndex === index
-          ? { ...item, address: value, normalizedAddress: "", latitude: "", longitude: "", adsObjectId: "", geocodingProvider: "" }
+          ? { ...item, address: value, normalizedAddress: "", latitude: "", longitude: "", adsObjectId: "", geocodingProvider: "", geocodingSuggestionToken: "" }
           : item
       )
     }));
@@ -4452,7 +4456,8 @@ function ServiceProfileSurface({ t }) {
               latitude: suggestion.latitude ?? "",
               longitude: suggestion.longitude ?? "",
               adsObjectId: suggestion.adsObjectId || "",
-              geocodingProvider: suggestion.provider || "maaruum"
+              geocodingProvider: suggestion.provider || "maaruum",
+              geocodingSuggestionToken: suggestion.suggestionToken || ""
             }
           : item
       )
@@ -4532,12 +4537,14 @@ function ServiceProfileSurface({ t }) {
         },
         body: JSON.stringify({
           ...form,
+          expectedUpdatedAt: profile?.updatedAt || null,
           address: primaryMapLocation?.address || form.address,
           normalizedAddress: primaryMapLocation?.normalizedAddress || form.normalizedAddress,
           latitude: primaryMapLocation?.latitude || form.latitude,
           longitude: primaryMapLocation?.longitude || form.longitude,
           adsObjectId: primaryMapLocation?.adsObjectId || form.adsObjectId,
           geocodingProvider: primaryMapLocation?.geocodingProvider || form.geocodingProvider,
+          geocodingSuggestionToken: primaryMapLocation?.geocodingSuggestionToken || form.geocodingSuggestionToken,
           county: primaryMapLocation?.county || form.county,
           services: [],
           serviceCategories: [],
@@ -4582,13 +4589,17 @@ function ServiceProfileSurface({ t }) {
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok) {
+        if (response.status === 409 && payload?.message === "service_provider_profile.errors.profile_conflict") {
+          const freshResponse = await fetch("/api/service-provider/profile", { cache: "no-store" });
+          const freshPayload = await freshResponse.json().catch(() => ({}));
+          if (freshResponse.ok) setConflictProfile(freshPayload?.profile || null);
+          throw new Error(readText(t, "workspace_feature_pages.service_profile.errors.profile_conflict", "Profiili muudeti vahepeal. Sinu vorm säilis; võrdle värske versiooniga või laadi see vormile."));
+        }
         throw new Error(payload?.message || readText(t, "workspace_feature_pages.service_profile.errors.save_failed", "Teenuseprofiili ei saanud salvestada."));
       }
       const savedProfile = payload?.profile || null;
       applyLoadedProfile(savedProfile);
-      /* Salvestus loob teenused uuesti (delete + create), seega hinnangud
-         kaovad kaskaadis ja registrikood võis muutuda. Vana märgis ei tohi
-         ekraanile jääda — tühjendame ja laeme värske seisu. */
+      /* Registrikood võis muutuda ja hinnang vajab seetõttu värsket vaadet. */
       licence.reset();
       void licence.load();
       setNotice(serviceProfileSaveNotice(t, savedProfile));
@@ -4669,6 +4680,26 @@ function ServiceProfileSurface({ t }) {
         <p>
           {notice}
         </p>
+      ) : null}
+      {conflictProfile ? (
+        <div role="alert">
+          <p>{readText(t, "workspace_feature_pages.service_profile.errors.profile_conflict_detail", "Serveris on uuem versioon. Kohalikud muudatused on vormil alles.")}</p>
+          <dl>
+            <dt>{readText(t, "workspace_feature_pages.service_profile.conflict.local_version", "Kohalik vorm")}</dt>
+            <dd>{form.organizationName || "-"}</dd>
+            <dt>{readText(t, "workspace_feature_pages.service_profile.conflict.server_version", "Serveri uuem versioon")}</dt>
+            <dd>{conflictProfile.organizationName || "-"}</dd>
+          </dl>
+          <Button type="button" onClick={() => {
+            setProfile(conflictProfile);
+            setConflictProfile(null);
+          }}>
+            {readText(t, "workspace_feature_pages.service_profile.actions.keep_local_changes", "Säilita kohalikud muudatused ja proovi uuesti")}
+          </Button>
+          <Button type="button" onClick={() => applyLoadedProfile(conflictProfile)}>
+            {readText(t, "workspace_feature_pages.service_profile.actions.use_server_version", "Kasuta serveri versiooni")}
+          </Button>
+        </div>
       ) : null}
 
       <ServiceProfileSection title={readText(t, "workspace_feature_pages.service_profile.sections.profile", "Teenuseosutaja põhainfo")}>

@@ -2335,11 +2335,12 @@ model ServiceProviderProfile {
    * on nähtav ainult admin-rajal ja teda saab uuele omanikule määrata või
    * arhiveerida, mis on parem kui vaikne kadu.
    */
-  owner            User?                     @relation(fields: [ownerId], references: [id], onDelete: SetNull)
-  organization     Organization?             @relation(fields: [organizationId], references: [id], onDelete: SetNull)
+  owner            User?                          @relation(fields: [ownerId], references: [id], onDelete: SetNull)
+  organization     Organization?                  @relation(fields: [organizationId], references: [id], onDelete: SetNull)
   serviceMapEntry  ServiceMapEntry?
   serviceItems     ServiceProviderService[]
   serviceLocations ServiceProviderLocation[]
+  ragJobs          ServiceProviderProfileRagJob[]
   licenceChecks    LicenceCheck[]
 
   // TEENUSPÄEVIK-V1. NB seosed on `Restrict`, mitte `Cascade` — vt mudelite
@@ -2360,6 +2361,29 @@ model ServiceProviderProfile {
   @@index([acceptsPlatformPreInquiries])
   @@index([acceptsEmailPreInquiries])
   @@index([publicSlug])
+}
+
+model ServiceProviderProfileRagJob {
+  id             String                 @id @default(cuid())
+  profileId      String
+  profile        ServiceProviderProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  revisionAt     DateTime
+  documentId     String
+  payload        Json
+  payloadSha256  String
+  status         String                 @default("PENDING")
+  attempts       Int                    @default(0)
+  nextAttemptAt  DateTime               @default(now())
+  leaseToken     String?
+  leaseExpiresAt DateTime?
+  lastErrorCode  String?
+  completedAt    DateTime?
+  createdAt      DateTime               @default(now())
+  updatedAt      DateTime               @updatedAt
+
+  @@unique([profileId, revisionAt])
+  @@index([status, nextAttemptAt, createdAt])
+  @@index([profileId, createdAt])
 }
 
 model ServiceProviderService {

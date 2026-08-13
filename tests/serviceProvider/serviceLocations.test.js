@@ -9,6 +9,10 @@ test("service provider map marker represents a location with linked services", (
     title: "Teenuseosutaja",
     providerProfile: {
       id: "profile-1",
+      serviceItems: [
+        { id: "service-1", name: "Nõustamine", status: "PUBLISHED", mapVisible: true },
+        { id: "service-2", name: "Koduteenus", status: "PUBLISHED", mapVisible: true }
+      ],
       serviceLocations: [
         {
           id: "loc-1",
@@ -17,6 +21,8 @@ test("service provider map marker represents a location with linked services", (
           latitude: 59.4,
           longitude: 24.7,
           geocodingStatus: "MATCHED",
+          mapVisible: true,
+          status: "PUBLISHED",
           serviceLinks: [
             { providerService: { id: "service-1", name: "Nõustamine" } },
             { providerService: { id: "service-2", name: "Koduteenus" } }
@@ -44,12 +50,14 @@ test("location markers retain the public availability projection for linked serv
   const entries = splitServiceLocationMapEntries({
     id: "provider-entry",
     providerProfile: {
-      serviceItems: [{ id: "service-1", name: "Tugiisikuteenus", availability }],
+      serviceItems: [{ id: "service-1", name: "Tugiisikuteenus", status: "PUBLISHED", mapVisible: true, availability }],
       serviceLocations: [{
         id: "loc-1",
         latitude: 59.4,
         longitude: 24.7,
         geocodingStatus: "MATCHED",
+        mapVisible: true,
+        status: "PUBLISHED",
         serviceLinks: [{
           providerServiceId: "service-1",
           providerService: { id: "service-1", name: "Tugiisikuteenus", availabilityStatus: "waitlist" }
@@ -67,21 +75,25 @@ test("service provider map creates one marker per published confirmed location",
     title: "Teenuseosutaja",
     providerProfile: {
       id: "profile-1",
-      serviceItems: [{ id: "fallback", name: "Üldteenus" }],
+      serviceItems: [{ id: "fallback", name: "Üldteenus", status: "PUBLISHED", mapVisible: true }],
       serviceLocations: [
         {
           id: "loc-1",
           normalizedAddress: "Tamme tn 1, Tallinn",
           latitude: 59.4,
           longitude: 24.7,
-          geocodingStatus: "MATCHED"
+          geocodingStatus: "MATCHED",
+          mapVisible: true,
+          status: "PUBLISHED"
         },
         {
           id: "loc-2",
           normalizedAddress: "Pargi tn 2, Tallinn",
           latitude: 59.41,
           longitude: 24.71,
-          geocodingStatus: "MATCHED"
+          geocodingStatus: "MATCHED",
+          mapVisible: true,
+          status: "PUBLISHED"
         },
         {
           id: "hidden",
@@ -109,6 +121,19 @@ test("service provider location entry prefers service contact over location and 
     website: "https://org.example.test",
     providerProfile: {
       id: "profile-1",
+      serviceItems: [{
+        id: "service-1",
+        name: "Noustamine",
+        status: "PUBLISHED",
+        mapVisible: true,
+        contactName: "Teenuse kontakt",
+        phone: "service-phone",
+        email: "service@example.test",
+        website: "https://service.example.test",
+        directContactAllowed: "Jah",
+        acceptsPlatformPreInquiries: true,
+        acceptsEmailPreInquiries: true
+      }],
       serviceLocations: [
         {
           id: "loc-1",
@@ -119,6 +144,8 @@ test("service provider location entry prefers service contact over location and 
           latitude: 59.4,
           longitude: 24.7,
           geocodingStatus: "MATCHED",
+          mapVisible: true,
+          status: "PUBLISHED",
           serviceLinks: [
             {
               providerService: {
@@ -182,14 +209,16 @@ test("location contact actions are projected per service and blocked contacts do
       acceptsPlatformPreInquiries: true,
       acceptsEmailPreInquiries: true,
       serviceItems: [
-        { id: "allowed", name: "Allowed", directContactAllowed: "Jah", email: "allowed@example.test", acceptsPlatformPreInquiries: true, acceptsEmailPreInquiries: true },
-        { id: "blocked", name: "Blocked", directContactAllowed: "Ei", email: "blocked@example.test", acceptsPlatformPreInquiries: false, acceptsEmailPreInquiries: false }
+        { id: "allowed", name: "Allowed", status: "PUBLISHED", mapVisible: true, directContactAllowed: "Jah", email: "allowed@example.test", acceptsPlatformPreInquiries: true, acceptsEmailPreInquiries: true },
+        { id: "blocked", name: "Blocked", status: "PUBLISHED", mapVisible: true, directContactAllowed: "Ei", email: "blocked@example.test", acceptsPlatformPreInquiries: false, acceptsEmailPreInquiries: false }
       ],
       serviceLocations: [{
         id: "location",
         latitude: 59.4,
         longitude: 24.7,
         geocodingStatus: "MATCHED",
+        mapVisible: true,
+        status: "PUBLISHED",
         serviceLinks: [{ providerServiceId: "allowed" }, { providerServiceId: "blocked" }]
       }]
     }

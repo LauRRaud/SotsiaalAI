@@ -4385,7 +4385,7 @@ PUBLIC_DOCUMENT_METADATA_FIELDS = {
     "district_name", "district_id", "item_type", "content_status", "resource_type",
     "checked_at", "source_keys", "source_urls", "source_register_file", "source_count",
     "administering_body", "lifecycleState", "cleanupState", "metadataState",
-    "fileCleanupState", "activeVersion", "articleManifest",
+    "fileCleanupState", "activeVersion", "articleManifest", "profile_revision",
 }
 
 
