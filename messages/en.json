@@ -4371,8 +4371,15 @@
     "delete": "Delete",
     "delete_busy": "Deleting...",
     "delete_confirm": "Delete room \"{name}\"? This will remove messages and invites.",
+    "archive": "Archive",
+    "archive_busy": "Archiving...",
+    "archive_confirm": "Archive room \"{name}\"? The room remains available, but no new actions can be started.",
+    "archived": "Archived",
+    "retry": "Try again",
+    "retry_hint": "The error remains visible. Correct the problem and try again, or cancel.",
     "leave_failed": "Failed to leave the room.",
     "delete_failed": "Failed to delete the room.",
+    "archive_failed": "Failed to archive the room.",
     "cancel": "Cancel",
     "origin": {
       "manualInvite": "The room was created through a manual invite.",
@@ -5693,6 +5700,30 @@
     }
   },
   "admin": {
+    "hub": {
+      "eyebrow": "Administration",
+      "title": "Administration hub",
+      "description": "Every platform administration surface in one restorable view.",
+      "groups": {
+        "operations": "Operations and oversight",
+        "knowledge": "Knowledge management"
+      },
+      "items": {
+        "analytics": "Analytics",
+        "wellbeing": "Wellbeing overview",
+        "urgent_desks": "Urgent desks",
+        "service_availability": "Service freshness",
+        "mentoring": "Mentoring",
+        "framework_acceptances": "Work-use confirmations",
+        "rag": "RAG administration",
+        "rag_documents": "RAG documents",
+        "rag_ingest": "RAG ingest",
+        "rag_kov": "Municipality RAG",
+        "rag_organizations": "Organisation RAG",
+        "rag_source_feedback": "Source feedback",
+        "rag_source_packages": "Source packages"
+      }
+    },
     "common": {
       "table_scroll_hint": "Scroll sideways on smaller screens to see all columns.",
       "loading": "Loading...",

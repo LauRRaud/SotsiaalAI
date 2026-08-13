@@ -29,15 +29,17 @@ export default function RoomsPage() {
   );
 
   const scrollRef = useRef(null);
+  const loadRequestRef = useRef(0);
   const initViewportModeRef = useRef(null);
   const initialScrollTopRef = useRef(0);
   const hasInitialScrollTopRef = useRef(false);
 
   const [rooms, setRooms] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [deletingId, setDeletingId] = useState(null);
-  const [leavingId, setLeavingId] = useState(null);
-  const [confirmRoom, setConfirmRoom] = useState(null);
+  const [loadError, setLoadError] = useState("");
+  const [actionError, setActionError] = useState(null);
+  const [pendingAction, setPendingAction] = useState(null);
+  const [confirmAction, setConfirmAction] = useState(null);
   const [scrollPad, setScrollPad] = useState(0);
   const [scrollPadTop, setScrollPadTop] = useState(0);
   const [scrollPadBottom, setScrollPadBottom] = useState(0);
@@ -79,19 +81,6 @@ export default function RoomsPage() {
     [timeFormatter]
   );
 
-  const canInvite = useCallback(
-    role => role === "OWNER" || role === "MODERATOR",
-    []
-  );
-  const canLeave = useCallback(
-    role => role === "MEMBER" || role === "MODERATOR",
-    []
-  );
-  const canDelete = useCallback(
-    role => role === "OWNER" || role === "ADMIN",
-    []
-  );
-
   const handleInvite = useCallback(roomId => {
     if (!roomId) return;
     try {
@@ -106,7 +95,8 @@ export default function RoomsPage() {
   const handleLeave = useCallback(
     async room => {
       if (!room?.id) return;
-      setLeavingId(room.id);
+      setPendingAction({ roomId: room.id, action: "leave" });
+      setActionError(null);
       try {
         const res = await fetch(
           `/api/rooms/${encodeURIComponent(room.id)}/leave`,
@@ -120,82 +110,120 @@ export default function RoomsPage() {
         }
         setRooms(prev => prev.filter(r => r.id !== room.id));
       } catch (err) {
-        console.warn("Room leave failed:", err);
+        setActionError({
+          roomId: room.id,
+          action: "leave",
+          message: err instanceof Error ? err.message : t("rooms.leave_failed")
+        });
       } finally {
-        setLeavingId(null);
+        setPendingAction(null);
       }
     },
-    [resolveErrorMessage]
+    [resolveErrorMessage, t]
   );
 
-  const openDeleteConfirm = useCallback(room => {
+  const openRoomConfirm = useCallback((room, action) => {
     if (!room?.id) return;
-    setConfirmRoom(room);
+    setActionError(null);
+    setConfirmAction({ room, action });
   }, []);
 
-  const closeDeleteConfirm = useCallback(() => {
-    if (deletingId) return;
-    setConfirmRoom(null);
-  }, [deletingId]);
+  const closeRoomConfirm = useCallback(() => {
+    if (pendingAction) return;
+    setActionError(null);
+    setConfirmAction(null);
+  }, [pendingAction]);
 
-  const confirmDelete = useCallback(
-    async room => {
-      const target = room?.id ? room : confirmRoom;
-      if (!target?.id) return;
-      setDeletingId(target.id);
+  const confirmRoomMutation = useCallback(
+    async () => {
+      const target = confirmAction?.room;
+      const action = confirmAction?.action;
+      if (!target?.id || !["archive", "delete"].includes(action)) return;
+      setPendingAction({ roomId: target.id, action });
+      setActionError(null);
       try {
         const res = await fetch(`/api/rooms/${encodeURIComponent(target.id)}`, {
-          method: "DELETE"
+          method: action === "archive" ? "PATCH" : "DELETE",
+          headers: action === "archive" ? { "Content-Type": "application/json" } : undefined,
+          body: action === "archive" ? JSON.stringify({ action: "archive" }) : undefined
         });
         const data = await res.json().catch(() => ({}));
         if (!res.ok || data?.ok === false) {
-          throw new Error(resolveErrorMessage(data, "rooms.delete_failed"));
+          const fallbackKey = action === "archive" ? "rooms.archive_failed" : "rooms.delete_failed";
+          const error = new Error(resolveErrorMessage(data, fallbackKey));
+          error.payload = data;
+          throw error;
         }
-        setRooms(prev => prev.filter(r => r.id !== target.id));
+        if (action === "archive") {
+          setRooms(prev => prev.map(room => room.id === target.id
+            ? {
+                ...room,
+                archivedAt: data?.room?.archivedAt || new Date().toISOString(),
+                canDelete: false,
+                canArchive: false,
+                canInvite: false,
+                canTransfer: false
+              }
+            : room));
+        } else {
+          setRooms(prev => prev.filter(r => r.id !== target.id));
+        }
+        setConfirmAction(null);
       } catch (err) {
-        console.warn("Room delete failed:", err);
+        const message = err instanceof Error
+          ? err.message
+          : t(action === "archive" ? "rooms.archive_failed" : "rooms.delete_failed");
+        setActionError({ roomId: target.id, action, message });
+        if (action === "delete" && err?.payload?.canArchive === true) {
+          const archivableRoom = {
+            ...target,
+            canDelete: false,
+            canArchive: true
+          };
+          setRooms(prev => prev.map(room => room.id === target.id ? archivableRoom : room));
+          setConfirmAction({ room: archivableRoom, action: "archive" });
+        }
       } finally {
-        setDeletingId(null);
-        setConfirmRoom(null);
+        setPendingAction(null);
       }
     },
-    [confirmRoom, resolveErrorMessage]
+    [confirmAction, resolveErrorMessage, t]
   );
 
-  useEffect(() => {
-    let cancelled = false;
-
-    async function load() {
-      setLoading(true);
-      try {
-        const res = await fetch("/api/rooms", { cache: "no-store" });
-        const data = await res.json().catch(() => ({}));
-        if (!res.ok || data?.ok === false) {
-          throw new Error(resolveErrorMessage(data, "rooms.error"));
-        }
-        if (!cancelled) {
-          setRooms(Array.isArray(data.rooms) ? data.rooms : []);
-        }
-      } catch (err) {
-        if (!cancelled) {
-          setRooms([]);
-        }
-        console.warn("Rooms load failed:", err);
-      } finally {
-        if (!cancelled) setLoading(false);
+  const loadRooms = useCallback(async () => {
+    const requestId = loadRequestRef.current + 1;
+    loadRequestRef.current = requestId;
+    setLoading(true);
+    setLoadError("");
+    try {
+      const res = await fetch("/api/rooms", { cache: "no-store" });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || data?.ok === false) {
+        throw new Error(resolveErrorMessage(data, "rooms.error"));
       }
+      if (loadRequestRef.current === requestId) {
+        setRooms(Array.isArray(data.rooms) ? data.rooms : []);
+      }
+    } catch (err) {
+      if (loadRequestRef.current === requestId) {
+        setLoadError(err instanceof Error ? err.message : t("rooms.error"));
+      }
+    } finally {
+      if (loadRequestRef.current === requestId) setLoading(false);
     }
+  }, [resolveErrorMessage, t]);
 
-    load();
+  useEffect(() => {
+    void loadRooms();
     const onExternalRefresh = () => {
-      void load();
+      void loadRooms();
     };
     window.addEventListener("sotsiaalai:refresh-conversations", onExternalRefresh);
     return () => {
-      cancelled = true;
+      loadRequestRef.current += 1;
       window.removeEventListener("sotsiaalai:refresh-conversations", onExternalRefresh);
     };
-  }, [resolveErrorMessage, t]);
+  }, [loadRooms]);
 
   const visibleRooms = useMemo(
     () =>
@@ -405,6 +433,15 @@ export default function RoomsPage() {
             </h1>
           </div>
 
+          {loadError && effectiveRooms.length > 0 ? (
+            <div role="alert">
+              <p>{loadError}</p>
+              <button type="button" onClick={() => void loadRooms()}>
+                {t("rooms.retry")}
+              </button>
+            </div>
+          ) : null}
+
           <div>
             <div
               ref={scrollRef}
@@ -419,12 +456,23 @@ export default function RoomsPage() {
               tabIndex={0}
               aria-label={t("rooms.title")}
             >
-              {loading ? (
+              {loading && effectiveRooms.length === 0 ? (
                 <div className="rooms-step">
                   <Panel variant="subpage" padding="sm" aria-busy="true">
                     <p>
                       {t("rooms.loading")}
                     </p>
+                  </Panel>
+                </div>
+              ) : loadError && effectiveRooms.length === 0 ? (
+                <div className="rooms-step">
+                  <Panel variant="subpage" padding="sm">
+                    <div role="alert">
+                      <p>{loadError}</p>
+                      <button type="button" onClick={() => void loadRooms()}>
+                        {t("rooms.retry")}
+                      </button>
+                    </div>
                   </Panel>
                 </div>
               ) : effectiveRooms.length === 0 ? (
@@ -438,11 +486,14 @@ export default function RoomsPage() {
               ) : (
                 <ul>
                   {effectiveRooms.map((room, index) => {
-                    const canInviteRoom = canInvite(room.role);
-                    const canLeaveRoom = canLeave(room.role);
-                    const canDeleteRoom = canDelete(room.role);
+                    const canInviteRoom = room.canInvite === true;
+                    const canLeaveRoom = room.canLeave === true;
+                    const canDeleteRoom = room.canDelete === true;
+                    const canArchiveRoom = room.canArchive === true;
                     const hasRoomActions =
-                      canInviteRoom || canLeaveRoom || canDeleteRoom;
+                      canInviteRoom || canLeaveRoom || canDeleteRoom || canArchiveRoom;
+                    const roomPending = pendingAction?.roomId === room.id;
+                    const roomError = actionError?.roomId === room.id ? actionError : null;
                     const formattedLastActivity = room.lastMessage?.createdAt
                       ? formatTime(room.lastMessage.createdAt)
                       : "";
@@ -496,6 +547,9 @@ export default function RoomsPage() {
                                   {t("rooms.role_label")}: {roleLabel(room.role)}
                                 </span>
                               ) : null}
+                              {room.archivedAt ? (
+                                <span>{t("rooms.archived")}</span>
+                              ) : null}
                               {Number.isFinite(room.memberCount) ? (
                                 <span>
                                   {t("rooms.members_label")}: {room.memberCount}
@@ -526,18 +580,27 @@ export default function RoomsPage() {
                                     <button
                                       type="button"
                                       onClick={() => handleLeave(room)}
-                                      disabled={leavingId === room.id}
+                                      disabled={roomPending}
                                     >
-                                      {leavingId === room.id
+                                      {pendingAction?.roomId === room.id && pendingAction?.action === "leave"
                                         ? t("rooms.leave_busy")
                                         : t("rooms.leave")}
+                                    </button>
+                                  ) : null}
+                                  {canArchiveRoom ? (
+                                    <button
+                                      type="button"
+                                      onClick={() => openRoomConfirm(room, "archive")}
+                                      disabled={roomPending}
+                                    >
+                                      {t("rooms.archive")}
                                     </button>
                                   ) : null}
                                   {canDeleteRoom ? (
                                     <button
                                       type="button"
-                                      onClick={() => openDeleteConfirm(room)}
-                                      disabled={deletingId === room.id}
+                                      onClick={() => openRoomConfirm(room, "delete")}
+                                      disabled={roomPending}
                                       aria-label={t("rooms.delete")}
                                     >
                                       <svg
@@ -555,10 +618,24 @@ export default function RoomsPage() {
                                         <path d="M14 11v6" />
                                         <path d="M9 6V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2" />
                                       </svg>
+                                      <span>{t("rooms.delete")}</span>
                                     </button>
                                   ) : null}
                                 </div>
                               ) : null}
+                            </div>
+                          ) : null}
+                          {roomError && !confirmAction ? (
+                            <div role="alert">
+                              <p>{roomError.message}</p>
+                              <button
+                                type="button"
+                                onClick={() => roomError.action === "leave"
+                                  ? void handleLeave(room)
+                                  : openRoomConfirm(room, roomError.action)}
+                              >
+                                {t("rooms.retry")}
+                              </button>
                             </div>
                           ) : null}
                         </article>
@@ -572,22 +649,31 @@ export default function RoomsPage() {
         </div>
       </section>
 
-      {confirmRoom ? (
+      {confirmAction ? (
         <ModalConfirm
-          message={t("rooms.delete_confirm").replace(
+          message={t(confirmAction.action === "archive" ? "rooms.archive_confirm" : "rooms.delete_confirm").replace(
             "{name}",
-            confirmRoom.title || t("rooms.fallback_title")
+            confirmAction.room.title || t("rooms.fallback_title")
           )}
           confirmLabel={
-            deletingId === confirmRoom.id ? t("rooms.delete_busy") : t("rooms.delete")
+            pendingAction?.roomId === confirmAction.room.id
+              ? t(confirmAction.action === "archive" ? "rooms.archive_busy" : "rooms.delete_busy")
+              : t(confirmAction.action === "archive" ? "rooms.archive" : "rooms.delete")
           }
           cancelLabel={t("rooms.cancel")}
-          confirmVariant="danger"
+          confirmVariant={confirmAction.action === "archive" ? "primary" : "danger"}
           cancelVariant="primary"
-          onConfirm={() => confirmDelete(confirmRoom)}
-          onCancel={closeDeleteConfirm}
-          disabled={deletingId === confirmRoom.id}
-        />
+          onConfirm={confirmRoomMutation}
+          onCancel={closeRoomConfirm}
+          disabled={pendingAction?.roomId === confirmAction.room.id}
+        >
+          {actionError?.roomId === confirmAction.room.id ? (
+            <div role="alert">
+              <p>{actionError.message}</p>
+              <span>{t("rooms.retry_hint")}</span>
+            </div>
+          ) : null}
+        </ModalConfirm>
       ) : null}
 
       <InviteModal />

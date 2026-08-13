@@ -4371,8 +4371,15 @@
     "delete": "Kustuta",
     "delete_busy": "Kustutan...",
     "delete_confirm": "Kustuta ruum \"{name}\"? See kustutab sõnumid ja kutsed.",
+    "archive": "Arhiveeri",
+    "archive_busy": "Arhiveerin...",
+    "archive_confirm": "Arhiveeri ruum \"{name}\"? Ruum jääb alles, kuid uusi tegevusi ei saa alustada.",
+    "archived": "Arhiveeritud",
+    "retry": "Proovi uuesti",
+    "retry_hint": "Viga jäi nähtavaks. Paranda olukord ja proovi uuesti või tühista.",
     "leave_failed": "Ruumist lahkumine ebaõnnestus.",
     "delete_failed": "Kustutamine ebaõnnestus.",
+    "archive_failed": "Arhiveerimine ebaõnnestus.",
     "cancel": "Tühista",
     "origin": {
       "manualInvite": "Ruum loodi käsitsi kutse kaudu.",
@@ -5693,6 +5700,30 @@
     }
   },
   "admin": {
+    "hub": {
+      "eyebrow": "Haldus",
+      "title": "Halduskeskus",
+      "description": "Kõik platvormi halduspinnad ühes taastatavas vaates.",
+      "groups": {
+        "operations": "Töö ja järelevalve",
+        "knowledge": "Teadmuse haldus"
+      },
+      "items": {
+        "analytics": "Analüütika",
+        "wellbeing": "Tööheaolu koond",
+        "urgent_desks": "Kiireloomulised töölauad",
+        "service_availability": "Teenuste värskus",
+        "mentoring": "Mentorlus",
+        "framework_acceptances": "Tööalase kasutuse kinnitused",
+        "rag": "RAG-i haldus",
+        "rag_documents": "RAG-dokumendid",
+        "rag_ingest": "RAG-i sisestus",
+        "rag_kov": "KOV-i RAG",
+        "rag_organizations": "Organisatsioonide RAG",
+        "rag_source_feedback": "Allikate tagasiside",
+        "rag_source_packages": "Allikapakid"
+      }
+    },
     "common": {
       "table_scroll_hint": "Kitsamal ekraanil keri kõrvale, et näha kõiki veerge.",
       "loading": "Laen...",

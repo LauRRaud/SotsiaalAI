@@ -30,6 +30,7 @@ import { localizePath } from "@/lib/localizePath";
 import { inertOutside } from "@/lib/inertOutside";
 import { rememberRoomHubPath, readRoomHubPath } from "@/lib/roomHubReturn";
 import { panelHasRoomDock } from "@/lib/roomDock";
+import { ADMIN_SURFACES } from "@/lib/admin/surfaces";
 import { usePanelInfoView } from "@/components/ui/PanelInfoSlot";
 import IconButton from "@/components/glass/IconButton";
 import {
@@ -244,6 +245,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
   const isWellbeingRoute = normalized === "/toolaud/tooheaolu";
   const isKovisionRoute = normalized === "/toolaud/kovisioon";
   const isWorkspaceRoute = normalized === "/toolaud" || isWellbeingRoute || isKovisionRoute;
+  const isAdminRoute = normalized === "/admin" || normalized.startsWith("/admin/");
   const isCarouselRoute = isHome || isProfileHub || isWorkspaceRoute || !!cardPageKey;
   const isAuthed = status === "authenticated" && !!session;
   /* Saabumisloor on seansipõhine, mitte sisselogimispõhine: ka pikalt
@@ -329,9 +331,6 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
      on hover kättesaamatu. Nool on päris nupp; väljast-klõps/Esc sulgeb. */
   const [topbarOpen, setTopbarOpen] = useState(false);
   const topbarRef = useRef(null);
-  /* Admini tööriistad elavad "Haldus" kaardi all eraldi kaardikomplektina
-     (tellija 06.07) — mitte peakomplekti lõpus. */
-  const [adminHub, setAdminHub] = useState(false);
   /* Avalikud infokaardid elavad sisselogitule profiili "Teave" kaardi all */
   const [infoHub, setInfoHub] = useState(false);
   /* Avatud akna all püsiva doki komplekt tuleb sellest hub'ist, kust leht
@@ -680,7 +679,6 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
      rakendub standby kohe; mujalt karussellilt naaseb koju ja maandub
      standby'sse (pendingStandby). */
   const powerOff = useCallback(() => {
-    setAdminHub(false);
     setInfoHub(false);
     clearCompletedArrival();
     if (isAuthed) {
@@ -979,7 +977,8 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     else if (isKovisionRoute) rememberRoomHubPath("/toolaud/kovisioon");
     else if (isWorkspaceRoute) rememberRoomHubPath("/toolaud");
     else if (isProfileHub) rememberRoomHubPath("/profiil");
-  }, [isHome, isWorkspaceRoute, isWellbeingRoute, isKovisionRoute, isProfileHub]);
+    else if (isAdminRoute && isAdmin) rememberRoomHubPath("/admin");
+  }, [isHome, isWorkspaceRoute, isWellbeingRoute, isKovisionRoute, isProfileHub, isAdminRoute, isAdmin]);
 
   /* Hub'is dokki ei "mäletata" — seal on päris karussell oma dokiga.
      Avatud aknas loeme mälust, kust tuldi. Sõltub pathname'ist, et akna
@@ -991,8 +990,8 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
      väljapääsuta (ainult Esc). */
   const isHubRoute = isHome || isProfileHub || isWorkspaceRoute;
   useEffect(() => {
-    setDockHub(isHubRoute ? null : readRoomHubPath("/"));
-  }, [isHubRoute, pathname]);
+    setDockHub(isHubRoute ? null : isAdminRoute && isAdmin ? "/admin" : readRoomHubPath("/"));
+  }, [isHubRoute, isAdminRoute, isAdmin, pathname]);
 
   /* ---------- login-modali kest ---------- */
   useEffect(() => {
@@ -1057,7 +1056,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       { key: "profiil", label: t("nav.profile"), href: "/profiil", icon: <ProfileCardIcon /> },
     ];
     if (isAdmin) {
-      items.push({ key: "haldus", label: t("room.admin_card"), action: "haldus", icon: <AdminSlidersIcon /> });
+      items.push({ key: "haldus", label: t("room.admin_card"), href: "/admin", icon: <AdminSlidersIcon /> });
     }
     return items;
   }, [t, isAdmin, hasPendingInvite]);
@@ -1181,16 +1180,32 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
 
   /* Halduse alamkomplekt — avaneb "Haldus" kaardilt, "Tagasi" viib
      peakomplekti (sama muster mis profiili "Tagasi") */
-  const adminItems = useMemo(
-    () => [
-      { key: "analytics", label: t("room.admin_analytics"), href: "/admin/analytics", icon: <AnalyticsIcon /> },
-      { key: "rag", label: t("room.admin_rag"), href: "/admin/rag", icon: <RagDbIcon /> },
-      { key: "service-availability", label: t("room.admin_service_availability"), href: "/admin/service-availability", icon: <ServiceMapIcon /> },
-      { key: "kinnitused", label: t("room.admin_acceptances"), href: "/admin/framework-acceptances", icon: <AcceptShieldIcon /> },
-      { key: "tagasi", label: t("room.back_card"), action: "haldus-tagasi", icon: <BackArrowIcon /> },
-    ],
-    [t]
-  );
+  const adminItems = useMemo(() => {
+    const iconByKey = {
+      analytics: <AnalyticsIcon />,
+      wellbeing: <WellbeingIcon />,
+      "urgent-desks": <CaseWorkIcon />,
+      "service-availability": <ServiceMapIcon />,
+      mentorlus: <MentorIcon />,
+      "framework-acceptances": <AcceptShieldIcon />,
+      rag: <RagDbIcon />,
+      "rag-documents": <DocumentsIcon />,
+      "rag-ingest": <ComposeDocIcon />,
+      "rag-kov": <FieldIcon />,
+      "rag-organizations": <OrgIcon />,
+      "rag-source-feedback": <ReflectionIcon />,
+      "rag-source-packages": <MaterialsIcon />,
+    };
+    return [
+      ...ADMIN_SURFACES.map(surface => ({
+        key: surface.key,
+        label: t(surface.labelKey),
+        href: surface.href,
+        icon: iconByKey[surface.key] || <AdminSlidersIcon />,
+      })),
+      { key: "tagasi", label: t("room.back_card"), action: "panel-close", href: "/", icon: <BackArrowIcon /> },
+    ];
+  }, [t]);
 
   /* Profiili sektsioonikaardid — sildid rakenduse i18n-ist.
      "Tagasi" kaart asendab nurga-× (tellija 06.07); "Välja" = puhkeseis. */
@@ -1211,9 +1226,6 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
   );
 
   const isProfileContext = isProfileHub || isProfileCardPage;
-  /* Haldus jääb olekuks (avalehe alamkomplekt) — marsruut võidab oleku, et
-     /toolaud näitaks alati töölauda, ka siis kui haldus jäi lahti. */
-  const isAdminHub = adminHub && isAdmin && !isProfileContext && !isWorkspaceRoute;
   const isInfoHub = infoHub && isProfileHub;
   const isWorkspaceHub = isWorkspaceRoute && isAuthed;
   const isWellbeingHub = isWellbeingRoute && isWorkspaceHub;
@@ -1222,9 +1234,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     ? isInfoHub
       ? "info"
       : "profile"
-    : isAdminHub
-      ? "admin"
-      : isWellbeingHub
+    : isWellbeingHub
         ? "wellbeing"
         : isKovisionHub
           ? "kovision"
@@ -1237,9 +1247,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     ? isInfoHub
       ? teaveItems
       : profileItems
-    : isAdminHub
-      ? adminItems
-      : isWellbeingHub
+    : isWellbeingHub
         ? wellbeingItems
         : isKovisionHub
           ? kovisionItems
@@ -1280,7 +1288,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     if (dockHub === "/toolaud/tooheaolu") return wellbeingItems;
     if (dockHub === "/toolaud/kovisioon") return kovisionItems;
     if (dockHub === "/toolaud") return workspaceItems;
-    if (adminHub && isAdmin) return adminItems;
+    if (dockHub === "/admin" && isAdmin) return adminItems;
     return isAuthed ? workItems : publicItems;
   }, [
     isHubRoute,
@@ -1292,7 +1300,6 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     wellbeingItems,
     kovisionItems,
     workspaceItems,
-    adminHub,
     isAdmin,
     adminItems,
     isAuthed,
@@ -1413,9 +1420,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       ? isInfoHub
         ? "meist"
         : "pin"
-      : isAdminHub
-        ? "rag"
-        : isWellbeingHub
+      : isWellbeingHub
           ? "quick-check"
         : isKovisionHub
           ? "ruum"
@@ -1455,7 +1460,6 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
         // tühistab varasema "OFF ≠ logout" otsuse): ⏻ vajutusel avaneb
         // AVALIK komplekt, keskel "Logi sisse".
         pendingStandbyRef.current = true;
-        setAdminHub(false);
         setInfoHub(false);
         clearCompletedArrival();
         signOut({ redirect: false }).catch(() => {});
@@ -1464,7 +1468,6 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       }
       if (item.action === "tagasi") {
         // "Tagasi" profiililt = peavaliku kaardid (seade jääb sisse)
-        setAdminHub(false);
         setInfoHub(false);
         router.push(localizePath("/", locale));
         return;
@@ -1480,14 +1483,6 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
          paneb lihtsalt modaali kinni ja ruum jääb sinna, kus ta oli. */
       if (item.action === "info-close") {
         setOpenInfoModal(null);
-        return;
-      }
-      if (item.action === "haldus") {
-        setAdminHub(true);
-        return;
-      }
-      if (item.action === "haldus-tagasi") {
-        setAdminHub(false);
         return;
       }
       /* Töölaud ja selle alamkomplektid on marsruudid → "Tagasi" on

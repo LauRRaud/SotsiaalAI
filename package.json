@@ -39,6 +39,7 @@
     "case:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/case-work-probe.mjs",
     "jta:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/jta-probe.mjs",
     "journey:integrity:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/journey-integrity-probe.mjs",
+    "xfunc:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/xfunc-admin-rooms-probe.mjs",
     "casework:retention": "node --import ./scripts/register-node-test-loader.mjs scripts/casework-retention.mjs",
     "casework:retention:dry": "node --import ./scripts/register-node-test-loader.mjs scripts/casework-retention.mjs --dry-run",
     "casework:retention:smoke": "node --import ./scripts/register-node-test-loader.mjs scripts/casework-retention-smoke.mjs",

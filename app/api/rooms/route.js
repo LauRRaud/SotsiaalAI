@@ -196,6 +196,7 @@ export async function GET() {
           canArchive: isOwner && !isManualInvite && !isArchived,
           canInvite: isOwner && !isArchived,
           canTransfer: isOwner && !isArchived,
+          canLeave: !isOwner && !isArchived,
           lastMessage: last
             ? {
                 id: last.id,
