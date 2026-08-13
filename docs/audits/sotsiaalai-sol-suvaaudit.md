@@ -8178,7 +8178,7 @@ suletud), negatiivkontrolli (kehtiva loaga profiil JÄÄB) ja fail-closed haru.
 
 **Vastuvõtukriteerium.** RAG-payload peab moodustuma ühest kesksest avalikust teenuseprojektsioonist; HIDDEN/DRAFT teenust ei tohi olla ei tekstis, metadatas ega loendurites. Lisada payload-test segaprofiiliga ning RAG-teenuse integratsioonitest, mis otsib peidetud teenuse unikaalset markerit ja ootab 0 tulemust.
 
-**Seis (13.08.2026): DONE —** RAG-i tekst, metadata ja teenuseloendur kasutavad nüüd üht keskset avalikku teenuseprojektsiooni. Segaprofiili test ja PostgreSQL-i koondsondi ingest/search-harness kinnitasid, et HIDDEN-, DRAFT- ja `mapVisible:false` markerid ei jõua payload'i ning peidetud markerile on 0 otsingutulemust. Eraldiseisva välise RAG-teenuse production-runtime jäi `NOT_PROVEN`.
+**Seis (13.08.2026): PARTIAL —** RAG-i tekst, metadata ja teenuseloendur kasutavad nüüd üht keskset avalikku teenuseprojektsiooni. Segaprofiili test ja PostgreSQL-i koondsondi sünteetiline ingest/search-harness kinnitasid, et HIDDEN-, DRAFT- ja `mapVisible:false` markerid ei jõua payload'i ning peidetud markerile on 0 otsingutulemust. Vastuvõtukriteeriumi eraldiseisva päris RAG-teenuse ingest–search runtime jäi `NOT_PROVEN`, mistõttu leid ei ole veel täielikult DONE.
 
 ### SOL-SPROF-05 — vana täisvorm võib uuema profiili, teenused ja asukohad vaikides üle kirjutada — P1
 
