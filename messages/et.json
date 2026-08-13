@@ -997,6 +997,10 @@
       "load_error": "Lauda ei õnnestunud laadida.",
       "not_allowed": "See pind on sotsiaaltöötaja ja teenuseosutaja töövahend.",
       "refresh": "Värskenda",
+      "status_filter": "Filtreeri seisundi järgi",
+      "all_statuses": "Kõik seisundid",
+      "total": "Kokku {count}",
+      "load_more": "Näita veel",
       "open": "Ava",
       "missing_count": "lahtisi punkte: {count}",
       "share_row": "Võrgustikujagamine",
@@ -1693,6 +1697,13 @@
     "submit": "Saada materjal",
     "submitting": "Saadan...",
     "submit_success": "Materjal on saadetud. Aitäh panuse eest.",
+    "mine": {
+      "title": "Minu saadetud materjalid",
+      "loading": "Laen sinu materjale...",
+      "empty": "Sa pole veel materjale saatnud.",
+      "withdraw": "Võta tagasi",
+      "load_more": "Näita veel"
+    },
     "errors": {
       "load_failed": "Materjalide laadimine ebaõnnestus.",
       "upload_failed": "Materjali üleslaadimine ebaõnnestus.",
@@ -1707,6 +1718,10 @@
     "admin": {
       "title": "Laekunud materjalid",
       "subtitle": "Nähtav ainult adminile.",
+      "status_filter": "Filtreeri seisundi järgi",
+      "all_statuses": "Kõik seisundid",
+      "total": "Kokku {count}",
+      "load_more": "Näita veel",
       "refresh": "Värskenda",
       "loading": "Laen materjale...",
       "empty": "Ühtegi materjali ei ole veel saadetud.",

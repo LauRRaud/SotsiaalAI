@@ -41,6 +41,32 @@ export default function MaterialsPage({ locale = "et", embedded = false, onBack 
   const [submitting, setSubmitting] = useState(false)
   const [notice, setNotice] = useState("")
   const [error, setError] = useState("")
+  const idempotencyKeyRef = useRef("")
+  const [myMaterials, setMyMaterials] = useState([])
+  const [nextCursor, setNextCursor] = useState(null)
+  const [loadingMine, setLoadingMine] = useState(true)
+
+  const loadMine = useCallback(async ({ cursor = null, append = false } = {}) => {
+    setLoadingMine(true)
+    try {
+      const query = new URLSearchParams({ limit: "20" })
+      if (cursor) query.set("cursor", cursor)
+      const response = await fetch(`/api/materials?${query.toString()}`, { cache: "no-store" })
+      const payload = await response.json().catch(() => ({}))
+      if (!response.ok) throw new Error(payload?.message || t("materials_page.errors.load_failed"))
+      const rows = Array.isArray(payload?.submissions) ? payload.submissions : []
+      setMyMaterials((current) => append ? [...current, ...rows] : rows)
+      setNextCursor(payload?.hasMore ? payload?.nextCursor || null : null)
+    } catch (loadError) {
+      setError(loadError?.message || t("materials_page.errors.load_failed"))
+    } finally {
+      setLoadingMine(false)
+    }
+  }, [t])
+
+  useEffect(() => {
+    void loadMine()
+  }, [loadMine])
 
   useEffect(() => {
     if (!notice) return undefined
@@ -62,6 +88,8 @@ export default function MaterialsPage({ locale = "et", embedded = false, onBack 
         formData.append("file", selectedFile)
       }
       formData.append("comment", comment)
+      if (!idempotencyKeyRef.current) idempotencyKeyRef.current = window.crypto.randomUUID()
+      formData.append("idempotencyKey", idempotencyKeyRef.current)
 
       const response = await fetch("/api/materials", {
         method: "POST",
@@ -74,8 +102,10 @@ export default function MaterialsPage({ locale = "et", embedded = false, onBack 
 
       setComment("")
       setFiles([])
+      idempotencyKeyRef.current = ""
       if (fileInputRef.current) fileInputRef.current.value = ""
       setNotice(t("materials_page.submit_success"))
+      await loadMine()
     } catch (submitError) {
       setError(submitError?.message || t("materials_page.errors.upload_failed"))
     } finally {
@@ -121,7 +151,10 @@ export default function MaterialsPage({ locale = "et", embedded = false, onBack 
                 multiple
                 accept=".pdf,.docx,.txt,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain"
                 className="hidden"
-                onChange={(event) => setFiles(Array.from(event.target.files || []))}
+                onChange={(event) => {
+                  idempotencyKeyRef.current = ""
+                  setFiles(Array.from(event.target.files || []))
+                }}
               />
 
               <Button
@@ -145,7 +178,10 @@ export default function MaterialsPage({ locale = "et", embedded = false, onBack 
 
               <Textarea
                 value={comment}
-                onChange={(event) => setComment(event.target.value)}
+                onChange={(event) => {
+                  idempotencyKeyRef.current = ""
+                  setComment(event.target.value)
+                }}
                 rows={5}
                 placeholder={t("materials_page.comment_placeholder_multiple")}
               />
@@ -171,6 +207,42 @@ export default function MaterialsPage({ locale = "et", embedded = false, onBack 
                 </Button>
               </div>
             </Form>
+          </section>
+          <section>
+            <h2>{t("materials_page.mine.title")}</h2>
+            {loadingMine && !myMaterials.length ? <p>{t("materials_page.mine.loading")}</p> : null}
+            {!loadingMine && !myMaterials.length ? <p>{t("materials_page.mine.empty")}</p> : null}
+            {myMaterials.map((item) => (
+              <div key={item.id}>
+                <strong>{item.originalName}</strong>
+                <span>{t(`materials_page.admin.status.${item.status}`, item.status)}</span>
+                <a href={`/api/materials/${encodeURIComponent(item.id)}/download`}>
+                  {t("materials_page.admin.download")}
+                </a>
+                {["pending", "rejected"].includes(item.status) ? (
+                  <Button
+                    type="button"
+                    variant="danger"
+                    onClick={async () => {
+                      const response = await fetch(`/api/materials/${encodeURIComponent(item.id)}`, { method: "DELETE" })
+                      const payload = await response.json().catch(() => ({}))
+                      if (!response.ok) {
+                        setError(payload?.message || t("materials_page.errors.delete_failed"))
+                        return
+                      }
+                      setMyMaterials((current) => current.filter((row) => row.id !== item.id))
+                    }}
+                  >
+                    {t("materials_page.mine.withdraw")}
+                  </Button>
+                ) : null}
+              </div>
+            ))}
+            {nextCursor ? (
+              <Button type="button" onClick={() => void loadMine({ cursor: nextCursor, append: true })} disabled={loadingMine}>
+                {t("materials_page.mine.load_more")}
+              </Button>
+            ) : null}
           </section>
     </div>
   )

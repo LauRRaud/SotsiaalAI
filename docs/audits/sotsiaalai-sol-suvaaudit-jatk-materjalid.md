@@ -48,7 +48,7 @@ Audit ei kasutanud vana `SotsiaalAI-sol-audit-cfa62ea` koopiat ega põhiprojekti
 
 **Vastuvõtukriteerium.** POST peab serveris nõudma aktiivset õigust ning lubatud rolli sõltumata UI-st. Omaniku hilisem GET/withdraw võib olla tellimusest sõltumatu, kuid uus üleslaadimine mitte. HTTP-negatiivtestid peavad katma autentimata, `CLIENT`, aegunud tellimuse, `SOCIAL_WORKER`, `SERVICE_PROVIDER` ja admini ning tõendama, et rolli/tellimuse muutmine sessiooni ajal ei jäta vana õigust kehtima.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE — 13.08.2026. `POST /api/materials` kasutab nüüd `requireMaterialUploadAccess()` väravat: autentimata saab 401, `CLIENT` 403, aegunud spetsialistitellimus 402 ning aktiivne `SOCIAL_WORKER`, `SERVICE_PROVIDER` ja admin pääsevad edasi. `tests/materials/routeAccess.test.js` mõõdab päris `Response.status` väärtused ja sama kasutaja rolli muutmise korduskontrolli; omaniku GET/download/withdraw jäävad tellimusest sõltumatuks. Sihttestid 15/15 PASS.
 
 ### SOL-MAT-02 — MIME-kontroll aktsepteerib päisega maskeeritud ja tühje faile — P1
 
@@ -68,7 +68,7 @@ Audit ei kasutanud vana `SotsiaalAI-sol-audit-cfa62ea` koopiat ega põhiprojekti
 
 **Vastuvõtukriteerium.** Upload vajab ajutist faili, taastatavat PENDING/COMMITTING olekut ja crash-järgset reconcile'i; ükski püsifail ei tohi jääda ilma DB-rea või püsiva cleanup-job'ita. Admini kustutus peab olema idempotentne olekumasin, kus DB märgib kustutuse ootele, fail eemaldatakse jälgitava job'iga ja rida lõpetatakse alles kinnitatud tulemuse järel. Veasüst peab katkestama iga faili ja DB sammu ees/järel ning tõendama nii DB, kettaseisu kui retry tulemust.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE — 13.08.2026. Üleslaadimine kasutab püsivat `MaterialSubmissionBatch` + `DataDeletionJob` STAGE/PUBLISH olekumasinat; nähtavaks saab ainult avaldatud fail ning restart-reconcile lõpetab `PENDING_PUBLISH` rea. Kustutus märgib rea `DELETE_PENDING`, eemaldab faili püsiva job'iga, kirjutab kohustusliku auditi ja kustutab rea alles kinnitatud tulemuse järel. `materials:lifecycle:probe` süstis faili teise kirjutuse, DB-tehingu, publish'i ja delete'i tõrked ning tõendas cleanup'i/retry — PostgreSQL 23/23 PASS.
 
 ### SOL-MAT-04 — Materjalide kvoot on `SOL-DOC-07` DONE-seisu järel endiselt paralleelselt ületatav — P2
 
@@ -78,7 +78,7 @@ Audit ei kasutanud vana `SotsiaalAI-sol-audit-cfa62ea` koopiat ega põhiprojekti
 
 **Vastuvõtukriteerium.** Materjalide POST peab kasutama sama kasutajapõhist atomaarset kvoodilepingut; faili staging, kõigi ridade create ja püsifaili avaldamine peavad moodustama taastatava terviku. Päris PostgreSQL-i paralleelsustest peab täitma piiri lähedale ning saatma korraga vähemalt neli mitmefaililist upload'i; võita tohib ainult limiiti mahtuv hulk ja kaotajad ei tohi jätta faile.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE — 13.08.2026. Kõigi faili ridade loomine toimub `withStorageQuota()` sama kasutaja advisory-lock'i ja tehingu sees; kaotaja staging koristatakse püsivate job'idega. Päris PostgreSQL-i nelja paralleelse upload'i sond lubas täpselt kaks 1000-baidist võitjat 2000-baidise piiri alla, kaks said 413 ning lõppmaht jäi 2000; vana read-then-write negatiivkontroll ületas sama piiri. `materials:lifecycle:probe`: 23/23 PASS.
 
 ### SOL-MAT-05 — korduskatse loob uued failid, read, kvoodikulu ja teavituse — P2
 
@@ -88,7 +88,7 @@ Audit ei kasutanud vana `SotsiaalAI-sol-audit-cfa62ea` koopiat ega põhiprojekti
 
 **Vastuvõtukriteerium.** Klient peab ühe kasutajakavatsuse jooksul saatma stabiilse idempotentsusvõtme; server seob selle kasutaja, payload'i hash'i ja ühe tulemusega ning sama võtme/teise sisu korral annab 409. Sama sha256 peab vähemalt andma adminile/omanikule duplikaadiviite. Rate-limit peab olema jagatud ja atomaarne. Testid peavad katma sama võtme paralleelselt, response-loss retry, sama sha eri võtmega, eri sisu sama võtmega ning kahe protsessi bucket'i.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE — 13.08.2026. Klient säilitab ühe kasutajakavatsuse vältel UUID idempotentsusvõtme; server seob `(submittedByUserId,idempotencyKey)` payload'i hash'i ja ühe batch-tulemusega. Sama võti/teine sisu annab 409, neli sama võtme paralleelpäringut koonduvad üheks reaks, response-loss retry tagastab sama ID ning sama sha teise võtmega kannab `duplicateOfId` viidet. Jagatud rate-limit loetakse batch'idest kasutaja advisory-lock'i all. PostgreSQL-i sond 23/23 PASS.
 
 ### SOL-MAT-06 — esitaja ei näe oma esitisi, staatust ega saa esitist tagasi võtta — P1
 
@@ -98,7 +98,7 @@ Audit ei kasutanud vana `SotsiaalAI-sol-audit-cfa62ea` koopiat ega põhiprojekti
 
 **Vastuvõtukriteerium.** Lisada omaniku minimaalse projektsiooniga pagineeritud „minu esitised” vaade, omaniku download ning idempotentne withdraw/delete. Lugemine ja oma ootel/rejected faili eemaldamine peavad olema tellimusest sõltumatud. Terminalse/imported esitise puhul peab server andma ausa eemaldamislepingu, mitte vaikse keelu. Ristkasutaja 404-negatiivtestid peavad katma list/detail/download/withdraw kõik olekud.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE — 13.08.2026. `MaterialsPage` kuvab omaniku pagineeritud esitised, seisundi, omaniku download'i ja pending/rejected tagasivõtmise; GET/download/delete kasutavad serveris omaniku skoopi ja töötavad tellimuseta. Imported tagasivõtmine annab ausa 409, ristkasutaja download/delete 404 ning korduv delete tagastab idempotentse edu. PostgreSQL-i sond tõendas eemaldamise, retry, auditi ja cross-user piiri; 23/23 PASS.
 
 ### SOL-MAT-07 — adminijärjekord lõpeb vaikides 100 uusima rea juures — P2
 
@@ -108,7 +108,7 @@ Audit ei kasutanud vana `SotsiaalAI-sol-audit-cfa62ea` koopiat ega põhiprojekti
 
 **Vastuvõtukriteerium.** Lisada stabiilne cursor-paginatsioon `(createdAt,id)`, `hasMore/nextCursor`, total või eraldi loendur ning staatusefilter; UI peab võimaldama kõigi lehtede läbimist. Test peab looma üle 100 rea sama ja eri ajatempliga ning tõendama, et ükski ID ei kordu ega kao.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE — 13.08.2026. Admini ja omaniku loend kasutab stabiilset kahanevat `(createdAt,id)` cursor'it, tagastab `hasMore`, `nextCursor`, `total` ja seisundiloendurid; adminipaneelil on seisundifilter ja järgmise lehe laadimine. PostgreSQL-i sond lõi 106 sama ajatempliga rida ning läbis kõik ID-d ühe korra, ilma kao või korduseta; 23/23 PASS.
 
 ### SOL-MAT-08 — `imported` on vale RAG-lubadus ilma ingest'i, `doc_id`, õiguste või eemaldamiseta — P1
 

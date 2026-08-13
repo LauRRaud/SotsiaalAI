@@ -125,6 +125,12 @@ eraldi päriselt kustutada. Kinnitamisel külmuvad päritolumanifest ning DOCX/P
 allika või malli hilisem muutmine ja kustutamine ei muuda kinnitatud dokumendi tõendit ega
 kordusallalaadimist.
 
+**Materjalide `SOL-MAT-01/03/04/05/06/07` on lõpetatud.** Uus esitis on nüüd tasulise
+spetsialisti serveripiiri taga, idempotentne ja atomaarse kvoodiga; faili/DB elutsükkel
+taastub katkestusest püsiva job'i kaudu. Esitaja näeb ja saab tagasi võtta oma ootel või
+tagasilükatud faile ning admini järjekord on täielikult lehitatav ja filtreeritav. Järgmine
+sidus plokk on `SOL-MAT-02` täielik faili- ja dokumendipaketi valideerimine.
+
 **RAG-teenuse `SOL-RAGSVC-01…28` on DONE ja peatüki UTC täisvärav on roheline.**
 `SOL-ORG-13`–`17`, `SOL-DOC-J-01`–`06` ja kogu `SOL-SLOG-01…24` parandused ning kiirem plokipõhine töökord on koodipuus. Kolmeastmelised arvud loetakse käsuga `npm run sol:progress`, neid siia ankrusse ei
 kopeerita. Kui ülesanne ei ole SOL-parandus, loe S11 järel ainult vastavat S2–S10 sektsiooni.

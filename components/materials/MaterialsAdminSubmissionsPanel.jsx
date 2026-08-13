@@ -51,17 +51,26 @@ export default function MaterialsAdminSubmissionsPanel({
   const [loadingItems, setLoadingItems] = useState(true)
   const [adminError, setAdminError] = useState("")
   const [reviewingId, setReviewingId] = useState("")
+  const [nextCursor, setNextCursor] = useState(null)
+  const [statusFilter, setStatusFilter] = useState("")
+  const [total, setTotal] = useState(0)
 
-  async function refreshItems() {
+  async function refreshItems({ cursor = null, append = false, status = statusFilter } = {}) {
     setLoadingItems(true)
     setAdminError("")
     try {
-      const response = await fetch("/api/materials?limit=100", { cache: "no-store" })
+      const query = new URLSearchParams({ limit: "100" })
+      if (cursor) query.set("cursor", cursor)
+      if (status) query.set("status", status)
+      const response = await fetch(`/api/materials?${query.toString()}`, { cache: "no-store" })
       const payload = await response.json().catch(() => ({}))
       if (!response.ok) {
         throw new Error(payload?.message || t("materials_page.errors.load_failed"))
       }
-      setItems(Array.isArray(payload?.submissions) ? payload.submissions : [])
+      const rows = Array.isArray(payload?.submissions) ? payload.submissions : []
+      setItems((current) => append ? [...current, ...rows] : rows)
+      setNextCursor(payload?.hasMore ? payload?.nextCursor || null : null)
+      setTotal(Number(payload?.total || 0))
     } catch (loadError) {
       setItems([])
       setAdminError(loadError?.message || t("materials_page.errors.load_failed"))
@@ -82,7 +91,11 @@ export default function MaterialsAdminSubmissionsPanel({
         if (!response.ok) {
           throw new Error(payload?.message || t("materials_page.errors.load_failed"))
         }
-        if (!cancelled) setItems(Array.isArray(payload?.submissions) ? payload.submissions : [])
+        if (!cancelled) {
+          setItems(Array.isArray(payload?.submissions) ? payload.submissions : [])
+          setNextCursor(payload?.hasMore ? payload?.nextCursor || null : null)
+          setTotal(Number(payload?.total || 0))
+        }
       } catch (loadError) {
         if (!cancelled) {
           setItems([])
@@ -159,11 +172,26 @@ export default function MaterialsAdminSubmissionsPanel({
       <Button
         variant="primary"
         size={actionButtonSize}
-        onClick={() => void refreshItems()}
+        onClick={() => void refreshItems({ status: statusFilter })}
         disabled={loadingItems}
       >
         {t("materials_page.admin.refresh")}
       </Button>
+      <select
+        aria-label={t("materials_page.admin.status_filter")}
+        value={statusFilter}
+        onChange={(event) => {
+          const value = event.target.value
+          setStatusFilter(value)
+          void refreshItems({ status: value })
+        }}
+      >
+        <option value="">{t("materials_page.admin.all_statuses")}</option>
+        {["pending", "reviewed", "rejected", "imported"].map((status) => (
+          <option key={status} value={status}>{materialStatusLabel(t, status)}</option>
+        ))}
+      </select>
+      <span>{t("materials_page.admin.total", { count: total })}</span>
     </div>
   )
 
@@ -249,6 +277,16 @@ export default function MaterialsAdminSubmissionsPanel({
               </div>
             </div>
           ))}
+          {nextCursor ? (
+            <Button
+              type="button"
+              size={actionButtonSize}
+              onClick={() => void refreshItems({ cursor: nextCursor, append: true })}
+              disabled={loadingItems}
+            >
+              {t("materials_page.admin.load_more")}
+            </Button>
+          ) : null}
         </div>
       ) : (
         <p>{t("materials_page.admin.empty")}</p>

@@ -4,9 +4,10 @@ import { authConfig } from "@/auth"
 import { assertAdmin } from "@/lib/authz"
 import { prisma } from "@/lib/prisma"
 import { errorJson, json, localeFromRequest } from "@/lib/documents/server"
+import { requireMaterialReadAccess } from "@/lib/materials/access"
 import { getMaterialSubmissionSchemaMessage, isMaterialSubmissionSchemaError } from "@/lib/materials/compat"
+import { requestMaterialSubmissionDeletion } from "@/lib/materials/lifecycle"
 import { buildMaterialReviewUpdate, serializeMaterialSubmission } from "@/lib/materials/submissions"
-import { deleteStoredMaterial } from "@/lib/materials/server"
 import { safeError } from "@/lib/privacy/safeError"
 
 export const runtime = "nodejs"
@@ -82,7 +83,7 @@ export async function PATCH(request, { params }) {
 export async function DELETE(request, { params }) {
   const locale = localeFromRequest(request)
   const session = await getServerSession(authConfig).catch(() => null)
-  const authz = assertAdmin(session)
+  const authz = requireMaterialReadAccess(session)
 
   if (!authz.ok) {
     return errorJson(authz.message || "api.common.forbidden", authz.status || 403, locale)
@@ -94,19 +95,12 @@ export async function DELETE(request, { params }) {
   }
 
   try {
-    const submission = await prisma.materialSubmission.findUnique({
-      where: { id }
+    const result = await requestMaterialSubmissionDeletion({
+      id,
+      userId: authz.userId,
+      admin: authz.admin
     })
-    if (!submission) {
-      return errorJson("Materjali ei leitud.", 404, locale)
-    }
-
-    await deleteStoredMaterial(submission.storagePath)
-    await prisma.materialSubmission.delete({
-      where: { id: submission.id }
-    })
-
-    return json({ ok: true })
+    return json({ ok: true, ...result })
   } catch (error) {
     console.error("[materials] delete failed", safeError(error))
     if (isMaterialSubmissionSchemaError(error)) {

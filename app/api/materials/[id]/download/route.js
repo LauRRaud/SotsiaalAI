@@ -1,10 +1,10 @@
 import { getServerSession } from "next-auth"
 
 import { authConfig } from "@/auth"
-import { assertAdmin } from "@/lib/authz"
-import { prisma } from "@/lib/prisma"
+import { requireMaterialReadAccess } from "@/lib/materials/access"
 import { errorJson, localeFromRequest } from "@/lib/documents/server"
 import { getMaterialSubmissionSchemaMessage, isMaterialSubmissionSchemaError } from "@/lib/materials/compat"
+import { getMaterialSubmissionDownload } from "@/lib/materials/lifecycle"
 import { buildDownloadHeaders, readStoredMaterial } from "@/lib/materials/server"
 import { logDataAudit } from "@/lib/privacy/audit"
 import { safeError } from "@/lib/privacy/safeError"
@@ -21,7 +21,7 @@ async function resolveRouteId(paramsLike) {
 export async function GET(request, { params }) {
   const locale = localeFromRequest(request)
   const session = await getServerSession(authConfig).catch(() => null)
-  const authz = assertAdmin(session)
+  const authz = requireMaterialReadAccess(session)
 
   if (!authz.ok) {
     return errorJson(authz.message || "api.common.forbidden", authz.status || 403, locale)
@@ -33,12 +33,11 @@ export async function GET(request, { params }) {
   }
 
   try {
-    const submission = await prisma.materialSubmission.findUnique({
-      where: { id }
+    const submission = await getMaterialSubmissionDownload({
+      id,
+      userId: authz.userId,
+      admin: authz.admin
     })
-    if (!submission) {
-      return errorJson("Materjali ei leitud.", 404, locale)
-    }
 
     const fileBuffer = await readStoredMaterial(submission.storagePath)
     await logDataAudit({

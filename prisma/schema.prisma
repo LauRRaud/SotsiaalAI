@@ -740,20 +740,21 @@ model User {
   sessions Session[]
 
   // Äri
-  profile                Profile?
-  subscriptions          Subscription[]
-  payments               Payment[]
-  billingMethods         BillingMethod[]
-  sponsoredSubscriptions Subscription[]        @relation("SubscriptionSponsorUser")
-  ragDocuments           RagDocument[]
-  documents              UserDocument[]
-  transcriptionJobs      TranscriptionJob[]
-  agentArtifacts         AgentArtifact[]
-  artifactRefinements    AgentArtifactRefinement[]
-  documentAudits         DocumentAudit[]
-  frameworkAcceptances   FrameworkAcceptance[]
-  materialSubmissions    MaterialSubmission[]
-  savedAnalyses          SavedAnalysis[]
+  profile                   Profile?
+  subscriptions             Subscription[]
+  payments                  Payment[]
+  billingMethods            BillingMethod[]
+  sponsoredSubscriptions    Subscription[]            @relation("SubscriptionSponsorUser")
+  ragDocuments              RagDocument[]
+  documents                 UserDocument[]
+  transcriptionJobs         TranscriptionJob[]
+  agentArtifacts            AgentArtifact[]
+  artifactRefinements       AgentArtifactRefinement[]
+  documentAudits            DocumentAudit[]
+  frameworkAcceptances      FrameworkAcceptance[]
+  materialSubmissions       MaterialSubmission[]
+  materialSubmissionBatches MaterialSubmissionBatch[]
+  savedAnalyses             SavedAnalysis[]
 
   // Chat / runs
   conversationRuns                      ConversationRun[]
@@ -4135,17 +4136,17 @@ model AgentArtifact {
 }
 
 model AgentArtifactFinalSnapshot {
-  id           String   @id @default(cuid())
-  artifactId   String   @unique
-  manifest     Json
-  docxBytes    Bytes
-  docxSha256   String
-  docxSize     Int
-  pdfBytes     Bytes?
-  pdfSha256    String?
-  pdfSize      Int      @default(0)
-  totalBytes   Int
-  createdAt    DateTime @default(now())
+  id         String   @id @default(cuid())
+  artifactId String   @unique
+  manifest   Json
+  docxBytes  Bytes
+  docxSha256 String
+  docxSize   Int
+  pdfBytes   Bytes?
+  pdfSha256  String?
+  pdfSize    Int      @default(0)
+  totalBytes Int
+  createdAt  DateTime @default(now())
 
   artifact AgentArtifact @relation(fields: [artifactId], references: [id], onDelete: Cascade)
 
@@ -4252,6 +4253,29 @@ model SavedAnalysis {
   @@index([ownerId, updatedAt])
 }
 
+model MaterialSubmissionBatch {
+  id                    String    @id @default(cuid())
+  submittedByUserId     String
+  idempotencyKey        String
+  requestHash           String
+  status                String    @default("PREPARING")
+  notificationStatus    String    @default("PENDING")
+  notificationMessageId String?
+  notificationAttempts  Int       @default(0)
+  notificationLastError String?
+  notificationNextAt    DateTime?
+  notifiedAt            DateTime?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  submittedByUser User                 @relation(fields: [submittedByUserId], references: [id], onDelete: Cascade)
+  submissions     MaterialSubmission[]
+
+  @@unique([submittedByUserId, idempotencyKey])
+  @@index([submittedByUserId, createdAt])
+  @@index([notificationStatus, notificationNextAt])
+}
+
 model MaterialSubmission {
   id                String    @id @default(cuid())
   submittedByUserId String
@@ -4261,6 +4285,9 @@ model MaterialSubmission {
   size              Int
   sha256            String
   storagePath       String
+  storageStatus     String    @default("ACTIVE")
+  batchId           String?
+  duplicateOfId     String?
   status            String    @default("pending")
   reviewedAt        DateTime?
   reviewedBy        String?
@@ -4268,12 +4295,15 @@ model MaterialSubmission {
   createdAt         DateTime  @default(now())
   updatedAt         DateTime  @updatedAt
 
-  submittedByUser User @relation(fields: [submittedByUserId], references: [id], onDelete: Cascade)
+  submittedByUser User                     @relation(fields: [submittedByUserId], references: [id], onDelete: Cascade)
+  batch           MaterialSubmissionBatch? @relation(fields: [batchId], references: [id], onDelete: SetNull)
 
   @@index([submittedByUserId, createdAt])
   @@index([createdAt])
   @@index([sha256])
   @@index([status, createdAt])
+  @@index([batchId])
+  @@index([submittedByUserId, storageStatus, createdAt])
   @@index([reviewedAt])
 }
 

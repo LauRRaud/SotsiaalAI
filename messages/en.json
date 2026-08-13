@@ -997,6 +997,10 @@
       "load_error": "The desk could not be loaded.",
       "not_allowed": "This surface is a tool for social workers and service providers.",
       "refresh": "Refresh",
+      "status_filter": "Filter by status",
+      "all_statuses": "All statuses",
+      "total": "Total {count}",
+      "load_more": "Show more",
       "open": "Open",
       "missing_count": "open points: {count}",
       "share_row": "Network sharing",
@@ -1693,6 +1697,13 @@
     "submit": "Send material",
     "submitting": "Sending...",
     "submit_success": "Material has been sent. Thank you for contributing.",
+    "mine": {
+      "title": "My submitted materials",
+      "loading": "Loading your materials...",
+      "empty": "You have not submitted any materials yet.",
+      "withdraw": "Withdraw",
+      "load_more": "Show more"
+    },
     "errors": {
       "load_failed": "Failed to load materials.",
       "upload_failed": "Failed to upload material.",
@@ -1707,6 +1718,10 @@
     "admin": {
       "title": "Submitted materials",
       "subtitle": "Visible to admins only.",
+      "status_filter": "Filter by status",
+      "all_statuses": "All statuses",
+      "total": "Total {count}",
+      "load_more": "Show more",
       "refresh": "Refresh",
       "loading": "Loading materials...",
       "empty": "No materials have been sent yet.",
