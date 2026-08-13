@@ -20,7 +20,7 @@ test("KANDEV: ohutusetapid on eraldi ja käivituvad ka pärast varasema etapi vi
 
   // Iga etapp jookseb oma veapiiri sees.
   assert.match(source, /async function runStage\(/);
-  for (const stage of ["mentoring", "supervision", "reconcile", "projector", "delivery", "fieldSafety", "urgentExpiry"]) {
+  for (const stage of ["mentoring", "supervision", "practiceAssignments", "practiceRagRecovery", "reconcile", "projector", "delivery", "fieldSafety", "urgentExpiry"]) {
     assert.match(source, new RegExp(`runStage\\("${stage}"`), stage);
   }
 
@@ -36,6 +36,7 @@ test("KANDEV: ohutusetapid on eraldi ja käivituvad ka pärast varasema etapi vi
 
   // Vastus peab ütlema, MIS kukkus — muidu on „ok" vaikne vale.
   assert.match(source, /failedStages/);
+  assert.match(source, /PRACTICE_RAG_RECOVERY_ALARM/);
   assert.match(source, /safetyOk/);
   assert.match(source, /stages\.fieldSafety\?\.ok === true && stages\.urgentExpiry\?\.ok === true/);
 });

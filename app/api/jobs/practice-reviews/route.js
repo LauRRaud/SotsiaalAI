@@ -57,19 +57,23 @@ export async function POST(request) {
   const dryRun = boolFlag(request, "dryRun");
   const overdueDays = positiveInt(request, "overdueDays");
   const dueWithinDays = positiveInt(request, "dueWithinDays");
+  const reviewGraceDays = positiveInt(request, "reviewGraceDays");
   try {
     const result = await runEffectivePracticeReviewScheduler({
       now: new Date(),
       batchSize: JOB_BATCH_SIZE,
       dryRun,
       ...(overdueDays != null ? { overdueDays } : {}),
-      ...(dueWithinDays != null ? { dueWithinDays } : {})
+      ...(dueWithinDays != null ? { dueWithinDays } : {}),
+      ...(reviewGraceDays != null ? { reviewGraceDays } : {})
     });
     return json({
       ok: true,
       dryRun,
       reviewsDue: result.reviewsDue,
       assignmentsOverdue: result.assignmentsOverdue,
+      reviewTasksCreated: result.reviewTasksCreated,
+      movedToReReview: result.movedToReReview,
       reviews: result.reviews,
       assignments: result.assignments
     });

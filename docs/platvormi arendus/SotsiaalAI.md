@@ -157,8 +157,15 @@ plokk oli kovisiooni tervikpeatükk.
 ning aegumispiirid sulgevad ligipääsu kohe; valmisolek avaneb ainult serveri monotoonse ahelaga
 ja kutsekiri liigub nähtava püsiva outbox'i kaudu. Privaatmustand ei pääse jagatud ruumi,
 omaniku kustutus säilitab ühise ajaloo identiteedita, loendid ei peida enam vana kutset ega
-tähtaja ületanud järelvaadet ning otsustel on sisuvaba taastatav auditirada. Järgmine sidus plokk
-on parimate praktikate avaldamis- ja töövoopiir `SOL-PRAC-01…05`.
+tähtaja ületanud järelvaadet ning otsustel on sisuvaba taastatav auditirada.
+
+**Parimate praktikate `SOL-PRAC-01…08` on lõpetatud.** Avaldamine kasutab ainult praegu
+kehtivaid ja skoobitud kinnitusi, aegunud määrangud paranevad perioodiliselt ning kõik töö-
+ja haldusloendid on täielikult lehitatavad. RAG säilitab tõendus- ja õppimisaluse, privaatsus-
+ja sisendipiirid on ausad ning taastetöö jookseb versioonitud viieminutilise timeri all.
+Ülevaatustähtaja saabudes tekib ETHICS-ülesanne ja teavitus; grace-period'i järel eemaldub
+aegunud juhis avalikust/RAG-olekust ning algab uus kontroll. Järgmine sidus plokk on
+Teemaseemnete elutsükkel `SOL-SEED-01…05`.
 
 **RAG-teenuse `SOL-RAGSVC-01…28` on DONE ja peatüki UTC täisvärav on roheline.**
 `SOL-ORG-13`–`17`, `SOL-DOC-J-01`–`06` ja kogu `SOL-SLOG-01…24` parandused ning kiirem plokipõhine töökord on koodipuus. Kolmeastmelised arvud loetakse käsuga `npm run sol:progress`, neid siia ankrusse ei

@@ -6949,6 +6949,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 
 **Vastuvõtukriteerium.** Avaldamistehing peab iga arvesse mineva viimase APPROVED otsuse puhul uuesti tõendama mitte-null retsensendi, aktiivse sama tüübi pädevuse ja praegusele praktikale sobiva skoobi; kehtetu otsus ei tohi READY/PUBLISH läve täita. Testida madalat ja kõrget riski, revoke'i, loomulikku aegumist, scope'i muutust ning reviewer/EDITOR/ETHICS konto kustutust enne publish'i.
 
+**Seis (14.08.2026): DONE — avaldamine ja READY_TO_PUBLISH parandustöö arvestavad ainult sama versiooni APPROVED otsuseid, mille taga on avaldamishetkel elus retsensent, aktiivne sama tüübi pädevus ja praktikale sobiv skoop. Madala ja kõrge riski tabeltest katab revoke'i, aegumise, vale skoobi ning REVIEWER/EDITOR/ETHICS konto kao; päris PostgreSQL-i sond tõendab, et aegunud ETHICS-kinnitus ei loo versiooni ega avalda.**
+
 ### SOL-PRAC-02 — pädevuse loomulik aegumine või konto kustutus võib määratud ülevaatuse tähtajatult kinni jätta — P1
 
 **Tõend.** Tööjärjekord kuvab ainult aktiivse pädevusega kasutajale tema praeguse versiooni ASSIGNED read (`lib/effectivePractices.js:1084-1111`, `:635-647`). Käsitsi REVOKE reassign'ib read kohe (`:1915-1948`), kuid `validUntil` loomulikul saabumisel ega retsensendi konto kustutamisel samaväärset hook'i pole. `repairAssignments()` oskab vigaseid/nullable määranguid parandada (`:1981-2166`), kuid repo seob selle ainult käsitsi CLI-käskudega ja deploy-eelse kontrolliga (`package.json:75-79`; `scripts/repair-effective-practice-assignments.mjs:1-22`); review-scheduler märgib üksnes tähtaja ületuse ega tee reassign'i (`lib/effectivePractices.js:941-1045`).
@@ -6956,6 +6958,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 **Mõju.** Kandidaat või rakendamiskogemus võib jääda SUBMITTED/IN_REVIEW olekusse, kuid vana retsensent ei näe ega saa enam ülesannet lõpetada ning uus pädev kasutaja ei saa seda ilma administraatori käsitööta endale. Tähtajaliste pädevuste normaalne elutsükkel tekitab seega püsiva töövootupiku.
 
 **Vastuvõtukriteerium.** Pädevuse aegumine/konto kustutus peab käivitama idempotentse reassign'i või perioodiline worker peab vigased määrangud piiratud ajaga parandama. Lahendus peab olema batch'itud, CAS-kaitsega ja auditeeritud; testida aegumist ilma deploy'ta, kustutatud kasutaja SetNull-rida, asendaja puudumist ning review-vs-repair võidujooksu päris PostgreSQL-is.
+
+**Seis (14.08.2026): DONE — teavituste perioodiline job käitab nüüd piiratud partiiga määranguparandust, mis tuvastab loomuliku aegumise, revoke'i, vale skoobi, autori konflikti ja konto kustutuse SetNull-rea. Parandus kasutab CAS-i, jätab asendaja puudumise nähtavalt lahendamata ja kirjutab sisuvaba auditi; päris PostgreSQL-i lukusond mõõdab nii review-first kui repair-first järjekorra ilma topeltotsuse või topeltmääranguta.**
 
 ### SOL-PRAC-03 — kõvad 100/200/500 piirid peidavad praktikad, määratud tööd ja pädevused — P1
 
@@ -6965,6 +6969,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 
 **Vastuvõtukriteerium.** Filtrid ja prioriteedid tuleb rakendada andmebaasis ning kõik loendid peavad kasutama stabiilset cursor-paginatsiooni koos `hasMore` ja serveri tervikloenduritega. Assignment'i järjekord peab pärima otse `reviewerId` järgi, mitte lõikama esmalt globaalset kandidaadivalimit. Testida vähemalt 201 avaldatud/kandidaatrida, 101 isiklikku/assignment-rida ja 501 pädevust, kus ainus vaste jääb praeguse piiri taha.
 
+**Seis (14.08.2026): DONE — avaliku kogu filtrid ja sortimine käivad nüüd andmebaasis ning praktika-, kandidaadi-, rakendamiskogemuse-, ülevaatus- ja pädevusloenditel on eraldi stabiilne cursor, `hasMore` ja serveri tervikloendur. Ülevaatusjärjekord lähtub otse kasutaja määrangust. Testid läbivad 201 avaldatud, 101 isiklikku ja määratud ning 501 pädevuse rida; päris PostgreSQL kinnitab otsingu, relation-count sortimise ja cursor-lepingu.**
+
 ### SOL-PRAC-04 — RAG-i saadetud praktikatekst jätab välja praktika tõendus- ja õppimisaluse — P1
 
 **Tõend.** Avaldatud muutmatu snapshot sisaldab `expectedOutcome`, `learningPoints` ja `sources` välju ning avalik detail näitab neid kasutajale (`lib/effectivePractices.js:400-424`, `:458-490`; `components/covision/EffectivePracticesPage.jsx:414-417`). `ragText()` koostab aga ainult pealkirja, kokkuvõtte, sobiva konteksti, tingimused, piirangud, sammud, sihtrühmad ja keskkonnad; tulemus, õppimisalus ning allikad puuduvad täielikult ja kogu tekst lõigatakse 16 000 märgi pealt (`lib/effectivePractices.js:2251-2261`). Just see kärbitud tekst saadetakse `evidence_role:"practice_guidance"` dokumendina RAG-i (`:2264-2301`).
@@ -6972,6 +6978,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 **Mõju.** AI võib leida ja edasi anda tööviisi juhise ilma infota, millele see tugineb, mida tegelikult saavutati või milline õppimine seda toetab. Kasutajaliideses kontrollitav tõenduskiht ei jõua samasse teadmisteallikasse, mis vastuseid genereerib.
 
 **Vastuvõtukriteerium.** RAG-dokument peab sisaldama eraldi struktureeritud osadena vähemalt allikaid, õppimispunkte ja oodatavat/tegelikku üldistatud tulemust ning kärbe peab olema väljade kaupa teadlik, mitte kogu dokumendi pime lõpp-lõige. Integratsioonitest peab ingestima unikaalsed markerid igasse tõendusvälja ja tõendama nende olemasolu RAG-i salvestatud tekstis ning otsingutulemuses.
+
+**Seis (14.08.2026): DONE — RAG-tekst on väljade kaupa eelarvestatud struktureeritud dokument, milles säilivad tulemus, õppimispunktid, allikad ja tõendus koos konteksti ning piirangutega; kogu dokumendi pime lõpp-lõige eemaldati. Ingest/search adapteri integratsioonitest kasutab igas tõendusväljas unikaalset markerit ja leiab need nii saadetud tekstist kui otsingutulemusest.**
 
 ### SOL-PRAC-05 — serveri „isikustamata” kontroll tunneb ainult kolme tüüpi otsest identifikaatorit — P1
 
@@ -6981,6 +6989,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 
 **Vastuvõtukriteerium.** Sõnastada ausalt, milline kontroll on automaatne ja milline inimese vastutus, ning lisada riskipõhine PII/juhtumiviidete kontroll vähemalt nimede, aadresside, asutuse+haruldase sündmuse, juhtuminumbrite ja rahvusvaheliste kontaktide jaoks. Kõrge riski või ebakindla tulemuse korral peab avaldamine fail-closed jääma käsitsi põhjendatud privaatsusotsuseni; negatiivkorpus peab sisaldama nii otseseid kui ka kaudseid re-identifitseerimise näiteid.
 
+**Seis (14.08.2026): DONE — serveri riskiklassifikaator blokeerib e-posti, Eesti ja rahvusvahelise telefoni, isikukoodi, aadressi ning juhtuminumbri; nimekontekst ja asutuse-haruldase sündmuse kombinatsioon nõuavad enne avaldamist ETHICS-rolli püsivat põhjendatud privaatsusotsust. UI ütleb kolmes keeles, et automaatkontroll toetab, kuid ei asenda inimese vastutust; negatiivkorpus katab otsesed ja kaudsed taasidentifitseerimise näited.**
+
 ### SOL-PRAC-06 — pikem professionaalne sisu kärbitakse salvestamisel vaikides — P1
 
 **Tõend.** `normalizeText()` ja `normalizeShort()` kasutavad sisendi tagasilükkamise asemel `slice()`-i ning `normalizeList()` lõpetab vaikides maksimaalse elementide arvu juures (`lib/effectivePractices.js:69-93`). Kandidaadi vabatekstid lõigatakse 8 000 märgini, pealkiri 180-ni ning listid 12–32 elemendi ja 80–500 märgi piiridesse (`:135-180`); rakendamiskogemuse väljad lõigatakse 2 000/4 000 märgini (`:1618-1643`, `:1684-1708`). Kliendi textarea'del/input'idel pole vastavaid `maxLength`/loendipiire ega kärpimishoiatust (`components/covision/EffectivePracticesPage.jsx:287-378`).
@@ -6988,6 +6998,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 **Mõju.** Salvestus raporteerib edu, kuid piirangu lõpp, oluline risk, allikaviide või rakendamiskogemuse järeldus võib DB-st kaduda. Autor ja retsensent võivad seejärel kinnitada poolikut teksti teadmata, et algne sisend oli pikem.
 
 **Vastuvõtukriteerium.** Server peab üle piiri sisendi stabiilse 400/413 veaga tagasi lükkama või tagastama väljade kaupa selge truncation-tulemuse, mida kasutaja teadlikult kinnitab; vaikne kärbe pole lubatud. UI peab näitama limiite ja allesjäänud mahtu. Testida iga välja/listi piir-1, piir ja piir+1 väärtusi ning tõendada, et ükski edukas vastus ei ole sisendist vaikides erinev.
+
+**Seis (14.08.2026): DONE — kandidaadi ja rakendamiskogemuse serveriteed tagastavad üle piiri sisendile stabiilse `INPUT_LIMIT_EXCEEDED` 400 koos välja ja limiidiga; teksti ega listi ei kärbita enam edukas vastuses. UI näitab teksti allesjäänud mahtu ning listi rea- ja elemendipiire. Tabeltest katab kandidaadi iga teksti/listi ja rakendamiskogemuse iga välja piir-1, piir ning piir+1 väärtusega nii loomisel kui uuesti esitamisel.**
 
 ### SOL-PRAC-07 — RAG-i taastetöödel puudub repos tõendatud automaatne käivitaja — P1, runtime NOT_PROVEN
 
@@ -6997,6 +7009,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 
 **Vastuvõtukriteerium.** Taastetöödel peab olema repos või infrastruktuurina versioonitud perioodiline käivitaja, single-run lukk, due-job claim, bounded batch, backoff/dead-letter, tervisemõõdik ja alarm. Katkestustest peab tõendama nii ingest'i kui delete'i automaatse lõpptulemuse pärast teenuse taastumist, ilma deploy või käsikäsuta.
 
+**Seis (14.08.2026): DONE — viieminutiline notification systemd service/timer on nüüd repos versioonitud ja käitab piiratud partiiga RAG-taastet: advisory-lukuga claim, aegunud claim'i ülevõtt, eksponentsiaalne backoff, `dead_letter`, terviseloendurid ning 207/systemd failed-alarm. Ühiktest katab batch'i, claim'i, backoff'i, dead-letter'i ja pooleli jäänud processorit; päris PostgreSQL-i katkestussond viib nii ingest'i kui delete'i pärast teenuse taastumist lõpuni ja eemaldab vana RAG-viite. Serveris kontrolliti timer `enabled` + `active`, viieminutiline unit ja edukas journalijooks.**
+
 ### SOL-PRAC-08 — ülevaatustähtaja möödumine ei käivita uut kontrolli ega eemalda aegunud juhist RAG-ist — P1
 
 **Tõend.** Review-scheduler loob tähtaja saabudes ainult append-only `REVIEW_DUE` auditimarkeri; kommentaar nimetab teavituskanalit eraldi tulevikutööks (`lib/effectivePractices.js:941-1003`). Teavituste reconciler loob sündmusi üksnes olemasolevatele review-assignment'idele, mitte `REVIEW_DUE` markerile ega ETHICS/APPROVER pädevusega adressaatidele (`lib/notificationReconciler.js:152-159`). Praktika jääb `PUBLISHED` olekusse, avalik serializer lisab vaid `reviewOverdue:true` lipu (`lib/effectivePractices.js:458-490`) ning RAG-viidet ei kustutata; uue kontrolli saab käivitada ainult ETHICS kasutaja käsitsi detailvaates (`components/covision/EffectivePracticesPage.jsx:443`).
@@ -7004,6 +7018,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 **Mõju.** Aegunud professionaalne juhis võib jääda avalikku kogusse ja AI teadmistebaasi tähtajatult. Keegi ei saa sihitud ülesannet ega teadet, mistõttu avaliku kaardi hoiatus aitab ainult kasutajat, kes praktika ise üles leiab, kuid RAG-vastuse tarbija ei näe seda hoiatust.
 
 **Vastuvõtukriteerium.** Tähtaja saabumine peab looma ühe idempotentse omaniku/ETHICS tööülesande ja teavituse ning määrama selge grace-period'i järel praktika/RAG-i staatuse (näiteks `RE_REVIEW` + durable delete või otsingus tugev aegumismärgis). Testida scheduler → assignment/notification → RAG nähtavuse jada, adressaadi pädevuse aegumist, kordusjooksu ja taastamist pärast worker'i viga.
+
+**Seis (14.08.2026): DONE — tähtaja saabumine loob ühe aktiivse ja skoobitud ETHICS-ülesande, mille olemasolev reconciler muudab idempotentseks teavituseks; aegunud pädevus ei saa ülesannet ning kordusjooks ei dubleeri seda. 14-päevase grace-period'i järel liigub praktika CAS-iga `RE_REVIEW` olekusse, vana tsükli ülesanded suletakse, uus rollitsükkel luuakse ja durable RAG_DELETE eemaldab aegunud juhise. Päris PostgreSQL-i 23/23 jadasond katab scheduler → assignment → notification → grace → RAG-taaste terviktee.**
 
 ### SOL-SEED-01 — Kovisioonis, järelvaates ja suletud seemned muutuvad Teemaseemnete UI-s uuesti mustanditeks — P1
 

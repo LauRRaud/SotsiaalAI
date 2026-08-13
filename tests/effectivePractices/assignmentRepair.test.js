@@ -40,7 +40,8 @@ function makeDb({
     },
     practiceCapability: {
       findFirst: async ({ where }) => state.capabilities.find((c) =>
-        c.userId === where.userId && c.type === where.type && !c.revokedAt) || null,
+        c.userId === where.userId && c.type === where.type && !c.revokedAt
+        && (!c.validFrom || c.validFrom <= NOW) && (!c.validUntil || c.validUntil > NOW)) || null,
       findMany: async ({ where }) => {
         const types = where.type?.in || [where.type];
         return state.capabilities.filter((c) =>
@@ -169,6 +170,31 @@ test("repair leaves a healthy assignment untouched", async () => {
   assert.equal(result.findings.length, 0);
   assert.equal(result.candidateRepairs, 0);
   assert.equal(db.state.assignments.find((a) => a.id === "a1").status, "ASSIGNED");
+});
+
+test("natural capability expiry is repaired in a bounded worker batch", async () => {
+  const db = makeDb({
+    assignments: [assignment()],
+    practices: [practice()],
+    capabilities: [
+      capability({ validUntil: new Date("2026-07-14T11:59:59.000Z") }),
+      capability({ userId: "rev-2" })
+    ]
+  });
+  const result = await service(db).repairAssignments(SYSTEM, { batchSize: 1 });
+  assert.equal(result.candidateRepairs, 1);
+  assert.equal(db.state.assignments.find((row) => row.id === "a1").status, "DECLINED");
+  assert.equal(db.state.assignments.some((row) => row.reviewerId === "rev-2" && row.status === "ASSIGNED"), true);
+  assert.equal(db.state.audits[0].action, "ASSIGNMENT_REPAIR_APPLIED");
+});
+
+test("SetNull reviewer assignment is declined and remains visibly unresolved without replacement", async () => {
+  const db = makeDb({ assignments: [assignment({ reviewerId: null })], practices: [practice()], capabilities: [] });
+  const result = await service(db).repairAssignments(SYSTEM, { batchSize: 20 });
+  assert.equal(result.candidateRepairs, 1);
+  assert.equal(result.unresolved, 1);
+  assert.equal(db.state.assignments[0].status, "DECLINED");
+  assert.equal(db.state.audits[0].metadata.result, "declined_unassigned");
 });
 
 test("dryRun detects issues WITHOUT writing any change", async () => {

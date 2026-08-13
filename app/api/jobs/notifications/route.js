@@ -10,6 +10,8 @@ import { projectDomainEvents } from "@/lib/events/projector";
 import { runMentoringSweep } from "@/lib/mentoring/sweep";
 import { runSupervisionSweep } from "@/lib/supervision/sweep";
 import { expireCovisionInvitations, runCovisionInviteDelivery } from "@/lib/covisionInviteDelivery";
+import { repairEffectivePracticeAssignments } from "@/lib/effectivePractices";
+import { runEffectivePracticeRagRecovery } from "@/lib/effectivePracticeRagRecovery";
 import { runFieldSafetySweep } from "@/lib/field/safety";
 import { runUrgentExpirySweep } from "@/lib/urgent/sweep";
 import { safeError } from "@/lib/privacy/safeError";
@@ -79,6 +81,20 @@ export async function POST(request) {
   const supervision = await runStage("supervision", stages, () => runSupervisionSweep({ dryRun, batchSize }));
   const covisionExpiry = await runStage("covisionExpiry", stages, () => expireCovisionInvitations({ dryRun }));
   const covisionInvites = await runStage("covisionInvites", stages, () => runCovisionInviteDelivery({ dryRun, batchSize }));
+  const practiceAssignments = await runStage("practiceAssignments", stages, () => (
+    repairEffectivePracticeAssignments({ userId: "system", role: "SYSTEM" }, { dryRun, batchSize })
+  ));
+  const practiceRagRecovery = await runStage("practiceRagRecovery", stages, () => (
+    runEffectivePracticeRagRecovery({ dryRun, batchSize })
+  ));
+  if (practiceRagRecovery?.alarm === true && stages.practiceRagRecovery?.ok === true) {
+    console.error("[jobs/notifications] practice RAG recovery alarm", {
+      failed: Number(practiceRagRecovery.failed || 0),
+      deadLetter: Number(practiceRagRecovery.deadLetter || 0),
+      remaining: Number(practiceRagRecovery.remaining || 0)
+    });
+    stages.practiceRagRecovery = { ok: false, code: "PRACTICE_RAG_RECOVERY_ALARM" };
+  }
 
   /* Iga silmus on oma eelarve: ühe etapi 100 lehekülge ei söö ära teise oma ja
      tema viga ei võta teistelt käivitust. */
@@ -141,6 +157,8 @@ export async function POST(request) {
     supervision,
     covisionExpiry,
     covisionInvites,
+    practiceAssignments,
+    practiceRagRecovery,
     delivery,
     fieldSafety,
     urgentExpiry

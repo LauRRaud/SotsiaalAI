@@ -1,10 +1,13 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import {
+  assessEffectivePracticePrivacy,
+  buildEffectivePracticeRagText,
   createEffectivePracticeService,
   createPracticeDraftFromClosureTx,
   serializeCandidate,
-  serializePublishedPractice
+  serializePublishedPractice,
+  syncEffectivePracticeSnapshot
 } from "../../lib/effectivePractices.js";
 
 const NOW = new Date("2026-07-14T12:00:00.000Z");
@@ -253,6 +256,10 @@ function capability(userId, type) {
   return { id: `${userId}-${type}`, userId, type, scope: "", validFrom: new Date("2026-01-01"), validUntil: new Date("2027-01-01"), revokedAt: null, createdAt: NOW };
 }
 
+function reviewCapabilities(reviews) {
+  return reviews.filter((item) => item.reviewerId).map((item) => capability(item.reviewerId, item.capabilityType));
+}
+
 test("public serializer returns only the latest immutable snapshot and no identity, source, RAG or old-version fields", () => {
   const practice = basePractice({
     status: "PUBLISHED",
@@ -356,7 +363,8 @@ test("high-risk readiness needs two distinct REVIEWER approvals in addition to E
   for (const [index, [userId, type]] of actors.entries()) {
     await service.actionCandidate({ userId, role: "SOCIAL_WORKER" }, practice.publicId, {
       action: "review", expectedVersion: index, capabilityType: type,
-      decision: "APPROVED", conflictStatus: "NONE", authorFeedback: "", privateNotes: ""
+      decision: "APPROVED", conflictStatus: "NONE", authorFeedback: "", privateNotes: "",
+      ...(type === "ETHICS" ? { privacyDecisionJustification: "Üldistus ei sisalda otseseid ega kombineeritud kaudseid tunnuseid." } : {})
     });
     if (index === 2) assert.equal(db.state.practice.status, "IN_REVIEW");
   }
@@ -387,7 +395,7 @@ test("publication is blocked while an old RAG deletion job is pending or failed"
     ["reviewer-1", "REVIEWER"], ["editor-1", "EDITOR"], ["ethics-1", "ETHICS"]
   ].map(([reviewerId, capabilityType], index) => ({ id: `r-${index}`, practiceId: practice.id, reviewerId, capabilityType, reviewedVersion: 2, decision: "APPROVED", decidedAt: NOW }));
   const db = makeDb({
-    practice, reviews, capabilities: [capability("approver-1", "APPROVER")],
+    practice, reviews, capabilities: [capability("approver-1", "APPROVER"), ...reviewCapabilities(reviews)],
     deletionJobs: [{ id: "pending-delete", action: "RAG_DELETE", resourceType: "EffectivePractice", resourceId: practice.id, externalRef: "old", status: "failed" }]
   });
   const service = createEffectivePracticeService(db, { now: () => NOW });
@@ -406,7 +414,7 @@ test("P1-A: a failed/timed-out publish ingest becomes a durable RAG_INGEST retry
   const reviews = [
     ["reviewer-1", "REVIEWER"], ["editor-1", "EDITOR"], ["ethics-1", "ETHICS"]
   ].map(([reviewerId, capabilityType], index) => ({ id: `r-${index}`, practiceId: practice.id, reviewerId, capabilityType, reviewedVersion: 2, decision: "APPROVED", decidedAt: NOW }));
-  const db = makeDb({ practice, reviews, capabilities: [capability("approver-1", "APPROVER")] });
+  const db = makeDb({ practice, reviews, capabilities: [capability("approver-1", "APPROVER"), ...reviewCapabilities(reviews)] });
   const service = createEffectivePracticeService(db, {
     now: () => NOW,
     syncPublishedSnapshot: async () => { throw new Error("ingested_then_timeout"); }
@@ -433,7 +441,7 @@ test("successful RAG link and publish guard completion commit together", async (
   });
   const reviews = [["reviewer-1", "REVIEWER"], ["editor-1", "EDITOR"], ["ethics-1", "ETHICS"]]
     .map(([reviewerId, capabilityType], index) => ({ id: `r-${index}`, practiceId: practice.id, reviewerId, capabilityType, reviewedVersion: 2, decision: "APPROVED", decidedAt: NOW }));
-  const db = makeDb({ practice, reviews, capabilities: [capability("approver-1", "APPROVER")] });
+  const db = makeDb({ practice, reviews, capabilities: [capability("approver-1", "APPROVER"), ...reviewCapabilities(reviews)] });
   const service = createEffectivePracticeService(db, {
     now: () => NOW,
     syncPublishedSnapshot: async () => ({ status: "synced", docId: "effective-practice::practice-public-1::v1" })
@@ -453,7 +461,7 @@ test("P1-A: a failed publish LINK also becomes a durable RAG_INGEST retry job", 
   });
   const reviews = [["reviewer-1", "REVIEWER"], ["editor-1", "EDITOR"], ["ethics-1", "ETHICS"]]
     .map(([reviewerId, capabilityType], index) => ({ id: `r-${index}`, practiceId: practice.id, reviewerId, capabilityType, reviewedVersion: 2, decision: "APPROVED", decidedAt: NOW }));
-  const db = makeDb({ practice, reviews, capabilities: [capability("approver-1", "APPROVER")], failRagLink: true });
+  const db = makeDb({ practice, reviews, capabilities: [capability("approver-1", "APPROVER"), ...reviewCapabilities(reviews)], failRagLink: true });
   const service = createEffectivePracticeService(db, {
     now: () => NOW,
     syncPublishedSnapshot: async () => ({ status: "synced", docId: "effective-practice::practice-public-1::v1" })
@@ -533,6 +541,255 @@ test("source-case participant is blocked by bound user id or accepted email iden
   }
 });
 
+test("publishing revalidates every reviewer identity, capability lifetime and scope", async (t) => {
+  const cases = [
+    { name: "deleted REVIEWER", role: "REVIEWER", mutate: () => null },
+    { name: "deleted EDITOR", role: "EDITOR", mutate: () => null },
+    { name: "deleted ETHICS", role: "ETHICS", mutate: () => null },
+    { name: "revoked REVIEWER", role: "REVIEWER", mutate: (row) => ({ ...row, revokedAt: NOW }) },
+    { name: "expired EDITOR", role: "EDITOR", mutate: (row) => ({ ...row, validUntil: new Date("2026-07-14T11:59:59.000Z") }) },
+    { name: "wrong-scope ETHICS", role: "ETHICS", mutate: (row) => ({ ...row, scope: "lastekaitse" }) }
+  ];
+  for (const sample of cases) {
+    await t.test(sample.name, async () => {
+      const practice = basePractice({
+        status: "READY_TO_PUBLISH", version: 4, contentVersion: 2,
+        anonymityCheckedAt: NOW, anonymityCheckedVersion: 2, professionalReviewedAt: NOW
+      });
+      const reviews = [["reviewer-1", "REVIEWER"], ["editor-1", "EDITOR"], ["ethics-1", "ETHICS"]]
+        .map(([reviewerId, capabilityType], index) => ({ id: `r-${index}`, practiceId: practice.id, reviewerId, capabilityType, reviewedVersion: 2, decision: "APPROVED", decidedAt: NOW }));
+      const capabilities = reviewCapabilities(reviews).flatMap((row) => (
+        row.type === sample.role ? [sample.mutate(row)].filter(Boolean) : [row]
+      ));
+      if (sample.name.startsWith("deleted")) {
+        const review = reviews.find((row) => row.capabilityType === sample.role);
+        review.reviewerId = null;
+      }
+      const db = makeDb({ practice, reviews, capabilities: [capability("approver-1", "APPROVER"), ...capabilities] });
+      const service = createEffectivePracticeService(db, { now: () => NOW });
+      await assert.rejects(
+        service.actionCandidate({ userId: "approver-1", role: "SOCIAL_WORKER" }, practice.publicId, {
+          action: "publish", expectedVersion: 4, nextReviewAt: "2027-01-01"
+        }),
+        (error) => error.code === "REVIEW_CHAIN_INCOMPLETE"
+      );
+      assert.equal(db.state.versions.length, 0);
+    });
+  }
+});
+
+test("candidate input limits reject instead of silently truncating every text and list field", async (t) => {
+  const textLimits = {
+    title: 180, summary: 8_000, background: 8_000, mainChallenge: 8_000, whatHelped: 8_000,
+    networkOrServiceRole: 8_000, outcome: 8_000, learningPoints: 8_000, limitations: 8_000,
+    sources: 8_000, suitableContext: 8_000, practiceType: 120, maturityLevel: 80
+  };
+  for (const [field, limit] of Object.entries(textLimits)) {
+    await t.test(field, async () => {
+      for (const length of [limit - 1, limit]) {
+        const db = makeDb();
+        const service = createEffectivePracticeService(db, { now: () => NOW });
+        const value = "x".repeat(length);
+        await service.createCandidate({ userId: "author-1", role: "SOCIAL_WORKER" }, { title: field === "title" ? value : "Title", [field]: value });
+        assert.equal(db.state.practice[field].length, length);
+      }
+      const service = createEffectivePracticeService(makeDb(), { now: () => NOW });
+      await assert.rejects(
+        service.createCandidate({ userId: "author-1", role: "SOCIAL_WORKER" }, { title: "Title", [field]: "x".repeat(limit + 1) }),
+        (error) => error.status === 400 && error.code === "INPUT_LIMIT_EXCEEDED" && error.field === field
+      );
+    });
+  }
+  const listLimits = {
+    conditions: [12, 220], steps: [16, 500], targetGroups: [12, 120], environments: [12, 120],
+    topics: [24, 100], tags: [32, 80]
+  };
+  for (const [field, [maxItems, maxLength]] of Object.entries(listLimits)) {
+    await t.test(field, async () => {
+      for (const length of [maxLength - 1, maxLength]) {
+        const db = makeDb();
+        await createEffectivePracticeService(db, { now: () => NOW }).createCandidate(
+          { userId: "author-1", role: "SOCIAL_WORKER" }, { title: "Title", [field]: ["x".repeat(length)] }
+        );
+        assert.equal(db.state.practice[field][0].length, length);
+      }
+      const service = createEffectivePracticeService(makeDb(), { now: () => NOW });
+      await assert.rejects(
+        service.createCandidate({ userId: "author-1", role: "SOCIAL_WORKER" }, { title: "Title", [field]: ["x".repeat(maxLength + 1)] }),
+        (error) => error.code === "INPUT_LIMIT_EXCEEDED" && error.field === `${field}[]`
+      );
+      await assert.rejects(
+        service.createCandidate({ userId: "author-1", role: "SOCIAL_WORKER" }, { title: "Title", [field]: Array.from({ length: maxItems + 1 }, (_, i) => `item-${i}`) }),
+        (error) => error.code === "INPUT_LIMIT_EXCEEDED" && error.field === field
+      );
+    });
+  }
+});
+
+test("application input limits preserve boundary values and reject overflow on create and resubmit", async (t) => {
+  const limits = {
+    context: 4_000,
+    targetGroup: 2_000,
+    adaptations: 4_000,
+    whatWorked: 4_000,
+    whatDidNot: 4_000,
+    limitationOrRisk: 4_000
+  };
+  const snapshot = {
+    publicId: "practice-public-1", title: "Avaldatud praktika", practiceType: "Võrgustikutöö",
+    topics: ["rollid"], version: 1, publishedAt: NOW.toISOString()
+  };
+  const input = (overrides = {}) => ({
+    context: "KOV", targetGroup: "Täiskasvanud", versionUsed: 1, adaptations: "Kohandus",
+    whatWorked: "Toimis", whatDidNot: "Ei toiminud", limitationOrRisk: "Piirang",
+    followUpAt: "2027-01-01", needsReview: false, submit: false, ...overrides
+  });
+  for (const [field, limit] of Object.entries(limits)) {
+    await t.test(field, async () => {
+      for (const length of [limit - 1, limit]) {
+        const practice = basePractice({ status: "PUBLISHED", publishedVersion: 1, versions: [{ version: 1, publicSnapshot: snapshot }] });
+        const db = makeDb({ practice, versions: practice.versions });
+        await createEffectivePracticeService(db, { now: () => NOW }).addApplication(
+          { userId: "applier-1", role: "SOCIAL_WORKER" }, practice.publicId, input({ [field]: "x".repeat(length) })
+        );
+        assert.equal(db.state.applications[0][field].length, length);
+      }
+
+      const practice = basePractice({ status: "PUBLISHED", publishedVersion: 1, versions: [{ version: 1, publicSnapshot: snapshot }] });
+      await assert.rejects(
+        createEffectivePracticeService(makeDb({ practice, versions: practice.versions }), { now: () => NOW }).addApplication(
+          { userId: "applier-1", role: "SOCIAL_WORKER" }, practice.publicId, input({ [field]: "x".repeat(limit + 1) })
+        ),
+        (error) => error.code === "INPUT_LIMIT_EXCEEDED" && error.field === field
+      );
+
+      const application = {
+        id: "application-1", publicId: "application-public-1", practiceId: practice.id,
+        authorId: "applier-1", status: "NEEDS_CHANGES", version: 0, practiceSnapshot: snapshot
+      };
+      const resubmitDb = makeDb({ practice, versions: practice.versions, applications: [application] });
+      const resubmitInput = input({ [field]: "x".repeat(limit + 1) });
+      delete resubmitInput.versionUsed;
+      delete resubmitInput.submit;
+      await assert.rejects(
+        createEffectivePracticeService(resubmitDb, { now: () => NOW }).reviewApplication(
+          { userId: "applier-1", role: "SOCIAL_WORKER" }, application.publicId,
+          { action: "RESUBMIT", expectedVersion: 0, ...resubmitInput }
+        ),
+        (error) => error.code === "INPUT_LIMIT_EXCEEDED" && error.field === field
+      );
+    });
+  }
+});
+
+test("privacy classifier fails closed for direct identifiers and flags indirect re-identification", () => {
+  const directCorpus = [
+    { summary: "Helista +358 40 123 4567" },
+    { summary: "Juhtum nr KOV-2026/184" },
+    { summary: "Kohtumine oli Pärna tänav 12" },
+    { summary: "Kirjuta mari@example.ee" },
+    { summary: "Isikukood 49002024210" }
+  ];
+  for (const sample of directCorpus) {
+    assert.equal(assessEffectivePracticePrivacy(basePractice(sample)).blocked, true, JSON.stringify(sample));
+  }
+  assert.equal(
+    assessEffectivePracticePrivacy(basePractice({ summary: "Klient Mari Maasikas vajas üldistatud tuge." })).requiresManualDecision,
+    true
+  );
+  assert.equal(
+    assessEffectivePracticePrivacy(basePractice({ summary: "Vallavalitsuse ainus tulekahjujärgne juhtum üldistati." })).requiresManualDecision,
+    true
+  );
+  assert.deepEqual(assessEffectivePracticePrivacy(basePractice({ summary: "Üldistatud koostöömudel täiskasvanute toetamiseks." })), {
+    directSignals: [], indirectSignals: [], blocked: false, requiresManualDecision: false
+  });
+});
+
+test("indirect privacy risk needs a persisted ETHICS justification before publication", async () => {
+  const practice = basePractice({
+    status: "READY_TO_PUBLISH", version: 4, contentVersion: 2,
+    summary: "Vallavalitsuse ainus tulekahjujärgne juhtum üldistati.",
+    anonymityCheckedAt: NOW, anonymityCheckedVersion: 2, professionalReviewedAt: NOW
+  });
+  const reviews = [["reviewer-1", "REVIEWER"], ["editor-1", "EDITOR"], ["ethics-1", "ETHICS"]]
+    .map(([reviewerId, capabilityType], index) => ({ id: `r-${index}`, practiceId: practice.id, reviewerId, capabilityType, reviewedVersion: 2, decision: "APPROVED", decidedAt: NOW, privateNotes: null }));
+  const db = makeDb({ practice, reviews, capabilities: [capability("approver-1", "APPROVER"), ...reviewCapabilities(reviews)] });
+  const service = createEffectivePracticeService(db, { now: () => NOW });
+  await assert.rejects(
+    service.actionCandidate({ userId: "approver-1", role: "SOCIAL_WORKER" }, practice.publicId, { action: "publish", expectedVersion: 4, nextReviewAt: "2027-01-01" }),
+    (error) => error.code === "PRIVACY_DECISION_REQUIRED"
+  );
+  assert.equal(db.state.versions.length, 0);
+});
+
+test("RAG text preserves every evidence section even when an earlier field is oversized", () => {
+  const text = buildEffectivePracticeRagText({
+    title: "RAG-TITLE-MARKER",
+    summary: "x".repeat(8_000),
+    suitableContext: "RAG-CONTEXT-MARKER",
+    conditions: ["RAG-CONDITION-MARKER"],
+    limitations: "RAG-LIMIT-MARKER",
+    steps: ["RAG-STEP-MARKER"],
+    expectedOutcome: "RAG-OUTCOME-MARKER",
+    learningPoints: "RAG-LEARNING-MARKER",
+    sources: "RAG-SOURCE-MARKER",
+    targetGroups: ["RAG-TARGET-MARKER"],
+    environments: ["RAG-ENV-MARKER"]
+  });
+  for (const marker of ["RAG-OUTCOME-MARKER", "RAG-LEARNING-MARKER", "RAG-SOURCE-MARKER", "RAG-ENV-MARKER"]) {
+    assert.match(text, new RegExp(marker));
+  }
+  assert.match(text, /Summary: x+\n\[section truncated\]/);
+  assert.ok(text.indexOf("RAG-SOURCE-MARKER") > text.indexOf("[section truncated]"));
+});
+
+test("published evidence markers survive the real ingest adapter and are returned by search", async () => {
+  const practice = basePractice({
+    status: "READY_TO_PUBLISH", version: 4, contentVersion: 2,
+    summary: "x".repeat(8_000), outcome: "RAG-OUTCOME-UNIQUE-42",
+    learningPoints: "RAG-LEARNING-UNIQUE-42", sources: "RAG-SOURCE-UNIQUE-42",
+    anonymityCheckedAt: NOW, anonymityCheckedVersion: 2, professionalReviewedAt: NOW
+  });
+  const reviews = [["reviewer-1", "REVIEWER"], ["editor-1", "EDITOR"], ["ethics-1", "ETHICS"]]
+    .map(([reviewerId, capabilityType], index) => ({
+      id: `r-${index}`, practiceId: practice.id, reviewerId, capabilityType, reviewedVersion: 2,
+      decision: "APPROVED", decidedAt: NOW,
+      ...(capabilityType === "ETHICS" ? { privateNotes: "[PRIVACY_DECISION] Generalised evidence only" } : {})
+    }));
+  const db = makeDb({ practice, reviews, capabilities: [capability("approver-1", "APPROVER"), ...reviewCapabilities(reviews)] });
+  const stored = new Map();
+  const request = async (url, options = {}) => {
+    const payload = JSON.parse(String(options.body || "{}"));
+    if (String(url).endsWith("/ingest/text")) {
+      stored.set(payload.doc_id, payload.text);
+      return { ok: true };
+    }
+    if (String(url).endsWith("/search")) {
+      const results = [...stored].filter(([, text]) => text.includes(payload.query)).map(([doc_id, text]) => ({ doc_id, text }));
+      return { results };
+    }
+    throw new Error("unexpected RAG path");
+  };
+  const buildHeaders = () => ({ "content-type": "application/json", "x-api-key": "test-key" });
+  const service = createEffectivePracticeService(db, {
+    now: () => NOW,
+    syncPublishedSnapshot: (publication, actor) => syncEffectivePracticeSnapshot(publication, actor, { request, buildHeaders })
+  });
+    await service.actionCandidate({ userId: "approver-1", role: "SOCIAL_WORKER" }, practice.publicId, {
+      action: "publish", expectedVersion: 4, nextReviewAt: "2027-01-01"
+    });
+    const [ingestedText] = stored.values();
+    for (const marker of ["RAG-OUTCOME-UNIQUE-42", "RAG-LEARNING-UNIQUE-42", "RAG-SOURCE-UNIQUE-42"]) {
+      assert.match(ingestedText, new RegExp(marker));
+    }
+    const search = await request("/search", {
+      method: "POST", headers: buildHeaders(), body: JSON.stringify({ query: "RAG-SOURCE-UNIQUE-42" })
+    });
+    assert.equal(search.results.length, 1);
+    assert.match(search.results[0].text, /RAG-LEARNING-UNIQUE-42/);
+});
+
 test("high-risk publishing ignores approvals whose reviewer identity was deleted", async () => {
   const practice = basePractice({
     status: "READY_TO_PUBLISH", version: 4, contentVersion: 2, riskLevel: "HIGH",
@@ -541,13 +798,13 @@ test("high-risk publishing ignores approvals whose reviewer identity was deleted
   const reviews = [
     ["reviewer-1", "REVIEWER"], [null, "REVIEWER"], ["editor-1", "EDITOR"], ["ethics-1", "ETHICS"]
   ].map(([reviewerId, capabilityType], index) => ({ id: `r-${index}`, practiceId: practice.id, reviewerId, capabilityType, reviewedVersion: 2, decision: "APPROVED", decidedAt: NOW }));
-  const db = makeDb({ practice, reviews, capabilities: [capability("approver-1", "APPROVER")] });
+  const db = makeDb({ practice, reviews, capabilities: [capability("approver-1", "APPROVER"), ...reviewCapabilities(reviews)] });
   const service = createEffectivePracticeService(db, { now: () => NOW });
   await assert.rejects(
     service.actionCandidate({ userId: "approver-1", role: "SOCIAL_WORKER" }, practice.publicId, {
       action: "publish", expectedVersion: 4, nextReviewAt: "2027-01-01"
     }),
-    (error) => error.code === "HIGH_RISK_REVIEW_CHAIN_INCOMPLETE"
+    (error) => ["REVIEW_CHAIN_INCOMPLETE", "HIGH_RISK_REVIEW_CHAIN_INCOMPLETE"].includes(error.code)
   );
   assert.equal(db.state.versions.length, 0);
 });

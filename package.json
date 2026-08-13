@@ -169,6 +169,7 @@
     "prisma:studio:prod": "dotenv -e .env.production -- prisma studio",
     "postinstall": "prisma generate",
     "i18n:check": "node scripts/check-messages.mjs",
+    "practices:integrity:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/effective-practices-integrity-probe.mjs",
     "practices:repair-assignments": "node --import tsx scripts/repair-effective-practice-assignments.mjs",
     "practices:repair-assignments:check": "node --import tsx scripts/repair-effective-practice-assignments.mjs --check",
     "practices:rag:drain": "tsx --tsconfig jsconfig.json scripts/drain-effective-practice-rag-deletions.mjs",

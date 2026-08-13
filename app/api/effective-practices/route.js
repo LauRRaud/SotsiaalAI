@@ -23,7 +23,13 @@ export async function GET(request) {
       practiceType: url.searchParams.get("practiceType") || "",
       maturity: url.searchParams.get("maturity") || "",
       environment: url.searchParams.get("environment") || "",
-      sort: url.searchParams.get("sort") || "updated"
+      sort: url.searchParams.get("sort") || "updated",
+      limit: url.searchParams.get("limit") || "50",
+      practicesCursor: url.searchParams.get("practicesCursor") || "",
+      candidatesCursor: url.searchParams.get("candidatesCursor") || "",
+      applicationsCursor: url.searchParams.get("applicationsCursor") || "",
+      reviewsCursor: url.searchParams.get("reviewsCursor") || "",
+      applicationReviewsCursor: url.searchParams.get("applicationReviewsCursor") || ""
     });
     return json({ ok: true, ...workspace });
   } catch (error) {

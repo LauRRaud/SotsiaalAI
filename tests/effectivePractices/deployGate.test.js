@@ -6,10 +6,16 @@ import { deterministicRagDocumentId } from "../../lib/effectivePractices.js";
 
 // P1-E: pre-deploy readiness gate — read-only aggregate over RAG + review residue.
 
-function makeDb({ ragDelete = 0, ragIngest = 0, staleRefs = 0, publishedUnlinked = 0, publishedWithRag = [] } = {}) {
+function makeDb({ ragDelete = 0, ragIngest = 0, ragProcessing = 0, ragDeadLetter = 0, staleRefs = 0, publishedUnlinked = 0, publishedWithRag = [] } = {}) {
   return {
     dataDeletionJob: {
-      count: async ({ where }) => (where.action === "RAG_DELETE" ? ragDelete : where.action === "RAG_INGEST" ? ragIngest : 0)
+      count: async ({ where }) => {
+        if (where.action === "RAG_DELETE") return ragDelete;
+        if (where.action === "RAG_INGEST") return ragIngest;
+        if (where.status === "processing") return ragProcessing;
+        if (where.status === "dead_letter") return ragDeadLetter;
+        return 0;
+      }
     },
     effectivePractice: {
       count: async ({ where }) => {
@@ -44,6 +50,15 @@ test("pending/failed RAG ingest retries block the deploy", async () => {
   const report = await buildPracticeDeployGateReport({ db: makeDb({ ragIngest: 1 }), service: service([]) });
   assert.equal(report.ok, false);
   assert.ok(report.failures.includes("rag_ingest_residue"));
+});
+
+test("claimed and dead-letter RAG jobs block the deploy", async () => {
+  const processing = await buildPracticeDeployGateReport({ db: makeDb({ ragProcessing: 1 }), service: service([]) });
+  assert.equal(processing.ok, false);
+  assert.ok(processing.failures.includes("rag_processing_residue"));
+  const deadLetter = await buildPracticeDeployGateReport({ db: makeDb({ ragDeadLetter: 1 }), service: service([]), maxRagResidue: 99 });
+  assert.equal(deadLetter.ok, false);
+  assert.ok(deadLetter.failures.includes("rag_dead_letter"));
 });
 
 test("a non-published practice still holding a ragSourceId blocks the deploy", async () => {
@@ -105,7 +120,7 @@ test("the report carries only counts — no practice text, email or PII", async 
   });
   const serialized = JSON.stringify(report);
   assert.doesNotMatch(serialized, /@/); // no email
-  for (const key of ["ragDeleteResidue", "ragIngestResidue", "staleReferences", "versionMismatches", "publishedUnlinked", "assignmentFindings", "residueLimit"]) {
+  for (const key of ["ragDeleteResidue", "ragIngestResidue", "ragProcessing", "ragDeadLetter", "staleReferences", "versionMismatches", "publishedUnlinked", "assignmentFindings", "residueLimit"]) {
     assert.equal(typeof report.checks[key], "number", `${key} is a bare count`);
   }
 });

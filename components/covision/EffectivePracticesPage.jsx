@@ -23,7 +23,14 @@ const EMPTY_WORKSPACE = Object.freeze({
   candidates: [],
   myApplications: [],
   reviewQueue: [],
-  applicationQueue: []
+  applicationQueue: [],
+  pageInfo: {
+    practices: { hasMore: false, nextCursor: null, total: 0 },
+    candidates: { hasMore: false, nextCursor: null, total: 0 },
+    myApplications: { hasMore: false, nextCursor: null, total: 0 },
+    reviewQueue: { hasMore: false, nextCursor: null, total: 0 },
+    applicationQueue: { hasMore: false, nextCursor: null, total: 0 }
+  }
 });
 
 const EMPTY_DRAFT = Object.freeze({
@@ -66,6 +73,14 @@ function m(t, key, fallback, vars) {
 
 function splitList(value) {
   return String(value || "").split(/[\n,;]/).map((item) => item.trim()).filter(Boolean);
+}
+
+function LimitHint({ value, max, t }) {
+  return <small>{Math.max(0, max - String(value || "").length)} {m(t, "effective_practices.editor.characters_remaining", "märki jäänud")}</small>;
+}
+
+function ListLimitHint({ value, maxItems, maxLength, t }) {
+  return <small>{Math.max(0, maxItems - splitList(value).length)} {m(t, "effective_practices.editor.rows_remaining", "rida jäänud")} · {m(t, "effective_practices.editor.max_per_row", "ühel real kuni")} {maxLength}</small>;
 }
 
 function joinList(value) {
@@ -270,12 +285,12 @@ function OwnApplicationCard({ application, t, locale, busy, onResubmit }) {
       <header><span aria-hidden="true">↻</span><div><small>{m(t, "effective_practices.application.my_experience", "Minu rakendamiskogemus")}</small><h2>{application.practice.title}</h2></div><strong>{statusLabel(application.status, t)}</strong></header>
       {application.reviewNote ? <p className="epp-application-feedback"><strong>{m(t, "effective_practices.application.reviewer_feedback", "Retsensendi tagasiside")}</strong>{application.reviewNote}</p> : null}
       {editable ? <Form className="epp-application" onSubmit={(event) => { event.preventDefault(); onResubmit(application.id, { action: "RESUBMIT", expectedVersion: application.version, ...value }); }}>
-        <label>{m(t, "effective_practices.application.context", "Kasutamise kontekst")}<textarea required rows={2} value={value.context} onChange={(event) => set("context", event.target.value)} /></label>
-        <label>{m(t, "effective_practices.application.target", "Sihtrühm")}<Input required value={value.targetGroup} onChange={(event) => set("targetGroup", event.target.value)} /></label>
-        <label>{m(t, "effective_practices.application.adaptations", "Mida kohandasin")}<textarea required rows={2} value={value.adaptations} onChange={(event) => set("adaptations", event.target.value)} /></label>
-        <label>{m(t, "effective_practices.application.worked", "Mis toimis")}<textarea required rows={2} value={value.whatWorked} onChange={(event) => set("whatWorked", event.target.value)} /></label>
-        <label>{m(t, "effective_practices.application.not_worked", "Mis ei toiminud")}<textarea required rows={2} value={value.whatDidNot} onChange={(event) => set("whatDidNot", event.target.value)} /></label>
-        <label>{m(t, "effective_practices.application.limitation", "Ilmnenud piirang või risk")}<textarea required rows={2} value={value.limitationOrRisk} onChange={(event) => set("limitationOrRisk", event.target.value)} /></label>
+        <label>{m(t, "effective_practices.application.context", "Kasutamise kontekst")}<textarea required rows={2} maxLength={4000} value={value.context} onChange={(event) => set("context", event.target.value)} /><LimitHint value={value.context} max={4000} t={t} /></label>
+        <label>{m(t, "effective_practices.application.target", "Sihtrühm")}<Input required maxLength={2000} value={value.targetGroup} onChange={(event) => set("targetGroup", event.target.value)} /><LimitHint value={value.targetGroup} max={2000} t={t} /></label>
+        <label>{m(t, "effective_practices.application.adaptations", "Mida kohandasin")}<textarea required rows={2} maxLength={4000} value={value.adaptations} onChange={(event) => set("adaptations", event.target.value)} /><LimitHint value={value.adaptations} max={4000} t={t} /></label>
+        <label>{m(t, "effective_practices.application.worked", "Mis toimis")}<textarea required rows={2} maxLength={4000} value={value.whatWorked} onChange={(event) => set("whatWorked", event.target.value)} /><LimitHint value={value.whatWorked} max={4000} t={t} /></label>
+        <label>{m(t, "effective_practices.application.not_worked", "Mis ei toiminud")}<textarea required rows={2} maxLength={4000} value={value.whatDidNot} onChange={(event) => set("whatDidNot", event.target.value)} /><LimitHint value={value.whatDidNot} max={4000} t={t} /></label>
+        <label>{m(t, "effective_practices.application.limitation", "Ilmnenud piirang või risk")}<textarea required rows={2} maxLength={4000} value={value.limitationOrRisk} onChange={(event) => set("limitationOrRisk", event.target.value)} /><LimitHint value={value.limitationOrRisk} max={4000} t={t} /></label>
         <label>{m(t, "effective_practices.application.follow_up", "Järelvaate aeg")}<Input type="date" required value={value.followUpAt} onChange={(event) => set("followUpAt", event.target.value)} /></label>
         <label className="epp-confirm"><Checkbox bare checked={value.needsReview} onChange={(checked) => set("needsReview", checked)} /><span>{m(t, "effective_practices.application.needs_review", "Kogemus toob esile uue riski või vajaduse praktika uuesti üle vaadata.")}</span></label>
         <button type="submit" data-variant="primary" disabled={busy}>{m(t, "effective_practices.application.resubmit", "Saada täiendatud kogemus uuesti")}</button>
@@ -330,26 +345,19 @@ function CandidateEditor({ initial, t, busy, error, onCancel, onSave }) {
       <header><div><small>{m(t, "effective_practices.editor.private", "Privaatne praktikakandidaat")}</small><h2 id="epp-editor-title">{initial ? m(t, "effective_practices.editor.edit", "Täienda kandidaati") : m(t, "effective_practices.editor.create", "Loo praktikakandidaat")}</h2></div><button type="button" data-variant className="epp-close" autoFocus onClick={onCancel} aria-label={m(t, "common.close", "Sulge")}>×</button></header>
       {error ? <p className="epp-inline-error" role="alert">{error}</p> : null}
       <div className="epp-form-grid">
-        <label className="is-wide">{m(t, "effective_practices.fields.title", "Pealkiri")}<Input required maxLength={180} value={draft.title} onChange={(event) => set("title", event.target.value)} /></label>
-        <label className="is-wide">{m(t, "effective_practices.fields.summary", "Lühikokkuvõte")}<textarea required rows={3} value={draft.summary} onChange={(event) => set("summary", event.target.value)} /></label>
-        <label>{m(t, "effective_practices.fields.type", "Praktika tüüp")}<Input value={draft.practiceType} onChange={(event) => set("practiceType", event.target.value)} /></label>
+        <label className="is-wide">{m(t, "effective_practices.fields.title", "Pealkiri")}<Input required maxLength={180} value={draft.title} onChange={(event) => set("title", event.target.value)} /><LimitHint value={draft.title} max={180} t={t} /></label>
+        <label className="is-wide">{m(t, "effective_practices.fields.summary", "Lühikokkuvõte")}<textarea required rows={3} maxLength={8000} value={draft.summary} onChange={(event) => set("summary", event.target.value)} /><LimitHint value={draft.summary} max={8000} t={t} /></label>
+        <label>{m(t, "effective_practices.fields.type", "Praktika tüüp")}<Input maxLength={120} value={draft.practiceType} onChange={(event) => set("practiceType", event.target.value)} /><LimitHint value={draft.practiceType} max={120} t={t} /></label>
         <label>{m(t, "effective_practices.fields.risk", "Riskitase")}<Dropdown value={draft.riskLevel} onChange={(next) => set("riskLevel", next)} ariaLabel={m(t, "effective_practices.fields.risk", "Riskitase")} options={[{ value: "LOW", label: m(t, "effective_practices.risk.low", "Madalam risk") }, { value: "HIGH", label: m(t, "effective_practices.risk.high", "Kõrgem risk") }]} /></label>
-        <label className="is-wide">{m(t, "effective_practices.fields.context", "Sobiv kontekst")}<textarea required rows={3} value={draft.suitableContext} onChange={(event) => set("suitableContext", event.target.value)} /></label>
-        <label>{m(t, "effective_practices.fields.conditions", "Vajalikud tingimused")}<textarea required rows={5} value={draft.conditions} onChange={(event) => set("conditions", event.target.value)} placeholder={m(t, "effective_practices.editor.one_per_line", "Üks tingimus reale")} /></label>
-        <label>{m(t, "effective_practices.fields.steps", "Rakendamissammud")}<textarea required rows={5} value={draft.steps} onChange={(event) => set("steps", event.target.value)} placeholder={m(t, "effective_practices.editor.one_per_line", "Üks samm reale")} /></label>
-        <label className="is-wide">{m(t, "effective_practices.fields.limitations", "Oluline piirang või risk")}<textarea required rows={3} value={draft.limitations} onChange={(event) => set("limitations", event.target.value)} /></label>
-        <label>{m(t, "effective_practices.fields.background", "Üldistatud taust")}<textarea rows={3} value={draft.background} onChange={(event) => set("background", event.target.value)} /></label>
-        <label>{m(t, "effective_practices.fields.challenge", "Peamine professionaalne väljakutse")}<textarea rows={3} value={draft.mainChallenge} onChange={(event) => set("mainChallenge", event.target.value)} /></label>
-        <label>{m(t, "effective_practices.fields.what_helped", "Mis aitas")}<textarea rows={3} value={draft.whatHelped} onChange={(event) => set("whatHelped", event.target.value)} /></label>
-        <label>{m(t, "effective_practices.fields.network_role", "Võrgustiku või teenuse roll")}<textarea rows={3} value={draft.networkOrServiceRole} onChange={(event) => set("networkOrServiceRole", event.target.value)} /></label>
-        <label>{m(t, "effective_practices.fields.outcome", "Üldistatud tulemus")}<textarea rows={3} value={draft.outcome} onChange={(event) => set("outcome", event.target.value)} /></label>
-        <label>{m(t, "effective_practices.fields.learning", "Õppimis- ja tõendusalus")}<textarea required rows={3} value={draft.learningPoints} onChange={(event) => set("learningPoints", event.target.value)} /></label>
-        <label className="is-wide">{m(t, "effective_practices.fields.sources", "Allikad ja professionaalne alus")}<textarea rows={2} value={draft.sources} onChange={(event) => set("sources", event.target.value)} /></label>
-        <label>{m(t, "effective_practices.fields.targets", "Sihtrühmad")}<textarea rows={3} value={draft.targetGroups} onChange={(event) => set("targetGroups", event.target.value)} /></label>
-        <label>{m(t, "effective_practices.fields.environments", "Rakendamiskeskkonnad")}<textarea rows={3} value={draft.environments} onChange={(event) => set("environments", event.target.value)} /></label>
-        <label className="is-wide">{m(t, "effective_practices.fields.topics", "Teemad ja märksõnad")}<Input value={draft.topics} onChange={(event) => set("topics", event.target.value)} /></label>
+        <label className="is-wide">{m(t, "effective_practices.fields.context", "Sobiv kontekst")}<textarea required rows={3} maxLength={8000} value={draft.suitableContext} onChange={(event) => set("suitableContext", event.target.value)} /><LimitHint value={draft.suitableContext} max={8000} t={t} /></label>
+        <label>{m(t, "effective_practices.fields.conditions", "Vajalikud tingimused")}<textarea required rows={5} value={draft.conditions} onChange={(event) => set("conditions", event.target.value)} placeholder={m(t, "effective_practices.editor.one_per_line", "Üks tingimus reale")} /><ListLimitHint value={draft.conditions} maxItems={12} maxLength={220} t={t} /></label>
+        <label>{m(t, "effective_practices.fields.steps", "Rakendamissammud")}<textarea required rows={5} value={draft.steps} onChange={(event) => set("steps", event.target.value)} placeholder={m(t, "effective_practices.editor.one_per_line", "Üks samm reale")} /><ListLimitHint value={draft.steps} maxItems={16} maxLength={500} t={t} /></label>
+        {["limitations", "background", "mainChallenge", "whatHelped", "networkOrServiceRole", "outcome", "learningPoints", "sources"].map((field) => <label key={field} className={["limitations", "sources"].includes(field) ? "is-wide" : undefined}>{m(t, ({ limitations: "effective_practices.fields.limitations", background: "effective_practices.fields.background", mainChallenge: "effective_practices.fields.challenge", whatHelped: "effective_practices.fields.what_helped", networkOrServiceRole: "effective_practices.fields.network_role", outcome: "effective_practices.fields.outcome", learningPoints: "effective_practices.fields.learning", sources: "effective_practices.fields.sources" })[field], field)}<textarea required={["limitations", "learningPoints"].includes(field)} rows={3} maxLength={8000} value={draft[field]} onChange={(event) => set(field, event.target.value)} /><LimitHint value={draft[field]} max={8000} t={t} /></label>)}
+        <label>{m(t, "effective_practices.fields.targets", "Sihtrühmad")}<textarea rows={3} value={draft.targetGroups} onChange={(event) => set("targetGroups", event.target.value)} /><ListLimitHint value={draft.targetGroups} maxItems={12} maxLength={120} t={t} /></label>
+        <label>{m(t, "effective_practices.fields.environments", "Rakendamiskeskkonnad")}<textarea rows={3} value={draft.environments} onChange={(event) => set("environments", event.target.value)} /><ListLimitHint value={draft.environments} maxItems={12} maxLength={120} t={t} /></label>
+        <label className="is-wide">{m(t, "effective_practices.fields.topics", "Teemad ja märksõnad")}<Input value={draft.topics} onChange={(event) => set("topics", event.target.value)} /><ListLimitHint value={draft.topics} maxItems={24} maxLength={100} t={t} /></label>
       </div>
-      <label className="epp-confirm"><Checkbox bare checked={draft.ownerConfirmedNoIdentifiers} onChange={(checked) => set("ownerConfirmedNoIdentifiers", checked)} /><span>{m(t, "effective_practices.editor.identifiers_confirm", "Kinnitan pärast viimaseid muudatusi, et see kandidaatversioon ei sisalda klienti, last, perekonda ega konkreetset juhtumit tuvastavaid detaile.")}</span></label>
+      <label className="epp-confirm"><Checkbox bare checked={draft.ownerConfirmedNoIdentifiers} onChange={(checked) => set("ownerConfirmedNoIdentifiers", checked)} /><span>{m(t, "effective_practices.editor.identifiers_confirm", "Kinnitan, et eemaldasin otsesed tunnused ja hindasin ka nimede, aadresside, asutuste ning haruldaste sündmuste kombinatsioone. Automaatkontroll toetab, kuid ei asenda autori ja eetikaülevaataja vastutust.")}</span></label>
       <footer><button type="button" data-variant="quiet" onClick={onCancel}>{m(t, "common.cancel", "Loobu")}</button><button type="submit" data-variant="primary" disabled={busy}>{busy ? m(t, "common.saving", "Salvestan…") : m(t, "effective_practices.actions.save_private", "Salvesta privaatne mustand")}</button></footer>
     </Form>
   );
@@ -367,12 +375,12 @@ function ApplicationForm({ practice, t, busy, error, onSubmit }) {
       <h3>{m(t, "effective_practices.application.title", "Lisa struktureeritud rakendamiskogemus")}</h3>
       <p>{m(t, "effective_practices.application.note", "See ei ole hinne ega kommentaar. Kirjelda konteksti, kohandusi, piiranguid ja järelvaadet.")}</p>
       {error ? <p className="epp-inline-error" role="alert">{error}</p> : null}
-      <label>{m(t, "effective_practices.application.context", "Kasutamise kontekst")}<textarea required rows={2} value={value.context} onChange={(event) => set("context", event.target.value)} /></label>
-      <label>{m(t, "effective_practices.application.target", "Sihtrühm")}<Input required value={value.targetGroup} onChange={(event) => set("targetGroup", event.target.value)} /></label>
-      <label>{m(t, "effective_practices.application.adaptations", "Mida kohandasin")}<textarea required rows={2} value={value.adaptations} onChange={(event) => set("adaptations", event.target.value)} /></label>
-      <label>{m(t, "effective_practices.application.worked", "Mis toimis")}<textarea required rows={2} value={value.whatWorked} onChange={(event) => set("whatWorked", event.target.value)} /></label>
-      <label>{m(t, "effective_practices.application.not_worked", "Mis ei toiminud")}<textarea required rows={2} value={value.whatDidNot} onChange={(event) => set("whatDidNot", event.target.value)} /></label>
-      <label>{m(t, "effective_practices.application.limitation", "Ilmnenud piirang või risk")}<textarea required rows={2} value={value.limitationOrRisk} onChange={(event) => set("limitationOrRisk", event.target.value)} /></label>
+      <label>{m(t, "effective_practices.application.context", "Kasutamise kontekst")}<textarea required rows={2} maxLength={4000} value={value.context} onChange={(event) => set("context", event.target.value)} /><LimitHint value={value.context} max={4000} t={t} /></label>
+      <label>{m(t, "effective_practices.application.target", "Sihtrühm")}<Input required maxLength={2000} value={value.targetGroup} onChange={(event) => set("targetGroup", event.target.value)} /><LimitHint value={value.targetGroup} max={2000} t={t} /></label>
+      <label>{m(t, "effective_practices.application.adaptations", "Mida kohandasin")}<textarea required rows={2} maxLength={4000} value={value.adaptations} onChange={(event) => set("adaptations", event.target.value)} /><LimitHint value={value.adaptations} max={4000} t={t} /></label>
+      <label>{m(t, "effective_practices.application.worked", "Mis toimis")}<textarea required rows={2} maxLength={4000} value={value.whatWorked} onChange={(event) => set("whatWorked", event.target.value)} /><LimitHint value={value.whatWorked} max={4000} t={t} /></label>
+      <label>{m(t, "effective_practices.application.not_worked", "Mis ei toiminud")}<textarea required rows={2} maxLength={4000} value={value.whatDidNot} onChange={(event) => set("whatDidNot", event.target.value)} /><LimitHint value={value.whatDidNot} max={4000} t={t} /></label>
+      <label>{m(t, "effective_practices.application.limitation", "Ilmnenud piirang või risk")}<textarea required rows={2} maxLength={4000} value={value.limitationOrRisk} onChange={(event) => set("limitationOrRisk", event.target.value)} /><LimitHint value={value.limitationOrRisk} max={4000} t={t} /></label>
       <label>{m(t, "effective_practices.application.follow_up", "Järelvaate aeg")}<Input type="date" required value={value.followUpAt} onChange={(event) => set("followUpAt", event.target.value)} /></label>
       <label className="epp-confirm"><Checkbox bare checked={value.needsReview} onChange={(checked) => set("needsReview", checked)} /><span>{m(t, "effective_practices.application.needs_review", "Kogemus toob esile uue riski või vajaduse praktika uuesti üle vaadata.")}</span></label>
       <button type="submit" data-variant="primary" disabled={busy}>{m(t, "effective_practices.actions.submit_application", "Saada rakendamiskogemus ülevaatamiseks")}</button>
@@ -390,6 +398,7 @@ function DetailDialog({ detail, types, t, locale, busy, error, onClose, onEdit, 
   const [conflictStatus, setConflictStatus] = useState("");
   const [authorFeedback, setAuthorFeedback] = useState("");
   const [privateNotes, setPrivateNotes] = useState("");
+  const [privacyDecisionJustification, setPrivacyDecisionJustification] = useState("");
   const [nextReviewAt, setNextReviewAt] = useState("");
   const isPublished = detail.kind === "published";
   const isOwner = detail.kind === "candidate";
@@ -425,13 +434,14 @@ function DetailDialog({ detail, types, t, locale, busy, error, onClose, onEdit, 
           {isPublished ? <section className="epp-review-proof"><h3>{m(t, "effective_practices.labels.review_basis", "Professionaalse ülevaatuse alus")}</h3><p>{(practice.reviewRoles || []).map((item) => capabilityLabel(item, t)).join(" · ")}</p><dl><div><dt>{m(t, "effective_practices.labels.reviewed", "Professionaalselt üle vaadatud")}</dt><dd>{formatDate(practice.professionalReviewedAt, locale)}</dd></div><div><dt>{m(t, "effective_practices.labels.next_review", "Järgmine ülevaatus")}</dt><dd>{formatDate(practice.nextReviewAt, locale)}</dd></div></dl></section> : null}
           {practice.versionHistory?.length ? <section className="epp-review-proof"><h3>{m(t, "effective_practices.version_history", "Avaldatud versioonide ajalugu")}</h3>{practice.versionHistory.map((item) => <article key={item.version}><strong>{m(t, "effective_practices.labels.version", "Versioon")} {item.version} · {formatDate(item.publishedAt, locale)}</strong><p>{item.snapshot.title}</p><p>{item.snapshot.summary || "—"}</p><small>{(item.reviewRoles || []).map((role) => capabilityLabel(role, t)).join(" · ")}</small></article>)}</section> : null}
           {isOwner ? <section className="epp-owner-actions"><h3>{m(t, "effective_practices.candidate.next", "Kandidaadi järgmine samm")}</h3><p>{practice.source?.linked ? m(t, "effective_practices.candidate.from_closure", "Mustand loodi lõpetatud juhtumi kinnitatud üldistusest. Juhtumilugu ei ole kopeeritud.") : m(t, "effective_practices.candidate.from_experience", "Mustand põhineb sinu üldistatud professionaalsel kogemusel.")}</p><div>{["DRAFT", "NEEDS_CHANGES"].includes(practice.status) ? <button type="button" data-variant="quiet" onClick={() => onEdit(practice)}>{m(t, "effective_practices.actions.edit", "Täienda")}</button> : null}{["DRAFT", "NEEDS_CHANGES"].includes(practice.status) ? <button type="button" data-variant="primary" disabled={busy} onClick={() => onAction({ action: "submit", expectedVersion: practice.version })}>{m(t, "effective_practices.actions.submit_review", "Esita ülevaatamiseks")}</button> : null}<button type="button" data-variant="quiet" disabled={busy} onClick={() => { if (window.confirm(m(t, "effective_practices.actions.archive_confirm", "Kas arhiveerida see praktikakandidaat?"))) onAction({ action: "archive", expectedVersion: practice.version }); }}>{m(t, "effective_practices.actions.archive", "Arhiveeri")}</button></div></section> : null}
-          {canReviewNow ? <Form className="epp-review-form" onSubmit={(event) => { event.preventDefault(); onAction({ action: "review", expectedVersion: practice.version, capabilityType: reviewType, decision, conflictStatus, authorFeedback, privateNotes }); }}>
+          {canReviewNow ? <Form className="epp-review-form" onSubmit={(event) => { event.preventDefault(); onAction({ action: "review", expectedVersion: practice.version, capabilityType: reviewType, decision, conflictStatus, authorFeedback, privateNotes, privacyDecisionJustification }); }}>
             <h3>{m(t, "effective_practices.review.title", "Professionaalne ülevaatus")}</h3>
             <label>{m(t, "effective_practices.review.role", "Ülevaatuse roll")}<Dropdown value={reviewType} onChange={setReviewType} ariaLabel={m(t, "effective_practices.review.role", "Ülevaatuse roll")} options={reviewRoles.map((item) => ({ value: item, label: capabilityLabel(item, t) }))} /></label>
             <label>{m(t, "effective_practices.review.conflict_status", "Huvide konflikti kontroll")}<Dropdown required value={conflictStatus} onChange={(value) => { setConflictStatus(value); if (value === "DECLINED") setDecision("CONFLICT"); else if (decision === "CONFLICT") setDecision("APPROVED"); }} ariaLabel={m(t, "effective_practices.review.conflict_status", "Huvide konflikti kontroll")} placeholder={m(t, "effective_practices.review.choose_conflict", "Vali kontrolli tulemus")} options={[{ value: "NONE", label: m(t, "effective_practices.review.no_conflict", "Huvide konflikti ei ole") }, { value: "MANAGEABLE", label: m(t, "effective_practices.review.manageable_conflict", "Seos on olemas, kuid juhitav") }, { value: "DECLINED", label: m(t, "effective_practices.review.declined_conflict", "Taandun huvide konflikti tõttu") }]} /></label>
             <label>{m(t, "effective_practices.review.decision", "Otsus")}<Dropdown value={decision} onChange={(value) => { setDecision(value); if (value === "CONFLICT") setConflictStatus("DECLINED"); else if (conflictStatus === "DECLINED") setConflictStatus("NONE"); }} ariaLabel={m(t, "effective_practices.review.decision", "Otsus")} options={[{ value: "APPROVED", label: m(t, "effective_practices.review.approve", "Sobib järgmisse kontrolli") }, { value: "NEEDS_CHANGES", label: m(t, "effective_practices.review.changes", "Vajab täiendamist") }, { value: "DECLINED", label: m(t, "effective_practices.review.decline", "Ei sobi avaldamiseks") }, { value: "CONFLICT", label: m(t, "effective_practices.review.conflict", "Huvide konflikt") }]} /></label>
             <label>{m(t, "effective_practices.review.author_feedback", "Autorile nähtav tagasiside")}<textarea rows={4} required={["NEEDS_CHANGES", "DECLINED"].includes(decision)} value={authorFeedback} onChange={(event) => setAuthorFeedback(event.target.value)} /></label>
             <label>{m(t, "effective_practices.review.private_notes", "Privaatsed märkmed ülevaatuse töövoole")}<textarea rows={3} required={decision === "CONFLICT" || conflictStatus !== "NONE"} value={privateNotes} onChange={(event) => setPrivateNotes(event.target.value)} /></label>
+            {reviewType === "ETHICS" && decision === "APPROVED" ? <label>{m(t, "effective_practices.review.privacy_justification", "Põhjenda, miks üldistus ei võimalda inimese ega konkreetse juhtumi tuvastamist")}<textarea rows={3} required value={privacyDecisionJustification} onChange={(event) => setPrivacyDecisionJustification(event.target.value)} /></label> : null}
             {/* Huvide konflikti kontrolli VÄRAV. Varem hoidis seda kinni
                 natiivne `required` <select>'il; nüüd, kui valik on meie oma
                 juhtelement, tuleb värav siia — muidu saaks ülevaatuse
@@ -462,6 +472,7 @@ export default function EffectivePracticesPage({ user = {} }) {
   const [dialogError, setDialogError] = useState("");
   const [editing, setEditing] = useState(null);
   const [busy, setBusy] = useState(false);
+  const [loadingMore, setLoadingMore] = useState("");
   const [helpOpen, setHelpOpen] = useState(false);
   const returnFocusRef = useRef(null);
   const activeViewRef = useRef({ kind: "list", id: "" });
@@ -497,6 +508,46 @@ export default function EffectivePracticesPage({ user = {} }) {
     const timer = window.setTimeout(() => load(), 180);
     return () => window.clearTimeout(timer);
   }, [load]);
+
+  const loadMore = useCallback(async (key) => {
+    const cursorNames = {
+      practices: "practicesCursor",
+      candidates: "candidatesCursor",
+      myApplications: "applicationsCursor",
+      reviewQueue: "reviewsCursor",
+      applicationQueue: "applicationReviewsCursor"
+    };
+    const page = workspace.pageInfo?.[key];
+    if (!page?.hasMore || !page.nextCursor || !cursorNames[key]) return;
+    setLoadingMore(key);
+    const params = new URLSearchParams({ sort, [cursorNames[key]]: page.nextCursor });
+    if (deferredQuery.trim()) params.set("q", deferredQuery.trim());
+    if (maturity) params.set("maturity", maturity);
+    try {
+      const response = await fetch(`/api/effective-practices?${params}`, { headers, cache: "no-store" });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) throw Object.assign(new Error("load-more"), { payload });
+      startTransition(() => setWorkspace((current) => {
+        const seen = new Set(current[key].map((item) => item.id));
+        const nextItems = (payload[key] || []).filter((item) => !seen.has(item.id));
+        return {
+          ...current,
+          [key]: [...current[key], ...nextItems],
+          pageInfo: { ...current.pageInfo, [key]: payload.pageInfo?.[key] || current.pageInfo[key] }
+        };
+      }));
+    } catch (requestError) {
+      setError(resolveApiMessage({ payload: requestError?.payload, t, fallbackKey: "effective_practices.errors.load_failed", fallbackText: "Järgmist lehte ei õnnestunud laadida." }));
+    } finally {
+      setLoadingMore("");
+    }
+  }, [deferredQuery, headers, maturity, sort, startTransition, t, workspace.pageInfo]);
+
+  const moreButton = useCallback((key) => workspace.pageInfo?.[key]?.hasMore ? (
+    <button type="button" data-variant disabled={loadingMore === key} onClick={() => loadMore(key)}>
+      {loadingMore === key ? m(t, "effective_practices.loading", "Laadin…") : m(t, "effective_practices.actions.load_more", "Laadi veel")}
+    </button>
+  ) : null, [loadMore, loadingMore, t, workspace.pageInfo]);
 
   const openDetail = useCallback(async (id, { history = "push", trigger = null } = {}) => {
     const normalizedId = String(id || "").trim();
@@ -779,9 +830,9 @@ export default function EffectivePracticesPage({ user = {} }) {
 
   const canViewOwnWork = workspace.capabilities.canCreate || workspace.myApplications.length > 0;
   const tabs = [
-    ["library", "effective_practices.tabs.library", "Praktikakogu", workspace.practices.length],
-    ...(canViewOwnWork ? [["candidates", "effective_practices.tabs.candidates", "Minu tööd", workspace.candidates.length + workspace.myApplications.length]] : []),
-    ...(workspace.capabilities.canReview ? [["review", "effective_practices.tabs.review", "Retsenseerimine", workspace.reviewQueue.length + workspace.applicationQueue.length]] : [])
+    ["library", "effective_practices.tabs.library", "Praktikakogu", workspace.pageInfo.practices.total],
+    ...(canViewOwnWork ? [["candidates", "effective_practices.tabs.candidates", "Minu tööd", workspace.pageInfo.candidates.total + workspace.pageInfo.myApplications.total]] : []),
+    ...(workspace.capabilities.canReview ? [["review", "effective_practices.tabs.review", "Retsenseerimine", workspace.pageInfo.reviewQueue.total + workspace.pageInfo.applicationQueue.total]] : [])
   ];
   const content = tab === "candidates" ? [...workspace.candidates, ...workspace.myApplications] : tab === "review" ? [...workspace.reviewQueue, ...workspace.applicationQueue] : workspace.practices;
 
@@ -838,14 +889,14 @@ export default function EffectivePracticesPage({ user = {} }) {
         {(loading || isPending) && !error ? <section className="epp-state" aria-busy="true"><div className="epp-loader" /><p>{m(t, "effective_practices.loading", "Praktikakogu avaneb…")}</p></section> : null}
         {!loading && !isPending && !error && !content.length ? <section className="epp-state"><span aria-hidden="true">▤</span><h2>{tab === "candidates" ? m(t, "effective_practices.empty.candidates_title", "Sul pole veel praktikakandidaate") : tab === "review" ? m(t, "effective_practices.empty.review_title", "Sul pole praegu määratud ülevaatusi") : m(t, "effective_practices.empty.library_title", "Praktikakogu alles kujuneb")}</h2><p>{tab === "library" ? m(t, "effective_practices.empty.library_text", "Siia ilmuvad ainult lukustatud ja avaldamiseks kinnitatud praktikaversioonid.") : m(t, "effective_practices.empty.personal_text", "Uued tööobjektid ilmuvad siia pärast teadlikku loomist või määramist.")}</p>{tab === "candidates" && workspace.capabilities.canCreate ? <button type="button" data-variant="primary" onClick={(event) => openEditor({}, event.currentTarget)}>{m(t, "effective_practices.actions.create", "Loo praktikakandidaat")}</button> : null}</section> : null}
         {!loading && content.length ? <section id="practice-library" className={`epp-grid is-${tab}`} aria-live="polite">
-          {tab === "library" ? workspace.practices.map((item) => <PracticeCard key={item.id} practice={item} t={t} locale={locale} onOpen={openDetail} />) : null}
+          {tab === "library" ? <>{workspace.practices.map((item) => <PracticeCard key={item.id} practice={item} t={t} locale={locale} onOpen={openDetail} />)}{moreButton("practices")}</> : null}
           {tab === "candidates" ? <>
-            <div className="epp-review-section"><h2>{m(t, "effective_practices.candidate.my_candidates", "Minu praktikakandidaadid")}</h2>{workspace.candidates.map((item) => <CandidateCard key={item.id} candidate={item} t={t} locale={locale} onOpen={openDetail} />)}</div>
-            <div className="epp-review-section"><h2>{m(t, "effective_practices.application.my_applications", "Minu rakendamiskogemused")}</h2>{workspace.myApplications.map((item) => <OwnApplicationCard key={item.id} application={item} t={t} locale={locale} busy={busy} onResubmit={reviewApplication} />)}</div>
+            <div className="epp-review-section"><h2>{m(t, "effective_practices.candidate.my_candidates", "Minu praktikakandidaadid")}</h2>{workspace.candidates.map((item) => <CandidateCard key={item.id} candidate={item} t={t} locale={locale} onOpen={openDetail} />)}{moreButton("candidates")}</div>
+            <div className="epp-review-section"><h2>{m(t, "effective_practices.application.my_applications", "Minu rakendamiskogemused")}</h2>{workspace.myApplications.map((item) => <OwnApplicationCard key={item.id} application={item} t={t} locale={locale} busy={busy} onResubmit={reviewApplication} />)}{moreButton("myApplications")}</div>
           </> : null}
           {tab === "review" ? <>
-            <div className="epp-review-section"><h2>{m(t, "effective_practices.review.candidates", "Praktikakandidaadid")}</h2>{workspace.reviewQueue.map((item) => <CandidateCard key={item.id} candidate={item} t={t} locale={locale} review onOpen={openDetail} />)}</div>
-            <div className="epp-review-section"><h2>{m(t, "effective_practices.review.applications", "Rakendamiskogemused")}</h2>{workspace.applicationQueue.map((item) => <ApplicationReviewCard key={item.id} application={item} types={workspace.capabilities.types || []} t={t} busy={busy} onReview={reviewApplication} />)}</div>
+            <div className="epp-review-section"><h2>{m(t, "effective_practices.review.candidates", "Praktikakandidaadid")}</h2>{workspace.reviewQueue.map((item) => <CandidateCard key={item.id} candidate={item} t={t} locale={locale} review onOpen={openDetail} />)}{moreButton("reviewQueue")}</div>
+            <div className="epp-review-section"><h2>{m(t, "effective_practices.review.applications", "Rakendamiskogemused")}</h2>{workspace.applicationQueue.map((item) => <ApplicationReviewCard key={item.id} application={item} types={workspace.capabilities.types || []} t={t} busy={busy} onReview={reviewApplication} />)}{moreButton("applicationQueue")}</div>
           </> : null}
         </section> : null}
 

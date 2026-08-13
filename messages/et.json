@@ -8282,7 +8282,10 @@
       "create": "Loo praktikakandidaat",
       "edit": "Täienda kandidaati",
       "one_per_line": "Üks kirje reale",
-      "identifiers_confirm": "Kinnitan pärast viimaseid muudatusi, et see kandidaatversioon ei sisalda klienti, last, perekonda ega konkreetset juhtumit tuvastavaid detaile."
+      "characters_remaining": "märki jäänud",
+      "rows_remaining": "rida jäänud",
+      "max_per_row": "ühel real kuni",
+      "identifiers_confirm": "Kinnitan, et eemaldasin otsesed tunnused ja hindasin ka nimede, aadresside, asutuste ning haruldaste sündmuste kombinatsioone. Automaatkontroll toetab, kuid ei asenda autori ja eetikaülevaataja vastutust."
     },
     "candidate": {
       "next": "Kandidaadi järgmine samm",
@@ -8305,6 +8308,7 @@
       "declined_conflict": "Taandun huvide konflikti tõttu",
       "author_feedback": "Autorile nähtav tagasiside",
       "private_notes": "Privaatsed märkmed ülevaatuse töövoole",
+      "privacy_justification": "Põhjenda, miks üldistus ei võimalda inimese ega konkreetse juhtumi tuvastamist",
       "candidates": "Praktikakandidaadid",
       "applications": "Rakendamiskogemused"
     },

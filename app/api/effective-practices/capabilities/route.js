@@ -17,8 +17,12 @@ export async function GET(request) {
   const locale = effectivePracticeLocale(request);
   try {
     const auth = await requireEffectivePracticeAuth();
-    const capabilities = await listEffectivePracticeCapabilities(auth);
-    return json({ ok: true, capabilities });
+    const url = new URL(request.url);
+    const page = await listEffectivePracticeCapabilities(auth, {
+      limit: url.searchParams.get("limit") || "100",
+      cursor: url.searchParams.get("cursor") || ""
+    });
+    return json({ ok: true, capabilities: page.items, pageInfo: page.pageInfo });
   } catch (error) {
     return effectivePracticeErrorResponse(error, locale, "[effective-practices] capability list failed");
   }

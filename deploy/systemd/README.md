@@ -17,7 +17,26 @@ märgita. Koodis olev säilitusreegel ei muutu iseenesest päris tööks.
 | **Monitooring** | iga jooks jätab rea `CaseWorkRetentionRun` tabelisse — **enne** tööd, mitte pärast |
 | **Alarm** | `npm run casework:retention:smoke` → väljumiskood **1**, kui viimasest edukast jooksust on möödas üle kahe intervalli |
 
-### Paigaldamine
+## Teavitused ja perioodilised taastetööd
+
+`sotsiaalai-notifications.timer` käivitab iga viie minuti järel
+`npm run notifications:dispatch`. Sama fail-closed route lepitab ja saadab teavitused ning
+käitab mentorluse, supervisiooni, praktikate määranguparanduse ja praktikate RAG-taaste
+piiratud partiid. RAG-taaste `dead_letter` või sama jooksu tõrge muudab job'i vastuse
+ebaõnnestunuks, nii et systemd jätab nähtava failed-jälje journal'i; järgmine timerijooks
+proovib parandatavaid töid uuesti.
+
+Deploy paigaldab või uuendab unit-failid, kuid ei luba uut taimerit esimest korda sisse.
+Esmasel aktiveerimisel kontrolli `/etc/sotsiaalai/frontend.env` võtmeid ja käivita:
+
+```sh
+sudo systemctl enable --now sotsiaalai-notifications.timer
+systemctl is-enabled sotsiaalai-notifications.timer
+systemctl is-active sotsiaalai-notifications.timer
+journalctl -u sotsiaalai-notifications.service -n 20 --no-pager
+```
+
+### Casework-taimeri paigaldamine
 
 Deploy kopeerib unit-failid `/etc/systemd/system/`-i ja teeb `daemon-reload`.
 **Taimerit ta EI luba sisse** — see on teadlik.

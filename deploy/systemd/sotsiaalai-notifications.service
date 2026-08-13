@@ -1,0 +1,14 @@
+[Unit]
+Description=SotsiaalAI notification reconciliation and delivery
+After=network-online.target sotsiaalai-frontend.service
+Requires=sotsiaalai-frontend.service
+
+[Service]
+Type=oneshot
+User=ubuntu
+WorkingDirectory=/home/ubuntu/apps/sotsiaalai
+EnvironmentFile=/etc/sotsiaalai/frontend.env
+ExecStart=/usr/bin/npm run notifications:dispatch
+TimeoutStartSec=3min
+StandardOutput=journal
+StandardError=journal

@@ -41,6 +41,7 @@ function makeDb({ practices = [], assignments = [], audits = [] } = {}) {
           && (where.completedAt !== null || a.completedAt == null)
           && matchDate(a.assignedAt, where.assignedAt)), cursor, take)
     },
+    practiceCapability: { findMany: async () => [] },
     effectivePracticeAuditEvent: {
       findFirst: async ({ where = {} } = {}) => state.audits.find((e) =>
         e.practiceId === where.practiceId

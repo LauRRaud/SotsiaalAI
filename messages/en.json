@@ -8282,7 +8282,10 @@
       "create": "Create practice candidate",
       "edit": "Complete candidate",
       "one_per_line": "One entry per line",
-      "identifiers_confirm": "After the latest changes, I confirm that this candidate contains no details that identify a client, child, family or specific case."
+      "characters_remaining": "characters remaining",
+      "rows_remaining": "rows remaining",
+      "max_per_row": "up to per row",
+      "identifiers_confirm": "I confirm that I removed direct identifiers and assessed combinations of names, addresses, institutions and rare events. Automated checks support but do not replace the author’s and ethics reviewer’s responsibility."
     },
     "candidate": {
       "next": "Candidate's next step",
@@ -8305,6 +8308,7 @@
       "declined_conflict": "I recuse myself due to a conflict",
       "author_feedback": "Feedback visible to the author",
       "private_notes": "Private workflow notes",
+      "privacy_justification": "Explain why the generalisation cannot identify a person or a specific case",
       "candidates": "Practice candidates",
       "applications": "Application experiences"
     },

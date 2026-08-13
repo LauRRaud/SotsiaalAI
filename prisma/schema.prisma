@@ -1976,11 +1976,14 @@ model DataDeletionJob {
   nextAttemptAt DateTime?
   lastErrorCode String?
   maxAttempts   Int?
+  claimToken    String?
+  claimedAt     DateTime?
 
   @@index([status, createdAt])
   @@index([targetUserId, createdAt])
   @@index([resourceType, resourceId])
   @@index([action, status, nextAttemptAt])
+  @@index([resourceType, status, claimedAt])
 }
 
 // A private, owner-requested portable data copy. The output reference is kept
