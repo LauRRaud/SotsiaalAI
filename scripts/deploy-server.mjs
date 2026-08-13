@@ -217,7 +217,7 @@ migration_state_file=""
 # lubamine kuulub aktiveerimise väljalaskesse, mitte igasse deploy'sse.
 if [ -d "$APP_DIR/deploy/systemd" ]; then
   installed_units=""
-  for unit in "$APP_DIR"/deploy/systemd/*.service "$APP_DIR"/deploy/systemd/*.timer; do
+  for unit in "$APP_DIR"/deploy/systemd/*.service "$APP_DIR"/deploy/systemd/*.timer "$APP_DIR"/deploy/systemd/*.mount; do
     [ -e "$unit" ] || continue
     name="$(basename "$unit")"
     if ! sudo cmp -s "$unit" "/etc/systemd/system/$name"; then
@@ -225,6 +225,17 @@ if [ -d "$APP_DIR/deploy/systemd" ]; then
       installed_units="$installed_units $name"
     fi
   done
+  if [ -f "$APP_DIR/deploy/systemd/sotsiaalai-materials-tmpfiles.conf" ]; then
+    sudo install -m 0644 "$APP_DIR/deploy/systemd/sotsiaalai-materials-tmpfiles.conf" /etc/tmpfiles.d/sotsiaalai-materials-tmpfiles.conf
+  fi
+  if [ -f "$APP_DIR/deploy/bin/sotsiaalai-material-cdr" ]; then
+    sudo install -m 0755 "$APP_DIR/deploy/bin/sotsiaalai-material-cdr" /usr/local/bin/sotsiaalai-material-cdr
+  fi
+  if [ -f "$APP_DIR/deploy/systemd/sotsiaalai-frontend.service.d/20-materials-storage.conf" ]; then
+    sudo install -d -m 0755 /etc/systemd/system/sotsiaalai-frontend.service.d
+    sudo install -m 0644 "$APP_DIR/deploy/systemd/sotsiaalai-frontend.service.d/20-materials-storage.conf" /etc/systemd/system/sotsiaalai-frontend.service.d/20-materials-storage.conf
+    installed_units="$installed_units sotsiaalai-frontend.service.d/20-materials-storage.conf"
+  fi
   if [ -n "$installed_units" ]; then
     sudo systemctl daemon-reload
     echo "[deploy:server] Systemd units updated:$installed_units"

@@ -2,27 +2,32 @@
 
 ## Materjalide isoleeritud hoidla (SOL-MAT-08)
 
-`sotsiaalai-materials-storage.mount` on repo-hallatav leping eraldi ext4 köitele:
-`nodev,nosuid,noexec`, omanik `sotsiaalai:sotsiaalai`, juurkataloog `0750` ning
+`var-lib-sotsiaalai-materials.mount` on repo-hallatav leping eraldi LUKS2 + ext4 köitele:
+`nodev,nosuid,noexec`, omanik `ubuntu:ubuntu`, juurkataloog `0750` ning
 `uploads`, `quarantine` ja `sanitized` kataloogid `0700`. Rakenduse
 `MATERIALS_STORAGE_DIR` peab olema `/var/lib/sotsiaalai/materials`.
 
-Unit eeldab, et infrastruktuur on loonud krüpteeritud köite sildiga
-`SOTSIAALAI_MATERIALS`. Repo ei formaadi ketast ega luba mount'i automaatselt.
+Tootmises loob `deploy/provision-materials-volume.sh` uue rangelt kontrollitud
+`/var/lib/sotsiaalai-materials.luks` failipõhise LUKS2 köite, avab ta ainult
+`/dev/mapper/sotsiaalai_materials` nime all ja vormindab uue mapping'u ext4-ks.
+Skript keeldub olemasolevat või mittetühja sihtkohta vormindamast. Võtmefail on
+root-only `/etc/sotsiaalai/materials-volume.key`; võtit ei logita.
 Aktiveerimisel paigalda tmpfiles-leping ja nõua kontrollunit'i edu enne frontendi
 käivitamist:
 
 ```sh
 sudo install -m 0644 deploy/systemd/sotsiaalai-materials-tmpfiles.conf /etc/tmpfiles.d/
 sudo systemd-tmpfiles --create /etc/tmpfiles.d/sotsiaalai-materials-tmpfiles.conf
-sudo systemctl enable --now sotsiaalai-materials-storage.mount
+sudo systemctl enable --now var-lib-sotsiaalai-materials.mount
 sudo systemctl enable --now sotsiaalai-materials-storage-verify.service
 findmnt -n -o SOURCE,FSTYPE,OPTIONS --target /var/lib/sotsiaalai/materials
 ```
 
-PDF/DOCX aktiveerimine vajab eraldi kinnitatud kohalikku CDR-adapterit. Ilma
-selleta jäävad need failid pärast CLEAN skanni fail-closed olekusse; välist
-pilve-CDR-i ei kasutata.
+PDF/DOCX kasutab kohalikku Dangerzone 0.11 CDR-i. `deploy/bin/sotsiaalai-material-cdr`
+annab sisendi võrguta Podmani/gVisori liivakastile, Dangerzone rasterdab dokumendi,
+ehitab ohutu PDF-i uuesti ja OCR-ib selle; RAG-i jõuab ainult sellest PDF-ist
+eraldatud rangelt valideeritud UTF-8 tekst. Puuduv mootor, timeout, tühi või liiga
+suur väljund jääb fail-closed olekusse. Välist pilve-CDR-i ei kasutata.
 
 Need failid on **repositooriumi oma**, mitte ühe masina crontabi oma. Põhjus on
 SOL-CW-14: säilitustöö loogika oli olemas ja testitud, aga cron oli **näide

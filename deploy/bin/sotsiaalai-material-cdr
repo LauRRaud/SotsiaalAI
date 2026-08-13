@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+umask 077
+
+mime=""
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    --mime)
+      [ "$#" -ge 2 ] || exit 64
+      mime="$2"
+      shift 2
+      ;;
+    *)
+      exit 64
+      ;;
+  esac
+done
+
+case "$mime" in
+  application/pdf)
+    extension="pdf"
+    ;;
+  application/vnd.openxmlformats-officedocument.wordprocessingml.document)
+    extension="docx"
+    ;;
+  *)
+    exit 65
+    ;;
+esac
+
+command -v dangerzone-cli >/dev/null 2>&1 || exit 69
+command -v pdftotext >/dev/null 2>&1 || exit 69
+case "$(dangerzone-cli --version)" in
+  0.11.*) ;;
+  *) exit 69 ;;
+esac
+
+work_root="${MATERIALS_STORAGE_DIR:-/var/lib/sotsiaalai/materials}/quarantine"
+[ -d "$work_root" ] || exit 73
+work_dir="$(mktemp -d "$work_root/cdr.XXXXXXXX")"
+cleanup() {
+  rm -rf -- "$work_dir"
+}
+trap cleanup EXIT HUP INT TERM
+
+input_path="$work_dir/input.$extension"
+safe_pdf="$work_dir/safe.pdf"
+
+/usr/bin/timeout 15s /usr/bin/dd of="$input_path" bs=1M status=none
+/usr/bin/timeout 150s /usr/bin/dangerzone-cli \
+  --output-filename "$safe_pdf" \
+  --ocr-lang est \
+  "$input_path" >/dev/null
+
+test -s "$safe_pdf"
+/usr/bin/timeout 20s /usr/bin/pdftotext -enc UTF-8 -nopgbrk "$safe_pdf" -

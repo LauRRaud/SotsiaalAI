@@ -1,9 +1,11 @@
 [Unit]
 Description=SotsiaalAI isolated materials storage
 Before=sotsiaalai-frontend.service
+After=systemd-cryptsetup@sotsiaalai_materials.service
+Requires=systemd-cryptsetup@sotsiaalai_materials.service
 
 [Mount]
-What=/dev/disk/by-label/SOTSIAALAI_MATERIALS
+What=/dev/mapper/sotsiaalai_materials
 Where=/var/lib/sotsiaalai/materials
 Type=ext4
 Options=rw,nodev,nosuid,noexec,noatime

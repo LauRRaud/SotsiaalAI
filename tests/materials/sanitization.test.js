@@ -5,6 +5,7 @@ import {
   MATERIAL_SANITIZATION_VERSION,
   createMaterialSanitizer
 } from "../../lib/materials/sanitization.js"
+import { createLocalMaterialCdr } from "../../lib/materials/cdr.js"
 
 test("one-way text extraction normalizes controls and produces a versioned digest", async () => {
   const result = await createMaterialSanitizer().sanitize({
@@ -37,4 +38,34 @@ test("a local CDR adapter output is revalidated as strict sanitized UTF-8", asyn
   const result = await sanitizer.sanitize({ buffer: Buffer.from("not parsed here"), mime: "application/pdf" })
   assert.equal(calls, 1)
   assert.equal(result.buffer.toString(), "Extracted synthetic text\n")
+})
+
+test("the local CDR invokes only the fixed wrapper with a MIME argument and binary stdin", async () => {
+  const calls = []
+  const cdr = createLocalMaterialCdr({
+    command: "/fixed/material-cdr",
+    run: async (...args) => {
+      calls.push(args)
+      return Buffer.from("Safe text")
+    }
+  })
+  const output = await cdr.extractSanitizedText({
+    buffer: Buffer.from([0, 1, 2]),
+    mime: "application/pdf",
+    originalName: "$(touch unsafe).pdf"
+  })
+  assert.equal(output.toString(), "Safe text")
+  assert.equal(calls[0][0], "/fixed/material-cdr")
+  assert.deepEqual(calls[0][1], ["--mime", "application/pdf"])
+  assert.deepEqual(calls[0][2].input, Buffer.from([0, 1, 2]))
+})
+
+test("the local CDR rejects unsupported types before starting a process", async () => {
+  let called = false
+  const cdr = createLocalMaterialCdr({ run: async () => { called = true } })
+  await assert.rejects(
+    cdr.extractSanitizedText({ buffer: Buffer.from("x"), mime: "text/html" }),
+    /material_cdr_mime_not_supported/
+  )
+  assert.equal(called, false)
 })

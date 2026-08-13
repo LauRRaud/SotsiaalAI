@@ -275,7 +275,7 @@ export function renderProgressBlock(findings) {
     `DONE **${done.length}** / ${findings.length} · PARTIAL **${partial.length}** / ${findings.length} · ` +
       `NOT_DONE **${notDone.length}** / ${findings.length} · peatükke täielikult DONE ` +
       `**${rows.filter((row) => row.done === row.total).length}** / ${rows.length} · ` +
-      `ametlikult lahtiseid ${open.length} — ${byPriority(open)}`
+      `ametlikult lahtiseid ${open.length}${open.length ? ` — ${byPriority(open)}` : ""}`
   );
   lines.push("");
   lines.push("| Peatükk | Kood | DONE | PARTIAL | NOT_DONE | Lahtiste prioriteedid | Märkus |");

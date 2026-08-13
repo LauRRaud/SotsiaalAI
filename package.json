@@ -91,6 +91,7 @@
     "materials:lifecycle:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/material-lifecycle-probe.mjs",
     "materials:rag-lifecycle:probe": "node --conditions=react-server --import ./scripts/register-node-test-loader.mjs scripts/material-rag-lifecycle-probe.mjs",
     "materials:security:probe": "node --conditions=react-server --import ./scripts/register-node-test-loader.mjs scripts/material-security-probe.mjs",
+    "materials:cdr:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/material-cdr-probe.mjs",
     "materials:notifications": "node --import ./scripts/register-node-test-loader.mjs scripts/material-notifications.mjs",
     "materials:notifications:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/material-notification-probe.mjs",
     "materials:retention:probe": "node --conditions=react-server --import ./scripts/register-node-test-loader.mjs scripts/material-retention-probe.mjs",

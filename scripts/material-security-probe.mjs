@@ -9,6 +9,9 @@ import path from "node:path"
 import { fileURLToPath } from "node:url"
 import pg from "pg"
 
+import { MATERIAL_RAG_POLICY } from "../lib/materials/ragPolicy.js"
+import { retentionFieldsForSubmission } from "../lib/materials/retentionPolicy.js"
+
 const sourceUrl = String(process.env.DATABASE_URL || "postgresql://sotsiaal_user:sotsiaalai@127.0.0.1:5432/sotsiaal_ai?schema=public").trim()
 const parsed = new URL(sourceUrl)
 if (!["localhost", "127.0.0.1", "::1", "[::1]"].includes(parsed.hostname)) throw new Error("probe requires loopback PostgreSQL")
@@ -85,6 +88,7 @@ try {
   expect("publication carries the scan receipt and only then becomes ACTIVE", active.storageStatus === "ACTIVE" && active.scanState === "CLEAN" && active.validationState === "VALIDATED")
   expect("consumed quarantine bytes are removed", consumed.storageState === "REMOVED" && consumed.quarantinePath === null)
 
+  const pendingCreatedAt = new Date()
   const pending = await prisma.materialSubmission.create({ data: {
     submittedByUserId: owner.id,
     comment: "blocked",
@@ -95,7 +99,8 @@ try {
     storagePath: "quarantine/blocked",
     storageStatus: "QUARANTINED",
     scanState: "FAILED",
-    validationState: "PENDING"
+    validationState: "PENDING",
+    ...retentionFieldsForSubmission("pending", pendingCreatedAt)
   } })
   const download = await Promise.allSettled([lifecycle.getMaterialSubmissionDownload({ id: pending.id, userId: owner.id }, { db: prisma })])
   expect("FAILED/PENDING material cannot be downloaded, including by its owner", download[0].status === "rejected" && download[0].reason?.status === 404)
@@ -105,22 +110,20 @@ try {
     expectedRevision: 0,
     actorUserId: owner.id,
     rights: { authorName: "Synthetic", rightsHolder: "Synthetic", rightsBasis: "Synthetic", rightsEvidence: "Synthetic" },
-    policy: {
-      version: "synthetic-v1",
-      rightsEvidenceMode: "DOCUMENTED_LICENSE",
-      collection: "synthetic",
-      audience: "SOCIAL_WORKER",
-      retentionMode: "DELETE_WITH_SUBMISSION_OR_ACCOUNT",
-      withdrawalAuthority: "SUBMITTER_RIGHTS_HOLDER_OR_ADMIN"
-    }
+    policy: MATERIAL_RAG_POLICY
   }, { db: prisma, rag: { async ingest() { ragCalled = true }, async countChunks() { return 1 } } })])
-  expect("FAILED/PENDING material cannot reach RAG", rag[0].status === "rejected" && rag[0].reason?.code === "material_security_gate_failed" && !ragCalled)
+  expect(
+    "FAILED/PENDING material cannot reach RAG",
+    rag[0].status === "rejected" && rag[0].reason?.code === "material_security_gate_failed" && !ragCalled,
+    `status=${rag[0].status} code=${rag[0].reason?.code || "none"} called=${ragCalled}`
+  )
 
   const invalidActive = await Promise.allSettled([prisma.materialSubmission.update({
     where: { id: pending.id }, data: { storageStatus: "ACTIVE" }
   })])
   expect("PostgreSQL rejects ACTIVE without CLEAN+VALIDATED evidence", invalidActive[0].status === "rejected")
 
+  const staleCreatedAt = new Date("2020-01-01T00:00:00Z")
   const stale = await prisma.materialSubmission.create({ data: {
     submittedByUserId: owner.id,
     comment: "stale scan",
@@ -136,21 +139,15 @@ try {
     scanEngine: "SyntheticProbeScanner",
     scanEngineVersion: "contract-only",
     scanSignatureVersion: "stale",
-    scanSignatureUpdatedAt: new Date("2020-01-01T00:00:00Z")
+    scanSignatureUpdatedAt: staleCreatedAt,
+    ...retentionFieldsForSubmission("pending", staleCreatedAt)
   } })
   const staleRag = await Promise.allSettled([ragLifecycle.importReviewedMaterialToRag({
     id: stale.id,
     expectedRevision: 0,
     actorUserId: owner.id,
     rights: { authorName: "Synthetic", rightsHolder: "Synthetic", rightsBasis: "Synthetic", rightsEvidence: "Synthetic" },
-    policy: {
-      version: "synthetic-v1",
-      rightsEvidenceMode: "DOCUMENTED_LICENSE",
-      collection: "synthetic",
-      audience: "SOCIAL_WORKER",
-      retentionMode: "DELETE_WITH_SUBMISSION_OR_ACCOUNT",
-      withdrawalAuthority: "SUBMITTER_RIGHTS_HOLDER_OR_ADMIN"
-    }
+    policy: MATERIAL_RAG_POLICY
   }, { db: prisma, rag: { async ingest() { ragCalled = true }, async countChunks() { return 1 } } })])
   expect("late RAG processing requires a fresh signature receipt/rescan", staleRag[0].status === "rejected" && staleRag[0].reason?.code === "material_scan_stale" && !ragCalled)
 

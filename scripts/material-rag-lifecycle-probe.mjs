@@ -2,11 +2,17 @@
 /** SOL-MAT-08: real PostgreSQL state machine with an injected isolated RAG boundary. */
 
 import { spawnSync } from "node:child_process"
-import { randomUUID } from "node:crypto"
+import { createHash, randomUUID } from "node:crypto"
+import fs from "node:fs/promises"
+import os from "node:os"
+import path from "node:path"
 import { fileURLToPath } from "node:url"
 
 import dotenv from "dotenv"
 import pg from "pg"
+
+import { MATERIAL_RAG_POLICY } from "../lib/materials/ragPolicy.js"
+import { retentionFieldsForSubmission } from "../lib/materials/retentionPolicy.js"
 
 dotenv.config({ path: ".env.local", quiet: true })
 dotenv.config({ path: ".env", quiet: true })
@@ -29,22 +35,21 @@ const admin = new pg.Client({ connectionString: adminUrl.toString() })
 let databaseCreated = false
 let prisma = null
 let reviewMaterialSubmission = null
+let materialServer = null
 let adminUserId = null
 let passed = 0
+const storageRoot = await fs.mkdtemp(path.join(os.tmpdir(), "sotsiaalai-material-rag-probe-"))
+process.env.MATERIALS_STORAGE_DIR = storageRoot
 
-const policy = Object.freeze({
-  version: "synthetic-probe-v1",
-  rightsEvidenceMode: "DOCUMENTED_LICENSE",
-  collection: "synthetic_professional_materials",
-  audience: "SOCIAL_WORKER",
-  retentionMode: "DELETE_WITH_SUBMISSION_OR_ACCOUNT",
-  withdrawalAuthority: "SUBMITTER_RIGHTS_HOLDER_OR_ADMIN"
-})
+const policy = MATERIAL_RAG_POLICY
 const rights = Object.freeze({
   authorName: "Synthetic Author",
   rightsHolder: "Synthetic Rights Holder",
-  rightsBasis: "synthetic_test_permission",
-  rightsEvidence: "Synthetic probe evidence only; no real person or corpus."
+  rightsBasis: "DOCUMENTED_PERMISSION",
+  rightsEvidence: "Synthetic probe evidence only; no real person or corpus.",
+  clientCaseMaterial: false,
+  confidential: false,
+  containsPersonalData: false
 })
 
 function expect(label, condition, detail = "") {
@@ -115,6 +120,7 @@ function createRag() {
 }
 
 async function createReviewed(ownerId, hash, suffix) {
+  const createdAt = new Date()
   const created = await prisma.materialSubmission.create({
     data: {
       submittedByUserId: ownerId,
@@ -127,13 +133,18 @@ async function createReviewed(ownerId, hash, suffix) {
       storageStatus: "ACTIVE",
       scanState: "CLEAN",
       validationState: "VALIDATED",
-      scannedAt: new Date(),
+      scannedAt: createdAt,
       scanEngine: "ProbeClamAV",
       scanEngineVersion: "probe",
       scanSignatureVersion: "probe",
-      scanSignatureUpdatedAt: new Date()
+      scanSignatureUpdatedAt: createdAt,
+      ...retentionFieldsForSubmission("pending", createdAt)
     }
   })
+  await materialServer.writeMaterialBuffer(
+    sanitizedProbeBuffer(suffix),
+    materialServer.getSanitizedMaterialPath(created.storagePath)
+  )
   return reviewMaterialSubmission({
     id: created.id,
     action: "mark_reviewed",
@@ -149,13 +160,15 @@ try {
   databaseCreated = true
   process.env.DATABASE_URL = probeUrl.toString()
   migrate()
-  const [{ default: db }, lifecycle, review] = await Promise.all([
+  const [{ default: db }, lifecycle, review, server] = await Promise.all([
     import("../lib/prisma.js"),
     import("../lib/materials/ragLifecycle.js"),
-    import("../lib/materials/review.js")
+    import("../lib/materials/review.js"),
+    import("../lib/materials/server.js")
   ])
   prisma = db
   reviewMaterialSubmission = review.reviewMaterialSubmission
+  materialServer = server
   const {
     importReviewedMaterialToRag,
     queueMaterialRagDeletion,
@@ -188,8 +201,9 @@ try {
     rights,
     policy
   }, dependencies)
+  const successfulDerivativeHash = createHash("sha256").update(sanitizedProbeBuffer("success")).digest("hex")
   expect("imported exists only after positive chunk receipt", imported.status === "imported" && imported.ragIngestStatus === "IMPORTED" && rag.chunks.get(imported.ragDocId) === 2)
-  expect("provenance, version, policy and rights evidence persist", imported.sourceId === `material:${imported.id}` && imported.ragVersion === 1 && imported.ragContentHash === successful.sha256 && imported.ragCollection === policy.collection && imported.ragAudience === policy.audience && imported.ragPolicyVersion === policy.version && imported.rightsEvidenceMode === policy.rightsEvidenceMode && imported.ragRetentionMode === policy.retentionMode && imported.ragWithdrawalAuthority === policy.withdrawalAuthority && imported.authorName === rights.authorName && imported.rightsHolder === rights.rightsHolder && imported.rightsBasis === rights.rightsBasis && Boolean(imported.ragIngestedAt))
+  expect("provenance, version, policy and rights evidence persist", imported.sourceId === `material:${imported.id}` && imported.ragVersion === 1 && imported.ragContentHash === successfulDerivativeHash && imported.ragContentHash !== successful.sha256 && imported.ragCollection === policy.collection && imported.ragAudience === policy.audience && imported.ragPolicyVersion === policy.version && imported.rightsEvidenceMode === policy.rightsEvidenceMode && imported.ragRetentionMode === policy.retentionMode && imported.ragWithdrawalAuthority === policy.withdrawalAuthority && imported.authorName === rights.authorName && imported.rightsHolder === rights.rightsHolder && imported.rightsBasis === rights.rightsBasis && Boolean(imported.ragIngestedAt))
 
   let fourHundred = null
   for (const [mode, hash, expectedAction] of [
@@ -279,4 +293,12 @@ try {
   const check = await admin.query("SELECT count(*)::int AS count FROM pg_database WHERE datname = $1", [databaseName])
   console.log(`cleanup database=${Number(check.rows[0]?.count ?? -1)} synthetic_remote=memory_only`)
   await admin.end()
+  const resolvedStorage = path.resolve(storageRoot)
+  if (!resolvedStorage.startsWith(path.resolve(os.tmpdir()) + path.sep)) throw new Error("unsafe probe storage cleanup path")
+  await fs.rm(resolvedStorage, { recursive: true, force: true })
+  console.log("cleanup storage=0")
+}
+
+function sanitizedProbeBuffer(suffix) {
+  return Buffer.from(`sanitized synthetic material ${suffix}`, "utf8")
 }

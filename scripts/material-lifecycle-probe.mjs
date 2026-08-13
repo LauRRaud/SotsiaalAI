@@ -7,6 +7,12 @@ import { fileURLToPath } from "node:url"
 import dotenv from "dotenv"
 import pg from "pg"
 
+import {
+  retentionFieldsForImportedLayers,
+  retentionFieldsForQuarantine,
+  retentionFieldsForSubmission
+} from "../lib/materials/retentionPolicy.js"
+
 dotenv.config({ path: ".env.local", quiet: true })
 dotenv.config({ path: ".env", quiet: true })
 
@@ -99,7 +105,8 @@ try {
         engine: "ProbeClamAV",
         engineVersion: "probe",
         signatureVersion: "probe",
-        signatureUpdatedAt: scannedAt
+        signatureUpdatedAt: scannedAt,
+        ...retentionFieldsForQuarantine({ scanState: "CLEAN" }, scannedAt)
       } })
       Object.assign(file, {
         quarantineReceiptId: receipt.id,
@@ -118,10 +125,21 @@ try {
   const stranger = await prisma.user.create({ data: { email: `stranger-${randomUUID()}@sol-mat.invalid`, role: "SOCIAL_WORKER" } })
   const makeFile = (name, bytes = 1000) => {
     const buffer = Buffer.alloc(bytes, name.charCodeAt(0) || 1)
-    return { originalName: `${name}.txt`, mime: "text/plain", size: buffer.byteLength, sha256: createHash("sha256").update(buffer).digest("hex"), buffer }
+    const sanitizedBuffer = Buffer.from("x")
+    return {
+      originalName: `${name}.txt`,
+      mime: "text/plain",
+      size: buffer.byteLength,
+      sha256: createHash("sha256").update(buffer).digest("hex"),
+      buffer,
+      sanitizedBuffer,
+      sanitizedSha256: createHash("sha256").update(sanitizedBuffer).digest("hex"),
+      sanitizedMime: "text/plain; charset=utf-8",
+      sanitizationVersion: "synthetic-probe-v1"
+    }
   }
   const forcedQuota = (input, options, write) => withStorageQuota(
-    { ...input, quotaBytes: 2000, dailyQuotaBytes: 100_000 }, options, write
+    { ...input, quotaBytes: 2002, dailyQuotaBytes: 100_000 }, options, write
   )
 
   const parallel = await Promise.allSettled(Array.from({ length: 4 }, (_, index) => createMaterialSubmissions({
@@ -291,7 +309,8 @@ try {
       rightsBasis: "Synthetic",
       rightsEvidence: "Synthetic",
       rightsConfirmedAt: new Date(),
-      rightsConfirmedByUserId: reviewOwner.id
+      rightsConfirmedByUserId: reviewOwner.id,
+      ...retentionFieldsForImportedLayers(new Date(), { derivativePresent: false })
     }
   })
   const triggerRejected = await Promise.allSettled([prisma.materialSubmission.update({
@@ -316,6 +335,7 @@ try {
       scanEngineVersion: "probe",
       scanSignatureVersion: "probe",
       scanSignatureUpdatedAt: fixedTime,
+      ...retentionFieldsForSubmission("pending", fixedTime),
       createdAt: fixedTime,
       updatedAt: fixedTime
     }))
@@ -330,7 +350,10 @@ try {
   const hidden = await Promise.allSettled([getMaterialSubmissionDownload({ id: privateRow.id, userId: stranger.id }, { db: prisma })])
   expect("cross-user download is indistinguishable from missing", hidden[0].status === "rejected" && hidden[0].reason?.status === 404)
   const terminal = await Promise.allSettled([requestMaterialSubmissionDeletion({ id: privateRow.id, userId: reviewOwner.id }, { db: prisma, files: fileOps })])
-  expect("imported material cannot be silently withdrawn", terminal[0].status === "rejected" && terminal[0].reason?.status === 409)
+  const durableRagWithdrawal = await prisma.dataDeletionJob.findFirst({
+    where: { resourceId: privateRow.id, action: "MATERIAL_RAG_RETENTION_DELETE" }
+  })
+  expect("imported material cannot be silently withdrawn", terminal[0].status === "rejected" && terminal[0].reason?.status === 503 && Boolean(durableRagWithdrawal))
 
   const deleteCreated = await createMaterialSubmissions({
     userId: failOwner.id,
@@ -348,28 +371,47 @@ try {
     { db: prisma, files: { ...fileOps, async remove() { throw new Error("probe_delete_failure") } } }
   )])
   const pendingDelete = await prisma.materialSubmission.findUnique({ where: { id: deleteId } })
-  expect("file deletion failure reports 503 and keeps a retryable pending row", deleteFailed[0].status === "rejected" && deleteFailed[0].reason?.status === 503 && pendingDelete?.storageStatus === "DELETE_PENDING")
+  const failedOriginalJob = await prisma.dataDeletionJob.findFirst({
+    where: { resourceId: deleteId, action: "MATERIAL_ORIGINAL_RETENTION_DELETE" }
+  })
+  expect("file deletion failure reports 503 and keeps a retryable pending row", deleteFailed[0].status === "rejected" && deleteFailed[0].reason?.status === 503 && pendingDelete?.originalRetentionState === "DELETE_PENDING" && failedOriginalJob?.status === "failed")
   const deleteAuditFailed = await Promise.allSettled([requestMaterialSubmissionDeletion(
     { id: deleteId, userId: failOwner.id },
     { db: prisma, files: fileOps, audit: async () => { throw new Error("probe_delete_audit_failure") } }
   )])
-  expect("deletion audit failure reports 503 and keeps the row retryable", deleteAuditFailed[0].status === "rejected" && deleteAuditFailed[0].reason?.status === 503 && Boolean(await prisma.materialSubmission.findUnique({ where: { id: deleteId } })))
+  const rowAfterAuditFailure = await prisma.materialSubmission.findUnique({ where: { id: deleteId } })
+  expect(
+    "deletion audit failure cannot report success and keeps the row retryable",
+    deleteAuditFailed[0].status === "rejected" && Boolean(rowAfterAuditFailure),
+    `status=${deleteAuditFailed[0].status} code=${deleteAuditFailed[0].reason?.status || "none"} row=${Boolean(rowAfterAuditFailure)}`
+  )
   const removed = await requestMaterialSubmissionDeletion({ id: deleteId, userId: failOwner.id }, { db: prisma, files: fileOps })
   const removedAgain = await requestMaterialSubmissionDeletion({ id: deleteId, userId: failOwner.id }, { db: prisma, files: fileOps })
-  expect("owner withdrawal deletes file and row", removed.deleted && !(await prisma.materialSubmission.findUnique({ where: { id: deleteId } })))
+  const retainedProvenance = await prisma.materialSubmission.findUnique({ where: { id: deleteId } })
+  expect(
+    "owner withdrawal deletes both file layers and retains provenance",
+    removed.deleted && retainedProvenance?.originalRetentionState === "DELETED" && ["DELETED", "NOT_PRESENT"].includes(retainedProvenance?.derivativeRetentionState) && !retainedProvenance.storagePath && !retainedProvenance.derivativeStoragePath,
+    `removed=${removed.deleted} original=${retainedProvenance?.originalRetentionState} derivative=${retainedProvenance?.derivativeRetentionState} originalPath=${Boolean(retainedProvenance?.storagePath)} derivativePath=${Boolean(retainedProvenance?.derivativeStoragePath)}`
+  )
   expect("owner withdrawal is idempotent", removedAgain.deleted && removedAgain.replay)
-  expect("durable deletion writes mandatory audit", (await prisma.dataAuditLog.count({ where: { action: "MATERIAL_SUBMISSION_DELETED", resourceId: deleteId } })) === 1)
+  const deletionAuditCount = await prisma.dataAuditLog.count({
+    where: { action: { in: ["MATERIAL_ORIGINAL_RETENTION_DELETED", "MATERIAL_DERIVATIVE_RETENTION_DELETED"] }, resourceId: deleteId }
+  })
+  const expectedDeletionAudits = retainedProvenance.derivativeRetentionState === "DELETED" ? 2 : 1
+  expect("durable layered deletion writes mandatory audits", deletionAuditCount === expectedDeletionAudits, `audits=${deletionAuditCount} expected=${expectedDeletionAudits}`)
 
   const legacyOwner = await prisma.user.create({ data: { email: `legacy-${randomUUID()}@sol-mat.invalid`, role: "SOCIAL_WORKER" } })
   const legacy = async (index) => {
     const current = await getUserStorageUsageBytes(legacyOwner.id, { db: prisma })
     if (current.materialBytes + 1000 > 2000) throw Object.assign(new Error("quota"), { status: 413 })
     await new Promise((resolve) => setTimeout(resolve, 30))
+    const createdAt = new Date()
     return prisma.materialSubmission.create({ data: {
       submittedByUserId: legacyOwner.id, comment: "legacy", originalName: `${index}.txt`, mime: "text/plain",
       size: 1000, sha256: String(index).padStart(64, "f"), storagePath: `uploads/legacy-${index}.txt`,
       scanState: "CLEAN", validationState: "VALIDATED", scannedAt: new Date(),
-      scanEngine: "ProbeClamAV", scanEngineVersion: "probe", scanSignatureVersion: "probe", scanSignatureUpdatedAt: new Date()
+      scanEngine: "ProbeClamAV", scanEngineVersion: "probe", scanSignatureVersion: "probe", scanSignatureUpdatedAt: createdAt,
+      ...retentionFieldsForSubmission("pending", createdAt)
     } })
   }
   const legacyResults = await Promise.allSettled(Array.from({ length: 4 }, (_, index) => legacy(index)))
