@@ -35,8 +35,10 @@ export const os2 = () => memberSession("os2", "SOCIAL_WORKER");
  * Ehitab ACTIVE grupiprotsessi: grant → protsess → kontraktiversioon →
  * aktiveerimine → kutse os1 → os1 accept. Tagastab id-d järgnevaks kasutuseks.
  */
-export async function makeActiveProcess(db, { invite = ["os1"], accept = ["os1"] } = {}) {
-  await issueGrant({ actorUserId: "admin1", userId: "sv1", grantBasis: "ESCU-2026" }, { db });
+export async function makeActiveProcess(db, { invite = ["os1"], accept = ["os1"], ensureGrant = true } = {}) {
+  if (ensureGrant) {
+    await issueGrant({ actorUserId: "admin1", userId: "sv1", grantBasis: "ESCU-2026" }, { db });
+  }
   const process = await createProcess(
     { session: sv(), input: { type: "GROUP", title: "Kevadgrupp", goal: "Toetada" } },
     { db }

@@ -104,13 +104,12 @@ test("OS† (kinnitamata kontraktiversioon) saab jagamisel selgituse, mitte üld
   assert.match(share, /supervision\.share\.notReady/);
 });
 
-test("superviisorile EI pakuta jagamisnuppu (M7 autor on alati osalus)", () => {
-  // UI juhindub capabilities'ist; serializer annab SV-le canShareTopic=false,
-  // sest topics.js viskab talle 403 (schema: authorParticipationId NOT NULL).
+test("SUP-03: superviisorile pakutakse Q2 järgi jagamisrada", () => {
+  // UI juhindub capabilities'ist ning serializer lubab nii SV kui kehtiva OS-i.
   assert.match(eeskamber, /canShare = Boolean\(process\.capabilities\?\.canShareTopic\)/);
   assert.match(eeskamber, /canShare && !item\.sharedTopicId/);
   const serializers = read("lib/supervision/serializers.js");
-  assert.match(serializers, /canShareTopic: isOs && hasValidAcceptance && open/);
+  assert.match(serializers, /canShareTopic: \(isSv \|\| \(isOs && hasValidAcceptance\)\) && open/);
 });
 
 test("sulgemise eelvaade: kaks eristatud tulpa + topeltkinnitus + üldistatud pealkiri", () => {
@@ -200,6 +199,29 @@ test("grandi puudumine on SELGITUS, mitte tühi viga (vaade 2)", () => {
 test("HELD ja kustutamine küsivad kinnitust enne pöördumatut sammu", () => {
   assert.match(meetings, /window\.confirm\(t\("supervision\.meetings\.heldConfirm"\)\)/);
   assert.match(eeskamber, /window\.confirm\(t\("supervision\.eeskamber\.deleteConfirm"\)\)/);
+  assert.match(summaries, /window\.confirm\(t\("supervision\.summaries\.discardConfirm"\)\)/);
+  assert.match(summaries, /`discard:\$\{summary\.id\}`,[\s\S]*"DELETE"/);
+  assert.match(summaries, /\["DRAFT", "PENDING_APPROVAL"\]\.includes\(summary\.status\)/);
+});
+
+test("SUPERSEDED kontraktil puudub aktiveerimisnupp ja lahkumine nõuab kahte sammu", () => {
+  assert.match(contract, /version\.status === "DRAFT"/);
+  assert.match(shell, /capabilities\?\.canLeave/);
+  assert.match(shell, /leaveConfirming/);
+  assert.match(shell, /supervision\.leave\.confirmHint/);
+  assert.match(shell, /\/api\/supervision\/participations\/\$\{encodeURIComponent\(participationId\)\}\/leave/);
+});
+
+test("SUP-11/SUP-12: täielik retention-manifest ja nähtavusepõhine kokkuvõttepoll", () => {
+  for (const key of ["contractVersions", "contractAcceptances", "auditTrail", "closureFacts", "personalOutcomes"]) {
+    assert.match(closePage, new RegExp(`supervision\\.close\\.${key}`), `retention-rida ${key} puudub`);
+  }
+  assert.match(shell, /area !== SUPERVISION_AREAS\.KOKKUVOTTED \|\| isClosed/);
+  assert.match(shell, /document\.visibilityState !== "visible"/);
+  assert.match(shell, /window\.setInterval/);
+  assert.match(shell, /document\.addEventListener\("visibilitychange"/);
+  assert.match(shell, /window\.clearInterval/);
+  assert.match(shell, /document\.removeEventListener\("visibilitychange"/);
 });
 
 test("ligipääsetavus: reduced-motion, live-region ja klaviatuurifookus on kaetud", () => {

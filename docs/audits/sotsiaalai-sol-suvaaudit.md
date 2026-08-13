@@ -6719,6 +6719,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 
 **Vastuvõtukriteerium.** Kõik protsessi kirjutusrajad peavad luku all värskelt kontrollima lubatud protsessiolekut. CLOSED protsessil võib lubada ainult selgelt dokumenteeritud omaniku privaatala toiminguid; kutse vastuvõtt, kontrakti kinnitus ja M7 jagamine peavad andma stabiilse 409 ilma ühegi kirjutuse/auditita. Lisada iga raja HTTP- ja teenusetest ning sulgemisjärgne invariant, et jagatud toorsisu jääb tühjaks.
 
+**Seis (13.08.2026): DONE — jagatud protsessiala kirjutused kasutavad nüüd ühist, advisory-luku sees värskelt loetavat CLOSED-väravat; omaniku privaatne eeskamber jääb teadlikuks erandiks. Teenuse- ja HTTP-testid tõendavad kutse vastuse, kontraktikinnituse ja M7 jagamise 409-t ilma kirjutuse või auditita. `npm run supervision:integrity:probe` 18/18 päris PostgreSQL-is järjestas sulgemise enne ootel teema- ja kutsekirjutust: mõlemad hilised kirjutused kaotasid ning suletud protsessi jagatud toorsisu jäi tühjaks.**
+
 ### SOL-SUP-02 — asendatud kontraktiversiooni taasaktiveerimine taastab vana nõusoleku ilma kasutaja uue kinnituseta — P1
 
 **Tõend.** `activateContractVersion()` lubab aktiveerida protsessi suvalise versiooni ega nõua `version.status === "DRAFT"`; eelmine aktiivne märgitakse SUPERSEDED ja valitud versioon ACTIVE-iks (`lib/supervision/service.js:312-370`). Kontraktipaneel pakub aktiveerimisnuppu igale mitteaktiivsele ajalookirjele, sealhulgas SUPERSEDED versioonile (`components/supervision/ContractPanel.jsx:124-145`). Acceptance-read säilivad versioonipõhiselt (`prisma/schema.prisma:4075-4085`). Auditiproov aktiveeris v2, sai osalejale `OS_STALE`, aktiveeris siis SUPERSEDED v1 uuesti ning osaleja muutus vana acceptance'i põhjal kohe `OS`-iks väärtusega `hasAcceptedActiveContract=true`, kuigi ta ei teinud uut kinnitustoimingut.
@@ -6726,6 +6728,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 **Mõju.** Superviisor saab lepinguraami tagasi pöörata ja taastada osalejate kirjutus- ning kinnitamisõigused ajaloolise nõusoleku põhjal. Teavitust ei pruugi tekkida, sest selle versiooni acceptance on juba olemas. Audit jätab mulje kehtivast nõusolekust, kuid kasutaja ei kinnitanud seda uut aktiveerimisotsust.
 
 **Vastuvõtukriteerium.** Aktiveerida tohib ainult uut DRAFT-versiooni ja versiooninumbrid peavad liikuma monotoonselt edasi; SUPERSEDED peab olema lõplik. Kui vana teksti soovitakse taastada, tuleb luua uus versioon uue ID/numbriga ning kõik ACCEPTED osalejad muutuvad OS_STALE-iks kuni uue kinnituseni. Testida vana versiooni otsest API-aktiveerimist ja UI nupu puudumist.
+
+**Seis (13.08.2026): DONE — aktiveerimisrada võtab vastu ainult DRAFT-versiooni, kontrollib aktiivse versiooni vastu rangelt kasvavat versiooninumbrit ning jätab SUPERSEDED rea lõplikuks. Kontraktipaneel kuvab aktiveerimisnupu ainult DRAFT-reale. Teenuse- ja HTTP-test lükkavad v1 taasaktiveerimise 409-ga tagasi, osaleja vana acceptance ei taastu ning PostgreSQL-sond kinnitab, et v2 jääb aktiivseks.**
 
 ### SOL-SUP-03 — superviisor ei saa jagatud teemat luua, kuigi siduv õiguste- ja API-leping lubab seda — P1
 
@@ -6735,6 +6739,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 
 **Vastuvõtukriteerium.** Omanik peab otsustama, kumb leping on õige. Kui siduv Q2 jääb jõusse, peab autorimudel toetama superviisorit ilma võltsosalust loova kõrvalmõjuta, serializer ja audit peavad eristama autoritüüpi ning UI/teenusetest peab tõendama SV ja OS lubatud rajad. Kui SV ei tohi autoreerida, tuleb enne parandust muuta siduvat tootelepingut ja mõju ülejäänud voole uuesti hinnata.
 
+**Seis (13.08.2026): DONE — omanik kinnitas siduva Q2 õiguse: nii SV kui kehtiva kontraktikinnitusega OS võivad M7 teemat autoreerida. Autorimudel kasutab nüüd ilma võltsosaluseta kas `authorSupervisorUserId` või `authorParticipationId` viidet; andmebaasi CHECK lubab täpselt ühe elava autoritüübi või konto kustutamisel ajatempliga anonüümse autori. Serializer eristab `SUPERVISOR`/`PARTICIPANT`/`DELETED` autorit ning SV jagamis- ja tagasivõtmisõigus on teenuse- ja UI-lepingutestiga tõendatud.**
+
 ### SOL-SUP-04 — osaleja lahkumise olek on mudelis olemas, kuid sellesse jõudmise funktsioon puudub — P1
 
 **Tõend.** Skeem ja serializer toetavad `LEFT`/`leftAt` olekut (`prisma/schema.prisma:4052-4073`; `lib/supervision/serializers.js:56-64`, `:162-198`) ning auditikonstantides on `PARTICIPANT_LEFT` (`lib/supervision/shared.js:24-39`). Kogu `lib/supervision/**`, `app/api/supervision/**` ja `components/supervision/**` ulatuses puudub aga teenus, API-route ja kasutajatoiming, mis seaks osaluse LEFT-iks või kirjutaks selle auditi; otsing leiab `leftAt` kasutuse ainult lugemis-/testikoodist. Kokkuvõtete test saavutab LEFT-oleku fake-DB otsese muutmisega (`tests/supervision/summaries.test.js:53-56`), mitte avaliku vooga.
@@ -6742,6 +6748,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 **Mõju.** Liitunud osaleja ei saa tavavoo kaudu protsessist lahkuda. LAHK-privaatsusreeglid, lahkumisaja järgne sisu piiramine ja `PARTICIPANT_LEFT` audit on tootmises saavutamatud; ainus praktiline tee on protsessi sulgemine või käsitsi andmebaasimuutus.
 
 **Vastuvõtukriteerium.** Lisada atomaarne, protsessilukuga lahkumistoiming koos selge kinnituse, `leftAt`, auditi, teavituste ning Q2.3 lugemispiiridega. Testida individuaal- ja grupiprotsessi, viimase osaleja lahkumist, pooleliolevat kokkuvõtet, paralleelset kinnitamist/lahkumist ja lahkumisjärgset IDOR-i.
+
+**Seis (13.08.2026): DONE — osalejal on nüüd kahe sammuga kinnitatav lahkumistoiming, mis seab protsessiluku all `LEFT`/`leftAt`, kirjutab `PARTICIPANT_LEFT` auditi ja teavitab superviisorit ning allesjäänud aktiivseid liikmeid. Lahkunud vaade säilitab ainult lahkumiseelse sisu; võõras osalus annab HTTP 404. Viimase osaleja lahkumine lõpetab muidu kinnijääva ootel kokkuvõtte ning sama luku all värskelt kontrollitav kinnitusrada ei luba lahkunul hiljem kinnitada. Ühik- ja HTTP-plokk on 92/92 roheline; PostgreSQL-sondi deterministlik leave-vs-approve võistlus kinnitas ühe võitja, ühe lahkumisauditi ja püsiva teavituse.**
 
 ### SOL-SUP-05 — läheneva supervisioonikohtumise teavitus on surnud funktsioon — P1
 
@@ -6751,6 +6759,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 
 **Vastuvõtukriteerium.** Ajastatud töö peab stabiilse lehekülje/claim'i kaudu leidma kõlblikud PLANNED kohtumised, tuletama värskelt liikmed, looma deduplikeeritud sündmused ja mitte näljutama hilisemaid ridu. Testida üle batch'i mahu, ümbertõstmist, tühistamist, CLOSED protsessi ja juba saadetud sündmust.
 
+**Seis (13.08.2026): DONE — olemasolev notification-job käivitab supervisiooni eraldatud etapina; sweep lehitseb 48 tunni akna stabiilse `(plannedAt,id)` võtmega ning loeb iga kandidaadi protsessi ja ACCEPTED-liikmed värskelt. Dedupe sisaldab täpset kohtumisaega, seega kordusjooks ei dubleeri, aga ümbertõstmine loob uue teate. Ühiktest katab 2,5 batch'i, korduse, ümbertõstmise, CANCELLED/CLOSED read ja lahkunud liikme; päris PostgreSQL-sond kinnitas samad põhiinvariandid.**
+
 ### SOL-SUP-06 — isiklik väljund nimetab kinnitamata aktiivse lepingu kasutaja viimati aktsepteeritud lepinguks — P1
 
 **Tõend.** Sulgemine laeb protsessi aktiivse kontraktiversiooni ja kirjutab selle teksti iga omaniku ühisesse `content` objekti välja `lastAcceptedContractBody`, kontrollimata konkreetse osaleja acceptance'i (`lib/supervision/closure.js:105-111`, `:134-149`). Q2.5 määratleb sama välja sõnaselgelt viimati aktsepteeritud lepingu tekstina (`docs/platvormi arendus/fable-5-supervisiooni-tootemudel-ja-ruumiline-teekond.md:604-610`). Auditiproovis aktiveeriti v2, osaleja jäi `OS_STALE`/`hasAcceptedActiveContract=false`, protsess suleti ja tema M12 väljund sisaldas v2 teksti `lastAcceptedContractBody` all.
@@ -6758,6 +6768,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 **Mõju.** Püsiv isiklik väljund loob vale nõusolekutõendi: kasutajale omistatakse lepingutekst, mida ta ei kinnitanud. Sama vale koopia säilib ka pärast protsessi toorsisu purge'i ning võib olla hilisema vaidluse või aruande alus.
 
 **Vastuvõtukriteerium.** M12 tuleb ehitada omaniku kaupa: osalejale salvestada tema acceptance'idega tõendatud viimane versioon või selgelt nimetatud `activeContractBody` koos `accepted=false` faktiga. Sulgemise eeltingimus peab teadlikult otsustama, kas OS_STALE osalejaga üldse sulgeda tohib. Testida eri acceptance-ajalooga grupiliikmeid.
+
+**Seis (13.08.2026): DONE — sulgemine lubab teadlikult ka OS_STALE osalejaga lõpetada, kuid M12 `lastAcceptedContractBody` arvutatakse nüüd iga omaniku acceptance-ajaloost eraldi. Superviisor saab aktiivse versiooni, osaleja enda suurima kinnitatud versiooninumbri ning kinnitamata aktiivset teksti talle ei omistata. Grupi ühiktest ja PostgreSQL-sond tõendasid, et v2 kinnitanud osaleja saab v2 ning v1 juurde jäänud osaleja v1.**
 
 ### SOL-SUP-07 — protsessilukk ei kaitse mitme teenuse pre-lock õiguse- ja olekukontrolli vananemise eest — P1
 
@@ -6767,6 +6779,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 
 **Vastuvõtukriteerium.** Kõik autoriseerimist ja protsessiolekut mõjutavad read tuleb teha advisory-luku sees samas tehingus ning väljast toodud rolli/process objekti ei tohi otsuse tegemiseks usaldada. Kahe ühendusega integratsioonitest peab deterministlikult peatama päringu eelkontrolli järel, tegema konkureeriva ülemineku ja tõendama keelatud kirjutuse puudumist.
 
+**Seis (13.08.2026): DONE — protsessi, kontrakti, kutse, kohtumise, kokkuvõtte ja jagatud teema otsustavad õiguse- ning olekukontrollid loetakse advisory-luku callback'is samast tehingust uuesti; väljast loetud rolli või protsessi ei kasutata enam kirjutusotsuse autoriteedina. PostgreSQL-sondi kahe ühendusega deterministlik activate-vs-share võistlus peatas mõlemad kirjutajad, aktiveeris v2 esimesena ja tõendas seejärel ootel jagamise `CONTRACT_NOT_ACCEPTED` vastust ning puuduva M7 rea.**
+
 ### SOL-SUP-08 — kokkuvõtte „üks kohtumise kohta / üks FINAL” kontroll pole luku sees atomaarne — P1
 
 **Tõend.** `createSummary()` kontrollib olemasolevat meeting- või FINAL-kokkuvõtet enne protsessiluku võtmist ja luku callback loob rea ilma korduskontrollita (`lib/supervision/summaries.js:52-83`). Skeemis on unikaalne ainult `meetingId`; FINAL-ridade jaoks on tavaline `[processId,kind,status]` indeks, mitte unikaalpiirang (`prisma/schema.prisma:4154-4174`). Kaks paralleelset FINAL-päringut võivad seega mõlemad eelkontrolli läbida ja luku järel järjest kaks FINAL-rida luua. Kohtumisrea puhul peatab teise DB unique, kuid P2002 pole selles funktsioonis 409-ks kaardistatud.
@@ -6774,6 +6788,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 **Mõju.** Protsess võib saada mitu konkureerivat lõppkokkuvõtet, rikkudes kinnituse ja sulgemispaki tähenduse. Kohtumise topeltklõps/paralleelpäring võib lepingujärgse 409 asemel anda 500.
 
 **Vastuvõtukriteerium.** Cardinality-kontroll tuleb korrata luku all ja FINAL vajab DB-taset tõket, mis arvestab teadlikult DISCARDED-versioone/parandusi. Kõik unique-konfliktid tuleb stabiilseks 409-ks kaardistada. Testida kahe päris DB-ühendusega paralleelset FINAL- ja MEETING-loomist.
+
+**Seis (13.08.2026): DONE — `createSummary()` kordab MEETING/FINAL kardinaalsuskontrolli luku sees ja kaardistab DB `P2002` stabiilseks 409-ks. Migratsioon `20260814002000_sol_sup_summary_cardinality` asendas meetingId üldunikaalsuse kahe osalise unikaalindeksiga: üks elus kokkuvõte kohtumise kohta ja üks elus FINAL protsessi kohta; DISCARDED versiooni võib teadlikult asendada. Täis migratsioonikett oli 185/185 roheline ning kahe ühendusega PostgreSQL-võistlustes jäi nii FINAL-i kui MEETING-u puhul alles täpselt üks võitja; otsene duplikaat-FINAL kukkus DB-tõkkesse.**
 
 ### SOL-SUP-09 — kasutajakonto kustutus võib kustutada kogu supervisiooniprotsessi ja selle auditi — P1
 
@@ -6783,6 +6799,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 
 **Vastuvõtukriteerium.** Konto elutsükkel vajab eraldi dokumenteeritud supervisioonipoliitikat: identiteediviited anonümiseeritakse/SetNull-ivad, kuid jagatud protsess, closure, kinnitatud artefaktid ja sisuvaba audit säilivad määratud retention'i piires. Upgrade ja konto-kustutuse integratsioonitest peab tõendama iga M1–M13 rea oodatud saatuse nii superviisori kui osaleja kustutusel.
 
+**Seis (13.08.2026): DONE — omanik kinnitas PII-vaba tombstone'i lepingu. Konto kustutamise tehing nullib superviisori, osaleja ja superviisori-autori identiteediviited ning lisab kustutusaja, kuid säilitab jagatud protsessi, kontraktid ja acceptance'id, jagatud teemad, kinnitatud kokkuvõtted ja approval'id, closure'i ning sisuvaba auditi. M6 privaatkirjed ja M12 isiklikud pakid kustuvad koos kontoga. Privaatsuspoliitika §7.12 kirjeldab erandit ning jätab jagatud tõendi automaatse purge'i `AWAITING_POLICY` fail-closed olekusse kuni täpse tähtaja kinnitamiseni. Täis migratsioonikett on 186/186 roheline; päris PostgreSQL-i 47/47 sond tõendas eraldi superviisori ja osaleja kustutuse järel kõik säilimise, anonümiseerimise ja kustumise invariandid.**
+
 ### SOL-SUP-10 — LAHK kasutaja saab sulgemise eelvaatest peidetud sisu olemasolu ja ID-sid — P2
 
 **Tõend.** Õiguste maatriks lubab close-preview'd SV/OS/OS† rollile, kuid LAHK veerus on keeld (`docs/platvormi arendus/fable-5-supervisiooni-tootemudel-ja-ruumiline-teekond.md:534-536`). `closePreview()` keelab ainult KUT-rolli ning lubab seega LAHK kasutaja läbi (`lib/supervision/closure.js:42-47`). Seejärel loeb funktsioon filtreerimata kõik kokkuvõtted, teemad ja kohtumised ning tagastab PENDING-kokkuvõtete ID-d, kõikide teemade arvu, SV DRAFT/DISCARDED kokkuvõtete arvu ja märkmetega kohtumiste arvu (`:48-73`), kuigi tavaprotsessi serializer piirab LAHK vaate APPROVED sisule kuni lahkumiseni (`lib/supervision/serializers.js:189-198`).
@@ -6790,6 +6808,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 **Mõju.** Endine osaleja saab pärast lahkumist teada hilisemate või talle kunagi nähtamatute supervisor-only teemade, superviisori mustandite, märkmete ja ootel kokkuvõtete olemasolu ning mõne objekti ID. Sisu ennast ei väljastata, kuid konfidentsiaalse töö mahu ja käimasoleku metaandmed lekivad üle lahkumispiiri.
 
 **Vastuvõtukriteerium.** Close-preview peab jõustama täpselt SV/OS/OS† rollid. Mitte-SV vastus tuleb ehitada vaatajapõhiselt ega tohi sisaldada talle nähtamatute objektide ID-sid või loendusi. Testida LAHK, KUT, ADMIN, outsider ja OS, kelle eest on SUPERVISOR_ONLY/DRAFT sisu.
+
+**Seis (13.08.2026): DONE — `closePreview()` lubab ainult SV/OS/OS† vaataja, tagastab LAHK/KUT/ADMIN/võõrale ühetaolise 404 ning ehitab mitte-SV pending-ID-d ja teema-/kokkuvõtteloendused ainult tema nähtavast vaatest. Teenusetest katab kõik keelatud rollid ning OS-i eest peidetud SUPERVISOR_ONLY teema ja SV mustandi.**
 
 ### SOL-SUP-11 — pöördumatu sulgemise eelvaade ei ütle, et kogu kontraktiraam ja kinnitusfaktid jäävad alles — P1
 
@@ -6799,6 +6819,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 
 **Vastuvõtukriteerium.** Close-preview peab serverist tuleva täieliku, versioonitud retention-manifestina loetlema kõik alles jäävad objektiklassid ja koopiad: lepingud, acceptance'id, audit, closure/faktid, APPROVED read, M6 ja M12. UI peab selle enne teist kinnitust arusaadavalt näitama; lepingutest võrdleb manifesti päris sulgemisjärgse DB seisuga.
 
+**Seis (13.08.2026): DONE — close-preview tagastab `retentionManifestVersion:1` manifesti kontraktiversioonide, acceptance'ide, auditirea (koos tulevase close-sündmusega), closure/faktide, APPROVED kokkuvõtete, kohtumiste, M6 ja M12 kohta ning sulgemisleht kuvab kõik objektiklassid enne kinnitamist. Lepingutest võrdleb manifesti sulgemisjärgse andmebaasiseisuga ja eraldi kontroll tõendab, et kustutusloendus hõlmab ka päriselt kustuvat DISCARDED rida.**
+
 ### SOL-SUP-12 — kokkuvõtete „reaalajas” kinnitusseis ei värskene teiste osalejate tegevuse järel — P2
 
 **Tõend.** Q2.6 nõuab PENDING-kokkuvõtte kinnituste seisu reaalajas ning lubab selleks polling'ut (`docs/platvormi arendus/fable-5-supervisiooni-tootemudel-ja-ruumiline-teekond.md:637-639`). `SupervisionProcessPage` laeb protsessi ainult komponendi mount'imisel või oma child-toimingu `onReload` callback'iga (`components/supervision/SupervisionProcessPage.jsx:45-76`, `:203-219`). `SummariesPanel`-is puudub poll, refresh või nähtav käsitsi värskendamise toiming; see kuvab serverist saadud approvals massiivi muutumatu propsina (`components/supervision/SummariesPanel.jsx:19-36`, `:130-137`).
@@ -6806,6 +6828,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 **Mõju.** Grupiprotsessis ei näe superviisor ega teine osaleja teiste kinnitusi või APPROVED-üleminekut enne kogu lehe uuesti avamist või enda kirjutustoimingut. Kuvatud `N/M` ja tegevusnupp võivad olla aegunud ning „juba kinnitatud” 409 käsitlus ei aita passiivset vaatajat.
 
 **Vastuvõtukriteerium.** Lisada nähtavuse ajal mõõdukas poll/revalidation või sündmuspõhine värskendus, peatades selle taustal ja CLOSED olekus. Testida kahe kliendiga: üks kinnitab, teine näeb ilma oma toiminguta N/M ja lõppstaatuse muutust.
+
+**Seis (13.08.2026): DONE — protsessivaade värskendab aktiivse ja nähtava dokumendi kokkuvõtteala iga 10 sekundi järel, peatub taustal/CLOSED olekus ning teeb nähtavaks muutumisel kohe uue päringu; cleanup eemaldab taimeri ja listener'i. Kahe päris brauserikliendi läbisõit tõendas, et ühe osaleja kinnitus muutis teise vaates ilma tema toiminguta seisu `Ootab 1/2 kinnitust` ning teine kinnitus muutis esimese vaates staatuse `APPROVED`.**
 
 ### SOL-SUP-13 — ootel kokkuvõtte saab API-ga discard'ida, kuid UI-st puudub ainus sulgemist vabastav parandusrada — P1
 
@@ -6815,6 +6839,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 
 **Vastuvõtukriteerium.** Superviisorile tuleb PENDING kokkuvõttel pakkuda selgelt sõnastatud tagasivõtmise/discard'i voog koos kinnituse ja tagajärje selgitusega. Otsustada tuleb, mis saab juba antud approval'idest ja teavitustest. Kahe konto brauseritest peab tõendama submit → osaline approval → discard → sulgemine.
 
+**Seis (13.08.2026): DONE — omanik kinnitas, et PENDING rea tagasivõtmine kustutab selle kinnitused, märgib kõik ootel kokkuvõtteteavitused loetuks ja peidetuks ning kirjutab sisuvaba `SUMMARY_DISCARDED` auditi; asenduskokkuvõte alustab kinnitamist nullist. Superviisoril on DRAFT/PENDING real selge tagasivõtmisnupp koos tagajärgede kinnitusega ning aegunud teavituse serveripoolne sihtkontroll nõuab endiselt PENDING olekut ja kinnitamata osalust. Teenusetest tõendab approval'ide, teavituste ja auditi saatuse. Kahe päris konto brauserivoog tõendas `1/2` osalise kinnituse → kinnitatud discard'i → osaleja tühja kokkuvõttevaate → superviisori eduka kaheastmelise sulgemise.**
+
 ### SOL-SUP-14 — protsesside „viimane tegevus” järjekord ei kajasta mitut põhitoimingut — P2
 
 **Tõend.** Avaleht järjestab protsessid `lastActivityAt` järgi (`lib/supervision/service.js:194-227`). Osa toiminguid kutsub `touchProcess()`-i, kuid kontraktiversiooni loomine (`:288-309`), kokkuvõtte muutmine ja submit (`lib/supervision/summaries.js:88-138`) ning teema tagasivõtmine (`lib/supervision/topics.js:94-123`) ei uuenda seda välja. Privaatala toimingute väljajätmine võib olla teadlik, kuid nimetatud jagatud/protsessitoimingud pole privaatsed kõrvaltegevused.
@@ -6823,6 +6849,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 
 **Vastuvõtukriteerium.** Defineerida üks kanooniline „protsessi aktiivsuse” sündmuste loend ja uuendada `lastActivityAt` kõigil neil samas tehingus; privaattegevused tuleb teadlikult välja jätta. Tabeltest peab läbima kõik muteerivad teenusefunktsioonid ja kontrollima välja muutumist või dokumenteeritud muutumatust.
 
+**Seis (13.08.2026): DONE — `SUPERVISION_ACTIVITY_EVENTS` fikseerib jagatud/protsessi tegevuste kanoonilise loendi ja jätab M6 privaattoimingud teadlikult välja. Puudunud kontraktiversiooni loomine, kokkuvõtte muutmine/submit ja teema tagasivõtmine uuendavad nüüd `lastActivityAt` samas advisory-lukustatud tehingus; tabeltest kontrollib iga varem puudu olnud rada täpse ajaga ning eraldi create/update/delete M6 kontroll tõendab tegevusaja muutumatust.**
+
 ### SOL-SUP-15 — continuity võib jätta aktiivsed protsessid ja järgmiste kohtumiste ettevalmistuse vaikides leidmata — P2
 
 **Tõend.** `buildSupervisionContinuity()` võtab ACCEPTED osalustest maksimaalselt 20 ilma `orderBy` või kursorita (`lib/supervision/notifications.js:108-111`), mistõttu üle piiri jäävad protsessid ei jõua ühegi pending-kontrollini. Ettevalmistusmärguanne tekib ainult siis, kui protsessis on kasutajal kokku null SHARED teemat (`:154-169`); teema ega kontroll ei ole seotud konkreetse järgmise kohtumisega. Pärast esimese teema jagamist ei saa kasutaja enam ühegi hilisema PLANNED kohtumise jaoks `supervision_prep_waiting` kirjet, kuigi Q2.8 sõnastab tingimuse järgmise kohtumise kohta (`docs/platvormi arendus/fable-5-supervisiooni-tootemudel-ja-ruumiline-teekond.md:700-709`).
@@ -6830,6 +6858,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 **Mõju.** Rohkem kui 20 protsessiga kasutaja ootel lepingud/kokkuvõtted võivad „Jätka siit” kihist kaduda. Tavalises mitme kohtumise supervisioonis töötab ettevalmistusmärguanne sisuliselt ainult enne esimest jagamist, mitte iga järgmise kohtumise kontekstis.
 
 **Vastuvõtukriteerium.** Pending-allikas peab kasutama stabiilset prioriteedipäringut või lehekülgima kõik kõlblikud osalused enne lõplikku kahe kirje valikut. Ettevalmistuse semantika vajab meeting/topic seost või muud kohtumisepõhist markerit. Testida üle 20 protsessi ning vähemalt kolme kohtumise jada, kus teema on jagatud esimese, kuid mitte järgmise jaoks.
+
+**Seis (13.08.2026): DONE — continuity loeb kõik ACCEPTED osalused ja kõik PENDING kokkuvõtted stabiilses `updatedAt,id` järjekorras enne lõpliku kahe kirje valikut. Ettevalmistuse marker on nüüd kasutaja SHARED teema seos just järgmise PLANNED kohtumise `agendaTopicIds` väljaga, mistõttu eelmise kohtumise teema ei vaiki järgmist märguannet. Test leiab sihttöö 21. protsessist ning läbib kolme kohtumise jada: esimese agenda ei kata teist, teise agenda katab teise ja kolmas vajab uut markerit.**
 
 ### SOL-COV-01 — konto kustutus võib anda sama e-posti uuele kontole aktiivse kovisiooni ligipääsu — P1
 

@@ -9,10 +9,13 @@ import {
 } from "../../lib/supervision/service.js";
 import {
   createSummary,
+  discardSummary,
   updateSummary,
   submitSummary,
   approveSummary
 } from "../../lib/supervision/summaries.js";
+import { closeProcess } from "../../lib/supervision/closure.js";
+import { assertNotificationRecipient } from "../../lib/notifications.js";
 
 test("test #12 (grupp): APPROVED alles siis, kui KÕIK ACCEPTED kinnitasid; SUMMARY_APPROVED audit 1x", async () => {
   const db = setupBase();
@@ -122,4 +125,76 @@ test("meetingId unikaalne (üks kokkuvõte kohtumise kohta → 409); FINAL max 1
   await submitSummary({ summaryId: f1.summary.id, session: sv(), input: { expectedVersion: f1.summary.version } }, { db });
   const again = await submitSummary({ summaryId: f1.summary.id, session: sv(), input: { expectedVersion: 999 } }, { db });
   assert.equal(again.summary.status, "PENDING_APPROVAL");
+});
+
+test("SUP-08: DISCARDED kokkuvõtte asemele saab luua uue MEETING- ja FINAL-kokkuvõtte", async () => {
+  const db = setupBase();
+  const { processId } = await makeActiveProcess(db);
+  const meeting = await planMeeting({ processId, session: sv(), input: {} }, { db });
+  const firstMeeting = await createSummary(
+    { processId, session: sv(), input: { kind: "MEETING", meetingId: meeting.meeting.id, body: "A" } },
+    { db }
+  );
+  await discardSummary({ summaryId: firstMeeting.summary.id, session: sv() }, { db });
+  const replacementMeeting = await createSummary(
+    { processId, session: sv(), input: { kind: "MEETING", meetingId: meeting.meeting.id, body: "B" } },
+    { db }
+  );
+  assert.equal(replacementMeeting.summary.body, "B");
+
+  const firstFinal = await createSummary(
+    { processId, session: sv(), input: { kind: "FINAL", body: "F1" } },
+    { db }
+  );
+  await discardSummary({ summaryId: firstFinal.summary.id, session: sv() }, { db });
+  const replacementFinal = await createSummary(
+    { processId, session: sv(), input: { kind: "FINAL", body: "F2" } },
+    { db }
+  );
+  assert.equal(replacementFinal.summary.body, "F2");
+});
+
+test("SUP-13: osaliselt kinnitatud PENDING tagasivõtt nullib ringi, lõpetab teavitused ja vabastab sulgemise", async () => {
+  const db = setupBase();
+  const { processId, participationIds } = await makeActiveProcess(
+    db,
+    { invite: ["os1", "os2"], accept: ["os1", "os2"] }
+  );
+  const created = await createSummary(
+    { processId, session: sv(), input: { kind: "FINAL", body: "Tagasivõetav" } },
+    { db }
+  );
+  await submitSummary(
+    { summaryId: created.summary.id, session: sv(), input: { expectedVersion: created.summary.version } },
+    { db }
+  );
+  await approveSummary({ summaryId: created.summary.id, session: os1() }, { db });
+  assert.equal(db.store.supervisionSummaryApproval.length, 1);
+
+  const discarded = await discardSummary({ summaryId: created.summary.id, session: sv() }, { db });
+  assert.equal(discarded.summary.status, "DISCARDED");
+  assert.deepEqual(discarded.summary.approvals, []);
+  assert.equal(db.store.supervisionSummaryApproval.length, 0);
+  const pendingEvents = db.store.notificationEvent.filter((event) => (
+    event.type === "SUPERVISION_SUMMARY_PENDING" && event.sourceId === created.summary.id
+  ));
+  assert.equal(pendingEvents.length, 2);
+  assert.ok(pendingEvents.every((event) => event.dismissedAt instanceof Date && event.readAt instanceof Date));
+  assert.equal(db.store.supervisionAuditEvent.filter((event) => (
+    event.action === "SUMMARY_DISCARDED" && event.targetId === created.summary.id
+  )).length, 1);
+  await assert.rejects(() => assertNotificationRecipient(db, {
+    type: "SUPERVISION_SUMMARY_PENDING",
+    userId: "os2",
+    sourceId: created.summary.id,
+    targetId: processId
+  }), (error) => error.status === 404);
+
+  const beforeClose = await getProcessDetail({ processId, session: sv() }, { db });
+  await closeProcess(
+    { processId, session: sv(), input: { expectedVersion: beforeClose.version, generalizedTitle: "Lõpetatud" } },
+    { db }
+  );
+  assert.ok(db.store.supervisionClosure.some((row) => row.processId === processId));
+  assert.ok(participationIds.os1 && participationIds.os2);
 });

@@ -1,5 +1,5 @@
 import { json } from "@/lib/documents/server";
-import { shareTopic } from "@/lib/supervision/topics";
+import { leaveProcess } from "@/lib/supervision/service";
 import {
   getSupervisionSession,
   supervisionErrorResponse,
@@ -15,13 +15,12 @@ export async function POST(request, context, deps = {}) {
   try {
     const session = deps.session ?? await getSupervisionSession();
     const params = await context?.params;
-    const body = await request.json().catch(() => ({}));
-    const result = await (deps.shareTopic || shareTopic)(
-      { processId: String(params?.id || "").trim(), session, input: body },
+    const result = await (deps.leaveProcess || leaveProcess)(
+      { participationId: String(params?.id || "").trim(), session },
       { db: deps.db, now: deps.now }
     );
-    return json({ ok: true, ...result }, 201);
+    return json({ ok: true, ...result });
   } catch (error) {
-    return supervisionErrorResponse(error, locale, "[supervision] topic share failed", "supervision.errors.save_failed");
+    return supervisionErrorResponse(error, locale, "[supervision] leave failed", "supervision.errors.save_failed");
   }
 }

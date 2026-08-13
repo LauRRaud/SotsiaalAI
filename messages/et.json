@@ -1863,6 +1863,9 @@
     "section7Support": {
       "body": "<p><strong>7.11 Tööheaolu toe jagamine.</strong> Avamata jagatud sisu säilib kuni 30 päeva. Avatud või parandatud sisu säilib kuni sulgemiseni ja veel kuni 90 päeva, kuid mitte üle 12 kuu esmasest saatmisest; tagasivõtmisel sisu kustutatakse kohe. Saaja liikmesuse või organisatsiooni kustutamisel ligipääs lõpeb ja sisu kustutatakse. Konto kustutamisel võetakse avamata avaldus tagasi; juba avatud koopia võib jääda saajale sama lühikese tähtaja lõpuni. Pärast sisu kustutamist säilib kolm aastat piiratud jagamiskviitung ilma avalduse sisuta. Konkreetse vaide korral võib ainult vajalik materjal olla eraldi õigusnõude kaitse all.</p>"
     },
+    "section7Supervision": {
+      "body": "<p><strong>7.12 Supervisiooni jagatud tõend.</strong> Erandina punktis 7.10 toodud üldreeglist kustuvad konto sulgemisel kasutaja privaatne supervisiooni eeskamber ja tema isiklik püsiväljund. Jagatud supervisiooniprotsess, kontraktiversioonid ja kinnitamise faktid, kinnitatud kokkuvõtted, sulgemiskirje ning sisuvaba auditijälg säilivad teiste osalejate ühise tõendina ilma kustutatud kasutaja identiteedita. Kuni eraldi säilitustähtaeg on kinnitatud, on need kirjed olekus AWAITING_POLICY ja neid ei kustutata automaatselt.</p>"
+    },
     "section8": {
       "heading": "8. Kasutaja õigused",
       "items": "<li>Õigus küsida ligipääsu enda andmetele ja saada neist koopia.</li><li>Õigus parandada ebaõigeid või puudulikke andmeid.</li><li>Õigus taotleda andmete kustutamist, kui selleks on õiguslik alus.</li><li>Õigus piirata töötlemist või esitada vastuväiteid õigustatud huvile tuginevale töötlemisele.</li><li>Õigus saada andmed ülekantavas vormis juhul, kui töötlemine põhineb lepingul või nõusolekul ja toimub automatiseeritult.</li><li>Õigus võtta nõusolek tagasi, kui konkreetne töötlus põhineb nõusolekul; tagasivõtmine ei mõjuta varasema töötluse seaduslikkust.</li><li>Õigus taotleda inimese sekkumist, kui leiad, et automatiseeritud loogika või AI-põhine töötlus vajab ülevaatamist.</li><li>Õigus esitada kaebus <aDpa>Andmekaitse Inspektsioonile</aDpa>.</li>"
@@ -5267,6 +5270,7 @@
       "supervision_meeting_upcoming": "Supervisioonikohtumine läheneb",
       "supervision_summary_pending": "Supervisiooni kokkuvõte ootab sinu kinnitust",
       "supervision_closed": "Supervisiooniprotsess suleti",
+      "supervision_participant_left": "Osaleja lahkus supervisiooniprotsessist",
       "data_export_ready": "Sinu andmekoopia on valmis",
       "mentoring_request_created": "Sulle saabus mentorlustaotlus",
       "mentoring_request_accepted": "Sinu mentorlustaotlus võeti vastu",
@@ -8529,6 +8533,8 @@
       "bodyLabel": "Kokkuvõtte tekst",
       "submit": "Saada kinnitamisele",
       "approve": "Kinnitan",
+      "discard": "Võta tagasi ja jäta kõrvale",
+      "discardConfirm": "Kas võtad kokkuvõtte kinnitamiselt tagasi? Senised kinnitused eemaldatakse ja ootel teavitused lõpetatakse. Uus kokkuvõte alustab kinnitamist nullist.",
       "waitingApprovals": "Ootab {done}/{total} kinnitust",
       "empty": "Kokkuvõtteid pole veel.",
       "draftOnlyYou": "Näed ainult sina (superviisor)",
@@ -8550,7 +8556,12 @@
       "meetingNotes": "Kohtumiste töömärkmed",
       "approvedSummaries": "Kinnitatud kokkuvõtted",
       "meetingFacts": "Kohtumiste faktid",
+      "contractVersions": "Kontraktiversioonid: {count}",
+      "contractAcceptances": "Kontraktikinnitused: {count}",
+      "auditTrail": "Sisuvaba auditijälg: {count} sündmust",
+      "closureFacts": "Sulgemiskirje ja koondfaktid",
       "privateItems": "Sinu privaatne eeskamber",
+      "personalOutcomes": "Isiklikud püsiväljundid: {count}",
       "generalizedTitleLabel": "Üldistatud pealkiri (asendab praeguse)",
       "confirm": "Sulgen protsessi lõplikult",
       "pendingBlock": "Enne sulgemist kinnita või tühista ootel kokkuvõtted.",
@@ -8560,6 +8571,13 @@
       "banner": "Protsess on suletud; toorsisu on kustutatud.",
       "purged": "Kustutati: {topics} teemat, {drafts} mustandit, {notes} märget.",
       "openPack": "Ava minu pakk"
+    },
+    "leave": {
+      "hint": "Saad protsessist lahkuda. Pärast lahkumist näed ainult enne lahkumist kinnitatud ja jagatud sisu.",
+      "confirmHint": "Lahkumine lõpetab sinu osalemise. Seda toimingut ei saa tagasi võtta.",
+      "action": "Lahku protsessist",
+      "confirm": "Kinnitan lahkumise",
+      "done": "Oled supervisiooniprotsessist lahkunud."
     },
     "outcome": {
       "title": "Minu isiklik pakk",

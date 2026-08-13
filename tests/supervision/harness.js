@@ -149,7 +149,8 @@ const UNIQUE_INDEXES = {
     { fields: ["processId", "seq"], when: () => true }
   ],
   supervisionSummary: [
-    { fields: ["meetingId"], when: (r) => r.meetingId != null }
+    { fields: ["meetingId"], when: (r) => r.meetingId != null && r.status !== "DISCARDED" },
+    { fields: ["processId"], when: (r) => r.kind === "FINAL" && r.status !== "DISCARDED" }
   ],
   supervisionSummaryApproval: [
     { fields: ["summaryId", "participationId"], when: () => true }

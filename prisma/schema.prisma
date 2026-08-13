@@ -836,6 +836,7 @@ model User {
   supervisionContractVersionsCreated    SupervisionContractVersion[]        @relation("SupervisionContractCreatedBy")
   supervisionParticipations             SupervisionParticipation[]          @relation("SupervisionParticipationUser")
   supervisionInvitationsSent            SupervisionParticipation[]          @relation("SupervisionParticipationInvitedBy")
+  supervisionTopicsAuthoredAsSupervisor SupervisionSharedTopic[]            @relation("SupervisionTopicSupervisorAuthor")
   supervisionPrivateItems               SupervisionPrivateItem[]            @relation("SupervisionPrivateItemOwner")
   supervisionMeetingsMarkedHeld         SupervisionMeeting[]                @relation("SupervisionMeetingMarkedHeldBy")
   supervisionSummariesCreated           SupervisionSummary[]                @relation("SupervisionSummaryCreatedBy")
@@ -4510,7 +4511,8 @@ model SupervisorGrant {
 
 model SupervisionProcess {
   id                      String                   @id @default(cuid())
-  supervisorId            String
+  supervisorId            String?
+  supervisorErasedAt      DateTime?
   type                    SupervisionProcessType
   title                   String
   goal                    String?                  @db.Text
@@ -4523,7 +4525,7 @@ model SupervisionProcess {
   updatedAt               DateTime                 @updatedAt
   closedAt                DateTime?
 
-  supervisor            User                         @relation("SupervisionProcessSupervisor", fields: [supervisorId], references: [id], onDelete: Cascade)
+  supervisor            User?                        @relation("SupervisionProcessSupervisor", fields: [supervisorId], references: [id], onDelete: SetNull)
   activeContractVersion SupervisionContractVersion?  @relation("SupervisionActiveContractVersion", fields: [activeContractVersionId], references: [id], onDelete: SetNull)
   contractVersions      SupervisionContractVersion[] @relation("SupervisionContractVersions")
   participations        SupervisionParticipation[]
@@ -4561,7 +4563,8 @@ model SupervisionContractVersion {
 model SupervisionParticipation {
   id              String                         @id @default(cuid())
   processId       String
-  userId          String
+  userId          String?
+  userErasedAt    DateTime?
   invitedByUserId String?
   status          SupervisionParticipationStatus @default(INVITED)
   invitedAt       DateTime                       @default(now())
@@ -4571,7 +4574,7 @@ model SupervisionParticipation {
   updatedAt       DateTime                       @updatedAt
 
   process          SupervisionProcess              @relation(fields: [processId], references: [id], onDelete: Cascade)
-  user             User                            @relation("SupervisionParticipationUser", fields: [userId], references: [id], onDelete: Cascade)
+  user             User?                           @relation("SupervisionParticipationUser", fields: [userId], references: [id], onDelete: SetNull)
   invitedByUser    User?                           @relation("SupervisionParticipationInvitedBy", fields: [invitedByUserId], references: [id], onDelete: SetNull)
   acceptances      SupervisionContractAcceptance[]
   authoredTopics   SupervisionSharedTopic[]
@@ -4616,26 +4619,30 @@ model SupervisionPrivateItem {
 }
 
 model SupervisionSharedTopic {
-  id                    String                     @id @default(cuid())
-  processId             String
-  authorParticipationId String
-  title                 String
-  body                  String                     @db.Text
-  audience              SupervisionTopicAudience
-  sourceKind            SupervisionTopicSourceKind
-  status                SupervisionTopicStatus     @default(SHARED)
-  sharedAt              DateTime                   @default(now())
-  withdrawnAt           DateTime?
-  version               Int                        @default(0)
-  createdAt             DateTime                   @default(now())
-  updatedAt             DateTime                   @updatedAt
+  id                     String                     @id @default(cuid())
+  processId              String
+  authorParticipationId  String?
+  authorSupervisorUserId String?
+  authorErasedAt         DateTime?
+  title                  String
+  body                   String                     @db.Text
+  audience               SupervisionTopicAudience
+  sourceKind             SupervisionTopicSourceKind
+  status                 SupervisionTopicStatus     @default(SHARED)
+  sharedAt               DateTime                   @default(now())
+  withdrawnAt            DateTime?
+  version                Int                        @default(0)
+  createdAt              DateTime                   @default(now())
+  updatedAt              DateTime                   @updatedAt
 
-  process             SupervisionProcess       @relation(fields: [processId], references: [id], onDelete: Cascade)
-  authorParticipation SupervisionParticipation @relation(fields: [authorParticipationId], references: [id], onDelete: Cascade)
-  sourcePrivateItems  SupervisionPrivateItem[] @relation("SupervisionPrivateItemSharedTopic") @ignore
+  process             SupervisionProcess        @relation(fields: [processId], references: [id], onDelete: Cascade)
+  authorParticipation SupervisionParticipation? @relation(fields: [authorParticipationId], references: [id], onDelete: SetNull)
+  authorSupervisor    User?                     @relation("SupervisionTopicSupervisorAuthor", fields: [authorSupervisorUserId], references: [id], onDelete: SetNull)
+  sourcePrivateItems  SupervisionPrivateItem[]  @relation("SupervisionPrivateItemSharedTopic") @ignore
 
   @@index([processId, status, sharedAt])
   @@index([authorParticipationId])
+  @@index([authorSupervisorUserId])
 }
 
 model SupervisionMeeting {
@@ -4653,9 +4660,9 @@ model SupervisionMeeting {
   createdAt          DateTime                 @default(now())
   updatedAt          DateTime                 @updatedAt
 
-  process          SupervisionProcess  @relation(fields: [processId], references: [id], onDelete: Cascade)
-  markedHeldByUser User?               @relation("SupervisionMeetingMarkedHeldBy", fields: [markedHeldByUserId], references: [id], onDelete: SetNull)
-  summary          SupervisionSummary?
+  process          SupervisionProcess   @relation(fields: [processId], references: [id], onDelete: Cascade)
+  markedHeldByUser User?                @relation("SupervisionMeetingMarkedHeldBy", fields: [markedHeldByUserId], references: [id], onDelete: SetNull)
+  summaries        SupervisionSummary[]
 
   @@unique([processId, seq])
 }
@@ -4663,7 +4670,7 @@ model SupervisionMeeting {
 model SupervisionSummary {
   id              String                   @id @default(cuid())
   processId       String
-  meetingId       String?                  @unique
+  meetingId       String?
   kind            SupervisionSummaryKind
   body            String                   @db.Text
   status          SupervisionSummaryStatus @default(DRAFT)

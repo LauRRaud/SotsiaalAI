@@ -1,9 +1,16 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { setupBase, sv, os1, os2, makeActiveProcess } from "./scenario.js";
-import { getProcessDetail } from "../../lib/supervision/service.js";
+import {
+  acceptContractVersion,
+  activateContractVersion,
+  createContractVersion,
+  getProcessDetail,
+  inviteParticipant,
+  leaveProcess
+} from "../../lib/supervision/service.js";
 import { planMeeting, updateMeeting } from "../../lib/supervision/meetings.js";
-import { createSummary, submitSummary, approveSummary } from "../../lib/supervision/summaries.js";
+import { createSummary, submitSummary, approveSummary, discardSummary } from "../../lib/supervision/summaries.js";
 import { createPrivateItem } from "../../lib/supervision/privateItems.js";
 import { shareTopic } from "../../lib/supervision/topics.js";
 import { closeProcess, closePreview } from "../../lib/supervision/closure.js";
@@ -170,4 +177,121 @@ test("close-preview näitab õigeid kustub/jääb arve; M12 pakk owner-only (võ
 
   const os2OutcomeId = os2Outcomes.outcomes[0].id;
   await assert.rejects(() => getOutcome({ outcomeId: os2OutcomeId, session: os1() }, { db }), (e) => e.status === 404);
+});
+
+test("SUP-06: M12 sisaldab iga osaleja enda viimati aktsepteeritud kontrakti", async () => {
+  const db = setupBase();
+  const { processId } = await makeActiveProcess(db, { invite: ["os1", "os2"], accept: ["os1", "os2"] });
+  const beforeV2 = await getProcessDetail({ processId, session: sv() }, { db });
+  const v2 = await createContractVersion(
+    { processId, session: sv(), input: { body: "Kontrakt v2" } },
+    { db }
+  );
+  await activateContractVersion(
+    { processId, versionId: v2.contractVersion.id, session: sv(), input: { expectedVersion: beforeV2.version } },
+    { db }
+  );
+  await acceptContractVersion(
+    { processId, session: os1(), input: { contractVersionId: v2.contractVersion.id } },
+    { db }
+  );
+
+  const beforeClose = await getProcessDetail({ processId, session: sv() }, { db });
+  await closeProcess(
+    { processId, session: sv(), input: { expectedVersion: beforeClose.version, generalizedTitle: "Grupp" } },
+    { db }
+  );
+
+  const byOwner = new Map(db.store.supervisionPersonalOutcome.map((row) => [row.ownerUserId, row.contentJson]));
+  assert.equal(byOwner.get("os1").lastAcceptedContractBody, "Kontrakt v2");
+  assert.equal(byOwner.get("os2").lastAcceptedContractBody, "Kontrakt v1");
+  assert.equal(byOwner.get("sv1").lastAcceptedContractBody, "Kontrakt v2");
+});
+
+test("SUP-10: close-preview keelab LAHK/KUT/võõra ja OS ei näe peidetud loendusi", async () => {
+  const db = setupBase();
+  const { processId, participationIds } = await makeActiveProcess(
+    db,
+    { invite: ["os1", "os2"], accept: ["os1", "os2"] }
+  );
+  await shareTopic({
+    processId,
+    session: os2(),
+    input: { audience: "SUPERVISOR_ONLY", title: "Peidetud", body: "ainult autor ja SV" }
+  }, { db });
+  await createSummary({ processId, session: sv(), input: { kind: "FINAL", body: "SV mustand" } }, { db });
+
+  const osPreview = await closePreview({ processId, session: os1() }, { db });
+  assert.equal(osPreview.preview.willDelete.sharedTopics, 0);
+  assert.equal(osPreview.preview.willDelete.draftSummaries, 0);
+  assert.deepEqual(osPreview.preview.pendingSummaryIds, []);
+
+  await leaveProcess({ participationId: participationIds.os1, session: os1() }, { db });
+  await assert.rejects(() => closePreview({ processId, session: os1() }, { db }), (error) => error.status === 404);
+  await assert.rejects(
+    () => closePreview({ processId, session: { user: { id: "outsider", role: "SOCIAL_WORKER" } } }, { db }),
+    (error) => error.status === 404
+  );
+  await assert.rejects(
+    () => closePreview({ processId, session: { user: { id: "admin1", role: "ADMIN" } } }, { db }),
+    (error) => error.status === 404
+  );
+
+  const invitedDb = setupBase();
+  const invitedProcess = await makeActiveProcess(invitedDb);
+  const detail = await inviteParticipant(
+    { processId: invitedProcess.processId, session: sv(), input: { userId: "os2" } },
+    { db: invitedDb }
+  );
+  assert.ok(detail.participants.some((row) => row.userId === "os2" && row.status === "INVITED"));
+  await assert.rejects(() => closePreview({ processId: invitedProcess.processId, session: os2() }, { db: invitedDb }),
+    (error) => error.status === 404);
+});
+
+test("SUP-11: versioonitud retention-manifest vastab päris sulgemisjärgsele seisule", async () => {
+  const db = setupBase();
+  const { processId, itemId } = await buildRichProcess(db);
+  const preview = (await closePreview({ processId, session: sv() }, { db })).preview;
+  assert.equal(preview.retentionManifestVersion, 1);
+  assert.equal(preview.willKeep.contractVersions, 1);
+  assert.equal(preview.willKeep.contractAcceptances, 2);
+  assert.equal(preview.willKeep.personalOutcomes, 3);
+  assert.equal(preview.willKeep.privateItems, true);
+  assert.equal(preview.willKeep.closureFacts, true);
+
+  const before = await getProcessDetail({ processId, session: sv() }, { db });
+  await closeProcess(
+    { processId, session: sv(), input: { expectedVersion: before.version, generalizedTitle: "Manifest" } },
+    { db }
+  );
+  assert.equal(db.store.supervisionContractVersion.filter((row) => row.processId === processId).length,
+    preview.willKeep.contractVersions);
+  assert.equal(db.store.supervisionContractAcceptance.length, preview.willKeep.contractAcceptances);
+  assert.equal(db.store.supervisionSummary.filter((row) => row.processId === processId && row.status === "APPROVED").length,
+    preview.willKeep.approvedSummaries);
+  assert.equal(db.store.supervisionMeeting.filter((row) => row.processId === processId).length, preview.willKeep.meetings);
+  assert.equal(db.store.supervisionAuditEvent.filter((row) => row.processId === processId).length,
+    preview.willKeep.auditEvents);
+  assert.equal(db.store.supervisionPersonalOutcome.filter((row) => row.processId === processId).length,
+    preview.willKeep.personalOutcomes);
+  assert.ok(db.store.supervisionPrivateItem.some((row) => row.id === itemId));
+  assert.ok(db.store.supervisionClosure.some((row) => row.processId === processId));
+});
+
+test("SUP-11: kustutusmanifest loendab ka DISCARDED rea, mille sulgemine päriselt kustutab", async () => {
+  const db = setupBase();
+  const { processId, meetingId, draftSummaryId } = await buildRichProcess(db);
+  await discardSummary({ summaryId: draftSummaryId, session: sv() }, { db });
+  await createSummary(
+    { processId, session: sv(), input: { kind: "MEETING", meetingId, body: "Asendusmustand" } }, { db }
+  );
+
+  const preview = (await closePreview({ processId, session: sv() }, { db })).preview;
+  assert.equal(preview.willDelete.draftSummaries, 2);
+  const before = await getProcessDetail({ processId, session: sv() }, { db });
+  await closeProcess(
+    { processId, session: sv(), input: { expectedVersion: before.version, generalizedTitle: "Manifest" } }, { db }
+  );
+  const closure = db.store.supervisionClosure.find((row) => row.processId === processId);
+  assert.equal(closure.purgeReport.draftSummaries, preview.willDelete.draftSummaries);
 });

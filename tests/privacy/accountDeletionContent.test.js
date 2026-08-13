@@ -97,6 +97,9 @@ function createDb({ urgentRequests = [], preInquiries = [] } = {}) {
     serviceLogTimeSample: model(),
     serviceReportShare: model(),
     organizationMembership: { findMany: async () => [] },
+    supervisionProcess: model(),
+    supervisionParticipation: model(),
+    supervisionSharedTopic: model(),
     dataDeletionJob: { findFirst: async () => null, create: async () => ({ id: "job_1" }) },
     user: {
       delete: async ({ where }) => ({ id: where.id })

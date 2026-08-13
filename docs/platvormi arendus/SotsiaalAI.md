@@ -145,8 +145,13 @@ andmemahu ja lukud ning peatab teadmata või liiga suure lukustusriski.
 snapshot'i, välisnõusolek on tõendatud ja 12 kuu järel fail-closed, jagatud ettevalmistuse sisu
 avaneb atomaarse lugemisclaim'iga ning kokkuvõtte parandus asendab algse alles mõlema poole
 kinnitusel. Platvormiruumi kohtumine nõuab mõlema poole aktiivset liikmesust, aeg liigub
-ajavööndiga ISO-väärtusena ja lähenevate kohtumiste sweep läbib kogu järjekorra; järgmine
-soovitatav sidus plokk on `SOL-SUP-01…04`.
+ajavööndiga ISO-väärtusena ja lähenevate kohtumiste sweep läbib kogu järjekorra.
+
+**Supervisiooni `SOL-SUP-01…15` on lõpetatud.** Mõlemad pooled saavad jagatud teemat autoreerida,
+osaleja saab lahkuda ning suletud protsess ei võta hiliseid kirjutusi. Konto kustutamisel säilib
+ühine protsessi- ja kinnitustõend identiteedita, privaatne M6/M12 kustub; osaliselt kinnitatud
+kokkuvõtte saab selgete tagajärgedega tagasi võtta ja protsessi seejärel sulgeda. Järgmine sidus
+plokk on kovisiooni konto-, kutse- ja liitumiselutsükkel `SOL-COV-01…04`.
 
 **RAG-teenuse `SOL-RAGSVC-01…28` on DONE ja peatüki UTC täisvärav on roheline.**
 `SOL-ORG-13`–`17`, `SOL-DOC-J-01`–`06` ja kogu `SOL-SLOG-01…24` parandused ning kiirem plokipõhine töökord on koodipuus. Kolmeastmelised arvud loetakse käsuga `npm run sol:progress`, neid siia ankrusse ei

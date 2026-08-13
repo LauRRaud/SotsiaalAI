@@ -95,6 +95,16 @@ export default function SummariesPanel({ process, onReload, onConflict, particip
     undefined
   ), [run]);
 
+  const discard = useCallback((summary) => {
+    if (typeof window !== "undefined" && !window.confirm(t("supervision.summaries.discardConfirm"))) return;
+    void run(
+      `discard:${summary.id}`,
+      `/api/supervision/summaries/${encodeURIComponent(summary.id)}`,
+      undefined,
+      "DELETE"
+    );
+  }, [run, t]);
+
   return (
     <section className={styles.section}>
       <div className={styles.sectionHeading}>
@@ -177,6 +187,16 @@ export default function SummariesPanel({ process, onReload, onConflict, particip
                     {canApprove && summary.status === "PENDING_APPROVAL" ? (
                       <Button disabled={busy === `approve:${summary.id}`} onClick={() => approve(summary)} size="sm">
                         {t("supervision.summaries.approve")}
+                      </Button>
+                    ) : null}
+                    {canCreate && ["DRAFT", "PENDING_APPROVAL"].includes(summary.status) ? (
+                      <Button
+                        disabled={busy === `discard:${summary.id}`}
+                        onClick={() => discard(summary)}
+                        size="sm"
+                        variant="secondary"
+                      >
+                        {t("supervision.summaries.discard")}
                       </Button>
                     ) : null}
                   </div>

@@ -131,7 +131,7 @@ export default function ContractPanel({ process, onReload, onConflict }) {
                 </span>
                 <span className={styles.badge}>{version.status}</span>
               </div>
-              {version.id !== process.activeContract?.id ? (
+              {version.status === "DRAFT" && version.id !== process.activeContract?.id ? (
                 <div className={styles.actions}>
                   <Button
                     disabled={busy === `activate:${version.id}`}

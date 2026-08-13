@@ -175,6 +175,7 @@ test("final user-row lock sweeps pre-lock candidates and prevents post-delete pr
   const mapEntryUpdates = [];
   const ragJobs = [];
   const preInquiryDeletes = [];
+  const supervisionTombstones = [];
   const tx = {
     $queryRaw: async () => {
       rows.push({
@@ -244,6 +245,24 @@ test("final user-row lock sweeps pre-lock candidates and prevents post-delete pr
     serviceLogTimeSample: { updateMany: async () => ({ count: 0 }) },
     serviceReportShare: { updateMany: async () => ({ count: 0 }) },
     organizationMembership: { findMany: async () => [] },
+    supervisionProcess: {
+      updateMany: async (input) => {
+        supervisionTombstones.push(["process", input]);
+        return { count: 1 };
+      }
+    },
+    supervisionParticipation: {
+      updateMany: async (input) => {
+        supervisionTombstones.push(["participation", input]);
+        return { count: 2 };
+      }
+    },
+    supervisionSharedTopic: {
+      updateMany: async (input) => {
+        supervisionTombstones.push(["topic", input]);
+        return { count: 3 };
+      }
+    },
     dataDeletionJob: {
       findFirst: async () => null,
       create: async (input) => {
@@ -285,6 +304,10 @@ test("final user-row lock sweeps pre-lock candidates and prevents post-delete pr
   assert.equal(urgentUpdates[0].data.authorId, null);
   assert.ok(urgentUpdates[0].data.authorErasedAt instanceof Date);
   assert.equal(deleted.privacyCounts.anonymizedUrgentRequests, 2);
+  assert.deepEqual(supervisionTombstones.map(([kind]) => kind), ["process", "participation", "topic"]);
+  assert.equal(deleted.privacyCounts.supervisionProcessesTombstoned, 1);
+  assert.equal(deleted.privacyCounts.supervisionParticipationsTombstoned, 2);
+  assert.equal(deleted.privacyCounts.supervisionTopicsTombstoned, 3);
   // SOL-PRE-01: saatmata mustandid kustutatakse, mitte ei puhastata.
   assert.deepEqual(preInquiryDeletes[0].where, { authorId: "user-1", sentAt: null });
   assert.equal(deleted.privacyCounts.deletedUnsentPreInquiries, 3);

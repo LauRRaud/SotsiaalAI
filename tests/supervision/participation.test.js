@@ -9,8 +9,10 @@ import {
   inviteParticipant,
   withdrawInvite,
   respondToInvite,
+  acceptContractVersion,
   getProcessDetail
 } from "../../lib/supervision/service.js";
+import { closeProcess } from "../../lib/supervision/closure.js";
 
 async function draftWithContract(db) {
   await issueGrant({ actorUserId: "admin1", userId: "sv1", grantBasis: "x" }, { db });
@@ -135,4 +137,36 @@ test("kutsutu (KUT) ligipääsuenne accept'i: piiratud kaart, ilma osalejate/tee
   assert.equal(card.topics, undefined);
   assert.equal(card.meetings, undefined);
   assert.equal(card.summaries, undefined);
+});
+
+test("CLOSED protsessis ei saa kutsele vastata ega kontrakti uuesti kinnitada", async () => {
+  const db = setupBase();
+  const { processId, contractVersionId, participationIds } = await makeActiveProcess(db, {
+    invite: ["os1", "os2"],
+    accept: ["os1"]
+  });
+  const beforeClose = await getProcessDetail({ processId, session: sv() }, { db });
+  await closeProcess(
+    { processId, session: sv(), input: { expectedVersion: beforeClose.version, generalizedTitle: "Suletud" } },
+    { db }
+  );
+  const auditsBefore = db.store.supervisionAuditEvent.length;
+  const acceptancesBefore = db.store.supervisionContractAcceptance.length;
+
+  await assert.rejects(
+    () => respondToInvite({
+      participationId: participationIds.os2,
+      session: os2(),
+      input: { action: "accept", contractVersionId }
+    }, { db }),
+    (error) => error.status === 409 && error.code === "ALREADY_CLOSED"
+  );
+  await assert.rejects(
+    () => acceptContractVersion({ processId, session: os1(), input: { contractVersionId } }, { db }),
+    (error) => error.status === 409 && error.code === "ALREADY_CLOSED"
+  );
+
+  assert.equal(db.store.supervisionParticipation.find((row) => row.id === participationIds.os2).status, "INVITED");
+  assert.equal(db.store.supervisionContractAcceptance.length, acceptancesBefore);
+  assert.equal(db.store.supervisionAuditEvent.length, auditsBefore);
 });

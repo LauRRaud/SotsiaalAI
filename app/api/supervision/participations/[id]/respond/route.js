@@ -10,13 +10,16 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-export async function POST(request, context) {
+export async function POST(request, context, deps = {}) {
   const locale = supervisionLocale(request);
   try {
-    const session = await getSupervisionSession();
+    const session = deps.session ?? await getSupervisionSession();
     const params = await context?.params;
     const body = await request.json().catch(() => ({}));
-    const result = await respondToInvite({ participationId: String(params?.id || "").trim(), session, input: body });
+    const result = await (deps.respondToInvite || respondToInvite)(
+      { participationId: String(params?.id || "").trim(), session, input: body },
+      { db: deps.db, now: deps.now }
+    );
     return json({ ok: true, ...result });
   } catch (error) {
     return supervisionErrorResponse(error, locale, "[supervision] respond failed", "supervision.errors.save_failed");

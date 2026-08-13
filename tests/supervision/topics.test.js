@@ -8,6 +8,7 @@ import {
 } from "../../lib/supervision/service.js";
 import { createPrivateItem, updatePrivateItem } from "../../lib/supervision/privateItems.js";
 import { shareTopic, withdrawTopic } from "../../lib/supervision/topics.js";
+import { closeProcess } from "../../lib/supervision/closure.js";
 
 test("test #8: jagamine on külmutatud koopia (hilisem M6 muudatus ei muuda M7); tundmatu väli → 400", async () => {
   const db = setupBase();
@@ -68,15 +69,23 @@ test("PROCESS-teemat näevad kõik ACCEPTED liikmed", async () => {
   assert.equal(os2View.topics[0].title, "kõigile");
 });
 
-test("OS† (kinnitamata uus versioon) ei saa jagada → 409; SV ei autoreeri → 403", async () => {
+test("SUP-03: SV autoreerib ilma võltsosaluseta; OS† ei saa jagada → 409", async () => {
   const db = setupBase();
   const { processId } = await makeActiveProcess(db);
 
-  // SV ei saa teemat autoreerida
-  await assert.rejects(
-    () => shareTopic({ processId, session: sv(), input: { audience: "PROCESS", title: "x", body: "y" } }, { db }),
-    (e) => e.status === 403
+  const supervisorTopic = await shareTopic(
+    { processId, session: sv(), input: { audience: "PROCESS", title: "SV teema", body: "y" } },
+    { db }
   );
+  const supervisorRow = db.store.supervisionSharedTopic.find((row) => row.id === supervisorTopic.topic.id);
+  assert.equal(supervisorRow.authorParticipationId, null);
+  assert.equal(supervisorRow.authorSupervisorUserId, "sv1");
+  assert.equal(supervisorTopic.topic.authorType, "SUPERVISOR");
+  const withdrawn = await withdrawTopic(
+    { topicId: supervisorTopic.topic.id, session: sv(), input: { expectedVersion: supervisorTopic.topic.version } },
+    { db }
+  );
+  assert.equal(withdrawn.topic.status, "WITHDRAWN");
 
   // Aktiveeri uus versioon → os1 muutub OS†
   const svView = await getProcessDetail({ processId, session: sv() }, { db });
@@ -88,6 +97,24 @@ test("OS† (kinnitamata uus versioon) ei saa jagada → 409; SV ei autoreeri �
     () => shareTopic({ processId, session: os1(), input: { audience: "PROCESS", title: "x", body: "y" } }, { db }),
     (e) => e.status === 409
   );
+});
+
+test("CLOSED protsessi ei saa pärast purge'i uue jagatud teemaga täita", async () => {
+  const db = setupBase();
+  const { processId } = await makeActiveProcess(db);
+  const beforeClose = await getProcessDetail({ processId, session: sv() }, { db });
+  await closeProcess(
+    { processId, session: sv(), input: { expectedVersion: beforeClose.version, generalizedTitle: "Suletud" } },
+    { db }
+  );
+  const auditsBefore = db.store.supervisionAuditEvent.length;
+
+  await assert.rejects(
+    () => shareTopic({ processId, session: os1(), input: { audience: "PROCESS", title: "pärast", body: "ei tohi" } }, { db }),
+    (error) => error.status === 409 && error.code === "ALREADY_CLOSED"
+  );
+  assert.equal(db.store.supervisionSharedTopic.length, 0);
+  assert.equal(db.store.supervisionAuditEvent.length, auditsBefore);
 });
 
 test("teema tagasivõtt: ainult autor; mitte-autor → 404; idempotentne; pärast withdraw teised ei näe", async () => {

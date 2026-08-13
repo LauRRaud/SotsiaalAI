@@ -71,6 +71,30 @@ test("aktiveerimine supersede'ib eelmise aktiivse versiooni ja on idempotentne",
   assert.equal(repeat.activeContract.id, cv2.contractVersion.id);
 });
 
+test("SUPERSEDED kontraktiversioon on lõplik ega saa vana nõusolekut taasaktiveerida", async () => {
+  const db = setupBase();
+  const { processId, contractVersionId } = await makeActiveProcess(db);
+  const svView = await getProcessDetail({ processId, session: sv() }, { db });
+  const cv2 = await createContractVersion({ processId, session: sv(), input: { body: "v2" } }, { db });
+  await activateContractVersion(
+    { processId, versionId: cv2.contractVersion.id, session: sv(), input: { expectedVersion: svView.version } },
+    { db }
+  );
+  const afterV2 = await getProcessDetail({ processId, session: sv() }, { db });
+
+  await assert.rejects(
+    () => activateContractVersion(
+      { processId, versionId: contractVersionId, session: sv(), input: { expectedVersion: afterV2.version } },
+      { db }
+    ),
+    (error) => error.status === 409 && error.code === "CONTRACT_VERSION_FINAL"
+  );
+
+  const afterRejected = await getProcessDetail({ processId, session: sv() }, { db });
+  assert.equal(afterRejected.activeContract.id, cv2.contractVersion.id);
+  assert.equal(db.store.supervisionContractVersion.find((row) => row.id === contractVersionId).status, "SUPERSEDED");
+});
+
 test("kontraktiversiooni loob ainult SV (OS → 404)", async () => {
   const db = setupBase();
   const { processId } = await makeActiveProcess(db);

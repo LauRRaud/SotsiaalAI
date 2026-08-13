@@ -60,7 +60,7 @@ test("SV capabilities lubab hallata; OS lubab jagada/kinnitada; kumbki roll õig
   // SV EI jaga teemasid: M7 autor on alati osalus (schema NOT NULL FK) ja
   // topics.js viskab superviisorile 403. Lipp peab jõustusega kokku langema,
   // muidu kannaks UI nuppu, mis alati ebaõnnestub.
-  assert.equal(svView.capabilities.canShareTopic, false);
+  assert.equal(svView.capabilities.canShareTopic, true);
   assert.equal(svView.capabilities.canApproveSummary, false);
 
   assert.equal(osView.capabilities.canInvite, false);

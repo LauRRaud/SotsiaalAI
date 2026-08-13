@@ -8,6 +8,7 @@ import { runNotificationDelivery } from "@/lib/notificationDelivery";
 import { reconcileNotificationEvents } from "@/lib/notificationReconciler";
 import { projectDomainEvents } from "@/lib/events/projector";
 import { runMentoringSweep } from "@/lib/mentoring/sweep";
+import { runSupervisionSweep } from "@/lib/supervision/sweep";
 import { runFieldSafetySweep } from "@/lib/field/safety";
 import { runUrgentExpirySweep } from "@/lib/urgent/sweep";
 import { safeError } from "@/lib/privacy/safeError";
@@ -31,7 +32,7 @@ function authorized(request) {
 /**
  * SOL-NOTIF-06 — OHUTUSKRIITILINE TÖÖ EI TOHI SÕLTUDA TEISE TÖÖ TERVISEST.
  *
- * Kõik kuus etappi olid ÜHES `try` plokis järjestikuste `await`-idena ja välitöö
+ * Kõik etapid olid ÜHES `try` plokis järjestikuste `await`-idena ja välitöö
  * dead-man kontroll ning kiire abi aegumine olid viimased. Ükskõik millise
  * varasema etapi viga hüppas ühisesse `catch`-i ja need kaks jäid käivitamata:
  * tavalise teavituse või SMTP infrastruktuuri rike blokeeris check-in
@@ -74,6 +75,7 @@ export async function POST(request) {
   let deliveryPages = 0;
 
   const mentoring = await runStage("mentoring", stages, () => runMentoringSweep({ dryRun, batchSize }));
+  const supervision = await runStage("supervision", stages, () => runSupervisionSweep({ dryRun, batchSize }));
 
   /* Iga silmus on oma eelarve: ühe etapi 100 lehekülge ei söö ära teise oma ja
      tema viga ei võta teistelt käivitust. */
@@ -133,6 +135,7 @@ export async function POST(request) {
     reconciled,
     projected,
     mentoring,
+    supervision,
     delivery,
     fieldSafety,
     urgentExpiry

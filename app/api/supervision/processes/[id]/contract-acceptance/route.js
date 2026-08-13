@@ -10,13 +10,16 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-export async function POST(request, context) {
+export async function POST(request, context, deps = {}) {
   const locale = supervisionLocale(request);
   try {
-    const session = await getSupervisionSession();
+    const session = deps.session ?? await getSupervisionSession();
     const params = await context?.params;
     const body = await request.json().catch(() => ({}));
-    const process = await acceptContractVersion({ processId: String(params?.id || "").trim(), session, input: body });
+    const process = await (deps.acceptContractVersion || acceptContractVersion)(
+      { processId: String(params?.id || "").trim(), session, input: body },
+      { db: deps.db, now: deps.now }
+    );
     return json({ ok: true, process });
   } catch (error) {
     return supervisionErrorResponse(error, locale, "[supervision] contract acceptance failed", "supervision.errors.save_failed");

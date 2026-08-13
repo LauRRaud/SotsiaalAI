@@ -1863,6 +1863,9 @@
     "section7Support": {
       "body": "<p><strong>7.11 Wellbeing support sharing.</strong> Unopened shared content is retained for up to 30 days. Opened or corrected content remains until closure and for up to 90 further days, but never beyond 12 months from first sending; recall deletes content immediately. Deleting the recipient membership or organisation ends access and deletes content. Account deletion recalls an unopened message; an already opened copy may remain with the recipient until the same short deadline. After content deletion, a restricted contentless sharing receipt remains for three years. Only material necessary for a concrete dispute may be placed under a separate legal hold.</p>"
     },
+    "section7Supervision": {
+      "body": "<p><strong>7.12 Shared supervision evidence.</strong> As an exception to the general rule in section 7.10, closing an account deletes the user's private supervision preparation area and personal persistent output. The shared supervision process, contract versions and acceptance facts, approved summaries, closure record, and content-free audit trail remain as evidence shared by the other participants without the deleted user's identity. Until a specific retention period is approved, these records remain in AWAITING_POLICY status and are not purged automatically.</p>"
+    },
     "section8": {
       "heading": "8. Your Rights",
       "items": "<li>Right to access your personal data and obtain a copy.</li><li>Right to correct inaccurate or incomplete data.</li><li>Right to request erasure where there is a legal basis for it.</li><li>Right to restrict processing or object to processing based on legitimate interest.</li><li>Right to data portability, where the GDPR conditions for portability are met.</li><li>Right to withdraw consent, where processing is based on consent.</li><li>Right to request human review where automated processing or AI output requires it.</li><li>Right to lodge a complaint with the <aDpa>Data Protection Inspectorate</aDpa>.</li>"
@@ -5267,6 +5270,7 @@
       "supervision_meeting_upcoming": "A supervision meeting is approaching",
       "supervision_summary_pending": "A supervision summary awaits your approval",
       "supervision_closed": "A supervision process was closed",
+      "supervision_participant_left": "A participant left the supervision process",
       "data_export_ready": "Your data copy is ready",
       "mentoring_request_created": "You received a mentoring request",
       "mentoring_request_accepted": "Your mentoring request was accepted",
@@ -8529,6 +8533,8 @@
       "bodyLabel": "Summary text",
       "submit": "Send for approval",
       "approve": "I approve",
+      "discard": "Withdraw and discard",
+      "discardConfirm": "Withdraw this summary from approval? Existing approvals will be removed and pending notifications closed. A replacement summary starts approval from zero.",
       "waitingApprovals": "Awaiting {done}/{total} approvals",
       "empty": "No summaries yet.",
       "draftOnlyYou": "Only you can see this (supervisor)",
@@ -8550,7 +8556,12 @@
       "meetingNotes": "Meeting working notes",
       "approvedSummaries": "Confirmed summaries",
       "meetingFacts": "Meeting facts",
+      "contractVersions": "Contract versions: {count}",
+      "contractAcceptances": "Contract acceptances: {count}",
+      "auditTrail": "Content-free audit trail: {count} events",
+      "closureFacts": "Closure record and aggregate facts",
       "privateItems": "Your private antechamber",
+      "personalOutcomes": "Personal retained outcomes: {count}",
       "generalizedTitleLabel": "Generalized title (replaces the current one)",
       "confirm": "Close the process permanently",
       "pendingBlock": "Confirm or discard pending summaries before closing.",
@@ -8560,6 +8571,13 @@
       "banner": "The process is closed; raw content has been deleted.",
       "purged": "Deleted: {topics} topics, {drafts} drafts, {notes} notes.",
       "openPack": "Open my pack"
+    },
+    "leave": {
+      "hint": "You can leave the process. Afterwards, you will only see content approved or shared before you left.",
+      "confirmHint": "Leaving ends your participation. This action cannot be undone.",
+      "action": "Leave the process",
+      "confirm": "Confirm leaving",
+      "done": "You have left the supervision process."
     },
     "outcome": {
       "title": "My personal pack",

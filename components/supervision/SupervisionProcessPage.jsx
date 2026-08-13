@@ -18,6 +18,7 @@ import {
   SUPERVISION_AREAS,
   SUPERVISION_AREA_LIST,
   SUPERVISION_AREA_NAV_KEYS,
+  isConflict,
   normalizeArea,
   supervisionMessage,
   supervisionRequest
@@ -41,6 +42,8 @@ export default function SupervisionProcessPage({ processId }) {
   const [loadError, setLoadError] = useState("");
   const [notice, setNotice] = useState("");
   const [outcomeId, setOutcomeId] = useState("");
+  const [leaveConfirming, setLeaveConfirming] = useState(false);
+  const [leaveBusy, setLeaveBusy] = useState(false);
 
   const load = useCallback(async (signal) => {
     setLoadError("");
@@ -77,6 +80,26 @@ export default function SupervisionProcessPage({ processId }) {
 
   const isClosed = process?.status === "CLOSED";
 
+  // Kokkuvõtete kinnitused on grupitöö: nähtaval lehel värskendame mõõdukalt,
+  // taustal ja suletud protsessis ei tee päringuid. Fookusesse naasmine
+  // sünkroonib seisu kohe.
+  useEffect(() => {
+    if (area !== SUPERVISION_AREAS.KOKKUVOTTED || isClosed) return undefined;
+    let inFlight = false;
+    const refresh = async () => {
+      if (document.visibilityState !== "visible" || inFlight) return;
+      inFlight = true;
+      try { await load(); } finally { inFlight = false; }
+    };
+    const onVisibilityChange = () => { if (document.visibilityState === "visible") void refresh(); };
+    const timer = window.setInterval(() => { void refresh(); }, 10_000);
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    return () => {
+      window.clearInterval(timer);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+    };
+  }, [area, isClosed, load]);
+
   // M12 pakk on PRIVAATNE ega tule protsessi vastusega — suletud vaates
   // otsime OMA pakkide loendist selle protsessi oma (Q2.6 vaade 10).
   useEffect(() => {
@@ -103,6 +126,39 @@ export default function SupervisionProcessPage({ processId }) {
     () => (process?.participants || []).filter((row) => row.status === "ACCEPTED").length,
     [process]
   );
+
+  const leave = useCallback(async () => {
+    const participationId = process?.myParticipation?.id;
+    if (!participationId || leaveBusy) return;
+    if (!leaveConfirming) {
+      setLeaveConfirming(true);
+      setNotice(t("supervision.leave.confirmHint"));
+      return;
+    }
+    setLeaveBusy(true);
+    setNotice("");
+    try {
+      const { ok, status, payload } = await supervisionRequest(
+        `/api/supervision/participations/${encodeURIComponent(participationId)}/leave`,
+        { method: "POST" }
+      );
+      if (!ok) {
+        if (isConflict(status)) {
+          await handleConflict();
+          return;
+        }
+        setNotice(supervisionMessage({ status, payload, t, fallbackKey: "supervision.errors.save_failed" }));
+        return;
+      }
+      setLeaveConfirming(false);
+      setNotice(t("supervision.leave.done"));
+      await load();
+    } catch {
+      setNotice(t("supervision.errors.save_failed"));
+    } finally {
+      setLeaveBusy(false);
+    }
+  }, [handleConflict, leaveBusy, leaveConfirming, load, process?.myParticipation?.id, t]);
 
   if (loading) {
     return (
@@ -232,6 +288,31 @@ export default function SupervisionProcessPage({ processId }) {
               >
                 {t("supervision.close.title")}
               </Button>
+            </div>
+          </div>
+        ) : null}
+
+        {process.capabilities?.canLeave ? (
+          <div className={styles.dangerZone}>
+            <p>{leaveConfirming ? t("supervision.leave.confirmHint") : t("supervision.leave.hint")}</p>
+            <div className={styles.actions}>
+              <Button disabled={leaveBusy} onClick={leave} size="sm" variant="secondary">
+                {leaveBusy
+                  ? t("supervision.common.saving")
+                  : leaveConfirming
+                    ? t("supervision.leave.confirm")
+                    : t("supervision.leave.action")}
+              </Button>
+              {leaveConfirming ? (
+                <Button
+                  disabled={leaveBusy}
+                  onClick={() => { setLeaveConfirming(false); setNotice(""); }}
+                  size="sm"
+                  variant="secondary"
+                >
+                  {t("supervision.common.cancel")}
+                </Button>
+              ) : null}
             </div>
           </div>
         ) : null}

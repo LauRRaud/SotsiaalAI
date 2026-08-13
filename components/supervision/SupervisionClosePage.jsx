@@ -167,7 +167,12 @@ export default function SupervisionClosePage({ processId }) {
                     {": "}
                     {preview.willKeep?.meetings ?? 0}
                   </li>
+                  <li>{t("supervision.close.contractVersions", { count: preview.willKeep?.contractVersions ?? 0 })}</li>
+                  <li>{t("supervision.close.contractAcceptances", { count: preview.willKeep?.contractAcceptances ?? 0 })}</li>
+                  <li>{t("supervision.close.auditTrail", { count: preview.willKeep?.auditEvents ?? 0 })}</li>
+                  <li>{t("supervision.close.closureFacts")}</li>
                   <li>{t("supervision.close.privateItems")}</li>
+                  <li>{t("supervision.close.personalOutcomes", { count: preview.willKeep?.personalOutcomes ?? 0 })}</li>
                 </ul>
               </div>
             </div>

@@ -1,12 +1,14 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { setupBase, sv, makeActiveProcess } from "./scenario.js";
+import { setupBase, sv, os1, makeActiveProcess } from "./scenario.js";
 import {
   createContractVersion,
   activateContractVersion,
   getProcessDetail
 } from "../../lib/supervision/service.js";
 import { createSummary, submitSummary } from "../../lib/supervision/summaries.js";
+import { planMeeting, updateMeeting } from "../../lib/supervision/meetings.js";
+import { shareTopic } from "../../lib/supervision/topics.js";
 import { assertNotificationRecipient } from "../../lib/notifications.js";
 import { buildSupervisionContinuity } from "../../lib/supervision/notifications.js";
 
@@ -52,6 +54,14 @@ test("saaja-verifitseerimine: kutse ainult kutsutule; sulgemine liikmele; võõr
   await assert.rejects(() => assertNotificationRecipient(db, {
     type: "SUPERVISION_CLOSED", userId: "outsider", sourceId: processId, targetId: processId
   }), (e) => e.status === 404);
+
+  db.store.supervisionParticipation.find((row) => row.id === participationIds.os1).status = "LEFT";
+  await assert.doesNotReject(() => assertNotificationRecipient(db, {
+    type: "SUPERVISION_PARTICIPANT_LEFT", userId: "sv1", sourceId: participationIds.os1, targetId: processId
+  }));
+  await assert.rejects(() => assertNotificationRecipient(db, {
+    type: "SUPERVISION_PARTICIPANT_LEFT", userId: "outsider", sourceId: participationIds.os1, targetId: processId
+  }), (e) => e.status === 404);
 });
 
 test("continuity-allikas: OS† kontrakt-kinnitus annab kirje; kuni 2 kirjet", async () => {
@@ -73,4 +83,74 @@ test("continuity-allikas: OS† kontrakt-kinnitus annab kirje; kuni 2 kirjet", a
   assert.equal(items[0].kind, "supervision");
   assert.ok(items[0].labelKey.includes("contract_pending"));
   assert.ok(items[0].href.includes("ala=kontrakt"));
+});
+
+test("SUP-15: continuity leiab ootel töö ka enam kui 20 aktiivse protsessi järel", async () => {
+  const db = setupBase();
+  let target = null;
+  for (let index = 0; index < 21; index += 1) {
+    target = await makeActiveProcess(db, { ensureGrant: index === 0 });
+  }
+  const detail = await getProcessDetail({ processId: target.processId, session: sv() }, { db });
+  const v2 = await createContractVersion(
+    { processId: target.processId, session: sv(), input: { body: "Uus raam" } }, { db }
+  );
+  await activateContractVersion(
+    {
+      processId: target.processId,
+      versionId: v2.contractVersion.id,
+      session: sv(),
+      input: { expectedVersion: detail.version }
+    },
+    { db }
+  );
+
+  const items = await buildSupervisionContinuity(db, "os1");
+  assert.equal(items[0].id, `ctr:${target.processId}`);
+});
+
+test("SUP-15: ettevalmistus on seotud järgmise kohtumise agendaga", async () => {
+  const db = setupBase();
+  const { processId } = await makeActiveProcess(db);
+  const first = await planMeeting(
+    { processId, session: sv(), input: { plannedAt: "2030-01-01T10:00:00.000Z" } }, { db }
+  );
+  const firstTopic = await shareTopic(
+    { processId, session: os1(), input: { title: "Esimene", body: "Ettevalmistus", audience: "PROCESS" } },
+    { db }
+  );
+  await updateMeeting({
+    meetingId: first.meeting.id,
+    session: sv(),
+    input: { status: "HELD", agendaTopicIds: [firstTopic.topic.id], expectedVersion: first.meeting.version }
+  }, { db });
+
+  const second = await planMeeting(
+    { processId, session: sv(), input: { plannedAt: "2030-02-01T10:00:00.000Z" } }, { db }
+  );
+  let items = await buildSupervisionContinuity(db, "os1");
+  assert.ok(items.some((item) => item.id === `prep:${processId}`), "esimese kohtumise teema ei kata teist");
+
+  const secondTopic = await shareTopic(
+    { processId, session: os1(), input: { title: "Teine", body: "Ettevalmistus", audience: "PROCESS" } },
+    { db }
+  );
+  const preparedSecond = await updateMeeting({
+    meetingId: second.meeting.id,
+    session: sv(),
+    input: { agendaTopicIds: [secondTopic.topic.id], expectedVersion: second.meeting.version }
+  }, { db });
+  items = await buildSupervisionContinuity(db, "os1");
+  assert.ok(!items.some((item) => item.id === `prep:${processId}`));
+
+  await updateMeeting({
+    meetingId: second.meeting.id,
+    session: sv(),
+    input: { status: "HELD", expectedVersion: preparedSecond.meeting.version }
+  }, { db });
+  await planMeeting(
+    { processId, session: sv(), input: { plannedAt: "2030-03-01T10:00:00.000Z" } }, { db }
+  );
+  items = await buildSupervisionContinuity(db, "os1");
+  assert.ok(items.some((item) => item.id === `prep:${processId}`), "kolmas kohtumine vajab oma markerit");
 });
