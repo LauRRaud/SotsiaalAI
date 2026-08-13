@@ -4425,28 +4425,52 @@ model MaterialSubmissionBatch {
 }
 
 model MaterialSubmission {
-  id                String    @id @default(cuid())
-  submittedByUserId String
-  comment           String    @db.Text
-  originalName      String
-  mime              String
-  size              Int
-  sha256            String
-  storagePath       String
-  storageStatus     String    @default("ACTIVE")
-  batchId           String?
-  duplicateOfId     String?
-  status            String    @default("pending")
-  reviewRevision    Int       @default(0)
-  reviewedAt        DateTime?
-  reviewedBy        String?
-  reviewNote        String?   @db.Text
-  createdAt         DateTime  @default(now())
-  updatedAt         DateTime  @updatedAt
+  id                      String    @id @default(cuid())
+  submittedByUserId       String
+  comment                 String    @db.Text
+  originalName            String
+  mime                    String
+  size                    Int
+  sha256                  String
+  storagePath             String
+  storageStatus           String    @default("ACTIVE")
+  batchId                 String?
+  duplicateOfId           String?
+  status                  String    @default("pending")
+  reviewRevision          Int       @default(0)
+  reviewedAt              DateTime?
+  reviewedBy              String?
+  reviewNote              String?   @db.Text
+  sourceId                String?   @unique
+  ragDocId                String?   @unique
+  ragVersion              Int       @default(0)
+  ragContentHash          String?
+  ragCollection           String?
+  ragAudience             String?
+  ragPolicyVersion        String?
+  rightsEvidenceMode      String?
+  ragRetentionMode        String?
+  ragWithdrawalAuthority  String?
+  ragIngestStatus         String    @default("NOT_CONFIGURED")
+  ragIngestedAt           DateTime?
+  ragIngestedByUserId     String?
+  ragIngestErrorCode      String?
+  ragIngestAttempts       Int       @default(0)
+  ragIngestNextAt         DateTime?
+  ragRemovalStatus        String?
+  authorName              String?
+  rightsHolder            String?
+  rightsBasis             String?
+  rightsEvidence          String?   @db.Text
+  rightsConfirmedAt       DateTime?
+  rightsConfirmedByUserId String?
+  createdAt               DateTime  @default(now())
+  updatedAt               DateTime  @updatedAt
 
   submittedByUser User                     @relation(fields: [submittedByUserId], references: [id], onDelete: Cascade)
   batch           MaterialSubmissionBatch? @relation(fields: [batchId], references: [id], onDelete: SetNull)
 
+  @@unique([sha256, ragCollection, ragAudience])
   @@index([submittedByUserId, createdAt])
   @@index([createdAt])
   @@index([sha256])
@@ -4454,6 +4478,8 @@ model MaterialSubmission {
   @@index([batchId])
   @@index([submittedByUserId, storageStatus, createdAt])
   @@index([reviewedAt])
+  @@index([ragIngestStatus, ragIngestNextAt])
+  @@index([ragRemovalStatus])
 }
 
 // ---------------------------------------------------------------------------

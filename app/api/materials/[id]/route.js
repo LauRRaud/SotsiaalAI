@@ -6,7 +6,9 @@ import { errorJson, json, localeFromRequest } from "@/lib/documents/server"
 import { requireMaterialReadAccess } from "@/lib/materials/access"
 import { getMaterialSubmissionSchemaMessage, isMaterialSubmissionSchemaError } from "@/lib/materials/compat"
 import { requestMaterialSubmissionDeletion } from "@/lib/materials/lifecycle"
+import { importReviewedMaterialToRag } from "@/lib/materials/ragLifecycle"
 import { reviewMaterialSubmission } from "@/lib/materials/review"
+import { serializeMaterialSubmission } from "@/lib/materials/submissions"
 import { safeError } from "@/lib/privacy/safeError"
 
 export const runtime = "nodejs"
@@ -44,6 +46,15 @@ export async function PATCH(request, { params }) {
   }
 
   try {
+    if (body?.action === "import_rag") {
+      const imported = await importReviewedMaterialToRag({
+        id,
+        expectedRevision: body?.expectedRevision,
+        actorUserId: session?.user?.id || null,
+        rights: body?.rights
+      })
+      return json({ ok: true, submission: serializeMaterialSubmission(imported) })
+    }
     const submission = await reviewMaterialSubmission({
       id,
       action: body?.action,
