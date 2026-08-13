@@ -146,14 +146,15 @@ test("plokk ASENDATAKSE, ja markerite puudumine viskab, mitte ei lisa vaikselt t
 test("päris parandusaudit.md sisaldab markereid ja tema plokk on värske", async () => {
   const { findings } = await collectFindings();
   const source = await readFile(path.join(AUDIT_DIR, "parandusaudit.md"), "utf8");
+  const normalizeEol = (value) => value.replace(/\r\n/g, "\n");
 
   assert.ok(source.includes(BLOCK_START) && source.includes(BLOCK_END), "markerid peavad failis olema");
   /* Kui see kukub, on plokk vananenud — jooksuta `npm run sol:tally -- --write`.
      Just see kontroll teeb ta lagunemise NÄHTAVAKS: vana käsitsi jutustus lagunes
      üheksa peatüki võrra ja ükski test ei öelnud selle kohta midagi. */
   assert.equal(
-    replaceBlock(source, renderProgressBlock(findings)),
-    source,
+    normalizeEol(replaceBlock(source, renderProgressBlock(findings))),
+    normalizeEol(source),
     "parandusaudit.md kolmeastmeline plokk ei ole värske — jooksuta: npm run sol:progress -- --write"
   );
 });
