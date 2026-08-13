@@ -229,7 +229,18 @@ try {
     terminalRevision = reopened.reviewRevision
     terminalStatus = reopened.status
   }
-  const imported = await reviewMaterialSubmission({ id: reviewId, action: "mark_imported", expectedRevision: terminalRevision, reviewedBy: reviewAdminA.email, actorUserId: reviewAdminA.id }, { db: prisma })
+  // MAT08 keeps the application import action fail-closed until rights policy
+  // and a positive RAG receipt exist. Seed a legacy imported row directly so
+  // this MAT09 probe can still prove the DB-level terminal transition guard.
+  const imported = await prisma.materialSubmission.update({
+    where: { id: reviewId },
+    data: {
+      status: "imported",
+      reviewRevision: { increment: 1 },
+      reviewedAt: new Date(),
+      reviewedBy: reviewAdminA.email
+    }
+  })
   const triggerRejected = await Promise.allSettled([prisma.materialSubmission.update({
     where: { id: reviewId }, data: { status: "pending", reviewRevision: { increment: 1 } }
   })])

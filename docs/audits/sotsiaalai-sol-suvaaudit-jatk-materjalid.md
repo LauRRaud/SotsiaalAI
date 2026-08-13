@@ -98,7 +98,7 @@ Audit ei kasutanud vana `SotsiaalAI-sol-audit-cfa62ea` koopiat ega põhiprojekti
 
 **Vastuvõtukriteerium.** Lisada omaniku minimaalse projektsiooniga pagineeritud „minu esitised” vaade, omaniku download ning idempotentne withdraw/delete. Lugemine ja oma ootel/rejected faili eemaldamine peavad olema tellimusest sõltumatud. Terminalse/imported esitise puhul peab server andma ausa eemaldamislepingu, mitte vaikse keelu. Ristkasutaja 404-negatiivtestid peavad katma list/detail/download/withdraw kõik olekud.
 
-**Seis.** DONE — 13.08.2026. `MaterialsPage` kuvab omaniku pagineeritud esitised, seisundi, omaniku download'i ja pending/rejected tagasivõtmise; GET/download/delete kasutavad serveris omaniku skoopi ja töötavad tellimuseta. Imported tagasivõtmine annab ausa 409, ristkasutaja download/delete 404 ning korduv delete tagastab idempotentse edu. PostgreSQL-i sond tõendas eemaldamise, retry, auditi ja cross-user piiri; 23/23 PASS.
+**Seis.** DONE — 13.08.2026. `MaterialsPage` kuvab omaniku pagineeritud esitised, seisundi, omaniku download'i ja pending/rejected tagasivõtmise; GET/download/delete kasutavad serveris omaniku skoopi ja töötavad tellimuseta. Imported tagasivõtmine annab ausa 409, ristkasutaja download/delete 404 ning korduv delete tagastab idempotentse edu. PostgreSQL-i sond tõendas eemaldamise, retry, auditi ja cross-user piiri; lõplik sond 30/30 PASS. Päris Chromiumis renderdus sünteetilise API-projektsiooniga kahe staatusega omanikuvaade ja `Näita veel`; `Võta tagasi` eemaldas ootel rea. Backend-auth ja omandipiir on eraldi HTTP/PG testidega tõendatud, brauseris production-andmeid ei kasutatud.
 
 ### SOL-MAT-07 — adminijärjekord lõpeb vaikides 100 uusima rea juures — P2
 
@@ -166,7 +166,13 @@ tõendas review rollback'i, kustutusauditi rollback/retry rada ja täpselt ühe 
 
 **Vastuvõtukriteerium.** Omaniku data export peab sisaldama minimaalse metaandmestiku ja iga allesoleva originaalfaili, imported/RAG seose ning selge manifestirea puuduva faili kohta. Review-väljadest tuleb välistada teiste isikute üleliigne info. Test peab võrdlema omaniku kahte esitist, võõrast esitist, puuduvat faili ja imported seost ZIP-i manifestiga.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE. Andmekoopia registris on owner-skoobitud `material_submissions` pind:
+`materials.json` sisaldab esitise metaandmeid, staatust, review-põhjust ja retention/RAG seose
+olekut, kuid mitte ülevaataja identiteeti ega storage path'i. Allesolev originaal lisatakse
+ZIP-i; puuduva, ligipääsmatu või containment'i rikkuva faili kohta jääb globaalsesse manifesti
+eraldi ID, põhjus ja `archivePath: null`, mitte märgistamata auk. Sihttest võrdles kahte oma
+esitist, owner-filtrit, üht olemasolevat ja üht puuduvat faili ning legacy `imported` rea
+`ragRelationStatus: not_recorded` märget: data-export/Materjalid plokk 39/39 PASS.
 
 ### SOL-MAT-12 — rejected/imported/pending failidel puudub retention'i tähtaeg ja sweep — P2
 
@@ -176,7 +182,12 @@ tõendas review rollback'i, kustutusauditi rollback/retry rada ja täpselt ühe 
 
 **Vastuvõtukriteerium.** Määratleda iga oleku retention (pending SLA + expiry, rejected lühike vaidlusaken, imported originaali/RAG-koopia eraldi leping), salvestada tähtaeg ja käivitada idempotentne fail+DB+RAG sweep püsiva retry/auditiga. UI ja data-export manifest peavad näitama tähtaega ning SMTP-koopia andmeminimeerimise/retention'i piiri. Kellatest peab katma kõik olekud, sweep'i crash'i ja teise jooksu.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** NOT_DONE — retention'i sisulised tähtajad ja imported-koopia õigusrežiim vajavad
+omaniku otsust. Täpselt tuleb kinnitada pending SLA/expiry päevades, rejected vaidlusaken,
+reviewed säilitusaeg ning kas imported originaal ja RAG-koopia kustuvad esitise või konto
+kustutusega. Otsusest sõltumatu osa on valmis: andmekoopia manifest kannab `retentionUntil`
+välja ka siis, kui see on ausalt `null`; SMTP outbox ei kopeeri enam esitaja e-posti,
+failinimesid ega kommentaari. Ilma kinnitatud arvudeta ei lisatud näilist tähtaega ega sweep'i.
 
 ### SOL-MAT-13 — SMTP-teavituse tõrge kaob logisse ja tööjärjekord ei tea sellest — P2
 
@@ -186,7 +197,14 @@ tõendas review rollback'i, kustutusauditi rollback/retry rada ja täpselt ühe 
 
 **Vastuvõtukriteerium.** DB-esitise ja teavituskavatsuse loomine peab olema üks tehing/outbox; worker kasutab stabiilset Message-ID-d, retry/backoff'i ja auditeeritud delivered/failed seisu. Kasutajale võib upload'i edu jääda ausalt eraldi, kuid admini järjekord peab näitama teavituse tõrget. Negatiivtestid: config puudu, SMTP 4xx/5xx, timeout pärast võimalikku delivery't, protsessi surm pärast commit'i ja korduv worker ilma duplikaatkirjata.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE. Upload-batch on püsiv outbox: esitised ja `PENDING` teavituskavatsus sünnivad
+samast DB-töövoost, worker claim'ib CAS-iga, kasutab batch'ist tuletatud püsivat RFC Message-ID-d
+ning salvestab auditeeritult `SENT`, `RETRY` või `FAILED`. Teavituse tekst sisaldab ainult failide
+arvu ja adminivaate linki; esitaja e-post, failinimed ja kommentaar ei lähe SMTP-sse ega outbox'i.
+Adminijärjekord näitab staatust, katseid ja veakoodi. Ühiksihttestid olid 39/39 PASS; päris
+PostgreSQL-i `materials:notifications:probe` oli 8/8 PASS: kaks worker'it saatsid ühe kirja,
+config-puudus jäi nähtavaks retry'ks, SMTP 451 taastus ning SMTP-järgse DB/auditi crash'i stale
+claim kasutas kordusel sama Message-ID-d. `materials:notifications` on repo worker-käsk.
 
 ## Testid ja negatiivkontrollid
 

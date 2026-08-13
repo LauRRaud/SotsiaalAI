@@ -4264,6 +4264,7 @@ model MaterialSubmissionBatch {
   notificationAttempts  Int       @default(0)
   notificationLastError String?
   notificationNextAt    DateTime?
+  notificationClaimedAt DateTime?
   notifiedAt            DateTime?
   createdAt             DateTime  @default(now())
   updatedAt             DateTime  @updatedAt

@@ -1735,6 +1735,7 @@
       "mark_reviewed": "Märgi üle vaadatuks",
       "mark_imported": "Märgi impordituks",
       "import_requires_policy": "Import avaneb pärast õiguste, sihtrühma ja eemaldamise reegli kinnitamist.",
+      "notification_status": "Admini teavitus: {status} (katseid {attempts})",
       "reject": "Lükka tagasi",
       "review_note_prompt": "Märkus ülevaatuse kohta (valikuline):",
       "status": {

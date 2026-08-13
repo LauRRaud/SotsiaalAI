@@ -1735,6 +1735,7 @@
       "mark_reviewed": "Mark reviewed",
       "mark_imported": "Mark imported",
       "import_requires_policy": "Import becomes available after the rights, audience, and removal rules are approved.",
+      "notification_status": "Admin notification: {status} ({attempts} attempts)",
       "reject": "Reject",
       "review_note_prompt": "Review note (optional):",
       "status": {

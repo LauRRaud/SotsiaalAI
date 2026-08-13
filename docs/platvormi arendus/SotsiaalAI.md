@@ -132,7 +132,9 @@ tagasilükatud faile ning admini järjekord on täielikult lehitatav ja filtreer
 valideeritakse tervikuna. Ülevaatuse CAS ja DB olekumasin väldivad otsuste ülekirjutamist ning
 allalaadimine, otsus ja kustutus ei õnnestu kohustusliku auditita. `SOL-MAT-08` vale
 impordilubadus on fail-closed, kuid ootab omaniku otsust õiguste, sihtrühma ja kustutusjärgse
-säilituse kohta. Järgmine plokk on `SOL-MAT-11/12/13` andmekoopia, retention ja teavituse outbox.
+säilituse kohta. Andmekoopia hõlmab nüüd esitisi, originaale ja puuduva faili manifestimärget;
+adminiteavitus on püsiva Message-ID, retry ja auditiga minimaalne outbox. `SOL-MAT-12` ootab
+omaniku kinnitatud retention'i tähtaegu. Järgmine soovitatav sidus plokk on `SOL-PRISMA-01…04`.
 
 **RAG-teenuse `SOL-RAGSVC-01…28` on DONE ja peatüki UTC täisvärav on roheline.**
 `SOL-ORG-13`–`17`, `SOL-DOC-J-01`–`06` ja kogu `SOL-SLOG-01…24` parandused ning kiirem plokipõhine töökord on koodipuus. Kolmeastmelised arvud loetakse käsuga `npm run sol:progress`, neid siia ankrusse ei

@@ -237,6 +237,15 @@ export default function MaterialsAdminSubmissionsPanel({
                     {item.reviewNote ? `${item.reviewedAt ? " | " : ""}${item.reviewNote}` : null}
                   </p>
                 ) : null}
+                {item.notification ? (
+                  <p>
+                    {t("materials_page.admin.notification_status", {
+                      status: item.notification.status,
+                      attempts: item.notification.attempts
+                    })}
+                    {item.notification.lastErrorCode ? ` (${item.notification.lastErrorCode})` : ""}
+                  </p>
+                ) : null}
               </div>
               <div>
                 <Button

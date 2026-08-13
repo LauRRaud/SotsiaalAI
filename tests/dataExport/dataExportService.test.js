@@ -109,6 +109,7 @@ function createDb() {
     wellbeingSupportShare: { findMany: async () => [] },
     serviceReportShare: { findMany: async () => [] },
     userDocument: { findMany: async () => [] },
+    materialSubmission: { findMany: async () => [] },
     agentArtifact: { findMany: async () => [] },
     savedAnalysis: { findMany: async ({ where }) => where.ownerId === "owner" ? [{
       id: "analysis-own",
@@ -174,6 +175,55 @@ test("registry ZIP contains only owner allowlists and manifest excludes content 
   assert.equal(sharingSurface?.recordCount, 0);
   assert.equal(sharingSurface?.files[0]?.name, "sharing-history.ndjson");
   assert.match(sharingSurface?.files[0]?.sha256 || "", /^[a-f0-9]{64}$/);
+});
+
+test("materials export includes only owner rows and marks a missing original in the manifest", async () => {
+  const db = createDb();
+  const at = new Date("2026-08-13T20:00:00.000Z");
+  db.materialSubmission.findMany = async ({ where }) => {
+    assert.equal(where.submittedByUserId, "owner");
+    return [
+      {
+        id: "material-own-available", submittedByUserId: "owner", comment: "own comment",
+        originalName: "guide.txt", mime: "text/plain", size: 5, sha256: "a".repeat(64),
+        storagePath: "materials/guide.txt", storageStatus: "ACTIVE", status: "reviewed",
+        reviewRevision: 1, reviewedAt: at, reviewedBy: "other-admin@example.test",
+        reviewNote: "Accepted after review", createdAt: at, updatedAt: at
+      },
+      {
+        id: "material-own-missing", submittedByUserId: "owner", comment: "missing original",
+        originalName: "missing.pdf", mime: "application/pdf", size: 25, sha256: "b".repeat(64),
+        storagePath: "materials/missing.pdf", storageStatus: "ACTIVE", status: "imported",
+        reviewRevision: 2, reviewedAt: at, reviewedBy: "other-admin@example.test",
+        reviewNote: "Imported in a legacy flow", createdAt: at, updatedAt: at
+      }
+    ];
+  };
+  const readMaterial = async storagePath => {
+    if (storagePath.endsWith("missing.pdf")) throw Object.assign(new Error("gone"), { code: "ENOENT" });
+    return Buffer.from("guide");
+  };
+  const { entries, manifest } = await dataExportInternals.collectExportEntries(
+    { id: "job-materials", userId: "owner" },
+    { db, now: at, readMaterial }
+  );
+  const exported = entries.find(entry => entry.name === "materials.json").content.toString("utf8");
+  const surface = manifest.surfaces.find(item => item.name === "material_submissions");
+  const originals = surface.files.find(item => item.name === "materials.json").originalFiles;
+  assert.equal(surface.recordCount, 2);
+  assert.equal(entries.some(entry => entry.name.includes("material-own-available-guide.txt")), true);
+  assert.equal(entries.some(entry => entry.name.includes("material-own-missing")), false);
+  assert.deepEqual(originals.find(item => item.submissionId === "material-own-missing"), {
+    submissionId: "material-own-missing",
+    status: "unavailable",
+    reason: "missing",
+    archivePath: null,
+    sha256: "b".repeat(64),
+    importedRelation: null,
+    retentionUntil: null
+  });
+  assert.match(exported, /own comment|Accepted after review|not_recorded/);
+  assert.doesNotMatch(exported, /other-admin@example\.test|storagePath|submittedByUserId/);
 });
 
 test("sharing-history surface reads every canonical owner direction without content", async () => {
