@@ -84,6 +84,50 @@ test("pre-inquiry assessment adds crisis warning for immediate danger", () => {
   assert.ok(assessment.warnings.some((warning) => warning.includes("112")));
 });
 
+test("pre-inquiry crisis gate recognizes ordinary ET, EN and RU violence wording", () => {
+  const cases = [
+    "Kodus toimub koduvägivald ja inimene kardab praegu oma elu pärast.",
+    "Partner kasutab lähisuhtevägivalda ja ähvardab mind.",
+    "Inimene vigastab ennast ja vajab kohe abi.",
+    "My partner is threatening me and I am in immediate danger.",
+    "The person is self-harming and is not safe.",
+    "Партнёр угрожает мне, сейчас есть непосредственная опасность."
+  ];
+
+  for (const situation of cases) {
+    const assessment = buildPreInquiryAssessment({ situation });
+    assert.equal(assessment.urgencyLevel, "URGENT", situation);
+    assert.ok(assessment.riskFlags.includes("CRISIS"), situation);
+    assert.ok(assessment.warnings.some((warning) => warning.includes("112")), situation);
+  }
+});
+
+test("detected direct danger cannot be downgraded by an explicit NORMAL input", () => {
+  const assessment = buildPreInquiryAssessment({
+    situation: "Kodus toimub lähisuhtevägivald ja inimene ei ole turvaline.",
+    urgencyLevel: "NORMAL"
+  });
+
+  assert.equal(assessment.urgencyLevel, "URGENT");
+  assert.ok(assessment.riskFlags.includes("CRISIS"));
+  assert.ok(assessment.warnings.some((warning) => warning.includes("112")));
+});
+
+test("pre-inquiry crisis gate does not turn denial or a resolved historic event into current crisis", () => {
+  const cases = [
+    "Koduvägivalda ei ole ja keegi ei ähvarda; soovin tavalist perenõustamist.",
+    "Varem oli suhtes vägivald, kuid praegu on inimene turvalises kohas ja vahetut ohtu ei ole.",
+    "There is no violence or immediate danger; the incident was in the past.",
+    "Сейчас насилия нет, непосредственной опасности нет."
+  ];
+
+  for (const situation of cases) {
+    const assessment = buildPreInquiryAssessment({ situation });
+    assert.equal(assessment.urgencyLevel, "NORMAL", situation);
+    assert.equal(assessment.riskFlags.includes("CRISIS"), false, situation);
+  }
+});
+
 test("pre-inquiry assessment warns before processing personal data", () => {
   const assessment = buildPreInquiryAssessment({
     situation: "Mari Mets, isikukood 48901011234, telefon +372 5123 4567, elab Tamme tn 12."
@@ -100,10 +144,38 @@ test("pre-inquiry assessment routes child safety concerns to human support chann
     situation: "Alaealine noor kirjeldab koduvagivalda ja koolikiusamist ning ei tunne end kodus turvaliselt."
   });
 
-  assert.equal(assessment.suggestedNextSteps, "CHILD_PROTECTION");
+  assert.equal(assessment.suggestedNextSteps, "CRISIS");
   assert.ok(assessment.riskFlags.includes("CHILD_SAFETY"));
   assert.ok(assessment.riskFlags.includes("YOUTH_SAFETY"));
   assert.ok(assessment.warnings.some((warning) => warning.includes("116 111")));
+});
+
+test("pre-inquiry child direction needs explicit child context and preserves other life domains", () => {
+  const nonChildCases = [
+    "Aitan eakat vanemat ja pere vajab hoolduskoormuse ning rahaasjade tuge.",
+    "Noor spetsialist aitab eakat inimest koduteenuse korraldamisel.",
+    "Pere eelarve vajab nõustamist, lapsi selles leibkonnas ei ole."
+  ];
+
+  for (const situation of nonChildCases) {
+    const assessment = buildPreInquiryAssessment({ situation });
+    assert.notEqual(assessment.suggestedNextSteps, "CHILD_PROTECTION", situation);
+    assert.equal(assessment.riskFlags.includes("CHILD_SAFETY"), false, situation);
+  }
+
+  const parent = buildPreInquiryAssessment({
+    situation: "Lapsevanem vajab rahaasjade tuge ja lapsel on koolis turvalisuse mure."
+  });
+  assert.equal(parent.suggestedNextSteps, "CHILD_PROTECTION");
+  assert.ok(parent.lifeDomains.includes("igapäevaelu toimingud"));
+  assert.ok(parent.lifeDomains.includes("lapse heaolu ja pere"));
+
+  const adolescent = buildPreInquiryAssessment({
+    situation: "Noorukit ähvardatakse koolis ja tema vahetu turvalisus on ohus."
+  });
+  assert.equal(adolescent.suggestedNextSteps, "CRISIS");
+  assert.ok(adolescent.riskFlags.includes("CHILD_SAFETY"));
+  assert.ok(adolescent.riskFlags.includes("YOUTH_SAFETY"));
 });
 
 test("pre-inquiry questionnaire stores a structured state and keeps traffic-light labels internal", () => {
@@ -354,7 +426,7 @@ test("pre-inquiry routing explains recipient matches and confidence", () => {
   const confidence = buildPreInquiryRoutingConfidence({
     municipality: "Põltsamaa vald",
     needAreas: ["koduteenus"],
-    suggestions: [entry]
+    suggestions: [{ ...entry, routingEvidence: explanation.routingEvidence }]
   });
 
   assert.match(explanation.reason, /teenuseosutajaga/);
@@ -362,6 +434,80 @@ test("pre-inquiry routing explains recipient matches and confidence", () => {
   assert.deepEqual(explanation.matchedServices, ["Koduteenus"]);
   assert.equal(confidence.level, "HIGH");
   assert.match(confidence.text, /piirkonnal/);
+});
+
+test("pre-inquiry routing confidence requires verified region, need and channel evidence", () => {
+  const wrongRegion = buildPreInquiryRoutingConfidence({
+    municipality: "Tartu linn",
+    needAreas: ["eluase"],
+    suggestions: [{ routingEvidence: { regionMatch: false, needMatch: true, channelMatch: true } }]
+  });
+  assert.notEqual(wrongRegion.level, "HIGH");
+
+  const missingRegion = buildPreInquiryRoutingConfidence({
+    municipality: "",
+    needAreas: ["eluase"],
+    suggestions: [{ routingEvidence: { regionMatch: true, needMatch: true, channelMatch: true } }]
+  });
+  assert.notEqual(missingRegion.level, "HIGH");
+
+  const zeroNeedMatch = buildPreInquiryRoutingConfidence({
+    municipality: "Tartu linn",
+    needAreas: ["eluase"],
+    suggestions: [{ routingEvidence: { regionMatch: true, needMatch: false, channelMatch: true } }]
+  });
+  assert.notEqual(zeroNeedMatch.level, "HIGH");
+
+  const verified = buildPreInquiryRoutingConfidence({
+    municipality: "Tartu linn",
+    needAreas: ["eluase"],
+    suggestions: [{ routingEvidence: { regionMatch: true, needMatch: true, channelMatch: true } }]
+  });
+  assert.equal(verified.level, "HIGH");
+});
+
+test("pre-inquiry routing evidence distinguishes wrong KOV, county, national and missing region", () => {
+  const base = {
+    type: "SERVICE_PROVIDER",
+    email: "service@example.test",
+    description: "Eluaseme nõustamine",
+    providerProfile: {
+      serviceItems: [{ name: "Eluaseme nõustamine", category: "eluase" }]
+    }
+  };
+
+  const wrongKov = explainPreInquiryRecipientMatch({
+    ...base,
+    type: "KOV_SOCIAL_CONTACT",
+    municipalityName: "Pärnu linn",
+    county: "Pärnu maakond"
+  }, { municipality: "Tartu linn", needAreas: ["eluase"] });
+  assert.equal(wrongKov.routingEvidence.regionMatch, false);
+  assert.equal(wrongKov.routingEvidence.regionLevel, "NONE");
+
+  const sameCounty = explainPreInquiryRecipientMatch({
+    ...base,
+    municipalityName: "Elva vald",
+    county: "Tartu maakond"
+  }, { municipality: "Tartu vald", needAreas: ["eluase"] });
+  assert.equal(sameCounty.routingEvidence.regionMatch, true);
+  assert.equal(sameCounty.routingEvidence.regionLevel, "COUNTY");
+
+  const national = explainPreInquiryRecipientMatch({
+    ...base,
+    providerProfile: {
+      ...base.providerProfile,
+      serviceArea: "Üleriigiline"
+    }
+  }, { municipality: "Tartu linn", needAreas: ["eluase"] });
+  assert.equal(national.routingEvidence.regionMatch, true);
+  assert.equal(national.routingEvidence.regionLevel, "NATIONAL");
+  assert.equal(national.routingEvidence.nationalService, true);
+  assert.match(national.reason, /üleriigiliseks/);
+
+  const missing = explainPreInquiryRecipientMatch(base, { needAreas: ["eluase"] });
+  assert.equal(missing.routingEvidence.regionMatch, false);
+  assert.equal(missing.routingEvidence.regionLevel, "MISSING_INPUT");
 });
 
 test("pre-inquiry receiver workflow normalizes checklist and internal note", () => {
