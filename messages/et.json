@@ -2090,7 +2090,7 @@
       "placeholders": {
         "topic": "Lühike pealkiri",
         "situation": "Kirjelda olukorda, vajadust või küsimust.",
-        "recipient": "KOV kontakt, teenuseosutaja või piirkond",
+        "recipient": "KOV kontakt, organisatsiooni vastuvõtutiim, teenuseosutaja või piirkond",
         "draft": "Koostatud pöördumise tekst",
         "municipality": "Näiteks Tallinn, Põltsamaa vald või piirkond",
         "existing_support": "Kes või mis praegu aitab?",
@@ -2102,6 +2102,8 @@
       "recipient": {
         "kov": "KOV kontakt",
         "kov_general": "KOV üldkontakt",
+        "organization_inbox": "Organisatsiooni vastuvõtutiim",
+        "organization_inbox_description": "Organisatsiooni postkast SotsiaalAI platvormis",
         "provider": "Teenuseosutaja",
         "selected": "Valitud kontakt"
       },

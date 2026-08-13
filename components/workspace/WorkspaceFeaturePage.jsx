@@ -433,6 +433,9 @@ function getPreInquiryChannelLabel(t, channel) {
 }
 
 function getPreInquiryRecipientTypeLabel(t, entry) {
+  if (entry?.type === "ORGANIZATION_INBOX") {
+    return readText(t, "workspace_feature_pages.pre_inquiries.recipient.organization_inbox", "Organisatsiooni vastuvõtutiim");
+  }
   if (entry?.type === "SERVICE_PROVIDER") {
     return readText(t, "workspace_feature_pages.pre_inquiries.recipient.provider", "Teenuseosutaja");
   }
@@ -442,8 +445,11 @@ function getPreInquiryRecipientTypeLabel(t, entry) {
   return readText(t, "workspace_feature_pages.pre_inquiries.recipient.kov", "KOV kontakt");
 }
 
-function getPreInquiryRecipientSubtitle(entry) {
+function getPreInquiryRecipientSubtitle(t, entry) {
   if (!entry) return "";
+  if (entry.type === "ORGANIZATION_INBOX") {
+    return readText(t, "workspace_feature_pages.pre_inquiries.recipient.organization_inbox_description", "Organisatsiooni postkast SotsiaalAI platvormis");
+  }
   if (entry.type === "SERVICE_PROVIDER") {
     return entry.description || entry.providerProfile?.shortDescription || entry.providerServices?.join(", ") || "";
   }
@@ -890,6 +896,12 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
               cursor = payload?.page?.hasMore ? String(payload.page.nextCursor || "") : "";
             } while (cursor);
           }
+          const organizationResponse = await fetch("/api/pre-inquiries/organization-recipients", { cache: "no-store" });
+          const organizationPayload = await organizationResponse.json().catch(() => ({}));
+          if (!organizationResponse.ok) {
+            throw new Error(organizationPayload?.message || "Organization recipients could not be loaded.");
+          }
+          all.push(...(Array.isArray(organizationPayload?.recipients) ? organizationPayload.recipients : []));
           return all;
         }
         const [loadedEntries, inquiriesResponse, preferencesResponse] = await Promise.all([
@@ -930,8 +942,10 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     const query = recipientQuery.trim().toLocaleLowerCase("et");
     return entries.filter((entry) => {
       const isProvider = entry.type === "SERVICE_PROVIDER";
+      const isOrganizationInbox = entry.type === "ORGANIZATION_INBOX";
       if (recipientType === "SERVICE_PROVIDER" && !isProvider) return false;
-      if (recipientType === "KOV_CONTACT" && isProvider) return false;
+      if (recipientType === "KOV_CONTACT" && (isProvider || isOrganizationInbox)) return false;
+      if (recipientType === "ORGANIZATION_INBOX" && !isOrganizationInbox) return false;
       if (!query) return true;
       return [
         entry.title,
@@ -1046,8 +1060,8 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     const hasManualSearch = Boolean(recipientQuery.trim());
     const source = assistantSuggestions.length
       ? assistantSuggestions
-      : hasManualSearch
-        ? recipientEntries
+        : hasManualSearch || recipientType
+          ? recipientEntries
         : [];
     const seen = new Set();
     return source.filter((entry) => {
@@ -1055,7 +1069,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
       seen.add(entry.id);
       return true;
     });
-  }, [assistantSuggestions, recipientEntries, recipientQuery]);
+  }, [assistantSuggestions, recipientEntries, recipientQuery, recipientType]);
 
   const visibleRecommendedRecipients = showMoreContacts
     ? recommendedRecipients.slice(0, 12)
@@ -1635,7 +1649,9 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     setSituation(inquiry.situation || "");
     setRecipientType(inquiry.recipientType || "");
     setRecipientQuery("");
-    setSelectedRecipientId(inquiry.recipientEntryId || "");
+    setSelectedRecipientId(inquiry.recipientOrganizationId
+      ? `organization-inbox:${inquiry.recipientOrganizationId}`
+      : inquiry.recipientEntryId || "");
     setSelectedProviderServiceId(inquiry.recipientServiceId || "");
     setSelectedProviderLocationId(inquiry.recipientLocationId || "");
     setDraft(inquiry.userEditedDraft || inquiry.generatedDraft || "");
@@ -1694,7 +1710,12 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
           situation: saveSituation,
           assessmentState: assessmentStateForSave,
           recipientType,
-          recipientEntryId: selectedRecipient?.id || null,
+          recipientEntryId: selectedRecipient?.type === "ORGANIZATION_INBOX" ? null : selectedRecipient?.id || null,
+          recipientOrganizationId: selectedRecipient?.recipientOrganizationId
+            || (activeInquiry?.recipientOrganizationId
+              && selectedRecipientId === `organization-inbox:${activeInquiry.recipientOrganizationId}`
+              ? activeInquiry.recipientOrganizationId
+              : null),
           recipientServiceId: selectedProviderServiceId || null,
           recipientLocationId: selectedProviderLocationId || selectedRecipient?.providerLocationId || null,
           selectedRecipientName: selectedRecipient?.title || "",
@@ -2167,7 +2188,9 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     setSelectedRecipientId(entry.id);
     setSelectedProviderServiceId(serviceAction?.providerServiceId || "");
     setSelectedProviderLocationId(serviceAction?.providerLocationId || entry.providerLocationId || "");
-    setRecipientType(entry.type === "SERVICE_PROVIDER" ? "SERVICE_PROVIDER" : "KOV_CONTACT");
+    setRecipientType(entry.type === "ORGANIZATION_INBOX"
+      ? "ORGANIZATION_INBOX"
+      : entry.type === "SERVICE_PROVIDER" ? "SERVICE_PROVIDER" : "KOV_CONTACT");
     setDraftTouched(false);
     setActiveWorkflowStep("preview");
   }
@@ -2852,6 +2875,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
           <div role="group" aria-label={readText(t, "workspace_feature_pages.pre_inquiries.fields.recipient_type", "Adressaadi tüüp")}>
             {[
               ["KOV_CONTACT", readText(t, "workspace_feature_pages.pre_inquiries.recipient.kov", "KOV kontakt")],
+              ["ORGANIZATION_INBOX", readText(t, "workspace_feature_pages.pre_inquiries.recipient.organization_inbox", "Organisatsiooni vastuvõtutiim")],
               ["SERVICE_PROVIDER", readText(t, "workspace_feature_pages.pre_inquiries.recipient.provider", "Teenuseosutaja")]
             ].map(([value, label]) => (
               <OptionCard
@@ -2877,7 +2901,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
           </div>
           <Label>
             <span>{readText(t, "workspace_feature_pages.pre_inquiries.fields.recipient_search", "Otsi adressaati")}</span>
-            <ServiceProfileInput value={recipientQuery} onChange={(event) => setRecipientQuery(event.target.value)} placeholder={readText(t, "workspace_feature_pages.pre_inquiries.placeholders.recipient", "KOV, teenuseosutaja või piirkond")} />
+            <ServiceProfileInput value={recipientQuery} onChange={(event) => setRecipientQuery(event.target.value)} placeholder={readText(t, "workspace_feature_pages.pre_inquiries.placeholders.recipient", "KOV kontakt, organisatsiooni vastuvõtutiim, teenuseosutaja või piirkond")} />
           </Label>
         </div>
         {assistantRoutingConfidence ? (
@@ -2908,7 +2932,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
                     {getPreInquiryRecipientTypeLabel(t, entry)}
                   </span>
                 </span>
-                <span>{getPreInquiryRecipientSubtitle(entry)}</span>
+                <span>{getPreInquiryRecipientSubtitle(t, entry)}</span>
                 <span>
                   {getPreInquiryRecipientReason(entry)}
                 </span>
@@ -2961,9 +2985,11 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
                           {readText(t, "workspace_feature_pages.pre_inquiries.actions.choose_contact", "Vali see kontakt")}
                         </Button>
                       ) : null}
-                  <Button as="a" href={localizePath(`/teenusekaart?entryId=${encodeURIComponent(entry.id)}`, locale)} size="sm" variant="linkBrand">
-                    {readText(t, "workspace_feature_pages.pre_inquiries.actions.view_service_map", "Vaata teenusekaardil")}
-                  </Button>
+                  {entry.type !== "ORGANIZATION_INBOX" ? (
+                    <Button as="a" href={localizePath(`/teenusekaart?entryId=${encodeURIComponent(entry.id)}`, locale)} size="sm" variant="linkBrand">
+                      {readText(t, "workspace_feature_pages.pre_inquiries.actions.view_service_map", "Vaata teenusekaardil")}
+                    </Button>
+                  ) : null}
                   {entry.providerProfileId ? (
                     <Button as="a" href={localizePath(`/teenuseprofiil?profileId=${encodeURIComponent(entry.providerProfileId)}`, locale)} size="sm" variant="linkBrand">
                       {readText(t, "workspace_feature_pages.pre_inquiries.actions.view_profile", "Vaata profiili")}
@@ -3122,7 +3148,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
                 <h3>{inquiry.topic || readText(t, "workspace_feature_pages.pre_inquiries.untitled", "Pealkirjata")}</h3>
                 <p>
                   {[
-                    inquiry.selectedRecipientName,
+                    inquiry.recipientOrganization?.displayName || inquiry.selectedRecipientName,
                     inquiry.selectedRecipientEmail,
                     inquiry.createdAt ? `loodud ${formatDate(inquiry.createdAt, locale)}` : "",
                     inquiry.updatedAt ? `muudetud ${formatDate(inquiry.updatedAt, locale)}` : ""

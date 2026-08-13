@@ -2090,7 +2090,7 @@
       "placeholders": {
         "topic": "Short subject",
         "situation": "Describe the situation, need, or question.",
-        "recipient": "Municipality contact, service provider, or area",
+        "recipient": "Municipality contact, organization intake team, service provider, or area",
         "draft": "Generated inquiry text",
         "municipality": "For example Tallinn, Poltsamaa parish, or area",
         "existing_support": "Who or what is helping now?",
@@ -2102,6 +2102,8 @@
       "recipient": {
         "kov": "Municipality contact",
         "kov_general": "General municipality contact",
+        "organization_inbox": "Organization intake team",
+        "organization_inbox_description": "Organization inbox inside SotsiaalAI",
         "provider": "Service provider",
         "selected": "Selected contact"
       },

@@ -25,6 +25,7 @@
     "db:migrate:preflight": "node scripts/prisma-migration-preflight.mjs",
     "urgent:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/urgent-request-probe.mjs",
     "pre:concurrency:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/pre-inquiry-concurrency-probe.mjs",
+    "pre:organization:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/pre-inquiry-organization-probe.mjs",
     "sol:tally": "node scripts/sol-audit-tally.mjs",
     "sol:progress": "node scripts/sol-audit-tally.mjs --progress",
     "auth:token:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/verification-token-probe.mjs",
