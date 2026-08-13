@@ -30,6 +30,12 @@ import {
 } from "@/lib/field/visitMarkers";
 import { useFieldSync } from "./useFieldSync";
 import { isServiceLogUiEnabled } from "@/lib/serviceLog/flags";
+import { mergeVisibleFieldNotes } from "@/lib/field/continuity";
+import {
+  FIELD_RECORDING_MAX_MS,
+  fieldRecordingSeconds,
+  nextFieldRecordingChunk
+} from "@/lib/field/recordingLimits";
 
 const PHASES = ["prep", "on_site", "follow_up"];
 
@@ -71,9 +77,20 @@ export default function FieldVisitRoom({ visitId }) {
   const [provenance, setProvenance] = useState(FIELD_PROVENANCE.TOOTAJA_TAHELEPANEK);
   const [consentSubject, setConsentSubject] = useState("");
   const [consentKind, setConsentKind] = useState("audio");
+  const [clientDocumentRequested, setClientDocumentRequested] = useState(false);
+  const [documentRequestReason, setDocumentRequestReason] = useState("");
   const [recording, setRecording] = useState(false);
+  const [recordingSeconds, setRecordingSeconds] = useState(0);
   const recorderRef = useRef(null);
+  const streamRef = useRef(null);
   const chunksRef = useRef([]);
+  const recordingBytesRef = useRef(0);
+  const recordingStartedAtRef = useRef(0);
+  const recordingTimerRef = useRef(null);
+  const recordingLimitTimerRef = useRef(null);
+  const discardRecordingRef = useRef(false);
+  const recordingStoppedAtLimitRef = useRef(false);
+  const mountedRef = useRef(true);
   const photoInputRef = useRef(null);
 
   const [safetyDeadline, setSafetyDeadline] = useState("");
@@ -91,6 +108,17 @@ export default function FieldVisitRoom({ visitId }) {
   // invalidated the consentFor callback on each pass.
   const serverNotes = useMemo(() => detail?.notes || [], [detail]);
   const attachments = detail?.attachments || [];
+  const visibleNotes = useMemo(
+    () => mergeVisibleFieldNotes(serverNotes, sync.items),
+    [serverNotes, sync.items]
+  );
+  const deviceReviewItems = useMemo(
+    () => sync.items.filter((item) =>
+      item.itemType !== "note" || item.state !== FIELD_ITEM_STATE.SYNCED ||
+      !serverNotes.some((note) => note.clientItemId === item.clientItemId)
+    ),
+    [serverNotes, sync.items]
+  );
 
   const loadDetail = useCallback(async () => {
     if (!navigator.onLine) {
@@ -233,20 +261,31 @@ export default function FieldVisitRoom({ visitId }) {
       if (!file) return;
       const consentRef = consentFor("photo");
       try {
+        const reason = documentRequestReason.trim();
+        if (!consentRef && (!clientDocumentRequested || !reason)) {
+          setNotice(t("field.photo.basisRequired"));
+          return;
+        }
         const blob = await compressPhoto(file);
         if (!blob) throw new Error("compress_failed");
         await sync.saveLocalAttachment({
           role: "photo",
           blob,
           consentClientItemId: consentRef,
-          documentOnly: !consentRef
+          documentOnly: !consentRef,
+          documentRequestConfirmed: !consentRef && clientDocumentRequested,
+          documentRequestReason: !consentRef ? reason : null
         });
+        if (!consentRef) {
+          setClientDocumentRequested(false);
+          setDocumentRequestReason("");
+        }
         setNotice(t("field.photo.saved"));
       } catch {
         setNotice(t("field.photo.failed"));
       }
     },
-    [consentFor, sync, t]
+    [clientDocumentRequested, consentFor, documentRequestReason, sync, t]
   );
 
   const startRecording = useCallback(async () => {
@@ -257,16 +296,51 @@ export default function FieldVisitRoom({ visitId }) {
     }
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      if (!mountedRef.current) {
+        stream.getTracks().forEach((track) => track.stop());
+        return;
+      }
       const mimeType = ["audio/webm;codecs=opus", "audio/webm", "audio/mp4"].find(
         (candidate) => window.MediaRecorder?.isTypeSupported?.(candidate)
       );
+      streamRef.current = stream;
       const recorder = new MediaRecorder(stream, mimeType ? { mimeType } : undefined);
       chunksRef.current = [];
+      recordingBytesRef.current = 0;
+      discardRecordingRef.current = false;
+      recordingStoppedAtLimitRef.current = false;
+      recordingStartedAtRef.current = Date.now();
       recorder.ondataavailable = (event) => {
-        if (event.data?.size) chunksRef.current.push(event.data);
+        if (!event.data?.size) return;
+        const next = nextFieldRecordingChunk(recordingBytesRef.current, event.data.size);
+        if (next.accept) {
+          chunksRef.current.push(event.data);
+          recordingBytesRef.current = next.totalBytes;
+        }
+        if (next.limitReached && recorder.state !== "inactive") {
+          recordingStoppedAtLimitRef.current = true;
+          recorder.stop();
+          stream.getTracks().forEach((track) => track.stop());
+          if (mountedRef.current) setNotice(t("field.audio.limitReached"));
+        }
       };
       recorder.onstop = async () => {
         stream.getTracks().forEach((track) => track.stop());
+        streamRef.current = null;
+        recorderRef.current = null;
+        if (recordingTimerRef.current) window.clearInterval(recordingTimerRef.current);
+        if (recordingLimitTimerRef.current) window.clearTimeout(recordingLimitTimerRef.current);
+        recordingTimerRef.current = null;
+        recordingLimitTimerRef.current = null;
+        if (discardRecordingRef.current) {
+          chunksRef.current = [];
+          recordingBytesRef.current = 0;
+          if (mountedRef.current) {
+            setRecording(false);
+            setRecordingSeconds(0);
+          }
+          return;
+        }
         const blob = new Blob(chunksRef.current, { type: recorder.mimeType || "audio/webm" });
         if (blob.size) {
           await sync.saveLocalAttachment({
@@ -274,14 +348,38 @@ export default function FieldVisitRoom({ visitId }) {
             blob,
             consentClientItemId: consentFor("audio")
           });
-          setNotice(t("field.audio.saved"));
+          if (mountedRef.current) {
+            setNotice(t(recordingStoppedAtLimitRef.current ? "field.audio.limitReached" : "field.audio.saved"));
+          }
         }
-        setRecording(false);
+        if (mountedRef.current) {
+          setRecording(false);
+          setRecordingSeconds(0);
+        }
+      };
+      recorder.onerror = () => {
+        discardRecordingRef.current = true;
+        stream.getTracks().forEach((track) => track.stop());
+        if (recorder.state !== "inactive") recorder.stop();
+        if (mountedRef.current) setNotice(t("field.audio.failed"));
       };
       recorderRef.current = recorder;
-      recorder.start();
+      recorder.start(1000);
+      recordingTimerRef.current = window.setInterval(() => {
+        if (mountedRef.current) {
+          setRecordingSeconds(fieldRecordingSeconds(Date.now() - recordingStartedAtRef.current));
+        }
+      }, 1000);
+      recordingLimitTimerRef.current = window.setTimeout(() => {
+        recordingStoppedAtLimitRef.current = true;
+        if (recorder.state !== "inactive") recorder.stop();
+        stream.getTracks().forEach((track) => track.stop());
+        if (mountedRef.current) setNotice(t("field.audio.limitReached"));
+      }, FIELD_RECORDING_MAX_MS);
       setRecording(true);
     } catch {
+      streamRef.current?.getTracks().forEach((track) => track.stop());
+      streamRef.current = null;
       setNotice(t("field.audio.failed"));
       setRecording(false);
     }
@@ -291,8 +389,33 @@ export default function FieldVisitRoom({ visitId }) {
     try {
       recorderRef.current?.stop();
     } catch {
+      streamRef.current?.getTracks().forEach((track) => track.stop());
+      streamRef.current = null;
       setRecording(false);
     }
+  }, []);
+
+  useEffect(() => {
+    mountedRef.current = true;
+    const stopHiddenRecording = () => {
+      discardRecordingRef.current = true;
+      streamRef.current?.getTracks().forEach((track) => track.stop());
+      const recorder = recorderRef.current;
+      if (recorder && recorder.state !== "inactive") recorder.stop();
+    };
+    const stopWhenHidden = () => {
+      if (document.hidden) stopHiddenRecording();
+    };
+    window.addEventListener("pagehide", stopHiddenRecording);
+    document.addEventListener("visibilitychange", stopWhenHidden);
+    return () => {
+      mountedRef.current = false;
+      window.removeEventListener("pagehide", stopHiddenRecording);
+      document.removeEventListener("visibilitychange", stopWhenHidden);
+      stopHiddenRecording();
+      if (recordingTimerRef.current) window.clearInterval(recordingTimerRef.current);
+      if (recordingLimitTimerRef.current) window.clearTimeout(recordingLimitTimerRef.current);
+    };
   }, []);
 
   const armSafety = useCallback(async () => {
@@ -394,7 +517,12 @@ export default function FieldVisitRoom({ visitId }) {
       setNotice(t("field.errors.needsOnline"));
       return;
     }
-    const payload = { toArtifact: handoverArtifact };
+    const payload = {
+      toArtifact: handoverArtifact,
+      noteClientItemIds: visibleNotes
+        .filter((note) => note.source === "server")
+        .map((note) => note.clientItemId)
+    };
     if (handoverNote.trim() && visit?.preInquiryId) {
       payload.toPreInquiry = true;
       payload.preInquiryNote = handoverNote.trim();
@@ -405,22 +533,53 @@ export default function FieldVisitRoom({ visitId }) {
       return;
     }
     try {
+      const actionStorageKey = `field:handover:${visitId}`;
+      const fingerprint = JSON.stringify(payload);
+      let savedAction = null;
+      try {
+        savedAction = JSON.parse(window.localStorage.getItem(actionStorageKey) || "null");
+      } catch {}
+      const clientActionId = savedAction?.fingerprint === fingerprint && savedAction?.clientActionId
+        ? savedAction.clientActionId
+        : crypto.randomUUID();
+      window.localStorage.setItem(actionStorageKey, JSON.stringify({ fingerprint, clientActionId }));
       const response = await fetch(`/api/field/visits/${encodeURIComponent(visitId)}/handover`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
+        body: JSON.stringify({ ...payload, clientActionId })
       });
       const body = await response.json().catch(() => ({}));
       if (!response.ok) {
         setNotice(t(body?.message || "field.errors.handoverFailed"));
         return;
       }
-      setNotice(t("field.handover.done"));
+      const targets = body?.handover?.targets || {};
+      const requestedDone = (!payload.toArtifact || targets.artifact?.status === "DONE")
+        && (!payload.toPreInquiry || targets.preInquiry?.status === "DONE");
+      if (requestedDone) {
+        window.localStorage.removeItem(actionStorageKey);
+        setNotice(t("field.handover.done"));
+      } else {
+        setNotice(t("field.handover.pending"));
+      }
       await loadDetail();
     } catch {
       setNotice(t("field.errors.handoverFailed"));
     }
-  }, [handoverArtifact, handoverNote, nextContactOn, visit, visitId, loadDetail, t]);
+  }, [handoverArtifact, handoverNote, nextContactOn, visit, visitId, loadDetail, t, visibleNotes]);
+
+  const removeServerNote = useCallback(async (note) => {
+    const url = `/api/field/visits/${encodeURIComponent(visitId)}/items/${encodeURIComponent(note.clientItemId)}`;
+    const response = await fetch(url, note.kind === FIELD_NOTE_KIND.CONSENT
+      ? {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ withdrawConsent: true })
+        }
+      : { method: "DELETE" });
+    if (response.ok) await loadDetail();
+    else setNotice(t("field.errors.deleteFailed"));
+  }, [visitId, loadDetail, t]);
 
   const purgeLocal = useCallback(async () => {
     for (const item of sync.items) {
@@ -558,6 +717,12 @@ export default function FieldVisitRoom({ visitId }) {
                       {view.safety.escalationStatus === "FAILED" ? (
                         <p className="fld-warn">{t("field.safety.escalationFailed")}</p>
                       ) : null}
+                      {view.safety.escalationStatus === "UNKNOWN" ? (
+                        <p className="fld-warn">{t("field.safety.deliveryUnknown")}</p>
+                      ) : null}
+                      {view.safety.resolvedNoticeStatus === "FAILED" ? (
+                        <p className="fld-warn">{t("field.safety.resolvedFailed")}</p>
+                      ) : null}
                       <Button variant="secondary" onClick={() => patchVisit({ action: "cancel_safety" })} disabled={offline}>
                         {t("field.safety.cancel")}
                       </Button>
@@ -677,7 +842,11 @@ export default function FieldVisitRoom({ visitId }) {
                 <h2 className="fld-h2">{t("field.inputs.title")}</h2>
                 <p className="fld-hint">{t("field.inputs.alternative")}</p>
                 <div className="fld-actions">
-                  <Button variant="secondary" onClick={() => photoInputRef.current?.click()} disabled={readOnly}>
+                  <Button
+                    variant="secondary"
+                    onClick={() => photoInputRef.current?.click()}
+                    disabled={readOnly || (!consentFor("photo") && (!clientDocumentRequested || !documentRequestReason.trim()))}
+                  >
                     {t("field.photo.take")}
                   </Button>
                   <input
@@ -691,14 +860,45 @@ export default function FieldVisitRoom({ visitId }) {
                     tabIndex={-1}
                   />
                   {recording ? (
-                    <Button variant="secondary" onClick={stopRecording}>{t("field.audio.stop")}</Button>
+                    <Button variant="secondary" onClick={stopRecording}>
+                      {t("field.audio.stop")} · {Math.floor(recordingSeconds / 60)}:{String(recordingSeconds % 60).padStart(2, "0")}
+                    </Button>
                   ) : (
                     <Button variant="secondary" onClick={startRecording} disabled={readOnly}>
                       {t("field.audio.start")}
                     </Button>
                   )}
                 </div>
+                <p className="fld-hint">{t("field.audio.limit")}</p>
                 <p className="fld-hint">{t("field.photo.policy")}</p>
+                {!consentFor("photo") ? (
+                  <div className="fld-consent">
+                    <label className="fld-label">
+                      <Checkbox
+                        bare
+                        checked={clientDocumentRequested}
+                        onChange={setClientDocumentRequested}
+                        disabled={readOnly}
+                      />
+                      {t("field.photo.clientDocumentRequested")}
+                    </label>
+                    {clientDocumentRequested ? (
+                      <>
+                        <label className="fld-label" htmlFor="fld-document-request-reason">
+                          {t("field.photo.requestReason")}
+                        </label>
+                        <Input
+                          id="fld-document-request-reason"
+                          className="fld-input"
+                          value={documentRequestReason}
+                          onChange={(event) => setDocumentRequestReason(event.target.value)}
+                          maxLength={500}
+                          disabled={readOnly}
+                        />
+                      </>
+                    ) : null}
+                  </div>
+                ) : null}
               </div>
 
               <div className="fld-consent">
@@ -733,11 +933,34 @@ export default function FieldVisitRoom({ visitId }) {
           {phase === "follow_up" ? (
             <section className="fld-section" aria-label={t("field.phase.follow_up")}>
               <h2 className="fld-h2">{t("field.review.title")}</h2>
-              {sync.items.length === 0 ? (
+              {visibleNotes.length ? (
+                <ul className="fld-items" aria-label={t("field.review.serverNotes")}>
+                  {visibleNotes.filter((note) => note.source === "server").map((note) => (
+                    <li key={`server-${note.clientItemId}`} className="fld-item" data-source="server">
+                      <div className="fld-item__body">
+                        <span className="fld-item__type">{t(`field.item.${note.kind}`)}</span>
+                        <span className="fld-item__text">{note.body}</span>
+                        <span className="fld-item__state">
+                          {t("field.review.serverCopy")} · {t(`field.provenance.${note.provenance}`)} · {t("field.review.revision").replace("{revision}", String(note.revision))}
+                          {note.conflict ? ` · ${t("field.itemState.CONFLICT")}` : ""}
+                        </span>
+                      </div>
+                      {!readOnly && (!note.consentWithdrawnAt || note.kind !== FIELD_NOTE_KIND.CONSENT) ? (
+                        <Button size="sm" variant="ghost" onClick={() => removeServerNote(note)}>
+                          {note.kind === FIELD_NOTE_KIND.CONSENT
+                            ? t("field.review.withdrawConsent")
+                            : t("field.review.deleteServer")}
+                        </Button>
+                      ) : null}
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+              {deviceReviewItems.length === 0 && visibleNotes.length === 0 ? (
                 <p className="fld-muted">{t("field.review.empty")}</p>
               ) : (
                 <ul className="fld-items">
-                  {sync.items.map((item) => (
+                  {deviceReviewItems.map((item) => (
                     <li key={item.clientItemId} className="fld-item" data-state={item.state}>
                       <div className="fld-item__body">
                         <span className="fld-item__type">
@@ -760,9 +983,16 @@ export default function FieldVisitRoom({ visitId }) {
                           </Button>
                         ) : null}
                         {item.state === FIELD_ITEM_STATE.FAILED ? (
-                          <Button size="sm" variant="secondary" onClick={() => sync.retryItem(item.clientItemId)}>
-                            {t("field.retry")}
-                          </Button>
+                          <>
+                            <Button size="sm" variant="secondary" onClick={() => sync.retryItem(item.clientItemId)}>
+                              {t("field.retry")}
+                            </Button>
+                            {item.lastError === "field.errors.visit_read_only" ? (
+                              <Button size="sm" onClick={() => sync.retryRecoveryImport(item.clientItemId)}>
+                                {t("field.review.recoveryImport")}
+                              </Button>
+                            ) : null}
+                          </>
                         ) : null}
                         {item.state === FIELD_ITEM_STATE.QUEUED ? (
                           <Button size="sm" variant="secondary" onClick={() => sync.cancelItem(item.clientItemId)}>
@@ -901,7 +1131,7 @@ export default function FieldVisitRoom({ visitId }) {
                   <Button
                     variant="secondary"
                     onClick={() => patchVisit({ action: "close" })}
-                    disabled={offline || sync.pendingCount > 0 || visit.status !== FIELD_VISIT_STATUS.WRAP_UP}
+                    disabled={offline || sync.closeBlockers.blocked || visit.status !== FIELD_VISIT_STATUS.WRAP_UP}
                   >
                     {t("field.visit.close")}
                   </Button>
@@ -910,7 +1140,7 @@ export default function FieldVisitRoom({ visitId }) {
                   </Button>
                 </div>
               ) : null}
-              {sync.pendingCount > 0 ? <p className="fld-hint">{t("field.visit.closeBlocked")}</p> : null}
+              {sync.closeBlockers.blocked ? <p className="fld-hint">{t("field.visit.closeBlocked")}</p> : null}
 
               {/* SILD TEENUSPÄEVIKUSSE (leping 8.4). Ilmub alles SULETUD
                   külastuse juures: enne seda ei ole kestus lõplik ja eeltäide

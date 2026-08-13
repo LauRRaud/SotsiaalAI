@@ -47,7 +47,7 @@ export async function GET(request, { params }) {
 
   try {
     const document = await prisma.userDocument.findFirst({
-      where: { id, ownerId: auth.userId },
+      where: { id, ownerId: auth.userId, fieldVisitAttachments: { none: { storageStatus: { not: "ACTIVE" } } } },
       select: {
         id: true,
         ownerId: true,

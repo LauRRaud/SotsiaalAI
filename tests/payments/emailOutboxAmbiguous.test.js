@@ -260,3 +260,24 @@ test("worker ei saada kunagi ilma sõnumitunnuseta", () => {
   assert.match(source, /transport\.sendMail\(\{[\s\S]*?messageId[\s\S]*?\}\)/);
   assert.match(source, /status: ambiguous \? "AMBIGUOUS"/);
 });
+
+test("FIELD turvakiri kasutab sama püsivat Message-ID-d ja ei lähe timeout'i järel pimedale kordusele", async () => {
+  const db = fakeDb();
+  await enqueuePaymentEmail(db, {
+    dedupeKey: "field-safety:visit-1:resolved",
+    template: "field_safety_resolved",
+    toEmail: "trusted@probe.invalid",
+    locale: "et",
+    payload: { visitId: "visit-1", subject: "Lahenenud", text: "Olukord on lahenenud." },
+    now: NOW
+  });
+  const mailer = fakeMailer({ timeoutOnce: true });
+  await runPaymentEmailDelivery({ db, now: NOW, mailer, timeoutMs: 5, baseUrl: "https://probe.invalid" });
+  const row = [...db.outbox.values()][0];
+  assert.equal(row.status, "AMBIGUOUS");
+  assert.equal(row.nextAttemptAt, null);
+  assert.equal(mailer.sent[0].subject, "Lahenenud");
+  assert.equal(mailer.sent[0].text, "Olukord on lahenenud.");
+  await runPaymentEmailDelivery({ db, now: LATER, mailer, baseUrl: "https://probe.invalid" });
+  assert.equal(mailer.sent.length, 1);
+});

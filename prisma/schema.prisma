@@ -854,6 +854,8 @@ model User {
   mentoringPrivateNotes                 MentoringPrivateNote[]              @relation("MentoringPrivateNoteOwner")
   mentoringAuditEventsActed             MentoringAuditEvent[]               @relation("MentoringAuditActor")
   fieldVisits                           FieldVisit[]                        @relation("FieldVisitOwner")
+  fieldOcrJobs                          FieldOcrJob[]                       @relation("FieldOcrJobOwner")
+  fieldOcrRateEvents                    FieldOcrRateEvent[]                 @relation("FieldOcrRateEventOwner")
   // TEENUSPÄEVIK-V1: kaks eri rolli, seega kaks eri seost. Sisestaja on
   // spetsialist, klient on teenuse saaja — sama inimene EI ole kunagi mõlemad
   // ühel kirjel, aga skeem ei tohi neid ühte lahtrisse suruda.
@@ -2679,6 +2681,7 @@ model FieldVisit {
   safetyEscalationNextAttemptAt DateTime?
   safetyEscalationStatus        String?
   safetyResolvedNotifiedAt      DateTime?
+  safetyResolvedNoticeStatus    String?
   safetyCancelledAt             DateTime?
   handoverArtifactAt            DateTime?
   handoverPreInquiryAt          DateTime?
@@ -2692,6 +2695,8 @@ model FieldVisit {
   preInquiry    PreInquiry?            @relation(fields: [preInquiryId], references: [id], onDelete: SetNull)
   notes         FieldVisitNote[]
   attachments   FieldVisitAttachment[]
+  handovers     FieldVisitHandover[]
+  ocrJobs       FieldOcrJob[]
   /// JUHTUM-V1 seos (L15), Cascade — vt `UserDocument.caseWorkItems`.
   caseWorkItems CaseWorkItem[]
 
@@ -2701,6 +2706,26 @@ model FieldVisit {
   @@index([status, cancelledAt])
   @@index([safetyArmedAt, safetyDeadlineAt])
   @@index([preInquiryId])
+}
+
+// One durable action per device-generated handover key. Target state is kept
+// separately so a retry resumes only the carrier that did not commit.
+model FieldVisitHandover {
+  id             String   @id @default(cuid())
+  visitId        String
+  ownerUserId    String
+  clientActionId String
+  requestSha256  String
+  requestPayload Json
+  targetStates   Json
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  visit FieldVisit @relation(fields: [visitId], references: [id], onDelete: Cascade)
+
+  @@unique([visitId, clientActionId])
+  @@index([ownerUserId, updatedAt])
+  @@index([visitId, updatedAt])
 }
 
 // One row per synced item: (visitId, clientItemId) is the idempotency key the
@@ -2726,6 +2751,7 @@ model FieldVisitNote {
   conflictBody       String?   @db.Text
   conflictProvenance String?
   deviceCreatedAt    DateTime?
+  recoveryImportedAt DateTime?
   createdAt          DateTime  @default(now())
   updatedAt          DateTime  @updatedAt
 
@@ -2747,16 +2773,62 @@ model FieldVisitAttachment {
   documentId            String?
   consentClientItemId   String?
   transcriptConfirmedAt DateTime?
+  deviceCreatedAt       DateTime?
+  recoveryImportedAt    DateTime?
+  captureBasis          String?
+  documentRequestReason String?   @db.VarChar(500)
+  documentRequestAt     DateTime?
+  storageStatus         String    @default("ACTIVE")
   createdAt             DateTime  @default(now())
   updatedAt             DateTime  @updatedAt
 
   visit    FieldVisit    @relation(fields: [visitId], references: [id], onDelete: Cascade)
   document UserDocument? @relation("FieldVisitAttachmentDocument", fields: [documentId], references: [id], onDelete: SetNull)
+  ocrJobs  FieldOcrJob[]
 
   @@unique([visitId, clientItemId])
   @@index([visitId, createdAt])
   @@index([documentId])
   @@index([role, createdAt])
+  @@index([storageStatus, updatedAt])
+}
+
+model FieldOcrJob {
+  id              String    @id @default(cuid())
+  ownerUserId     String
+  visitId         String
+  attachmentId    String
+  contentSha256   String
+  status          String    @default("PENDING")
+  attempts        Int       @default(0)
+  leaseStartedAt  DateTime?
+  resultText      String?   @db.Text
+  resultTruncated Boolean   @default(false)
+  lastErrorCode   String?
+  completedAt     DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  owner      User                 @relation("FieldOcrJobOwner", fields: [ownerUserId], references: [id], onDelete: Cascade)
+  visit      FieldVisit           @relation(fields: [visitId], references: [id], onDelete: Cascade)
+  attachment FieldVisitAttachment @relation(fields: [attachmentId], references: [id], onDelete: Cascade)
+
+  @@unique([attachmentId, contentSha256])
+  @@index([ownerUserId, status, updatedAt])
+  @@index([status, leaseStartedAt])
+  @@index([visitId, createdAt])
+}
+
+model FieldOcrRateEvent {
+  id          String   @id @default(cuid())
+  ownerUserId String
+  ipHash      String
+  createdAt   DateTime @default(now())
+
+  owner User @relation("FieldOcrRateEventOwner", fields: [ownerUserId], references: [id], onDelete: Cascade)
+
+  @@index([ownerUserId, createdAt])
+  @@index([ipHash, createdAt])
 }
 
 // Teemaseeme remains an owner-private preparation object. WAITING freezes the

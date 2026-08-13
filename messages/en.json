@@ -89,6 +89,11 @@
       "invalid_attachment_role": "Unknown attachment type.",
       "invalid_body": "The note text is missing or too long.",
       "invalid_client_item_id": "Invalid item identifier.",
+      "invalid_client_action_id": "Invalid action identifier.",
+      "handover_idempotency_conflict": "The same handover identifier was used with different content. Start a new action.",
+      "document_request_required": "The client's document request requires an explicit confirmation and reason.",
+      "file_pending": "File storage is awaiting recovery. Try again.",
+      "delete_pending": "Deletion is queued and will finish automatically.",
       "invalid_consent_kind": "Unknown consent type.",
       "invalid_date": "Invalid date.",
       "invalid_device_created": "Invalid device creation time.",
@@ -115,6 +120,8 @@
       "note_conflict": "The same note was changed elsewhere. Choose which version to keep.",
       "nothing_to_update": "There is nothing to update.",
       "ocr_failed": "Reading text from the photo failed.",
+      "ocr_busy": "The text-reading worker queue is full. Retry in a few seconds.",
+      "ocr_rate_limited": "Text reading was requested too frequently. Retry in a minute.",
       "ocr_unavailable": "Reading text from photos is not available right now.",
       "photo_too_large": "The photo is too large.",
       "request_failed": "The action failed. Please try again.",
@@ -124,6 +131,9 @@
       "version_required": "The version number is missing.",
       "visit_conflict": "The visit was changed elsewhere. Reload the view.",
       "visit_read_only": "This visit is closed and can no longer be changed.",
+      "invalid_cursor": "The page cursor is invalid. Reload the list.",
+      "consent_must_be_withdrawn": "A consent record cannot be deleted without a trace. Withdraw the consent instead.",
+      "recovery_conflict": "The recovery item differs from the item already stored on the server.",
       "loadFailed": "Loading failed.",
       "saveFailed": "Saving failed.",
       "deleteFailed": "Deleting failed.",
@@ -153,7 +163,8 @@
     "list": {
       "open": "Visits in progress",
       "closed": "Finished",
-      "empty": "No visits yet — start with preparation."
+      "empty": "No visits yet — start with preparation.",
+      "loadMore": "Show more"
     },
     "visit": {
       "untitled": "Untitled visit",
@@ -232,14 +243,19 @@
       "take": "Take a photo",
       "saved": "The photo is on the device and awaits your review.",
       "failed": "Saving the photo failed.",
-      "policy": "Photos are for documents or the environment; people are not photographed by default."
+      "policy": "A photo requires consent. The only exception is a document photographed at the client's request.",
+      "clientDocumentRequested": "The client asked me to photograph their document",
+      "requestReason": "What the client requested and why",
+      "basisRequired": "Before opening the camera, record consent or confirm the client's document request with a reason."
     },
     "audio": {
       "start": "Start an audio draft",
       "stop": "Stop recording",
       "saved": "The audio draft is on the device. You can transcribe it after sending.",
       "failed": "Recording failed.",
-      "consentFirst": "Add a consent record before recording audio."
+      "consentFirst": "Add a consent record before recording audio.",
+      "limit": "Maximum 10 minutes and 25 MB. Hiding or closing the view stops the microphone immediately.",
+      "limitReached": "The audio draft reached its local duration or size limit and recording was stopped."
     },
     "consent": {
       "title": "Consent",
@@ -268,6 +284,8 @@
       "cancel": "Turn the safety signal off",
       "escalated": "The contact has been notified. If everything is fine, confirm departure — the contact then receives a “resolved” notice.",
       "escalationFailed": "The notice could NOT be sent to the contact. Reach out to them yourself.",
+      "deliveryUnknown": "Email delivery is uncertain. Blind redelivery has been stopped.",
+      "resolvedFailed": "The resolved notice did not reach the contact. Reach out to them yourself.",
       "fillRequired": "Set the deadline and the contact's e-mail.",
       "needsOnline": "Arming the safety signal needs a connection — a deliberate limit so the signal truly lives on the server."
     },
@@ -275,7 +293,13 @@
       "title": "Review before sending",
       "empty": "There are no items on this device.",
       "approve": "Send",
-      "remove": "Remove"
+      "remove": "Remove from this device",
+      "serverNotes": "Notes sent to the server",
+      "serverCopy": "On server",
+      "revision": "revision {revision}",
+      "deleteServer": "Delete from server",
+      "withdrawConsent": "Withdraw consent",
+      "recoveryImport": "Recover into closed visit"
     },
     "item": {
       "note": "Note",
@@ -329,7 +353,8 @@
       "send": "Hand over",
       "done": "Handover succeeded.",
       "alreadyDone": "The handover is done; you can repeat it if needed.",
-      "pickTarget": "Pick at least one handover target."
+      "pickTarget": "Pick at least one handover target.",
+      "pending": "Part of the handover is waiting for a retry. Retry the same action."
     },
     "purge": {
       "title": "Remove local copies",

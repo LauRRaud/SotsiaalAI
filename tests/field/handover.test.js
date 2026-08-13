@@ -6,6 +6,11 @@ import { handoverFieldVisit } from "../../lib/field/service.js";
 import { createFieldDb, makeVisit } from "../helpers/fieldDb.mjs";
 
 const NOW = new Date("2026-07-18T12:00:00.000Z");
+let actionSequence = 0;
+const handoverInput = (payload, clientActionId = `field-action-${String(++actionSequence).padStart(4, "0")}`) => ({
+  clientActionId,
+  ...payload
+});
 
 function note(overrides = {}) {
   return {
@@ -69,14 +74,16 @@ async function status(promise) {
 test("artifact handover writes one CASE_SUMMARY draft and stamps the visit in the same transaction", async () => {
   const db = createFieldDb({ visits: [makeVisit()], notes: [note()] });
 
-  const result = await handoverFieldVisit("user-1", "visit-1", { toArtifact: true }, { db, now: NOW });
+  const result = await handoverFieldVisit("user-1", "visit-1", handoverInput({ toArtifact: true }), { db, now: NOW });
 
   assert.equal(db.store.artifacts.length, 1);
   const artifact = db.store.artifacts[0];
   assert.equal(artifact.ownerId, "user-1");
   assert.equal(artifact.type, "CASE_SUMMARY");
   assert.equal(artifact.status, "DRAFT");
-  assert.deepEqual(artifact.metadata, { source: "FIELD_VISIT", fieldVisitId: "visit-1" });
+  assert.equal(artifact.metadata.source, "FIELD_VISIT");
+  assert.equal(artifact.metadata.fieldVisitId, "visit-1");
+  assert.ok(artifact.metadata.handoverId);
   assert.equal(result.visit.handoverArtifactAt, NOW.toISOString());
   assert.equal(db.store.visits[0].handoverArtifactAt.toISOString(), NOW.toISOString());
 });
@@ -103,7 +110,7 @@ test("the artifact carries provenance, flags unconfirmed AI text and never silen
     ]
   });
 
-  await handoverFieldVisit("user-1", "visit-1", { toArtifact: true }, { db, now: NOW });
+  await handoverFieldVisit("user-1", "visit-1", handoverInput({ toArtifact: true }), { db, now: NOW });
   const content = db.store.artifacts[0].content;
 
   assert.match(content, /\[KLIENDI_OELDUD\] Klient ütles, et küte töötab\./);
@@ -122,7 +129,7 @@ test("only the selected notes reach the draft when the worker narrows the select
   await handoverFieldVisit(
     "user-1",
     "visit-1",
-    { toArtifact: true, noteClientItemIds: ["fld-note-000002"] },
+    handoverInput({ toArtifact: true, noteClientItemIds: ["fld-note-000002"] }),
     { db, now: NOW }
   );
 
@@ -141,7 +148,7 @@ test("pre-inquiry handover APPENDS and never overwrites the receiver's existing 
   await handoverFieldVisit(
     "user-1",
     "visit-1",
-    { toPreInquiry: true, preInquiryNote: "Külastus tehtud, küte korras." },
+    handoverInput({ toPreInquiry: true, preInquiryNote: "Külastus tehtud, küte korras." }),
     { db, now: NOW, workflow }
   );
 
@@ -154,7 +161,7 @@ test("pre-inquiry handover APPENDS and never overwrites the receiver's existing 
   assert.equal(workflow.calls[0].patch.expectedUpdatedAt.getTime(), NOW.getTime());
 });
 
-test("a repeated pre-inquiry handover appends again instead of duplicating or replacing", async () => {
+test("a repeated pre-inquiry handover with the same action key returns the same append", async () => {
   const db = createFieldDb({
     visits: [makeVisit({ preInquiryId: "inq-1" })],
     preInquiries: [inquiry({ receiverNote: "Algne plaan." })]
@@ -170,21 +177,21 @@ test("a repeated pre-inquiry handover appends again instead of duplicating or re
   await handoverFieldVisit(
     "user-1",
     "visit-1",
-    { toPreInquiry: true, preInquiryNote: "Esimene üleandmine." },
+    handoverInput({ toPreInquiry: true, preInquiryNote: "Esimene üleandmine." }, "field-action-retry-0001"),
     { db, now: NOW, workflow: applying }
   );
   await handoverFieldVisit(
     "user-1",
     "visit-1",
-    { toPreInquiry: true, preInquiryNote: "Teine üleandmine." },
+    handoverInput({ toPreInquiry: true, preInquiryNote: "Esimene üleandmine." }, "field-action-retry-0001"),
     { db, now: NOW, workflow: applying }
   );
 
   const final = db.store.preInquiries[0].receiverNote;
   assert.match(final, /Algne plaan\./);
   assert.match(final, /Esimene üleandmine\./);
-  assert.match(final, /Teine üleandmine\./);
-  assert.equal(workflow.calls.length, 2);
+  assert.equal((final.match(/Esimene üleandmine\./g) || []).length, 1);
+  assert.equal(workflow.calls.length, 1);
 });
 
 test("a lost pre-inquiry right explains itself with 404 and leaves the visit intact", async () => {
@@ -195,17 +202,16 @@ test("a lost pre-inquiry right explains itself with 404 and leaves the visit int
   });
   const workflow = recordingWorkflow();
 
-  const failure = await status(
-    handoverFieldVisit(
-      "user-1",
-      "visit-1",
-      { toPreInquiry: true, preInquiryNote: "Külastus tehtud." },
-      { db, now: NOW, workflow }
-    )
+  const result = await handoverFieldVisit(
+    "user-1",
+    "visit-1",
+    handoverInput({ toPreInquiry: true, preInquiryNote: "Külastus tehtud." }),
+    { db, now: NOW, workflow }
   );
 
-  assert.equal(failure.status, 404);
-  assert.equal(failure.message, "api.common.not_found");
+  assert.equal(result.handover.targets.preInquiry.status, "FAILED");
+  assert.equal(result.handover.targets.preInquiry.httpStatus, 404);
+  assert.equal(result.handover.targets.preInquiry.errorCode, "api.common.not_found");
   assert.equal(workflow.calls.length, 0);
   // The field work itself survives — nothing is discarded because a downstream
   // carrier disappeared.
@@ -216,23 +222,27 @@ test("a lost pre-inquiry right explains itself with 404 and leaves the visit int
 test("a visit with no linked pre-inquiry refuses that target instead of inventing one", async () => {
   const db = createFieldDb({ visits: [makeVisit()] });
 
-  const failure = await status(
-    handoverFieldVisit("user-1", "visit-1", { toPreInquiry: true, preInquiryNote: "Tekst." }, { db, now: NOW })
+  const result = await handoverFieldVisit(
+    "user-1",
+    "visit-1",
+    handoverInput({ toPreInquiry: true, preInquiryNote: "Tekst." }),
+    { db, now: NOW }
   );
 
-  assert.equal(failure.status, 409);
-  assert.equal(failure.message, "field.errors.no_pre_inquiry");
+  assert.equal(result.handover.targets.preInquiry.status, "FAILED");
+  assert.equal(result.handover.targets.preInquiry.httpStatus, 409);
+  assert.equal(result.handover.targets.preInquiry.errorCode, "field.errors.no_pre_inquiry");
 });
 
 test("handover requires a target and refuses a cancelled visit", async () => {
   const db = createFieldDb({ visits: [makeVisit()] });
-  const noTarget = await status(handoverFieldVisit("user-1", "visit-1", {}, { db, now: NOW }));
+  const noTarget = await status(handoverFieldVisit("user-1", "visit-1", handoverInput({}), { db, now: NOW }));
   assert.equal(noTarget.status, 400);
   assert.equal(noTarget.message, "field.errors.no_handover_target");
 
   const cancelledDb = createFieldDb({ visits: [makeVisit({ status: "CANCELLED", cancelledAt: NOW })] });
   const cancelled = await status(
-    handoverFieldVisit("user-1", "visit-1", { toArtifact: true }, { db: cancelledDb, now: NOW })
+    handoverFieldVisit("user-1", "visit-1", handoverInput({ toArtifact: true }), { db: cancelledDb, now: NOW })
   );
   assert.equal(cancelled.status, 409);
   assert.equal(cancelled.message, "field.errors.visit_read_only");
@@ -242,7 +252,7 @@ test("handover requires a target and refuses a cancelled visit", async () => {
 test("a foreign owner cannot hand over someone else's visit", async () => {
   const db = createFieldDb({ visits: [makeVisit()], notes: [note()] });
 
-  const failure = await status(handoverFieldVisit("user-2", "visit-1", { toArtifact: true }, { db, now: NOW }));
+  const failure = await status(handoverFieldVisit("user-2", "visit-1", handoverInput({ toArtifact: true }), { db, now: NOW }));
 
   assert.equal(failure.status, 404);
   assert.equal(db.store.artifacts.length, 0);
@@ -254,7 +264,23 @@ test("a failed artifact write leaves no handover stamp behind", async () => {
     throw new Error("write_failed");
   };
 
-  await assert.rejects(handoverFieldVisit("user-1", "visit-1", { toArtifact: true }, { db, now: NOW }));
+  await handoverFieldVisit("user-1", "visit-1", handoverInput({ toArtifact: true }), { db, now: NOW });
 
   assert.equal(db.store.visits[0].handoverArtifactAt, null);
+  assert.equal(db.store.handovers[0].targetStates.artifact.status, "FAILED");
+});
+
+test("same handover key with different canonical content is rejected", async () => {
+  const db = createFieldDb({ visits: [makeVisit()], notes: [note()] });
+  await handoverFieldVisit("user-1", "visit-1", handoverInput({ toArtifact: true }, "field-action-conflict-1"), { db, now: NOW });
+  await assert.rejects(
+    handoverFieldVisit(
+      "user-1",
+      "visit-1",
+      handoverInput({ toArtifact: true, artifactTitle: "Teine" }, "field-action-conflict-1"),
+      { db, now: NOW }
+    ),
+    (error) => error.status === 409 && error.message === "field.errors.handover_idempotency_conflict"
+  );
+  assert.equal(db.store.artifacts.length, 1);
 });

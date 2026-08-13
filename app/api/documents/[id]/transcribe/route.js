@@ -108,7 +108,7 @@ export async function POST(request, { params }) {
 
   try {
     const source = await prisma.userDocument.findFirst({
-      where: { id, ownerId: auth.userId },
+      where: { id, ownerId: auth.userId, fieldVisitAttachments: { none: { storageStatus: { not: "ACTIVE" } } } },
       select: {
         id: true,
         ownerId: true,

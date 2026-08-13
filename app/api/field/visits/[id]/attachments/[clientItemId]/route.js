@@ -58,7 +58,11 @@ export async function PUT(request, context) {
         file: formData.get("file"),
         role: formData.get("role"),
         consentClientItemId: formData.get("consentClientItemId"),
-        documentOnly: String(formData.get("documentOnly") || "") === "true"
+        documentOnly: String(formData.get("documentOnly") || "") === "true",
+        documentRequestConfirmed: String(formData.get("documentRequestConfirmed") || "") === "true",
+        documentRequestReason: formData.get("documentRequestReason"),
+        deviceCreatedAt: formData.get("deviceCreatedAt"),
+        recoveryImport: String(formData.get("recoveryImport") || "") === "true"
       },
       { session: auth.session }
     );

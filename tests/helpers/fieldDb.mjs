@@ -20,6 +20,7 @@ function matchesCondition(actual, condition) {
     if ("gte" in condition) return actual != null && new Date(actual) >= new Date(condition.gte);
     if ("lt" in condition) return actual != null && new Date(actual) < new Date(condition.lt);
     if ("lte" in condition) return actual != null && new Date(actual) <= new Date(condition.lte);
+    if (actual && typeof actual === "object") return matches(actual, condition);
     throw new Error(`fieldDb: unsupported condition ${JSON.stringify(condition)}`);
   }
   if (condition instanceof Date) return actual != null && new Date(actual).getTime() === condition.getTime();
@@ -27,7 +28,14 @@ function matchesCondition(actual, condition) {
 }
 
 function matches(row, where = {}) {
-  return Object.entries(where).every(([key, condition]) => matchesCondition(row[key], condition));
+  return Object.entries(where).every(([key, condition]) => {
+    if (key === "OR") return condition.some((branch) => matches(row, branch));
+    if (key === "AND") return condition.every((branch) => matches(row, branch));
+    if (row[key] === undefined && condition && typeof condition === "object" && !Array.isArray(condition)) {
+      return matches(row, condition);
+    }
+    return matchesCondition(row[key], condition);
+  });
 }
 
 function applyData(row, data) {
@@ -125,6 +133,14 @@ function table(rows, { idPrefix = "row", unique = null } = {}) {
     },
     async count({ where = {} } = {}) {
       return rows.filter((row) => matches(row, where)).length;
+    },
+    async aggregate({ where = {}, _sum = {} } = {}) {
+      const found = rows.filter((row) => matches(row, where));
+      return {
+        _sum: Object.fromEntries(
+          Object.keys(_sum).map((key) => [key, found.reduce((sum, row) => sum + Number(row[key] || 0), 0)])
+        )
+      };
     }
   };
 }
@@ -134,13 +150,39 @@ export function createFieldDb({
   notes = [],
   attachments = [],
   preInquiries = [],
+  handovers = [],
   artifacts = [],
   documents = [],
-  auditLog = []
+  auditLog = [],
+  deletionJobs = [],
+  materialSubmissions = [],
+  savedAnalyses = [],
+  ocrJobs = [],
+  ocrRateEvents = []
 } = {}) {
-  const store = { visits, notes, attachments, preInquiries, artifacts, documents, auditLog };
+  const store = {
+    visits,
+    notes,
+    attachments,
+    preInquiries,
+    handovers,
+    artifacts,
+    documents,
+    auditLog,
+    deletionJobs,
+    materialSubmissions,
+    savedAnalyses,
+    ocrJobs,
+    ocrRateEvents
+  };
   const db = {
     store,
+    async $executeRaw() {
+      return 1;
+    },
+    async $queryRaw() {
+      return [{ locked: true }];
+    },
     /**
      * SOL-FIELD-03: `$transaction` PÖÖRAB NÜÜD TAGASI.
      *
@@ -168,8 +210,14 @@ export function createFieldDb({
     fieldVisitNote: table(notes, { idPrefix: "note", unique: ["visitId", "clientItemId"] }),
     fieldVisitAttachment: table(attachments, { idPrefix: "att", unique: ["visitId", "clientItemId"] }),
     preInquiry: table(preInquiries, { idPrefix: "inq" }),
-    agentArtifact: table(artifacts, { idPrefix: "artifact" }),
+    fieldVisitHandover: table(handovers, { idPrefix: "handover", unique: ["visitId", "clientActionId"] }),
+    agentArtifact: table(artifacts, { idPrefix: "artifact", unique: ["ownerId", "idempotencyKey"] }),
     userDocument: table(documents, { idPrefix: "doc" }),
+    dataDeletionJob: table(deletionJobs, { idPrefix: "deletion-job" }),
+    materialSubmission: table(materialSubmissions, { idPrefix: "material" }),
+    savedAnalysis: table(savedAnalyses, { idPrefix: "analysis" }),
+    fieldOcrJob: table(ocrJobs, { idPrefix: "ocr-job", unique: ["attachmentId", "contentSha256"] }),
+    fieldOcrRateEvent: table(ocrRateEvents, { idPrefix: "ocr-rate" }),
     dataAuditLog: table(auditLog, { idPrefix: "audit" })
   };
   return db;

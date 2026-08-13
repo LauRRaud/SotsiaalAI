@@ -93,6 +93,7 @@ function createDb() {
       { authorId: null, role: "ASSISTANT", content: "visible answer" }
     ] }] },
     journey: { findMany: async () => [] },
+    fieldVisit: { findMany: async () => [] },
     wellbeingRecord: { findMany: async () => [] },
     /* SOL-WB-18: mustandid on omaniku enda tekst ja nad kuuluvad koopiasse. */
     wellbeingOutputDraft: { findMany: async () => [] },

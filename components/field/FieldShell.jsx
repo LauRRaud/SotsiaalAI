@@ -40,23 +40,33 @@ export default function FieldShell() {
   const [showForm, setShowForm] = useState(false);
   const [goal, setGoal] = useState("");
   const [locationText, setLocationText] = useState("");
+  const [nextCursor, setNextCursor] = useState(null);
+  const [counts, setCounts] = useState({ open: 0, closed: 0 });
 
-  const loadVisits = useCallback(async () => {
+  const loadVisits = useCallback(async ({ append = false } = {}) => {
     if (!navigator.onLine) {
-      setVisits((current) => current || []);
+      setVisits(sync.localVisits);
+      setNextCursor(null);
       return;
     }
     try {
       setLoadError(false);
-      const response = await fetch("/api/field/visits");
+      const cursor = append ? nextCursor : null;
+      const response = await fetch(`/api/field/visits${cursor ? `?cursor=${encodeURIComponent(cursor)}` : ""}`);
       if (!response.ok) throw new Error("load_failed");
       const body = await response.json();
-      setVisits(Array.isArray(body.visits) ? body.visits : []);
+      const page = Array.isArray(body.visits) ? body.visits : [];
+      setVisits((current) => (append ? [...(current || []), ...page] : page));
+      setNextCursor(body.nextCursor || null);
+      setCounts(body.counts || { open: page.filter((visit) => OPEN_STATUSES.has(visit.status)).length, closed: 0 });
     } catch {
       setLoadError(true);
-      setVisits((current) => current || []);
+      // Browsers may report navigator.onLine=true while every request is already
+      // disconnected. The encrypted packs are still the honest fallback.
+      setVisits(sync.localVisits);
+      setNextCursor(null);
     }
-  }, []);
+  }, [nextCursor, sync.localVisits]);
 
   useEffect(() => {
     if (userId && allowed) loadVisits();
@@ -241,7 +251,7 @@ export default function FieldShell() {
       </section>
 
       <section className="fld-section" aria-label={t("field.list.open")}>
-        <h2 className="fld-h2">{t("field.list.open")}</h2>
+          <h2 className="fld-h2">{t("field.list.open")} ({counts.open || openVisits.length})</h2>
         {visits === null ? (
           <p className="fld-muted">{t("field.loading")}</p>
         ) : openVisits.length === 0 ? (
@@ -267,7 +277,7 @@ export default function FieldShell() {
 
       {closedVisits.length ? (
         <section className="fld-section" aria-label={t("field.list.closed")}>
-          <h2 className="fld-h2">{t("field.list.closed")}</h2>
+          <h2 className="fld-h2">{t("field.list.closed")} ({counts.closed || closedVisits.length})</h2>
           <ul className="fld-list">
             {closedVisits.map((visit) => (
               <li key={visit.id}>
@@ -279,6 +289,11 @@ export default function FieldShell() {
             ))}
           </ul>
         </section>
+      ) : null}
+      {nextCursor ? (
+        <Button variant="secondary" fullWidth onClick={() => loadVisits({ append: true })}>
+          {t("field.list.loadMore")}
+        </Button>
       ) : null}
     </main>
   );

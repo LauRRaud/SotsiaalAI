@@ -89,6 +89,11 @@
       "invalid_attachment_role": "Tundmatu manuse liik.",
       "invalid_body": "Märke tekst on puudu või liiga pikk.",
       "invalid_client_item_id": "Vigane üksuse tunnus.",
+      "invalid_client_action_id": "Vigane toimingu tunnus.",
+      "handover_idempotency_conflict": "Sama üleandmise tunnust kasutati erineva sisuga. Alusta uus toiming.",
+      "document_request_required": "Kliendi dokumendipalve vajab teadlikku kinnitust ja põhjust.",
+      "file_pending": "Faili salvestamine ootab taastamist. Proovi uuesti.",
+      "delete_pending": "Kustutamine on järjekorras ja lõpetatakse automaatselt.",
       "invalid_consent_kind": "Tundmatu nõusoleku liik.",
       "invalid_date": "Vigane kuupäev.",
       "invalid_device_created": "Vigane seadmes loomise aeg.",
@@ -115,6 +120,8 @@
       "note_conflict": "Sama märget muudeti mujal. Vali, kumb versioon jääb.",
       "nothing_to_update": "Muudetavat ei ole.",
       "ocr_failed": "Teksti lugemine pildilt ebaõnnestus.",
+      "ocr_busy": "Teksti lugemise tööjärjekord on täis. Proovi paari sekundi pärast uuesti.",
+      "ocr_rate_limited": "Teksti lugemist käivitati liiga sageli. Proovi minuti pärast uuesti.",
       "ocr_unavailable": "Teksti lugemine pildilt ei ole praegu saadaval.",
       "photo_too_large": "Foto on liiga suur.",
       "request_failed": "Toiming ebaõnnestus. Proovi uuesti.",
@@ -124,6 +131,9 @@
       "version_required": "Puudub versiooninumber.",
       "visit_conflict": "Külastust muudeti vahepeal mujal. Laadi vaade uuesti.",
       "visit_read_only": "See külastus on suletud ja seda ei saa enam muuta.",
+      "invalid_cursor": "Lehitsemise võti ei kehti. Laadi nimekiri uuesti.",
+      "consent_must_be_withdrawn": "Nõusolekukirjet ei kustutata jäljetult. Kasuta nõusoleku tagasivõtmist.",
+      "recovery_conflict": "Taastatav kirje erineb serveris juba olevast kirjest.",
       "loadFailed": "Laadimine ebaõnnestus.",
       "saveFailed": "Salvestamine ebaõnnestus.",
       "deleteFailed": "Kustutamine ebaõnnestus.",
@@ -153,7 +163,8 @@
     "list": {
       "open": "Pooleli külastused",
       "closed": "Lõpetatud",
-      "empty": "Ühtegi külastust pole — alusta ettevalmistusest."
+      "empty": "Ühtegi külastust pole — alusta ettevalmistusest.",
+      "loadMore": "Näita rohkem"
     },
     "visit": {
       "untitled": "Nimetu külastus",
@@ -232,14 +243,19 @@
       "take": "Tee foto",
       "saved": "Foto on seadmes ja ootab sinu kontrolli.",
       "failed": "Foto salvestamine ebaõnnestus.",
-      "policy": "Foto on dokumendi või keskkonna jaoks; inimesi vaikimisi ei pildistata."
+      "policy": "Foto vajab nõusolekut. Erand on ainult kliendi enda palvel pildistatav dokument.",
+      "clientDocumentRequested": "Klient palus oma dokumenti pildistada",
+      "requestReason": "Mida klient palus ja milleks",
+      "basisRequired": "Enne foto avamist talleta nõusolek või kinnita kliendi dokumendipalve koos põhjusega."
     },
     "audio": {
       "start": "Alusta helimustandit",
       "stop": "Lõpeta salvestus",
       "saved": "Helimustand on seadmes. Transkribeerida saad pärast saatmist.",
       "failed": "Heli salvestamine ebaõnnestus.",
-      "consentFirst": "Lisa enne heli salvestamist nõusolekukirje."
+      "consentFirst": "Lisa enne heli salvestamist nõusolekukirje.",
+      "limit": "Maksimaalselt 10 minutit ja 25 MB. Vaate peitmine või sulgemine lõpetab mikrofoni kohe.",
+      "limitReached": "Helimustand jõudis kohaliku kestuse või mahu piirini ja salvestamine peatati."
     },
     "consent": {
       "title": "Nõusolek",
@@ -268,6 +284,8 @@
       "cancel": "Lülita turvasignaal välja",
       "escalated": "Kontaktile on saadetud teade. Kui kõik on korras, kinnita lahkumine — kontakt saab siis „lahenenud” teate.",
       "escalationFailed": "Teadet EI õnnestunud kontaktile saata. Võta temaga ise ühendust.",
+      "deliveryUnknown": "Kirja kohaletoimetamise tulemus on teadmata. Pime kordussaatmine on peatatud.",
+      "resolvedFailed": "Lahendusteade ei jõudnud kontaktini. Võta temaga ise ühendust.",
       "fillRequired": "Määra tähtaeg ja kontakti e-post.",
       "needsOnline": "Turvasignaali sisselülitamine vajab ühendust — see on teadlik piir, et signaal oleks päriselt serveris."
     },
@@ -275,7 +293,13 @@
       "title": "Kontrolli enne saatmist",
       "empty": "Selles seadmes pole ühtegi üksust.",
       "approve": "Saada",
-      "remove": "Eemalda"
+      "remove": "Eemalda sellest seadmest",
+      "serverNotes": "Serverisse saadetud märkmed",
+      "serverCopy": "Serveris",
+      "revision": "versioon {revision}",
+      "deleteServer": "Kustuta serverist",
+      "withdrawConsent": "Võta nõusolek tagasi",
+      "recoveryImport": "Taasta suletud külastusse"
     },
     "item": {
       "note": "Märge",
@@ -329,7 +353,8 @@
       "send": "Anna üle",
       "done": "Üleandmine õnnestus.",
       "alreadyDone": "Üleandmine on tehtud; vajadusel saad seda korrata.",
-      "pickTarget": "Vali vähemalt üks üleandmise sihtkoht."
+      "pickTarget": "Vali vähemalt üks üleandmise sihtkoht.",
+      "pending": "Osa üleandmisest ootab korduskatset. Proovi sama toimingut uuesti."
     },
     "purge": {
       "title": "Eemalda kohalikud koopiad",

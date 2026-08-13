@@ -28,9 +28,13 @@ const SOURCE_ROOTS = ["lib/field", "components/field", "app/valitoo", "app/api/f
 // DataAuditLog action names share the "field." prefix but are never rendered.
 const AUDIT_ACTIONS = new Set([
   "field.attachment_deleted",
+  "field.attachment_recovery_imported",
   "field.consent_withdrawn",
   "field.handover_artifact",
   "field.handover_pre_inquiry",
+  "field.note_deleted",
+  "field.note_recovery_imported",
+  "field.photo_client_document_requested",
   "field.safety_escalated",
   "field.safety_escalation_failed",
   "field.safety_resolved_notice"

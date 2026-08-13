@@ -105,7 +105,12 @@ test("field work never reaches the logs: no body, location text or goal is print
       },
       { db, now: NOW }
     );
-    await handoverFieldVisit("user-1", "visit-1", { toArtifact: true }, { db, now: NOW });
+    await handoverFieldVisit(
+      "user-1",
+      "visit-1",
+      { clientActionId: "field-privacy-action-1", toArtifact: true },
+      { db, now: NOW }
+    );
     await status(getFieldVisitDetail("user-1", "missing-visit", { db }));
   } finally {
     for (const [level, fn] of Object.entries(original)) console[level] = fn;
@@ -212,19 +217,15 @@ test("a withdrawn consent no longer unlocks new uploads", () => {
   assert.match(gate[0], /consent_required/u);
 });
 
-test("a file that could not be removed reports failure instead of claiming deletion", () => {
+test("attachment deletion uses a durable tombstone and restart reconciler", () => {
   const start = ATTACHMENTS_SOURCE.indexOf("export async function deleteFieldVisitAttachment");
   assert.ok(start > -1, "attachments module exposes a delete path");
   const remover = ATTACHMENTS_SOURCE.slice(start, ATTACHMENTS_SOURCE.indexOf("\nexport ", start + 1));
 
-  // Honest answer when the blob survives: no silent success, no orphan row.
-  assert.match(remover, /unlinkStored\(/u);
-  assert.match(remover, /if \(!unlinked\) throw fieldError\("field\.errors\.delete_failed", 500\)/u);
-  // The rows are only dropped after the file is provably gone.
-  assert.ok(
-    remover.indexOf("delete_failed") < remover.indexOf("fieldVisitAttachment.deleteMany"),
-    "the unlink check must run before the rows are removed"
-  );
+  assert.match(remover, /storageStatus:\s*"DELETE_PENDING"/u);
+  assert.match(remover, /FIELD_FILE_ACTION\.DELETE/u);
+  assert.match(remover, /reconcileFieldVisitFileJobs/u);
+  assert.match(remover, /field\.errors\.delete_pending/u);
 });
 
 test("account deletion reaches every field model through declared cascades", () => {

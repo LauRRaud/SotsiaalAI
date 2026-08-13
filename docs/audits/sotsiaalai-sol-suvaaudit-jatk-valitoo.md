@@ -42,7 +42,7 @@
 
 **Vastuvõtukriteerium.** Praeguse seadme sulgemisvärav peab blokeerima kõik mitteterminaalsed ja lahendamata olekud, sh `FAILED`, `CONFLICT` ja auth-park; UI peab viima kasutaja vea lahendamiseni. Mitme seadme jaoks on vaja ausat sulgemislepingut: kas serveripoolne seadme/sünk-manifest või suletud külastuse kontrollitud recovery-import, mis ei muuda ametlikku suletud sisu vaikselt. Negatiivtestid peavad katma `FAILED`, `CONFLICT`, aegunud sessiooni, teise seadme ootel üksuse ja close-vs-upload võidujooksu.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE — sulgemisvärav kasutab nüüd ühtset blocker-lepingut ning blokeerib `DEVICE_ONLY`, `QUEUED`, `UPLOADING`, `FAILED`, `CONFLICT` ja auth-pargi. Suletud külastuse kontrollitud recovery-import võtab vastu ainult tõendatult enne `closedAt` loodud seadmekirje, märgib `recoveryImportedAt`, on idempotentne ja kirjutab append-only auditi; hiline uus sisu jääb 409 taha. Negatiivkontroll kukkus vana koodi peal puuduva continuity-helperiga. Sihttestid läbisid, päris PostgreSQL-i close-vs-upload/recovery sond läbis 8/8; runtime: Chromiumi praeguse seadme sulgemisvärav staatiliselt/testiga tõendatud, mitme füüsilise seadme runtime not_run.
 
 ### SOL-FIELD-J-02 — serverisse jõudnud märkmed kaovad omanikuvaatest ning „Eemalda” kustutab ainult seadmekoopia — P1
 
@@ -52,7 +52,7 @@
 
 **Vastuvõtukriteerium.** Järeltöö peab kuvama owner-skoobitult serverimärkmed koos päritolu, revision'i, konflikti ja kustutus-/parandusolekuga ning eristama sõnastuses „eemalda sellest seadmest” ja „kustuta serverist”. Serverikustutus peab olema auditeeritud ja nõusoleku tagasivõtuga koherentne. Testida uus seade ilma kohalike kirjeteta, 7 päeva local purge, serverimärkme muutmine/kustutus, suletud külastuse read-only semantika ja seda, et üleandmise valik vastab täpselt nähtavale loendile.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE — järeltöö ühendab nüüd serveri- ja seadmekirjed nähtavaks owner-skoobitud loendiks koos päritolu, revisjoni, konflikti ja asukohaga. Sõnastus eristab seadmekoopia eemaldamist serverikustutusest; serverikustutus on DB-auditiga üks tehing ning nõusolekukirje lubab ainult auditeeritud tagasivõtmist. Üleandmine kasutab sama nähtava serveriloendi ID-sid ja detail ei kärbi enam vaikse 500 piiriga. Sihttestid katsid local-copy puudumise, kustutuse/auditi, nõusoleku ja 501 märget; PostgreSQL-i sond kinnitas suletud read-only semantika ja täieliku detaili. runtime: browseri serverikirje muutmis-/kustutusklikk not_run.
 
 ### SOL-FIELD-J-03 — offline-avaleht ei leia seadmesse võetud külastusi ja online-loend lõpeb 50 rea juures — P2
 
@@ -62,7 +62,7 @@
 
 **Vastuvõtukriteerium.** Offline `/valitoo` peab loetlema kehtivad kohalikud paketid minimaalse krüptitud projektsiooniga ja viima deep-link'i; online-loend vajab stabiilset cursor-paginatsiooni ning eraldi avatud/suletud filtri ausat koguarvu. Detaili märkmed/manused vajavad cursorit või selget mahuväravat. Brauseritest: fresh reload offline'is vähemalt kahe paketiga, aegunud paketi puudumine, 51+ külastust, 501+ märget ja lehekülgede vahel muutuv `updatedAt`.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE — `/valitoo` loeb IndexedDB-st kõik dekrüptitud ja retention'iga kehtivad paketiprojektsioonid ning kasutab neid ka siis, kui brauser teatab ekslikult `navigator.onLine=true`, aga võrk ei vasta. Online-loendil on muutumatu `createdAt,id` cursor, `nextCursor`, ausad avatud/suletud koguarvud ja „Näita rohkem”; detaili 500/200 vaiksed laed eemaldati. Päris PostgreSQL-i sond läbis 8/8, sh 51+ rida koos lehtede vahel muutuva `updatedAt`-iga ja 501+ märget. Tootmis-buildi päris Chromiumi fresh offline reload kuvas kaks krüptitud paketti ja jättis süstitud aegunud paketi välja; sünteetilised kasutajad/visiidid koristati. runtime: Android/iOS seadmemaatriks not_run.
 
 ### SOL-FIELD-J-04 — üleandmise kordus loob duplikaadid ja kahe sihtkoha päring võib jääda pooleldi õnnestunuks — P1
 
@@ -72,7 +72,7 @@
 
 **Vastuvõtukriteerium.** UI peab looma püsiva `clientActionId` võtme; server seob selle omaniku, visiidi, sihtide ja kanoonilise payload'i hashiga. Sama võti/sama sisu tagastab samad siht-ID-d, sama võti/eri sisu annab 409. Kahe sihi puhul peab olema kas üks atomaarne tehing või püsiv per-target saga/outbox, mille vastus näitab iga sihi `DONE/PENDING/FAILED` seisu ja mille retry jätkab ainult puuduvat osa. Testida topeltklõpsu, vastuse kaotust, stale eelpöördumist pärast artefakti loomist, auditiviga ja kahte paralleelset request'i.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE — UI hoiab kanoonilise payload'i juures püsivat `clientActionId`-d, server seob võtme visiidi ja SHA-256 sõrmejäljega ning `FieldVisitHandover` kannab artefakti ja eelpöördumise eraldi `PENDING/FAILED/DONE` seisu. Artefakt kasutab lisaks DB-unikaalset idempotentsusvõtit; eelpöördumise append, tempel, audit ja saga-seis commit'ivad sama ruumiluku all. Sama võti/sama sisu tagastab samad siht-ID-d, eri sisu annab 409 ja osaline viga jätkab retry'l ainult puuduvat sihti. Sihttestid katsid vastuse kao, stale/404, auditirea vea ja hash-konflikti; päris PostgreSQL-i sondi kaks paralleelset request'i lõid ühe artefakti ning osalise vea retry ei dubleerinud valmis sihti. runtime: browser not_run.
 
 ### SOL-FIELD-J-05 — fotonõusolekust saab mööduda kliendi juhitava `documentOnly` lipuga — P1
 
@@ -82,7 +82,7 @@
 
 **Vastuvõtukriteerium.** Foto avamise ees peab olema serveris tõendatav nõusolekukirje või eraldi teadlik „kliendi dokument kliendi palvel” toiming koos põhjuse, aja ja auditiga; vaikimisi ei tohi nõusolekuta foto muutuda erandiks. Erand peab kanduma attachment metadata/projektsiooni ja olema tagasivõetav. Negatiivtestid: puuduv/DEVICE_ONLY/tagasivõetud/teist liiki nõusolek, otse-API `documentOnly=true`, erandita inimese foto ning erandi hilisem audit ja kustutus.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE — foto sisend on nüüd lukus, kuni leidub kehtiv serveri nõusolek või töötaja on teadlikult kinnitanud kliendi dokumendipalve ja kirjutanud kuni 500-märgilise põhjuse. Server ei usalda enam `documentOnly` boole'i üksinda: erand vajab eraldi kinnitust+põhjust, talletub `captureBasis/documentRequestReason/documentRequestAt` väljadele ning kirjutab samas tehingus ID-põhise auditi. Projektsioon näitab alust ja hilisem attachment'i kustutus võtab erandi koos failiga tagasi. Negatiivtestid katsid puuduva, DEVICE_ONLY-laadse, tagasivõetud ja vale liigi nõusoleku, otse-API lipu, erandi auditi ning kustutuse. runtime: browser camera not_run.
 
 ### SOL-FIELD-J-06 — manuse faili ja DB terviklikkus pole vea järel taastatav — P1
 
@@ -92,7 +92,7 @@
 
 **Vastuvõtukriteerium.** Faili loomine/kustutus vajab püsivat staging/tombstone + retry protokolli: avaldamata temp-fail, DB-s claim/soovitud seis, idempotentne failisammu job ja reconciler. Aktiivne DB-rida ei tohi kunagi osutada puuduvale failile; orb-fail peab olema töö-ID/omaniku järgi leitav ja kustutatav. Veasüstetestid peavad katkestama kirjutuse, rename'i, DB create'i, auditirea, unlink'i ja DB delete'i järel ning pärast restarti tõendama kas terviklikku aktiivset manust või lõpetatud kustutust, mitte lahknemist.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE — upload loob enne faili püsiva `DataDeletionJob` staging-claim'i, DB-s sündiv attachment on avaldamiseni `PENDING_PUBLISH` ning download/transkriptsioon/OCR lubavad ainult `ACTIVE` kandjat. Idempotentne reconciler lõpetab rename'i või koristab orvu ka restardi järel. Kustutus märgib rea esmalt `DELETE_PENDING`-iks ja loob püsiva töö; unlink, DB-delete ja kohustuslik audit on korduskatsega lõpetatavad, mistõttu puuduvale failile osutavat aktiivset rida ei teki. Veasüstetestid katkestasid DB create'i, rename'i, unlink'i ning lõpliku DB/auditi ja tõendasid pärast uut reconciler-käiku ainult tervikliku ACTIVE manuse või lõpetatud kustutuse. Päris PostgreSQL-i sond jättis tööjärjekorra lõpus null `pending/failed` failiülesannet. runtime: filesystem injection + PostgreSQL, production filesystem not_run.
 
 ### SOL-FIELD-J-07 — Välitöö upload avab `SOL-DOC-07` parandatud kvoodivea uuel rajal — P2
 
@@ -102,7 +102,7 @@
 
 **Vastuvõtukriteerium.** Rakendada Välitöö attachment create samas `withStorageQuota()` lukus ja sama süstitud `tx` kliendiga; failistaging peab sobima SOL-FIELD-J-06 taastamisprotokolliga. Päris PostgreSQL-i probe peab täitma kvoodi lähedale ja saatma paralleelselt eri visiitide foto+heli ning tavalise dokumendi upload'i: võita tohib ainult mahtu jääv hulk, lõppsumma ei ületa piiri ja kaotajad ei jäta faili.
 
-**Seis.** NOT_DONE — `SOL-DOC-07` paranduse regressioon/katmata uus kirjutusrada; runtime: not_run.
+**Seis.** DONE — Välitöö foto ja heli loovad `UserDocument` + `FieldVisitAttachment` read nüüd olemasoleva `withStorageQuota()` kasutajapõhise advisory-lock'i all ning mõõtmine kasutab sama süstitud `tx` klienti. Staging-claim sünnib enne faili, kaotaja koristatakse püsiva töö kaudu. Päris PostgreSQL-i sond täitis 100 MiB sotsiaaltöötaja kvoodi kahe 20-baidise kirjutuse kaugusele ja käivitas paralleelselt eri visiitide foto, heli ning tavadokumendi: 2/3 võitis, kolmas sai 413, lõppsumma jäi piirile või alla, failide arv oli täpselt kaks ja ühtegi `pending/failed` FIELD failitööd ei jäänud. runtime: PostgreSQL 12/12 PASS.
 
 ### SOL-FIELD-J-08 — mikrofon võib pärast vaate sulgemist edasi salvestada ja kohalikul salvestusel puudub kestuse/mahu piir — P1
 
@@ -112,7 +112,7 @@
 
 **Vastuvõtukriteerium.** Hoida nii recorder kui stream kontrollitud ref'ides; unmount, `pagehide`, visibility-/route-muutus ja veatee peavad idempotentselt peatama recorder'i ning kõik track'id. UI peab näitama kestust ja jõustama Välitöö lepinguga koherentset kohaliku/serveri mahu- ning kestuselage enne suure blobi teket. Päris Android Chrome'i ja iOS Safari/PWA test navigeerib salvestuse ajal ära, lukustab vaate ja tapab/tab taastab rakenduse; mikrofoni indikaator kustub, ükski varjatud lisasekund ei salvestu ja ülempiiril jääb kasutajale kontrollitav, kustutatav seis.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE — `MediaRecorder` ja `MediaStream` elavad nüüd kontrollitud ref'ides; üks idempotentne cleanup peatab track'id `pagehide`, peidetud dokumendi, Reacti unmount/route-vahetuse, recorder'i vea ja käsitsi lõpetamise korral. Ühesekundiline `timeslice` võimaldab mahu kasvu enne suure blobi teket piirata: kohalik leping on 10 minutit / 25 MiB, piiri ületavat chunk'i ei lisata ning UI näitab jooksvat kestust ja piiri. Piiril peatatud salvestus jääb tavaliseks kasutaja kontrollitavaks DEVICE_ONLY helimustandiks; peidetud või suletud vaate salvestus lõpetatakse ja discard'itakse, et varjatud lisasekundeid ei säiliks. Sihttestid tõendasid piiriarvutuse ning kõigi cleanup-piiride olemasolu. runtime: Android Chrome ja iOS Safari/PWA not_run (pärisseadmed pole selles töökeskkonnas kättesaadavad).
 
 ### SOL-FIELD-J-09 — kasutaja andmekoopia jätab külastused, märkmed, nõusolekud ja ohutussignaali välja — P1
 
@@ -122,7 +122,7 @@
 
 **Vastuvõtukriteerium.** Lisada owner-skoobitud, versioonitud Välitöö eksport: külastuse meta/ajad/olek, märkmed ja päritolu, nõusoleku minimaaltõend/tagasivõtmine, attachment'i tehnilised seosed ning üleandmise seis. Kolmandate isikute sisu tuleb andmeminimeerimise reegliga eristada, mitte kogu pinda vaikselt välja jätta. Test loob märkme, konflikti, nõusoleku tagasivõtu, foto/heli ja handover'i, genereerib ZIP-i ning tõendab vajalikud väljad, storagePath/teise omaniku puudumise ja arusaadava manifesti.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE — andmekoopia registris on versioonitud, owner-skoobitud `field_visits` pind, mis kannab külastuse meta- ja ajavälju, märkmeid koos päritolu/konfliktiga, nõusoleku minimaaltõendit ja tagasivõttu, attachment'i tehnilisi seoseid ja alusvälju, üleandmise per-target seisu ning OCR-mustandeid. Manifest märgib pinna kolmandate isikute sisu sisaldavaks professionaalseks kirjeks; eksport ei ava võõra omaniku ridu ega `storagePath`-i. Sihttest ehitas päris ZIP-i ja tõendas nii nõutud väljad kui mõlemad negatiivpiirid. runtime: ZIP generation PASS; browser not_required.
 
 ### SOL-FIELD-J-10 — turvasignaali lahendusteade võib vaikselt saatmata jääda ning eskalatsioon võib DB-vea järel korduda — P1
 
@@ -132,7 +132,7 @@
 
 **Vastuvõtukriteerium.** Turvasignaali e-kirjad vajavad püsivat outbox'i/state-masinat, idempotentsusvõtit ja provider-tulemuse reconciler'it; `SENT`/`resolvedNotifiedAt` tohib tekkida ainult tõendatud saatmise järel. Puuduv transport/saaja on nähtav `FAILED/PENDING`, mitte edu. Testida puuduva `EMAIL_FROM`/SMTP, timeout'i, provider-edu + DB-vea, DB-edu + worker crash'i, kahte paralleelset sweep'i ja restarti; kontakt saab iga loogilise teate maksimaalselt ühe korra ning UI näitab ausat seisu.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE — eskalatsioon ja lahendusteade kasutavad nüüd püsivat outbox'i, dedupe-võtit ning stabiilset Message-ID-d. Visiidi `SENT` ja ajatempel tekivad ainult outbox'i kinnitatud `SENT` järel; puuduv saaja/transport muutub nähtavaks `FAILED`-iks ning SMTP timeout jääb `UNKNOWN`/`AMBIGUOUS` seisu ilma tundliku kirja pimeda korduseta. Reconciler taastab worker-crash'i järel outbox'i tõe visiidile. Päris PostgreSQL-i sond tõendas kahe paralleelse sweep'i ühe kirja, lahendusteate ühe kirja, puuduva transpordi, timeout'i, crash-recovery ja dedupe'i; kogu ühine J10/J11 sond 14/14 PASS.
 
 ### SOL-FIELD-J-11 — OCR-käsku saab paralleelselt piiranguta käivitada — P2
 
@@ -142,7 +142,7 @@
 
 **Vastuvõtukriteerium.** OCR vajab kasutaja/IP püsivat või vähemalt protsessideülest rate-limit'i, globaalset worker-concurrency piiri, ühe foto + sisu-SHA idempotentset in-flight/tulemusvõtit ja ausat pending/retry seisu. Koormustest käivitab sama ning eri fotode paralleelpäringud mitmes protsessis, tõendab lubatud maksimaalset protsessiarvu, 429 `Retry-After` vastust ja sama võtme ühe arvutuse/taastatava tulemuse.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE — OCR-i töö on püsiv `FieldOcrJob`, mille idempotentsusvõti on foto attachment + sisu-SHA; valmis tulemus tuleb reload'i järel vahemälust ning nurjunud töö jääb taastatava olekuga andmebaasi. Omaniku ja IP püsiv minutipiir kasutab eraldi PostgreSQL-i lukke, globaalne protsessipiir advisory-lock'i pesasid ning üle piiri vastus on aus 429 koos `Retry-After` päisega. Päris PostgreSQL-i mitme ühenduse sond tõendas sama foto üht arvutust/ühte job ID-d, eri fotode maksimaalset kahte paralleeltööd, busy-429 ja rate-limit-429; kogu ühine J10/J11 sond 14/14 PASS.
 
 ## Testid ja negatiivkontrollid
 

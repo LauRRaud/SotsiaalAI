@@ -41,6 +41,7 @@ import {
   flushVisitMarkers,
   readPackMarkers
 } from "@/lib/field/visitMarkers";
+import { buildOfflineVisitList, fieldCloseBlockers } from "@/lib/field/continuity";
 
 function makeClientItemId() {
   const bytes = new Uint8Array(12);
@@ -63,6 +64,7 @@ export function useFieldSync({ userId, visitId = null }) {
   const [items, setItems] = useState([]);
   const [syncing, setSyncing] = useState(false);
   const [pack, setPack] = useState(null);
+  const [localVisits, setLocalVisits] = useState([]);
   /* SOL-FIELD-01: hoiatus on NÄHTAV OLEK. Need kaks loendit lähevad otse
      liidesesse — ilma nendeta oli „kolm hoiatust" ainult loendur andmebaasis. */
   const [retentionWarnings, setRetentionWarnings] = useState([]);
@@ -85,6 +87,14 @@ export function useFieldSync({ userId, visitId = null }) {
     setItems(visible);
     return visible;
   }, [visitId]);
+
+  const refreshLocalVisits = useCallback(async () => {
+    const store = storeRef.current;
+    if (!store?.listDecodedPacks) return [];
+    const visits = buildOfflineVisitList(await store.listDecodedPacks(), { now: new Date() });
+    setLocalVisits(visits);
+    return visits;
+  }, []);
 
   const persist = useCallback(
     async (item) => {
@@ -131,6 +141,10 @@ export function useFieldSync({ userId, visitId = null }) {
             form.set("consentClientItemId", full.payload.consentClientItemId);
           }
           if (full.payload?.documentOnly) form.set("documentOnly", "true");
+          if (full.payload?.documentRequestConfirmed) form.set("documentRequestConfirmed", "true");
+          if (full.payload?.documentRequestReason) form.set("documentRequestReason", full.payload.documentRequestReason);
+          if (item.createdAt) form.set("deviceCreatedAt", item.createdAt);
+          if (item.recoveryImport) form.set("recoveryImport", "true");
           response = await fetch(
             `/api/field/visits/${encodeURIComponent(item.visitId)}/attachments/${encodeURIComponent(item.clientItemId)}`,
             { method: "PUT", body: form }
@@ -151,7 +165,8 @@ export function useFieldSync({ userId, visitId = null }) {
                 consentForm: item.payload?.consentForm,
                 aiConfirmed: item.payload?.aiConfirmed || false,
                 transcriptClientItemId: item.payload?.transcriptClientItemId || null,
-                deviceCreatedAt: item.createdAt || null
+                deviceCreatedAt: item.createdAt || null,
+                recoveryImport: Boolean(item.recoveryImport)
               })
             }
           );
@@ -162,6 +177,11 @@ export function useFieldSync({ userId, visitId = null }) {
         }
         if (response.status === 409) {
           const body = await readJson(response);
+          if (body?.message === "field.errors.visit_read_only") {
+            const next = await transition(started, FieldSyncEvent.UPLOAD_PERMANENT_ERROR);
+            if (next) await persist({ ...next, lastError: body.message });
+            return next;
+          }
           const next = await transition(started, FieldSyncEvent.UPLOAD_CONFLICT);
           if (next && body?.conflict) await persist({ ...next, serverConflict: body.conflict });
           return next;
@@ -320,6 +340,7 @@ export function useFieldSync({ userId, visitId = null }) {
         storeRef.current = store;
         await requestPersistentStorage();
         await runLocalRetention();
+        await refreshLocalVisits();
         if (visitId) setPack(await store.getPack(visitId));
         await refreshItems();
         if (navigator.onLine) {
@@ -336,7 +357,7 @@ export function useFieldSync({ userId, visitId = null }) {
       storeRef.current = null;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userId, visitId]);
+  }, [userId, visitId, refreshLocalVisits]);
 
   /**
    * SOL-FIELD-06: mootor ärkab ise.
@@ -430,7 +451,14 @@ export function useFieldSync({ userId, visitId = null }) {
 
   /** Autosave a captured photo/audio blob locally. */
   const saveLocalAttachment = useCallback(
-    async ({ role, blob, consentClientItemId = null, documentOnly = false }) => {
+    async ({
+      role,
+      blob,
+      consentClientItemId = null,
+      documentOnly = false,
+      documentRequestConfirmed = false,
+      documentRequestReason = null
+    }) => {
       const store = storeRef.current;
       if (!store || !visitId || !blob) return null;
       const id = makeClientItemId();
@@ -442,7 +470,13 @@ export function useFieldSync({ userId, visitId = null }) {
         revision: 1,
         attempts: 0,
         createdAt: new Date().toISOString(),
-        payload: { role, consentClientItemId, documentOnly },
+        payload: {
+          role,
+          consentClientItemId,
+          documentOnly,
+          documentRequestConfirmed,
+          documentRequestReason
+        },
         blob
       });
       return id;
@@ -591,15 +625,17 @@ export function useFieldSync({ userId, visitId = null }) {
       };
       await store.putPack(record);
       setPack(await store.getPack(visit.id));
+      await refreshLocalVisits();
     },
-    []
+    [refreshLocalVisits]
   );
 
   const removePack = useCallback(async () => {
     if (!storeRef.current || !visitId) return;
     await storeRef.current.deletePack(visitId);
     setPack(null);
-  }, [visitId]);
+    await refreshLocalVisits();
+  }, [visitId, refreshLocalVisits]);
 
   /**
    * SOL-FIELD-04: võrguta kinnitus.
@@ -653,6 +689,23 @@ export function useFieldSync({ userId, visitId = null }) {
     [items]
   );
 
+  const retryRecoveryImport = useCallback(
+    async (clientItemId) => {
+      const item = await storeRef.current?.getItem(clientItemId);
+      if (!item || item.lastError !== "field.errors.visit_read_only") return null;
+      const recovery = { ...item, recoveryImport: true };
+      await persist(recovery);
+      const queued = await transition(recovery, FieldSyncEvent.USER_RETRY);
+      if (navigator.onLine) await runSync();
+      return queued;
+    },
+    [persist, runSync, transition]
+  );
+  const closeBlockers = useMemo(
+    () => fieldCloseBlockers(items, { needsLogin }),
+    [items, needsLogin]
+  );
+
   return {
     supported,
     online,
@@ -660,12 +713,16 @@ export function useFieldSync({ userId, visitId = null }) {
     syncing,
     items,
     pack,
+    localVisits,
+    refreshLocalVisits,
     pendingCount,
     failedCount,
+    closeBlockers,
     saveLocalNote,
     saveLocalAttachment,
     approveItem,
     retryItem,
+    retryRecoveryImport,
     cancelItem,
     deleteItem,
     resolveConflict,

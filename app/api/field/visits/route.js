@@ -6,12 +6,16 @@ import { createFieldVisit, listFieldVisits } from "@/lib/field/service";
 import { fieldErrorResponse, fieldJson, requireFieldUser } from "@/lib/field/routeAuth";
 import { safeError } from "@/lib/privacy/safeError";
 
-export async function GET() {
+export async function GET(request) {
   const auth = await requireFieldUser();
   if (!auth.ok) return fieldJson({ ok: false, message: auth.message }, auth.status);
   try {
-    const visits = await listFieldVisits(auth.userId);
-    return fieldJson({ ok: true, visits });
+    const url = new URL(request.url);
+    const result = await listFieldVisits(auth.userId, {
+      cursor: url.searchParams.get("cursor"),
+      limit: url.searchParams.get("limit") || 50
+    });
+    return fieldJson({ ok: true, ...result });
   } catch (error) {
     if (Number(error?.status) >= 500 || !error?.status) {
       console.error("[field] list failed", safeError(error));

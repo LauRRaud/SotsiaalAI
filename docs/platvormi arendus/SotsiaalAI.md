@@ -103,7 +103,18 @@ tehingus ning auditeeritud retention-worker koristab tähtaja järel sõltuvused
 **Organisatsioonide `SOL-ORG-18/19` on lõpetatud.** Konto kustutus järgib nüüd sama
 lukustatud offboardingulepingut: viimane omanik ja elav töö peatuvad parandatava põhjusega,
 ajalooline liikmesus säilib identiteedita ning inimese andmekoopia sisaldab tema enda
-liikmesuse, õiguste, üksuste ja koha elutsüklit. Järgmine plokk on `SOL-FIELD-J-01/02/03`.
+liikmesuse, õiguste, üksuste ja koha elutsüklit.
+
+**Välitöö `SOL-FIELD-J-01…11` on lõpetatud.** Lahendamata seadmesisu blokeerib
+sulgemise ja sulgemiseelsele sisule on auditeeritud recovery-import; serverimärkmed on
+omanikule nähtavad ja päriselt hallatavad. Offline-avaleht leiab krüptitud paketid ning
+online-loendil on stabiilne cursor ja ausad koguarvud. Üleandmine on idempotentne per-target
+saga, fotol on tõendatav alus ning attachment'i staging/tombstone-reconciler kasutab sama
+PostgreSQL-i kvoodilukku kui tavadokumendid. Mikrofon peatub vaate elutsükli piiridel ja
+kohalik heli on piiratud 10 minuti / 25 MiB-ga. Andmekoopia sisaldab nüüd versioonitud
+välitööajalugu, turvakirjad liiguvad tõendatava outbox'i kaudu ning OCR-il on püsiv töö,
+omaniku/IP kiiruspiir ja PostgreSQL-i globaalne concurrency-värav. Järgmine soovitatav sidus
+plokk on `SOL-COMP-01…05`.
 
 **RAG-teenuse `SOL-RAGSVC-01…28` on DONE ja peatüki UTC täisvärav on roheline.**
 `SOL-ORG-13`–`17`, `SOL-DOC-J-01`–`06` ja kogu `SOL-SLOG-01…24` parandused ning kiirem plokipõhine töökord on koodipuus. Kolmeastmelised arvud loetakse käsuga `npm run sol:progress`, neid siia ankrusse ei

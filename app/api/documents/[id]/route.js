@@ -75,7 +75,11 @@ function serializeDocument(document) {
 async function findDocumentWithFrameworkState(id, ownerId) {
   try {
     const document = await prisma.userDocument.findFirst({
-      where: { id, ownerId },
+      where: {
+        id,
+        ownerId,
+        fieldVisitAttachments: { none: { storageStatus: { not: "ACTIVE" } } }
+      },
       select: {
         id: true,
         ownerId: true,
@@ -114,7 +118,11 @@ async function findDocumentWithFrameworkState(id, ownerId) {
     if (!isFrameworkAcceptanceSchemaError(error)) throw error
 
     const document = await prisma.userDocument.findFirst({
-      where: { id, ownerId },
+      where: {
+        id,
+        ownerId,
+        fieldVisitAttachments: { none: { storageStatus: { not: "ACTIVE" } } }
+      },
       select: {
         id: true,
         ownerId: true,

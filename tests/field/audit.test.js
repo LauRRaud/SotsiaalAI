@@ -180,7 +180,7 @@ test("nõusoleku tagasivõtmine: tõend on kirjas ja veasüst jätab nõusoleku 
 test("üleandmine artefakti: tõend sünnib SAMAS tehingus mustandi ja templiga", async () => {
   const db = createFieldDb({ visits: [makeVisit()], notes: [consentNote({ kind: "note" })] });
 
-  await handoverFieldVisit("user-1", "visit-1", { toArtifact: true }, { db, now: NOW });
+  await handoverFieldVisit("user-1", "visit-1", { clientActionId: "field-audit-artifact-1", toArtifact: true }, { db, now: NOW });
 
   assert.equal(db.store.artifacts.length, 1);
   const row = db.store.auditLog.at(-1);
@@ -192,10 +192,11 @@ test("üleandmise veasüst ei jäta maha ei mustandit ega templit", async () => 
   const db = createFieldDb({ visits: [makeVisit()], notes: [consentNote({ kind: "note" })] });
   breakAudit(db);
 
-  await rejects(handoverFieldVisit("user-1", "visit-1", { toArtifact: true }, { db, now: NOW }));
+  const failed = await handoverFieldVisit("user-1", "visit-1", { clientActionId: "field-audit-artifact-2", toArtifact: true }, { db, now: NOW });
 
   assert.equal(db.store.artifacts.length, 0, "mustand pidi tagasi tulema");
   assert.equal(db.store.visits[0].handoverArtifactAt, null);
+  assert.equal(failed.handover.targets.artifact.status, "FAILED");
 });
 
 /* AUS PIIR, mis on koodis kommentaarina kirjas: eelpöördumise töövoog commit'ib
@@ -212,7 +213,7 @@ test("üleandmine eelpöördumisse: tempel ja tõend käivad koos, töövoog jä
   await handoverFieldVisit(
     "user-1",
     "visit-1",
-    { toPreInquiry: true, preInquiryNote: "Külastus tehtud." },
+    { clientActionId: "field-audit-inquiry-1", toPreInquiry: true, preInquiryNote: "Külastus tehtud." },
     { db, now: NOW, workflow }
   );
   assert.ok(db.store.visits[0].handoverPreInquiryAt);
@@ -220,15 +221,14 @@ test("üleandmine eelpöördumisse: tempel ja tõend käivad koos, töövoog jä
 
   const broken = createFieldDb(seed());
   breakAudit(broken);
-  await rejects(
-    handoverFieldVisit(
-      "user-1",
-      "visit-1",
-      { toPreInquiry: true, preInquiryNote: "Külastus tehtud." },
-      { db: broken, now: NOW, workflow }
-    )
+  const brokenResult = await handoverFieldVisit(
+    "user-1",
+    "visit-1",
+    { clientActionId: "field-audit-inquiry-2", toPreInquiry: true, preInquiryNote: "Külastus tehtud." },
+    { db: broken, now: NOW, workflow }
   );
   assert.equal(broken.store.visits[0].handoverPreInquiryAt, null);
+  assert.equal(brokenResult.handover.targets.preInquiry.status, "FAILED");
 });
 
 test("manuse kustutus: tõend on kirjas ja veasüst jätab rea alles", async () => {
@@ -249,9 +249,14 @@ test("manuse kustutus: tõend on kirjas ja veasüst jätab rea alles", async () 
     documents: [{ id: "doc-1", ownerId: "user-1", storagePath: "uploads/sol-field-03-puudub-ketalt.bin" }]
   });
   breakAudit(broken);
-  await rejects(deleteFieldVisitAttachment("user-1", "visit-1", "fld-photo-000001", { db: broken }));
+  await assert.rejects(
+    deleteFieldVisitAttachment("user-1", "visit-1", "fld-photo-000001", { db: broken }),
+    (error) => error.status === 503 && error.message === "field.errors.delete_pending"
+  );
   assert.equal(broken.store.attachments.length, 1, "rida pidi tagasi tulema");
   assert.equal(broken.store.documents.length, 1);
+  assert.equal(broken.store.attachments[0].storageStatus, "DELETE_PENDING");
+  assert.equal(broken.store.deletionJobs[0].status, "failed");
 });
 
 /* Kohustuslikku kirjet ei tohi saada „täidetuks" kirjaveaga. */
