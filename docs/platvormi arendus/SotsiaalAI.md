@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**Paralleelsete parandustööpuude uus laine on integreeritud lokaalsesse `main`-i.** Funktsioonideülene `SOL-XFUNC-01…03` on lõpetatud: Haldus on URL-iga taastatav, Ruumid järgib serveri tegevuslippe ning andmekoopia CI-värav klassifitseerib kõik kasutajaseosed ja väliskoopiad. Teenuseprofiili `SOL-SPROF-11…14` on DONE; `SOL-SPROF-04,09,10,15` jäävad puuduvate välise RAG-i või autentitud brauseri/HTTP runtime-tõendite tõttu ausalt PARTIAL. Järgmine töö valitakse ametliku koondi allesjäänud kolmest NOT_DONE leiust.
+**Paralleelsete parandustööpuude uus laine on integreeritud ning sisuline väljalase `3735789e` on GitHubis ja toodangus.** Funktsioonideülene `SOL-XFUNC-01…03` on lõpetatud: Haldus on URL-iga taastatav, Ruumid järgib serveri tegevuslippe ning andmekoopia CI-värav klassifitseerib kõik kasutajaseosed ja väliskoopiad. Teenuseprofiili `SOL-SPROF-11…14` on DONE; `SOL-SPROF-04,09,10,15` jäävad puuduvate välise RAG-i või autentitud brauseri/HTTP runtime-tõendite tõttu ausalt PARTIAL. Väljalaske värav oli 4715/4715 testi ja 196/196 migratsiooni; kolm teenust ning teavitustaimer on aktiivsed, teavitusjob `ok:true` ja avalikud põhilehed vastavad HTTP 200. Järgmine töö valitakse ametliku koondi allesjäänud kolmest NOT_DONE leiust.
 
 **Teenuspäeviku jätkuauditi `SOL-SLOG-J-01…07` on lõpetatud.** Kirje parandamine,
 tühistamine, mustandi kustutamine ja owner-skoobitud ajalugu on nüüd päris kasutajateed;
