@@ -28,6 +28,13 @@ test("author flow exposes one server-backed sharing preview and reversible lifec
   assert.match(detail, /showBack=\{false\}/u);
 });
 
+test("SOL-JOUR-05 and 06: every visible mutation is versioned and archived content is read-only", () => {
+  assert.match(dashboard, /status: "ARCHIVED", expectedUpdatedAt: journey\.updatedAt/u);
+  assert.match(detail, /serviceContinuity[\s\S]*expectedUpdatedAt: journey\.updatedAt/u);
+  assert.match(detail, /journey\.status !== "ARCHIVED"[\s\S]*journey\.actions\.edit/u);
+  assert.match(detail, /journey\.messages\.archived_readonly/u);
+});
+
 test("Journey styling is scrollable, mobile-safe and motion-reduced", () => {
   assert.match(styles, /overflow: auto/u);
   assert.match(styles, /max-width: 40rem/u);

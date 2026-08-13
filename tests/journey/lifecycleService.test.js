@@ -8,6 +8,7 @@ const UPDATED_AT = new Date("2026-07-17T10:00:00.000Z");
 function lifecycleDb() {
   const events = [];
   let deleted = false;
+  let updateCount = 0;
   const row = {
     id: "journey_1",
     ownerUserId: "owner_1",
@@ -21,7 +22,13 @@ function lifecycleDb() {
   };
   const tx = {
     journey: {
-      async updateMany({ data }) { Object.assign(row, data); row.updatedAt = new Date("2026-07-17T10:01:00.000Z"); return { count: 1 }; },
+      async updateMany({ where, data }) {
+        if (new Date(where.updatedAt).getTime() !== row.updatedAt.getTime()) return { count: 0 };
+        Object.assign(row, data);
+        updateCount += 1;
+        row.updatedAt = new Date(UPDATED_AT.getTime() + updateCount * 60_000);
+        return { count: 1 };
+      },
       async findUnique() { return row; },
       async delete() { deleted = true; return row; }
     },
@@ -35,7 +42,7 @@ function lifecycleDb() {
     preInquiry: { async findMany() { return []; } },
     async $transaction(callback) { return callback(tx); }
   };
-  return { db, events, isDeleted: () => deleted };
+  return { db, events, isDeleted: () => deleted, row: () => structuredClone(row) };
 }
 
 test("journey update uses CAS, records archive activity and emits content-free event", async () => {
@@ -65,6 +72,63 @@ test("journey update rejects stale expectedUpdatedAt", async () => {
       expectedUpdatedAt: "2026-07-17T09:59:00.000Z"
     }, { db: state.db }),
     { status: 409, message: "journeys.errors.conflict" }
+  );
+});
+
+test("SOL-JOUR-05: every journey PATCH requires the client-visible version", async () => {
+  const state = lifecycleDb();
+  await assert.rejects(
+    updateJourneyForUser("owner_1", "journey_1", { title: "Changed" }, { db: state.db }),
+    { status: 409, message: "journeys.errors.version_required" }
+  );
+  assert.equal(state.row().title, "Journey");
+});
+
+test("SOL-JOUR-06: archived content is read-only until a versioned reopen", async () => {
+  const state = lifecycleDb();
+  const archived = await updateJourneyForUser("owner_1", "journey_1", {
+    status: "ARCHIVED",
+    expectedUpdatedAt: UPDATED_AT.toISOString()
+  }, { db: state.db });
+
+  await assert.rejects(
+    updateJourneyForUser("owner_1", "journey_1", {
+      status: "TYPO",
+      expectedUpdatedAt: archived.updatedAt
+    }, { db: state.db }),
+    { status: 400, message: "journeys.errors.status_invalid" }
+  );
+  assert.equal(state.row().status, "ARCHIVED");
+
+  await assert.rejects(
+    updateJourneyForUser("owner_1", "journey_1", {
+      title: "Silent archived edit",
+      expectedUpdatedAt: archived.updatedAt
+    }, { db: state.db }),
+    { status: 409, message: "journeys.errors.archived" }
+  );
+  await assert.rejects(
+    updateJourneyForUser("owner_1", "journey_1", {
+      status: "ACTIVE",
+      expectedUpdatedAt: UPDATED_AT.toISOString()
+    }, { db: state.db }),
+    { status: 409, message: "journeys.errors.conflict" }
+  );
+
+  const reopened = await updateJourneyForUser("owner_1", "journey_1", {
+    status: "ACTIVE",
+    expectedUpdatedAt: archived.updatedAt
+  }, { db: state.db });
+  const edited = await updateJourneyForUser("owner_1", "journey_1", {
+    title: "Edited after reopen",
+    expectedUpdatedAt: reopened.updatedAt
+  }, { db: state.db });
+
+  assert.equal(edited.status, "ACTIVE");
+  assert.equal(edited.title, "Edited after reopen");
+  assert.deepEqual(
+    edited.context.activityLog.slice(-3).map((item) => item.type),
+    ["archived", "reopened", "updated"]
   );
 });
 

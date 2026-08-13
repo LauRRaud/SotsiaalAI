@@ -6768,6 +6768,7 @@
       "archive_failed": "Archiving the journey failed.",
       "updated": "Journey updated.",
       "archived": "Journey archived.",
+      "archived_readonly": "An archived Journey is read-only. Reopen it before editing.",
       "reopened": "Journey reopened.",
       "reopen_failed": "Failed to reopen the Journey.",
       "delete_failed": "Failed to delete the Journey.",

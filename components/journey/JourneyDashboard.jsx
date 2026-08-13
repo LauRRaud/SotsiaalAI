@@ -148,7 +148,7 @@ function JourneyCard({ journey, onArchive, busy, t, locale }) {
           {!archived ? (
             <Button
               size="sm"
-              onClick={() => onArchive(journey.id)}
+              onClick={() => onArchive(journey)}
               disabled={busy}
               aria-label={t("journey.actions.archive_named", { title: journey.title }, "Archive journey {title}")}
             >
@@ -633,18 +633,18 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
     }
   }, [draft, draftStore, locale, router, t]);
 
-  const handleArchive = useCallback(async (journeyId) => {
+  const handleArchive = useCallback(async (journey) => {
     setBusy(true);
     setError("");
     setNotice("");
 
     try {
-      const response = await fetch(`/api/journeys/${encodeURIComponent(journeyId)}`, {
+      const response = await fetch(`/api/journeys/${encodeURIComponent(journey.id)}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ status: "ARCHIVED" })
+        body: JSON.stringify({ status: "ARCHIVED", expectedUpdatedAt: journey.updatedAt })
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || !payload.ok) {

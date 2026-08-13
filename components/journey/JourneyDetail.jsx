@@ -896,6 +896,7 @@ export default function JourneyDetail({ journeyId }) {
       setForm(createFormState(payload.journey));
       setContinuityForm(createServiceContinuityState(payload.journey));
       setEditing(false);
+      setContinuityOpen(false);
       setNotice(t("journey.messages.archived", "Journey archived."));
     } catch (archiveError) {
       setError(archiveError.message || t("journey.messages.archive_failed", "Archiving the journey failed."));
@@ -986,7 +987,8 @@ export default function JourneyDetail({ journeyId }) {
           },
           riskSignals: mergeUniqueTextItems(journey.riskSignals, [riskSignal], 8),
           missingInfo: mergeUniqueTextItems(existingMissingInfo, missingInfo, 12),
-          suggestedActions: mergeUniqueActions(journey.suggestedActions, suggestedActions, 8)
+          suggestedActions: mergeUniqueActions(journey.suggestedActions, suggestedActions, 8),
+          expectedUpdatedAt: journey.updatedAt
         })
       });
       const payload = await response.json().catch(() => ({}));
@@ -1140,9 +1142,13 @@ export default function JourneyDetail({ journeyId }) {
                     </div>
                   </div>
                   <div>
-                    <Button variant="primary" onClick={() => setEditing((current) => !current)} disabled={busy}>
-                      {editing ? t("journey.actions.close_edit", "Close editing") : t("journey.actions.edit", "Edit")}
-                    </Button>
+                    {journey.status !== "ARCHIVED" ? (
+                      <Button variant="primary" onClick={() => setEditing((current) => !current)} disabled={busy}>
+                        {editing ? t("journey.actions.close_edit", "Close editing") : t("journey.actions.edit", "Edit")}
+                      </Button>
+                    ) : (
+                      <p>{t("journey.messages.archived_readonly", "An archived Journey is read-only. Reopen it before editing.")}</p>
+                    )}
                     {journey.status !== "ARCHIVED" ? (
                       <Button variant="danger" onClick={handleArchive} disabled={busy}>
                         {t("journey.actions.archive", "Archive")}
@@ -1359,16 +1365,18 @@ export default function JourneyDetail({ journeyId }) {
                       {t("journey.serviceContinuity.notOfficialAssessment", "See on info korrastamise abivahend, mitte ametlik hinnang, otsus ega teenuse määramine. Pädev asutus või spetsialist hindab ja otsustab.")}
                     </p>
                   </div>
-                  <Button
-                    type="button"
-                    variant="primary"
-                    onClick={() => setContinuityOpen((current) => !current)}
-                    disabled={busy}
-                  >
-                    {continuityOpen
-                      ? t("journey.serviceContinuity.close", "Sulge kontroll")
-                      : t("journey.serviceContinuity.open", "Teenuse jätkumise kontroll")}
-                  </Button>
+                  {journey.status !== "ARCHIVED" ? (
+                    <Button
+                      type="button"
+                      variant="primary"
+                      onClick={() => setContinuityOpen((current) => !current)}
+                      disabled={busy}
+                    >
+                      {continuityOpen
+                        ? t("journey.serviceContinuity.close", "Sulge kontroll")
+                        : t("journey.serviceContinuity.open", "Teenuse jätkumise kontroll")}
+                    </Button>
+                  ) : null}
                 </div>
 
                 {hasContinuity ? (
@@ -1424,7 +1432,7 @@ export default function JourneyDetail({ journeyId }) {
                   </div>
                 ) : null}
 
-                {continuityOpen ? (
+                {continuityOpen && journey.status !== "ARCHIVED" ? (
                   <Form onSubmit={handleSaveContinuity}>
                     <div>
                       <ContinuityTextField

@@ -6768,6 +6768,7 @@
       "archive_failed": "Teekonna arhiveerimine ebaõnnestus.",
       "updated": "Teekond uuendati.",
       "archived": "Teekond arhiveeriti.",
+      "archived_readonly": "Arhiveeritud Teekond on kirjutuskaitstud. Muutmiseks taasava see kõigepealt.",
       "reopened": "Teekond taasavati.",
       "reopen_failed": "Teekonna taasavamine ebaõnnestus.",
       "delete_failed": "Teekonna kustutamine ebaõnnestus.",
