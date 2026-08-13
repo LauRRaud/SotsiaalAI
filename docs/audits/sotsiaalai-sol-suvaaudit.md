@@ -7195,6 +7195,8 @@ konto lisamine mõõdaks omanikuskoopi, mis on juba mujal kaetud.
 
 **Vastuvõtukriteerium.** Vestluse Journey-režiim peab suunduma samasse URL-/mustandimasinasse või kasutama sama kasutajaga seotud taastemehhanismi. Salvestus peab saatma aktiivse omaniku vestluse ID ning server peab selle omandit kontrollima. Testida F5-taastet, vestlus A/B vahetust, võõrast conversationId-d ja vestluse kustutuse SetNull tulemust.
 
+**Seis (13.08.2026): DONE —** vestluse Journey-mustand salvestub sama vahekaardi `sessionStorage`-is omaniku ja `conversationId` järgi eraldatud võtmega ning taastub F5 ja vestluste A/B vahel liikumise järel. Salvestus tagab aktiivse vestluse olemasolu ja omandi ning edastab sama ID Journey loomisele; võõras vestlus lükatakse tagasi. PostgreSQL-i sond tõendas omaniku seose, võõra ID puhul 400 ilma Journey loomiseta ja vestluse kustutamisel `ON DELETE SET NULL` käitumise. Autenditud kohalik sama vahekaardi brauserirada tõendas F5-taaste, A/B eraldatuse ja õige päritoluseose; sünteetilised andmed koristati (`production runtime: NOT_PROVEN`).
+
 ### SOL-JOUR-10 — Abivahenduse jagamisvalikud ei mõjuta üleantavat kategooriat ega piirkonda — P1
 
 **Tõend.** Teekonna help-handoff paneb täielikust Journeyst tuletatud `category` ja `municipalityName` juba baashref'i ning lisab `shareReview=1` (`lib/journey/helpMediationHandoff.js:40-79`). Detailvaate paneel lisab URL-i ainult valitud `share` võtmete loendi (`components/journey/JourneyDetail.jsx:566-620`). Vestluse abisoovi eeltäide ei loe `share` ega `shareReview` parameetrit üldse; see tarbib kategooria, piirkonna ja `fromJourney` otse URL-ist ning jätab kokkuvõtte/ownWords tühjaks (`components/alalehed/ChatBody.jsx:136-166`).
@@ -7560,6 +7562,8 @@ tagasivõetud pakett. Peidetud on ainult `RECALLED`. Töörajad sulguvad kõigil
 
 **Vastuvõtukriteerium.** ACCEPT peab samas tehingus lukustama sobituse ja mõlemad allikad ning kontrollima uuesti olekut, tähtaega, omanikke ja kokkusobivust. Muutunud alus lõpetab PENDING-sobituse arusaadava 409/410 tulemusega.
 
+**Seis (13.08.2026): DONE —** ACCEPT lukustab Serializable-tehingus sobituse, abisoovi ja abipakkumise ning kontrollib uuesti olekut, aegumist, omanikke ja sobivust. Muutunud alus sulgeb PENDING-sobituse ilma ruumi loomata ja API vastab 409; varem kinnitatud pehme abi- või ajatüübi erand säilib. Negatiivkontroll kattis suletud, aegunud, kokkusobimatu ja vahetunud omanikuga aluse; päris PostgreSQL-i sond tõendas luku ootamist ja värske oleku nägemist (`production runtime: NOT_PROVEN`).
+
 ### SOL-HELP-06 — sobituse teavitus ei ole sobituse loomisega usaldusväärselt seotud — P1
 
 **Tõend.** HTTP-route loob PENDING-sobituse tehingus, kuid saadab teavituse alles pärast commit'i; teavituse viga satub üldisesse catch'i ning klient saab vea juba loodud sobituse kohta (`app/api/help/matches/route.js:41-101`). Kordus leiab sama paari `wasCreated:false` kujul ja teavitust enam ei saada (`lib/help/matches.js:832-859`; route `:70-79`). Vestluse connect-voog kutsub teenust otse ning neelab vead, aga ei loo üldse notification- ega auditikirjet (`lib/help/workflowActions.js:249-269`, `:486-618`).
@@ -7567,6 +7571,8 @@ tagasivõetud pakett. Peidetud on ainult `RECALLED`. Töörajad sulguvad kõigil
 **Mõju.** Nõusolekupäring võib olla andmebaasis olemas, kuid adressaat ei saa sellest teada; algatajale võidakse samal ajal öelda, et loomine ebaõnnestus. Recipient näeb seda ainult siis, kui satub Teenusekaardi 25-realisse järjekorda.
 
 **Vastuvõtukriteerium.** Match ja notification/outbox sündmus peavad sündima samas tehingus ning kõik loomisteed kasutama sama teenust. Kordus peab taastama puuduva teavituse idempotentselt. Testida notification-write veasüsti ja vestluse connect-rada.
+
+**Seis (13.08.2026): DONE —** PENDING-sobitus ja `HELP_MATCH_CONSENT_REQUEST` teavitussündmus luuakse samas teenuse tehingus ning nii route kui vestluse connect-rada kasutavad sama teenust. Teavituse veasüst pöörab tagasi sobituse ja teavituse; kordus ei loo duplikaati ning taastab puuduva teavituse idempotentselt. Päris PostgreSQL-i sond kattis tehingu ja taastamise (`production runtime: NOT_PROVEN`).
 
 ### SOL-HELP-07 — sobituse API lekitab privaatse vabateksti kattuvad märksõnad — P1
 
@@ -7576,6 +7582,8 @@ tagasivõetud pakett. Peidetud on ainult `RECALLED`. Töörajad sulguvad kõigil
 
 **Vastuvõtukriteerium.** Kliendile tagastatav match peab olema allowlist-projektsioon ilma `reasonsJson`, teiste kasutajate ID-de ja vabatekstitokeniteta. Sisemine skooripõhjendus peab kasutama koodistatud tunnuseid või jääma serverisiseseks; lisada tundliku kattuvussõna negatiivtest.
 
+**Seis (13.08.2026): DONE —** sobituse loomise ja otsuse API-vastused läbivad täpse allowlist-projektsiooni: `id`, `status`, `roomId`, `createdAt`, `updatedAt` ja `wasCreated`. `reasonsJson`, skoor, osapoolte ja kuulutuste ID-d ning vabateksti kattuvused jäävad serverisse. Tundlike kattuvussõnade ja privaatsete ID-de negatiivtest tõendab nende puudumise vastusest (`production runtime: NOT_PROVEN`).
+
 ### SOL-HELP-08 — PENDING-sobitust ei saa tagasi võtta ega automaatselt aeguma panna — P1
 
 **Tõend.** API-s on ainult loomine, saabuvate loend ja teise poole ACCEPT/DECLINE; algataja cancel/withdraw rada puudub. Skeemis pole match'i aegumisaega (`prisma/schema.prisma:3263-3289`). `listIncomingHelpMatches` võtab ainult 25 uusimat PENDING-rida ilma cursor'i või `hasMore`-ta (`lib/help/matches.js:910-938`).
@@ -7583,6 +7591,8 @@ tagasivõetud pakett. Peidetud on ainult `RECALLED`. Töörajad sulguvad kõigil
 **Mõju.** Ekslik või enam soovimatu nõusolekupäring jääb määramata ajaks kehtima ning teine pool saab selle hiljem vastu võtta. Üle 25 uuema päringu korral ei jõua vanemad otsustamis-UI-sse ja neid pole võimalik sulgeda.
 
 **Vastuvõtukriteerium.** Lisada algataja tagasivõtt, serveripoolne aegumine ja pagineeritud järjekord. ACCEPT peab kontrollima, et päring pole tagasi võetud/aegunud; testida 26+ rida ja vana päringu hilist otsust.
+
+**Seis (13.08.2026): DONE —** algataja saab PENDING-sobituse `WITHDRAW` toiminguga terminalsesse `CLOSED` olekusse viia ning hilisem ACCEPT vastab 409 ega loo ruumi. Saabuvate nimekiri sulgeb serveris aegunud või mitteavatud allikaga PENDING-sobitused ja kasutab stabiilset `createdAt + id` cursor-pagination'it. Test ja päris PostgreSQL-i sond läbisid kõik 27 rida kahe lehega ning tõendasid aegunud sobituse eemaldamist ja sulgemist (`production runtime: NOT_PROVEN`).
 
 ### SOL-HELP-09 — kuulutuse kustutamine eemaldab accepted-match'i, kuid jätab ruumi elama — P1
 
