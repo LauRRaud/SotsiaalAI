@@ -4,6 +4,7 @@ import { errorJson, json, localeFromRequest, publicErrorMessageKey, publicErrorS
 import { getVisiblePreInquiry } from "@/lib/preInquiries";
 import { safeError } from "@/lib/privacy/safeError";
 import { ensureRoomForPreInquiry } from "@/lib/rooms/preInquiryRoom";
+import { enforcePreInquiryRateLimit } from "@/lib/preInquiryApiBoundary";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -34,6 +35,8 @@ export async function POST(request, context) {
   const locale = localeFromRequest(request);
   const auth = await requireUser();
   if (!auth.ok) return errorJson(auth.message, auth.status, locale);
+  const limited = enforcePreInquiryRateLimit(request, { action: "mutate", userId: auth.userId });
+  if (limited) return limited;
 
   try {
     const inquiry = await getVisiblePreInquiry(auth.userId, await readId(context));

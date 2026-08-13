@@ -18,7 +18,12 @@ import dotenv from "dotenv";
 import pg from "pg";
 
 import { PrismaClient } from "../generated/prisma/client.ts";
-import { markPreInquiryDownloaded, updatePreInquiry } from "../lib/preInquiries.js";
+import {
+  createPreInquiry,
+  listVisiblePreInquiryPage,
+  markPreInquiryDownloaded,
+  updatePreInquiry
+} from "../lib/preInquiries.js";
 import { preInquiryRoomLockKey } from "../lib/rooms/preInquiryRoom.js";
 import { holdOpen, watch } from "./probe-race-harness.mjs";
 
@@ -211,6 +216,60 @@ try {
     const editWon = after.status === "DRAFT" && after.topic === "Arhiiviga võistlev sisu";
     expect("archive-edit: arhiiv ja sisu ei segune", archiveWon || editWon, `${after.status} / ${after.topic}`);
   }
+
+  // SOL-PRE-16: durable idempotency is enforced by PostgreSQL, not process memory.
+  {
+    const author = await dbA.user.create({ data: { email: `pre-idempotency-${Date.now()}@sotsiaalai.invalid` } });
+    const input = {
+      clientActionId: "123e4567-e89b-42d3-a456-426614174000",
+      topic: "Idempotentne loomine",
+      situation: "Kaks sõltumatut klienti saadavad sama toimingu."
+    };
+    const [first, second] = await Promise.all([
+      createPreInquiry(author.id, input, { db: dbA }),
+      createPreInquiry(author.id, input, { db: dbB })
+    ]);
+    expect("idempotentsus: paralleelne sama võti tagastab sama rea", first.id === second.id, `${first.id} / ${second.id}`);
+    expect(
+      "idempotentsus: andmebaasis on üks rida",
+      await dbA.preInquiry.count({ where: { authorId: author.id, clientActionId: input.clientActionId } }) === 1
+    );
+    const conflict = await createPreInquiry(author.id, { ...input, topic: "Teine sisu" }, { db: dbB }).then(
+      () => null,
+      (error) => error
+    );
+    expect("idempotentsus: sama võti teise sisuga annab 409", conflict?.status === 409 && conflict?.message === "pre_inquiries.errors.action_key_conflict");
+  }
+
+  // SOL-PRE-16 negative capacity edge and SOL-PRE-18 stable equal-time cursor.
+  {
+    const author = await dbA.user.create({ data: { email: `pre-page-${Date.now()}@sotsiaalai.invalid` } });
+    const timestamp = new Date("2026-08-13T12:00:00.000Z");
+    await dbA.preInquiry.createMany({
+      data: Array.from({ length: 257 }, (_, index) => ({
+        authorId: author.id,
+        recipientType: "KOV_CONTACT",
+        deliveryChannel: "EXTERNAL_EMAIL",
+        topic: `Page ${index}`,
+        situation: "Cursor probe",
+        status: index < 250 ? "DRAFT" : "ARCHIVED",
+        createdAt: timestamp,
+        updatedAt: timestamp
+      }))
+    });
+    const blocked = await createPreInquiry(author.id, {
+      clientActionId: "123e4567-e89b-42d3-a456-426614174001",
+      situation: "See mustand peab mahu piiril tagasi lükkuma."
+    }, { db: dbA }).then(() => null, (error) => error);
+    expect("mahulimiit: 251. aktiivne mustand lükatakse tagasi", blocked?.message === "pre_inquiries.errors.active_limit_reached");
+
+    const first = await listVisiblePreInquiryPage(author.id, { db: dbA, limit: 250 });
+    const second = await listVisiblePreInquiryPage(author.id, { db: dbB, limit: 250, cursor: first.nextCursor });
+    const ids = [...first.items, ...second.items].map((row) => row.id);
+    expect("lehekülgimine: üle 250 rea on kõik leitavad", ids.length === 257 && new Set(ids).size === 257, `ridu ${ids.length}`);
+    expect("lehekülgimine: koguarv on stabiilne", first.total === 257 && second.total === 257);
+    expect("lehekülgimine: arhiveeritud piirirea detail on leitav", [...first.items, ...second.items].some((row) => row.status === "ARCHIVED"));
+  }
 } finally {
   await Promise.allSettled(clients.map((client) => client.$disconnect()));
   try {
@@ -225,5 +284,5 @@ if (failures) {
   console.error(`\nSOL-PRE-08 sond: ${failures} viga`);
   process.exitCode = 1;
 } else {
-  console.log("\nSOL-PRE-08 sond: kõik invariandid tõendatud; ajutine andmebaas eemaldatud.");
+  console.log("\nSOL-PRE-08/16/18 sond: kõik invariandid tõendatud; ajutine andmebaas eemaldatud.");
 }

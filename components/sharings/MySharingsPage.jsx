@@ -103,12 +103,12 @@ export default function MySharingsPage() {
       : t("my_sharings.labels.unknown_time");
   }, [formatter, t]);
 
-  const loadSharings = useCallback(async ({ signal, preserveData = false, section = null } = {}) => {
+  const loadSharings = useCallback(async ({ signal, preserveData = false, section = null, cursor = null, append = false } = {}) => {
     if (!preserveData) setLoadError("");
     if (section) setRetryingSection(section);
     try {
       const response = section
-        ? await fetch(`/api/my-sharings?section=${encodeURIComponent(section)}`, {
+        ? await fetch(`/api/my-sharings?section=${encodeURIComponent(section)}${cursor ? `&cursor=${encodeURIComponent(cursor)}` : ""}`, {
           cache: "no-store",
           signal,
         })
@@ -125,7 +125,10 @@ export default function MySharingsPage() {
       setSharings((current) => {
         const next = section ? { ...current } : { ...EMPTY_SHARINGS };
         for (const [key, value] of Object.entries(incoming)) {
-          if (key in EMPTY_SHARINGS) next[key] = Array.isArray(value?.items) ? value.items : [];
+          if (key in EMPTY_SHARINGS) {
+            const items = Array.isArray(value?.items) ? value.items : [];
+            next[key] = append ? [...current[key], ...items.filter((item) => !current[key].some((existing) => existing.id === item.id))] : items;
+          }
         }
         return next;
       });
@@ -629,6 +632,20 @@ export default function MySharingsPage() {
                   </Panel>
                 );
               })}
+              {sectionMeta.preInquiries?.paging?.hasMore ? (
+                <Button
+                  variant="secondary"
+                  disabled={retryingSection === "preInquiries"}
+                  onClick={() => void loadSharings({
+                    preserveData: true,
+                    section: "preInquiries",
+                    cursor: sectionMeta.preInquiries.paging.nextCursor,
+                    append: true
+                  })}
+                >
+                  {t("my_sharings.actions.load_more")}
+                </Button>
+              ) : null}
             </Section>
 
             <Section {...sectionProps("rooms")} title={t("my_sharings.sections.rooms")} help={t("my_sharings.section_help.rooms")} empty={t("my_sharings.empty.rooms")} items={sharings.rooms}>

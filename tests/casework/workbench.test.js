@@ -187,6 +187,10 @@ function db({
       async findMany({ where }) {
         if (!where?.recipientOwnerId) throw new Error("skoopimata päring: recipientOwnerId puudub");
         return preInquiries.filter((row) => row.recipientOwnerId === where.recipientOwnerId);
+      },
+      async count({ where }) {
+        if (!where?.recipientOwnerId) throw new Error("skoopimata päring: recipientOwnerId puudub");
+        return preInquiries.filter((row) => row.recipientOwnerId === where.recipientOwnerId).length;
       }
     },
     networkShare: {

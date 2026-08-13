@@ -3,6 +3,7 @@ import { authConfig } from "@/auth";
 import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
 import { acceptPreInquiry } from "@/lib/preInquiries";
 import { safeError } from "@/lib/privacy/safeError";
+import { enforcePreInquiryRateLimit } from "@/lib/preInquiryApiBoundary";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -39,6 +40,8 @@ export async function POST(request, context) {
   const locale = localeFromRequest(request);
   const auth = await requireUser();
   if (!auth.ok) return errorJson(auth.message, auth.status, locale);
+  const limited = enforcePreInquiryRateLimit(request, { action: "mutate", userId: auth.userId });
+  if (limited) return limited;
 
   try {
     const updated = await acceptPreInquiry(auth.userId, await readId(context));

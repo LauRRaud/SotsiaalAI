@@ -11,6 +11,7 @@ import {
 } from "@/lib/covisionApi";
 import { assertCovisionCreator } from "@/lib/covisionSession";
 import { getVisiblePreInquiry } from "@/lib/preInquiries";
+import { enforcePreInquiryRateLimit } from "@/lib/preInquiryApiBoundary";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -26,6 +27,8 @@ export async function POST(request, context) {
   try {
     const auth = await requireCovisionAuth();
     assertCovisionCreator(auth);
+    const limited = enforcePreInquiryRateLimit(request, { action: "mutate", userId: auth.userId });
+    if (limited) return limited;
     const inquiry = await getVisiblePreInquiry(auth.userId, await readId(context));
     if (!inquiry) {
       return covisionErrorResponse({ message: "api.common.not_found", status: 404 }, locale);

@@ -99,6 +99,10 @@ function readText(t, key, fallback) {
   return typeof t === "function" ? t(key, fallback) : fallback;
 }
 
+function createPreInquiryActionId() {
+  return globalThis.crypto?.randomUUID?.() || "00000000-0000-4000-8000-000000000000";
+}
+
 /* SOL-SPROF-02: „salvestati" ei tohi katta kinni seda, et assistendi koopia
    eemaldamine alles käib või ebaõnnestus. Otsuse ise teeb testitav moodul. */
 function serviceProfileSaveNotice(t, profile) {
@@ -875,6 +879,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
   const recipientPrefillLoadedRef = useRef(false);
   const openInquiryLoadedRef = useRef(false);
   const handleOpenInquiryRef = useRef(null);
+  const createActionIdRef = useRef(createPreInquiryActionId());
 
   useEffect(() => {
     let cancelled = false;
@@ -904,22 +909,32 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
           all.push(...(Array.isArray(organizationPayload?.recipients) ? organizationPayload.recipients : []));
           return all;
         }
-        const [loadedEntries, inquiriesResponse, preferencesResponse] = await Promise.all([
+        async function loadAllInquiries() {
+          const all = [];
+          let cursor = "";
+          do {
+            const params = new URLSearchParams({ limit: "250" });
+            if (cursor) params.set("cursor", cursor);
+            const response = await fetch(`/api/pre-inquiries?${params}`, { cache: "no-store" });
+            const payload = await response.json().catch(() => ({}));
+            if (!response.ok) throw new Error(payload?.message || "Pre-inquiries could not be loaded.");
+            all.push(...(Array.isArray(payload?.inquiries) ? payload.inquiries : []));
+            cursor = payload?.page?.hasMore ? String(payload.page.nextCursor || "") : "";
+          } while (cursor);
+          return all;
+        }
+        const [loadedEntries, loadedInquiries, preferencesResponse] = await Promise.all([
           loadAllRecipients(),
-          fetch("/api/pre-inquiries", { cache: "no-store" }),
+          loadAllInquiries(),
           fetch("/api/pre-inquiries/preferences", { cache: "no-store" })
         ]);
-        const inquiriesPayload = await inquiriesResponse.json().catch(() => ({}));
         const preferencesPayload = await preferencesResponse.json().catch(() => ({}));
-        if (!inquiriesResponse.ok) {
-          throw new Error(inquiriesPayload?.message || readText(t, "workspace_feature_pages.pre_inquiries.errors.load_failed", "Pre-inquiries could not be loaded."));
-        }
         if (!preferencesResponse.ok) {
           throw new Error(preferencesPayload?.message || readText(t, "workspace_feature_pages.pre_inquiries.errors.preferences_load_failed", "Preferences could not be loaded."));
         }
         if (!cancelled) {
           setEntries(loadedEntries);
-          setInquiries(Array.isArray(inquiriesPayload?.inquiries) ? inquiriesPayload.inquiries : []);
+          setInquiries(loadedInquiries);
           setAcceptsPreInquiries(Boolean(preferencesPayload?.preferences?.acceptsPreInquiries));
         }
       } catch (loadError) {
@@ -1608,6 +1623,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
   }
 
   function handleNewInquiry() {
+    createActionIdRef.current = createPreInquiryActionId();
     setActiveInquiryId("");
     setJourneySourceId("");
     setTopic("");
@@ -1724,6 +1740,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
           status: nextStatus,
           expectedUpdatedAt: activeInquiry?.updatedAt,
           privacyDecision: options?.privacyDecision,
+          ...(!activeInquiryId ? { clientActionId: createActionIdRef.current } : {}),
           // Persist the Teekond -> eelpöördumine link only when creating from a
           // journey prefill. On edits (PATCH) the existing link is left intact.
           ...(!activeInquiryId && journeySourceId ? { sourceJourneyId: journeySourceId } : {})
@@ -1744,6 +1761,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
       }
       const inquiry = payload?.inquiry || null;
       if (inquiry) {
+        if (!activeInquiryId) createActionIdRef.current = createPreInquiryActionId();
         setInquiries((current) => [inquiry, ...current.filter((item) => item.id !== inquiry.id)]);
         setActiveInquiryId(inquiry.id || "");
         setJourneySourceId("");
@@ -2623,6 +2641,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
             <ServiceProfileInput
               value={normalizedAssessmentState.subject.municipalityText}
               onChange={(event) => updateAssessmentSubject("municipalityText", event.target.value)}
+              maxLength={180}
               placeholder={readText(t, "workspace_feature_pages.pre_inquiries.placeholders.municipality", "Näiteks Tallinn, Põltsamaa vald või piirkond")}
             />
           </Label>
@@ -2647,6 +2666,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
               setSituation(event.target.value);
               setDraftTouched(false);
             }}
+            maxLength={12000}
             placeholder={readText(t, "workspace_feature_pages.pre_inquiries.placeholders.situation", "Kirjelda lühidalt, mis olukord vajab abi. Teenuse nime ei pea teadma.")}
           />
         </Label>
@@ -2700,6 +2720,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
                                   <ServiceProfileTextarea
                                     value={primaryAnswer.followUpAnswers?.[question] || ""}
                                     onChange={(event) => updatePrimaryQuestionFollowUpAnswer(definition.id, primaryQuestion.id, question, event.target.value)}
+                                    maxLength={2000}
                                     placeholder={readText(t, "workspace_feature_pages.pre_inquiries.placeholders.follow_up", "Vasta oma sõnadega. Võid jätta tühjaks, kui ei tea.")}
                                   />
                                 </Label>
@@ -2725,6 +2746,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
             <ServiceProfileTextarea
               value={normalizedAssessmentState.supportContext.existingSupport}
               onChange={(event) => updateAssessmentSupport("existingSupport", event.target.value)}
+              maxLength={4000}
               placeholder={readText(t, "workspace_feature_pages.pre_inquiries.placeholders.existing_support", "Kes või mis praegu aitab?")}
             />
           </Label>
@@ -2733,6 +2755,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
             <ServiceProfileTextarea
               value={normalizedAssessmentState.supportContext.supportAdequacy}
               onChange={(event) => updateAssessmentSupport("supportAdequacy", event.target.value)}
+              maxLength={180}
               placeholder={readText(t, "workspace_feature_pages.pre_inquiries.placeholders.support_adequacy", "Näiteks piisab, ei piisa või abistaja on ülekoormatud")}
             />
           </Label>
@@ -2741,6 +2764,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
             <ServiceProfileTextarea
               value={normalizedAssessmentState.supportContext.personWish}
               onChange={(event) => updateAssessmentSupport("personWish", event.target.value)}
+              maxLength={4000}
               placeholder={readText(t, "workspace_feature_pages.pre_inquiries.placeholders.person_wish", "Mida inimene ise kõige rohkem soovib?")}
             />
           </Label>
@@ -3016,9 +3040,11 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
       <SectionCard flat={embedded} title="Pöördumise eelvaade">
         <Label>
           <span>{readText(t, "workspace_feature_pages.pre_inquiries.fields.topic", "Teema")}</span>
-          <ServiceProfileInput value={topic} onChange={(event) => { setTopic(event.target.value); setDraftTouched(false); }} placeholder={readText(t, "workspace_feature_pages.pre_inquiries.placeholders.topic", "Lühike pealkiri")} />
+          <ServiceProfileInput maxLength={1000} value={topic} onChange={(event) => { setTopic(event.target.value); setDraftTouched(false); }} placeholder={readText(t, "workspace_feature_pages.pre_inquiries.placeholders.topic", "Lühike pealkiri")} />
+          <small>{t("workspace_feature_pages.pre_inquiries.remaining_characters", { count: Math.max(0, 1000 - topic.length) })}</small>
         </Label>
-        <ServiceProfileTextarea value={draft} onChange={(event) => { setDraft(event.target.value); setDraftTouched(true); }} placeholder={readText(t, "workspace_feature_pages.pre_inquiries.placeholders.draft", "Koostatud pöördumise tekst")} />
+        <ServiceProfileTextarea maxLength={12000} value={draft} onChange={(event) => { setDraft(event.target.value); setDraftTouched(true); }} placeholder={readText(t, "workspace_feature_pages.pre_inquiries.placeholders.draft", "Koostatud pöördumise tekst")} />
+        <small>{t("workspace_feature_pages.pre_inquiries.remaining_characters", { count: Math.max(0, 12000 - draft.length) })}</small>
         {activeDraftJourneySharedInfo ? (
           <JourneySharedInfoBlock info={activeDraftJourneySharedInfo} t={t} audience={activeDraftJourneySharedInfoAudience} serviceLabel={selectedRecipient?.title || ""} />
         ) : null}

@@ -16,7 +16,11 @@ export async function GET(request) {
 
   try {
     const section = String(new URL(request.url).searchParams.get("section") || "").trim() || null;
-    const sharings = await loadMySharings(userId, { sections: section });
+    const cursor = String(new URL(request.url).searchParams.get("cursor") || "").trim() || null;
+    const sharings = await loadMySharings(userId, {
+      sections: section,
+      cursors: section && cursor ? { [section]: cursor } : {}
+    });
     return json({ ok: true, sharings });
   } catch (error) {
     console.error("[my-sharings] load failed", safeError(error));

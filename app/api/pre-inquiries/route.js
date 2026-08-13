@@ -1,8 +1,9 @@
 import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
 import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
-import { createPreInquiry, listVisiblePreInquiries } from "@/lib/preInquiries";
+import { createPreInquiry, listVisiblePreInquiryPage } from "@/lib/preInquiries";
 import { safeError } from "@/lib/privacy/safeError";
+import { enforcePreInquiryRateLimit, preInquiryErrorJson, publicPreInquiryError } from "@/lib/preInquiryApiBoundary";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -33,10 +34,15 @@ export async function GET(request) {
   }
 
   try {
-    const inquiries = await listVisiblePreInquiries(auth.userId);
+    const url = new URL(request.url);
+    const page = await listVisiblePreInquiryPage(auth.userId, {
+      limit: url.searchParams.get("limit"),
+      cursor: url.searchParams.get("cursor")
+    });
     return json({
       ok: true,
-      inquiries
+      inquiries: page.items,
+      page: { total: page.total, hasMore: page.hasMore, nextCursor: page.nextCursor }
     });
   } catch (error) {
     console.error("[pre-inquiries] load failed", safeError(error));
@@ -50,6 +56,8 @@ export async function POST(request) {
   if (!auth.ok) {
     return errorJson(auth.message, auth.status, locale);
   }
+  const limited = enforcePreInquiryRateLimit(request, { action: "create", userId: auth.userId });
+  if (limited) return limited;
 
   try {
     const body = await request.json().catch(() => ({}));
@@ -59,15 +67,9 @@ export async function POST(request) {
       inquiry
     }, 201);
   } catch (error) {
-    const status = Number(error?.status) || 500;
-    if (status >= 500) {
+    if (publicPreInquiryError(error).status >= 500) {
       console.error("[pre-inquiries] save failed", safeError(error));
     }
-    return errorJson(
-      error?.message || "pre_inquiries.errors.save_failed",
-      status,
-      locale,
-      error?.privacyPayload || {}
-    );
+    return preInquiryErrorJson(error, locale, "pre_inquiries.errors.save_failed");
   }
 }

@@ -7,6 +7,7 @@ import {
   updatePreInquiry
 } from "@/lib/preInquiries";
 import { safeError } from "@/lib/privacy/safeError";
+import { enforcePreInquiryRateLimit, preInquiryErrorJson, publicPreInquiryError } from "@/lib/preInquiryApiBoundary";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -40,7 +41,6 @@ export async function GET(request, context) {
   if (!auth.ok) {
     return errorJson(auth.message, auth.status, locale);
   }
-
   try {
     const inquiry = await getVisiblePreInquiry(auth.userId, await readId(context));
     if (!inquiry) {
@@ -62,6 +62,8 @@ export async function PATCH(request, context) {
   if (!auth.ok) {
     return errorJson(auth.message, auth.status, locale);
   }
+  const limited = enforcePreInquiryRateLimit(request, { action: "mutate", userId: auth.userId });
+  if (limited) return limited;
 
   try {
     const body = await request.json().catch(() => ({}));
@@ -71,15 +73,9 @@ export async function PATCH(request, context) {
       inquiry
     });
   } catch (error) {
-    const status = Number(error?.status) || 500;
-    if (status >= 500) {
+    if (publicPreInquiryError(error).status >= 500) {
       console.error("[pre-inquiries] update failed", safeError(error));
     }
-    return errorJson(
-      error?.message || "pre_inquiries.errors.save_failed",
-      status,
-      locale,
-      error?.privacyPayload || {}
-    );
+    return preInquiryErrorJson(error, locale, "pre_inquiries.errors.save_failed");
   }
 }

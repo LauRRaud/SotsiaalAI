@@ -2184,6 +2184,7 @@
       "external_confirm_success": "Email sending was recorded as confirmed.",
       "copy_success": "Inquiry text copied.",
       "download_success": "Inquiry text downloaded.",
+      "remaining_characters": "{count} characters remaining",
       "accept_success": "Pre-inquiry marked as accepted.",
       "preferences_save_success": "Receiving settings saved.",
       "send_success": "Pre-inquiry sent.",
@@ -7984,7 +7985,18 @@
       "reopen_conflict": "The pre-inquiry state changed in the meantime. Refresh and try again.",
       "external_confirmation_conflict": "The pre-inquiry changed before sending was confirmed. Refresh and check its state.",
       "room_requires_acceptance": "A conversation room can be opened after the recipient accepts the pre-inquiry.",
-      "invalid_status_transition": "This pre-inquiry status change is not allowed through this action."
+      "invalid_status_transition": "This pre-inquiry status change is not allowed through this action.",
+      "topic_too_long": "The topic may contain up to 1,000 characters. Nothing was truncated.",
+      "situation_too_long": "The situation may contain up to 12,000 characters. Nothing was truncated.",
+      "generated_draft_too_long": "The generated draft may contain up to 12,000 characters. Nothing was truncated.",
+      "user_edited_draft_too_long": "The pre-inquiry text may contain up to 12,000 characters. Nothing was truncated.",
+      "assistant_message_too_long": "The assistant detail may contain up to 12,000 characters. Nothing was truncated.",
+      "assessment_too_large": "An assessment field or list exceeds its allowed size. Nothing was truncated.",
+      "assessment_municipality_too_long": "The municipality or region may contain up to 180 characters. Nothing was truncated.",
+      "active_limit_reached": "You already have 250 active pre-inquiry drafts. Archive one before creating another.",
+      "invalid_action_key": "The save action key is invalid. Refresh the view and try again.",
+      "action_key_conflict": "The same save action key was used with different content. Refresh the view.",
+      "invalid_cursor": "The page cursor is invalid. Start loading the list again."
     }
   },
   "my_sharings": {
@@ -8127,6 +8139,7 @@
       "revoke_invite": "Revoke invite",
       "leave_room": "Leave room",
       "retry": "Try again",
+      "load_more": "Load more",
       "use_redacted": "Use redacted version",
       "send_original": "Send original text",
       "confirm_share": "I agree to this sharing",

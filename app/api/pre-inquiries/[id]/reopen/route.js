@@ -3,6 +3,7 @@ import { authConfig } from "@/auth";
 import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
 import { reopenPreInquiry } from "@/lib/preInquiries";
 import { safeError } from "@/lib/privacy/safeError";
+import { enforcePreInquiryRateLimit, preInquiryErrorJson } from "@/lib/preInquiryApiBoundary";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -13,6 +14,8 @@ export async function POST(request, context) {
   const session = await getServerSession(authConfig).catch(() => null);
   const userId = String(session?.user?.id || "").trim();
   if (!userId) return errorJson("api.common.unauthorized", 401, locale);
+  const limited = enforcePreInquiryRateLimit(request, { action: "mutate", userId });
+  if (limited) return limited;
 
   try {
     const params = await context?.params;
@@ -24,6 +27,6 @@ export async function POST(request, context) {
   } catch (error) {
     const status = Number(error?.status) || 500;
     if (status >= 500) console.error("[pre-inquiries] reopen failed", safeError(error));
-    return errorJson(error?.message || "pre_inquiries.errors.reopen_failed", status, locale);
+    return preInquiryErrorJson(error, locale, "pre_inquiries.errors.reopen_failed");
   }
 }

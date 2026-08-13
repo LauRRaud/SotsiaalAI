@@ -3,6 +3,7 @@ import { authConfig } from "@/auth";
 import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
 import { updatePreInquiryReceiverWorkflow } from "@/lib/preInquiries";
 import { safeError } from "@/lib/privacy/safeError";
+import { enforcePreInquiryRateLimit, preInquiryErrorJson, publicPreInquiryError } from "@/lib/preInquiryApiBoundary";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -33,6 +34,8 @@ export async function PATCH(request, context) {
   const locale = localeFromRequest(request);
   const auth = await requireUser();
   if (!auth.ok) return errorJson(auth.message, auth.status, locale);
+  const limited = enforcePreInquiryRateLimit(request, { action: "mutate", userId: auth.userId });
+  if (limited) return limited;
 
   try {
     const body = await request.json().catch(() => ({}));
@@ -42,10 +45,9 @@ export async function PATCH(request, context) {
       inquiry
     });
   } catch (error) {
-    const status = Number(error?.status) || 500;
-    if (status >= 500) {
+    if (publicPreInquiryError(error).status >= 500) {
       console.error("[pre-inquiries] workflow update failed", safeError(error));
     }
-    return errorJson(error?.message || "pre_inquiries.errors.workflow_save_failed", status, locale);
+    return preInquiryErrorJson(error, locale, "pre_inquiries.errors.workflow_save_failed");
   }
 }

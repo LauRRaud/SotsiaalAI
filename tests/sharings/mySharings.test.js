@@ -12,6 +12,9 @@ function model(name, rows, calls) {
       calls.push({ name, query });
       await Promise.resolve();
       return structuredClone(rows);
+    },
+    async count() {
+      return rows.length;
     }
   };
 }
@@ -162,7 +165,7 @@ test("aggregate is owner-scoped, action-ready, and excludes receiver-private wor
   const { db, calls } = fixtureDb();
   const result = await loadMySharings(USER_ID, { db, now: NOW });
 
-  assert.equal(calls.length, 14);
+  assert.equal(calls.length, 15);
   assert.equal(calls.find((call) => call.name === "mentoringPrivateNote").query.where.ownerId, USER_ID);
   assert.equal(calls.find((call) => call.name === "preInquiry").query.where.authorId, USER_ID);
   assert.equal(calls.find((call) => call.name === "roomMember").query.where.userId, USER_ID);

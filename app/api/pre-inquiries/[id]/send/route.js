@@ -3,6 +3,7 @@ import { authConfig } from "@/auth";
 import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
 import { confirmExternalPreInquirySent } from "@/lib/preInquiries";
 import { safeError } from "@/lib/privacy/safeError";
+import { enforcePreInquiryRateLimit, preInquiryErrorJson, publicPreInquiryError } from "@/lib/preInquiryApiBoundary";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -31,6 +32,8 @@ export async function POST(request, context) {
   if (!auth.ok) {
     return errorJson(auth.message, auth.status, locale);
   }
+  const limited = enforcePreInquiryRateLimit(request, { action: "send", userId: auth.userId });
+  if (limited) return limited;
 
   try {
     const params = await context?.params;
@@ -43,10 +46,9 @@ export async function POST(request, context) {
       inquiry
     });
   } catch (error) {
-    const status = Number(error?.status) || 500;
-    if (status >= 500) {
+    if (publicPreInquiryError(error).status >= 500) {
       console.error("[pre-inquiries] external send failed", safeError(error));
     }
-    return errorJson(error?.message || "pre_inquiries.errors.send_failed", status, locale);
+    return preInquiryErrorJson(error, locale, "pre_inquiries.errors.send_failed");
   }
 }

@@ -3,6 +3,7 @@ import { authConfig } from "@/auth";
 import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
 import { sendPreInquiryCorrection } from "@/lib/preInquiries";
 import { safeError } from "@/lib/privacy/safeError";
+import { enforcePreInquiryRateLimit } from "@/lib/preInquiryApiBoundary";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -30,6 +31,8 @@ export async function POST(request, context) {
   const session = await getServerSession(authConfig).catch(() => null);
   const userId = String(session?.user?.id || "").trim();
   if (!userId) return errorJson("api.common.unauthorized", 401, locale);
+  const limited = enforcePreInquiryRateLimit(request, { action: "correction", userId });
+  if (limited) return limited;
 
   try {
     const body = await request.json().catch(() => ({}));

@@ -2184,6 +2184,7 @@
       "external_confirm_success": "E-kirja saatmine märgiti kinnitatuks.",
       "copy_success": "Pöördumise tekst kopeeriti.",
       "download_success": "Pöördumise tekst laaditi alla.",
+      "remaining_characters": "{count} märki jäänud",
       "accept_success": "Eelpöördumine märgiti vastuvõetuks.",
       "preferences_save_success": "Vastuvõtu seaded salvestati.",
       "send_success": "Eelpöördumine saadetud.",
@@ -7986,7 +7987,18 @@
       "reopen_conflict": "Eelpöördumise olek muutus vahepeal. Värskenda ja proovi uuesti.",
       "external_confirmation_conflict": "Eelpöördumine muutus enne saatmise kinnitamist. Värskenda ja kontrolli seisu.",
       "room_requires_acceptance": "Vestlusruumi saab avada pärast seda, kui adressaat on eelpöördumise vastu võtnud.",
-      "invalid_status_transition": "Seda eelpöördumise olekumuutust ei saa selle toiminguga teha."
+      "invalid_status_transition": "Seda eelpöördumise olekumuutust ei saa selle toiminguga teha.",
+      "topic_too_long": "Teema võib olla kuni 1000 märki. Midagi ei kärbitud.",
+      "situation_too_long": "Olukorra kirjeldus võib olla kuni 12 000 märki. Midagi ei kärbitud.",
+      "generated_draft_too_long": "Koostatud mustand võib olla kuni 12 000 märki. Midagi ei kärbitud.",
+      "user_edited_draft_too_long": "Pöördumise tekst võib olla kuni 12 000 märki. Midagi ei kärbitud.",
+      "assistant_message_too_long": "Assistendi täpsustus võib olla kuni 12 000 märki. Midagi ei kärbitud.",
+      "assessment_too_large": "Eelkaardistuse üks väli või loend ületab lubatud mahu. Midagi ei kärbitud.",
+      "assessment_municipality_too_long": "KOV või piirkond võib olla kuni 180 märki. Midagi ei kärbitud.",
+      "active_limit_reached": "Sul on juba 250 aktiivset eelpöördumise mustandit. Arhiveeri mõni enne uue loomist.",
+      "invalid_action_key": "Salvestustoimingu võti ei kehti. Värskenda vaadet ja proovi uuesti.",
+      "action_key_conflict": "Sama salvestustoimingu võtit kasutati teise sisuga. Värskenda vaadet.",
+      "invalid_cursor": "Lehekülje jätkuvõti ei kehti. Alusta loendi laadimist uuesti."
     }
   },
   "my_sharings": {
@@ -8129,6 +8141,7 @@
       "revoke_invite": "Võta kutse tagasi",
       "leave_room": "Lahku ruumist",
       "retry": "Proovi uuesti",
+      "load_more": "Laadi veel",
       "use_redacted": "Kasuta varjatud versiooni",
       "send_original": "Saada algne tekst",
       "confirm_share": "Nõustun jagamisega",

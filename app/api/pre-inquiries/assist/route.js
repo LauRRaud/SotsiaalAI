@@ -4,6 +4,7 @@ import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
 import { assistPreInquiry } from "@/lib/preInquiries";
 import { safeError } from "@/lib/privacy/safeError";
 import { evaluateTextPrivacy, privacyConfirmationResponsePayload } from "@/lib/privacy/privacyGuard";
+import { enforcePreInquiryRateLimit, preInquiryErrorJson } from "@/lib/preInquiryApiBoundary";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -32,6 +33,8 @@ export async function POST(request) {
   if (!auth.ok) {
     return errorJson(auth.message, auth.status, locale);
   }
+  const limited = enforcePreInquiryRateLimit(request, { action: "assist", userId: auth.userId });
+  if (limited) return limited;
 
   try {
     const body = await request.json().catch(() => ({}));
@@ -59,6 +62,6 @@ export async function POST(request) {
     });
   } catch (error) {
     console.error("[pre-inquiries] assist failed", safeError(error));
-    return errorJson("pre_inquiries.errors.assist_failed", 500, locale);
+    return preInquiryErrorJson(error, locale, "pre_inquiries.errors.assist_failed");
   }
 }

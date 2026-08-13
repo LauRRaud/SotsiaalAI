@@ -2505,6 +2505,8 @@ model ServiceMapEntry {
 model PreInquiry {
   id                      String                    @id @default(cuid())
   authorId                String?
+  clientActionId          String?
+  clientActionHash        String?
   authorErasedAt          DateTime?
   recipientOwnerId        String?
   recipientEntryId        String?
@@ -2555,6 +2557,7 @@ model PreInquiry {
   /// eelpöördumise, ilma et inimene peaks midagi uuesti trükkima.
   convertedFromUrgentRequest UrgentRequest?   @relation("UrgentRequestConversion")
 
+  @@unique([authorId, clientActionId])
   @@index([authorId, updatedAt])
   @@index([authorId, sentAt])
   @@index([recipientOwnerId, updatedAt])

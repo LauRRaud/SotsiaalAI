@@ -175,6 +175,9 @@ function preInquiryDb(rowsByReceiver, calls) {
         calls.push(structuredClone(query));
         return structuredClone(rowsByReceiver[query.where.recipientOwnerId] || []);
       },
+      async count(query) {
+        return (rowsByReceiver[query.where.recipientOwnerId] || []).length;
+      },
       create() {
         throw new Error("K1 pre-inquiry adapter must not write");
       },
