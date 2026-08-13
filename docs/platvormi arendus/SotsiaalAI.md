@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**Paralleelsete parandustööpuude viimane auditiparanduste ring on integreerimisel lokaalsesse `main`-i.** `SOL-MAT-08` otsusest sõltumatu RAG-elutsükkel ja üleslaadimise karantiin → pahavarakontroll → struktuurikontroll turvapiir on valmis ning fail-closed; päris `clamd/freshclam`, CDR, konto-kustutuse hook ja neli omaniku poliitikavalikut on ausalt NOT_PROVEN/lahtised. Ametlik seis on **426 DONE / 2 PARTIAL / 1 NOT_DONE**; lahti on `SOL-CW-14`, `SOL-MAT-08` ja viimane NOT_DONE `SOL-MAT-12`. Viimane toodangu väljalase on endiselt `3735789e`; pärast MAT-12 plokki, lõppintegratsiooni ja muutumatu puu täisväravat on omanik lubanud GitHubi push'i ning serverisse viimise.
+**Kõik SOL-auditi otsusest sõltumatud parandused on lokaalsesse `main`-i integreeritud.** Materjalide üleslaadimine on fail-closed karantiin → pahavarakontroll → struktuurikontroll rajal; RAG-elutsükkel, retention-worker, konto-kustutuse hook, UI ja andmekoopia on tehniliselt valmis ning 199 migratsiooni ahel roheline. Ametlik seis on **426 DONE / 3 PARTIAL / 0 NOT_DONE**. Lahti jäävad ainult omaniku/õigus-/andmekaitse otsused: `SOL-CW-14` ning `SOL-MAT-08/12`; päris `clamd/freshclam`, CDR ja kinnitatud Materjalide poliitika runtime ei ole enne tootmisseadistust tõendatud. Viimane toodangu väljalase on endiselt `3735789e`; järgmine samm on muutumatu lõpp-puu täisvärav, GitHubi push ja kontrollitud serveriväljalase.
 
 **Teenuspäeviku jätkuauditi `SOL-SLOG-J-01…07` on lõpetatud.** Kirje parandamine,
 tühistamine, mustandi kustutamine ja owner-skoobitud ajalugu on nüüd päris kasutajateed;
