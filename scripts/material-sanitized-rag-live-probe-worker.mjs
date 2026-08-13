@@ -13,6 +13,7 @@ import {
   retryMaterialRagDeletion
 } from "../lib/materials/ragLifecycle.js"
 import { reviewMaterialSubmission } from "../lib/materials/review.js"
+import { retentionFieldsForSubmission } from "../lib/materials/retentionPolicy.js"
 import {
   deleteStoredMaterial,
   getSanitizedMaterialPath,
@@ -77,6 +78,7 @@ async function main() {
   ownerId = owner.id
   await writeMaterialBuffer(raw, storagePath)
   await writeMaterialBuffer(derivative, getSanitizedMaterialPath(storagePath))
+  const createdAt = new Date()
   const submission = await prisma.materialSubmission.create({
     data: {
       submittedByUserId: ownerId,
@@ -93,7 +95,8 @@ async function main() {
       scanEngine: "Synthetic local ClamAV",
       scanEngineVersion: "1.0",
       scanSignatureVersion: "synthetic-1",
-      scanSignatureUpdatedAt: new Date()
+      scanSignatureUpdatedAt: createdAt,
+      ...retentionFieldsForSubmission("pending", createdAt)
     }
   })
   submissionId = submission.id
@@ -120,6 +123,12 @@ async function main() {
     }
   })
   ragDocId = imported.ragDocId
+  assert.equal(imported.derivativeStoragePath, getSanitizedMaterialPath(storagePath))
+  assert.equal(imported.derivativeRetentionState, "SCHEDULED")
+  assert.equal(imported.ragRetentionState, "SCHEDULED")
+  assert.equal(imported.contentSafetyState, "ALLOWED")
+  assert.ok(imported.originalRetentionUntil < imported.derivativeRetentionUntil)
+  assert.equal(imported.derivativeRetentionUntil.getTime(), imported.ragRetentionUntil.getTime())
   assert.ok(Number((await remote(ragDocId))?.chunks) > 0, "ingest receipt must be remotely present")
   assert.match(JSON.stringify(await search(sanitizedOnly, ragDocId)), /SANITIZED-ONLY/u)
   assert.doesNotMatch(JSON.stringify(await search(rawOnly, ragDocId)), /RAW-ONLY/u)
@@ -138,6 +147,7 @@ async function main() {
 async function cleanup() {
   if (ragDocId) await deleteRagDocument(ragDocId).catch(() => {})
   if (storagePath) await deleteStoredMaterial(storagePath).catch(() => {})
+  if (storagePath) await deleteStoredMaterial(getSanitizedMaterialPath(storagePath)).catch(() => {})
   if (submissionId) {
     await prisma.dataAuditLog.deleteMany({ where: { resourceId: submissionId } }).catch(() => {})
     await prisma.dataDeletionJob.deleteMany({ where: { resourceId: submissionId } }).catch(() => {})

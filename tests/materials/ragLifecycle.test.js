@@ -42,6 +42,15 @@ test("shared RAG accepts documented public/open/permission rights only and rejec
     rightsConfirmedAt: new Date(),
     rightsConfirmedByUserId: "synthetic-admin"
   }).rightsBasis, "OPEN_LICENSE")
+  const rightsWithDeadline = requireMaterialSharedRagRights({
+    ...rights,
+    rightsValidUntil: "2027-01-15T00:00:00.000Z"
+  })
+  assert.equal(rightsWithDeadline.rightsValidUntil.toISOString(), "2027-01-15T00:00:00.000Z")
+  assert.throws(
+    () => requireMaterialSharedRagRights({ ...rights, sourceValidUntil: "not-a-date" }),
+    /rights_validity_invalid/
+  )
 })
 
 test("material RAG policy rejects an unknown audience instead of widening retrieval", () => {
