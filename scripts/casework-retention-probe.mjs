@@ -26,7 +26,9 @@
  *   E. negatiivne loendur → andmebaas keeldub (päris kirjutusrajal)
  *   F. tervis mõlemast otsast: NEVER_RUN · OK · ALARM · TÄPSELT PIIRIL · ainult
  *      kuiv jooks · ainult tõrked
- *   G. smoke PÄRIS PROTSESSINA: alarm = väljumiskood 1, korras = 0, värav väljas
+ *   G. päris säilitustöö: mustand ja juhtum tähtaja mõlemal poolel ning ühe
+ *      rea tõrke järel taastumine järgmisel jooksul
+ *   H. smoke PÄRIS PROTSESSINA: alarm = väljumiskood 1, korras = 0, värav väljas
  *      = 0, katkine skeem = 1
  *
  * NEGATIIVKONTROLL ON SISSE EHITATUD: F3/F4 (üle läve vs täpselt piiril) ja
@@ -46,6 +48,7 @@ import pg from "pg";
 
 import { PrismaClient } from "../generated/prisma/client.ts";
 import { PrismaPg } from "@prisma/adapter-pg";
+import { addMonths, runRetention } from "../lib/casework/retention.js";
 import {
   RETENTION_ALARM_MISSED_INTERVALS,
   RETENTION_HEALTH,
@@ -177,6 +180,74 @@ function seedRun({ startedMinutesAgo, finishedMinutesAgo = null, ok = false, dry
 }
 
 const clearRuns = () => db.caseWorkRetentionRun.deleteMany({});
+
+async function seedTransferredDraft({ ownerUserId, transferredAt, marker }) {
+  const caseWork = await db.caseWorkAssist.create({ data: { ownerUserId } });
+  const draft = await db.caseWorkDraft.create({
+    data: {
+      caseWorkAssistId: caseWork.id,
+      draftType: "POORDUMISE_KOKKUVOTE",
+      transferState: "ULE_KANTUD",
+      transferredAt
+    }
+  });
+  await db.caseWorkDraftField.create({
+    data: {
+      draftId: draft.id,
+      fieldKey: "SONDI_MARKER",
+      text: marker,
+      provenance: "TOOTAJA_SISESTUS"
+    }
+  });
+  return draft;
+}
+
+async function seedArchivedCase({ ownerUserId, archivedAt }) {
+  const caseWork = await db.caseWorkAssist.create({
+    data: { ownerUserId, retentionState: "ARCHIVED" }
+  });
+  await db.caseWorkRetentionAudit.create({
+    data: {
+      caseWorkAssistId: caseWork.id,
+      ownerUserId,
+      actorUserId: ownerUserId,
+      fromState: "READ_ONLY",
+      toState: "ARCHIVED",
+      reason: "SOL-CW-14 sünteetiline runtime-sond",
+      createdAt: archivedAt
+    }
+  });
+  return caseWork;
+}
+
+/** Ainult ühe sünteetilise rea kustutus kukub; kõik päringud lähevad endiselt
+ * päris Prisma kliendi ja PostgreSQL-i vastu. */
+function failCaseDeleteOnce({ caseWorkAssistId }) {
+  const caseDelegate = new Proxy(db.caseWorkAssist, {
+    get(target, property) {
+      if (property === "deleteMany") {
+        return async args => {
+          if (args?.where?.id === caseWorkAssistId) {
+            const error = new Error("synthetic retention row failure");
+            error.name = "SyntheticRowFailure";
+            throw error;
+          }
+          return target.deleteMany(args);
+        };
+      }
+      const value = Reflect.get(target, property, target);
+      return typeof value === "function" ? value.bind(target) : value;
+    }
+  });
+
+  return new Proxy(db, {
+    get(target, property) {
+      if (property === "caseWorkAssist") return caseDelegate;
+      const value = Reflect.get(target, property, target);
+      return typeof value === "function" ? value.bind(target) : value;
+    }
+  });
+}
 
 await admin.connect();
 try {
@@ -345,17 +416,97 @@ try {
     `${failing.state} / ${failing.reason}`
   );
 
-  /* ── G. Smoke päris protsessina ───────────────────────────────────────── */
+  /* ── G. Säilitustöö päris PostgreSQL-is ──────────────────────────────── */
+  process.env.CASEWORK_V1_ENABLED = "1";
+  const retentionNow = new Date("2026-08-13T12:00:00.000Z");
+  const cutoff = addMonths(retentionNow, -12);
+  const owner = await db.user.create({
+    data: { email: `casework.retention.probe.${Date.now()}@sotsiaalai.test`, role: "SOCIAL_WORKER" }
+  });
+
+  const draftBefore = await seedTransferredDraft({
+    ownerUserId: owner.id,
+    transferredAt: new Date(cutoff.getTime() + 1),
+    marker: "tähtaja eel säiliv sünteetiline väli"
+  });
+  const draftDue = await seedTransferredDraft({
+    ownerUserId: owner.id,
+    transferredAt: cutoff,
+    marker: "tähtajal kustuv sünteetiline väli"
+  });
+  const draftResult = await runRetention({ now: retentionNow, batch: 20, db, logger: { error() {} } });
+  const [draftBeforeAfter, draftDueAfter, fieldsBefore, fieldsDue] = await Promise.all([
+    db.caseWorkDraft.findUnique({ where: { id: draftBefore.id }, select: { contentPurgedAt: true } }),
+    db.caseWorkDraft.findUnique({ where: { id: draftDue.id }, select: { contentPurgedAt: true } }),
+    db.caseWorkDraftField.count({ where: { draftId: draftBefore.id } }),
+    db.caseWorkDraftField.count({ where: { draftId: draftDue.id } })
+  ]);
+  check(
+    "G1 mustand üks millisekund tähtaja eel → sisu säilib",
+    draftBeforeAfter?.contentPurgedAt === null && fieldsBefore === 1
+  );
+  check(
+    "G2 mustand täpselt tähtajal → sisu kustub, tõendirida säilib",
+    draftResult.draftsPurged === 1 &&
+      draftResult.draftFieldsDeleted === 1 &&
+      draftDueAfter?.contentPurgedAt?.getTime() === retentionNow.getTime() &&
+      fieldsDue === 0
+  );
+
+  const caseBefore = await seedArchivedCase({
+    ownerUserId: owner.id,
+    archivedAt: new Date(cutoff.getTime() + 1)
+  });
+  const caseDue = await seedArchivedCase({ ownerUserId: owner.id, archivedAt: cutoff });
+  const caseResult = await runRetention({ now: retentionNow, batch: 20, db, logger: { error() {} } });
+  const [caseBeforeAfter, caseDueAfter] = await Promise.all([
+    db.caseWorkAssist.findUnique({ where: { id: caseBefore.id }, select: { id: true } }),
+    db.caseWorkAssist.findUnique({ where: { id: caseDue.id }, select: { id: true } })
+  ]);
+  check(
+    "G3 juhtum üks millisekund tähtaja eel → juhtum ja audit säilivad",
+    Boolean(caseBeforeAfter) &&
+      (await db.caseWorkRetentionAudit.count({ where: { caseWorkAssistId: caseBefore.id } })) === 1
+  );
+  check(
+    "G4 juhtum täpselt tähtajal → päris DB-kaskaad kustutab juhtumi ja auditi",
+    caseResult.casesDeleted === 1 &&
+      caseDueAfter === null &&
+      (await db.caseWorkRetentionAudit.count({ where: { caseWorkAssistId: caseDue.id } })) === 0
+  );
+
+  const retryCase = await seedArchivedCase({ ownerUserId: owner.id, archivedAt: cutoff });
+  const failedResult = await runRetention({
+    now: retentionNow,
+    batch: 20,
+    db: failCaseDeleteOnce({ caseWorkAssistId: retryCase.id }),
+    logger: { error() {} }
+  });
+  check(
+    "G5 ühe rea tõrge ei peata partiid ja rida jääb uuesti leitavaks",
+    failedResult.failed === 1 &&
+      Boolean(await db.caseWorkAssist.findUnique({ where: { id: retryCase.id }, select: { id: true } }))
+  );
+  const recoveredResult = await runRetention({ now: retentionNow, batch: 20, db, logger: { error() {} } });
+  check(
+    "G6 järgmine jooks taastab reatõrkest ja kustutab sama rea koos auditiga",
+    recoveredResult.failed === 0 &&
+      recoveredResult.casesDeleted === 1 &&
+      (await db.caseWorkAssist.count({ where: { id: retryCase.id } })) === 0 &&
+      (await db.caseWorkRetentionAudit.count({ where: { caseWorkAssistId: retryCase.id } })) === 0
+  );
+
+  /* ── H. Smoke päris protsessina ───────────────────────────────────────── */
   const alarmOn = runSmoke({ gateOn: true });
   check(
-    "G1 ALARM + värav sees → VÄLJUMISKOOD 1",
+    "H1 ALARM + värav sees → VÄLJUMISKOOD 1",
     alarmOn.code === 1 && /ALARM/.test(alarmOn.out),
     `kood ${alarmOn.code} · ${alarmOn.tail}`
   );
 
   const alarmOff = runSmoke({ gateOn: false });
   check(
-    "G2 sama ALARM + värav VÄLJAS → kood 0 ja ta ütleb selle välja",
+    "H2 sama ALARM + värav VÄLJAS → kood 0 ja ta ütleb selle välja",
     alarmOff.code === 0 && /värav on väljas/.test(alarmOff.out),
     `kood ${alarmOff.code} · ${alarmOff.tail}`
   );
@@ -364,7 +515,7 @@ try {
   await seedRun({ startedMinutesAgo: 5, finishedMinutesAgo: 4, ok: true });
   const okRun = runSmoke({ gateOn: true });
   check(
-    "G3 korras seis + värav sees → kood 0 ja väljund nimetab kolme asja",
+    "H3 korras seis + värav sees → kood 0 ja väljund nimetab kolme asja",
     okRun.code === 0 &&
       /viimane edukas jooks:/.test(okRun.out) &&
       /järgmine jooks:/.test(okRun.out) &&
@@ -378,7 +529,7 @@ try {
   await db.$executeRawUnsafe('DROP TABLE "CaseWorkRetentionRun"');
   const broken = runSmoke({ gateOn: true });
   check(
-    "G4 katkine skeem → kood 1, mitte vaikne 0",
+    "H4 katkine skeem → kood 1, mitte vaikne 0",
     broken.code === 1 && /KUKKUS/.test(broken.out),
     `kood ${broken.code} · ${broken.tail}`
   );
@@ -395,7 +546,7 @@ try {
   const left = await admin
     .query("SELECT 1 FROM pg_database WHERE datname = $1", [databaseName])
     .catch(() => ({ rowCount: -1 }));
-  check("H1 ajutine andmebaas on kustutatud", left.rowCount === 0, `pg_database ridu: ${left.rowCount}`);
+  check("I1 ajutine andmebaas on kustutatud", left.rowCount === 0, `pg_database ridu: ${left.rowCount}`);
   await admin.end().catch(() => {});
 
   console.log("\nSOL-CW-14 — säilitustöö ajastuse runtime-sond\n");

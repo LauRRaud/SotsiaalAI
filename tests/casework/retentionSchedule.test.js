@@ -270,6 +270,19 @@ test("SOL-CW-14: runtime-sond on olemas ja mõõdab VISATAVAT baasi, mitte arend
   assert.match(probe, /üks millisekund üle piiri/, "sond ei mõõda läve teist poolt");
 });
 
+test("SOL-CW-14: runtime-sond käivitab PÄRIS säilitustöö tähtaja mõlemal poolel ja taastub reatõrkest", async () => {
+  /* Fake-Prisma ei tõenda päringu DateTime-piiri, päris kaskaadi ega seda, et
+     ühe rea tõrge jääb järgmiseks jooksuks leitavaks. Need kolm peavad olema
+     samas visatavas PostgreSQL-i sondis, mille koristust eelmine test lukustab. */
+  const probe = await readRepoFile("scripts/casework-retention-probe.mjs");
+  assert.match(probe, /runRetention/, "sond ei käivita päris säilitustööd");
+  assert.match(probe, /tähtaja eel/i, "sond ei mõõda tähtaja varasemat poolt");
+  assert.match(probe, /tähtajal/i, "sond ei mõõda tähtaja saabunud poolt");
+  assert.match(probe, /järgmine jooks taastab/i, "sond ei mõõda reatõrkest taastumist");
+  assert.match(probe, /caseWorkDraftField\.create/, "sond ei mõõda mustandi sisu päris kustutust");
+  assert.match(probe, /caseWorkRetentionAudit\.create/, "sond ei mõõda arhiveeritud juhtumi päris kaskaadi");
+});
+
 test("SOL-CW-14: käivitaja kirjutab jooksurea ka siis, kui töö KUKUB", async () => {
   const runner = await readRepoFile("scripts/casework-retention.mjs");
   assert.match(runner, /startRetentionRun/, "jooksurida ei alustata");
