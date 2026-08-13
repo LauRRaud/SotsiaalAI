@@ -85,7 +85,7 @@ Käsitsi siia ei kirjutata. DONE algab sõnaga `DONE`, PARTIAL sõnaga `PARTIAL`
 on NOT_DONE. Kvalifitseeritud DONE-väide vale algusega katkestab genereerimise, et ta ei
 kaoks vaikselt valesse rühma. Iga loetletud leiu lõpus on Seis-lõik **sõna-sõnalt**.
 
-DONE **354** / 429 · PARTIAL **4** / 429 · NOT_DONE **71** / 429 · peatükke täielikult DONE **28** / 40 · ametlikult lahtiseid 75 — 44 × P1 · 30 × P2 · 1 × P3
+DONE **357** / 429 · PARTIAL **4** / 429 · NOT_DONE **68** / 429 · peatükke täielikult DONE **28** / 40 · ametlikult lahtiseid 72 — 41 × P1 · 30 × P2 · 1 × P3
 
 | Peatükk | Kood | DONE | PARTIAL | NOT_DONE | Lahtiste prioriteedid | Märkus |
 |---|---|---:|---:|---:|---|---|
@@ -118,7 +118,7 @@ DONE **354** / 429 · PARTIAL **4** / 429 · NOT_DONE **71** / 429 · peatükke 
 | Tõenduspõhised praktikad | SOL-PRAC | 8/8 | 0 | 0 | – | **tehtud** |
 | Teemaseemned | SOL-SEED | 5/5 | 0 | 0 | – | **tehtud** |
 | Teekond ja jagamine | SOL-JOUR | 8/17 | 0 | 9 | 7 × P1 · 2 × P2 |  |
-| Eelpöördumised | SOL-PRE | 11/18 | 0 | 7 | 6 × P1 · 1 × P2 |  |
+| Eelpöördumised | SOL-PRE | 14/18 | 0 | 4 | 3 × P1 · 1 × P2 |  |
 | Abikuulutused | SOL-HELP | 4/13 | 0 | 9 | 7 × P1 · 2 × P2 |  |
 | Võrgustikutöö | SOL-NET | 2/13 | 0 | 11 | 9 × P1 · 2 × P2 |  |
 | Refleksioonid | SOL-REF | 0/9 | 0 | 9 | 3 × P1 · 6 × P2 |  |
@@ -537,7 +537,7 @@ DONE **354** / 429 · PARTIAL **4** / 429 · NOT_DONE **71** / 429 · peatükke 
 - `SOL-JOUR-07` P1 — vigane olekuväärtus taasavab Teekonna vaikimisi ACTIVE-ks — DONE — kliendi kaasa pandud `status`, `sharingStatus` ja `primaryPath` valideeritakse fail-closed: tühi või tundmatu väärtus annab stabiilse 400 väljavea ning vaikeväärtus rakendub ainult puuduvale create-väljale. Testid katavad iga enumi puuduva, tühja, kehtiva ja tundmatu väärtuse; `ARCHIVED` rea `{status:"TYPO"}` jääb muutmata. Vana normaliseerija oleks tundmatu staatuse `ACTIVE`-ks ja tundmatu suuna `null`-iks muutnud.
 - `SOL-JOUR-08` P2 — klient saab Teekonna rollikontekstiks väita suvalise lubatud rolli — DONE — Journey `roleContext` pärineb ainult serveri lahendatud sessioonirollist; POST-keha samanimelist väärtust ei usaldata. Regressioonitest tõendab, et serveri CLIENT-kontekst jääb CLIENT-iks ka kliendi ADMIN, SOCIAL_WORKER, tühja või tundmatu väärtuse korral. Vana rada eelistas kliendi rolliväidet serveri faktile.
 
-**Eelpöördumised** (`SOL-PRE`, 11/18)
+**Eelpöördumised** (`SOL-PRE`, 14/18)
 
 - `SOL-PRE-01` P0 — konto kustutamine jätab saatmata eelpöördumiste tundliku sisu autorita alles — DONE — saatmata mustandid kustutatakse samas lukustatud tehingus. Commit `97b28080`.
 - `SOL-PRE-02` P0 — tagasivõetud organisatsioonipöördumise sisu saab hiljem avada ja uuesti töötajale määrata — DONE — terminalne seis ei anna sisu ega tööd. Sond `npm run org:recall:probe` 42/42 päris PostgreSQL-is.
@@ -550,6 +550,9 @@ DONE **354** / 429 · PARTIAL **4** / 429 · NOT_DONE **71** / 429 · peatükke 
 - `SOL-PRE-09` P1 — arhiveeritud saatmata eelpöördumine on endiselt muudetav ja tavalisel salvestusel taasavatav — DONE — `ARCHIVED` on üldise PATCH-i jaoks terminalne ning lubatud autori siirded on serveris tabelina jõustatud. Eraldi `/reopen` toiming viib kirje CAS-kaitstult tagasi `READY` olekusse; aegunud taasavamine saab 409. UI ei paku arhiveeritud kirjele tavalist muutmist, vaid teadlikku taasavamist. Otsene PATCH, archive→reopen→edit ja stale reopen-võistlus on regressioonitestidega kaetud (`runtime: not_run`; brauserit ei nõutud, sest UI lepingut kontrollib lähtekooditest ja võistlust päris DB sond).
 - `SOL-PRE-10` P1 — autor saab luua vestlusruumi veel saatmata mustandist — DONE — vestlusruumi saab luua ainult sisemisest, adressaadile kohale toimetatud, tagasi võtmata ja adressaadi poolt vastu võetud eelpöördumisest. Autor ega adressaat ei saa ruumi enne vastuvõttu; tingimuste värske kontroll ja deduplikeeritud ruumiloome toimuvad samas tehingus ning route'i eraldi veaneelav järel-UPDATE on eemaldatud. Author-on-DRAFT, author-on-SENT, recipient-before/after-accept, deduplikatsioon ja veapiirid on sihttestidega kaetud (`runtime: not_run`).
 - `SOL-PRE-11` P1 — välise e-kirja kasutajavoog ei märgi saatmist, serveri saatmisrada võib aga duplitseerida kirju — DONE — lukustatud leping on teadlik kasutajakinnitus pärast `mailto:` üleandmist: server ei saada selle raja kaudu ühtegi provider-kirja ega väida automaatset kättetoimetamist. Kinnitus salvestab advisory lock'i ja CAS-i all idempotentselt `SENT` oleku ning `externalSendConfirmedAt` aja; katkestus, DB-viga või aegunud versioon jätab kirje ausalt `READY` olekusse. `/send` tähendus on nüüd üksnes kasutaja välise saatmise kinnitus. Paralleel- ja veasüst-testid tõendavad null provider-send'i, ühe kinnituse ning taastatava oleku (`runtime: not_run`).
+- `SOL-PRE-12` P1 — organisatsiooni vastuvõtulauda ei saa platvormi enda eelpöördumise UI-st valida — DONE — autentimist nõudev avalik organisatsiooni adressaadiprojektsioon väljastab ainult serveri postkasti-ID, avaliku nime, juriidilise liigi, piirkonna ja tegeliku `INTERNAL` kanali. UI näitab eraldi „Organisatsiooni vastuvõtutiim” valikut ning saadab `recipientOrganizationId`, mitte UI-tunnust teenusekaardi kirjena. Autenditud kohalik brauserirada saatis vormist organisatsiooni postkasti, säilitas autori eelvaates õige nime ning tõendas päris PostgreSQL-is täpselt ühe inbox-item'i ja `recipientOwnerId=null`; sünteetilised andmed koristati (`production runtime: NOT_PROVEN`).
+- `SOL-PRE-13` P1 — organisatsioonile määratud mustandi tavaline PATCH kaotab organisatsiooni adressaadi — DONE — `updatePreInquiry()` loeb lukustatud värskelt realt `recipientOrganizationId` ning säilitab organisatsiooni adressaadi osalise PATCH-i korral. Adressaadi väljad kasutavad explicit-input semantikat, organisatsiooni muutus osaleb canonical-room piirangus ja suletud postkastivärav tagastab 409 ilma adressaati või sisu muutmata. Päris PostgreSQL-i kahe kliendi võistlus tõendas ühe CAS-võitja, ühe 409 kaotaja ja segunemata lõppseisu; explicit org→person vahetus on kaetud (`production runtime: NOT_PROVEN`).
+- `SOL-PRE-14` P1 — organisatsioonipöördumise parandus kaotab adressaadi ega jõua postkasti — DONE — parandusrada kopeerib lukustatud serverirealt organisatsiooni adressaadi ja avaliku nime, loob paranduse inbox-item'i samas tehingus enne originaali `supersededById` sidumist ning kordusPOST tagastab sama paranduse uut kirjet loomata. Päris PostgreSQL-i sond kattis isiku- ja organisatsiooniadressaadid, ühe postkastikirje, korduskatse, autori ja organisatsiooni nähtavuse ning sunnitud postkastitõrke täieliku rollback'i (`production runtime: NOT_PROVEN`).
 
 **Abikuulutused** (`SOL-HELP`, 4/13)
 

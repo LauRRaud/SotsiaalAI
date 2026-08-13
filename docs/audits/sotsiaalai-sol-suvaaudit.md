@@ -7458,6 +7458,8 @@ tagasivõetud pakett. Peidetud on ainult `RECALLED`. Töörajad sulguvad kõigil
 
 **Vastuvõtukriteerium.** Avalik organisatsiooni adressaadiprojektsioon peab kandma serveri väljastatud postkasti-ID-d ja UI peab näitama eraldi „organisatsiooni vastuvõtutiim” valikut koos tegeliku kanaliga. Autenditud E2E peab saatma vormist org-postkasti, tõendama ühe inbox-item'i, null isiklikku `recipientOwnerId`-d ning õiget autori eelvaadet.
 
+**Seis (13.08.2026): DONE —** autentimist nõudev avalik organisatsiooni adressaadiprojektsioon väljastab ainult serveri postkasti-ID, avaliku nime, juriidilise liigi, piirkonna ja tegeliku `INTERNAL` kanali. UI näitab eraldi „Organisatsiooni vastuvõtutiim” valikut ning saadab `recipientOrganizationId`, mitte UI-tunnust teenusekaardi kirjena. Autenditud kohalik brauserirada saatis vormist organisatsiooni postkasti, säilitas autori eelvaates õige nime ning tõendas päris PostgreSQL-is täpselt ühe inbox-item'i ja `recipientOwnerId=null`; sünteetilised andmed koristati (`production runtime: NOT_PROVEN`).
+
 ### SOL-PRE-13 — organisatsioonile määratud mustandi tavaline PATCH kaotab organisatsiooni adressaadi — P1
 
 **Tõend.** `updatePreInquiry()` värske rea select ei loe `recipientOrganizationId`-d ning `resolveRecipient()` sisendisse seda olemasoleva väärtusena ei anta (`lib/preInquiries.js:1303-1321`, `:1339-1345`). Kui PATCH ei saada organisatsiooni ID-d uuesti, lahendab server adressaadi e-posti/isiku või välise kanali järgi ja kirjutab `recipientOrganizationId:null` (`lib/preInquiries.js:1433-1450`). See rikub osalise PATCH-i enda värske-seisu lubadust; tavaklient ei saaks ID-d säilitada ka siis, kui org-valik lisataks, sest praegune payload seda välja ei kanna.
@@ -7466,6 +7468,8 @@ tagasivõetud pakett. Peidetud on ainult `RECALLED`. Töörajad sulguvad kõigil
 
 **Vastuvõtukriteerium.** Värske `recipientOrganizationId` peab osalise PATCH-i puhul säilima; adressaadi muutus peab olema eraldi explicit input ja room-/olekureeglitega kontrollitud. Testida content-only PATCH org-mustandil, explicit org→person vahetust, lipu sulgumist vahepeal ja stale kahe kliendi muutust.
 
+**Seis (13.08.2026): DONE —** `updatePreInquiry()` loeb lukustatud värskelt realt `recipientOrganizationId` ning säilitab organisatsiooni adressaadi osalise PATCH-i korral. Adressaadi väljad kasutavad explicit-input semantikat, organisatsiooni muutus osaleb canonical-room piirangus ja suletud postkastivärav tagastab 409 ilma adressaati või sisu muutmata. Päris PostgreSQL-i kahe kliendi võistlus tõendas ühe CAS-võitja, ühe 409 kaotaja ja segunemata lõppseisu; explicit org→person vahetus on kaetud (`production runtime: NOT_PROVEN`).
+
 ### SOL-PRE-14 — organisatsioonipöördumise parandus kaotab adressaadi ega jõua postkasti — P1
 
 **Tõend.** Parandusfunktsioon lubab originaalil olla kas `recipientOwnerId` või `recipientOrganizationId` ja kommentaar lubab org-postkasti pariteeti (`lib/preInquiries.js:942-985`). Uue SENT-versiooni `create` kopeerib aga ainult isikliku `recipientOwnerId` ning jätab `recipientOrganizationId` täielikult kirjutamata (`lib/preInquiries.js:1011-1029`). Pärast tehingut käivitatakse ainult isikliku adressaadi e-kiri; `deliverPreInquiryToOrganizationWithin()`-i parandusrada ei kutsuta (`lib/preInquiries.js:1044-1053`).
@@ -7473,6 +7477,8 @@ tagasivõetud pakett. Peidetud on ainult `RECALLED`. Töörajad sulguvad kõigil
 **Mõju.** Autor saab avatud org-pöördumise kohta eduteate ja uue SENT-kirje, kuid uuel real pole ei isiklikku ega organisatsiooni adressaati ning postkasti uut versiooni ei teki. Parandus läheb vaikides kaduma, samal ajal kui originaal märgitakse asendatuks.
 
 **Vastuvõtukriteerium.** Parandus peab kopeerima lukustatud serverirealt `recipientOrganizationId` ja avaliku nime, looma uue inbox-item'i samas tehingus ning alles seejärel siduma originaali `supersededById`-ga. Integratsioonitest peab katma person- ja org-adressaadi, tehingu rollback'i, kordusPOST-i ning paranduse nähtavuse mõlemale poolele.
+
+**Seis (13.08.2026): DONE —** parandusrada kopeerib lukustatud serverirealt organisatsiooni adressaadi ja avaliku nime, loob paranduse inbox-item'i samas tehingus enne originaali `supersededById` sidumist ning kordusPOST tagastab sama paranduse uut kirjet loomata. Päris PostgreSQL-i sond kattis isiku- ja organisatsiooniadressaadid, ühe postkastikirje, korduskatse, autori ja organisatsiooni nähtavuse ning sunnitud postkastitõrke täieliku rollback'i (`production runtime: NOT_PROVEN`).
 
 ### SOL-PRE-15 — neli eelpöördumise route'i tagastavad avalikult toore backend-vea sõnumi — P1
 
