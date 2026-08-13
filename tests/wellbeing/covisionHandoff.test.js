@@ -706,6 +706,10 @@ test("invited and accepted colleagues never receive the owner's private stage-2 
   assert.equal(JSON.stringify(invited).includes(SAFE_EDITED), false);
 
   db.store.participants.find((item) => item.id === "participant_colleague").inviteStatus = "ACCEPTED";
+  const colleagueState = db.store.participantStates.find((item) => item.participantId === "participant_colleague");
+  colleagueState.roleConfirmedAt = new Date("2026-07-14T12:11:00.000Z");
+  colleagueState.agreementConfirmedAt = new Date("2026-07-14T12:12:00.000Z");
+  colleagueState.readyAt = new Date("2026-07-14T12:13:00.000Z");
   const accepted = await getCovisionSessionForUser(
     { userId: OTHER, email: "colleague@example.test" },
     handoff.covisionCaseId,

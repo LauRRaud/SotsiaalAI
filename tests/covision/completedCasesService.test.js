@@ -107,6 +107,7 @@ function makeDb() {
       }
     }],
     closures: [],
+    auditEvents: [],
     followUps: [],
     packages: [],
     practices: [],
@@ -239,6 +240,15 @@ function makeDb() {
         if (!row) return { count: 0 };
         touch(row, data);
         return { count: 1 };
+      }
+    },
+    covisionAuditEvent: {
+      async upsert({ where, create }) {
+        const existing = store.auditEvents.find((item) => item.idempotencyKey === where.idempotencyKey);
+        if (existing) return clone(existing);
+        const row = { id: id("audit"), ...clone(create) };
+        store.auditEvents.push(row);
+        return clone(row);
       }
     },
     covisionSessionState: {
@@ -444,6 +454,27 @@ test("closure is owner-only, version-safe and idempotent", async () => {
   assert.equal(db.store.closures.length, 1);
   assert.equal(db.store.followUps.length, 1);
   assert.equal(db.store.packages.length, 1);
+});
+
+test("SOL-COV-07: full counters and attention order include a lone overdue row beyond 200", async () => {
+  const db = makeDb();
+  const overdue = await close(db);
+  const template = structuredClone(db.store.closures[0]);
+  for (let index = 0; index < 200; index += 1) {
+    db.store.closures.push({
+      ...structuredClone(template),
+      id: `history_${String(index).padStart(3, "0")}`,
+      covisionCaseId: `history_case_${index}`,
+      lifecycleStatus: "CLOSED",
+      closedAt: new Date(Date.UTC(2026, 7, 14, 12, index)),
+      createdAt: new Date(Date.UTC(2026, 7, 14, 12, index)),
+      updatedAt: new Date(Date.UTC(2026, 7, 14, 12, index))
+    });
+  }
+  const result = await listCompletedCases(OWNER, { scope: "mine", sort: "attention" }, { db });
+  assert.equal(result.counts.total, 201);
+  assert.equal(result.counts.attention, 1);
+  assert.equal(result.cases[0].id, overdue.id);
 });
 
 test("closure refuses incomplete or non-final snapshots", async () => {

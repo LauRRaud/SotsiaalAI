@@ -95,6 +95,7 @@
     "share:mentoring-recall:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/mentoring-preparation-recall-race-probe.mjs",
     "mentoring:integrity:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/mentoring-integrity-probe.mjs",
     "supervision:integrity:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/supervision-integrity-probe.mjs",
+    "covision:integrity:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/covision-integrity-probe.mjs",
     "org:report-delivery:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/org-report-delivery-probe.mjs",
     "org:create:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/org-creation-idempotency-probe.mjs",
     "artifact:race:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/artifact-approval-race-probe.mjs",

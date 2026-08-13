@@ -48,6 +48,8 @@ function makeDb() {
     }],
     cases: [],
     participants: [],
+    inviteDeliveries: [],
+    auditEvents: [],
     sessions: [],
     participantStates: [],
     workItems: [],
@@ -82,9 +84,13 @@ function makeDb() {
     store,
     transactionActive: false,
     async $transaction(callback) {
+      const before = structuredClone(store);
       db.transactionActive = true;
       try {
         return await callback(db);
+      } catch (error) {
+        for (const key of Object.keys(store)) store[key] = before[key];
+        throw error;
       } finally {
         db.transactionActive = false;
       }
@@ -133,6 +139,7 @@ function makeDb() {
           .map((participant) => ({
             ...clone(participant),
             user: clone(store.users.find((user) => user.id === participant.userId) || null),
+            inviteDelivery: clone(store.inviteDeliveries.find((delivery) => delivery.participantId === participant.id) || null),
             sessionState: clone(
               store.participantStates.find((state) => state.participantId === participant.id) || null
             )
@@ -174,6 +181,45 @@ function makeDb() {
       async update({ where, data }) {
         const row = store.participants.find((item) => item.id === where.id);
         applyData(row, data);
+        return clone(row);
+      }
+    },
+    covisionInviteDelivery: {
+      async findUnique({ where }) {
+        return clone(store.inviteDeliveries.find((item) => (
+          (where.participantId && item.participantId === where.participantId)
+          || (where.id && item.id === where.id)
+        )) || null);
+      },
+      async create({ data }) {
+        const timestamp = now();
+        const row = { id: id("invite_delivery"), createdAt: timestamp, updatedAt: timestamp, ...clone(data) };
+        store.inviteDeliveries.push(row);
+        return clone(row);
+      },
+      async update({ where, data }) {
+        const row = store.inviteDeliveries.find((item) => (
+          (where.participantId && item.participantId === where.participantId)
+          || (where.id && item.id === where.id)
+        ));
+        applyData(row, data);
+        return clone(row);
+      },
+      async updateMany({ where, data }) {
+        const rows = store.inviteDeliveries.filter((item) => (
+          (!where.participantId || item.participantId === where.participantId)
+          && (!where.status?.in || where.status.in.includes(item.status))
+        ));
+        rows.forEach((row) => applyData(row, data));
+        return { count: rows.length };
+      }
+    },
+    covisionAuditEvent: {
+      async upsert({ where, create }) {
+        const existing = store.auditEvents.find((item) => item.idempotencyKey === where.idempotencyKey);
+        if (existing) return clone(existing);
+        const row = { id: id("audit"), ...clone(create) };
+        store.auditEvents.push(row);
         return clone(row);
       }
     },
@@ -524,12 +570,6 @@ test("owner and accepted co-moderator invite participants under the session lock
   const db = makeDb();
   const started = await start(db);
   const caseId = started.covisionCaseId;
-  const sent = [];
-  const sendInvite = async (message) => {
-    assert.equal(db.transactionActive, false);
-    sent.push(message);
-  };
-
   let state = await applyCovisionSessionAction({
     userId: OWNER,
     email: "mari@example.test"
@@ -537,25 +577,24 @@ test("owner and accepted co-moderator invite participants under the session lock
     action: "INVITE_PARTICIPANT",
     expectedVersion: 0,
     payload: { email: "aveli@example.test", role: "CO_MODERATOR" }
-  }, { db, sendInvite });
+  }, { db });
   assert.equal(state.session.version, 1);
   assert.equal(state.participants.find((item) => item.displayName === "Aveli Saar")?.role, "CO_MODERATOR");
   assert.equal(JSON.stringify(state.participants).includes("aveli@example.test"), false);
-  assert.deepEqual(sent[0], {
-    covisionCaseId: caseId,
-    emails: ["aveli@example.test"],
-    inviterEmail: "mari@example.test"
-  });
+  assert.equal(state.participants.find((item) => item.displayName === "Aveli Saar")?.deliveryStatus, "PENDING");
+  assert.equal(db.store.inviteDeliveries.length, 1);
+  assert.equal(db.store.inviteDeliveries[0].recipientEmail, "aveli@example.test");
+  assert.equal(db.store.inviteDeliveries[0].status, "PENDING");
 
   const duplicate = await applyCovisionSessionAction(OWNER, caseId, {
     action: "INVITE_PARTICIPANT",
     expectedVersion: 1,
     payload: { email: "aveli@example.test", role: "PARTICIPANT" }
-  }, { db, sendInvite }).then(() => null, (error) => error);
+  }, { db }).then(() => null, (error) => error);
   assert.equal(duplicate.status, 409);
   assert.equal(db.store.participants.filter((item) => item.userId === OTHER).length, 1);
   assert.equal(db.store.sessions[0].version, 1);
-  assert.equal(sent.length, 1);
+  assert.equal(db.store.inviteDeliveries.length, 1);
 
   db.store.sessions[0].settingsConfirmedAt = SEED_AT;
 
@@ -571,7 +610,7 @@ test("owner and accepted co-moderator invite participants under the session lock
       agreementConfirmed: true,
       ready: true
     }
-  }, { db, sendInvite });
+  }, { db });
   assert.equal(state.me.inviteStatus, "ACCEPTED");
 
   state = await applyCovisionSessionAction({
@@ -581,11 +620,11 @@ test("owner and accepted co-moderator invite participants under the session lock
     action: "INVITE_PARTICIPANT",
     expectedVersion: 2,
     payload: { email: "new.person@example.test", role: "OBSERVER" }
-  }, { db, sendInvite });
+  }, { db });
   assert.equal(state.session.version, 3);
   assert.equal(db.store.participants.find((item) => item.email === "new.person@example.test")?.userId, null);
-  assert.equal(sent.length, 2);
-  assert.equal(sent[1].inviterEmail, "aveli@example.test");
+  assert.equal(db.store.inviteDeliveries.length, 2);
+  assert.equal(db.store.inviteDeliveries.find((item) => item.recipientEmail === "new.person@example.test")?.status, "PENDING");
 
   const ownerInvite = await applyCovisionSessionAction({
     userId: OTHER,
@@ -594,7 +633,7 @@ test("owner and accepted co-moderator invite participants under the session lock
     action: "INVITE_PARTICIPANT",
     expectedVersion: 3,
     payload: { email: "mari@example.test", role: "PARTICIPANT" }
-  }, { db, sendInvite }).then(() => null, (error) => error);
+  }, { db }).then(() => null, (error) => error);
   assert.equal(ownerInvite.status, 409);
   assert.equal(db.store.sessions[0].version, 3);
 
@@ -603,6 +642,120 @@ test("owner and accepted co-moderator invite participants under the session lock
     expectedVersion: 3,
     payload: { email: "person@example.test", role: "OWNER" }
   }));
+});
+
+test("SOL-COV-08: audit failure rolls the mutating command and outbox back", async () => {
+  const db = makeDb();
+  const started = await start(db);
+  const before = {
+    participants: db.store.participants.length,
+    deliveries: db.store.inviteDeliveries.length,
+    version: db.store.sessions[0].version
+  };
+  db.covisionAuditEvent.upsert = async () => {
+    throw Object.assign(new Error("audit unavailable"), { code: "AUDIT_WRITE_FAILED" });
+  };
+  const error = await applyCovisionSessionAction({
+    userId: OWNER,
+    email: "mari@example.test"
+  }, started.covisionCaseId, {
+    action: "INVITE_PARTICIPANT",
+    expectedVersion: 0,
+    payload: { email: "rollback@example.test", role: "PARTICIPANT" }
+  }, { db }).then(() => null, (caught) => caught);
+  assert.equal(error.code, "AUDIT_WRITE_FAILED");
+  assert.equal(db.store.participants.length, before.participants);
+  assert.equal(db.store.inviteDeliveries.length, before.deliveries);
+  assert.equal(db.store.sessions[0].version, before.version);
+});
+
+test("SOL-COV-05: private_draft can never enter the shared work-item command", async () => {
+  const db = makeDb();
+  const started = await start(db);
+  const error = await applyCovisionSessionAction(OWNER, started.covisionCaseId, {
+    action: "SUBMIT_WORK_ITEM",
+    expectedVersion: 0,
+    payload: {
+      stage: 1,
+      kind: "agreement",
+      status: "private_draft",
+      content: { marker: "PRIVATE_MARKER_MUST_NOT_PERSIST_SHARED" }
+    }
+  }, { db }).then(() => null, (caught) => caught);
+  assert.equal(error?.code, "INVALID_WORK_STATUS");
+  assert.equal(db.store.workItems.length, 0);
+  assert.equal(JSON.stringify(db.store).includes("PRIVATE_MARKER_MUST_NOT_PERSIST_SHARED"), false);
+});
+
+test("SOL-COV-02/03: invite lifecycle and readiness are server-enforced", async () => {
+  const db = makeDb();
+  const started = await start(db);
+  const caseId = started.covisionCaseId;
+  db.store.sessions[0].settingsConfirmedAt = SEED_AT;
+  db.store.participants.push({
+    id: "participant_pending",
+    covisionCaseId: caseId,
+    userId: null,
+    email: "aveli@example.test",
+    role: "PARTICIPANT",
+    inviteStatus: "INVITED",
+    inviteExpiresAt: new Date("2026-09-01T00:00:00.000Z"),
+    createdAt: SEED_AT,
+    updatedAt: SEED_AT
+  });
+  db.store.participantStates.push({
+    id: "state_pending",
+    sessionId: db.store.sessions[0].id,
+    participantId: "participant_pending",
+    roleConfirmedAt: null,
+    agreementConfirmedAt: null,
+    readyAt: null,
+    createdAt: SEED_AT,
+    updatedAt: SEED_AT
+  });
+  const actor = { userId: OTHER, email: "aveli@example.test" };
+
+  const skippedRole = await applyCovisionSessionAction(actor, caseId, {
+    action: "CONFIRM_PARTICIPANT",
+    expectedVersion: 0,
+    payload: { agreementConfirmed: true }
+  }, { db }).then(() => null, (error) => error);
+  assert.equal(skippedRole?.status, 400);
+  assert.equal(db.store.participants.find((row) => row.id === "participant_pending")?.inviteStatus, "INVITED");
+  assert.equal(db.store.sessions[0].version, 0);
+
+  db.store.participants.find((row) => row.id === "participant_pending").inviteStatus = "ACCEPTED";
+  Object.assign(db.store.participantStates.find((row) => row.participantId === "participant_pending"), {
+    roleConfirmedAt: SEED_AT,
+    agreementConfirmedAt: SEED_AT,
+    readyAt: null
+  });
+  const restricted = await getCovisionSessionForUser(actor, caseId, { db });
+  assert.deepEqual(restricted.case, { id: caseId });
+  assert.equal("workItems" in restricted.session, false);
+  const prematureWrite = await applyCovisionSessionAction(actor, caseId, {
+    action: "SUBMIT_WORK_ITEM",
+    expectedVersion: 0,
+    payload: { stage: 1, kind: "agreement", content: { label: "too early" } }
+  }, { db }).then(() => null, (error) => error);
+  assert.equal(prematureWrite?.status, 403);
+  assert.equal(db.store.workItems.length, 0);
+
+  db.store.participants.find((row) => row.id === "participant_pending").inviteStatus = "INVITED";
+  db.store.participants.find((row) => row.id === "participant_pending").inviteExpiresAt = new Date("2026-01-01T00:00:00.000Z");
+  const expired = await getCovisionSessionForUser(actor, caseId, { db })
+    .then(() => null, (error) => error);
+  assert.equal(expired?.status, 404);
+
+  assert.deepEqual(normalizeCovisionSessionActionRequest({
+    action: "REVOKE_PARTICIPANT",
+    expectedVersion: 0,
+    payload: { participantId: "participant_pending" }
+  }), {
+    action: "REVOKE_PARTICIPANT",
+    expectedVersion: 0,
+    payload: { participantId: "participant_pending" }
+  });
 });
 
 test("TopicSeed handoff is owner-only, fingerprint-safe and idempotent", async () => {

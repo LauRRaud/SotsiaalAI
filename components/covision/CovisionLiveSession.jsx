@@ -17,9 +17,12 @@ import {
 const ACTIONS = Object.freeze({
   start: "START_SESSION",
   confirmParticipant: "CONFIRM_PARTICIPANT",
+  declineInvitation: "DECLINE_INVITATION",
   confirmCase: "CONFIRM_CASE",
   confirmSettings: "CONFIRM_SETTINGS",
   inviteParticipant: "INVITE_PARTICIPANT",
+  resendInvitation: "RESEND_INVITATION",
+  revokeParticipant: "REVOKE_PARTICIPANT",
   setPhase: "SET_PHASE",
   submitWorkItem: "SUBMIT_WORK_ITEM",
   savePrivateState: "SAVE_PRIVATE_STATE",
@@ -401,6 +404,12 @@ function InvitationAcceptance({ participant, me, busy, dispatchAction, copy }) {
           </button>
         </div>
         <small>{copyValue(copy, "invitation.reload_notice")}</small>
+        <button type="button" disabled={busy} onClick={async () => {
+          const result = await dispatchAction(ACTIONS.declineInvitation, {});
+          if (result?.accessEnded) window.location.assign("/kovisioon");
+        }}>
+          {copyValue(copy, "actions.decline_invitation")}
+        </button>
       </section>
       </div>
     </main>
@@ -494,7 +503,7 @@ function StageDock({ stage, snapshots, completed, copy, onSelect }) {
   );
 }
 
-function ParticipantList({ participants, me, stage, busy, dispatchAction, copy }) {
+function ParticipantList({ participants, me, stage, canLead, busy, dispatchAction, copy }) {
   const myParticipant = participants.find((item) => (
     item?.id === me?.participantId || (me?.userId && item?.userId === me.userId)
   ));
@@ -521,12 +530,41 @@ function ParticipantList({ participants, me, stage, busy, dispatchAction, copy }
               <span className="cvl-avatar" aria-hidden="true">{name.slice(0, 1).toUpperCase()}</span>
               <span className="cvl-person-copy">
                 <strong>{name}{current ? copyValue(copy, "ui.current_user_suffix") : ""}</strong>
-                <small>{roleLabel(participant?.role, copy)}{invited ? copyValue(copy, "ui.invited_suffix") : ""}</small>
+                <small>
+                  {roleLabel(participant?.role, copy)}{invited ? copyValue(copy, "ui.invited_suffix") : ""}
+                  {canLead && participant?.deliveryStatus
+                    ? ` · ${copyValue(copy, `invite_participant.delivery_${lower(participant.deliveryStatus)}`)}`
+                    : ""}
+                </small>
               </span>
               <span className={`cvl-readiness ${ready ? "is-ready" : ""}`} title={ready ? copyValue(copy, "ui.ready") : copyValue(copy, "ui.readiness_unconfirmed")}>
                 <span aria-hidden="true" />
                 <span className="cvl-sr-only">{ready ? copyValue(copy, "ui.ready") : copyValue(copy, "ui.readiness_unconfirmed")}</span>
               </span>
+              {canLead && !current && participant?.role !== "OWNER" && ["INVITED", "ACCEPTED"].includes(participant?.inviteStatus) ? (
+                <span>
+                  {invited ? (
+                    <button
+                      type="button"
+                      disabled={busy}
+                      onClick={() => dispatchAction(ACTIONS.resendInvitation, { participantId: participant.id })}
+                    >
+                      {copyValue(copy, "actions.resend_invitation")}
+                    </button>
+                  ) : null}
+                  <button
+                    type="button"
+                    disabled={busy}
+                    onClick={() => {
+                      if (window.confirm(copyValue(copy, "invite_participant.revoke_confirm"))) {
+                        dispatchAction(ACTIONS.revokeParticipant, { participantId: participant.id });
+                      }
+                    }}
+                  >
+                    {copyValue(copy, "actions.revoke_participant")}
+                  </button>
+                </span>
+              ) : null}
             </li>
           );
         })}
@@ -1817,6 +1855,7 @@ export default function CovisionLiveSession({ snapshot, busy = false, onAction, 
                       participants={model.participants}
                       me={model.me}
                       stage={stage}
+                      canLead={canLead}
                       busy={busy}
                       dispatchAction={dispatchAction}
                       copy={copy}

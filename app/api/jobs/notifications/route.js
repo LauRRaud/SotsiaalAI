@@ -9,6 +9,7 @@ import { reconcileNotificationEvents } from "@/lib/notificationReconciler";
 import { projectDomainEvents } from "@/lib/events/projector";
 import { runMentoringSweep } from "@/lib/mentoring/sweep";
 import { runSupervisionSweep } from "@/lib/supervision/sweep";
+import { expireCovisionInvitations, runCovisionInviteDelivery } from "@/lib/covisionInviteDelivery";
 import { runFieldSafetySweep } from "@/lib/field/safety";
 import { runUrgentExpirySweep } from "@/lib/urgent/sweep";
 import { safeError } from "@/lib/privacy/safeError";
@@ -76,6 +77,8 @@ export async function POST(request) {
 
   const mentoring = await runStage("mentoring", stages, () => runMentoringSweep({ dryRun, batchSize }));
   const supervision = await runStage("supervision", stages, () => runSupervisionSweep({ dryRun, batchSize }));
+  const covisionExpiry = await runStage("covisionExpiry", stages, () => expireCovisionInvitations({ dryRun }));
+  const covisionInvites = await runStage("covisionInvites", stages, () => runCovisionInviteDelivery({ dryRun, batchSize }));
 
   /* Iga silmus on oma eelarve: ühe etapi 100 lehekülge ei söö ära teise oma ja
      tema viga ei võta teistelt käivitust. */
@@ -136,6 +139,8 @@ export async function POST(request) {
     projected,
     mentoring,
     supervision,
+    covisionExpiry,
+    covisionInvites,
     delivery,
     fieldSafety,
     urgentExpiry

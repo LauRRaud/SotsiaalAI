@@ -151,7 +151,14 @@ ajavööndiga ISO-väärtusena ja lähenevate kohtumiste sweep läbib kogu järj
 osaleja saab lahkuda ning suletud protsess ei võta hiliseid kirjutusi. Konto kustutamisel säilib
 ühine protsessi- ja kinnitustõend identiteedita, privaatne M6/M12 kustub; osaliselt kinnitatud
 kokkuvõtte saab selgete tagajärgedega tagasi võtta ja protsessi seejärel sulgeda. Järgmine sidus
-plokk on kovisiooni konto-, kutse- ja liitumiselutsükkel `SOL-COV-01…04`.
+plokk oli kovisiooni tervikpeatükk.
+
+**Kovisiooni `SOL-COV-01…08` on lõpetatud.** Konto ja kutsete kustutus-, keeldumis-, tühistamis-
+ning aegumispiirid sulgevad ligipääsu kohe; valmisolek avaneb ainult serveri monotoonse ahelaga
+ja kutsekiri liigub nähtava püsiva outbox'i kaudu. Privaatmustand ei pääse jagatud ruumi,
+omaniku kustutus säilitab ühise ajaloo identiteedita, loendid ei peida enam vana kutset ega
+tähtaja ületanud järelvaadet ning otsustel on sisuvaba taastatav auditirada. Järgmine sidus plokk
+on parimate praktikate avaldamis- ja töövoopiir `SOL-PRAC-01…05`.
 
 **RAG-teenuse `SOL-RAGSVC-01…28` on DONE ja peatüki UTC täisvärav on roheline.**
 `SOL-ORG-13`–`17`, `SOL-DOC-J-01`–`06` ja kogu `SOL-SLOG-01…24` parandused ning kiirem plokipõhine töökord on koodipuus. Kolmeastmelised arvud loetakse käsuga `npm run sol:progress`, neid siia ankrusse ei

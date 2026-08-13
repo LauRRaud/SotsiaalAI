@@ -801,6 +801,7 @@ model User {
   wellbeingPilotViewers                 WellbeingPilotViewer[]
   covisionCasesOwned                    CovisionCase[]                      @relation("CovisionCaseOwner")
   covisionParticipants                  CovisionParticipant[]               @relation("CovisionParticipantUser")
+  revokedCovisionParticipants           CovisionParticipant[]               @relation("CovisionParticipantRevokedBy")
   covisionMessages                      CovisionMessage[]                   @relation("CovisionMessageAuthor")
   effectivePractices                    EffectivePractice[]                 @relation("EffectivePracticeAuthor")
   topicSeeds                            TopicSeed[]                         @relation("TopicSeedOwner")
@@ -809,6 +810,7 @@ model User {
   covisionClosuresOwned                 CovisionClosure[]                   @relation("CovisionClosureOwner")
   covisionClosuresClosed                CovisionClosure[]                   @relation("CovisionClosureClosedBy")
   covisionClosuresAssigned              CovisionClosure[]                   @relation("CovisionClosureAssignee")
+  covisionAuditEvents                   CovisionAuditEvent[]                @relation("CovisionAuditActor")
   covisionFollowUps                     CovisionFollowUp[]                  @relation("CovisionFollowUpAssignee")
   covisionFollowUpsDone                 CovisionFollowUp[]                  @relation("CovisionFollowUpCompleter")
   covisionOwnerPackages                 CovisionOwnerPackage[]              @relation("CovisionOwnerPackageOwner")
@@ -2866,7 +2868,9 @@ model TopicSeed {
 
 model CovisionCase {
   id                    String             @id @default(cuid())
-  ownerId               String
+  ownerId               String?
+  ownerRoleSnapshot     String?
+  ownerErasedAt         DateTime?
   title                 String
   summary               String?            @db.Text
   anonymizedDescription String?            @db.Text
@@ -2882,7 +2886,7 @@ model CovisionCase {
   createdAt             DateTime           @default(now())
   updatedAt             DateTime           @updatedAt
 
-  owner                      User                  @relation("CovisionCaseOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+  owner                      User?                 @relation("CovisionCaseOwner", fields: [ownerId], references: [id], onDelete: SetNull)
   sourcePreInquiry           PreInquiry?           @relation(fields: [sourcePreInquiryId], references: [id], onDelete: SetNull)
   journeySteps               CovisionJourneyStep[]
   parties                    CovisionParty[]
@@ -2895,6 +2899,7 @@ model CovisionCase {
   sourceWellbeingOutputDraft WellbeingOutputDraft? @relation("WellbeingOutputDraftCovisionCase")
   sessionState               CovisionSessionState?
   closure                    CovisionClosure?
+  auditEvents                CovisionAuditEvent[]
 
   @@index([ownerId, updatedAt])
   @@index([sourcePreInquiryId])
@@ -2960,25 +2965,79 @@ model CovisionRiskFactor {
 }
 
 model CovisionParticipant {
-  id             String                  @id @default(cuid())
-  covisionCaseId String
-  userId         String?
-  email          String?
-  role           CovisionParticipantRole @default(PARTICIPANT)
-  inviteStatus   CovisionInviteStatus    @default(INVITED)
-  createdAt      DateTime                @default(now())
-  updatedAt      DateTime                @updatedAt
+  id               String                  @id @default(cuid())
+  covisionCaseId   String
+  userId           String?
+  email            String?
+  role             CovisionParticipantRole @default(PARTICIPANT)
+  inviteStatus     CovisionInviteStatus    @default(INVITED)
+  inviteExpiresAt  DateTime?
+  decisionAt       DateTime?
+  revokedAt        DateTime?
+  revokedByUserId  String?
+  identityErasedAt DateTime?
+  createdAt        DateTime                @default(now())
+  updatedAt        DateTime                @updatedAt
 
-  covisionCase CovisionCase              @relation(fields: [covisionCaseId], references: [id], onDelete: Cascade)
-  user         User?                     @relation("CovisionParticipantUser", fields: [userId], references: [id], onDelete: SetNull)
-  sessionState CovisionParticipantState?
-  workItems    CovisionWorkItem[]
+  covisionCase   CovisionCase              @relation(fields: [covisionCaseId], references: [id], onDelete: Cascade)
+  user           User?                     @relation("CovisionParticipantUser", fields: [userId], references: [id], onDelete: SetNull)
+  revokedBy      User?                     @relation("CovisionParticipantRevokedBy", fields: [revokedByUserId], references: [id], onDelete: SetNull)
+  sessionState   CovisionParticipantState?
+  workItems      CovisionWorkItem[]
+  inviteDelivery CovisionInviteDelivery?
+  auditEvents    CovisionAuditEvent[]
 
   @@unique([covisionCaseId, userId])
   @@unique([covisionCaseId, email])
   @@index([userId])
   @@index([email])
   @@index([inviteStatus])
+  @@index([inviteStatus, inviteExpiresAt])
+  @@index([revokedByUserId])
+}
+
+model CovisionInviteDelivery {
+  id             String    @id @default(cuid())
+  participantId  String    @unique
+  recipientEmail String
+  status         String    @default("PENDING")
+  attempts       Int       @default(0)
+  nextAttemptAt  DateTime  @default(now())
+  claimedAt      DateTime?
+  sentAt         DateTime?
+  messageId      String    @unique
+  lastErrorCode  String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  participant CovisionParticipant @relation(fields: [participantId], references: [id], onDelete: Cascade)
+
+  @@index([status, nextAttemptAt, id])
+}
+
+// Content-free append-only evidence for Kovisioon lifecycle decisions. Actor
+// identity may disappear, but its role snapshot and event remain.
+model CovisionAuditEvent {
+  id                String   @id @default(cuid())
+  covisionCaseId    String
+  participantId     String?
+  actorUserId       String?
+  actorRoleSnapshot String
+  action            String
+  entityType        String
+  entityId          String
+  idempotencyKey    String   @unique
+  metadata          Json?
+  occurredAt        DateTime @default(now())
+
+  covisionCase CovisionCase         @relation(fields: [covisionCaseId], references: [id], onDelete: Cascade)
+  participant  CovisionParticipant? @relation(fields: [participantId], references: [id], onDelete: SetNull)
+  actor        User?                @relation("CovisionAuditActor", fields: [actorUserId], references: [id], onDelete: SetNull)
+
+  @@index([covisionCaseId, occurredAt, id])
+  @@index([participantId, occurredAt])
+  @@index([actorUserId, occurredAt])
+  @@index([action, occurredAt])
 }
 
 // Persistent server-owned Kovisioon state. The browser submits commands with an
@@ -3095,7 +3154,9 @@ model CovisionClosure {
   covisionCaseId          String                          @unique
   sourceTopicSeedId       String?
   continuationTopicSeedId String?                         @unique
-  ownerId                 String
+  ownerId                 String?
+  ownerRoleSnapshot       String?
+  ownerErasedAt           DateTime?
   assignedFollowUpUserId  String?
   closedById              String?
   generalizedTitle        String
@@ -3119,7 +3180,7 @@ model CovisionClosure {
   covisionCase          CovisionCase          @relation(fields: [covisionCaseId], references: [id], onDelete: Cascade)
   sourceTopicSeed       TopicSeed?            @relation("CovisionClosureSourceTopicSeed", fields: [sourceTopicSeedId], references: [id], onDelete: SetNull)
   continuationTopicSeed TopicSeed?            @relation("CovisionClosureContinuationTopicSeed", fields: [continuationTopicSeedId], references: [id], onDelete: SetNull)
-  owner                 User                  @relation("CovisionClosureOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+  owner                 User?                 @relation("CovisionClosureOwner", fields: [ownerId], references: [id], onDelete: SetNull)
   assignedFollowUpUser  User?                 @relation("CovisionClosureAssignee", fields: [assignedFollowUpUserId], references: [id], onDelete: SetNull)
   closedBy              User?                 @relation("CovisionClosureClosedBy", fields: [closedById], references: [id], onDelete: SetNull)
   followUps             CovisionFollowUp[]

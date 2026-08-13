@@ -100,6 +100,7 @@ function createDb({ urgentRequests = [], preInquiries = [] } = {}) {
     supervisionProcess: model(),
     supervisionParticipation: model(),
     supervisionSharedTopic: model(),
+    covisionParticipant: model(),
     dataDeletionJob: { findFirst: async () => null, create: async () => ({ id: "job_1" }) },
     user: {
       delete: async ({ where }) => ({ id: where.id })

@@ -4678,6 +4678,9 @@
         "confirm_settings": "Kinnita seaded",
         "start_meeting": "Alusta kohtumist",
         "send_invite": "Saada kutse",
+        "resend_invitation": "Saada kutse uuesti",
+        "decline_invitation": "Keeldun kutsest",
+        "revoke_participant": "Lõpeta ligipääs",
         "save_direction": "Salvesta suund",
         "save_step": "Salvesta samm",
         "save_marker": "Salvesta märk",
@@ -4737,7 +4740,15 @@
       "invite_participant": {
         "title": "Kutsu osaleja",
         "privacy_notice": "Kutsutu ei näe juhtumi pealkirja, sisu ega teisi osalejaid enne kokkuleppe kinnitamist.",
-        "session_required": "Osalejaid saab kutsuda pärast Kovisiooni tööruumi loomist."
+        "session_required": "Osalejaid saab kutsuda pärast Kovisiooni tööruumi loomist.",
+        "delivery_pending": "saatmine ootel",
+        "delivery_sending": "saatmisel",
+        "delivery_sent": "saadetud",
+        "delivery_retry": "uus katse ootel",
+        "delivery_failed": "saatmine ebaõnnestus",
+        "delivery_unknown": "tarne tulemus teadmata",
+        "delivery_cancelled": "saatmine tühistatud",
+        "revoke_confirm": "Kas lõpetad selle osaleja ligipääsu? Avatud vahekaardi järgmine päring enam sisu ei ava."
       },
       "phase_control": {
         "kicker": "Sessiooni juhi tööriist",

@@ -4678,6 +4678,9 @@
         "confirm_settings": "Confirm settings",
         "start_meeting": "Start meeting",
         "send_invite": "Send invitation",
+        "resend_invitation": "Resend invitation",
+        "decline_invitation": "Decline invitation",
+        "revoke_participant": "End access",
         "save_direction": "Save direction",
         "save_step": "Save step",
         "save_marker": "Save marker",
@@ -4737,7 +4740,15 @@
       "invite_participant": {
         "title": "Invite a participant",
         "privacy_notice": "The invitee cannot see the case title, content, or other participants before accepting the agreement.",
-        "session_required": "Participants can be invited after the Kovisioon workspace has been created."
+        "session_required": "Participants can be invited after the Kovisioon workspace has been created.",
+        "delivery_pending": "delivery pending",
+        "delivery_sending": "sending",
+        "delivery_sent": "sent",
+        "delivery_retry": "retry pending",
+        "delivery_failed": "delivery failed",
+        "delivery_unknown": "delivery outcome unknown",
+        "delivery_cancelled": "delivery cancelled",
+        "revoke_confirm": "End this participant's access? Their next request from any open tab will no longer reveal content."
       },
       "phase_control": {
         "kicker": "Session leader tool",

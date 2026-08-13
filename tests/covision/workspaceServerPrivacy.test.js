@@ -14,6 +14,7 @@ import {
   serializeCovisionWorkspaceCase
 } from "../../lib/covisionAccessShared.js";
 import { buildCovisionInviteLink } from "../../lib/covisionInvites.js";
+import { listCovisionWorkspace } from "../../lib/covision.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const serverSource = fs.readFileSync(path.join(root, "lib/covision.js"), "utf8");
@@ -96,8 +97,22 @@ test("a reused email never inherits a participant record already bound to anothe
     email: "Invited@Example.Test"
   }), [
     { userId: "new_account" },
-    { userId: null, email: "invited@example.test" }
+    { userId: null, email: "invited@example.test", identityErasedAt: null }
   ]);
+});
+
+test("SOL-COV-01: an identity-erased participant never matches a reused email", () => {
+  const row = caseRow("ACCEPTED");
+  Object.assign(row.participants[0], {
+    userId: null,
+    email: "invited@example.test",
+    identityErasedAt: new Date("2026-08-13T00:00:00.000Z")
+  });
+  assert.equal(findCovisionParticipantForActor(row, "new_account", "invited@example.test"), null);
+  assert.equal(serializeCovisionWorkspaceCase(row, {
+    userId: "new_account",
+    email: "invited@example.test"
+  }), null);
 });
 
 test("workspace exposes only the create capability boolean", () => {
@@ -211,5 +226,27 @@ test("generic create starts as DRAFT with a version-zero waiting-room session", 
 test("invite links address the exact case without embedding case content", () => {
   const link = buildCovisionInviteLink("case / õ", "https://example.test/");
   assert.equal(link, "https://example.test/kovisioon?case=case%20%2F%20%C3%B5");
-  assert.match(serverSource, /covisionCaseId:\s*covisionCase\.id/);
+  assert.match(serverSource, /queueCovisionInviteDelivery\(tx/);
+  assert.doesNotMatch(serverSource, /sendCovisionInviteEmails/);
+});
+
+test("SOL-COV-07: the 101st row cannot hide an active invitation", async () => {
+  const auth = { userId: "workspace_user", email: "invited@example.test", role: "SOCIAL_WORKER" };
+  const ordinary = Array.from({ length: 100 }, (_, index) => ({
+    ...caseRow("ACCEPTED"),
+    id: `owned_${String(index).padStart(3, "0")}`,
+    ownerId: auth.userId,
+    participants: [],
+    lastActivityAt: new Date(Date.UTC(2026, 7, 14, 12, index)).toISOString()
+  }));
+  const invitation = {
+    ...caseRow("INVITED"),
+    id: "old_invitation",
+    lastActivityAt: "2025-01-01T00:00:00.000Z"
+  };
+  const db = { covisionCase: { async findMany() { return [...ordinary, invitation]; } } };
+  const result = await listCovisionWorkspace(auth, { db });
+  assert.equal(result.counts.total, 101);
+  assert.equal(result.counts.invitations, 1);
+  assert.equal(result.cases[0].id, "old_invitation");
 });

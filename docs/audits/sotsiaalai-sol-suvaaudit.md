@@ -6869,6 +6869,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 
 **Vastuvõtukriteerium.** Konto kustutus peab samas tehingus muutma kõik kasutajaga seotud aktiivsed kovisiooniosalused terminalseks ja eemaldama e-posti-põhise ligipääsukandja või siduma osaluse kustutatud identiteedi pöördumatu tombstone'iga. Negatiivne päris-DB test peab looma ACCEPTED osaluse, kustutama konto, looma sama e-postiga uue konto ning tõendama 404 nii tööruumi-, sessiooni-, legacy- ja kõneradadel.
 
+**Seis (14.08.2026): DONE — konto kustutuse lõpptehing muudab kasutaja osalused `EXPIRED` tombstone'iks, eemaldab `userId` ja e-posti ning märgib `identityErasedAt`; kõik e-posti varuvasted ja jagatud actor-lookup välistavad kustutatud identiteedi. PostgreSQL-i sond kustutas ACCEPTED konto, lõi sama e-postiga uue konto ning tõendas ligipääsu puudumist shared tööruumi-, sessiooni- ja legacy-päringus; kõnerada kasutab sama parandatud actor-lookup'i.**
+
 ### SOL-COV-02 — ekslikku või enam kehtivat osalejakutset ei saa tagasi võtta ega aeguma panna — P1
 
 **Tõend.** Prisma enumis on `DECLINED` ja `EXPIRED`, kuid osalejamudelil pole aegumis-, tagasivõtmis- ega otsustaja välja (`prisma/schema.prisma:369-374`, `:2576-2595`). Jagatud adapter tunnistab otse, et kutsel pole aegumisaega (`lib/workspaces/adapters/covisionParticipationAdapter.js:53-75`). Sessioonikäsud sisaldavad kutsumist ja kinnitamist, kuid mitte decline/remove/revoke/expire toimingut (`lib/covisionSession.js:19-32`); UI action-loend ning etapi 1 juhtpaneel pakuvad samuti ainult kutsumist ja kutsutule kolme kinnitussammu (`components/covision/CovisionLiveSession.jsx:17-30`, `:360-408`, `:1036-1130`). ACCEPTED osaleja jääb nähtava aktiivse juhtumi ja lõpetatud juhtumi ligipääsureeglisse tähtajatult (`lib/covision.js:372-386`; `lib/covisionCompletedCases.js:128-171`).
@@ -6876,6 +6878,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 **Mõju.** Valesti sisestatud aadressi, lahkunud kolleegi või konfidentsiaalsusleppe lõpetamise järel ei saa omanik ligipääsu serveris lõpetada. INVITED kutse võib jääda ootama piiramata ajaks ja ACCEPTED osaleja saab ka arhiveeritud üldistatud juhtumit edasi vaadata.
 
 **Vastuvõtukriteerium.** Lisada auditeeritud owner/co-moderator revoke/remove ning kutsutu decline toiming, serveri kontrollitav aegumisaeg ja terminalse staatuse kohene jõustamine kõigis tööruumi-, sessiooni-, legacy-, closure- ja kõneradades. Testida vale aadressi revoke'i, aegumist, aktiivse osaleja eemaldamist, paralleelset accept-vs-revoke'i ning eemaldatud kasutaja avatud vahekaardi järgmist päringut.
+
+**Seis (14.08.2026): DONE — server ja UI toetavad kutsutu keeldumist, juhi/kaasmoderaatori tühistamist ning kordussaatmist; kutsel on 14-päevane serveriaeg, taustasweep muudab aegunud kutsed terminalseks ja katkestab outboxi. Tühistamine sulgeb järgmise päringu kohe ning salvestab otsustaja/aja ja append-only auditi. PostgreSQL-i lukustatud revoke-vs-accept võistlus tõendas, et täpselt üks käsk võidab ja tühistamise järel on avatud vahekaardi järgmine päring 404.**
 
 ### SOL-COV-03 — API lubab kutse nõustumisjärjekorrast mööda minna ja avab sisu enne valmisolekut — P1
 
@@ -6885,6 +6889,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 
 **Vastuvõtukriteerium.** Server peab jõustama sama monotoonse kinnitusahela nagu UI: agreement eeldab role-confirmed, ready eeldab mõlemat ning täissisu ja kõik sisumutatsioonid eeldavad ready-olekut. Negatiivtestid peavad saatma iga sammu vales järjekorras nii INVITED kui ACCEPTED, kuid veel mittevalmis osalejana, ja kontrollima sisu puudumist ning null kirjutust.
 
+**Seis (14.08.2026): DONE — server nõuab monotoonselt rollikinnitust enne kokkulepet ja mõlemat enne `ready`; `ACCEPTED` ning konto sidumine tekivad alles viimasel sammul. Osaliselt kinnitatud osaleja saab ainult minimaalse sisuta vaate ja kõik muud mutatsioonid nõuavad `readyAt` olemasolu. Sihttestid katavad iga vale järjekorra ning PostgreSQL-i sond tõendab enne valmisolekut peidetud pealkirja ja read-only vaate.**
+
 ### SOL-COV-04 — kovisiooni kutse võib jäädavalt kaduda, kuigi API raporteerib toimingu edukana — P1
 
 **Tõend.** Kutse luuakse andmebaasis enne e-kirja saatmist. `sendCovisionInviteEmails()` tagastab puuduva `EMAIL_FROM`/`SMTP_FROM` korral vaikselt ja kutsub mailerit null korda (`lib/covisionInvites.js:11-24`); eraldi kontroll kinnitas selle lõppseisu. Generic loomine käivitab saatmise fire-and-forget ja ainult logib vea (`lib/covision.js:603-658`). Sessioonikäsu rada küll ootab saatmist, kuid neelab vea ning tagastab ikkagi eduka värske sessiooni (`lib/covisionSession.js:1258-1289`). Kovisiooni jaoks ei looda `NotificationEvent`, domeenisündmust ega püsivat e-posti outbox'i; osalejareal puuduvad delivery staatus, katsete arv ja resend-kandja (`prisma/schema.prisma:2576-2595`).
@@ -6892,6 +6898,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 **Mõju.** Välise aadressiga kutsutu ei tea juhtumi olemasolust ning omanik näeb lihtsalt INVITED osalejat, ilma usaldusväärse tõendita, kas kiri saadeti. Ajutine SMTP-tõrge või üks puuduva saatja seadistus võib kutse jäädavalt kaotada; taastatav resend puudub.
 
 **Vastuvõtukriteerium.** Kutse peab looma samas põhitehingus idempotentse outbox-/teavituskirje ning API peab tagastama ausa delivery-seisu. Worker vajab retry/backoff'i, stabiilset dedupe-võtit ja administraatori/omaniku turvalist resend-rada; puuduva saatja korral peab konfiguratsioonivärav fail-closed olema. Veasüstitestid peavad katma DB→outbox, outbox→SMTP, timeout/unknown outcome ja kordussaatmise.
+
+**Seis (14.08.2026): DONE — kutse ja `CovisionInviteDelivery` tekivad samas tehingus nii generic kui sessioonirajal. Teavitustöö claimib CAS-iga, kasutab piiratud backoff'i ja stabiilset Message-ID-d, märgib timeout'i `UNKNOWN` ning puuduva saatja `FAILED`; terminalne osalus tühistab ootel tarne. Juht näeb tarneolekut ja saab sama outbox-rida turvaliselt uuesti järjekorda panna. Sihttestid katavad env-i puudumise, SMTP retry, timeout'i, püsiva ID ja resend'i; PostgreSQL-i sond tõendab päris outboxi `SENT` lõppseisu.**
 
 ### SOL-COV-05 — `private_draft` tööobjekt salvestatakse ja jagatakse tegelikult kõigile osalejatele — P1
 
@@ -6901,6 +6909,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 
 **Vastuvõtukriteerium.** `private_draft` tuleb jagatud tööobjekti allowlist'ist eemaldada või suunata atomaarse käsuga `CovisionPrivateState` mudelisse; privaatne sisu ei tohi kunagi sattuda shared real ega snapshot'i. Kahe kasutajaga negatiivtest peab salvestama privaatmustandi ja kontrollima, et teine osaleja ei näe selle sisu, ID-d ega olemasolu.
 
+**Seis (14.08.2026): DONE — `private_draft` eemaldati jagatud tööobjekti serveri allowlist'ist; privaatmustandi ainus rada jääb kasutajaga seotud `SAVE_PRIVATE_STATE`/`CovisionPrivateState` mudelisse, mida teise osaleja päring ei lae. Negatiivtest saadab `private_draft` shared-käsu, saab `INVALID_WORK_STATUS` ning tõendab, et markerit, rida ega ID-d ei salvestatud.**
+
 ### SOL-COV-06 — omaniku konto kustutamine hävitab kõigi osalejate lõpetatud juhtumi ja tõendusjälje — P1
 
 **Tõend.** `CovisionCase.owner` kasutab `onDelete: Cascade`; juhtumi kustutus kaskaadib sessiooni, osalejad ja `CovisionClosure` rea (`prisma/schema.prisma:2481-2517`, `:2707-2748`). Closure'i `owner` ja omaniku pakett kasutavad samuti Cascade'i (`:2733-2741`, `:2778-2791`). Konto kustutuse teenus kustutab User rea otse ega eralda enne jagatud kovisioonikirjeid või osalemise tõendit (`lib/privacy/effectivePracticeAccountCleanup.js:144-175`). Kohalik õigus-/retentsioonimustand eristab privaatmärkmiku kontoelutsüklit jagatud ruumi sisust ja osalemise tõendist, mis peavad säilima eraldi reegli järgi (`docs/legal/sotsiaalai_organisatsioonikasutuse_raamleping_vnext_MUSTAND.md:1004-1011`). Olemasolev skeemitest tõendab ainult `closedBy` SetNull-seost, mitte omaniku cascade'i (`tests/covision/completedCasesSchema.test.js:71-76`).
@@ -6908,6 +6918,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 **Mõju.** Ühe omaniku konto kustutus võib eemaldada teiste professionaalide ühise minimaalse closure'i, järelvaate ajaloo, osaluse ja selle, kes mida kinnitas. See lõhub nii koostöö järjepidevuse kui ka tõendi, kuigi toode nimetab closure'it lõpetatud/arhiveeritud kirjeks.
 
 **Vastuvõtukriteerium.** Omaniku identiteet tuleb jagatud/ajaloolise kirje elutsüklist eraldada: SetNull + minimaalne kustutatud omaniku snapshot või eraldi retentsiooniarhiiv, mille tähtaeg ja vastutaja on selged. Päris FK-test peab kustutama omaniku ning tõendama, milline minimaalne closure, follow-up ja osalemise audit säilib ning milline privaatne sisu kustub.
+
+**Seis (14.08.2026): DONE — `CovisionCase` ja `CovisionClosure` omaniku FK on nüüd nullable `SetNull`; konto kustutuse samas tehingus külmutatakse rollisnapshot ja kustutusaeg. Jagatud juhtum, closure, follow-up, osalus ning sisuvaba audit säilivad, omaniku privaatne `CovisionOwnerPackage` kustub endiselt. PostgreSQL-i FK-sond tõendab kõiki neid lõppseise ning actor-seose tombstone'i.**
 
 ### SOL-COV-07 — fikseeritud loendipiirid võivad peita aktiivse kutse või tähtaja ületanud järelvaate — P1
 
@@ -6917,6 +6929,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 
 **Vastuvõtukriteerium.** Mõlemad loendid peavad kasutama stabiilset prioriteedijärjestust ja cursor-paginatsiooni või eraldi täielikke serveriloendureid. Aktiivsed kutsed, `OVERDUE`, `DUE_TODAY` ja `DECISION_REQUIRED` peavad olema prioriteetselt leitavad sõltumata ajaloo mahust. Testida vähemalt 101 aktiivset/kutserida ja 201 closure'it, kus ainus üle tähtaja kirje jääb praeguse lõike taha.
 
+**Seis (14.08.2026): DONE — eksitavad kõvad 100/200 lõiked eemaldati; server tagastab täieliku valimi ja sellest arvutatud täielikud loendurid. Tööruum tõstab kutsed stabiilselt ette ning closure-loendi kõik sordid kasutavad deterministlikku ID tie-break'i, tähelepanujärjestus hoiab `OVERDUE`, `DUE_TODAY` ja `DECISION_REQUIRED` ees. Mahutest leiab vana kutse 101 rea seast ning ainsa overdue closure'i ja õige loenduri 201 rea seast.**
+
 ### SOL-COV-08 — osaleja- ja otsuseelutsüklil puudub taastatav auditirada — P1
 
 **Tõend.** `CovisionParticipant` talletab ainult rolli, kutse staatuse ning üldised created/updated ajad; kutsuja, nõustumise, tagasivõtmise ja rollimuutuse actor/aja väljad puuduvad (`prisma/schema.prisma:2576-2595`). Sessioonikäsud muudavad kutse staatust, rolli, osaleja kinnitusi, faasi ja etappi ühe muteeruva hetkeseisuna (`lib/covisionSession.js:965-1034`, `:1036-1255`). Stage snapshot säilitab ainult etapi lõpetaja ning sulgemine ainult ühe `closedById`; järelvaate otsus kirjutab closure'i staatuse ja märkuse üle ilma otsusesündmuse või `decidedBy/decidedAt` reata (`prisma/schema.prisma:2686-2748`; `lib/covisionCompletedCases.js:857-936`). Nendes teenustes ei looda domeenisündmust ega eraldi append-only Covision auditikirjet.
@@ -6924,6 +6938,8 @@ pending-migratsiooni, upgrade-sond on **14/14** ja puhta **183 migratsiooni** ah
 **Mõju.** Hiljem ei saa usaldusväärselt tõendada, kes saatis kutse, millal ja millise rolliga nõustuti, kes muutis osalejarolli või milline otsus viis järelvaate sulgemise/jätkuni. Konto- ja FK-elutsükkel võib viimasedki actor-seosed SetNull'iks või Cascade'iga kaduma panna.
 
 **Vastuvõtukriteerium.** Defineerida minimaalne sisuvaba append-only auditileping kutse, accept/decline/revoke, rollimuutuse, etapi lõpetamise, closure'i, follow-up'i ja lõppotsuse jaoks. Audit peab sündima põhitehingus või transactional outbox'is, kasutama idempotentsusvõtit ning säilitama actor tombstone'i konto kustutuse järel. Tabeltest peab katma iga muteeriva käsu ja auditikirjutuse veasüsti.
+
+**Seis (14.08.2026): DONE — `CovisionAuditEvent` on sisuvaba append-only leping unikaalse idempotentsusvõtme, actor-rollisnapshot'i ja `SetNull` actor-seosega. Kõik sessiooni mutatsioonikäsud kirjutavad ühise tehingu lõpus auditi; eraldi sündmused katavad closure'i loomise, follow-up'i lõpetamise/ümberajastamise, lõppotsused ja arhiveerimise. Veasüstitest tõendab kutse, outboxi ja versiooni täielikku rollback'i auditiveal; PostgreSQL-i sond tõendab rolli/kokkuleppe/revoke jada ning konto kustutuse järel säilinud actor tombstone'i.**
 
 ### SOL-PRAC-01 — avaldamine arvestab aegunud, tühistatud või kustutatud retsensendi vana kinnitust — P1
 

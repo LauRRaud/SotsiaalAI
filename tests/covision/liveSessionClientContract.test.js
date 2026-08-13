@@ -138,6 +138,13 @@ test("an invited participant sees only the acceptance sequence before readiness"
   assert.match(source, /\.filter\(\(participant\) => participant\?\.inviteStatus === "ACCEPTED"\)/);
 });
 
+test("SOL-COV-02: invitation decline and leader revoke are reachable in the UI", () => {
+  assert.match(source, /declineInvitation:\s*"DECLINE_INVITATION"/);
+  assert.match(source, /revokeParticipant:\s*"REVOKE_PARTICIPANT"/);
+  assert.match(source, /invite_participant\.revoke_confirm/);
+  assert.match(source, /participantId:\s*participant\.id/);
+});
+
 test("leaders can invite roles without exposing case content before acceptance", () => {
   assert.match(source, /ACTIONS\.inviteParticipant/);
   assert.match(source, /email: inviteEmail\.trim\(\)/);

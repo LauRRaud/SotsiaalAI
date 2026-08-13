@@ -263,6 +263,7 @@ test("final user-row lock sweeps pre-lock candidates and prevents post-delete pr
         return { count: 3 };
       }
     },
+    covisionParticipant: { updateMany: async () => ({ count: 4 }) },
     dataDeletionJob: {
       findFirst: async () => null,
       create: async (input) => {
@@ -308,6 +309,7 @@ test("final user-row lock sweeps pre-lock candidates and prevents post-delete pr
   assert.equal(deleted.privacyCounts.supervisionProcessesTombstoned, 1);
   assert.equal(deleted.privacyCounts.supervisionParticipationsTombstoned, 2);
   assert.equal(deleted.privacyCounts.supervisionTopicsTombstoned, 3);
+  assert.equal(deleted.privacyCounts.covisionParticipationsTombstoned, 4);
   // SOL-PRE-01: saatmata mustandid kustutatakse, mitte ei puhastata.
   assert.deepEqual(preInquiryDeletes[0].where, { authorId: "user-1", sentAt: null });
   assert.equal(deleted.privacyCounts.deletedUnsentPreInquiries, 3);
