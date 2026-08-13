@@ -466,34 +466,13 @@ kirjutatud siia, et ta ei kaoks.*
 
 **Vastuvõtukriteerium.** Otsustada ja dokumenteerida, kas juhtumitöö on isiklik mustand või organisatsiooni ametialane töö. Teisel juhul peab konto kustutus pseudonüümima tegija ja andma aktiivsed/säilitatavad juhtumid kontrollitud omanikule või retention-hoidlale; testida offboarding, organisatsioonist lahkumist ja kustutust kõigis kolmes olekus.
 
-**Seis (09.08.2026): BLOCKED_DECISION — leid on MÕÕDETUD ja tõene, aga kriteerium algab otsusest, mis on omaniku oma. Koodi ei muudetud.**
+**Seis (13.08.2026): DONE — kehtiv kanooniline leping määrab CaseWorkAssisti töötaja rangelt isiklikuks töömaterjaliks; konto kustutus eemaldab selle tervikuna, organisatsiooni ametlik tööajalugu ja sisuvaba kustutustõend säilivad ning töötaja saab oma juhtumitöö enne kustutust andmekoopiasse.**
 
-**Miks ma seda otsust ise ei teinud.** SOL-CW-15 juures tegin otsuse ise ja märkisin ta ümberpööratavaks. Siin ei ole see aus: küsimus „isiklik mustand või organisatsiooni ametialane töö" on **õigusliku aluse** küsimus, mis seisab otse Õ2/Õ3 andmekaitseanalüüsi taga — ja S1 ütleb, et JTA-V1 aktiveerimine ootab just seda kinnitust. Kumbki vastus toob kaasa vastuolu, mille peab lahendama inimene: „isiklik mustand" tähendab, et kliendi kohta tehtud kohtumismärge kaob koos töötaja tujuga; „organisatsiooni töö" tähendab, et töötaja **enda** kustutamisõigus ei ulatu nende ridadeni ja platvorm peab selle keeldumise põhjendama.
-
-**Mõõdetud, mitte loetud** (`npm run casework:deletion:probe`, visatav andmebaas, 6/6):
-- `CaseWorkAssist_ownerUserId_fkey` on päris andmebaasis **KASKAAD** — leid on tõene.
-- Juhtumi **kõik kaheksa** otsest last kaovad temaga koos; terve kaskaadi alampuu on **14 tabelit**: `CaseWorkAssist`, `CaseWorkClientErasureAudit`, `CaseWorkDraft`, `CaseWorkDraftField`, `CaseWorkItem`, `CaseWorkMeetingNote`, `CaseWorkMeetingNoteEntry`, `CaseWorkMeetingNoteEntryRevision`, `CaseWorkMeetingPrep`, `CaseWorkMeetingPrepField`, `CaseWorkMissingInfo`, `CaseWorkQuestion`, `CaseWorkRetentionAudit`, `CaseWorkTransferEvent`.
-- Läbiv rada: kasutaja → juhtum → märge → märkme kirje, `user.delete()` → kõik kolm **0**.
-- **Jälge ei jää ühtegi.** `DataDeletionJob` ridu `resourceType` prefiksiga `CaseWork` on **0**. Orkestreerija loob jälje failide ja artefaktide kohta, juhtumitöö kohta mitte. **Negatiivkontroll:** sond lisas ise ühe rea ja luges siis 1 — ta NÄEKS jälge, kui see oleks olemas.
-- Kustutusrada **teab** juhtumitööst ainult üht asja: `eraseCaseWorkClientReferences()` kustutab kasutaja kui **kliendi** viite võõrastelt juhtumitelt (`userDeletionOrchestrator.js:66`). Kasutaja kui **omaniku** juhtumite kohta ei ole seal ühtegi rida. Asümmeetria on täpne: võõra töö sees ollakse ettevaatlik, oma töö sees mitte.
-
-**Mis on juba lukus ja mida see otsus puudutab:**
-- **SOL-CW-15 sõltub sellest vastusest vaikselt.** Seal otsustati, et märkme kirje sisu on muutumatu ja kõva kustutust ei ole — „sisu ei saa **muuta**, ta saab kaduda ainult **koos juhtumiga**". `DELETE`-i trigger jäeti meelega blokeerimata. SOL-CW-19 näitab, et „koos juhtumiga" tähendab täna ka „koos töötaja kontoga, silmapilkselt ja jäljetult". Kui vastus on „organisatsiooni ametialane töö", siis CW-15 lubadus ei kehti praegusel kujul.
-- **E7 säilitusreegel muutub sellega osaliselt mõttetuks:** 12 kuu kell ja arhiveeritud juhtumi hoiatus ei tähenda midagi, kui üks konto kustutus võtab kella endaga kaasa.
-- **Praegune käitumine EI OLE veel kellelegi haiget teinud:** värav on tootmises väljas ja `CaseWorkAssist` on tühi.
-
-**Kaks teed, mõlema hind:**
-
-| | A — isiklik mustand | B — organisatsiooni ametialane töö |
-|---|---|---|
-| Kaskaad | jääb | `ownerUserId` → `SetNull` või `Restrict` + üleandmine |
-| Konto kustutus | ei muutu | peab pseudonüümima tegija ja andma juhtumid kontrollitud omanikule/hoidlale |
-| Töötaja kustutamisõigus | täielik | **piiratud** — vajab õiguslikku alust ja teksti, mis seda inimesele ütleb |
-| CW-15 lubadus | kehtib nii nagu kirjas | vajab ümbersõnastust |
-| Töö maht | ~0 (dokumenteerida) | skeemimuudatus + üleandmisrada + offboarding + testid kolmes olekus |
-| Mida see nõuab enne | ainult omaniku sõna | **Õ2/Õ3 kinnitus** |
-
-**Mis on tegemata:** otsus ise ja kõik, mis temast järgneb. Sond ja see kirjeldus on valmis selleks, et otsus saaks olla ühe lugemisega.
+- **Otsus ei olnud enam lahtine blocker.** `juhtum-v1-arendusleping.md` O-JU-2 ütleb nimeliselt „rangelt isiklik" ja „ei ole üleantav"; `jta-v1-arendusleping.md` piirab tööriista ettevalmistava tööruumina, mille ametlik kanne sünnib STAR-is; kasutajatekst ütleb, et laud näitab ainult kasutaja enda tööd. Kehtiv raamleping §12.4 ütleb, et konto kustutamisel eemaldatakse konto ja seotud rakenduse andmed, säilitades sisuvaba tehnilise auditijälje. Seetõttu jäi `CaseWorkAssist.ownerUserId` kaskaad muutmata; skeemi ega migratsiooni ei lisatud.
+- **Vana käitumise negatiivtõend:** uus sihttest kukkus enne parandust teatega `casework ekspordipind puudub`. `caseWorkAssistsOwned` oli ekslikult `THIRD_PARTY_EXCLUDED`, mistõttu isiklik töömaterjal küll kustus kontoga, kuid ei olnud enne kustutust kasutaja andmekoopias.
+- **Andmekoopia:** `casework.ndjson` valib ainult `ownerUserId = küsija` juhtumid ja nende märkme-, paranduse-, mustandi-, ülekande- ning säilitusauditi. Kliendi konto-/lähteobjekti ID-sid ja denormaliseeritud tegija-ID-sid ei valita; kasutaja kui kliendi seos võõra töötaja juhtumis jääb `THIRD_PARTY_EXCLUDED`.
+- **Päris PostgreSQL (`casework:deletion:probe`, ajutine lokaalne DB, 14/14, cleanup OK):** ACTIVE, READ_ONLY ja ARCHIVED juhtum koos kohtumismärkme, paranduse, mustandi, ülekande-, retention- ja kliendiviite auditiga kustub konto järel; FK-d jõustavad omaniku ning kõigi otseste laste kaskaadi. Viimase omaniku ja PENDING töö katsed annavad parandatava 409 ning rollback jätab konto, liikmesuse, töö ja kogu juhtumipuu puutumata; takistuse eemaldamise järel retry õnnestub. Organisatsioon, teine omanik, isikuta ENDED liikmesus, lõpetatud ametliku töö seos, `USER_DELETE` kustutustöö tõend ja organisatsiooni audit säilivad. Sond tõendas ka viimase SOCIAL_WORKER-i lahkumise, kui organisatsioonile jääb teise rolliga aktiivne omanik.
+- **Sihttõend:** `accountDeletion.test.js` + isikuandmete pinnaregistri testid **6/6**; muudetud koodi ESLint ja `git diff --check` puhtad. Täisvärav: peatüki sulgemisel.
 
 ### SOL-CW-20 — juhtumiloendi cursor tugineb muutlikule järjestusväljale — P2
 

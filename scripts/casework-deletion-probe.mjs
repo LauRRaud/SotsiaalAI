@@ -1,58 +1,29 @@
 #!/usr/bin/env node
-/**
- * JTA-V1 / SOL-CW-19 — MIDA töötaja konto kustutamine juhtumitööst kaasa võtab.
- *
- * MIKS TA OLEMAS ON. Leid tugineb skeemi lugemisele: `CaseWorkAssist.ownerUserId`
- * kannab `onDelete: Cascade` ja lapsed ripuvad juhtumi küljes samamoodi. Enne kui
- * omanik otsustab, KAS juhtumitöö on isiklik mustand või organisatsiooni
- * ametialane töö, peab tal olema **mõõdetud plahvatusraadius**, mitte hinnang:
- * millised tabelid kaovad, kas midagi jääb alles ja kas kadumine jätab jälje.
- *
- * SEE SOND EI PARANDA MIDAGI ega eelda otsust. Ta mõõdab praegust käitumist.
- *
- * KAKS MÕÕTMIST, sest kumbki üksi eksitaks:
- *
- *   1. STRUKTUURNE — `pg_constraint` päris andmebaasis. Ta katab KÕIK lapsed,
- *      ka need, mida sond ei seemenda; üksik reatest tõendaks ainult seda ahelat,
- *      mille ma juhtumisi valisin.
- *   2. LÄBIV — päris read: kasutaja → juhtum → märge → märkme kirje. Struktuur
- *      ütleb, mis PEAKS juhtuma; read ütlevad, mis juhtub.
- *
- * SOL-CW-15 SEOS, mis on siin kõige olulisem: märkme kirje sisu tehti
- * muutumatuks (`BEFORE UPDATE` trigger) ja kõva kustutus võeti teenuskihist ära.
- * `DELETE`-i trigger EI blokeeri ja see oli teadlik — „sisu ei saa muuta, ta
- * saab kaduda ainult koos juhtumiga". SOL-CW-19 küsimus on täpselt see, kas
- * „koos juhtumiga" tohib tähendada „koos töötaja kontoga, silmapilkselt".
- *
- * Käivitamine:
- *   npm run casework:deletion:probe
- */
-
+/** SOL-CW-19 — CaseWorkAssist konto-kustutuse leping päris PostgreSQL-is. */
 import { spawnSync } from "node:child_process";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
 
+import { PrismaPg } from "@prisma/adapter-pg";
 import dotenv from "dotenv";
 import pg from "pg";
 
 import { PrismaClient } from "../generated/prisma/client.ts";
-import { PrismaPg } from "@prisma/adapter-pg";
+import { collectCaseWorkDataExport } from "../lib/casework/dataExport.js";
+import { deleteUserAfterFinalPracticeSweep } from "../lib/privacy/effectivePracticeAccountCleanup.js";
 
 dotenv.config({ path: ".env.local", quiet: true });
 dotenv.config({ path: ".env", quiet: true });
 
 const sourceUrl = String(process.env.DATABASE_URL || "").trim();
 if (!sourceUrl) throw new Error("DATABASE_URL puudub");
-
 const parsed = new URL(sourceUrl);
-const localHosts = new Set(["localhost", "127.0.0.1", "::1", "[::1]"]);
-if (!localHosts.has(parsed.hostname) && process.env.DELETION_PROBE_ALLOW_REMOTE !== "true") {
-  throw new Error(`Sond loob ajutise andmebaasi ainult localhostil (host: ${parsed.hostname || "tundmatu"})`);
+if (!new Set(["localhost", "127.0.0.1", "::1", "[::1]"]).has(parsed.hostname)) {
+  throw new Error(`Sond loob ajutise andmebaasi ainult localhostil (host: ${parsed.hostname})`);
 }
 
-const databaseName = `sotsiaal_ai_deletion_probe_${Date.now()}`;
-if (!/^sotsiaal_ai_deletion_probe_\d+$/.test(databaseName)) throw new Error("Ebaturvaline ajutise andmebaasi nimi");
-
+const databaseName = `sotsiaal_ai_casework_delete_probe_${Date.now()}`;
+if (!/^sotsiaal_ai_casework_delete_probe_\d+$/.test(databaseName)) throw new Error("Ebaturvaline andmebaasinimi");
 const adminUrl = new URL(parsed);
 adminUrl.pathname = "/postgres";
 adminUrl.search = "";
@@ -61,171 +32,308 @@ probeUrl.pathname = `/${databaseName}`;
 
 const admin = new pg.Client({ connectionString: adminUrl.toString() });
 const prismaCli = fileURLToPath(new URL("../node_modules/prisma/build/index.js", import.meta.url));
+const db = new PrismaClient({ adapter: new PrismaPg({ connectionString: probeUrl.toString() }), log: [] });
+let passed = 0;
+let failed = 0;
 
-const lines = [];
-let failures = 0;
-
-function check(label, condition, detail = "") {
-  if (condition) lines.push(`  OK   ${label}${detail ? ` — ${detail}` : ""}`);
-  else {
-    failures += 1;
-    lines.push(`  VIGA ${label}${detail ? ` — ${detail}` : ""}`);
+function expect(label, condition, detail = "") {
+  if (condition) {
+    passed += 1;
+    console.log(`  PASS  ${label}`);
+  } else {
+    failed += 1;
+    console.error(`  FAIL  ${label}${detail ? ` — ${detail}` : ""}`);
   }
 }
 
-function note(text) {
-  lines.push(`  ···  ${text}`);
+async function user(tag) {
+  return db.user.create({
+    data: { email: `${tag}@casework-delete.invalid`, role: "SOCIAL_WORKER", emailVerified: new Date() }
+  });
 }
 
-function runPrisma(args) {
-  const result = spawnSync(process.execPath, [prismaCli, ...args], {
+async function organization(tag) {
+  return db.organization.create({
+    data: {
+      displayName: `Sünteetiline ${tag}`,
+      legalKind: "MUNICIPALITY",
+      status: "ACTIVE",
+      verifiedAt: new Date(),
+      activatedAt: new Date()
+    }
+  });
+}
+
+async function membership(organizationId, person, tag, seatRole = "SOCIAL_WORKER") {
+  return db.organizationMembership.create({
+    data: { organizationId, userId: person.id, status: "ACTIVE", seatRole, jobTitle: `Sünteetiline ${tag}` }
+  });
+}
+
+async function ownerGrant(membershipId) {
+  return db.organizationCapabilityGrant.create({
+    data: { membershipId, capability: "ORG_OWNER", scopeType: "ORGANIZATION", reason: "synthetic_probe" }
+  });
+}
+
+async function liveWork(organizationId, membershipId, tag) {
+  const inbox = await db.organizationInboxItem.create({
+    data: { organizationId, sourceType: "PRE_INQUIRY", sourceId: `source-${tag}`, status: "ASSIGNED" }
+  });
+  const assignment = await db.organizationWorkAssignment.create({
+    data: { inboxItemId: inbox.id, assigneeMembershipId: membershipId, status: "PENDING" }
+  });
+  return { inbox, assignment };
+}
+
+async function closeWork({ inbox, assignment }) {
+  const endedAt = new Date("2026-08-13T12:00:00.000Z");
+  await db.organizationWorkAssignment.update({
+    where: { id: assignment.id },
+    data: { status: "ENDED", endedAt }
+  });
+  await db.organizationInboxItem.update({
+    where: { id: inbox.id },
+    data: { status: "CLOSED", closedAt: endedAt, closedReason: "synthetic_handover_complete" }
+  });
+}
+
+async function caseWithEvidence(ownerUserId, tag, retentionState) {
+  const createdAt = new Date(`2026-0${retentionState === "ACTIVE" ? "6" : retentionState === "READ_ONLY" ? "5" : "4"}-01T09:00:00.000Z`);
+  const casework = await db.caseWorkAssist.create({
+    data: {
+      ownerUserId,
+      clientDisplayName: `Klient ${tag}`,
+      clientExternalRef: `REF-${tag}`,
+      externalSystem: "STAR2",
+      externalReference: `STAR-${tag}`,
+      retentionState,
+      createdAt
+    }
+  });
+  const note = await db.caseWorkMeetingNote.create({
+    data: { caseWorkAssistId: casework.id, meetingAt: createdAt, createdAt }
+  });
+  const entry = await db.caseWorkMeetingNoteEntry.create({
+    data: {
+      meetingNoteId: note.id,
+      layer: "KOKKULEPE",
+      text: `Sünteetiline kokkulepe ${tag}`,
+      provenance: "TOOTAJA_TAHELEPANEK",
+      createdAt,
+      updatedAt: createdAt
+    }
+  });
+  const revision = await db.caseWorkMeetingNoteEntryRevision.create({
+    data: {
+      entryId: entry.id,
+      meetingNoteId: note.id,
+      kind: "CORRECTION",
+      layer: "KOKKULEPE",
+      text: `Sünteetiline varasem kokkulepe ${tag}`,
+      provenance: "TOOTAJA_TAHELEPANEK",
+      ordinal: 0,
+      revision: 1,
+      reason: "Sünteetiline täpsustus",
+      actorUserId: ownerUserId,
+      createdAt
+    }
+  });
+  const draft = await db.caseWorkDraft.create({
+    data: {
+      caseWorkAssistId: casework.id,
+      draftType: "EESMARGI_SONASTUS",
+      transferState: "ULE_KANTUD",
+      transferredAt: createdAt,
+      createdAt,
+      updatedAt: createdAt
+    }
+  });
+  const field = await db.caseWorkDraftField.create({
+    data: {
+      draftId: draft.id,
+      fieldKey: "EESMARK",
+      text: `Sünteetiline mustand ${tag}`,
+      provenance: "TOOTAJA_TAHELEPANEK",
+      createdAt,
+      updatedAt: createdAt
+    }
+  });
+  const transfer = await db.caseWorkTransferEvent.create({
+    data: {
+      caseWorkAssistId: casework.id,
+      draftId: draft.id,
+      ownerUserId,
+      actorUserId: ownerUserId,
+      kind: "MARKED_AS_TRANSFERRED",
+      draftType: "EESMARGI_SONASTUS",
+      transferStateAtEvent: "VALMIS_ULEKANDEKS",
+      fieldKeys: [],
+      createdAt
+    }
+  });
+  const retention = [];
+  if (retentionState !== "ACTIVE") {
+    retention.push(await db.caseWorkRetentionAudit.create({
+      data: {
+        caseWorkAssistId: casework.id,
+        ownerUserId,
+        actorUserId: ownerUserId,
+        fromState: "ACTIVE",
+        toState: "READ_ONLY",
+        reason: "Sünteetiline töö lõpetatud",
+        createdAt
+      }
+    }));
+  }
+  if (retentionState === "ARCHIVED") {
+    retention.push(await db.caseWorkRetentionAudit.create({
+      data: {
+        caseWorkAssistId: casework.id,
+        ownerUserId,
+        actorUserId: ownerUserId,
+        fromState: "READ_ONLY",
+        toState: "ARCHIVED",
+        reason: "Sünteetiline arhiiv",
+        createdAt: new Date(createdAt.getTime() + 1000)
+      }
+    }));
+  }
+  const erasure = await db.caseWorkClientErasureAudit.create({
+    data: {
+      caseWorkAssistId: casework.id,
+      ownerUserId,
+      actorUserId: ownerUserId,
+      actorKind: "USER",
+      reason: "Sünteetiline kliendiviite kontroll",
+      createdAt
+    }
+  });
+  return { casework, note, entry, revision, draft, field, transfer, retention, erasure };
+}
+
+async function caseTreeCounts(ownerUserId) {
+  const cases = await db.caseWorkAssist.findMany({ where: { ownerUserId }, select: { id: true } });
+  const ids = cases.map((item) => item.id);
+  return {
+    cases: cases.length,
+    notes: await db.caseWorkMeetingNote.count({ where: { caseWorkAssistId: { in: ids } } }),
+    entries: await db.caseWorkMeetingNoteEntry.count({ where: { meetingNote: { caseWorkAssistId: { in: ids } } } }),
+    revisions: await db.caseWorkMeetingNoteEntryRevision.count({ where: { entry: { meetingNote: { caseWorkAssistId: { in: ids } } } } }),
+    drafts: await db.caseWorkDraft.count({ where: { caseWorkAssistId: { in: ids } } }),
+    fields: await db.caseWorkDraftField.count({ where: { draft: { caseWorkAssistId: { in: ids } } } }),
+    transfers: await db.caseWorkTransferEvent.count({ where: { caseWorkAssistId: { in: ids } } }),
+    retentionAudits: await db.caseWorkRetentionAudit.count({ where: { caseWorkAssistId: { in: ids } } }),
+    erasureAudits: await db.caseWorkClientErasureAudit.count({ where: { caseWorkAssistId: { in: ids } } })
+  };
+}
+
+async function main() {
+  console.log("SOL-CW-19 — konto kustutuse ja juhtumitöö päris-DB sond\n");
+  await admin.connect();
+  await admin.query(`CREATE DATABASE "${databaseName}"`);
+  const migrated = spawnSync(process.execPath, [prismaCli, "migrate", "deploy"], {
     cwd: process.cwd(),
     env: { ...process.env, DATABASE_URL: probeUrl.toString() },
     stdio: "pipe",
     shell: false
   });
-  if (result.error) throw result.error;
-  if (result.status !== 0) throw new Error(`prisma ${args.join(" ")} kukkus koodiga ${result.status}`);
-}
+  if (migrated.error) throw migrated.error;
+  if (migrated.status !== 0) throw new Error(`prisma migrate deploy failed (${migrated.status})\n${migrated.stderr}`);
 
-const db = new PrismaClient({ adapter: new PrismaPg({ connectionString: probeUrl.toString() }), log: [] });
+  const foreign = await user("foreign-worker");
+  await caseWithEvidence(foreign.id, "foreign", "ACTIVE");
 
-await admin.connect();
-try {
-  await admin.query(`CREATE DATABASE "${databaseName}"`);
-  note(`ajutine andmebaas ${databaseName} loodud`);
-  runPrisma(["migrate", "deploy"]);
+  const worker = await user("last-owner");
+  const org = await organization("viimase omaniku org");
+  const workerMembership = await membership(org.id, worker, "viimane omanik");
+  await ownerGrant(workerMembership.id);
+  const states = ["ACTIVE", "READ_ONLY", "ARCHIVED"];
+  for (const state of states) await caseWithEvidence(worker.id, state.toLowerCase(), state);
+  const technicalTrace = await db.dataDeletionJob.create({
+    data: {
+      targetUserId: worker.id,
+      actorUserId: worker.id,
+      action: "USER_DELETE",
+      resourceType: "User",
+      resourceId: worker.id,
+      status: "pending"
+    }
+  });
 
-  /* ── 1. STRUKTUUR: kes kelle küljes ripub ja millise kustutusreegliga ─── */
-  /* `::text` EI OLE ILU. `pg_class.relname` on tüüpi `name` ja
-     `pg_constraint.confdeltype` on `char`; Prisma `$queryRaw` kukub mõlema peal
-     `UnsupportedNativeDataType`-ga. Sama pere lõks mis nõuandeluku `void`
-     (vt mälu `prisma-advisory-lock`). */
-  const casework = await db.$queryRaw`
-    SELECT c.relname::text AS child,
-           p.relname::text AS parent,
-           con.conname::text AS constraint_name,
-           con.confdeltype::text AS on_delete
+  const exported = await collectCaseWorkDataExport({ db, userId: worker.id });
+  const exportText = JSON.stringify(exported);
+  expect("andmekoopia sisaldab omaniku ACTIVE/READ_ONLY/ARCHIVED juhtumeid", exported.length === 3 && states.every((state) => exported.some((item) => item.retentionState === state)));
+  expect("andmekoopia sisaldab märkme-, ülekande- ja audititõendeid", exportText.includes("Sünteetiline kokkulepe") && exportText.includes("MARKED_AS_TRANSFERRED") && exportText.includes("Sünteetiline töö lõpetatud") && exportText.includes("Sünteetiline kliendiviite kontroll"));
+  expect("andmekoopia välistab võõra juhtumi ning konto- ja tegija-ID-d", !exportText.includes("foreign") && !exportText.includes(worker.id) && !exportText.includes(foreign.id));
+
+  const beforeBlock = await caseTreeCounts(worker.id);
+  let lastOwnerError = null;
+  try {
+    await deleteUserAfterFinalPracticeSweep(worker.id, db);
+  } catch (error) {
+    lastOwnerError = error;
+  }
+  expect("viimase omaniku kustutus peatub parandatava 409-ga", lastOwnerError?.status === 409 && lastOwnerError?.messageKey === "org.errors.last_owner_cannot_leave");
+  expect("viimase omaniku tõrge rollbackib konto ja kogu juhtumipuu", await db.user.count({ where: { id: worker.id } }) === 1 && JSON.stringify(await caseTreeCounts(worker.id)) === JSON.stringify(beforeBlock));
+
+  const successor = await user("successor");
+  const successorMembership = await membership(org.id, successor, "järeltulija", "SERVICE_PROVIDER");
+  await ownerGrant(successorMembership.id);
+  const deleted = await deleteUserAfterFinalPracticeSweep(worker.id, db);
+  const membershipAfter = await db.organizationMembership.findUnique({ where: { id: workerMembership.id } });
+  const deletedTree = await caseTreeCounts(worker.id);
+  expect("retry kustutab konto ja kõik isikliku juhtumitöö kihid", deleted.id === worker.id && Object.values(deletedTree).every((count) => count === 0), JSON.stringify(deletedTree));
+  expect("organisatsioon ja järeltulija säilivad, liikmesus muutub isikuta tombstone'iks", await db.organization.count({ where: { id: org.id } }) === 1 && await db.user.count({ where: { id: successor.id } }) === 1 && membershipAfter?.status === "ENDED" && membershipAfter?.userId === null && Boolean(membershipAfter?.userErasedAt));
+  expect("viimase SOCIAL_WORKER-i lahkumine on lubatud, kui organisatsioonil jääb omanik", successorMembership.seatRole === "SERVICE_PROVIDER" && membershipAfter?.seatRole === "SOCIAL_WORKER");
+  expect("üldine kustutustöö tõend ja organisatsiooni audit jäävad alles", await db.dataDeletionJob.count({ where: { id: technicalTrace.id } }) === 1 && await db.dataAuditLog.count({ where: { resourceId: workerMembership.id, action: { in: ["org.member_ended", "org.member_identity_erased"] } } }) === 2);
+
+  const liveUser = await user("live-work");
+  const liveOrg = await organization("elava töö org");
+  const liveMembership = await membership(liveOrg.id, liveUser, "lahkuv töötaja");
+  const liveOwnerMembership = await membership(liveOrg.id, successor, "säiliv omanik", "SERVICE_PROVIDER");
+  await ownerGrant(liveOwnerMembership.id);
+  const liveCase = await caseWithEvidence(liveUser.id, "live-work", "ACTIVE");
+  const work = await liveWork(liveOrg.id, liveMembership.id, "casework-delete");
+  const beforeLiveBlock = await caseTreeCounts(liveUser.id);
+  let liveError = null;
+  try {
+    await deleteUserAfterFinalPracticeSweep(liveUser.id, db);
+  } catch (error) {
+    liveError = error;
+  }
+  expect("elav PENDING töö peatab kustutuse parandatava 409-ga", liveError?.status === 409 && liveError?.messageKey === "org.errors.membership_has_live_work" && liveError?.details?.liveWork === 1);
+  expect("elava töö tõrge rollbackib konto, liikmesuse, töö ja juhtumi", await db.user.count({ where: { id: liveUser.id } }) === 1 && await db.organizationMembership.count({ where: { id: liveMembership.id, status: "ACTIVE" } }) === 1 && await db.organizationWorkAssignment.count({ where: { id: work.assignment.id, status: "PENDING" } }) === 1 && JSON.stringify(await caseTreeCounts(liveUser.id)) === JSON.stringify(beforeLiveBlock));
+
+  await closeWork(work);
+  await deleteUserAfterFinalPracticeSweep(liveUser.id, db);
+  const historicalWork = await db.organizationWorkAssignment.findUnique({ where: { id: work.assignment.id } });
+  expect("pärast töö lõpetamist õnnestub retry ja isiklik juhtum kustub", await db.user.count({ where: { id: liveUser.id } }) === 0 && await db.caseWorkAssist.count({ where: { id: liveCase.casework.id } }) === 0);
+  expect("organisatsiooni ametlik tööajalugu säilib lõpetatud liikmesuse küljes", historicalWork?.status === "ENDED" && historicalWork?.assigneeMembershipId === liveMembership.id && await db.organization.count({ where: { id: liveOrg.id } }) === 1);
+
+  const caseworkFks = await db.$queryRaw`
+    SELECT c.relname::text AS child, p.relname::text AS parent, con.confdeltype::text AS on_delete
       FROM pg_constraint con
       JOIN pg_class c ON c.oid = con.conrelid
       JOIN pg_class p ON p.oid = con.confrelid
-     WHERE con.contype = 'f'
-       AND (c.relname LIKE 'CaseWork%' OR p.relname LIKE 'CaseWork%')
-     ORDER BY p.relname, c.relname`;
+     WHERE con.contype = 'f' AND (c.relname LIKE 'CaseWork%' OR p.relname LIKE 'CaseWork%')`;
+  const ownerCascade = caseworkFks.some((row) => row.child === "CaseWorkAssist" && row.parent === "User" && row.on_delete === "c");
+  const children = caseworkFks.filter((row) => row.parent === "CaseWorkAssist");
+  expect("DB jõustab omaniku kaskaadi ja kõik otsesed CaseWorkAssist lapsed kaskaadivad", ownerCascade && children.length > 0 && children.every((row) => row.on_delete === "c"), `${children.filter((row) => row.on_delete === "c").length}/${children.length}`);
 
-  const ownerFk = casework.find(row => row.child === "CaseWorkAssist" && row.parent === "User" && row.on_delete === "c");
-  check(
-    "1a juhtumi omaniku FK on päris andmebaasis KASKAAD",
-    Boolean(ownerFk),
-    ownerFk ? ownerFk.constraint_name : "kaskaadi ei leitud — leid võib olla aegunud"
-  );
-
-  const children = casework.filter(row => row.parent === "CaseWorkAssist");
-  const cascading = children.filter(row => row.on_delete === "c");
-  check(
-    "1b juhtumi KÕIK lapsed kaovad juhtumiga koos",
-    children.length > 0 && cascading.length === children.length,
-    `${cascading.length}/${children.length}: ${children.map(row => row.child).join(", ")}`
-  );
-
-  /* Terve alampuu: mis kaob, kui üks User-rida läheb. Loend on see, mille peal
-     omanik otsustab — „juhtumitöö kaob" on liiga üldine, et otsustada. */
-  const subtree = new Set(["CaseWorkAssist"]);
-  for (let pass = 0; pass < 5; pass += 1) {
-    for (const row of casework) {
-      if (row.on_delete === "c" && subtree.has(row.parent)) subtree.add(row.child);
-    }
-  }
-  note(`kaskaadi alampuu (${subtree.size} tabelit): ${[...subtree].sort().join(", ")}`);
-
-  /* ── 2. LÄBIV: päris read ─────────────────────────────────────────────── */
-  const worker = await db.user.create({ data: { role: "SOCIAL_WORKER" }, select: { id: true } });
-  const kase = await db.caseWorkAssist.create({
-    data: { ownerUserId: worker.id, clientDisplayName: "sondi klient" },
-    select: { id: true }
-  });
-  const meetingNote = await db.caseWorkMeetingNote.create({
-    data: { caseWorkAssistId: kase.id },
-    select: { id: true }
-  });
-  const entry = await db.caseWorkMeetingNoteEntry.create({
-    data: {
-      meetingNoteId: meetingNote.id,
-      layer: "KOKKULEPE",
-      text: "Kliendiga kokku lepitud: järgmine kohtumine 2. septembril.",
-      provenance: "WORKER"
-    },
-    select: { id: true }
-  });
-
-  check("2a seemned on kohal (kasutaja, juhtum, märge, märkme kirje)", Boolean(entry.id));
-
-  /* SOL-CW-15 lubadus: seda teksti EI SAA muuta. */
-  let immutable = false;
-  try {
-    await db.$executeRaw`UPDATE "CaseWorkMeetingNoteEntryRevision" SET "reason" = 'x' WHERE false`;
-    await db.caseWorkMeetingNoteEntry.update({ where: { id: entry.id }, data: { text: "muudetud" } });
-  } catch {
-    immutable = true;
-  }
-  note(`SOL-CW-15 muutumatus kirje enda peal: ${immutable ? "trigger keelab" : "teenuskiht keelab, DB lubab"}`);
-
-  /* ── 3. KUSTUTUS ──────────────────────────────────────────────────────── */
-  await db.user.delete({ where: { id: worker.id } });
-
-  const survivors = {
-    juhtum: await db.caseWorkAssist.count({ where: { id: kase.id } }),
-    märge: await db.caseWorkMeetingNote.count({ where: { id: meetingNote.id } }),
-    kirje: await db.caseWorkMeetingNoteEntry.count({ where: { id: entry.id } })
-  };
-
-  check(
-    "3a töötaja konto kustutamine viib kogu juhtumitöö kaasa",
-    survivors.juhtum === 0 && survivors.märge === 0 && survivors.kirje === 0,
-    JSON.stringify(survivors)
-  );
-
-  /* KAS JÄÄB JÄLG? Orkestreerija loob `DataDeletionJob` ridu failide ja
-     artefaktide kohta; juhtumitöö kohta ei loo ta ühtegi. Kui vastus on „ei",
-     siis ei saa organisatsioon ega järelevalve hiljem isegi tuvastada, ET
-     midagi oli. */
-  const trace = await db.dataDeletionJob.count({ where: { resourceType: { startsWith: "CaseWork" } } });
-  check(
-    "3b kustutamine EI JÄTA juhtumitööst mingit jälge (leiu tuum)",
-    trace === 0,
-    `CaseWork-jälgi: ${trace}`
-  );
-
-  /* NEGATIIVKONTROLL: sond peab suutma jälge NÄHA, kui ta oleks olemas. Ilma
-     selleta tõendaks 3b ainult seda, et ma otsin valest kohast. */
-  await db.dataDeletionJob.create({
-    data: {
-      targetUserId: worker.id,
-      action: "CASEWORK_PROBE_CONTROL",
-      resourceType: "CaseWorkProbeControl",
-      resourceId: kase.id,
-      status: "SKIPPED"
-    }
-  });
-  const traceAfter = await db.dataDeletionJob.count({ where: { resourceType: { startsWith: "CaseWork" } } });
-  check("3c NEGATIIVKONTROLL — sond NÄEKS jälge, kui ta oleks olemas", traceAfter === 1, `jälgi: ${traceAfter}`);
-} finally {
-  await db.$disconnect().catch(() => {});
-  await admin
-    .query("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = $1 AND pid <> pg_backend_pid()", [
-      databaseName
-    ])
-    .catch(() => {});
-  await admin.query(`DROP DATABASE IF EXISTS "${databaseName}"`).catch(() => {});
-  const left = await admin
-    .query("SELECT 1 FROM pg_database WHERE datname = $1", [databaseName])
-    .catch(() => ({ rowCount: -1 }));
-  check("4a ajutine andmebaas on kustutatud", left.rowCount === 0, `pg_database ridu: ${left.rowCount}`);
-  await admin.end().catch(() => {});
-
-  console.log("\nSOL-CW-19 — konto kustutamise plahvatusraadius juhtumitöös\n");
-  console.log(lines.join("\n"));
-  console.log(`\n  ${failures === 0 ? "KÕIK ROHELINE" : `${failures} VIGA`}\n`);
-  console.log("  See sond MÕÕDAB praegust käitumist. Kas ta on õige, on omaniku otsus (SOL-CW-19).\n");
-  process.exitCode = failures === 0 ? 0 : 1;
+  console.log(`\n${passed}/${passed + failed} kontrolli läbis.`);
+  if (failed) process.exitCode = 1;
 }
+
+main()
+  .catch((error) => {
+    console.error(error);
+    process.exitCode = 1;
+  })
+  .finally(async () => {
+    await db.$disconnect().catch(() => null);
+    await admin.query("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = $1", [databaseName]).catch(() => null);
+    await admin.query(`DROP DATABASE IF EXISTS "${databaseName}"`).catch(() => null);
+    await admin.end().catch(() => null);
+    console.log("CLEANUP_OK temporary_database_removed");
+  });
