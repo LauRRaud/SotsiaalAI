@@ -178,12 +178,25 @@ esitist, owner-filtrit, üht olemasolevat ja üht puuduvat faili ning legacy `im
 
 **Vastuvõtukriteerium.** Määratleda iga oleku retention (pending SLA + expiry, rejected lühike vaidlusaken, imported originaali/RAG-koopia eraldi leping), salvestada tähtaeg ja käivitada idempotentne fail+DB+RAG sweep püsiva retry/auditiga. UI ja data-export manifest peavad näitama tähtaega ning SMTP-koopia andmeminimeerimise/retention'i piiri. Kellatest peab katma kõik olekud, sweep'i crash'i ja teise jooksu.
 
-**Seis.** NOT_DONE — retention'i sisulised tähtajad ja imported-koopia õigusrežiim vajavad
-omaniku otsust. Täpselt tuleb kinnitada pending SLA/expiry päevades, rejected vaidlusaken,
-reviewed säilitusaeg ning kas imported originaal ja RAG-koopia kustuvad esitise või konto
-kustutusega. Otsusest sõltumatu osa on valmis: andmekoopia manifest kannab `retentionUntil`
-välja ka siis, kui see on ausalt `null`; SMTP outbox ei kopeeri enam esitaja e-posti,
-failinimesid ega kommentaari. Ilma kinnitatud arvudeta ei lisatud näilist tähtaega ega sweep'i.
+**Seis.** PARTIAL — otsusest sõltumatu retention-elutsükkel on valmis, kuid sisulised päevad
+ja imported RAG-koopia õigusrežiim ei ole kanoonilises poliitikas endiselt kinnitatud.
+`MaterialSubmission` ja `MaterialUploadQuarantine` kannavad nüüd klassi, tähtaega,
+poliitikaversiooni, ankrut ja tööseisu; pending/rejected/reviewed/imported ning
+PENDING/FAILED/CLEAN karantiini iga üleminek arvutab tähtaja deterministlikult ümber ainult
+siis, kui `MATERIALS_RETENTION_POLICY_STATUS=CONFIRMED`, versioon ja kõik seitse päevaarvu on
+olemas. Muul juhul püsib server, UI ja andmekoopia ausalt `DECISION_PENDING` / `null` seisus.
+Keskne retention-tsükkel ajastab püsiva `MATERIAL_RETENTION_DELETE` töö, kasutab MAT-08
+`RAG_DELETE` rada enne faili ja DB-rida ning talub fail-/RAG-/DB-tõrget, crash'i, paralleelset
+claim'i ja kordusjooksu; konto kustutus kasutab sama rada ning ei säilita RAG-koopiat vaikimisi.
+Katkine või lõpetamata karantiin saab eraldi konfigureeritud tähtaja ja auditeeritud püsiva
+eemaldustöö. SMTP outbox jääb andmeminimeerituks. Sihttestid 38/38 ja konto-/retentioni seotud
+testid 20/20 PASS; päris ajutise PostgreSQL-i + ketta sond 24/24 PASS, migratsiooniahel 199/199
+PASS ning sond eemaldas ajutise DB ja storage'i (`remote_rag=synthetic_only`). **NOT_PROVEN:**
+toodangu päevad ja imported-koopia õigusrežiim; välis-RAG-i ei kutsutud. Omanikule soovitus,
+mitte kinnitatud otsus: pending 14 päeva, rejected 30 päeva, reviewed 30 päeva, imported
+originaal 7 päeva pärast edukat ingest'i; karantiin PENDING 1 päev, FAILED 7 päeva ja CLEAN
+1 päev; RAG-koopia 365 päeva alates ingest'ist, kuid kustub varem esitise või konto
+kustutamisel, välja arvatud ainult eraldi dokumenteeritud ülekantava litsentsi korral.
 
 ### SOL-MAT-13 — SMTP-teavituse tõrge kaob logisse ja tööjärjekord ei tea sellest — P2
 

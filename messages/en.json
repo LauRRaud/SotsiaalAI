@@ -1742,6 +1742,10 @@
     "submit": "Send material",
     "submitting": "Sending...",
     "submit_success": "Material has been sent. Thank you for contributing.",
+    "retention": {
+      "until": "Retention deadline: {date}",
+      "decision_pending": "Retention deadline: decision pending"
+    },
     "mine": {
       "title": "My submitted materials",
       "loading": "Loading your materials...",

@@ -4474,6 +4474,11 @@ model MaterialSubmission {
   rightsEvidence          String?   @db.Text
   rightsConfirmedAt       DateTime?
   rightsConfirmedByUserId String?
+  retentionClass          String    @default("DECISION_PENDING")
+  retentionUntil          DateTime?
+  retentionPolicyVersion  String?
+  retentionState          String    @default("DECISION_PENDING")
+  retentionAnchorAt       DateTime?
   createdAt               DateTime  @default(now())
   updatedAt               DateTime  @updatedAt
 
@@ -4492,6 +4497,7 @@ model MaterialSubmission {
   @@index([ragIngestStatus, ragIngestNextAt])
   @@index([ragRemovalStatus])
   @@index([scanState, validationState, storageStatus])
+  @@index([retentionState, retentionUntil])
 }
 
 model MaterialUploadQuarantine {
@@ -4512,6 +4518,11 @@ model MaterialUploadQuarantine {
   failureCode            String?
   scanAttempts           Int       @default(0)
   scanNextAt             DateTime?
+  retentionClass         String    @default("DECISION_PENDING")
+  retentionUntil         DateTime?
+  retentionPolicyVersion String?
+  retentionState         String    @default("DECISION_PENDING")
+  retentionAnchorAt      DateTime?
   createdAt              DateTime  @default(now())
   updatedAt              DateTime  @updatedAt
 
@@ -4521,6 +4532,7 @@ model MaterialUploadQuarantine {
   @@index([submittedByUserId, createdAt])
   @@index([scanState, scanNextAt])
   @@index([storageState, updatedAt])
+  @@index([retentionState, retentionUntil])
 }
 
 // ---------------------------------------------------------------------------

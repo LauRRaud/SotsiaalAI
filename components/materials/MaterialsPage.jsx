@@ -216,6 +216,11 @@ export default function MaterialsPage({ locale = "et", embedded = false, onBack 
               <div key={item.id}>
                 <strong>{item.originalName}</strong>
                 <span>{t(`materials_page.admin.status.${item.status}`, item.status)}</span>
+                <span>
+                  {item.retention?.until
+                    ? t("materials_page.retention.until", { date: new Intl.DateTimeFormat(resolvedLocale).format(new Date(item.retention.until)) })
+                    : t("materials_page.retention.decision_pending")}
+                </span>
                 <a href={`/api/materials/${encodeURIComponent(item.id)}/download`}>
                   {t("materials_page.admin.download")}
                 </a>

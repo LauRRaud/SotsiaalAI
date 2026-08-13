@@ -237,6 +237,11 @@ export default function MaterialsAdminSubmissionsPanel({
                     {item.reviewNote ? `${item.reviewedAt ? " | " : ""}${item.reviewNote}` : null}
                   </p>
                 ) : null}
+                <p>
+                  {item.retention?.until
+                    ? t("materials_page.retention.until", { date: formatDate(item.retention.until, resolvedLocale) })
+                    : t("materials_page.retention.decision_pending")}
+                </p>
                 {item.notification ? (
                   <p>
                     {t("materials_page.admin.notification_status", {

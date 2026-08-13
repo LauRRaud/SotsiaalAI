@@ -8,6 +8,12 @@ const downloadRouteSource = fs.readFileSync(new URL("../../app/api/materials/[id
 const schemaSource = fs.readFileSync(new URL("../../prisma/schema.prisma", import.meta.url), "utf8")
 const lifecycleSource = fs.readFileSync(new URL("../../lib/materials/lifecycle.js", import.meta.url), "utf8")
 const ragLifecycleSource = fs.readFileSync(new URL("../../lib/materials/ragLifecycle.js", import.meta.url), "utf8")
+const retentionSource = fs.readFileSync(new URL("../../lib/materials/retention.js", import.meta.url), "utf8")
+const retentionPolicySource = fs.readFileSync(new URL("../../lib/materials/retentionPolicy.js", import.meta.url), "utf8")
+const reviewSource = fs.readFileSync(new URL("../../lib/materials/review.js", import.meta.url), "utf8")
+const exportSource = fs.readFileSync(new URL("../../lib/dataExport/registry.js", import.meta.url), "utf8")
+const userDeletionSource = fs.readFileSync(new URL("../../lib/privacy/userDeletion.js", import.meta.url), "utf8")
+const notificationSource = fs.readFileSync(new URL("../../lib/materials/notifications.js", import.meta.url), "utf8")
 const ragMigrationSource = fs.readFileSync(new URL("../../prisma/migrations/20260814011000_sol_mat_08_rag_lifecycle/migration.sql", import.meta.url), "utf8")
 
 test("material upload is subscription and professional-role gated on the server", () => {
@@ -56,4 +62,21 @@ test("material import route delegates to the versioned receipt-gated RAG lifecyc
   assert.match(ragLifecycleSource, /action: "RAG_DELETE"/)
   assert.match(ragMigrationSource, /MaterialSubmission_imported_receipt_check/)
   assert.match(ragMigrationSource, /"ragIngestStatus" = 'IMPORTED'/)
+})
+
+test("material retention reuses the quarantine and RAG lifecycles and stays decision-gated", () => {
+  assert.match(schemaSource, /retentionClass\s+String\s+@default\("DECISION_PENDING"\)/)
+  assert.match(schemaSource, /@@index\(\[retentionState, retentionUntil\]\)/)
+  assert.match(lifecycleSource, /retentionFieldsForSubmission\("pending"/)
+  assert.match(reviewSource, /retentionFieldsForSubmission\(update\.status/)
+  assert.match(ragLifecycleSource, /retentionFieldsForSubmission\("imported"/)
+  assert.match(retentionPolicySource, /MATERIALS_RETENTION_POLICY_STATUS/)
+  assert.match(retentionSource, /queueMaterialRagDeletion/)
+  assert.match(retentionSource, /retryMaterialRagDeletion/)
+  assert.match(userDeletionSource, /removeMaterialForAccountDeletion/)
+})
+
+test("material UI/export are honest while policy is pending and SMTP remains minimized", () => {
+  assert.match(exportSource, /retentionDecision:\s*row\.retentionUntil \? "configured" : "decision_pending"/)
+  assert.doesNotMatch(notificationSource, /originalName|comment|submittedByUser.*email/)
 })

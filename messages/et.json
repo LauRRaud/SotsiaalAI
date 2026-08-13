@@ -1742,6 +1742,10 @@
     "submit": "Saada materjal",
     "submitting": "Saadan...",
     "submit_success": "Materjal on saadetud. Aitäh panuse eest.",
+    "retention": {
+      "until": "Säilitamise tähtaeg: {date}",
+      "decision_pending": "Säilitamise tähtaeg: otsus ootel"
+    },
     "mine": {
       "title": "Minu saadetud materjalid",
       "loading": "Laen sinu materjale...",
