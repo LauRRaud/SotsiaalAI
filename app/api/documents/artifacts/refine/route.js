@@ -5,6 +5,14 @@ import {
   normalizeSelectedDocumentIds
 } from "@/lib/documents/artifacts"
 import {
+  ARTIFACT_REFINEMENT_LIMIT,
+  buildArtifactRefinementRequestHash,
+  claimArtifactRefinement,
+  failArtifactRefinement,
+  persistArtifactRefinement
+} from "@/lib/documents/artifactRefinements"
+import { parseExpectedVersion } from "@/lib/documents/artifactMutation"
+import {
   normalizeAgentAudience,
   normalizeAgentLanguage,
   normalizeAgentLength,
@@ -14,10 +22,12 @@ import {
 } from "@/lib/documents/generation"
 import { cacheRetrievalDebugMeta } from "@/lib/documents/retrievalObservability"
 import { enforceDocumentsRateLimit, readDocumentsRateLimit } from "@/lib/documents/rateLimit"
+import { withStorageQuota } from "@/lib/documents/storageQuota"
 import { prisma } from "@/lib/prisma"
 import { effectiveRoleFromSession } from "@/lib/authz"
 import { safeError } from "@/lib/privacy/safeError"
 import { evaluateTextPrivacy, privacyConfirmationResponsePayload } from "@/lib/privacy/privacyGuard"
+import { getUtf8ByteLength } from "@/lib/storageGuardrails"
 import { errorJson, json, localeFromRequest, requireDocumentUser, usageErrorJson } from "@/lib/documents/server"
 import {
   commitUsageForRequest,
@@ -25,12 +35,6 @@ import {
   reserveUsageForRequest
 } from "@/lib/usage/routeAdapter"
 import { runPaidResult } from "@/lib/usage/paidResult"
-import {
-  ARTIFACT_REFINEMENT_LIMIT,
-  claimRefinementSlot,
-  confirmRefinementSlot,
-  releaseRefinementSlot
-} from "@/lib/documents/refinementSlots"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
@@ -69,6 +73,8 @@ export async function POST(request) {
   let currentContent = ""
   let refinementInstruction = ""
   let artifactId = ""
+  let expectedUpdatedAt = null
+  let idempotencyKey = ""
   try {
     selectedDocumentIds = normalizeSelectedDocumentIds(body?.documentIds, {
       maxDocuments: getMaxArtifactSourceDocumentsForRole(role)
@@ -76,6 +82,9 @@ export async function POST(request) {
     currentContent = normalizeArtifactContent(body?.currentContent)
     refinementInstruction = normalizeRefinementInstruction(body?.refinementInstruction)
     artifactId = String(body?.artifactId || "").trim()
+    expectedUpdatedAt = parseExpectedVersion(body?.expectedUpdatedAt)
+    idempotencyKey = String(body?.idempotencyKey || "").trim()
+    if (!artifactId || !expectedUpdatedAt || !idempotencyKey) throw new Error("documents.errors.invalid_payload")
   } catch (error) {
     return errorJson(error?.message || "documents.errors.invalid_payload", Number(error?.status) || 400, locale)
   }
@@ -90,39 +99,53 @@ export async function POST(request) {
     workflow: "document_refinement",
     privacyDecision: body?.privacyDecision
   })
-  if (privacy.needsPrivacyConfirmation) {
-    return json(privacyConfirmationResponsePayload(privacy), 409)
-  }
+  if (privacy.needsPrivacyConfirmation) return json(privacyConfirmationResponsePayload(privacy), 409)
   refinementInstruction = privacy.processedText || refinementInstruction
 
+  const requestHash = buildArtifactRefinementRequestHash({
+    artifactId,
+    expectedUpdatedAt: expectedUpdatedAt.toISOString(),
+    documentIds: selectedDocumentIds,
+    type,
+    templateId,
+    currentContent,
+    refinementInstruction,
+    audience,
+    tone,
+    language,
+    length
+  })
+
+  let refinement = null
   let usageHandle = null
-  let refinementSlot = null
-
   try {
-    if (artifactId) {
-      const artifact = await prisma.agentArtifact.findFirst({
-        where: {
-          id: artifactId,
-          ownerId: auth.userId
-        },
-        select: {
-          id: true,
-          ownerId: true
-        }
+    const claim = await claimArtifactRefinement({
+      artifactId,
+      ownerId: auth.userId,
+      idempotencyKey,
+      requestHash,
+      expectedUpdatedAt
+    })
+    refinement = claim.refinement
+    if (claim.cached) {
+      return json({
+        ok: true,
+        content: refinement.resultContent || "",
+        updatedAt: refinement.resultUpdatedAt,
+        refinement: { id: refinement.id, reused: true, cached: true }
       })
+    }
 
-      if (!artifact) {
-        return errorJson("documents.artifacts.errors.not_found", 404, locale)
-      }
+    const artifact = await prisma.agentArtifact.findFirst({
+      where: { id: artifactId, ownerId: auth.userId },
+      select: { content: true }
+    })
+    if (!artifact) {
+      throw Object.assign(new Error("documents.artifacts.errors.not_found"), { status: 404 })
     }
 
     const documents = await prisma.userDocument.findMany({
-      where: {
-        ownerId: auth.userId,
-        id: {
-          in: selectedDocumentIds
-        }
-      },
+      where: { ownerId: auth.userId, id: { in: selectedDocumentIds } },
       select: {
         id: true,
         title: true,
@@ -136,57 +159,21 @@ export async function POST(request) {
         updatedAt: true
       }
     })
-
     if (documents.length !== selectedDocumentIds.length) {
-      return errorJson("documents.artifacts.errors.sources_not_found", 404, locale)
+      throw Object.assign(new Error("documents.artifacts.errors.sources_not_found"), { status: 404 })
     }
-
-    const notAllowed = documents.find((document) => !document.agentAllowed)
-    if (notAllowed) {
-      return errorJson("documents.artifacts.errors.source_not_allowed", 400, locale)
+    if (documents.some((document) => !document.agentAllowed)) {
+      throw Object.assign(new Error("documents.artifacts.errors.source_not_allowed"), { status: 400 })
     }
 
     let template = null
     if (templateId) {
       template = await prisma.userDocument.findFirst({
-        where: {
-          id: templateId,
-          ownerId: auth.userId,
-          kind: "TEMPLATE"
-        },
-        select: {
-          id: true,
-          title: true,
-          originalName: true,
-          agentAllowed: true
-        }
+        where: { id: templateId, ownerId: auth.userId, kind: "TEMPLATE" },
+        select: { id: true, title: true, originalName: true, agentAllowed: true }
       })
-
-      if (!template) {
-        return errorJson("documents.artifacts.errors.template_not_found", 404, locale)
-      }
-
-      if (!template.agentAllowed) {
-        return errorJson("documents.artifacts.errors.template_not_allowed", 400, locale)
-      }
-    }
-
-    // Koht reserveeritakse ENNE AI-kutset ja reservatsioon on püsiv rida. Varem oli piir ainult
-    // loendus enne kutset ja auditirida lisandus alles pärast — kaks samaaegset päringut lugesid
-    // sama arvu ja mõlemad said läbi.
-    if (artifactId) {
-      try {
-        refinementSlot = await claimRefinementSlot({ artifactId, ownerId: auth.userId })
-      } catch (error) {
-        if (error?.status === 429) {
-          return errorJson("api.common.rate_limited", 429, locale, {
-            scope: "artifact_refine",
-            limit: error.refinementLimit ?? ARTIFACT_REFINEMENT_LIMIT,
-            used: error.usedRefinements
-          })
-        }
-        throw error
-      }
+      if (!template) throw Object.assign(new Error("documents.artifacts.errors.template_not_found"), { status: 404 })
+      if (!template.agentAllowed) throw Object.assign(new Error("documents.artifacts.errors.template_not_allowed"), { status: 400 })
     }
 
     try {
@@ -195,74 +182,106 @@ export async function POST(request) {
         userId: auth.userId,
         metric: "DOCUMENT_REFINE",
         scope: "documents.refine",
-        idempotencyKey: body?.idempotencyKey,
-        metadata: { artifactId: artifactId || null, sourceCount: documents.length, type }
+        idempotencyKey,
+        metadata: { artifactId, sourceCount: documents.length, type, refinementId: refinement.id }
       })
     } catch (error) {
-      await releaseRefinementSlot(refinementSlot?.auditId).catch((releaseError) =>
-        console.error("[documents artifacts] refinement slot release failed", safeError(releaseError))
-      )
+      await failArtifactRefinement({
+        refinementId: refinement.id,
+        claimToken: refinement.claimToken,
+        errorCode: error?.code || "USAGE_RESERVE_FAILED"
+      })
       return usageErrorJson(error, "documents.refine", locale)
     }
 
-    // Refinement'i tulemus elab vastuses, mitte serveris — püsiv on siin ainult auditirida, ja
-    // just tema on ka lubatud kolme paranduse loenduri allikas. Seepärast käivad koha kinnitamine
-    // ja tasu ÜHES tehingus: varem commit'iti enne auditit, ja auditi viga andis 500 juba
-    // arvestatud kasutusega — kasutaja ei saanud ei teksti ega oma ühikut tagasi.
     const { persisted } = await runPaidResult({
       reserve: () => usageHandle,
-      produce: () =>
-        refineArtifactDraftContent({
-          type,
-          documents,
-          templateTitle: template?.title || null,
-          currentContent,
-          refinementInstruction,
-          audience,
-          tone,
-          language,
-          length,
-          observabilityRoute: "api/documents/artifacts/refine",
-          observabilityStage: "document_refine",
-          userId: auth.userId,
-          userRole: role,
-          artifactId: artifactId || null
-        }),
+      produce: () => refineArtifactDraftContent({
+        type,
+        documents,
+        templateTitle: template?.title || null,
+        currentContent,
+        refinementInstruction,
+        audience,
+        tone,
+        language,
+        length,
+        observabilityRoute: "api/documents/artifacts/refine",
+        observabilityStage: "document_refine",
+        userId: auth.userId,
+        userRole: role,
+        artifactId
+      }),
       persist: async (result, handle) => {
         const content = result?.content || ""
-        if (content && result?.debugMeta) {
-          cacheRetrievalDebugMeta(auth.userId, content, result.debugMeta)
-        }
-
-        // Reserveeritud koht muutub päris auditijäljeks samas tehingus, kus tasu arvestatakse.
-        await prisma.$transaction(async (tx) => {
-          await confirmRefinementSlot(
-            { auditId: refinementSlot?.auditId, meta: { used: refinementSlot?.used ?? null } },
+        if (content && result?.debugMeta) cacheRetrievalDebugMeta(auth.userId, content, result.debugMeta)
+        return withStorageQuota(
+          {
+            userId: auth.userId,
+            role,
+            addBytes: getUtf8ByteLength(content),
+            releaseBytes: getUtf8ByteLength(artifact.content)
+          },
+          {},
+          (tx) => persistArtifactRefinement(
+            {
+              refinementId: refinement.id,
+              claimToken: refinement.claimToken,
+              ownerId: auth.userId,
+              artifactId,
+              expectedUpdatedAt,
+              content,
+              debugMeta: result?.debugMeta || null,
+              used: claim.used,
+              commitUsage: (db) => commitUsageForRequest(handle, { tx: db })
+            },
             { db: tx }
           )
-          await commitUsageForRequest(handle, { tx })
-        })
-
-        return { content }
+        )
       },
       release: async (handle, reason) => {
         await releaseUsageForRequest(handle, { reason })
-        await releaseRefinementSlot(refinementSlot?.auditId)
+        await failArtifactRefinement({
+          refinementId: refinement.id,
+          claimToken: refinement.claimToken,
+          errorCode: reason
+        })
       },
       onReleaseError: (releaseError) =>
-        console.error("[documents artifacts] release failed", safeError(releaseError))
+        console.error("[documents artifacts] refinement release failed", safeError(releaseError))
     })
 
     return json({
       ok: true,
-      content: persisted?.content || "",
-      updatedAt: new Date().toISOString()
+      content: persisted.content,
+      updatedAt: persisted.updatedAt,
+      refinement: { id: persisted.jobId, reused: claim.reused, cached: false }
     })
   } catch (error) {
+    if (refinement?.id && refinement?.claimToken) {
+      await failArtifactRefinement({
+        refinementId: refinement.id,
+        claimToken: refinement.claimToken,
+        errorCode: error?.code || error?.message || "REFINEMENT_FAILED"
+      }).catch((cleanupError) =>
+        console.error("[documents artifacts] refinement cleanup failed", safeError(cleanupError))
+      )
+    }
     const status = Number(error?.status) || 500
-    const messageKey =
-      status === 500 ? "documents.artifacts.errors.update_failed" : error?.message || "documents.artifacts.errors.update_failed"
-    console.error("[documents artifacts] refine failed", safeError(error))
-    return errorJson(messageKey, status, locale)
+    if (status === 429) {
+      return errorJson("api.common.rate_limited", 429, locale, {
+        scope: "artifact_refine",
+        limit: error.refinementLimit ?? ARTIFACT_REFINEMENT_LIMIT,
+        used: error.usedRefinements
+      })
+    }
+    const extra = error?.retryAfter ? { retryAfter: error.retryAfter } : undefined
+    if (status >= 500) console.error("[documents artifacts] refine failed", safeError(error))
+    return errorJson(
+      status === 500 ? "documents.artifacts.errors.update_failed" : error?.message || "documents.artifacts.errors.update_failed",
+      status,
+      locale,
+      extra
+    )
   }
 }

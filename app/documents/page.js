@@ -36,10 +36,6 @@ export default async function Page() {
     redirect(localizePath(gate.redirect || "/tellimus", locale))
   }
   const subscriptionInactive = !gate.ok
-  if (roleState.effectiveRole === "CLIENT") {
-    redirect(localizePath("/dokreziim", locale))
-  }
-
   return (
     <>
       {subscriptionInactive ? <SubscriptionReadOnlyBanner /> : null}

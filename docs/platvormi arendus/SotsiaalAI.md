@@ -113,8 +113,17 @@ saga, fotol on tõendatav alus ning attachment'i staging/tombstone-reconciler ka
 PostgreSQL-i kvoodilukku kui tavadokumendid. Mikrofon peatub vaate elutsükli piiridel ja
 kohalik heli on piiratud 10 minuti / 25 MiB-ga. Andmekoopia sisaldab nüüd versioonitud
 välitööajalugu, turvakirjad liiguvad tõendatava outbox'i kaudu ning OCR-il on püsiv töö,
-omaniku/IP kiiruspiir ja PostgreSQL-i globaalne concurrency-värav. Järgmine soovitatav sidus
-plokk on `SOL-COMP-01…05`.
+omaniku/IP kiiruspiir ja PostgreSQL-i globaalne concurrency-värav.
+
+**Dokumendi koostamise `SOL-COMP-01…05` on lõpetatud.** Tasuline täpsustus püsistab nüüd
+tulemuse, slot'i ja kasutuse atomaarse DRAFT/CAS-lepingu all; sama idempotentsusvõti taastab
+vastuse ka reload'i või ühenduse kao järel. Stop ütleb ausalt, et katkeb ainult ootamine,
+provideril on tähtaeg ning lease'i ülevõtt fence'ib vana protsessi ilma uut slot'i kulutamata.
+Kliendi lähtefail tekib nüüd ühe atomaarse upload'iga, töölt eemaldamine ei teeskle kustutust
+ning owner-skoobitud „Minu lähtefailid” vaates saab kõiki faile lehitseda, alla laadida ja
+eraldi päriselt kustutada. Kinnitamisel külmuvad päritolumanifest ning DOCX/PDF-baidid, nii et
+allika või malli hilisem muutmine ja kustutamine ei muuda kinnitatud dokumendi tõendit ega
+kordusallalaadimist.
 
 **RAG-teenuse `SOL-RAGSVC-01…28` on DONE ja peatüki UTC täisvärav on roheline.**
 `SOL-ORG-13`–`17`, `SOL-DOC-J-01`–`06` ja kogu `SOL-SLOG-01…24` parandused ning kiirem plokipõhine töökord on koodipuus. Kolmeastmelised arvud loetakse käsuga `npm run sol:progress`, neid siia ankrusse ei

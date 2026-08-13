@@ -62,7 +62,7 @@ function emptyFamily(extra = {}) {
 export default function DocumentsPage({ embedded = false, onBack = null, hideHeader = false }) {
   const router = useRouter()
   const { t, locale } = useI18n()
-  const { effectiveRole, isAdmin, isRoleResolved, refresh: refreshEffectiveRole } = useEffectiveRole()
+  const { effectiveRole, isAdmin, refresh: refreshEffectiveRole } = useEffectiveRole()
   const isClientRole = effectiveRole === "CLIENT"
 
   const [docsState, setDocsState] = useState(() => emptyFamily())
@@ -105,6 +105,7 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
   const loadDocuments = useCallback(async (offset = 0) => {
     try {
       const params = new URLSearchParams({ limit: String(WORKSPACE_WINDOW), offset: String(offset) })
+      if (isClientRole) params.set("kind", "MATERIAL")
       if (searchQuery) params.set("search", searchQuery)
       const response = await fetch(`/api/documents?${params.toString()}`, { cache: "no-store" })
       const payload = await response.json().catch(() => ({}))
@@ -121,7 +122,7 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
           : emptyFamily({ error: error?.message || t("documents.errors.load_documents") })
       )
     }
-  }, [searchQuery, t])
+  }, [isClientRole, searchQuery, t])
 
   const loadArtifacts = useCallback(async (offset = 0) => {
     try {
@@ -189,9 +190,11 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
 
   const loadWorkspace = useCallback(async () => {
     setLoading(true)
-    await Promise.allSettled([loadDocuments(), loadArtifacts(), loadAnalyses(), loadResearch()])
+    await Promise.allSettled(isClientRole
+      ? [loadDocuments()]
+      : [loadDocuments(), loadArtifacts(), loadAnalyses(), loadResearch()])
     setLoading(false)
-  }, [loadDocuments, loadArtifacts, loadAnalyses, loadResearch])
+  }, [isClientRole, loadDocuments, loadArtifacts, loadAnalyses, loadResearch])
 
   useEffect(() => { void loadWorkspace() }, [loadWorkspace])
 
@@ -292,11 +295,6 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
       pushWithTransition(router, localizePath("/vestlus", locale))
     })
   }, [locale, onBack, router])
-
-  useEffect(() => {
-    if (!isRoleResolved || !isClientRole) return
-    router.replace(localizePath("/dokreziim", locale))
-  }, [isClientRole, isRoleResolved, locale, router])
 
   async function submitUpload(event) {
     event.preventDefault()
@@ -520,8 +518,69 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
   if (isClientRole) {
     if (embedded) return <div />
     return (
-      <section>
-        <div />
+      <section className="documents-page">
+        <SubpageHeader
+          title={t("documents.client_document_library.title")}
+          onBack={() => router.push(localizePath("/dokreziim", locale))}
+          backAriaLabel={t("documents.client_document_library.back_to_compose")}
+        />
+        <Panel as="section" variant="secondary" padding="sm">
+          <p>{t("documents.client_document_library.description")}</p>
+          {actionError ? <div className="documents-error" role="alert">{actionError}</div> : null}
+          {successNotice?.message ? <div role="status">{successNotice.message}</div> : null}
+          {loading ? (
+            <div className="documents-list__status">{t("documents.loading")}</div>
+          ) : docsState.items.length === 0 ? (
+            <div className="documents-list__status">{t("documents.client_document_library.empty")}</div>
+          ) : (
+            <div className="documents-list">
+              {docsState.items.map((document) => (
+                <article key={document.id} className="documents-item">
+                  <div className="documents-item__head">
+                    <div>
+                      <h2>{document.title || document.originalName}</h2>
+                      <p className="documents-item__meta">
+                        {document.originalName} · {formatFileSize(document.size)}
+                      </p>
+                    </div>
+                    <span className="documents-item__updated">
+                      {t("documents.updated_at")} {formatDate(document.updatedAt, locale)}
+                    </span>
+                  </div>
+                  <div className="documents-item__actions">
+                    <Button
+                      as="a"
+                      href={`/api/documents/${encodeURIComponent(document.id)}/download`}
+                      size="sm"
+                      variant="linkBrand"
+                    >
+                      {t("documents.actions.download")}
+                    </Button>
+                    <Button type="button" size="sm" variant="danger" onClick={() => void deleteDocument(document.id)}>
+                      {t("documents.actions.delete")}
+                    </Button>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
+          {docsState.items.length < docsState.total ? (
+            <div className="documents-list__truncated">
+              <Button
+                type="button"
+                variant="secondary"
+                disabled={loadingMore}
+                onClick={async () => {
+                  setLoadingMore(true)
+                  await loadDocuments(docsState.items.length)
+                  setLoadingMore(false)
+                }}
+              >
+                {loadingMore ? t("documents.loading") : t("documents.workspace.load_more")}
+              </Button>
+            </div>
+          ) : null}
+        </Panel>
       </section>
     )
   }

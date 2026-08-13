@@ -28,13 +28,16 @@ test("document + artifact detail routes owner-scope the lookup instead of throwi
     "app/api/documents/[id]/audio-select/route.js",
     "app/api/documents/[id]/download/route.js",
     "app/api/documents/artifacts/refine/route.js",
-    "app/api/documents/artifacts/[id]/approve/route.js",
-    "app/api/documents/artifacts/[id]/download/route.js"
+    "app/api/documents/artifacts/[id]/approve/route.js"
   ]) {
     const src = read(rel);
     assert.match(src, /findFirst\(/, `${rel} should owner-scope its fetch`);
     assert.doesNotMatch(src, /assertOwnedByUser/, `${rel} should no longer assert ownership with a 403`);
   }
+  const artifactDownload = read("app/api/documents/artifacts/[id]/download/route.js");
+  const finalization = read("lib/documents/artifactFinalization.js");
+  assert.match(artifactDownload, /readFinalArtifactDownload/);
+  assert.match(finalization, /findFirst\(\{\s*where:\s*\{\s*id:\s*artifactId,\s*ownerId\b/);
 });
 
 test("store-fetched routes convert the ownership-fail branch to the resource's own 404", () => {
@@ -87,11 +90,13 @@ test("the three paid document routes settle usage through the shared paid-result
   }
 
   const refine = read("app/api/documents/artifacts/refine/route.js");
+  const durableRefinement = read("lib/documents/artifactRefinements.js");
   assert.match(
-    refine,
-    /\$transaction\([\s\S]{0,400}confirmRefinementSlot\([\s\S]{0,300}commitUsageForRequest\(handle,\s*\{\s*tx\s*\}\)/,
-    "the mandatory refine audit row and the charge must land in one transaction"
+    durableRefinement,
+    /documentAudit\.update\([\s\S]{0,500}agentArtifactRefinement\.update\([\s\S]{0,700}commitUsage\(db\)/,
+    "the durable result, mandatory audit row and charge must land in one transaction"
   );
+  assert.match(refine, /commitUsage:\s*\(db\)\s*=>\s*commitUsageForRequest\(handle,\s*\{\s*tx:\s*db\s*\}\)/);
 });
 
 // SOL-DOC-02. Kaks otsepunkti, kus tekkis päris väline kulu ilma ühegi perioodikvoodita:
@@ -135,7 +140,7 @@ test("artifact write and approve are conditional, not read-then-write-by-id", ()
   const approve = read("app/api/documents/artifacts/[id]/approve/route.js");
 
   assert.match(detail, /updateDraftArtifact\(/);
-  assert.match(approve, /approveArtifact\(/);
+  assert.match(approve, /finalizeArtifact\(/);
   for (const [rel, src] of [["detail", detail], ["approve", approve]]) {
     assert.doesNotMatch(
       src,
@@ -177,13 +182,13 @@ test("transcript writes stage the file and publish it only after the database", 
 // samaaegset päringut lugesid sama arvu ja mõlemad said läbi. Koht peab olema võetud enne kutset.
 test("the refinement limit claims a durable slot before the model call", () => {
   const refine = read("app/api/documents/artifacts/refine/route.js");
-  const slots = read("lib/documents/refinementSlots.js");
+  const slots = read("lib/documents/artifactRefinements.js");
 
-  const claimIndex = refine.indexOf("claimRefinementSlot(");
+  const claimIndex = refine.indexOf("claimArtifactRefinement(");
   const produceIndex = refine.indexOf("refineArtifactDraftContent(");
   assert.ok(claimIndex > 0, "the route must claim a slot");
   assert.ok(claimIndex < produceIndex, "the slot must be claimed before the model call");
-  assert.match(refine, /releaseRefinementSlot\(/, "a failed refinement must give the slot back");
+  assert.match(refine, /failArtifactRefinement\(/, "a failed refinement must give the slot back");
   assert.doesNotMatch(
     refine,
     /documentAudit\.count\(/,
@@ -191,9 +196,11 @@ test("the refinement limit claims a durable slot before the model call", () => {
   );
 
   // Otsus ja kirjutus ühes tehingus, mille serialiseerib artefaktipõhine nõuandelukk.
-  assert.match(slots, /\$transaction\([\s\S]{0,200}pg_advisory_xact_lock/);
+  assert.match(slots, /\$transaction\([\s\S]{0,300}pg_advisory_xact_lock/);
   assert.match(slots, /\$executeRaw/, "advisory lock only through $executeRaw");
   assert.match(slots, /meta: \{ path: \["pending"\], equals: true \}/, "only an unconfirmed claim may be deleted");
+  assert.match(slots, /leaseExpiresAt/);
+  assert.match(slots, /claimToken/);
 });
 
 // SOL-DOC-06. Kaks paralleelset esmakutset nägid mõlemad tühja lauda, kutsusid mõlemad
@@ -242,7 +249,8 @@ test("storage quota is measured and written inside one locked transaction", () =
   const usage = read("lib/storageUsage.js");
   assert.match(usage, /savedAnalysis\.findMany/, "SavedAnalysis belongs to the canonical sum");
   assert.match(usage, /analysisBytes/);
-  assert.match(usage, /totalBytes: documentBytes \+ materialBytes \+ artifactBytes \+ analysisBytes/);
+  assert.match(usage, /agentArtifactFinalSnapshot\.aggregate/);
+  assert.match(usage, /totalBytes: documentBytes \+ materialBytes \+ artifactBytes \+ artifactSnapshotBytes \+ analysisBytes/);
 
   const analysis = read("lib/documents/savedAnalysis.js");
   assert.match(analysis, /withStorageQuota\(/, "saving an analysis uses the same atomic reservation");

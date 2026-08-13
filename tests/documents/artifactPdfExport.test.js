@@ -27,9 +27,12 @@ test("artifact PDF export fails closed for unsupported characters", () => {
   assert.throws(() => createArtifactPdfBuffer(input), { code: "PDF_UNSUPPORTED_TEXT" });
 });
 
-test("artifact download route returns the localized 409 before generating an unsupported PDF", async () => {
+test("artifact finalization omits unsupported PDF bytes and download preserves the localized 409", async () => {
   const source = await readFile(new URL("../../app/api/documents/artifacts/[id]/download/route.js", import.meta.url), "utf8");
+  const finalization = await readFile(new URL("../../lib/documents/artifactFinalization.js", import.meta.url), "utf8");
 
-  assert.match(source, /format === "pdf" && !canCreateArtifactPdf\(\{ artifact, sources \}\)/);
-  assert.match(source, /errorJson\("api\.exports\.pdf_content_not_supported", 409, locale\)/);
+  assert.match(finalization, /canCreateArtifactPdf\(\{ artifact, sources \}\)/);
+  assert.match(finalization, /api\.exports\.pdf_content_not_supported/);
+  assert.match(source, /readFinalArtifactDownload/);
+  assert.match(source, /\[400, 403, 404, 409\]\.includes/);
 });

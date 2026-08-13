@@ -98,7 +98,13 @@ test("SOL-DOC-J-02: every UserDocument PATCH client sends its visible revision",
     readFile(new URL("../../components/agent/AgentModePage.jsx", import.meta.url), "utf8")
   ])
   assert.match(documentsPage, /expectedUpdatedAt:\s*currentDocument\.updatedAt/)
-  assert.match(agentPage, /expectedUpdatedAt:\s*uploadedDocument\.updatedAt/)
-  assert.match(agentPage, /agentAllowed:\s*false,\s*expectedUpdatedAt:\s*currentDocument\.updatedAt/)
   assert.match(agentPage, /expectedUpdatedAt:\s*transcript\.updatedAt/)
+  assert.doesNotMatch(agentPage, /const allowResponse = await fetch/)
+  assert.doesNotMatch(
+    agentPage.slice(
+      agentPage.indexOf("function handleClientRemoveDocument"),
+      agentPage.indexOf("async function loadTranscriptDocument")
+    ),
+    /method:\s*"PATCH"/
+  )
 })

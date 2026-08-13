@@ -3359,6 +3359,12 @@
       "ready_help_client": "Valitud dokumendid on valmis. Jätka dokumendi koostamise lehel, et koostada pöördujale vajalik tekst või vormi täitmise tulemus.",
       "ready_help_worker": "Valitud dokumendid on valmis. Jätka dokumendi koostamise lehel, et koostada spetsialisti töömustand."
     },
+    "client_document_library": {
+      "title": "Minu lähtefailid",
+      "description": "Siin näed kõiki dokumendi koostamiseks üles laaditud faile. Faili töölt eemaldamine ei kustuta seda; jäädav kustutamine toimub ainult siin.",
+      "back_to_compose": "Tagasi dokumendi koostamisse",
+      "empty": "Sul ei ole veel üles laaditud lähtefaile."
+    },
     "agent_workspace": {
       "selected_documents_title": "Valitud dokumendid",
       "selected_documents_description": "Need failid on praegu selle dokumenditöö juures kasutusel. Valikut saad muuta Dokumentides.",
@@ -3477,6 +3483,7 @@
       "refine_in_chat": "Täpsustused käivad nüüd agendi vestluses. Muuda siin sisu käsitsi ainult siis, kui tahad mustandit ise toimetada.",
       "refine": "Täienda mustandit",
       "refine_ready": "Mustandit täiendati tööruumis. Salvesta või kinnita see versioon, kui tahad selle Dokumentidesse viia.",
+      "refine_continues_after_stop": "Ootamine peatati. Server lõpetab paranduse tähtaja piires; ava mustand uuesti või korda sama toimingut, et tulemus taastada.",
       "saved_to_documents": "Mustand salvestati Dokumentidesse.",
       "open_detail": "Ava täisvaates",
       "summary_documents": "Dokumendid: {count}",
@@ -3626,6 +3633,8 @@
         "template_not_found": "Valitud malli ei leitud.",
         "template_not_allowed": "Valitud mall peab olema töörežiimiks lubatud.",
         "final_read_only": "Kinnitatud artefaktid on ainult lugemiseks.",
+        "refinement_in_progress": "Sama mustandi parandus on veel serveris pooleli. Oota hetk ja korda sama toimingut.",
+        "refinement_claim_lost": "Parandustöö võttis üle taastetöö. Korda sama toimingut, et saada püsiv tulemus.",
         "version_conflict": "Dokumenti muudeti vahepeal mujal. Laadi vaade uuesti ja proovi siis."
       }
     },

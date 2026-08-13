@@ -6,13 +6,14 @@ import {
   normalizeArtifactTitle,
   serializeArtifact
 } from "@/lib/documents/artifacts"
-import { approveArtifact, parseExpectedVersion } from "@/lib/documents/artifactMutation"
+import { parseExpectedVersion } from "@/lib/documents/artifactMutation"
+import { finalizeArtifact } from "@/lib/documents/artifactFinalization"
+import { withStorageQuota } from "@/lib/documents/storageQuota"
 import { prisma } from "@/lib/prisma"
 import { enforceDocumentsRateLimit, readDocumentsRateLimit } from "@/lib/documents/rateLimit"
 import { errorJson, json, localeFromRequest, requireDocumentUser } from "@/lib/documents/server"
 import { safeError } from "@/lib/privacy/safeError"
-import { getStorageQuotaBytes, getUtf8ByteLength } from "@/lib/storageGuardrails"
-import { getUserStorageUsageBytes } from "@/lib/storageUsage"
+import { getUtf8ByteLength } from "@/lib/storageGuardrails"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
@@ -62,36 +63,32 @@ export async function POST(request, { params }) {
     const nextTitle = body?.title === undefined ? undefined : normalizeArtifactTitle(body.title)
     const nextContent = body?.content === undefined ? undefined : normalizeArtifactContent(body.content)
 
-    if (nextContent !== undefined) {
-      const current = await prisma.agentArtifact.findFirst({
-        where: { id, ownerId: auth.userId },
-        select: { content: true }
-      })
-      if (!current) {
-        return errorJson("documents.artifacts.errors.not_found", 404, locale)
-      }
-      const role = effectiveRoleFromSession(auth.session)
-      const storageQuotaBytes = getStorageQuotaBytes(role)
-      const storageUsageBytes = await getUserStorageUsageBytes(auth.userId)
-      const projectedBytes =
-        storageUsageBytes.totalBytes - getUtf8ByteLength(current.content) + getUtf8ByteLength(nextContent)
-
-      if (projectedBytes > storageQuotaBytes) {
-        return errorJson("documents.errors.storage_quota_exceeded", 413, locale, {
-          scope: "storage_quota",
-          limit: storageQuotaBytes,
-          used: storageUsageBytes.totalBytes
-        })
-      }
+    const current = await prisma.agentArtifact.findFirst({
+      where: { id, ownerId: auth.userId },
+      select: { content: true }
+    })
+    if (!current) {
+      return errorJson("documents.artifacts.errors.not_found", 404, locale)
     }
 
-    const { artifact, alreadyFinal } = await approveArtifact({
-      artifactId: id,
-      ownerId: auth.userId,
-      expectedUpdatedAt,
-      title: nextTitle,
-      content: nextContent
-    })
+    const role = effectiveRoleFromSession(auth.session)
+    const releaseBytes = nextContent === undefined ? 0 : getUtf8ByteLength(current.content)
+    const addBytes = nextContent === undefined ? 0 : getUtf8ByteLength(nextContent)
+    const { artifact, alreadyFinal } = await withStorageQuota(
+      { userId: auth.userId, role, addBytes, releaseBytes },
+      {},
+      (tx, quota) => finalizeArtifact(
+        {
+          artifactId: id,
+          ownerId: auth.userId,
+          expectedUpdatedAt,
+          title: nextTitle,
+          content: nextContent,
+          maxSnapshotBytes: quota.limit - quota.projected
+        },
+        { db: tx }
+      )
+    )
 
     await logDocumentsAudit(alreadyFinal ? "artifact.approve_redundant" : "artifact.approved", {
       userId: auth.userId,

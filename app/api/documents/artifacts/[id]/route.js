@@ -29,6 +29,7 @@ async function resolveRouteId(paramsLike) {
 }
 
 const artifactInclude = {
+  finalSnapshot: true,
   template: {
     select: {
       id: true,

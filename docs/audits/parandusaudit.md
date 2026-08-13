@@ -85,7 +85,7 @@ Käsitsi siia ei kirjutata. DONE algab sõnaga `DONE`, PARTIAL sõnaga `PARTIAL`
 on NOT_DONE. Kvalifitseeritud DONE-väide vale algusega katkestab genereerimise, et ta ei
 kaoks vaikselt valesse rühma. Iga loetletud leiu lõpus on Seis-lõik **sõna-sõnalt**.
 
-DONE **272** / 429 · PARTIAL **4** / 429 · NOT_DONE **153** / 429 · peatükke täielikult DONE **21** / 40 · ametlikult lahtiseid 157 — 112 × P1 · 44 × P2 · 1 × P3
+DONE **277** / 429 · PARTIAL **4** / 429 · NOT_DONE **148** / 429 · peatükke täielikult DONE **22** / 40 · ametlikult lahtiseid 152 — 109 × P1 · 42 × P2 · 1 × P3
 
 | Peatükk | Kood | DONE | PARTIAL | NOT_DONE | Lahtiste prioriteedid | Märkus |
 |---|---|---:|---:|---:|---|---|
@@ -124,7 +124,7 @@ DONE **272** / 429 · PARTIAL **4** / 429 · NOT_DONE **153** / 429 · peatükke
 | Refleksioonid | SOL-REF | 0/9 | 0 | 9 | 3 × P1 · 6 × P2 |  |
 | Otsing | SOL-SEARCH | 0/7 | 0 | 7 | 1 × P1 · 5 × P2 · 1 × P3 |  |
 | Teenuseosutaja profiil | SOL-SPROF | 2/15 | 0 | 13 | 6 × P1 · 7 × P2 |  |
-| Dokumendi koostamine | SOL-COMP | 0/5 | 0 | 5 | 3 × P1 · 2 × P2 | 5 jätkufailist |
+| Dokumendi koostamine | SOL-COMP | 5/5 | 0 | 0 | – | **tehtud**, 5 jätkufailist |
 | Materjalid | SOL-MAT | 0/13 | 0 | 13 | 8 × P1 · 5 × P2 | 13 jätkufailist |
 | Minu jagamised | SOL-SHARE | 7/7 | 0 | 0 | – | **tehtud**, 7 jätkufailist |
 | Teenusekaart | SOL-SMAP | 9/9 | 0 | 0 | – | **tehtud**, 9 jätkufailist |
@@ -480,6 +480,14 @@ DONE **272** / 429 · PARTIAL **4** / 429 · NOT_DONE **153** / 429 · peatükke
 
 - `SOL-SPROF-01` P0 — konto kustutamine jätab SOLO-teenuseprofiili avalikuks ja RAG-i — DONE — kood, testid ja päris PostgreSQL-i runtime (`npm run sprof:consent:probe` 22/22).
 - `SOL-SPROF-02` P0 — soovitusloa tagasivõtmine võib vastata eduga, kuigi vana RAG-dokument jääb aktiivseks — DONE — kood, testid ja päris PostgreSQL-i runtime (`npm run sprof:consent:probe` 22/22).
+
+**Dokumendi koostamine** (`SOL-COMP`, 5/5)
+
+- `SOL-COMP-01` P1 — refinement'i tasuline tulemus kaob reload'i, vastuse kao või Stop-toimingu järel — DONE — refinement'i kavatsus on nüüd omaniku ja idempotentsusvõtmega püsiv
+- `SOL-COMP-02` P2 — refinement ei nõua DRAFT-seisu ega artefakti nähtud versiooni — DONE — refine nõuab nüüd `artifactId`, `expectedUpdatedAt`, idempotentsusvõtit ning
+- `SOL-COMP-03` P2 — protsessi katkemine võib jätta refinement-slot'i jäädavalt kasutatuks — DONE — poolelioleval refinement'il on nüüd lease, claim-token, katseloendur ja olek;
+- `SOL-COMP-04` P1 — kliendi lähtefail võib jääda peidetult alles ja kasutajal puudub selle haldamisvaade — DONE — kliendi upload saadab nüüd soovitud `agentAllowed:true` POST-is ning server
+- `SOL-COMP-05` P1 — FINAL-artefakti provenants ja allalaaditav dokument ei ole kinnitamise hetke suhtes muutumatud — DONE — FINAL-kinnitus loob nüüd sama tehingu sees muutumatu
 
 **Minu jagamised** (`SOL-SHARE`, 7/7)
 

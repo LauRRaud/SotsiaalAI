@@ -190,6 +190,7 @@ function createPrisma() {
     // maskeeriks kvoodikeeldu millekski muuks.
     materialSubmission: createModel(),
     agentArtifact: createModel(),
+    agentArtifactFinalSnapshot: createModel(),
     savedAnalysis: createModel(),
     user: createModel(),
     roomMessage: createModel()

@@ -3359,6 +3359,12 @@
       "ready_help_client": "Your selected documents are ready. Continue in Document drafting to prepare the needed text or form-filling result for the help seeker.",
       "ready_help_worker": "Your selected documents are ready. Continue in Document drafting to prepare a specialist-facing draft."
     },
+    "client_document_library": {
+      "title": "My source files",
+      "description": "This page lists every file uploaded for document drafting. Removing a file from a task does not delete it; permanent deletion happens only here.",
+      "back_to_compose": "Back to document drafting",
+      "empty": "You have not uploaded any source files yet."
+    },
     "agent_workspace": {
       "selected_documents_title": "Selected documents",
       "selected_documents_description": "These are the files currently included in this agent session. You can change the selection from Documents.",
@@ -3477,6 +3483,7 @@
       "refine_in_chat": "Refinements now happen in the agent conversation. Edit the content here manually only when you want to adjust the draft yourself.",
       "refine": "Refine draft",
       "refine_ready": "The draft was refined in the workspace. Save or approve this version if it should move to Documents.",
+      "refine_continues_after_stop": "Waiting was stopped. The server will finish the refinement within its deadline; reopen the draft or repeat the same action to recover the result.",
       "saved_to_documents": "Draft saved under Documents.",
       "open_detail": "Open full draft",
       "summary_documents": "Documents: {count}",
@@ -3626,6 +3633,8 @@
         "template_not_found": "Selected template was not found.",
         "template_not_allowed": "Selected template must be allowed for work mode.",
         "final_read_only": "Approved artifacts are read-only.",
+        "refinement_in_progress": "The same draft refinement is still running on the server. Wait a moment and repeat the same action.",
+        "refinement_claim_lost": "The refinement was taken over by recovery. Repeat the same action to retrieve the durable result.",
         "version_conflict": "The document changed elsewhere in the meantime. Reload the view and try again."
       }
     },

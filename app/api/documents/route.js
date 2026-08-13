@@ -31,6 +31,10 @@ export const revalidate = 0
 const DOCUMENTS_RATE_LIMIT_WINDOW_MS = readDocumentsRateLimit(process.env.DOCUMENTS_RATE_LIMIT_WINDOW_MS, 60_000, 1000)
 const DOCUMENTS_UPLOAD_RATE_LIMIT_MAX = readDocumentsRateLimit(process.env.DOCUMENTS_UPLOAD_RATE_LIMIT_MAX, 12)
 
+export function resolveUploadAgentAllowed(role, kind, value) {
+  return String(role || "").toUpperCase() === "CLIENT" && kind === "MATERIAL" && String(value || "") === "true"
+}
+
 function serializeDocument(document) {
   const frameworkAcceptance = document.frameworkAcceptance || null
   const callRecordingFile = document.callRecordingFiles?.[0] || null
@@ -249,14 +253,14 @@ export async function POST(request) {
   const kind = normalizeDocumentKind(formData.get("kind"))
   const templateFor = normalizeTemplateFor(formData.get("templateFor"), kind)
   const title = normalizeDocumentTitle(formData.get("title"), file?.name || "")
+  const role = effectiveRoleFromSession(auth.session)
+  const agentAllowed = resolveUploadAgentAllowed(role, kind, formData.get("agentAllowed"))
 
   let storagePath = ""
   let createdDocument = null
 
   try {
     const mime = ensureAllowedUpload(file)
-    const role = effectiveRoleFromSession(auth.session)
-
     const buffer = Buffer.from(await file.arrayBuffer())
     assertMimeMatchesBuffer(buffer, mime)
     await ensureDocumentsStorage()
@@ -285,7 +289,7 @@ export async function POST(request) {
               originalName: String(file.name || title),
               kind,
               templateFor,
-              agentAllowed: false,
+              agentAllowed,
               mime,
               size: staged.size,
               sha256: staged.sha256,

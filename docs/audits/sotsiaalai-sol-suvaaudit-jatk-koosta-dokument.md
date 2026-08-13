@@ -41,7 +41,13 @@
 
 **Vastuvõtukriteerium.** Refinement peab enne slot'i/tasu kinnitamist püsistama omaniku artefakti uue revision'i või eraldi idempotentse tulemuserea; sama võtmega retry tagastab täpselt sama tulemuse ilma uue mudelikutsuta. Stop peab olema serveripoolne tühistus-/fencing-leping või UI peab ausalt ütlema, et katkeb ainult ootamine ja tulemus jääb taastatavaks. Negatiivtestid peavad katkestama ühenduse pärast mudelivastust, enne HTTP-vastust ja pärast serveri commit'i ning tegema reload'i/Stop'i; igal juhul on tulemus leitav või tasu ja slot vabastatud.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE — refinement'i kavatsus on nüüd omaniku ja idempotentsusvõtmega püsiv
+`AgentArtifactRefinement`: mudelitulemus, artefakti uus sisu, kinnitatud slot ning kasutuse
+commit sünnivad ühes tehingus ja sama võtmega kordus tagastab talletatud tulemuse ilma uue
+mudelikutseta. Brauseri Stop katkestab ausalt ainult ootamise ning ütleb, et töö jätkub serveri
+tähtajani; Playwrighti rada tõendas selle teate ja pärast serveripoolse tulemuse tekkimist reload'il
+uue sisu taastumise. Vana koodi vastane kandev kontroll oli enne parandust 0/3, sihttestid on
+34/34 PASS ja päris PostgreSQL-i refinement-sond 13/13 PASS.
 
 ### SOL-COMP-02 — refinement ei nõua DRAFT-seisu ega artefakti nähtud versiooni — P2
 
@@ -51,7 +57,12 @@
 
 **Vastuvõtukriteerium.** Refine peab nõudma `artifactId`, `expectedUpdatedAt` ja DRAFT-seisu ning siduma kontrolli sloti reserveerimisega atomaarse tingimuse/luku all. Stale või FINAL annab 409 enne RAG-i, mudelit, kasutusreservatsiooni ja slot'i. Päris PostgreSQL-i võistlustest peab katma refine vs PATCH, refine vs approve ning otse-API FINAL-refine'i ja tõendama null kulu/null auditirida kaotajale.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE — refine nõuab nüüd `artifactId`, `expectedUpdatedAt`, idempotentsusvõtit ning
+lukustatud DRAFT-versiooni enne slot'i ja kasutusreservatsiooni. Sama artefakti aktiivne refine
+fence'ib PATCH-i ja approve'i; püsistus teeb tingimusliku DRAFT/CAS-kirjutuse ning FINAL või stale
+versioon lõpeb 409-ga enne tasulist tööd. Päris PostgreSQL-i sond tõendas refine-vs-PATCH,
+refine-vs-approve ja FINAL-refine kaotajate nullmutatsiooni/null-slot'i; kogu sond 13/13 PASS ning
+sihttestid 34/34 PASS.
 
 ### SOL-COMP-03 — protsessi katkemine võib jätta refinement-slot'i jäädavalt kasutatuks — P2
 
@@ -61,7 +72,12 @@
 
 **Vastuvõtukriteerium.** Pending-slot vajab lease/`expiresAt`/state-masinat ja idempotentsusvõtmega omandit; retry peab sama slot'i jätkama või aegunud slot'i auditeeritult vabastama. Provideril peab olema serveripoolne tähtaeg. Crash-probe peab tapma protsessi pärast claim'i, käivitama uue protsessi ning tõendama, et slot taastub ja kinnitatud auditiridu ei kustutata; mitme protsessi sama võtmega test tõendab üht slot'i ja üht tulemust.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE — poolelioleval refinement'il on nüüd lease, claim-token, katseloendur ja olek;
+aegunud töö võetakse sama rea, sama idempotentsusvõtme ja sama pending-slot'iga üle ning vana
+protsessi claim ei saa enam tulemust kirjutada. Ebaõnnestumine eemaldab ainult pending-auditi,
+kinnitatud audit jääb puutumata, ning providerikutsel on serveripoolne 90-sekundiline vaikimisi
+tähtaeg. Päris PostgreSQL-i sond tõendas lease'i ülevõttu kahe kliendiga, vana claim'i fencing'ut,
+ühte job'i/slot'i/tulemust ja uue claim'i edukat lõppu (13/13 PASS); sihttestid 34/34 PASS.
 
 ### SOL-COMP-04 — kliendi lähtefail võib jääda peidetult alles ja kasutajal puudub selle haldamisvaade — P1
 
@@ -71,7 +87,16 @@
 
 **Vastuvõtukriteerium.** Kliendi upload peab looma faili ja soovitud agendiloa ühe serveripoolse terviktoiminguna või tegema teise sammu vea korral auditeeritud kompenseeriva kustutuse/püsiva recovery-seisu. Kliendil peab olema kõigi oma lähtefailide owner-skoobitud, pagineeritud vaade koos download'i ja päris DELETE-iga; „eemalda töölt” ja „kustuta fail” peavad olema eri, ausad toimingud. Valik peab URL-i/sessiooni olekuga koherentselt püsima. Negatiivtestid: PATCH-viga pärast upload'i, reload enne genereerimist, remove → reload, 11+ faili ning cleanup-viga.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE — kliendi upload saadab nüüd soovitud `agentAllowed:true` POST-is ning server
+lubab selle ainult CLIENT + MATERIAL kombinatsioonile ja kirjutab loa sama kvoodiluku,
+andmebaasitehingu ning staged-file publish'i sees; eraldi PATCH-i ega selle järel tekkivat
+peidetud orb-rida enam ei ole. „Eemalda” muudab ainult töö valikut ja URL-i, püsifail jääb
+raamatukokku; `/documents` on kliendile owner-skoobitud pagineeritud „Minu lähtefailid” vaade
+eraldi download'i ja pöördumatu DELETE-toiminguga. Vana koodi vastane kontroll oli 0/3;
+sihttestid 18/18 PASS. Playwright tõendas päris upload'i ühe POST-iga, reload'il URL-valiku
+taastumise, remove → reload valiku puudumise koos alles DB-rea/failiga, 12 faili nähtavuse ning
+raamatukogu DELETE-i; järelkontroll kinnitas rea ja faili kadumise ning `DataDeletionJob=done`
+(1 katse). Stagingu vea­süstid jäid roheliseks ning katsesisu koristati.
 
 ### SOL-COMP-05 — FINAL-artefakti provenants ja allalaaditav dokument ei ole kinnitamise hetke suhtes muutumatud — P1
 
@@ -81,7 +106,17 @@
 
 **Vastuvõtukriteerium.** Kinnitamisel peab tekkima muutumatu provenantsimanifest: artefakti/content hash, mudeli ja prompti versioon, iga lähte ID + kinnitamiseaegne SHA/revision/pealkiri, tegelikult kasutatud chunk-ID-d/ranges ning malli hash või renderdatud faili püsiv hash/koopia. Lähte kustutus säilitab mittetundliku tombstone-manifesti ega muuda FINAL-revision'i. Sama FINAL-i kordusdownload peab olema bititasemel või versioonitud manifesti järgi deterministlik. Negatiivtestid peavad rename'ima ja kustutama lähte, kustutama malli ning muutma retrieval'i chunk'e pärast approve'i; vana download/provenants jääb muutumatuks.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE — FINAL-kinnitus loob nüüd sama tehingu sees muutumatu
+`AgentArtifactFinalSnapshot` rea: manifest külmutab sisu räsi, mudeli ja prompti versiooni,
+tegelikult kasutatud chunk-ID/indexi/tekstiräsi, iga allika kinnitamiseaegse ID/pealkirja/SHA/
+revision'i ning malli SHA/revision'i. DOCX- ja toetatud PDF-baidid koos räsidega säilivad
+hetktõmmises; allalaadimine loeb ainult neid baite ja kontrollib terviklust, mitte enam elavat
+malli ega allikaseoseid. Hetktõmmise maht kuulub kasutaja kvooti ning renderi või kvoodi viga
+rollback'ib ka FINAL-muutuse. Vana koodi vastane kontroll oli 0/3; sihttestid on 29/29 PASS,
+179 migratsiooni täisahel roheline ja päris PostgreSQL-i sond 11/11 PASS (allika rename/delete,
+malli delete, retrieval-meta muutmine, FK-kaskaad, DOCX/PDF baitidentsus ja rollback). Autenditud
+Playwrighti brauserikontekst sai manifesti detail-API-st 200 ning kaks DOCX-i (2906 baiti) ja
+kaks PDF-i (809 baiti) 200-vastustena; mõlema formaadi kordused olid bait-identse SHA-256-ga.
 
 ## Testid ja negatiivkontrollid
 

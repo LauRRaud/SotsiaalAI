@@ -749,6 +749,7 @@ model User {
   documents              UserDocument[]
   transcriptionJobs      TranscriptionJob[]
   agentArtifacts         AgentArtifact[]
+  artifactRefinements    AgentArtifactRefinement[]
   documentAudits         DocumentAudit[]
   frameworkAcceptances   FrameworkAcceptance[]
   materialSubmissions    MaterialSubmission[]
@@ -4120,6 +4121,8 @@ model AgentArtifact {
   owner           User                          @relation(fields: [ownerId], references: [id], onDelete: Cascade)
   template        UserDocument?                 @relation("AgentArtifactTemplate", fields: [templateId], references: [id], onDelete: SetNull)
   sourceDocuments AgentArtifactSourceDocument[]
+  refinements     AgentArtifactRefinement[]
+  finalSnapshot   AgentArtifactFinalSnapshot?
   audits          DocumentAudit[]
   /// JUHTUM-V1 seos (L15), Cascade — vt `UserDocument.caseWorkItems`.
   caseWorkItems   CaseWorkItem[]
@@ -4129,6 +4132,51 @@ model AgentArtifact {
   @@index([ownerId, type, updatedAt])
   @@index([ownerId, status, updatedAt])
   @@index([templateId])
+}
+
+model AgentArtifactFinalSnapshot {
+  id           String   @id @default(cuid())
+  artifactId   String   @unique
+  manifest     Json
+  docxBytes    Bytes
+  docxSha256   String
+  docxSize     Int
+  pdfBytes     Bytes?
+  pdfSha256    String?
+  pdfSize      Int      @default(0)
+  totalBytes   Int
+  createdAt    DateTime @default(now())
+
+  artifact AgentArtifact @relation(fields: [artifactId], references: [id], onDelete: Cascade)
+
+  @@index([createdAt])
+}
+
+model AgentArtifactRefinement {
+  id                String    @id @default(cuid())
+  artifactId        String
+  ownerId           String
+  idempotencyKey    String
+  requestHash       String
+  claimToken        String
+  expectedUpdatedAt DateTime
+  status            String    @default("RUNNING")
+  leaseExpiresAt    DateTime?
+  attempts          Int       @default(1)
+  slotAuditId       String?   @unique
+  resultContent     String?   @db.Text
+  resultUpdatedAt   DateTime?
+  completedAt       DateTime?
+  lastErrorCode     String?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  artifact AgentArtifact @relation(fields: [artifactId], references: [id], onDelete: Cascade)
+  owner    User          @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  @@unique([ownerId, idempotencyKey])
+  @@index([artifactId, status, updatedAt])
+  @@index([status, leaseExpiresAt])
 }
 
 model TranscriptionJob {

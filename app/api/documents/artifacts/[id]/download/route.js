@@ -1,15 +1,13 @@
 import { writeDocumentAudit } from "@/lib/documents/audit"
 import { buildArtifactFileName } from "@/lib/documents/artifacts"
 import { DOCX_MIME_TYPE, PDF_MIME_TYPE } from "@/lib/documents/constants"
-import { createArtifactDocxBuffer } from "@/lib/documents/docxExport"
-import { canCreateArtifactPdf, createArtifactPdfBuffer } from "@/lib/documents/pdfExport"
+import { readFinalArtifactDownload } from "@/lib/documents/artifactFinalization"
 import { prisma } from "@/lib/prisma"
 import { enforceDocumentsRateLimit, readDocumentsRateLimit } from "@/lib/documents/rateLimit"
 import {
   buildDownloadHeaders,
   errorJson,
   localeFromRequest,
-  readStoredDocument,
   requireDocumentUser
 } from "@/lib/documents/server"
 import { safeError } from "@/lib/privacy/safeError"
@@ -24,32 +22,6 @@ const ARTIFACTS_DOWNLOAD_RATE_LIMIT_MAX = readDocumentsRateLimit(process.env.ART
 async function resolveRouteId(paramsLike) {
   const params = await paramsLike
   return String(params?.id || "").trim()
-}
-
-const artifactInclude = {
-  template: {
-    select: {
-      id: true,
-      title: true,
-      originalName: true,
-      mime: true,
-      storagePath: true
-    }
-  },
-  sourceDocuments: {
-    include: {
-      document: {
-        select: {
-          id: true,
-          title: true,
-          originalName: true
-        }
-      }
-    },
-    orderBy: {
-      createdAt: "asc"
-    }
-  }
 }
 
 export async function GET(request, { params }) {
@@ -82,50 +54,18 @@ export async function GET(request, { params }) {
   }
 
   try {
-    const artifact = await prisma.agentArtifact.findFirst({
-      where: { id, ownerId: auth.userId },
-      include: artifactInclude
-    })
-
-    if (!artifact) {
-      return errorJson("documents.artifacts.errors.not_found", 404, locale)
-    }
-
-    if (artifact.status !== "FINAL" || !artifact.approvedAt) {
-      return errorJson("documents.artifacts.errors.download_requires_approval", 409, locale)
-    }
-
-    let templateBuffer = null
-    if (artifact.template?.storagePath && artifact.template?.mime === DOCX_MIME_TYPE) {
-      templateBuffer = await readStoredDocument(artifact.template.storagePath)
-    }
-
-    const sources = artifact.sourceDocuments
-      .map((link) => link.document)
-      .filter(Boolean)
-
-    if (format === "pdf" && !canCreateArtifactPdf({ artifact, sources })) {
-      return errorJson("api.exports.pdf_content_not_supported", 409, locale)
-    }
-
-    const fileBuffer = format === "pdf"
-      ? createArtifactPdfBuffer({
-          artifact,
-          sources
-        })
-      : createArtifactDocxBuffer({
-          artifact,
-          sources,
-          templateBuffer
-        })
+    const { artifact, bytes: fileBuffer, manifest } = await readFinalArtifactDownload(
+      { artifactId: id, ownerId: auth.userId, format },
+      { db: prisma }
+    )
 
     await writeDocumentAudit("artifact.downloaded", {
       userId: auth.userId,
       artifactId: artifact.id,
       title: artifact.title,
       type: artifact.type,
-      templateId: artifact.templateId || null,
-      sourceCount: sources.length,
+      templateId: manifest?.template?.id || null,
+      sourceCount: Array.isArray(manifest?.sources) ? manifest.sources.length : 0,
       format
     })
 
@@ -136,8 +76,8 @@ export async function GET(request, { params }) {
       headers: buildDownloadHeaders(buildArtifactFileName(artifact, format), mime)
     })
   } catch (error) {
-    if (error?.status === 403) {
-      return errorJson("api.common.forbidden", 403, locale)
+    if ([400, 403, 404, 409].includes(Number(error?.status))) {
+      return errorJson(error.message, error.status, locale)
     }
     console.error("[documents artifacts] download failed", safeError(error))
     return errorJson("documents.artifacts.errors.download_failed", 500, locale)

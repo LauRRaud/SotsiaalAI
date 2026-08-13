@@ -257,10 +257,10 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
     setConversationMessages([])
   }
 
-  function buildWorkspaceHref(nextArtifactId = "") {
+  function buildWorkspaceHref(nextArtifactId = "", nextDocumentIds = selectedDocumentIds) {
     const basePath = localizePath("/dokreziim", locale)
     const params = new URLSearchParams()
-    if (selectedDocumentIds.length) params.set("documents", selectedDocumentIds.join(","))
+    if (nextDocumentIds.length) params.set("documents", nextDocumentIds.join(","))
     if (nextArtifactId) params.set("artifact", nextArtifactId)
     const query = params.toString()
     return query ? `${basePath}?${query}` : basePath
@@ -828,6 +828,7 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
       const formData = new FormData()
       formData.append("file", file)
       formData.append("kind", "MATERIAL")
+      formData.append("agentAllowed", "true")
 
       const uploadResponse = await fetch("/api/documents", {
         method: "POST",
@@ -837,30 +838,13 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
       const uploadPayload = await uploadResponse.json().catch(() => ({}))
       if (!uploadResponse.ok) throw new Error(uploadPayload?.message || t("documents.errors.upload_failed"))
 
-      const uploadedDocument = uploadPayload?.document || null
-      if (!uploadedDocument?.id) throw new Error(t("documents.errors.upload_failed"))
-
-      const allowResponse = await fetch(`/api/documents/${encodeURIComponent(uploadedDocument.id)}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          "x-ui-locale": locale
-        },
-        body: JSON.stringify({
-          kind: "MATERIAL",
-          agentAllowed: true,
-          expectedUpdatedAt: uploadedDocument.updatedAt
-        })
-      })
-      const allowPayload = await allowResponse.json().catch(() => ({}))
-      if (!allowResponse.ok) throw new Error(allowPayload?.message || t("documents.errors.update_failed"))
-
-      const nextDocument = allowPayload?.document || uploadedDocument
+      const nextDocument = uploadPayload?.document || null
+      if (!nextDocument?.id || !nextDocument.agentAllowed) throw new Error(t("documents.errors.upload_failed"))
+      const nextIds = Array.from(new Set([...selectedDocumentIds, nextDocument.id])).slice(0, CLIENT_MAX_DOCUMENTS)
       setDocuments((current) => [...current, nextDocument].slice(0, CLIENT_MAX_DOCUMENTS))
-      setSelectedDocumentIds((current) =>
-        Array.from(new Set([...current, nextDocument.id])).slice(0, CLIENT_MAX_DOCUMENTS)
-      )
+      setSelectedDocumentIds(nextIds)
       setMissingDocumentIds((current) => current.filter((id) => id !== nextDocument.id))
+      router.replace(buildWorkspaceHref(persistedArtifactId, nextIds), { scroll: false })
       setRunFeedback({
         message: t("documents.agent_workspace.client_file_added", {
           title: nextDocument.title || nextDocument.originalName
@@ -873,40 +857,16 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
     }
   }
 
-  async function handleClientRemoveDocument(documentId) {
+  function handleClientRemoveDocument(documentId) {
     const nextId = String(documentId || "").trim()
     if (!nextId) return
-    const currentDocument = documents.find((document) => document.id === nextId)
-    if (!currentDocument?.updatedAt) return
-
     clearResultMessages()
-    try {
-      const response = await fetch(`/api/documents/${encodeURIComponent(nextId)}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          "x-ui-locale": locale
-        },
-        body: JSON.stringify({ agentAllowed: false, expectedUpdatedAt: currentDocument.updatedAt })
-      })
-      const payload = await response.json().catch(() => ({}))
-      if (!response.ok) {
-        if (response.status === 409 && payload?.document?.id) {
-          setDocuments((current) => current.map((document) =>
-            document.id === payload.document.id ? payload.document : document
-          ))
-        }
-        throw new Error(payload?.message || t("documents.errors.update_failed"))
-      }
-
-      setSelectedDocumentIds((current) => current.filter((id) => id !== nextId))
-      setDocuments((current) => current.filter((document) => document.id !== nextId))
-      setMissingDocumentIds((current) => current.filter((id) => id !== nextId))
-      setRunFeedback({ message: t("documents.agent_workspace.client_file_removed") })
-    } catch (error) {
-      setRunFeedback(null)
-      setRunError(error?.message || t("documents.errors.update_failed"))
-    }
+    const nextIds = selectedDocumentIds.filter((id) => id !== nextId)
+    setSelectedDocumentIds(nextIds)
+    setDocuments((current) => current.filter((document) => document.id !== nextId))
+    setMissingDocumentIds((current) => current.filter((id) => id !== nextId))
+    router.replace(buildWorkspaceHref(persistedArtifactId, nextIds), { scroll: false })
+    setRunFeedback({ message: t("documents.agent_workspace.client_file_removed") })
   }
 
   async function loadTranscriptDocument(transcript) {
@@ -1310,6 +1270,7 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
         documentIds: documents.map((document) => document.id),
         type: effectiveType,
         artifactId: workspaceResult.id || undefined,
+        expectedUpdatedAt: workspaceResult.updatedAt,
         templateId: isClientRole ? undefined : selectedTemplateId || undefined,
         currentContent: resultContent,
         refinementInstruction: effectiveRefinement,
@@ -1360,21 +1321,19 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
         templateId: isClientRole ? "" : selectedTemplateId
       })
       setRunFeedback({ message: t("documents.agent_workspace.refine_ready") })
-      if (!workspaceResult?.id) {
-        setWorkspaceResult((current) =>
-          current
-            ? {
-                ...current,
-                content: nextContent,
-                updatedAt: nextUpdatedAt || current.updatedAt
-              }
-            : current
-        )
-      }
+      setWorkspaceResult((current) =>
+        current
+          ? {
+              ...current,
+              content: nextContent,
+              updatedAt: nextUpdatedAt || current.updatedAt
+            }
+          : current
+      )
       return nextDraft
     } catch (error) {
       if (error?.name === "AbortError") {
-        setRunFeedback({ message: t("chat.error.interrupted") })
+        setRunFeedback({ message: t("documents.agent_workspace.refine_continues_after_stop") })
         return null
       }
       setRunError(error?.message || t("documents.artifacts.errors.update_failed"))
