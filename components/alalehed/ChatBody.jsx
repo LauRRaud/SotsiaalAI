@@ -149,20 +149,47 @@ function readWorkflowFromSearchParams(searchParams) {
   return normalizeActiveWorkflow(searchParams.get("workflow"));
 }
 
-function buildHelpWorkflowPrefillState(searchParams) {
+function readHelpJourneyPrefillRequest(searchParams) {
+  if (readWorkflowFromSearchParams(searchParams) !== "help_request") return null;
+  const journeyId = String(searchParams.get("fromJourney") || "").trim();
+  if (!journeyId) return null;
+  const shareKeys = String(searchParams.get("share") || "")
+    .split(",")
+    .map((item) => item.trim())
+    .filter(Boolean);
+  return {
+    journeyId,
+    shareKeys,
+    shareKey: shareKeys.join(",")
+  };
+}
+
+function buildHelpWorkflowPrefillState(searchParams, journeyProjection = null) {
   const workflow = readWorkflowFromSearchParams(searchParams);
   if (workflow !== "help_request" && workflow !== "help_offer") return null;
   const intent = workflow === "help_request" ? "create_help_request" : "create_help_offer";
+  const fromJourney = String(searchParams.get("fromJourney") || "").trim();
+  if (fromJourney) {
+    if (journeyProjection?.sourceJourneyId !== fromJourney) return null;
+    return createHelpWorkflowDraftState({
+      intent,
+      step: "collect_required_fields",
+      flowLocked: true,
+      municipalityId: journeyProjection.municipalityId,
+      municipalityLabel: journeyProjection.municipalityLabel,
+      sourceMessage: "journey_help_prefill",
+      draft: journeyProjection.draft
+    });
+  }
   const categoryCode = String(searchParams.get("category") || "").trim().toUpperCase();
   const municipalityName = String(searchParams.get("municipalityName") || "").trim();
-  const fromJourney = String(searchParams.get("fromJourney") || "").trim();
 
   return createHelpWorkflowDraftState({
     intent,
     step: "collect_required_fields",
     flowLocked: true,
     municipalityLabel: municipalityName,
-    sourceMessage: fromJourney ? "journey_help_prefill" : "",
+    sourceMessage: "",
     draft: {
       categoryCode,
       category: categoryCode,
@@ -415,9 +442,41 @@ export default function ChatBody({
   const [errorBanner, setErrorBanner] = useState(null);
   const [isCrisis, setIsCrisis] = useState(false);
   const [activeWorkflow, setActiveWorkflow] = useState(() => readWorkflowFromSearchParams(searchParams));
-  const helpWorkflowPrefillState = useMemo(
-    () => buildHelpWorkflowPrefillState(searchParams),
+  const helpJourneyPrefillRequest = useMemo(
+    () => readHelpJourneyPrefillRequest(searchParams),
     [searchParams]
+  );
+  const helpJourneyPrefillId = helpJourneyPrefillRequest?.journeyId || "";
+  const helpJourneyPrefillShareKey = helpJourneyPrefillRequest?.shareKey || "";
+  const [helpJourneyProjection, setHelpJourneyProjection] = useState(null);
+  useEffect(() => {
+    if (!helpJourneyPrefillId) {
+      setHelpJourneyProjection(null);
+      return undefined;
+    }
+    const controller = new AbortController();
+    setHelpJourneyProjection(null);
+    fetch(`/api/journeys/${encodeURIComponent(helpJourneyPrefillId)}/help-request-draft`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        shareKeys: helpJourneyPrefillShareKey.split(",").filter(Boolean)
+      }),
+      signal: controller.signal
+    })
+      .then((response) => response.json().catch(() => ({})))
+      .then((payload) => {
+        if (controller.signal.aborted) return;
+        setHelpJourneyProjection(payload?.ok ? payload.prefill || null : null);
+      })
+      .catch(() => {
+        if (!controller.signal.aborted) setHelpJourneyProjection(null);
+      });
+    return () => controller.abort();
+  }, [helpJourneyPrefillId, helpJourneyPrefillShareKey]);
+  const helpWorkflowPrefillState = useMemo(
+    () => buildHelpWorkflowPrefillState(searchParams, helpJourneyProjection),
+    [helpJourneyProjection, searchParams]
   );
   const [journeyWorkflowDraft, setJourneyWorkflowDraft] = useState(null);
   const journeyDraftReadyScopeRef = useRef("");

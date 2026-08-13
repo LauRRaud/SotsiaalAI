@@ -108,6 +108,7 @@ function createFormState(journey) {
     primaryPath: journey?.primaryPath || "UNKNOWN",
     domains: arrayToText(journey?.domains),
     missingInfo: arrayToText(journey?.missingInfo),
+    riskSignals: arrayToText(journey?.riskSignals),
     suggestedActions: actionsToText(journey?.suggestedActions)
   };
 }
@@ -561,7 +562,25 @@ function PreInquirySharePanel({ journey, href, t }) {
 }
 
 function HelpRequestSharePanel({ journey, href, t }) {
-  const [selectedShareKeys, setSelectedShareKeys] = useState(["summary", "category", "region", "ownWords"]);
+  const context = journey?.context && typeof journey.context === "object" && !Array.isArray(journey.context)
+    ? journey.context
+    : {};
+  const helpMediation = context.helpMediation && typeof context.helpMediation === "object" && !Array.isArray(context.helpMediation)
+    ? context.helpMediation
+    : {};
+  const handoff = buildHelpMediationHandoff(journey);
+  const shareOptions = [
+    ["summary", t("journey.helpMediation.share.summary", "olukorra lühikokkuvõte"), Boolean(journey?.summary)],
+    ["category", t("journey.helpMediation.share.category", "abi liik"), Boolean(handoff?.categoryCode)],
+    ["region", t("journey.helpMediation.share.region", "piirkond"), Boolean(handoff?.municipalityName || handoff?.municipalityId)],
+    ["timing", t("journey.helpMediation.share.timing", "aeg või sagedus"), Boolean(helpMediation.timing || context.timing)],
+    ["conditions", t("journey.helpMediation.share.conditions", "tingimused"), Boolean(helpMediation.conditions || context.conditions)],
+    ["ownWords", t("journey.helpMediation.share.ownWords", "kasutaja enda sõnastatud vajadus"), Boolean(context.personWish || context.ownWords)]
+  ];
+  const [selectedShareKeys, setSelectedShareKeys] = useState(() => shareOptions
+    .filter(([key, , present]) => present && ["summary", "category", "region", "ownWords"].includes(key))
+    .map(([key]) => key));
+  const [preview, setPreview] = useState(null);
   const reviewedHref = useMemo(() => {
     const selected = selectedShareKeys.filter(Boolean);
     const [path, query = ""] = String(href || "").split("?");
@@ -579,14 +598,31 @@ function HelpRequestSharePanel({ journey, href, t }) {
         : [...current, key]
     ));
   };
-  const shareOptions = [
-    ["summary", t("journey.helpMediation.share.summary", "olukorra lühikokkuvõte"), Boolean(journey?.summary)],
-    ["category", t("journey.helpMediation.share.category", "abi liik"), true],
-    ["region", t("journey.helpMediation.share.region", "piirkond"), true],
-    ["timing", t("journey.helpMediation.share.timing", "aeg või sagedus"), false],
-    ["conditions", t("journey.helpMediation.share.conditions", "tingimused"), false],
-    ["ownWords", t("journey.helpMediation.share.ownWords", "kasutaja enda sõnastatud vajadus"), true]
-  ];
+  useEffect(() => {
+    if (!journey?.id) return undefined;
+    const controller = new AbortController();
+    fetch(`/api/journeys/${encodeURIComponent(journey.id)}/help-request-draft`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ shareKeys: selectedShareKeys }),
+      signal: controller.signal
+    })
+      .then((response) => response.json().catch(() => ({})))
+      .then((payload) => {
+        if (!controller.signal.aborted) setPreview(payload?.ok ? payload.prefill || null : null);
+      })
+      .catch(() => {
+        if (!controller.signal.aborted) setPreview(null);
+      });
+    return () => controller.abort();
+  }, [journey?.id, selectedShareKeys]);
+  const previewText = [
+    preview?.draft?.description,
+    preview?.draft?.categoryCode ? `${t("journey.helpMediation.share.category", "abi liik")}: ${preview.draft.categoryCode}` : "",
+    preview?.municipalityLabel ? `${t("journey.helpMediation.share.region", "piirkond")}: ${preview.municipalityLabel}` : "",
+    preview?.draft?.availabilityOrStart,
+    preview?.draft?.conditions
+  ].filter(Boolean).join("\n");
 
   return (
     <section>
@@ -599,7 +635,7 @@ function HelpRequestSharePanel({ journey, href, t }) {
         </p>
       </div>
       <div>
-        {shareOptions.map(([key, label]) => (
+        {shareOptions.filter(([, , present]) => present).map(([key, label]) => (
           <Checkbox
             key={key}
             checked={selectedShareKeys.includes(key)}
@@ -608,6 +644,10 @@ function HelpRequestSharePanel({ journey, href, t }) {
           />
         ))}
       </div>
+      <section aria-live="polite">
+        <h4>{t("journey.share.recipient_preview", "Abisoovi mustandisse läheb")}</h4>
+        <pre>{previewText || t("journey.share.empty_preview", "Valitud Teekonna sisu ei lisata.")}</pre>
+      </section>
       <div>
         <Button as="a" href={reviewedHref} disabled={!selectedShareKeys.length}>
           {t("journey.helpMediation.share.continue", "Alusta abisoovi")}
@@ -854,6 +894,7 @@ export default function JourneyDetail({ journeyId }) {
           primaryPath: form.primaryPath,
           domains: textToLines(form.domains),
           missingInfo: textToLines(form.missingInfo),
+          riskSignals: textToLines(form.riskSignals),
           suggestedActions: reconcileSuggestedActionTitles(journey?.suggestedActions, form.suggestedActions),
           expectedUpdatedAt: journey?.updatedAt
         })
@@ -1656,6 +1697,13 @@ export default function JourneyDetail({ journeyId }) {
                       label={t("journey.labels.missing_info", "Missing information")}
                       value={form.missingInfo}
                       onChange={(value) => updateForm("missingInfo", value)}
+                      t={t}
+                    />
+                    <FormListField
+                      id="journey-detail-risk-signals"
+                      label={t("journey.labels.risk_signals", "Ettevaatlikud tähelepanekud")}
+                      value={form.riskSignals}
+                      onChange={(value) => updateForm("riskSignals", value)}
                       t={t}
                     />
                     <FormListField
