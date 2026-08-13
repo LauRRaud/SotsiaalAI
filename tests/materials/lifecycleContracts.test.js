@@ -23,8 +23,11 @@ test("material upload uses a durable batch, idempotency fingerprint, and atomic 
   assert.doesNotMatch(routeSource, /enforceDocumentsRateLimit\(/)
 })
 
-test("material upload validates the complete buffered document before storage", () => {
-  assert.match(routeSource, /await validateMaterialBuffer\(buffer, mime\)/)
+test("material upload quarantines and scans before any document parser", () => {
+  assert.doesNotMatch(routeSource, /validateMaterialBuffer/)
+  assert.match(routeSource, /quarantineMaterialUpload/)
+  assert.match(lifecycleSource, /scanState:\s*"CLEAN"/)
+  assert.match(lifecycleSource, /validationState:\s*"VALIDATED"/)
   assert.doesNotMatch(routeSource, /assertMimeMatchesBuffer\(/)
 })
 
@@ -48,6 +51,8 @@ test("material import route delegates to the versioned receipt-gated RAG lifecyc
   assert.match(schemaSource, /@@unique\(\[sha256, ragCollection, ragAudience\]\)/)
   assert.match(ragLifecycleSource, /Number\(receipt\?\.inserted\) > 0/)
   assert.match(ragLifecycleSource, /Number\(chunks\) > 0/)
+  assert.match(ragLifecycleSource, /scanState !== "CLEAN"/)
+  assert.match(ragLifecycleSource, /validationState !== "VALIDATED"/)
   assert.match(ragLifecycleSource, /action: "RAG_DELETE"/)
   assert.match(ragMigrationSource, /MaterialSubmission_imported_receipt_check/)
   assert.match(ragMigrationSource, /"ragIngestStatus" = 'IMPORTED'/)

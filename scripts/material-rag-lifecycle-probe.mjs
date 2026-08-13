@@ -124,7 +124,14 @@ async function createReviewed(ownerId, hash, suffix) {
       size: 16,
       sha256: hash,
       storagePath: `uploads/${suffix}.pdf`,
-      storageStatus: "ACTIVE"
+      storageStatus: "ACTIVE",
+      scanState: "CLEAN",
+      validationState: "VALIDATED",
+      scannedAt: new Date(),
+      scanEngine: "ProbeClamAV",
+      scanEngineVersion: "probe",
+      scanSignatureVersion: "probe",
+      scanSignatureUpdatedAt: new Date()
     }
   })
   return reviewMaterialSubmission({

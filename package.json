@@ -90,6 +90,7 @@
     "comp:final:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/compose-final-snapshot-probe.mjs",
     "materials:lifecycle:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/material-lifecycle-probe.mjs",
     "materials:rag-lifecycle:probe": "node --conditions=react-server --import ./scripts/register-node-test-loader.mjs scripts/material-rag-lifecycle-probe.mjs",
+    "materials:security:probe": "node --conditions=react-server --import ./scripts/register-node-test-loader.mjs scripts/material-security-probe.mjs",
     "materials:notifications": "node --import ./scripts/register-node-test-loader.mjs scripts/material-notifications.mjs",
     "materials:notifications:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/material-notification-probe.mjs",
     "org:sponsor:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/org-sponsorship-race-probe.mjs",

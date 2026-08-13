@@ -754,6 +754,7 @@ model User {
   frameworkAcceptances      FrameworkAcceptance[]
   materialSubmissions       MaterialSubmission[]
   materialSubmissionBatches MaterialSubmissionBatch[]
+  materialUploadQuarantines MaterialUploadQuarantine[]
   savedAnalyses             SavedAnalysis[]
 
   // Chat / runs
@@ -4434,6 +4435,15 @@ model MaterialSubmission {
   sha256                  String
   storagePath             String
   storageStatus           String    @default("ACTIVE")
+  scanState              String    @default("LEGACY_UNKNOWN")
+  validationState        String    @default("LEGACY_UNKNOWN")
+  scannedAt              DateTime?
+  scanEngine             String?
+  scanEngineVersion      String?
+  scanSignatureVersion   String?
+  scanSignatureUpdatedAt DateTime?
+  scanFailureCode        String?
+  quarantineReceiptId   String?   @unique
   batchId                 String?
   duplicateOfId           String?
   status                  String    @default("pending")
@@ -4469,6 +4479,7 @@ model MaterialSubmission {
 
   submittedByUser User                     @relation(fields: [submittedByUserId], references: [id], onDelete: Cascade)
   batch           MaterialSubmissionBatch? @relation(fields: [batchId], references: [id], onDelete: SetNull)
+  quarantineReceipt MaterialUploadQuarantine? @relation(fields: [quarantineReceiptId], references: [id], onDelete: SetNull)
 
   @@unique([sha256, ragCollection, ragAudience])
   @@index([submittedByUserId, createdAt])
@@ -4480,6 +4491,36 @@ model MaterialSubmission {
   @@index([reviewedAt])
   @@index([ragIngestStatus, ragIngestNextAt])
   @@index([ragRemovalStatus])
+  @@index([scanState, validationState, storageStatus])
+}
+
+model MaterialUploadQuarantine {
+  id                     String    @id @default(cuid())
+  submittedByUserId      String
+  declaredMime           String
+  size                   Int
+  sha256                 String
+  quarantinePath         String?
+  storageState           String    @default("QUARANTINED")
+  scanState              String    @default("PENDING")
+  validationState        String    @default("PENDING")
+  scannedAt              DateTime?
+  engine                 String?
+  engineVersion          String?
+  signatureVersion       String?
+  signatureUpdatedAt     DateTime?
+  failureCode            String?
+  scanAttempts           Int       @default(0)
+  scanNextAt             DateTime?
+  createdAt              DateTime  @default(now())
+  updatedAt              DateTime  @updatedAt
+
+  submittedByUser User                @relation(fields: [submittedByUserId], references: [id], onDelete: Cascade)
+  submission      MaterialSubmission?
+
+  @@index([submittedByUserId, createdAt])
+  @@index([scanState, scanNextAt])
+  @@index([storageState, updatedAt])
 }
 
 // ---------------------------------------------------------------------------

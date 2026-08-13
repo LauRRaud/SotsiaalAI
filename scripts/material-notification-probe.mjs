@@ -81,7 +81,14 @@ try {
         size: 20,
         sha256: "a".repeat(64),
         storagePath: `materials/${batch.id}.pdf`,
-        storageStatus: "ACTIVE"
+        storageStatus: "ACTIVE",
+        scanState: "CLEAN",
+        validationState: "VALIDATED",
+        scannedAt: baseTime,
+        scanEngine: "ProbeClamAV",
+        scanEngineVersion: "probe",
+        scanSignatureVersion: "probe",
+        scanSignatureUpdatedAt: baseTime
       }
     })
     return batch

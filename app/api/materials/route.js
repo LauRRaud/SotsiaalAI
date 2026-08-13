@@ -1,4 +1,3 @@
-import crypto from "node:crypto"
 import { getServerSession } from "next-auth"
 
 import { authConfig } from "@/auth"
@@ -8,8 +7,8 @@ import { readDocumentsRateLimit } from "@/lib/documents/rateLimit"
 import { requireMaterialReadAccess, requireMaterialUploadAccess } from "@/lib/materials/access"
 import { getMaterialSubmissionSchemaMessage, isMaterialSubmissionSchemaError } from "@/lib/materials/compat"
 import { createMaterialSubmissions, listMaterialSubmissions } from "@/lib/materials/lifecycle"
+import { quarantineMaterialUpload } from "@/lib/materials/quarantine"
 import { ensureAllowedUpload, normalizeMaterialComment } from "@/lib/materials/server"
-import { validateMaterialBuffer } from "@/lib/materials/validation"
 import { getMaterialsFileCountLimit } from "@/lib/storageGuardrails"
 import { safeError } from "@/lib/privacy/safeError"
 
@@ -59,6 +58,7 @@ export async function handleMaterialPost(
   {
     sessionProvider = getOptionalSession,
     uploadAccess = requireMaterialUploadAccess,
+    quarantineUpload = quarantineMaterialUpload,
     createSubmissions = createMaterialSubmissions
   } = {}
 ) {
@@ -88,14 +88,12 @@ export async function handleMaterialPost(
     for (const file of uploaded) {
       const mime = ensureAllowedUpload(file)
       const buffer = Buffer.from(await file.arrayBuffer())
-      await validateMaterialBuffer(buffer, mime)
-      files.push({
+      files.push(await quarantineUpload({
+        userId: String(session.user.id),
         originalName: String(file.name || "material"),
         mime,
-        size: buffer.byteLength,
-        sha256: crypto.createHash("sha256").update(buffer).digest("hex"),
         buffer
-      })
+      }))
     }
     const idempotencyKey = formData.get("idempotencyKey") || request.headers.get("idempotency-key")
     const result = await createSubmissions({

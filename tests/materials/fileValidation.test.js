@@ -65,4 +65,5 @@ test("material PDF validation rejects header-only and structurally incomplete fi
   await validateMaterialBuffer(minimalPdf(), "application/pdf")
   await rejects(Buffer.from("%PDF-not-a-real-pdf"), "application/pdf")
   await rejects(Buffer.from("%PDF-1.7\n%%EOF\n"), "application/pdf")
+  await rejects(Buffer.concat([minimalPdf(), Buffer.from("<script>polyglot</script>")]), "application/pdf")
 })

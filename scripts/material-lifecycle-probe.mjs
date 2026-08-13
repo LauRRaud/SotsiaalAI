@@ -59,7 +59,7 @@ try {
     import("../lib/storageUsage.js")
   ])
   const {
-    createMaterialSubmissions,
+    createMaterialSubmissions: createMaterialSubmissionsRaw,
     getMaterialSubmissionDownload,
     listMaterialSubmissions,
     reconcileMaterialFileJobs,
@@ -79,6 +79,40 @@ try {
     },
     async remove(path) { store.delete(path) },
     async exists(path) { return store.has(path) }
+  }
+  async function createMaterialSubmissions(input, options = {}) {
+    for (const file of input.files || []) {
+      if (file.quarantineReceiptId) continue
+      const quarantinePath = `quarantine/${randomUUID()}`
+      store.set(quarantinePath, Buffer.from(file.buffer))
+      const scannedAt = new Date()
+      const receipt = await prisma.materialUploadQuarantine.create({ data: {
+        submittedByUserId: input.userId,
+        declaredMime: file.mime,
+        size: file.size,
+        sha256: file.sha256,
+        quarantinePath,
+        storageState: "QUARANTINED",
+        scanState: "CLEAN",
+        validationState: "VALIDATED",
+        scannedAt,
+        engine: "ProbeClamAV",
+        engineVersion: "probe",
+        signatureVersion: "probe",
+        signatureUpdatedAt: scannedAt
+      } })
+      Object.assign(file, {
+        quarantineReceiptId: receipt.id,
+        scanState: "CLEAN",
+        validationState: "VALIDATED",
+        scannedAt,
+        scanEngine: receipt.engine,
+        scanEngineVersion: receipt.engineVersion,
+        scanSignatureVersion: receipt.signatureVersion,
+        scanSignatureUpdatedAt: receipt.signatureUpdatedAt
+      })
+    }
+    return createMaterialSubmissionsRaw(input, { ...options, quarantineFiles: { remove: fileOps.remove } })
   }
   const owner = await prisma.user.create({ data: { email: `owner-${randomUUID()}@sol-mat.invalid`, role: "SOCIAL_WORKER" } })
   const stranger = await prisma.user.create({ data: { email: `stranger-${randomUUID()}@sol-mat.invalid`, role: "SOCIAL_WORKER" } })
@@ -111,7 +145,7 @@ try {
   expect("same idempotency key returns the same stored result", replay.replay && first.submissions[0].id === replay.submissions[0].id)
   const conflict = await Promise.allSettled([createMaterialSubmissions({ ...input, comment: "changed" }, { db: prisma, fileOps })])
   expect("same key with a changed payload returns 409", conflict[0].status === "rejected" && conflict[0].reason?.status === 409)
-  const duplicate = await createMaterialSubmissions({ ...input, idempotencyKey: `probe-duplicate-${randomUUID()}` }, { db: prisma, fileOps })
+  const duplicate = await createMaterialSubmissions({ ...input, files: [makeFile("idem", 20)], idempotencyKey: `probe-duplicate-${randomUUID()}` }, { db: prisma, fileOps })
   expect("duplicate hash is surfaced", duplicate.submissions[0].duplicateOfId === first.submissions[0].id)
 
   const concurrentOwner = await prisma.user.create({ data: { email: `concurrent-${randomUUID()}@sol-mat.invalid`, role: "SOCIAL_WORKER" } })
@@ -238,7 +272,26 @@ try {
       status: "imported",
       reviewRevision: { increment: 1 },
       reviewedAt: new Date(),
-      reviewedBy: reviewAdminA.email
+      reviewedBy: reviewAdminA.email,
+      sourceId: `material:${reviewId}`,
+      ragDocId: `material:${reviewId}:v1`,
+      ragVersion: 1,
+      ragContentHash: reviewed.sha256,
+      ragCollection: "synthetic",
+      ragAudience: "SOCIAL_WORKER",
+      ragPolicyVersion: "synthetic-v1",
+      rightsEvidenceMode: "DOCUMENTED_LICENSE",
+      ragRetentionMode: "DELETE_WITH_SUBMISSION_OR_ACCOUNT",
+      ragWithdrawalAuthority: "SUBMITTER_RIGHTS_HOLDER_OR_ADMIN",
+      ragIngestStatus: "IMPORTED",
+      ragIngestedAt: new Date(),
+      ragIngestedByUserId: reviewAdminA.id,
+      authorName: "Synthetic",
+      rightsHolder: "Synthetic",
+      rightsBasis: "Synthetic",
+      rightsEvidence: "Synthetic",
+      rightsConfirmedAt: new Date(),
+      rightsConfirmedByUserId: reviewOwner.id
     }
   })
   const triggerRejected = await Promise.allSettled([prisma.materialSubmission.update({
@@ -256,6 +309,13 @@ try {
       size: 1,
       sha256: String(index).padStart(64, "0"),
       storagePath: `uploads/page-${index}.txt`,
+      scanState: "CLEAN",
+      validationState: "VALIDATED",
+      scannedAt: fixedTime,
+      scanEngine: "ProbeClamAV",
+      scanEngineVersion: "probe",
+      scanSignatureVersion: "probe",
+      scanSignatureUpdatedAt: fixedTime,
       createdAt: fixedTime,
       updatedAt: fixedTime
     }))
@@ -307,7 +367,9 @@ try {
     await new Promise((resolve) => setTimeout(resolve, 30))
     return prisma.materialSubmission.create({ data: {
       submittedByUserId: legacyOwner.id, comment: "legacy", originalName: `${index}.txt`, mime: "text/plain",
-      size: 1000, sha256: String(index).padStart(64, "f"), storagePath: `uploads/legacy-${index}.txt`
+      size: 1000, sha256: String(index).padStart(64, "f"), storagePath: `uploads/legacy-${index}.txt`,
+      scanState: "CLEAN", validationState: "VALIDATED", scannedAt: new Date(),
+      scanEngine: "ProbeClamAV", scanEngineVersion: "probe", scanSignatureVersion: "probe", scanSignatureUpdatedAt: new Date()
     } })
   }
   const legacyResults = await Promise.allSettled(Array.from({ length: 4 }, (_, index) => legacy(index)))
