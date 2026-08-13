@@ -118,9 +118,9 @@ Audit ei kasutanud vana `SotsiaalAI-sol-audit-cfa62ea` koopiat ega põhiprojekti
 
 **Vastuvõtukriteerium.** `imported` peab sündima ainult ühe versioonitud ingest-teenuse kinnitatud tulemuse järel ning kandma püsivat `source_id/doc_id`, sisu hash'i, collection/audience'i, `ingestedAt`, vea/retry seisu, autorit ja õiguste alust/omanikku. Kustutus/withdraw peab kasutama seotud RAG_DELETE job'i ning imported staatus ei tohi tekkida ilma `chunk_count > 0` kviteeringuta. Negatiivtestid: ingest 4xx/5xx/timeout, DB lõpuviga, null-chunk ingest, duplikaat, konto kustutus ja RAG-delete retry.
 
-**Seis (13.08.2026): PARTIAL — otsusest sõltumatu versioonitud Materjalide RAG-elutsükkel ja fail-closed pahavara-/karantiinipiir on valmis, kuid import jääb serveris suletuks kuni omanik kinnitab neli poliitikavalikut.** `MaterialSubmission` kannab püsivat `sourceId`/`ragDocId`-d, versiooni ja sisu hash'i, collection/audience'i, ingest'i aega/tegijat/katsete-vea-retry seisu, autorit, õiguste omajat/alust/tõendit ning RAG-eemalduse seisu. `imported` sünnib ainult `import_rag` teenuse järel, kui versioonitud ingest tagastab `inserted > 0` ja järgnev dokumendi kontroll kinnitab `chunks > 0`; 4xx loob sama versiooni `RAG_INGEST` retry, 5xx/timeout/null-chunk ja DB lõpuviga loovad auditeeritud kompenseeriva `RAG_DELETE` töö ning pooleliolev cleanup blokeerib uue ingest'i. SHA + collection + audience duplikaat on DB-s unikaalne. Materjalide konto-kustutus kasutab nüüd sama püsivat RAG-, faili- ja karantiinieemalduse rada ega säilita teadmuskoopiat vaikimisi. Otsustuspakett: (1) `rightsEvidenceMode` — valida `SUBMITTER_ATTESTATION`, `ORG_ADMIN_ATTESTATION` või `DOCUMENTED_LICENSE`; valik määrab kohustusliku UI-tõendi ja auditikinnitaja. (2) määrata täpne `collection` ning audience `CLIENT`, `SOCIAL_WORKER` või `BOTH`; see määrab ingest-meta ja retrieval-piiri. (3) `retentionMode` — valida `DELETE_WITH_SUBMISSION_OR_ACCOUNT` või `RETAIN_AFTER_ACCOUNT_WITH_LICENSE`; teisel juhul tuleb lisaks määrata tähtaeg ja kontoülese õiguste/provenance'i registri omanik. (4) `withdrawalAuthority` — valida `ADMIN_ONLY`, `SUBMITTER_OR_ADMIN` või `SUBMITTER_RIGHTS_HOLDER_OR_ADMIN`; see määrab withdraw/delete autoriseerimise ja selle, millal konto kustutus RAG_DELETE'i käivitab.
+**Seis (13.08.2026): PARTIAL — vale `imported` lubadus, õigusteotsus, sanitiseeritud tekstiderivaat ja päris isoleeritud RAG-elutsükkel on DONE; PDF/DOCX CDR ning tootmise eraldi turvaköide on NOT_PROVEN.** Kinnitatud muutumatu poliitika on `rightsEvidenceMode=DOCUMENTED_LICENSE`, `collection=materials_reviewed_social_work`, `audience=SOCIAL_WORKER`, `retentionMode=DELETE_WITH_SUBMISSION_OR_ACCOUNT`, `withdrawalAuthority=SUBMITTER_RIGHTS_HOLDER_OR_ADMIN`, versioon `materials-rag-v1-2026-08`. Shared-RAG lubab ainult public domain'i, selget avatud litsentsi või dokumenteeritud luba ning keelab kliendijuhtumi, konfidentsiaalse ja isikuandmetega materjali; pelk esitaja kinnitus ei ava importi. `imported` sünnib ainult sanitiseeritud derivaadi versioonitud ingest'i, `inserted > 0` kviteeringu ja järgneva `chunks > 0` kontrolli järel. Admin näeb auditeeritud preview-rajalt ainult derivaati, mitte toororiginaali. Ebaõnnestumine, null-chunk, DB lõpuviga, withdraw ja konto kustutus kasutavad püsivaid retry/kompensatsiooni/RAG_DELETE radu.
 
-Üleslaadimine kirjutab baidid nüüd enne parserit juhusliku laiendita serverinimega, 0600 režiimi taotleva failina karantiini, mis paikneb webroot'ist väljas; DB-s on ainult metaandmed, mitte BLOB. Lokaalne clamd `VERSION` + `INSTREAM` adapter kontrollib enne PDF/DOCX parserit nii tulemust kui signatuuride vanust. Timeout, unavailable, protokolliviga, UNKNOWN ja aegunud/tundmatu signatuur jätavad faili `QUARANTINED + FAILED`; `INFECTED` tekitab sisuta auditi, püsiva `MATERIAL_QUARANTINE_DELETE` tombstone'i ja turvalise eemalduskatse. Alles püsiva `CLEAN + VALIDATED` tõendi järel saab rida `ACTIVE`; nimekiri, review, omaniku/admini allalaadimine ja RAG on muus seisus serveris keelatud ning PostgreSQL CHECK keelab nii vale `ACTIVE` kui vale imported-seisu. RAG kontrollib lisaks signatuuritõendi värskust. Sihttestid 40/40 PASS; päris ajutise PostgreSQL-i failisüsteemi turvasonde 12/12 PASS (`database` ja ajutine storage eemaldatud), Materjalide elutsüklisond 30/30 PASS ning RAG-elutsüklisond 20/20 PASS (`database=0`); peatüki täisvärav 4737/4737 ja täielik migratsiooniahel 199/199 PASS. Toodangu ClamAV 1.5.3 `clamd` ning `freshclam` on aktiivsed, rakenduse kasutaja kuulub `clamav` gruppi ja Unix-socket on `660`; rakenduse enda adapter andis puhtale proovile `CLEAN`, EICAR-ile `INFECTED` ning kinnitas signatuuri aja. **NOT_PROVEN:** CDR/sanitiseeritud derivaat, päris isoleeritud RAG/Chroma rada ning eraldi `nodev,nosuid,noexec` mount; kinnitamata õiguste-, audience'i- ja säilituspoliitika tõttu jääb RAG-import fail-closed. Karantiin on webroot'ist väljas ja failid taotlevad 0600 režiimi, kuid praegune `/var/lib/sotsiaalai/materials` asub juurfailisüsteemil. Skanni retry worker jääb järgmise otsusest sõltumatu tööploki teemaks.
+Üleslaadimine kirjutab baidid enne parserit juhusliku laiendita 0600 failina webroot'ist väljapoole; DB-s on ainult metaandmed. ClamAV/freshclam tootmistõend püsib: puhas proov `CLEAN`, EICAR `INFECTED`, Unix-socket `660`. TXT läbib lokaalse ühepoolse UTF-8 sanitiseerimise; PDF/DOCX jäävad kinnitatud kohaliku CDR-adapterita fail-closed. Repo sisaldab `nodev,nosuid,noexec` mount'i, 0700 alamkataloogide ja start-eelse kontrolli lepingut, kuid seda ei aktiveerita ilma päris eraldi köiteta. Ühendatud sihttestid olid 92/92; päris ajutise PostgreSQL-i casework-sond 28/28, Materjalide kihilise säilituse sond 21/21 ja migratsiooniahel 200/200. Isoleeritud kohalik RAG/Chroma sond läbis päris `ingest → search → delete` raja: otsing leidis ainult derivaadi markeri, toormarker puudus, kustutuse järel oli dokument puudu ning kasutaja-, esitise-, job'i-, faili-, Chroma- ja ajutise DB jääk oli 0. **NOT_PROVEN:** konkreetse kohaliku PDF/DOCX CDR-mootori valik/paigaldus, tootmise eraldi köite mount ja autenditud brauserirada.
 
 ### SOL-MAT-09 — ülevaatuse olekumasin lubab suvalisi ja stale üleminekuid — P1
 
@@ -178,25 +178,19 @@ esitist, owner-filtrit, üht olemasolevat ja üht puuduvat faili ning legacy `im
 
 **Vastuvõtukriteerium.** Määratleda iga oleku retention (pending SLA + expiry, rejected lühike vaidlusaken, imported originaali/RAG-koopia eraldi leping), salvestada tähtaeg ja käivitada idempotentne fail+DB+RAG sweep püsiva retry/auditiga. UI ja data-export manifest peavad näitama tähtaega ning SMTP-koopia andmeminimeerimise/retention'i piiri. Kellatest peab katma kõik olekud, sweep'i crash'i ja teise jooksu.
 
-**Seis.** PARTIAL — otsusest sõltumatu retention-elutsükkel on valmis, kuid sisulised päevad
-ja imported RAG-koopia õigusrežiim ei ole kanoonilises poliitikas endiselt kinnitatud.
-`MaterialSubmission` ja `MaterialUploadQuarantine` kannavad nüüd klassi, tähtaega,
-poliitikaversiooni, ankrut ja tööseisu; pending/rejected/reviewed/imported ning
-PENDING/FAILED/CLEAN karantiini iga üleminek arvutab tähtaja deterministlikult ümber ainult
-siis, kui `MATERIALS_RETENTION_POLICY_STATUS=CONFIRMED`, versioon ja kõik seitse päevaarvu on
-olemas. Muul juhul püsib server, UI ja andmekoopia ausalt `DECISION_PENDING` / `null` seisus.
-Keskne retention-tsükkel ajastab püsiva `MATERIAL_RETENTION_DELETE` töö, kasutab MAT-08
-`RAG_DELETE` rada enne faili ja DB-rida ning talub fail-/RAG-/DB-tõrget, crash'i, paralleelset
-claim'i ja kordusjooksu; konto kustutus kasutab sama rada ning ei säilita RAG-koopiat vaikimisi.
-Katkine või lõpetamata karantiin saab eraldi konfigureeritud tähtaja ja auditeeritud püsiva
-eemaldustöö. SMTP outbox jääb andmeminimeerituks. Sihttestid 38/38 ja konto-/retentioni seotud
-testid 20/20 PASS; päris ajutise PostgreSQL-i + ketta sond 24/24 PASS, migratsiooniahel 199/199
-PASS ning sond eemaldas ajutise DB ja storage'i (`remote_rag=synthetic_only`). **NOT_PROVEN:**
-toodangu päevad ja imported-koopia õigusrežiim; välis-RAG-i ei kutsutud. Omanikule soovitus,
-mitte kinnitatud otsus: pending 14 päeva, rejected 30 päeva, reviewed 30 päeva, imported
-originaal 7 päeva pärast edukat ingest'i; karantiin PENDING 1 päev, FAILED 7 päeva ja CLEAN
-1 päev; RAG-koopia 365 päeva alates ingest'ist, kuid kustub varem esitise või konto
-kustutamisel, välja arvatud ainult eraldi dokumenteeritud ülekantava litsentsi korral.
+**Seis (13.08.2026): DONE.** `MaterialSubmission` ei kasuta enam üht ühist säilituskella:
+originaalil, sanitiseeritud derivaadil ja RAG-koopial on eraldi tähtaeg, seisund, ankur ning
+kustutusaeg. Kinnitatud muutumatu poliitika on pending 14 päeva, rejected 30, reviewed kuid
+importimata 30, edukalt ingestitud originaal 7, karantiini PENDING/FAILED/CLEAN 1 päev ning
+derivaat/RAG kuni 365 päeva. Litsentsi/allika varasem lõpp ja keelatud või isikuandmetega sisu
+käivitavad varasema kustutuse; withdraw ja konto kustutus kasutavad sama kihilist rada.
+Püsiv worker kustutab ainult tähtaja ületanud kihi, säilitab esitise audit/provenance'i rea,
+taastub fail-, RAG-, DB- ja protsessikatkestusest ning blokeerib uuesti kinnitamata RAG-i enne
+aastapiiri kustutust. UI ja andmekoopia näitavad kolme kihi tähtaegu eraldi; SMTP outbox jääb
+andmeminimeerituks. Negatiivkontroll tõendas vana ühe-kella sidestuse; ühendatud sihttestid
+92/92 PASS, päris PostgreSQL + ketas + sünteetiline RAG-sond 21/21 PASS, isoleeritud päris
+RAG/Chroma `ingest → search → delete` PASS ja migratsiooniahel 200/200 PASS. Kõik ajutised
+andmebaasid, failid ja RAG-hoidlad koristati kontrollitult.
 
 ### SOL-MAT-13 — SMTP-teavituse tõrge kaob logisse ja tööjärjekord ei tea sellest — P2
 

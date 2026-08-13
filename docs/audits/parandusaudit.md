@@ -85,7 +85,7 @@ Käsitsi siia ei kirjutata. DONE algab sõnaga `DONE`, PARTIAL sõnaga `PARTIAL`
 on NOT_DONE. Kvalifitseeritud DONE-väide vale algusega katkestab genereerimise, et ta ei
 kaoks vaikselt valesse rühma. Iga loetletud leiu lõpus on Seis-lõik **sõna-sõnalt**.
 
-DONE **426** / 429 · PARTIAL **3** / 429 · NOT_DONE **0** / 429 · peatükke täielikult DONE **38** / 40 · ametlikult lahtiseid 3 — 2 × P1 · 1 × P2
+DONE **427** / 429 · PARTIAL **2** / 429 · NOT_DONE **0** / 429 · peatükke täielikult DONE **38** / 40 · ametlikult lahtiseid 2 — 2 × P1
 
 | Peatükk | Kood | DONE | PARTIAL | NOT_DONE | Lahtiste prioriteedid | Märkus |
 |---|---|---:|---:|---:|---|---|
@@ -125,7 +125,7 @@ DONE **426** / 429 · PARTIAL **3** / 429 · NOT_DONE **0** / 429 · peatükke t
 | Otsing | SOL-SEARCH | 7/7 | 0 | 0 | – | **tehtud** |
 | Teenuseosutaja profiil | SOL-SPROF | 15/15 | 0 | 0 | – | **tehtud** |
 | Dokumendi koostamine | SOL-COMP | 5/5 | 0 | 0 | – | **tehtud**, 5 jätkufailist |
-| Materjalid | SOL-MAT | 11/13 | 2 | 0 | 1 × P1 · 1 × P2 | 13 jätkufailist |
+| Materjalid | SOL-MAT | 12/13 | 1 | 0 | 1 × P1 | 13 jätkufailist |
 | Minu jagamised | SOL-SHARE | 7/7 | 0 | 0 | – | **tehtud**, 7 jätkufailist |
 | Teenusekaart | SOL-SMAP | 9/9 | 0 | 0 | – | **tehtud**, 9 jätkufailist |
 | Funktsioonideülene lõpetusring | SOL-XFUNC | 3/3 | 0 | 0 | – | **tehtud**, 3 jätkufailist |
@@ -134,12 +134,11 @@ DONE **426** / 429 · PARTIAL **3** / 429 · NOT_DONE **0** / 429 · peatükke t
 
 **Juhtumitöö (JTA-V1)** (`SOL-CW`, 1 PARTIAL)
 
-- `SOL-CW-14` P1 — casework'i säilitustöö ajastatud käivitamine ei ole tõendatud — PARTIAL — hallatav mehhanism, alarm ning säilitustähtaja ja reatõrke päris PostgreSQL-i tõend on DONE; tootmistaimeri aktiveerimine ja kontrollitud systemd-jooks on õigus-/andmekaitsevärava taga, runtime: NOT_PROVEN.
+- `SOL-CW-14` P1 — casework'i säilitustöö ajastatud käivitamine ei ole tõendatud — PARTIAL — omaniku kinnitatud säilituspoliitika on koodis, kasutajatekstides, privaatsusteavituses, raamlepingus ja hallatavas ajastuses vastuoludeta ning kohalikult väljalaskevalmis; tootmistaimeri aktiveerimine ja kontrollitud systemd-jooks on runtime: NOT_PROVEN.
 
-**Materjalid** (`SOL-MAT`, 2 PARTIAL)
+**Materjalid** (`SOL-MAT`, 1 PARTIAL)
 
-- `SOL-MAT-08` P1 — `imported` on vale RAG-lubadus ilma ingest'i, `doc_id`, õiguste või eemaldamiseta — PARTIAL — otsusest sõltumatu versioonitud Materjalide RAG-elutsükkel ja fail-closed pahavara-/karantiinipiir on valmis, kuid import jääb serveris suletuks kuni omanik kinnitab neli poliitikavalikut. `MaterialSubmission` kannab püsivat `sourceId`/`ragDocId`-d, versiooni ja sisu hash'i, collection/audience'i, ingest'i aega/tegijat/katsete-vea-retry seisu, autorit, õiguste omajat/alust/tõendit ning RAG-eemalduse seisu. `imported` sünnib ainult `import_rag` teenuse järel, kui versioonitud ingest tagastab `inserted > 0` ja järgnev dokumendi kontroll kinnitab `chunks > 0`; 4xx loob sama versiooni `RAG_INGEST` retry, 5xx/timeout/null-chunk ja DB lõpuviga loovad auditeeritud kompenseeriva `RAG_DELETE` töö ning pooleliolev cleanup blokeerib uue ingest'i. SHA + collection + audience duplikaat on DB-s unikaalne. Materjalide konto-kustutus kasutab nüüd sama püsivat RAG-, faili- ja karantiinieemalduse rada ega säilita teadmuskoopiat vaikimisi. Otsustuspakett: (1) `rightsEvidenceMode` — valida `SUBMITTER_ATTESTATION`, `ORG_ADMIN_ATTESTATION` või `DOCUMENTED_LICENSE`; valik määrab kohustusliku UI-tõendi ja auditikinnitaja. (2) määrata täpne `collection` ning audience `CLIENT`, `SOCIAL_WORKER` või `BOTH`; see määrab ingest-meta ja retrieval-piiri. (3) `retentionMode` — valida `DELETE_WITH_SUBMISSION_OR_ACCOUNT` või `RETAIN_AFTER_ACCOUNT_WITH_LICENSE`; teisel juhul tuleb lisaks määrata tähtaeg ja kontoülese õiguste/provenance'i registri omanik. (4) `withdrawalAuthority` — valida `ADMIN_ONLY`, `SUBMITTER_OR_ADMIN` või `SUBMITTER_RIGHTS_HOLDER_OR_ADMIN`; see määrab withdraw/delete autoriseerimise ja selle, millal konto kustutus RAG_DELETE'i käivitab.
-- `SOL-MAT-12` P2 — rejected/imported/pending failidel puudub retention'i tähtaeg ja sweep — PARTIAL — otsusest sõltumatu retention-elutsükkel on valmis, kuid sisulised päevad
+- `SOL-MAT-08` P1 — `imported` on vale RAG-lubadus ilma ingest'i, `doc_id`, õiguste või eemaldamiseta — PARTIAL — vale `imported` lubadus, õigusteotsus, sanitiseeritud tekstiderivaat ja päris isoleeritud RAG-elutsükkel on DONE; PDF/DOCX CDR ning tootmise eraldi turvaköide on NOT_PROVEN. Kinnitatud muutumatu poliitika on `rightsEvidenceMode=DOCUMENTED_LICENSE`, `collection=materials_reviewed_social_work`, `audience=SOCIAL_WORKER`, `retentionMode=DELETE_WITH_SUBMISSION_OR_ACCOUNT`, `withdrawalAuthority=SUBMITTER_RIGHTS_HOLDER_OR_ADMIN`, versioon `materials-rag-v1-2026-08`. Shared-RAG lubab ainult public domain'i, selget avatud litsentsi või dokumenteeritud luba ning keelab kliendijuhtumi, konfidentsiaalse ja isikuandmetega materjali; pelk esitaja kinnitus ei ava importi. `imported` sünnib ainult sanitiseeritud derivaadi versioonitud ingest'i, `inserted > 0` kviteeringu ja järgneva `chunks > 0` kontrolli järel. Admin näeb auditeeritud preview-rajalt ainult derivaati, mitte toororiginaali. Ebaõnnestumine, null-chunk, DB lõpuviga, withdraw ja konto kustutus kasutavad püsivaid retry/kompensatsiooni/RAG_DELETE radu.
 
 ### DONE leiud peatükkide kaupa
 
@@ -647,7 +646,7 @@ DONE **426** / 429 · PARTIAL **3** / 429 · NOT_DONE **0** / 429 · peatükke t
 - `SOL-COMP-04` P1 — kliendi lähtefail võib jääda peidetult alles ja kasutajal puudub selle haldamisvaade — DONE — kliendi upload saadab nüüd soovitud `agentAllowed:true` POST-is ning server
 - `SOL-COMP-05` P1 — FINAL-artefakti provenants ja allalaaditav dokument ei ole kinnitamise hetke suhtes muutumatud — DONE — FINAL-kinnitus loob nüüd sama tehingu sees muutumatu
 
-**Materjalid** (`SOL-MAT`, 11/13)
+**Materjalid** (`SOL-MAT`, 12/13)
 
 - `SOL-MAT-01` P1 — tasulise spetsialistifunktsiooni serveripiir puudub — DONE — 13.08.2026. `POST /api/materials` kasutab nüüd `requireMaterialUploadAccess()` väravat: autentimata saab 401, `CLIENT` 403, aegunud spetsialistitellimus 402 ning aktiivne `SOCIAL_WORKER`, `SERVICE_PROVIDER` ja admin pääsevad edasi. `tests/materials/routeAccess.test.js` mõõdab päris `Response.status` väärtused ja sama kasutaja rolli muutmise korduskontrolli; omaniku GET/download/withdraw jäävad tellimusest sõltumatuks. Sihttestid 15/15 PASS.
 - `SOL-MAT-02` P1 — MIME-kontroll aktsepteerib päisega maskeeritud ja tühje faile — DONE — 13.08.2026. Materjalide route valideerib nüüd kogu puhverdatud faili enne staging'ut. Nullpikk fail on keelatud; TXT läbib fatal UTF-8 dekodeerimise ja kogu faili kontrollmärkide kontrolli; DOCX kasutab kirjete arvu, tegeliku lahtipakitud mahu, tihendussuhte, tee, CRC ja puuduva OOXML-põhistruktuuri piire; PDF nõuab terviklikku xref/EOF struktuuri ning `pdf-parse` parseriga vähemalt üht ja kuni 500 lehekülge, eval keelatud ja pildipikslite lagi. Negatiivtestid katsid päisega ZIP/PDF-i, puuduva OOXML-osa, deklareeritud ZIP-pommi, hilise NUL-baidi, vigase UTF-8 ja tühjad failid; Materjalide sihttestid 20/20 PASS.
@@ -659,6 +658,7 @@ DONE **426** / 429 · PARTIAL **3** / 429 · NOT_DONE **0** / 429 · peatükke t
 - `SOL-MAT-09` P1 — ülevaatuse olekumasin lubab suvalisi ja stale üleminekuid — DONE. `MaterialSubmission.reviewRevision` ja DB CHECK/triger jõustavad lubatud olekud,
 - `SOL-MAT-10` P1 — admini allalaadimise, ülevaatuse ja kustutuse audit pole kohustuslik — DONE. Faili väljastamise eel kirjutatakse nüüd kohustuslik owner/admin audit ning
 - `SOL-MAT-11` P1 — kasutaja andmekoopia jätab esitised ja originaalfailid välja — DONE. Andmekoopia registris on owner-skoobitud `material_submissions` pind:
+- `SOL-MAT-12` P2 — rejected/imported/pending failidel puudub retention'i tähtaeg ja sweep — DONE. `MaterialSubmission` ei kasuta enam üht ühist säilituskella:
 - `SOL-MAT-13` P2 — SMTP-teavituse tõrge kaob logisse ja tööjärjekord ei tea sellest — DONE. Upload-batch on püsiv outbox: esitised ja `PENDING` teavituskavatsus sünnivad
 
 **Minu jagamised** (`SOL-SHARE`, 7/7)
