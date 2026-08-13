@@ -4,6 +4,7 @@ import test from "node:test";
 
 import * as offerService from "../../lib/help/offers.js";
 import * as requestService from "../../lib/help/requests.js";
+import { HELP_LISTING_TEXT_LIMITS } from "../../lib/help/listingLimits.js";
 
 const BASE_UPDATED_AT = new Date("2026-08-13T09:00:00.000Z");
 const CATEGORY = Object.freeze({
@@ -406,10 +407,52 @@ test("SOL-HELP-04: nimetatud olekutoiming nõuab põhjust", async () => {
   }
 });
 
+test("SOL-HELP-11: iga kasutajateksti väli lubab piiri ja lükkab +1 terviklikult tagasi", async () => {
+  const fieldsByKind = {
+    request: ["title", "description", "structuredSummary", "roleLabel", "beneficiaryLabel", "urgency", "availabilityOrStart", "compensationDetails", "conditions", "skillsOrBackground", "rawPlace"],
+    offer: ["title", "description", "structuredSummary", "roleLabel", "providerScopeOrConditions", "availabilityOrStart", "compensationDetails", "conditions", "skillsOrBackground", "rawPlace"]
+  };
+  for (const kind of ["request", "offer"]) {
+    for (const field of fieldsByKind[kind]) {
+      const limit = HELP_LISTING_TEXT_LIMITS[field];
+      for (const length of [limit - 1, limit]) {
+        const db = createHelpDb({ kind });
+        await servicesFor(kind).update(`${kind}-1`, {
+          [field]: "x".repeat(length),
+          expectedUpdatedAt: BASE_UPDATED_AT.toISOString()
+        }, db.client);
+        const row = (kind === "request" ? db.state.requests : db.state.offers)[0];
+        assert.equal(row[field].length, length, `${kind}/${field}/${length}`);
+      }
+
+      const db = createHelpDb({ kind });
+      const marker = "!";
+      const tooLong = `${"x".repeat(limit)}${marker}`;
+      await assert.rejects(
+        servicesFor(kind).update(`${kind}-1`, {
+          [field]: tooLong,
+          expectedUpdatedAt: BASE_UPDATED_AT.toISOString()
+        }, db.client),
+        (error) => (
+          error?.code === "HELP_LISTING_FIELD_TOO_LONG"
+          && error?.field === field
+          && error?.limit === limit
+          && error?.actual === tooLong.length
+        ),
+        `${kind}/${field}: +1 peab andma väljapõhise vea`
+      );
+      const row = (kind === "request" ? db.state.requests : db.state.offers)[0];
+      assert.doesNotMatch(String(row[field] || ""), new RegExp(marker), `${kind}/${field}: saba ei tohi kärbitult salvestuda`);
+    }
+  }
+});
+
 test("detail-PATCH leping nõuab revisjoni, eristab nimetatud olekutoimingu ja tagastab 409 värske vaate", () => {
   const route = readFileSync("app/api/help/listings/[kind]/[id]/route.js", "utf8");
   assert.match(route, /expectedUpdatedAt/);
   assert.match(route, /statusAction/);
   assert.match(route, /\b409\b/);
   assert.match(route, /current/);
+  assert.match(route, /HELP_LISTING_FIELD_TOO_LONG/);
+  assert.match(route, /\b413\b/);
 });

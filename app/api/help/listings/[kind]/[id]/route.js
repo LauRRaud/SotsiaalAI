@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
 import { isAdmin } from "@/lib/authz";
 import {
+  consumeHelpRateLimit,
   deleteHelpOffer,
   deleteHelpRequest,
   getHelpOfferById,
@@ -15,7 +16,6 @@ import {
   updateHelpRequest
 } from "@/lib/help";
 import { redactPersonalData } from "@/lib/privacy/piiFilter";
-import { consumeRateLimit } from "@/lib/rate-limit";
 import { getRequestIpFromRequest } from "@/lib/request-ip";
 
 export const runtime = "nodejs";
@@ -61,6 +61,16 @@ function mapHelpRouteError(error, fallbackMessage = "HELP_LISTING_FAILED") {
     return {
       status: 400,
       message: code
+    };
+  }
+
+  if (code === "HELP_LISTING_FIELD_TOO_LONG") {
+    return {
+      status: 413,
+      message: code,
+      field: error?.field || null,
+      limit: Number(error?.limit) || null,
+      actual: Number(error?.actual) || null
     };
   }
 
@@ -139,6 +149,24 @@ async function updateRecord(kind, id, payload) {
   return null;
 }
 
+async function enforceHelpListingRateLimit(request, auth, operation) {
+  try {
+    const limiter = await consumeHelpRateLimit({
+      operation,
+      userId: auth.userId,
+      ipAddress: getRequestIpFromRequest(request)
+    });
+    if (limiter.allowed) return null;
+    return json({
+      ok: false,
+      message: "api.common.rate_limited",
+      retryAfterSeconds: limiter.retryAfterSeconds
+    }, 429);
+  } catch {
+    return json({ ok: false, message: "HELP_RATE_LIMIT_UNAVAILABLE" }, 503);
+  }
+}
+
 function toConflictView(record, kind) {
   if (!record) return null;
   return {
@@ -200,12 +228,8 @@ export async function GET(_request, context) {
     return json({ ok: false, message: "api.common.unauthorized" }, 401);
   }
 
-  const limiter = consumeRateLimit(
-    `help-listing:detail:${auth.userId}:${getRequestIpFromRequest(_request)}`,
-    60,
-    60_000
-  );
-  if (!limiter.allowed) return json({ ok: false, message: "api.common.rate_limited" }, 429);
+  const rateLimited = await enforceHelpListingRateLimit(_request, auth, "detail:get");
+  if (rateLimited) return rateLimited;
 
   const params = await context.params;
   const locale = String(new URL(_request.url).searchParams.get("locale") || "et").trim();
@@ -240,6 +264,8 @@ export async function PATCH(request, context) {
   if (!auth) {
     return json({ ok: false, message: "api.common.unauthorized" }, 401);
   }
+  const rateLimited = await enforceHelpListingRateLimit(request, auth, "detail:patch");
+  if (rateLimited) return rateLimited;
 
   const params = await context.params;
   const kind = normalizeKind(params?.kind);
@@ -262,6 +288,7 @@ export async function PATCH(request, context) {
     return json({
       ok: false,
       message: mapped.message,
+      ...(mapped.field ? { field: mapped.field, limit: mapped.limit, actual: mapped.actual } : {}),
       ...(mapped.current ? { current: toConflictView(mapped.current, kind) } : {})
     }, mapped.status);
   }
@@ -278,6 +305,8 @@ export async function DELETE(_request, context) {
   if (!auth) {
     return json({ ok: false, message: "api.common.unauthorized" }, 401);
   }
+  const rateLimited = await enforceHelpListingRateLimit(_request, auth, "detail:delete");
+  if (rateLimited) return rateLimited;
 
   const params = await context.params;
   const kind = normalizeKind(params?.kind);

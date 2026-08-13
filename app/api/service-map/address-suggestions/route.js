@@ -4,6 +4,8 @@ import { isAdmin, roleFromSession } from "@/lib/authz";
 import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
 import { suggestServiceMapAddresses } from "@/lib/serviceMap/geocoding";
 import { safeError } from "@/lib/privacy/safeError";
+import { consumeHelpRateLimit } from "@/lib/help/rateLimit";
+import { getRequestIpFromRequest } from "@/lib/request-ip";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -29,7 +31,7 @@ async function requireServiceMapAddressUser() {
     };
   }
 
-  return { ok: true };
+  return { ok: true, userId };
 }
 
 export async function GET(request) {
@@ -37,6 +39,25 @@ export async function GET(request) {
   const auth = await requireServiceMapAddressUser();
   if (!auth.ok) {
     return errorJson(auth.message, auth.status, locale);
+  }
+
+  const ipAddress = getRequestIpFromRequest(request);
+  let requestLimit;
+  try {
+    requestLimit = await consumeHelpRateLimit({
+      operation: "address-request",
+      userId: auth.userId,
+      ipAddress
+    });
+  } catch {
+    return errorJson("HELP_RATE_LIMIT_UNAVAILABLE", 503, locale);
+  }
+  if (!requestLimit.allowed) {
+    return json({
+      ok: false,
+      message: "api.common.rate_limited",
+      retryAfterSeconds: requestLimit.retryAfterSeconds
+    }, 429);
   }
 
   const requestUrl = new URL(request.url);
@@ -47,6 +68,24 @@ export async function GET(request) {
       suggestions: [],
       reason: "query_too_short"
     });
+  }
+
+  let providerLimit;
+  try {
+    providerLimit = await consumeHelpRateLimit({
+      operation: "address-provider",
+      userId: auth.userId,
+      ipAddress
+    });
+  } catch {
+    return errorJson("HELP_RATE_LIMIT_UNAVAILABLE", 503, locale);
+  }
+  if (!providerLimit.allowed) {
+    return json({
+      ok: false,
+      message: "api.common.rate_limited",
+      retryAfterSeconds: providerLimit.retryAfterSeconds
+    }, 429);
   }
 
   try {

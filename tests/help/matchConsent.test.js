@@ -17,16 +17,47 @@ const offer = {
 };
 
 function createPrisma() {
+  const requestRow = structuredClone(request);
+  const offerRow = structuredClone(offer);
   const matches = [];
   const rooms = [];
   const notifications = [];
+  const mapEntries = [
+    { requestId: request.id, offerId: null, mapVisible: true, status: "PUBLISHED" },
+    { requestId: null, offerId: offer.id, mapVisible: true, status: "PUBLISHED" }
+  ];
   const client = {
     async $transaction(run) { return run(client); },
-    helpRequest: { async findUnique({ where }) { return where.id === request.id ? request : null; } },
-    helpOffer: { async findUnique({ where }) { return where.id === offer.id ? offer : null; } },
+    helpRequest: {
+      async findUnique({ where }) { return where.id === requestRow.id ? requestRow : null; },
+      async update({ data }) { Object.assign(requestRow, data); return requestRow; },
+      async updateMany({ where, data }) {
+        if (where.id !== requestRow.id || (where.status && requestRow.status !== where.status)) return { count: 0 };
+        Object.assign(requestRow, data); return { count: 1 };
+      }
+    },
+    helpOffer: {
+      async findUnique({ where }) { return where.id === offerRow.id ? offerRow : null; },
+      async update({ data }) { Object.assign(offerRow, data); return offerRow; },
+      async updateMany({ where, data }) {
+        if (where.id !== offerRow.id || (where.status && offerRow.status !== where.status)) return { count: 0 };
+        Object.assign(offerRow, data); return { count: 1 };
+      }
+    },
+    helpMapEntry: {
+      async updateMany({ where, data }) {
+        const rows = mapEntries.filter((row) => where.OR.some((clause) => (
+          (clause.requestId && row.requestId === clause.requestId)
+          || (clause.offerId && row.offerId === clause.offerId)
+        )));
+        rows.forEach((row) => Object.assign(row, data));
+        return { count: rows.length };
+      }
+    },
     helpMatch: {
       async findUnique({ where }) {
         if (where.id) return matches.find((row) => row.id === where.id) || null;
+        if (where.roomId) return matches.find((row) => row.roomId === where.roomId) || null;
         const pair = where.requestId_offerId;
         return matches.find((row) => row.requestId === pair.requestId && row.offerId === pair.offerId) || null;
       },

@@ -3,9 +3,11 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 
 import {
+  closeHelpMatchForArchivedRoom,
   createHelpMatchAndRoom,
   decideHelpMatch,
   listIncomingHelpMatches,
+  markHelpMatchContactedByRoom,
   toPublicHelpMatchProjection,
   withdrawHelpMatch
 } from "../../lib/help/matches.js";
@@ -67,7 +69,11 @@ function createDb({ notificationFailures = 0 } = {}) {
     offers: [offerRecord()],
     matches: [],
     notifications: [],
-    rooms: []
+    rooms: [],
+    mapEntries: [
+      { id: "map-request-1", requestId: "request-1", offerId: null, mapVisible: true, status: "PUBLISHED" },
+      { id: "map-offer-1", requestId: null, offerId: "offer-1", mapVisible: true, status: "PUBLISHED" }
+    ]
   };
 
   function makeClient(target, transactional = false) {
@@ -78,16 +84,47 @@ function createDb({ notificationFailures = 0 } = {}) {
       helpRequest: {
         async findUnique({ where }) {
           return clone(target.requests.find((row) => row.id === where.id) || null);
+        },
+        async update({ where, data }) {
+          const row = target.requests.find((item) => item.id === where.id);
+          Object.assign(row, clone(data));
+          return clone(row);
+        },
+        async updateMany({ where, data }) {
+          const rows = target.requests.filter((row) => row.id === where.id && (!where.status || row.status === where.status));
+          rows.forEach((row) => Object.assign(row, clone(data)));
+          return { count: rows.length };
         }
       },
       helpOffer: {
         async findUnique({ where }) {
           return clone(target.offers.find((row) => row.id === where.id) || null);
+        },
+        async update({ where, data }) {
+          const row = target.offers.find((item) => item.id === where.id);
+          Object.assign(row, clone(data));
+          return clone(row);
+        },
+        async updateMany({ where, data }) {
+          const rows = target.offers.filter((row) => row.id === where.id && (!where.status || row.status === where.status));
+          rows.forEach((row) => Object.assign(row, clone(data)));
+          return { count: rows.length };
+        }
+      },
+      helpMapEntry: {
+        async updateMany({ where, data }) {
+          const rows = target.mapEntries.filter((row) => where.OR.some((clause) => (
+            (clause.requestId && row.requestId === clause.requestId)
+            || (clause.offerId && row.offerId === clause.offerId)
+          )));
+          rows.forEach((row) => Object.assign(row, clone(data)));
+          return { count: rows.length };
         }
       },
       helpMatch: {
         async findUnique({ where }) {
           if (where.id) return clone(target.matches.find((row) => row.id === where.id) || null);
+          if (where.roomId) return clone(target.matches.find((row) => row.roomId === where.roomId) || null);
           const pair = where.requestId_offerId;
           return clone(target.matches.find((row) => row.requestId === pair.requestId && row.offerId === pair.offerId) || null);
         },
@@ -135,7 +172,9 @@ function createDb({ notificationFailures = 0 } = {}) {
           let count = 0;
           for (const row of target.matches) {
             if (where.id && row.id !== where.id) continue;
-            if (where.status && row.status !== where.status) continue;
+            if (where.roomId && row.roomId !== where.roomId) continue;
+            if (typeof where.status === "string" && row.status !== where.status) continue;
+            if (where.status?.in && !where.status.in.includes(row.status)) continue;
             if (where.initiatedByUserId && row.initiatedByUserId !== where.initiatedByUserId) continue;
             if (where.OR?.some((clause) => clause.request || clause.offer)) {
               const sourceInvalid = where.OR.some((clause) => {
@@ -260,6 +299,35 @@ test("SOL-HELP-05: inimese kinnitatud pehme abi-/ajatüübi erand jääb ACCEPT-
   }, db.client);
   assert.equal(accepted.status, "ACCEPTED");
   assert.equal(db.state.rooms.length, 1);
+});
+
+test("SOL-HELP-13: ACCEPT, esimene sõnum ja arhiiv sulgevad kogu sobituse elutsükli", async () => {
+  const db = createDb();
+  const pending = await createHelpMatchAndRoom({
+    requestId: "request-1",
+    offerId: "offer-1",
+    initiatedByUserId: "requester"
+  }, db.client);
+  const accepted = await decideHelpMatch({
+    matchId: pending.id,
+    decidedByUserId: "offerer",
+    decision: "ACCEPT",
+    now: NOW
+  }, db.client);
+  assert.equal(accepted.status, "ACCEPTED");
+  assert.equal(db.state.requests[0].status, "MATCHED");
+  assert.equal(db.state.offers[0].status, "MATCHED");
+  assert.ok(db.state.mapEntries.every((entry) => entry.mapVisible === false && entry.status === "HIDDEN"));
+
+  await markHelpMatchContactedByRoom({ roomId: accepted.roomId }, db.client);
+  assert.equal(db.state.matches[0].status, "CONTACTED");
+
+  const closed = await closeHelpMatchForArchivedRoom({ roomId: accepted.roomId }, db.client);
+  assert.equal(closed.closed, true);
+  assert.equal(db.state.matches[0].status, "CLOSED");
+  assert.equal(db.state.requests[0].status, "CLOSED");
+  assert.equal(db.state.offers[0].status, "CLOSED");
+  assert.ok(db.state.mapEntries.every((entry) => entry.mapVisible === false && entry.status === "CLOSED"));
 });
 
 test("SOL-HELP-07: avalik match-projektsioon ei väljasta IDsid ega privaatseid kattuvussõnu", () => {

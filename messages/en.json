@@ -3172,6 +3172,9 @@
         "requestTitle": "Review the help request.",
         "offerTypeValue": "Help offer",
         "requestTypeValue": "Help request",
+        "mapRegionUnspecified": "the region will be determined from the listing location",
+        "mapVisibleValue": "The listing will appear on the Service Map as a generalized area: {region}.",
+        "mapPrivacyValue": "The exact home address and public contact details are not shown; contact takes place on the platform.",
         "savePrompt": "If this listing looks right, reply \"yes\". To change the listing, do it on the listing page.",
         "offerSavePrompt": "If this help offer looks right, reply \"yes\". To change the help offer, do it on the help offer page.",
         "requestSavePrompt": "If this help request looks right, reply \"yes\". To change the help request, do it on the help request page.",
@@ -3198,6 +3201,8 @@
         "skillsOrBackground": "Skills or background",
         "beneficiaryLabel": "Who needs the help",
         "urgency": "Urgency",
+        "mapVisibility": "Map visibility",
+        "mapPrivacy": "Privacy",
         "status": "Status"
       },
       "saved": {

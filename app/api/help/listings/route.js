@@ -3,9 +3,11 @@ import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import {
+  consumeHelpRateLimit,
   listHelpOfferListingViews,
   listHelpRequestListingViews,
 } from "@/lib/help";
+import { getRequestIpFromRequest } from "@/lib/request-ip";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -184,6 +186,23 @@ export async function GET(request) {
   const auth = await requireUser();
   if (!auth) {
     return json({ ok: false, message: "api.common.unauthorized" }, 401);
+  }
+
+  try {
+    const limiter = await consumeHelpRateLimit({
+      operation: "list:get",
+      userId: auth.userId,
+      ipAddress: getRequestIpFromRequest(request)
+    });
+    if (!limiter.allowed) {
+      return json({
+        ok: false,
+        message: "api.common.rate_limited",
+        retryAfterSeconds: limiter.retryAfterSeconds
+      }, 429);
+    }
+  } catch {
+    return json({ ok: false, message: "HELP_RATE_LIMIT_UNAVAILABLE" }, 503);
   }
 
   const url = new URL(request.url);

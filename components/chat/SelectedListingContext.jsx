@@ -9,6 +9,7 @@ import Modal from "@/components/ui/Modal";
 import Panel from "@/components/ui/Panel";
 import Input from "@/components/ui/Input";
 import { useI18n } from "@/components/i18n/I18nProvider";
+import { HELP_LISTING_TEXT_LIMITS } from "@/lib/help/listingLimits";
 import { getHelpUiText } from "./helpUiText";
 
 const HELP_CATEGORY_OPTIONS = [
@@ -122,7 +123,12 @@ function DropdownField({ label, value, onChange, options = [] }) {
   );
 }
 
-function TextField({ label, value, onChange, placeholder = "" }) {
+function CharacterLimit({ value, maxLength }) {
+  if (!maxLength) return null;
+  return <small aria-live="polite">{String(value || "").length}/{maxLength}</small>;
+}
+
+function TextField({ label, value, onChange, placeholder = "", maxLength }) {
   return (
     <label>
       <FieldLabel>{label}</FieldLabel>
@@ -130,12 +136,14 @@ function TextField({ label, value, onChange, placeholder = "" }) {
         value={value}
         onChange={(event) => onChange?.(event.target.value)}
         placeholder={placeholder}
+        maxLength={maxLength}
       />
+      <CharacterLimit value={value} maxLength={maxLength} />
     </label>
   );
 }
 
-function TextAreaField({ label, value, onChange, rows = 3 }) {
+function TextAreaField({ label, value, onChange, rows = 3, maxLength }) {
   return (
     <label>
       <FieldLabel>{label}</FieldLabel>
@@ -143,7 +151,9 @@ function TextAreaField({ label, value, onChange, rows = 3 }) {
         value={value}
         onChange={(event) => onChange?.(event.target.value)}
         rows={rows}
+        maxLength={maxLength}
       />
+      <CharacterLimit value={value} maxLength={maxLength} />
     </label>
   );
 }
@@ -313,12 +323,14 @@ export default function SelectedListingContext({
                     value={editState.title}
                     onChange={(value) => onChangeEditField?.("title", value)}
                     placeholder={ui.title}
+                    maxLength={HELP_LISTING_TEXT_LIMITS.title}
                   />
                   <TextAreaField
                     label={ui.description}
                     value={descriptionValue}
                     onChange={(value) => onChangeEditField?.("description", value)}
                     rows={5}
+                    maxLength={HELP_LISTING_TEXT_LIMITS.description}
                   />
                   <div>
                     <DropdownField
@@ -332,6 +344,7 @@ export default function SelectedListingContext({
                       value={rawPlaceValue}
                       onChange={(value) => onChangeEditField?.("rawPlace", value)}
                       placeholder={ui.location}
+                      maxLength={HELP_LISTING_TEXT_LIMITS.rawPlace}
                     />
                     <DropdownField
                       label={ui.helpType}
@@ -366,6 +379,7 @@ export default function SelectedListingContext({
                     value={availabilityOrStartValue}
                     onChange={(value) => onChangeEditField?.("availabilityOrStart", value)}
                     rows={2}
+                    maxLength={HELP_LISTING_TEXT_LIMITS.availabilityOrStart}
                   />
                   <div>
                     <TextField
@@ -373,12 +387,14 @@ export default function SelectedListingContext({
                       value={compensationDetailsValue}
                       onChange={(value) => onChangeEditField?.("compensationDetails", value)}
                       placeholder={ui.compensationDetails}
+                      maxLength={HELP_LISTING_TEXT_LIMITS.compensationDetails}
                     />
                     <TextField
                       label={ui.conditions}
                       value={conditionsValue}
                       onChange={(value) => onChangeEditField?.("conditions", value)}
                       placeholder={ui.conditions}
+                      maxLength={HELP_LISTING_TEXT_LIMITS.conditions}
                     />
                   </div>
                   <div>

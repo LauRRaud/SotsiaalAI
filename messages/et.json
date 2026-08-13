@@ -3172,6 +3172,9 @@
         "requestTitle": "Vaata abisoov üle.",
         "offerTypeValue": "Abipakkumine",
         "requestTypeValue": "Abisoov",
+        "mapRegionUnspecified": "piirkond täpsustub kuulutuse asukoha põhjal",
+        "mapVisibleValue": "Kuulutus avaldatakse Teenusekaardil üldistatud piirkonnana: {region}.",
+        "mapPrivacyValue": "Täpset koduaadressi ega avalikke kontaktandmeid ei kuvata; ühendus toimub platvormis.",
         "savePrompt": "Kui kuulutus sobib, vasta „jah”. Kui soovid kuulutust muuta, tee seda kuulutuse lehel.",
         "offerSavePrompt": "Kui abipakkumine sobib, vasta „jah”. Kui soovid abipakkumist muuta, tee seda abipakkumise lehel.",
         "requestSavePrompt": "Kui abisoov sobib, vasta „jah”. Kui soovid abisoovi muuta, tee seda abisoovi lehel.",
@@ -3198,6 +3201,8 @@
         "skillsOrBackground": "Oskused või taust",
         "beneficiaryLabel": "Kellele abi vaja on",
         "urgency": "Kiireloomulisus",
+        "mapVisibility": "Kaardil kuvamine",
+        "mapPrivacy": "Privaatsus",
         "status": "Staatus"
       },
       "saved": {

@@ -12,6 +12,7 @@ import { applySummaryApprovalPolicy, listRoomSummaryApprovalState } from "@/lib/
 import { logDocumentsAudit } from "@/lib/documents/audit";
 import { safeError } from "@/lib/privacy/safeError";
 import { evaluateTextPrivacy, privacyConfirmationResponsePayload } from "@/lib/privacy/privacyGuard";
+import { markHelpMatchContactedByRoom } from "@/lib/help/matches";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -368,6 +369,7 @@ export async function POST(req, { params }) {
           sharedByUserId: auth.userId
         });
       }
+      await markHelpMatchContactedByRoom({ roomId }, tx);
       return created;
     });
 

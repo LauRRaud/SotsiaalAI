@@ -3746,6 +3746,15 @@ model HelpMatch {
   @@index([status])
 }
 
+model HelpRateLimitBucket {
+  key       String   @id @db.VarChar(64)
+  count     Int
+  resetAt   DateTime
+  updatedAt DateTime @updatedAt
+
+  @@index([resetAt])
+}
+
 model Room {
   id          String    @id @default(cuid())
   ownerId     String

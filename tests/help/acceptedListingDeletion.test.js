@@ -5,7 +5,7 @@ import test from "node:test";
 import { deleteHelpOffer } from "../../lib/help/offers.js";
 import { deleteHelpRequest } from "../../lib/help/requests.js";
 
-function createAcceptedDeleteDb(kind, { failAudit = 0, accepted = true } = {}) {
+function createAcceptedDeleteDb(kind, { failAudit = 0, accepted = true, status = null } = {}) {
   let remainingAuditFailures = failAudit;
   const state = {
     listings: [{ id: `${kind}-1`, userId: "owner-1", status: "MATCHED" }],
@@ -17,8 +17,8 @@ function createAcceptedDeleteDb(kind, { failAudit = 0, accepted = true } = {}) {
       requesterId: "requester-1",
       offererId: "offerer-1",
       initiatedByUserId: "requester-1",
-      roomId: "room-1",
-      status: accepted ? "ACCEPTED" : "DECLINED"
+      roomId: accepted ? "room-1" : null,
+      status: status || (accepted ? "ACCEPTED" : "DECLINED")
     }],
     rooms: [{ id: "room-1", archivedAt: null }],
     members: [
@@ -49,13 +49,15 @@ function createAcceptedDeleteDb(kind, { failAudit = 0, accepted = true } = {}) {
       helpMatch: {
         async findMany({ where }) {
           return structuredClone(target.matches.filter((row) => (
-            row[`${kind}Id`] === where[`${kind}Id`] && row.status === where.status
+            row[`${kind}Id`] === where[`${kind}Id`]
+            && row.roomId !== null
+            && where.status.in.includes(row.status)
           )));
         },
         async deleteMany({ where }) {
           const before = target.matches.length;
           target.matches = target.matches.filter((row) => !(
-            row[`${kind}Id`] === where[`${kind}Id`] && row.status !== where.status.not
+            row[`${kind}Id`] === where[`${kind}Id`] && row.roomId === null
           ));
           return { count: before - target.matches.length };
         }
@@ -129,6 +131,17 @@ test("SOL-HELP-09 negatiivtõend: ACCEPTED sobituse allikat ei kõvakustutata", 
     assert.equal(db.state.audits.length, 1, `${kind}: sulgemine peab jätma ühe auditi`);
     assert.equal(db.state.mapEntries[0].mapVisible, false, `${kind}: suletud allikas kaob kaardilt`);
     assert.equal(db.state.mapEntries[0].status, "HIDDEN", `${kind}: kaardikirje muutub peidetuks`);
+  }
+});
+
+test("SOL-HELP-13: CONTACTED ja ruumiga CLOSED sobitus säilitavad nõusolekutõendi", async () => {
+  for (const status of ["CONTACTED", "CLOSED"]) {
+    const db = createAcceptedDeleteDb("request", { status });
+    const result = await deleteHelpRequest("request-1", db.client);
+    assert.equal(result.disposition, "CLOSED_ACCEPTED_MATCH", status);
+    assert.equal(db.state.matches[0].status, status);
+    assert.equal(db.state.rooms.length, 1);
+    assert.equal(db.state.members.length, 2);
   }
 });
 

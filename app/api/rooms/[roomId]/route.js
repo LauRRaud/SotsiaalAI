@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { createRoomCallService } from "@/lib/calls/roomRoutes";
 import { ROOM_ORIGIN_TYPES } from "@/lib/rooms/origin";
 import { copyRoomSummariesToParticipants } from "@/lib/rooms/summaryHandover";
+import { closeHelpMatchForArchivedRoom } from "@/lib/help/matches";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -191,6 +192,9 @@ export async function PATCH(req, { params }) {
         where: { id: roomId, archivedAt: null },
         data: { archivedAt: now }
       });
+      if (updated.count > 0) {
+        await closeHelpMatchForArchivedRoom({ roomId }, tx);
+      }
       if (updated.count > 0 && tx.dataAuditLog?.create) {
         await tx.dataAuditLog.create({
           data: {
