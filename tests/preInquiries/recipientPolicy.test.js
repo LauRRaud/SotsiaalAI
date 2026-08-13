@@ -3,8 +3,8 @@ import assert from "node:assert/strict";
 
 import {
   assistPreInquiry,
+  confirmExternalPreInquirySent,
   createPreInquiry,
-  sendExternalPreInquiry,
   updatePreInquiry
 } from "../../lib/preInquiries.js";
 
@@ -177,6 +177,7 @@ test("update rejects an unpublished replacement recipient before writing", async
   };
 
   const error = await updatePreInquiry(AUTHOR, current.id, {
+    expectedUpdatedAt: current.updatedAt.toISOString(),
     recipientEntryId: "hidden-entry",
     selectedRecipientName: "Peidetud kontakt",
     selectedRecipientEmail: "hidden@example.test"
@@ -187,7 +188,7 @@ test("update rejects an unpublished replacement recipient before writing", async
   assert.equal(updateCount, 0);
 });
 
-test("send revalidates that the selected service-map entry is still published", async () => {
+test("external send confirmation revalidates that the selected service-map entry is still published", async () => {
   const inquiry = createdRow({
     recipientEntryId: "entry-a",
     recipientType: "KOV_CONTACT",
@@ -203,29 +204,24 @@ test("send revalidates that the selected service-map entry is still published", 
     recipientEntry: entry({ status: "HIDDEN" }),
     author: { id: AUTHOR, email: "author@example.test" }
   });
-  let sends = 0;
   let updates = 0;
   const db = {
     preInquiry: {
       async findFirst() { return inquiry; },
-      async update() { updates += 1; return inquiry; }
+      async findUnique() { return inquiry; },
+      async updateMany() { updates += 1; return { count: 1 }; }
     },
-    serviceMapEntry: { async findFirst() { return null; } }
+    serviceMapEntry: { async findFirst() { return null; } },
+    room: { async findFirst() { return null; } },
+    async $executeRaw() { return 1; },
+    async $transaction(callback) { return callback(db); }
   };
 
-  const previousFrom = process.env.EMAIL_FROM;
-  process.env.EMAIL_FROM = "noreply@example.test";
-  try {
-    const error = await sendExternalPreInquiry(AUTHOR, inquiry.id, {
-      db,
-      mailer: { async sendMail() { sends += 1; } }
-    }).then(() => null, (reason) => reason);
-    assert.equal(error?.status, 404);
-    assert.equal(error?.message, "api.common.not_found");
-    assert.equal(sends, 0);
-    assert.equal(updates, 0);
-  } finally {
-    if (previousFrom === undefined) delete process.env.EMAIL_FROM;
-    else process.env.EMAIL_FROM = previousFrom;
-  }
+  const error = await confirmExternalPreInquirySent(AUTHOR, inquiry.id, {
+    expectedUpdatedAt: inquiry.updatedAt.toISOString(),
+    db
+  }).then(() => null, (reason) => reason);
+  assert.equal(error?.status, 404);
+  assert.equal(error?.message, "api.common.not_found");
+  assert.equal(updates, 0);
 });

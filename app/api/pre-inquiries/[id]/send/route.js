@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
 import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
-import { sendExternalPreInquiry } from "@/lib/preInquiries";
+import { confirmExternalPreInquirySent } from "@/lib/preInquiries";
 import { safeError } from "@/lib/privacy/safeError";
 
 export const runtime = "nodejs";
@@ -34,7 +34,10 @@ export async function POST(request, context) {
 
   try {
     const params = await context?.params;
-    const inquiry = await sendExternalPreInquiry(auth.userId, String(params?.id || "").trim());
+    const body = await request.json().catch(() => ({}));
+    const inquiry = await confirmExternalPreInquirySent(auth.userId, String(params?.id || "").trim(), {
+      expectedUpdatedAt: body?.expectedUpdatedAt
+    });
     return json({
       ok: true,
       inquiry

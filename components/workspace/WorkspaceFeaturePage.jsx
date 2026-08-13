@@ -1107,6 +1107,20 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
   }, [currentUserId, inquiries]);
 
   const savedInquiries = isAdmin ? inquiries : authoredInquiries;
+  const activeInquiry = activeInquiryId
+    ? inquiries.find((inquiry) => inquiry.id === activeInquiryId) || null
+    : null;
+  // Confirmation must refer to the exact persisted snapshot. Editor fields may
+  // already contain unsaved changes, so a saved inquiry always opens mailto from
+  // the server-returned row rather than from the mutable form state.
+  const activeInquiryMailto = activeInquiry?.deliveryChannel === "EXTERNAL_EMAIL"
+    ? buildPreInquiryRecipientMailto({
+        recipient: { email: activeInquiry.selectedRecipientEmail },
+        topic: activeInquiry.topic,
+        draft: activeInquiry.userEditedDraft || activeInquiry.generatedDraft,
+        situation: activeInquiry.situation
+      })
+    : "";
   const isRecipientRole = activeRole === "SOCIAL_WORKER" || activeRole === "SERVICE_PROVIDER";
   const receiverInquiries = isAdmin && isRecipientRole ? inquiries : receivedInquiries;
   const showReceivedInquiries = isRecipientRole;
@@ -1656,7 +1670,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     event?.preventDefault?.();
     const saveSituation = situation.trim() || effectiveAssessmentSituation;
     const nextStatus = options?.status || "DRAFT";
-    if (saving || !saveSituation.trim()) return;
+    if (saving || !saveSituation.trim() || activeInquiry?.status === "ARCHIVED") return;
 
     setSaving(true);
     setNotice("");
@@ -1687,6 +1701,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
           selectedRecipientEmail: selectedRecipient?.email || "",
           userEditedDraft: draft,
           status: nextStatus,
+          expectedUpdatedAt: activeInquiry?.updatedAt,
           privacyDecision: options?.privacyDecision,
           // Persist the Teekond -> eelpöördumine link only when creating from a
           // journey prefill. On edits (PATCH) the existing link is left intact.
@@ -1828,7 +1843,8 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
           selectedRecipientName: inquiry.selectedRecipientName || "",
           selectedRecipientEmail: inquiry.selectedRecipientEmail || "",
           userEditedDraft: inquiry.userEditedDraft || inquiry.generatedDraft || inquiry.situation || "",
-          status: "ARCHIVED"
+          status: "ARCHIVED",
+          expectedUpdatedAt: inquiry.updatedAt
         })
       });
       const payload = await response.json().catch(() => ({}));
@@ -1841,6 +1857,56 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
       setNotice(readText(t, "workspace_feature_pages.pre_inquiries.archive_success", "Eelpöördumine arhiveeriti."));
     } catch (archiveError) {
       setError(archiveError?.message || readText(t, "workspace_feature_pages.pre_inquiries.errors.save_failed", "Pre-inquiry could not be saved."));
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  async function handleReopenAuthoredInquiry(inquiry) {
+    const inquiryId = String(inquiry?.id || "").trim();
+    if (!inquiryId || saving || inquiry.status !== "ARCHIVED") return;
+    setSaving(true);
+    setNotice("");
+    setError("");
+    try {
+      const response = await fetch(`/api/pre-inquiries/${encodeURIComponent(inquiryId)}/reopen`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ expectedUpdatedAt: inquiry.updatedAt })
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(payload?.message || "pre_inquiries.errors.reopen_failed");
+      if (payload?.inquiry) {
+        setInquiries((current) => current.map((item) => item.id === inquiryId ? payload.inquiry : item));
+      }
+      setNotice(readText(t, "workspace_feature_pages.pre_inquiries.reopen_success", "Eelpöördumine taasavati muutmiseks."));
+    } catch (reopenError) {
+      setError(reopenError?.message || readText(t, "workspace_feature_pages.pre_inquiries.errors.reopen_failed", "Eelpöördumist ei saanud taasavada."));
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  async function handleConfirmExternalSent(inquiry) {
+    const inquiryId = String(inquiry?.id || "").trim();
+    if (!inquiryId || saving || inquiry.deliveryChannel !== "EXTERNAL_EMAIL") return;
+    setSaving(true);
+    setNotice("");
+    setError("");
+    try {
+      const response = await fetch(`/api/pre-inquiries/${encodeURIComponent(inquiryId)}/send`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ expectedUpdatedAt: inquiry.updatedAt })
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(payload?.message || "pre_inquiries.errors.send_failed");
+      if (payload?.inquiry) {
+        setInquiries((current) => current.map((item) => item.id === inquiryId ? payload.inquiry : item));
+      }
+      setNotice(readText(t, "workspace_feature_pages.pre_inquiries.external_confirm_success", "E-kirja saatmine märgiti sinu kinnituse põhjal."));
+    } catch (confirmError) {
+      setError(confirmError?.message || readText(t, "workspace_feature_pages.pre_inquiries.errors.send_failed", "Saatmist ei saanud kinnitada."));
     } finally {
       setSaving(false);
     }
@@ -2981,18 +3047,23 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
           ))}
         </div>
         <div>
-          {selectedRecipientMailto ? (
-            <Button as="a" href={selectedRecipientMailto} size="sm">
+          {activeInquiryMailto || selectedRecipientMailto ? (
+            <Button as="a" href={activeInquiryMailto || selectedRecipientMailto} size="sm">
               {readText(t, "workspace_feature_pages.pre_inquiries.actions.open_email", "Ava e-kirjana")}
             </Button>
           ) : null}
-          <Button type="button" size="sm" disabled={saving || !effectiveSituation.trim()} onClick={handleSave}>
+          {activeInquiryMailto && activeInquiry.status !== "SENT" ? (
+            <Button type="button" size="sm" disabled={saving} onClick={() => handleConfirmExternalSent(activeInquiry)}>
+              {readText(t, "workspace_feature_pages.pre_inquiries.actions.confirm_external_sent", "Kinnita, et saatsid e-kirja")}
+            </Button>
+          ) : null}
+          <Button type="button" size="sm" disabled={saving || !effectiveSituation.trim() || activeInquiry?.status === "ARCHIVED"} onClick={handleSave}>
             {saving
               ? readText(t, "workspace_feature_pages.pre_inquiries.actions.saving", "Salvestan...")
               : readText(t, "workspace_feature_pages.pre_inquiries.actions.save", "Salvesta eelpöördumine")}
           </Button>
           {selectedRecipientId && selectedRecipientSupportsPlatform ? (
-            <Button type="button" size="sm" disabled={saving || !effectiveSituation.trim()} onClick={(event) => handleSave(event, { status: "SENT" })}>
+            <Button type="button" size="sm" disabled={saving || !effectiveSituation.trim() || activeInquiry?.status === "ARCHIVED"} onClick={(event) => handleSave(event, { status: "SENT" })}>
               {saving
                 ? readText(t, "workspace_feature_pages.pre_inquiries.actions.saving", "Salvestan...")
                 : readText(t, "workspace_feature_pages.pre_inquiries.actions.send_internal", "Saada platvormis")}
@@ -3068,9 +3139,15 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
                 <Button type="button" size="sm" onClick={() => handleOpenInquiry(inquiry)}>
                   {readText(t, "workspace_feature_pages.pre_inquiries.actions.open", "Ava")}
                 </Button>
-                <Button type="button" size="sm" variant="primary" onClick={() => handleOpenInquiry(inquiry)}>
-                  {readText(t, "workspace_feature_pages.pre_inquiries.actions.edit", "Muuda")}
-                </Button>
+                {inquiry.status === "ARCHIVED" ? (
+                  <Button type="button" size="sm" variant="primary" disabled={saving} onClick={() => handleReopenAuthoredInquiry(inquiry)}>
+                    {readText(t, "workspace_feature_pages.pre_inquiries.actions.reopen", "Taasava muutmiseks")}
+                  </Button>
+                ) : inquiry.status !== "SENT" ? (
+                  <Button type="button" size="sm" variant="primary" onClick={() => handleOpenInquiry(inquiry)}>
+                    {readText(t, "workspace_feature_pages.pre_inquiries.actions.edit", "Muuda")}
+                  </Button>
+                ) : null}
                 <Button type="button" size="sm" variant="primary" onClick={() => navigator?.clipboard?.writeText(inquiry.userEditedDraft || inquiry.generatedDraft || inquiry.situation || "")}>
                   {readText(t, "workspace_feature_pages.pre_inquiries.actions.copy_short", "Kopeeri")}
                 </Button>

@@ -73,6 +73,12 @@ function createStaleSnapshotDb() {
         updates.push(data);
         Object.assign(current, data);
         return { ...current };
+      },
+      async updateMany({ where, data }) {
+        if (new Date(where.updatedAt).getTime() !== current.updatedAt.getTime()) return { count: 0 };
+        updates.push(data);
+        Object.assign(current, data);
+        return { count: 1 };
       }
     },
     user: {
@@ -105,7 +111,10 @@ test("a content-only update resolves the recipient from the fresh record, never 
   const { client, updates } = createStaleSnapshotDb();
 
   // B only changes the topic; it supplies no recipient input.
-  const result = await updatePreInquiry(AUTHOR, "inq_1", { topic: "Uuendatud teema" }, { db: client });
+  const result = await updatePreInquiry(AUTHOR, "inq_1", {
+    topic: "Uuendatud teema",
+    expectedUpdatedAt: "2026-07-13T09:00:00.000Z"
+  }, { db: client });
 
   assert.equal(updates.length, 1);
   assert.equal(

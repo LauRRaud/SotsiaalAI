@@ -2,7 +2,6 @@ import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
 import { errorJson, json, localeFromRequest, publicErrorMessageKey, publicErrorStatus } from "@/lib/documents/server";
 import { getVisiblePreInquiry } from "@/lib/preInquiries";
-import { prisma } from "@/lib/prisma";
 import { safeError } from "@/lib/privacy/safeError";
 import { ensureRoomForPreInquiry } from "@/lib/rooms/preInquiryRoom";
 
@@ -60,15 +59,6 @@ export async function POST(request, context) {
       participantIds: uniqueParticipantIds
     });
 
-    if (created) {
-      await prisma.preInquiry.update({
-        where: { id: inquiry.id },
-        data: {
-          status: inquiry.status === "DRAFT" ? "READY" : inquiry.status
-        }
-      }).catch(() => null);
-    }
-
     return json({
       ok: true,
       room
@@ -76,7 +66,11 @@ export async function POST(request, context) {
   } catch (error) {
     // Controlled pre-inquiry-room 409 that the public-key whitelist (api.*/
     // documents.*) does not cover — surfaced explicitly so it never becomes a 500.
-    if (Number(error?.status) === 409 && error?.message === "pre_inquiries.errors.room_requires_platform_recipient") {
+    if (Number(error?.status) === 409 && [
+      "pre_inquiries.errors.room_requires_platform_recipient",
+      "pre_inquiries.errors.room_requires_acceptance",
+      "pre_inquiries.errors.not_sent"
+    ].includes(error?.message)) {
       return errorJson(error.message, 409, locale);
     }
     // Only whitelisted public error keys (api.*/documents.*) are surfaced with

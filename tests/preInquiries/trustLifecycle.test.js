@@ -287,7 +287,7 @@ test("unopened DRAFT and READY pre-inquiries remain directly editable", async ()
     const updated = await updatePreInquiry(
       AUTHOR,
       original.id,
-      { topic: `${status} edited`, situation: original.situation },
+      { topic: `${status} edited`, situation: original.situation, expectedUpdatedAt: original.updatedAt },
       { db: db.client }
     );
 

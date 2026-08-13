@@ -2147,6 +2147,8 @@
         "opening_room": "Opening...",
         "write_email": "Write email",
         "open_email": "Open email",
+        "confirm_external_sent": "Confirm that you sent the email",
+        "reopen": "Reopen for editing",
         "save_preferences": "Save receiving settings",
         "saving": "Saving...",
         "assisting": "Preparing...",
@@ -2176,6 +2178,8 @@
       "empty_saved": "Saved pre-inquiries appear here.",
       "save_success": "Pre-inquiry saved.",
       "archive_success": "Pre-inquiry archived.",
+      "reopen_success": "Pre-inquiry reopened for editing.",
+      "external_confirm_success": "Email sending was recorded as confirmed.",
       "copy_success": "Inquiry text copied.",
       "download_success": "Inquiry text downloaded.",
       "accept_success": "Pre-inquiry marked as accepted.",
@@ -2193,6 +2197,9 @@
         "room_failed": "Conversation room could not be opened.",
         "recipient_locked_by_room": "The recipient can no longer be changed because this pre-inquiry already has a shared conversation room.",
         "room_requires_platform_recipient": "A shared room needs the pre-inquiry to have a recipient who receives it on the platform.",
+        "room_requires_acceptance": "A shared room can be opened after the recipient accepts the pre-inquiry.",
+        "reopen_failed": "The pre-inquiry could not be reopened.",
+        "send_failed": "The sending confirmation could not be saved.",
         "download_conflict": "The pre-inquiry changed in the meantime. Refresh and try again.",
         "internal_recipient_required": "To send in the platform, choose a contact whose account receives pre-inquiries.",
         "workflow_save_failed": "Receiver workflow could not be saved.",
@@ -7967,7 +7974,14 @@
       "correction_failed": "The correction could not be sent.",
       "not_sent": "The pre-inquiry has not been sent yet.",
       "open_conflict": "The pre-inquiry changed in the meantime. Refresh and try again.",
-      "next_contact_invalid": "Enter a real date in YYYY-MM-DD format."
+      "next_contact_invalid": "Enter a real date in YYYY-MM-DD format.",
+      "edit_conflict": "The pre-inquiry changed in the meantime. Refresh and try again.",
+      "archived_cannot_be_edited": "An archived pre-inquiry is read-only. Reopen it before editing.",
+      "reopen_requires_archived": "Only an archived pre-inquiry can be reopened.",
+      "reopen_conflict": "The pre-inquiry state changed in the meantime. Refresh and try again.",
+      "external_confirmation_conflict": "The pre-inquiry changed before sending was confirmed. Refresh and check its state.",
+      "room_requires_acceptance": "A conversation room can be opened after the recipient accepts the pre-inquiry.",
+      "invalid_status_transition": "This pre-inquiry status change is not allowed through this action."
     }
   },
   "my_sharings": {

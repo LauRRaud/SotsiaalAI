@@ -71,8 +71,8 @@ test("all trust mutations share the pre-inquiry advisory lock", async () => {
   }
   const room = await source("lib/rooms/preInquiryRoom.js");
   assert.match(preInquiries, /recallPreInquiry[\s\S]*findPreInquiryCanonicalRoom\(fresh\.id, \{ db: tx \}\)/);
-  assert.match(room, /markRecipientOpened/);
-  assert.match(room, /openedAt: null[\s\S]*recalledAt: null[\s\S]*data: \{ openedAt: new Date\(\) \}/);
+  assert.match(room, /fresh\.status !== "READY" \|\| !fresh\.openedAt/);
+  assert.doesNotMatch(room, /data: \{ openedAt: new Date\(\) \}/);
   assert.match(room, /if \(fresh\.recalledAt\)/);
 });
 

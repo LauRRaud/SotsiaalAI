@@ -129,6 +129,12 @@ function fakeDb(inquiry) {
         updates.push(data);
         Object.assign(state, data);
         return { ...state };
+      },
+      async updateMany({ where, data }) {
+        if (where.updatedAt && state.updatedAt.getTime() !== new Date(where.updatedAt).getTime()) return { count: 0 };
+        updates.push(data);
+        Object.assign(state, data);
+        return { count: 1 };
       }
     },
     user: { async findUnique({ where }) { return users[where.email] || null; } },
@@ -232,7 +238,7 @@ test("updatePreInquiry: editing a DOWNLOADED record's content reverts it to READ
   const result = await updatePreInquiry(
     AUTHOR,
     "inq_1",
-    { topic: "Uus teema", situation: "Olukord.", userEditedDraft: "Mustand", status: "DRAFT" },
+    { topic: "Uus teema", situation: "Olukord.", userEditedDraft: "Mustand", status: "DRAFT", expectedUpdatedAt: db.state.updatedAt },
     { db }
   );
   assert.equal(result.status, "READY");
@@ -244,7 +250,7 @@ test("updatePreInquiry: re-saving a DOWNLOADED record without content changes ke
   const result = await updatePreInquiry(
     AUTHOR,
     "inq_1",
-    { topic: "Teema", situation: "Olukord.", userEditedDraft: "Mustand", status: "DRAFT" },
+    { topic: "Teema", situation: "Olukord.", userEditedDraft: "Mustand", status: "DRAFT", expectedUpdatedAt: db.state.updatedAt },
     { db }
   );
   assert.equal(result.status, "DOWNLOADED");
@@ -255,7 +261,7 @@ test("updatePreInquiry: changing a DOWNLOADED record's recipient name reverts it
   const result = await updatePreInquiry(
     AUTHOR,
     "inq_1",
-    { topic: "Teema", situation: "Olukord.", userEditedDraft: "Mustand", selectedRecipientName: "Uus Kontakt", status: "DRAFT" },
+    { topic: "Teema", situation: "Olukord.", userEditedDraft: "Mustand", selectedRecipientName: "Uus Kontakt", status: "DRAFT", expectedUpdatedAt: db.state.updatedAt },
     { db }
   );
   assert.equal(result.status, "READY");
@@ -266,7 +272,7 @@ test("updatePreInquiry: an ordinary PATCH status:DOWNLOADED is rejected with 400
   const error = await updatePreInquiry(
     AUTHOR,
     "inq_1",
-    { topic: "Teema", situation: "Olukord.", userEditedDraft: "Mustand", status: "DOWNLOADED" },
+    { topic: "Teema", situation: "Olukord.", userEditedDraft: "Mustand", status: "DOWNLOADED", expectedUpdatedAt: db.state.updatedAt },
     { db }
   ).then(() => null, (e) => e);
   assert.equal(error.status, 400);
@@ -284,7 +290,7 @@ test("mark-before-edit: a marked record reverts to READY on a later substantive 
   const edited = await updatePreInquiry(
     AUTHOR,
     "inq_1",
-    { topic: "Uus teema", situation: "Olukord.", userEditedDraft: "Mustand", status: "DRAFT" },
+    { topic: "Uus teema", situation: "Olukord.", userEditedDraft: "Mustand", status: "DRAFT", expectedUpdatedAt: marked.updatedAt },
     { db }
   );
   assert.equal(edited.status, "READY");

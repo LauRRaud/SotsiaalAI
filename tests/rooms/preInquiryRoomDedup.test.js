@@ -33,11 +33,48 @@ function defaultInquiry(overrides = {}) {
     authorId: AUTHOR,
     recipientOwnerId: RECIPIENT,
     recipientType: "KOV_CONTACT",
+    deliveryChannel: "INTERNAL",
+    status: "READY",
+    sentAt: new Date("2026-08-13T08:00:00.000Z"),
+    openedAt: new Date("2026-08-13T08:05:00.000Z"),
+    recalledAt: null,
     topic: "Eluase",
     selectedRecipientName: "",
     ...overrides
   };
 }
+
+for (const [label, inquiry] of [
+  ["author on DRAFT", defaultInquiry({ status: "DRAFT", sentAt: null, openedAt: null })],
+  ["author on SENT before recipient accept", defaultInquiry({ status: "SENT", openedAt: null })],
+  ["recipient before accept", defaultInquiry({ status: "SENT", openedAt: null })]
+]) {
+  test(`${label} cannot create a shared room`, async () => {
+    const db = createFakeDb({ inquiry });
+    const userId = label.startsWith("recipient") ? RECIPIENT : AUTHOR;
+    const error = await ensureRoomForPreInquiry({ userId, inquiry: { id: "inq_1" } }, { db }).then(
+      () => null,
+      (reason) => reason
+    );
+    assert.equal(error?.status, 409);
+    assert.equal(db.created.length, 0);
+    assert.equal(db.members.length, 0);
+  });
+}
+
+test("recipient after explicit accept can create the room without a second state update", async () => {
+  const db = createFakeDb();
+  let inquiryUpdates = 0;
+  db.preInquiry.updateMany = async () => {
+    inquiryUpdates += 1;
+    throw new Error("room flow must not mutate accepted inquiry state");
+  };
+
+  const result = await ensureRoomForPreInquiry({ userId: RECIPIENT, inquiry: { id: "inq_1" } }, { db });
+  assert.equal(result.created, true);
+  assert.equal(inquiryUpdates, 0);
+  assert.equal(db.created.length, 1);
+});
 
 function createFakeDb({ inquiry = defaultInquiry(), rooms = [], members = [], createThrows = null } = {}) {
   const created = [];

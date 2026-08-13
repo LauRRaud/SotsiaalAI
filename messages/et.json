@@ -2147,6 +2147,8 @@
         "opening_room": "Avan...",
         "write_email": "Kirjuta e-kiri",
         "open_email": "Ava e-kirjana",
+        "confirm_external_sent": "Kinnita, et saatsid e-kirja",
+        "reopen": "Taasava muutmiseks",
         "save_preferences": "Salvesta vastuvõtt",
         "saving": "Salvestan...",
         "assisting": "Koostan...",
@@ -2176,6 +2178,8 @@
       "empty_saved": "Sul ei ole veel salvestatud eelpöördumisi.",
       "save_success": "Eelpöördumine salvestati.",
       "archive_success": "Eelpöördumine arhiveeriti.",
+      "reopen_success": "Eelpöördumine taasavati muutmiseks.",
+      "external_confirm_success": "E-kirja saatmine märgiti kinnitatuks.",
       "copy_success": "Pöördumise tekst kopeeriti.",
       "download_success": "Pöördumise tekst laaditi alla.",
       "accept_success": "Eelpöördumine märgiti vastuvõetuks.",
@@ -2193,6 +2197,9 @@
         "room_failed": "Vestlusruumi ei saanud avada.",
         "recipient_locked_by_room": "Adressaati ei saa enam muuta, sest sellel eelpöördumisel on juba ühine vestlusruum.",
         "room_requires_platform_recipient": "Ühise ruumi loomiseks peab eelpöördumisel olema platvormil vastuvõttev adressaat.",
+        "room_requires_acceptance": "Ühise ruumi saab avada pärast seda, kui adressaat on eelpöördumise vastu võtnud.",
+        "reopen_failed": "Eelpöördumist ei saanud taasavada.",
+        "send_failed": "Saatmise kinnitust ei saanud salvestada.",
         "download_conflict": "Eelpöördumine muutus vahepeal. Värskenda ja proovi uuesti.",
         "internal_recipient_required": "Platvormis saatmiseks vali kontakt, kelle konto võtab eelpöördumisi vastu.",
         "workflow_save_failed": "Vastuvõtja tööplaani ei saanud salvestada.",
@@ -7969,7 +7976,14 @@
       "correction_failed": "Parandust ei saanud saata.",
       "not_sent": "Pöördumist ei ole veel saadetud.",
       "open_conflict": "Pöördumise olek muutus vahepeal. Värskenda ja proovi uuesti.",
-      "next_contact_invalid": "Sisesta tegelik kuupäev kujul AAAA-KK-PP."
+      "next_contact_invalid": "Sisesta tegelik kuupäev kujul AAAA-KK-PP.",
+      "edit_conflict": "Eelpöördumine muutus vahepeal. Värskenda ja proovi uuesti.",
+      "archived_cannot_be_edited": "Arhiveeritud eelpöördumine on muutmiskindel. Taasava see enne muutmist.",
+      "reopen_requires_archived": "Taasavada saab ainult arhiveeritud eelpöördumist.",
+      "reopen_conflict": "Eelpöördumise olek muutus vahepeal. Värskenda ja proovi uuesti.",
+      "external_confirmation_conflict": "Eelpöördumine muutus enne saatmise kinnitamist. Värskenda ja kontrolli seisu.",
+      "room_requires_acceptance": "Vestlusruumi saab avada pärast seda, kui adressaat on eelpöördumise vastu võtnud.",
+      "invalid_status_transition": "Seda eelpöördumise olekumuutust ei saa selle toiminguga teha."
     }
   },
   "my_sharings": {
