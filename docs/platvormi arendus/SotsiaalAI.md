@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**Paralleelsete parandustööpuude laine on integreeritud lokaalsesse `main`-i.** `SOL-JOUR-01…17`, `SOL-NET-01…13`, `SOL-REF-01…09`, `SOL-SEARCH-01…07` ning `SOL-SPROF-03,05…08` on lõpetatud; `SOL-SPROF-04` on päris välise RAG-i ingest–search runtime'ita ausalt PARTIAL. Teenuseprofiili avalik kaart ja RAG kasutavad sama fail-closed projektsiooni, täisvormil on revision-konflikt, asukohatõend on serveri allkirjaga, RAG-sünk taastatava püsitööga ning SOLO-profiil omaniku andmekoopias. Järgmine sidus plokk on `SOL-SPROF-09…15`.
+**Paralleelsete parandustööpuude uus laine on integreeritud lokaalsesse `main`-i.** Funktsioonideülene `SOL-XFUNC-01…03` on lõpetatud: Haldus on URL-iga taastatav, Ruumid järgib serveri tegevuslippe ning andmekoopia CI-värav klassifitseerib kõik kasutajaseosed ja väliskoopiad. Teenuseprofiili `SOL-SPROF-11…14` on DONE; `SOL-SPROF-04,09,10,15` jäävad puuduvate välise RAG-i või autentitud brauseri/HTTP runtime-tõendite tõttu ausalt PARTIAL. Järgmine töö valitakse ametliku koondi allesjäänud kolmest NOT_DONE leiust.
 
 **Teenuspäeviku jätkuauditi `SOL-SLOG-J-01…07` on lõpetatud.** Kirje parandamine,
 tühistamine, mustandi kustutamine ja owner-skoobitud ajalugu on nüüd päris kasutajateed;

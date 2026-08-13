@@ -8228,6 +8228,8 @@ suletud), negatiivkontrolli (kehtiva loaga profiil JÄÄB) ja fail-closed haru.
 
 **Vastuvõtukriteerium.** Üle piiri sisend peab saama välja-/rea-põhise 400/413 vea; UI näitab loendurit ja keelab lisamise enne serveripiiri. Testida piir-1/piir/piir+1, olemasoleva 41. rea säilimist ning kriitilist markerit teksti kärbitavas sabas.
 
+**Seis (13.08.2026): PARTIAL —** serveripoolne piirileping lükkab üle piiri tekstid, loendid, 41. teenuse ja 31. asukoha välja-/rea-põhise 413 veaga tagasi ega kärbi või kustuta vaikides olemasolevaid sabaridu. PostgreSQL-i sond tõendas ülepiiriliste lapsridade ja teksti sabas oleva kriitilise markeri säilimise; UI kuvab loendurid ja piiripõhise keelamise. Brauseris nähti loendureid ja blokeeritud avaldamist, kuid autentitud piirini täitmise läbisõit jäi `NOT_PROVEN`.
+
 ### SOL-SPROF-10 — profiili- ja kättesaadavusroute võivad tagastada kliendile toore serverivea — P2
 
 **Tõend.** Profiili PUT ja kättesaadavuse POST valivad staatuseks `error.status || 500`, kuid annavad kõigi staatuste korral `error.message` otse `errorJson()`-ile (`app/api/service-provider/profile/route.js:79-88`; `app/api/service-provider/profile/services/[serviceId]/availability-confirmation/route.js:32-37`). `safeError()`-it kasutatakse ainult serverilogis; andmebaasi, RAG-i või programmeerimisvea tekst võib seetõttu muutuda 500 vastuse kehaks.
@@ -8235,6 +8237,8 @@ suletud), negatiivkontrolli (kehtiva loaga profiil JÄÄB) ja fail-closed haru.
 **Mõju.** Sisemised tabeli-/välja-/võrguandmed või muu tehniline kontekst võivad autentitud kliendile lekkida. UI kuvab sama `payload.message` teksti kasutajale.
 
 **Vastuvõtukriteerium.** Ainult allowlist'itud 4xx domeenikoodid tohivad kliendile jõuda; kõik 5xx vastused kasutavad lokaliseeritud üldkoodi ja korrelatsiooni-ID-d. Veasüsttestid peavad panema Prisma ja RAG-i viskama unikaalse salajase markeri ning tõendama selle puudumise HTTP-kehas ja UI-s.
+
+**Seis (13.08.2026): PARTIAL —** profiili- ja kättesaadavusroute lubavad kliendile ainult allowlist'itud 4xx domeenivigu; tundmatu 4xx ja kõik 5xx kasutavad lokaliseeritud üldkoodi ning korrelatsiooni-ID-d. Unikaalne salajane marker puudus veadeskriptorist, serialiseeritud RAG-metaandmetest ja UI lepingust. Täielik Prisma/RAG veasüst läbi autentitud HTTP- ja brauseriraja jäi `NOT_PROVEN`.
 
 ### SOL-SPROF-11 — avaldamise ja AI-soovitusloa muutmisel puudub püsiv auditijälg — P2
 
@@ -8244,6 +8248,8 @@ suletud), negatiivkontrolli (kehtiva loaga profiil JÄÄB) ja fail-closed haru.
 
 **Vastuvõtukriteerium.** Olulised avaldamis-/nõusolekusiirded peavad kirjutama samas DB-tehingus sisutu auditi/outbox-sündmuse: actor, profiili ID, eelmine/uus olek, revision ja korrelatsiooni-ID; teenusekirjeldust ega kontakte auditisse ei kopeerita. Testida auditirea kirjutusviga, kordussalvestust ja tagasivõtmise järjekorda.
 
+**Seis (13.08.2026): DONE —** avaldamise ja assistendi soovitusloa siirded kirjutatakse profiili, lapsridade ja RAG-tööga samas tehingus sisutu `DomainEvent`-ina koos actor'i, profiili ID, vana/uue oleku, revision'i ja korrelatsiooni-ID-ga. PostgreSQL-i sond tõendas auditivea täielikku rollback'i, kordussalvestuse duplikaadivabadust, tagasivõtmise järjekorda ning seda, et kirjeldusi ega kontakte auditisse ei kopeerita.
+
 ### SOL-SPROF-12 — kulukatel profiili-, RAG- ja aadressitoimingutel puudub ühine serveripoolne koormuspiir — P2
 
 **Tõend.** Profiili GET/PUT, kättesaadavuse kinnitus ja aadressisoovituste GET ei kasuta `consumeRateLimit`-i; PUT käivitab iga eduka salvestuse järel välise RAG-sünkroniseerimise (`app/api/service-provider/profile/route.js`; `app/api/service-provider/profile/services/[serviceId]/availability-confirmation/route.js`; `app/api/service-map/address-suggestions/route.js`; `lib/serviceProviderProfiles.js:1121-1139`). MTR POST-il on küll 15 minuti domeenijahtumine, kuid ülejäänud välispäringu- ja DB-rajad jäävad piiramata. PUT-il puudub ka idempotency key.
@@ -8251,6 +8257,8 @@ suletud), negatiivkontrolli (kehtiva loaga profiil JÄÄB) ja fail-closed haru.
 **Mõju.** Kompromiteeritud teenuseosutaja konto või korduv klient saab tekitada järjest RAG-ingeste, täisasendustehinguid ja geokooderi päringuid, kasvatades kulusid ning võimendades samaaegsus- ja lahknemisriske.
 
 **Vastuvõtukriteerium.** Lisada jagatud kasutaja+toimingu limiter ning PUT-ile replay-kindel idempotency/revision leping; aadressipäringul ka mõistlik query-pikkuse piir. Mitme protsessi test peab tõendama ühist 429 piiri ja sama võtmega PUT peab tegema ühe DB/RAG-toimingu.
+
+**Seis (13.08.2026): DONE —** profiili GET/PUT, kättesaadavuse kinnitus ja aadressiotsing kasutavad püsivat kasutaja+toimingu koormuspiiri; aadressipäringul on pikkusepiir ning profiili PUT nõuab replay-kindlat `Idempotency-Key` lepingut. PostgreSQL-i mitme protsessi sond tõendas ühist 429 piiri ning sama võtmega samaaegsete ja korduvate PUT-ide puhul ühe profiilirevision'i, receipt'i ja RAG-töö; erineva kehaga sama võti saab 409 konflikti.
 
 ### SOL-SPROF-13 — MTR-i 15 minuti jahtumise vastus näitab ainult kuupäeva ja alati eesti formaati — P2
 
@@ -8260,6 +8268,8 @@ suletud), negatiivkontrolli (kehtiva loaga profiil JÄÄB) ja fail-closed haru.
 
 **Vastuvõtukriteerium.** Kuvada lokaadipõhine kuupäev ja kellaaeg või arusaadav järelejäänud minutite loendur; server võiks anda ka standardse `Retry-After` päise. Testida ET/EN/RU, sama päeva ja järgmise päeva retry-hetke ning Tallinna ajavööndi piiri.
 
+**Seis (13.08.2026): DONE —** MTR-i jahtumise 429 vastus annab standardse `Retry-After` päise ning UI vormindab retry-hetke kasutaja ET/EN/RU lokaadi, kuupäeva, kellaaja ja `Europe/Tallinn` ajavööndi järgi. Sihttestid katavad sama päeva, järgmise päeva ja Tallinna suveajapiiri.
+
 ### SOL-SPROF-14 — profiili tavapärane salvestus võib individuaalselt peidetud teenuse või asukoha uuesti avaldada — P2
 
 **Tõend.** Vorm laeb lapsrea `status` väärtuse, kuid salvestuspayload kirjutab iga asukoha ja teenuse staatuseks ainult profiili üldstaatuse põhjal `PUBLISHED` või `DRAFT`, sõltumata rea varasemast `HIDDEN`/`REVIEW` seisust (`components/workspace/WorkspaceFeaturePage.jsx:3988-3991`, `:4183-4215`). UI-s pole lapsrea staatuse muutmise juhtelementi. Server usaldab saadetud staatust ja uuendab olemasolevat teenust kohapeal (`lib/serviceProviderProfiles.js:639-689`, `:995-1033`).
@@ -8268,6 +8278,8 @@ suletud), negatiivkontrolli (kehtiva loaga profiil JÄÄB) ja fail-closed haru.
 
 **Vastuvõtukriteerium.** Lapsrea staatus tuleb kas UI-s ausalt hallata või tavavormis muutmata säilitada; üldprofiili avaldamine ei tohi HIDDEN rida vaikimisi taasavada. Testida avaliku profiili HIDDEN teenuse ja asukoha salvestust pärast telefoninumbri muutmist.
 
+**Seis (13.08.2026): DONE —** profiili tavapärane salvestus säilitab olemasoleva teenuse ja asukoha individuaalse staatuse ning UI võimaldab lapsrea staatust eraldi hallata; üldprofiili avaldamine ei kirjuta enam kõiki lapsi automaatselt `PUBLISHED`/`DRAFT` olekusse. PostgreSQL-i sond tõendas, et telefoninumbri muutmise järel jäävad HIDDEN teenus ja asukoht peidetuks.
+
 ### SOL-SPROF-15 — avaldamise kontrollid on informatiivsed, server lubab tühja teenuseprofiili RAG-i — P2
 
 **Tõend.** UI arvutab teenuse, asukoha ja kontakti valmisolekukontrollid, kuid salvestusnupp nõuab ainult organisatsiooni nime (`components/workspace/WorkspaceFeaturePage.jsx:4242-4292`, `:4919-4967`). Serveri normaliseerija nõuab samuti ainult `organizationName`-i; `status:PUBLISHED` ja `assistantRecommendationAllowed:true` võetakse vastu ilma ühegi teenuse, kontakti või avaldamisvalmiduse reeglita (`lib/serviceProviderProfiles.js:604-636`, `:910-975`). RAG `shouldPublish` kontrollib ainult neid kahte lippu (`:475-479`).
@@ -8275,6 +8287,8 @@ suletud), negatiivkontrolli (kehtiva loaga profiil JÄÄB) ja fail-closed haru.
 **Mõju.** Assistent võib hakata soovitama sisuliselt tühja või kontaktita osutajaprofiili; kasutaja näeb küll hoiatusi, kuid sama nupp avaldab ikkagi. Teenusekaardi ja RAG-i avaldamislepingud muutuvad omavahel erinevaks.
 
 **Vastuvõtukriteerium.** Lukustada serveripoolne minimaalne avaldamisleping: vähemalt üks sobiva staatusega teenus ning teadlikult määratud kontakt-/ligipääsutee; kaardiasukoht võib olla valikuline veebiteenusele. UI peab näitama välja-põhiseid vigu ja API-test peab otse-PUT tühja PUBLISHED+AI payload'i tagasi lükkama.
+
+**Seis (13.08.2026): PARTIAL —** serveripoolne avaldamisleping nõuab `PUBLISHED`+AI profiililt vähemalt üht avaldamiseks sobivat teenust ja teadlikku kontakt- või platvormipõhist ligipääsuteed; veebiteenusele ei nõuta kaardiasukohta. UI kuvab vastavad vead ja blokeerib sobimatu avaldamise. Serveri kirjutusraja ja UI lepingutest tõendavad tühja payload'i tagasilükkamist, kuid autentitud route-taseme otse-PUT API-test jäi `NOT_PROVEN`.
 
 ## Järgmine auditijärjekord
 

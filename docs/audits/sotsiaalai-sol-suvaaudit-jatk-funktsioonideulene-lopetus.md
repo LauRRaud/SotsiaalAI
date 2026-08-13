@@ -26,7 +26,7 @@ Töölaud sisaldab kolme rolli ühendvaates kõiki tellitud 20 funktsiooni. Klie
 
 **Vastuvõtukriteerium.** Luua päris `/admin` hub-route või muu URL-iga taastatav halduskontekst, milles on kõik omanikult kinnitatud administraatoripinnad. Otse-/F5-süvalink peab taastama Haldus-doki; tundmatu ja mitteadmin peab saama fail-closed vastuse. Contract-test peab võrdlema route-manifesti teadlikult klassifitseeritud adminilehtede loendiga, mitte käsitsi valitud nelja kaardiga.
 
-**Seis.** NOT_DONE; runtime: `/admin` 404 ja anonüümsed admin-API 401 tõendatud, autentitud admini F5/dokirada `NOT_PROVEN`.
+**Seis.** DONE — commit `84afee74` lisab serveris autentiva päris `/admin` hub-route'i ning kanoonilise `ADMIN_SURFACES` registri, mida kasutavad nii hub kui Haldus-dokk. Contract-test võrdleb registrit kõigi 13 tegeliku `app/admin/**/page.jsx` pinnaga. Autenditud lokaalses brauseris avanes 13/13 pinda, `/admin/wellbeing` säilitas F5 järel Haldus-doki, tundmatu adminitee oli 404 ning mitteadmin suunati fail-closed avalehele. Tootmisruntime ja deploy jäid `NOT_PROVEN`.
 
 ### SOL-XFUNC-02 — Ruumid ignoreerib serveri tegevuslepingut ning peidab keelatud kustutuse vea — P2
 
@@ -38,7 +38,7 @@ Sünteetilise route-vastusega Chromiumi kontrollis oli PRE_INQUIRY-ruum `role=OW
 
 **Vastuvõtukriteerium.** UI peab kasutama ainult serveri tegevuslippe, kuvama `canArchive` korral arhiveerimise ning mitte renderdama keelatud kustutust/kutset. Iga 4xx/5xx peab säilitama dialoogi või andma nähtava taastatava veaseisu. Brauseritest peab katma MANUAL_INVITE, PRE_INQUIRY/HELP_MATCH, arhiveeritud ruumi, omaniku/moderaatori/liikme ning GET/PATCH/DELETE tõrked.
 
-**Seis.** NOT_DONE; runtime: sünteetilise serverivastusega Chromiumis reproduced; päris kahe konto ja PostgreSQL-i elutsükkel `NOT_PROVEN`.
+**Seis.** DONE — commit `84afee74` eemaldab `RoomsPage`-i rollipõhise õiguste tuletuse ja kasutab ainult serveri `canInvite`, `canLeave`, `canDelete` ning `canArchive` lippe. UI pakub PATCH-arhiveerimist, ei kuva keelatud kutset/kustutust ning säilitab GET/PATCH/DELETE tõrke nähtava taastatava seisuna. Autenditud brauserirada kattis `MANUAL_INVITE`, `PRE_INQUIRY`, `HELP_MATCH`, arhiveeritud ruumi ning omaniku/moderaatori/liikme; päris PostgreSQL-i kahe sünteetilise konto sond kinnitas ühe kustutuse, ühe arhiveerimise ja kahe kontrollruumi muutumatuse (`PROBE_OK accounts=2 delete=1 archive=1 unchanged=2`). Tootmisruntime ja deploy jäid `NOT_PROVEN`.
 
 ### SOL-XFUNC-03 — isikuandmete koopia registril puudub täielikkusleping ning uus kasutajapind jääb vaikimisi välja — P1
 
@@ -50,7 +50,7 @@ See ei ole üksiku varasema leiu uus nimi. Eri lõpetusringid tõendasid sama ar
 
 **Vastuvõtukriteerium.** Kehtestada masinloetav kasutajaandmete pinnaregister ja CI-värav: iga Prisma kasutajaseos ning fail/RAG/väliskoopia peab saama omaniku, projektsiooni, kolmanda isiku filtri, retention-klassi ja ekspordiotsuse. Skeemi lisandunud või ümber nimetatud seos peab värava punaseks tegema, kuni klassifikatsioon ja positiivne/negatiivne test on lisatud. ZIP-i integratsioonitest peab võrdlema sünteetilise kasutaja tegelikke klassifitseeritud pindu manifestiga.
 
-**Seis.** NOT_DONE; runtime: mitmes eelnevas lõpetusringis fake-DB ja päris PostgreSQL-i vastu osaliselt reproduced, terviklik production-andmekoopia `NOT_PROVEN`.
+**Seis.** DONE — kasutajaandmete masinloetav pinnaregister klassifitseerib kõik praegused 157 Prisma `User`-seost ning 41 skeemist avastatavat ja kaks koodipõhist faili-, RAG- või väliskoopia pinda omaniku, projektsiooni, kolmanda isiku filtri, retention-klassi ja ekspordiotsusega. Iga kirje kannab positiivse ja negatiivse kontrolli lepingut; uus või ümber nimetatud kasutajaseos või koopiamarker muudab CI-värava punaseks, kuni register on teadlikult uuendatud. Sünteetilise kasutaja ZIP-integratsioon nõuab manifesti täpset vastavust kõigile 15 käivitatud ekspordipinnale. Negatiivkontroll vana käitumise vastu kukkus ootuspäraselt; päris PostgreSQL oli `not_run`, sest invariant on skeemi- ja manifestipõhine. Production-andmekoopia jäi `NOT_PROVEN`.
 
 ## Funktsioonideüleste voogude järeldused
 
