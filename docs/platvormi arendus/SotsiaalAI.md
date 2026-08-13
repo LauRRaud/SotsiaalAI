@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**Paralleelsete parandustööpuude viimane auditiparanduste ring on integreerimisel lokaalsesse `main`-i.** `SOL-CW-19` on nüüd DONE: CaseWorkAssist on kanoonilise lepingu järgi töötaja privaatne töömaterjal, töötaja saab selle enne konto kustutust andmekoopiasse ning päris PostgreSQL kinnitas kustutuse, blokeeringu, rollback'i ja retry. Ametlik seis on **426 DONE / 1 PARTIAL / 2 NOT_DONE**; lahti on õigus-/andmekaitsekinnitust ootav `SOL-CW-14` ning B Materjalide ploki `SOL-MAT-08` ja `SOL-MAT-12`. Viimane toodangu väljalase on endiselt `3735789e`; pärast B lõpetamist, integratsiooni ja muutumatu lõpp-puu täisväravat on omanik lubanud GitHubi push'i ning serverisse viimise.
+**Paralleelsete parandustööpuude viimane auditiparanduste ring on integreerimisel lokaalsesse `main`-i.** `SOL-MAT-08` otsusest sõltumatu RAG-elutsükkel ja üleslaadimise karantiin → pahavarakontroll → struktuurikontroll turvapiir on valmis ning fail-closed; päris `clamd/freshclam`, CDR, konto-kustutuse hook ja neli omaniku poliitikavalikut on ausalt NOT_PROVEN/lahtised. Ametlik seis on **426 DONE / 2 PARTIAL / 1 NOT_DONE**; lahti on `SOL-CW-14`, `SOL-MAT-08` ja viimane NOT_DONE `SOL-MAT-12`. Viimane toodangu väljalase on endiselt `3735789e`; pärast MAT-12 plokki, lõppintegratsiooni ja muutumatu puu täisväravat on omanik lubanud GitHubi push'i ning serverisse viimise.
 
 **Teenuspäeviku jätkuauditi `SOL-SLOG-J-01…07` on lõpetatud.** Kirje parandamine,
 tühistamine, mustandi kustutamine ja owner-skoobitud ajalugu on nüüd päris kasutajateed;

@@ -85,7 +85,7 @@ Käsitsi siia ei kirjutata. DONE algab sõnaga `DONE`, PARTIAL sõnaga `PARTIAL`
 on NOT_DONE. Kvalifitseeritud DONE-väide vale algusega katkestab genereerimise, et ta ei
 kaoks vaikselt valesse rühma. Iga loetletud leiu lõpus on Seis-lõik **sõna-sõnalt**.
 
-DONE **426** / 429 · PARTIAL **1** / 429 · NOT_DONE **2** / 429 · peatükke täielikult DONE **38** / 40 · ametlikult lahtiseid 3 — 2 × P1 · 1 × P2
+DONE **426** / 429 · PARTIAL **2** / 429 · NOT_DONE **1** / 429 · peatükke täielikult DONE **38** / 40 · ametlikult lahtiseid 3 — 2 × P1 · 1 × P2
 
 | Peatükk | Kood | DONE | PARTIAL | NOT_DONE | Lahtiste prioriteedid | Märkus |
 |---|---|---:|---:|---:|---|---|
@@ -125,7 +125,7 @@ DONE **426** / 429 · PARTIAL **1** / 429 · NOT_DONE **2** / 429 · peatükke t
 | Otsing | SOL-SEARCH | 7/7 | 0 | 0 | – | **tehtud** |
 | Teenuseosutaja profiil | SOL-SPROF | 15/15 | 0 | 0 | – | **tehtud** |
 | Dokumendi koostamine | SOL-COMP | 5/5 | 0 | 0 | – | **tehtud**, 5 jätkufailist |
-| Materjalid | SOL-MAT | 11/13 | 0 | 2 | 1 × P1 · 1 × P2 | 13 jätkufailist |
+| Materjalid | SOL-MAT | 11/13 | 1 | 1 | 1 × P1 · 1 × P2 | 13 jätkufailist |
 | Minu jagamised | SOL-SHARE | 7/7 | 0 | 0 | – | **tehtud**, 7 jätkufailist |
 | Teenusekaart | SOL-SMAP | 9/9 | 0 | 0 | – | **tehtud**, 9 jätkufailist |
 | Funktsioonideülene lõpetusring | SOL-XFUNC | 3/3 | 0 | 0 | – | **tehtud**, 3 jätkufailist |
@@ -135,6 +135,10 @@ DONE **426** / 429 · PARTIAL **1** / 429 · NOT_DONE **2** / 429 · peatükke t
 **Juhtumitöö (JTA-V1)** (`SOL-CW`, 1 PARTIAL)
 
 - `SOL-CW-14` P1 — casework'i säilitustöö ajastatud käivitamine ei ole tõendatud — PARTIAL — hallatav mehhanism, alarm ning säilitustähtaja ja reatõrke päris PostgreSQL-i tõend on DONE; tootmistaimeri aktiveerimine ja kontrollitud systemd-jooks on õigus-/andmekaitsevärava taga, runtime: NOT_PROVEN.
+
+**Materjalid** (`SOL-MAT`, 1 PARTIAL)
+
+- `SOL-MAT-08` P1 — `imported` on vale RAG-lubadus ilma ingest'i, `doc_id`, õiguste või eemaldamiseta — PARTIAL — otsusest sõltumatu versioonitud Materjalide RAG-elutsükkel ja fail-closed pahavara-/karantiinipiir on valmis, kuid import jääb serveris suletuks kuni omanik kinnitab neli poliitikavalikut. `MaterialSubmission` kannab püsivat `sourceId`/`ragDocId`-d, versiooni ja sisu hash'i, collection/audience'i, ingest'i aega/tegijat/katsete-vea-retry seisu, autorit, õiguste omajat/alust/tõendit ning RAG-eemalduse seisu. `imported` sünnib ainult `import_rag` teenuse järel, kui versioonitud ingest tagastab `inserted > 0` ja järgnev dokumendi kontroll kinnitab `chunks > 0`; 4xx loob sama versiooni `RAG_INGEST` retry, 5xx/timeout/null-chunk ja DB lõpuviga loovad auditeeritud kompenseeriva `RAG_DELETE` töö ning pooleliolev cleanup blokeerib uue ingest'i. SHA + collection + audience duplikaat on DB-s unikaalne. Materjalide-spetsiifiline konto-kustutuse adapter ja RAG-delete retry on valmis, kuid jagatud `userDeletionOrchestrator`-isse pole hook'i lisatud enne säilitusotsust. Otsustuspakett: (1) `rightsEvidenceMode` — valida `SUBMITTER_ATTESTATION`, `ORG_ADMIN_ATTESTATION` või `DOCUMENTED_LICENSE`; valik määrab kohustusliku UI-tõendi ja auditikinnitaja. (2) määrata täpne `collection` ning audience `CLIENT`, `SOCIAL_WORKER` või `BOTH`; see määrab ingest-meta ja retrieval-piiri. (3) `retentionMode` — valida `DELETE_WITH_SUBMISSION_OR_ACCOUNT` või `RETAIN_AFTER_ACCOUNT_WITH_LICENSE`; teisel juhul tuleb lisaks määrata tähtaeg ja kontoülese õiguste/provenance'i registri omanik. (4) `withdrawalAuthority` — valida `ADMIN_ONLY`, `SUBMITTER_OR_ADMIN` või `SUBMITTER_RIGHTS_HOLDER_OR_ADMIN`; see määrab withdraw/delete autoriseerimise ja selle, millal konto kustutus RAG_DELETE'i käivitab.
 
 ### DONE leiud peatükkide kaupa
 
