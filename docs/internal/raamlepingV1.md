@@ -188,6 +188,8 @@ SotsiaalAI OÜ teeb organisatsioonile mõistlikus ulatuses kättesaadavaks teabe
 
 SotsiaalAI rakenduse tasemel säilitatakse üldised kasutusandmed, vestlused ja rakenduse logid vaikimisi kuni 90 päeva, makseandmed kuni 7 aastat ehk 2555 päeva ning makseteenuse toorvastused kuni 90 päeva, kui teenuse seadistustes või poolte kokkuleppes ei ole määratud teisiti.
 
+CaseWorkAssist on töötaja privaatne juhtumitöö vahend. Arhiveeritud CaseWorkAssist-juhtum ja kogu selle sisu kustutatakse 12 kalendrikuud pärast arhiveerimist ning töötajat hoiatatakse 30 päeva enne kustutamist. Üleantud mustandi sisu kustutatakse hiljemalt 12 kalendrikuud pärast üleandmist; sisuta mustandirida, ülekande fakt ja väljade loend säilivad ainult juhtumi või konto kustutamiseni. Organisatsioon võib lepingus kokku leppida ainult lühema säilitustähtaja; 12 kalendrikuud on ülempiir, mida kokkuleppega ei pikendata.
+
 Kasutaja dokumendi kustutamisel eemaldatakse rakenduse aktiivne andmebaasikirje ja fail ning käivitatakse seotud RAG- või indeksiandmete kustutus, kui vastav funktsioon on teenuses sisse lülitatud. Kui RAG- või indeksiandmete kustutamine ei õnnestu kohe, ei takista see kasutaja dokumendi kustutamist, vaid salvestatakse järelkäsitletav kustutustöö ja auditijälg.
 
 Konto kustutamisel käivitatakse keskne kustutusprotsess, mille käigus eemaldatakse kasutajakonto ja sellega seotud rakenduse andmed ning tehakse seotud failide puhastus ulatuses, mida platvorm tehniliselt toetab.
@@ -356,6 +358,7 @@ SotsiaalAI rakendab andmete kaitseks tehnilisi ja korralduslikke meetmeid, mis v
 | Vestlused ja üldised tööandmed                                | vaikimisi kuni 90 päeva, kui teenuse seadistustes või poolte kokkuleppes ei ole määratud teisiti                                                                      |
 | Kustutatud vestlused                                          | eemaldatakse kasutaja tavavaatest või muudetakse kasutajale kättesaamatuks vastavalt konkreetse töövoo tehnilisele loogikale ning eemaldatakse lõplikult retention- või cleanup-protsessi käigus |
 | Kasutaja dokumendid ja failid                                 | säilitatakse teenuse kasutamise ajal või kuni kasutaja need kustutab; kustutamisel eemaldatakse aktiivne fail ja andmebaasikirje                                      |
+| CaseWorkAssist-juhtumitöö                                     | arhiveeritud juhtum ja kogu sisu kustutatakse 12 kalendrikuud pärast arhiveerimist; hoiatus 30 päeva enne kustutamist; üleantud mustandi sisu hiljemalt 12 kalendrikuud pärast üleandmist; organisatsioon võib kokku leppida ainult lühema säilitustähtaja |
 | RAG- ja vektorindeksi andmed                                  | dokumendi kustutamisel käivitatakse seotud RAG- või indeksiandmete kustutamine, kui vastav funktsioon on sisse lülitatud; ebaõnnestumise korral jääb kustutustöö jälg |
 | Tehnilised ja kasutuslogid                                    | vaikimisi kuni 90 päeva, kui turvaintsident, veaotsing või õigusnõue ei eelda pikemat säilitamist                                                                     |
 | Makseteenuse toorvastused                                     | vaikimisi kuni 90 päeva                                                                                                                                               |

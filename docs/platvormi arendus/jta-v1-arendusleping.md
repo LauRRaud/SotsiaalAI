@@ -163,12 +163,12 @@ AI otsustaja (struktureerib ja küsib, ei määra meetodit ega hinda õigust tee
 
 ---
 
-## Õiguslikud eeldused — märgistatud, mitte tõestatud
+## Õiguslikud eeldused ja kinnitatud säilitusotsus
 
 | # | Väide | Klass |
 |---|---|---|
 | **Õ1** | `WORKER_DATA_PROCESSING` raamleping katab ka ettevalmistuse, märkme ja mustandi | `LEGAL_ASSUMPTION` |
-| **Õ2** | 12-kuuline säilitus on GDPR art. 5(1)(e) mõttes põhjendatud | `OWNER_DECISION` (07.08) — **kinnitada õigusabiga enne aktiveerimist** |
+| **Õ2** | Arhiveeritud privaatne juhtum kustub 12 kalendrikuud pärast arhiveerimist, hoiatus on 30 päeva enne ning üleantud mustandi sisul on sama 12 kalendrikuu ülempiir; organisatsioon võib lepingus valida ainult lühema tähtaja | `OWNER_DECISION` (13.08) — tootmises jõustamine toimub kontrollitud väljalaskesammuna |
 | **Õ3** | Auditisse jääv väljade **loend** ei kanna isikuandmete sisu | `LEGAL_ASSUMPTION`. **NB:** auditirida ise on isikuandmetega seotud töötaja ja juhtumi kaudu — vt L8 |
 
 **Sama värav:** `CASEWORK_V1_ENABLED` — **uut lippu ei looda.**
@@ -1451,13 +1451,17 @@ käivitus proovib uuesti, sest tingimus on ikka täidetud. Eraldi retry-taristut
 **Partii suurus on piiratud** (`CASEWORK_RETENTION_BATCH`, vaikimisi 50), et üks käivitus ei
 võtaks andmebaasi enda alla.
 
-**Cron-rida valmis kujul**, `flock` sama mustriga mis A4-l:
+**Hallatav ajastus** elab repositooriumis systemd unit-failidena, mitte ühe
+serveri crontabis: `deploy/systemd/sotsiaalai-casework-retention.{service,timer}`.
+Taimer on tunnipõhine ja `Persistent=true`; teenus kasutab `flock`-lukku ning
+900-sekundilist timeout'i. Ühe rea tõrke proovib idempotentne töö järgmisel
+tunnil uuesti ja `CaseWorkRetentionRun` + smoke teevad viimase edu, järgmise
+jooksu ning alarmi nähtavaks.
 
-```
-15 3 * * * flock -n /var/lock/sotsiaalai-casework-retention.lock \
-  /bin/bash -lc 'cd /home/ubuntu/apps/sotsiaalai && npm run casework:retention' \
-  >> /var/log/sotsiaalai/casework-retention.log 2>&1
-```
+Deploy paigaldab unit-failid, kuid ei lülita taimerit ise sisse. Aktiveerimise
+väljalase teeb preflight'i, kuivjooksu ja alarmi/smoke'i kontrolli enne taimeri
+lubamist ning kontrollib pärast üht päris jooksu viimast edu, järgmist jooksu ja
+service-journalit.
 
 **Testileping — jõustamine, mitte arvutus:**
 
