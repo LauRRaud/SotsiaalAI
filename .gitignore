@@ -125,6 +125,4 @@ public/*.mp4
 # ajalugu ~233 MB võrra ja seda ei saa hiljem ilma ajaloo ümberkirjutamiseta
 # tagasi võtta (.git oli sel hetkel juba 1,37 GB).
 # Kui mõni neist on vaja jagada, käib see storage'i või git-lfs-i kaudu.
-docs/ajakiri_sotsiaaltoo/
-docs/KOV/
-docs/Seadused_rt/
+/docs/Andmebaas/

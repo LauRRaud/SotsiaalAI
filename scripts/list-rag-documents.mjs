@@ -18,6 +18,7 @@ function usage() {
     "  npm run rag:list:docs -- --csv docs.csv        (spreadsheet: title,collection,source_type,chunks,url,docId)",
     "  npm run rag:list:docs -- --collection sotsiaaltoo_articles   (filter one collection)",
     "  npm run rag:list:docs -- --titles-only         (just titles, one per line)",
+    "  npm run rag:list:docs -- --include-deleted     (include DELETED audit tombstones)",
     "",
     "Environment:",
     "  RAG_INTERNAL_HOST / RAG_API_BASE   RAG service host (default 127.0.0.1:8000)",
@@ -35,6 +36,7 @@ function parseArgs(argv = []) {
     csvPath: null,
     collection: null,
     titlesOnly: false,
+    includeDeleted: false,
     help: false
   };
   for (let index = 0; index < argv.length; index += 1) {
@@ -46,6 +48,7 @@ function parseArgs(argv = []) {
     else if (arg === "--csv") args.csvPath = argv[++index] || null;
     else if (arg === "--collection") args.collection = argv[++index] || null;
     else if (arg === "--titles-only") args.titlesOnly = true;
+    else if (arg === "--include-deleted") args.includeDeleted = true;
     else throw new Error(`Unknown option: ${arg}`);
   }
   return args;
@@ -65,6 +68,7 @@ function firstValue(...values) {
 }
 
 export function normalizeDocument(doc = {}) {
+  const lifecycleState = firstValue(doc.lifecycleState, doc.status, "COMPLETED");
   return {
     docId: firstValue(doc.docId, doc.id),
     title: firstValue(doc.title, doc.fileName, "(pealkirjata)"),
@@ -73,8 +77,14 @@ export function normalizeDocument(doc = {}) {
     chunks: Number.isFinite(doc.chunks) ? doc.chunks : (doc.chunks ? Number(doc.chunks) : 0),
     url: firstValue(doc.url_canonical, doc.urlCanonical, doc.url, doc.sourceUrl, doc.source_url),
     year: firstValue(doc.year, doc.source_year),
-    authority: firstValue(doc.authority)
+    authority: firstValue(doc.authority),
+    status: lifecycleState,
+    lifecycleState
   };
+}
+
+export function isDeletedDocument(doc = {}) {
+  return String(doc.lifecycleState ?? doc.status ?? "").trim().toUpperCase() === "DELETED";
 }
 
 async function fetchAllDocuments(baseUrl, apiKey) {
@@ -141,7 +151,9 @@ async function main() {
 
   const baseUrl = ragServiceBaseUrl(args.baseUrl);
   process.stderr.write(`[list] fetching documents from ${baseUrl} ...\n`);
-  let docs = (await fetchAllDocuments(baseUrl, args.apiKey)).map(normalizeDocument);
+  const registryDocs = (await fetchAllDocuments(baseUrl, args.apiKey)).map(normalizeDocument);
+  const deletedTombstones = registryDocs.filter(isDeletedDocument);
+  let docs = args.includeDeleted ? registryDocs : registryDocs.filter(doc => !isDeletedDocument(doc));
   if (args.collection) docs = docs.filter(d => d.collection_id === args.collection);
   docs.sort((a, b) => String(a.title).localeCompare(String(b.title), "et"));
 
@@ -151,7 +163,13 @@ async function main() {
     return;
   }
   if (args.jsonPath) {
-    await fs.writeFile(args.jsonPath, JSON.stringify({ total: docs.length, generated_at: new Date().toISOString(), documents: docs }, null, 2), "utf8");
+    await fs.writeFile(args.jsonPath, JSON.stringify({
+      total: docs.length,
+      registry_total: registryDocs.length,
+      deleted_tombstones_excluded: args.includeDeleted ? 0 : deletedTombstones.length,
+      generated_at: new Date().toISOString(),
+      documents: docs
+    }, null, 2), "utf8");
     process.stderr.write(`[list] wrote ${docs.length} documents to ${args.jsonPath}\n`);
   }
   if (args.csvPath) {

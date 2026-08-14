@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 
 import {
   groupByCollection,
+  isDeletedDocument,
   normalizeDocument,
   ragServiceBaseUrl,
   toCsv
@@ -25,6 +26,7 @@ test("normalizeDocument picks best title/collection/url fields", () => {
   assert.equal(d.source_type, "research_report");
   assert.equal(d.chunks, 12);
   assert.equal(d.url, "https://x.ee/a.pdf");
+  assert.equal(d.status, "COMPLETED");
 });
 
 test("normalizeDocument falls back to fileName and placeholders", () => {
@@ -33,6 +35,13 @@ test("normalizeDocument falls back to fileName and placeholders", () => {
   assert.equal(d.collection_id, "(määramata)");
   assert.equal(d.source_type, "(määramata)");
   assert.equal(d.url, null);
+});
+
+test("deleted lifecycle entries are recognizable audit tombstones", () => {
+  const deleted = normalizeDocument({ id: "old", status: "DELETED", chunks: 0 });
+  assert.equal(deleted.lifecycleState, "DELETED");
+  assert.equal(isDeletedDocument(deleted), true);
+  assert.equal(isDeletedDocument(normalizeDocument({ id: "active", status: "COMPLETED" })), false);
 });
 
 test("groupByCollection groups and sorts titles", () => {

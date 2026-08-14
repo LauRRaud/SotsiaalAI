@@ -254,6 +254,7 @@
     "knowledge:folder:ingest": "node scripts/ingest-knowledge-doc-folder.mjs --ingest",
     "knowledge:source-master:plan": "node scripts/ingest-source-master-pdfs.mjs --dry-run",
     "knowledge:source-master:ingest": "node scripts/ingest-source-master-pdfs.mjs --ingest",
+    "knowledge:source-master:download-pdfs": "node scripts/download-source-master-pdfs.mjs",
     "organization:validate": "node scripts/validate-organization-metadata.mjs",
     "organization:audit-metadata": "node scripts/audit-organization-metadata.mjs",
     "organization:ingest:plan": "node scripts/ingest-organization-rag-folder.mjs --dry-run",
