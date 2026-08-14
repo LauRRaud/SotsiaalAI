@@ -26,7 +26,10 @@ if [ -d "$mount_point" ] && find "$mount_point" -mindepth 1 ! -type d -print -qu
   exit 80
 fi
 
-install -d -m 0750 -o ubuntu -g ubuntu /etc/sotsiaalai /var/lib/sotsiaalai "$mount_point"
+install -d -m 0750 -o ubuntu -g ubuntu /etc/sotsiaalai /var/lib/sotsiaalai
+# Köiteta mountpoint peab jääma root-only: ootamatu unmount'i ja frontendi
+# seiskumise vahel ei tohi rakendus saada tundlikke faile aluskataloogi kirjutada.
+install -d -m 0500 -o root -g root "$mount_point"
 if [ ! -e "$backing_file" ]; then
   truncate -s "$size" "$backing_file"
   chmod 0600 "$backing_file"

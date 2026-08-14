@@ -9,6 +9,7 @@ What=/dev/mapper/sotsiaalai_materials
 Where=/var/lib/sotsiaalai/materials
 Type=ext4
 Options=rw,nodev,nosuid,noexec,noatime
+DirectoryMode=0500
 
 [Install]
 WantedBy=multi-user.target

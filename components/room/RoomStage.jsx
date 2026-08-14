@@ -678,12 +678,29 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
      (tellija 07.07: OFF = logout, sama mis profiili "Välja"). Kodus
      rakendub standby kohe; mujalt karussellilt naaseb koju ja maandub
      standby'sse (pendingStandby). */
-  const powerOff = useCallback(() => {
+  const powerOff = useCallback(async () => {
+    if (isAuthed) {
+      try {
+        const res = await fetch("/api/profile/logout", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept-Language": locale,
+          },
+          body: JSON.stringify({ locale }),
+        });
+        if (!res.ok) {
+          console.error("room logout revocation rejected", { status: res.status });
+          return;
+        }
+        await signOut({ redirect: false });
+      } catch (error) {
+        console.error("room logout revocation failed", error);
+        return;
+      }
+    }
     setInfoHub(false);
     clearCompletedArrival();
-    if (isAuthed) {
-      signOut({ redirect: false }).catch(() => {});
-    }
     if (!isHome) {
       pendingStandbyRef.current = true;
       router.push(localizePath("/", locale));
@@ -1459,11 +1476,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
         // "Välja" = LOGI VÄLJA + seade puhkeseisu (tellija 06.07 öö;
         // tühistab varasema "OFF ≠ logout" otsuse): ⏻ vajutusel avaneb
         // AVALIK komplekt, keskel "Logi sisse".
-        pendingStandbyRef.current = true;
-        setInfoHub(false);
-        clearCompletedArrival();
-        signOut({ redirect: false }).catch(() => {});
-        router.push(localizePath("/", locale));
+        void powerOff();
         return;
       }
       if (item.action === "tagasi") {
@@ -1507,7 +1520,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
         router.push(localizePath(item.href, locale));
       }
     },
-    [router, locale, a11y, clearCompletedArrival, panelInfoView]
+    [router, locale, a11y, panelInfoView, powerOff]
   );
 
   const showCarouselUi = isCarouselRoute;

@@ -225,34 +225,5 @@ export const authConfig = {
       return toInternalDestination(url, baseUrl);
     }
   },
-  events: {
-    /**
-     * VARUVÕRK, mitte revokatsiooni põhirada (SOL-AUTH-14).
-     *
-     * See event jookseb pärast seda, kui NextAuth on otsuse teinud, ja tema tulemust ei
-     * saa kellelegi raporteerida — seepärast oli „kustuta best-effort'ina ja neela viga"
-     * siin vaikne lahknemine: kasutaja nägi end väljas, aga kopeeritud JWT autoriseeris
-     * edasi. Põhirada on nüüd `POST /api/profile/logout`, mis tühistab rea ENNE küpsise
-     * eemaldamist ja ütleb tulemuse välja. Siia jääb ta nende kutsujate jaoks, kes
-     * kutsuvad `signOut()` otse (nt ruumi kliendi surnud-sessiooni rada).
-     */
-    async signOut(message) {
-      const sessionRecordId = message?.token?.sessionRecordId;
-      const userId = message?.token?.id;
-      if (!sessionRecordId || !userId) return;
-      try {
-        // `deleteMany` omaniku tingimusega: `delete({ where: { id } })` oleks kustutanud
-        // rea ka siis, kui token kannab võõrast `sessionRecordId`-d.
-        await prisma.session.deleteMany({
-          where: {
-            id: String(sessionRecordId),
-            userId: String(userId)
-          }
-        });
-      } catch (error) {
-        console.error("[auth] tracked session cleanup failed", error);
-      }
-    }
-  },
   secret: process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET
 };

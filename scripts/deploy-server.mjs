@@ -231,6 +231,9 @@ if [ -d "$APP_DIR/deploy/systemd" ]; then
   if [ -f "$APP_DIR/deploy/bin/sotsiaalai-material-cdr" ]; then
     sudo install -m 0755 "$APP_DIR/deploy/bin/sotsiaalai-material-cdr" /usr/local/bin/sotsiaalai-material-cdr
   fi
+  if [ -f "$APP_DIR/deploy/bin/sotsiaalai-materials-storage-verify" ]; then
+    sudo install -m 0755 "$APP_DIR/deploy/bin/sotsiaalai-materials-storage-verify" /usr/local/bin/sotsiaalai-materials-storage-verify
+  fi
   if [ -f "$APP_DIR/deploy/systemd/sotsiaalai-frontend.service.d/20-materials-storage.conf" ]; then
     sudo install -d -m 0755 /etc/systemd/system/sotsiaalai-frontend.service.d
     sudo install -m 0644 "$APP_DIR/deploy/systemd/sotsiaalai-frontend.service.d/20-materials-storage.conf" /etc/systemd/system/sotsiaalai-frontend.service.d/20-materials-storage.conf

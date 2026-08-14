@@ -3,8 +3,8 @@ import assert from "node:assert/strict";
 
 import nextConfig from "../../next.config.mjs";
 
-test("Next production config exposes source maps for PageSpeed diagnostics", () => {
-  assert.equal(nextConfig.productionBrowserSourceMaps, true);
+test("Next production config does not publish browser source maps", () => {
+  assert.equal(nextConfig.productionBrowserSourceMaps, false);
   assert.equal(nextConfig.poweredByHeader, false);
 });
 

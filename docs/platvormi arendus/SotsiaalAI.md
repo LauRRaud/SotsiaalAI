@@ -92,6 +92,16 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Sihitud Codex Security seitsme faili parandusring on repair-a harus valmis, kuid main'i
+integreerimata.** Viis kinnitatud leidu on suletud: suletud registreerimise adminieelvaade
+kontrollib iga päringu ajal andmebaasist rolli, peatamist ja sessiooni; kõik kasutaja algatatud
+väljalogimised tühistavad serveris sessiooni enne küpsist; avalikud brauseri source map'id on
+väljas; CI action'id ja PostgreSQL image on muutumatute viidetega; frontend on krüpteeritud
+köite elueaga seotud ning kordab mount-kontrolli iga käivituse ees. Negatiivkontroll oli vana
+koodi peal punane, siht- ja naabertestid on **48/48**, webpacki tootmisbuild roheline ning
+avalikke `.map` artefakte **0**. Päris systemd unmount/restart sond on kuni serverisse viimiseni
+`NOT_PROVEN`; järgmine samm on kohalik integratsioon ja omaniku eraldi loal deploy + sond.
+
 **`SOL-MAT-08` on DONE ja SOL-süvaaudit on lõpetatud.** PDF/DOCX kasutab kohalikku võrguta Dangerzone 0.11 CDR-i ning tootmises on päriselt aktiveeritud krüpteeritud LUKS2 + ext4 Materjalide köide `nodev,nosuid,noexec` kaitsetega. Tootmise CDR-sond oli 7/7, boot-chain ja mount'i negatiivkontrollid puhtad ning lokaalne autentitud sünteetiline brauserirada tõendas üleslaadimise, kihiliste tähtaegade ja tagasivõtmise. Materjalide sihttestid olid **59/59**, PostgreSQL-sondid **12/12**, **30/30** ja **20/20**. Ametlik seis on **429 DONE / 0 PARTIAL / 0 NOT_DONE**; järgmine tööots valitakse S4-st.
 
 **Teenuspäeviku jätkuauditi `SOL-SLOG-J-01…07` on lõpetatud.** Kirje parandamine,

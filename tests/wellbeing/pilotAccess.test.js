@@ -7,13 +7,27 @@ import {
 } from "../../lib/wellbeing/pilotAccess.js";
 
 test("wellbeing pilot access allows admins without role-group limits", async () => {
-  const access = await resolveWellbeingPilotAccess({
-    user: { id: "admin_1", email: "admin@example.test", role: "ADMIN", isAdmin: true }
-  });
+  let scopeReads = 0;
+  const prisma = {
+    wellbeingPilotScope: {
+      async findMany() {
+        scopeReads += 1;
+        return [];
+      }
+    }
+  };
+  const access = await resolveWellbeingPilotAccess(
+    {
+      user: { id: "admin_1", email: "admin@example.test", role: "ADMIN", isAdmin: true }
+    },
+    { prisma }
+  );
 
   assert.equal(access.ok, true);
   assert.equal(access.isAdmin, true);
   assert.deepEqual(access.allowedRoleGroups, []);
+  assert.deepEqual(access.pilotScopes, []);
+  assert.equal(scopeReads, 1, "admini piloodiloend tuleb süstitud testandmebaasist");
 });
 
 test("wellbeing pilot access allows only explicitly allowlisted non-admin users", async () => {

@@ -6,6 +6,7 @@ import {
   SESSION_LOCK_NAMESPACE,
   SESSION_REVOKED,
   SESSION_USER_MISSING,
+  authorizeCurrentAdminToken,
   createTrackedSessionForUser,
   refreshTokenAuthorization
 } from "../../lib/auth/jwtAuthorization.js";
@@ -182,6 +183,56 @@ test("puuduv kasutaja ja tühistatud sessioon lõpetavad sessiooni endiselt", as
     new RegExp(SESSION_REVOKED)
   );
   assert.equal(SESSION_USER_MISSING, "SESSION_USER_MISSING");
+});
+
+test("suletud registreerimise eelvaade kontrollib administraatoriõigust alati värskest seisust", async () => {
+  const currentAdmin = elevatedToken({ role: "CLIENT", isAdmin: false });
+  assert.equal(
+    await authorizeCurrentAdminToken(currentAdmin, { db: makeDb(), now: NOW }),
+    true,
+    "kehtiv administraator peab eelvaatesse pääsema"
+  );
+
+  const demoted = elevatedToken();
+  assert.equal(
+    await authorizeCurrentAdminToken(demoted, {
+      db: makeDb({ user: baseUser({ role: "CLIENT", isAdmin: false }) }),
+      now: NOW
+    }),
+    false,
+    "vana JWT administraatoriväide ei tohi pärast rolli eemaldamist kehtida"
+  );
+  assert.equal(demoted.isAdmin, false);
+
+  assert.equal(
+    await authorizeCurrentAdminToken(elevatedToken(), {
+      db: makeDb({ user: baseUser({ accessSuspendedAt: NOW }) }),
+      now: NOW
+    }),
+    false,
+    "peatatud konto peab samas päringus ligipääsu kaotama"
+  );
+
+  assert.equal(
+    await authorizeCurrentAdminToken(elevatedToken(), {
+      db: makeDb({ userError: new Error("db unavailable") }),
+      now: NOW
+    }),
+    false,
+    "värskuse kontrolli tõrge peab olema fail-closed"
+  );
+});
+
+test("proxy kasutab suletud registreerimisel kanoniseeritud värsket administraatorikontrolli", async () => {
+  const proxySource = await import("node:fs/promises").then(({ readFile }) =>
+    readFile(new URL("../../proxy.js", import.meta.url), "utf8")
+  );
+  assert.match(proxySource, /authorizeCurrentAdminToken/u);
+  assert.doesNotMatch(
+    proxySource,
+    /token\?\.isAdmin\s*===\s*true\s*\|\|/u,
+    "toorest JWT rolliväidet ei tohi lõpliku otsusena kasutada"
+  );
 });
 
 /**

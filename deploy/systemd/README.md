@@ -3,8 +3,10 @@
 ## Materjalide isoleeritud hoidla (SOL-MAT-08)
 
 `var-lib-sotsiaalai-materials.mount` on repo-hallatav leping eraldi LUKS2 + ext4 köitele:
-`nodev,nosuid,noexec`, omanik `ubuntu:ubuntu`, juurkataloog `0750` ning
-`uploads`, `quarantine` ja `sanitized` kataloogid `0700`. Rakenduse
+`nodev,nosuid,noexec`, köiteta aluskataloog `root:root 0500`, köite peal
+omanik `ubuntu:ubuntu`, juurkataloog `0750` ning `uploads`, `quarantine` ja
+`sanitized` kataloogid `0700`. Frontend seotakse `BindsTo` abil köite elueaga
+ning sama kontrollskript jookseb `ExecStartPre` kaudu iga käivituse ees. Rakenduse
 `MATERIALS_STORAGE_DIR` peab olema `/var/lib/sotsiaalai/materials`.
 
 Tootmises loob `deploy/provision-materials-volume.sh` uue rangelt kontrollitud
@@ -12,12 +14,12 @@ Tootmises loob `deploy/provision-materials-volume.sh` uue rangelt kontrollitud
 `/dev/mapper/sotsiaalai_materials` nime all ja vormindab uue mapping'u ext4-ks.
 Skript keeldub olemasolevat või mittetühja sihtkohta vormindamast. Võtmefail on
 root-only `/etc/sotsiaalai/materials-volume.key`; võtit ei logita.
-Aktiveerimisel paigalda tmpfiles-leping ja nõua kontrollunit'i edu enne frontendi
-käivitamist:
+Aktiveerimisel paigalda kontrollskript ja nõua kontrollunit'i edu enne frontendi
+käivitamist. `sotsiaalai-materials-tmpfiles.conf` on teadlikult tühi
+tagasiühilduvusfail: kataloogid tekivad ainult pärast krüpteeritud köite tõendamist.
 
 ```sh
-sudo install -m 0644 deploy/systemd/sotsiaalai-materials-tmpfiles.conf /etc/tmpfiles.d/
-sudo systemd-tmpfiles --create /etc/tmpfiles.d/sotsiaalai-materials-tmpfiles.conf
+sudo install -m 0755 deploy/bin/sotsiaalai-materials-storage-verify /usr/local/bin/
 sudo systemctl enable --now var-lib-sotsiaalai-materials.mount
 sudo systemctl enable --now sotsiaalai-materials-storage-verify.service
 findmnt -n -o SOURCE,FSTYPE,OPTIONS --target /var/lib/sotsiaalai/materials

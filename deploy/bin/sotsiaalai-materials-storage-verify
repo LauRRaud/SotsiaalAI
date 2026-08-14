@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+mount_point="/var/lib/sotsiaalai/materials"
+expected_source="/dev/mapper/sotsiaalai_materials"
+
+source="$(/usr/bin/findmnt -n -o SOURCE --target "$mount_point")"
+test "$source" = "$expected_source"
+
+options="$(/usr/bin/findmnt -n -o OPTIONS --target "$mount_point")"
+for required in nodev nosuid noexec; do
+  case ",${options}," in
+    *",${required},"*) ;;
+    *) echo "missing mount option: ${required}" >&2; exit 1 ;;
+  esac
+done
+
+/usr/bin/install -d -o ubuntu -g ubuntu -m 0750 "$mount_point"
+/usr/bin/install -d -o ubuntu -g ubuntu -m 0700 \
+  "$mount_point/uploads" \
+  "$mount_point/quarantine" \
+  "$mount_point/sanitized"
+
+test "$(/usr/bin/stat -c %U:%G:%a "$mount_point")" = "ubuntu:ubuntu:750"

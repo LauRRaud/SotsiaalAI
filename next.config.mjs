@@ -9,7 +9,7 @@ const withBundleAnalyzer =
 const baseConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  productionBrowserSourceMaps: true,
+  productionBrowserSourceMaps: false,
   devIndicators: false,
 
   compiler: { styledComponents: true },

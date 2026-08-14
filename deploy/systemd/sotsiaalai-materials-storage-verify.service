@@ -7,8 +7,7 @@ Before=sotsiaalai-frontend.service
 [Service]
 Type=oneshot
 User=root
-ExecStart=/usr/bin/bash -ceu 'source=$(/usr/bin/findmnt -n -o SOURCE --target /var/lib/sotsiaalai/materials); test "$source" = "/dev/mapper/sotsiaalai_materials"; options=$(/usr/bin/findmnt -n -o OPTIONS --target /var/lib/sotsiaalai/materials); for required in nodev nosuid noexec; do case ",${options}," in *",${required},"*) ;; *) echo "missing mount option: ${required}" >&2; exit 1;; esac; done; /usr/bin/install -d -o ubuntu -g ubuntu -m 0750 /var/lib/sotsiaalai/materials; /usr/bin/install -d -o ubuntu -g ubuntu -m 0700 /var/lib/sotsiaalai/materials/uploads /var/lib/sotsiaalai/materials/quarantine /var/lib/sotsiaalai/materials/sanitized; test "$(/usr/bin/stat -c %%U:%%G:%%a /var/lib/sotsiaalai/materials)" = "ubuntu:ubuntu:750"'
-RemainAfterExit=yes
+ExecStart=/usr/local/bin/sotsiaalai-materials-storage-verify
 
 [Install]
 WantedBy=multi-user.target

@@ -124,12 +124,27 @@ test("liides kutsub signOut'i ALLES pärast serveri kinnitust", async () => {
   assert.ok(guardAt > fetchAt && signOutAt > guardAt, "küpsis tohib kaduda alles pärast kinnitust");
 });
 
-test("varuvõrk auth.js-is kustutab omaniku tingimusega ega vaiki enam viga maha", async () => {
-  const auth = await readFile(new URL("../../auth.js", import.meta.url), "utf8");
-  const start = auth.indexOf("async signOut(message)");
-  const handler = auth.slice(start, auth.indexOf("secret:", start));
+test("ruumi kõik väljalogimised kasutavad revokatsioon-esmalt rada", async () => {
+  const source = await readFile(new URL("../../components/room/RoomStage.jsx", import.meta.url), "utf8");
+  const body = source.replace(/\/\*[\s\S]*?\*\/|\/\/[^\n]*/gu, "");
+  const start = body.indexOf("const powerOff = useCallback(");
+  const handler = body.slice(start, body.indexOf("useEffect(", start));
 
-  assert.match(handler, /session\.deleteMany/u);
-  assert.match(handler, /userId: String\(userId\)/u);
-  assert.doesNotMatch(handler, /P2025/u, "vaikiv erand kadus koos best-effort lepinguga");
+  assert.ok(start > -1 && handler.length > 0);
+  const fetchAt = handler.indexOf("/api/profile/logout");
+  const guardAt = handler.indexOf("if (!res.ok)");
+  const signOutAt = handler.indexOf("signOut(");
+  assert.ok(fetchAt > -1, "ruumi väljalogimine peab serveris sessiooni tühistama");
+  assert.ok(guardAt > fetchAt && signOutAt > guardAt, "küpsis tohib kaduda alles pärast edukat revokatsiooni");
+  assert.equal(
+    (body.match(/signOut\(/gu) || []).length,
+    1,
+    "RoomStage'is ei tohi olla revokatsioonirajast mööduvaid signOut-kutseid"
+  );
+});
+
+test("NextAuth event ei teeskle best-effort revokatsiooni", async () => {
+  const auth = await readFile(new URL("../../auth.js", import.meta.url), "utf8");
+  assert.doesNotMatch(auth, /async signOut\(message\)/u);
+  assert.doesNotMatch(auth, /tracked session cleanup failed/u);
 });

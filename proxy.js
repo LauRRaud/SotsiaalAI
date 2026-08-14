@@ -3,6 +3,8 @@ import { getToken } from "next-auth/jwt";
 import { REGISTRATION_OPEN } from "@/lib/publicRegistration";
 import { isCaseWorkEnabled } from "@/lib/casework/flags";
 import { isServiceLogEnabled } from "@/lib/serviceLog/flags";
+import { prisma } from "@/lib/prisma";
+import { authorizeCurrentAdminToken } from "@/lib/auth/jwtAuthorization";
 
 function isLocalHostname(hostname = "") {
   const h = String(hostname).toLowerCase();
@@ -78,11 +80,14 @@ export async function proxy(req) {
   if (pathname === "/registreerimine" && !REGISTRATION_OPEN) {
     const token = await getToken({
       req,
-      secret: process.env.NEXTAUTH_SECRET
+      secret: process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET
     });
-    const admin =
-      token?.isAdmin === true ||
-      String(token?.role || "").toUpperCase() === "ADMIN";
+    const admin = await authorizeCurrentAdminToken(token, {
+      db: prisma,
+      sessionMaxAgeSeconds:
+        process.env.NEXTAUTH_SESSION_MAX_AGE_SECONDS ||
+        process.env.AUTH_SESSION_MAX_AGE_SECONDS
+    });
     if (!admin) {
       const destination = req.nextUrl.clone();
       destination.pathname = "/";
