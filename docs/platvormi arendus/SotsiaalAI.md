@@ -92,15 +92,18 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**Sihitud Codex Security seitsme faili parandusring on repair-a harus valmis, kuid main'i
-integreerimata.** Viis kinnitatud leidu on suletud: suletud registreerimise adminieelvaade
+**Sihitud Codex Security seitsme faili parandusring on `main`-is ja toodangus
+(`bad33faca2cf41681abd5cf350b00ffe7b4671fc`).** Viis kinnitatud leidu on suletud: suletud registreerimise adminieelvaade
 kontrollib iga päringu ajal andmebaasist rolli, peatamist ja sessiooni; kõik kasutaja algatatud
 väljalogimised tühistavad serveris sessiooni enne küpsist; avalikud brauseri source map'id on
 väljas; CI action'id ja PostgreSQL image on muutumatute viidetega; frontend on krüpteeritud
 köite elueaga seotud ning kordab mount-kontrolli iga käivituse ees. Negatiivkontroll oli vana
-koodi peal punane, siht- ja naabertestid on **48/48**, webpacki tootmisbuild roheline ning
-avalikke `.map` artefakte **0**. Päris systemd unmount/restart sond on kuni serverisse viimiseni
-`NOT_PROVEN`; järgmine samm on kohalik integratsioon ja omaniku eraldi loal deploy + sond.
+koodi peal punane; kombineeritud lõpppuu täisvärav on **4767/4767**, toodangu Turbopack-build
+roheline ning serveri `.next/static` all on avalikke `.map` artefakte ja `sourceMappingURL` viiteid
+**0**. Frontendi `ExecStartPre` kontroll lõpetas serveris staatusega 0, LUKS/ext4 köide on
+`rw,nosuid,nodev,noexec,noatime` ning frontend, RAG, research-worker ja mount on aktiivsed.
+Tahtlikku tootmise unmount/restart katkestussondi ei käivitatud, sest see põhjustab seisaku;
+see kitsas katastroofirada jääb `NOT_PROVEN` kuni eraldi hooldusaknani.
 
 **`SOL-MAT-08` on DONE ja SOL-süvaaudit on lõpetatud.** PDF/DOCX kasutab kohalikku võrguta Dangerzone 0.11 CDR-i ning tootmises on päriselt aktiveeritud krüpteeritud LUKS2 + ext4 Materjalide köide `nodev,nosuid,noexec` kaitsetega. Tootmise CDR-sond oli 7/7, boot-chain ja mount'i negatiivkontrollid puhtad ning lokaalne autentitud sünteetiline brauserirada tõendas üleslaadimise, kihiliste tähtaegade ja tagasivõtmise. Materjalide sihttestid olid **59/59**, PostgreSQL-sondid **12/12**, **30/30** ja **20/20**. Ametlik seis on **429 DONE / 0 PARTIAL / 0 NOT_DONE**; järgmine tööots valitakse S4-st.
 
