@@ -188,6 +188,18 @@ export async function GET(request) {
     return json({ ok: false, message: "api.common.unauthorized" }, 401);
   }
 
+  const url = new URL(request.url);
+  const kind = normalizeKind(url.searchParams.get("kind"));
+  const scope = String(url.searchParams.get("scope") || "global").trim().toLowerCase() === "mine" ? "mine" : "global";
+  const locale = String(url.searchParams.get("locale") || "et").trim();
+  const status = String(url.searchParams.get("status") || "").trim();
+  const limit = Math.max(1, Math.min(50, Number(url.searchParams.get("limit")) || 10));
+  const offset = Math.max(0, Number(url.searchParams.get("offset")) || 0);
+
+  if (!kind) {
+    return json({ ok: false, message: "HELP_LISTING_KIND_REQUIRED" }, 400);
+  }
+
   try {
     const limiter = await consumeHelpRateLimit({
       operation: "list:get",
@@ -203,18 +215,6 @@ export async function GET(request) {
     }
   } catch {
     return json({ ok: false, message: "HELP_RATE_LIMIT_UNAVAILABLE" }, 503);
-  }
-
-  const url = new URL(request.url);
-  const kind = normalizeKind(url.searchParams.get("kind"));
-  const scope = String(url.searchParams.get("scope") || "global").trim().toLowerCase() === "mine" ? "mine" : "global";
-  const locale = String(url.searchParams.get("locale") || "et").trim();
-  const status = String(url.searchParams.get("status") || "").trim();
-  const limit = Math.max(1, Math.min(50, Number(url.searchParams.get("limit")) || 10));
-  const offset = Math.max(0, Number(url.searchParams.get("offset")) || 0);
-
-  if (!kind) {
-    return json({ ok: false, message: "HELP_LISTING_KIND_REQUIRED" }, 400);
   }
 
   const payload =

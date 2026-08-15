@@ -32,7 +32,7 @@ if (process.argv.includes("--rate-worker")) {
       const result = await consumeHelpRateLimit({
         operation: "list:get",
         userId: "shared-worker-user",
-        ipAddress: "198.51.100.10"
+        ipAddress: `198.51.100.${index}`
       }, workerDb);
       if (result.allowed) allowed += 1;
     }
@@ -89,8 +89,12 @@ try {
   await admin.query(`CREATE DATABASE "${databaseName}"`);
   migrate();
 
+  await db.helpRateLimitBucket.create({
+    data: { key: "e".repeat(64), count: 1, resetAt: new Date(0), updatedAt: new Date(0) }
+  });
   const workerCounts = await Promise.all([rateWorker(), rateWorker()]);
-  check("kaks protsessi jagavad üht atomaarset user+IP+operation limiiti", workerCounts[0] + workerCounts[1] === 120);
+  check("spoofitud IP-d ei jaga kasutaja kvooti uuteks bucketiteks", workerCounts[0] + workerCounts[1] === 120);
+  check("aegunud rate-limit bucketid koristatakse", await db.helpRateLimitBucket.count({ where: { key: "e".repeat(64) } }) === 0);
   const separateOperation = await consumeHelpRateLimit({
     operation: "detail:get", userId: "shared-worker-user", ipAddress: "198.51.100.10"
   }, db);
