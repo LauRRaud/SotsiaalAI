@@ -154,19 +154,6 @@ function escapeHtml(value) {
     .replace(/"/g, "&quot;");
 }
 
-// Proxy taga on req.url origin localhost:3000 — avalik link peab minema
-// x-forwarded-host/host origini pihta.
-function resolvePublicOrigin(requestUrl, headers) {
-  const fallback = new URL(requestUrl).origin;
-  const forwardedHost = String(headers?.get?.("x-forwarded-host") || "").trim();
-  const directHost = String(headers?.get?.("host") || "").trim();
-  const forwardedProto = String(headers?.get?.("x-forwarded-proto") || "").trim();
-  const resolvedHost = forwardedHost || directHost;
-  if (!resolvedHost) return fallback;
-  const protocol = forwardedProto || (fallback.startsWith("https://") ? "https" : "http");
-  return `${protocol}://${resolvedHost}`;
-}
-
 function htmlResponse(locale, variant, homeUrl, { token = "", attempt = null } = {}) {
   const copy = COPY[locale] || COPY.et;
   const ok = variant === "ok";
@@ -391,7 +378,7 @@ export async function GET(request) {
   const url = new URL(request.url);
   const token = String(url.searchParams.get("token") || "").trim();
   const locale = normalizeServerLocale(url.searchParams.get("locale")) || "et";
-  const homeUrl = `${resolvePublicOrigin(request.url, request.headers)}/`;
+  const homeUrl = "/";
 
   if (!token) return htmlResponse(locale, "invalid", homeUrl);
 
@@ -425,7 +412,7 @@ export async function POST(request) {
 
   const token = String(fields?.token || "").trim();
   const locale = normalizeServerLocale(fields?.locale) || "et";
-  const homeUrl = `${resolvePublicOrigin(request.url, request.headers)}/`;
+  const homeUrl = "/";
 
   if (!token) return htmlResponse(locale, "invalid", homeUrl);
 

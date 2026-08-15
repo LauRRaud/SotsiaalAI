@@ -92,6 +92,10 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Aardvarki login-confirm turvaleid on parandatud lokaalsel `work`-harul.** Kinnituslehe
+„Ava SotsiaalAI" varulink on nüüd sama origini suhteline `/` ega sõltu kliendi juhitavatest
+`Host` või `X-Forwarded-*` päistest; järgmine tööots valitakse S4-st.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
@@ -580,7 +584,9 @@ püüdis baasjoone kontroll „enne vahetust ANNAB".
 **AUTH-08…-14 said 11.08 tehtud ja on `origin/main`-is** (sisselogimislingi kinnitus nõuab
 nüüd vajutust, turvalingi origin tuleb ainult konfiguratsioonist, PIN-katsete loendur elab
 andmebaasis ja on instantsiülene, tundmatu konto vastus on ajastuselt sama mis vale PIN-i oma,
-ning väljalogimine ütleb „tehtud" alles siis, kui serveripoolne rida on tühistatud).
+ning väljalogimine ütleb „tehtud" alles siis, kui serveripoolne rida on tühistatud). Kinnituslehe
+enda avalehe-varulink on samuti sama origini suhteline `/`, mitte päringu hosti- või
+protokollipäistest tuletatud absoluutne URL.
 
 **AUTH-15 lõpetas peatüki: paroolitaaste kaks samaaegset päringut tapsid teineteise lingi.**
 Kasutaja sai kaks näiliselt edukat kirja ja kumbki link ei töötanud — topeltklikk või aeglane
