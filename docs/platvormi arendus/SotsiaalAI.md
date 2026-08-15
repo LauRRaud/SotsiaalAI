@@ -92,6 +92,11 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**A4 tegevusloa märgise identiteedilünk on parandatud.** Kahjutu kontakt- või
+kättesaadavusparandus säilitab kontrollitud hinnangu, kuid registrikoodi,
+organisatsiooni nime või teenuse tähenduse muutus eemaldab vana tõendi kohe;
+seotus jääb alles ja järgmine MTR-i kontroll saab hinnangu uuesti luua.
+
 **Sihitud Codex Security seitsme faili parandusring on `main`-is ja toodangus
 (`bad33faca2cf41681abd5cf350b00ffe7b4671fc`).** Viis kinnitatud leidu on suletud: suletud registreerimise adminieelvaade
 kontrollib iga päringu ajal andmebaasist rolli, peatamist ja sessiooni; kõik kasutaja algatatud

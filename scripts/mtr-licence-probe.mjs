@@ -311,7 +311,8 @@ try {
   });
   check("lahendamata identiteet ei anna VERIFIED", afterUnresolved?.publicStatus === LICENCE_PUBLIC_STATUS.UNCONFIRMED);
 
-  /* 9: PROFIILI SALVESTAMINE EI TOHI HINNANGUT KUSTUTADA.
+  /* 9: KAHJUTU PROFIILIPARANDUS EI TOHI HINNANGUT KUSTUTADA, kuid
+     identiteedi või teenuse tähenduse muutus peab vana tõendi eemaldama.
      Vana `delete + create` hävitas kaskaadis kogu `ServiceLicenceAssessment`
      kirje — osutaja kaotanuks märgise iga kirjavea parandusega. */
   const owner = await prisma.user.create({
@@ -341,20 +342,58 @@ try {
     }
   });
 
-  await upsertServiceProviderProfileForOwner(owner.id, {
+  const harmlessSave = await upsertServiceProviderProfileForOwner(owner.id, {
     organizationName: `${SYNTHETIC_NAME} salvestus`,
     registryCode: SYNTHETIC_CODE,
-    serviceItems: [{ id: savedServiceId, name: `Salvestuse teenus ${runId}`, description: "TEINE, muudetud" }]
+    expectedUpdatedAt: saved.updatedAt,
+    phone: "+372 5555 0101",
+    serviceItems: [{ id: savedServiceId, name: `Salvestuse teenus ${runId}`, description: "esimene" }]
   });
 
   const afterSave = await prisma.serviceProviderService.findUnique({
     where: { id: savedServiceId },
-    select: { description: true, serviceKey: true, licenceAssessment: { select: { publicStatus: true } } }
+    select: { serviceKey: true, licenceAssessment: { select: { publicStatus: true } } }
   });
   check("profiili salvestus säilitab teenuserea", Boolean(afterSave), `id=${savedServiceId}`);
-  check("kirjelduse muutmine jõudis kohale", afterSave?.description === "TEINE, muudetud");
   check("serviceKey säilis", afterSave?.serviceKey === "TOETATUD_ELAMINE");
-  check("HINNANG säilis salvestuse üle", afterSave?.licenceAssessment?.publicStatus === "VERIFIED");
+  check("HINNANG säilis kahjutu kontaktiparanduse üle", afterSave?.licenceAssessment?.publicStatus === "VERIFIED");
+
+  const semanticSave = await upsertServiceProviderProfileForOwner(owner.id, {
+    organizationName: `${SYNTHETIC_NAME} salvestus`,
+    registryCode: SYNTHETIC_CODE,
+    expectedUpdatedAt: harmlessSave.updatedAt,
+    phone: "+372 5555 0101",
+    serviceItems: [{ id: savedServiceId, name: `Ümber kirjutatud teenus ${runId}`, description: "uus tähendus" }]
+  });
+  const afterSemanticChange = await prisma.serviceProviderService.findUnique({
+    where: { id: savedServiceId },
+    select: { serviceKey: true, licenceAssessment: { select: { id: true } } }
+  });
+  check("teenuse tähenduse muutus säilitab seotuse", afterSemanticChange?.serviceKey === "TOETATUD_ELAMINE");
+  check("teenuse tähenduse muutus kustutab VANA HINNANGU", afterSemanticChange?.licenceAssessment === null);
+
+  await prisma.serviceLicenceAssessment.create({
+    data: {
+      providerServiceId: savedServiceId,
+      serviceKey: "TOETATUD_ELAMINE",
+      catalogueVersion: "sond",
+      requirementAtAssessment: "REQUIRED",
+      coverage: "EXACT_MATCH",
+      publicStatus: "VERIFIED"
+    }
+  });
+  await upsertServiceProviderProfileForOwner(owner.id, {
+    organizationName: `${SYNTHETIC_NAME} salvestus`,
+    registryCode: `98${SYNTHETIC_CODE.slice(2)}`,
+    expectedUpdatedAt: semanticSave.updatedAt,
+    phone: "+372 5555 0101",
+    serviceItems: [{ id: savedServiceId, name: `Ümber kirjutatud teenus ${runId}`, description: "uus tähendus" }]
+  });
+  const afterIdentityChange = await prisma.serviceLicenceAssessment.findUnique({
+    where: { providerServiceId: savedServiceId },
+    select: { id: true }
+  });
+  check("registrikoodi muutus kustutab VANA HINNANGU", afterIdentityChange === null);
 
   /* 10: RAG-DOKUMENT EI TOHI KANDA LOASEISU.
      „Kontrollitud" on väide, mis AEGUB, ja indeksisse kirjutatud tekst ei
