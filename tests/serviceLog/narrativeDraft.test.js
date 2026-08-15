@@ -8,6 +8,7 @@
 
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import {
   MAX_SEED_NOTES,
   NARRATIVE_DRAFT_PROVENANCE,
@@ -17,6 +18,11 @@ import {
   wrapNarrativeDraft
 } from "../../lib/serviceLog/narrativeDraft.js";
 import { PROVENANCE, PROVENANCES } from "../../lib/serviceLog/constants.js";
+
+const draftRouteSource = readFileSync(
+  new URL("../../app/api/service-narratives/draft/route.js", import.meta.url),
+  "utf8"
+);
 
 function seed(overrides = {}) {
   return {
@@ -138,4 +144,14 @@ test("sildikaardis ei ole tundmatuid võtmeid", () => {
   for (const key of Object.keys(PROVENANCE_LABEL)) {
     assert.ok(PROVENANCES.includes(key), `${key} ei ole platvormi päritolu`);
   }
+});
+
+test("taaskasutatud kvoodibroneering ei käivita uut AI-genereerimist", () => {
+  const reserveIndex = draftRouteSource.indexOf("await reserveUsageForRequest({");
+  const replayGuardIndex = draftRouteSource.indexOf("if (usageHandle.reused)");
+  const generateIndex = draftRouteSource.indexOf("await generateArtifactDraftContent({");
+
+  assert.ok(reserveIndex >= 0, "marsruut peab enne mudelit kvoodi broneerima");
+  assert.ok(replayGuardIndex > reserveIndex, "taaskasutust kontrollitakse pärast broneerimist");
+  assert.ok(generateIndex > replayGuardIndex, "taaskasutatud broneering peatatakse enne mudelikutsungit");
 });

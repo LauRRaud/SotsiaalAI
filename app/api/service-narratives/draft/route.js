@@ -88,6 +88,15 @@ export async function POST(req) {
       return usageErrorJson(error, "service_log.narrative_draft", locale);
     }
 
+    /* Sellel endpoint'il ei ole püsistatud tulemust, mida sama võtmega
+       korduspäringule tagastada. Seetõttu ei tohi taaskasutatud broneeringuga
+       uut mudelikutsungit teha: COMMITTED broneeringu commit on idempotentne
+       ning värske genereerimine jääks muidu kvoodis arvestamata. */
+    if (usageHandle.reused) {
+      usageHandle = null;
+      return errorJson("api.common.invalid_request", 409, locale);
+    }
+
     const result = await generateArtifactDraftContent({
       type: "REPORT_DRAFT",
       documents: [],

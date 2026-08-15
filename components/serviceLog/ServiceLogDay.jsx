@@ -260,8 +260,16 @@ export default function ServiceLogDay() {
     let cancelled = false;
     const timer = setTimeout(async () => {
       try {
-        const params = new URLSearchParams({ defaults: "1", clientDisplayName: clientName.trim() });
-        const response = await fetch(`/api/service-entries?${params}`, { headers: { "x-ui-locale": locale || "et" } });
+        /* Kliendi nimi on isikuandmed ja ei tohi sattuda URL-i, mida proxy'd,
+           ligipääsulogid ning seirevahendid tavaliselt talletavad. */
+        const response = await fetch("/api/service-entries", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-ui-locale": locale || "et"
+          },
+          body: JSON.stringify({ operation: "defaults", clientDisplayName: clientName.trim() })
+        });
         if (!response.ok) return;
         const body = await response.json();
         if (cancelled) return;
@@ -790,6 +798,10 @@ export default function ServiceLogDay() {
         setFormError(t("service_log.errors.client_required", ""));
         return;
       }
+      if (defaults?.askReferral && !referralId) {
+        setFormError(t("service_log.errors.referral_required", ""));
+        return;
+      }
       setSaving(true);
       const store = deviceStore();
       /* VÕTI SÜNNIB SIIN, mitte serveris — server ei saa teda ise välja mõelda,
@@ -868,7 +880,7 @@ export default function ServiceLogDay() {
         setSaving(false);
       }
     },
-    [clientName, date, deviceStore, finishInputTimer, fromVisit, loadEntries, locationStamps, note, noteProvenance, postEntry, quantity, referralId, resetForm, serviceId, stamps, t, unit]
+    [clientName, date, defaults?.askReferral, deviceStore, finishInputTimer, fromVisit, loadEntries, locationStamps, note, noteProvenance, postEntry, quantity, referralId, resetForm, serviceId, stamps, t, unit]
   );
 
   /**
@@ -1105,6 +1117,7 @@ export default function ServiceLogDay() {
               name="referralId"
               value={referralId}
               onChange={setReferralId}
+              ariaLabel={t("service_log.form.referral", "")}
               placeholder={t("service_log.form.referral_choose", "")}
               options={defaults.referrals.map((referral) => ({
                 value: referral.id,
