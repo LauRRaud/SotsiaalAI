@@ -4487,7 +4487,15 @@ uus jälg algab sellest muudatusest. Admini vaated loevad endiselt telemeetriat 
 
 **Vastuvõtukriteerium.** Enne kasutaja hard-delete'i peab olema tõendatud, milline minimaalne finantsdokument/ledger säilib õigusliku aluse ja tähtajaga; otsene kasutaja-FK tuleb asendada pseudonüümse/anonymiseeritud arvestusidentiteediga või teha kontrollitud arhiiv. Jurist/raamatupidaja peab kinnitama väljade ja tähtaja lepingu. Integratsioonitest peab kustutama konto ning tõendama nii isikuandmete eemaldamise kui nõutava finantsjälje säilimise.
 
-**Seis (12.08.2026): DONE mehhanismi osas; koosseisu kinnitus jääb juristile.**
+**Seis (15.08.2026): DONE mehhanismi osas; koosseisu kinnitus jääb juristile.**
+
+**Aardvarki järelparandus (15.08).** Konto kustutamise järel saabunud allkirjastatud `PAID`
+webhook märgib säilitatud maksekirje nüüd tasutuks ja kirjutab `ledger_only` auditi, kuid jätab
+puuduva tellimuse makseviisi loomise ning aktiveerimise vahele. Varem jõudis nullitud
+`subscriptionId` Prisma `findUnique`-ni, kogu tehing pöördus tagasi ja provider sai 500; kandev
+sihttest naelutab null-tellimuse haru aktiveerimise ette. Päris DB sondi ei ole vaja: migratsiooni
+`SetNull` invariant on juba `pay:archive:probe`-ga kaetud ning see järelparandus puudutab ainult
+webhooki haruvalikut pärast rea edukat lukustamist.
 
 **Leid ei olnud tingimuste ja koodi vastuolu, vaid KOODI JA KOODI oma.** `lib/retention.js`
 teostab juba täpselt seda, mida privaatsustingimuste punkt 7.9 kasutajale lubab — minimaalne

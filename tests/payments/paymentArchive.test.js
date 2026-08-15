@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import test from "node:test";
 
 import {
@@ -96,6 +97,25 @@ test("the pseudonym is random, not derived — a leaked database cannot reverse 
 
 test("the retained composition lives in one named place", () => {
   assert.deepEqual([...PAYMENT_ARCHIVE_FIELDS], ["archivedAt", "archivedPayerRef", "archivedPlanCode"]);
+});
+
+test("a late PAID webhook records an orphaned payment without activating a deleted subscription", () => {
+  const source = readFileSync(
+    new URL("../../app/api/subscription/webhook/route.js", import.meta.url),
+    "utf8"
+  );
+  const orphanGuard = source.indexOf(
+    "effectiveStatus === PaymentStatus.PAID && !updatedPayment.subscriptionId"
+  );
+  const activation = source.indexOf("subscription = await activateSubscriptionFromPayment", orphanGuard);
+
+  assert.ok(orphanGuard >= 0, "PAID arhiivikirje vajab enne tellimuserada eraldi haru");
+  assert.ok(activation > orphanGuard, "null tellimuse kontroll peab eelnema aktiveerimisele");
+  assert.match(
+    source.slice(orphanGuard, activation),
+    /archived_payment_paid_no_subscription/,
+    "hiline makse peab jätma auditeeritud ledger-only jälje"
+  );
 });
 
 /* NEGATIIVKONTROLL. Vana käitumine ei olnud „unustatud kustutus", vaid
