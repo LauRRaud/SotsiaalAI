@@ -92,6 +92,10 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Aardvarki e-posti vahetuse kinnituse kehaparseri leid on parandatud.** Avalik POST rakendab
+IP-piirangu enne päringukeha lugemist ning keeldub üle 8 KiB deklareeritud või tegelikust
+kehast; tavapärased vormi- ja JSON-kinnitused töötavad edasi. Järgmine tööots valitakse S4-st.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
@@ -2742,6 +2746,7 @@ horisondid osas II.
 Kasutaja loob konto, kinnitab e-posti, kasutab PIN-i ja saab oma konto kustutada nii, et
 kustutus käib päriselt läbi kõigi kihtide. Privaatsuspiirid on jõustatud serveris, mitte
 liideses — ka administraator ei pääse võõra kovisioonijuhtumi ega tööheaolu kirjete juurde.
+E-posti vahetuse avalik kinnitus piirab kliendi enne keha lugemist ja võtab vastu kuni 8 KiB.
 
 **Keeled ja ligipääsetavus.**
 Platvorm töötab eesti, inglise ja vene keeles ning tõlkepariteeti kontrollib eraldi värav —
