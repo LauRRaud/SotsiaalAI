@@ -8,9 +8,9 @@ import { prisma } from "@/lib/prisma";
 import { reapExpiredReservations } from "@/lib/usage/reservationReaper";
 
 // Usage reservation-reaper worker (PERF-P0). Repo-managed, DEFAULT INACTIVE.
-// Runs only with a valid job key AND USAGE_REAPER_ENABLED. Releases expired
-// RESERVED reservations through the atomic usage-service path; never touches
-// COMMITTED rows and cannot change usage totals by hand.
+// Runs only with a valid job key AND USAGE_REAPER_ENABLED. Reports expired
+// RESERVED reservations, but never settles them: expiry alone cannot distinguish
+// an abandoned hold from a provider request that is still running.
 
 const NO_STORE_HEADERS = {
   "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",

@@ -92,6 +92,11 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Usage reservation-reaper on turvakaalutlusel ainult detektor.** Aegumine ei tõenda, et
+provideri päring on lõppenud; seetõttu ei vabasta ta enam aegunud `RESERVED` rida ega saa
+aktiivse pika töö tasu nullida. Järgmine samm on valida S4-st uus tööots; automaatne
+koristus jääb ootama tõendatavat owner-liveness'i või abandonment-signaali.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
