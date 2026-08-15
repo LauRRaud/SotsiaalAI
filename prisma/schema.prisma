@@ -3978,13 +3978,14 @@ model RoomSummaryApproval {
 // Kes millise kokkuvõtte privaatkoopia sai. Unikaalindeks teeb üleandmise
 // idempotentseks: arhiveerimine ja hilisem kustutus ei tekita teist koopiat.
 // `savedAnalysisId` on SetNull — kasutaja võib oma koopia kustutada, ilma et
-// üleandmise jälg kaoks.
+// üleandmise jälg või püsiv lõpetamismärge kaoks.
 model RoomSummaryCopy {
   id                  String   @id @default(cuid())
   roomSharedSummaryId String
   userId              String
   savedAnalysisId     String?
   copiedAt            DateTime @default(now())
+  completedAt         DateTime?
 
   sharedSummary RoomSharedSummary @relation(fields: [roomSharedSummaryId], references: [id], onDelete: Cascade)
   user          User              @relation(fields: [userId], references: [id], onDelete: Cascade)

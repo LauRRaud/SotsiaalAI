@@ -92,6 +92,11 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Aardvarki ruumikokkuvõtte privaatsusleid on parandatud lokaalses harus.** Valmis üleandmisel
+on nüüd eraldi püsiv lõpetamismärge, mistõttu saaja kustutatud privaatkoopiat ei looda ruumi
+hilisemal kustutamisel uuesti, kuid päriselt pooleli jäänud üleandmine taastub endiselt.
+Järgmine tööots valitakse S4-st.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
@@ -2684,7 +2689,8 @@ teistele. Kogutud praktika ei kao inimesega koos ära.
 Ruum on koht, kus mitu inimest töötavad ühe asja kallal — kovisioonigrupp, supervisioonipaar,
 võrgustik või klient ja töötaja. Ruumi kutsutakse nimeliselt, liikmelisus on nähtav ja
 ruumist saab lahkuda. Ruumi kokkuvõtte saab kinnitusringi kaudu ühiselt heaks kiita, nii et
-keegi ei kirjuta teiste eest kokkuvõtet, mida nad ei ole näinud.
+keegi ei kirjuta teiste eest kokkuvõtet, mida nad ei ole näinud. Lõpetamisel saadud privaatkoopia
+kustutamine on lõplik: ruumi hilisem elutsüklisündmus ei taasta inimese kustutatud sisu.
 
 **Helikõned.**
 Ruumis saab pidada helikõne ilma eraldi konverentsitarkvarata. Salvestamine ei ole vaikimisi
