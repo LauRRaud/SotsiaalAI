@@ -79,7 +79,7 @@ function createDb({
           throw Object.assign(new Error("duplicate"), { code: "P2002" });
         }
         ledgerSeq += 1;
-        const row = { id: `c${ledgerSeq}`, savedAnalysisId: null, ...data };
+        const row = { id: `c${ledgerSeq}`, savedAnalysisId: null, completedAt: null, ...data };
         ledger.push(row);
         return { id: row.id };
       },
@@ -181,7 +181,13 @@ test("ruumist kustutatud jagamist ei anta tagantjärele edasi", async () => {
 
 test("poolik pearaamatu rida lõpetatakse järgmisel katsel — koopia ei kao", async () => {
   const db = baseDb({
-    copies: [{ id: "c1", roomSharedSummaryId: "s1", userId: "member-b", savedAnalysisId: null }]
+    copies: [{
+      id: "c1",
+      roomSharedSummaryId: "s1",
+      userId: "member-b",
+      savedAnalysisId: null,
+      completedAt: null
+    }]
   });
   const result = await copyRoomSummariesToParticipants({ db, roomId: ROOM_ID });
 
@@ -191,6 +197,29 @@ test("poolik pearaamatu rida lõpetatakse järgmisel katsel — koopia ei kao", 
     ["member-b", "member-c", "member-left-after"]
   );
   assert.equal(db.ledger.find(row => row.userId === "member-b").savedAnalysisId, "a1");
+  assert.ok(db.ledger.find(row => row.userId === "member-b").completedAt);
+});
+
+test("kasutaja kustutatud valmis privaatkoopiat hilisem üleandmine ei taasta", async () => {
+  const db = baseDb({
+    members: [
+      { roomId: ROOM_ID, userId: SHARER, joinedAt: new Date("2026-07-01"), leftAt: null },
+      { roomId: ROOM_ID, userId: "member-b", joinedAt: new Date("2026-07-01"), leftAt: null }
+    ],
+    copies: [{
+      id: "c1",
+      roomSharedSummaryId: "s1",
+      userId: "member-b",
+      savedAnalysisId: null,
+      completedAt: new Date("2026-07-19T12:00:00Z")
+    }]
+  });
+
+  const result = await copyRoomSummariesToParticipants({ db, roomId: ROOM_ID });
+
+  assert.equal(result.created, 0);
+  assert.equal(result.existing, 1);
+  assert.equal(db.analyses.length, 0);
 });
 
 test("koopia kirjutamise tõrge viskab, et kustutus saaks katkeda", async () => {
