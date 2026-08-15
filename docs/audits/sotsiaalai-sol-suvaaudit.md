@@ -1438,6 +1438,15 @@ HTTP-testiga: teenus viskab piiril (`service.test.js`), deskriptor teeb sellest 
 (`routeAdapter.test.js`), ja leping mõõdab ahela viimast lüli — et marsruut seda kaardistust ka
 päriselt kasutab, mitte ei neela viga.
 
+**Aardvarki järelparandus (15.08.2026).** Esialgne parandus sidus idempotentsusvõtme ainult
+kasutusreservatsiooniga: juba `COMMITTED` reservatsiooni kordus läks endiselt tasulisse töösse,
+kuigi teine commit oli no-op. Kokkuvõte talletab nüüd sama võtme `AgentArtifact`-ile ja kordus
+tagastab selle püsiva tulemuse (või peatub 409-ga, kui esimene jooks pole veel valmis või võti
+kirjeldab teist transkripti); katkema jäänud commit viiakse kordusel lõpuni. Transkriptsiooni
+allikapõhine claim katab sama helifaili kordused ning mõne teise allika kliendivõtmega leitud
+taaskasutatud reservatsioon peatub enne STT-kutset. Uus leping kukub paranduse-eelse `HEAD`-i
+mõlema marsruudi peal punaseks; sihttest on 19/19, runtime: not_run.
+
 ### SOL-DOC-03 — paralleelne muutmine saab FINAL-artefakti pärast kinnitamist üle kirjutada — P1
 
 **Tõend.** PATCH loeb omaniku artefakti ja kontrollib mälus, et see on `DRAFT`, kuid hilisem update sihib ainult `where: { id }` (`app/api/documents/artifacts/[id]/route.js:140-146`, `:199-207`). Approve loeb samuti oleku eraldi ja muudab rea hiljem ainult ID järgi `FINAL`-iks (`app/api/documents/artifacts/[id]/approve/route.js:69-110`). Kui PATCH loeb `DRAFT`, approve commit'ib `FINAL` ja PATCH jätkab seejärel, muudab ta juba lõplikuks kinnitatud rea sisu/pealkirja, sest update ei nõua enam `status: DRAFT`. Kliendi kinnitamine ise koosneb samuti kahest eraldi HTTP päringust — PATCH ja POST approve — ilma versiooni/CAS-ta (`components/documents/ArtifactDetailPage.jsx:100-124`, `components/agent/AgentModePage.jsx:1518-1541`).

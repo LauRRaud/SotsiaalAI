@@ -251,6 +251,15 @@ export async function POST(request, { params }) {
       return usageErrorJson(error, "documents.transcribe", locale)
     }
 
+    // The claim above makes one audio source idempotent. The usage key is client
+    // controlled, though, so reusing a key from another source must not turn an
+    // already committed reservation into a free provider call.
+    if (usageHandle.reused) {
+      const conflict = new Error("api.common.invalid_request")
+      conflict.status = 409
+      throw conflict
+    }
+
     let transcriptionResult = null
 
     const { persisted: transcriptDocument } = await runPaidResult({

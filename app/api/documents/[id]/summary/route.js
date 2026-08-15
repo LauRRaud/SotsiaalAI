@@ -140,6 +140,34 @@ export async function POST(request, { params }) {
       return usageErrorJson(error, "documents.transcript_summary", locale)
     }
 
+    // A usage reservation is only the accounting side of idempotency. If the same
+    // key is retried, never run the paid model again: return the durable result and
+    // finish a previously interrupted commit instead. A concurrent retry can arrive
+    // before that result exists; it must wait/retry rather than create a second one.
+    if (usageHandle.reused) {
+      const existingArtifact = await prisma.agentArtifact.findFirst({
+        where: {
+          ownerId: auth.userId,
+          idempotencyKey: usageHandle.idempotencyKey,
+          type: "TRANSCRIPT_SUMMARY"
+        },
+        include: artifactInclude
+      })
+      const matchesIntent = existingArtifact?.metadata?.sourceTranscriptDocumentId === transcript.id
+      if (!matchesIntent) {
+        const conflict = new Error("api.common.invalid_request")
+        conflict.status = 409
+        throw conflict
+      }
+
+      await commitUsageForRequest(usageHandle)
+      return json({
+        ok: true,
+        reused: true,
+        summaryArtifact: serializeSummaryArtifact(existingArtifact)
+      })
+    }
+
     const { persisted: artifact } = await runPaidResult({
       reserve: () => usageHandle,
       produce: async () => {
@@ -177,6 +205,7 @@ export async function POST(request, { params }) {
             title: buildTranscriptSummaryTitle(now, locale),
             status: "DRAFT",
             content: generated.content,
+            idempotencyKey: usageHandle.idempotencyKey,
             metadata: {
               generatedFrom: "transcript",
               sourceTranscriptDocumentId: transcript.id,
