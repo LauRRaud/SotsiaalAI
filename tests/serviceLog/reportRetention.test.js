@@ -1,11 +1,13 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 
 import {
   archiveRetainedServiceLogReportsForDeletedAccount,
   assertServiceLogReportDeletable,
   isServiceLogReportRetentionActive,
   partitionDocumentsForAccountDeletion,
+  preserveServiceLogReportKind,
   purgeExpiredServiceLogReportArchives
 } from "../../lib/serviceLog/reportRetention.js";
 import { runUserDeletionCleanup } from "../../lib/privacy/userDeletionOrchestrator.js";
@@ -47,6 +49,16 @@ test("puuduv või vigane raporti säilitustähtaeg lukustab kustutuse", () => {
       (error) => error.status === 409
     );
   }
+});
+
+test("säilitatava raporti kind ei ole dokumendi PATCH kaudu muudetav", () => {
+  const document = report();
+  assert.equal(preserveServiceLogReportKind(document, "MATERIAL"), "SERVICE_LOG_REPORT");
+  assert.equal(preserveServiceLogReportKind(document, "OTHER"), "SERVICE_LOG_REPORT");
+  assert.equal(preserveServiceLogReportKind({ kind: "MATERIAL" }, "OTHER"), "OTHER");
+
+  const route = readFileSync(new URL("../../app/api/documents/[id]/route.js", import.meta.url), "utf8");
+  assert.match(route, /const kind = preserveServiceLogReportKind\(existing, requestedKind\)/);
 });
 
 test("konto kustutus eraldab säilitatava raporti failikustutuse sihtidest", () => {

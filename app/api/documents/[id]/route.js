@@ -28,7 +28,10 @@ import {
   attemptDocumentRagRemoval,
   prepareDocumentRagPermissionChange
 } from "@/lib/documents/ragPermission"
-import { assertServiceLogReportDeletable } from "@/lib/serviceLog/reportRetention"
+import {
+  assertServiceLogReportDeletable,
+  preserveServiceLogReportKind
+} from "@/lib/serviceLog/reportRetention"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
@@ -228,7 +231,8 @@ export async function PATCH(request, { params }) {
     if (frameworkSchemaAvailable && existing.frameworkAcceptance) {
       return errorJson("documents.errors.read_only_document", 403, locale)
     }
-    const kind = body?.kind == null ? existing.kind : normalizeDocumentKind(body.kind)
+    const requestedKind = body?.kind == null ? existing.kind : normalizeDocumentKind(body.kind)
+    const kind = preserveServiceLogReportKind(existing, requestedKind)
     const templateFor =
       body?.templateFor === undefined
         ? existing.templateFor
