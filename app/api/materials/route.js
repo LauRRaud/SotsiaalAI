@@ -6,8 +6,8 @@ import { errorJson, json, localeFromRequest } from "@/lib/documents/server"
 import { readDocumentsRateLimit } from "@/lib/documents/rateLimit"
 import { requireMaterialReadAccess, requireMaterialUploadAccess } from "@/lib/materials/access"
 import { getMaterialSubmissionSchemaMessage, isMaterialSubmissionSchemaError } from "@/lib/materials/compat"
-import { createMaterialSubmissions, listMaterialSubmissions } from "@/lib/materials/lifecycle"
-import { quarantineMaterialUpload } from "@/lib/materials/quarantine"
+import { createMaterialSubmissions, listMaterialSubmissions, normalizeMaterialIdempotencyKey } from "@/lib/materials/lifecycle"
+import { discardMaterialQuarantine, quarantineMaterialUpload } from "@/lib/materials/quarantine"
 import { ensureAllowedUpload, normalizeMaterialComment } from "@/lib/materials/server"
 import { getMaterialsFileCountLimit } from "@/lib/storageGuardrails"
 import { safeError } from "@/lib/privacy/safeError"
@@ -59,6 +59,7 @@ export async function handleMaterialPost(
     sessionProvider = getOptionalSession,
     uploadAccess = requireMaterialUploadAccess,
     quarantineUpload = quarantineMaterialUpload,
+    discardQuarantine = discardMaterialQuarantine,
     createSubmissions = createMaterialSubmissions
   } = {}
 ) {
@@ -68,6 +69,7 @@ export async function handleMaterialPost(
   if (!access.ok) return errorJson(access.message, access.status, locale)
 
   let formData
+  const quarantined = []
   try {
     formData = await request.formData()
   } catch {
@@ -84,18 +86,21 @@ export async function handleMaterialPost(
       })
     }
 
+    const idempotencyKey = formData.get("idempotencyKey") || request.headers.get("idempotency-key")
+    normalizeMaterialIdempotencyKey(idempotencyKey)
     const files = []
     for (const file of uploaded) {
       const mime = ensureAllowedUpload(file)
       const buffer = Buffer.from(await file.arrayBuffer())
-      files.push(await quarantineUpload({
+      const quarantinedFile = await quarantineUpload({
         userId: String(session.user.id),
         originalName: String(file.name || "material"),
         mime,
         buffer
-      }))
+      })
+      files.push(quarantinedFile)
+      quarantined.push(quarantinedFile)
     }
-    const idempotencyKey = formData.get("idempotencyKey") || request.headers.get("idempotency-key")
     const result = await createSubmissions({
       userId: String(session.user.id),
       role: effectiveRoleFromSession(session),
@@ -113,6 +118,11 @@ export async function handleMaterialPost(
       submissions: result.submissions
     }, result.replay ? 200 : 201)
   } catch (error) {
+    await Promise.allSettled(quarantined.map(file => discardQuarantine({
+      receiptId: file.quarantineReceiptId,
+      actorUserId: String(session.user.id),
+      code: "submission_rejected"
+    })))
     return routeError(error, locale, "Materjali üleslaadimine ebaõnnestus.")
   }
 }
