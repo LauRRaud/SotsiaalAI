@@ -146,17 +146,14 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
       .trim()
       .toLowerCase();
     if (!invitePayment) return;
-    // Brauseri-GET tuleb tagasi peaaegu alati "pending" olekus (kinnitus
-    // laekub asünkroonselt webhookiga) — see EI ole viga, kutse on juba
-    // saadetud. Tundmatu väärtus taandub samuti pendingiks.
-    const state = ["success", "pending", "canceled", "failed"].includes(invitePayment)
-      ? invitePayment
-      : "pending";
+    // URL kirjeldab ainult provideri tagasisuunamist, mitte serveris kinnitatud
+    // makseolekut. Tundmatut väärtust ei tohi usaldusväärse staatusena näidata.
+    if (!["success", "pending", "canceled", "failed"].includes(invitePayment)) return;
     setOpen(true);
     setOpenSource("");
     setRoomId(params.get("roomId") || null);
     setPaymentReturn({
-      state,
+      state: invitePayment,
       inviteId: String(params.get("inviteId") || "").trim(),
     });
   }, [embedded]);
@@ -445,8 +442,8 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
   }
   if (!open) return null;
   // Makse-tagasitulek: PUHAS staatuskaart (mitte kutse-loomise vorm), et
-  // vältida "vorm üle vestluse" segadust. Katab kõik 4 makse-olekut; e-post
-  // ilmub, kui kutse on ruumi kutse-loendist juba laetud (loadInvites).
+  // vältida "vorm üle vestluse" segadust. URL-ist tulev pending tähendab
+  // ainult seda, et serveri kinnitus on veel ootel; see ei tõenda makset.
   if (!embedded && paymentReturn) {
     const positive =
       paymentReturn.state === "success" || paymentReturn.state === "pending";

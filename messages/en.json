@@ -4462,8 +4462,8 @@
     "sponsored": {
       "confirm_and_pay": "Start payment",
       "payment_success": "Payment succeeded. The invite will be sent once the payment is confirmed.",
-      "payment_pending": "Payment received — the invite has been sent to {email}. They can now join.",
-      "payment_pending_no_email": "Payment received — the invite has been sent. The invitee can now join.",
+      "payment_pending": "Payment confirmation is pending for the invite to {email}. The invite will be sent after the payment is confirmed.",
+      "payment_pending_no_email": "Payment confirmation is pending. The invite will be sent after the payment is confirmed.",
       "payment_status_title": "Sponsored invite payment",
       "payment_back_to_chat": "Back to chat",
       "payment_canceled": "Payment was canceled. The invite was not sent.",

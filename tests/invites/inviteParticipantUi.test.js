@@ -75,3 +75,21 @@ test("regular invite email template exists instead of falling back to its i18n k
     assert.ok(catalog.email.invite.create.text.includes("{roomTitle}"));
   }
 });
+
+test("payment return URL cannot claim that an unverified sponsored invite was sent", () => {
+  assert.match(
+    modal,
+    /if \(!\["success", "pending", "canceled", "failed"\]\.includes\(invitePayment\)\) return;/u,
+    "unknown URL states must not be displayed as a payment status",
+  );
+  for (const catalog of catalogs) {
+    assert.doesNotMatch(
+      catalog.invite.sponsored.payment_pending,
+      /has been sent|on saadetud|приглашение отправлено/ui,
+    );
+    assert.doesNotMatch(
+      catalog.invite.sponsored.payment_pending_no_email,
+      /has been sent|on saadetud|приглашение отправлено/ui,
+    );
+  }
+});
