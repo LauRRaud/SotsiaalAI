@@ -38,7 +38,7 @@ test("üle 20 000 rea saavad kõik kokku, mitte esimesed 20 000", async () => {
 
   const aggregate = await buildUrgentRequestAggregate({ db: prisma });
 
-  assert.equal(aggregate.scannedRows, total, "osa valimist jäi lugemata");
+  assert.equal(Object.hasOwn(aggregate, "scannedRows"), false, "toorreaarv murrab k-anonüümsuse");
   assert.equal(aggregate.totalPeople, total);
   assert.equal(aggregate.truncated, false);
   assert.equal(aggregate.regions[0].people, total);
@@ -50,7 +50,6 @@ test("ülempiiri täitumine on vastuses NÄHTAV, mitte vaikne", async () => {
   const aggregate = await buildUrgentRequestAggregate({ db: prisma, pageSize: 4, maxPages: 2 });
 
   assert.equal(aggregate.truncated, true, "kärpimine jäi vaikseks");
-  assert.equal(aggregate.scannedRows, 8, "loeti rohkem kui kaks lehekülge");
   // Kärbitud vastus on endiselt aus vastus: ta lihtsalt ütleb, et ei kata kõike.
   assert.equal(aggregate.totalPeople, 8);
 });
@@ -60,7 +59,6 @@ test("lehekülgitamine ei kaota ega dubleeri ridu piiri peal", async () => {
   // tegema veel ühe tühja päringu, mitte jätma teist lehekülge lugemata.
   const prisma = createPrisma(rowsAt(10, { at: new Date(Date.UTC(2026, 0, 15, 12, 0, 0)) }));
   const aggregate = await buildUrgentRequestAggregate({ db: prisma, pageSize: 5 });
-  assert.equal(aggregate.scannedRows, 10);
   assert.equal(aggregate.totalPeople, 10);
   assert.equal(aggregate.truncated, false);
 });
