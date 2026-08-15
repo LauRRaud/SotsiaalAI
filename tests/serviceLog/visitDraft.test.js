@@ -123,6 +123,24 @@ test("rikutud sisu ega puuduv salvestusruum ei katkesta külastust", () => {
   assert.doesNotThrow(() => clearVisitDraft(null));
 });
 
+test("seadmesse istutatud väljad ei pääse ajatemplite kaudu POST payload'i", () => {
+  const storage = fakeStorage({
+    [DRAFT_KEY]: JSON.stringify({
+      savedAt: 1_000,
+      stamps: {
+        arrivedAt: "2026-08-02T16:24:00.000Z",
+        clientDisplayName: "Istutatud nimi",
+        date: "2031-12-25",
+        quantity: 999
+      }
+    })
+  });
+
+  assert.deepEqual(readVisitDraft(storage, 1_000).stamps, {
+    arrivedAt: "2026-08-02T16:24:00.000Z"
+  });
+});
+
 /* Täis `localStorage` viskab `QuotaExceededError`. Külastuse märkimine ei tohi
    sellest sõltuda — tempel on tähtsam kui tema koopia. */
 test("täis salvestusruum ei viska kasutaja peale viga", () => {
