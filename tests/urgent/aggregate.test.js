@@ -29,6 +29,7 @@ test("alla läve rühm ei tule välja", async () => {
   assert.deepEqual(aggregate.regions, []);
   assert.equal(aggregate.totalPeople, null);
   assert.equal(aggregate.totalSuppressed, true);
+  assert.equal(Object.hasOwn(aggregate, "scannedRows"), false);
 });
 
 test("läve saavutanud rühm tuleb välja", async () => {

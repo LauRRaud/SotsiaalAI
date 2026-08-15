@@ -5094,7 +5094,7 @@ viimane `update` võitis ja ülejäänud jäid kasutaja kontole päritoluseoseta
 
 **Vastuvõtukriteerium.** Koond peab töötlema kogu valimi DB-agregatsiooni või kontrollitud lehekülgitamisega ja kandma tõendatud timezone'i lepingut; ülempiiri korral tuleb fail-closed/truncated seis nähtavaks teha. Testid peavad katma üle 20 000 rea ning Tallinna suve- ja talveaja piirid.
 
-**Seis (12.08.2026): DONE — kogu valim ja Eesti kell.**
+**Seis (15.08.2026): DONE — kogu valim ja Eesti kell, ilma künnist rikkuva toorreaarvuta.**
 
 `take: 20000` ilma `orderBy`-ta tähendas, et otsustajale tagastati TÄIELIKU koondi kujuline
 vastus, millest oli teadmata osa välja jäänud — ja isegi see, MILLINE osa sisse jäi, oli
@@ -5107,6 +5107,13 @@ Kellaaja ämber tuleb EESTI seinakellast jagatud mooduli kaudu (`lib/time/estoni
 öise pöördumise ämbri võrra valesti — ja „öö" on kogu funktsiooni mõte. Vastus ütleb ka välja,
 MILLISE kella järgi ämbrid on. Testid katavad 20 001 rida, kärpeseisu ning suve- ja talveaja
 mõlemad pooled.
+
+15.08 turvajärelkontroll leidis, et lehekülgitamisega lisatud `scannedRows` avaldas enne
+eristuvate inimeste arvestust saadud sündmuste täpse arvu. Kitsas `from`/`to` vahemik sai nii
+paljastada 1–4 pöördumist või ühe inimese korduvad pöördumised ka siis, kui kõik inimeste
+koondid olid künnise tõttu summutatud. Väli on vastusest eemaldatud; katvust tõendavad edasi
+inimestepõhine kogusumma, piirkondade summad ja `truncated`, ning regressioonitest nõuab, et
+toorreaarvu vastusekujus ei oleks.
 
 ### SOL-URG-12 — kiire abi partnerikinnitus ja kriitilised lauamuudatused ei salvesta otsustajat ega auditit — P1
 

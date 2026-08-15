@@ -363,7 +363,7 @@ DONE **429** / 429 · PARTIAL **0** / 429 · NOT_DONE **0** / 429 · peatükke t
 - `SOL-URG-08` P1 — üleandmine lubab aktiivset, kuid tegelikult mittevalmis sihtlauda — DONE — siht läbib sama vastuvõtuvalmiduse kontrolli mis uue pöördumise loomine.
 - `SOL-URG-09` P1 — laua valmidus võib loomise kontrolli ja kirjutuse vahel kaduda — DONE — laua rida ON valmiduse mutex.
 - `SOL-URG-10` P1 — paralleelne konversioon võib luua mitu eelpöördumise mustandit ja osalise tulemuse — DONE — konversioon on täpselt üks kord.
-- `SOL-URG-11` P1 — kiire abi koond kärbib 20 000 rea järel vaikides ja kasutab Eesti kellaaja asemel UTC-d — DONE — kogu valim ja Eesti kell.
+- `SOL-URG-11` P1 — kiire abi koond kärbib 20 000 rea järel vaikides ja kasutab Eesti kellaaja asemel UTC-d — DONE — kogu valim ja Eesti kell, ilma künnist rikkuva toorreaarvuta.
 - `SOL-URG-12` P1 — kiire abi partnerikinnitus ja kriitilised lauamuudatused ei salvesta otsustajat ega auditit — DONE — kinnitusel on kinnitaja ja tekstiversioon; igal adminitoimingul on jälg.
 - `SOL-URG-13` P1 — tundliku pöördumise täisloendi API möödub „iga vaatamine jätab jälje” lepingust — DONE — dubleeriv täisloend on eemaldatud.
 
