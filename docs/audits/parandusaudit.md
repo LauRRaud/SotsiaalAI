@@ -85,7 +85,7 @@ Käsitsi siia ei kirjutata. DONE algab sõnaga `DONE`, PARTIAL sõnaga `PARTIAL`
 on NOT_DONE. Kvalifitseeritud DONE-väide vale algusega katkestab genereerimise, et ta ei
 kaoks vaikselt valesse rühma. Iga loetletud leiu lõpus on Seis-lõik **sõna-sõnalt**.
 
-DONE **429** / 429 · PARTIAL **0** / 429 · NOT_DONE **0** / 429 · peatükke täielikult DONE **40** / 40 · ametlikult lahtiseid 0
+DONE **428** / 429 · PARTIAL **1** / 429 · NOT_DONE **0** / 429 · peatükke täielikult DONE **39** / 40 · ametlikult lahtiseid 1 — 1 × P1
 
 | Peatükk | Kood | DONE | PARTIAL | NOT_DONE | Lahtiste prioriteedid | Märkus |
 |---|---|---:|---:|---:|---|---|
@@ -97,7 +97,7 @@ DONE **429** / 429 · PARTIAL **0** / 429 · NOT_DONE **0** / 429 · peatükke t
 | Organisatsioonid ja skoop | SOL-ORG | 19/19 | 0 | 0 | – | **tehtud**, 7 jätkufailist |
 | Välitöö | SOL-FIELD | 17/17 | 0 | 0 | – | **tehtud**, 11 jätkufailist |
 | Dokumendid ja AI-kasutus | SOL-DOC | 15/15 | 0 | 0 | – | **tehtud**, 6 jätkufailist |
-| Uuringud | SOL-RES | 7/7 | 0 | 0 | – | **tehtud** |
+| Uuringud | SOL-RES | 6/7 | 1 | 0 | 1 × P1 |  |
 | Koosolekukokkuvõtted | SOL-MEET | 6/6 | 0 | 0 | – | **tehtud** |
 | Vestlus | SOL-CHAT | 13/13 | 0 | 0 | – | **tehtud** |
 | Hääl (STT/TTS) | SOL-VOICE | 3/3 | 0 | 0 | – | **tehtud** |
@@ -131,6 +131,10 @@ DONE **429** / 429 · PARTIAL **0** / 429 · NOT_DONE **0** / 429 · peatükke t
 | Funktsioonideülene lõpetusring | SOL-XFUNC | 3/3 | 0 | 0 | – | **tehtud**, 3 jätkufailist |
 
 ### PARTIAL leiud peatükkide kaupa
+
+**Uuringud** (`SOL-RES`, 1 PARTIAL)
+
+- `SOL-RES-01` P1 — kasutaja ei saa oma uuringut kustutada ja tellimuse lõpp sulgeb ka lugemise — PARTIAL — Aardvarki stop/delete võistluse koodiparandus on valmis, kuid
 
 ### DONE leiud peatükkide kaupa
 
@@ -250,9 +254,8 @@ DONE **429** / 429 · PARTIAL **0** / 429 · NOT_DONE **0** / 429 · peatükke t
 - `SOL-DOC-J-05` P2 — puuduv algfail ei muuda andmekoopiat veaks ega ausalt osaliseks — DONE — Dokumendid-pinna ükskõik milline algfaili lugemisviga katkestab nüüd kogu andmekoopia töö stabiilse `documentId + reason` failureCode'iga; märgistamata READY koopiat ega ZIP-faili ei teki. Põhjused eristavad `missing`, `access_denied`, `containment` ja muud `read_failed` vead, kuid storage path'i ega toore erindi teksti ei lekitata. Veasüsti sihttestid 13/13 katsid ENOENT, EACCES, containment'i ja keset lugemist tekkinud tõrke ning FAILED-worker'i; `npm run doc:missing-export-file:probe` 6/6 päris PostgreSQL-is kinnitas FAILED seisu, masinloetava koodi, puuduva outputPath/ZIP-i ja kohustusliku `DATA_EXPORT_FAILED` auditi, cleanup `users=0`.
 - `SOL-DOC-J-06` P2 — dokumendi allalaadimise ja artefakti kustutuse audit võib vaikides puududa — DONE — dokumendi ja FINAL-artefakti allalaadimine kasutavad nüüd kohustuslikku `writeDocumentAudit()` rada pärast baitide valmimist, kuid enne `Response` loomist; audititõrge katkestab väljastuse. Artefakti kustutuse audit kirjutatakse enne DELETE-i ja mõlemad on samas tehingus: audititõrke korral rida säilib, delete-tõrke korral audit pöördub tagasi. Kuna FK `artifactId` muutub kustutamisel `SET NULL`-iks, jääb kustutatud artefakti stabiilne ID auditi metaossa `deletedArtifactId`. Sihttestid 5/5 katsid mõlema download-auditi veasüsti, vastuse järjekorra ning kustutuse edu/tõrke; `npm run doc:artifact-audit:probe` 5/5 päris PostgreSQL-is tõendas audititõrke järel alles artefakti ja 0 auditit ning eduka tehingu järel 0 artefakti ja täpselt ühe stabiilse ID-ga auditi, cleanup `users=0`.
 
-**Uuringud** (`SOL-RES`, 7/7)
+**Uuringud** (`SOL-RES`, 6/7)
 
-- `SOL-RES-01` P1 — kasutaja ei saa oma uuringut kustutada ja tellimuse lõpp sulgeb ka lugemise — DONE — koos päris PostgreSQL-i runtime-tõendiga (15/15).
 - `SOL-RES-02` P1 — idempotentsusvõti seob ainult kasutusühiku, mitte uuringutöö — DONE — koos päris PostgreSQL-i runtime-tõendiga (21/21). VAJAB MIGRATSIOONI.
 - `SOL-RES-03` P1 — worker-režiimis jääb päritoluprotsessi job lõpmatult vanasse olekusse — DONE — koos päris kaheprotsessilise runtime-tõendiga (8/8).
 - `SOL-RES-04` P1 — lease'i kaotanud worker võib uuringut jätkata ja uue workeri tulemuse võita — DONE — fencing tõendatud kahe päris workeriga (9/9) ja kriteeriumi viimane

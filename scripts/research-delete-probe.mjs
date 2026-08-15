@@ -10,8 +10,9 @@
  * ilmus kohe uuesti nimekirja. Ainus aus mõõt on päris rida päris andmebaasis: kas ta on pärast
  * kustutamist kadunud või mitte.
  *
- * MÕÕDETAV VÄIDE olekute kaupa: `done`/`error`/`cancelled` → rida KAOB; `queued`/`running` →
- * kustutus keeldub („peata enne"), sest muidu jääks tasuline töö rippuma.
+ * MÕÕDETAV VÄIDE olekute kaupa: `done`/`error`/töötaja kinnitatud `cancelled` → rida
+ * KAOB; `queued`/`running`/veel kinnitamata `cancelled` → kustutus keeldub, sest muidu kaoks
+ * teise protsessi workerile ainus peatamissignaal.
  *
  * Andmed: ainult `@sol-research.invalid` sünteetilised kontod; skript koristab lõpus.
  */
@@ -45,7 +46,10 @@ async function makeJob(owner, status) {
     data: {
       id: `sol-res-01-${Math.random().toString(36).slice(2, 10)}`,
       userId: owner.id,
-      payload: { query: "sondi päring" },
+      payload: {
+        query: "sondi päring",
+        ...(status === "cancelled" ? { cancelAcknowledgedAt: NOW.toISOString() } : {})
+      },
       status,
       ...(terminal ? { endedAt: NOW, result: { report: "tulemus" } } : {})
     }
@@ -76,6 +80,23 @@ async function main() {
     const outcome = await deleteResearchJobForOwner({ jobId: job.id, userId: owner.id });
     expect(`${status}: kustutus õnnestub`, outcome === "deleted", outcome);
     expect(`${status}: RIDA ON ANDMEBAASIST KADUNUD`, (await rowExists(job.id)) === false, "rida jäi alles");
+  }
+
+  // === 1b. TÜHISTAMISSIGNAALI EI TOHI ENNE WORKERI KINNITUST KUSTUTADA ===
+  {
+    const job = await prisma.researchJob.create({
+      data: {
+        id: `sol-res-01-unacked-${Math.random().toString(36).slice(2, 10)}`,
+        userId: owner.id,
+        payload: { query: "worker ei ole veel peatamist näinud" },
+        status: "cancelled",
+        endedAt: NOW
+      }
+    });
+    const outcome = await deleteResearchJobForOwner({ jobId: job.id, userId: owner.id });
+    expect("kinnitamata cancelled: kustutus keeldub", outcome === "active", outcome);
+    expect("kinnitamata cancelled: peatamissignaal on alles", (await rowExists(job.id)) === true);
+    await prisma.researchJob.delete({ where: { id: job.id } });
   }
 
   // === 2. AKTIIVSED OLEKUD: KUSTUTUS KEELDUB ==============================

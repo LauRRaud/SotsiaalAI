@@ -343,11 +343,16 @@ test("a worker that lost its lease can no longer write", () => {
   assert.match(store, /if \(!result\?\.count\) \{\s*abandonLostLease\(job\);/);
   // Terminaalne TULEMUS on fence'itud, TÜHISTUS mitte — muidu kukuks omaniku Stop alati läbi.
   assert.match(store, /\.\.\.\(fence \? leaseFence\(job\) : \{\}\)/);
-  assert.match(store, /status: "cancelled",[\s\S]{0,200}\{ fence: false \}/);
+  assert.match(store, /status: "cancelled",[\s\S]{0,500}\{ fence: false \}/);
+  // Cross-process Stop must remain both a cancellation signal and an active slot until the worker
+  // has observed it; otherwise DELETE + create can run an old and a new paid job concurrently.
+  assert.match(store, /status === "cancelled" && !cancellationAcknowledged/);
+  assert.match(store, /cancelAcknowledgedAt: acknowledgedAt/);
+  assert.match(store, /status: "cancelled", payload: \{ path: \["cancelAcknowledgedAt"\]/);
   // Heartbeat peab count'i lugema ja töö katkestama.
   assert.match(store, /const result = await prisma\.researchJob\.updateMany\([\s\S]{0,400}abandonLostLease\(job\)/);
   // Pipeline'i „kas tohin jätkata" küsimus peab nägema ka lease'i kaotust, mitte ainult tühistust.
-  assert.match(store, /select: \{ status: true, error: true, workerId: true \}/);
+  assert.match(store, /select: \{ status: true, error: true, workerId: true, payload: true \}/);
   assert.match(store, /String\(record\.workerId \|\| ""\) !== String\(job\.workerId \|\| ""\)/);
 });
 
