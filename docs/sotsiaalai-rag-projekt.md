@@ -136,8 +136,8 @@ Kontrollitud 01.08.2026 pärast Mini järeljooksu ja Luna taastamist.
 | Integratsiooni-eelne GitHub `main` | `952a76e3` |
 | Luna release-haru | `origin/fix/rag-release-hardening` |
 | Teenus | `sotsiaalai-frontend.service` — active |
-| Töökataloog | `/home/ubuntu/apps/sotsiaalai` |
-| Env-fail | `/etc/sotsiaalai/frontend.env` |
+| Töökataloog | serveri rakenduskataloog (hallatakse väljaspool repot) |
+| Env-fail | serveri salajane keskkonnafail (hallatakse väljaspool repot) |
 | `CHAT_PROMPT_TOKEN_AUDIT` | `0` |
 | `OPENAI_MODEL` | `gpt-5.6-luna` |
 | `OPENAI_REASONING_EFFORT` | `medium` |
@@ -146,7 +146,7 @@ Kontrollitud 01.08.2026 pärast Mini järeljooksu ja Luna taastamist.
 | `_CLIENT` / `_WORKER` | `3000` / `3000` |
 
 **Rollback-profiil:** `gpt-5.4-mini / low / medium / 1100`
-**Luna-eelne env-varukoopia:** `/etc/sotsiaalai/frontend.env.pre-luna-20260801T155351+0300`
+**Luna-eelne env-varukoopia:** serveris, asukoht dokumenteeritud väljaspool repot
 
 Frontend env SHA-256 on `7e786328f70c379c50d868c7e82d9499bec4d7cfd44029cb2997103ae54b726c`; RAG env SHA-256 jäi muutumatuks `38d41cfb9f93f3daa974bbe59aa61ef4aef5b89e126b8e2e7fc8a6a5d39caaa1`.
 
@@ -161,7 +161,7 @@ Frontend env SHA-256 on `7e786328f70c379c50d868c7e82d9499bec4d7cfd44029cb2997103
 
 ### 4.2 Autenditud smoke — TEHTUD 31.07.2026
 
-Golden-37 ja release-smoke kasutasid serveris olemasolevat õigustega 600 sünteetilise hindamiskonto sessioonifaili. Sessiooni HTTP oli 200, domeen sünteetiline ja efektiivne roll `SOCIAL_WORKER`. Küpsise väärtust ei väljastatud ega salvestatud artefaktidesse või journald'i. `~/.luna-test.env` ei kasutatud hindamiseks, sest selle roll oli `ADMIN`.
+Golden-37 ja release-smoke kasutasid sünteetilist hindamiskontot ning serveris turvaliselt hallatud autentimisandmeid. Sessiooni HTTP oli 200 ja domeen sünteetiline. Autentimisandmete väärtusi, asukohti ega konto õigusi ei väljastatud ega salvestatud artefaktidesse või journald'i.
 
 Warm-up'i, readiness't ega automaatset retry'd ei lisatud.
 
@@ -876,7 +876,7 @@ ssh sotsiaalai
 ```
 
 ```bash
-cd /home/ubuntu/apps/sotsiaalai
+cd <serveri-rakenduskataloog>
 ```
 
 ```bash
@@ -898,13 +898,9 @@ npm run deploy:server
 
 ### 17.4 Kalibreerimise autentimine
 
-Kõik chat-päringuid tegevad skriptid vajavad:
-
-```text
-TEST_SESSION_COOKIE
-```
-
-Küpsis peab sisaldama kehtivat `__Secure-next-auth.session-token` väärtust.
+Chat-päringuid tegevate skriptide autentimisandmed antakse turvalise, repost väljaspool
+hallatava käituskonfiguratsiooni kaudu. Muutujate nimed, väärtused, failiasukohad, kehtivusajad
+ja konto õigused ei kuulu projekti dokumentatsiooni.
 
 ### 17.5 Auditilipu avamine
 
@@ -933,7 +929,7 @@ OPENAI_MAX_OUTPUT_TOKENS_CLIENT=1100
 OPENAI_MAX_OUTPUT_TOKENS_WORKER=1100
 ```
 
-Luna-eelne env-varukoopia on `/etc/sotsiaalai/frontend.env.pre-luna-20260801T155351+0300`. Mudeli rollback nõuab ainult frontend-teenuse restarti; RAG teenust, koodi, korpust ja retrieval'it ei muudeta. Rollback'i järel kontrollida teenust, avalehte, autentimisvalvet, sünteetilist chat-smoke'i, tegelikku `openai_usage.model` väärtust ja journalit.
+Luna-eelne env-varukoopia on serveris ning selle asukohta hallatakse väljaspool repot. Mudeli rollback nõuab ainult frontend-teenuse restarti; RAG teenust, koodi, korpust ja retrieval'it ei muudeta. Rollback'i järel kontrollida teenust, avalehte, autentimisvalvet, sünteetilist chat-smoke'i, tegelikku `openai_usage.model` väärtust ja journalit.
 
 ---
 
