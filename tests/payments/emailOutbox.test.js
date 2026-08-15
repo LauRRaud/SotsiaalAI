@@ -125,6 +125,29 @@ test("worker sends a sponsored invite email containing the join link", async () 
   assert.equal([...db.outbox.values()][0].status, "SENT");
 });
 
+test("invite HTML escapes room and inviter names without changing plain text", async () => {
+  const db = fakeDb();
+  const injectedTitle = '</strong><p><a href="https://evil.example">Open required form</a></p><strong>';
+  await enqueuePaymentEmail(db, {
+    dedupeKey: "invite:html-escape",
+    template: "invite_create",
+    toEmail: "invitee@x.ee",
+    locale: "en",
+    payload: { joinToken: "TOKEN", roomTitle: injectedTitle, inviterName: "Host <img src=x>" },
+    now: NOW
+  });
+
+  const mailer = stubMailer();
+  process.env.EMAIL_FROM = process.env.EMAIL_FROM || "noreply@sotsiaal.ai";
+  const result = await runPaymentEmailDelivery({ db, now: NOW, mailer, baseUrl: "https://app.test" });
+
+  assert.equal(result.sent, 1);
+  assert.ok(mailer.sent[0].text.includes(injectedTitle), "plain-text content stays readable");
+  assert.ok(!mailer.sent[0].html.includes('<a href="https://evil.example">'));
+  assert.match(mailer.sent[0].html, /&lt;\/strong&gt;.*&lt;a href=&quot;https:\/\/evil\.example&quot;&gt;/);
+  assert.ok(!mailer.sent[0].html.includes("<img src=x>"));
+});
+
 test("worker retries with backoff when the mailer fails, then stops sending", async () => {
   const db = fakeDb();
   await enqueuePaymentEmail(db, {
