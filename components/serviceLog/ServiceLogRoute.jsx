@@ -30,6 +30,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import { captureLocationPoint } from "@/lib/serviceLog/geolocation";
+import { openExternalNavigation } from "@/lib/serviceLog/externalNavigation";
 import ServiceLogRouteMap from "./ServiceLogRouteMap";
 
 /** Toimingud, mille jaoks küsime enne põhjust (server nõuab seda niikuinii). */
@@ -399,14 +400,16 @@ export default function ServiceLogRoute() {
           külastused mitmepeatuselise marsruudina. */}
       {day.dayNavigation ? (
         <div className="sl-suggest-order">
-          <a
+          <button
+            type="button"
             className="sl-entry-btn is-primary"
-            href={day.dayNavigation.url}
-            target="_blank"
-            rel="noreferrer"
+            onClick={() => openExternalNavigation(
+              day.dayNavigation.url,
+              t("service_log.route.navigate_day_disclosure", "")
+            )}
           >
             {t("service_log.route.navigate_day", "", { stops: String(day.dayNavigation.stops) })}
-          </a>
+          </button>
           {day.dayNavigation.truncated ? (
             <span className="sl-source sl-source-warn">{t("service_log.route.navigate_truncated", "")}</span>
           ) : null}
@@ -498,9 +501,16 @@ export default function ServiceLogRoute() {
                 ) : null}
 
                 {visit.wazeUrl && !isTerminal(visit.status) ? (
-                  <a className="sl-entry-btn" href={visit.wazeUrl} target="_blank" rel="noreferrer">
+                  <button
+                    type="button"
+                    className="sl-entry-btn"
+                    onClick={() => openExternalNavigation(
+                      visit.wazeUrl,
+                      t("service_log.route.navigate_waze_disclosure", "")
+                    )}
+                  >
                     {t("service_log.route.navigate_waze", "")}
-                  </a>
+                  </button>
                 ) : null}
 
                 {primary ? (
