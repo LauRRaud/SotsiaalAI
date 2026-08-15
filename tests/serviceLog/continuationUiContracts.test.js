@@ -64,3 +64,14 @@ test("SOL-SLOG-J-03/04: AI-algus säilib toimetamisel ja narratiiv kannab revisi
   assert.match(service, /narrative_version_conflict/);
   assert.match(route, /error\.details \|\| \{\}/);
 });
+
+test("päevateekond ei küsi ega saada asukohta, kui asukohatempli UI-värav on väljas", () => {
+  const route = read("components", "serviceLog", "ServiceLogRoute.jsx");
+  const gate = "isServiceLogLocationStampUiEnabled()";
+  const gateIndex = route.indexOf(gate, route.indexOf("async (visitId, action)"));
+  const captureIndex = route.indexOf("captureLocationPoint(", route.indexOf("async (visitId, action)"));
+
+  assert.match(route, /import \{ isServiceLogLocationStampUiEnabled \} from "@\/lib\/serviceLog\/flags"/);
+  assert.notEqual(gateIndex, -1, "päevateekonna asukohavärav puudub");
+  assert.ok(gateIndex < captureIndex, "asukohaväravat peab kontrollima enne brauseri geolokatsiooni küsimist");
+});
