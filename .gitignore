@@ -126,3 +126,6 @@ public/*.mp4
 # tagasi võtta (.git oli sel hetkel juba 1,37 GB).
 # Kui mõni neist on vaja jagada, käib see storage'i või git-lfs-i kaudu.
 /docs/Andmebaas/
+/docs/ajakiri_sotsiaaltoo/
+/docs/KOV/
+/docs/Seadused_rt/
