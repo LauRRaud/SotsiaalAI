@@ -92,6 +92,10 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Aardvarki Teenuspäeviku privaatsusleid on parandatud.** Kliendi nime põhine
+tuletamisotsus liigub nüüd POST-kehas ega satu enam päringu URL-i; regressioonitest lukustab
+nii brauserikutse kui serverimarsruudi lepingu. Järgmine tööots valitakse S4-st.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
@@ -2571,6 +2575,8 @@ sõitmine ongi eelmise juurest lahkumine. Marsruudi pikkuse arvutab platvormi en
 marsruudimootor, aadressid tulevad Maa-ameti registrist, ja terve päeva saab ühe vajutusega
 navigaatorisse saata. Sõidupäevik tekib kõrvalsaadusena, ilma odomeetrit lugemata.
 Sisestada saab ka võrguta — kirje läheb järjekorda ja sünkroniseerub hiljem.
+Kliendi nime järgi vormi vaikeväärtuste tuletamine kasutab POST-keha, et nimi ei satuks
+proxy-, ligipääsu- ega seirelogides talletatavasse päringu URL-i.
 Graafiku ümbermääramise mutatsioon ei ole külastuse detailivaade: vastus sisaldab ainult
 külastuse ID-d ega ava tahvlilt teadlikult peidetud aadressi, kliendiviidet või märkmeid.
 

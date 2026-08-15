@@ -49,23 +49,12 @@ export async function GET(req) {
 
   try {
     const url = new URL(req.url);
-    /* `?defaults=1` tagastab TULETAMISOTSUSE, mitte kirjed: UI küsib enne vormi
-       näitamist, mida üldse küsida. Reeglid on serveri tõde, mitte kliendi
-       oletus — muidu tekiks kaks eri „mida küsida" loogikat. */
     /* VÄLITÖÖ SILD (leping 8.4). Eeltäide tuleb serverist, sest tuletamisreeglid
        on serveri tõde — kaks eri „mida külastusest üle kanda" loogikat
        lahkneksid vaikselt, nagu tuletamisreeglitega juba korra juhtus. */
     const fromVisit = url.searchParams.get("fromVisit");
     if (fromVisit) {
       return json({ draft: await getEntryDraftFromVisit(userId, fromVisit) });
-    }
-
-    if (url.searchParams.get("defaults") === "1") {
-      const defaults = await getEntryDefaults(userId, {
-        clientUserId: url.searchParams.get("clientUserId"),
-        clientDisplayName: url.searchParams.get("clientDisplayName")
-      });
-      return json({ defaults });
     }
 
     const entries = await listEntries(userId, {
@@ -92,6 +81,16 @@ export async function POST(req) {
     const body = await req.json().catch(() => null);
     if (!body || typeof body !== "object") {
       return errorJson("service_log.errors.invalid_input", 400, locale);
+    }
+    /* Tuletamisotsus kasutab POST-keha, sest kliendi nimi URL-is jõuaks
+       tavapärastesse proxy-, ligipääsu- ja seirelogidesse. Reeglid jäävad
+       endiselt serveri tõeks; `operation` eristab päringu kirje loomisest. */
+    if (body.operation === "defaults") {
+      const defaults = await getEntryDefaults(userId, {
+        clientUserId: body.clientUserId,
+        clientDisplayName: body.clientDisplayName
+      });
+      return json({ defaults });
     }
     const entry = await createEntry(userId, body);
     return json({ entry }, 201);
