@@ -819,35 +819,46 @@ test("elavat claim'i ei saa üle võtta — jooks värskendab teda ise", async (
       userId, payload: samplePayload(), usage: reservedUsage("hb"),
     });
 
-    // Claim „vananeb" enne kui töö jõuab käivituda — täpselt see olukord, kus pikk töö
-    // muutuks vanas kujus ülevõetavaks.
-    db.rows.get(userId).updatedAt = new Date(Date.now() - 60 * 60 * 1000);
+    const takeoverDuringRun = [];
+    const tryTakeoverAfterProviderDelay = async suffix => {
+      // Jäljenda providerikõne ajal stale-piiri ületanud claim'i. Jooks peab ta taustal
+      // värskendama ka siis, kui ainus aktiivne await on OpenAI päring ise.
+      db.rows.get(userId).updatedAt = new Date(Date.now() - 60 * 60 * 1000);
+      await new Promise(resolve => setTimeout(resolve, 25));
+      takeoverDuringRun.push(await createMeetingSummaryJob({
+        userId, payload: samplePayload(), usage: reservedUsage(`hb-${suffix}`),
+      }).then(() => "ÜLE VÕETUD", error => error.code));
+    };
 
-    let takeoverDuringRun = null;
     class SlowOpenAI {
       constructor() {
         this.audio = {
           transcriptions: {
             create: async () => {
-              // Jooks on siin juba käivitunud ja südamelöök tehtud.
-              takeoverDuringRun = await createMeetingSummaryJob({
-                userId, payload: samplePayload(), usage: reservedUsage("hb-2"),
-              }).then(() => "ÜLE VÕETUD", error => error.code);
+              await tryTakeoverAfterProviderDelay("stt");
               return { text: "tekst", usage: { type: "duration", seconds: 3 } };
             },
           },
         };
-        this.responses = { create: async () => ({ output_text: "kokkuvõte" }) };
+        this.responses = { create: async () => {
+          await tryTakeoverAfterProviderDelay("summary");
+          return { output_text: "kokkuvõte" };
+        } };
       }
     }
 
     await runMeetingSummaryJob(job, {
       usage: usageRecorder(),
+      claimHeartbeatMs: 5,
       loadOpenAI: async () => ({ default: SlowOpenAI }),
       persistDocument: async () => ({ id: "doc_hb", title: "Kokkuvõte" }),
     });
 
-    assert.equal(takeoverDuringRun, "ACTIVE_JOB_LIMIT", "elav töö ei tohi olla ülevõetav");
+    assert.deepEqual(
+      takeoverDuringRun,
+      ["ACTIVE_JOB_LIMIT", "ACTIVE_JOB_LIMIT"],
+      "elav töö ei tohi STT ega kokkuvõtte providerioote ajal olla ülevõetav"
+    );
     assert.equal(job.status, "done");
   } finally {
     restoreEnv();
