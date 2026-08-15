@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 
 import {
   assertInviteInput,
@@ -155,6 +156,18 @@ test("invite input rejects a CLIENT seat role outright", () => {
       assert.equal(error.messageKey, "org.errors.invalid_seat_role");
       return true;
     }
+  );
+});
+
+test("creating an owner invite requires ORG_OWNER instead of only MEMBER_ADMIN", async () => {
+  const routeSource = await readFile(
+    new URL("../../app/api/org/[orgId]/invites/route.js", import.meta.url),
+    "utf8"
+  );
+
+  assert.match(
+    routeSource,
+    /body\?\.capabilityTemplate\s*===\s*CAPABILITY_TEMPLATES\.ORG_OWNER\.key[\s\S]*assertCapability\(auth\.context, OrganizationCapability\.ORG_OWNER\)/u
   );
 });
 

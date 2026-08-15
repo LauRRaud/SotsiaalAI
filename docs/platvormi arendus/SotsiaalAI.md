@@ -2709,7 +2709,8 @@ alles jääb see, millega inimene tegelikult nõustus.
 Asutus saab platvormil oma ruumi: liikmed, üksused, kohad, rollid ja õigused. Organisatsioon
 saab võtta vastu pöördumisi ühisele lauale, hallata oma teenuseprofiili, jagada tööd üksuste
 vahel ja koostada aruandeid. Sponsorluse kaudu saab asutus katta oma klientide või töötajate
-ligipääsu. Kõik ligipääsumuudatused jäävad auditijälge.
+ligipääsu. Kõik ligipääsumuudatused jäävad auditijälge. Omanikuõigusega kutset saab luua ainult
+olemasolev `ORG_OWNER`; `MEMBER_ADMIN` ei saa kutseraja kaudu omanikuks eskaleeruda.
 
 ### Poolik
 
