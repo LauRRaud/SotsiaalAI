@@ -49,6 +49,25 @@ test("material POST rejects an invalid idempotency key before quarantine writes"
   assert.equal(quarantineCalls, 0)
 })
 
+test("material POST enforces its admission limit before parsing multipart file bodies", async () => {
+  let parsed = false
+  const request = {
+    headers: new Headers(),
+    formData: async () => {
+      parsed = true
+      throw new Error("multipart body must not be parsed")
+    }
+  }
+  const response = await handleMaterialPost(request, {
+    sessionProvider: async () => session("SOCIAL_WORKER"),
+    uploadAccess: async () => ({ ok: true }),
+    rateLimit: () => new Response(null, { status: 429 })
+  })
+
+  assert.equal(response.status, 429)
+  assert.equal(parsed, false)
+})
+
 test("material POST discards request quarantines when submission admission fails", async () => {
   const form = new FormData()
   form.append("idempotencyKey", "valid-request-key")
