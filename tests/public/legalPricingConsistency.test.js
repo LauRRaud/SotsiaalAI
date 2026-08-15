@@ -58,6 +58,40 @@ test("terms §6 ei väida enam päevast süvauuringu piirangut (L-07 regressioon
   }
 });
 
+test("privacy ja terms kirjeldavad nõusolekupõhist kõnesalvestust kõigis keeltes", () => {
+  const expected = {
+    et: ["kõigi nõutud osalejate nõusolekul", "dokumenditeegis"],
+    en: ["all required participants have consented", "document library"],
+    ru: ["всех необходимых участников", "библиотеке документов"]
+  };
+  const forbidden = {
+    et: ["kõnet ennast ei salvestata", "kõnesid ei salvestata"],
+    en: ["the call itself is not recorded", "calls are not recorded.</p>"],
+    ru: ["сам звонок не записывается", "звонки не записываются.</p>"]
+  };
+
+  for (const locale of LOCALES) {
+    const messages = loadMessages(locale);
+    const privacy = messages.privacy.section2.paragraph2;
+    const terms = messages.terms.section2.body;
+    const legalText = `${privacy} ${terms}`.toLocaleLowerCase(locale);
+
+    for (const claim of forbidden[locale]) {
+      assert.equal(
+        legalText.includes(claim),
+        false,
+        `${locale}: õigustekst väidab endiselt kategooriliselt, et kõnesid ei salvestata`
+      );
+    }
+    for (const disclosure of expected[locale]) {
+      assert.ok(
+        legalText.includes(disclosure),
+        `${locale}: õigustekstist puudub kõnesalvestuse avalikustamine: ${disclosure}`
+      );
+    }
+  }
+});
+
 test("juhendi hinnakohad sisaldavad teenuseosutaja paketti kõigis keeltes", () => {
   for (const locale of LOCALES) {
     const sections = loadMessages(locale).about.guide.sections_v2;
