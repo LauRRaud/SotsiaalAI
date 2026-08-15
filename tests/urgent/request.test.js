@@ -431,6 +431,26 @@ test("üleandmist ei saa kinnitada see, kes vastuvõtvas lauas ei istu", async (
   );
 });
 
+test("tagasivõetud üleandmist ei saa kinnitada", async () => {
+  const prisma = prismaWithTwoDesks();
+  const request = await sentRequest(prisma);
+  await handOverUrgentRequest({
+    prisma,
+    requestId: request.id,
+    userId: "staff_1",
+    targetDeskId: "desk_day",
+    now
+  });
+  await recallUrgentRequest({ prisma, requestId: request.id, userId: "person_1", now });
+
+  await expectFail(
+    acceptUrgentHandover({ prisma, requestId: request.id, userId: "day_staff", now }),
+    "urgent_request.not_actionable"
+  );
+  assert.equal(prisma.urgentRequest.rows[0].deskId, "desk_kov");
+  assert.equal(prisma.urgentRequest.rows[0].handoverAcceptedAt, null);
+});
+
 test("üleandmine iseendale ja tundmatule lauale on keelatud", async () => {
   const prisma = prismaWithTwoDesks();
   const request = await sentRequest(prisma);

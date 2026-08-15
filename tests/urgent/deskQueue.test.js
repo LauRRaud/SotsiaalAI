@@ -185,6 +185,26 @@ test("kinnitatud üleandmine kaob saabuvate hulgast", async () => {
   assert.equal(queue.items.length, 1);
 });
 
+test("tagasivõetud üleandmine ei ole vastuvõtva laua järjekorras", async () => {
+  const prisma = createPrisma({
+    requests: [
+      urgent({
+        id: "req_recalled",
+        deskId: "desk_day",
+        status: "RECALLED",
+        handoverDeskId: "desk_kov",
+        handedOverAt: NOW,
+        handoverAcceptedAt: null,
+        handoverNote: "Tagasi võetud tundlik üleandmine."
+      })
+    ]
+  });
+
+  const queue = await loadDeskQueue({ prisma, userId: "staff_1", deskId: "desk_kov", now });
+
+  assert.deepEqual(queue.incomingHandovers, []);
+});
+
 // --- SOL-URG-01: ajalugu ei tohi tööd peita ----------------------------------
 
 /* Vastuvõtukriteeriumi täht: vähemalt 201 lõpetatud vana rida ja üks uus SENT
