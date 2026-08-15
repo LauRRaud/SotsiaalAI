@@ -92,6 +92,10 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Aardvarki ruumikõne privaatsusteksti leid on parandatud.** Avalik kasutusjuhend ütleb nüüd
+kolmes keeles täpselt, et kõnet ei salvestata vaikimisi ning salvestamine vajab kõigi nõutud
+osapoolte nõusolekut; regressioonitest hoiab juhendi tegeliku nõusolekuvooga kooskõlas.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
@@ -2690,6 +2694,10 @@ keegi ei kirjuta teiste eest kokkuvõtet, mida nad ei ole näinud.
 Ruumis saab pidada helikõne ilma eraldi konverentsitarkvarata. Salvestamine ei ole vaikimisi
 sees; see käivitub ainult osalejate selgesõnalisel nõusolekul ja salvestise eesmärk
 märgitakse ette ära.
+
+Avaliku kasutusjuhendi varasem absoluutne väide, et ruumikõnet ei salvestata, parandati
+15.08 kolmes keeles: juhend eristab nüüd vaikimisi salvestamata kõnet kõigi nõutud osapoolte
+nõusolekul käivitatavast salvestamisest.
 
 **Nõusolek antakse inimese enda keeles.**
 Kui keegi kõnes salvestamise nõusolekut küsib, näeb iga osaleja küsimust — kes küsib, mis

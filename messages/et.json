@@ -4215,7 +4215,7 @@
         },
         "rooms": {
           "title": "6. Ruumid ja kõned",
-          "body": "<p>Ruumid on grupivestlused, kuhu saab kutsuda pöörduja, sotsiaaltöö spetsialisti, teenuseosutaja või kolleegi. Ruumid avanevad paremast ikoonirealt valikust <strong>Ruumid</strong>.</p><ul><li><strong>Loomine ja kutsed.</strong> Ruumi loob ruumi omanik, kes kutsub liikmed; omanik saab ruumi vajadusel teisele omanikule üle anda või arhiveerida.</li><li><strong>Helikõne.</strong> Vajadusel saab ruumis pidada helikõne. Kõne algab osapoolte nõusolekul ja seda ei salvestata.</li><li><strong>Kokkuvõtte jagamine.</strong> Spetsialist saab kinnitatud kohtumise kokkuvõtte jagada ruumi sõnumina; jagamisel saab soovi korral käivitada osalejate kinnitusringi.</li><li>Sobitusruum avaneb automaatselt, kui abisoov ja abipakkumine kokku viiakse.</li></ul>"
+          "body": "<p>Ruumid on grupivestlused, kuhu saab kutsuda pöörduja, sotsiaaltöö spetsialisti, teenuseosutaja või kolleegi. Ruumid avanevad paremast ikoonirealt valikust <strong>Ruumid</strong>.</p><ul><li><strong>Loomine ja kutsed.</strong> Ruumi loob ruumi omanik, kes kutsub liikmed; omanik saab ruumi vajadusel teisele omanikule üle anda või arhiveerida.</li><li><strong>Helikõne.</strong> Vajadusel saab ruumis pidada helikõne. Kõne algab osapoolte nõusolekul. Kõnet ei salvestata vaikimisi. Salvestamine vajab kõigi nõutud osapoolte nõusolekut.</li><li><strong>Kokkuvõtte jagamine.</strong> Spetsialist saab kinnitatud kohtumise kokkuvõtte jagada ruumi sõnumina; jagamisel saab soovi korral käivitada osalejate kinnitusringi.</li><li>Sobitusruum avaneb automaatselt, kui abisoov ja abipakkumine kokku viiakse.</li></ul>"
         },
         "journey": {
           "title": "7. Teekond ja eelpöördumine",
