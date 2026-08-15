@@ -64,7 +64,7 @@ function matches(row, where = {}) {
   });
 }
 
-function createDb(initial, { failInbox = false } = {}) {
+function createDb(initial, { failInbox = false, organizationEligible = true } = {}) {
   const rows = new Map([[initial.id, structuredClone(initial)]]);
   const inbox = [];
   const audit = [];
@@ -113,7 +113,10 @@ function createDb(initial, { failInbox = false } = {}) {
     },
     organization: {
       async findFirst({ where }) {
-        return where.id === ORG_ID
+        const activeIntakeRequired = where.status === "ACTIVE"
+          && where.modules?.some?.moduleKey === "KOV_INTAKE"
+          && where.modules?.some?.status === "ACTIVE";
+        return organizationEligible && activeIntakeRequired && where.id === ORG_ID
           ? { id: ORG_ID, displayName: "Tartu vastuvõtutiim", legalKind: "MUNICIPALITY" }
           : null;
       },
@@ -306,6 +309,37 @@ test("organization correction creates one inbox item before linking and retries 
   assert.equal(repeated.created, false);
   assert.equal(repeated.inquiry.id, first.inquiry.id);
   assert.equal(db.inbox.length, 1);
+});
+
+test("organization correction revalidates the current inbox lifecycle gates", async (t) => {
+  const opened = inquiry({
+    status: "SENT",
+    sentAt: new Date("2026-08-13T11:00:00.000Z"),
+    openedAt: new Date("2026-08-13T11:30:00.000Z")
+  });
+  const input = {
+    expectedUpdatedAt: UPDATED_AT.toISOString(),
+    situation: "Parandatud sünteetiline olukord.",
+    correctionText: "Parandatud sünteetiline pöördumine."
+  };
+
+  for (const scenario of [
+    { name: "feature gate closed", enabled: false, organizationEligible: true },
+    { name: "organization or intake module inactive", enabled: true, organizationEligible: false }
+  ]) {
+    await t.test(scenario.name, async () => {
+      const db = createDb(opened, { organizationEligible: scenario.organizationEligible });
+      const error = await withOrgInboxFlag(scenario.enabled, () =>
+        sendPreInquiryCorrection(AUTHOR, opened.id, input, { db: db.client })
+      ).then(() => null, (reason) => reason);
+
+      assert.equal(error?.status, 409);
+      assert.equal(error?.message, "pre_inquiries.errors.recipient_channel_changed");
+      assert.equal(db.rows().length, 1);
+      assert.equal(db.row(opened.id).supersededById, null);
+      assert.equal(db.inbox.length, 0);
+    });
+  }
 });
 
 test("organization inbox failure rolls back replacement and supersession link", async () => {
