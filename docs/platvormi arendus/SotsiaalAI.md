@@ -92,6 +92,11 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Aardvarki Teenuspäeviku graafiku detailileke on suletud.** Samale töötajale
+ümbermääramise no-op ega päris ümbermääramise vastus ei väljasta enam tahvlilt peidetud
+kliendiviidet, aadressi, koordinaate või märkmeid; mutatsioon loeb ainult õiguse ja liigutuse
+jaoks vajalikud väljad ning vastab külastuse ID-ga. Järgmine tööots valitakse S4-st.
+
 **Sihitud Codex Security seitsme faili parandusring on `main`-is ja toodangus
 (`bad33faca2cf41681abd5cf350b00ffe7b4671fc`).** Viis kinnitatud leidu on suletud: suletud registreerimise adminieelvaade
 kontrollib iga päringu ajal andmebaasist rolli, peatamist ja sessiooni; kõik kasutaja algatatud
@@ -2557,6 +2562,8 @@ sõitmine ongi eelmise juurest lahkumine. Marsruudi pikkuse arvutab platvormi en
 marsruudimootor, aadressid tulevad Maa-ameti registrist, ja terve päeva saab ühe vajutusega
 navigaatorisse saata. Sõidupäevik tekib kõrvalsaadusena, ilma odomeetrit lugemata.
 Sisestada saab ka võrguta — kirje läheb järjekorda ja sünkroniseerub hiljem.
+Graafiku ümbermääramise mutatsioon ei ole külastuse detailivaade: vastus sisaldab ainult
+külastuse ID-d ega ava tahvlilt teadlikult peidetud aadressi, kliendiviidet või märkmeid.
 
 Teenuspäevikul on **STAR/s-veebi väljavõtte kuju**: sotsiaalhoolekande seadus paneb
 andmete registrisse kandmise kohustuse ka teenuseosutajale, ja platvorm aitab seda täita
