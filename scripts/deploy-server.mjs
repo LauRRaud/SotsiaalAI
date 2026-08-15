@@ -143,6 +143,9 @@ if systemctl is-active --quiet sotsiaalai-frontend.service; then
   frontend_was_active="1"
 fi
 
+echo "[deploy:server] Installing locked dependencies"
+npm ci --include=dev --no-audit --no-fund
+
 if [ -f "$FRONTEND_ENV" ]; then
   set -a
   . "$FRONTEND_ENV"
@@ -157,9 +160,6 @@ research_job_mode="$(printf '%s' "$research_job_mode" | tr '[:upper:]' '[:lower:
 if [ "$research_job_mode" = "worker" ] && ! systemctl list-unit-files sotsiaalai-research-worker.service >/dev/null 2>&1; then
   echo "[deploy:server] WARNING: worker mode is selected but sotsiaalai-research-worker.service is missing; research jobs will remain queued." >&2
 fi
-
-echo "[deploy:server] Installing locked dependencies"
-npm ci --include=dev --no-audit --no-fund
 
 if [ "$SKIP_BUILD" != "1" ]; then
   mkdir -p "$BACKUP_DIR"

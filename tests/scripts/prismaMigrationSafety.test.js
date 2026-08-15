@@ -46,6 +46,16 @@ test("SOL-PRISMA-03: deploy builds before migration and applies a bounded mainte
   assert.match(deploy, /systemctl stop sotsiaalai-frontend\.service[\s\S]*prisma migrate deploy/);
 });
 
+test("deploy installs dependencies before exporting production secrets", async () => {
+  const deploy = await repoFile("scripts/deploy-server.mjs");
+  const installAt = deploy.indexOf("npm ci --include=dev --no-audit --no-fund");
+  const sourceEnvironmentAt = deploy.indexOf('. "$FRONTEND_ENV"');
+
+  assert.ok(installAt >= 0, "locked dependency installation is missing");
+  assert.ok(sourceEnvironmentAt >= 0, "production environment loading is missing");
+  assert.ok(installAt < sourceEnvironmentAt, "dependency lifecycle scripts can access production secrets");
+});
+
 function bashPath(value) {
   const normalized = path.resolve(value).replaceAll("\\", "/");
   return normalized.replace(/^([A-Za-z]):/, (_, drive) => `/mnt/${drive.toLowerCase()}`);
