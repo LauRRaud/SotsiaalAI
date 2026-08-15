@@ -191,7 +191,8 @@ export async function POST(request) {
 
     // Arveldusjärjekord elab `runPaidResult`-is: tasu võetakse alles pärast püsivat mustandit.
     // Enne seda tekkinud viga vabastab reservatsiooni, seega üle ei jää arvestatud ühikut ilma
-    // leitava tulemuseta. enforceQuota on false, sest üle kvoodi omaniku peatas juba eelkontroll.
+    // leitava tulemuseta. Püsistamine kontrollib genereeritud sisu tegelikku suurust aatomiliselt:
+    // eelkontroll väldib ainult juba täis kvoodiga omaniku tarbetut mudelikutset.
     const { persisted } = await runPaidResult({
       reserve: () => usageHandle,
       produce: () =>
@@ -219,8 +220,7 @@ export async function POST(request) {
           documentIds: documents.map((document) => document.id),
           content: result?.content || "",
           debugMeta: result?.debugMeta || null,
-          idempotencyKey: usageHandle?.idempotencyKey,
-          enforceQuota: false
+          idempotencyKey: usageHandle?.idempotencyKey
         }),
       commit: (handle) => commitUsageForRequest(handle),
       release: (handle, reason) => releaseUsageForRequest(handle, { reason }),
