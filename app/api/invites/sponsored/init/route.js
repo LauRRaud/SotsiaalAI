@@ -16,6 +16,7 @@ import {
   createMaksekeskusCheckout,
   makeProviderPaymentId
 } from "@/lib/payments/maksekeskus";
+import { resolveCheckoutUrl } from "@/lib/payments/checkoutUrls";
 import { getInviteSponsoredPaymentKind } from "@/lib/payments/recurring";
 import {
   PaymentFailureStage,
@@ -210,36 +211,6 @@ async function hasSponsorCapacity(roomId) {
   return count < SPONSORED_MEMBER_LIMIT;
 }
 
-// Proxy taga on request.url origin localhost:3000. Maksekeskusele antavad
-// return/cancel-URL-id peavad olema avalikud (x-forwarded-host/host), muidu
-// suunab provider maksja pärast makset localhostile (nähtud 23.07, ERR_CONN).
-function resolvePublicOrigin(requestUrl, headers) {
-  const fallback = new URL(requestUrl).origin;
-  const forwardedHost = String(headers?.get?.("x-forwarded-host") || "").trim();
-  const directHost = String(headers?.get?.("host") || "").trim();
-  const forwardedProto = String(headers?.get?.("x-forwarded-proto") || "").trim();
-  const resolvedHost = forwardedHost || directHost;
-  if (!resolvedHost) return fallback;
-  const protocol = forwardedProto || (fallback.startsWith("https://") ? "https" : "http");
-  return `${protocol}://${resolvedHost}`;
-}
-
-function resolveUrl(request, envValue, fallbackPath) {
-  const direct = String(envValue || "").trim();
-  if (direct) {
-    try {
-      return new URL(direct).toString();
-    } catch {}
-  }
-
-  try {
-    const base = resolvePublicOrigin(request.url, request.headers);
-    return new URL(fallbackPath, base).toString();
-  } catch {
-    return "";
-  }
-}
-
 export async function POST(request) {
   const auth = await requireUser();
   if (!auth) {
@@ -432,18 +403,15 @@ export async function POST(request) {
         }
       });
 
-      const returnUrl = resolveUrl(
-        request,
+      const returnUrl = resolveCheckoutUrl(
         process.env.MAKSEKESKUS_SPONSORED_INVITE_RETURN_URL,
         `/api/invites/sponsored/callback?inviteId=${encodeURIComponent(invite.id)}&roomId=${encodeURIComponent(invite.roomId)}`
       );
-      const cancelUrl = resolveUrl(
-        request,
+      const cancelUrl = resolveCheckoutUrl(
         process.env.MAKSEKESKUS_SPONSORED_INVITE_CANCEL_URL,
         `/api/invites/sponsored/callback?inviteId=${encodeURIComponent(invite.id)}&roomId=${encodeURIComponent(invite.roomId)}`
       );
-      const webhookUrl = resolveUrl(
-        request,
+      const webhookUrl = resolveCheckoutUrl(
         process.env.MAKSEKESKUS_WEBHOOK_URL,
         "/api/subscription/webhook"
       );
