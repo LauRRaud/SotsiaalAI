@@ -158,6 +158,14 @@ test("SPROF-14/15: child status is preserved and publish contract is enforced on
     preserveServiceProviderChildStatus({ id: "location-hidden", status: "HIDDEN" }, "PUBLISHED"),
     "HIDDEN"
   );
+  assert.equal(
+    preserveServiceProviderChildStatus({ id: "service-published", status: "PUBLISHED" }, "HIDDEN"),
+    "HIDDEN"
+  );
+  assert.equal(
+    preserveServiceProviderChildStatus({ id: "location-published", status: "PUBLISHED" }, "DRAFT"),
+    "DRAFT"
+  );
 
   assert.throws(
     () => validateServiceProviderProfilePublication({ status: "PUBLISHED" }, []),
