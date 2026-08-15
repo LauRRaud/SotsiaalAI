@@ -8,6 +8,7 @@ import {
   listServiceAvailabilityAdminRows
 } from "@/lib/serviceAvailabilityReminders";
 import { safeError } from "@/lib/privacy/safeError";
+import { isSameOriginRequest } from "@/lib/security/sameOriginRequest";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -35,6 +36,7 @@ export async function POST(request) {
   const locale = localeFromRequest(request);
   const authz = await requireAdmin();
   if (!authz.ok) return errorJson(authz.message, authz.status || 403, locale);
+  if (!isSameOriginRequest(request)) return errorJson("api.common.forbidden", 403, locale);
   try {
     const summary = await dispatchServiceAvailabilityReminders();
     return json({ ok: true, summary });
