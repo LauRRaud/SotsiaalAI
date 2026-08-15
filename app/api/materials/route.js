@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth"
 import { authConfig } from "@/auth"
 import { effectiveRoleFromSession } from "@/lib/authz"
 import { errorJson, json, localeFromRequest } from "@/lib/documents/server"
-import { readDocumentsRateLimit } from "@/lib/documents/rateLimit"
+import { enforceDocumentsRateLimit, readDocumentsRateLimit } from "@/lib/documents/rateLimit"
 import { requireMaterialReadAccess, requireMaterialUploadAccess } from "@/lib/materials/access"
 import { getMaterialSubmissionSchemaMessage, isMaterialSubmissionSchemaError } from "@/lib/materials/compat"
 import { createMaterialSubmissions, listMaterialSubmissions, normalizeMaterialIdempotencyKey } from "@/lib/materials/lifecycle"
@@ -68,6 +68,7 @@ export async function handleMaterialPost(
   {
     sessionProvider = getOptionalSession,
     uploadAccess = requireMaterialUploadAccess,
+    rateLimit = enforceDocumentsRateLimit,
     quarantineUpload = quarantineMaterialUpload,
     discardQuarantine = discardMaterialQuarantine,
     createSubmissions = createMaterialSubmissions
@@ -77,6 +78,16 @@ export async function handleMaterialPost(
   const session = await sessionProvider()
   const access = await uploadAccess(session)
   if (!access.ok) return errorJson(access.message, access.status, locale)
+
+  // Reject abusive attempts before the multipart parser allocates file buffers.
+  const limited = rateLimit(request, {
+    scope: "materials-upload-body",
+    userId: String(session.user.id),
+    limit: MATERIALS_UPLOAD_RATE_LIMIT_MAX,
+    windowMs: MATERIALS_RATE_LIMIT_WINDOW_MS,
+    messageKey: "api.common.too_many_requests"
+  })
+  if (limited) return limited
 
   let formData
   const quarantined = []
