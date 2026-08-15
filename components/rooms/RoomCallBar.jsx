@@ -36,6 +36,10 @@ function pluralSpeak(t, count) {
   return text(t, "calls.speak.many", `${count} soovivad sõna`, { count });
 }
 
+function preventEnterFormSubmit(event) {
+  if (event.key === "Enter") event.preventDefault();
+}
+
 function recordingStatusText(t, recording) {
   if (!recording) return "";
   if (recording.status === "DECLINED") return text(t, "calls.recording_status_declined", "Salvestamist ei alustatud");
@@ -364,6 +368,7 @@ export default function RoomCallBar({
                   <Input
                     value={recordingPurposeText}
                     onChange={event => setRecordingPurposeText(event.target.value)}
+                    onKeyDown={preventEnterFormSubmit}
                     placeholder={text(t, "calls.recording_purpose_text", "Eesmärgi täpsustus")}
                   />
                   <button type="button" disabled={busy} onClick={() => requestRecordingConsent({ purpose: recordingPurpose, purposeText: recordingPurposeText })}>
