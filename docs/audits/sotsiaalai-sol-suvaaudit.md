@@ -8025,6 +8025,12 @@ taga veel ei ole.
 
 **Seis (10.08.2026): DONE — kood, testid ja päris PostgreSQL-i runtime (`npm run sprof:consent:probe` 22/22).**
 
+**Turvaparandus (14.08.2026).** Konto kustutuse valik on nüüd sõnaselgelt
+`ownershipMode: SOLO` skoobis. Organisatsiooniprofiili alles jäetud `ownerId` on ainult
+päritolutõend ega anna endisele loojale õigust organisatsiooni profiili, kaardikirjet või
+RAG-koopiat konto kustutamise kaudu peita. Sihttesti negatiivkontroll kukkus vana
+`ownerId`-ainsa päringu peal ja läbib uue omandirežiimi piiriga.
+
 Kolm sammu käivad nüüd **enne `user.delete`-i ja samas lukustatud tehingus**
 (`deleteUserAfterFinalPracticeSweep`, seesama tehing, kus elavad SOL-PRE-01 ja
 SOL-URG-02): profiil → `HIDDEN`, tema `ServiceMapEntry` read → `HIDDEN`, RAG-koopiale

@@ -224,7 +224,10 @@ test("final user-row lock sweeps pre-lock candidates and prevents post-delete pr
        `user.delete`-i ja samas lukustatud tehingus. Mudelid on siin, sest kood
        EI VALVA nende olemasolu: puuduv mudel peab kukutama, mitte vaikima. */
     serviceProviderProfile: {
-      findMany: async () => [{ id: "profile-1", ragSourceId: "service-provider-profile::profile-1" }],
+      findMany: async (input) => {
+        assert.deepEqual(input.where, { ownerId: "user-1", ownershipMode: "SOLO" });
+        return [{ id: "profile-1", ragSourceId: "service-provider-profile::profile-1" }];
+      },
       updateMany: async (input) => {
         profileUpdates.push(input);
         return { count: 1 };
