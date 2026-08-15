@@ -29,7 +29,7 @@
 
 import { prisma } from "../lib/prisma.js";
 import { LICENCE_PUBLIC_STATUS } from "../lib/mtr/assessment.js";
-import { runLicenceCheck } from "../lib/mtr/licenceCheckService.js";
+import { CHECK_SKIPPED, CHECK_TRIGGER, runLicenceCheck } from "../lib/mtr/licenceCheckService.js";
 import { BINDING_AUDIT_ACTION, bindServiceKey } from "../lib/mtr/serviceBinding.js";
 import {
   serviceProviderProfileRagMetadata,
@@ -134,6 +134,39 @@ try {
   });
   profileId = profile.id;
   lines.push(`sond ${runId}: profiil ${profile.id}, ${profile.serviceItems.length} teenust, kood ${SYNTHETIC_CODE}`);
+
+  /* Käsitsi kontrolli lease peab päris PostgreSQL-is olema atomaarne: kaks
+     rakendusprotsessi võivad sama profiili korraga lugeda, aga ainult üks
+     neist tohib jõuda pika välise päringuahelani. */
+  let releaseFirst;
+  const firstWaiting = new Promise((resolve) => {
+    releaseFirst = resolve;
+  });
+  let entityCalls = 0;
+  const delayedEntity = async () => {
+    entityCalls += 1;
+    if (entityCalls === 1) await firstWaiting;
+    return okEntity();
+  };
+  const firstManual = runLicenceCheck({
+    providerProfileId: profile.id,
+    trigger: CHECK_TRIGGER.MANUAL,
+    prisma,
+    resolveEntity: delayedEntity,
+    fetchLicences: syntheticLicences([])
+  });
+  while (entityCalls === 0) await new Promise((resolve) => setTimeout(resolve, 5));
+  const secondManual = await runLicenceCheck({
+    providerProfileId: profile.id,
+    trigger: CHECK_TRIGGER.MANUAL,
+    prisma,
+    resolveEntity: delayedEntity,
+    fetchLicences: syntheticLicences([])
+  });
+  check("paralleelne käsitsi kontroll peatub lease'il", secondManual.skipped === CHECK_SKIPPED.IN_PROGRESS);
+  check("ainult üks kontroll jõuab MTR-i kliendini", entityCalls === 1, `väliskutseid ${entityCalls}`);
+  releaseFirst();
+  await firstManual;
 
   /* 1 ja 2: pesastatud loomine, tagasilugemine ja KAHE taseme kaskaad. */
   const direct = await prisma.licenceCheck.create({

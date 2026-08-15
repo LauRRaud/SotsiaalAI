@@ -92,6 +92,11 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Aardvarki MTR-i käsitsikontrolli käideldavusleid on parandatud.** Profiilipõhine atomaarne
+andmebaasilease laseb pika välise registripäringuni korraga ainult ühe käsitsikontrolli ka
+mitme rakendusprotsessi korral; järgmine samaaegne päring lõpetab kohe. Järgmine tööots valitakse
+S4-st.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
@@ -1575,7 +1580,9 @@ sond tõendab seda päris andmebaasis (44/44; sond tõendab nüüd ka teenuskihi
 mitte ainult seda, et Prisma tehing veereb tagasi). **Sidumisoperatsioon on tehtud**
 (`lib/mtr/serviceBinding.js` + admini rada): ainus koht, kus `serviceKey` muutub, vana tõend
 kustub kohe ja iga muudatus jätab auditijälje. Automaatset sidumist nime järgi ei ole —
-kandidaate pakutakse, kinnitab inimene. **Rütm on lukus (omanik 05.08):** edukas kontroll →
+kandidaate pakutakse, kinnitab inimene. **Aardvarki käideldavusparandus 15.08:** käsitsi
+kontroll omandab enne välispäringuid profiilipõhise DB-lease'i, nii et samaaegsed POST-id ei
+võimenda kuue pika MTR-kutsega ahelat. **Rütm on lukus (omanik 05.08):** edukas kontroll →
 14 päeva, tõrge → 1/6/24 h, positiivse märgise värskus → 16 päeva (kahepäevane puhver, et üks
 ebaõnnestunud kontroll ei kustutaks märgist), käsitsi ≤1× 15 min, cron `0 * * * *` koos
 `flock`-iga. **RAG-otsus tehtud 05.08:** tegevusloa seis tohib
