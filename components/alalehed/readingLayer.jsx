@@ -6,13 +6,14 @@
    ja raamistikul. */
 
 import { useEffect, useState } from "react";
+import { decodeHashFragment } from "@/lib/hashNavigation";
 
 export function useHashNavigation() {
   const [activeId, setActiveId] = useState("");
 
   useEffect(() => {
     const applyHash = () => {
-      const id = decodeURIComponent((window.location.hash || "").slice(1));
+      const id = decodeHashFragment(window.location.hash);
       setActiveId(id);
       if (!id) return;
       const el = document.getElementById(id);
