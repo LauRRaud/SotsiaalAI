@@ -92,6 +92,11 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Aardvarki madala raskusastmega kliendijõudluse leid on parandatud.** Jagatud `Button` ei
+suuna enam kõiki primary-nuppe eraldi WebGL-konteksti, globaalse pointer-kuulari ja lõputu
+animatsioonitsükliga `SpecularButton`-isse; olemasolev CSS-põhine primary/glow kujundus ning
+nupu käitumisleping säilivad. Järgmine tööots valitakse S4-st.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
