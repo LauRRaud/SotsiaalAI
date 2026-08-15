@@ -201,11 +201,12 @@ export function useRoomCall(roomId, userId, { basePath = "" } = {}) {
   }, [cleanupLiveKit]);
 
   // Tab'i sulgemine ja kõva navigatsioon ei jooksuta React-cleanup'e —
-  // sendBeacon on seal ainus usaldusväärne kanal. Ref'i ei nullita: pagehide
-  // võib olla bfcache'i minek; naasel sünkroonib 5 s poll ausa seisu.
+  // sendBeacon on seal ainus usaldusväärne kanal. BFCache'i minek ei ole aga
+  // lahkumine: sama leht koos LiveKit-ühendusega võib hiljem taastuda.
   useEffect(() => {
     if (typeof window === "undefined" || !roomId) return undefined;
-    const handlePageHide = () => {
+    const handlePageHide = event => {
+      if (event.persisted) return;
       const callSessionId = joinedCallIdRef.current;
       if (callSessionId) sendLeaveSignal(roomId, callSessionId);
     };
