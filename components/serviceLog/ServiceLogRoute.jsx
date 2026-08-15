@@ -29,6 +29,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
+import { isServiceLogLocationStampUiEnabled } from "@/lib/serviceLog/flags";
 import { captureLocationPoint } from "@/lib/serviceLog/geolocation";
 import ServiceLogRouteMap from "./ServiceLogRouteMap";
 
@@ -166,7 +167,7 @@ export default function ServiceLogRoute() {
          murdu: reegel on üks punkt TEADLIKU SÜNDMUSE kohta ja sõidu algus on
          omaette sündmus. */
       let locationPromise = null;
-      if (action === "arrive" || action === "depart") {
+      if (isServiceLogLocationStampUiEnabled() && (action === "arrive" || action === "depart")) {
         const token = ++visitTokenRef.current;
         locationPromise = captureLocationPoint(undefined, {
           onReason: (why) => {
