@@ -152,6 +152,36 @@ test("persistDone keeps the existing empty non-crisis behavior", async () => {
   assert.equal(result.assistantMessageId, null);
 });
 
+test("completed chat intent replays before usage reservation or retrieval", async () => {
+  const data = baseBootstrapData({
+    persist: true,
+    clientTurnKey: "completed-intent",
+    sessionTurnLimit: 20
+  });
+  let reserveCalls = 0;
+  let retrievalCalls = 0;
+  const response = await POST(new Request("http://localhost/api/chat", { method: "POST" }), {
+    ...noContextRouteDeps(data),
+    readCompletedChatTurnReplay: async () => ({
+      turn: { id: "turn-completed", status: "COMPLETED" },
+      replay: { content: "Varem salvestatud vastus", metadata: { sources: [] } }
+    }),
+    reserveUsageForRequest: async () => {
+      reserveCalls += 1;
+      throw new Error("reservation must not run for a replay")
+    },
+    assembleRetrievalContext: async () => {
+      retrievalCalls += 1;
+      throw new Error("retrieval must not run for a replay")
+    }
+  });
+
+  assert.equal(response.status, 200);
+  assert.equal((await response.json()).reply, "Varem salvestatud vastus");
+  assert.equal(reserveCalls, 0);
+  assert.equal(retrievalCalls, 0);
+});
+
 function workflowDeps(captures, result, workflowKind) {
   return {
     runHelpChatWorkflow: async () => result,

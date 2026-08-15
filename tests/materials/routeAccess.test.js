@@ -64,3 +64,43 @@ test("material POST discards request quarantines when submission admission fails
   assert.equal(response.status, 429)
   assert.deepEqual(discarded, ["receipt-1"])
 })
+
+test("material POST discards newly uploaded quarantines on a successful idempotent replay", async () => {
+  const form = new FormData()
+  form.append("idempotencyKey", "replayed-request-key")
+  form.append("file", new File(["safe"], "safe.txt", { type: "text/plain" }))
+  const discarded = []
+  const response = await handleMaterialPost(new Request("http://localhost/api/materials", { method: "POST", body: form }), {
+    sessionProvider: async () => session("SOCIAL_WORKER"),
+    uploadAccess: async () => ({ ok: true }),
+    quarantineUpload: async () => ({ quarantineReceiptId: "receipt-replay" }),
+    discardQuarantine: async value => discarded.push({ receiptId: value.receiptId, code: value.code }),
+    createSubmissions: async () => ({ replay: true, submissions: [{ id: "existing-submission" }] })
+  })
+
+  assert.equal(response.status, 200)
+  assert.deepEqual(discarded, [{ receiptId: "receipt-replay", code: "submission_replayed" }])
+})
+
+test("material POST fails closed when a rejected upload cannot be cleaned from quarantine", async () => {
+  const form = new FormData()
+  form.append("idempotencyKey", "cleanup-failure-key")
+  form.append("file", new File(["safe"], "safe.txt", { type: "text/plain" }))
+  const response = await handleMaterialPost(new Request("http://localhost/api/materials", { method: "POST", body: form }), {
+    sessionProvider: async () => session("SOCIAL_WORKER"),
+    uploadAccess: async () => ({ ok: true }),
+    quarantineUpload: async () => ({ quarantineReceiptId: "receipt-stuck" }),
+    discardQuarantine: async () => {
+      const error = new Error("materials.errors.quarantine_cleanup_failed")
+      error.status = 503
+      throw error
+    },
+    createSubmissions: async () => {
+      const error = new Error("api.common.too_many_requests")
+      error.status = 429
+      throw error
+    }
+  })
+
+  assert.equal(response.status, 503)
+})

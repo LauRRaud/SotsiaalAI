@@ -2390,7 +2390,10 @@ puuduvast asjast: pöördel ei olnud rida, mille külge kinnituda.**
   koostamisel. Teise kavatsuse `CONVERSATION_BUSY` värske reservatsioon vabastatakse endiselt.
   Sihttesti negatiivkontroll kukkus vana koodi peal, sest kordus kutsus
   `chat_turn_conflict` vabastuse välja; parandatud rajal jääb aktiivne reservatsioon algse
-  päringu commit'ini `RESERVED` olekusse.
+  päringu commit'ini `RESERVED` olekusse. 15.08 integratsiooniparandus loeb lõpetatud pöörde
+  enne uue kasutusreservatsiooni või RAG-otsingu alustamist ja tagastab salvestatud vastuse;
+  `COMMITTED` kasutusvõti ei autoriseeri endiselt uut tööd ning korduspäringu tehniline tõrge ei
+  vabasta teise aktiivse päringu `reused` reservatsiooni.
 - **Uus mudel `ChatTurn`** (migratsioon `20260811160000`, uus tabel + uus enum `ChatTurnStatus`;
   olemasolevaid ridu ei puudutata). Unikaalsus **`(userId, clientTurnKey)`** on ainus koht, kus üks
   kavatsus muutub üheks reaks. Rida kannab mõlemat poolt (`userMessageId`, `assistantMessageId`),

@@ -38,7 +38,9 @@ test("elutsükli-eelsed teenuskirjed muudetakse säilitatavateks FINAL-kirjeteks
   assert.match(backfill, /SET[\s\S]*"status"\s*=\s*'FINAL'/i);
   assert.match(backfill, /"finalizedAt"\s*=\s*COALESCE\s*\(\s*"finalizedAt"\s*,\s*"createdAt"/i);
   assert.match(backfill, /"recordedFiscalYear"\s*=\s*COALESCE/i);
-  assert.match(backfill, /WHERE\s+"status"\s*=\s*'DRAFT'/i);
+  assert.match(backfill, /FROM\s+"_prisma_migrations"/i);
+  assert.match(backfill, /"migration_name"\s*=\s*'20260802140000_service_log_correction_trail'/i);
+  assert.match(backfill, /WHERE\s+"status"\s*=\s*'DRAFT'[\s\S]*"createdAt"\s*<=\s*\(lifecycle_applied_at\s+AT\s+TIME\s+ZONE\s+'UTC'\)/i);
 });
 
 function modelBlock(name) {

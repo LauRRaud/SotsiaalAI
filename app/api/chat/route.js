@@ -9,7 +9,8 @@ import {
 import { logEvent } from "@/lib/chat/logger";
 import { enforceChatRateLimit, readChatRateLimit } from "@/lib/chat-api-rate-limit";
 import { assembleRetrievalContext } from "@/lib/chat/retrievalContextAssembler";
-import { handleMainChatResponse } from "@/lib/chat/mainResponseHandler";
+import { buildReplayResponse, handleMainChatResponse } from "@/lib/chat/mainResponseHandler";
+import { readCompletedChatTurnReplay } from "@/lib/chat/turnRegistry";
 import { buildImmediateChatResponse, finalizeAssistantReply } from "@/lib/chat/responseFinalizer";
 import { handleDocumentWorkflowBranch, handleHelpWorkflowBranch } from "@/lib/chat/workflowBranchHandlers";
 import { hasDocumentTaskContext } from "@/lib/chat/documentOrchestration";
@@ -60,7 +61,9 @@ function usageErrorResponse(error, scope) {
 }
 
 async function releaseUsageSafely(handle, reason, releaseUsage = releaseUsageForRequest, logError = logChatError) {
-  if (!handle) return;
+  /* `reused` tähendab, et reservatsiooni omab sama võtme esimene aktiivne
+     päring. Korduse viga ei tohi algse päringu kvooti alt vabastada. */
+  if (!handle || handle.reused === true) return;
   try {
     await releaseUsage(handle, { reason });
   } catch (error) {
@@ -82,6 +85,7 @@ export async function POST(req, deps = {}) {
     releaseUsageForRequest: deps.releaseUsageForRequest || releaseUsageForRequest,
     assembleRetrievalContext: deps.assembleRetrievalContext || assembleRetrievalContext,
     handleMainChatResponse: deps.handleMainChatResponse || handleMainChatResponse,
+    readCompletedChatTurnReplay: deps.readCompletedChatTurnReplay || readCompletedChatTurnReplay,
     logEvent: deps.logEvent || logEvent
   };
 
@@ -247,6 +251,30 @@ export async function POST(req, deps = {}) {
     });
   }
 
+  const completedTurnReplayResponse = async () => {
+    if (!persist || !convId || !userId || !clientTurnKey) return null;
+    const completed = await routeRuntime.readCompletedChatTurnReplay({
+      userId,
+      conversationId: convId,
+      clientTurnKey
+    });
+    if (!completed) return null;
+    return buildReplayResponse({
+      wantStream,
+      convId,
+      replay: completed.replay,
+      isCrisis
+    });
+  };
+
+  try {
+    const replayResponse = await completedTurnReplayResponse();
+    if (replayResponse) return replayResponse;
+  } catch (error) {
+    logChatError("chat.turn.replay_lookup.error", { error: error?.message || String(error) });
+    return makeChatError("chat.error.service_unavailable", 503);
+  }
+
   let chatUsageHandle = null;
   let ragUsageHandle = null;
   try {
@@ -262,6 +290,10 @@ export async function POST(req, deps = {}) {
       metadata: { convId, role: normalizedRole, stream: wantStream }
     });
   } catch (error) {
+    if (error?.code === "USAGE_IDEMPOTENCY_CONFLICT") {
+      const replayResponse = await completedTurnReplayResponse().catch(() => null);
+      if (replayResponse) return replayResponse;
+    }
     return usageErrorResponse(error, "chat.reply");
   }
 
@@ -315,6 +347,10 @@ export async function POST(req, deps = {}) {
       releaseUsageSafely(ragUsageHandle, "rag_search_failed", routeRuntime.releaseUsageForRequest)
     ]);
     if (String(error?.code || "").startsWith("USAGE_")) {
+      if (error?.code === "USAGE_IDEMPOTENCY_CONFLICT") {
+        const replayResponse = await completedTurnReplayResponse().catch(() => null);
+        if (replayResponse) return replayResponse;
+      }
       return usageErrorResponse(error, ragUsageHandle ? "chat.reply" : "chat.rag_search");
     }
     logChatError("retrieval.unhandled_error", { error: error?.message || String(error) });
@@ -343,6 +379,10 @@ export async function POST(req, deps = {}) {
       }
     } catch (error) {
       await releaseUsageSafely(chatUsageHandle, "rag_usage_settlement_failed", routeRuntime.releaseUsageForRequest);
+      if (error?.code === "USAGE_IDEMPOTENCY_CONFLICT") {
+        const replayResponse = await completedTurnReplayResponse().catch(() => null);
+        if (replayResponse) return replayResponse;
+      }
       logChatError("usage.rag_settlement.error", { error: error?.message || String(error) });
       return usageErrorResponse(error, "chat.rag_search");
     }

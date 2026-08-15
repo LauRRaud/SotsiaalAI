@@ -32,6 +32,16 @@ function routeError(error, locale, fallback) {
   return errorJson(status === 500 ? fallback : error?.message || fallback, status, locale, error?.quota || null)
 }
 
+async function discardRequestQuarantines(files, { discardQuarantine, actorUserId, code }) {
+  for (const file of files) {
+    await discardQuarantine({
+      receiptId: file.quarantineReceiptId,
+      actorUserId,
+      code
+    })
+  }
+}
+
 export async function GET(request) {
   const locale = localeFromRequest(request)
   const session = await getOptionalSession()
@@ -110,6 +120,15 @@ export async function handleMaterialPost(
       rateLimit: MATERIALS_UPLOAD_RATE_LIMIT_MAX,
       windowMs: MATERIALS_RATE_LIMIT_WINDOW_MS
     })
+    /* Idempotentne kordus kasutab juba loodud submissions-ridu. Selle HTTP-katse
+       uued karantiinikoopiad ei kuulu neile ja tuleb enne edukat vastust eemaldada. */
+    if (result.replay) {
+      await discardRequestQuarantines(quarantined, {
+        discardQuarantine,
+        actorUserId: String(session.user.id),
+        code: "submission_replayed"
+      })
+    }
     return json({
       ok: true,
       replay: result.replay,
@@ -118,11 +137,15 @@ export async function handleMaterialPost(
       submissions: result.submissions
     }, result.replay ? 200 : 201)
   } catch (error) {
-    await Promise.allSettled(quarantined.map(file => discardQuarantine({
-      receiptId: file.quarantineReceiptId,
-      actorUserId: String(session.user.id),
-      code: "submission_rejected"
-    })))
+    try {
+      await discardRequestQuarantines(quarantined, {
+        discardQuarantine,
+        actorUserId: String(session.user.id),
+        code: "submission_rejected"
+      })
+    } catch (cleanupError) {
+      return routeError(cleanupError, locale, "Materjali turvaline koristamine ebaõnnestus.")
+    }
     return routeError(error, locale, "Materjali üleslaadimine ebaõnnestus.")
   }
 }

@@ -92,9 +92,16 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**Dokumendi RAG-loa tagasivõtmise turvajärelkontroll on lõpetatud.** Sisu muutmisega samas
-PATCH-is kustutatakse nüüd töösse salvestatud vana RAG-identiteet, mitte uue sisu SHA järgi
-tuletatud puuduv koopia; järgmine tööots valitakse S4-st.
+**Codex Security esimese täisskänni 15 HIGH leidu on lokaalsesse `main`-i integreeritud ja
+kontrollitud; GitHubi ega toodangut ei ole veel uuendatud.** Parandusring katab vaikimisi
+väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
+kasutusarvestuse kordused, konto kustutuse omandipiirid, tegevusloa tõendi, Kiire abi
+tagasivõtu/saaja, Teenuspäeviku ekspordi/ümbermääramise/pärandmustandid, omaniku kutse ja
+supervisiooni aegunud rolli. Integraator sulges lisaks neli PR-ide koostoimeauku. Koondtõend:
+turvasihttestid **226/226**, litsentsi PostgreSQL-sond **46/46**, väljalogimise sond **14/14**,
+migratsiooniahel **201/201** ja UTC täisvärav **4784/4784**. Ametlik SOL-seis püsib
+**429 DONE / 0 PARTIAL / 0 NOT_DONE**; järgmine samm on selle kontrollitud puu eraldi loaga
+GitHubi viimine ja toodangusse paigaldamine.
 
 **Sihitud Codex Security seitsme faili parandusring on `main`-is ja toodangus
 (`bad33faca2cf41681abd5cf350b00ffe7b4671fc`).** Viis kinnitatud leidu on suletud: suletud registreerimise adminieelvaade
@@ -108,10 +115,6 @@ roheline ning serveri `.next/static` all on avalikke `.map` artefakte ja `source
 `rw,nosuid,nodev,noexec,noatime` ning frontend, RAG, research-worker ja mount on aktiivsed.
 Tahtlikku tootmise unmount/restart katkestussondi ei käivitatud, sest see põhjustab seisaku;
 see kitsas katastroofirada jääb `NOT_PROVEN` kuni eraldi hooldusaknani.
-
-**Aardvarki järelparandus sulgeb vaikimisi NextAuthi signout-radade augu:** avalik
-`/api/auth/signout` tühistab nüüd jälgitava sessioonirea varuvõrguna, mistõttu vana klient või
-otse `signOut()` kasutaja ei jäta kopeeritud JWT-d pärast näilist väljalogimist kehtima.
 
 **`SOL-MAT-08` on DONE ja SOL-süvaaudit on lõpetatud.** PDF/DOCX kasutab kohalikku võrguta Dangerzone 0.11 CDR-i ning tootmises on päriselt aktiveeritud krüpteeritud LUKS2 + ext4 Materjalide köide `nodev,nosuid,noexec` kaitsetega. Tootmise CDR-sond oli 7/7, boot-chain ja mount'i negatiivkontrollid puhtad ning lokaalne autentitud sünteetiline brauserirada tõendas üleslaadimise, kihiliste tähtaegade ja tagasivõtmise. Materjalide sihttestid olid **59/59**, PostgreSQL-sondid **12/12**, **30/30** ja **20/20**. Ametlik seis on **429 DONE / 0 PARTIAL / 0 NOT_DONE**; järgmine tööots valitakse S4-st.
 

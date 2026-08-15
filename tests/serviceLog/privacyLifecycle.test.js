@@ -33,9 +33,12 @@ test("SOL-SLOG-J-05: töötaja ja kliendi koopiad on eri skoopides ning kolmanda
     noteProvenance: "worker_fact_note",
     unit: "HOUR",
     quantity: 2,
+    status: "FINAL",
+    providerProfile: { organizationName: "Turvaline Teenuseosutaja" },
     confirmedByClientAt: now,
     createdAt: now
   };
+  let clientEntryQuery = null;
   const db = {
     serviceProviderProfile: { findMany: async () => [{ id: "profile-1" }] },
     serviceReferral: {
@@ -44,7 +47,13 @@ test("SOL-SLOG-J-05: töötaja ja kliendi koopiad on eri skoopides ning kolmanda
           [{ id: "referral-1", providerProfileId: "profile-1", clientDisplayName: "Kolmas Isik", kovName: "KOV" }]
     },
     serviceEntry: {
-      findMany: async ({ where }) => (where.clientUserId ? [clientEntry] : [professionalEntry])
+      findMany: async (query) => {
+        if (query.where.clientUserId) {
+          clientEntryQuery = query;
+          return [clientEntry];
+        }
+        return [professionalEntry];
+      }
     },
     serviceMonthlyNarrative: {
       findMany: async ({ where }) =>
@@ -76,10 +85,13 @@ test("SOL-SLOG-J-05: töötaja ja kliendi koopiad on eri skoopides ning kolmanda
   assert.match(client, /entry-client/);
   assert.match(client, /"unit":"HOUR"/);
   assert.match(client, /"quantity":2/);
+  assert.match(client, /"providerName":"Turvaline Teenuseosutaja"/);
   assert.match(client, /confirmedByClientAt/);
   assert.doesNotMatch(client, /entry-professional/);
   assert.doesNotMatch(client, /Kliendi nimi ei kuulu koopiasse|external-secret|59\.437|24\.7536/);
   assert.doesNotMatch(client, /Minu teenuskirje|worker_fact_note|Minu lugu|client-referral/);
+  assert.equal(clientEntryQuery.where.status, "FINAL", "andmekoopia ei tohi sisaldada mustandeid");
+  assert.deepEqual(clientEntryQuery.select.providerProfile, { select: { organizationName: true } });
 });
 
 test("SOL-SLOG-J-06: konto kustutus tombstone'ib kõik Teenuspäeviku rollid idempotentses tehingus", async () => {
