@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import {
+  JOURNEY_EXPORT_LIMITS,
   JOURNEY_LIST_LIMITS,
   JOURNEY_TEXT_LIMITS
 } from "../../lib/journey/constants.js";
@@ -301,4 +302,37 @@ test("SOL-JOUR-16: audit failure prevents export bytes from being produced", asy
     exportJourneyForUser("owner-1", "journey-1", { db }),
     { code: "AUDIT_DOWN" }
   );
+});
+
+test("Journey export bounds both related queries and rejects an incomplete export", async () => {
+  const row = {
+    id: "journey-1", ownerUserId: "owner-1", conversationId: null, roleContext: "CLIENT",
+    status: "ACTIVE", sharingStatus: "PRIVATE", title: "Journey", summary: "Summary",
+    primaryPath: null, domains: [], missingInfo: [], riskSignals: [], suggestedActions: [],
+    context: {}, createdAt: new Date(), updatedAt: new Date()
+  };
+  let auditWrites = 0;
+  const tx = {
+    journey: { async findFirst() { return row; } },
+    preInquiry: {
+      async findMany({ take }) {
+        assert.equal(take, JOURNEY_EXPORT_LIMITS.linkedPreInquiries + 1);
+        return Array.from({ length: take }, (_, index) => ({ id: `pre-${index}` }));
+      }
+    },
+    domainEvent: {
+      async findMany({ take }) {
+        assert.equal(take, JOURNEY_EXPORT_LIMITS.activity + 1);
+        return [];
+      }
+    },
+    dataAuditLog: { async create() { auditWrites += 1; } }
+  };
+  const db = { async $transaction(callback) { return callback(tx); } };
+
+  await assert.rejects(
+    exportJourneyForUser("owner-1", "journey-1", { db }),
+    (error) => error?.status === 413 && error?.code === "JOURNEY_EXPORT_LIMIT_REACHED"
+  );
+  assert.equal(auditWrites, 0);
 });
