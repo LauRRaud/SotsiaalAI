@@ -97,3 +97,28 @@ test("serialized material submission includes status and safe review fields", ()
   })
   assert.equal(serialized.submittedByUser.passwordHash, undefined)
 })
+
+test("material notification delivery metadata is opt-in for admin responses", () => {
+  const submission = {
+    id: "mat_1",
+    batch: {
+      notificationStatus: "RETRY",
+      notificationAttempts: 3,
+      notificationLastError: "SMTP_451",
+      notificationNextAt: new Date("2026-05-02T11:00:00.000Z"),
+      notifiedAt: null
+    }
+  }
+
+  const ownerResponse = serializeMaterialSubmission(submission)
+  const adminResponse = serializeMaterialSubmission(submission, { includeNotification: true })
+
+  assert.equal(Object.hasOwn(ownerResponse, "notification"), false)
+  assert.deepEqual(adminResponse.notification, {
+    status: "RETRY",
+    attempts: 3,
+    lastErrorCode: "SMTP_451",
+    nextAttemptAt: submission.batch.notificationNextAt,
+    sentAt: null
+  })
+})
