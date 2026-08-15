@@ -349,6 +349,7 @@ export async function POST(request) {
           providerPaymentId: true,
           amount: true,
           currency: true,
+          refundedAmount: true,
           raw: true
         }
       });
