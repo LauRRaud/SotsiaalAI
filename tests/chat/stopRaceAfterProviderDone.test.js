@@ -22,7 +22,7 @@ const [{ handleMainChatResponse }, { langStrings }] = await Promise.all([
  */
 
 const HIDDEN = " SEDA TEKSTI KASUTAJA EI NÄINUD";
-const SHOWN = "Nähtav osa vastusest";
+const SHOWN = "Nähtav ja kasutatav osa vastusest.";
 
 async function readSse(res) {
   const reader = res.body.getReader();
@@ -115,8 +115,8 @@ test("Stop TÄPSELT provider'i `done` hetkel: täisvastust ei commit'ita ega pü
   const body = await readSse(res);
 
   assert.equal(calls.finalizeCalls, 0, "COMPLETED finalize ei tohi joosta");
-  assert.equal(calls.commit, 0, "täisvastuse eest ei tohi tasu võtta");
-  assert.deepEqual(calls.release, ["chat_stream_aborted"]);
+  assert.equal(calls.commit, 1, "juba nähtav osaline vastus peab kasutuse arvestama");
+  assert.deepEqual(calls.release, []);
   assert.ok(!body.includes("event: done"), "`done` on lubadus, mida katkestatud pööre ei anna");
 
   const marker = calls.persisted.at(-1);
@@ -152,6 +152,22 @@ test("püsiv tekst on VÄLJA SAADETUD tekst, mitte provider'i puhver", async () 
   assert.equal(abortEvent.payload.partialChars, marker.finalText.length);
 });
 
+test("Stop enne nähtavat väljundit vabastab kasutamata reservatsiooni", async () => {
+  const { input, deps, calls, controller } = harness({
+    streamOpenAI: () => (async function* () {
+      controller.abort();
+      yield { type: "delta", text: HIDDEN };
+    })()
+  });
+
+  const res = await handleMainChatResponse(input, deps);
+  await readSse(res);
+
+  assert.equal(calls.commit, 0);
+  assert.deepEqual(calls.release, ["chat_stream_aborted"]);
+  assert.equal(calls.persisted.at(-1).finalText, "");
+});
+
 test("Stop finaliseerimise AWAIT-ide ajal võidab endiselt", async () => {
   // Teine kontrollpunkt: Stop saabub pärast sisenemiskontrolli, aga enne püsivat kirjutust.
   const { input, deps, calls } = harness({
@@ -174,8 +190,8 @@ test("Stop finaliseerimise AWAIT-ide ajal võidab endiselt", async () => {
     "kontrollpunkti mõõtmiseks peab finaliseerimises olema vähemalt üks await (rag_trace)"
   );
   assert.equal(calls.finalizeCalls, 0, "Stop enne püsivat kirjutust peab võitma");
-  assert.equal(calls.commit, 0);
-  assert.deepEqual(calls.release, ["chat_stream_aborted"]);
+  assert.equal(calls.commit, 1, "juba väljasaadetud tekst peab kasutuse arvestama");
+  assert.deepEqual(calls.release, []);
 });
 
 test("Stop PÄRAST `done` emiteerimist ei võta lõpetatud pööret tagasi", async () => {
