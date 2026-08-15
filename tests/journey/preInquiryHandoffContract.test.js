@@ -90,6 +90,16 @@ test("unknown keys are reported and non-array manifests fail closed", () => {
     code: "INVALID_JOURNEY_SHARE_KEYS",
     status: 400
   });
+  assert.throws(
+    () => partitionJourneyShareKeys(
+      Array.from({ length: JOURNEY_SHARE_KEYS.length + 1 }, (_, index) => `unknown-${index}`)
+    ),
+    { code: "INVALID_JOURNEY_SHARE_KEYS", status: 400 }
+  );
+  assert.throws(() => partitionJourneyShareKeys(["x".repeat(65)]), {
+    code: "INVALID_JOURNEY_SHARE_KEYS",
+    status: 400
+  });
 });
 
 test("confirmedKeys survives shared-info normalization", () => {
