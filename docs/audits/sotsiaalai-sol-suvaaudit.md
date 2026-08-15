@@ -2770,15 +2770,22 @@ puuduvast asjast: pöördel ei olnud rida, mille külge kinnituda.**
   `AbortSignal.any`), mitte oma `controller.abort()`-ist — ise kokku pandud taimer oleks
   andnud mõlemale sama `AbortError`-i ja jätnud iga õnnestunud kutse järel lahtise
   `setTimeout`-i.
-- **Neli kutset said signaali:** väline STT `fetch`, OpenAI STT SDK, Google TTS (gRPC oma
-  ajapiiriga) ja OpenAI TTS. Lisaks `withAbort`, sest „Next-i töölõng ei jää kinni" ei tohi
+- **Kolm katkestatavat kutset said signaali:** väline STT `fetch`, OpenAI STT SDK ja OpenAI
+  TTS. Google TTS-il on gRPC oma ajapiir ja eraldi rakenduse timeout-race. Lisaks `withAbort`,
+  sest „Next-i töölõng ei jää kinni" ei tohi
   sõltuda sellest, kas KOLMAS OSAPOOL signaali austab — gRPC-klient ja mõni SDK ei austa.
   Signaal antakse ikka edasi (et ka ülesvool lõpetaks), `withAbort` on lisaks, mitte asemel.
 - **Kliendil on oma piirid** (STT 90 s, TTS 30 s) `withRequestTimeout`-i kaudu, feature-checki
   taga: `AbortSignal.any` puudumine vanas brauseris ei tohi ettelugemist üldse katki teha.
 - **Arveldus on nüüd üks moodul kahe lõpuga** (`lib/usage/providerSettlement.js`), mitte kaks
-  koopiat kahes marsruudis. Iga katkestus vabastab reservatsiooni — kasutajani ei jõudnud
-  midagi, seega ei ole mille eest võtta — ja ka vabastuse enda viga ei kao vaikselt.
+  koopiat kahes marsruudis. Katkestus vabastab reservatsiooni ainult siis, kui ülesvoolutöö
+  ise katkes; ka vabastuse enda viga ei kao vaikselt.
+- **Turvaparandus 15.08.2026:** Google'i gRPC Promise ei kanna `req.signal`-it tegelikku
+  sünteesikutsesse. Varasem `withAbort(..., req.signal)` vabastas kliendi lahkumisel kvoodi,
+  kuigi tasuline Google'i töö jätkus. Google'i rada race'ib nüüd ainult rakenduse timeout'iga
+  ning ootab kliendi abordi järel tegeliku tulemuse või gRPC deadline'i ära; õnnestunud töö
+  commit'itakse seega ka siis, kui vastust ei ole enam võimalik kliendile saata. Kandev
+  negatiivkontroll oli vana koodi peal punane. Production runtime: NOT_PROVEN.
 - **`npm run voice:settle:probe` 15/15 päris PostgreSQL-is, MITTE KUNAGI LAHENEVA
   provideriga.** Kui ajapiiri ei oleks, jääks sond ise rippuma — see on aus tõend selle kohta,
   et piir eksisteerib. Mõõdetud on ka mõlema katkestuse jälg: `RELEASED` +
@@ -2808,9 +2815,10 @@ puuduvast asjast: pöördel ei olnud rida, mille külge kinnituda.**
 - **Katkestus EI kuku varurajale.** TartuNLP katse `catch` neelas iga vea ja läks edasi
   järgmise pakkuja juurde; kui ta neelaks ka Stop'i, tähendaks „Peata ettelugemine" lihtsalt
   teise pakkuja poole pöördumist. Nüüd visatakse katkestus ja ajapiir edasi, tõrge mitte.
-- **Serveripool kannab kliendi abordi providerile edasi** (SOL-VOICE-02 signaal) ja arveldab
-  ausalt: heli ei jõudnud kasutajani, seega reservatsioon vabaneb. Sondis mõõdetud päris
-  ämbri peal.
+- **Serveripool kannab kliendi abordi katkestatavatele provideritele edasi** (SOL-VOICE-02
+  signaal). Google'i gRPC-kutset selle API kaudu katkestada ei saa, mistõttu tema puhul
+  arveldatakse tegelik valminud töö ka pärast kliendi lahkumist; reservatsiooni vabastamine
+  jätkuva tasulise töö ajal oleks kvoodist möödapääs.
 - **NOT_PROVEN: brauseritest.** Hooki otsuskiht on tõendatud `createLatestRequestGate`
   käitumisega (Stop enne vastust · uus kutse katkestab eelmise · hiline vastus ei kuulu enam
   ühelegi kutsele) ja marsruudi/hooki leping allkirjade tasemel, aga DOM-iga testisviiti
