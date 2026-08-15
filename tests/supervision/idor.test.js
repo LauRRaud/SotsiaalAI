@@ -10,6 +10,7 @@ import {
   updatePrivateItem,
   deletePrivateItem
 } from "../../lib/supervision/privateItems.js";
+import { closeProcess } from "../../lib/supervision/closure.js";
 import { getProcessDetail } from "../../lib/supervision/service.js";
 
 test("test #7: SV ei näe osaleja eeskambri kirjet; kumbki näeb ainult oma; M6 ei kirjuta M13", async () => {
@@ -86,6 +87,33 @@ test("eeskambri kirje: omanik muudab CAS-iga ja kustutab; võõras → 404", asy
   const del = await deletePrivateItem({ itemId, session: os1() }, { db });
   assert.equal(del.deleted, true);
   assert.equal(db.store.supervisionPrivateItem.length, 0);
+});
+
+test("CLOSED protsessi eeskambrit saab lugeda, kuid mitte enam muuta", async () => {
+  const db = setupBase();
+  const { processId } = await makeActiveProcess(db);
+  const created = await createPrivateItem(
+    { processId, session: os1(), input: { kind: "PRIVATE_NOTE", body: "enne sulgemist" } }, { db }
+  );
+  const detail = await getProcessDetail({ processId, session: sv() }, { db });
+  await closeProcess(
+    { processId, session: sv(), input: { expectedVersion: detail.version, generalizedTitle: "Suletud" } }, { db }
+  );
+
+  const list = await listPrivateItems({ processId, session: os1() }, { db });
+  assert.equal(list.items.length, 1);
+  for (const mutation of [
+    () => createPrivateItem(
+      { processId, session: os1(), input: { kind: "PRIVATE_NOTE", body: "pärast sulgemist" } }, { db }
+    ),
+    () => updatePrivateItem(
+      { itemId: created.item.id, session: os1(), input: { body: "muudetud", expectedVersion: 0 } }, { db }
+    ),
+    () => deletePrivateItem({ itemId: created.item.id, session: os1() }, { db })
+  ]) {
+    await assert.rejects(mutation, (error) => error.status === 409 && error.code === "ALREADY_CLOSED");
+  }
+  assert.equal(db.store.supervisionPrivateItem[0].body, "enne sulgemist");
 });
 
 test("invariant: jagatud vaated (service/serializers/topics/meetings/summaries) EI impordi serializersPrivate.js-i", () => {
