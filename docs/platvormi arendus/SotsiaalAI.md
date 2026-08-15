@@ -92,6 +92,10 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Tööheaolu → kovisiooni anonüümsusvärav blokeerib nüüd ka reavahetusega poolitatud nime.**
+Struktureeritud standardmallide kõrvutised väljapealkirjad jäävad lubatuks; järgmine tööots
+valitakse S4-st.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
@@ -2656,7 +2660,8 @@ aruanne kellelegi — see on professionaalse arengu materjal, mis kuulub tööta
 Tööheaolu on töötaja enda ruum: koormus, katkestused, töö piirid, rollipiirid, rasked
 juhtumid, taastumine. Kirjed kuuluvad inimesele endale ja ükski juht ei näe neid
 individuaalselt — see ei ole poliitika, vaid arhitektuur. Koondid avanevad alles siis, kui
-grupis on piisavalt eristuvaid inimesi, et kedagi ei saaks üksikuna ära tunda.
+grupis on piisavalt eristuvaid inimesi, et kedagi ei saaks üksikuna ära tunda. Kovisiooni
+üleandmise anonüümsusvärav tuvastab nime ka siis, kui ees- ja perekonnanimi on eri real.
 
 **Materjalid ja praktikad.**
 Spetsialistid saavad esitada materjale ja häid praktikaid, mis pärast ülevaatust jõuavad

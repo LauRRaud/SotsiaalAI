@@ -52,6 +52,15 @@ test("a real single-line name is still detected", () => {
   assert.equal(types.includes("name"), true);
 });
 
+test("a real name split across a line break is detected", () => {
+  for (const separator of ["\n", "\r\n"]) {
+    const types = detectAnonymityIssues(`Juhtumis osaleb Mari${separator}Mets ning vajab tuge.`).map(
+      (issue) => issue.type
+    );
+    assert.equal(types.includes("name"), true, `name must be detected across ${JSON.stringify(separator)}`);
+  }
+});
+
 test("the full direct identifier set is still detected on one line", () => {
   const issues = detectAnonymityIssues(
     "Klient Mari Mets elab aadressil Tamme tn 12, telefon +372 5123 4567, isikukood 48901011234 ja e-post mari@example.ee."
