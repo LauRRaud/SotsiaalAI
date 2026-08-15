@@ -67,9 +67,10 @@ const urgentRow = (overrides = {}) => ({
   ...overrides
 });
 
-function createDb({ urgentRequests = [], preInquiries = [] } = {}) {
+function createDb({ urgentRequests = [], preInquiries = [], networkShares = [] } = {}) {
   const urgentRequest = model(urgentRequests);
   const preInquiry = model(preInquiries);
+  const networkShare = model(networkShares);
   const tx = {
     async $queryRaw() {
       return [{ id: "user_kustutaja" }];
@@ -82,6 +83,7 @@ function createDb({ urgentRequests = [], preInquiries = [] } = {}) {
     },
     effectivePracticeReview: { updateMany: async () => ({ count: 0 }) },
     preInquiry,
+    networkShare,
     urgentRequest,
     /* SOL-SPROF-01: SOLO-profiili peitmine ja tema RAG-koopia kustutustöö käivad
        samas lukustatud tehingus, enne `user.delete`-i. Kood EI VALVA nende
@@ -106,7 +108,7 @@ function createDb({ urgentRequests = [], preInquiries = [] } = {}) {
       delete: async ({ where }) => ({ id: where.id })
     }
   };
-  return { db: { $transaction: async (callback) => callback(tx) }, urgentRequest, preInquiry };
+  return { db: { $transaction: async (callback) => callback(tx) }, urgentRequest, preInquiry, networkShare };
 }
 
 const inquiryRow = (overrides = {}) => ({
@@ -248,6 +250,20 @@ test("SOL-PRE-01 + SOL-URG-02: mõlemad tabelid puhastuvad ÜHES tehingus", asyn
   assert.equal(urgentRequest.rows[0].situationVerbatim, "");
   assert.equal(result.privacyCounts.deletedUnsentPreInquiries, 1);
   assert.equal(result.privacyCounts.anonymizedUrgentRequests, 1);
+});
+
+test("konto kustutus eemaldab kliendiga seotud võrgustikujagamised", async () => {
+  const { db, networkShare } = createDb({
+    networkShares: [
+      { id: "share_sensitive", clientUserId: "user_kustutaja", summaryText: "Tundlik kokkuvõte" },
+      { id: "share_other", clientUserId: "user_teine", summaryText: "Teise kliendi kokkuvõte" }
+    ]
+  });
+
+  const result = await deleteUserAfterFinalPracticeSweep("user_kustutaja", db);
+
+  assert.deepEqual(networkShare.rows.map((row) => row.id), ["share_other"]);
+  assert.equal(result.privacyCounts.deletedClientNetworkShares, 1);
 });
 
 /* Puuduv mudel EI TOHI muutuda vaikseks nulliks. Just „edu kinnitamine ilma
