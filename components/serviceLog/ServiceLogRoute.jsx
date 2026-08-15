@@ -84,11 +84,6 @@ export default function ServiceLogRoute() {
   const [locationNote, setLocationNote] = useState(null);
   const [clientName, setClientName] = useState("");
   const [address, setAddress] = useState("");
-  /* AADRESSISOOVITUSED MAA-AMETI REGISTRIST. Vaba tekst tähendas kolme viga
-     korraga: navigatsioon valesse kohta, geokodeerimine ei leidnud midagi ja
-     sõidulõik jäi mõõtmata. */
-  const [suggestions, setSuggestions] = useState([]);
-
   /* Iga külastus saab oma põletusnumbri: hilinenud asukohavastus ei tohi
      jõuda JÄRGMISE kliendi kirje peale. Sama lõks mis OSA I-s. */
   const visitTokenRef = useRef(0);
@@ -227,31 +222,6 @@ export default function ServiceLogRoute() {
     },
     [call, load, t]
   );
-
-  /* Päring käib kirjutamise ajal, aga MITTE iga tähemärgi peale: väline
-     register ei ole meie oma ja teda ei koormata meie klaviatuuriga. */
-  useEffect(() => {
-    const query = address.trim();
-    if (query.length < 3) {
-      setSuggestions([]);
-      return undefined;
-    }
-    let cancelled = false;
-    const timer = window.setTimeout(async () => {
-      try {
-        const response = await fetch(`/api/service-visits/aadress?q=${encodeURIComponent(query)}`);
-        if (!response.ok) return;
-        const body = await response.json();
-        if (!cancelled) setSuggestions(Array.isArray(body.suggestions) ? body.suggestions : []);
-      } catch {
-        /* Soovituste puudumine tähendab „kirjuta ise", mitte tõrget. */
-      }
-    }, 350);
-    return () => {
-      cancelled = true;
-      window.clearTimeout(timer);
-    };
-  }, [address]);
 
   /**
    * KÜLASTUSEST TEENUSKIRJE — üks vajutus, mitte vormi täitmine uuesti.
@@ -622,25 +592,6 @@ export default function ServiceLogRoute() {
                 maxLength={300}
               />
             </label>
-            {suggestions.length ? (
-              <ul className="sl-suggest">
-                {suggestions.map((item) => (
-                  <li key={`${item.label}-${item.adsId || ""}`}>
-                    <button
-                      type="button"
-                      className="sl-entry-btn"
-                      onClick={() => {
-                        setAddress(item.label);
-                        setSuggestions([]);
-                      }}
-                    >
-                      {item.label}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            ) : null}
-
             <Button type="button" onClick={addVisit} disabled={busy || !clientName.trim()}>
               {t("service_log.route.add_visit", "")}
             </Button>
