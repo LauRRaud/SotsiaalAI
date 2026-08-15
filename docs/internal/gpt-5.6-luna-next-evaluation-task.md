@@ -36,8 +36,9 @@ See on kandidaatkomplekti võrdlus praeguse tootmisbaasiga, mitte ainult mudelin
 1. Loo tootmise HEAD-ilt eraldatud eval-worktree ja loopback-only hindamisprotsess eraldi pordil.
 2. Kasuta sama rakenduskoodi ja production RAG/DB sõltuvusi, kuid eraldi protsessi env'is ainult ülal fikseeritud Luna mudeliseadistust.
 3. Ära muuda `/etc/sotsiaalai/frontend.env`, `/etc/sotsiaalai/rag.env`, app-service'i uniteid ega tootmise protsesse.
-4. Kasuta olemasolevat sünteetilist `SOCIAL_WORKER` sessiooni 600-loaga failist; küpsis ei tohi jõuda käsureale, logisse ega artefakti.
+4. Loo vahetult enne jooksu eraldi ülesandepõhine sünteetiline `SOCIAL_WORKER` konto ja sessioon 600-loaga failis; küpsis ei tohi jõuda käsureale, logisse ega artefakti. Ära taaskasuta varasema jooksu sessiooni.
 5. Kontrolli enne päringuid mudeli API-juurdepääsu ühe sisu mittesisaldava tehnilise kontrolliga või esimese smoke'i fail-closed käitumisega. Ära tee automaatset fallback'i mini peale.
+6. `finally`-cleanup'is eemalda sessioonifail ka ebaõnnestunud või katkestatud jooksu järel, tühista konto aktiivsed sessioonid, kustuta jooksu `ChatLog`-read ja sünteetiline konto. Säilita ainult sanitiseeritud hindamisartefaktid.
 
 ## Jooks
 

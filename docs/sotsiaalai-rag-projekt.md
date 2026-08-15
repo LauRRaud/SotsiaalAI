@@ -161,7 +161,7 @@ Frontend env SHA-256 on `7e786328f70c379c50d868c7e82d9499bec4d7cfd44029cb2997103
 
 ### 4.2 Autenditud smoke — TEHTUD 31.07.2026
 
-Golden-37 ja release-smoke kasutasid serveris olemasolevat õigustega 600 sünteetilise hindamiskonto sessioonifaili. Sessiooni HTTP oli 200, domeen sünteetiline ja efektiivne roll `SOCIAL_WORKER`. Küpsise väärtust ei väljastatud ega salvestatud artefaktidesse või journald'i. `~/.luna-test.env` ei kasutatud hindamiseks, sest selle roll oli `ADMIN`.
+Golden-37 ja release-smoke kasutasid serveris ülesandepõhist õigustega 600 sünteetilise hindamiskonto sessioonifaili. Sessiooni HTTP oli 200, domeen sünteetiline ja efektiivne roll `SOCIAL_WORKER`. Küpsise väärtust ei väljastatud ega salvestatud artefaktidesse või journald'i. Iga hindamisjooks peab cleanup'is faili eemaldama, aktiivsed sessioonid tühistama ning jooksu `ChatLog`-read ja sünteetilise konto kustutama; varasema jooksu bearer-küpsist ei taaskasutata. `~/.luna-test.env` ei kasutatud hindamiseks, sest selle roll oli `ADMIN`.
 
 Warm-up'i, readiness't ega automaatset retry'd ei lisatud.
 
