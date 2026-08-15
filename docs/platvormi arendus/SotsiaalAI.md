@@ -92,6 +92,11 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Teenuspäeviku kuuaruande ekspordi ristpäritolu GET on suletud.** Aruande allalaadimine
+loob või väljastab uuesti juriidilise arhiividokumendi, mistõttu kontrollib marsruut nüüd enne
+sessiooni ja kõrvalmõjusid brauseri Fetch Metadata päritolu; rist- ja samasait päring ei saa
+enam ohvri arhiivi ega auditijälge muuta, sama päritolu ning kasutaja otsene navigatsioon säilivad.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning

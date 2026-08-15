@@ -16,6 +16,7 @@ import { buildStarPayload, starPayloadToJson } from "@/lib/serviceLog/export/sta
 import { TEMPLATE } from "@/lib/serviceLog/export/templates";
 import { ServiceLogError } from "@/lib/serviceLog/errors";
 import { ServiceLogDisabledError, isServiceLogEnabled } from "@/lib/serviceLog/flags";
+import { isTrustedReportExportRequest } from "@/lib/serviceLog/exportRequest";
 import { archiveMonthlyReport } from "@/lib/serviceLog/reportArchive";
 
 /* VEATEATED KASUTAJA KEELES. `errorJson` lokaadi vaikeväärtus on "en" — ilma
@@ -30,6 +31,12 @@ export const revalidate = 0;
 export async function GET(req) {
   // Värav enne autentimist — suletud pind on eristamatu olematust marsruudist.
   if (!isServiceLogEnabled()) return errorJson("service_log.errors.not_found", 404, localeFromRequest(req));
+  /* GET loob või väljastab uuesti juriidilise arhiividokumendi. SameSite=Lax
+     küpsis jõuab ka ründaja algatatud ristpäritolu navigatsioonile, seega peab
+     brauseri päritolu olema kontrollitud ENNE sessiooni ja kõrvalmõjusid. */
+  if (!isTrustedReportExportRequest(req)) {
+    return errorJson("api.common.forbidden", 403, localeFromRequest(req));
+  }
   const { response, userId, locale } = await guardServiceLogRequest(req, {
     scope: "service_reports_export",
     limit: 30
