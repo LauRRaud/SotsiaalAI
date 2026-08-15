@@ -92,6 +92,10 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**COLLAB-P4 saajaprojektsiooni ligipääsupiir on fail-closed.** Puuduva, `undefined` või `null`
+vaataja identiteediga ei tagastata enam jagatud sotsiaaltöö kokkuvõtet; projektsioon avaneb
+ainult jagamise täpsele saajale. Järgmine tööots valitakse S4-st.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
@@ -2187,7 +2191,8 @@ kokkulepitud tegevus.
 
 **Teenuseosutaja näeb ainult talle jagatut** — kontaktisoovi, kokkuvõtet, dokumenti,
 ülesannet või ruumiarutelu. Mitte meetodipeeglit, tööheaolu, kliendi teekonda ega
-assistenti.
+assistenti. Saajaprojektsioon nõuab alati täpset autentitud saaja identiteeti ning keeldub
+puuduva või mittevastava vaataja puhul.
 
 #### O-CO-6 ei ole õiguslik sein, vaid lepinguline värav (omanik 04.08)
 

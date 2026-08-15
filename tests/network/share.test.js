@@ -343,6 +343,22 @@ test("keegi teine ei näe saaja vaadet", async () => {
   assert.equal(recipientProjection(sent, { viewerUserId: "worker_1" }), null);
 });
 
+test("saaja projektsioon keeldub, kui vaataja identiteet puudub", async () => {
+  const prisma = createPrisma();
+  const confirmed = await confirmedShare(prisma);
+  const sent = await sendNetworkShare({ prisma, shareId: confirmed.id, workerId: "worker_1", now });
+  const opened = await markShareOpened({
+    prisma,
+    shareId: sent.id,
+    recipientUserId: "provider_1",
+    now
+  });
+
+  assert.equal(recipientProjection(opened), null);
+  assert.equal(recipientProjection(opened, { viewerUserId: undefined }), null);
+  assert.equal(recipientProjection(opened, { viewerUserId: null }), null);
+});
+
 // --- Ruumi avamine (COLLAB-P4 V2) -------------------------------------------
 
 test("ruum avaneb kolme liikmega: klient, töötaja omanikuna ja saaja", async () => {
