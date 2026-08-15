@@ -92,14 +92,15 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**Codex Security MEDIUM- ja LOW-leidude kontrollitud integratsioon jätkub eraldi
-turvaharudes.** MEDIUM-ringi 56 parandust on GitHubi harus
-`codex/security-medium-integration`; LOW-ringi 25 ettepanekust on 23 sobivat parandust
-koondatud kohalikku harusse `codex/security-low-integration`, #110 asendas laiem #116 ning
-#122 jäi välja, sest kogu platvormi nupukujunduse lihtsustamine vajab omaniku tooteotsust.
-LOW-koondpuu sihttestid, lint, tõlkekataloog ja diff-kontroll on rohelised ning muutumatu puu
-UTC täisvärav on **4866/4866**. GitHubi `main` ja toodang on nende MEDIUM/LOW harudega
-muutmata; järgmine samm on LOW-haru push omaniku loal ja hilisem eraldi kontrollitud liitmine.
+**Codex Security MEDIUM- ja LOW-parandused on kontrollitult `main`-i integreeritud, GitHubi
+viidud ja toodangusse paigaldatud (`0225e64a3f2352a95e0b9b169108f632453f9a2d`).** Ring katab
+56 MEDIUM-parandust ja LOW-ringi 25 ettepanekust 23; #110 asendas laiem #116 ning #122 jäi
+välja, sest kogu platvormi nupukujunduse lihtsustamine vajab omaniku tooteotsust. UTC täisvärav
+on **4866/4866** ning toodangu frontend, RAG ja research-worker on aktiivsed; RAG tervis ja
+autenditud otsing indeksist töötavad. Rakenduse autentitud chat-smoke on `NOT_PROVEN`, sest
+sünteetiline testisessioon oli aegunud, ja legal-exact kvaliteedismoke on `PARTIAL`, sest §135
+ei jõudnud esimese 32 tulemuse sisse. Järgmine samm on testisessiooni uuendamine ja nende kahe
+täpse saba korduskontroll; #122 vajab eraldi omaniku kujundusotsust.
 
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
