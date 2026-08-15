@@ -225,8 +225,30 @@ test("külastuse sulgemine kustutab paketi kohe, ka kui tähtaeg on kaugel", asy
     visit: { id: "vis_1", status: FIELD_VISIT_STATUS.CLOSED },
     now: at(1)
   });
-  assert.deepEqual(outcome, { removed: true, status: FIELD_VISIT_STATUS.CLOSED });
+  assert.deepEqual(outcome, { removed: true, changed: true, status: FIELD_VISIT_STATUS.CLOSED });
   assert.equal(store.packRows.size, 0);
+});
+
+test("muutumata külastuse seis ei värskenda Reacti paketi viidet", async () => {
+  const store = fakeStore([], [pack({ status: FIELD_VISIT_STATUS.IN_PROGRESS })]);
+  const outcome = await applyFieldVisitStatusToPack({
+    store,
+    visit: { id: "vis_1", status: FIELD_VISIT_STATUS.IN_PROGRESS },
+    now: at(1)
+  });
+
+  assert.deepEqual(outcome, {
+    removed: false,
+    changed: false,
+    status: FIELD_VISIT_STATUS.IN_PROGRESS
+  });
+
+  const hook = readFileSync(new URL("../../components/field/useFieldSync.js", import.meta.url), "utf8");
+  assert.match(
+    hook,
+    /if \(outcome\.removed\) setPack\(null\);\s*else if \(outcome\.changed\) setPack\(await store\.getPack\(visitId\)\);/,
+    "muutumata paketi uus dekrüptitud objekt ei tohi käivitada uut detailipäringut"
+  );
 });
 
 test("tühistatud külastus on sama piir — ja pooleliolev EI OLE", async () => {
