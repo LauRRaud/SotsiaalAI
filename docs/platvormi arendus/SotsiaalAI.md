@@ -92,6 +92,11 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Aardvarki välitöö tellimuskontrolli leid on parandatud.** Kõik välitöö API rajad läbivad nüüd
+ühise sessiooni- ja rollikontrolli järel sama aktiivse tellimuse värava nagu dokumenditööriistad;
+seega ei saa aegunud või puuduva tellimusega spetsialist välitöökäike, tundlikke märkmeid,
+manuseid, OCR-i ega turvateavitusi kasutada, administraatori senine erand säilib.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
