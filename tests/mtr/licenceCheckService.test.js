@@ -298,9 +298,18 @@ test("varasem tõend kandub edasi: märgis püsib vana kontrolli najal", async (
   assert.equal(written.lastAttemptCheckId, "check-new");
 });
 
-test("nimeanomaalia on admini signaal, mitte avalik seis", async () => {
+test("nimeanomaalia blokeerib teise juriidilise isiku avaliku loamärgise", async () => {
   const prisma = fakePrisma({
-    profile: profileWith([{ id: "s1", serviceKey: "TOETATUD_ELAMINE" }], { organizationName: "MTÜ Masaan" })
+    profile: profileWith([{ id: "s1", serviceKey: "TOETATUD_ELAMINE" }], { organizationName: "MTÜ Masaan" }),
+    assessments: [{
+      providerServiceId: "s1",
+      publicStatus: LICENCE_PUBLIC_STATUS.VERIFIED,
+      coverage: LICENCE_COVERAGE.EXACT_MATCH,
+      confirmedMissCount: 0,
+      publicStatusValidUntil: new Date("2026-08-08T09:00:00.000Z"),
+      statusSourceCheckId: "check-old",
+      coveringLicenceNumber: "SEH000598"
+    }]
   });
 
   const result = await runLicenceCheck({
@@ -312,7 +321,14 @@ test("nimeanomaalia on admini signaal, mitte avalik seis", async () => {
   });
 
   assert.equal(result.nameMismatch, true);
-  assert.equal(prisma.state.upserts[0].create.publicStatus, LICENCE_PUBLIC_STATUS.VERIFIED);
+  assert.equal(result.succeeded, false);
+  assert.equal(prisma.state.checks[0].data.result, "UNCONFIRMED");
+  assert.equal(prisma.state.checks[0].data.entityReason, "ENTITY_NAME_MISMATCH");
+  assert.equal(
+    prisma.state.upserts[0].create.publicStatus,
+    LICENCE_PUBLIC_STATUS.UNCONFIRMED,
+    "ka varasem positiivne väide võetakse kohe avalikust vaatest maha"
+  );
 });
 
 test("lugemisrada jõustab aegumise, mitte ei usu salvestatud seisu", async () => {
