@@ -221,8 +221,6 @@ test("iga ruumimarsruut käib jagatud värava kaudu", () => {
     "app/api/rooms/[roomId]/transfer/route.js",
     // Lahkumine peab õnnestuma ka arhiveeritud ruumis.
     "app/api/rooms/[roomId]/leave/route.js",
-    // Kinnitusring vastab juba jagatud kokkuvõttele; oma värav on `respondToSummaryApproval`.
-    "app/api/rooms/[roomId]/summaries/[summaryId]/approval/route.js"
   ]);
 
   const missing = [];
