@@ -30,11 +30,24 @@ function ipv4Private(address) {
     (a === 198 && (b === 18 || b === 19));
 }
 
+function mappedIpv4Address(address) {
+  const normalized = String(address).toLowerCase();
+  const dotted = normalized.match(/^(?:::ffff:|0:0:0:0:0:ffff:)(\d+\.\d+\.\d+\.\d+)$/u);
+  if (dotted) return dotted[1];
+  const hexadecimal = normalized.match(/^(?:::ffff:|0:0:0:0:0:ffff:)([0-9a-f]{1,4}):([0-9a-f]{1,4})$/u);
+  if (!hexadecimal) return null;
+  const high = Number.parseInt(hexadecimal[1], 16);
+  const low = Number.parseInt(hexadecimal[2], 16);
+  return `${high >> 8}.${high & 0xff}.${low >> 8}.${low & 0xff}`;
+}
+
 export function isPublicNetworkAddress(address) {
   const family = net.isIP(String(address || ""));
   if (family === 4) return !ipv4Private(address);
   if (family === 6) {
     const normalized = String(address).toLowerCase();
+    const mappedIpv4 = mappedIpv4Address(normalized);
+    if (mappedIpv4) return !ipv4Private(mappedIpv4);
     return normalized !== "::1" && !normalized.startsWith("fc") && !normalized.startsWith("fd") &&
       !normalized.startsWith("fe80:") && !normalized.startsWith("::ffff:127.") && !normalized.startsWith("::ffff:10.") &&
       !normalized.startsWith("::ffff:192.168.") && !normalized.startsWith("::ffff:169.254.");
