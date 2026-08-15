@@ -456,7 +456,9 @@ export async function POST(request) {
 
       const paidAt = effectiveStatus === PaymentStatus.PAID ? parsePaidAt(payload) : null;
       const subscriptionAction =
-        effectiveStatus === PaymentStatus.PAID ? "activate" : actionForStatus(effectiveStatus);
+        effectiveStatus === PaymentStatus.PAID && payment.subscriptionId
+          ? "activate"
+          : actionForStatus(effectiveStatus);
       const updatedPayment = await tx.payment.update({
         where: { id: payment.id },
         data: {
@@ -629,6 +631,16 @@ export async function POST(request) {
             inviteId: updatedPayment.inviteId
           });
         }
+      } else if (effectiveStatus === PaymentStatus.PAID && !updatedPayment.subscriptionId) {
+        /* SOL-PAY-09 follow-up: konto kustutamise järel säilib arvestuskirje,
+           kuid tellimus on SetNull kaudu kadunud. Hiline PAID kinnitab endiselt
+           makse ledgeris, ent ei tohi proovida luua makseviisi ega aktiveerida
+           olematut tellimust (Prisma ei luba findUnique({ id: null })). */
+        await writePaymentAudit(tx, {
+          action: "archived_payment_paid_no_subscription",
+          result: "ledger_only",
+          paymentId: updatedPayment.id
+        });
       } else if (effectiveStatus === PaymentStatus.PAID) {
         if (payment.kind === PaymentKind.SUBSCRIPTION_INITIAL) {
           billingMethod = await upsertRecurringBillingMethod(tx, payment, payload, paidAt || new Date());
