@@ -92,6 +92,12 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Aardvarki makse-URL-i turvaleid on parandatud lokaalsel tööharul.** Tellimuse ja
+sponsorkutse MakeCommerce'i return/cancel/webhook-URL-id lähtuvad nüüd ainult makseraja
+konfiguratsioonist või kanoonilisest `NEXTAUTH_URL` / `AUTH_URL` / `APP_URL` originist, mitte
+spoofitavatest `Host` ega `X-Forwarded-*` päistest; puuduva tootmiskonfiguratsiooni korral
+katkeb rada turvaliselt. Järgmine samm on paranduse review ja integratsioon.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
