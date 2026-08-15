@@ -9910,7 +9910,7 @@
       "open_room": "Open discussion"
     },
     "fields": {
-      "recipient_email": "Recipient email (must be a platform user)",
+      "recipient_user_id": "Recipient user ID",
       "client_display_name": "Client display name (initial or role)",
       "summary": "Summary to share",
       "purpose": "Why this party is involved",

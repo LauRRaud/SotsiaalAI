@@ -118,6 +118,13 @@ test("loomise marsruut EI võta klienti päringu kehast — ta tuletatakse eelp�
   assert.match(source, /sourcePreInquiryId: body\?\.sourcePreInquiryId/);
 });
 
+test("loomise marsruut ei lahenda suvalist e-posti kasutajaks", async () => {
+  const source = await readRoute("route.js");
+  assert.doesNotMatch(source, /body\?\.recipientEmail/);
+  assert.doesNotMatch(source, /email:\s*\{\s*equals:/);
+  assert.match(source, /recipientUserId:\s*body\?\.recipientUserId/);
+});
+
 // --- Saaja vaade (V4) --------------------------------------------------------
 
 test("saaja postkast kuvab AINULT saaja-projektsiooni välju", async () => {
@@ -167,5 +174,5 @@ test("koostamisvorm ei saada klienti kaasa — server tuletab ta", async () => {
     "utf8"
   );
   assert.doesNotMatch(source, /clientUserId:/);
-  assert.match(source, /recipientEmail: draft\.recipientEmail/);
+  assert.match(source, /recipientUserId: draft\.recipientUserId/);
 });

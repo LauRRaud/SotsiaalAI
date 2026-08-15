@@ -92,6 +92,11 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Aardvarki võrgustikujagamise e-posti-orakel on parandatud lokaalses harus.** Mustandi API ei
+lahenda enam ründaja antud e-posti konto ID-ks, vaid võtab vastu ainult kasutajaliideses valitud
+läbipaistmatu saaja-ID; regressioonitest keelab e-postiotsingu taastamise. Järgmine samm on
+integreerimine ja tavapärane runtime-kontroll.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
