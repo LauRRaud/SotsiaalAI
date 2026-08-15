@@ -92,6 +92,11 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Aardvarki Teenuspäeviku mustandileid on parandatud lokaalsel `work`-harul.** Kontoülene
+lugemine oli HEAD-is juba omanikuskoobiga suletud; alles olnud tervikluse auk on nüüd suletud
+lubatud ajatempliväljade nimekirja ja autoriteetsete vormiväljade ülekirjutuskindla järjekorraga.
+Järgmine samm on muudatuse ülevaatus ja integratsioon.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
@@ -2573,6 +2578,8 @@ navigaatorisse saata. Sõidupäevik tekib kõrvalsaadusena, ilma odomeetrit luge
 Sisestada saab ka võrguta — kirje läheb järjekorda ja sünkroniseerub hiljem.
 Graafiku ümbermääramise mutatsioon ei ole külastuse detailivaade: vastus sisaldab ainult
 külastuse ID-d ega ava tahvlilt teadlikult peidetud aadressi, kliendiviidet või märkmeid.
+Seadmemustand on kontopõhine ning taastab ainult Teenuspäeviku lubatud ajatempliväljad;
+rikutud brauserisalvestus ei saa nähtavaid kirjevälju saatmisel üle kirjutada.
 
 Teenuspäevikul on **STAR/s-veebi väljavõtte kuju**: sotsiaalhoolekande seadus paneb
 andmete registrisse kandmise kohustuse ka teenuseosutajale, ja platvorm aitab seda täita
