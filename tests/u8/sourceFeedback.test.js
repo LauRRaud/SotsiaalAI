@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import {
   createSourceFeedback,
   getOwnSourceFeedback,
+  listOwnSourceFeedback,
   parseSourceFeedbackJsonBody,
   parseSourceFeedbackInput,
   resolveSourceFeedback
@@ -19,6 +20,7 @@ function makeDb() {
     sourceFeedback: {
       findUnique: async ({ where }) => rows.find(row => row.dedupeKey === where.dedupeKey || row.id === where.id) || null,
       findFirst: async ({ where }) => rows.find(row => row.id === where.id && row.reporterId === where.reporterId) || null,
+      findMany: async ({ where }) => rows.filter(row => row.reporterId === where.reporterId),
       count: async ({ where }) => rows.filter(row => row.reporterId === where.reporterId && row.createdAt >= where.createdAt.gte).length,
       create: async ({ data }) => {
         const now = new Date("2026-07-14T12:00:00.000Z");
@@ -120,4 +122,16 @@ test("foreign feedback ids do not leak and admin resolution creates an audit row
   assert.equal(resolved.status, "RESOLVED");
   assert.equal(db.audits.length, 1);
   assert.equal(db.audits[0].action, "SOURCE_FEEDBACK_RESOLVED");
+});
+
+test("reporter responses omit the internal resolution audit note", async () => {
+  const db = makeDb();
+  const created = await createSourceFeedback("owner", VALID, { prisma: db });
+  await resolveSourceFeedback("admin", created.item.id, { resolutionNote: "Internal remediation detail" }, { prisma: db });
+
+  const detail = await getOwnSourceFeedback("owner", created.item.id, { prisma: db });
+  const list = await listOwnSourceFeedback("owner", { prisma: db });
+
+  assert.equal(Object.hasOwn(detail, "resolutionNote"), false);
+  assert.equal(Object.hasOwn(list[0], "resolutionNote"), false);
 });
