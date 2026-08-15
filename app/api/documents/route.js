@@ -23,6 +23,7 @@ import {
   assertMimeMatchesBuffer
 } from "@/lib/documents/server"
 import { safeError } from "@/lib/privacy/safeError"
+import { visibleRecordingDocumentWhere } from "@/lib/documents/recordingVisibility"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
@@ -103,6 +104,7 @@ export async function GET(request) {
   const search = String(requestUrl.searchParams.get("search") || "").trim().slice(0, 200)
   const where = {
     ownerId: auth.userId,
+    ...visibleRecordingDocumentWhere(),
     ...(kind ? { kind } : {}),
     ...(search
       ? {

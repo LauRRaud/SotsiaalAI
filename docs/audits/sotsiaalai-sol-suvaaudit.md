@@ -3202,6 +3202,13 @@ testi kukub vana teostuse peal** (mõõdetud failide ajutise tagasivahetusega).
 kustutuse tõrget (õigused, lukus fail) ei ole reprodutseeritud — see nõuab serverit, kus
 egress päriselt kirjutab.
 
+**Järelparandus (15.08.2026):** Aardvarki kontroll leidis, et artefakti kustutuse tõrke järel
+alles hoitud `UserDocument` oli `ownerId` kaudu endiselt loendis, detailvaates, allalaaditav ja
+transkribeeritav. Kõik dokumendi- ja heliväljundi read kasutavad nüüd ühist relatsioonifiltrit,
+mis ei väljasta `DELETE_PENDING` ega `QUARANTINED` salvestise dokumenti. Sihttest tõendab nii
+Prisma predikaati kui ka selle olemasolu kõigil kuuel avalikustamispiiril; runtime/DB sondi ei
+ole vaja, sest invariant on päringu `where`-tingimus, mitte andmebaasi tasandi võistlus.
+
 ### SOL-CALL-07 — nõustunud osaleja saab „salvestis saadaval” teate, kuid fail kuulub ainult taotlejale — P2
 
 **Tõend.** Salvestuse lõpetamisel luuakse üks `UserDocument` omanikuga `recordingRequest.requestedByUserId` (`lib/calls/service.js:838-853`). Dokumentide list, detail ja download on rangelt `ownerId: auth.userId` skoopiga (`app/api/documents/route.js:96-105`, `app/api/documents/[id]/download/route.js:45-56`). Samas `notifyCallRecordingAvailable()` saadab teate kõigile CONSENTED osalejatele (`lib/calls/notifications.js:82-114`) ning notification-verifieri kommentaar väidab, et nõustunul on ligipääs ka pärast ruumist lahkumist (`lib/notifications.js:640-653`). UI nõusolekutekst lubab faili „õigustatud kasutajatele dokumentide vaates” (`components/rooms/RoomCallBar.jsx:235-241`), kuid consent-põhist dokumentide projektsiooni ega allalaadimisroute'i pole.

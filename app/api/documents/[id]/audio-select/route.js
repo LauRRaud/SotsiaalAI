@@ -3,6 +3,7 @@ import { AUDIO_SOURCE_KINDS } from "@/lib/documents/audioWorkflow"
 import { logDocumentsAudit } from "@/lib/documents/audit"
 import { errorJson, json, localeFromRequest, requireDocumentUser } from "@/lib/documents/server"
 import { safeError } from "@/lib/privacy/safeError"
+import { visibleRecordingDocumentWhere } from "@/lib/documents/recordingVisibility"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
@@ -28,7 +29,12 @@ export async function POST(request, { params }) {
 
   try {
     const document = await prisma.userDocument.findFirst({
-      where: { id, ownerId: auth.userId, fieldVisitAttachments: { none: { storageStatus: { not: "ACTIVE" } } } },
+      where: {
+        id,
+        ownerId: auth.userId,
+        ...visibleRecordingDocumentWhere(),
+        fieldVisitAttachments: { none: { storageStatus: { not: "ACTIVE" } } }
+      },
       select: {
         id: true,
         ownerId: true,
