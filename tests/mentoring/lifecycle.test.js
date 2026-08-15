@@ -10,6 +10,7 @@ import {
 import { listMentorCatalog, getCatalogProfile } from "../../lib/mentoring/catalogService.js";
 import {
   createMentoringRequest,
+  listMyMentoringRequests,
   respondMentoringRequest,
   cancelMentoringRequest
 } from "../../lib/mentoring/requestService.js";
@@ -146,6 +147,9 @@ test("SOL-MENT-01: every moderated edit returns ACTIVE profile to review and kee
   });
   const request = await createMentoringRequest(MENTEE, { mentorProfileId: stored.id, message: "Approved mentor request" }, { db, now });
   assert.equal(request.status, "PENDING");
+  assert.equal(request.mentorDisplayName, "Approved name");
+  const requests = await listMyMentoringRequests(MENTEE, { db, now });
+  assert.equal(requests[0].mentorDisplayName, "Approved name");
 });
 
 test("profile submit requires completeness", async () => {
