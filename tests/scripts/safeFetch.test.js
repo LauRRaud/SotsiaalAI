@@ -16,6 +16,17 @@ test("safe fetch blocks private targets before a request is made", async () => {
   );
 });
 
+test("safe fetch blocks hex-normalized private IPv4-mapped IPv6 targets", async () => {
+  for (const address of ["::ffff:7f00:1", "::ffff:a00:1", "::ffff:ac10:1", "::ffff:c0a8:1"]) {
+    await assert.rejects(
+      () => assertSafeFetchUrl(`http://[${address}]/internal`, { lookup: publicLookup }),
+      error => error instanceof SafeFetchError && error.code === "blocked_address"
+    );
+  }
+  const target = await assertSafeFetchUrl("http://[::ffff:5db8:d822]/guide", { lookup: publicLookup });
+  assert.deepEqual(target.addresses, ["::ffff:5db8:d822"]);
+});
+
 test("safe fetch revalidates every redirect hop", async () => {
   const calls = [];
   const fetchImpl = async (url) => {
