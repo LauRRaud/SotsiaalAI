@@ -92,6 +92,11 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Aardvarki kõnesalvestuse läbipaistvuse leid on parandatud.** Privaatsuspoliitika ja
+kasutustingimused selgitavad nüüd kolmes keeles, et ruumikõne salvestamine käivitub ainult
+osaleja taotlusel ja kõigi nõutud osalejate nõusolekul ning valmis helifail säilib taotleja
+dokumenditeegis piiratud tähtajaga. Järgmine tööots valitakse S4-st.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
@@ -2781,6 +2786,9 @@ DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sise
 Võimalused, kasutusjuhend, kasutustingimused, privaatsustingimused, tööalase kasutuse
 raamistik, hinnastus, „Meist" ja „Autorilt" on olemas kolmes keeles. Registreerimine on
 teadlikult suletud kuni avaliku käivituseni.
+
+Kõnesalvestuse kirjeldus vastab runtime'ile: salvestamine on osaleja taotluse ja kõigi
+nõutud nõusolekute taga ning valmis salvestis säilib taotleja dokumenditeegis piiratud aja.
 
 ### Poolik
 
