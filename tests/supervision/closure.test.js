@@ -14,6 +14,7 @@ import { createSummary, submitSummary, approveSummary, discardSummary } from "..
 import { createPrivateItem } from "../../lib/supervision/privateItems.js";
 import { shareTopic } from "../../lib/supervision/topics.js";
 import { closeProcess, closePreview } from "../../lib/supervision/closure.js";
+import { tombstoneSupervisionForAccountDeletion } from "../../lib/supervision/accountDeletion.js";
 import { listOutcomes, getOutcome } from "../../lib/supervision/outcomes.js";
 
 /**
@@ -206,6 +207,29 @@ test("SUP-06: M12 sisaldab iga osaleja enda viimati aktsepteeritud kontrakti", a
   assert.equal(byOwner.get("os1").lastAcceptedContractBody, "Kontrakt v2");
   assert.equal(byOwner.get("os2").lastAcceptedContractBody, "Kontrakt v1");
   assert.equal(byOwner.get("sv1").lastAcceptedContractBody, "Kontrakt v2");
+});
+
+test("konto kustutanud ACCEPTED osaleja ei blokeeri sulgemist ega saa M12 pakki", async () => {
+  const db = setupBase();
+  const { processId } = await makeActiveProcess(db);
+  await shareTopic(
+    { processId, session: os1(), input: { audience: "PROCESS", title: "Toores", body: "kustub" } },
+    { db }
+  );
+  await tombstoneSupervisionForAccountDeletion("os1", { db, now: new Date("2026-08-15T00:00:00.000Z") });
+
+  const preview = (await closePreview({ processId, session: sv() }, { db })).preview;
+  assert.equal(preview.willKeep.personalOutcomes, 1);
+
+  const before = await getProcessDetail({ processId, session: sv() }, { db });
+  await closeProcess(
+    { processId, session: sv(), input: { expectedVersion: before.version, generalizedTitle: "Lõpetatud grupp" } },
+    { db }
+  );
+
+  assert.deepEqual(db.store.supervisionPersonalOutcome.map((row) => row.ownerUserId), ["sv1"]);
+  assert.equal(db.store.supervisionSharedTopic.length, 0);
+  assert.ok(db.store.supervisionClosure.some((row) => row.processId === processId));
 });
 
 test("SUP-10: close-preview keelab LAHK/KUT/võõra ja OS ei näe peidetud loendusi", async () => {
