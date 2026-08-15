@@ -215,6 +215,28 @@ test("HANDOVER ↔ ACCEPT: vana kinnitus ei vii juhtumit uue üleandmise vale la
   assert.equal(row().handoverAcceptedAt ?? null, null);
 });
 
+test("RECALL ↔ ACCEPT: samaaegne tagasivõtt ei anna juhtumit vastuvõtvale lauale", async () => {
+  const { prisma, request, row } = await seeded();
+  await handOverUrgentRequest({
+    prisma, requestId: request.id, userId: "staff_1", targetDeskId: "desk_other", now
+  });
+
+  // Kinnitaja loeb aktiivse rea; enne tingimuslikku kirjutust võidab tagasivõtt.
+  winsRaceAfterLoad(prisma, {
+    status: UrgentRequestStatus.RECALLED,
+    recalledAt: NOW
+  });
+
+  await assert.rejects(
+    acceptUrgentHandover({ prisma, requestId: request.id, userId: "staff_other", now }),
+    UrgentRequestError
+  );
+  assert.equal(row().status, UrgentRequestStatus.RECALLED);
+  assert.equal(row().deskId, "desk_kov", "tagasivõetud juhtum liikus vastuvõtvale lauale");
+  assert.equal(row().handoverAcceptedAt ?? null, null);
+  assert.equal(prisma.urgentRequestEvent.rows.filter((event) => event.kind === "HANDOVER_ACCEPTED").length, 0);
+});
+
 // --- SOL-URG-07: vastutaja on põhirea peal -----------------------------------
 
 test("„Võtan\" kirjutab vastutaja põhireale, mitte ainult sündmusesse", async () => {
