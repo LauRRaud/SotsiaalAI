@@ -59,6 +59,11 @@ test("store-fetched routes convert the ownership-fail branch to the resource's o
 test("generation persists a durable DRAFT (no transient result) and both entry points share the idempotent helper", () => {
   const generate = read("app/api/documents/artifacts/generate/route.js");
   assert.match(generate, /persistArtifactDraft/);
+  assert.doesNotMatch(
+    generate,
+    /persistArtifactDraft\(\{[\s\S]{0,500}enforceQuota:\s*false/,
+    "generated durable content must be included in the atomic storage-quota decision"
+  );
   assert.match(generate, /draft:\s*persisted\.artifact/, "the persisted artifact is returned to the workspace client as draft");
   assert.doesNotMatch(generate, /isTransient:\s*true/, "no transient, cost-losing draft is returned");
 
