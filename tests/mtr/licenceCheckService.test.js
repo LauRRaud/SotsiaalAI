@@ -9,7 +9,7 @@ const NOW = new Date("2026-08-05T12:00:00.000Z");
 const FRESH = "2026-08-05T09:00:00.000Z";
 
 function fakePrisma({ profile, assessments = [], services = [], newestCheckId = undefined }) {
-  const state = { checks: [], upserts: [], transactions: 0 };
+  const state = { checks: [], upserts: [], transactions: 0, lease: null };
   const tx = {
     licenceCheck: {
       findFirst: async () => (newestCheckId === undefined ? profile?.licenceChecks?.[0] || null : { id: newestCheckId }),
@@ -31,7 +31,19 @@ function fakePrisma({ profile, assessments = [], services = [], newestCheckId = 
       state.transactions += 1;
       return fn(tx);
     },
-    serviceProviderProfile: { findUnique: async () => profile },
+    serviceProviderProfile: {
+      findUnique: async () => profile,
+      updateMany: async ({ where, data }) => {
+        if (where.licenceCheckLeaseToken) {
+          if (state.lease?.token !== where.licenceCheckLeaseToken) return { count: 0 };
+          state.lease = null;
+          return { count: 1 };
+        }
+        if (state.lease && state.lease.until > NOW) return { count: 0 };
+        state.lease = { token: data.licenceCheckLeaseToken, until: data.licenceCheckLeaseUntil };
+        return { count: 1 };
+      }
+    },
     serviceLicenceAssessment: { findMany: async () => assessments },
     serviceProviderService: { findMany: async () => services }
   };
@@ -134,6 +146,43 @@ test("käsitsi kontroll austab jahtumisaega ja ütleb, millal tohib uuesti", asy
     resolveEntity: okEntity
   });
   assert.equal(auto.completed, true);
+});
+
+test("paralleelne käsitsi kontroll ei alusta teist MTR-i päringuahelat", async () => {
+  const prisma = fakePrisma({ profile: profileWith([]) });
+  let releaseFirst;
+  const firstWaiting = new Promise((resolve) => {
+    releaseFirst = resolve;
+  });
+  let entityCalls = 0;
+  const resolveEntity = async () => {
+    entityCalls += 1;
+    if (entityCalls === 1) await firstWaiting;
+    return okEntity();
+  };
+
+  const first = runLicenceCheck({
+    providerProfileId: "p1",
+    prisma,
+    now: NOW,
+    trigger: CHECK_TRIGGER.MANUAL,
+    fetchLicences: okLicences([]),
+    resolveEntity
+  });
+  await new Promise((resolve) => setImmediate(resolve));
+  const second = await runLicenceCheck({
+    providerProfileId: "p1",
+    prisma,
+    now: NOW,
+    trigger: CHECK_TRIGGER.MANUAL,
+    fetchLicences: okLicences([]),
+    resolveEntity
+  });
+
+  assert.equal(second.skipped, CHECK_SKIPPED.IN_PROGRESS);
+  assert.equal(entityCalls, 1, "teine kontroll ei jõua välise registrini");
+  releaseFirst();
+  await first;
 });
 
 test("õnnestunud kontroll kirjutab kirje, load, kohad ja hinnangu ühe tehinguga", async () => {

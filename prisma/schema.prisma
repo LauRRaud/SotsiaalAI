@@ -2325,6 +2325,10 @@ model ServiceProviderProfile {
   publishedAt                    DateTime?
   hiddenAt                       DateTime?
   checkedAt                      DateTime?
+  /// Lühike hajus lease hoiab käsitsi MTR-kontrolli ühe profiili kohta
+  /// ühekordsena ka mitme rakendusprotsessi korral.
+  licenceCheckLeaseToken         String?
+  licenceCheckLeaseUntil         DateTime?
   ragSourceId                    String?
   ragMetadata                    Json?
   createdAt                      DateTime                     @default(now())
