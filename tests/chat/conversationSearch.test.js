@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
+  CONVERSATION_MESSAGE_SEARCH_MIN_LENGTH,
   CONVERSATION_SEARCH_MAX_LENGTH,
   CONVERSATION_SEARCH_TOO_LONG,
   applyConversationSearch,
@@ -93,6 +94,16 @@ test("searches title, summary AND message content", () => {
   // title from the last message, so a column-only search would not find a
   // conversation by the title the user is actually shown.
   assert.equal(fields[2].messages.some.content.contains, "eluase");
+});
+
+test("short low-selectivity queries do not scan message content", () => {
+  const query = "a".repeat(CONVERSATION_MESSAGE_SEARCH_MIN_LENGTH - 1);
+  const filter = conversationSearchFilter(query);
+
+  assert.deepEqual(filter.OR, [
+    { title: { contains: query, mode: "insensitive" } },
+    { summary: { contains: query, mode: "insensitive" } }
+  ]);
 });
 
 test("search is case-insensitive on every field", () => {
