@@ -265,6 +265,38 @@ test("auditi viga ei neelata ära — ÜMBERMÄÄRAMINE kukub", async () => {
   );
 });
 
+test("samale töötajale ümbermääramine ei avalda tahvlilt peidetud külastuse sisu", async () => {
+  const visit = {
+    id: "visit-1",
+    status: "PLANNED",
+    ownerUserId: "worker-1",
+    assignedOrganizationId: "org-1",
+    clientDisplayName: "Klient",
+    clientExternalRef: "SALAJANE-4872",
+    address: "Varjatud kodune aadress",
+    addressLat: 58.3776,
+    addressLng: 26.729,
+    note: "Tundlik hooldusmärge"
+  };
+  const db = makeWriteDb({ visit });
+  let visitSelect;
+  db.serviceVisit.findFirst = async ({ select }) => {
+    visitSelect = select;
+    return visit;
+  };
+
+  const result = await reassignVisit(
+    "manager-1",
+    { organizationId: "org-1", visitId: "visit-1", toWorkerUserId: "worker-1" },
+    { db, env: ENV, now: NOW }
+  );
+
+  assert.deepEqual(result, { id: "visit-1" }, "mutatsioonivastus peab olema minimaalne");
+  for (const field of ["clientExternalRef", "address", "addressLat", "addressLng", "addressAdsId", "note"]) {
+    assert.equal(visitSelect[field], undefined, `${field} ei tohi ümbermääramise lugemisse kuuluda`);
+  }
+});
+
 /* Audit peab saama TEHINGU käepideme. Välise kliendiga kirjutatud rida jääks
    alles ka siis, kui põhimuudatus tagasi keritakse — ja siis oleks meil jälg
    tööst, mida ei ole. */
