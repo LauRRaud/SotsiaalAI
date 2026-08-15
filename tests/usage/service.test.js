@@ -426,6 +426,38 @@ test("commit moves the reservation into used exactly once", async () => {
   assert.deepEqual(prisma.state.events.map(event => event.type), ["RESERVED", "COMMITTED"]);
 });
 
+test("a committed key cannot reserve capacity for a new operation", async () => {
+  const prisma = createFakePrisma();
+  const service = createUsageService({ prismaClient: prisma });
+
+  await service.reserve({
+    userId: "user_1",
+    metric: "CHAT_ASSISTANT_REPLY",
+    idempotencyKey: "chat.reply:completed_intent",
+    entitlement,
+    now
+  });
+  await service.commit({
+    userId: "user_1",
+    idempotencyKey: "chat.reply:completed_intent",
+    now
+  });
+
+  await assert.rejects(
+    () => service.reserve({
+      userId: "user_1",
+      metric: "CHAT_ASSISTANT_REPLY",
+      idempotencyKey: "chat.reply:completed_intent",
+      entitlement,
+      now
+    }),
+    error => error.code === "USAGE_IDEMPOTENCY_CONFLICT"
+  );
+  assert.equal(prisma.state.buckets[0].used, 1n);
+  assert.equal(prisma.state.buckets[0].reserved, 0n);
+  assert.deepEqual(prisma.state.events.map(event => event.type), ["RESERVED", "COMMITTED"]);
+});
+
 // SOL-DOC-01. Stabiilne kliendivõti muudab vabastuse tähenduse: RELEASED ei tohi olla
 // kavatsuse lõpp, vaid „see kord ei õnnestunud". Ilma alljärgnevata oleks üks ajutine
 // tehniline viga muutnud kavatsuse igaveseks surnuks — reserve annaks tagasi vabastatud
