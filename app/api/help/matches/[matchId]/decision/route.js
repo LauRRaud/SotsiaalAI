@@ -7,6 +7,7 @@ import { consumeRateLimit } from "@/lib/rate-limit";
 import { getRequestIpFromRequest } from "@/lib/request-ip";
 import { createNotificationEvent, NOTIFICATION_EVENT_TYPES } from "@/lib/notifications";
 import { logDataAudit } from "@/lib/privacy/audit";
+import { validateJsonMutationRequest } from "@/lib/security/jsonMutationRequest";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -24,6 +25,9 @@ export async function POST(request, { params }) {
   const session = await getServerSession(authConfig).catch(() => null);
   const userId = session?.user?.id || "";
   if (!userId) return json({ ok: false, message: "api.common.unauthorized" }, 401);
+  if (!validateJsonMutationRequest(request)) {
+    return json({ ok: false, message: "api.common.invalid_request" }, 403);
+  }
   const limiter = consumeRateLimit(
     `help-match:decision:${userId}:${getRequestIpFromRequest(request)}`,
     RATE_LIMIT_MAX,
