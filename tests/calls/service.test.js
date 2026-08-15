@@ -1290,6 +1290,17 @@ test("SOL-CALL-05: liitunikaalsus on skeemis ja migratsioonis, mitte ainult kood
 
 // --- T12 ROOMS-CALLS-V1 ---
 
+test("T12 E2: legacy recording dedupe preserves an active egress and rejects multiple active egresses", async () => {
+  const migration = await readFile(
+    new URL("../../prisma/migrations/20260721000000_rooms_calls_v1/migration.sql", import.meta.url),
+    "utf8"
+  );
+
+  assert.match(migration, /COUNT\(\*\).*FILTER \(WHERE .*"status" = 'ACTIVE'\)/s);
+  assert.match(migration, /RAISE EXCEPTION 'Cannot deduplicate open recording requests: call % has multiple ACTIVE requests'/);
+  assert.match(migration, /CASE rr\."status"\s+WHEN 'ACTIVE' THEN 0\s+WHEN 'READY_TO_RECORD' THEN 1\s+ELSE 2\s+END/s);
+});
+
 test("T12 E1: ending an active room call clears active participants and marks it ended (audit 16 K1)", async () => {
   const prisma = createPrisma();
   const service = createCallService({ prisma });

@@ -29,18 +29,47 @@ WHERE cp."leftAt" IS NULL
            OR (other."joinedAt" = cp."joinedAt" AND other."id" < cp."id"))
   );
 
--- Topelt-avatud salvestustaotlused sama kõne kohta: hoia varaseim, märgi
--- ülejäänud DELETED (avatud hulgast väljas, ei jäta orvustatud egress'i).
+-- Topelt-avatud salvestustaotlused sama kõne kohta: säilita eeskätt ACTIVE,
+-- seejärel READY_TO_RECORD ja alles siis varaseim REQUESTED. Mitut ACTIVE
+-- taotlust ei saa migratsioon turvaliselt ühendada ega nende egresse peatada;
+-- sel juhul peatu, et ükski käimasolev salvestus rakenduse kontrolli alt ei kaoks.
+DO $$
+DECLARE
+  duplicate_call TEXT;
+BEGIN
+  SELECT rr."callSessionId"::TEXT INTO duplicate_call
+  FROM "public"."CallRecordingRequest" rr
+  GROUP BY rr."callSessionId"
+  HAVING COUNT(*) FILTER (WHERE rr."status" = 'ACTIVE') > 1
+  LIMIT 1;
+
+  IF duplicate_call IS NOT NULL THEN
+    RAISE EXCEPTION 'Cannot deduplicate open recording requests: call % has multiple ACTIVE requests', duplicate_call;
+  END IF;
+END $$;
+
+WITH ranked_open_requests AS (
+  SELECT
+    rr."id",
+    ROW_NUMBER() OVER (
+      PARTITION BY rr."callSessionId"
+      ORDER BY
+        CASE rr."status"
+          WHEN 'ACTIVE' THEN 0
+          WHEN 'READY_TO_RECORD' THEN 1
+          ELSE 2
+        END,
+        rr."requestedAt",
+        rr."id"
+    ) AS open_rank
+  FROM "public"."CallRecordingRequest" rr
+  WHERE rr."status" IN ('REQUESTED', 'READY_TO_RECORD', 'ACTIVE')
+)
 UPDATE "public"."CallRecordingRequest" rr
 SET "status" = 'DELETED', "updatedAt" = NOW()
-WHERE rr."status" IN ('REQUESTED', 'READY_TO_RECORD', 'ACTIVE')
-  AND EXISTS (
-    SELECT 1 FROM "public"."CallRecordingRequest" other
-    WHERE other."callSessionId" = rr."callSessionId"
-      AND other."status" IN ('REQUESTED', 'READY_TO_RECORD', 'ACTIVE')
-      AND (other."requestedAt" < rr."requestedAt"
-           OR (other."requestedAt" = rr."requestedAt" AND other."id" < rr."id"))
-  );
+FROM ranked_open_requests ranked
+WHERE rr."id" = ranked."id"
+  AND ranked.open_rank > 1;
 
 -- --------------------------------------------------------------------------
 -- Osalised unikaalindeksid (race-lukud)
