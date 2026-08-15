@@ -92,6 +92,11 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Aardvarki andmekoopia leid on parandusharus suletud.** Kasutaja enda kovisiooni privaatolekud,
+supervisiooni privaatkirjed ja personaalsed tulemid on nüüd omaniku järgi piiratud ning eraldi
+manifestipindadena andmekoopias; sihttest lukustab nii päringuskoobi kui privaatse sisu olemasolu.
+Järgmine tööots valitakse S4-st pärast paranduse integreerimist.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
