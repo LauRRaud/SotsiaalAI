@@ -39,6 +39,17 @@ function fakeDb() {
         if (!row) return { count: 0 }
         apply(row, data)
         return { count: 1 }
+      },
+      async delete({ where }) {
+        const row = receipts.get(where.id)
+        receipts.delete(where.id)
+        return row
+      },
+      async deleteMany({ where }) {
+        const row = receipts.get(where.id)
+        if (!row || (where.storageState && row.storageState !== where.storageState)) return { count: 0 }
+        receipts.delete(where.id)
+        return { count: 1 }
       }
     },
     dataDeletionJob: {
@@ -52,6 +63,14 @@ function fakeDb() {
       },
       async update({ where, data }) {
         return apply(jobs.find(job => job.id === where.id), data)
+      },
+      async deleteMany({ where }) {
+        const before = jobs.length
+        for (let index = jobs.length - 1; index >= 0; index -= 1) {
+          const job = jobs[index]
+          if (job.action === where.action && job.resourceId === where.resourceId && job.status === where.status) jobs.splice(index, 1)
+        }
+        return { count: before - jobs.length }
       }
     },
     async $transaction(write) { return write(db) }
@@ -109,8 +128,8 @@ for (const code of ["scanner_unavailable", "scanner_timeout", "scanner_unknown_r
       }
     ), new RegExp(code))
     assert.equal(parsed, false)
-    assert.equal([...db.receipts.values()][0].scanState, "FAILED")
-    assert.equal([...db.receipts.values()][0].storageState, "QUARANTINED")
+    assert.equal(db.receipts.size, 0)
+    assert.equal(db.jobs.length, 0)
   })
 }
 
@@ -135,6 +154,27 @@ test("EICAR/infected bytes are never parsed and get an audited deletion tombston
   assert.equal(db.jobs[0].status, "done")
   assert.equal(db.audits[0].action, "MATERIAL_MALWARE_REJECTED")
   assert.equal("storagePath" in db.audits[0].meta, false)
+})
+
+test("invalid files are removed with their quarantine metadata", async () => {
+  const db = fakeDb()
+  const events = []
+  await assert.rejects(quarantineMaterialUpload(
+    { userId: "owner-1", originalName: "invalid.pdf", mime: "application/pdf", buffer: Buffer.from("invalid") },
+    {
+      db,
+      files: fileOps(events),
+      scanner: { async scan() { return {
+        state: "CLEAN", engine: "ClamAV", engineVersion: "1", signatureVersion: "2", signatureUpdatedAt: new Date()
+      } } },
+      validate: async () => { throw new Error("invalid_pdf") },
+      audit
+    }
+  ), /invalid_pdf/)
+  assert.deepEqual(events, ["write:quarantine", "remove:quarantine"])
+  assert.equal(db.receipts.size, 0)
+  assert.equal(db.jobs.length, 0)
+  assert.equal(db.audits[0].action, "MATERIAL_QUARANTINE_REJECTED")
 })
 
 test("clamd adapter rejects stale signatures before sending INSTREAM bytes", async () => {

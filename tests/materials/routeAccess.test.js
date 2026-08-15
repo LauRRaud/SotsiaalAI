@@ -35,3 +35,32 @@ test("material POST re-evaluates a changed role on every request", async () => {
   assert.equal(await statusFor(session("SOCIAL_WORKER", "same-user")), 400)
   assert.equal(await statusFor(session("CLIENT", "same-user")), 403)
 })
+
+test("material POST rejects an invalid idempotency key before quarantine writes", async () => {
+  const form = new FormData()
+  form.append("file", new File(["safe"], "safe.txt", { type: "text/plain" }))
+  let quarantineCalls = 0
+  const response = await handleMaterialPost(new Request("http://localhost/api/materials", { method: "POST", body: form }), {
+    sessionProvider: async () => session("SOCIAL_WORKER"),
+    uploadAccess: async () => ({ ok: true }),
+    quarantineUpload: async () => { quarantineCalls += 1 }
+  })
+  assert.equal(response.status, 400)
+  assert.equal(quarantineCalls, 0)
+})
+
+test("material POST discards request quarantines when submission admission fails", async () => {
+  const form = new FormData()
+  form.append("idempotencyKey", "valid-request-key")
+  form.append("file", new File(["safe"], "safe.txt", { type: "text/plain" }))
+  const discarded = []
+  const response = await handleMaterialPost(new Request("http://localhost/api/materials", { method: "POST", body: form }), {
+    sessionProvider: async () => session("SOCIAL_WORKER"),
+    uploadAccess: async () => ({ ok: true }),
+    quarantineUpload: async () => ({ quarantineReceiptId: "receipt-1" }),
+    discardQuarantine: async value => discarded.push(value.receiptId),
+    createSubmissions: async () => { const error = new Error("api.common.too_many_requests"); error.status = 429; throw error }
+  })
+  assert.equal(response.status, 429)
+  assert.deepEqual(discarded, ["receipt-1"])
+})
