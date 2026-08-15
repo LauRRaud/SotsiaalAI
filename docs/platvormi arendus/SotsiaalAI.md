@@ -92,13 +92,14 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**Codex Security MEDIUM-leidude kontrollitud integratsioon on pooleli puhtas eraldi
-tööpuus.** 56 mitteblokeeritud ja mittedubleeriva PR-i parandused on koondatud 18 sidusaks
-kohalikuks commit'iks ning kontrollitud plokkide sihttestide, lindi ja diff-kontrolliga;
-põhitööpuud, GitHubi `main`-i ega toodangut ei ole selle ringiga veel muudetud. Toote- või
-õigusotsust vajavad, päris PostgreSQL-i tõendita migratsiooniparandused, osalised parandused,
-punase CI-ga PR-id ja duplikaadid jäid teadlikult välja. Muutumatu koondpuu UTC täisvärav on
-**4848/4848**; järgmine samm on omaniku loal push ning eraldi loal toodangusse viimine.
+**Codex Security MEDIUM- ja LOW-leidude kontrollitud integratsioon jätkub eraldi
+turvaharudes.** MEDIUM-ringi 56 parandust on GitHubi harus
+`codex/security-medium-integration`; LOW-ringi 25 ettepanekust on 23 sobivat parandust
+koondatud kohalikku harusse `codex/security-low-integration`, #110 asendas laiem #116 ning
+#122 jäi välja, sest kogu platvormi nupukujunduse lihtsustamine vajab omaniku tooteotsust.
+LOW-koondpuu sihttestid, lint, tõlkekataloog ja diff-kontroll on rohelised ning muutumatu puu
+UTC täisvärav on **4866/4866**. GitHubi `main` ja toodang on nende MEDIUM/LOW harudega
+muutmata; järgmine samm on LOW-haru push omaniku loal ja hilisem eraldi kontrollitud liitmine.
 
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
