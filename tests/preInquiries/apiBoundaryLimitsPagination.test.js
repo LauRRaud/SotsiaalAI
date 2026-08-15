@@ -48,6 +48,24 @@ test("SOL-PRE-15/16 every pre-inquiry mutation is rate limited and raw errors ar
   }
 });
 
+test("pre-inquiry shared abuse budget only uses the trusted proxy IP boundary", () => {
+  const source = readFileSync(resolve("lib/preInquiryApiBoundary.js"), "utf8");
+  assert.match(source, /getTrustedRequestIpFromRequest/u);
+  assert.doesNotMatch(source, /\bgetRequestIpFromRequest\b/u);
+
+  const seen = [];
+  preInquiryRateLimitDecision({
+    action: "create",
+    userId: "user-a",
+    ip: null,
+    consume(key) {
+      seen.push(key);
+      return { allowed: true, remaining: 1, retryAfterSec: 0 };
+    }
+  });
+  assert.deepEqual(seen, ["pre-inquiry:create:user:user-a"]);
+});
+
 test("SOL-PRE-16 user and IP action buckets expose retry metadata and fail on the first over-limit call", () => {
   const seen = [];
   const consume = (key, limit, windowMs) => {
