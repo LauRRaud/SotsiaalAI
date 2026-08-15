@@ -92,6 +92,11 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Aardvarki eval-sessiooni säilitamise leid on parandatud.** Tootmisega seotud hindamisjooks
+loob nüüd eraldi ülesandepõhise sünteetilise konto ja sessiooni ega taaskasuta varasema jooksu
+bearer-küpsist; cleanup eemaldab sessioonifaili, tühistab aktiivsed sessioonid ning kustutab
+jooksu `ChatLog`-read ja konto ka katkestuse või vea korral.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
@@ -2742,6 +2747,8 @@ horisondid osas II.
 Kasutaja loob konto, kinnitab e-posti, kasutab PIN-i ja saab oma konto kustutada nii, et
 kustutus käib päriselt läbi kõigi kihtide. Privaatsuspiirid on jõustatud serveris, mitte
 liideses — ka administraator ei pääse võõra kovisioonijuhtumi ega tööheaolu kirjete juurde.
+Tootmisega seotud eval-jooksude bearer-sessioone ei säilitata korduskasutuseks: iga jooks
+kasutab ülesandepõhist sünteetilist kontot ning tühistab ja kustutab selle cleanup'is.
 
 **Keeled ja ligipääsetavus.**
 Platvorm töötab eesti, inglise ja vene keeles ning tõlkepariteeti kontrollib eraldi värav —

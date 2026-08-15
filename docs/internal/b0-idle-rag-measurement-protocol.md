@@ -84,12 +84,12 @@ väldib seisaku järel tagantjärele mõõtmist, mis rikuks idle-bucketi tähend
 
 ## Cleanup
 
-Pärast piisava valimi või viiepäevase akna lõppu timer disable/stop-itakse,
-loodud unitid eemaldatakse, tehakse daemon-reload ning kontrollitakse, et
-app-teenused on endiselt active ja nende PID-id ei muutunud. Säilitatakse ainult
-sanitiseeritud CSV ja analüüs; ajutine päringu-env ning mõõtebundle eemaldatakse.
-01.08.2026 omaniku prioriteedimuudatus säilitab ülesandepõhise sünteetilise
-konto ja 600-loaga sessioonifaili Golden-37 mini/Luna võrdluse jaoks. Idle-
-mõõtmise systemd-unitid eemaldatakse, kuid kontot, setup-smoke'i ChatLog-ridu,
-mõõtebundle'it ega sanitiseeritud CSV-d ei kustutata. Teiste kasutajate andmeid
-ei puudutata.
+Pärast piisava valimi, viiepäevase akna või katkestatud jooksu lõppu timer
+disable/stop-itakse, loodud unitid eemaldatakse, tehakse daemon-reload ning
+kontrollitakse, et app-teenused on endiselt active ja nende PID-id ei muutunud.
+Säilitatakse ainult sanitiseeritud CSV ja analüüs. Ajutine päringu-env,
+mõõtebundle ja ülesandepõhine sessioonifail eemaldatakse; sünteetilise konto
+aktiivsed sessioonid tühistatakse, setup-smoke'i `ChatLog`-read kustutatakse
+ning konto kustutatakse. Hilisem hindamine loob uue ülesandepõhise konto ja
+sessiooni, mis tühistatakse sama jooksu cleanup'is. Teiste kasutajate andmeid ei
+puudutata.

@@ -26,8 +26,12 @@ Serveris säilitati:
 
 - `/home/ubuntu/apps/sotsiaalai-b0-idle-rag-measurement/data/b0-idle-rag-measurements.csv`;
 - sama kataloogi `state.json` ja lock;
-- mõõteharness'i eraldatud bundle;
-- 600-loaga sünteetiline sessioonifail, mida kasutatakse mini/Luna hindamisel.
+- mõõteharness'i eraldatud bundle.
+
+Sessioonifail ja sünteetiline konto ei ole säilitatav tõend. Cleanup peab
+eemaldama ülesandepõhise sessioonifaili ja setup-smoke'i `ChatLog`-read ning
+tühistama konto aktiivsed sessioonid enne konto kustutamist. Järgmine hindamine
+ei tohi seda bearer-küpsist taaskasutada.
 
 Sanitiseeritud CSV kopeeriti branchi faili `docs/internal/b0-idle-rag-measurements.csv`. Setup-smoke sisaldab kahte native `rag_search` rida:
 
