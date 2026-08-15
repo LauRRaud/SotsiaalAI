@@ -26,7 +26,13 @@ test("SOL-SLOG-J-05: töötaja ja kliendi koopiad on eri skoopides ning kolmanda
     providerProfileId: "profile-2",
     ownerUserId: "other-worker",
     clientUserId: "worker-1",
+    clientDisplayName: "Kliendi nimi ei kuulu koopiasse",
+    clientExternalRef: "external-secret",
+    locationStamps: [{ lat: 59.437, lng: 24.7536 }],
     note: "Minu teenuskirje",
+    noteProvenance: "worker_fact_note",
+    unit: "HOUR",
+    quantity: 2,
     confirmedByClientAt: now,
     createdAt: now
   };
@@ -68,9 +74,12 @@ test("SOL-SLOG-J-05: töötaja ja kliendi koopiad on eri skoopides ning kolmanda
   assert.match(professional, /"view":"recipient"/);
   assert.doesNotMatch(professional, /Kolmas Isik|secret-ref|Salajane aadress|secret\/path/);
   assert.match(client, /entry-client/);
-  assert.match(client, /Minu teenuskirje/);
+  assert.match(client, /"unit":"HOUR"/);
+  assert.match(client, /"quantity":2/);
   assert.match(client, /confirmedByClientAt/);
   assert.doesNotMatch(client, /entry-professional/);
+  assert.doesNotMatch(client, /Kliendi nimi ei kuulu koopiasse|external-secret|59\.437|24\.7536/);
+  assert.doesNotMatch(client, /Minu teenuskirje|worker_fact_note|Minu lugu|client-referral/);
 });
 
 test("SOL-SLOG-J-06: konto kustutus tombstone'ib kõik Teenuspäeviku rollid idempotentses tehingus", async () => {
