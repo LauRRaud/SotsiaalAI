@@ -170,6 +170,27 @@ test("ARCHIVED is fail-closed for ordinary PATCH until a version-safe reopen", a
   assert.equal(edited.topic, "Teadlikult taasavatud");
 });
 
+test("author cannot reopen an archived inquiry after it entered the recipient lifecycle", async () => {
+  const archivedAt = new Date("2026-08-13T09:00:00.000Z");
+  for (const lifecycleState of [
+    { sentAt: new Date("2026-08-13T08:30:00.000Z") },
+    { openedAt: new Date("2026-08-13T08:45:00.000Z") },
+    { supersededById: "inq-successor" }
+  ]) {
+    const db = createDb(row({ status: "ARCHIVED", updatedAt: archivedAt, ...lifecycleState }));
+
+    const error = await reopenPreInquiry(AUTHOR, "inq-1", {
+      expectedUpdatedAt: archivedAt.toISOString(),
+      db: db.client
+    }).then(() => null, (reason) => reason);
+
+    assert.equal(error?.status, 409);
+    assert.equal(error?.message, "pre_inquiries.errors.opened_cannot_be_edited");
+    assert.equal(db.updateManyCalls(), 0);
+    assert.equal(db.row().status, "ARCHIVED");
+  }
+});
+
 test("external mail contract only records an explicit user confirmation and is idempotent", async () => {
   const db = createDb(row({ status: "READY" }));
   let providerSends = 0;
