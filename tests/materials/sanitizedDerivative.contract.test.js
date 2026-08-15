@@ -6,6 +6,10 @@ const ragLifecycleSource = await readFile(
   new URL("../../lib/materials/ragLifecycle.js", import.meta.url),
   "utf8",
 );
+const lifecycleSource = await readFile(
+  new URL("../../lib/materials/lifecycle.js", import.meta.url),
+  "utf8",
+);
 const adminPanelSource = await readFile(
   new URL(
     "../../components/materials/MaterialsAdminSubmissionsPanel.jsx",
@@ -57,6 +61,16 @@ test("shared RAG reads only the sanitized derivative", () => {
     "raw submission bytes must never enter shared RAG",
   );
   assert.match(ragLifecycleSource, /readSanitizedMaterial/);
+});
+
+test("upload durably associates the sanitized derivative before RAG import", () => {
+  assert.match(lifecycleSource, /derivativeStoragePath:\s*getSanitizedMaterialPath/);
+  assert.match(lifecycleSource, /derivativeSha256:\s*file\.sanitizedSha256/);
+  assert.match(lifecycleSource, /derivativeSize:\s*file\.sanitizedBuffer\.byteLength/);
+  assert.match(
+    lifecycleSource,
+    /retentionFieldsForSubmission\("pending", now, \{ derivativePresent: true \}\)/,
+  );
 });
 
 test("admin review opens a sanitized preview instead of the raw download", () => {

@@ -198,6 +198,12 @@ andmeminimeerituks. Negatiivkontroll tõendas vana ühe-kella sidestuse; ühenda
 RAG/Chroma `ingest → search → delete` PASS ja migratsiooniahel 200/200 PASS. Kõik ajutised
 andmebaasid, failid ja RAG-hoidlad koristati kontrollitult.
 
+15.08.2026 järelparandus seob sanitiseeritud derivaadi tee, räsi ja suuruse esitisega juba
+üleslaadimistehingus, mitte alles eduka RAG-importimise järel. Importimata derivaadi retention
+algab sama ankruga kui ootel originaal; tagasivõtmine, admini- ja kontokustutus näevad seetõttu
+derivaadikihti püsivalt ning tähtajaline sweep ei jäta sanitiseeritud tekstifaili kettale.
+Negatiivkontroll oli vana koodi peal punane.
+
 ### SOL-MAT-13 — SMTP-teavituse tõrge kaob logisse ja tööjärjekord ei tea sellest — P2
 
 **Tõend.** Puuduva recipient/from seadistuse korral teavitus ainult `console.warn`-ib ja väljub (`app/api/materials/route.js:57-65`). Pärast DB commit'i käivitatakse `sendMaterialUploadNotification()` fire-and-forget kujul; rejection logitakse, kuid ei looda outbox'i, notification-job'i, delivery state'i ega retry'd ning POST vastab 201 (`:269-282`). Negatiivkontroll kinnitas, et SMTP-promise on 201 vastusest lahti seotud. UI sõnum „Materjal on saadetud” kirjeldab püsivat DB-esitist, kuid ei erista „admini teavitus edastatud / ootel / ebaõnnestus” (`messages/et.json:1654-1667`).
