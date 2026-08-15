@@ -92,6 +92,10 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Promptide tokeniauditi privaatsusparandus on valmis.** Audit säilitab komponentide mahu- ja
+tokenimõõdikud, kuid ei kirjuta enam logisse kasutaja sisust tuletatud püsivaid SHA-256
+tunnuseid, mille abil saaks tundlikke fraase sõnastikuründega kinnitada.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
@@ -2760,6 +2764,8 @@ GDPR-i andmekoopia ja materjali väljaviimine PDF- või DOCX-kujul on sisse ehit
 Administraatoril on kasutajate, tellimuste, teadmusbaasi ja koondnäitajate haldus. Koondid
 on kaitstud väikese arvu summutusega. Teadmusbaasi väliste allikate laadimine seob ühenduse
 DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sisevõrku.
+Promptide tokeniaudit talletab ainult komponentide mahud ja hinnangulised tokeniarvud, mitte
+kasutaja sisu põhjal arvutatud püsivaid hashe, millega saaks tundlikke fraase ära arvata.
 
 ### Poolik
 

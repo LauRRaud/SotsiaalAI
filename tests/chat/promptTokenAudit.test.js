@@ -20,7 +20,7 @@ const COMPONENTS = {
   otherDynamic: ["Vasta eesti keeles.", "Kasuta RAG_CONTEXT-i faktiväidete jaoks."]
 };
 
-test("mõõdab iga komponendi märgid, hinnangulised tokenid ja hashi", async () => {
+test("mõõdab iga komponendi märgid ja hinnangulised tokenid ilma sisutunnuseta", async () => {
   resetPromptTokenAuditEncoderForTests();
   const m = await measurePromptComponents({ components: COMPONENTS, model: "gpt-5.6-luna" });
 
@@ -28,11 +28,11 @@ test("mõõdab iga komponendi märgid, hinnangulised tokenid ja hashi", async ()
   for (const name of ["system_prompt", "user_input", "conversation_history", "source_package", "other_dynamic"]) {
     assert.ok(m.components[name].chars > 0, `${name}.chars`);
     assert.ok(m.components[name].tokens_estimated > 0, `${name}.tokens_estimated`);
-    assert.match(m.components[name].sha256_12, /^[0-9a-f]{12}$/);
+    assert.equal("sha256_12" in m.components[name], false);
   }
   // Tööriistu ei saadeta mudelile — komponent on olemas, aga tühi.
   assert.equal(m.components.tool_definitions.chars, 0);
-  assert.equal(m.components.tool_definitions.sha256_12, null);
+  assert.equal("sha256_12" in m.components.tool_definitions, false);
 });
 
 test("komponendid on pesastatud, et redactObject 30-võtme lagi neid ei kärbiks", async () => {
