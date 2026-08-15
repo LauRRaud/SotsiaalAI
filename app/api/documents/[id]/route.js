@@ -23,7 +23,7 @@ import {
   updateOwnedDocument,
   updateOwnedDocumentWithStagedText
 } from "@/lib/documents/documentMutation"
-import { deleteDocumentIndex } from "@/lib/documents/embeddings"
+import { deleteDocumentIndexByExternalRef } from "@/lib/documents/embeddings"
 import {
   attemptDocumentRagRemoval,
   prepareDocumentRagPermissionChange
@@ -318,7 +318,7 @@ export async function PATCH(request, { params }) {
     if (permissionPlan.removalRequested) {
       document = await attemptDocumentRagRemoval(
         { document, actorUserId: auth.userId, targetUserId: auth.userId },
-        { deleteIndex: deleteDocumentIndex }
+        { deleteIndex: deleteDocumentIndexByExternalRef }
       )
     }
 

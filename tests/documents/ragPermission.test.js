@@ -140,3 +140,35 @@ test("SOL-DOC-J-03: confirmed delete closes the job and persists done", async ()
   assert.equal(db.state.job.status, "done")
   assert.equal(db.state.audits[0].action, "RAG_DELETE")
 })
+
+test("SOL-DOC-J-03: content replacement still deletes the queued RAG identity", async () => {
+  const oldExternalRef = `agent::doc_1::${"a".repeat(64)}`
+  const pending = {
+    ...document,
+    sha256: "b".repeat(64),
+    agentAllowed: false,
+    metadata: {
+      ragRemoval: {
+        status: "pending",
+        jobId: "job_1",
+        externalRef: oldExternalRef
+      }
+    }
+  }
+  const db = attemptDb(pending)
+  let deletedExternalRef = null
+
+  await attemptDocumentRagRemoval(
+    { document: pending, actorUserId: "owner_1", targetUserId: "owner_1" },
+    {
+      db,
+      deleteIndex: async (externalRef) => {
+        deletedExternalRef = externalRef
+        return { ok: true }
+      }
+    }
+  )
+
+  assert.equal(deletedExternalRef, oldExternalRef)
+  assert.equal(db.state.job.status, "done")
+})
