@@ -98,6 +98,9 @@ function createDb() {
     wellbeingRecord: { findMany: async () => [] },
     /* SOL-WB-18: mustandid on omaniku enda tekst ja nad kuuluvad koopiasse. */
     wellbeingOutputDraft: { findMany: async () => [] },
+    covisionPrivateState: { findMany: async () => [] },
+    supervisionPrivateItem: { findMany: async () => [] },
+    supervisionPersonalOutcome: { findMany: async () => [] },
     practiceReflection: { findMany: async () => [] },
     preInquiry: { findMany: async ({ where } = {}) => where?.OR ? [] : [{ topic: "Topic", situation: "Own situation", receiverNote: "secret recipient note", recipientOwnerId: "other", status: "DRAFT", recipientType: "SERVICE", deliveryChannel: "INTERNAL", createdAt: new Date(), updatedAt: new Date() }] },
     roomMember: { findMany: async () => [] },

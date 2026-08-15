@@ -99,3 +99,33 @@ test("XFUNC-03: synthetic owner's ZIP manifest equals the classified export surf
   const embeddedManifest = JSON.parse(entries.find(entry => entry.name === "manifest.json").content.toString("utf8"));
   assert.deepEqual(embeddedManifest.surfaces.map(surface => surface.name).sort(), classified);
 });
+
+test("XFUNC-03: owner-private covision and supervision content is exported with owner scope", async () => {
+  const expectedQueries = {
+    covision_private_states: { delegate: "covisionPrivateState", where: { userId: "owner-1" } },
+    supervision_private_items: { delegate: "supervisionPrivateItem", where: { ownerUserId: "owner-1" } },
+    supervision_personal_outcomes: { delegate: "supervisionPersonalOutcome", where: { ownerUserId: "owner-1" } }
+  };
+
+  for (const [surfaceName, expected] of Object.entries(expectedQueries)) {
+    let query;
+    const sentinel = { id: `${surfaceName}-1`, content: "owner-private-sentinel" };
+    const surface = DATA_EXPORT_REGISTRY.find(item => item.name === surfaceName);
+    assert.ok(surface, `${surfaceName} must be a real export surface`);
+    const entries = await surface.collect({
+      userId: "owner-1",
+      db: {
+        [expected.delegate]: {
+          async findMany(input) {
+            query = input;
+            return [sentinel];
+          }
+        }
+      }
+    });
+
+    assert.deepEqual(query?.where, expected.where);
+    assert.equal(entries[0].count, 1);
+    assert.match(entries[0].content.toString("utf8"), /owner-private-sentinel/u);
+  }
+});
