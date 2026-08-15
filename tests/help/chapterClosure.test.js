@@ -2,6 +2,8 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 
+import { consumeHelpRateLimit } from "../../lib/help/rateLimit.js";
+
 const read = (path) => readFileSync(path, "utf8");
 
 test("SOL-HELP-10 negatiivtõend: kõik loetletud rajad kasutavad jagatud limiterit", () => {
@@ -17,6 +19,45 @@ test("SOL-HELP-10 negatiivtõend: kõik loetletud rajad kasutavad jagatud limite
   }
   assert.match(address, /operation: "address-request"/);
   assert.match(address, /address-provider/, "välisgeokodeerija eraldi kvoot puudub");
+});
+
+test("SOL-HELP-10 turvapiir: kasutaja kvooti ei saa kliendi IP-päisega vahetada", async () => {
+  const bucketCounts = new Map();
+  const seenSql = [];
+  const fakePrisma = {
+    async $executeRawUnsafe(sql) {
+      seenSql.push(sql);
+      return 0;
+    },
+    async $queryRawUnsafe(sql, ...params) {
+      seenSql.push(sql);
+      const key = params[0];
+      const count = (bucketCounts.get(key) || 0) + 1;
+      bucketCounts.set(key, count);
+      return [{ count, resetAt: params[1] }];
+    }
+  };
+
+  let lastResult;
+  for (let attempt = 0; attempt < 121; attempt += 1) {
+    lastResult = await consumeHelpRateLimit({
+      operation: "list:get",
+      userId: "same-user",
+      ipAddress: `198.51.100.${attempt}`
+    }, fakePrisma);
+  }
+
+  assert.equal(bucketCounts.size, 1, "spoofitud IP lõi kasutajale uue bucketi");
+  assert.equal(lastResult.allowed, false, "spoofitud IP vältis kasutajapõhist limiiti");
+  assert.match(seenSql[0], /^DELETE FROM "HelpRateLimitBucket" WHERE "resetAt" <= \$1/u);
+});
+
+test("SOL-HELP-10: vigane loendiliik lükatakse tagasi enne püsiva limiidi tarbimist", () => {
+  const source = read("app/api/help/listings/route.js");
+  assert.ok(
+    source.indexOf("if (!kind)") < source.indexOf("operation: \"list:get\""),
+    "limiterit tarbitakse enne liigi valideerimist"
+  );
 });
 
 test("SOL-HELP-11 negatiivtõend: server ei kärbi kasutaja kuulutuseteksti slice'iga", () => {

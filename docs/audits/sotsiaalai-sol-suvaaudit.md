@@ -7626,7 +7626,7 @@ tagasivõetud pakett. Peidetud on ainult `RECALLED`. Töörajad sulguvad kõigil
 
 **Vastuvõtukriteerium.** Rakendada kasutaja+IP+toimingu põhine jagatud limiter kõigile loetletud radadele, tagastada 429 ja piirata väliskutseid eraldi kvoodiga. Testida eri meetodeid, paralleelpäringuid ja mitut protsessi.
 
-**Seis (13.08.2026): DONE —** kõik leius nimetatud rajad kasutavad PostgreSQL-is jagatud kasutaja+IP+toimingu põhist limiterit; välise geokodeerija kutsel on eraldi kvoot, ületamine tagastab 429 ja salvestuskihi puudumine sulgeb raja 503-ga. Migratsioon `20260814008000_sol_help_durable_rate_limit` lisab atomaarse loenduri ning päris PostgreSQL-i koondsond tõendas kahe paralleelse protsessi ühist limiiti ja toimingute eraldi kvoote. Production runtime: NOT_PROVEN.
+**Seis (15.08.2026): DONE —** kõik leius nimetatud rajad kasutavad PostgreSQL-is jagatud kasutaja+toimingu põhist limiterit; kliendi saadetav IP-päis ei kuulu autentitud kasutaja turvabucketi võtmesse ega saa kvooti vahetada. Aegunud bucketid koristatakse inline ning vigane kuulutuseliik lükatakse tagasi enne loenduri tarbimist. Välise geokodeerija kutsel on eraldi kvoot, ületamine tagastab 429 ja salvestuskihi puudumine sulgeb raja 503-ga. Migratsioon `20260814008000_sol_help_durable_rate_limit` lisab atomaarse loenduri; sihttesti negatiivkontroll oli vana koodi peal punane (121 spoofitud IP-d lõid 121 bucketit ja vältisid limiiti). Päris PostgreSQL-i koondsond on selles keskkonnas `NOT_RUN` (localhost:5432 puudub); production runtime: NOT_PROVEN.
 
 ### SOL-HELP-11 — pikk kuulutuse sisu kärbitakse edukal salvestusel vaikides — P1
 
