@@ -92,6 +92,11 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Aardvarki võrgustikujagamise konto-kustutuse leid on parandatud.** Kontoga kliendi
+võrgustikujagamised kustutatakse nüüd samas lukustatud tehingus enne kasutajarida, mistõttu
+`SET NULL` ei saa tundlikku kokkuvõtet ekslikult välise kliendi kirjeks muuta. Järgmine tööots
+valitakse S4-st.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
@@ -2685,6 +2690,9 @@ Ruum on koht, kus mitu inimest töötavad ühe asja kallal — kovisioonigrupp, 
 võrgustik või klient ja töötaja. Ruumi kutsutakse nimeliselt, liikmelisus on nähtav ja
 ruumist saab lahkuda. Ruumi kokkuvõtte saab kinnitusringi kaudu ühiselt heaks kiita, nii et
 keegi ei kirjuta teiste eest kokkuvõtet, mida nad ei ole näinud.
+Kontoga kliendi konto kustutamisel eemaldatakse temaga seotud võrgustikujagamised enne konto
+kustutamist; välise kliendi rada jääb alles, kuid konto tundlik kokkuvõte ei muutu vaikimisi
+välise kliendi kirjeks.
 
 **Helikõned.**
 Ruumis saab pidada helikõne ilma eraldi konverentsitarkvarata. Salvestamine ei ole vaikimisi

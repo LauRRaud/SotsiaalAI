@@ -175,6 +175,7 @@ test("final user-row lock sweeps pre-lock candidates and prevents post-delete pr
   const mapEntryUpdates = [];
   const ragJobs = [];
   const preInquiryDeletes = [];
+  const networkShareDeletes = [];
   const supervisionTombstones = [];
   const tx = {
     $queryRaw: async () => {
@@ -216,6 +217,12 @@ test("final user-row lock sweeps pre-lock candidates and prevents post-delete pr
     urgentRequest: {
       updateMany: async (input) => {
         urgentUpdates.push(input);
+        return { count: 2 };
+      }
+    },
+    networkShare: {
+      deleteMany: async (input) => {
+        networkShareDeletes.push(input);
         return { count: 2 };
       }
     },
@@ -308,6 +315,8 @@ test("final user-row lock sweeps pre-lock candidates and prevents post-delete pr
   assert.equal(urgentUpdates[0].data.authorId, null);
   assert.ok(urgentUpdates[0].data.authorErasedAt instanceof Date);
   assert.equal(deleted.privacyCounts.anonymizedUrgentRequests, 2);
+  assert.deepEqual(networkShareDeletes[0].where, { clientUserId: "user-1" });
+  assert.equal(deleted.privacyCounts.deletedClientNetworkShares, 2);
   assert.deepEqual(supervisionTombstones.map(([kind]) => kind), ["process", "participation", "topic"]);
   assert.equal(deleted.privacyCounts.supervisionProcessesTombstoned, 1);
   assert.equal(deleted.privacyCounts.supervisionParticipationsTombstoned, 2);
