@@ -268,4 +268,12 @@ test("login-confirm GET kirjeldab ja POST kinnitab — mitte vastupidi", async (
   // Auto-submit oleks skanneri vastu piisav, aga mitte selle leiu vastu: ohver
   // ise võib lingi avada ja peab nägema, KELLE katset ta kinnitab.
   assert.doesNotMatch(source, /\.submit\(\)/u, "kinnitusvorm ei tohi ennast ise saata");
+
+  const code = source.replace(/\/\*[\s\S]*?\*\/|\/\/[^\n]*/gu, "");
+  assert.doesNotMatch(
+    code,
+    /x-forwarded-host|x-forwarded-proto|get\(\s*["']host["']\s*\)/iu,
+    "fallback-link ei tohi usaldada kliendi hosti- ega protokollipäiseid"
+  );
+  assert.match(source, /const homeUrl = ["']\/["'];/u);
 });

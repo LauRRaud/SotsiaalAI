@@ -8,6 +8,7 @@ import {
   serializeServiceProviderProfile
 } from "@/lib/serviceProviderProfiles";
 import { safeError } from "@/lib/privacy/safeError";
+import { isSameOriginRequest } from "@/lib/security/sameOriginRequest";
 import {
   consumeServiceProviderProfileRateLimit,
   serviceProviderCorrelationId,
@@ -27,6 +28,7 @@ export async function POST(request, { params }) {
   if (!isAdmin(session.user) && roleFromSession(session) !== "SERVICE_PROVIDER") {
     return errorJson("api.common.forbidden", 403, locale);
   }
+  if (!isSameOriginRequest(request)) return errorJson("api.common.forbidden", 403, locale);
 
   try {
     const limit = await consumeServiceProviderProfileRateLimit({ operation: "availability:confirm", userId: ownerId });

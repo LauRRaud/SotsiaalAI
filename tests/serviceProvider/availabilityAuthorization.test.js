@@ -34,7 +34,34 @@ test("availability confirmation scopes the lookup to the authenticated owner", a
     (error) => error?.status === 404
   );
   assert.equal(db.calls.find[0].where.providerProfile.ownerId, "owner-a");
+  assert.equal(db.calls.find[0].where.providerProfile.ownershipMode, "SOLO");
   assert.equal(db.calls.updates.length, 0);
+});
+
+test("retained provenance owner cannot confirm an organization profile", async () => {
+  const organizationService = {
+    id: "service-1",
+    providerProfileId: "profile-org",
+    availabilityStatus: "accepting",
+    availabilityDescription: null
+  };
+  const db = confirmationDb(organizationService);
+  db.serviceProviderService.findFirst = async (query) => {
+    db.calls.find.push(query);
+    return query.where.providerProfile.ownershipMode === "SOLO" ? null : organizationService;
+  };
+
+  await assert.rejects(
+    confirmServiceAvailabilityRecord({
+      db,
+      ownerId: "former-owner",
+      serviceId: organizationService.id,
+      expectedFingerprint: serviceAvailabilityFingerprint(organizationService)
+    }),
+    (error) => error?.status === 404
+  );
+  assert.equal(db.calls.updates.length, 0);
+  assert.equal(db.calls.profileReads, 0);
 });
 
 test("stale fingerprint returns 409 and performs no write", async () => {
@@ -72,6 +99,10 @@ test("matching fingerprint confirms only unchanged availability content", async 
   assert.equal(db.calls.updates.length, 1);
   assert.equal(db.calls.updates[0].where.availabilityStatus, "waitlist");
   assert.equal(db.calls.updates[0].where.availabilityDescription, "2 nädalat");
+  assert.deepEqual(db.calls.updates[0].where.providerProfile, {
+    ownerId: "owner-a",
+    ownershipMode: "SOLO"
+  });
   assert.equal(db.calls.updates[0].data.availabilityCheckedAt, now);
   assert.equal(db.calls.updates[0].data.availabilityReminderSentAt, null);
 });

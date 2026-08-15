@@ -39,8 +39,19 @@ function createDb() {
       },
       roomMember: {
         findMany: track("roomMember", [
-          { roomId: "room-1", lastReadAt: "2026-07-14T07:00:00.000Z" }
+          {
+            roomId: "room-1",
+            lastReadAt: "2026-07-14T07:00:00.000Z",
+            billingSource: "SELF",
+            room: { helpMatch: null }
+          }
         ])
+      },
+      subscription: {
+        findFirst: async (query) => {
+          calls.push({ model: "subscription", query: structuredClone(query) });
+          return { id: "subscription-1" };
+        }
       },
       roomMessage: {
         async count(query) {
@@ -157,6 +168,44 @@ test("continuity applies server-owned role prioritization and removes other role
   assert.equal(provider.items.some((item) => item.kind === "pre_inquiry_draft"), false);
 });
 
+test("continuity hides unread room metadata when billing access has lapsed", async () => {
+  const db = createDb();
+  db.client.subscription = { findFirst: async () => null };
+
+  const result = await getWorkspaceContinuity("user-1", {
+    db: db.client,
+    now: NOW,
+    role: "SOCIAL_WORKER"
+  });
+
+  assert.equal(result.items.some((item) => item.kind === "room_unread"), false);
+  assert.equal(result.badges.room_unread, undefined);
+  assert.equal(
+    db.calls.some((call) => call.model === "roomMessage"),
+    false,
+    "denied rooms must be filtered before their activity is counted"
+  );
+
+  const freeRoomDb = createDb();
+  freeRoomDb.client.subscription = { findFirst: async () => null };
+  freeRoomDb.client.roomMember.findMany = async () => [{
+    roomId: "help-room",
+    lastReadAt: "2026-07-14T07:00:00.000Z",
+    billingSource: null,
+    room: { helpMatch: { id: "help-match-1" } }
+  }];
+  const freeRoomResult = await getWorkspaceContinuity("user-1", {
+    db: freeRoomDb.client,
+    now: NOW,
+    role: "SOCIAL_WORKER"
+  });
+  assert.equal(
+    freeRoomResult.items.some((item) => item.kind === "room_unread" && item.id === "help-room"),
+    true,
+    "free help-match rooms must remain visible without a subscription"
+  );
+});
+
 test("continuity API authenticates before querying and returns private no-store responses", async () => {
   const route = await readFile(
     new URL("../../app/api/workspace/continuity/route.js", import.meta.url),
@@ -174,6 +223,7 @@ test("wellbeing draft continuity opens the specific draft in My records, not the
     preInquiry: { findMany: emptyList },
     roomMember: { findMany: emptyList },
     roomMessage: { async count() { return 0; } },
+    subscription: { findFirst: async () => null },
     wellbeingOutputDraft: {
       findMany: async () => [{ id: "draft-xyz", updatedAt: "2026-07-12T10:00:00.000Z" }]
     },

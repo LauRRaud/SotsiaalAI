@@ -141,3 +141,11 @@ test("kättesaadavuse meeldetuletus ei kasuta omaniku e-posti varuvariandina", (
   const source = readFileSync(join(root, "lib/serviceAvailabilityReminders.js"), "utf8");
   assert.doesNotMatch(source, /owner\?\.\s*email\s*\|\|/);
 });
+
+test("kättesaadavuse teavituse järelkontroll tunnistab omanikku ainult SOLO-režiimis", () => {
+  const source = readFileSync(join(root, "lib/notifications.js"), "utf8");
+  assert.match(
+    source,
+    /SERVICE_AVAILABILITY_STALE[\s\S]*?providerProfile:\s*\{\s*ownerId:\s*userId,\s*ownershipMode:\s*"SOLO"\s*\}/u
+  );
+});
