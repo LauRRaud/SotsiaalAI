@@ -103,6 +103,19 @@ test("PDF-tekst kannab pealkirja, hoiatused, tabeli ja kokkuvõtte", () => {
   assert.ok(warningIndex < tableIndex, "hoiatused tulevad enne numbreid");
 });
 
+test("struktureeritud mitme saaja privaatsushoiatus jääb dokumendis loetavaks", () => {
+  const document = sampleDocument({
+    warnings: [{ code: "not_submittable_all_recipients" }]
+  });
+  const plan = buildRenderPlan(document);
+
+  assert.deepEqual(plan.warnings, [
+    "Fail sisaldab mitme saaja andmeid ja ei sobi KOV-ile esitamiseks."
+  ]);
+  assert.ok(!plan.warnings.some((warning) => warning.includes("[object Object]")));
+  assert.ok(buildPdfText(document).includes(plan.warnings[0]));
+});
+
 /* Laiend tuli varem konstandist: DOCX oleks laadinud alla nimega .csv ja Word
    oleks keeldunud teda avamast. */
 test("failinime laiend tuleb vormingust", () => {

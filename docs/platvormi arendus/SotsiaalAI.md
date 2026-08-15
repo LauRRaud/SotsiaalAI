@@ -92,6 +92,10 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Teenuspäeviku DOCX/PDF privaatsushoiatus on parandatud.** Struktureeritud ekspordihoiatusi
+ei teisendata enam loetamatuks `[object Object]` tekstiks: mitme saajaga faili sees on nüüd
+selgesõnaline märge, et faili ei tohi KOV-ile esitada. Järgmine tööots valitakse S4-st.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
@@ -2577,6 +2581,8 @@ külastuse ID-d ega ava tahvlilt teadlikult peidetud aadressi, kliendiviidet võ
 Teenuspäevikul on **STAR/s-veebi väljavõtte kuju**: sotsiaalhoolekande seadus paneb
 andmete registrisse kandmise kohustuse ka teenuseosutajale, ja platvorm aitab seda täita
 ilma sama asja kaks korda sisestamata. Platvorm ei ole register ega püüa selleks saada.
+DOCX- ja PDF-väljund kirjutavad struktureeritud hoiatused inimesele loetavalt faili sisse;
+mitme saaja andmetega eksport ütleb failis endas, et see ei sobi KOV-ile esitamiseks.
 
 **Välitöö.**
 Välitöö kest on mõeldud tööks väljaspool kontorit: ühe käega, halva levialaga, sageli
