@@ -131,9 +131,9 @@ function isForbiddenKey(key) {
   return FORBIDDEN_DIRECT_KEYS.has(normalized) ||
     /^(?:query|question|answer|content|text|message)_(?:text|body|value)$/.test(normalized) ||
     /^(?:planner_reason|topics)$/.test(normalized) ||
-    /(?:^|_)(?:user|conversation|conv|message|author)_ids?$/.test(normalized) ||
+    /(?:^|_)(?:user|conversation|conv|message|author)_?ids?$/.test(normalized) ||
     /(?:^|_)identifier(?:s)?$/.test(normalized) ||
-    /(?:^|_)source_ids?$/.test(normalized);
+    /(?:^|_)source_?ids?$/.test(normalized);
 }
 
 function assertExactKeys(value, allowed, code) {
