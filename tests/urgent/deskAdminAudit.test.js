@@ -31,7 +31,17 @@ function createAdminPrisma({ desks = [], members = [] } = {}) {
     urgentDesk: createModel(desks, "desk"),
     urgentDeskMember: createModel(members, "member"),
     municipality: createModel([{ id: "muni_1", displayName: "Harku vald" }], "muni"),
-    user: createModel([{ id: "staff_1" }, { id: "staff_2" }, { id: ADMIN }], "user"),
+    user: createModel([
+      { id: "staff_1", role: "SOCIAL_WORKER", accessSuspendedAt: null },
+      { id: "staff_2", role: "SOCIAL_WORKER", accessSuspendedAt: null },
+      { id: ADMIN, role: "ADMIN", accessSuspendedAt: null }
+    ], "user"),
+    organizationMembership: createModel([
+      { id: "om_1", userId: "staff_1", organizationId: "org_1", status: "ACTIVE", organization: { status: "ACTIVE", municipalityId: "muni_1" } },
+      { id: "om_2", userId: "staff_2", organizationId: "org_1", status: "ACTIVE", organization: { status: "ACTIVE", municipalityId: "muni_1" } }
+    ], "org_member"),
+    serviceMapEntry: createModel([], "service_entry"),
+    serviceProviderProfile: createModel([], "provider_profile"),
     dataAuditLog: createModel([], "audit")
   });
 }

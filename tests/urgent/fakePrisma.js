@@ -16,6 +16,9 @@ function compareValues(a, b) {
 function matches(row, where = {}) {
   return Object.entries(where).every(([key, condition]) => {
     const value = row[key];
+    if (key === "organization" && condition && typeof condition === "object") {
+      return matches(row.organization || {}, condition);
+    }
     if (condition && typeof condition === "object" && !(condition instanceof Date)) {
       if ("in" in condition) return condition.in.includes(value);
       if ("notIn" in condition) return !condition.notIn.includes(value);

@@ -15,14 +15,24 @@ import {
 import { deskReadiness } from "../../lib/urgent/desk.js";
 import { createClient, createModel, NOW, now, READY_DESK } from "./fakePrisma.js";
 
-function createAdminPrisma({ desks = [], members = [] } = {}) {
+function createAdminPrisma({ desks = [], members = [], users } = {}) {
   /* SOL-URG-09 järel käib iga valmidust muutev adminitoiming tehingus ja võtab
      laua rea luku — sama luku, mille all pöördumise loomine valmidust hindab. */
   return createClient({
     urgentDesk: createModel(desks, "desk"),
     urgentDeskMember: createModel(members, "member"),
     municipality: createModel([{ id: "muni_1", displayName: "Harku vald" }], "muni"),
-    user: createModel([{ id: "staff_1" }, { id: "staff_2" }], "user"),
+    user: createModel(users || [
+      { id: "staff_1", role: "SOCIAL_WORKER", accessSuspendedAt: null },
+      { id: "staff_2", role: "SOCIAL_WORKER", accessSuspendedAt: null }
+    ], "user"),
+    organizationMembership: createModel([
+      { id: "om_1", userId: "staff_1", organizationId: "org_1", status: "ACTIVE", organization: { status: "ACTIVE", municipalityId: "muni_1" } },
+      { id: "om_2", userId: "staff_2", organizationId: "org_1", status: "ACTIVE", organization: { status: "ACTIVE", municipalityId: "muni_1" } },
+      { id: "om_3", userId: "staff_2", organizationId: "org_2", status: "ACTIVE", organization: { status: "ACTIVE", municipalityId: "muni_2" } }
+    ], "org_member"),
+    serviceMapEntry: createModel([], "service_entry"),
+    serviceProviderProfile: createModel([], "provider_profile"),
     // SOL-URG-12: iga valmisolekut mõjutav adminitoiming jätab jälje.
     dataAuditLog: createModel([], "audit")
   });
@@ -259,6 +269,49 @@ test("mehitajaks ei saa panna kedagi, keda ei ole", async () => {
   const prisma = createAdminPrisma({ desks: [{ ...READY_DESK, id: "desk_1" }] });
   await expectFail(
     addUrgentDeskMember({ prisma, actorUserId: ADMIN, deskId: "desk_1", userId: "puudub" }),
+    "urgent_desk.member_not_a_user"
+  );
+});
+
+test("CLIENT ega peatatud töötaja ei saa kiire abi ligipääsu", async () => {
+  const prisma = createAdminPrisma({
+    desks: [{ ...READY_DESK, id: "desk_1" }],
+    users: [
+      { id: "client_1", role: "CLIENT", accessSuspendedAt: null },
+      { id: "suspended_1", role: "SOCIAL_WORKER", accessSuspendedAt: NOW }
+    ]
+  });
+  await expectFail(
+    addUrgentDeskMember({ prisma, actorUserId: ADMIN, deskId: "desk_1", userId: "client_1" }),
+    "urgent_desk.member_not_a_user"
+  );
+  await expectFail(
+    updateUrgentDesk({ prisma, actorUserId: ADMIN, deskId: "desk_1", data: { ownerUserId: "suspended_1" }, now }),
+    "urgent_desk.member_not_a_user"
+  );
+  assert.equal(prisma.urgentDeskMember.rows.length, 0);
+
+  const createPrisma = createAdminPrisma({
+    users: [{ id: "client_1", role: "CLIENT", accessSuspendedAt: null }]
+  });
+  await expectFail(
+    createUrgentDesk({
+      prisma: createPrisma,
+      actorUserId: ADMIN,
+      municipalityId: "muni_1",
+      data: { ...VALID_CONDITIONS, ownerUserId: "client_1" },
+      now
+    }),
+    "urgent_desk.member_not_a_user"
+  );
+  assert.equal(createPrisma.urgentDesk.rows.length, 0);
+});
+
+test("teise valla töötaja ei saa KOV-laua ligipääsu", async () => {
+  const prisma = createAdminPrisma({ desks: [{ ...READY_DESK, id: "desk_1" }] });
+  prisma.organizationMembership.rows[0].organization.municipalityId = "muni_2";
+  await expectFail(
+    addUrgentDeskMember({ prisma, actorUserId: ADMIN, deskId: "desk_1", userId: "staff_1" }),
     "urgent_desk.member_not_a_user"
   );
 });
