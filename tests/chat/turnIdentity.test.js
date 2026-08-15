@@ -112,8 +112,8 @@ test("lõpetatud kavatsuse kordus tagastab salvestatud vastuse ilma providerita"
   assert.equal(body.sources[0].title, "Allikas");
 });
 
-test("juba töös olev pööre annab 409 ja vabastab reservatsiooni", async () => {
-  const { input, calls } = harness();
+test("juba töös oleva pöörde kordus ei vabasta algse päringu reservatsiooni", async () => {
+  const { input, calls } = harness({ chatUsageReused: true });
   await handleMainChatResponse(input, deps(calls, {
     outcome: CHAT_TURN_OUTCOME.IN_FLIGHT,
     turn: { id: "turn-1" }
@@ -121,7 +121,7 @@ test("juba töös olev pööre annab 409 ja vabastab reservatsiooni", async () =
 
   assert.equal(calls.provider, 0);
   assert.deepEqual(calls.errors, [{ key: "chat.error.turn_in_flight", status: 409, extra: undefined }]);
-  assert.deepEqual(calls.release, ["chat_turn_conflict"]);
+  assert.deepEqual(calls.release, []);
 });
 
 test("sama vestluse teine kavatsus korraga annab samuti 409", async () => {

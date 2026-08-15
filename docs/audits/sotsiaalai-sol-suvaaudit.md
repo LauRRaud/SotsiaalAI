@@ -2385,6 +2385,12 @@ aga neid **eraldi markeriga ei süstitud** — kriteerium nimetas kolme allikat,
 
 **Seis (11.08.2026): DONE — koos SOL-CHAT-04-ga üks plokk, sest mõlema kriteerium algab samast
 puuduvast asjast: pöördel ei olnud rida, mille külge kinnituda.**
+- **Turvajärelparandus (14.08.2026).** Sama `clientTurnKey`-ga `IN_FLIGHT` kordus saab
+  kasutusteenuselt algse päringu `reused` reservatsiooni, kuid ei vabasta seda enam 409 vastuse
+  koostamisel. Teise kavatsuse `CONVERSATION_BUSY` värske reservatsioon vabastatakse endiselt.
+  Sihttesti negatiivkontroll kukkus vana koodi peal, sest kordus kutsus
+  `chat_turn_conflict` vabastuse välja; parandatud rajal jääb aktiivne reservatsioon algse
+  päringu commit'ini `RESERVED` olekusse.
 - **Uus mudel `ChatTurn`** (migratsioon `20260811160000`, uus tabel + uus enum `ChatTurnStatus`;
   olemasolevaid ridu ei puudutata). Unikaalsus **`(userId, clientTurnKey)`** on ainus koht, kus üks
   kavatsus muutub üheks reaks. Rida kannab mõlemat poolt (`userMessageId`, `assistantMessageId`),

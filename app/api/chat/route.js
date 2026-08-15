@@ -429,6 +429,7 @@ export async function POST(req, deps = {}) {
        pöörde terminalse kirjutusega ühte tehingusse. Ilma `tx`-ita käitub kumbki nagu varem. */
     clientTurnKey,
     sessionTurnLimit,
+    chatUsageReused: chatUsageHandle?.reused === true,
     onUsageCommit: (tx) => routeRuntime.commitUsageForRequest(chatUsageHandle, { tx: tx || undefined }),
     onUsageRelease: (reason, tx) => routeRuntime.releaseUsageForRequest(chatUsageHandle, {
       reason,
