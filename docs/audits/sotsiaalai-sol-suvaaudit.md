@@ -1093,6 +1093,12 @@ päriselt renderdub ja klikitav on.
 
 **Seis (10.08.2026): DONE — kood, testid ja runtime-tõend PÄRIS IndexedDB vastu.**
 
+**Regressiooniparandus (15.08.2026):** värske detailivastus ei asenda enam muutumata
+paketi Reacti olekut uue dekrüptitud objektiga. Olekuraja tulemus eristab nüüd päriselt
+muutunud ja muutumata paketti; nii säilib sulgemise kohene kustutus, kuid avatud pakett ei
+tekita `loadDetail` efekti kaudu piiramatut autentitud GET-päringute tsüklit. Sihttest oli
+vana käitumise vastu punane ja parandatud puul 21/21.
+
 **OTSUS OLI ÕIGE, TEDA EI KUTSUNUD KEEGI.** `fieldPackPurgeDue()` oli koodis olemas ja
 arvutas lepingu tähtaegu õigesti — aga ainus koht, kust teda kutsuti, oli ühiktest.
 Rakenduse ainus automaatne säilituskäik luges `items`, mitte pakke. See on sama klass mis

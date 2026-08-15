@@ -295,7 +295,8 @@ export function useFieldSync({ userId, visitId = null }) {
       try {
         const outcome = await applyFieldVisitStatusToPack({ store, visit, now: new Date() });
         if (!outcome || String(visit?.id) !== String(visitId)) return;
-        setPack(outcome.removed ? null : await store.getPack(visitId));
+        if (outcome.removed) setPack(null);
+        else if (outcome.changed) setPack(await store.getPack(visitId));
       } catch {}
     },
     [visitId]
