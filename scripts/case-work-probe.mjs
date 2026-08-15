@@ -493,6 +493,7 @@ try {
   /* KUSTUTUS ON LUBATUD KA ARHIVEERITUD JUHTUMIS (L17 erand). Kirjutuskaitse
      kaitseb töötaja tööd, mitte kolmanda isiku andmeid tema eest. */
   const firstErase = await eraseCaseClientReference({
+    ownerUserId: workerId,
     caseWorkAssistId: serviceCase.id,
     actorUserId: workerId,
     reason: "sondi kustutus"
@@ -509,6 +510,7 @@ try {
   check("kustutus: retention-seis EI muutu", afterErase.retentionState === "ARCHIVED");
 
   const secondErase = await eraseCaseClientReference({
+    ownerUserId: workerId,
     caseWorkAssistId: serviceCase.id,
     actorUserId: workerId,
     reason: "sondi kordus"

@@ -92,6 +92,11 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Aardvarki juhtumikliendi viite kustutamise autoriseerimisleid on parandatud.** Ühe juhtumi
+kustutus nõuab nüüd teenuskihis omanikku ja seob sama omaniku nii nähtavuskontrolli kui
+tingimusliku kirjutusega; konto kustutamise omanikuvaba süsteemirada jäi eraldi eksportimata
+sisemiseks operatsiooniks. Järgmine tööots valitakse S4-st.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
@@ -1137,6 +1142,9 @@ isiklik · ei anta üle ega kustutata · kliendiviite kustutamine on lõplik).
 **Avamine on eraldi otsus.** `CASEWORK_V1_ENABLED` on vaikimisi väljas: siis vastab `/juhtumid`
 `notFound()`-iga, töölaual kaarti ei ole ja API on eristamatu olematust marsruudist. Deploy'da
 tohib väravaga väljas; **avamine vajab omaniku luba JA Õ2/Õ3 andmekaitseanalüüsi kinnitust**.
+
+Kliendiviite üksik kustutus jõustab omanikupiiri teenuskihis samas tingimuslikus kirjutuses;
+konto kustutamise süsteemne hulgioperatsioon kasutab eraldi eksportimata sisemist rada.
 
 Objekt on `ideed.md` ptk 12 nimega **`CaseWorkAssist`** ja ta on **konteiner, mitte
 olekumasin** — mustandi ülekandeahel (8 elementi × 7 seisu) on eraldi pakett **CASEWORK-P2**

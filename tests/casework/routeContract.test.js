@@ -138,10 +138,9 @@ test("puuduva info staatuse marsruut ei võta `resolvedAt`-i kliendilt", async (
 
 test("kliendiviite kustutamine kontrollib omandit ja ei tee `juba kustutatud`-st viga", async () => {
   const source = await readRoute("cases/[caseId]/client-reference/route.js");
-  /* Teenusoperatsioon ise on tahtlikult omanikuvaba (teda kutsub ka konto
-     kustutamise orkestreerija ilma sessioonita) — seega piiri kontrollib
-     marsruut, ja just siin, mitte kuskil hiljem. */
-  assert.match(source, /getCaseWorkAssist\(\{ ownerUserId: guard\.userId/);
+  /* Teenuskiht on autoriseerimispiir: omanik läheb mutatsioonile kaasa, mitte
+     ei kontrollita eraldi loe-siis-kirjuta sammuga marsruudis. */
+  assert.match(source, /eraseCaseClientReference\(\{\s*ownerUserId: guard\.userId/);
   assert.match(source, /actorKind: "USER"/);
   assert.match(source, /changed: result\.changed/);
 });
