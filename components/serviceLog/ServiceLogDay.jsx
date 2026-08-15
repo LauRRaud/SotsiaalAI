@@ -49,7 +49,6 @@ import {
   readOutbox,
   shouldRetry
 } from "@/lib/serviceLog/outbox";
-import { SAMPLE_KIND } from "@/lib/serviceLog/measurement";
 import {
   isServiceLogDayRouteUiEnabled,
   isServiceLogLocationStampUiEnabled,
@@ -539,29 +538,9 @@ export default function ServiceLogDay() {
   }, []);
   markInputStartRef.current = markInputStart;
 
-  /**
-   * SAADAB JA UNUSTAB. Moodik on korvalsaadus: kui proov ei jou kohale (levi
-   * kadus), on kaotus ueks number statistikas, mitte kirje. Seepaerast ei ole
-   * siin `await`-i kutsuja rajal ega uehtegi veateadet.
-   */
-  const sendSample = useCallback(
-    (kind, seconds) => {
-      if (!Number.isFinite(seconds) || seconds <= 0) return;
-      fetch("/api/service-log/measure", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "x-ui-locale": locale || "et" },
-        body: JSON.stringify({ kind, seconds })
-      }).catch(() => {});
-    },
-    [locale]
-  );
-
   const finishInputTimer = useCallback(() => {
-    const started = inputStartedRef.current;
     inputStartedRef.current = 0;
-    if (!started) return;
-    sendSample(SAMPLE_KIND.ENTRY_INPUT, Math.round((Date.now() - started) / 1000));
-  }, [sendSample]);
+  }, []);
 
   /**
    * ASUKOHAPUNKT (E2b, DoD 10). AJATEMPEL PANNAKSE KIRJA ESIMESENA ja punkti
@@ -808,6 +787,11 @@ export default function ServiceLogDay() {
         quantity: quantity === "" ? null : quantity,
         note: note.trim() || null,
         noteProvenance: note.trim() ? noteProvenance : null,
+        /* Server accepts this as baseline evidence only together with the
+           first successful creation of this idempotent service entry. */
+        ...(inputStartedRef.current
+          ? { entryInputSeconds: Math.round((Date.now() - inputStartedRef.current) / 1000) }
+          : {}),
         /* LAEHTEKUELASTUS. Ilma temata sai samast kuelastusest teha piiramatu
            arvu kirjeid ja miski ei naeidanud, kust kirje tuli. */
         ...(fromVisit?.sourceFieldVisitId

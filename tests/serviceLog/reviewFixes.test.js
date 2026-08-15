@@ -304,14 +304,28 @@ test("mõõtmine on vaikimisi väljas ja ei kogu proove", async () => {
   assert.equal(db.samples.length, 0, "proovi ei tohi tekkida");
 });
 
-test("piloodilipuga mõõtmine töötab", async () => {
+test("ENTRY_INPUT telemeetria ei loo ilma päris kirjeta lepingu tõendit", async () => {
   const db = makeDb();
   const stored = await recordSample("user-1", { kind: SAMPLE_KIND.ENTRY_INPUT, seconds: 20 }, {
     db,
     env: ENV_MEASURE
   });
-  assert.equal(stored, true);
-  assert.equal(db.samples.length, 1);
+  assert.equal(stored, false);
+  assert.equal(db.samples.length, 0);
+});
+
+test("õnnestunud kirje loob ühe ajaproovi ja kordussaatmine ei loo uut", async () => {
+  const db = makeDb();
+  const input = entryInput({ clientRequestId: "timed-entry-1", entryInputSeconds: 20 });
+
+  await createEntry("user-1", input, { db, env: ENV_MEASURE });
+  const replay = await createEntry("user-1", input, { db, env: ENV_MEASURE });
+
+  assert.equal(db.entries.length, 1, "idempotentne kordus ei loo teist kirjet");
+  assert.equal(db.samples.length, 1, "üks päris kirje annab kõige rohkem ühe proovi");
+  assert.equal(db.samples[0].kind, SAMPLE_KIND.ENTRY_INPUT);
+  assert.equal(db.samples[0].seconds, 20);
+  assert.equal(replay.replayed, true);
 });
 
 /* Väljas mõõtmine annab 404, mitte tühja baasjoone: pilooti mitte kuuluv
