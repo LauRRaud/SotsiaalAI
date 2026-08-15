@@ -64,3 +64,15 @@ test("SOL-SLOG-J-03/04: AI-algus säilib toimetamisel ja narratiiv kannab revisi
   assert.match(service, /narrative_version_conflict/);
   assert.match(route, /error\.details \|\| \{\}/);
 });
+
+test("külastuse privaatne aadress ei liigu välisesse geokodeerijasse", () => {
+  const ui = read("components", "serviceLog", "ServiceLogRoute.jsx");
+  const dayRoute = read("lib", "serviceLog", "dayRoute.js");
+  const dispatch = read("lib", "serviceLog", "dispatchAssign.js");
+  const suggestionRoute = path.join(root, "app", "api", "service-visits", "aadress", "route.js");
+
+  assert.equal(fs.existsSync(suggestionRoute), false, "prefikseid edastav API peab puuduma");
+  assert.doesNotMatch(ui, /service-visits\/aadress/, "UI ei tohi aadressi kirjutamise ajal edastada");
+  assert.doesNotMatch(dayRoute, /geocodeServiceMapAddress|geocodeAddress/);
+  assert.doesNotMatch(dispatch, /geocodeServiceMapAddress|geocodeAddress/);
+});
