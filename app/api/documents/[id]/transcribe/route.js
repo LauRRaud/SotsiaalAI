@@ -38,7 +38,6 @@ import {
   transcribeAudioFile
 } from "@/lib/transcription/provider"
 import { safeError } from "@/lib/privacy/safeError"
-import { visibleRecordingDocumentWhere } from "@/lib/documents/recordingVisibility"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
@@ -109,12 +108,7 @@ export async function POST(request, { params }) {
 
   try {
     const source = await prisma.userDocument.findFirst({
-      where: {
-        id,
-        ownerId: auth.userId,
-        ...visibleRecordingDocumentWhere(),
-        fieldVisitAttachments: { none: { storageStatus: { not: "ACTIVE" } } }
-      },
+      where: { id, ownerId: auth.userId, fieldVisitAttachments: { none: { storageStatus: { not: "ACTIVE" } } } },
       select: {
         id: true,
         ownerId: true,
@@ -255,6 +249,15 @@ export async function POST(request, { params }) {
       })
     } catch (error) {
       return usageErrorJson(error, "documents.transcribe", locale)
+    }
+
+    // The claim above makes one audio source idempotent. The usage key is client
+    // controlled, though, so reusing a key from another source must not turn an
+    // already committed reservation into a free provider call.
+    if (usageHandle.reused) {
+      const conflict = new Error("api.common.invalid_request")
+      conflict.status = 409
+      throw conflict
     }
 
     let transcriptionResult = null

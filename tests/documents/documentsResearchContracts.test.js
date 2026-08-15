@@ -117,6 +117,16 @@ test("the transcription and transcript-summary routes are inside the usage contr
   assert.match(summary, /metric:\s*"DOCUMENT_GENERATE"/, "the summary is document generation like any other");
   assert.match(summary, /runPaidResult\(/);
 
+  // Reservatsiooni idempotentsus üksi ei ole tulemuse idempotentsus: COMMITTED võtme
+  // commit on no-op. Kordus peab leidma sama püsiva artefakti või peatuma enne mudelikutset.
+  assert.match(summary, /if \(usageHandle\.reused\)[\s\S]{0,900}idempotencyKey:\s*usageHandle\.idempotencyKey/);
+  assert.match(summary, /idempotencyKey:\s*usageHandle\.idempotencyKey[\s\S]{0,900}runPaidResult\(/);
+  assert.match(
+    transcribe,
+    /if \(usageHandle\.reused\)[\s\S]{0,240}throw conflict[\s\S]{0,240}runPaidResult\(/,
+    "a reused STT reservation must stop before provider work"
+  );
+
   // Olemasoleva transkripti tagastamine ei kutsu teenusepakkujat, seega ei tohi ka
   // reserveerida: reuse-haru väljub enne kvoodirida.
   const reuseIndex = transcribe.indexOf("reused: true");
