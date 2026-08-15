@@ -353,6 +353,9 @@ export async function POST(request) {
       },
       persist: persistArtifact,
       commit: (handle) => commitUsageForRequest(handle),
+      // Generated output that does not fit is still paid provider work. Without this
+      // exception a user can keep storage nearly full and repeat refunded model calls.
+      commitOnPersistError: (error) => Number(error?.status) === 413,
       release: (handle, reason) => releaseUsageForRequest(handle, { reason }),
       onReleaseError: (releaseError) =>
         console.error("[documents artifacts] usage release failed", safeError(releaseError))

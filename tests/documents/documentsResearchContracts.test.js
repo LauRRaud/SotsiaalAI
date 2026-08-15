@@ -99,6 +99,11 @@ test("the three paid document routes settle usage through the shared paid-result
   assert.match(refine, /commitUsage:\s*\(db\)\s*=>\s*commitUsageForRequest\(handle,\s*\{\s*tx:\s*db\s*\}\)/);
 });
 
+test("generated artifact quota failures cannot refund completed provider work", () => {
+  const create = read("app/api/documents/artifacts/route.js");
+  assert.match(create, /commitOnPersistError:\s*\(error\)\s*=>\s*Number\(error\?\.status\)\s*===\s*413/);
+});
+
 // SOL-DOC-02. Kaks otsepunkti, kus tekkis päris väline kulu ilma ühegi perioodikvoodita:
 // helifaili transkriptsioon (STT_SECONDS) ja transkripti kokkuvõte (DOCUMENT_GENERATE).
 // Mõlemal oli ainult minutipõhine mälupõhine rate-limit, mis ei ole lepinguline piir.

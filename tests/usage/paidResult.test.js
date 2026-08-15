@@ -53,7 +53,7 @@ test("tasu võetakse alles pärast püsivat tulemust", async () => {
   assert.equal(result.persisted.artifact.id, "artifact_1")
 })
 
-test("üle kvoodi jäänud sisu vabastab reservatsiooni ega võta tasu", async () => {
+test("kasutaja kontrollitav püsistustõrge võib tehtud mudelitöö commit'ida", async () => {
   const quotaError = new Error("documents.errors.storage_quota_exceeded")
   quotaError.status = 413
   const { steps, options } = createHarness({
@@ -61,6 +61,7 @@ test("üle kvoodi jäänud sisu vabastab reservatsiooni ega võta tasu", async (
       throw quotaError
     }
   })
+  options.commitOnPersistError = (error) => error.status === 413
 
   await assert.rejects(() => runPaidResult(options), (error) => {
     assert.equal(error, quotaError)
@@ -69,8 +70,8 @@ test("üle kvoodi jäänud sisu vabastab reservatsiooni ega võta tasu", async (
     return true
   })
 
-  assert.deepEqual(steps, ["reserve", "produce", "persist", "release:paid_result_not_durable"])
-  assert.ok(!steps.includes("commit"), "413 ei tohi jõuda tasuni")
+  assert.deepEqual(steps, ["reserve", "produce", "persist", "commit"])
+  assert.ok(!steps.some((step) => step.startsWith("release")), "tehtud mudelitööd ei tohi tasuta korrata")
 })
 
 test("mustandi loomise viga vabastab reservatsiooni", async () => {
