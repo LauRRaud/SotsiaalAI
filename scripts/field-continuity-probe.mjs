@@ -77,12 +77,13 @@ async function main() {
 
   const capturedAt = new Date("2026-08-13T10:01:00.000Z");
   const closeAt = new Date("2026-08-13T10:02:00.000Z");
-  const [closeResult, uploadResult] = await Promise.all([
+  const [closeOutcome, uploadOutcome] = await Promise.allSettled([
     performFieldVisitAction(owner.id, visit.id, "close", { version: 1 }, { db, now: closeAt }),
     putFieldVisitNote(owner.id, visit.id, "race-note-001", note("Võistlev märge", capturedAt, true), { db, now: closeAt })
   ]);
-  expect("close-vs-upload jätab visiidi suletuks ja märkme alles", closeResult.status === "CLOSED" && uploadResult.note?.clientItemId === "race-note-001");
-  expect("close-vs-upload ei tekita duplikaati", await db.fieldVisitNote.count({ where: { visitId: visit.id, clientItemId: "race-note-001" } }) === 1);
+  const raceNoteCount = await db.fieldVisitNote.count({ where: { visitId: visit.id, clientItemId: "race-note-001" } });
+  expect("close-vs-upload sulgeb visiidi ning kirjutus kas eelneb sulgemisele või saab 409", closeOutcome.value?.status === "CLOSED" && (uploadOutcome.value?.note?.clientItemId === "race-note-001" || uploadOutcome.reason?.status === 409));
+  expect("close-vs-upload ei tekita duplikaati", raceNoteCount <= 1);
 
   let denied = null;
   try {
@@ -90,18 +91,21 @@ async function main() {
   } catch (error) { denied = error; }
   expect("pärast sulgemist loodud sisu jääb 409-ga välja", denied?.status === 409 && denied?.message === "field.errors.visit_read_only");
 
-  const recovered = await putFieldVisitNote(
-    owner.id,
-    visit.id,
-    "recovery-note-001",
-    note("Enne sulgemist seadmesse jäänud", new Date("2026-08-13T10:01:30.000Z"), true),
-    { db, now: new Date("2026-08-13T10:04:00.000Z") }
-  );
-  expect("selge recovery-import salvestab ainult sulgemiseelse kirje", recovered.recovered === true && recovered.note.recoveryImportedAt);
-  expect("recovery-import jätab append-only auditi", await db.dataAuditLog.count({ where: { action: "field.note_recovery_imported", resourceId: visit.id } }) >= 1);
+  let forgedRecovery = null;
+  try {
+    await putFieldVisitNote(
+      owner.id,
+      visit.id,
+      "recovery-note-001",
+      note("Võltsitud sulgemiseelne ajatempel", new Date("2026-08-13T10:01:30.000Z"), true),
+      { db, now: new Date("2026-08-13T10:04:00.000Z") }
+    );
+  } catch (error) { forgedRecovery = error; }
+  expect("kliendi recovery-import ei ava suletud visiiti", forgedRecovery?.status === 409 && forgedRecovery?.message === "field.errors.visit_read_only");
+  expect("tagasilükatud recovery-import ei jäta kirjet ega auditit", await db.fieldVisitNote.count({ where: { visitId: visit.id, clientItemId: "recovery-note-001" } }) === 0 && await db.dataAuditLog.count({ where: { action: "field.note_recovery_imported", resourceId: visit.id } }) === 0);
 
   await deleteFieldVisitNote(owner.id, visit.id, "race-note-001", { db }).catch(() => null);
-  expect("suletud külastuse serverimärge jääb read-only", await db.fieldVisitNote.count({ where: { visitId: visit.id, clientItemId: "race-note-001" } }) === 1);
+  expect("suletud külastuse serverimärgete arv ei muutu", await db.fieldVisitNote.count({ where: { visitId: visit.id, clientItemId: "race-note-001" } }) === raceNoteCount);
 
   const pageVisits = [];
   for (let index = 0; index < 51; index += 1) {

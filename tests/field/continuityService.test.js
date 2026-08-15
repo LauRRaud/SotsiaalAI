@@ -22,7 +22,7 @@ function noteInput(overrides = {}) {
   };
 }
 
-test("closed visit accepts only an explicit pre-close recovery import and audits it atomically", async () => {
+test("closed visit rejects forged recovery metadata and remains immutable", async () => {
   const db = createFieldDb({
     visits: [makeVisit({ status: "CLOSED", closedAt: CLOSED_AT })]
   });
@@ -42,19 +42,18 @@ test("closed visit accepts only an explicit pre-close recovery import and audits
     (error) => error.status === 409 && error.message === "field.errors.visit_read_only"
   );
 
-  const recovered = await putFieldVisitNote(
-    "user-1",
-    "visit-1",
-    "recovery-note-3",
-    noteInput({ recoveryImport: true }),
-    { db, now: CLOSED_AT }
+  await assert.rejects(
+    putFieldVisitNote(
+      "user-1",
+      "visit-1",
+      "recovery-note-3",
+      noteInput({ recoveryImport: true }),
+      { db, now: CLOSED_AT }
+    ),
+    (error) => error.status === 409 && error.message === "field.errors.visit_read_only"
   );
-
-  assert.equal(recovered.recovered, true);
-  assert.equal(recovered.note.recoveryImportedAt, CLOSED_AT.toISOString());
-  assert.equal(db.store.notes.length, 1);
-  assert.equal(db.store.auditLog.length, 1);
-  assert.equal(db.store.auditLog[0].action, "field.note_recovery_imported");
+  assert.equal(db.store.notes.length, 0);
+  assert.equal(db.store.auditLog.length, 0);
 });
 
 test("server note deletion is audited and a consent must use withdrawal instead", async () => {

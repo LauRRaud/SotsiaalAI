@@ -68,6 +68,33 @@ function dbWithConsent(note = consent()) {
   return createFieldDb({ visits: [makeVisit()], notes: [note] });
 }
 
+test("closed visit rejects an attachment with forged recovery metadata", async () => {
+  const db = createFieldDb({
+    visits: [makeVisit({ status: "CLOSED", closedAt: NOW })],
+    notes: [consent()]
+  });
+  const files = memoryFiles();
+  await assert.rejects(
+    putFieldVisitAttachment(
+      "user-1",
+      "visit-1",
+      "field-photo-forged-recovery-1",
+      {
+        file: photoFile(),
+        role: "photo",
+        consentClientItemId: "field-consent-photo-1",
+        recoveryImport: true,
+        deviceCreatedAt: "2026-08-13T17:29:59.000Z"
+      },
+      { db, now: NOW, quota, files }
+    ),
+    (error) => error.status === 409 && error.message === "field.errors.visit_read_only"
+  );
+  assert.equal(db.store.documents.length, 0);
+  assert.equal(db.store.attachments.length, 0);
+  assert.equal(files.stored.size, 0);
+});
+
 test("photo consent cannot be replaced by an unproven client boolean", async () => {
   const db = createFieldDb({ visits: [makeVisit()] });
   const files = memoryFiles();

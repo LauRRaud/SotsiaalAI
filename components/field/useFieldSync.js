@@ -144,7 +144,6 @@ export function useFieldSync({ userId, visitId = null }) {
           if (full.payload?.documentRequestConfirmed) form.set("documentRequestConfirmed", "true");
           if (full.payload?.documentRequestReason) form.set("documentRequestReason", full.payload.documentRequestReason);
           if (item.createdAt) form.set("deviceCreatedAt", item.createdAt);
-          if (item.recoveryImport) form.set("recoveryImport", "true");
           response = await fetch(
             `/api/field/visits/${encodeURIComponent(item.visitId)}/attachments/${encodeURIComponent(item.clientItemId)}`,
             { method: "PUT", body: form }
@@ -165,8 +164,7 @@ export function useFieldSync({ userId, visitId = null }) {
                 consentForm: item.payload?.consentForm,
                 aiConfirmed: item.payload?.aiConfirmed || false,
                 transcriptClientItemId: item.payload?.transcriptClientItemId || null,
-                deviceCreatedAt: item.createdAt || null,
-                recoveryImport: Boolean(item.recoveryImport)
+                deviceCreatedAt: item.createdAt || null
               })
             }
           );
@@ -689,18 +687,6 @@ export function useFieldSync({ userId, visitId = null }) {
     [items]
   );
 
-  const retryRecoveryImport = useCallback(
-    async (clientItemId) => {
-      const item = await storeRef.current?.getItem(clientItemId);
-      if (!item || item.lastError !== "field.errors.visit_read_only") return null;
-      const recovery = { ...item, recoveryImport: true };
-      await persist(recovery);
-      const queued = await transition(recovery, FieldSyncEvent.USER_RETRY);
-      if (navigator.onLine) await runSync();
-      return queued;
-    },
-    [persist, runSync, transition]
-  );
   const closeBlockers = useMemo(
     () => fieldCloseBlockers(items, { needsLogin }),
     [items, needsLogin]
@@ -722,7 +708,6 @@ export function useFieldSync({ userId, visitId = null }) {
     saveLocalAttachment,
     approveItem,
     retryItem,
-    retryRecoveryImport,
     cancelItem,
     deleteItem,
     resolveConflict,

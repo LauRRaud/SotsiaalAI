@@ -61,8 +61,7 @@ export async function PUT(request, context) {
         documentOnly: String(formData.get("documentOnly") || "") === "true",
         documentRequestConfirmed: String(formData.get("documentRequestConfirmed") || "") === "true",
         documentRequestReason: formData.get("documentRequestReason"),
-        deviceCreatedAt: formData.get("deviceCreatedAt"),
-        recoveryImport: String(formData.get("recoveryImport") || "") === "true"
+        deviceCreatedAt: formData.get("deviceCreatedAt")
       },
       { session: auth.session }
     );
