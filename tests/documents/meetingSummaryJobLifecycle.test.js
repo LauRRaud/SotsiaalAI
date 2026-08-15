@@ -459,6 +459,58 @@ test("commit_pending jäetakse alles ja korratakse kuni ta õnnestub", async () 
   }
 });
 
+test("dokumendita terminaltöö commit_pending reservatsioon vabastatakse, mitte ei arveldata", async () => {
+  const root = await makeRoot();
+  const userId = "meet-02-user-missing-document";
+
+  try {
+    process.env.AGENT_STORAGE_DIR = root;
+    const jobId = "11111111-2222-3333-4444-666666666666";
+    const ended = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+    await fs.mkdir(jobsDirFor(root), { recursive: true });
+    await fs.writeFile(
+      path.join(jobsDirFor(root), `${jobId}.json`),
+      JSON.stringify({
+        id: jobId,
+        userId,
+        status: "error",
+        createdAt: ended,
+        updatedAt: ended,
+        startedAt: ended,
+        endedAt: ended,
+        error: "documents.agent_workspace.meeting_summary.error",
+        result: { summaryText: "kokkuvõte" },
+        usage: {
+          document: {
+            idempotencyKey: "pending-document-without-document",
+            state: "commit_pending",
+            workCompleted: true,
+          },
+        },
+      }),
+      "utf8"
+    );
+
+    const usage = usageRecorder();
+    const result = await retryPendingMeetingSummaryUsageSettlements({ usage });
+
+    assert.equal(result.committed, 0);
+    assert.deepEqual(usage.calls, [{
+      action: "release",
+      userId,
+      idempotencyKey: "pending-document-without-document",
+      reason: "meeting_summary_document_missing",
+    }]);
+    const persisted = JSON.parse(
+      await fs.readFile(path.join(jobsDirFor(root), `${jobId}.json`), "utf8")
+    );
+    assert.equal(persisted.usage.document.state, "released");
+  } finally {
+    restoreEnv();
+    await fs.rm(root, { recursive: true, force: true });
+  }
+});
+
 test("pooleli arveldusega snapshotit ei visata TTL-i järgi ära", () => {
   const stale = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
   const base = { id: "j1", status: "done", endedAt: stale, updatedAt: stale, createdAt: stale };

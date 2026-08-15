@@ -2116,6 +2116,13 @@ vahel, jääb töö `error`-iks, kuigi dokument on olemas ja ühik võetud — d
 dokumentides" olemas, aga töö seis valetab. See rada jääb lahtiseks. (4) Kordussweep on
 protsessipõhine; mitme app-protsessi korral skaneerib igaüks sama kataloogi.
 
+**Turvajärelparandus (15.08.2026).** Kordusrada ei commit'i enam ajaloolise nurjunud snapshoti
+`document`-reservatsiooni ainult `commit_pending` lipu põhjal. Püsiva `result.document.id`
+puudumine tõendab, et kasutajale kuuluvat dokumenti ei tekkinud: selline reservatsioon
+vabastatakse ja snapshot saab seejärel tavapärase TTL-i alusel kustuda. STT kordus ei muutu,
+sest providerikulu on selleks hetkeks juba tekkinud. Negatiivkontroll kukkus vana koodiga
+(`committed: 1`, oodatud `0`) ning sihttestid läbisid parandusega **27/27**.
+
 ### SOL-MEET-03 — 30-minutilised tundlikud snapshotid võivad pärast restarti jääda tähtajatult alles — P1
 
 **Tõend.** Job-snapshot sisaldab lõpptulemuse `summaryText` väärtust (`lib/documents/meetingSummaryJobs.js:68-81`, `:693-696`). 30-minutiline cleanup-timer läbib ainult aktiivse protsessi `jobs` Map'i ja kustutab snapshoti vaid sealt leitava terminalobjekti puhul (`:26-27`, `:254-262`). Pärast protsessi restarti on Map tühi; koodis pole kataloogi terminalfailide TTL-sweep'i. Faili loetakse ainult konkreetse ID GET-il või aktiivse töö loendamisel ning terminalset vana snapshoti ka siis ei kustutata (`:353-414`). Dokumentide elutsüklikaart kirjeldab sama snapshoti vaikimisi 30-minutilise jobina (`docs/platvormi arendus/fable-5-failide-ja-meedia-elutsukkel.md:81-82`).
