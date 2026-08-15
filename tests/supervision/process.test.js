@@ -96,6 +96,24 @@ test("CLIENT päring protsessile → 404 (mitte 403)", async () => {
   );
 });
 
+test("rollist eemaldatud protsessiliige ei saa vana seosega lugeda ega muuta", async () => {
+  const db = setupBase();
+  const { processId } = await makeActiveProcess(db);
+
+  await assert.rejects(
+    () => getProcessDetail({ processId, session: memberSession("os1", "CLIENT") }, { db }),
+    (e) => e.status === 404 && e.code === "NOT_FOUND"
+  );
+  await assert.rejects(
+    () => updateProcess({
+      processId,
+      session: memberSession("sv1", "CLIENT"),
+      input: { title: "Lubamatu muudatus", expectedVersion: 1 }
+    }, { db }),
+    (e) => e.status === 404 && e.code === "NOT_FOUND"
+  );
+});
+
 test("test #10: stale expectedVersion → 409 JA ühtegi rida ei muudetud", async () => {
   const db = setupBase();
   const { processId } = await makeActiveProcess(db);

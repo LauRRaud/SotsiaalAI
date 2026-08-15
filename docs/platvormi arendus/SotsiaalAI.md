@@ -2633,6 +2633,8 @@ Supervisioon on struktureeritud töösuhe superviisori ja töötaja või grupi v
 jagamine, kohtumiste rütm, kokkulepped ja nende lõpetamine. Superviisor näeb ainult seda,
 mida talle on jagatud, ja töötaja privaatne osa jääb privaatseks. Supervisioonist saab
 vajadusel tööheaolu poolele üle anda, ilma et inimene peaks oma lugu uuesti jutustama.
+Protsessi varasem liikmesus ei säilita ligipääsu pärast kasutaja eemaldamist lubatud
+sotsiaaltöötaja või teenuseosutaja rollist.
 
 **Mentorlus.**
 Mentorlus viib kogenud spetsialisti ja alustaja kokku: mentoriprofiilid, soovi esitamine,
