@@ -116,7 +116,7 @@ function buildTargetUrl(req, segmentsInput) {
   const incoming = new URL(req.url);
   const segments = Array.isArray(segmentsInput) ? [...segmentsInput] : [];
   if (segments[0] === "query") segments[0] = "search";
-  const subPath = segments.join("/");
+  const subPath = segments.map(segment => encodeURIComponent(segment)).join("/");
   const base = normalizeBaseFromHost(RAW_RAG_HOST).replace(/\/+$/, "");
   const path = (`/${subPath}`).replace(/\/{2,}/g, "/");
   return `${base}${path}${incoming.search}`;

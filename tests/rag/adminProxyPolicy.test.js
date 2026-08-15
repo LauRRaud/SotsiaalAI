@@ -65,6 +65,23 @@ test("ordinary ADMIN has no implicit RAG capability", () => {
   assert.equal(authorizeRagProxyAction(RAG_ADMIN_CAPABILITY.NONE, read), false);
 });
 
+test("decoded path separators and dot segments cannot cross the RAG allowlist boundary", () => {
+  const smuggled = [
+    ["ingest", "articles", "../text"],
+    ["ingest", "articles", "..\\text"],
+    ["ingest", "articles", ".."],
+    ["documents", ".", "reindex"]
+  ];
+
+  for (const segments of smuggled) {
+    assert.equal(
+      resolveRagProxyAction("POST", segments),
+      null,
+      `POST /${segments.join("/")} crossed the allowlist boundary`
+    );
+  }
+});
+
 test("mutations require an exact same-origin browser origin", () => {
   const base = { method: "POST", url: "https://sotsiaal.ai/api/rag/upload" };
   assert.equal(validateRagMutationOrigin({ ...base, origin: "https://sotsiaal.ai" }), true);
@@ -80,6 +97,7 @@ test("proxy source binds capability, allowlist, origin and mandatory audit aroun
   assert.match(source, /resolveRagProxyAction/);
   assert.match(source, /authorizeRagProxyAction/);
   assert.match(source, /validateRagMutationOrigin/);
+  assert.match(source, /segments\.map\(segment => encodeURIComponent\(segment\)\)/);
   assert.match(source, /rag_proxy_operation_started[\s\S]*executeAuditedRagOperation/);
   assert.match(execution, /await writeAudit/);
   assert.match(execution, /await fetchUpstream\(\)/);
