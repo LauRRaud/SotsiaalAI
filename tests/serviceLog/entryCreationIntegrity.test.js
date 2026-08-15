@@ -6,7 +6,7 @@ import { createEntry } from "../../lib/serviceLog/entries.js";
 const ENV = { SERVICE_LOG_ENABLED: "1" };
 const PROFILE = { id: "profile-1", ownershipMode: "SOLO" };
 
-function makeDb({ referral = null, service = null } = {}) {
+function makeDb({ referral = null, service = null, siblingEntries = [] } = {}) {
   const entries = [];
   return {
     entries,
@@ -27,7 +27,13 @@ function makeDb({ referral = null, service = null } = {}) {
     },
     serviceEntry: {
       findFirst: async () => null,
-      findMany: async () => [],
+      findMany: async ({ cursor, skip = 0, take }) => {
+        const cursorIndex = cursor
+          ? siblingEntries.findIndex((row) => row.id === cursor.id)
+          : -1;
+        const start = cursor ? cursorIndex + skip : 0;
+        return siblingEntries.slice(start, start + take);
+      },
       create: async ({ data }) => {
         const row = {
           ...data,
@@ -95,6 +101,29 @@ test("SOL-SLOG-06: suunamise nime ja välisviite sama paar läbib", async () => 
 
   assert.equal(entry.clientExternalRef, "external-a");
   assert.equal(db.entries.length, 1);
+});
+
+test("5001. suunamiskirje mõjutab uue kirje ületamishoiatust", async () => {
+  const referral = activeReferral({ allocatedQuantity: 5001 });
+  const siblingEntries = Array.from({ length: 5001 }, (_, index) => ({
+    id: `entry-${String(index + 1).padStart(5, "0")}`,
+    referralId: referral.id,
+    unit: "HOUR",
+    quantity: 1,
+    date: new Date("2026-08-12T00:00:00.000Z"),
+    status: "FINAL"
+  }));
+  const db = makeDb({ referral, siblingEntries });
+
+  const result = await createEntry(
+    "user-1",
+    entryInput({ referralId: referral.id }),
+    { db, env: ENV }
+  );
+
+  assert.equal(result.overrun.warn, true);
+  assert.equal(result.overrun.balance.used, 5001);
+  assert.equal(result.overrun.wouldRemain, -1);
 });
 
 test("SOL-SLOG-07: teenuseta kirje ei muuda tühja kataloogi vabatekstiks", async () => {
