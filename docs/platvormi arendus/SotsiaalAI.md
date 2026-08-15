@@ -92,6 +92,12 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Aardvarki refleksiooni-retention'i järelparandus on valmis:** tähtajatu aktiivlepingu tõttu
+`NULL`-tähtajaga kirje jõuab nüüd worker'i korduskontrolli ja lepingu tühistamisel kustutusse;
+vanim-enne järjekord väldib korduvate kontrollide batch'i näljutamist. Sihttest on roheline,
+uue PostgreSQL-sondi käivitamine jäi kohaliku andmebaasi puudumise tõttu `NOT_PROVEN`;
+järgmine tööots valitakse S4-st.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
