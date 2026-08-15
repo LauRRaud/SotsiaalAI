@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
+import { assertAdmin } from "../../lib/authz.js";
 import { UrgentDeskError } from "../../lib/urgent/deskAdmin.js";
 import { statusForDeskError } from "../../lib/urgent/deskAdminRoutes.js";
 
@@ -16,6 +17,12 @@ const ROUTES = [
 async function readRoute(name) {
   return readFile(new URL(`../../app/api/admin/urgent-desks/${name}`, import.meta.url), "utf8");
 }
+
+test("admini kontroll annab mutatsioonile auditi tegija identiteedi", () => {
+  const authz = assertAdmin({ user: { id: "admin-user-1", role: "ADMIN" } });
+
+  assert.deepEqual(authz, { ok: true, status: 200, userId: "admin-user-1" });
+});
 
 test("iga laua-marsruut nõuab admini enne mistahes tööd", async () => {
   for (const name of ROUTES) {
