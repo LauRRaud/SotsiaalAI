@@ -92,6 +92,10 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Teenuspäeviku päevateekonna kaardi salvestatud XSS on suletud.** Leafleti hüpik ei saa enam
+kliendi nime ega aadressi HTML-ina tõlgendada: kasutajasisu lisatakse DOM-i ainult tekstina.
+Järgmine tööots valitakse S4-st.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
@@ -2571,6 +2575,7 @@ sõitmine ongi eelmise juurest lahkumine. Marsruudi pikkuse arvutab platvormi en
 marsruudimootor, aadressid tulevad Maa-ameti registrist, ja terve päeva saab ühe vajutusega
 navigaatorisse saata. Sõidupäevik tekib kõrvalsaadusena, ilma odomeetrit lugemata.
 Sisestada saab ka võrguta — kirje läheb järjekorda ja sünkroniseerub hiljem.
+Päevateekonna kaardi hüpik käsitleb kliendi nime ja aadressi tekstina, mitte käivitatava HTML-ina.
 Graafiku ümbermääramise mutatsioon ei ole külastuse detailivaade: vastus sisaldab ainult
 külastuse ID-d ega ava tahvlilt teadlikult peidetud aadressi, kliendiviidet või märkmeid.
 
