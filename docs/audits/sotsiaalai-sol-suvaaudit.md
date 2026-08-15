@@ -4164,7 +4164,7 @@ tõendada alles aktiveerimise järel.
 
 **Vastuvõtukriteerium.** Providerikutse timeout/ebaselge vastus peab jätma `UNKNOWN/RECONCILE_PENDING`, mitte provider-terminalse FAILED seisu. PAID peab suutma taastada ainult lokaalse/ebamäärase vea, eristades providerilt kinnitatud DECLINED-i. Veasüstetest peab katkestama pärast transaction-create'i, charge'i ja iga DB update'i ning hiljem saatma PAID webhooki, tõendades ühe makse ja ühe õiguse.
 
-**Seis (11.08.2026): DONE — ebamäärane tulemus on oma seis (`RECONCILE_PENDING`), millest hilisem PAID veel õiguse annab; `npm run pay:outcome:probe` 27/27 päris PostgreSQL-is päris marsruutide ja päris HTTP-provideriga. Vajab migratsiooni `20260811230000`.**
+**Seis (15.08.2026): DONE — ebamäärane tulemus on oma seis (`RECONCILE_PENDING`), millest hilisem PAID veel õiguse annab; reconciliation'i kaudu kinnitatud kordusmakse eitus rakendab nüüd samas tehingus ka retry-/loobumisotsuse, et vabastatud blokeering ei jätaks worker'it sama provideriviite unikaalsuskonflikti taha. `npm run pay:outcome:probe` 27/27 päris PostgreSQL-is päris marsruutide ja päris HTTP-provideriga; sihttest tõendas terminalse reconciliation'i retry-üleminekut ning oli vana käitumise vastu punane. Vajab migratsiooni `20260811230000`.**
 
 Üks küsimus otsustab kõik kolm rada: **kas provider ütles ise ära?**
 
