@@ -92,6 +92,11 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Aardvarki helikõne sisendi turvaleid on parandatud.** Salvestamise eesmärgi täpsustuses
+Enteri vajutamine ei käivita enam ümbritseva vestlusvormi saatmist ega avalda pooleliolevat
+mustandit ruumile; sihitud kliendileping katab selle regressiooni. Järgmine tööots valitakse
+S4-st.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
@@ -2689,7 +2694,8 @@ keegi ei kirjuta teiste eest kokkuvõtet, mida nad ei ole näinud.
 **Helikõned.**
 Ruumis saab pidada helikõne ilma eraldi konverentsitarkvarata. Salvestamine ei ole vaikimisi
 sees; see käivitub ainult osalejate selgesõnalisel nõusolekul ja salvestise eesmärk
-märgitakse ette ära.
+märgitakse ette ära. Salvestamise eesmärgi täpsustuses Enteri vajutamine ei saada enam
+vestluse pooleliolevat mustandit ruumi.
 
 **Nõusolek antakse inimese enda keeles.**
 Kui keegi kõnes salvestamise nõusolekut küsib, näeb iga osaleja küsimust — kes küsib, mis
