@@ -196,7 +196,10 @@ aastapiiri kustutust. UI ja andmekoopia näitavad kolme kihi tähtaegu eraldi; S
 andmeminimeerituks. Negatiivkontroll tõendas vana ühe-kella sidestuse; ühendatud sihttestid
 92/92 PASS, päris PostgreSQL + ketas + sünteetiline RAG-sond 21/21 PASS, isoleeritud päris
 RAG/Chroma `ingest → search → delete` PASS ja migratsiooniahel 200/200 PASS. Kõik ajutised
-andmebaasid, failid ja RAG-hoidlad koristati kontrollitult.
+andmebaasid, failid ja RAG-hoidlad koristati kontrollitult. 15.08 järelparandus seob
+litsentsi/allika aegumise scheduler-predikaadi nüüd aktiivse derivaadi- või RAG-kihiga, mistõttu
+juba kustutatud tähtajaread ei saa piiratud batch'i täita ega uuemaid kustutusi näljutada;
+sihttest lukustab aktiivse kihi filtri enne `take` piiri.
 
 ### SOL-MAT-13 — SMTP-teavituse tõrge kaob logisse ja tööjärjekord ei tea sellest — P2
 

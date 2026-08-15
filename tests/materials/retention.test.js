@@ -8,6 +8,7 @@ import {
   retentionFieldsForQuarantine,
   retentionFieldsForSubmission
 } from "../../lib/materials/retentionPolicy.js"
+import { scheduleDueMaterialRetention } from "../../lib/materials/retention.js"
 
 const DAY = 24 * 60 * 60 * 1000
 const anchor = new Date("2026-08-13T12:00:00.000Z")
@@ -92,4 +93,33 @@ test("quarantine PENDING, FAILED, and CLEAN clocks are each one day", () => {
   ]) {
     assert.equal(retentionFieldsForQuarantine(receipt, anchor).retentionUntil.getTime(), anchor.getTime() + DAY)
   }
+})
+
+test("scheduler excludes expired validity tombstones before applying its batch limit", async () => {
+  let query
+  const db = {
+    materialSubmission: {
+      async findMany(args) {
+        query = args
+        return []
+      }
+    }
+  }
+
+  await scheduleDueMaterialRetention({ db, now: anchor, limit: 1 })
+
+  const validityClause = query.where.OR.find(clause => clause.AND)
+  assert.deepEqual(validityClause, {
+    OR: [
+      { rightsValidUntil: { lte: anchor } },
+      { sourceValidUntil: { lte: anchor } }
+    ],
+    AND: [{
+      OR: [
+        { derivativeRetentionState: "SCHEDULED" },
+        { ragRetentionState: "SCHEDULED" }
+      ]
+    }]
+  })
+  assert.equal(query.take, 1)
 })
