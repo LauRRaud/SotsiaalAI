@@ -80,7 +80,6 @@ if (!/^sotsiaal_ai_retention_probe_\d+$/.test(databaseName)) {
 
 const adminUrl = new URL(parsed);
 adminUrl.pathname = "/postgres";
-adminUrl.search = "";
 const probeUrl = new URL(parsed);
 probeUrl.pathname = `/${databaseName}`;
 
