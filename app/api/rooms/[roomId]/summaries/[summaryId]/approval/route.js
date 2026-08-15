@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
 import { consumeRateLimit } from "@/lib/rate-limit";
+import { ROOM_WRITE, resolveRoomAccess } from "@/lib/rooms/accessGuard";
 import { respondToSummaryApproval } from "@/lib/rooms/summaryApproval";
 import { safeError } from "@/lib/privacy/safeError";
 
@@ -11,8 +12,8 @@ export const revalidate = 0;
 
 /* T20 COLLAB-P2 — osaleja vastus kokkuvõtte kinnitusringile.
  * POST { status: "APPROVED" | "CORRECTION", note?: string }
- * Väravad elavad lib/rooms/summaryApproval.js-is (liikmesus, professionaaliroll,
- * ring avatud, jagaja ei vasta ise, tagasi võetud jagamine → 409). */
+ * Keskne ruumivärav kontrollib billing'u ja ruumi elutsükli; kinnitusringi
+ * teenus kontrollib lisaks rolli, ringi, jagajat ja tagasi võetud jagamist. */
 
 const RATE_LIMIT_WINDOW_MS = Number(process.env.ROOM_SUMMARY_APPROVAL_RATE_LIMIT_WINDOW_MS || 60_000);
 const RATE_LIMIT_POST = Number(process.env.ROOM_SUMMARY_APPROVAL_RATE_LIMIT_MAX || 10);
@@ -56,6 +57,14 @@ export async function POST(req, { params }) {
 
   const { roomId, summaryId } = await resolveParams(params);
   if (!roomId || !summaryId) return errorJson("api.common.not_found", 404);
+
+  const access = await resolveRoomAccess({
+    userId: auth.userId,
+    userRole: auth.userRole,
+    roomId,
+    intent: ROOM_WRITE
+  });
+  if (!access.ok) return errorJson(access.message, access.status || 403);
 
   const limiter = consumeRateLimit(
     `roomsummaryapproval:${roomId}:${auth.userId}`,
