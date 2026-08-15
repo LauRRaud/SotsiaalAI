@@ -207,6 +207,37 @@ try {
 
   {
     const deleteOwner = await owner("delete");
+
+    for (const linkField of ["sourceTopicSeedId", "continuationTopicSeedId"]) {
+      const linkedSeed = await draft(deleteOwner.id, `Linked delete guard ${linkField}`);
+      const covisionCase = await prisma.covisionCase.create({
+        data: { ownerId: deleteOwner.id, title: `Closure for ${linkField}` }
+      });
+      await prisma.covisionClosure.create({
+        data: {
+          covisionCaseId: covisionCase.id,
+          ownerId: deleteOwner.id,
+          generalizedTitle: "Üldistatud lõpetatud juhtum",
+          workFocus: "Üldistatud fookus",
+          selectedDirection: "Üldistatud suund",
+          nextStep: "Üldistatud samm",
+          timeframe: "14 päeva",
+          progressMarker: "Üldistatud edenemine",
+          ownerConfirmedAt: new Date(),
+          retentionStatus: "RETAINED_SELECTED_OUTPUT",
+          [linkField]: linkedSeed.id
+        }
+      });
+      const conflict = await deleteTopicSeed(deleteOwner.id, linkedSeed.id, {
+        expectedVersion: linkedSeed.version,
+        db: prisma
+      }).then(() => null, (caught) => caught);
+      expect(`${linkField} prevents linked DRAFT deletion`, conflict?.status === 409);
+      expect(`${linkField} preserves the linked TopicSeed`, Boolean(
+        await prisma.topicSeed.findUnique({ where: { id: linkedSeed.id } })
+      ));
+    }
+
     const seed = await draft(deleteOwner.id, "Delete receipt");
     await deleteTopicSeed(deleteOwner.id, seed.id, { expectedVersion: seed.version, db: prisma });
     const receiptBefore = await prisma.dataAuditLog.findFirst({
