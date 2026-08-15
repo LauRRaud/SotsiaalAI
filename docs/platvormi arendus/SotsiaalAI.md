@@ -92,6 +92,10 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Aardvarki supervisiooni järelkontrolli leid on parandatud lokaalsel tööharul.** Lahkunud
+osaleja vaade ei avalda enam kohtumist ega kinnitatud kokkuvõtet, mille sisu või olekut muudeti
+pärast tema lahkumist; järgmine tööots valitakse S4-st.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
@@ -2640,7 +2644,8 @@ jagamine, kohtumiste rütm, kokkulepped ja nende lõpetamine. Superviisor näeb 
 mida talle on jagatud, ja töötaja privaatne osa jääb privaatseks. Supervisioonist saab
 vajadusel tööheaolu poolele üle anda, ilma et inimene peaks oma lugu uuesti jutustama.
 Protsessi varasem liikmesus ei säilita ligipääsu pärast kasutaja eemaldamist lubatud
-sotsiaaltöötaja või teenuseosutaja rollist.
+sotsiaaltöötaja või teenuseosutaja rollist. Lahkunud osaleja ajaloovaade sisaldab ainult
+kohtumisi ja kinnitatud kokkuvõtteid, mida pärast tema lahkumist enam ei muudetud.
 
 **Mentorlus.**
 Mentorlus viib kogenud spetsialisti ja alustaja kokku: mentoriprofiilid, soovi esitamine,

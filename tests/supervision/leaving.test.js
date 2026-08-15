@@ -3,7 +3,8 @@ import assert from "node:assert/strict";
 import { setupBase, sv, os1, os2, makeActiveProcess } from "./scenario.js";
 import * as supervisionService from "../../lib/supervision/service.js";
 import { shareTopic } from "../../lib/supervision/topics.js";
-import { createSummary, submitSummary } from "../../lib/supervision/summaries.js";
+import { planMeeting, updateMeeting } from "../../lib/supervision/meetings.js";
+import { approveSummary, createSummary, submitSummary, updateSummary } from "../../lib/supervision/summaries.js";
 import { closeProcess } from "../../lib/supervision/closure.js";
 
 const leaveProcess = supervisionService.leaveProcess;
@@ -52,6 +53,44 @@ test("viimase osaleja lahkumine ei jäta pooleliolevat kokkuvõtet sulgemist blo
   const summary = db.store.supervisionSummary.find((row) => row.id === created.summary.id);
   assert.equal(summary.status, "APPROVED");
   assert.ok(summary.approvedAt);
+});
+
+test("LAHK ei näe pärast lahkumist muudetud kohtumise ega kokkuvõtte sisu", async () => {
+  const db = setupBase();
+  const { processId, participationIds } = await makeActiveProcess(db, {
+    invite: ["os1", "os2"],
+    accept: ["os1", "os2"]
+  });
+  const meeting = await planMeeting({ processId, session: sv(), input: {} }, { db });
+  const summary = await createSummary(
+    { processId, session: sv(), input: { kind: "MEETING", meetingId: meeting.meeting.id, body: "enne" } },
+    { db }
+  );
+
+  await leaveProcess({ participationId: participationIds.os1, session: os1() }, { db });
+  const lastPreLeaveChange = Math.max(
+    db.store.supervisionMeeting.find((row) => row.id === meeting.meeting.id).updatedAt.getTime(),
+    db.store.supervisionSummary.find((row) => row.id === summary.summary.id).updatedAt.getTime()
+  );
+  db.store.supervisionParticipation.find((row) => row.id === participationIds.os1).leftAt =
+    new Date(lastPreLeaveChange + 1);
+  await updateMeeting(
+    { meetingId: meeting.meeting.id, session: sv(), input: { note: "pärast", expectedVersion: meeting.meeting.version } },
+    { db }
+  );
+  const changedSummary = await updateSummary(
+    { summaryId: summary.summary.id, session: sv(), input: { body: "pärast", expectedVersion: summary.summary.version } },
+    { db }
+  );
+  await submitSummary(
+    { summaryId: summary.summary.id, session: sv(), input: { expectedVersion: changedSummary.summary.version } },
+    { db }
+  );
+  await approveSummary({ summaryId: summary.summary.id, session: os2() }, { db });
+
+  const leftView = await supervisionService.getProcessDetail({ processId, session: os1() }, { db });
+  assert.deepEqual(leftView.meetings, []);
+  assert.deepEqual(leftView.summaries, []);
 });
 
 test("võõras ei saa teist osalejat lahkuma sundida ning CLOSED protsess ei muutu", async () => {
