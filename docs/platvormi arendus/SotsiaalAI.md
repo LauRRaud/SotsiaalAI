@@ -93,7 +93,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
 **Codex Security MEDIUM-leidude kontrollitud integratsioon on pooleli puhtas eraldi
-tööpuus.** 56 mitteblokeeritud ja mittedubleeriva PR-i parandused on koondatud 17 sidusaks
+tööpuus.** 56 mitteblokeeritud ja mittedubleeriva PR-i parandused on koondatud 18 sidusaks
 kohalikuks commit'iks ning kontrollitud plokkide sihttestide, lindi ja diff-kontrolliga;
 põhitööpuud, GitHubi `main`-i ega toodangut ei ole selle ringiga veel muudetud. Toote- või
 õigusotsust vajavad, päris PostgreSQL-i tõendita migratsiooniparandused, osalised parandused,
