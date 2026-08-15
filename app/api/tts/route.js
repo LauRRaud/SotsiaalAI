@@ -103,7 +103,7 @@ function readRequestSize(req) {
   return toNullableNumber(req.headers.get("content-length"));
 }
 
-async function synthGoogle({ text, locale, signal }) {
+async function synthGoogle({ text, locale }) {
   const credentialsPath = resolveGoogleApplicationCredentialsPath();
   const cacheKey = credentialsPath || "__default__";
   if (!cachedGcpTtsClient || cachedGcpTtsClientKey !== cacheKey) {
@@ -113,8 +113,11 @@ async function synthGoogle({ text, locale, signal }) {
     cachedGcpTtsClientKey = cacheKey;
   }
 
-  // gRPC-l on oma ajapiir; `withAbort` on marsruudi oma piir juhuks, kui klienditeek teda
-  // eirab, ja ühtlasi see, mis kannab kasutaja Stop'i (SOL-VOICE-02, -03).
+  // Google'i Promise ei anna req.signal-it gRPC-kutsesse edasi. Kliendi abordiga race
+  // vabastaks seega kvoodi ajal, mil tasuline ülesvoolutöö jätkub. Race'ime ainult oma
+  // ajapiiriga; kliendi lahkumisel ootame Google'i tulemust/deadline'i ja settle'ime selle
+  // tegeliku tulemuse järgi.
+  const timeoutSignal = providerAbortSignal(null, TTS_PROVIDER_TIMEOUT_MS);
   const [resp] = await withAbort(
     cachedGcpTtsClient.synthesizeSpeech(
       {
@@ -127,7 +130,7 @@ async function synthGoogle({ text, locale, signal }) {
       },
       { timeout: TTS_PROVIDER_TIMEOUT_MS }
     ),
-    signal
+    timeoutSignal
   );
   if (!resp?.audioContent) {
     return {
@@ -319,7 +322,7 @@ export async function POST(req) {
     }
     if (!result) {
       result = googleEnabled
-        ? await synthGoogle({ text, locale, signal: synthesisSignal })
+        ? await synthGoogle({ text, locale })
         : openaiEnabled
           ? await synthOpenAI({ text, signal: synthesisSignal })
           : { ok: false, messageKey: "api.tts.synthesis_failed" };
@@ -377,8 +380,9 @@ export async function POST(req) {
     });
   } catch (err) {
     // Kolm eri asja said varem sama 500 ja sama logirea: meie ajapiir, kasutaja Stop ja
-    // provideri päris viga. Kõigil on sama tagajärg reservatsioonile — heli ei jõudnud
-    // kasutajani, seega tema eest ei võeta — aga staatus ja logi on eri (SOL-VOICE-02).
+    // provideri päris viga. Katkestatavates providerites on neil sama tagajärg
+    // reservatsioonile; Google'i mittekattestatava gRPC-kutse puhul ei jõua pelk kliendi
+    // abort siia enne ülesvoolutöö tegelikku lõppu (SOL-VOICE-02).
     const failure = await settleProviderFailure({
       handle: usageHandle,
       error: err,

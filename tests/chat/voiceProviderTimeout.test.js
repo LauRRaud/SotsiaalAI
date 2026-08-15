@@ -235,9 +235,13 @@ test("STT marsruut reserveerib ülempiiri ja commit'ib provideri kestuse", () =>
   assert.match(sttRoute, /\{ signal: providerSignal \}\s*\n\s*\);/);
 });
 
-test("TTS marsruut kannab signaali kõigisse pakkujatesse", () => {
+test("TTS marsruut ei vabasta Google'i kvooti pelga kliendi abordi peale", () => {
   assert.match(ttsRoute, /providerAbortSignal\(req\.signal, TTS_PROVIDER_TIMEOUT_MS\)/);
-  assert.match(ttsRoute, /synthGoogle\(\{ text, locale, signal: synthesisSignal \}\)/);
+  // Google'i gRPC-kutse ei saa req.signal-it, seega `withAbort` katkestaks ainult ootaja,
+  // mitte tasulise ülesvoolutöö. Marsruut peab ootama selle töö lõppu või gRPC deadline'i,
+  // et reservatsioon commit'ida või tegeliku providerivea järel vabastada.
+  assert.match(ttsRoute, /synthGoogle\(\{ text, locale \}\)/);
+  assert.doesNotMatch(ttsRoute, /synthGoogle\(\{ text, locale, signal:/);
   assert.match(ttsRoute, /synthOpenAI\(\{ text, signal: synthesisSignal \}\)/);
   assert.doesNotMatch(ttsRoute, /synthesisCompleted/);
 });

@@ -92,6 +92,10 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Aardvarki TTS-kvoodi leid on parandatud:** kliendi abort ei vabasta enam Google'i
+reservatsiooni ajal, mil mittekattestatav gRPC süntees jätkub; rada ootab tegeliku tulemuse
+või deadline'i ja arveldab selle järgi. Järgmine tööots valitakse S4-st.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
@@ -1862,6 +1866,12 @@ märkmeid peas kontorisse tagasi.
 Kõne ja ettelugemine kasutavad platvormi ühiseid arvesteid (`STT_SECONDS`, `TTS_CHARS`,
 `CHAT_ASSISTANT_REPLY`) — häälekasutus käib olemasoleva kvoodi arvelt, eraldi häälepaketti
 ei ole.
+
+**TTS-kvoodi turvapiir (15.08).** Google'i gRPC sünteesi ei saa marsruudi kliendi
+abort-signaaliga päriselt katkestada. Seetõttu ei käsitleta kliendi lahkumist Google'i töö
+lõpuna: server ootab sünteesi tulemust või deadline'i ja arveldab tegelikult tehtud töö,
+välistades korduva Stop/abort abil väliskulu kvoodist välja viimise. Production runtime:
+NOT_PROVEN.
 
 ### T03 E4/E5 karastus — punktid 1–4 TEHTUD 03.08
 
