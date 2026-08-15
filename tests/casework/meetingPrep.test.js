@@ -593,6 +593,33 @@ test(
   })
 );
 
+test(
+  "O-JTA-6: purge-markerit ei saa muuta ega kustutada",
+  withFeatureOn(async () => {
+    const originalMeetingAt = new Date("2026-08-08T10:00:00.000Z");
+    const store = db({
+      preps: [{
+        id: "prep_purged",
+        caseWorkAssistId: CASE_ID,
+        meetingAt: originalMeetingAt,
+        contentPurgedAt: new Date("2026-08-09T10:00:00.000Z"),
+        contentPurgeReason: "WORKER_ARCHIVED_WORKING_MATERIAL"
+      }]
+    });
+    const base = { ownerUserId: OWNER, caseWorkAssistId: CASE_ID, meetingPrepId: "prep_purged", db: store };
+
+    await rejects(
+      updateMeetingPrep({ ...base, meetingAt: "2030-04-05T12:34:56.000Z" }),
+      409,
+      "casework.errors.prep_content_purged"
+    );
+    await rejects(deleteMeetingPrep(base), 409, "casework.errors.prep_content_purged");
+
+    assert.equal(store.preps.length, 1, "purge-marker kustutati");
+    assert.equal(store.preps[0].meetingAt, originalMeetingAt, "purge-markeri konteksti muudeti");
+  })
+);
+
 /* ── SOL-CW-13: laua ettevalmistuste lugeja ─────────────────────────────── */
 
 /**
