@@ -7,6 +7,7 @@ import { useEffectiveRole } from "@/components/auth/useEffectiveRole";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import { LIST_STATE, resolveListState, shouldSettleRequest } from "@/lib/chat/sidebarListState";
+import { CONVERSATION_SEARCH_MIN_LENGTH } from "@/lib/chat/conversationSearch";
 import {
   clearActiveConversationIdIfMatches,
   readActiveConversationId,
@@ -345,7 +346,10 @@ export default function ChatSidebar() {
   // never overwrite a newer result.
   useEffect(() => {
     if (activeView !== "conversations") return undefined;
-    const next = searchQuery.trim();
+    const typed = searchQuery.trim();
+    // Do not send values for which PostgreSQL cannot use the trigram indexes.
+    // Treat them like an unfinished query and keep the ordinary list visible.
+    const next = typed.length >= CONVERSATION_SEARCH_MIN_LENGTH ? typed : "";
     if (next === searchRef.current) return undefined;
     const timer = setTimeout(() => {
       searchRef.current = next;

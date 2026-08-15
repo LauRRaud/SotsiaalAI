@@ -1525,6 +1525,8 @@ model Conversation {
   @@index([userId, isPinned, lastActivityAt])
   @@index([userId, archivedAt])
   @@index([expiresAt])
+  @@index([title(ops: raw("gin_trgm_ops"))], type: Gin, map: "Conversation_title_trgm_idx")
+  @@index([summary(ops: raw("gin_trgm_ops"))], type: Gin, map: "Conversation_summary_trgm_idx")
 }
 
 /// SOL-CHAT-03/-04: ühe vestluspöörde SERVERIPOOLNE identiteet.
@@ -1864,6 +1866,7 @@ model ConversationMessage {
 
   @@index([conversationId, createdAt])
   @@index([authorId])
+  @@index([content(ops: raw("gin_trgm_ops"))], type: Gin, map: "ConversationMessage_content_trgm_idx")
 }
 
 /// SOL-AUTH-09: sisselogimiskatsete loendur PÜSIVAS hoidlas.

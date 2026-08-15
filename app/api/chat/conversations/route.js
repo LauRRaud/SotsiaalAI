@@ -143,7 +143,10 @@ export async function GET(req, deps = {}) {
   // query cannot reach the EXISTS subquery.
   const search = normalizeConversationSearchQuery(url.searchParams.get("q"));
   if (!search.ok) {
-    return errorJson("api.chat.search_query_too_long", 400, { code: search.code });
+    const messageKey = search.code === "CONVERSATION_SEARCH_TOO_SHORT"
+      ? "api.chat.search_query_too_short"
+      : "api.chat.search_query_too_long";
+    return errorJson(messageKey, 400, { code: search.code });
   }
   const roleState = resolveRoleState(auth.session, req.cookies);
   const roleParam = url.searchParams.get("role");

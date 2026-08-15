@@ -2,6 +2,8 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
+  CONVERSATION_SEARCH_MIN_LENGTH,
+  CONVERSATION_SEARCH_TOO_SHORT,
   CONVERSATION_SEARCH_MAX_LENGTH,
   CONVERSATION_SEARCH_TOO_LONG,
   applyConversationSearch,
@@ -123,6 +125,18 @@ test("an over-long query is rejected before any DB work", () => {
   const normalized = normalizeConversationSearchQuery(tooLong);
   assert.equal(normalized.ok, false);
   assert.equal(normalized.code, CONVERSATION_SEARCH_TOO_LONG);
+});
+
+test("a non-empty query shorter than the trigram index threshold is rejected", () => {
+  for (const raw of ["a", "%", "ab", " _ "]) {
+    const normalized = normalizeConversationSearchQuery(raw);
+    assert.equal(normalized.ok, false, JSON.stringify(raw));
+    assert.equal(normalized.code, CONVERSATION_SEARCH_TOO_SHORT);
+  }
+  assert.equal(
+    normalizeConversationSearchQuery("a".repeat(CONVERSATION_SEARCH_MIN_LENGTH)).ok,
+    true
+  );
 });
 
 test("a query at exactly the limit is accepted", () => {

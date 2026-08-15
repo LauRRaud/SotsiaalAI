@@ -5496,6 +5496,7 @@
       "db_error_run_read": "Could not load conversation context.",
       "db_error_analyze_usage": "Could not load analysis usage.",
       "search_query_too_long": "The search term is too long. Shorten it and try again.",
+      "search_query_too_short": "The search term must be at least 3 characters long.",
       "db_error_conversations_list": "Could not load conversations.",
       "db_error_conversation_create": "Could not create conversation.",
       "db_error_conversation_read": "Could not load conversation.",
