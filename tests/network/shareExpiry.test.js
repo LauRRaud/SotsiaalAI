@@ -5,7 +5,7 @@ import { endExpiredNetworkShares } from "../../lib/network/shareExpiry.js";
 
 const ACTIVE = new Set(["DRAFT", "AWAITING_CLIENT", "CONFIRMED", "SENT", "OPENED", "RESPONDED"]);
 
-function makeDb({ failRoomOnce = false } = {}) {
+function makeDb({ failRoomOnce = false, includeLifecycle = false } = {}) {
   const rows = [
     { id: "expired", roomId: "room-expired", status: "SENT", participationEndsOn: new Date("2026-08-12") },
     { id: "boundary", roomId: "room-boundary", status: "OPENED", participationEndsOn: new Date("2026-08-13") }
@@ -19,6 +19,11 @@ function makeDb({ failRoomOnce = false } = {}) {
     { id: "room-expired", archivedAt: null },
     { id: "room-boundary", archivedAt: null }
   ];
+  if (includeLifecycle) {
+    rows.push({ id: "expired-too", roomId: null, status: "SENT", participationEndsOn: new Date("2026-08-11") });
+  }
+  const domainEvents = [];
+  const auditLogs = [];
   let shouldFail = failRoomOnce;
 
   const client = {
@@ -35,6 +40,9 @@ function makeDb({ failRoomOnce = false } = {}) {
         }
         Object.assign(row, data);
         return { count: 1 };
+      },
+      async findFirst({ where }) {
+        return rows.find((item) => item.id === where.id) || null;
       }
     },
     roomMember: {
@@ -54,7 +62,25 @@ function makeDb({ failRoomOnce = false } = {}) {
         if (room) Object.assign(room, data);
         return { count: room ? 1 : 0 };
       }
-    }
+    },
+    ...(includeLifecycle ? {
+      domainEvent: {
+        async findUnique({ where }) {
+          return domainEvents.find((event) => event.idempotencyKey === where.idempotencyKey) || null;
+        },
+        async create({ data }) {
+          const event = { id: `event-${domainEvents.length + 1}`, ...data };
+          domainEvents.push(event);
+          return event;
+        }
+      },
+      dataAuditLog: {
+        async create({ data }) {
+          auditLogs.push(data);
+          return data;
+        }
+      }
+    } : {})
   };
   client.$transaction = async (work) => {
     const snapshot = {
@@ -71,7 +97,7 @@ function makeDb({ failRoomOnce = false } = {}) {
       throw error;
     }
   };
-  return { db: client, rows, members, rooms };
+  return { db: client, rows, members, rooms, domainEvents, auditLogs };
 }
 
 test("SOL-NET-05: sweep lõpetab ainult tähtaja ületanud jagamise ja kogu ruumipääsu", async () => {
@@ -86,6 +112,15 @@ test("SOL-NET-05: sweep lõpetab ainult tähtaja ületanud jagamise ja kogu ruum
   assert.ok(state.members.filter((row) => row.roomId === "room-expired").every((row) => row.leftAt));
   assert.equal(state.members.find((row) => row.roomId === "room-boundary").leftAt, null);
   assert.ok(state.rooms.find((room) => room.id === "room-expired").archivedAt);
+});
+
+test("expiry sweep kirjutab igale lõpetatud jagamisele eraldi sündmuse ja auditirea", async () => {
+  const state = makeDb({ includeLifecycle: true });
+  const result = await endExpiredNetworkShares({ db: state.db, now: new Date("2026-08-13") });
+
+  assert.equal(result.ended, 2);
+  assert.deepEqual(state.domainEvents.map((event) => event.sourceId).sort(), ["expired", "expired-too"]);
+  assert.deepEqual(state.auditLogs.map((entry) => entry.resourceId).sort(), ["expired", "expired-too"]);
 });
 
 test("SOL-NET-05: kukkunud ligipääsu eemaldus pöörab oleku tagasi ja järgmine sweep parandab", async () => {

@@ -7832,7 +7832,7 @@ taga veel ei ole.
 
 **Vastuvõtukriteerium.** Iga oluline siire peab kirjutama samas tehingus minimaalse DomainEvent/outbox'i; projector loob idempotentse teavituse. Nõusoleku- ja saatmisaudit säilitab ID-d/koodid, mitte vabateksti. Testida projector maas, kordus ja osaline delivery-viga.
 
-**Seis (13.08.2026): DONE —** CREATE, UPDATE, SUBMIT, DECIDE, ATTEST, SEND, OPEN, RECALL, RESPOND ja END siirded kirjutavad olekuga samas DB-tehingus minimaalse `DomainEvent`/outbox-rea ja `DataAuditLog`-i ilma vabatekstita. Projector loob adressaadipõhised idempotentsed teavitused; testid ja päris PostgreSQL tõendasid projectori seisu, kordust ning osalise tarne vea järel taastumist. Production projectori käitus: NOT_PROVEN.
+**Seis (15.08.2026): DONE —** CREATE, UPDATE, SUBMIT, DECIDE, ATTEST, SEND, OPEN, RECALL, RESPOND ja END siirded kirjutavad olekuga samas DB-tehingus minimaalse `DomainEvent`/outbox-rea ja `DataAuditLog`-i ilma vabatekstita. Projector loob adressaadipõhised idempotentsed teavitused; testid ja päris PostgreSQL tõendasid projectori seisu, kordust ning osalise tarne vea järel taastumist. Aardvarki järelkontrollis leitud aegumissweep'i päevapõhine idempotentsuskollisioon on suletud ressursipõhise võtmega; regressioonitest tõendab, et sama päeva iga lõppenud jagamine saab eraldi sündmuse ja auditirea. Production projectori käitus: NOT_PROVEN.
 
 ### SOL-NET-11 — ühelgi kaheksast võrgustikujagamise route'il pole sageduspiiri — P1
 
