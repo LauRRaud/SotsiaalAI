@@ -51,9 +51,12 @@ test("chat response handler binds usage settlement to the durable turn write on 
     /async function settleAfterFinalize\([\s\S]*?settleChatUsage\(onUsageCommit/
   );
 
-  // Terminalseisud vabastavad ühiku oma markeri tehingus.
+  // Terminalseisud arveldavad ühiku oma markeri tehingus. Voo abort commit'ib nähtava
+  // osalise vastuse ning vabastab ainult siis, kui midagi kliendile ei jõudnud.
   assert.match(source, /status: wasAborted \? "ABORTED" : "ERROR"[\s\S]*?settleUsage:/);
-  assert.match(source, /status: "ABORTED"[\s\S]*?onUsageRelease\("chat_stream_aborted", tx\)/);
+  assert.match(source, /const hasVisibleOutput = emitted\.length > 0/);
+  assert.match(source, /const settleAbortedUsage = hasVisibleOutput \? onUsageCommit : onUsageRelease/);
+  assert.match(source, /hasVisibleOutput[\s\S]*?settleAbortedUsage\(tx\)[\s\S]*?settleAbortedUsage\(releaseReason, tx\)/);
   assert.match(source, /status: "ERROR"[\s\S]*?onUsageRelease\("chat_stream_failed", tx\)/);
   assert.match(source, /chat_provider_failed/);
   assert.match(source, /chat_stream_failed/);
