@@ -92,6 +92,11 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Aardvarki kutsekirja HTML-süst on parandatud.** Kasutaja sisestatud ruumi pealkiri ja
+kutsuja nimi jäävad kirja teksti ning teemareale muutmata, kuid HTML-mallis kodeeritakse need
+nüüd tekstiks; seega ei saa ruumi nimi ametlikku kutsekirja linke ega muud HTML-i lisada.
+Järgmine tööots valitakse S4-st.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
@@ -1016,6 +1021,10 @@ või `failed`, kohale toimetamata kiri jääb päris järjekorda ja server saada
 liides nimetab jõudmata jäänud aadressid. Varem öeldi kõigi kohta ühetaoliselt „saadetud",
 ka siis, kui kiri ei läinud kunagi välja ja saatja ootas vastust inimeselt, kes ei saanud
 kunagi linki.
+
+**Aardvarki 15.08 kutsekirja leid on parandatud:** ruumi pealkiri ja kutsuja nimi kodeeritakse
+HTML-kirjas enne malli asendust. Tekstikiri ja teemarida säilitavad olemasoleva sisu, kuid
+pealkirja sisse pandud märgend, link või jälgimispilt kuvatakse HTML-kirjas pelga tekstina.
 
 **Kõnepeatükk sai 11.08 kolm viimast leidu ja on täis.** Salvestisel on nüüd **üks kandja**:
 teade „salvestis on saadaval" läheb ainult sellele, kes salvestamist taotles, ja
