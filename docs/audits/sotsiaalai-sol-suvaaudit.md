@@ -1656,7 +1656,19 @@ summas.
 
 **Vastuvõtukriteerium.** Uue uuringu käivitamine võib jääda tellimusvärava taha, kuid omaniku GET/list/detail ja päris DELETE peavad töötama tellimuseta. Aktiivse töö Stop ja terminaltulemuse Delete peavad olema eri semantikaga idempotentsed toimingud. HTTP-testid peavad katma aktiivse/aegunud tellimuse ning queued/running/done/error/cancelled olekud ja tõendama DB-rea tegelikku eemaldumist.
 
-**Seis (11.08.2026): DONE — koos päris PostgreSQL-i runtime-tõendiga (15/15).**
+**Seis (15.08.2026): PARTIAL — Aardvarki stop/delete võistluse koodiparandus on valmis, kuid
+uus PostgreSQL-i tõend on selles keskkonnas NOT_PROVEN.**
+
+**15.08 turvajätk: peatamissignaali ei saa enam workeri eest ära kustutada.** Teise protsessi Stop
+märgib rea `cancelled`, kuid DELETE käsitleb seda aktiivsena seni, kuni worker on signaali lugenud
+ja `cancelAcknowledgedAt` kinnituse kirjutanud. Kinnitamata tühistus jääb ka aktiivtöö loendisse
+ning osalisse unikaalsusindeksisse, mistõttu uut kulukat tööd ei saa võistluse ajal luua. Inline-
+jooksja kinnitab oma sünkroonselt katkestatud runtime'i kohe; worker-režiimis tekib kinnitus
+`syncResearchCancellation()` kontrollpunktis. Retention-sweep ei eemalda kinnitamata signaali.
+Sondis on vana koodi vastu kandev uus kontroll (kinnitamata `cancelled` ei tohi kustuda), kuid
+kohalik PostgreSQL ei olnud kättesaadav (`ECONNREFUSED`) ja migratsioonikontrollil puudus
+`DATABASE_URL`; enne DONE taastamist tuleb käivitada `npm run research:delete:probe` ja
+`npm run db:migrate:check` päris ajutise PostgreSQL-i vastu.
 
 **KAKS ERI ASJA OLID ÜHTE AETUD.** (1) Kogu uuringupind — loend, detail, voog ja DELETE — käis
 läbi `requireResearchAuth()`, mis nõudis alati aktiivset tellimust. Aegunud tellimusega inimene ei
