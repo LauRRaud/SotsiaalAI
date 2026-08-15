@@ -12,6 +12,7 @@ import { PrismaClient } from "../generated/prisma/client.ts";
 import { deleteHelpOffer } from "../lib/help/offers.js";
 import { deleteHelpRequest } from "../lib/help/requests.js";
 import { createHelpMatchAndRoom, decideHelpMatch } from "../lib/help/matches.js";
+import { buildExpiredHelpListingWhere } from "../lib/retention.js";
 
 const DEFAULT_LOCAL_URL = "postgresql://sotsiaal_user:sotsiaalai@localhost:5432/sotsiaal_ai?schema=public";
 const sourceUrl = String(process.env.DATABASE_URL || DEFAULT_LOCAL_URL).trim();
@@ -164,6 +165,15 @@ try {
   const closedOffer = await deleteHelpOffer(pair.offer.id, { actorUserId: pair.offerer.id }, db);
   check("accepted offer muutub CLOSED ja säilitab sama ruumi", closedOffer.disposition === "CLOSED_ACCEPTED_MATCH" && await db.room.count({ where: { id: accepted.roomId } }) === 1);
   check("offer sulgemine kirjutab täpselt ühe auditi", await db.dataAuditLog.count({ where: { action: "HELP_OFFER_CLOSE_ACCEPTED_MATCH", resourceId: pair.offer.id } }) === 1);
+
+  const retentionCutoff = new Date("2026-01-01T00:00:00.000Z");
+  const oldUpdatedAt = new Date("2025-01-01T00:00:00.000Z");
+  await db.helpRequest.update({ where: { id: pair.request.id }, data: { updatedAt: oldUpdatedAt } });
+  await db.helpOffer.update({ where: { id: pair.offer.id }, data: { updatedAt: oldUpdatedAt } });
+  const retainedRequests = await db.helpRequest.deleteMany({ where: buildExpiredHelpListingWhere(retentionCutoff) });
+  const retainedOffers = await db.helpOffer.deleteMany({ where: buildExpiredHelpListingWhere(retentionCutoff) });
+  check("retention jätab accepted match'iga vana request'i alles", retainedRequests.count === 0 && await db.helpRequest.count({ where: { id: pair.request.id } }) === 1);
+  check("retention jätab accepted match'iga vana offer'i alles", retainedOffers.count === 0 && await db.helpOffer.count({ where: { id: pair.offer.id } }) === 1);
 
   const unmatched = await seedPair();
   const hardDeleted = await deleteHelpRequest(unmatched.request.id, { actorUserId: unmatched.requester.id }, db);
