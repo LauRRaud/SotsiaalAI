@@ -92,6 +92,11 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**A4 avaliku tegevusloa märgise identiteedivärav on parandatud.** Positiivne märgis tekib nüüd
+ainult siis, kui registrist lahendatud juriidilise isiku nimi vastab osutaja kuvatud
+organisatsiooninimele; nimekonflikt eemaldab ka varasema positiivse väite. Järgmine A4 tööots
+on endiselt kontrollitud käsitsi sidumine ja sellele järgnev avaliku/sisemise märgise smoke.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
@@ -1661,6 +1666,11 @@ kustutatud (toodangus 0 kontrolli, 0 hinnangut, 0 sünteetilist rida) ja sond pa
 ei eeldata.
 
 ### A4 — TEGEMATA (ootab omanikku)
+
+Avaliku märgise identiteedivärav nõuab lisaks lahendatud registrikoodile registri juriidilise
+isiku nime vastavust profiili kuvatud organisatsiooninimele. Nimekonflikt salvestub
+`ENTITY_NAME_MISMATCH` põhjusena, blokeerib uue positiivse hinnangu ning eemaldab kohe ka
+varasema positiivse avaliku väite; admini nimeanomaalia alarm säilib.
 
 Kood on toodangus, aga **funktsioon on veel dormant**: ükski teenus ei ole kataloogiga seotud,
 seega ühtegi märgist kusagil ei kuva. Neli sammu on tegemata ja kolm neist vajavad admini
