@@ -48,6 +48,16 @@ test("pending, rejected, and reviewed clocks apply only to the original file", (
   }
 })
 
+test("a sanitized derivative created with a submission is tracked on the same pre-import clock", () => {
+  const fields = retentionFieldsForSubmission("pending", anchor, { derivativePresent: true })
+
+  assert.equal(fields.derivativeRetentionClass, "MATERIAL_SANITIZED_DERIVATIVE")
+  assert.equal(fields.derivativeRetentionState, "SCHEDULED")
+  assert.equal(fields.derivativeRetentionAnchorAt.toISOString(), anchor.toISOString())
+  assert.equal(fields.derivativeRetentionUntil.toISOString(), fields.originalRetentionUntil.toISOString())
+  assert.equal(fields.derivativeRetentionPolicyVersion, MATERIAL_RETENTION_POLICY_VERSION)
+})
+
 test("successful ingest starts independent 7-day original and 365-day derivative/RAG clocks", () => {
   const fields = retentionFieldsForImportedLayers(anchor, { derivativePresent: true })
 
