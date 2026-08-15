@@ -6,6 +6,13 @@ import test from "node:test";
 const root = process.cwd();
 const read = (...parts) => fs.readFileSync(path.join(root, ...parts), "utf8");
 
+test("mitme aktiivse suunamise valik on kohustuslik ka noValidate vormil", () => {
+  const day = read("components", "serviceLog", "ServiceLogDay.jsx");
+
+  assert.match(day, /defaults\?\.askReferral\s*&&\s*!referralId/);
+  assert.match(day, /setFormError\(t\("service_log\.errors\.referral_required"/);
+});
+
 test("SOL-SLOG-J-01: kuuvaates on paranduse, kustutuse, tühistuse ja ajaloo kasutajatee", () => {
   const month = read("components", "serviceLog", "ServiceLogMonth.jsx");
   const actionsPath = path.join(root, "components", "serviceLog", "ServiceLogEntryActions.jsx");

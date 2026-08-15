@@ -6,7 +6,7 @@ import { createEntry } from "../../lib/serviceLog/entries.js";
 const ENV = { SERVICE_LOG_ENABLED: "1" };
 const PROFILE = { id: "profile-1", ownershipMode: "SOLO" };
 
-function makeDb({ referral = null, service = null } = {}) {
+function makeDb({ referral = null, referrals = referral ? [referral] : [], service = null } = {}) {
   const entries = [];
   return {
     entries,
@@ -14,6 +14,7 @@ function makeDb({ referral = null, service = null } = {}) {
       findFirst: async () => PROFILE
     },
     serviceReferral: {
+      findMany: async () => referrals,
       findFirst: async ({ where }) => {
         if (!referral || where.id !== referral.id) return null;
         return referral;
@@ -41,6 +42,20 @@ function makeDb({ referral = null, service = null } = {}) {
     }
   };
 }
+
+test("mitme aktiivse suunamisega kliendi kirje nõuab suunamise valikut", async () => {
+  const db = makeDb({
+    referrals: [activeReferral(), activeReferral({ id: "referral-2" })]
+  });
+
+  const error = await createEntry("user-1", entryInput(), { db, env: ENV }).catch(
+    (caught) => caught
+  );
+
+  assert.equal(error.status, 400);
+  assert.equal(error.messageKey, "service_log.errors.referral_required");
+  assert.equal(db.entries.length, 0);
+});
 
 function entryInput(overrides = {}) {
   return {
