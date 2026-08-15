@@ -987,11 +987,6 @@ export default function FieldVisitRoom({ visitId }) {
                             <Button size="sm" variant="secondary" onClick={() => sync.retryItem(item.clientItemId)}>
                               {t("field.retry")}
                             </Button>
-                            {item.lastError === "field.errors.visit_read_only" ? (
-                              <Button size="sm" onClick={() => sync.retryRecoveryImport(item.clientItemId)}>
-                                {t("field.review.recoveryImport")}
-                              </Button>
-                            ) : null}
                           </>
                         ) : null}
                         {item.state === FIELD_ITEM_STATE.QUEUED ? (
