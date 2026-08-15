@@ -29,6 +29,24 @@ test("safe fetch revalidates every redirect hop", async () => {
   assert.equal(calls.length, 1);
 });
 
+test("safe fetch pins the request to the address that passed validation", async () => {
+  const requests = [];
+  const response = await safeFetch("https://rebind.example/guide", {
+    lookup: async () => [{ address: "93.184.216.34", family: 4 }],
+    requestImpl: async (target) => {
+      requests.push(target);
+      return new Response("guide text", { status: 200, headers: { "content-type": "text/html" } });
+    }
+  });
+
+  assert.equal(response.status, 200);
+  assert.deepEqual(requests, [{
+    url: "https://rebind.example/guide",
+    hostname: "rebind.example",
+    addresses: ["93.184.216.34"]
+  }]);
+});
+
 test("safe fetch bounds response bytes and preserves only fetch metadata", async () => {
   const response = await safeFetch("https://example.org/guide", {
     lookup: publicLookup,

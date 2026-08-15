@@ -2752,7 +2752,8 @@ GDPR-i andmekoopia ja materjali väljaviimine PDF- või DOCX-kujul on sisse ehit
 
 **Admin ja analüütika.**
 Administraatoril on kasutajate, tellimuste, teadmusbaasi ja koondnäitajate haldus. Koondid
-on kaitstud väikese arvu summutusega.
+on kaitstud väikese arvu summutusega. Teadmusbaasi väliste allikate laadimine seob ühenduse
+DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sisevõrku.
 
 ### Poolik
 
