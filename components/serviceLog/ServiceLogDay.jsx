@@ -260,8 +260,16 @@ export default function ServiceLogDay() {
     let cancelled = false;
     const timer = setTimeout(async () => {
       try {
-        const params = new URLSearchParams({ defaults: "1", clientDisplayName: clientName.trim() });
-        const response = await fetch(`/api/service-entries?${params}`, { headers: { "x-ui-locale": locale || "et" } });
+        /* Kliendi nimi on isikuandmed ja ei tohi sattuda URL-i, mida proxy'd,
+           ligipääsulogid ning seirevahendid tavaliselt talletavad. */
+        const response = await fetch("/api/service-entries", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-ui-locale": locale || "et"
+          },
+          body: JSON.stringify({ operation: "defaults", clientDisplayName: clientName.trim() })
+        });
         if (!response.ok) return;
         const body = await response.json();
         if (cancelled) return;
