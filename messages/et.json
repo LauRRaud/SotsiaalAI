@@ -9912,7 +9912,7 @@
       "open_room": "Ava arutelu"
     },
     "fields": {
-      "recipient_email": "Saaja e-post (peab olema platvormi kasutaja)",
+      "recipient_user_id": "Saaja kasutaja-ID",
       "client_display_name": "Kliendi kuvanimi (initsiaal või roll)",
       "summary": "Jagatav kokkuvõte",
       "purpose": "Miks see osapool kaasatakse",

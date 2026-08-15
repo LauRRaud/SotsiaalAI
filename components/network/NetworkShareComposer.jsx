@@ -23,7 +23,7 @@ function txt(t, key, fallback) {
 }
 
 const EMPTY_DRAFT = {
-  recipientEmail: "",
+  recipientUserId: "",
   summaryText: "",
   purpose: "",
   sharingBoundary: "",
@@ -111,7 +111,7 @@ export default function NetworkShareComposer({ preInquiryId }) {
   const createDraft = useCallback(async () => {
     const ok = await call("/api/network-shares", {
       sourcePreInquiryId: preInquiryId,
-      recipientEmail: draft.recipientEmail,
+      recipientUserId: draft.recipientUserId,
       summaryText: draft.summaryText,
       purpose: draft.purpose,
       sharingBoundary: draft.sharingBoundary,
@@ -137,11 +137,10 @@ export default function NetworkShareComposer({ preInquiryId }) {
           {notice ? <p role="status">{notice}</p> : null}
 
           <label>
-            <span>{txt(t, "network_share.fields.recipient_email", "Saaja e-post (peab olema platvormi kasutaja)")}</span>
+            <span>{txt(t, "network_share.fields.recipient_user_id", "Saaja kasutaja-ID")}</span>
             <Input
-              type="email"
-              value={draft.recipientEmail}
-              onChange={(e) => setDraft((d) => ({ ...d, recipientEmail: e.target.value }))}
+              value={draft.recipientUserId}
+              onChange={(e) => setDraft((d) => ({ ...d, recipientUserId: e.target.value }))}
             />
           </label>
 
