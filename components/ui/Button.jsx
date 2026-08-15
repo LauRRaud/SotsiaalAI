@@ -1,7 +1,6 @@
 "use client";
 
 import { forwardRef } from "react";
-import SpecularButton from "@/components/SpecularButton/SpecularButton";
 import { cn } from "@/components/ui/cn";
 
 const Button = forwardRef(function Button({
@@ -44,24 +43,6 @@ const Button = forwardRef(function Button({
     style,
     ...props
   };
-
-  if (Component === "button" && glow) {
-    return (
-      <SpecularButton
-        ref={ref}
-        size={null}
-        radius={999}
-        proximity={1}
-        /* Servahelk oli vaikeväärtusel (1) ja luges nupu ümber kõva valge
-           joonena (omanik 03.08: „nupu läige on hetkel liiga tugev, veidi
-           vähemaks"). 0.7 hoiab liikuva helgi alles, aga võtab tipu maha. */
-        intensity={0.7}
-        {...sharedProps}
-      >
-        {children}
-      </SpecularButton>
-    );
-  }
 
   return (
     <Component ref={ref} {...sharedProps}>
