@@ -122,6 +122,8 @@ end-vs-create võistluse. AI-abiga alustatud narratiivi päritolu säilib toimet
 revision/CAS peatab paralleelse vaikse ülekirjutuse. Andmekoopia hõlmab nüüd rolli- ja
 omandipõhiselt Teenuspäevikut, konto kustutus tombstone'ib kõik identiteedipinnad samas
 tehingus ning auditeeritud retention-worker koristab tähtaja järel sõltuvused ja failikoopiad.
+Kliendi andmekoopia kasutab sama minimaalset lubatud väljade piiri nagu kliendivaade ega väljasta
+töötaja märkmeid, narratiive, suunamisi, välisviiteid või täpset asukohta.
 
 **Organisatsioonide `SOL-ORG-18/19` on lõpetatud.** Konto kustutus järgib nüüd sama
 lukustatud offboardingulepingut: viimane omanik ja elav töö peatuvad parandatava põhjusega,
