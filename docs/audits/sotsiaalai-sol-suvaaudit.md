@@ -6059,7 +6059,7 @@ Olemasolev `dispatchAssign.test.js` hoiab kahekordse õiguse piiri edasi.
 
 **Vastuvõtukriteerium.** Rahalised koondid peavad kasutama täielikku DB-agregatsiooni või stabiilset lehekülgitamist; igal kaitsepiiril peab olema fail-closed või selge `truncated/incomplete` leping. Testida vähemalt 5001 kirjet, 501 suunamist ja 2001 narratiivikirjet nii, et piiri taha jääv rida muudab tulemust.
 
-**Seis (12.08.2026): DONE — kuu-, saldo-, suunamis- ja narratiivipäringud kasutavad nüüd stabiilset ID-kursoriga lehekülgitamist ega lõpeta vaikides vana `take` piiri juures.** Ühine abifunktsioon nõuab igalt lehelt kasvavat viimast ID-d ja viskab seiskunud kursori korral, selle asemel et tagastada näiliselt täielik tulemus. Piirtestid tõendasid, et 5001. kuurida ja saldorida muudavad summat, 501. suunamine ja narratiiv jõuavad vastusesse ning 2001. seed'i kirje jõuab faktibaasi.
+**Seis (15.08.2026): DONE — kuu-, saldo-, suunamis- ja narratiivipäringud ning uue kirje ületamishoiatus kasutavad nüüd stabiilset ID-kursoriga lehekülgitamist ega lõpeta vaikides vana `take` piiri juures.** Ühine abifunktsioon nõuab igalt lehelt kasvavat viimast ID-d ja viskab seiskunud kursori korral, selle asemel et tagastada näiliselt täielik tulemus. Piirtestid tõendasid, et 5001. kuurida ja saldorida muudavad summat, 5001. olemasolev rida käivitab uue kirje ületamishoiatuse, 501. suunamine ja narratiiv jõuavad vastusesse ning 2001. seed'i kirje jõuab faktibaasi.
 
 ### SOL-RAGSVC-01 — kaks ingest-rada võimaldavad kirjutada faili väljapoole RAG-hoidlat — P0
 
