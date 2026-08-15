@@ -270,3 +270,57 @@ test("SOL-SLOG-10: üld-PATCH ei ole paberkinnituse tagauks", async () => {
   assert.equal(error.messageKey, "service_log.errors.manual_confirmation_lifecycle_only");
   assert.equal(db.entries[0].confirmedManually, false);
 });
+
+test("lõppenud suunamise mustandile ei saa PATCH-iga uut mahtu lisada", async () => {
+  const db = makeDb([makeEntry({ referralId: "referral-1" })]);
+  db.serviceReferral.findFirst = async () => ({
+    id: "referral-1",
+    clientUserId: null,
+    clientDisplayName: "Mari",
+    clientExternalRef: "external-1",
+    serviceId: null,
+    unit: "HOUR",
+    status: "ENDED",
+    periodStart: new Date("2026-08-01T00:00:00.000Z"),
+    periodEnd: new Date("2026-08-31T00:00:00.000Z")
+  });
+
+  const error = await updateEntry(
+    "user-1",
+    "entry-1",
+    { quantity: 5, expectedUpdatedAt: REVISION.toISOString() },
+    { db, env: ENV }
+  ).catch((caught) => caught);
+
+  assert.equal(error.status, 409);
+  assert.equal(error.messageKey, "service_log.errors.referral_not_active");
+  assert.equal(db.entries[0].quantity, 1);
+});
+
+test("lõppenud suunamise kinnitatud kirjet saab põhjusega parandada", async () => {
+  const db = makeDb([
+    makeEntry({ referralId: "referral-1", status: "FINAL", finalizedAt: REVISION })
+  ]);
+  db.serviceReferral.findFirst = async () => ({
+    id: "referral-1",
+    clientUserId: null,
+    clientDisplayName: "Mari",
+    clientExternalRef: "external-1",
+    serviceId: null,
+    unit: "HOUR",
+    status: "ENDED",
+    periodStart: new Date("2026-08-01T00:00:00.000Z"),
+    periodEnd: new Date("2026-08-31T00:00:00.000Z")
+  });
+
+  const entry = await updateEntry(
+    "user-1",
+    "entry-1",
+    { quantity: 5, reason: "Lõpparve parandus", expectedUpdatedAt: REVISION.toISOString() },
+    { db, env: ENV }
+  );
+
+  assert.equal(entry.quantity, 5);
+  assert.equal(db.corrections.length, 1);
+  assert.equal(db.corrections[0].reason, "Lõpparve parandus");
+});
