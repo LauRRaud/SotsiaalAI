@@ -97,8 +97,8 @@ tööpuus.** 56 mitteblokeeritud ja mittedubleeriva PR-i parandused on koondatud
 kohalikuks commit'iks ning kontrollitud plokkide sihttestide, lindi ja diff-kontrolliga;
 põhitööpuud, GitHubi `main`-i ega toodangut ei ole selle ringiga veel muudetud. Toote- või
 õigusotsust vajavad, päris PostgreSQL-i tõendita migratsiooniparandused, osalised parandused,
-punase CI-ga PR-id ja duplikaadid jäid teadlikult välja. Järgmine samm on muutumatu koondpuu
-täisvärav, seejärel omaniku loal push ning eraldi loal toodangusse viimine.
+punase CI-ga PR-id ja duplikaadid jäid teadlikult välja. Muutumatu koondpuu UTC täisvärav on
+**4848/4848**; järgmine samm on omaniku loal push ning eraldi loal toodangusse viimine.
 
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
