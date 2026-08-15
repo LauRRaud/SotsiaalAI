@@ -215,7 +215,7 @@ async function drainSseBody(res) {
   }
 }
 
-test("streaming Stop aborts the provider, releases usage and does not run the COMPLETED finalize", async () => {
+test("streaming Stop after visible output charges usage and does not run the COMPLETED finalize", async () => {
   const controller = new AbortController();
   let capturedSignal = null;
   let commitCalls = 0;
@@ -226,7 +226,7 @@ test("streaming Stop aborts the provider, releases usage and does not run the CO
     streamOpenAI: async ({ signal }) => {
       capturedSignal = signal;
       return (async function* () {
-        yield { type: "delta", text: "Osaline vastus" };
+        yield { type: "delta", text: "Osaline ja kasutatav mudeli vastus." };
         // The user presses Stop mid-stream.
         controller.abort();
         // Anything after the abort must never be shown or persisted.
@@ -278,6 +278,6 @@ test("streaming Stop aborts the provider, releases usage and does not run the CO
 
   assert.ok(capturedSignal, "the abort signal must be threaded into the provider stream");
   assert.equal(finalizeCalls, 0, "the COMPLETED finalize (full-reply persist) must not run on abort");
-  assert.equal(commitCalls, 0, "usage must not be committed on abort");
-  assert.equal(releaseCalls, 1, "the unused reservation must be released on abort");
+  assert.equal(commitCalls, 1, "visible partial output must consume the reserved usage");
+  assert.equal(releaseCalls, 0, "a reservation must not be restored after output was delivered");
 });
