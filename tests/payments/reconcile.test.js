@@ -147,7 +147,7 @@ test("RECONCILE_PENDING rida on lahendatav: verifitseeritud PAID aktiveerib kord
   );
 });
 
-test("RECONCILE_PENDING rida, mille provider kinnitab FAILED-ina, muutub terminaalseks", async () => {
+test("RECONCILE_PENDING renewal, mille provider kinnitab FAILED-ina, ajastab järgmise katse", async () => {
   const payments = new Map([
     ["p1", {
       id: "p1",
@@ -159,7 +159,16 @@ test("RECONCILE_PENDING rida, mille provider kinnitab FAILED-ina, muutub termina
       raw: {}
     }]
   ]);
-  const db = fakeDb(payments);
+  const subscriptions = new Map([
+    ["s1", {
+      id: "s1",
+      status: "ACTIVE",
+      billingRetryCount: 0,
+      nextBilling: new Date(NOW.getTime() - HOUR),
+      billingMethodId: "bm1"
+    }]
+  ]);
+  const db = fakeDb(payments, subscriptions);
   const result = await reconcileStuckPayments({
     db,
     now: NOW,
@@ -168,6 +177,12 @@ test("RECONCILE_PENDING rida, mille provider kinnitab FAILED-ina, muutub termina
   });
   assert.equal(result.failed, 1);
   assert.equal(payments.get("p1").status, "FAILED");
+  assert.equal(subscriptions.get("s1").status, "PAST_DUE");
+  assert.equal(subscriptions.get("s1").billingRetryCount, 1);
+  assert.ok(
+    new Date(subscriptions.get("s1").nextBilling).getTime() > NOW.getTime(),
+    "terminalne eitus peab sama deterministic providerPaymentId kordamise asemel retry edasi ajastama"
+  );
 });
 
 test("report-only (no provider query) never activates", async () => {

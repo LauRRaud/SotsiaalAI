@@ -124,6 +124,7 @@ test("lõplikkuse ja lahtisuse definitsioonid ei kattu", () => {
   assert.equal(isTerminalPaymentStatus("FAILED"), true);
   assert.equal(isTerminalPaymentStatus("CANCELED"), true);
   assert.equal(isTerminalPaymentStatus("REFUNDED"), true);
+  assert.equal(isTerminalPaymentStatus("PART_REFUNDED"), true);
   assert.equal(isTerminalPaymentStatus("RECONCILE_PENDING"), false, "kogu leiu mõte");
   assert.equal(isTerminalPaymentStatus("INITIATED"), false);
   assert.equal(isUnresolvedPaymentStatus("RECONCILE_PENDING"), true);
