@@ -7,6 +7,7 @@ import {
   RETENTION_TRANSITIONS,
   caseDisplayLabel,
   createCaseWorkAssist,
+  eraseCaseClientReference,
   resolveClientNames,
   updateCaseWorkAssist
 } from "../../lib/casework/caseWorkAssist.js";
@@ -191,6 +192,11 @@ function fakeDb({
         for (const row of matching) Object.assign(row, data);
         return { count: matching.length };
       }
+    },
+    caseWorkClientErasureAudit: {
+      async create({ data }) {
+        return data;
+      }
     }
   };
 }
@@ -257,6 +263,32 @@ test("nimede lahendus käib HULGI ja kustutatud viitega ridu ei küsita", async 
   assert.equal(database.calls.userFindMany, 1, "N rida ei tohi teha N päringut");
   assert.equal(names.get("u1"), "Mari Tamm");
   assert.equal(names.has("u2"), false, "kustutatud viite nime ei küsita");
+});
+
+test("kliendiviite kustutus ei avalda ega muuda võõra omaniku juhtumit", async () => {
+  const victimCase = {
+    id: "victim-case",
+    ownerUserId: "victim-worker",
+    clientUserId: "client-1",
+    clientDisplayName: "Klient",
+    clientExternalRef: "REF-1",
+    clientErasedAt: null
+  };
+  const database = db({ assists: [victimCase] });
+
+  await assert.rejects(
+    () =>
+      eraseCaseClientReference({
+        ownerUserId: "attacker-worker",
+        caseWorkAssistId: victimCase.id,
+        actorUserId: "attacker-worker",
+        reason: "worker_request",
+        db: database
+      }),
+    (error) => error?.status === 404
+  );
+  assert.equal(victimCase.clientUserId, "client-1");
+  assert.equal(victimCase.clientErasedAt, null);
 });
 
 /* ── Retention (L14) ─────────────────────────────────────────────────────── */
