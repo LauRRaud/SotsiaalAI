@@ -4361,7 +4361,7 @@ lahendus käib praegu käsitsi andmebaasist. Osalise tagasimakse summa-loogika o
 
 **Vastuvõtukriteerium.** Mudel peab eristama PART_REFUNDED ja täielikku REFUNDED seisu ning säilitama tagastatud summa/ledger-seose; õiguse vähendamine vajab toote- ja raamatupidamisreeglit, mitte staatuse stringi kokkusurumist. Testid peavad katma 0,01 €, osalise ja täieliku tagastuse nii SELF kui sponsorkutse puhul.
 
-**Seis (12.08.2026): DONE — osaline tagastus on oma seis oma summaga ja ta EI lõpeta ligipääsu; `npm run pay:refund:probe` 22/22 päris PostgreSQL-is päris allkirjastatud webhookidega. Vajab migratsiooni `20260812020000`.**
+**Seis (15.08.2026): DONE — osaline tagastus on oma seis oma summaga ja ta EI lõpeta ligipääsu; webhook loeb otsuse jaoks säilitatud `refundedAmount` väärtuse ning `PART_REFUNDED` tõrjub aegunud `PAID` korduse. Regressioonitestid 25/25 ja UTC täisvärav 4785/4785; varasem `npm run pay:refund:probe` 22/22 päris PostgreSQL-is päris allkirjastatud webhookidega. Vajab migratsiooni `20260812020000`.**
 
 **Reegel on raamatupidamise oma, mitte leiutatud tootereegel:** *õigus lõpeb siis, kui makse on
 TÄIELIKULT tagastatud* — mitte siis, kui tagastati midagi. Kaks tagajärge:

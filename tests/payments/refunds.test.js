@@ -9,6 +9,7 @@ import {
   resolveRefundOutcome
 } from "../../lib/payments/refunds.js";
 import { mapProviderPaymentStatus } from "../../lib/payments/maksekeskus.js";
+import { isTerminalPaymentStatus } from "../../lib/payments/providerOutcome.js";
 
 /* SOL-PAY-06 — OSALINE TAGASTUS EI OLE TÄISTAGASTUS.
 
@@ -103,6 +104,10 @@ test("tagastatud summa EI vähene korduse peale", () => {
   assert.equal(outcome.refundedAmount, "5.00", "kordus väiksema summaga ei kahanda kogusummat");
 });
 
+test("osaliselt tagastatud makse tõrjub aegunud PAID teate", () => {
+  assert.equal(isTerminalPaymentStatus("PART_REFUNDED"), true);
+});
+
 test("tagastatud summa loetakse ka refunds[] loendist", () => {
   assert.equal(extractRefundedAmount({ refunds: [{ amount: "1.50" }, { amount: "2.50" }] }), "4.00");
   assert.equal(extractRefundedAmount({ transaction: { refunds: [{ amount: "1.00" }] } }), "1.00");
@@ -127,7 +132,10 @@ test("webhook otsustab tagastuse enne kirjutamist ja osaline ei tühista", () =>
   assert.match(source, /resolveRefundOutcome\(/);
   assert.match(source, /effectiveStatus/);
   assert.match(source, /PART_REFUNDED_ACTION/);
-  assert.match(source, /refundedAmount/);
+  assert.match(
+    source,
+    /select:\s*\{[\s\S]*?amount:\s*true,[\s\S]*?currency:\s*true,[\s\S]*?refundedAmount:\s*true,[\s\S]*?raw:\s*true/
+  );
   // Clawback ja tellimuse tühistus tohivad käia AINULT täistagastuse haru all.
   assert.match(source, /effectiveStatus === PaymentStatus\.REFUNDED\) \{/);
   assert.ok(
