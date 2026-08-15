@@ -27,7 +27,7 @@ test("useRoomCall hook is owned by ChatBody, not the call bar face", async () =>
   assert.match(callBar, /!roomId \|\| !session/);
 });
 
-test("useRoomCall sends server leave on teardown and on pagehide", async () => {
+test("useRoomCall sends server leave on teardown and non-BFCache pagehide", async () => {
   const source = await read("components/rooms/useRoomCall.js");
 
   // Fire-and-forget leave: sendBeacon esimesena, keepalive-fetch varuna.
@@ -37,8 +37,10 @@ test("useRoomCall sends server leave on teardown and on pagehide", async () => {
   // Teardown (ruumivahetus/unmount/ligipääsu kadu) saadab leave'i ainult siis,
   // kui olime liitunud — joinedCallIdRef on ainus tõde.
   assert.match(source, /const callSessionId = joinedCallIdRef\.current;\s*\n\s*joinedCallIdRef\.current = "";\s*\n\s*if \(callSessionId\) sendLeaveSignal\(roomId, callSessionId\);/);
-  // Tab'i sulgemine / kõva navigatsioon: React-cleanup'e ei jooksutata.
+  // Tab'i sulgemine / kõva navigatsioon: React-cleanup'e ei jooksutata. BFCache'i
+  // minek ei ole lahkumine, sest sama leht ja LiveKit-session võivad taastuda.
   assert.match(source, /addEventListener\("pagehide"/);
+  assert.match(source, /handlePageHide = event => \{\s*\n\s*if \(event\.persisted\) return;/);
 });
 
 // SOL-CALL-11/12/13. Otsused ise on `lib/calls/clientState.js`-is ja neil on oma
