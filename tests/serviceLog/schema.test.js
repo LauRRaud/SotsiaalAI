@@ -10,7 +10,7 @@
  */
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -24,8 +24,22 @@ const narrativeIdentityMigration = readFileSync(
   join(root, "prisma/migrations/20260812234000_sol_slog_22_narrative_identity/migration.sql"),
   "utf8"
 );
+const legacyDraftBackfillPath = join(
+  root,
+  "prisma/migrations/20260814060000_service_entry_legacy_draft_backfill/migration.sql"
+);
 
 const MODELS = ["ServiceReferral", "ServiceEntry", "ServiceMonthlyNarrative"];
+
+test("elutsükli-eelsed teenuskirjed muudetakse säilitatavateks FINAL-kirjeteks", () => {
+  assert.ok(existsSync(legacyDraftBackfillPath), "pärandkirjete backfill-migratsioon puudub");
+  const backfill = readFileSync(legacyDraftBackfillPath, "utf8");
+  assert.match(backfill, /UPDATE\s+"ServiceEntry"/i);
+  assert.match(backfill, /SET[\s\S]*"status"\s*=\s*'FINAL'/i);
+  assert.match(backfill, /"finalizedAt"\s*=\s*COALESCE\s*\(\s*"finalizedAt"\s*,\s*"createdAt"/i);
+  assert.match(backfill, /"recordedFiscalYear"\s*=\s*COALESCE/i);
+  assert.match(backfill, /WHERE\s+"status"\s*=\s*'DRAFT'/i);
+});
 
 function modelBlock(name) {
   return schema.match(new RegExp(`model ${name} \\{[\\s\\S]*?\\n\\}`))?.[0] || "";
