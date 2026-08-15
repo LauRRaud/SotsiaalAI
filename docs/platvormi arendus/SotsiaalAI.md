@@ -92,6 +92,10 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Aardvarki master-source DNS rebindingu leid on parandatud.** Serveripoolne allikalaadimine
+ühendub nüüd DNS-kontrolli läbinud IP-aadressiga, säilitades algse hosti TLS-i ja HTTP jaoks;
+seega ei saa valideerimise ja ühenduse vahel muutuv DNS vastust sisevõrku ümber siduda.
+
 **Sihitud Codex Security seitsme faili parandusring on `main`-is ja toodangus
 (`bad33faca2cf41681abd5cf350b00ffe7b4671fc`).** Viis kinnitatud leidu on suletud: suletud registreerimise adminieelvaade
 kontrollib iga päringu ajal andmebaasist rolli, peatamist ja sessiooni; kõik kasutaja algatatud
@@ -2739,7 +2743,8 @@ GDPR-i andmekoopia ja materjali väljaviimine PDF- või DOCX-kujul on sisse ehit
 
 **Admin ja analüütika.**
 Administraatoril on kasutajate, tellimuste, teadmusbaasi ja koondnäitajate haldus. Koondid
-on kaitstud väikese arvu summutusega.
+on kaitstud väikese arvu summutusega. Teadmusbaasi väliste allikate laadimine seob ühenduse
+DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sisevõrku.
 
 ### Poolik
 

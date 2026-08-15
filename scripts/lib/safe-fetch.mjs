@@ -1,4 +1,6 @@
 import dns from "node:dns/promises";
+import http from "node:http";
+import https from "node:https";
 import net from "node:net";
 
 import { canonicalizeNetworkUrl } from "./url-canonical.mjs";
@@ -68,8 +70,37 @@ async function readBody(response, maxBytes) {
   return Buffer.concat(chunks);
 }
 
+function pinnedRequest(target, { method, headers, signal }) {
+  const url = new URL(target.url);
+  const transport = url.protocol === "https:" ? https : http;
+  const address = target.addresses[0];
+  const requestHeaders = new Headers(headers);
+  requestHeaders.set("host", url.host);
+  return new Promise((resolve, reject) => {
+    const request = transport.request({
+      hostname: address,
+      port: url.port || undefined,
+      path: `${url.pathname}${url.search}`,
+      method,
+      headers: Object.fromEntries(requestHeaders),
+      servername: net.isIP(url.hostname) ? undefined : url.hostname,
+      signal
+    }, response => {
+      resolve({
+        ok: response.statusCode >= 200 && response.statusCode < 300,
+        status: response.statusCode,
+        headers: new Headers(response.headers),
+        body: response
+      });
+    });
+    request.on("error", reject);
+    request.end();
+  });
+}
+
 export async function safeFetch(input, {
-  fetchImpl = fetch,
+  fetchImpl,
+  requestImpl = pinnedRequest,
   lookup = dns.lookup,
   maxBytes = DEFAULT_MAX_BYTES,
   timeoutMs = DEFAULT_TIMEOUT_MS,
@@ -85,7 +116,9 @@ export async function safeFetch(input, {
     const timer = setTimeout(() => controller.abort(), timeoutMs);
     let response;
     try {
-      response = await fetchImpl(target.url, { method, headers, redirect: "manual", signal: controller.signal });
+      response = fetchImpl
+        ? await fetchImpl(target.url, { method, headers, redirect: "manual", signal: controller.signal })
+        : await requestImpl(target, { method, headers, signal: controller.signal });
     } catch (error) {
       if (error?.name === "AbortError") throw new SafeFetchError("timeout", `Fetch timed out after ${timeoutMs}ms`);
       throw new SafeFetchError("fetch_failed", "Fetch request failed");
