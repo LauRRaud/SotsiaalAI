@@ -92,6 +92,10 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Aardvarki RAG-adminiproksi järelleid on parandatud lokaalses tööharus.** Dekodeeritud kaldkriipsu,
+kurakaldkriipsu ja punktsegmendiga parameeter ei läbi enam toimingu allowlist'i ning lubatud
+segmendid kodeeritakse enne upstream-URL-i koostamist eraldi. Järgmine tööots valitakse S4-st.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
@@ -227,6 +231,8 @@ puuduva või vale võtmega 401. Järgmine plokk on adminiproksi toimingupõhine 
 **SOL-RAGSVC-04 tehtud 12.08 — RAG haldus ei ole enam iga administraatori piiramatu catch-all.**
 Teadmistehalduril ja platform-adminil on eraldi püsiv õigus, brauseriproksil täpne allowlist ja
 same-origin mutatsioonipiir ning iga upstream-toiming saab kohustusliku algus- ja tulemusauditi.
+15.08 järelparandus sulges dekodeeritud kaldkriipsu, kurakaldkriipsu või punktsegmendi abil tehtava
+teeraja smugeldamise ning kodeerib iga autoriseeritud segmendi upstream-URL-is eraldi.
 Järgmine plokk teeb registri ja aktiivse dokumendiversiooni rikke- ning protsessiohutuks.
 
 **SOL-RAGSVC-05/06 tehtud 12.08 — katkine register ei muutu enam tühjaks ega kaota mitme protsessi uuendusi.**
