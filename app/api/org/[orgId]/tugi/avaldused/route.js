@@ -5,6 +5,7 @@ import {
   correctSupportShare,
   listOwnSupportSharePage,
   notifySupportShareRecipient,
+  openSupportShare,
   recallSupportShare,
   sendSupportShare
 } from "@/lib/org/supportShare";
@@ -75,6 +76,14 @@ export async function POST(request, context) {
         ownerUserId: auth.userId
       });
       return orgJson({ ok: true, status: share?.status || null });
+    }
+
+    if (action === "open") {
+      const share = await openSupportShare(
+        String(body?.shareId || "").trim(),
+        { recipientMembershipId: membershipId }
+      );
+      return orgJson({ ok: true, share });
     }
 
     if (action === "correct") {

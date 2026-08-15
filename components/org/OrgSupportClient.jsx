@@ -120,6 +120,20 @@ export default function OrgSupportClient({ context, recipients, receivedPage, se
     [call, organizationId]
   );
 
+  const open = useCallback(
+    async (shareId) => {
+      const payload = await call(`/api/org/${organizationId}/tugi/avaldused`, {
+        method: "POST",
+        body: { action: "open", shareId },
+        fallbackKey: "org.errors.support_share_failed"
+      });
+      if (payload?.share) {
+        setReceived((current) => current.map((share) => (share.id === shareId ? payload.share : share)));
+      }
+    },
+    [call, organizationId]
+  );
+
   return (
     <section className="ow-shell">
       <OrgHeader context={context} />
@@ -221,9 +235,17 @@ export default function OrgSupportClient({ context, recipients, receivedPage, se
                   <span className="ow-meta__term">{t("org.support.sentBy")}</span>{" "}
                   {recipientLabel(share.sender || {})}
                 </p>
-                <p className="ow-meta__value" style={{ whiteSpace: "pre-wrap" }}>
-                  {share.snapshot?.summary || "—"}
-                </p>
+                {share.snapshot ? (
+                  <p className="ow-meta__value" style={{ whiteSpace: "pre-wrap" }}>
+                    {share.snapshot.summary || "—"}
+                  </p>
+                ) : share.status === "SENT" ? (
+                  <div className="ow-actions">
+                    <Button type="button" onClick={() => open(share.id)} disabled={busy}>
+                      {t("org.support.open")}
+                    </Button>
+                  </div>
+                ) : null}
                 {share.snapshot?.supportRequested ? (
                   <p className="ow-meta__value" style={{ whiteSpace: "pre-wrap" }}>
                     <span className="ow-meta__term">{t("org.support.needs")}</span>{" "}
