@@ -129,7 +129,7 @@ async function reserve(service, key, { expiresAt, now = past(60) } = {}) {
 const bucketReserved = (db) => db.state.buckets[0].reserved;
 const resById = (db, keyPart) => db.state.reservations.find((r) => r.idempotencyKey === keyPart);
 
-test("reaper releases only expired RESERVED holds and restores bucket capacity", async () => {
+test("reaper never releases an expired reservation that can still belong to a live request", async () => {
   const db = createFakePrisma();
   const service = createUsageService({ prismaClient: db });
 
@@ -145,24 +145,29 @@ test("reaper releases only expired RESERVED holds and restores bucket capacity",
   const results = await reapExpiredReservations({ db, service, now: NOW, graceMs: 5 * 60 * 1000 });
 
   assert.equal(results.scanned, 1, "only the expired RESERVED row A is scanned");
-  assert.equal(results.released, 1);
-  assert.equal(results.errors, 0);
-  assert.equal(bucketReserved(db), 2n, "A's hold returned; B + D still reserved");
-  assert.equal(resById(db, "kA").status, "RELEASED");
-  assert.equal(resById(db, "kA").releaseReason, "expired_reaper");
+  assert.equal(results.released, 0);
+  assert.equal(results.deferred, 1);
+  assert.equal(bucketReserved(db), 3n, "the expired hold remains owned by its request");
+  assert.equal(resById(db, "kA").status, "RESERVED");
   assert.equal(resById(db, "kB").status, "RESERVED");
   assert.equal(resById(db, "kD").status, "RESERVED");
   assert.equal(resById(db, "kC").status, "COMMITTED");
+
+  await service.commit({ userId: "u1", idempotencyKey: "kA", now: NOW });
+  assert.equal(resById(db, "kA").status, "COMMITTED");
+  assert.equal(bucketReserved(db), 2n, "the live request can still settle normally");
+  assert.equal(db.state.buckets[0].used, 2n, "the completed work is charged");
 });
 
-test("reaper is idempotent — a second sweep finds nothing", async () => {
+test("reaper detection is idempotent and does not mutate the reservation", async () => {
   const db = createFakePrisma();
   const service = createUsageService({ prismaClient: db });
   await reserve(service, "kA", { expiresAt: past(10) });
   await reapExpiredReservations({ db, service, now: NOW });
   const second = await reapExpiredReservations({ db, service, now: NOW });
-  assert.equal(second.scanned, 0);
+  assert.equal(second.scanned, 1);
   assert.equal(second.released, 0);
+  assert.equal(second.deferred, 1);
 });
 
 test("reaper never reaps rows without an expiresAt or still within grace", async () => {
@@ -173,24 +178,6 @@ test("reaper never reaps rows without an expiresAt or still within grace", async
   const results = await reapExpiredReservations({ db, service, now: NOW, graceMs: 5 * 60 * 1000 });
   assert.equal(results.scanned, 0);
   assert.equal(bucketReserved(db), 2n);
-});
-
-test("a hold committed between scan and release is skipped, not double-freed", async () => {
-  const db = createFakePrisma();
-  const service = createUsageService({ prismaClient: db });
-  await reserve(service, "kA", { expiresAt: past(10) });
-  // Simulate the race: release() throws STATE_CONFLICT for the row (committed meanwhile).
-  const conflictingService = {
-    release: async () => {
-      throw Object.assign(new Error("conflict"), { code: "USAGE_RESERVATION_STATE_CONFLICT" });
-    }
-  };
-  const results = await reapExpiredReservations({ db, service: conflictingService, now: NOW });
-  assert.equal(results.scanned, 1);
-  assert.equal(results.released, 0);
-  assert.equal(results.skippedCommitted, 1);
-  assert.equal(results.errors, 0);
-  assert.equal(bucketReserved(db), 1n, "bucket untouched — no double free");
 });
 
 test("getExpiredReservationWhere is fail-safe: status + finite past expiry only", () => {
