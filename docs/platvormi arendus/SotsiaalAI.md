@@ -92,16 +92,17 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**Codex Security esimese täisskänni 15 HIGH leidu on lokaalsesse `main`-i integreeritud ja
-kontrollitud; GitHubi ega toodangut ei ole veel uuendatud.** Parandusring katab vaikimisi
+**Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
+toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
 kasutusarvestuse kordused, konto kustutuse omandipiirid, tegevusloa tõendi, Kiire abi
 tagasivõtu/saaja, Teenuspäeviku ekspordi/ümbermääramise/pärandmustandid, omaniku kutse ja
 supervisiooni aegunud rolli. Integraator sulges lisaks neli PR-ide koostoimeauku. Koondtõend:
 turvasihttestid **226/226**, litsentsi PostgreSQL-sond **46/46**, väljalogimise sond **14/14**,
-migratsiooniahel **201/201** ja UTC täisvärav **4784/4784**. Ametlik SOL-seis püsib
-**429 DONE / 0 PARTIAL / 0 NOT_DONE**; järgmine samm on selle kontrollitud puu eraldi loaga
-GitHubi viimine ja toodangusse paigaldamine.
+migratsiooniahel **201/201** ja UTC täisvärav **4784/4784**. Toodangu frontend, RAG ja
+research-worker on aktiivsed, teavitustaimer enabled/active, turvaköite kontroll läbib ning
+avalikud põhivaated vastavad HTTP 200. Ametlik SOL-seis püsib **429 DONE / 0 PARTIAL /
+0 NOT_DONE**; järgmine tööots valitakse S4-st.
 
 **Sihitud Codex Security seitsme faili parandusring on `main`-is ja toodangus
 (`bad33faca2cf41681abd5cf350b00ffe7b4671fc`).** Viis kinnitatud leidu on suletud: suletud registreerimise adminieelvaade
