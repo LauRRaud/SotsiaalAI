@@ -94,7 +94,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 **Sihitud Codex Security seitsme faili parandusring on `main`-is ja toodangus
 (`bad33faca2cf41681abd5cf350b00ffe7b4671fc`).** Viis kinnitatud leidu on suletud: suletud registreerimise adminieelvaade
-kontrollib iga päringu ajal andmebaasist rolli, peatamist ja sessiooni; kõik kasutaja algatatud
+kontrollib iga päringu ajal andmebaasist rolli, peatamist ja sessiooni; rakenduse
 väljalogimised tühistavad serveris sessiooni enne küpsist; avalikud brauseri source map'id on
 väljas; CI action'id ja PostgreSQL image on muutumatute viidetega; frontend on krüpteeritud
 köite elueaga seotud ning kordab mount-kontrolli iga käivituse ees. Negatiivkontroll oli vana
@@ -104,6 +104,10 @@ roheline ning serveri `.next/static` all on avalikke `.map` artefakte ja `source
 `rw,nosuid,nodev,noexec,noatime` ning frontend, RAG, research-worker ja mount on aktiivsed.
 Tahtlikku tootmise unmount/restart katkestussondi ei käivitatud, sest see põhjustab seisaku;
 see kitsas katastroofirada jääb `NOT_PROVEN` kuni eraldi hooldusaknani.
+
+**Aardvarki järelparandus sulgeb vaikimisi NextAuthi signout-radade augu:** avalik
+`/api/auth/signout` tühistab nüüd jälgitava sessioonirea varuvõrguna, mistõttu vana klient või
+otse `signOut()` kasutaja ei jäta kopeeritud JWT-d pärast näilist väljalogimist kehtima.
 
 **`SOL-MAT-08` on DONE ja SOL-süvaaudit on lõpetatud.** PDF/DOCX kasutab kohalikku võrguta Dangerzone 0.11 CDR-i ning tootmises on päriselt aktiveeritud krüpteeritud LUKS2 + ext4 Materjalide köide `nodev,nosuid,noexec` kaitsetega. Tootmise CDR-sond oli 7/7, boot-chain ja mount'i negatiivkontrollid puhtad ning lokaalne autentitud sünteetiline brauserirada tõendas üleslaadimise, kihiliste tähtaegade ja tagasivõtmise. Materjalide sihttestid olid **59/59**, PostgreSQL-sondid **12/12**, **30/30** ja **20/20**. Ametlik seis on **429 DONE / 0 PARTIAL / 0 NOT_DONE**; järgmine tööots valitakse S4-st.
 

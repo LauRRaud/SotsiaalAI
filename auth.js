@@ -11,6 +11,7 @@ import {
   isDirectPinLoginAllowed
 } from "@/lib/auth/pin-login";
 import { refreshTokenAuthorization } from "@/lib/auth/jwtAuthorization";
+import { revokeTrackedSessionFromSignOut } from "@/lib/auth/sessionRevocation";
 const CredentialsProvider = CredentialsProviderImport?.default ?? CredentialsProviderImport;
 const LOCALHOST_RE = /^https?:\/\/(?:localhost|127(?:\.\d{1,3}){1,3})(?::\d+)?$/i;
 const DEFAULT_SESSION_MAX_AGE_SECONDS = 30 * 24 * 60 * 60;
@@ -223,6 +224,11 @@ export const authConfig = {
       baseUrl
     }) {
       return toInternalDestination(url, baseUrl);
+    }
+  },
+  events: {
+    async signOut(message) {
+      await revokeTrackedSessionFromSignOut(message, { db: prisma });
     }
   },
   secret: process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET

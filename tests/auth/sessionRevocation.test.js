@@ -6,7 +6,8 @@ import {
   SESSION_REVOKE_ALREADY_GONE,
   SESSION_REVOKE_FOREIGN,
   SESSION_REVOKE_OK,
-  revokeTrackedSession
+  revokeTrackedSession,
+  revokeTrackedSessionFromSignOut
 } from "../../lib/auth/sessionRevocation.js";
 
 function makeDb(rows = [], { failDelete = false } = {}) {
@@ -143,8 +144,17 @@ test("ruumi kõik väljalogimised kasutavad revokatsioon-esmalt rada", async () 
   );
 });
 
-test("NextAuth event ei teeskle best-effort revokatsiooni", async () => {
+test("NextAuthi otsene signout tühistab jälgitava sessiooni varuvõrguna", async () => {
+  const db = makeDb([
+    { id: "s1", userId: "u1" },
+    { id: "s2", userId: "u1" }
+  ]);
+
+  await revokeTrackedSessionFromSignOut({ token: { id: "u1", sessionRecordId: "s1" } }, { db });
+
+  assert.deepEqual(db.rows(), [{ id: "s2", userId: "u1" }]);
+
   const auth = await readFile(new URL("../../auth.js", import.meta.url), "utf8");
-  assert.doesNotMatch(auth, /async signOut\(message\)/u);
-  assert.doesNotMatch(auth, /tracked session cleanup failed/u);
+  assert.match(auth, /events:\s*\{[\s\S]*async signOut\(message\)/u);
+  assert.match(auth, /revokeTrackedSessionFromSignOut\(message/u);
 });
