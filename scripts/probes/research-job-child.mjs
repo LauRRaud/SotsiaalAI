@@ -51,7 +51,14 @@ if (command === "finish") {
 } else if (command === "worker-hold") {
   process.env.RESEARCH_JOB_MODE = "worker";
   const { prisma } = await import("../../lib/prisma.js");
-  const { claimNextResearchJob, hasLostResearchLease, markResearchDone, publishResearchProgress } =
+  const {
+    cancelResearchJob,
+    claimNextResearchJob,
+    hasLostResearchLease,
+    markResearchDone,
+    publishResearchProgress,
+    syncResearchCancellation,
+  } =
     await import("../../lib/research/jobStore.js");
 
   const job = await claimNextResearchJob({ workerId: String(argument) });
@@ -66,6 +73,11 @@ if (command === "finish") {
 
   // Vana kood kirjutas siin rahulikult edasi. Nüüd peab kirjutus keelduma.
   await publishResearchProgress(job, { stage: "synthesizing" });
+  // Pipeline maps both a user cancellation and a lost lease to RESEARCH_CANCELLED. Exercise its
+  // catch path too: a stale worker must not turn the new owner's active row into `cancelled`.
+  if (await syncResearchCancellation(job)) {
+    await cancelResearchJob(job, "research.error.cancelled");
+  }
   await markResearchDone(job, { report: "VANA WORKERI TULEMUS" });
 
   const record = await prisma.researchJob.findUnique({ where: { id: job.id } });

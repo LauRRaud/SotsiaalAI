@@ -1790,8 +1790,9 @@ eraldi ei mõõda: sama mehhanism kannab teda, sest lugeja ei hoia enam ühtki l
 
 **Vastuvõtukriteerium.** Iga heartbeat, progress ja terminalsiire peab kasutama fencing-tokenit/attempt-versiooni ning praegust workerId-d; `count=0` tähendab lease'i kaotust ja peab töö abortima. Vestluspersistence peab samuti olema job/attempt-idempotentne. Kahe päris workeriga test peab külmutama esimese üle lease'i tähtaja, laskma teisel claim'ida ning tõendama, et ainult uus omanik võib jätkata ja lõpetada.
 
-**Seis (11.08.2026): DONE — fencing tõendatud kahe päris workeriga (9/9) ja kriteeriumi viimane
-lause (vestluspersistence job-idempotentne) sai kaetud SOL-RES-05 plokiga, `persistKey` kaudu.**
+**Seis (15.08.2026): DONE — fencing katab ka lease'i kaotusest sündiva cancellation-raja;
+kahe päris workeri sond kontrollib eraldi stale workeri tühistust ja frontendi Stoppi. Kriteeriumi
+viimane lause (vestluspersistence job-idempotentne) sai kaetud SOL-RES-05 plokiga, `persistKey` kaudu.**
 
 **KEEGI EI VAADANUD ARVU.** Heartbeat uuendas rida tingimusel `workerId`, aga ei vaadanud kunagi
 `updateMany.count` väärtust — ja seega ei saanud ka teada, kui rida enam talle ei kuulunud.
@@ -1805,20 +1806,23 @@ fencing-tokenit ei ole vaja. Iga kirjutus käib nüüd tingimusega `workerId = m
 puhul `NULL`, mis fence'ib teda samamoodi), ja `count === 0` tähendab lease'i kaotust: lokaalne töö
 katkestatakse `abortController`-iga ja rohkem ei kirjutata midagi.
 
-**Üks vahetegemine, mis oleks kergesti valesti läinud.** Terminaalne TULEMUS (`done`/`error`) on
-fence'itud, aga TÜHISTUS ei ole. Peatamise päring tuleb frontendist, kes ei ole kunagi lease'i
-omanik — kui ka tühistus oleks fence'itud, kukuks omaniku enda Stop worker-režiimis **alati** läbi
-ja SOL-RES-01 parandus oleks vaikselt katki. Sond mõõdab mõlemat suunda.
+**Üks vahetegemine, mis läkski alguses valesti.** Frontendi Stop peab jääma fence'imata, sest
+peatamise päring ei ole kunagi lease'i omanik. Kuid lease'i kaotanud worker jõuab AbortControlleri
+kaudu samasse cancellation-raja catch'i; ka tema kasutas algul fence'imata tühistust ja sai uue
+workeri aktiivse rea `cancelled`-iks muuta. Nüüd valib `cancelResearchJob()` fence'i lokaalse
+`leaseLost` märgi järgi: väline Stop toimib endiselt, stale workeri terminalkirjutus mitte.
 
 **Pipeline'i „kas tohin jätkata" küsimus sai teise poole.** `syncResearchCancellation()` küsis ainult
 „kas tühistatud"; nüüd vaatab ta ka rea omanikku. Üle võetud töö peatub vanas workeris sama teed
 pidi nagu tühistatud töö.
 
-**Mõõdetud kahe päris workeri ja kahe protsessiga** (`npm run research:lease:probe`, **9/9**): laps
+**Kahe päris workeri ja kahe protsessi sond** (`npm run research:lease:probe`, **11 kontrolli**): laps
 claim'ib tööna `worker-A` ja **külmub** (ei saada heartbeat'i) · vanem aegutab lease'i ja claim'ib
-`worker-B` nimel · uus omanik lõpetab oma tulemusega · vana worker üritab siis progressi kirjutada
-ja lõpetada — ei lähe läbi, ta **saab teada**, et lease on kadunud, ja andmebaasi jääb uue omaniku
-tulemus. Teine stsenaarium tõendab, et võõra protsessi Stop läheb ikka läbi.
+`worker-B` nimel · vana worker tuvastab kaotuse ning proovib pipeline'i cancellation-raja kaudu
+tühistada ja lõpetada — kumbki ei lähe läbi · uus omanik saab seejärel oma tulemuse lõpetada.
+Teine stsenaarium tõendab, et võõra protsessi teadlik Stop läheb ikka läbi. 15.08 konteineris ei
+olnud PostgreSQL-i teenust, seega täiendatud sondi jooks jäi keskkonnapiirangu tõttu `NOT_RUN`;
+staatiline sihttest tõendab mõlema cancellation-haru fence'i valikut.
 
 **Kriteeriumi viimane lause tuli järgmise plokiga.** „Vestluspersistence peab samuti olema
 job/attempt-idempotentne" on eraldi mehhanism vestlussõnumite kihis ja ühtib SOL-RES-05 sisuga —

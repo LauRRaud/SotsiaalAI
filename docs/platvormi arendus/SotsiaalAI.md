@@ -92,6 +92,11 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Aardvarki SOL-RES-04 järelleid on koodis suletud.** Lease'i kaotanud worker ei saa enam
+pipeline'i cancellation-raja kaudu uue omaniku aktiivset uuringut tühistada; kasutaja teadlik Stop
+jääb endiselt workeri lease'ist sõltumatuks. Kahe workeri PostgreSQL-sond on selle võistluse jaoks
+laiendatud, kuid selle konteineri DB puudumise tõttu jäi runtime-kordus `NOT_RUN`.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning

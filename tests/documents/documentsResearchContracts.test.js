@@ -341,9 +341,11 @@ test("a worker that lost its lease can no longer write", () => {
   // Progressi kirjutus on tingimuslik ja count === 0 katkestab töö.
   assert.match(store, /updateMany\(\{\s*where: \{ id: job\.id, \.\.\.leaseFence\(job\) \}/);
   assert.match(store, /if \(!result\?\.count\) \{\s*abandonLostLease\(job\);/);
-  // Terminaalne TULEMUS on fence'itud, TÜHISTUS mitte — muidu kukuks omaniku Stop alati läbi.
+  // Workeri terminaalne kirjutus on fence'itud. Väline Stop jääb fence'imata, kuid sama
+  // cancellation-raja kaudu siia jõudev lease'i kaotanud worker peab kasutama oma vana fence'i.
   assert.match(store, /\.\.\.\(fence \? leaseFence\(job\) : \{\}\)/);
-  assert.match(store, /status: "cancelled",[\s\S]{0,200}\{ fence: false \}/);
+  assert.match(store, /job\.leaseLost = true;[\s\S]{0,120}abortController\?\.abort/);
+  assert.match(store, /status: "cancelled",[\s\S]{0,500}\{ fence: hasLostResearchLease\(job\) \}/);
   // Heartbeat peab count'i lugema ja töö katkestama.
   assert.match(store, /const result = await prisma\.researchJob\.updateMany\([\s\S]{0,400}abandonLostLease\(job\)/);
   // Pipeline'i „kas tohin jätkata" küsimus peab nägema ka lease'i kaotust, mitte ainult tühistust.

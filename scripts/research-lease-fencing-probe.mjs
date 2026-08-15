@@ -115,21 +115,26 @@ async function main() {
         const takeover = await claimNextResearchJob({ workerId: "worker-B" });
         expect("uus worker võtab aegunud lease'i pealt töö üle", takeover?.id === line.id, String(takeover?.id));
         expect("rea omanik on nüüd uus worker", takeover?.workerId === "worker-B", String(takeover?.workerId));
-        // Uus omanik lõpetab töö oma tulemusega.
-        await markResearchDone(takeover, { report: "UUE WORKERI TULEMUS" });
       }
     });
 
     const childResult = childLines.find((line) => line.leaseLost !== undefined) || {};
     expect("vana worker oli päris eraldi protsess", childLines.some((line) => Number(line.pid) !== process.pid));
     expect("vana worker SAI TEADA, et lease on kadunud", childResult.leaseLost === true, JSON.stringify(childResult));
-    expect(
-      "andmebaasi jäi UUE omaniku tulemus",
-      childResult.dbResult === "UUE WORKERI TULEMUS",
-      `sai "${String(childResult.dbResult)}"`
-    );
+    expect("vana worker ei tühistanud uue omaniku tööd", childResult.dbWorkerId === "worker-B", String(childResult.dbWorkerId));
+
+    const takeover = await prisma.researchJob.findUnique({ where: { id: childJobId } });
+    expect("uue omaniku töö jäi aktiivseks", takeover?.status === "running", String(takeover?.status));
+    await markResearchDone({
+      ...takeover,
+      workerId: "worker-B",
+      events: [],
+      subscribers: new Set(),
+      abortController: new AbortController(),
+    }, { report: "UUE WORKERI TULEMUS" });
 
     const record = await prisma.researchJob.findUnique({ where: { id: childJobId } });
+    expect("andmebaasi jäi UUE omaniku tulemus", record?.result?.report === "UUE WORKERI TULEMUS", String(record?.result?.report));
     expect("töö on lõppenud täpselt ühe korra", record?.status === "done", String(record?.status));
     expect("lõppseisus ei ole enam omanikku", record?.workerId === null, String(record?.workerId));
   }
