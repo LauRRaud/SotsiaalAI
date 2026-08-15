@@ -92,6 +92,10 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Sponsorkutse makse tagasisuunamise usalduspiir on parandatud.** Tundmatu URL-olek ei ava enam
+maksekaarti ning `pending` ütleb ainult, et serveri kinnitus on ootel — brauseri URL üksi ei väida
+enam, et makse laekus või kutse saadeti. Järgmine tööots valitakse S4-st.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
@@ -933,6 +937,8 @@ tulemus omaette seisu, hilisem kinnitus annab õiguse ikka veel, ja teadmata tul
 laadita teist korda — peatus on nähtav nii töö vastuses kui halduse vaates. **Sama viga elas
 KOLMANDAS kohas, mida raport ei nimetanud:** sponsorkutse makse tegi sedasama ja lisaks tühistas
 kutse, mida hilisem kinnitus enam äratada ei saa — sponsori raha oleks läinud ilma kutseta.
+Makse tagasisuunamise liides järgib nüüd sama piiri: URL-i `pending` ei nimetata laekunud makseks
+ega saadetud kutseks ning tundmatut URL-olekut staatusena ei kuvata.
 
 **SOL-PAY-03 tehtud: topeltklõps ei ava enam kaht tasutavat makseakent.** Iga „Telli" vajutus
 lõi seni uue makse ja uue provideritehingu; kaks vahekaarti või võrgu-retry võisid tekitada kaks
