@@ -46,6 +46,16 @@ function makeDb(initial = []) {
         return row;
       }
     },
+    covisionClosure: {
+      async findFirst({ where = {} } = {}) {
+        const seedId = where.OR?.map((branch) => branch.sourceTopicSeedId
+          || branch.continuationTopicSeedId).find(Boolean);
+        const row = rows.find((item) => item.id === seedId);
+        return row && (row.sourceForClosures > 0 || row.continuationForClosure)
+          ? { id: "closure_1" }
+          : null;
+      }
+    },
     topicSeed: {
       async findMany({ where = {}, orderBy, take, select } = {}) {
         const matchesSeek = (row) => !where.OR || where.OR.some((branch) => {
@@ -123,6 +133,8 @@ function makeDb(initial = []) {
           && (where.ownerId === undefined || row.ownerId === where.ownerId)
           && (where.status === undefined || row.status === where.status)
           && (where.covisionCaseId === undefined || row.covisionCaseId === where.covisionCaseId)
+          && (where.sourceForClosures?.none === undefined || !row.sourceForClosures)
+          && (where.continuationForClosure?.is === undefined || row.continuationForClosure == null)
           && (where.version === undefined || row.version === where.version));
         if (index < 0) return { count: 0 };
         rows.splice(index, 1);
@@ -550,6 +562,24 @@ test("DRAFT delete is owner-only, version-safe and leaves only a content-free au
   assert.equal(db.audits.length, 1);
   assert.equal(db.audits[0].action, "TOPIC_SEED_DRAFT_DELETED");
   assert.equal(JSON.stringify(db.audits[0]).includes(COMPLETE.whyNow), false);
+});
+
+test("DRAFT delete rejects seeds linked to a completed Covision lifecycle", async () => {
+  for (const relation of ["sourceForClosures", "continuationForClosure"]) {
+    const seed = {
+      ...completeSeedForStatus("DRAFT"),
+      covisionCaseId: null,
+      sourceForClosures: 0,
+      continuationForClosure: null,
+      [relation]: relation === "sourceForClosures" ? 1 : { id: "closure_1" }
+    };
+    const db = makeDb([seed]);
+    const error = await deleteTopicSeed(OWNER, seed.id, { expectedVersion: seed.version, db })
+      .then(() => null, (caught) => caught);
+    assert.equal(error?.status, 409, `${relation} link must prevent deletion`);
+    assert.equal(db.rows.length, 1);
+    assert.equal(db.audits.length, 0);
+  }
 });
 
 test("WAITING withdraw clears the frozen share and linked/later seeds remain protected", async () => {
