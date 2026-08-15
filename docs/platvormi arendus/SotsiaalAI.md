@@ -92,6 +92,10 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Organisatsiooni kutsete omanikuõiguse eskalatsioon on suletud.** Liikmehaldur saab endiselt
+luua tavaliikme ja haldusmallidega kutseid, kuid `ORG_OWNER` malliga kutse loomine nõuab nüüd
+kutsujalt eraldi `ORG_OWNER` capability't; järgmine tööots valitakse S4-st.
+
 **Sihitud Codex Security seitsme faili parandusring on `main`-is ja toodangus
 (`bad33faca2cf41681abd5cf350b00ffe7b4671fc`).** Viis kinnitatud leidu on suletud: suletud registreerimise adminieelvaade
 kontrollib iga päringu ajal andmebaasist rolli, peatamist ja sessiooni; kõik kasutaja algatatud
@@ -2699,7 +2703,8 @@ alles jääb see, millega inimene tegelikult nõustus.
 Asutus saab platvormil oma ruumi: liikmed, üksused, kohad, rollid ja õigused. Organisatsioon
 saab võtta vastu pöördumisi ühisele lauale, hallata oma teenuseprofiili, jagada tööd üksuste
 vahel ja koostada aruandeid. Sponsorluse kaudu saab asutus katta oma klientide või töötajate
-ligipääsu. Kõik ligipääsumuudatused jäävad auditijälge.
+ligipääsu. Kõik ligipääsumuudatused jäävad auditijälge. Omanikuõigusega kutset saab luua ainult
+olemasolev `ORG_OWNER`; `MEMBER_ADMIN` ei saa kutseraja kaudu omanikuks eskaleeruda.
 
 ### Poolik
 

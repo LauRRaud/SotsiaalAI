@@ -1,5 +1,5 @@
 import { assertCapability, assertWritable } from "@/lib/org/accessContext";
-import { OrganizationCapability } from "@/lib/org/constants";
+import { CAPABILITY_TEMPLATES, OrganizationCapability } from "@/lib/org/constants";
 import { createInvite, listInvitePage } from "@/lib/org/inviteService";
 import { orgErrorResponse, orgJson, readJsonBody, requireOrgContext } from "../../_shared";
 
@@ -43,6 +43,9 @@ export async function POST(request, context) {
     assertWritable(auth.context);
     assertCapability(auth.context, OrganizationCapability.MEMBER_ADMIN);
     const body = await readJsonBody(request);
+    if (body?.capabilityTemplate === CAPABILITY_TEMPLATES.ORG_OWNER.key) {
+      assertCapability(auth.context, OrganizationCapability.ORG_OWNER);
+    }
     const { invite, rawToken } = await createInvite(auth.organizationId, {
       actorUserId: auth.userId,
       email: body?.email,
