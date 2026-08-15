@@ -235,6 +235,17 @@ test("SOL-CW-14: deploy PAIGALDAB unit-failid, aga EI LUBA taimerit sisse", asyn
   assert.match(readme, /casework:retention:smoke/);
 });
 
+test("SOL-CW-14: kaugsondi admin-ühendus säilitab DATABASE_URL TLS seaded", async () => {
+  const probe = await readRepoFile("scripts/casework-retention-probe.mjs");
+
+  assert.match(probe, /const adminUrl = new URL\(parsed\);\s*adminUrl\.pathname = "\/postgres";/);
+  assert.doesNotMatch(
+    probe,
+    /adminUrl\.search\s*=\s*["']{2}/,
+    "admin-ühendus eemaldab sslmode/sslrootcert/sslcert/sslkey parameetrid"
+  );
+});
+
 test("SOL-CW-14: smoke on olemas, käivitatav ja alarm annab MITTE-NULLI", async () => {
   /* Smoke, mis lõpeb alati koodiga 0, ütleb monitooringule „kõik hästi" ka siis,
      kui töö on kuu aega seisnud. */
