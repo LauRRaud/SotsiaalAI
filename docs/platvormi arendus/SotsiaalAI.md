@@ -92,6 +92,10 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Aardvarki RAG-telemeetria privaatsusleid on parandatud.** RAG kasutab päringust tuletatud
+teenuseankruid endiselt paketi valimiseks, kuid täpseid teenuse- ja toetusenimetusi ei lisata
+enam vastuse `rag_trace` metaandmetesse ega kasutajaga seotud `rag_trace` logisündmusse.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
@@ -1703,6 +1707,9 @@ riigi juhenditest, KOV-ide teenuskirjeldustest ja ajakirja Sotsiaaltöö materja
 iga vastuse juures on näha, millisele allikale ta tugineb. Inimene saab kontrollida, kust
 lause tuli, ja minna algallika juurde. Vestlus ei nõua kellegi teise järjekorras ootamist
 ega tööaega.
+
+RAG-i tehniline jälg ei talleta inimese päringust tuletatud täpseid teenuse- ega
+toetusenimetusi kasutajaga seotud telemeetriasse.
 
 Vestlusesse on sisse ehitatud kriisirada: kui jutust tuleb välja vahetu oht elule või
 tervisele, katkeb tavaline vastamine ja ette tulevad hädaabi ja usaldustelefonide numbrid.

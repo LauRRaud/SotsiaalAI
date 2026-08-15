@@ -563,7 +563,7 @@ test("RAG trace exposes sanitized runtime source packages", () => {
   assert.deepEqual(trace.package_displayed_source_ids, ["service-info", "service-form"]);
   assert.deepEqual(trace.package_answer_flags, ["missing_contacts", "missing_legal_basis"]);
   assert.equal(trace.package_selection_status, "exact_service_match");
-  assert.deepEqual(trace.service_anchors, ["koduteenus"]);
+  assert.equal(Object.hasOwn(trace, "service_anchors"), false);
   assert.equal(trace.insufficient_precise_support, true);
   assert.deepEqual(trace.required_evidence_sections, ["contacts", "legal_basis"]);
   assert.equal(trace.source_packages[0].package_type, "kov_service");
