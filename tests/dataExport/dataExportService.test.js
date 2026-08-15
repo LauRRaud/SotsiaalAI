@@ -9,6 +9,7 @@ import {
   dataExportInternals,
   DATA_EXPORT_TTL_MS,
   expireDataExports,
+  removeDataExportsForAccountDeletion,
   readDataExportForOwner,
   requestDataExport,
   runNextDataExport
@@ -322,6 +323,39 @@ test("worker creates a real ZIP and publishes one ready result", async () => {
     const content = await fs.readFile(path.join(directory, "job-1.zip"));
     assert.equal(content.subarray(0, 2).toString("utf8"), "PK");
     assert.equal(db.rows[0].manifest.schemaVersion, "data-export-v1");
+  });
+});
+
+test("account deletion removes ready ZIPs before their cascade metadata disappears", async () => {
+  const db = createDb();
+  await withStorageDir(async directory => {
+    const outputPath = path.join(directory, "ready-before-delete.zip");
+    await fs.writeFile(outputPath, Buffer.from("sensitive export"));
+    db.rows.push({ id: "ready-before-delete", userId: "owner", status: "ready", outputPath });
+
+    const result = await removeDataExportsForAccountDeletion("owner", { db });
+
+    assert.deepEqual(result, { ok: true, removed: 1 });
+    await assert.rejects(fs.access(outputPath), "account deletion must remove the export archive");
+  });
+});
+
+test("worker removes a ZIP if account deletion cascades its job before READY publish", async () => {
+  const db = createDb();
+  const now = new Date("2026-07-17T10:00:00.000Z");
+  await requestDataExport("owner", { db, now, audit: silent });
+  const originalUpdateMany = db.dataExportJob.updateMany;
+  db.dataExportJob.updateMany = async args => {
+    if (args.data?.status === "ready") {
+      db.rows.splice(0, db.rows.length); // simulate the User -> DataExportJob cascade
+    }
+    return originalUpdateMany(args);
+  };
+
+  await withStorageDir(async directory => {
+    const result = await runNextDataExport({ db, now, audit: silent, notify: async () => ({ created: true }) });
+    assert.equal(result, null);
+    assert.deepEqual(await fs.readdir(directory), [], "a worker that loses its job must not orphan its ZIP");
   });
 });
 
