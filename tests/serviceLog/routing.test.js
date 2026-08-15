@@ -46,6 +46,25 @@ test("mootorita käitub kõik täpselt nagu enne", async () => {
   assert.equal(await routeDay([TABASALU, HARKU], { env: {} }), null);
 });
 
+test("kliendi koordinaate ei saadeta väljaspool loopback-liidest", async () => {
+  for (const value of [
+    "https://attacker.example/osrm",
+    "http://10.0.0.8:5000",
+    "ftp://127.0.0.1:5000",
+    "http://user:pass@127.0.0.1:5000",
+    "not a url"
+  ]) {
+    const env = { SERVICE_LOG_OSRM_URL: value };
+    const impl = fakeFetch(ROUTE);
+    assert.equal(osrmBaseUrl(env), null, value);
+    assert.equal(isRoutingEnabled(env), false, value);
+    assert.equal(await routeDay([TABASALU, HARKU], { env, fetchImpl: impl }), null, value);
+    assert.equal(impl.calls.length, 0, value);
+  }
+
+  assert.equal(osrmBaseUrl({ SERVICE_LOG_OSRM_URL: "http://[::1]:5000/" }), "http://[::1]:5000");
+});
+
 /* KOORDINAADIPAARI JÄRJEKORD on siin klassikaline vaikne viga: OSRM ootab
    LNG,LAT — vastupidi sellele, kuidas inimesed koordinaate ütlevad. Vahetatud
    paar ei anna veateadet, vaid vastuse, mis on lihtsalt vale. */

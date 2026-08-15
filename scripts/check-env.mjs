@@ -127,6 +127,19 @@ function main() {
     }
   }
 
+  const osrmUrlRaw = String(env.SERVICE_LOG_OSRM_URL || "").trim();
+  if (osrmUrlRaw) {
+    try {
+      const osrmUrl = new URL(osrmUrlRaw);
+      const isLiteralLoopback = osrmUrl.hostname === "127.0.0.1" || osrmUrl.hostname === "[::1]";
+      if (osrmUrl.protocol !== "http:" || !isLiteralLoopback || osrmUrl.username || osrmUrl.password) {
+        errors.push("SERVICE_LOG_OSRM_URL must be an unauthenticated http URL on 127.0.0.1 or [::1]");
+      }
+    } catch {
+      errors.push(`Invalid URL in SERVICE_LOG_OSRM_URL: ${osrmUrlRaw}`);
+    }
+  }
+
   const dbUrlRaw = String(env.DATABASE_URL || "").trim();
   if (dbUrlRaw) {
     try {
