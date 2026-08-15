@@ -92,6 +92,11 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Teenuspäeviku välise navigatsiooni privaatsusvärav on parandatud.** Terve päeva Google Mapsi
+marsruut ja külastuse Waze'i siht ei ava enam tundlikku asukoha-URL-i tavalise lingina:
+töötaja näeb enne iga üleandmist, millised kliendiandmed konkreetsele välisteenusele lähevad,
+ning saab saatmisest loobuda. Järgmine tööots valitakse S4-st.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
@@ -2568,8 +2573,9 @@ dokumendina, mitte kaduva allalaadimisena.
 Päev on modelleeritud päris tööpäevana, mitte ühe külastusena: olekumasin viib töö
 plaanitust teel-olekusse, kohalejõudmiseni ja lõpetamiseni, kus järgmise kliendi juurde
 sõitmine ongi eelmise juurest lahkumine. Marsruudi pikkuse arvutab platvormi enda
-marsruudimootor, aadressid tulevad Maa-ameti registrist, ja terve päeva saab ühe vajutusega
-navigaatorisse saata. Sõidupäevik tekib kõrvalsaadusena, ilma odomeetrit lugemata.
+marsruudimootor, aadressid tulevad Maa-ameti registrist, ja terve päeva saab pärast välisele
+navigaatorile avaldatavate kliendiandmete selget kinnitamist sinna saata. Sõidupäevik tekib
+kõrvalsaadusena, ilma odomeetrit lugemata.
 Sisestada saab ka võrguta — kirje läheb järjekorda ja sünkroniseerub hiljem.
 Graafiku ümbermääramise mutatsioon ei ole külastuse detailivaade: vastus sisaldab ainult
 külastuse ID-d ega ava tahvlilt teadlikult peidetud aadressi, kliendiviidet või märkmeid.
