@@ -258,7 +258,7 @@ export default function OrgFundingClient({ context, initialSeatPlans, initialSpo
                                   label:
                                     [member.person.firstName, member.person.lastName]
                                       .filter(Boolean)
-                                      .join(" ") || member.person.email
+                                      .join(" ") || member.membershipId
                                 }))}
                             />
                           </label>

@@ -5,7 +5,7 @@ import OrgInboxItemClient from "@/components/org/OrgInboxItemClient";
 import { hasCapability, resolveOrgAccessContext, toClientContext } from "@/lib/org/accessContext";
 import { isOrgInboxEnabled } from "@/lib/org/flags";
 import { getInboxItem } from "@/lib/org/inbox";
-import { listMembers } from "@/lib/org/members";
+import { listMemberOptions } from "@/lib/org/members";
 
 import { requireOrgSession } from "../../../_serverContext";
 
@@ -57,7 +57,7 @@ export default async function OrgInboxItemPage({ params }) {
   const canAssign = hasCapability(context, "WORK_ASSIGNER", { unitId: item.unitId });
   /* Liikmete loend on määramise ja üleandmise valikuloend — seepärast ainult
      siis, kui inimene tohib määrata või on ise vastutaja. */
-  const members = canAssign || item.isAssignee ? await listMembers(orgId) : [];
+  const members = canAssign || item.isAssignee ? await listMemberOptions(orgId) : [];
 
   return (
     <OrgInboxItemClient
