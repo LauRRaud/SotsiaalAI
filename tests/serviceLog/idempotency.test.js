@@ -47,7 +47,7 @@ function makeDb({ failFirstCreateWithP2002 = false } = {}) {
       findFirst: async ({ where }) =>
         where.ownerId === "user-1" && where.ownershipMode === "SOLO" ? PROFILE : null
     },
-    serviceReferral: { findFirst: async () => null },
+    serviceReferral: { findFirst: async () => null, findMany: async () => [] },
     serviceProviderService: { findFirst: async () => null },
     serviceEntry: {
       findFirst: async ({ where }) =>

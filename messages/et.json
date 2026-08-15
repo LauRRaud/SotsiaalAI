@@ -9685,6 +9685,7 @@
       "invalid_input": "Sisend ei ole korrektne.",
       "conflict": "Toiming ei ole praegu võimalik.",
       "client_required": "Lisa klient — kas platvormi kasutaja või nimi.",
+      "referral_required": "Vali suunamine — kliendil on mitu aktiivset suunamist.",
       "date_required": "Lisa teenuse kuupäev.",
       "quantity_required": "Lisa kogus või kellaajad, millest kestus tuletada.",
       "quantity_invalid": "Kogus peab olema positiivne arv.",
