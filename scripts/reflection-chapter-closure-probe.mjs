@@ -126,12 +126,24 @@ try {
   // for the row that must be purged at the contract boundary.
   const dueOwner = await db.user.create({ data: { email: "reflection-close-due@example.test", role: "SOCIAL_WORKER" } });
   const dueWithoutRenewal = await createReflection(dueOwner.id, "retention-purge", "Leping lõppenud", past);
+  const cancelledOwner = await db.user.create({ data: { email: "reflection-close-cancelled@example.test", role: "SOCIAL_WORKER" } });
+  const openEndedSubscription = await db.subscription.create({ data: {
+    userId: cancelledOwner.id,
+    status: "ACTIVE",
+    plan: planDefinition.key,
+    planDefinitionId: planDefinition.id,
+    validUntil: null
+  } });
+  const nullDeadline = await createReflection(cancelledOwner.id, "retention-null", "Tühistatud tähtajatu leping", null);
+  await db.subscription.delete({ where: { id: openEndedSubscription.id } });
   const retentionNow = new Date(now.getTime() + 31_000);
   const firstRun = await runPracticeReflectionRetention({ prisma: db, now: retentionNow });
   const renewedRow = await db.practiceReflection.findUnique({ where: { id: renewed.reflection.id } });
   check("REF-07 worker jätab tähtaja-eelse rea alles ja eemaldab möödunud lepingu rea",
     await db.practiceReflection.count({ where: { id: notDue.reflection.id } }) === 1
       && await db.practiceReflection.count({ where: { id: dueWithoutRenewal.reflection.id } }) === 0);
+  check("REF-07 worker kontrollib tähtajatu lepingu NULL-tähtaja pärast tühistamist uuesti",
+    await db.practiceReflection.count({ where: { id: nullDeadline.reflection.id } }) === 0);
   check("REF-07 kehtiv pikendus nihutab kõigi omaniku aegunud kirjete tähtaega",
     firstRun.deferred >= 2 && renewedRow?.retentionDeadline?.getTime() === renewedUntil.getTime()
       && await db.practiceReflection.count({ where: { id: due.reflection.id } }) === 1);
