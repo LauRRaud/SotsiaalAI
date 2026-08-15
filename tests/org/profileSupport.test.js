@@ -6,6 +6,7 @@ import path from "node:path";
 import {
   ALLOWED_SNAPSHOT_FIELDS,
   sanitizeSnapshot,
+  toRecipientListView,
   toRecipientView
 } from "../../lib/org/supportShare.js";
 import {
@@ -116,6 +117,20 @@ test("the recipient view exposes no route back to the source record", () => {
   for (const leak of ["wb_1", "draft_1", "user_owner", "mem_1", "c1", "org_1"]) {
     assert.equal(blob.includes(leak), false, `recipient view leaks ${leak}`);
   }
+});
+
+test("an unopened support share list item never discloses its snapshot", () => {
+  const view = toRecipientListView({
+    id: "s1",
+    status: "SENT",
+    sentAt: new Date(),
+    openedAt: null,
+    sharedSnapshotJson: { summary: "sensitive support request" },
+    owner: { email: "sender@example.invalid", profile: null }
+  });
+
+  assert.equal("snapshot" in view, false);
+  assert.equal(JSON.stringify(view).includes("sensitive support request"), false);
 });
 
 /*
