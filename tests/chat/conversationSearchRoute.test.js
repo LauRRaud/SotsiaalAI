@@ -133,3 +133,13 @@ test("an over-long q is rejected before any database call", async () => {
   const body = await res.json();
   assert.equal(body.messageKey ?? body.message, "api.chat.search_query_too_long");
 });
+
+test("a short q is rejected before the unindexed fallback can reach the database", async () => {
+  const capture = [];
+  const deps = makeDeps({ rows: [], capture });
+  const res = await GET(req("?q=a"), deps);
+  assert.equal(res.status, 400);
+  assert.equal(capture.length, 0, "no query ran");
+  const body = await res.json();
+  assert.equal(body.code, "CONVERSATION_SEARCH_TOO_SHORT");
+});

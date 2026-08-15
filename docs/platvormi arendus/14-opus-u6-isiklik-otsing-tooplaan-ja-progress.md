@@ -188,6 +188,16 @@ Tööplaan lubas `createLatestRequestGate` mustrit. **Ei kasutanud.** Põhjus: `
 2. `messages: { some: { content } }` genereerib `EXISTS`-alampäringu — **teadlik jõudluspiir** on kirjas §3.2-s (ei `pg_trgm`, ei indeksit; skann on alati `userId`-skoobis);
 3. `q` + cursor koos: järjestus ja keyset jäid muutmata, otsing ainult kitsendab;
 4. üle 200 tähemärgi → 400 **enne** ühtegi DB-päringut (`route.js`, kontrollitud testiga);
+
+## 11. Aardvarki käideldavusparandus (2026-08-15)
+
+**TEHTUD.** Hilisem turvakontroll näitas, et §3.2 teadlik jõudluspiir võimaldas autentitud
+kasutajal ühe märgi päringutega sundida `ConversationMessage.content` ajaloo kallist
+alam-päringut. Parandus säilitab lukustatud U6 otsinguväljad, kuid seab indeksi tegeliku
+kasutuspiiri järgi minimaalseks päringu pikkuseks kolm märki ning ei saada pooleliolevat
+lühemat sisestust UI-st serverisse. `Conversation.title`, `Conversation.summary` ja
+`ConversationMessage.content` said `pg_trgm` GIN-indeksid. API lükkab lühema otsepäringu
+400-ga tagasi enne Prisma tööd; negatiivkontroll oli vana koodi peal punane.
 5. tühi/tühikutest `q` = filtrit ei rakendata (mitte „tulemusi ei ole");
 6. UI: `hasConversationSearch` kasutab `committedSearch`-i (seda, mida serverilt küsiti), mitte `searchQuery`-t (seda, mida parasjagu tipitakse) — muidu vilguks „tulemusi ei leitud" tippimise ajal.
 

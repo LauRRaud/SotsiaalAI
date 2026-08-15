@@ -92,6 +92,12 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Vestluste isikliku otsingu Aardvarki käideldavusleid on parandatud.** Alla kolme märgi
+otsing ei jõua enam API kaudu andmebaasi ning kasutajaliides käsitleb seda poolelioleva
+sisestusena; pealkirja, kokkuvõtte ja sõnumisisu `contains`-otsingul on nüüd `pg_trgm` GIN
+indeksid. Nii säilib U6 täissisuotsing, kuid autentitud kasutaja ei saa ühe märgi päringutega
+sõnumiajaloo fallback-skanni sundida. Järgmine tööots valitakse S4-st.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
