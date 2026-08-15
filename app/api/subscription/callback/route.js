@@ -19,6 +19,7 @@ import { extractRecurringToken } from "@/lib/payments/recurring";
 import { logPaymentEvent } from "@/lib/payments/observability";
 import { buildPaymentRawRecord } from "@/lib/payments/rawProjection";
 import { claimRecurringBillingMethod } from "@/lib/payments/billingMethodClaim";
+import { resolvePublicOrigin } from "@/lib/publicOrigin";
 
 function mapCallbackState(rawStatus) {
   const status = String(rawStatus || "")
@@ -142,22 +143,8 @@ async function persistRecurringToken(payload) {
   };
 }
 
-// Proxy taga on req.url origin localhost:3000 — brauserisuunamised peavad
-// minema avaliku origini pihta (x-forwarded-host/host), muidu maandub
-// maksja localhostil (juhtus 22.07 päris maksega).
-function resolvePublicOrigin(requestUrl, headers) {
-  const fallback = new URL(requestUrl).origin;
-  const forwardedHost = String(headers?.get?.("x-forwarded-host") || "").trim();
-  const directHost = String(headers?.get?.("host") || "").trim();
-  const forwardedProto = String(headers?.get?.("x-forwarded-proto") || "").trim();
-  const resolvedHost = forwardedHost || directHost;
-  if (!resolvedHost) return fallback;
-  const protocol = forwardedProto || (fallback.startsWith("https://") ? "https" : "http");
-  return `${protocol}://${resolvedHost}`;
-}
-
 function buildRedirectTarget(req, locale, paymentState, ref = "", extraParams = {}) {
-  const target = new URL(localizePath("/tellimus", locale), resolvePublicOrigin(req.url, req.headers));
+  const target = new URL(localizePath("/tellimus", locale), resolvePublicOrigin(req.url));
   target.searchParams.set("payment", paymentState);
   if (ref) target.searchParams.set("ref", ref);
   for (const [key, value] of Object.entries(extraParams || {})) {

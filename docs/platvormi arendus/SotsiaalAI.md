@@ -92,6 +92,10 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Makse callback'ide avaliku origini turvaparandus on valmis.** Tellimuse ja sponsoreeritud
+kutse tagasisuunamised võtavad origini seadistatud avalikust URL-ist ega usalda enam päringu
+`Host` / `X-Forwarded-*` päiseid; järgmine tööots valitakse S4-st.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
@@ -2751,7 +2755,8 @@ vähendamise eelistus on arvesse võetud.
 **Maksed ja kvoodid.**
 Tellimuspaketid, ühekordne ost ja sponsoreeritud ligipääs töötavad. Kasutus arvestatakse
 läbipaistvalt ja kvoot ei kao märkamatult. **Ligipääs oma andmetele ei aegu kunagi** — ka
-siis, kui tasuline pakett lõpeb.
+siis, kui tasuline pakett lõpeb. Makse callback'ide brauserisuunamised kasutavad seadistatud
+avalikku origini ega usalda kliendi juhitavaid hostipäiseid.
 
 **Eksport ja andmekoopia.**
 GDPR-i andmekoopia ja materjali väljaviimine PDF- või DOCX-kujul on sisse ehitatud.
