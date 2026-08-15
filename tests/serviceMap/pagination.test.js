@@ -37,3 +37,23 @@ test("help listing target is constrained in the database query before take", asy
   });
   assert.ok(where.AND.some((item) => item.OR?.some((branch) => branch.requestId === "wanted" || branch.offerId === "wanted")));
 });
+
+test("public help listing filters never query redacted source free text", async () => {
+  const captured = [];
+  const db = {
+    helpMapEntry: {
+      findMany: async (query) => {
+        captured.push(query.where);
+        return [];
+      }
+    }
+  };
+
+  await listPublishedHelpMapEntries({ keyword: "private-need" }, db);
+  await listPublishedHelpMapEntries({ municipalityName: "private-place" }, db);
+
+  for (const where of captured) {
+    const serializedWhere = JSON.stringify(where);
+    assert.doesNotMatch(serializedWhere, /"(?:title|description|structuredSummary|rawPlace)"/);
+  }
+});

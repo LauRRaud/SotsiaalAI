@@ -362,6 +362,12 @@ test("confirm route: GET only renders the interstitial, POST performs the change
   assert.ok(get.includes("postForm"), "GET must render the confirming form");
   assert.ok(post.includes("confirmEmailChangeByToken"), "POST must be the one that confirms");
 
+  const rateLimit = post.indexOf("rateLimited(request)");
+  const bodyRead = post.indexOf("readConfirmFields(request)");
+  assert.ok(rateLimit > 0 && bodyRead > rateLimit, "POST must rate-limit before reading the body");
+  assert.match(source, /CONFIRM_BODY_LIMIT_BYTES = 8 \* 1024/);
+  assert.match(source, /byteLength > CONFIRM_BODY_LIMIT_BYTES/);
+
   // the form must post back to this same route, and the auto-submit must exist
   assert.match(source, /method="POST"/);
   assert.match(source, /document\.getElementById\("email-change-confirm-form"\)\.submit\(\)/);

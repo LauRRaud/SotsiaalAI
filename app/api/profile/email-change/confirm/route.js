@@ -174,6 +174,52 @@ function rateLimited(request) {
   return !ipLimit.allowed;
 }
 
+const CONFIRM_BODY_LIMIT_BYTES = 8 * 1024;
+
+async function readConfirmFields(request) {
+  const declaredLength = Number(request.headers.get("content-length"));
+  if (
+    request.headers.has("content-length") &&
+    (!Number.isSafeInteger(declaredLength) || declaredLength < 0 || declaredLength > CONFIRM_BODY_LIMIT_BYTES)
+  ) {
+    return null;
+  }
+
+  const reader = request.body?.getReader();
+  if (!reader) return {};
+
+  const chunks = [];
+  let byteLength = 0;
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    byteLength += value.byteLength;
+    if (byteLength > CONFIRM_BODY_LIMIT_BYTES) {
+      await reader.cancel();
+      return null;
+    }
+    chunks.push(value);
+  }
+
+  const body = new Uint8Array(byteLength);
+  let offset = 0;
+  for (const chunk of chunks) {
+    body.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+
+  const contentType = String(request.headers.get("content-type") || "");
+  if (contentType.includes("multipart/form-data")) {
+    const form = await new Response(body, { headers: { "content-type": contentType } }).formData();
+    return Object.fromEntries(form.entries());
+  }
+  const text = new TextDecoder().decode(body);
+  if (contentType.includes("application/x-www-form-urlencoded")) {
+    return Object.fromEntries(new URLSearchParams(text));
+  }
+  return JSON.parse(text);
+}
+
 /**
  * GET never changes anything — it only renders the confirmation interstitial.
  *
@@ -210,28 +256,24 @@ export async function GET(request) {
 
 /** The identity change itself. Only a real browser (or a deliberate click) gets here. */
 export async function POST(request) {
-  const contentType = String(request.headers.get("content-type") || "");
-  let fields = {};
-  if (
-    contentType.includes("application/x-www-form-urlencoded") ||
-    contentType.includes("multipart/form-data")
-  ) {
-    const form = await request.formData().catch(() => null);
-    if (form) fields = Object.fromEntries(form.entries());
-  } else {
-    fields = await request.json().catch(() => ({}));
-  }
-
-  const { locale, loginUrl, continueLabel, genericError } = pageContext(
-    request,
-    typeof fields?.locale === "string" && fields.locale ? fields.locale : undefined
-  );
-  const token = String(fields?.token || "").trim();
+  const initialContext = pageContext(request);
 
   try {
-    if (rateLimited(request) || !token) {
-      return genericError();
+    // Reject abusive callers before consuming any of their untrusted body.
+    if (rateLimited(request)) {
+      return initialContext.genericError();
     }
+
+    const fields = await readConfirmFields(request).catch(() => null);
+    const token = String(fields?.token || "").trim();
+    if (!fields || !token) {
+      return initialContext.genericError();
+    }
+
+    const { locale, loginUrl, continueLabel, genericError } = pageContext(
+      request,
+      typeof fields.locale === "string" && fields.locale ? fields.locale : undefined
+    );
 
     const result = await confirmEmailChangeByToken({ db: prisma, token });
     if (!result.ok) {
@@ -255,6 +297,6 @@ export async function POST(request) {
     });
   } catch (error) {
     console.error("email-change confirm error", safeError(error));
-    return genericError();
+    return initialContext.genericError();
   }
 }
