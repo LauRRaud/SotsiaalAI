@@ -811,6 +811,9 @@ export default function ServiceLogDay() {
           ? crypto.randomUUID()
           : `req-${Date.now()}-${Math.round(Math.random() * 1e9)}`;
       const payload = {
+        /* Ajatemplid enne autoriteetseid vormivälju: isegi rikutud kliendiolek
+           ei tohi nähtavat nime, kuupäeva ega kogust üle kirjutada. */
+        ...stamps,
         clientRequestId,
         clientDisplayName: clientName.trim(),
         date,
@@ -825,7 +828,6 @@ export default function ServiceLogDay() {
         ...(fromVisit?.sourceFieldVisitId
           ? { sourceFieldVisitId: fromVisit.sourceFieldVisitId }
           : {}),
-        ...stamps,
         /* Server otsustab, kas punkt salvestub: lüliti on seal, mitte siin.
            Väljas lülitiga jõuab punkt serverini ja visatakse ära — UI ei tohi
            seetõttu väita „salvestatud" enne serveri vastust. */

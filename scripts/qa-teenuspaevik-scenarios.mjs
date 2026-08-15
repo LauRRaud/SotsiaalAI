@@ -340,7 +340,7 @@ async function main() {
   check("ebausutav proov ei salvestu", junk === false);
   const baseline = await readBaseline(U);
   check("baasjoon arvutub", baseline.entryInput?.count === 1, JSON.stringify(baseline.entryInput));
-  const purged = await purgeExpiredSamples({ retentionDays: 0 });
+  const purged = await purgeExpiredSamples({ retentionDays: 0, providerProfileId: profile.id });
   check("kustutamistähtaeg töötab", purged >= 1, `kustutas ${purged}`);
 
   // === S11: KUUVAADE JA NARRATIIV ===

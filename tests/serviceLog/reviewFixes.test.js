@@ -14,7 +14,7 @@ import {
   readClientMonth
 } from "../../lib/serviceLog/clientView.js";
 import { SAMPLE_KIND } from "../../lib/serviceLog/measurement.js";
-import { readBaseline, recordSample } from "../../lib/serviceLog/timeSamples.js";
+import { purgeExpiredSamples, readBaseline, recordSample } from "../../lib/serviceLog/timeSamples.js";
 
 const ENV = { SERVICE_LOG_ENABLED: "1" };
 const ENV_MEASURE = { SERVICE_LOG_ENABLED: "1", SERVICE_LOG_MEASUREMENT: "1" };
@@ -143,6 +143,24 @@ function entryInput(overrides = {}) {
     ...overrides
   };
 }
+
+test("QA säilitustähtaja kontroll piirab kustutuse teenuseosutaja profiiliga", async () => {
+  let where;
+  const db = {
+    serviceLogTimeSample: {
+      deleteMany: async (query) => {
+        where = query.where;
+        return { count: 1 };
+      }
+    }
+  };
+
+  const count = await purgeExpiredSamples({ db, retentionDays: 0, providerProfileId: PROFILE.id });
+
+  assert.equal(count, 1);
+  assert.equal(where.providerProfileId, PROFILE.id);
+  assert.ok(where.recordedAt.lt instanceof Date);
+});
 
 /* LEID 2: `sourceFieldVisitId` tekkis eeltäites, aga ei jõudnud kunagi kirjele.
    Tagajärg: ühest külastusest sai teha piiramatu arvu teenuskirjeid ja miski ei

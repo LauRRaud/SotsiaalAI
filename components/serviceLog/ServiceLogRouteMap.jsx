@@ -118,6 +118,12 @@ export default function ServiceLogRouteMap({ visits = [] }) {
         const latLng = [Number(visit.addressLat), Number(visit.addressLng)];
         latLngs.push(latLng);
         const color = STATUS_COLOR[visit.status] || "#c9c9c9";
+        const popup = document.createElement("div");
+        const clientName = document.createElement("div");
+        const address = document.createElement("div");
+        clientName.textContent = `${index + 1}. ${visit.clientDisplayName || ""}`;
+        address.textContent = visit.address || "";
+        popup.append(clientName, address);
         L.marker(latLng, {
           icon: L.divIcon({
             className: "sl-map-pin",
@@ -126,7 +132,7 @@ export default function ServiceLogRouteMap({ visits = [] }) {
             iconAnchor: [13, 13]
           })
         })
-          .bindPopup(`${index + 1}. ${visit.clientDisplayName || ""}<br>${visit.address || ""}`)
+          .bindPopup(popup)
           .addTo(layerRef.current);
       }
 

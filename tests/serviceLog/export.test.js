@@ -17,7 +17,7 @@ import {
   buildTimesheet,
   selectExportableEntries
 } from "../../lib/serviceLog/export/templates.js";
-import { documentToCsv, escapeCsvValue } from "../../lib/serviceLog/export/csv.js";
+import { documentToCsv, escapeCsvValue, parseCsvRows } from "../../lib/serviceLog/export/csv.js";
 import { exportFileName } from "../../lib/serviceLog/exportService.js";
 import { ENTRY_STATUS, PROVENANCE, SERVICE_UNIT } from "../../lib/serviceLog/constants.js";
 
@@ -33,6 +33,15 @@ const entry = (over = {}) => ({
 });
 
 /* --- ühised reeglid ------------------------------------------------------ */
+
+test("CSV eelvaade hoiab jutumärgistatud eraldajad ja reavahetused samas lahtris", () => {
+  const csv = 'nimi;märkus\r\nMari;"poolik; aga ""aus""\r\nVÕLTS_RIDA;teine lahter"\r\n';
+
+  assert.deepEqual(parseCsvRows(csv), [
+    ["nimi", "märkus"],
+    ["Mari", 'poolik; aga "aus"\r\nVÕLTS_RIDA;teine lahter']
+  ]);
+});
 
 test("TÜHISTATUD kirje ei ole üheski ekspordis", () => {
   const entries = [entry(), entry({ quantity: 99, status: ENTRY_STATUS.VOID })];

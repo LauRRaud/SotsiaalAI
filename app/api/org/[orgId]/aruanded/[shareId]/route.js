@@ -11,6 +11,7 @@
 import { buildDownloadHeaders } from "@/lib/documents/server";
 import { createPdfBufferFromText, isPdfTextSupported } from "@/lib/chat/exportDocument";
 import { isServiceLogEnabled } from "@/lib/serviceLog/flags";
+import { parseCsvRows } from "@/lib/serviceLog/export/csv";
 import {
   confirmShareDelivery,
   createReportDeliveryToken,
@@ -64,13 +65,8 @@ export async function GET(request, context) {
       if (!isCsv) {
         return orgJson({ ok: true, previewable: false, fileName: document.fileName, deliveryToken });
       }
-      const rows = fileBuffer
-        .toString("utf8")
-        .split(/\r?\n/)
-        .filter((line) => line.trim().length)
-        /* Eksport kasutab semikoolonit (Exceli eesti lokaat). Jutumärkides
-           välja siin ei ole — CSV-süsti kaitse eemaldas nad juba ekspordis. */
-        .map((line) => line.split(";"))
+      const rows = parseCsvRows(fileBuffer.toString("utf8"), { maxRows: 500 })
+        .filter((cells) => cells.some((cell) => cell.trim().length))
         .slice(0, 500);
       return orgJson({ ok: true, previewable: true, fileName: document.fileName, rows, deliveryToken });
     }
