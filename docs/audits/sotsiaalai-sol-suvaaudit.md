@@ -1496,7 +1496,14 @@ tagastas), aga ühe toiminguni kokku sai ainult detailivaade. Ühiktestid mõõd
 
 **Vastuvõtukriteerium.** Muudatus tuleb kirjutada uude ajutisse faili ning avaldada atomaarse asenduse/kompensatsiooniga alles pärast DB edu; vea korral peab säilima vana fail ja eemalduma ajutine. Uue transkripti loomisel peab iga kirjutatud fail olema DB-reaga seotud või tõendatult puhastatud. Veasüstetestid peavad katkestama DB update/create'i pärast failikirjutust ja võrdlema DB, allalaadimise ning kettaseisu.
 
-**Seis (11.08.2026): DONE — koos päris PostgreSQL-i ja päris hoidla runtime-tõendiga (17/17).**
+**Seis (15.08.2026): DONE — koos päris PostgreSQL-i ja päris hoidla runtime-tõendiga (17/17).**
+
+15.08 järelkontroll sulges staging-helperi kitsa vaheoleku: kui vana fail oli juba `.prev-*`
+varukoopiaks viidud, kuid ajutise faili avaldamise `rename` kukkus, kustutas varasem rollback
+varukoopia taastamise asemel. Rollback taastab nüüd vana faili ka `backedUp=true,
+published=false` seisus. Deterministlik päris failisüsteemi test süstib teise rename'i `EIO`,
+tõendab vana sisu taastumise ja nii `.staged-*` kui `.prev-*` jääkide puudumise; sama test oli
+paranduse eel punane.
 
 **KAKS TÕDE ÜHEST DOKUMENDIST.** Transkripti muutmine kirjutas uue teksti VANA faili peale ja
 alles seejärel uuendas andmebaasi. DB-vea korral ei taastanud eelmist faili keegi: allalaadimine
@@ -1515,7 +1522,7 @@ rename atomaarne, seega lugeja näeb kas vana või uut faili, mitte poolelioleva
 rename on kiire, aga tema JÄREL võib tehing ikka veel kukkuda. Just see kitsaim aken on sondis
 eraldi veasüstina.
 
-**Mõõdetud kahel tasemel.** Ühiktestid (`tests/documents/storageStaging.test.js`, 8) jooksevad
+**Mõõdetud kahel tasemel.** Ühiktestid (`tests/documents/storageStaging.test.js`, 9) jooksevad
 PÄRIS failisüsteemi vastu ajutises kaustas — võltsitud failisüsteemi all oleks ka vana kood
 roheline. Sond (`npm run doc:staging:probe`, **17/17**) lisab päris hoidla ja päris tehingu ning
 süstib vea kolme eri kohta: DB-viga enne avaldamist (vana fail alles), tehingu viga PÄRAST

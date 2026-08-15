@@ -86,6 +86,35 @@ test("avaldamata tagasipööramine jätab päris faili puutumata", async () => {
   })
 })
 
+test("avaldamise teise rename'i viga taastab varukoopiast vana faili", async () => {
+  await withTempDir(async ({ dir, resolvePath }) => {
+    await fs.writeFile(resolvePath("uploads/a.txt"), "vana sisu", "utf8")
+    let renameCount = 0
+    const failingFs = {
+      ...fs,
+      async rename(from, to) {
+        renameCount += 1
+        if (renameCount === 2) {
+          const error = new Error("staged rename katkes")
+          error.code = "EIO"
+          throw error
+        }
+        return fs.rename(from, to)
+      }
+    }
+
+    const staged = await stageStoredText("uus sisu", "uploads/a.txt", {
+      fs: failingFs,
+      resolvePath
+    })
+    await assert.rejects(() => staged.publish(), /staged rename katkes/)
+    await staged.rollback()
+
+    assert.equal(await readOr(resolvePath, "uploads/a.txt"), "vana sisu")
+    assert.deepEqual(await leftovers(dir), [])
+  })
+})
+
 test("uue faili puhul tähendab tagasipööramine, et faili EI JÄÄ", async () => {
   // Orbfail: vana kood kirjutas uue transkripti faili enne rea loomist ja catch ei teadnud teed.
   await withTempDir(async ({ dir, resolvePath }) => {
