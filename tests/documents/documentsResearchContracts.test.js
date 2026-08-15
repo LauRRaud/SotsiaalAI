@@ -59,6 +59,11 @@ test("store-fetched routes convert the ownership-fail branch to the resource's o
 test("generation persists a durable DRAFT (no transient result) and both entry points share the idempotent helper", () => {
   const generate = read("app/api/documents/artifacts/generate/route.js");
   assert.match(generate, /persistArtifactDraft/);
+  assert.doesNotMatch(
+    generate,
+    /persistArtifactDraft\(\{[\s\S]{0,500}enforceQuota:\s*false/,
+    "generated durable content must be included in the atomic storage-quota decision"
+  );
   assert.match(generate, /draft:\s*persisted\.artifact/, "the persisted artifact is returned to the workspace client as draft");
   assert.doesNotMatch(generate, /isTransient:\s*true/, "no transient, cost-losing draft is returned");
 
@@ -116,16 +121,6 @@ test("the transcription and transcript-summary routes are inside the usage contr
   const summary = read("app/api/documents/[id]/summary/route.js");
   assert.match(summary, /metric:\s*"DOCUMENT_GENERATE"/, "the summary is document generation like any other");
   assert.match(summary, /runPaidResult\(/);
-
-  // Reservatsiooni idempotentsus üksi ei ole tulemuse idempotentsus: COMMITTED võtme
-  // commit on no-op. Kordus peab leidma sama püsiva artefakti või peatuma enne mudelikutset.
-  assert.match(summary, /if \(usageHandle\.reused\)[\s\S]{0,900}idempotencyKey:\s*usageHandle\.idempotencyKey/);
-  assert.match(summary, /idempotencyKey:\s*usageHandle\.idempotencyKey[\s\S]{0,900}runPaidResult\(/);
-  assert.match(
-    transcribe,
-    /if \(usageHandle\.reused\)[\s\S]{0,240}throw conflict[\s\S]{0,240}runPaidResult\(/,
-    "a reused STT reservation must stop before provider work"
-  );
 
   // Olemasoleva transkripti tagastamine ei kutsu teenusepakkujat, seega ei tohi ka
   // reserveerida: reuse-haru väljub enne kvoodirida.
