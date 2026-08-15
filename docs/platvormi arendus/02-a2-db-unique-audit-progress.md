@@ -58,7 +58,7 @@ Mudel on Opus 4.8 (õige). Effort-tase ei ole selles sessioonis mulle tehnilisel
 
 ### 4.1. Ligipääs ja ohutus
 - Tootmis-DB ei ole lokaalselt kättesaadav (`.env.production` puudub; `.env` = localhost).
-- Ligipääs: `ssh sotsiaalai` (ubuntu@217.146.72.147); `DATABASE_URL` failis `/etc/sotsiaalai/frontend.env` (loetav).
+- Tootmise ligipääsu- ja keskkonnaandmeid hoitakse ainult privaatses käitusjuhendis, mitte selles auditilogis.
 - **Read-only garantii:** päring jooksutati psql-is `SET default_transaction_read_only = on;` all, ainult `SELECT`-id, `-v ON_ERROR_STOP=1`. `DATABASE_URL` väärtust ei prinditud ega logitud. Ühtegi kirjutust/DDL-i ei tehtud.
 
 ### 4.2. Kasutatud auditipäring (read-only)
