@@ -7436,7 +7436,7 @@ tagasivõetud pakett. Peidetud on ainult `RECALLED`. Töörajad sulguvad kõigil
 
 **Vastuvõtukriteerium.** ARCHIVED peab olema serveris read-only kuni eraldi versioonikindla reopen-toiminguni; UI peab muutmise peitma või nõudma taasavamist. Lubatud olekusiirded tuleb jõustada tabelina ning testida otsest PATCH-i, archive→reopen→edit rada ja stale reopen-võistlust.
 
-**Seis (13.08.2026): DONE —** `ARCHIVED` on üldise PATCH-i jaoks terminalne ning lubatud autori siirded on serveris tabelina jõustatud. Eraldi `/reopen` toiming viib kirje CAS-kaitstult tagasi `READY` olekusse; aegunud taasavamine saab 409. UI ei paku arhiveeritud kirjele tavalist muutmist, vaid teadlikku taasavamist. Otsene PATCH, archive→reopen→edit ja stale reopen-võistlus on regressioonitestidega kaetud (`runtime: not_run`; brauserit ei nõutud, sest UI lepingut kontrollib lähtekooditest ja võistlust päris DB sond).
+**Seis (15.08.2026): DONE —** `ARCHIVED` on üldise PATCH-i jaoks terminalne ning lubatud autori siirded on serveris tabelina jõustatud. Eraldi `/reopen` toiming viib ainult saatmata ja adressaadi poolt avamata kirje CAS-kaitstult tagasi `READY` olekusse; saadetud, avatud või asendatud kirjet autor taasavada ei saa ning tingimus on ka CAS-kirjutuses. UI ei paku arhiveeritud kirjele tavalist muutmist, vaid teadlikku taasavamist. Otsene PATCH, archive→reopen→edit, stale reopen-võistlus ja adressaadi elutsüklisse jõudnud kirje taasavamise keeld on regressioonitestidega kaetud (`runtime: not_run`; brauserit ei nõutud, sest ligipääsupiir jõustub teenuskihis).
 
 ### SOL-PRE-10 — autor saab luua vestlusruumi veel saatmata mustandist — P1
 
