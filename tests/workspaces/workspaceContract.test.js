@@ -361,6 +361,11 @@ function covisionRow(overrides = {}) {
 
 function covisionDb(rowsByViewer, calls) {
   return {
+    user: {
+      async findUnique({ where }) {
+        return where.id === OUTSIDER ? { role: "CLIENT", isAdmin: false } : { role: "SOCIAL_WORKER", isAdmin: false };
+      }
+    },
     covisionCase: {
       async findMany(query) {
         calls.push(structuredClone(query));
@@ -425,6 +430,14 @@ test("Covision adapter is owner-or-accepted-participant scoped, descriptor-only,
   }
 });
 
+test("Covision adapter rejects accepted participants without a Covision module role", async () => {
+  const calls = [];
+  const db = covisionDb({ [OUTSIDER]: [covisionRow()] }, calls);
+
+  assert.deepEqual(await listCovisionWorkspaces(OUTSIDER, { db }), []);
+  assert.equal(calls.length, 0, "forbidden roles must not query case metadata");
+});
+
 test("Covision lifecycle maps paused, closed-and-purged, and archived states without raw closure text", () => {
   const paused = toCovisionWorkspaceDescriptor(covisionRow({
     sessionState: { stage: 4, phase: "paused", pausedAt: "2026-07-17T08:30:00.000Z" }
@@ -469,6 +482,16 @@ function roomMembership(overrides = {}) {
 
 function roomDb(rowsByViewer, calls) {
   return {
+    user: {
+      async findUnique({ where }) {
+        return { role: where.id === OWNER ? "ADMIN" : "CLIENT" };
+      }
+    },
+    subscription: {
+      async findFirst({ where }) {
+        return where.userId === MEMBER ? { id: "subscription_1" } : null;
+      }
+    },
     roomMember: {
       async findMany(query) {
         calls.push(structuredClone(query));
@@ -513,4 +536,11 @@ test("Room adapter requires active membership, reports the honest current lifecy
   for (const privateField of ["description", "messages", "recordings", "summary", "content"]) {
     assert.equal(queryText.includes(privateField), false, `${privateField} must not be selected`);
   }
+});
+
+test("Room adapter withholds descriptors from lapsed non-admin members", async () => {
+  const calls = [];
+  const db = roomDb({ [OUTSIDER]: [roomMembership()] }, calls);
+
+  assert.deepEqual(await listRoomWorkspaces(OUTSIDER, { db }), []);
 });
