@@ -165,7 +165,7 @@ export default function OrgInboxItemClient({ context, item, members, canAssign }
                       value: member.membershipId,
                       label:
                         [member.person.firstName, member.person.lastName].filter(Boolean).join(" ") ||
-                        member.person.email
+                        member.membershipId
                     }))}
                   />
                 </label>
@@ -203,7 +203,7 @@ export default function OrgInboxItemClient({ context, item, members, canAssign }
                         value: member.membershipId,
                         label:
                           [member.person.firstName, member.person.lastName].filter(Boolean).join(" ") ||
-                          member.person.email
+                          member.membershipId
                       }))}
                   />
                 </label>

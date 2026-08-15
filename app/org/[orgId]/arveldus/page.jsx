@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 
 import OrgFundingClient from "@/components/org/OrgFundingClient";
 import { isOrgSeatsEnabled } from "@/lib/org/flags";
-import { listMembers } from "@/lib/org/members";
+import { listMemberOptions } from "@/lib/org/members";
 import { listSeatPlans } from "@/lib/org/seats";
 import { listClientSponsorshipPage } from "@/lib/org/sponsorship";
 
@@ -34,7 +34,7 @@ export default async function OrgFundingPage({ params }) {
   const [seatPlans, sponsorshipPage, members] = await Promise.all([
     listSeatPlans(orgId),
     listClientSponsorshipPage(orgId),
-    listMembers(orgId)
+    listMemberOptions(orgId)
   ]);
 
   return (
