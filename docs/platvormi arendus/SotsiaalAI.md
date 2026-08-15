@@ -92,6 +92,12 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Aardvarki kasutusarvestuse kordusründe leid on parandatud.** `reserve()` lubab sama võtit
+taaskasutada ainult seni, kuni reservatsioon on päriselt `RESERVED`; juba `COMMITTED` toiming ei
+anna enam luba uue tasulise töö alustamiseks. `commit()` ja `release()` terminalkordused jäävad
+idempotentseks ning tehnilise vea järel `RELEASED` kavatsuse taastamise leping säilib. Vana
+käitumise vastu oli uus negatiivkontroll punane; sihttest on roheline.
+
 **Sihitud Codex Security seitsme faili parandusring on `main`-is ja toodangus
 (`bad33faca2cf41681abd5cf350b00ffe7b4671fc`).** Viis kinnitatud leidu on suletud: suletud registreerimise adminieelvaade
 kontrollib iga päringu ajal andmebaasist rolli, peatamist ja sessiooni; kõik kasutaja algatatud
