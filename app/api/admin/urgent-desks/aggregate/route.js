@@ -18,14 +18,10 @@ export async function GET(request) {
   const authz = await requireDeskAdmin();
   if (!authz.ok) return deskAuthError(authz, request);
 
-  const url = new URL(request.url);
-
   return handleDeskRoute(request, async () => {
     const aggregate = await buildUrgentRequestAggregate({
       db: prisma,
-      from: url.searchParams.get("from") || null,
-      to: url.searchParams.get("to") || null,
-      minimumGroupSize: url.searchParams.get("minimumGroupSize")
+      minimumGroupSize: new URL(request.url).searchParams.get("minimumGroupSize")
     });
     return deskJson({ ok: true, aggregate });
   });

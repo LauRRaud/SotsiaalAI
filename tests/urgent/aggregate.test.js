@@ -72,7 +72,7 @@ test("läve saab ainult TÕSTA, mitte langetada", async () => {
   assert.deepEqual(raised.regions, []);
 });
 
-test("summutatud rühmade arv on vastuses — vaikivat kärpimist ei ole", async () => {
+test("summutatud rühmade metaandmed ei reeda alla läve aktiivsust", async () => {
   const prisma = createPrisma([
     ...people(5, { municipalityId: "muni_big", prefix: "big" }),
     ...people(2, { municipalityId: "muni_small", prefix: "small" })
@@ -80,7 +80,23 @@ test("summutatud rühmade arv on vastuses — vaikivat kärpimist ei ole", async
   const aggregate = await buildUrgentRequestAggregate({ db: prisma });
   assert.equal(aggregate.regions.length, 1);
   assert.equal(aggregate.regions[0].key, "muni_big");
-  assert.ok(aggregate.suppressedGroups >= 1);
+  assert.equal("suppressedGroups" in aggregate, false);
+  assert.equal("scannedRows" in aggregate, false);
+});
+
+test("tühi ja alla läve valim on väljundis eristamatud", async () => {
+  const empty = await buildUrgentRequestAggregate({ db: createPrisma() });
+  const belowThreshold = await buildUrgentRequestAggregate({ db: createPrisma(people(4)) });
+
+  assert.deepEqual(belowThreshold, empty);
+});
+
+test("koondi API ei anna kutsujale meelevaldseid ajapiire", async () => {
+  const source = await readFile(
+    new URL("../../app/api/admin/urgent-desks/aggregate/route.js", import.meta.url),
+    "utf8"
+  );
+  assert.doesNotMatch(source, /searchParams\.get\(["'](?:from|to)["']\)/);
 });
 
 test("kellaaja ämbrid järgivad sama läve", async () => {
