@@ -92,6 +92,11 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Aardvarki leitud abisobituse nõusoleku-CSRF on parandatud.** ACCEPT, DECLINE ja WITHDRAW
+otsused nõuavad nüüd enne keha lugemist täpset sama päritolu ning JSON-sisendit; cross-site,
+sama saidi võõra alamdomeeni ja `text/plain` päringud ei pääse olekumuutuseni. Järgmine tööots
+valitakse S4-st.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
