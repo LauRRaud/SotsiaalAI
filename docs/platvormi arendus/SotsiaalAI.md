@@ -92,6 +92,11 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Aardvarki leitud kiireloomulise abipalve saaja lahknemine on parandatud.** Kui ühel
+omavalitsusel on mitu eri saajatüübiga valmis lauda, valib vorm nüüd konkreetse laua ning
+saadab serverile sama saajatüübi, mida inimene kinnitusekraanil nägi; järgmine tööots
+valitakse S4-st.
+
 **Sihitud Codex Security seitsme faili parandusring on `main`-is ja toodangus
 (`bad33faca2cf41681abd5cf350b00ffe7b4671fc`).** Viis kinnitatud leidu on suletud: suletud registreerimise adminieelvaade
 kontrollib iga päringu ajal andmebaasist rolli, peatamist ja sessiooni; kõik kasutaja algatatud

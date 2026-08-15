@@ -76,6 +76,21 @@ test("saatmisele eelneb kinnitusekraan, kus on näha KUHU ja MIS läheb", async 
   assert.match(confirm, /urgent\.form\.consent_note/);
 });
 
+test("kinnitamisel näidatud laud säilib valikust serveripäringuni", async () => {
+  const s = await source();
+  const selection = s.slice(s.indexOf("const selected = useMemo("), s.indexOf('if (status === "loading")'));
+  const form = s.slice(s.indexOf("<form onSubmit={review}>"));
+  const send = s.slice(s.indexOf("async function send("), s.indexOf('if (stage === "confirm")'));
+
+  // Ühel omavalitsusel võib olla eri saajatüübiga mitu lauda. Omavalitsuse
+  // id ei ole seetõttu valiku identiteet: kinnitusekraan ja POST peavad kandma
+  // sama avalikust loendist valitud lauda/saajat.
+  assert.match(selection, /region\.desk\.id === form\.deskId/);
+  assert.match(form, /key=\{region\.desk\.id\} value=\{region\.desk\.id\}/);
+  assert.match(send, /municipalityId: selected\.municipalityId/);
+  assert.match(send, /recipientType: selected\.desk\.recipientType/);
+});
+
 test("laua kaart näitab lugemisaega ja 112 piiri, mitte reageerimisaega", async () => {
   const s = await source();
   const card = s.slice(s.indexOf("function DeskCard("), s.indexOf("export default function"));

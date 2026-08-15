@@ -35,7 +35,7 @@ function txt(t, key, fallback) {
 }
 
 const EMPTY = {
-  municipalityId: "",
+  deskId: "",
   situationVerbatim: "",
   contactName: "",
   contactPhone: "",
@@ -106,8 +106,8 @@ export default function UrgentRequestForm() {
   }, [status, loadRegions]);
 
   const selected = useMemo(
-    () => regions.find((region) => region.municipalityId === form.municipalityId) || null,
-    [regions, form.municipalityId]
+    () => regions.find((region) => region.desk.id === form.deskId) || null,
+    [regions, form.deskId]
   );
 
   if (status === "loading") return <p>{txt(t, "urgent.loading", "Laen...")}</p>;
@@ -216,7 +216,7 @@ export default function UrgentRequestForm() {
     if (form.safetyAnswer !== false) {
       return setError(txt(t, "urgent.errors.safety_answer_required", "Vasta, kas keegi on praegu ohus."));
     }
-    if (!form.municipalityId) return setError(txt(t, "urgent.errors.municipality_required", "Vali omavalitsus."));
+    if (!selected) return setError(txt(t, "urgent.errors.municipality_required", "Vali omavalitsus."));
     if (!form.situationVerbatim.trim()) return setError(txt(t, "urgent.errors.situation_required", "Kirjelda, mis toimub."));
     if (!form.contactName.trim()) return setError(txt(t, "urgent.errors.contact_name_required", "Lisa nimi."));
     if (!form.contactPhone.trim()) return setError(txt(t, "urgent.errors.contact_phone_required", "Lisa telefon."));
@@ -232,7 +232,8 @@ export default function UrgentRequestForm() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          municipalityId: form.municipalityId,
+          municipalityId: selected.municipalityId,
+          recipientType: selected.desk.recipientType,
           situationVerbatim: form.situationVerbatim,
           contactName: form.contactName,
           contactPhone: form.contactPhone,
@@ -291,13 +292,13 @@ export default function UrgentRequestForm() {
         <label>
           <span>{txt(t, "urgent.form.municipality_label", "Kus sa oled?")}</span>
           <select
-            value={form.municipalityId}
-            onChange={(event) => set("municipalityId", event.target.value)}
+            value={form.deskId}
+            onChange={(event) => set("deskId", event.target.value)}
           >
             <option value="">{txt(t, "urgent.form.municipality_placeholder", "Vali omavalitsus")}</option>
             {regions.map((region) => (
-              <option key={region.municipalityId} value={region.municipalityId}>
-                {region.municipalityName}
+              <option key={region.desk.id} value={region.desk.id}>
+                {region.municipalityName} — {region.desk.publicName}
               </option>
             ))}
           </select>
