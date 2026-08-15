@@ -43,6 +43,15 @@ test("useRoomCall sends server leave on teardown and non-BFCache pagehide", asyn
   assert.match(source, /handlePageHide = event => \{\s*\n\s*if \(event\.persisted\) return;/);
 });
 
+test("recording purpose Enter cannot submit the surrounding chat composer", async () => {
+  const callBar = await read("components/rooms/RoomCallBar.jsx");
+
+  assert.match(
+    callBar,
+    /<Input[\s\S]*?value=\{recordingPurposeText\}[\s\S]*?onKeyDown=\{preventEnterFormSubmit\}/
+  );
+});
+
 // SOL-CALL-11/12/13. Otsused ise on `lib/calls/clientState.js`-is ja neil on oma
 // sviit koos negatiivkontrollidega (`callClientState.test.js`). Siin on JUHTMESTIK:
 // kas hook neid otsuseid päriselt kasutab ja kas fail-closed rajad on olemas.

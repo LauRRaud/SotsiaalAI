@@ -4,9 +4,17 @@ import fs from "node:fs";
 import path from "node:path";
 
 import { filterGuideSections, stripHtml } from "../../lib/guideSearch.js";
+import { decodeHashFragment } from "../../lib/hashNavigation.js";
 
 const ROOT = path.join(process.cwd());
 const LOCALES = ["et", "en", "ru"];
+
+test("hash navigation tolerates malformed percent encoding", () => {
+  assert.equal(decodeHashFragment("#accessibility"), "accessibility");
+  assert.equal(decodeHashFragment("#tere%20maailm"), "tere maailm");
+  assert.doesNotThrow(() => decodeHashFragment("#%"));
+  assert.equal(decodeHashFragment("#%E0%A4%A"), "%E0%A4%A");
+});
 
 function loadMessages(locale) {
   return JSON.parse(
@@ -115,5 +123,21 @@ test("juhendi peatükivõtmed on unikaalsed ja olemas kõigis keeltes", () => {
       assert.ok(sections[key]?.title, `${locale}: ${key}.title puudub`);
       assert.ok(sections[key]?.body, `${locale}: ${key}.body puudub`);
     }
+  }
+});
+
+test("ruumikõne juhend kirjeldab nõusolekupõhist salvestamist täpselt", () => {
+  const expectedRecordingNotices = {
+    et: "Kõnet ei salvestata vaikimisi. Salvestamine vajab kõigi nõutud osapoolte nõusolekut.",
+    en: "The call is not recorded by default. Recording requires the consent of all required parties.",
+    ru: "По умолчанию звонок не записывается. Для записи требуется согласие всех необходимых сторон."
+  };
+
+  for (const locale of LOCALES) {
+    const roomsGuide = loadMessages(locale).about.guide.sections_v2.rooms.body;
+    assert.ok(
+      roomsGuide.includes(expectedRecordingNotices[locale]),
+      `${locale}: ruumikõne juhend peab eristama vaikimisi salvestamata kõnet nõusolekupõhisest salvestamisest`
+    );
   }
 });
