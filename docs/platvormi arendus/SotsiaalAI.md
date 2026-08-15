@@ -92,6 +92,10 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Aardvarki JTA ülekandeauditi leid on parandatud lokaalsel tööharul.** `READ_ONLY` juhtumist
+saab töötaja endiselt STAR2 jaoks kopeerida ja juba toimunud teo jälje talletada, kuid lõplik
+`ARCHIVED` seis tõrjub nüüd uue auditirea; järgmine tööots valitakse S4-st.
+
 **Codex Security esimese täisskänni 15 HIGH leidu on `main`-i integreeritud, GitHubi viidud ja
 toodangusse paigaldatud (`95b8b1ed306d8fe00a4c90ccbbedbdd9bb98eb65`).** Parandusring katab vaikimisi
 väljalogimise, materjalide karantiini, RAG-loa tagasivõtmise ja DNS-i sidumise, vestluse ning
@@ -1148,6 +1152,10 @@ kaob referentsiaalne terviklikkus."* Seosemudel on seetõttu **typed-FK, mitte p
 „ei jää rippuvat viidet" tuleb andmebaasi kaskaadist, mitte rakenduse kustutusteede kaetusest.
 
 ### Viimati tehtud (08.08): JTA-V1 — juhtumitöö assistent, E1–E8 VALMIS
+
+**Turvaparandus 15.08:** kopeerimise audit säilitab teadliku `READ_ONLY` erandi, kuid ei luba
+enam lisada `CaseWorkTransferEvent` rida `ARCHIVED` juhtumile. Nii jääb enne arhiveerimist
+toimunud kopeerimise jälg alles, ilma et lõplikku säilituseisu saaks tagantjärele muuta.
 
 **Omanik valis 07.08 kuuenda teema: juhtumitöö assistent.** Leping
 [`jta-v1-arendusleping.md`](./jta-v1-arendusleping.md) on **v8** — **kuus** omaniku auditiringi,

@@ -328,6 +328,31 @@ test(
 );
 
 test(
+  "arhiveeritud juhtumile ei saa kopeerimise auditirida lisada",
+  withFeatureOn(async () => {
+    const store = db();
+    const { base } = await seed(store);
+    store.assists[0].retentionState = "ARCHIVED";
+
+    await rejects(copy(base, { fieldKeys: ["EESMARK"], clientActionId: ACTION_KEY }), 409, "casework.errors.not_active");
+    assert.equal(store.events.length, 0, "arhiveeritud juhtum sai uue auditirea");
+  })
+);
+
+test(
+  "READ_ONLY juhtumi juba toimunud kopeerimist saab endiselt auditeerida",
+  withFeatureOn(async () => {
+    const store = db();
+    const { base } = await seed(store);
+    store.assists[0].retentionState = "READ_ONLY";
+
+    const result = await copy(base, { fieldKeys: ["EESMARK"], clientActionId: ACTION_KEY });
+    assert.equal(result.created, true);
+    assert.equal(store.events.length, 1);
+  })
+);
+
+test(
   "L22: sama `clientActionId` kaks korda annab ÜHE rea ja sama id",
   withFeatureOn(async () => {
     const store = db();
