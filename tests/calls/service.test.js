@@ -1973,7 +1973,25 @@ test("SOL-CALL-09: käivituse audititõrge peatab egressi ega jäta ACTIVE salve
 
 test("SOL-CALL-09: lõpetamise audititõrge ei jäta maha orvuks jäänud dokumenti", async () => {
   const prisma = createPrisma();
-  const service = activeRecordingService(prisma, { finalize: true });
+  const deleted = [];
+  const service = createCallService({
+    prisma,
+    egress: {
+      configured: true,
+      startAudioRecording: async () => ({ egressId: "egress_active_1" }),
+      stopRecording: async () => ({ ok: true })
+    },
+    recordingStorage: {
+      finalizeRecordingFile: async ({ fileName }) => ({
+        storagePath: `uploads/${fileName}`,
+        mimeType: "audio/ogg",
+        fileSizeBytes: 2048,
+        durationSeconds: 30,
+        checksum: "sha256-e5"
+      }),
+      deleteStoredArtifact: async ({ storagePath }) => deleted.push(storagePath)
+    }
+  });
   const { call, request } = await readyToRecord(prisma, service);
   await service.startRecording({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", canModerate: true });
   breakAudit(prisma);
@@ -1984,8 +2002,44 @@ test("SOL-CALL-09: lõpetamise audititõrge ei jäta maha orvuks jäänud dokume
   );
 
   assert.equal(prisma.userDocument.rows.length, 0, "dokument, millele ükski failirida ei viita, ei jää alles");
+  assert.equal(deleted.length, 1, "tagasipööratud tehingu finaliseeritud heli koristatakse");
   assert.equal(prisma.callRecordingRequest.rows[0].status, "FAILED");
   assert.notEqual(prisma.callRecordingFile.rows[0].status, "AVAILABLE");
+});
+
+test("SOL-CALL-09: finaliseeritud heli kustutustõrge säilitab tee sweep'i jaoks", async () => {
+  const prisma = createPrisma();
+  const service = createCallService({
+    prisma,
+    egress: {
+      configured: true,
+      startAudioRecording: async () => ({ egressId: "egress_active_1" }),
+      stopRecording: async () => ({ ok: true })
+    },
+    recordingStorage: {
+      finalizeRecordingFile: async () => ({
+        storagePath: "uploads/finalized-call.ogg",
+        mimeType: "audio/ogg",
+        fileSizeBytes: 2048,
+        durationSeconds: 30,
+        checksum: "sha256-e5"
+      }),
+      deleteStoredArtifact: async () => { throw new Error("storage unavailable"); }
+    }
+  });
+  const { call, request } = await readyToRecord(prisma, service);
+  await service.startRecording({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", canModerate: true });
+  breakAudit(prisma);
+
+  await assert.rejects(
+    () => service.stopRecording({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", canModerate: true }),
+    /audit down/
+  );
+
+  const stored = prisma.callRecordingFile.rows[0];
+  assert.equal(stored.status, "DELETE_PENDING");
+  assert.equal(stored.filePath, "uploads/finalized-call.ogg");
+  assert.ok(stored.retentionUntil <= new Date(), "sweep peab saama koristust kohe korrata");
 });
 
 test("SOL-CALL-09: kustutuse jälg sünnib koos DELETED reaga", async () => {

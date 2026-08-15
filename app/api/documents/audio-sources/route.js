@@ -23,6 +23,7 @@ import {
   requireDocumentUser
 } from "@/lib/documents/server"
 import { safeError } from "@/lib/privacy/safeError"
+import { visibleRecordingDocumentWhere } from "@/lib/documents/recordingVisibility"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
@@ -81,6 +82,7 @@ export async function GET(request) {
     const documents = await prisma.userDocument.findMany({
       where: {
         ownerId: auth.userId,
+        ...visibleRecordingDocumentWhere(),
         kind: { in: AUDIO_SOURCE_KINDS },
         OR: [
           { mime: { startsWith: "audio/" } },
