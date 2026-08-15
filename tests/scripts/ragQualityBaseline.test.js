@@ -219,7 +219,21 @@ test("privacy validator rejects query, answer, topics and planner reason fields"
 });
 
 test("privacy validator rejects identifier keys and source-ID lists", () => {
-  for (const key of ["userId", "conversationId", "messageId", "email", "source_ids", "retrieved_source_ids"]) {
+  for (const key of [
+    "userId",
+    "conversationId",
+    "messageId",
+    "email",
+    "source_ids",
+    "retrieved_source_ids",
+    "userid",
+    "conversationid",
+    "convid",
+    "messageid",
+    "authorid",
+    "sourceid",
+    "sourceids"
+  ]) {
     assert.throws(
       () => validatePrivacySafeOutputValue({ [key]: [] }),
       error => error?.code === "privacy_forbidden_key"
