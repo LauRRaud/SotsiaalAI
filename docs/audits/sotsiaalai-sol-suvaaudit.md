@@ -3305,6 +3305,14 @@ sammude vahele süstida.
 
 **Seis (11.08.2026): DONE — jälg elab sama tehingu sees, mis tema otsus; `npm run call:audit:probe` 11/11 päris PostgreSQL-is. Commit `70d53835`.**
 
+**Turvajärelkontroll (15.08.2026): DONE — stopi audititõrge ei jäta enam enne
+tehingut finaliseeritud heli dokumendisalvestusse orvuks.** Tagasipöördunud tehingu
+järel kustutatakse finaliseeritud objekt kohe; kui salvestuskiht kustutust ei kinnita,
+säilib täpne `storagePath` tähtajaga `DELETE_PENDING` real ja retention-sweep saab
+koristust kohe korrata. Negatiivkontrollis jätsid vana koodi mõlemad harud heli
+omaniku- ja kustutusteeta; uued sihttestid tõendavad nii kohest kompensatsiooni kui
+kustutustõrke püsivat taasprooviteed. Rakenduse runtime: `not_run`.
+
 Kirje on nüüd kohustuslik ja `db` süstitav, seega kutsuja paneb ta SAMASSE tehingusse
 seisumuutusega (sama muster nagu SOL-FIELD-03 `writeDataAudit` ja SOL-ROOM-05
 omanikuvahetus). Puuduv `dataAuditLog` mudel ei ole enam vaikne pääs: tõend, mida ei saa
