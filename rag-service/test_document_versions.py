@@ -7,6 +7,7 @@ import unittest
 from document_versions import (
     DocumentDeleteError,
     DocumentVersionError,
+    _document_lock_path,
     delete_document_versioned,
     is_active_document_version,
     patch_document_metadata_consistently,
@@ -115,6 +116,17 @@ class DocumentVersionTests(unittest.TestCase):
 
     def tearDown(self):
         self.temp.cleanup()
+
+    def test_long_document_ids_use_a_bounded_stable_lock_name(self):
+        long_doc_id = "sotsiaaltoo-" + ("dementsuse-artikkel-" * 30)
+        lock_path = _document_lock_path(self.root / "locks", long_doc_id)
+        same_path = _document_lock_path(self.root / "locks", long_doc_id)
+        other_path = _document_lock_path(self.root / "locks", long_doc_id + "teine")
+
+        self.assertEqual(lock_path, same_path)
+        self.assertNotEqual(lock_path, other_path)
+        self.assertRegex(lock_path.name, r"^[0-9a-f]{64}\.lock$")
+        self.assertLessEqual(len(lock_path.name.encode("utf-8")), 255)
 
     def test_backup_read_failure_never_deletes_old_vectors(self):
         collection = FakeCollection(get_error=True)

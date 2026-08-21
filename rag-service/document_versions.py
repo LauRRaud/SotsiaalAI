@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import hashlib
 from pathlib import Path
 from typing import Dict, List
 
@@ -17,6 +18,11 @@ class DocumentDeleteError(RuntimeError):
     def __init__(self, code: str):
         super().__init__(code)
         self.code = code
+
+
+def _document_lock_path(lock_root: Path, doc_id: str) -> Path:
+    digest = hashlib.sha256(str(doc_id or "").encode("utf-8")).hexdigest()
+    return Path(lock_root) / f"{digest}.lock"
 
 
 def _where_for_version(doc_id: str, version_id: str) -> Dict:
@@ -166,7 +172,7 @@ def stage_document_version(
 ) -> DocumentVersionStage:
     lock_root = Path(lock_root)
     lock_root.mkdir(parents=True, exist_ok=True)
-    lock = FileLock(str(lock_root / f"{doc_id.encode('utf-8').hex()}.lock"), timeout=30)
+    lock = FileLock(str(_document_lock_path(lock_root, doc_id)), timeout=30)
     try:
         lock.acquire()
     except Timeout as error:
@@ -231,7 +237,7 @@ def delete_document_versioned(
 ) -> DocumentDeleteResult:
     lock_root = Path(lock_root)
     lock_root.mkdir(parents=True, exist_ok=True)
-    lock = FileLock(str(lock_root / f"{doc_id.encode('utf-8').hex()}.lock"), timeout=30)
+    lock = FileLock(str(_document_lock_path(lock_root, doc_id)), timeout=30)
     try:
         lock.acquire()
     except Timeout as error:
@@ -308,7 +314,7 @@ def patch_document_metadata_consistently(
 ) -> int:
     lock_root = Path(lock_root)
     lock_root.mkdir(parents=True, exist_ok=True)
-    lock = FileLock(str(lock_root / f"{doc_id.encode('utf-8').hex()}.lock"), timeout=30)
+    lock = FileLock(str(_document_lock_path(lock_root, doc_id)), timeout=30)
     try:
         lock.acquire()
     except Timeout as error:
