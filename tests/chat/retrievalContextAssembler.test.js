@@ -163,6 +163,7 @@ test("ordinary RAG answers are instructed to present found knowledge directly", 
   assert.match(systemPrompt, /Ära kurda kasutajale/);
   assert.doesNotMatch(retrievalAssembler, /Kui valitud allikabaas on kitsas, ütle seda loomulikult/);
   assert.match(retrievalAssembler, /ära lisa eraldi lõiku tänase kinnituse puudumise/);
+  assert.match(retrievalAssembler, /Ära nimeta vastuses RAG-konteksti, otsingu seisu ega allikabaasi laiust/);
   assert.doesNotMatch(evidencePackage, /State naturally when the selected source base is narrow/);
 });
 
