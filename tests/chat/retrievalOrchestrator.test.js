@@ -167,6 +167,40 @@ test("searchRagQueries sends hybrid retriever request and preserves returned cha
   }
 });
 
+test("searchRagQueries can request dense-only retrieval for an exhaustive filtered list", async () => {
+  const previousFetch = global.fetch;
+  let requestBody = null;
+  global.fetch = async (_url, options = {}) => {
+    requestBody = JSON.parse(String(options.body || "{}"));
+    return {
+      ok: true,
+      async text() {
+        return JSON.stringify({ retrievers_used: ["dense"], results: [] });
+      }
+    };
+  };
+
+  try {
+    await searchRagQueries({
+      queries: [{
+        query: "Harku valla sotsiaalteenused",
+        filters: {
+          municipality_id: "harku_vald",
+          collection_id: "kov_services",
+          item_type: "service"
+        }
+      }],
+      retrievers: ["dense"],
+      topK: 40
+    });
+
+    assert.deepEqual(requestBody?.retrievers, ["dense"]);
+    assert.equal(requestBody?.top_k, 40);
+  } finally {
+    global.fetch = previousFetch;
+  }
+});
+
 test("searchRagQueries throws on rag-service retrieval 503 instead of returning no evidence", async () => {
   const originalFetch = global.fetch;
   global.fetch = async () => ({

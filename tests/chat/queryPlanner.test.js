@@ -353,6 +353,33 @@ test("Query Planner V2 expands municipality service and benefit list queries", (
   assert.equal(plan.primaryRagQueries.some((query) => query?.filters?.collection_id?.$in?.includes("kov_regulations")), true);
 });
 
+test("Query Planner V2 uses one complete dense query for a municipality service-only list", () => {
+  const plan = basePlan({
+    effectiveMessage: "Harku valla sotsiaalteenused?",
+    allowMunicipalityScopedRag: true,
+    municipalityServiceBenefitRagRequest: true,
+    municipalityServiceBenefitListRequest: true,
+    effectiveMunicipalities: [
+      {
+        id: "harku_vald",
+        displayName: "Harku vald"
+      }
+    ],
+    municipalityServiceBenefitIntent: {
+      wantsServices: true,
+      wantsBenefits: false
+    }
+  });
+
+  assert.equal(plan.queryPlan.mode, "municipality_service_benefit_list");
+  assert.equal(plan.primaryRagQueries.length, 1);
+  assert.equal(plan.primaryRagQueries[0]?.filters?.municipality_id, "harku_vald");
+  assert.equal(plan.primaryRagQueries[0]?.filters?.collection_id, "kov_services");
+  assert.equal(plan.primaryRagQueries[0]?.filters?.item_type, "service");
+  assert.deepEqual(plan.ragRetrievers, ["dense"]);
+  assert.equal(plan.ragSearchTopK >= 40, true);
+});
+
 test("Query Planner V2 routes municipality Riigi Teataja availability checks to KOV legal layer", () => {
   const plan = basePlan({
     effectiveMessage: "kas Harku valla riigiteataja on sul?",

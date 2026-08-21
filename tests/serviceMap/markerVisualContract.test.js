@@ -61,3 +61,20 @@ test("custom marker shape is visible in the map and compact legend", () => {
   );
   assert.match(workspaceCss, /\.service-map-leaflet__marker--selected\s*\{/);
 });
+
+test("marker popup is compact, translucent and keeps labels separate from values", () => {
+  assert.match(
+    workspaceCss,
+    /\.service-map-canvas \.leaflet-popup-content-wrapper\s*\{[^}]*background:\s*rgba\(18,\s*20,\s*19,\s*0\.9[0-9]\)\s*!important;/s
+  );
+  assert.match(
+    workspaceCss,
+    /\.service-map-leaflet__popup--group \.leaflet-popup-content\s*\{[^}]*width:\s*min\(20rem,\s*calc\(100vw - 3rem\)\)\s*!important;/s
+  );
+  assert.match(
+    workspaceCss,
+    /\.service-map-popup__meta\s*\{[^}]*display:\s*grid;[^}]*grid-template-columns:\s*minmax\(4\.5rem,\s*auto\)\s+1fr;[^}]*gap:/s
+  );
+  assert.match(workspaceCss, /\.service-map-popup__contact-meta\s*\{[^}]*display:\s*grid;[^}]*gap:/s);
+  assert.match(workspaceCss, /\.service-map-popup__contact-email\s*\{[^}]*overflow-wrap:\s*anywhere;/s);
+});

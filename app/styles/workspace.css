@@ -1321,32 +1321,82 @@
 .service-map-canvas .leaflet-popup-content-wrapper {
   /* Leafleti CSS lisatakse brauseris hiljem ja on kihistamata. Need kaks
      väärtust peavad seepärast võitma ka tema valge vaike-popupi. */
-  background: #171717 !important;
+  background: rgba(18, 20, 19, 0.94) !important;
   color: #f5f1e8 !important;
-  border-radius: 14px;
-  border: 1px solid var(--glass-border-soft);
-  box-shadow: var(--glass-shadow);
+  border-radius: 12px;
+  border: 1px solid rgba(245, 241, 232, 0.18);
+  box-shadow: 0 1rem 2.6rem rgba(8, 10, 9, 0.32), inset 0 1px rgba(255, 255, 255, 0.06);
+  -webkit-backdrop-filter: blur(14px) saturate(0.86);
+  backdrop-filter: blur(14px) saturate(0.86);
 }
 .service-map-canvas .leaflet-popup-content {
+  margin: 0.9rem 1rem 0.85rem !important;
   max-height: min(65vh, 32rem);
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-gutter: stable;
 }
+.service-map-canvas .service-map-leaflet__popup--group .leaflet-popup-content {
+  width: min(20rem, calc(100vw - 3rem)) !important;
+}
+.service-map-canvas .service-map-leaflet__popup--single .leaflet-popup-content {
+  width: min(18.5rem, calc(100vw - 3rem)) !important;
+}
 .service-map-canvas .leaflet-popup-tip {
-  background: #171717 !important;
+  background: rgba(18, 20, 19, 0.94) !important;
 }
 .service-map-popup {
-  font-size: var(--fs-small);
+  display: grid;
+  gap: 0.65rem;
+  min-width: 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
   color: #ded8cc;
 }
-.service-map-popup__label {
-  color: #bdb5a8;
+.service-map-popup__title {
+  margin: 0;
+  padding-right: 1.65rem;
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  font-weight: 560;
+  line-height: 1.2;
+  color: #f5f1e8;
 }
-.service-map-popup__action,
-.service-map-popup__contact-button {
+.service-map-popup__body,
+.service-map-popup__privacy-note {
+  margin: 0;
+  color: #d1cabd;
+}
+.service-map-popup__meta {
+  display: grid;
+  grid-template-columns: minmax(4.5rem, auto) 1fr;
+  gap: 0.35rem 0.75rem;
+  align-items: baseline;
+  margin: 0;
+  padding: 0.12rem 0;
+  min-width: 0;
+}
+.service-map-popup__meta > span:last-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: #f0ebe1;
+}
+.service-map-popup__label {
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+  color: #a9a195;
+}
+.service-map-popup__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.1rem;
+}
+.service-map-popup__action {
   display: inline-block;
-  margin: 0.25rem 0.3rem 0 0;
+  margin: 0;
   padding: 0.35em 0.85em;
   border-radius: 999px;
   color: #f5f1e8 !important;
@@ -1355,9 +1405,63 @@
   text-decoration: none;
   cursor: pointer;
 }
-.service-map-popup__action:hover,
-.service-map-popup__contact-button:hover {
+.service-map-popup__action:hover {
   background: rgba(255, 255, 255, 0.14);
+}
+.service-map-popup__contacts {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 0.1rem;
+}
+.service-map-popup__contact {
+  display: grid;
+  gap: 0.35rem;
+  min-width: 0;
+  padding: 0.42rem 0 0.55rem;
+  border-top: 1px solid rgba(245, 241, 232, 0.11);
+}
+.service-map-popup__contact-button {
+  display: grid;
+  gap: 0.15rem;
+  width: 100%;
+  margin: 0;
+  padding: 0.52rem 0.65rem;
+  border: 1px solid rgba(245, 241, 232, 0.16);
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.055);
+  color: #f5f1e8;
+  text-align: left;
+  cursor: pointer;
+}
+.service-map-popup__contact-button:hover,
+.service-map-popup__contact-button:focus-visible {
+  border-color: rgba(245, 241, 232, 0.34);
+  background: rgba(255, 255, 255, 0.1);
+}
+.service-map-popup__contact-title {
+  font-weight: 650;
+  line-height: 1.25;
+}
+.service-map-popup__contact-description {
+  color: #bdb5a8;
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
+.service-map-popup__contact-meta {
+  display: grid;
+  gap: 0.18rem;
+  min-width: 0;
+  padding: 0 0.65rem;
+  color: #d8d1c5;
+  font-size: 0.82rem;
+}
+.service-map-popup__contact-phone,
+.service-map-popup__contact-email {
+  display: block;
+  min-width: 0;
+}
+.service-map-popup__contact-email {
+  overflow-wrap: anywhere;
 }
 
 .service-map-popup__availability,
@@ -1456,6 +1560,8 @@
 
 .service-map-canvas .leaflet-container a.leaflet-popup-close-button {
   color: #f5f1e8 !important;
+  top: 0.35rem;
+  right: 0.38rem;
 }
 
 @media (max-width: 1120px) {
