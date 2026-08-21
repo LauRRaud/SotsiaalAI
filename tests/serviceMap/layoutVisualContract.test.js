@@ -71,11 +71,11 @@ test("service map preserves the official basemap colors", () => {
 test("service map popup keeps readable contrast when Leaflet CSS loads later", () => {
   assert.match(
     workspaceCss,
-    /\.service-map-canvas \.leaflet-popup-content-wrapper\s*\{[^}]*background:\s*#171717\s*!important;[^}]*color:\s*#f5f1e8\s*!important;/s
+    /\.service-map-canvas \.leaflet-popup-content-wrapper\s*\{[^}]*background:\s*rgba\(18,\s*20,\s*19,\s*0\.94\)\s*!important;[^}]*color:\s*#f5f1e8\s*!important;/s
   );
   assert.match(
     workspaceCss,
-    /\.service-map-canvas \.leaflet-popup-tip\s*\{[^}]*background:\s*#171717\s*!important;/s
+    /\.service-map-canvas \.leaflet-popup-tip\s*\{[^}]*background:\s*rgba\(18,\s*20,\s*19,\s*0\.94\)\s*!important;/s
   );
 });
 
