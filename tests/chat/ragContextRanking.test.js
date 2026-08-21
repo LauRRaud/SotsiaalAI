@@ -56,6 +56,30 @@ test("topic hints move the matching article chunk and passage ahead of context t
   );
 });
 
+test("context budget preserves the second relevant chunk from the same article", () => {
+  const longHesterOverview = (
+    "Helsingi Hester koondab sotsiaal-, tervishoiu- ja päästeteenuste teadmised ning " +
+    "annab ööpäev läbi teavet tervise, vanemluse, eakate hoolduse ja toimetuleku kohta. "
+  ).repeat(12);
+  const privacyChunk = (
+    "Hesteri vestluslogide analüüs aitab vastuseid parandada. " +
+    "Isikuandmete kaitseks eemaldatakse automaatselt delikaatne teave ja " +
+    "logid kustutatakse süsteemist kuue kuu möödudes."
+  );
+  const ranked = rankGroupsWithTopicHints([{
+    key: "ai-article",
+    title: "Tehisintellekt sotsiaaltöös",
+    bodies: [longHesterOverview, privacyChunk],
+    bestScore: 0.8,
+    tags: []
+  }], ["helsingi", "hester", "tehisintellekti", "isikuandmeid"]);
+
+  const block = renderOneContextBlock(ranked[0], 0, { bodyMaxChars: 1100 });
+
+  assert.match(block, /Helsingi Hester/);
+  assert.match(block, /kuue kuu möödudes/);
+});
+
 test("topic hint extraction removes inflected generic field words but keeps the named entity", () => {
   assert.deepEqual(
     extractTopicHints("tehisintellekt sotsiaalvaldkonnas? töötukassas?"),
