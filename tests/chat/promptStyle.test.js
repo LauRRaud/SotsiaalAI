@@ -48,9 +48,10 @@ test("Estonian base prompt discourages search-status phrasing in ordinary answer
   assert.match(system, /Ära kasuta vestlusvastuses Markdowni pealkirjamärke/);
   assert.match(system, /Ära alusta tavavastust allika- või otsingustaatusega/);
   assert.match(system, /Ära kasuta lõppvastuses väljendeid/);
-  assert.match(system, /Praegu kasutatud allikad ei anna sellele piisavalt täpset vastust/);
+  assert.doesNotMatch(system, /Praegu kasutatud allikad ei anna sellele piisavalt täpset vastust/);
   assert.match(system, /Ma ei leidnud praeguse otsinguga sellele piisavalt täpset õiguslikku allikakinnitust/);
   assert.match(system, /Ära väida, et midagi ei eksisteeri ainult seetõttu/);
+  assert.match(system, /nimeta konkreetne allikas .* mitte üldise meta-fraasina/);
   assert.doesNotMatch(system, /Sõnasta loomulikult: "leidsin allikatest"/);
 });
 

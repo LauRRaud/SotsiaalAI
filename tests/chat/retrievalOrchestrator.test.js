@@ -397,15 +397,13 @@ test("buildSourceAnchoredRagQueries keeps broad synthesis queries unfiltered fir
   assert.deepEqual(focused?.filters, { doc_id: "article-doc-2025" });
 });
 
-test("buildSourceAnchoredRagQueries sends thematic synthesis lines as separate broad queries", () => {
+test("buildSourceAnchoredRagQueries sends one diversified query for thematic synthesis", () => {
   const message = "mis on need probleemsed kohad, millest on lastekaitses räägitud?";
   const queries = buildSourceAnchoredRagQueries(message, [], buildRagSearchQuery(message, []));
 
-  assert.equal(queries.length, 3);
+  assert.equal(queries.length, 1);
   assert.equal(queries.every(query => typeof query === "string"), true);
   assert.match(queries[0], /probleemsed kohad/i);
-  assert.equal(queries.some(query => /probleemid kitsaskohad/i.test(query)), true);
-  assert.equal(queries.some(query => /uuring juhend statistika ajakiri praktika kogemus/i.test(query)), true);
 });
 
 test("detectSourceAvailabilityRequest treats inflected legal provision lists as source lookup", () => {
@@ -481,7 +479,7 @@ test("searchRagQueries merges per-query source filters with base filters", async
   }
 });
 
-test("searchRagQueries runs multi-query retrieval sequentially to avoid index contention", async () => {
+test("searchRagQueries keeps independent multi-query retrieval concurrent", async () => {
   const previousFetch = global.fetch;
   let active = 0;
   let maxActive = 0;
@@ -510,8 +508,8 @@ test("searchRagQueries runs multi-query retrieval sequentially to avoid index co
       topK: 9
     });
 
-    assert.equal(maxActive, 1);
-    assert.deepEqual(completed, ["esimene", "teine", "kolmas"]);
+    assert.equal(maxActive, 3);
+    assert.deepEqual(completed.sort(), ["esimene", "kolmas", "teine"]);
     assert.deepEqual(results.map(item => item.id), ["result-esimene", "result-teine", "result-kolmas"]);
   } finally {
     global.fetch = previousFetch;
