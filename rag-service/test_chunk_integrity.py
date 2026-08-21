@@ -18,6 +18,20 @@ import main
 
 
 class ChunkIntegrityTests(unittest.TestCase):
+    def test_char_splitter_keeps_named_system_claim_inside_one_chunk(self):
+        lead = ("A" * 60) + "."
+        ott_claim = (
+            "Eesti töötukassa OTT-süsteem hindab pikaajalise töötuse riski "
+            "45 näitaja alusel."
+        )
+        aurora_claim = "AuroraAI on Soome süsteem, mis ühendab teenuseid."
+        text = " ".join([lead, ott_claim, aurora_claim])
+
+        chunks = main._split_chunks_chars(text, max_chars=100, overlap=20)
+
+        self.assertTrue(any(ott_claim in chunk for chunk in chunks), chunks)
+        self.assertTrue(any(aurora_claim in chunk for chunk in chunks), chunks)
+
     def test_token_splitter_keeps_named_system_claim_inside_one_chunk(self):
         class CharacterEncoder:
             @staticmethod
@@ -76,7 +90,8 @@ class ChunkIntegrityTests(unittest.TestCase):
         for chunk in chunks:
             found = normalized.find(chunk, max(0, cursor - 10))
             self.assertGreaterEqual(found, 0)
-            self.assertLessEqual(found, cursor, f"gap before {chunk!r}")
+            gap = normalized[cursor:found] if found > cursor else ""
+            self.assertTrue(found <= cursor or gap.isspace(), f"gap before {chunk!r}: {gap!r}")
             cursor = max(cursor, found + len(chunk))
         self.assertEqual(cursor, len(normalized))
 

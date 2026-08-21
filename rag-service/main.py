@@ -1072,17 +1072,43 @@ def _split_chunks_chars(text: str, max_chars: int = CHUNK_SIZE, overlap: int = C
         end = min(n, start + max_chars)
         window = text[start:end]
         cut = len(window)
-        candidates = [window.rfind(". "), window.rfind("! "), window.rfind("? "), window.rfind("\n\n")]
-        best = max(candidates)
-        if best != -1 and best > len(window) * 0.5:
-            cut = best + 1
+        used_sentence_cut = False
+        if end < n:
+            candidates = [window.rfind(". "), window.rfind("! "), window.rfind("? "), window.rfind("\n\n")]
+            best = max(candidates)
+            if best != -1 and best > len(window) * 0.5:
+                cut = best + 1
+                used_sentence_cut = True
+            else:
+                word_boundary = max(window.rfind(" "), window.rfind("\n"), window.rfind("\t"))
+                if word_boundary > len(window) * 0.5:
+                    cut = word_boundary
         chunk = _clean_text(window[:cut])
         if chunk:
             chunks.append(chunk)
         if end >= n:
             break
-        # Advance from the actual sentence cut, not the nominal window end.
-        next_start = start + cut - max(0, overlap)
+        chunk_end = start + cut
+        overlap_target = max(start + 1, chunk_end - max(0, overlap))
+        emitted = text[start:chunk_end]
+        sentence_starts: List[int] = []
+        for boundary in re.finditer(r"[.!?](?=\s|$)|\n{2,}", emitted):
+            candidate = start + boundary.end()
+            while candidate < chunk_end and text[candidate].isspace():
+                candidate += 1
+            if overlap_target <= candidate < chunk_end:
+                sentence_starts.append(candidate)
+        if sentence_starts:
+            next_start = sentence_starts[0]
+        elif used_sentence_cut:
+            next_start = chunk_end
+        else:
+            word_start = overlap_target
+            while word_start < chunk_end and not text[word_start - 1].isspace():
+                word_start += 1
+            while word_start < chunk_end and text[word_start].isspace():
+                word_start += 1
+            next_start = word_start if word_start < chunk_end else overlap_target
         start = max(start + 1, next_start)
     return chunks
 
