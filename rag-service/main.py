@@ -3627,10 +3627,15 @@ def _targeted_document_terms(query: str, limit: int = 8) -> List[str]:
     seen = set()
     for index, raw_word in enumerate(words):
         normalized = _normalize_search_text(raw_word)
-        if len(normalized) < 6 or normalized in LEXICAL_STOPWORDS:
+        is_acronym = len(normalized) >= 3 and raw_word.isupper()
+        is_numeric_marker = len(normalized) >= 2 and normalized.isdigit()
+        if (
+            normalized in LEXICAL_STOPWORDS
+            or (len(normalized) < 6 and not is_acronym and not is_numeric_marker)
+        ):
             continue
         is_named = index > 0 and raw_word[:1].isupper()
-        if len(normalized) < 9 and not is_named:
+        if len(normalized) < 7 and not is_named and not is_acronym and not is_numeric_marker:
             continue
         term = raw_word[:8] if len(normalized) >= 9 else raw_word
         variants = [term]
@@ -3641,7 +3646,13 @@ def _targeted_document_terms(query: str, limit: int = 8) -> List[str]:
             if not variant or key in seen:
                 continue
             seen.add(key)
-            priority = 4 if is_named else 3 if len(normalized) >= 12 else 2 if len(normalized) >= 9 else 1
+            priority = (
+                5 if is_acronym or is_numeric_marker
+                else 4 if is_named
+                else 3 if len(normalized) >= 12
+                else 2 if len(normalized) >= 9
+                else 1
+            )
             ranked.append((priority, len(normalized), -index, variant))
     ranked.sort(key=lambda item: (-item[0], -item[1], -item[2], item[3].casefold()))
     return [item[3] for item in ranked[:max(1, limit)]]

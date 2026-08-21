@@ -356,6 +356,19 @@ class SearchObservabilityTests(unittest.TestCase):
             def get(self, **kwargs):
                 self.calls.append(kwargs)
                 if "where_document" in kwargs:
+                    term = kwargs["where_document"].get("$contains")
+                    if term in {"OTT", "45", "näitajat"}:
+                        return {
+                            "ids": ["ott-claim"],
+                            "documents": [
+                                "Eesti töötukassa OTT-süsteem hindab pikaajalise töötuse riski "
+                                "45 näitaja alusel."
+                            ],
+                            "metadatas": [{
+                                "doc_id": "ai-article",
+                                "title": "Tehisintellekt sotsiaaltöös",
+                            }],
+                        }
                     return {
                         "ids": ["generic-tootukassa"],
                         "documents": ["Eesti Töötukassa büroo kontakt ja vastuvõtuaeg."],
@@ -389,6 +402,12 @@ class SearchObservabilityTests(unittest.TestCase):
             )
 
         self.assertTrue(any(call.get("offset") == 0 for call in partial.calls))
+        targeted_terms = {
+            call["where_document"]["$contains"]
+            for call in partial.calls
+            if "where_document" in call
+        }
+        self.assertTrue({"OTT", "45", "näitajat"}.issubset(targeted_terms))
         self.assertEqual(fetched["candidates"][0]["id"], "ott-claim")
         self.assertTrue(fetched["complete"])
 
