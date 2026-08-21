@@ -933,7 +933,9 @@ export default function ServiceMapLeaflet({
         autoPanPaddingBottomRight: [28, 84]
       });
       marker.on("click", () => {
-        onSelectEntryRef.current?.(group.primaryEntry?.id);
+        if (group.entries.length === 1) {
+          onSelectEntryRef.current?.(group.primaryEntry?.id);
+        }
       });
       marker.addTo(markerLayerRef.current);
       markerGroupRefs.current.set(group.id, marker);

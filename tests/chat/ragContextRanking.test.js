@@ -79,6 +79,39 @@ test("groupMatches preserves organization official website URL aliases", () => {
   assert.equal(groups[0].officialWebsite, "https://www.astangu.ee/et");
 });
 
+test("groupMatches merges KOV service chunks by canonical item", () => {
+  const groups = groupMatches([
+    {
+      id: "koduteenus-chunk-1",
+      text: "Koduteenuse esimene kirjeldus.",
+      metadata: {
+        item_id: "harku-koduteenus-chunk-1",
+        chunk_id: "harku-koduteenus-chunk-1",
+        canonical_item_id: "harku_vald_service_koduteenus",
+        title: "Koduteenus",
+        source_type: "municipality_kov",
+        collection_id: "kov_services"
+      }
+    },
+    {
+      id: "koduteenus-chunk-2",
+      text: "Koduteenuse teine kirjeldus.",
+      metadata: {
+        item_id: "harku-koduteenus-chunk-2",
+        chunk_id: "harku-koduteenus-chunk-2",
+        canonical_item_id: "harku_vald_service_koduteenus",
+        title: "Koduteenus",
+        source_type: "municipality_kov",
+        collection_id: "kov_services"
+      }
+    }
+  ]);
+
+  assert.equal(groups.length, 1);
+  assert.equal(groups[0].canonicalItemId, "harku_vald_service_koduteenus");
+  assert.equal(groups[0].bodies.length, 2);
+});
+
 test("title_match channel boosts lexical exact title candidates", () => {
   const ranked = rankGroupsWithTopicHints([
     {

@@ -259,6 +259,28 @@ test("buildRagSearchQuery adds a generic keyword-focused query for factual backg
   assert.doesNotMatch(query, /OTT/i);
 });
 
+test("buildRagSearchQuery does not pollute a short independent topic with older user turns", () => {
+  const history = [
+    { role: "user", text: "Harku valla sotsiaaltöötajad?" },
+    { role: "assistant", text: "Harku valla kontaktide vastus." },
+    { role: "user", text: "Palun loetle kõik Harku valla sotsiaalteenused." },
+    { role: "assistant", text: "Harku valla teenuste vastus." },
+    { role: "user", text: "loetle kõik toetused" },
+    { role: "assistant", text: "Harku valla toetuste vastus." }
+  ];
+
+  const personQuery = buildRagSearchQuery("kes on Laur Raudsoo", history);
+  const topicQuery = buildRagSearchQuery("tehisintellekt sotsiaalvaldkonnas? töötukassas?", history);
+
+  assert.match(personQuery, /Laur Raudsoo/);
+  assert.doesNotMatch(personQuery, /Harku/i);
+  assert.doesNotMatch(personQuery, /toetused/i);
+  assert.match(topicQuery, /tehisintellekt/i);
+  assert.match(topicQuery, /töötukassas/i);
+  assert.doesNotMatch(topicQuery, /Harku/i);
+  assert.doesNotMatch(topicQuery, /toetused/i);
+});
+
 test("buildRagSearchQuery does not add a separate exact-anchor query for named example lists", () => {
   const query = buildRagSearchQuery("Vaimse tervise vestlusrobotid, nagu Woebot, Wysa, Vivibot ja XiaoE?", []);
   const normalizedLines = query

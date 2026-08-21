@@ -78,3 +78,10 @@ test("marker popup is compact, translucent and keeps labels separate from values
   assert.match(workspaceCss, /\.service-map-popup__contact-meta\s*\{[^}]*display:\s*grid;[^}]*gap:/s);
   assert.match(workspaceCss, /\.service-map-popup__contact-email\s*\{[^}]*overflow-wrap:\s*anywhere;/s);
 });
+
+test("group marker opens the compact contact list without preselecting its first person", () => {
+  assert.match(
+    mapComponent,
+    /marker\.on\("click",\s*\(\)\s*=>\s*\{\s*if\s*\(group\.entries\.length\s*===\s*1\)\s*\{\s*onSelectEntryRef\.current\?\.\(group\.primaryEntry\?\.id\);\s*\}\s*\}\);/s
+  );
+});
