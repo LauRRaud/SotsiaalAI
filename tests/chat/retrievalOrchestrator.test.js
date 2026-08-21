@@ -481,6 +481,43 @@ test("searchRagQueries merges per-query source filters with base filters", async
   }
 });
 
+test("searchRagQueries runs multi-query retrieval sequentially to avoid index contention", async () => {
+  const previousFetch = global.fetch;
+  let active = 0;
+  let maxActive = 0;
+  const completed = [];
+  global.fetch = async (_url, options = {}) => {
+    const body = JSON.parse(String(options.body || "{}"));
+    active += 1;
+    maxActive = Math.max(maxActive, active);
+    await new Promise((resolve) => setTimeout(resolve, 15));
+    completed.push(body.query);
+    active -= 1;
+    return {
+      ok: true,
+      async text() {
+        return JSON.stringify({
+          retrievers_used: ["dense"],
+          results: [{ id: `result-${body.query}`, text: body.query }]
+        });
+      }
+    };
+  };
+
+  try {
+    const results = await searchRagQueries({
+      queries: ["esimene", "teine", "kolmas"],
+      topK: 9
+    });
+
+    assert.equal(maxActive, 1);
+    assert.deepEqual(completed, ["esimene", "teine", "kolmas"]);
+    assert.deepEqual(results.map(item => item.id), ["result-esimene", "result-teine", "result-kolmas"]);
+  } finally {
+    global.fetch = previousFetch;
+  }
+});
+
 test("searchRagQueries keeps fulfilled multi-query results when another query aborts", async () => {
   const previousFetch = global.fetch;
   const calls = [];
