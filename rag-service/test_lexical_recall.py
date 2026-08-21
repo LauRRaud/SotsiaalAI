@@ -18,6 +18,29 @@ import main
 
 
 class LexicalRecallTests(unittest.TestCase):
+    def test_compose_chroma_where_flattens_single_logical_filter_group(self):
+        where = main._compose_chroma_where({
+            "audience": {"$in": ["BOTH", "SOCIAL_WORKER"]},
+            "$and": [{
+                "$or": [
+                    {"source_type": {"$in": ["journal_article", "research_report"]}},
+                    {"collection_id": {"$in": ["sotsiaaltoo_articles", "research_reports"]}},
+                ]
+            }],
+        })
+
+        self.assertEqual(where, {
+            "$and": [
+                {"audience": {"$in": ["BOTH", "SOCIAL_WORKER"]}},
+                {
+                    "$or": [
+                        {"source_type": {"$in": ["journal_article", "research_report"]}},
+                        {"collection_id": {"$in": ["sotsiaaltoo_articles", "research_reports"]}},
+                    ]
+                },
+            ]
+        })
+
     def test_high_coverage_body_match_is_not_buried_below_dense_noise(self):
         precise = {
             "id": "precise",

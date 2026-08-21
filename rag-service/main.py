@@ -2608,6 +2608,12 @@ def _compose_chroma_where(filters: Dict[str, object]) -> Optional[Dict[str, obje
     for key, value in (filters or {}).items():
         if value is None:
             continue
+        if key == "$and" and isinstance(value, list):
+            cleaned.extend(
+                clause for clause in value
+                if isinstance(clause, dict) and clause
+            )
+            continue
         cleaned.append({key: value})
     if not cleaned:
         return None
