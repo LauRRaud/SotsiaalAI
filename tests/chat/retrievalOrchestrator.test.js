@@ -196,6 +196,38 @@ test("searchRagQueries sends hybrid retriever request and preserves returned cha
   }
 });
 
+test("searchRagQueries does not copy response-level retrievers onto a dense-only result", async () => {
+  const previousFetch = global.fetch;
+  global.fetch = async () => ({
+    ok: true,
+    async text() {
+      return JSON.stringify({
+        retrievers_used: ["dense", "title_match", "bm25"],
+        results: [
+          {
+            id: "dense-only-chunk",
+            text: "Semantiline tabamus ilma leksikaalse katteta.",
+            retrieval_channels: ["dense"]
+          }
+        ]
+      });
+    }
+  });
+
+  try {
+    const results = await searchRagQueries({
+      queries: "erihooldekodude elanike kaardistus",
+      topK: 5
+    });
+
+    assert.deepEqual(results[0].retrieval_channels, ["dense"]);
+    assert.deepEqual(results[0].retrievalChannels, ["dense"]);
+    assert.equal(results[0].retriever, "dense");
+  } finally {
+    global.fetch = previousFetch;
+  }
+});
+
 test("searchRagQueries can request dense-only retrieval for an exhaustive filtered list", async () => {
   const previousFetch = global.fetch;
   let requestBody = null;

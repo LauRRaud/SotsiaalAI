@@ -143,6 +143,7 @@ async function fetchDocumentsPage(baseUrl, limit, offset) {
 }
 
 function matchesFilters(doc, args) {
+  if (String(doc?.lifecycleState || "").trim().toUpperCase() === "DELETED") return false;
   if (args.docIds.length && !args.docIds.includes(String(doc?.docId || doc?.id || "").trim())) return false;
   if (args.journal && normalizeText(doc?.journalTitle) !== normalizeText(args.journal)) return false;
   if (args.audience && String(doc?.audience || "").trim().toUpperCase() !== String(args.audience).trim().toUpperCase()) return false;

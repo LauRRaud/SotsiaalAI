@@ -12,7 +12,7 @@ const CASES = [
       ["vähemalt kord nelja kuu jooksul", /vähemalt\s+kord\s+nelja\s+kuu\s+jooksul/iu],
       ["Rakveres viis", /Rakvere[^.]{0,180}(?:toimunud\s+viis|viis\s+ümarlauda)/iu],
       ["Jõhvis seitse", /Jõhvi[^.]{0,180}(?:toimunud\s+seitse|seitse\s+MAPPA)/iu],
-      ["Narvas viis", /Narva[^.]{0,220}(?:viis|viiel\s+korral)/iu]
+      ["Narvas viis", /Narva[^\n]{0,260}(?:viis|viiel\s+korral)/iu]
     ]
   },
   {
