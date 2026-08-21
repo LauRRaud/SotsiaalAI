@@ -7,8 +7,7 @@ import {
 } from "@/lib/chat/retrievalOrchestrator";
 
 // B0b: retrieval'i etapi deterministlik juhtimine — aeglane, abortitud ja
-// enne timeout'i lõppev. Tootmise 12 s timeout'i EI muudeta; testid annavad
-// oma lühema väärtuse `timeoutMs` kaudu.
+// enne timeout'i lõppev. Testid annavad oma lühema väärtuse `timeoutMs` kaudu.
 
 function okResponse(results = []) {
   return {
@@ -148,7 +147,7 @@ test("ajamõõdikute sündmus mahub redactObject 30-võtme piirangu alla", async
   assert.ok(Object.keys(timings[0]).length <= 10, `ajamõõdikute võtmeid: ${Object.keys(timings[0]).length}`);
 });
 
-test("tootmise vaikeväärtus jääb 12000 ms, kui timeoutMs ei ole antud", async () => {
+test("tootmise vaikeväärtus kasutab 30 s RAG-ajapiiri, kui timeoutMs ei ole antud", async () => {
   __resetRagRequestClockForTests();
   const timings = [];
   await searchRagQueries({
@@ -156,7 +155,19 @@ test("tootmise vaikeväärtus jääb 12000 ms, kui timeoutMs ei ole antud", asyn
     fetchImpl: slowFetch(10),
     onTiming: t => timings.push(t)
   });
-  assert.equal(timings[0].retrieval_timeout_ms, 12000);
+  assert.equal(timings[0].retrieval_timeout_ms, 30000);
+});
+
+test("mitme alamotsingu rada kasutab sama seadistatud 30 s ajapiiri", async () => {
+  __resetRagRequestClockForTests();
+  const timings = [];
+  await searchRagQueries({
+    queries: ["koduteenus", "isiklik abistaja"],
+    fetchImpl: slowFetch(10),
+    onTiming: t => timings.push(t)
+  });
+  assert.equal(timings.length, 2);
+  assert.deepEqual(timings.map(timing => timing.retrieval_timeout_ms), [30000, 30000]);
 });
 
 test("rag-service timings teisenduvad frontend-lepingusse ja stage jääb eristatavaks", async () => {

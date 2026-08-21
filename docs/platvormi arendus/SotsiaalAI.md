@@ -1712,7 +1712,8 @@ SotsiaalAI vestlusaken vastab sotsiaalvaldkonna küsimustele eesti, inglise ja v
 riigi juhenditest, KOV-ide teenuskirjeldustest ja ajakirja Sotsiaaltöö materjalidest — ja
 iga vastuse juures on näha, millisele allikale ta tugineb. Inimene saab kontrollida, kust
 lause tuli, ja minna algallika juurde. Vestlus ei nõua kellegi teise järjekorras ootamist
-ega tööaega.
+ega tööaega. Vestluse otse avamisel luuakse puuduv serverikirje enne esimest sõnumit ning
+sama vestlus taastub lehe uuesti avamisel; RAG-otsing kasutab ühtset 30-sekundilist ajapiiri.
 
 Vestlusesse on sisse ehitatud kriisirada: kui jutust tuleb välja vahetu oht elule või
 tervisele, katkeb tavaline vastamine ja ette tulevad hädaabi ja usaldustelefonide numbrid.

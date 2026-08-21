@@ -315,6 +315,7 @@ export async function POST(req, deps = {}) {
   });
   const title = typeof body?.title === "string" && body.title.trim() ? body.title.trim().slice(0, 160) : null;
   const metadata = sanitizeConversationMetadata(body?.metadata);
+  const createOnly = body?.createOnly === true;
 
   try {
     const existing = await prismaClient.conversation.findUnique({
@@ -323,6 +324,12 @@ export async function POST(req, deps = {}) {
         userId: true
       }
     });
+    /* Esimese sõnumi kliendivärav kasutab ainult loomist. Kui ID jõudis vahepeal tekkida
+       või arhiveeriti teises vahekaardis, ei tohi see päring olemasolevat rida muuta ega
+       `archivedAt: null` kaudu taasavada. Sama 409 kehtib oma ja võõra olemasoleva ID puhul. */
+    if (existing && createOnly) {
+      return errorJson("api.chat.conversation_exists", 409);
+    }
     if (existing && existing.userId !== auth.userId) {
       return errorJson("api.chat.conversation_exists", 409);
     }

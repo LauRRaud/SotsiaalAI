@@ -245,18 +245,18 @@ function createDb({ notificationFailures = 0 } = {}) {
 test("SOL-HELP-06: match ja nõusolekuteavitus rollback'ivad koos ning retry taastab puuduva teavituse", async () => {
   const failing = createDb({ notificationFailures: 1 });
   await assert.rejects(
-    createHelpMatchAndRoom({ requestId: "request-1", offerId: "offer-1", initiatedByUserId: "requester" }, failing.client),
+    createHelpMatchAndRoom({ requestId: "request-1", offerId: "offer-1", initiatedByUserId: "requester", now: NOW }, failing.client),
     /NOTIFICATION_WRITE_INJECTED/
   );
   assert.equal(failing.state.matches.length, 0);
   assert.equal(failing.state.notifications.length, 0);
 
   const db = createDb();
-  const first = await createHelpMatchAndRoom({ requestId: "request-1", offerId: "offer-1", initiatedByUserId: "requester" }, db.client);
+  const first = await createHelpMatchAndRoom({ requestId: "request-1", offerId: "offer-1", initiatedByUserId: "requester", now: NOW }, db.client);
   assert.equal(db.state.matches.length, 1);
   assert.equal(db.state.notifications.length, 1);
   db.state.notifications.length = 0;
-  const retry = await createHelpMatchAndRoom({ requestId: "request-1", offerId: "offer-1", initiatedByUserId: "requester" }, db.client);
+  const retry = await createHelpMatchAndRoom({ requestId: "request-1", offerId: "offer-1", initiatedByUserId: "requester", now: NOW }, db.client);
   assert.equal(retry.id, first.id);
   assert.equal(db.state.matches.length, 1);
   assert.equal(db.state.notifications.length, 1);
@@ -270,7 +270,7 @@ test("SOL-HELP-05: ACCEPT lõpetab muutunud alusega sobituse ilma ruumita", asyn
     (db) => { db.state.offers[0].userId = "replacement-owner"; }
   ]) {
     const db = createDb();
-    const pending = await createHelpMatchAndRoom({ requestId: "request-1", offerId: "offer-1", initiatedByUserId: "requester" }, db.client);
+    const pending = await createHelpMatchAndRoom({ requestId: "request-1", offerId: "offer-1", initiatedByUserId: "requester", now: NOW }, db.client);
     mutation(db);
     await assert.rejects(
       decideHelpMatch({ matchId: pending.id, decidedByUserId: "offerer", decision: "ACCEPT", now: NOW }, db.client),
@@ -306,7 +306,8 @@ test("SOL-HELP-13: ACCEPT, esimene sõnum ja arhiiv sulgevad kogu sobituse eluts
   const pending = await createHelpMatchAndRoom({
     requestId: "request-1",
     offerId: "offer-1",
-    initiatedByUserId: "requester"
+    initiatedByUserId: "requester",
+    now: NOW
   }, db.client);
   const accepted = await decideHelpMatch({
     matchId: pending.id,
@@ -352,7 +353,7 @@ test("SOL-HELP-07: avalik match-projektsioon ei väljasta IDsid ega privaatseid 
 
 test("SOL-HELP-08: algataja saab PENDING-sobituse tagasi võtta ja hiline otsus ei loo ruumi", async () => {
   const db = createDb();
-  const pending = await createHelpMatchAndRoom({ requestId: "request-1", offerId: "offer-1", initiatedByUserId: "requester" }, db.client);
+  const pending = await createHelpMatchAndRoom({ requestId: "request-1", offerId: "offer-1", initiatedByUserId: "requester", now: NOW }, db.client);
   const withdrawn = await withdrawHelpMatch({ matchId: pending.id, initiatedByUserId: "requester" }, db.client);
   assert.equal(withdrawn.status, "CLOSED");
   await assert.rejects(

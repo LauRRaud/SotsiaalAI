@@ -4,6 +4,7 @@ import { normalizeSources as defaultNormalizeSources } from "../utils/sources";
 import { localizePath } from "@/lib/localizePath";
 import { createLatestRequestGate, withRequestTimeout } from "@/lib/client/latestRequestGate";
 import { buildIntentSignature, resolveIntentKey } from "@/lib/usage/intentKey";
+import { ensureConversationBeforeSend } from "@/lib/chat/conversationBootstrap";
 
 function formatI18n(template, values) {
   if (!values) return template;
@@ -793,6 +794,9 @@ export function useChatStream(config) {
      tasulist tööd. Lõpetatud pöörde järel kustutatakse, et tahtlik sama küsimuse uuesti küsimine
      oleks aus uus töö (sama reegel mis SOL-DOC-01 mustanditel). */
   const chatIntentRef = useRef(null);
+  // Üks serverikontroll vestluse kohta ja lehe eluea jooksul. Järgmised sõnumid
+  // kasutavad sama juba kinnitatud vestlust ilma lisapäringuta.
+  const ensuredConversationIdsRef = useRef(new Set());
 
   // Local-only teardown: stop reading the current stream and reset generating state, WITHOUT
   // touching any durable server-side research job.
@@ -1242,6 +1246,19 @@ export function useChatStream(config) {
         }
       } catch {
         cfg.setErrorBanner?.(tr("chat.room.send_error"));
+        return false;
+      }
+    }
+
+    if (!cfg.isRoomMode) {
+      try {
+        await ensureConversationBeforeSend({
+          conversationId: cfg.convId,
+          role: cfg.userRole,
+          knownConversationIds: ensuredConversationIdsRef.current
+        });
+      } catch (error) {
+        cfg.setErrorBanner?.(tr(error?.chatKey || "api.chat.db_error_conversation_create"));
         return false;
       }
     }

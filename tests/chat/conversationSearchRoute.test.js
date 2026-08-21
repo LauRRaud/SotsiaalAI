@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { GET } from "../../app/api/chat/conversations/route.js";
+import { GET, POST } from "../../app/api/chat/conversations/route.js";
 
 // U6 SOL-U6-P1-1 regression. The earlier test hand-built a `where` object and so
 // never executed `parseCursor` — it stayed green while every real cursor request
@@ -132,4 +132,46 @@ test("an over-long q is rejected before any database call", async () => {
   assert.equal(capture.length, 0, "no query ran");
   const body = await res.json();
   assert.equal(body.messageKey ?? body.message, "api.chat.search_query_too_long");
+});
+
+test("createOnly ei taasava arhiveeritud või võistluses juba tekkinud vestlust", async () => {
+  let updateCalls = 0;
+  const conversationId = "conv-33333333-3333-4333-8333-333333333333";
+  const request = new Request("https://x.test/api/chat/conversations", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      id: conversationId,
+      role: "SERVICE_PROVIDER",
+      createOnly: true
+    })
+  });
+  Object.defineProperty(request, "cookies", { value: { get: () => undefined } });
+
+  const result = await POST(request, {
+    requireUser: async () => ({
+      ok: true,
+      userId: OWNER,
+      role: "SERVICE_PROVIDER",
+      isAdmin: false,
+      session: {}
+    }),
+    enforceChatRateLimit: () => null,
+    resolveSessionRoleState: () => ({ effectiveRole: "SERVICE_PROVIDER" }),
+    resolveConversationWriteRole: () => "SERVICE_PROVIDER",
+    prisma: {
+      conversation: {
+        findUnique: async () => ({ userId: OWNER }),
+        update: async () => {
+          updateCalls += 1;
+          return {};
+        }
+      }
+    }
+  });
+
+  assert.equal(result.status, 409);
+  assert.equal(updateCalls, 0, "createOnly ei tohi olemasolevat vestlust taasavada ega muuta");
+  const body = await result.json();
+  assert.equal(body.messageKey, "api.chat.conversation_exists");
 });
