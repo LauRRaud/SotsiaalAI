@@ -1096,20 +1096,91 @@ def _split_chunks_tokens(text: str, max_tokens: int = CHUNK_TOKENS, overlap_toke
     cleaned = _clean_text(text)
     if not cleaned:
         return []
-    toks = enc.encode(cleaned)
-    if not toks:
-        return []
+    max_tokens = max(1, int(max_tokens or 1))
+    overlap_tokens = max(0, min(max_tokens - 1, int(overlap_tokens or 0)))
+
+    def token_count(value: str) -> int:
+        return len(enc.encode(value))
+
+    def join_units(units: List[str]) -> str:
+        return _clean_text(" ".join(unit for unit in units if unit))
+
+    # Keep ordinary sentences intact. Fixed token windows used to begin in the
+    # middle of a word or claim, so an organization named at the end of one
+    # chunk could be detached from its country or system in the next chunk.
+    units: List[str] = []
+    start = 0
+    for boundary in re.finditer(r"[.!?](?=\s|$)|\n{2,}", cleaned):
+        end = boundary.end()
+        unit = _clean_text(cleaned[start:end])
+        if unit:
+            units.append(unit)
+        start = end
+    tail = _clean_text(cleaned[start:])
+    if tail:
+        units.append(tail)
+    if not units:
+        units = [cleaned]
+
+    def split_oversized_unit(unit: str) -> List[str]:
+        words = re.findall(r"\S+", unit)
+        if not words:
+            return []
+        pieces: List[str] = []
+        current_words: List[str] = []
+        for word in words:
+            candidate = " ".join([*current_words, word])
+            if current_words and token_count(candidate) > max_tokens:
+                pieces.append(" ".join(current_words))
+                overlap_words: List[str] = []
+                for previous_word in reversed(current_words):
+                    proposed = [previous_word, *overlap_words]
+                    if token_count(" ".join(proposed)) > overlap_tokens:
+                        break
+                    overlap_words = proposed
+                current_words = overlap_words
+                while current_words and token_count(" ".join([*current_words, word])) > max_tokens:
+                    current_words.pop(0)
+            current_words.append(word)
+        if current_words:
+            pieces.append(" ".join(current_words))
+        return pieces
+
     chunks: List[str] = []
-    step = max(1, max_tokens - max(0, overlap_tokens))
-    for start in range(0, len(toks), step):
-        end = min(len(toks), start + max_tokens)
-        piece = toks[start:end]
-        if not piece:
-            continue
-        chunk = enc.decode(piece)
-        chunk = _clean_text(chunk)
-        if chunk:
+    current_units: List[str] = []
+
+    def flush_current() -> None:
+        chunk = join_units(current_units)
+        if chunk and (not chunks or chunk != chunks[-1]):
             chunks.append(chunk)
+
+    for unit in units:
+        if token_count(unit) > max_tokens:
+            if current_units:
+                flush_current()
+                current_units = []
+            oversized_pieces = split_oversized_unit(unit)
+            if oversized_pieces:
+                chunks.extend(piece for piece in oversized_pieces if not chunks or piece != chunks[-1])
+            continue
+
+        candidate = join_units([*current_units, unit])
+        if current_units and token_count(candidate) > max_tokens:
+            previous_units = list(current_units)
+            flush_current()
+            overlap_units: List[str] = []
+            for previous_unit in reversed(previous_units):
+                proposed = [previous_unit, *overlap_units]
+                if token_count(join_units(proposed)) > overlap_tokens:
+                    break
+                overlap_units = proposed
+            current_units = overlap_units
+            while current_units and token_count(join_units([*current_units, unit])) > max_tokens:
+                current_units.pop(0)
+        current_units.append(unit)
+
+    if current_units:
+        flush_current()
     return chunks
 
 def _split_chunks(text: str) -> List[str]:
@@ -4936,12 +5007,29 @@ def get_document_source(doc_id: str):
     media_type = entry.get("mimeType") or mimetypes.guess_type(filename)[0] or "application/octet-stream"
     return FileResponse(path, media_type=media_type, filename=filename)
 
+def _build_reindex_metadata(doc_id: str, entry: Dict, chunk_metadatas: Optional[List[Dict]]) -> Dict:
+    merged = _merge_registry_with_chunk_metadatas(entry, chunk_metadatas)
+    return {
+        **merged,
+        "docId": merged.get("docId") or doc_id,
+        "document_id": merged.get("document_id") or doc_id,
+        "audience": normalize_audience(merged.get("audience")),
+        "language": merged.get("language") or "et",
+    }
+
+
 @app.post("/documents/{doc_id}/reindex", dependencies=[Depends(_require_key), Depends(_require_registry_available)])
 def reindex(doc_id: str):
     reg = _load_registry()
     entry = reg.get(doc_id)
     if not entry:
         raise HTTPException(404, "Document not in registry")
+
+    try:
+        current = collection.get(where={"doc_id": doc_id}, include=["metadatas"], limit=100000)
+        reindex_metadata = _build_reindex_metadata(doc_id, entry, current.get("metadatas"))
+    except Exception as exc:
+        raise HTTPException(503, "Existing document metadata is unavailable; reindex was not started") from exc
 
     if entry.get("type") == "FILE":
         # Sama piir mis allika allalaadimisel: reindeks LOEB faili ja tema sisu
@@ -4960,33 +5048,10 @@ def reindex(doc_id: str):
             text_or_pages = raw.decode("utf-8", errors="ignore")
 
         stage = _replace_document_vectors(doc_id, text_or_pages, meta_common={
-            "title": entry.get("title"),
-            "description": entry.get("description"),
-            "authors": entry.get("authors"),
-            "issue_id": entry.get("issueId") or entry.get("issue_id"),
-            "issue_label": entry.get("issueLabel") or entry.get("issue_label"),
-            "year": entry.get("year"),
-            "article_id": entry.get("articleId") or entry.get("article_id"),
-            "section": entry.get("section"),
-            "pages": entry.get("pages"),
-            "pageRange": entry.get("pageRange"),
-            "journal_title": entry.get("journalTitle"),
-            "journalTitle": entry.get("journalTitle"),
-            "tags": entry.get("tags"),
-            "language": entry.get("language") or "et",
-            "source_type": "file",
+            **reindex_metadata,
+            "source_type": reindex_metadata.get("source_type") or "file",
             "source_path": entry.get("path"),
             "mimeType": mime,
-            "audience": normalize_audience(entry.get("audience")),
-            "collection_id": entry.get("collection_id"),
-            "country": entry.get("country"),
-            "jurisdiction_level": entry.get("jurisdiction_level"),
-            "municipality_name": entry.get("municipality_name"),
-            "municipality_id": entry.get("municipality_id"),
-            "district_name": entry.get("district_name"),
-            "district_id": entry.get("district_id"),
-            "geo_detection_method": entry.get("geo_detection_method"),
-            "geo_detection_confidence": entry.get("geo_detection_confidence"),
         })
         entry["lastIngested"] = now_iso()
         result = _commit_vector_stage(stage, entry)
@@ -4997,34 +5062,11 @@ def reindex(doc_id: str):
         html = html_path.read_text(encoding="utf-8")
         text = _extract_text_from_html(html)
         stage = _replace_document_vectors(doc_id, text, meta_common={
-            "title": entry.get("title"),
-            "description": entry.get("description"),
-            "authors": entry.get("authors"),
-            "issue_id": entry.get("issueId") or entry.get("issue_id"),
-            "issue_label": entry.get("issueLabel") or entry.get("issue_label"),
-            "year": entry.get("year"),
-            "article_id": entry.get("articleId") or entry.get("article_id"),
-            "section": entry.get("section"),
-            "pages": entry.get("pages"),
-            "pageRange": entry.get("pageRange"),
-            "journal_title": entry.get("journalTitle"),
-            "journalTitle": entry.get("journalTitle"),
-            "tags": entry.get("tags"),
-            "language": entry.get("language") or "et",
-            "source_type": "url",
+            **reindex_metadata,
+            "source_type": reindex_metadata.get("source_type") or "url",
             "source_url": entry.get("url"),
             "source_path": entry.get("path"),
             "mimeType": "text/html",
-            "audience": normalize_audience(entry.get("audience")),
-            "collection_id": entry.get("collection_id"),
-            "country": entry.get("country"),
-            "jurisdiction_level": entry.get("jurisdiction_level"),
-            "municipality_name": entry.get("municipality_name"),
-            "municipality_id": entry.get("municipality_id"),
-            "district_name": entry.get("district_name"),
-            "district_id": entry.get("district_id"),
-            "geo_detection_method": entry.get("geo_detection_method"),
-            "geo_detection_confidence": entry.get("geo_detection_confidence"),
         })
         entry["lastIngested"] = now_iso()
         result = _commit_vector_stage(stage, entry)
@@ -5035,7 +5077,7 @@ def reindex(doc_id: str):
         if not text_path.exists():
             raise HTTPException(404, "Stored text source is missing")
         text = text_path.read_text(encoding="utf-8")
-        stage = _replace_document_vectors(doc_id, text, meta_common=dict(entry))
+        stage = _replace_document_vectors(doc_id, text, meta_common=reindex_metadata)
         entry["lastIngested"] = now_iso()
         result = _commit_vector_stage(stage, entry)
         return {"ok": True, "inserted": result.count, "doc": entry}

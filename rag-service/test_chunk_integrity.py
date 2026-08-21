@@ -18,6 +18,53 @@ import main
 
 
 class ChunkIntegrityTests(unittest.TestCase):
+    def test_token_splitter_keeps_named_system_claim_inside_one_chunk(self):
+        class CharacterEncoder:
+            @staticmethod
+            def encode(value):
+                return [ord(character) for character in value]
+
+            @staticmethod
+            def decode(tokens):
+                return "".join(chr(token) for token in tokens)
+
+        lead = ("A" * 60) + "."
+        ott_claim = (
+            "Eesti töötukassa OTT-süsteem hindab pikaajalise töötuse riski "
+            "45 näitaja alusel."
+        )
+        aurora_claim = "AuroraAI on Soome süsteem, mis ühendab teenuseid."
+        text = " ".join([lead, ott_claim, aurora_claim])
+
+        with patch.object(main, "_get_token_encoder", return_value=CharacterEncoder()):
+            chunks = main._split_chunks_tokens(text, max_tokens=100, overlap_tokens=20)
+
+        self.assertTrue(any(ott_claim in chunk for chunk in chunks), chunks)
+        self.assertTrue(any(aurora_claim in chunk for chunk in chunks), chunks)
+
+    def test_reindex_metadata_merge_preserves_article_contract_fields(self):
+        entry = {
+            "type": "FILE",
+            "title": "Tehisintellekt sotsiaaltöös",
+            "collection_id": "sotsiaaltoo_articles",
+        }
+        current_chunk_metadata = [{
+            "source_type": "journal_article",
+            "authority": "editorial",
+            "content_status": "active",
+            "last_checked": "2026-08-21",
+            "articleId": "tehisintellekt-sotsiaaltoos-2025-2",
+        }]
+
+        merged = main._build_reindex_metadata("ai-article", entry, current_chunk_metadata)
+
+        self.assertEqual(merged["source_type"], "journal_article")
+        self.assertEqual(merged["authority"], "editorial")
+        self.assertEqual(merged["content_status"], "active")
+        self.assertEqual(merged["last_checked"], "2026-08-21")
+        self.assertEqual(merged["collection_id"], "sotsiaaltoo_articles")
+        self.assertEqual(merged["document_id"], "ai-article")
+
     def test_char_splitter_has_no_positive_length_gap_at_sentence_cut(self):
         marker = "UNIQUE-MIDDLE-CONTENT"
         text = ("a" * 62) + ". " + marker + ("b" * 90)
