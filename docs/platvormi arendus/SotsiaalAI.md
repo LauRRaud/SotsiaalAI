@@ -92,13 +92,15 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**Vestluse rahuliku liikumise UI-plokk on 22.08 parandusharus lokaalselt valmis ja
-sihtkontrollitud, kuid veel serverisse viimata.** Pika vastuse kerimine ei rakenda enam blur'i
-kogu sõnumimullile; ootamisel jääb nähtavale ainult väike ligipääsetav S ilma „Mõtlen” teksti
-ja eraldi mullita; komposeri tekstiala ei joonista hoveril klaaskapslit ning genereerimisjoon
-säilitab hajuvad teravad otsad ja liigub aeglasemalt. Kohalik `/vestlus` kompileerus ning
-sisendi läbipaistev olek kontrolliti brauseris; serveri visuaalne lõppkontroll ootab omaniku
-eraldi push'i ja deploy luba.
+**Vestluse rahuliku liikumise UI-plokk on 22.08 toodangus ja päris vestluses tõendatud
+(`36c3a92d`).** Pika vastuse kerimine ei rakenda enam blur'i kogu sõnumimullile; ootamisel
+jääb nähtavale ainult väike ligipääsetav S ilma „Mõtlen” teksti ja eraldi mullita; komposeri
+tekstiala ei joonista hoveril klaaskapslit ning genereerimisjoon säilitab hajuvad teravad otsad
+ja liigub aeglasemalt. Toodangu brauserikontrollis oli osaliselt ekraanist väljas oleva 1000 px
+vastuse `filter: none` ja ainult tavaline sisenemisanimatsioon, sisend oli läbipaistev ning
+ootejoon kasutas hajuvate otste maski. Omaniku järelkontrollis oli joone läikel vana pika
+väljaspool joont pausi järel liiga kiire sähvatus; trajektoor lühendati `108% → -8%` peale ja
+liikumine muudeti ühtlaseks 2,4-sekundiliseks läbimiseks.
 
 **Vestluse RAG-i süsteemne parandus on 22.08 toodangus ja päris vestluses tõendatud
 (`a08d65b5`).** Otsing skoorib ka vana indeksi päris teksti, säilitab sama dokumendi kuni
@@ -113,6 +115,20 @@ Registri täpne ajakirjavalim on 873 dokumenti, mitte 863. Korpust ei indekseeri
 uuesti: olemasolev indeks läbis 20/20 sisuvärava ning otsingukiht ühildub vana kujuga;
 body-only kuju rakendub uutele ingestidele. UTC täisväravas jäi ainult muutmata
 Teenusekaardi vana popup-kontrasti leping punaseks, RAG-i muudetud rajad on rohelised.
+
+**RAG-i madala `top_k` sõnastustundlik auk on 22.08 toodangus reprodutseeritud.** Küsimus
+2017. aasta erihooldekodude kaardistuse 25% / 45% / 30% näitajate kohta ei toonud sihtartiklit
+`top_k=12` ega `18` kandidaatide hulka; `24` juures oli õige lõik 4. ja `36` ning `50` juures
+1. kohal. Tavaline vestlusrada kasutas `top_k=36` ja andis samale küsimusele päris brauseris
+11 sekundiga õige vastuse ilma uut vestlust alustamata. Korje-eelarved on tagastatava
+`top_k`-ga seotud nii dense-basseinis kui leksikaalses sihtvalimis ning faktirada piirdub
+esimese viie dokumendiga. Toodangu jäljes tuli õige lõik `top_k=24` juures leksikaalse/faktiraja
+kaudu, kuid `36` juures oli tema dense-koht 177; seega dense-põrand 200 on põhjendatud hüpotees,
+mitte veel üksi tõendatud parandus. Globaalset `RAG_TOP_K=12 → 24` env-muudatust ei tehta
+pimesi: KOV-loendid klambitakse küll valdavalt juba 50 peale, kuid tava- ja ressursiotsing
+kasvaksid 36 → 50 ning KOV-i piiratud RAG-rada 36 → 40. Järgmine RAG-plokk sondib esmalt
+täpselt sama `top_k=12` küsimust eraldatud korje-eelarvega ning mõõdab kiiruse ja allikakatvuse;
+laia mitme allika rada jääb sellest eraldi katseks.
 
 **Vestluse, RAG-i ja Teenusekaardi regressiooniplokk on 21.08 parandatud.** Paljas KOV-i
 mitmuseküsimus (nt „Harku valla sotsiaalteenused?”) kasutab nüüd täieliku loendi rada ning

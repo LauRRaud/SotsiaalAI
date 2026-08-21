@@ -1378,14 +1378,17 @@ button[aria-controls="chat-window-scroll"] {
     linear-gradient(90deg, transparent 0%, transparent 39%, rgba(232, 232, 232, 0.78) 50%, transparent 61%, transparent 100%) 180% 0 / 220% 100% no-repeat,
     linear-gradient(90deg, transparent, rgba(212, 212, 212, 0.42) 12%, rgba(229, 229, 229, 0.72) 50%, rgba(212, 212, 212, 0.42) 88%, transparent);
   box-shadow: 0 0 11px rgba(182, 182, 182, 0.3);
-  animation: conv-energy 2.8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  /* Läige püsib trajektoori jooksul joone lähedal. Vana 180% → -80%
+     vahemik jättis ta pikaks ajaks ekraanilt välja ja nähtav osa sähvatas
+     seejärel liiga kiiresti läbi. */
+  animation: conv-energy 2.4s linear infinite;
 }
 @keyframes conv-energy {
   from {
-    background-position: 180% 0, 0 0;
+    background-position: 108% 0, 0 0;
   }
   to {
-    background-position: -80% 0, 0 0;
+    background-position: -8% 0, 0 0;
   }
 }
 .panel-scrim[data-conversation="1"] #chat-input {
