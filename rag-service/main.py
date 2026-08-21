@@ -3318,7 +3318,7 @@ def _select_diverse_search_results(
     return selected
 
 def _dense_candidate_limit(top_k: int) -> int:
-    return max(1, min(200, int(top_k or 1) * 12))
+    return max(1, min(200, max(64, int(top_k or 1) * 6)))
 
 def _build_hybrid_merge_strategy(requested_retrievers: List[str]) -> Dict[str, object]:
     return {
@@ -3677,7 +3677,7 @@ def _fetch_article_sibling_candidates(
             continue
         if doc_id not in doc_ids:
             doc_ids.append(doc_id)
-        if len(doc_ids) >= 3:
+        if len(doc_ids) >= 1:
             break
     if not doc_ids:
         return []
@@ -3687,7 +3687,7 @@ def _fetch_article_sibling_candidates(
         sibling_where = {"$and": [chroma_where, sibling_where]}
     got = collection.get(
         include=["documents", "metadatas"],
-        limit=min(800, max(120, len(doc_ids) * 80)),
+        limit=min(240, max(80, len(doc_ids) * 80)),
         where=sibling_where,
     )
     scored = _score_lexical_rows(

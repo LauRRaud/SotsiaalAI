@@ -97,7 +97,8 @@ class LexicalRecallTests(unittest.TestCase):
         self.assertEqual(len([item for item in selected if item.get("doc_id") == "article-a"]), 3)
 
     def test_dense_candidate_pool_reaches_beyond_one_long_article(self):
-        self.assertEqual(main._dense_candidate_limit(8), 96)
+        self.assertEqual(main._dense_candidate_limit(8), 64)
+        self.assertEqual(main._dense_candidate_limit(14), 84)
         self.assertEqual(main._dense_candidate_limit(36), 200)
 
     def test_inflected_long_terms_and_named_entities_rank_the_matching_passage(self):
@@ -217,7 +218,7 @@ class LexicalRecallTests(unittest.TestCase):
         self.assertIn("$and", collection.where)
         self.assertEqual(
             collection.where["$and"][1]["doc_id"]["$in"],
-            ["ai-article-1", "ai-article-2", "ai-article-3"],
+            ["ai-article-1"],
         )
 
 
