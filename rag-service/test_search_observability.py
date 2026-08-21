@@ -152,12 +152,15 @@ class SearchObservabilityTests(unittest.TestCase):
         self.assertTrue(main.stage_logger.propagate)
         self.assertEqual(main.stage_logger.handlers, [])
 
-    def test_embedding_error_logs_error_and_reraises(self):
+    def test_dense_only_embedding_error_logs_error_and_reraises(self):
         error = main.HTTPException(status_code=503, detail="embedding failed")
         with self.assertLogs(main.stage_logger, level="INFO") as captured:
             with patch.object(main, "_embed_batch_with_usage", side_effect=error):
                 with self.assertRaises(main.HTTPException) as raised:
-                    main._execute_search(main.SearchIn(query="private query"), make_request())
+                    main._execute_search(
+                        main.SearchIn(query="private query", retrievers=["dense"]),
+                        make_request(),
+                    )
 
         self.assertIs(raised.exception, error)
         records = stage_records(captured.records)
@@ -167,6 +170,34 @@ class SearchObservabilityTests(unittest.TestCase):
         ])
         self.assertEqual(records[0]["error_class"], "HTTPException")
         self.assertNotIn("embedding failed", captured.output[0])
+
+    def test_hybrid_embedding_outage_falls_back_to_lexical_search(self):
+        error = main.HTTPException(status_code=503, detail="embedding failed")
+        collection = FakeCollection(chroma_result([]))
+        with self.assertLogs(main.stage_logger, level="INFO") as captured:
+            with patch.object(main, "collection", collection), patch.object(
+                main, "_embed_batch_with_usage", side_effect=error
+            ):
+                result = main._execute_search(
+                    main.SearchIn(query="private query"),
+                    make_request(),
+                )
+
+        self.assertEqual(collection.calls, [])
+        self.assertEqual(result["search_strategy"], "lexical_fallback")
+        self.assertTrue(result["degraded"])
+        self.assertTrue(result["partial"])
+        self.assertEqual(result["dense_retrieval"], {
+            "available": False,
+            "error": "EMBEDDING_UNAVAILABLE",
+        })
+        self.assertEqual(result["timings"]["outcome"], "degraded_embedding")
+        records = stage_records(captured.records)
+        self.assertEqual([(item["stage"], item["outcome"]) for item in records], [
+            ("embedding", "lexical_fallback"),
+            ("retrieval", "ok"),
+            ("search_total", "degraded_embedding"),
+        ])
 
     def test_chroma_error_is_structured_503_not_an_empty_success(self):
         with self.assertLogs(main.stage_logger, level="INFO") as captured:
@@ -310,12 +341,56 @@ class SearchObservabilityTests(unittest.TestCase):
                 ["title_match", "exact_phrase", "bm25"],
             )
 
-        self.assertEqual(len(title_collection.calls), 1)
-        self.assertNotIn("offset", title_collection.calls[0])
-        self.assertEqual(fetched["scanned"], 1)
+        self.assertGreaterEqual(len(title_collection.calls), 1)
+        self.assertFalse(any("offset" in call for call in title_collection.calls))
+        self.assertEqual(fetched["scanned"], 2)
         self.assertFalse(fetched["complete"])
-        self.assertEqual(fetched["strategy"], "registry_title_shortlist")
+        self.assertEqual(fetched["strategy"], "targeted_document_shortlist")
         self.assertEqual([item["id"] for item in fetched["candidates"]], ["chunk-laur"])
+
+    def test_partial_targeted_shortlist_cannot_hide_better_full_corpus_match(self):
+        class PartialShortlistCollection:
+            def __init__(self):
+                self.calls = []
+
+            def get(self, **kwargs):
+                self.calls.append(kwargs)
+                if "where_document" in kwargs:
+                    return {
+                        "ids": ["generic-tootukassa"],
+                        "documents": ["Eesti Töötukassa büroo kontakt ja vastuvõtuaeg."],
+                        "metadatas": [{"doc_id": "generic", "title": "Eesti Töötukassa büroo"}],
+                    }
+                if kwargs.get("offset") == 0:
+                    return {
+                        "ids": ["ott-claim"],
+                        "documents": [
+                            "Eesti töötukassa OTT-süsteem hindab pikaajalise töötuse riski "
+                            "45 näitaja alusel."
+                        ],
+                        "metadatas": [{
+                            "doc_id": "ai-article",
+                            "title": "Tehisintellekt sotsiaaltöös",
+                        }],
+                    }
+                return {"ids": [], "documents": [], "metadatas": []}
+
+        partial = PartialShortlistCollection()
+        with patch.object(main, "collection", partial), patch.object(
+            main, "_load_registry", return_value={}
+        ), patch.object(main, "RAG_LEXICAL_SCAN_LIMIT", 2), patch.object(
+            main, "RAG_LEXICAL_MAX_SCAN", 10
+        ):
+            fetched = main._fetch_lexical_candidates(
+                "Eesti Töötukassa OTT süsteem 45 näitajat",
+                None,
+                5,
+                ["title_match", "exact_phrase", "bm25"],
+            )
+
+        self.assertTrue(any(call.get("offset") == 0 for call in partial.calls))
+        self.assertEqual(fetched["candidates"][0]["id"], "ott-claim")
+        self.assertTrue(fetched["complete"])
 
     def test_agent_document_search_forwards_payload_request_id_to_searchin(self):
         payload = main.AgentDocumentSearchIn(

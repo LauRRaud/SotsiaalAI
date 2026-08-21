@@ -3147,6 +3147,11 @@ def _lexical_match(query: str, md: Dict, document: str) -> Optional[Dict[str, ob
             score += min(5.0, bm25_score)
             if bm25_named_entity_matches:
                 score += min(3.5, 2.5 + 0.5 * bm25_named_entity_matches)
+            if bm25_matches >= 3 and bm25_coverage >= 0.75:
+                # A body passage covering nearly the whole question is more
+                # useful than a directory/contact title that matches only one
+                # named entity (for example "Töötukassa").
+                score += min(4.0, 4.0 * bm25_coverage)
             if "bm25" not in channels:
                 channels.append("bm25")
 
@@ -3682,6 +3687,25 @@ def _targeted_document_shortlist(
         "terms": terms,
     }
 
+def _lexical_shortlist_is_conclusive(candidates: List[Dict[str, object]]) -> bool:
+    """Only let a shortlist replace the corpus scan when it covers the query."""
+    if not candidates:
+        return False
+    top = candidates[0]
+    try:
+        coverage = float(top.get("bm25_coverage") or 0)
+    except (TypeError, ValueError):
+        coverage = 0.0
+    matches = _to_int(top.get("bm25_matches")) or 0
+    query_tokens = _to_int(top.get("bm25_query_tokens")) or 0
+    channels = {str(channel) for channel in top.get("channels") or []}
+    required_matches = max(2, math.ceil(query_tokens * 0.8))
+    return (
+        coverage >= 0.8
+        and matches >= required_matches
+        and bool(channels.intersection({"title_match", "exact_phrase"}))
+    )
+
 def _fetch_lexical_candidates(
     query: str,
     chroma_where: Optional[Dict[str, object]],
@@ -3699,6 +3723,7 @@ def _fetch_lexical_candidates(
     shortlist_seen = set()
     shortlist_scanned = 0
     targeted_used = False
+    shortlist_scored_candidates: List[Dict[str, object]] = []
 
     try:
         title_doc_ids = _registry_title_shortlist_doc_ids(query, chroma_where)
@@ -3747,7 +3772,8 @@ def _fetch_lexical_candidates(
                 shortlist_docs,
                 shortlist_metas,
             )
-            if shortlist_scored:
+            shortlist_scored_candidates = shortlist_scored
+            if _lexical_shortlist_is_conclusive(shortlist_scored):
                 shortlist_limit = max(0, min(max(1, top_k), RAG_LEXICAL_TOP_K))
                 return {
                     "candidates": _select_lexical_candidates(shortlist_scored, shortlist_limit),
@@ -3766,7 +3792,8 @@ def _fetch_lexical_candidates(
             shortlist_docs,
             shortlist_metas,
         )
-        if shortlist_scored:
+        shortlist_scored_candidates = shortlist_scored
+        if _lexical_shortlist_is_conclusive(shortlist_scored):
             shortlist_limit = max(0, min(max(1, top_k), RAG_LEXICAL_TOP_K))
             return {
                 "candidates": _select_lexical_candidates(shortlist_scored, shortlist_limit),
@@ -3809,7 +3836,20 @@ def _fetch_lexical_candidates(
             "error": f"{type(exc).__name__}",
         }
 
-    scored = _score_lexical_rows(query, allowed_channels, all_ids, all_docs, all_metas)
+    scanned_scored = _score_lexical_rows(query, allowed_channels, all_ids, all_docs, all_metas)
+    scored_by_id: Dict[str, Dict[str, object]] = {}
+    for candidate in [*shortlist_scored_candidates, *scanned_scored]:
+        candidate_id = str(candidate.get("id") or "").strip()
+        if not candidate_id:
+            continue
+        existing = scored_by_id.get(candidate_id)
+        if existing is None or float(candidate.get("score") or 0) > float(existing.get("score") or 0):
+            scored_by_id[candidate_id] = candidate
+    scored = sorted(
+        scored_by_id.values(),
+        key=lambda item: float(item.get("score") or 0),
+        reverse=True,
+    )
     limit = max(0, min(max(1, top_k), RAG_LEXICAL_TOP_K))
     return {
         "candidates": _select_lexical_candidates(scored, limit),
@@ -5372,22 +5412,52 @@ def _execute_search(
         except Exception:
             pass
 
+    lexical_requested = any(
+        channel in requested_retrievers
+        for channel in ["title_match", "exact_phrase", "bm25"]
+    )
     embed_t0 = time.perf_counter()
+    embedding_degraded = False
+    embedding_error_code: Optional[str] = None
     try:
         embed_result = _embed_batch_with_usage([payload.query])
+    except HTTPException as e:
+        if e.status_code not in {502, 503} or not lexical_requested:
+            _log_stage("embedding", embed_t0, "error", error_class=e.__class__.__name__)
+            _log_stage("search_total", stage_t0, "error")
+            raise
+        # Dense retrieval depends on the external embedding provider, but the
+        # lexical index is local and remains usable. A provider outage or
+        # exhausted quota must not turn every hybrid search into HTTP 503.
+        embedding_degraded = True
+        embedding_error_code = "EMBEDDING_UNAVAILABLE"
+        embed_result = {}
+        logger.warning(
+            "RAG dense retrieval unavailable; continuing with lexical fallback request_id=%s status=%s",
+            stage_request_id,
+            e.status_code,
+        )
+        _log_stage(
+            "embedding",
+            embed_t0,
+            "lexical_fallback",
+            error_class=e.__class__.__name__,
+            status_code=e.status_code,
+        )
     except Exception as e:
         _log_stage("embedding", embed_t0, "error", error_class=e.__class__.__name__)
         _log_stage("search_total", stage_t0, "error")
         raise
     embedding_ms = _ms_since(embed_t0)
     q_embeds = list(embed_result.get("embeddings") or [])
-    _log_stage(
-        "embedding",
-        embed_t0,
-        "ok" if q_embeds else "empty",
-        provider_latency_ms=_to_int(embed_result.get("latency_ms")),
-    )
-    if not q_embeds:
+    if not embedding_degraded:
+        _log_stage(
+            "embedding",
+            embed_t0,
+            "ok" if q_embeds else "empty",
+            provider_latency_ms=_to_int(embed_result.get("latency_ms")),
+        )
+    if not q_embeds and not embedding_degraded:
         _log_stage("search_total", stage_t0, "no_embedding")
         return {
             "results": [],
@@ -5402,7 +5472,6 @@ def _execute_search(
                 "outcome": "no_embedding",
             },
         }
-    q_emb = q_embeds[0]
     retrieval_t0 = time.perf_counter()
     observability = _build_observability_context(
         request,
@@ -5418,17 +5487,18 @@ def _execute_search(
         else build_agent_document_search_where(agent_document_ids or [])
     )
 
+    res = {"ids": [[]], "documents": [[]], "metadatas": [[]], "distances": [[]]}
     try:
         include_items = list(payload.include or ["documents", "metadatas", "distances"])
         if "metadatas" not in include_items:
             include_items.append("metadatas")
-
-        res = collection.query(
-            query_embeddings=[q_emb],
-            n_results=_dense_candidate_limit(payload.top_k or 5),
-            where=chroma_where,
-            include=include_items,
-        )
+        if q_embeds:
+            res = collection.query(
+                query_embeddings=[q_embeds[0]],
+                n_results=_dense_candidate_limit(payload.top_k or 5),
+                where=chroma_where,
+                include=include_items,
+            )
     except Exception as e:
         _log_rag_cost_usage(
             model=embed_result.get("model"),
@@ -5580,7 +5650,7 @@ def _execute_search(
             max(1, min(50, payload.top_k or 5)),
             requested_retrievers,
         )
-        if any(channel in requested_retrievers for channel in ["title_match", "exact_phrase", "bm25"])
+        if lexical_requested
         else {"candidates": [], "scanned": 0, "complete": True, "error": None}
     )
     lexical_candidates = list(lexical_fetch.get("candidates") or [])
@@ -5663,7 +5733,11 @@ def _execute_search(
             if channel and channel not in retrievers_used:
                 retrievers_used.append(channel)
     if not retrievers_used:
-        retrievers_used = ["dense"]
+        retrievers_used = (
+            [channel for channel in requested_retrievers if channel != "dense"]
+            if embedding_degraded
+            else ["dense"]
+        )
     _log_rag_cost_usage(
         model=embed_result.get("model"),
         latency_ms=embed_result.get("latency_ms"),
@@ -5819,17 +5893,30 @@ def _execute_search(
     groups.sort(key=lambda x: (-x["count"], x["title"] or ""))
     retrieval_ms = _ms_since(retrieval_t0)
     total_ms = _ms_since(stage_t0)
+    final_outcome = "degraded_embedding" if embedding_degraded else "ok"
     _log_stage("retrieval", retrieval_t0, "ok")
-    _log_stage("search_total", stage_t0, "ok")
+    _log_stage("search_total", stage_t0, final_outcome)
     return {
         "results": flat,
         "groups": groups,
         "retrievers_used": retrievers_used,
-        "search_strategy": "hybrid" if any(channel != "dense" for channel in retrievers_used) else "dense",
+        "search_strategy": (
+            "lexical_fallback"
+            if embedding_degraded
+            else ("hybrid" if any(channel != "dense" for channel in retrievers_used) else "dense")
+        ),
         "merge_strategy": _build_hybrid_merge_strategy(requested_retrievers),
         "channel_stats": _build_channel_stats(flat),
-        "partial": not bool(lexical_fetch.get("complete")) or bool(lexical_fetch.get("error")),
-        "degraded": bool(lexical_fetch.get("error")),
+        "partial": (
+            embedding_degraded
+            or not bool(lexical_fetch.get("complete"))
+            or bool(lexical_fetch.get("error"))
+        ),
+        "degraded": embedding_degraded or bool(lexical_fetch.get("error")),
+        "dense_retrieval": {
+            "available": not embedding_degraded,
+            "error": embedding_error_code,
+        },
         "lexical_scan": {
             "scanned": int(lexical_fetch.get("scanned") or 0),
             "complete": bool(lexical_fetch.get("complete")),
@@ -5840,7 +5927,7 @@ def _execute_search(
             "embedding_ms": embedding_ms,
             "retrieval_ms": retrieval_ms,
             "total_ms": total_ms,
-            "outcome": "ok",
+            "outcome": final_outcome,
         },
     }
 
