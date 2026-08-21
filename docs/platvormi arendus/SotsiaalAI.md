@@ -2627,6 +2627,8 @@ navigaatorisse saata. Sõidupäevik tekib kõrvalsaadusena, ilma odomeetrit luge
 Sisestada saab ka võrguta — kirje läheb järjekorda ja sünkroniseerub hiljem.
 Graafiku ümbermääramise mutatsioon ei ole külastuse detailivaade: vastus sisaldab ainult
 külastuse ID-d ega ava tahvlilt teadlikult peidetud aadressi, kliendiviidet või märkmeid.
+Jagatud CSV-aruande brauserieelvaade loeb jutumärgistatud eraldajaid ja reavahetusi sama
+lahtri osana, nii et kasutaja näeb sama tabelistruktuuri, mis allalaaditud failis.
 
 Teenuspäevikul on **STAR/s-veebi väljavõtte kuju**: sotsiaalhoolekande seadus paneb
 andmete registrisse kandmise kohustuse ka teenuseosutajale, ja platvorm aitab seda täita
