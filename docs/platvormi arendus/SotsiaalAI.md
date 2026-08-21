@@ -93,17 +93,19 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
 **Vestluse artiklitäpsus, mitme allika süntees ja vastuse hääl on 21.08 toodangus parandatud
-(`704fea84`).** Eestikeelsete käändevormide ja nimede leksikaalne sobitamine, dokumendipõhine
-tulemuste lagi ning nimelise tabamuse kaal hoiavad konkreetse artiklilõigu üldiste vastete kohal;
-samal ajal säilitab lai otsing eri dokumendid ega laadi ühe pika artikli kõiki lõike vastusesse.
-Toodangus vastas Hesteri kontroll otse, et delikaatne teave eemaldatakse automaatselt ja logid
-kustutatakse kuue kuu pärast; lai AI-küsimus sünteesis OSKA 2021, Raudsoo 2025 ja Soosaare 2026
-materjali. Parandatud indeksi mõõt oli Hesteril 2,50 s ja laial ühe päringu otsingul 1,26 s; nähtava
-laia vastuse koguaeg oli 27,8 s. Sihttõend: 11/11 RAG-teenuse ja 19/19 Node'i testi, muudetud
-JS-failide lint, `git diff --check`, i18n-kontroll ja toodangu build; omaniku soovil ei käivitatud
-kogu ligi 5000 testiga sviiti. Vastusejuhis keelab RAG-i, otsingu ja allikabaasi protsessijutu,
-kuid mudeli vaba sõnastus võib vahel kasutada üldist allikaviidet; voo puhverdamist ei lisatud,
-et mitte aeglustada esimese teksti ilmumist.
+(`0f234078`).** Eestikeelsete käändevormide ja nimede leksikaalne sobitamine, dokumendipõhine
+tulemuste lagi ning nimelise tabamuse kaal hoiavad konkreetse artiklilõigu üldiste vastete kohal.
+Lai teemaküsimus teeb nüüd ühe mitmekesise otsingu: kontroll andis 36 katkendit 14 dokumendist
+ning toodangu vastus ühendas OSKA, STAR-i strateegia, Raudsoo ja Rosenthali käsitlused, sh
+Töötukassa 45 näitaja otsustustoe näite. Hesteri kontroll vastas otse, et delikaatne teave
+eemaldatakse automaatselt ja logid kustutatakse kuue kuu pärast. Sooja laia päringu RAG-aeg oli
+2,09 s ja esimene sisuline tekst ilmus 4,94 s järel; kohe pärast deploy-järgset teenuse restarti
+oli külm RAG-aeg 9,86 s ja esimene tekst 12,32 s, mistõttu külmkäivituse soojendus jääb järgmiseks
+jõudlusplokiks. Vastuse kaks esimest sisulist lauset annavad nüüd järelduse otse ega jutusta RAG-ist,
+otsingust, materjalidest või allikabaasist; konkreetseid autoreid ja dokumente nimetatakse väidete
+juures. Sihttõend: 11/11 RAG-teenuse testi varasemast plokist, viimases plokis 49/49 Node'i sihttesti,
+muudetud failide lint, `git diff --check`, i18n-kontroll ja toodangu build; omaniku soovil ei
+käivitatud kogu ligi 5000 testiga sviiti.
 
 **Vestluse, RAG-i ja Teenusekaardi regressiooniplokk on 21.08 parandatud.** Paljas KOV-i
 mitmuseküsimus (nt „Harku valla sotsiaalteenused?”) kasutab nüüd täieliku loendi rada ning
@@ -1744,10 +1746,11 @@ nimeotsing alustab väikesest pealkirjavalimist ning kontrollitud Teenusekaardi 
 on sama KOV-i vanast RAG-kontaktikoopiast autoriteetsem.
 Artikliotsing arvestab eesti käändevormide ühiseid tüvesid ja nimede lühikesi käändelõppe,
 annab nimelisele täppistabamusele üldise semantilise vaste ees kaalu ning piirab ühe dokumendi
-lõikude arvu nii leksikaalses valimis kui lõppvastuses. Laias küsimuses valitakse mitu eri
-dokumenti; konkreetse fakti küsimuses hoitakse sama artikli kõige asjakohasemad lõigud koos.
-Vastus esitab leitud teadmise otse: RAG-i, otsingu seisu ja allikabaasi laiust kasutajale ei
-jutustata ning allika aega märgitakse lühidalt, kui see on väite täpsuse jaoks vajalik.
+lõikude arvu nii leksikaalses valimis kui lõppvastuses. Lai teemaküsimus kasutab üht mitmekesist
+otsingut ja valib mitu eri dokumenti; konkreetse fakti küsimuses hoitakse sama artikli kõige
+asjakohasemad lõigud koos. Vastuse kaks esimest sisulist lauset esitavad järelduse otse: RAG-i,
+otsingu seisu, materjalide või allikabaasi laiust kasutajale ei jutustata ning konkreetse allika
+aega märgitakse väite juures lühidalt ainult siis, kui see on täpsuse jaoks vajalik.
 
 Vestlusesse on sisse ehitatud kriisirada: kui jutust tuleb välja vahetu oht elule või
 tervisele, katkeb tavaline vastamine ja ette tulevad hädaabi ja usaldustelefonide numbrid.
@@ -2462,6 +2465,7 @@ Liik: **VIGA** = lubadus on katki · **SABA** = väljalastud funktsiooni lõpeta
 | 27 | ~~Art. 28 andmetöötlusleping TartuNLP-ga~~ — **SULETUD 03.08**: kasutusluba on omaniku kinnitusel olemas; paberitöö läks T27 juristi-kinnituste korvi (S10) | juriidiline | viidud T27-sse |
 | 28 | ~~Vestlus nimetab KOV-ist ainult üht-kaht üldnimetusega spetsialisti~~ — **KOOD TEHTUD JA SERVERIS** (`496e8aaf`, kontrollitud 04.08; deploy'mata on ainult viimistlus `e1934c5c`): kontaktiplokk kannab nüüd rollide katet (nt Harku vallal 15 kontakti seitsmes rollis, mitte kaks nime) ja vastus valib kolme režiimi vahel — teemata küsimuses kirjeldab rolle ja küsib teemat, kontaktipäringus nimetab kõik selle teema rolliga inimesed, konkreetse teenuse juures teemale lähima rolli. Kehtib kõigis KOV-ides | vestlus / KOV-kontaktid | tehtud (viimistlus ootab deploy'd) |
 | 29 | ~~Laadimisloor ei olnud ekraanilugejaga läbitav — „Sisenen" oli kättesaamatu~~ — **TEHTUD 07.08** (omaniku teade nägemispuudega kasutajatelt). `role="dialog" aria-modal="true"` ei kärbi Chrome'i\TalkBacki puud: mõõdetuna oli loori all 23–31 sihitavat juhtelementi („Jäta vahele", „Lülita taustaheli välja", „Käivita", kiirriba, esmakülastuse a11y-akna dokk) ja loori enda „Sisenen" alles kuues — TalkBack luges täpselt seda järjekorda. Uus `lib/inertOutside.js` märgib kogu tausta `inert`-iks (fookus + klõps + ekraanilugeja kirje kaovad korraga), loor võtab fookuse endale ja annab ta sisenemisel `#main`-ile; sr-only `role="status"` ütleb, et lävi ilmub mõne sekundi pärast (`room.enter_pending`\`enter_ready`). Sama värav on nüüd ka esmakülastuse ligipääsetavusaknal, mis seisab loorist kõrgemal. Mõõdetud pärast: **1 sihitav element = „Sisenen"** | ruum / a11y | tehtud |
+| 30 | **RAG-i külmkäivituse soojendus.** Soe lai otsing võttis 2,09 s ja esimene tekst ilmus 4,94 s järel, kuid kohe pärast teenuse restarti võttis sama üksik RAG-otsing 9,86 s ning esimene tekst 12,32 s. Lisa kontrollitud käivitusaegne soojendus või kõrvalda külma indeksi esimese päringu lisakulu; tõenda eraldi külma ja sooja päringuga | vestlus / RAG jõudlus | SABA |
 
 **KONTROLLITUD KOODIST 03.08 — kaks „viga" olid juba parandatud.** Analüüsidokument
 `fable-5-ruumid-liitumine-ja-konevoog.md` kirjeldab hilise liituja salvestamist ja
