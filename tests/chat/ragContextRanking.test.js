@@ -128,6 +128,27 @@ test("narrow fact context can carry six passages without the ordinary 6000 chara
   }
 });
 
+test("narrow fact context carries all eight passages requested from one document", () => {
+  const bodies = Array.from({ length: 8 }, (_, index) => (
+    `${"Konteksti selgitus. ".repeat(34)} KAHEKSA-FAKT-${index + 1}.`
+  ));
+  const packed = buildContextWithBudget([{
+    key: "deep-compound-article",
+    title: "Ühe dokumendi sügav faktikontroll",
+    sourceType: "journal_article",
+    bodies,
+    bestScore: 0.9,
+    tags: []
+  }], {
+    maxBodies: 8,
+    allowExpandedBodyBudget: true
+  });
+
+  for (let index = 1; index <= 8; index += 1) {
+    assert.match(packed.text, new RegExp(`KAHEKSA-FAKT-${index}\\.`));
+  }
+});
+
 test("topic matching treats Estonian case endings as the same long-word stem", () => {
   const ranked = rankGroupsWithTopicHints([{
     key: "privacy-article",
