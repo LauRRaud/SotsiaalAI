@@ -1482,7 +1482,10 @@ V2 esimene hübriidotsingu samm on lightweight lexical retrieval:
 - `title_match` otsib pealkirja kattuvust;
 - `exact_phrase` otsib täpse fraasi kattuvust tekstis;
 - `bm25` märgib tokenipõhise full-text kattuvuse, kui täpne fraas või pealkiri üksi ei kata päringut;
-- leksikaalne scan on piiratud `RAG_LEXICAL_SCAN_LIMIT` ja `RAG_LEXICAL_TOP_K` väärtustega;
+- kõrge kindlusega registripealkirja vaste korral loetakse kõigepealt ainult vastava dokumendi
+  chunk'id, et täpne nime- või pealkirjaotsing ei skanniks kogu korpust;
+- leksikaalne scan on piiratud `RAG_LEXICAL_SCAN_LIMIT`, `RAG_LEXICAL_MAX_SCAN` ja
+  `RAG_LEXICAL_TOP_K` väärtustega; turvalaeni rakendumine on vastuses ausalt `partial`;
 - leitud kanalid kantakse tulemuse `retrieval_channels` väljale ja hiljem `rag_trace.retrievers_used` alla;
 - lexical kanal ei asenda eraldi full-text indeksit, vaid annab V2-s esimese mõõdetava silla päris hübriidotsingu poole.
 

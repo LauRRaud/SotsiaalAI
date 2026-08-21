@@ -277,6 +277,46 @@ class SearchObservabilityTests(unittest.TestCase):
         self.assertTrue(fetched["complete"])
         self.assertEqual(len(fetched["candidates"]), 2)
 
+    def test_high_confidence_registry_title_match_skips_full_corpus_scan(self):
+        class TitleMatchCollection:
+            def __init__(self):
+                self.calls = []
+
+            def get(self, **kwargs):
+                self.calls.append(kwargs)
+                return {
+                    "ids": ["chunk-laur"],
+                    "documents": ["Laur Raudsoo kirjeldab ajakirja arengut."],
+                    "metadatas": [{
+                        "doc_id": "doc-laur",
+                        "title": "Ajakiri Sotsiaaltöö – Laur Raudsoo vaade ajakirja arengule",
+                    }],
+                }
+
+        title_collection = TitleMatchCollection()
+        registry = {
+            "doc-laur": {
+                "docId": "doc-laur",
+                "title": "Ajakiri Sotsiaaltöö – Laur Raudsoo vaade ajakirja arengule",
+            }
+        }
+        with patch.object(main, "collection", title_collection), patch.object(
+            main, "_load_registry", return_value=registry
+        ):
+            fetched = main._fetch_lexical_candidates(
+                "Kes on Laur Raudsoo?",
+                None,
+                20,
+                ["title_match", "exact_phrase", "bm25"],
+            )
+
+        self.assertEqual(len(title_collection.calls), 1)
+        self.assertNotIn("offset", title_collection.calls[0])
+        self.assertEqual(fetched["scanned"], 1)
+        self.assertFalse(fetched["complete"])
+        self.assertEqual(fetched["strategy"], "registry_title_shortlist")
+        self.assertEqual([item["id"] for item in fetched["candidates"]], ["chunk-laur"])
+
     def test_agent_document_search_forwards_payload_request_id_to_searchin(self):
         payload = main.AgentDocumentSearchIn(
             query="agent query",

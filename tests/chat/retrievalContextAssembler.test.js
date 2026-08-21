@@ -7,10 +7,34 @@ import {
   buildRagSearchErrorPayload,
   buildServiceMapKovContactContext,
   buildServiceMapKovContactInstruction,
+  excludeSupersededKovContactMatches,
+  isMunicipalityServiceBenefitListRequest,
   mergePackageDisplayedSources,
   resolveKovContactMode,
   shouldUseReportedPracticeInstruction
 } from "../../lib/chat/retrievalContextAssembler.js";
+
+test("bare municipality social-services heading is treated as a list request", () => {
+  assert.equal(isMunicipalityServiceBenefitListRequest("Harku valla sotsiaalteenused?"), true);
+  assert.equal(isMunicipalityServiceBenefitListRequest("Tartu linna toetused"), true);
+  assert.equal(isMunicipalityServiceBenefitListRequest("Harku valla koduteenuse hind?"), false);
+});
+
+test("published service-map contacts supersede stale RAG contact copies for that municipality", () => {
+  const matches = [
+    { id: "old-contact", itemType: "contact", municipalityId: "harku_vald" },
+    { id: "service", itemType: "service", municipalityId: "harku_vald" },
+    { id: "other-contact", item_type: "contact", municipality_name: "Saue vald" }
+  ];
+
+  assert.deepEqual(
+    excludeSupersededKovContactMatches(matches, [
+      { id: "verified", municipalityId: "harku_vald", municipalityName: "Harku vald" }
+    ]).map((entry) => entry.id),
+    ["service", "other-contact"]
+  );
+  assert.deepEqual(excludeSupersededKovContactMatches(matches, []), matches);
+});
 
 function readSource(path) {
   return readFileSync(new URL(`../../${path}`, import.meta.url), "utf8");

@@ -1158,11 +1158,10 @@
   min-height: 18rem;
   background: #121212;
 }
-/* Hämariku toon OSM-plaatidele. NB: Leafleti kihiväline CSS ütleb
-   .leaflet-tile{filter:inherit} — seepärast toonime KONTEINERIT,
-   millelt plaadid pärivad. */
+/* Hoia Maa- ja Ruumiameti aluskaardi enda heledad värvid. Tugev hämariku-
+   filter muutis kaardi halliks ja vähendas teede ning asulate loetavust. */
 .service-map-canvas .leaflet-tile-container {
-  filter: brightness(0.72) contrast(1.05) saturate(0.7) sepia(0.22) hue-rotate(-8deg);
+  filter: none;
 }
 .service-map-leaflet__legend {
   position: absolute;

@@ -57,6 +57,17 @@ test("desktop service map uses one compact glass toolbar above a filling map", (
   );
 });
 
+test("service map preserves the official basemap colors", () => {
+  assert.match(
+    workspaceCss,
+    /\.service-map-canvas \.leaflet-tile-container\s*\{[^}]*filter:\s*none;/s
+  );
+  assert.doesNotMatch(
+    workspaceCss,
+    /\.service-map-canvas \.leaflet-tile-container\s*\{[^}]*brightness\(/s
+  );
+});
+
 test("service map keeps a usable stacked toolbar on narrow screens", () => {
   assert.match(
     workspaceCss,

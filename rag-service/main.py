@@ -2813,6 +2813,7 @@ LEXICAL_STOPWORDS = {
     "for",
     "how",
     "kas",
+    "kes",
     "kelle",
     "kellele",
     "kuidas",
@@ -3323,6 +3324,60 @@ def _build_channel_stats(results: List[Dict[str, object]]) -> Dict[str, object]:
         "bm25": bm25_summary,
     }
 
+def _score_lexical_rows(
+    query: str,
+    allowed_channels: set,
+    ids: List[object],
+    documents: List[object],
+    metadatas: List[object],
+) -> List[Dict[str, object]]:
+    scored: List[Dict[str, object]] = []
+    for i, item_id in enumerate(ids):
+        document = documents[i] if i < len(documents) and isinstance(documents[i], str) else ""
+        md = metadatas[i] if i < len(metadatas) and isinstance(metadatas[i], dict) else {}
+        match = _lexical_match(query, md, document)
+        if not match:
+            continue
+        channels = [item for item in list(match["channels"]) if item in allowed_channels]
+        if not channels:
+            continue
+        scored.append({
+            "id": item_id,
+            "document": document,
+            "metadata": md,
+            "score": float(match["score"]),
+            "channels": channels,
+            "bm25_score": match.get("bm25_score"),
+            "bm25_coverage": match.get("bm25_coverage"),
+            "bm25_matches": match.get("bm25_matches"),
+            "bm25_title_matches": match.get("bm25_title_matches"),
+            "bm25_body_matches": match.get("bm25_body_matches"),
+            "bm25_query_tokens": match.get("bm25_query_tokens"),
+        })
+    scored.sort(key=lambda item: float(item.get("score") or 0), reverse=True)
+    return scored
+
+def _registry_title_shortlist_doc_ids(
+    query: str,
+    chroma_where: Optional[Dict[str, object]],
+    limit: int = 20,
+) -> List[str]:
+    query_tokens = set(_search_tokens(query))
+    if len(query_tokens) < 2:
+        return []
+    matches: List[tuple] = []
+    for doc_id, metadata in _load_registry().items():
+        if not isinstance(metadata, dict) or not _metadata_matches_filter(metadata, chroma_where):
+            continue
+        title_tokens = set(_search_tokens(metadata.get("title") or metadata.get("fileName"), limit=80))
+        overlap = len(query_tokens.intersection(title_tokens))
+        coverage = overlap / max(1, len(query_tokens))
+        if overlap < 2 or coverage < 0.6:
+            continue
+        matches.append((coverage, overlap, str(doc_id)))
+    matches.sort(key=lambda item: (-item[0], -item[1], item[2]))
+    return [doc_id for _coverage, _overlap, doc_id in matches[:max(1, limit)]]
+
 def _fetch_lexical_candidates(
     query: str,
     chroma_where: Optional[Dict[str, object]],
@@ -3334,6 +3389,41 @@ def _fetch_lexical_candidates(
     allowed_channels = set(requested_retrievers or ["title_match", "exact_phrase", "bm25"])
     page_size = max(1, min(5000, RAG_LEXICAL_SCAN_LIMIT))
     max_scan = max(page_size, RAG_LEXICAL_MAX_SCAN)
+    try:
+        title_doc_ids = _registry_title_shortlist_doc_ids(query, chroma_where)
+    except Exception:
+        title_doc_ids = []
+    if title_doc_ids and "title_match" in allowed_channels:
+        shortlist_where: Dict[str, object] = {"doc_id": {"$in": title_doc_ids}}
+        if chroma_where:
+            shortlist_where = {"$and": [chroma_where, shortlist_where]}
+        try:
+            shortlist = collection.get(
+                include=["documents", "metadatas"],
+                limit=min(5000, max(100, top_k * 8)),
+                where=shortlist_where,
+            )
+            shortlist_ids = list(shortlist.get("ids") or [])
+            shortlist_docs = list(shortlist.get("documents") or [])
+            shortlist_metas = list(shortlist.get("metadatas") or [])
+            shortlist_scored = _score_lexical_rows(
+                query,
+                allowed_channels,
+                shortlist_ids,
+                shortlist_docs,
+                shortlist_metas,
+            )
+            if shortlist_scored:
+                shortlist_limit = max(0, min(max(1, top_k), RAG_LEXICAL_TOP_K))
+                return {
+                    "candidates": shortlist_scored[:shortlist_limit],
+                    "scanned": len(shortlist_ids),
+                    "complete": False,
+                    "error": None,
+                    "strategy": "registry_title_shortlist",
+                }
+        except Exception:
+            logger.exception("registry title shortlist retrieval failed")
     all_ids: List[object] = []
     all_docs: List[object] = []
     all_metas: List[object] = []
@@ -3368,31 +3458,7 @@ def _fetch_lexical_candidates(
             "error": f"{type(exc).__name__}",
         }
 
-    scored: List[Dict[str, object]] = []
-    for i, item_id in enumerate(all_ids):
-        document = all_docs[i] if i < len(all_docs) and isinstance(all_docs[i], str) else ""
-        md = all_metas[i] if i < len(all_metas) and isinstance(all_metas[i], dict) else {}
-        match = _lexical_match(query, md, document)
-        if not match:
-            continue
-        channels = [item for item in list(match["channels"]) if item in allowed_channels]
-        if not channels:
-            continue
-        scored.append({
-            "id": item_id,
-            "document": document,
-            "metadata": md,
-            "score": float(match["score"]),
-            "channels": channels,
-            "bm25_score": match.get("bm25_score"),
-            "bm25_coverage": match.get("bm25_coverage"),
-            "bm25_matches": match.get("bm25_matches"),
-            "bm25_title_matches": match.get("bm25_title_matches"),
-            "bm25_body_matches": match.get("bm25_body_matches"),
-            "bm25_query_tokens": match.get("bm25_query_tokens"),
-        })
-
-    scored.sort(key=lambda item: float(item.get("score") or 0), reverse=True)
+    scored = _score_lexical_rows(query, allowed_channels, all_ids, all_docs, all_metas)
     limit = max(0, min(max(1, top_k), RAG_LEXICAL_TOP_K))
     return {
         "candidates": scored[:limit],

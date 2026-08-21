@@ -92,6 +92,18 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Vestluse, RAG-i ja Teenusekaardi regressiooniplokk on 21.08 parandatud.** Paljas KOV-i
+mitmuseküsimus (nt „Harku valla sotsiaalteenused?”) kasutab nüüd täieliku loendi rada ning
+registri pealkirjaga täpselt kattuv isikunimeotsing ei skanni enam enne vastamist kogu
+54 000-chunk'ilist korpust. Kontrollitud Teenusekaardi KOV-kontaktid tõrjuvad sama KOV-i
+vanad RAG-kontaktikoopiad vastuse kontekstist ning aluskaart säilitab Maa- ja Ruumiameti
+enda värvid. Sihttõend on 55/55 Node'i testi ja 12/12 RAG-teenuse testi. Toodangus taastati
+Harku ametliku kontaktilehe järgi 15 praegust kontakti; eemaldatud Kaja Saat jäi peidetuks.
+Ülejäänud vana segapäritoluga KOV-kontaktid jäävad fail-closed, sest uue RAG-sünki
+kuivkontroll leidis 11 KOV-pakist 0 kontaktikirjet. Järgmine andmetöö on nende kontaktide
+värske autoriteetse korje, päritolumärgise ja moderatsiooni taastamine — neid ei avaldata
+pimesi vana koopia põhjal.
+
 **Codex Security MEDIUM- ja LOW-parandused on kontrollitult `main`-i integreeritud, GitHubi
 viidud ja toodangusse paigaldatud (`0225e64a3f2352a95e0b9b169108f632453f9a2d`).** Ring katab
 56 MEDIUM-parandust ja LOW-ringi 25 ettepanekust 23; #110 asendas laiem #116 ning #122 jäi
@@ -1714,6 +1726,9 @@ iga vastuse juures on näha, millisele allikale ta tugineb. Inimene saab kontrol
 lause tuli, ja minna algallika juurde. Vestlus ei nõua kellegi teise järjekorras ootamist
 ega tööaega. Vestluse otse avamisel luuakse puuduv serverikirje enne esimest sõnumit ning
 sama vestlus taastub lehe uuesti avamisel; RAG-otsing kasutab ühtset 30-sekundilist ajapiiri.
+KOV-i teenuste mitmuseküsimus kasutab täieliku loendi rada, täpne registripealkirjaga
+nimeotsing alustab väikesest pealkirjavalimist ning kontrollitud Teenusekaardi kontaktikiht
+on sama KOV-i vanast RAG-kontaktikoopiast autoriteetsem.
 
 Vestlusesse on sisse ehitatud kriisirada: kui jutust tuleb välja vahetu oht elule või
 tervisele, katkeb tavaline vastamine ja ette tulevad hädaabi ja usaldustelefonide numbrid.
@@ -1744,7 +1759,10 @@ märgistatult — masina mustandit ei esitata kunagi inimese ütlusena.
 Teenusekaart näitab, millised sotsiaalteenused ja osutajad piirkonnas olemas on, kellele
 nad on mõeldud ja kuidas nendeni jõuab. Osutajal on oma profiil, mida ta ise haldab.
 Kaardil on kättesaadavuse elav signaal — teenuse info ei jää seisma sinna, kus ta kunagi
-sisestati.
+sisestati. Kaart kuvab ainult avaldatud ja üle vaadatud KOV-kontakte ning säilitab aluskaardi
+enda värvid. 21.08 seisuga on ametliku allika järgi avaldatud Harku valla 15 praegust
+kontakti; vana üleriigiline segapäritoluga kontaktikoopia jääb peidetuks kuni värske korje ja
+moderatsioonini.
 
 **Abisoovid ja -pakkumised.**
 Inimene saab kirja panna, millist abi ta vajab, ja teine pool selle, mida ta pakub;
