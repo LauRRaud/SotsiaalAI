@@ -325,7 +325,7 @@ const ChatMessageItem = memo(function ChatMessageItem({
           </div> : null}
       </div>;
   }
-  return <div role="article" tabIndex={0} data-role={role} data-chat-message-id={messageId} lang={locale} style={entranceStyle} data-thinking={showThinking ? "true" : undefined} data-streaming={isStreaming ? "true" : undefined}>
+  return <div role="article" tabIndex={showThinking ? -1 : 0} data-role={role} data-chat-message-id={messageId} lang={locale} style={entranceStyle} data-thinking={showThinking ? "true" : undefined} data-streaming={isStreaming ? "true" : undefined}>
       <span className="sr-only">
         {authorLabel}
         {": "}
@@ -335,9 +335,7 @@ const ChatMessageItem = memo(function ChatMessageItem({
         <AssistantMarkdown text={visibleText} />
       ) : null}
       {showThinking ? (
-        <span aria-label={thinkingLabel}>
-          {thinkingLabel}
-        </span>
+        <span role="status" aria-live="polite" aria-label={thinkingLabel} />
       ) : null}
       {showCards ? (
         <div>

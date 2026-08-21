@@ -43,7 +43,9 @@ const PAD = 20;
    juhud, kus nupul on `role="radio"`. */
 const FIELD_SELECTOR = [
   'input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.sr-only)',
-  "textarea",
+  /* Vestluse komposer on teadlikult pinnata valgusjoon, mitte klaasväli.
+     Jagatud WebGL-serv joonistaks tema hoveril tagasi suure kapsli. */
+  "textarea:not(#chat-input)",
   "select",
   ".dd-trigger",
   "label[data-control-type]",

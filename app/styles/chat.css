@@ -727,9 +727,9 @@ button[aria-controls="chat-window-scroll"] {
      • kasutaja = soe merevaik-klaas paremal (kerge Y-kalle ruumi poole),
      • assistent = tume klaas helendava vedelklaas-servaga + hõõguv
        orb-avatar mullist vasakul.
-   Kerimine on ruumiline: ülaserva jõudes sõnum TAANDUB sügavusse
-   (scroll-driven view() timeline; ilma toeta lihtsalt hajub maski).
-   Mõtlemisolek = pulseeriv tuum + orbiidil sädemed + virvendav silt;
+   Kerimisel jääb kogu loetav sõnum terav; ainult kerimisala servamask
+   hajutab selle osa, mis päriselt vaatealast väljub.
+   Mõtlemisolek = vaikne pöörlev S ilma eraldi sõnumimullita;
    voogedastus = orb hingab ja üle teksti käib aurora-vöönd.
    Sisend = hõljuv valguskapsel orbiit-nuppudega (+ / mikrofon / saada),
    genereerimise ajal jookseb kapsli valgusjoonel energiapulss saatja
@@ -798,7 +798,7 @@ button[aria-controls="chat-window-scroll"] {
   }
 }
 
-/* ---------- Sõnumiruum: perspektiiv + kaskaad + taandumine ---------- */
+/* ---------- Sõnumiruum: perspektiiv + sisenemiskaskaad ---------- */
 .panel-scrim[data-conversation="1"] #chat-window-scroll {
   /* Laste transformid (translateZ/rotateX) projitseeruvad päriselt —
      see teebki kerimisest ja sisenemisest RUUMI, mitte tasapinna. */
@@ -857,8 +857,7 @@ button[aria-controls="chat-window-scroll"] {
      polster 2.4–3.2rem — fade PEAB jääma polstrist madalamaks, muidu
      puhkeasendi viimane mull hägustub): viimane sõnum püsib terav,
      tema ALL on nähtav hääbumisriba nagu üleval, ja kerides üle serva
-     libisev mull lahustub — koos conv-msg-roll rulliga loeb see ruumis
-     kaardumisena, mitte noalõikena (omanik 25.07: "all on koledalt ära
+     libisev mull lahustub ilma noalõiketa (omanik 25.07: "all on koledalt ära
      lõigatud" → esimene, polstri-sisene 1.3–2rem vöönd oli liiga arg —
      omanik 25.07 õhtul: "all ei ole fade'i peaaegu üldse"). Ülemine
      jääb SIHILIKULT sügavam: ta peab katma ka ≡/× päisenupud. */
@@ -912,81 +911,10 @@ button[aria-controls="chat-window-scroll"] {
 .panel-scrim[data-conversation="1"] [role="article"][data-role="user"] {
   animation-name: conv-msg-launch-user;
 }
-/* Kerimine sügavusse: ülaserva ületav sõnum kahaneb, hägustub ja vajub
-   ruumi tagaossa. Ainult toetavas brauseris; mujal jääb maski hajumine. */
-@supports (animation-timeline: view()) {
-  .panel-scrim[data-conversation="1"] [role="article"][data-role] {
-    /* ÜKS liitanimatsioon kogu teekonna peale (all rullis → sirge →
-       üleval rullis), MITTE kaks eraldi otsa-animatsiooni. Kahe virnas
-       view-animatsiooni katse (arrive + recede, mõlemad fill: both,
-       samad omadused) kukkus läbi: Blink sünteesib PUUDUVAD keyframe'id
-       baas-stiilist, mitte virnas allpool oleva animatsiooni väljundist
-       — loendis hilisem recede oli väljaspool oma vahemikku progressil 0
-       (= neutraalne = baas) ja kirjutas arrive'i rulli ALATI üle
-       (runtime-mõõt 25.07: alaserva mull opacity 1 / rotate 0, kuigi
-       arrive'i progress oli 0 ja from-keyframe paigas). Üks animatsioon
-       = virna polegi. `conv-msg-launch` on teine, et uue sõnumi
-       sisenemine (ajaline, viimane loendis) võidaks rulli. */
-    animation-name: conv-msg-roll, conv-msg-launch;
-    animation-duration: auto, 620ms;
-    animation-timing-function: linear, var(--conv-ease-spring);
-    animation-fill-mode: both, backwards;
-    animation-delay: 0s, calc(
-      var(--conv-arrive, 0) *
-      (120ms + (620ms - min(calc(var(--msg-ri, 0) * 78ms), 620ms)))
-    );
-    animation-timeline: view(), auto;
-    animation-range: cover 0% cover 100%, normal;
-  }
-  .panel-scrim[data-conversation="1"] [role="article"][data-role="user"] {
-    /* SAMA PIKK LOEND mis baasreeglis, ainult launch on kasutaja-
-       variant. Loendite pikkus PEAB klappima: timeline'id ja range'id
-       päritakse baasist positsiooni järgi. Lühema loendiga sai recede
-       omal ajal endale vale vahemiku ja launch-user view()-timeline'i —
-       kasutaja mullid jäid PÜSIVALT opacity 0/0.15 peale ehk nähtamatuks
-       (omanik 25.07: "ei näe kasutaja sõnumimulle"). */
-    animation-name: conv-msg-roll, conv-msg-launch-user;
-  }
-}
-/* RULL — vestlus kui silinder, mis mõlemast otsast ruumi kaardub
-   (omanik 25.07: "kindsalt alla ka rulli efekt"). Kalle käib `rotate`
-   omadusega, MITTE transform'iga: transform on sisenemisanimatsiooni
-   oma ja kaks animatsiooni ühe omaduse peal tähendaks, et üks kaob.
-
-   Protsendid on cover-teljel (0% = mulli ülaserv alaservas, 100% =
-   alaserv ülaservas) ja MÕÕDETUD, mitte pakutud:
-   - 0→9%: alt sisse keriv mull keerdub rullilt lahti. 9% on valitud
-     nii, et PUHKEASENDIS uusim mull (alapolstri võrra serva kohal) on
-     juba sirge — teda sa loed, ta ei tohi viltu olla. `exit`-põhise
-     katse õppetund kehtib siingi: rull peab toimuma NÄHTAVAS servas
-     (varasem mõõt: exit-vahemikuga oli keerd alles y=−113 juures 24°
-     ehk nähtamatu).
-   - 9→72%: lugemisala, täpselt sirge ja terav.
-   - 72→98%: ülaserva poole keriv mull keerdub rullile: y=+59 → 13°,
-     y=+144 → 3°, y=+232 ja allpool → 0°.
-   Loetavas tsoonis hoiavad eksplitsiitsed vahekeyframe'id baasväärtusi,
-   nii et rull ei puutu kunagi teksti, mida parasjagu loed — see
-   eristab teda püsivast viltusest, mis omanikule ei sobinud (25.07). */
-@keyframes conv-msg-roll {
-  0% {
-    opacity: 0.15;
-    scale: 0.9;
-    filter: blur(2.5px);
-    rotate: x -24deg;
-  }
-  9%, 72% {
-    opacity: 1;
-    scale: 1;
-    filter: blur(0px);
-    rotate: x 0deg;
-  }
-  98%, 100% {
-    opacity: 0.15;
-    scale: 0.9;
-    filter: blur(2.5px);
-    rotate: x 24deg;
-  }
-}
+/* Kerimisanimatsiooni ei rakendata sõnumile endale. Pika vastuse üks DOM-
+   element võib olla vaatealast kõrgem: elemendipõhine view()-timeline
+   hägustas siis kogu mulli, kuigi selle alumist osa alles loeti. Servade
+   hääbumine kuulub ülal olevale #chat-window-scroll maskile. */
 
 /* ---------- Assistendi mull: tume klaas ----------
    Orb-avatari täpp EEMALDATUD (tellija 12.07: "sõnumi mullide täpid võta
@@ -1203,29 +1131,12 @@ button[aria-controls="chat-window-scroll"] {
   }
 }
 
-/* ---------- Mõtlemisolek: tuum + orbiit + virvendav silt ---------- */
+/* ---------- Mõtlemisolek: üks vaikne S, ilma nähtava sildi ja mullita ---------- */
 .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] > span[aria-label] {
   position: relative;
-  display: inline-flex;
-  align-items: center;
-  min-height: 2.2rem;
-  padding-left: 2.95rem;
-  font-size: 0.95rem;
-  letter-spacing: 0.16em;
-  /* Silt virvendab: valgus jookseb läbi teksti */
-  background: linear-gradient(100deg, rgba(229, 229, 229, 0.38) 30%, #ededed 50%, rgba(229, 229, 229, 0.38) 70%) 0 0 / 220% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: conv-think-shimmer 2.4s linear infinite;
-}
-@keyframes conv-think-shimmer {
-  from {
-    background-position: 130% 0;
-  }
-  to {
-    background-position: -90% 0;
-  }
+  display: block;
+  width: 2.35rem;
+  height: 2.35rem;
 }
 /* Pöörlev S-monogramm (tellija 12.07: "pöörlev S täht, nii nagu on
    platvormi sisse lülitades alguses"). Sama SVG-S + sama 3D-täispööre
@@ -1234,11 +1145,10 @@ button[aria-controls="chat-window-scroll"] {
 .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] > span[aria-label]::before {
   content: "";
   position: absolute;
-  left: 0.5rem;
+  left: 50%;
   top: 50%;
-  width: 1.7rem;
-  height: 1.7rem;
-  margin-top: -0.85rem;
+  width: 1.55rem;
+  height: 1.55rem;
   background: url("/logo/sai-s-valge.svg") center / contain no-repeat;
   /* Profiilimärgi S = puhas valge ~70% (LogoExportStage .profileS);
      amber-halo eemaldatud, et S ei paistaks oranžikas (tellija 12.07).
@@ -1246,22 +1156,28 @@ button[aria-controls="chat-window-scroll"] {
   opacity: 0.82;
   filter: drop-shadow(0 0 5px rgba(249, 249, 249, 0.28));
   transform-origin: 50% 50%;
-  animation: conv-think-s-flip 3s ease-in-out infinite;
+  animation: conv-think-s-flip 3.6s ease-in-out infinite;
 }
 @keyframes conv-think-s-flip {
   from {
-    transform: perspective(700px) rotateY(0deg);
+    transform: translate(-50%, -50%) perspective(700px) rotateY(0deg);
   }
   to {
-    transform: perspective(700px) rotateY(360deg);
+    transform: translate(-50%, -50%) perspective(700px) rotateY(360deg);
   }
 }
-/* Mõtleva mulli ümber õhkub soe aura */
+/* Ooteseis ei teeskle uut sõnumimulli. Tekstita olekut kuulutab ekraanilugejale
+   role=status; nähtavaks jääb ainult S. */
 .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"][data-thinking="true"] {
-  box-shadow:
-    inset 0 1px 0 rgba(242, 242, 242, 0.1),
-    0 18px 44px rgba(5, 5, 5, 0.3),
-    0 0 34px rgba(182, 182, 182, 0.09);
+  min-width: 2.35rem;
+  min-height: 2.35rem;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.panel-scrim[data-conversation="1"] [role="article"][data-role="ai"][data-thinking="true"]::after {
+  content: none;
 }
 
 /* ---------- Kaardid ja manused assistendi mullis ---------- */
@@ -1438,6 +1354,8 @@ button[aria-controls="chat-window-scroll"] {
     rgba(212, 212, 212, 0.5) 88%,
     transparent
   );
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%);
   pointer-events: none;
   animation: conv-strip-breathe 5s ease-in-out infinite;
   transition: box-shadow var(--dur-fast) var(--ease-soft);
@@ -1456,16 +1374,18 @@ button[aria-controls="chat-window-scroll"] {
 /* Genereerimise ajal jookseb joonel energiapulss saatja poole —
    sinu signaal on teel (tellija: "mõtleb ajal ja on efektiga"). */
 .panel-scrim[data-conversation="1"] form:has(#chat-input):has(button[data-loader-active="true"]) > div:has(#chat-input) > div:has(#chat-input)::after {
-  background: linear-gradient(90deg, transparent 0%, transparent 26%, rgba(230, 230, 230, 0.95) 50%, transparent 74%, transparent 100%) 0 0 / 220% 100%;
-  box-shadow: 0 0 16px rgba(182, 182, 182, 0.5);
-  animation: conv-energy 1.15s var(--ease-drift) infinite;
+  background:
+    linear-gradient(90deg, transparent 0%, transparent 39%, rgba(232, 232, 232, 0.78) 50%, transparent 61%, transparent 100%) 180% 0 / 220% 100% no-repeat,
+    linear-gradient(90deg, transparent, rgba(212, 212, 212, 0.42) 12%, rgba(229, 229, 229, 0.72) 50%, rgba(212, 212, 212, 0.42) 88%, transparent);
+  box-shadow: 0 0 11px rgba(182, 182, 182, 0.3);
+  animation: conv-energy 2.8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
 }
 @keyframes conv-energy {
   from {
-    background-position: 220% 0;
+    background-position: 180% 0, 0 0;
   }
   to {
-    background-position: -70% 0;
+    background-position: -80% 0, 0 0;
   }
 }
 .panel-scrim[data-conversation="1"] #chat-input {
@@ -1482,6 +1402,11 @@ button[aria-controls="chat-window-scroll"] {
   caret-color: #cfcfcf;
   /* Loetavus otse ruumi ees */
   text-shadow: 0 1px 8px rgba(5, 5, 5, 0.5);
+}
+.panel-scrim[data-conversation="1"] #chat-input:is(:hover, :focus) {
+  background: none;
+  border: 0;
+  box-shadow: none;
 }
 /* Mikrofon + saada nupukastid SUUREMAD (tellija 16.07: ikoonid olid
    liiga väikesed); glüüfid (::before mask) samuti suuremad allpool. */

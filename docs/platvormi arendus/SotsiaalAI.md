@@ -92,6 +92,14 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Vestluse rahuliku liikumise UI-plokk on 22.08 parandusharus lokaalselt valmis ja
+sihtkontrollitud, kuid veel serverisse viimata.** Pika vastuse kerimine ei rakenda enam blur'i
+kogu sõnumimullile; ootamisel jääb nähtavale ainult väike ligipääsetav S ilma „Mõtlen” teksti
+ja eraldi mullita; komposeri tekstiala ei joonista hoveril klaaskapslit ning genereerimisjoon
+säilitab hajuvad teravad otsad ja liigub aeglasemalt. Kohalik `/vestlus` kompileerus ning
+sisendi läbipaistev olek kontrolliti brauseris; serveri visuaalne lõppkontroll ootab omaniku
+eraldi push'i ja deploy luba.
+
 **Vestluse RAG-i süsteemne parandus on 22.08 toodangus ja päris vestluses tõendatud
 (`a08d65b5`).** Otsing skoorib ka vana indeksi päris teksti, säilitab sama dokumendi kuni
 kaheksa vajalikku lõiku, eelistab kasutaja nimetatud allika aastat ning jätab sügava esimese
