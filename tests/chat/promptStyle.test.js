@@ -52,6 +52,9 @@ test("Estonian base prompt discourages search-status phrasing in ordinary answer
   assert.match(system, /Ma ei leidnud praeguse otsinguga sellele piisavalt täpset õiguslikku allikakinnitust/);
   assert.match(system, /Ära väida, et midagi ei eksisteeri ainult seetõttu/);
   assert.match(system, /nimeta konkreetne allikas .* mitte üldise meta-fraasina/);
+  assert.match(system, /säilita lõigus olev otsene viide/);
+  assert.match(system, /Ära asenda seda vahendava artikli autori nimega/);
+  assert.match(system, /Ära korda vahendava artikli autorit põhitekstis/);
   assert.match(system, /Vastuse kaks esimest sisulist lauset ei tohi sisaldada sõnu/);
   assert.doesNotMatch(system, /Sõnasta loomulikult: "leidsin allikatest"/);
 });
@@ -94,11 +97,15 @@ test("English and Russian base prompts discourage search-status phrasing in ordi
   assert.match(enInput.input[0].content, /Write like a helpful specialist/);
   assert.match(enInput.input[0].content, /Do not use Markdown heading markers/);
   assert.match(enInput.input[0].content, /Do not start an ordinary answer with source- or search-status phrasing/);
+  assert.match(enInput.input[0].content, /preserve the direct in-text citation/);
+  assert.match(enInput.input[0].content, /Do not replace it with the intermediary article author/);
   assert.doesNotMatch(enInput.input[0].content, /Phrase it naturally: "I found in the sources"/);
 
   assert.match(ruInput.input[0].content, /Пиши как внимательный специалист/);
   assert.match(ruInput.input[0].content, /Не используй в ответах Markdown-маркеры заголовков/);
   assert.match(ruInput.input[0].content, /Не начинай обычный ответ с фраз о статусе источников или поиска/);
+  assert.match(ruInput.input[0].content, /сохраняй прямую внутритекстовую ссылку/);
+  assert.match(ruInput.input[0].content, /Не заменяй её именем автора статьи-посредника/);
   assert.doesNotMatch(ruInput.input[0].content, /Формулируй естественно: "я нашел в источниках"/);
 });
 
