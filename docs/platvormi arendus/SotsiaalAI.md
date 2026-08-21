@@ -92,25 +92,24 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**Vestluse artiklitäpsus, mitme allika süntees ja vastuse hääl on 21.08 toodangus parandatud
-(`0f234078`).** Eestikeelsete käändevormide ja nimede leksikaalne sobitamine, dokumendipõhine
-tulemuste lagi ning nimelise tabamuse kaal hoiavad konkreetse artiklilõigu üldiste vastete kohal.
-Lai teemaküsimus teeb nüüd ühe mitmekesise otsingu: kontroll andis 36 katkendit 14 dokumendist
-ning toodangu vastus ühendas OSKA, STAR-i strateegia, Raudsoo ja Rosenthali käsitlused, sh
-Töötukassa 45 näitaja otsustustoe näite. Hesteri kontroll vastas otse, et delikaatne teave
-eemaldatakse automaatselt ja logid kustutatakse kuue kuu pärast. Sooja laia päringu RAG-aeg oli
-2,09 s ja esimene sisuline tekst ilmus 4,94 s järel; kohe pärast deploy-järgset teenuse restarti
-oli külm RAG-aeg 9,86 s ja esimene tekst 12,32 s, mistõttu külmkäivituse soojendus jääb järgmiseks
-jõudlusplokiks. Vastuse kaks esimest sisulist lauset annavad nüüd järelduse otse ega jutusta RAG-ist,
-otsingust, materjalidest või allikabaasist; konkreetseid autoreid ja dokumente nimetatakse väidete
-juures. Sihttõend: 11/11 RAG-teenuse testi varasemast plokist, viimases plokis 49/49 Node'i sihttesti,
-muudetud failide lint, `git diff --check`, i18n-kontroll ja toodangu build; omaniku soovil ei
-käivitatud kogu ligi 5000 testiga sviiti.
+**Vestluse artiklitäpsus, mitme allika süntees ja sama vestluse kontekst on 21.08 toodangus
+parandatud (`ced7cba2`).** Ajakirja Sotsiaaltöö 863 unikaalset dokumenti indekseeriti uuesti;
+aktiivses teadmusbaasis on 49 727 lõiku. Aastate 2016–2026 otsekontroll leidis õige artikli
+11 küsimusel 11-st. Konkreetse artikli olulised tükid püsivad koos, lai küsimus säilitab eri
+allikad ning tekstisisene algviide on väite autoriteetsem päritolu kui seda vahendava artikli
+autor. Uus iseseisev küsimus ei päri enam vana assistendivastust, kuid viitav jätkuküsimus
+säilitab vestluse konteksti. Sama avatud vestluse toodangukontroll vastas Töötukassa OTT-i
+kohta 45 näitaja, motivatsiooni, terviseseisundi, läbipaistmatuse ja koormava tagasisidega,
+viitas Vihalemm jt 2023 uuringule ega omistanud väidet vahendava ülevaate autorile; järgnev
+„Aga …?” küsimus kasutas eelmist vastust õigesti. Viimase ploki 109/109 sihttesti, lint,
+`git diff --check`, toodangu build, avalik HTTP 200 ja RAG health on rohelised. Omaniku soovil
+ei käivitatud kogu ligi 5000 testiga sviiti. Külmkäivituse soojendus jääb järgmiseks
+jõudlusplokiks.
 
 **Vestluse, RAG-i ja Teenusekaardi regressiooniplokk on 21.08 parandatud.** Paljas KOV-i
 mitmuseküsimus (nt „Harku valla sotsiaalteenused?”) kasutab nüüd täieliku loendi rada ning
 registri pealkirjaga täpselt kattuv isikunimeotsing ei skanni enam enne vastamist kogu
-54 000-chunk'ilist korpust. Kontrollitud Teenusekaardi KOV-kontaktid tõrjuvad sama KOV-i
+49 727-lõigulist korpust. Kontrollitud Teenusekaardi KOV-kontaktid tõrjuvad sama KOV-i
 vanad RAG-kontaktikoopiad vastuse kontekstist ning aluskaart säilitab Maa- ja Ruumiameti
 enda värvid. Sihttõend on 55/55 Node'i testi ja 12/12 RAG-teenuse testi. Toodangus taastati
 Harku ametliku kontaktilehe järgi 15 praegust kontakti; eemaldatud Kaja Saat jäi peidetuks.
@@ -1748,7 +1747,10 @@ Artikliotsing arvestab eesti käändevormide ühiseid tüvesid ja nimede lühike
 annab nimelisele täppistabamusele üldise semantilise vaste ees kaalu ning piirab ühe dokumendi
 lõikude arvu nii leksikaalses valimis kui lõppvastuses. Lai teemaküsimus kasutab üht mitmekesist
 otsingut ja valib mitu eri dokumenti; konkreetse fakti küsimuses hoitakse sama artikli kõige
-asjakohasemad lõigud koos. Vastuse kaks esimest sisulist lauset esitavad järelduse otse: RAG-i,
+asjakohasemad lõigud koos. Tekstis olev algviide jääb väite päritoluks ega muutu vahendava
+artikli autori väiteks. Uus iseseisev küsimus alustab puhtast vastusekontekstist ka samas
+vestluses, samas kui „Aga …?”, „see” või muu selge jätkuviide säilitab vajaliku ajaloo.
+Vastuse kaks esimest sisulist lauset esitavad järelduse otse: RAG-i,
 otsingu seisu, materjalide või allikabaasi laiust kasutajale ei jutustata ning konkreetse allika
 aega märgitakse väite juures lühidalt ainult siis, kui see on täpsuse jaoks vajalik.
 
