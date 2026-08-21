@@ -797,6 +797,18 @@ test("renderOneContextBlock exposes source status metadata for time-aware answer
   assert.match(block, /historical=true/);
 });
 
+test("renderOneContextBlock can hide intermediary article authors without removing inline citations", () => {
+  const block = renderOneContextBlock({
+    title: "Tehisintellekt sotsiaaltöös",
+    authors: ["Laur Raudsoo"],
+    sourceType: "journal_article",
+    bodies: ["OTT kasutajad nimetasid läbipaistmatust ja koormavat tagasisidestamist (Vihalemm jt 2023)."]
+  }, 0, { includeAuthors: false });
+
+  assert.doesNotMatch(block, /Laur Raudsoo/);
+  assert.match(block, /Vihalemm jt 2023/);
+});
+
 test("renderOneContextBlock exposes RT paragraph numbers in legal context headers", () => {
   const block = renderOneContextBlock({
     title: "Eesti - Sotsiaalhoolekande seadus",

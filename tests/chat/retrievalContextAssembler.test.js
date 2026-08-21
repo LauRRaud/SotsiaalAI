@@ -11,8 +11,20 @@ import {
   isMunicipalityServiceBenefitListRequest,
   mergePackageDisplayedSources,
   resolveKovContactMode,
+  shouldIncludeContextAuthors,
   shouldUseReportedPracticeInstruction
 } from "../../lib/chat/retrievalContextAssembler.js";
+
+test("topic questions hide intermediary authors while author questions preserve them", () => {
+  const groups = [{ authors: ["Laur Raudsoo"] }];
+
+  assert.equal(shouldIncludeContextAuthors(
+    "Kuidas kasutab Eesti Töötukassa OTT-süsteemi?",
+    groups
+  ), false);
+  assert.equal(shouldIncludeContextAuthors("Kes on Laur Raudsoo?", groups), true);
+  assert.equal(shouldIncludeContextAuthors("Kes selle artikli kirjutas?", groups), true);
+});
 
 test("bare municipality social-services heading is treated as a list request", () => {
   assert.equal(isMunicipalityServiceBenefitListRequest("Harku valla sotsiaalteenused?"), true);
