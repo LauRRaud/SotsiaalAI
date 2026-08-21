@@ -165,6 +165,7 @@ test("ordinary RAG answers are instructed to present found knowledge directly", 
   assert.match(retrievalAssembler, /ära lisa eraldi lõiku tänase kinnituse puudumise/);
   assert.match(retrievalAssembler, /Ära nimeta vastuses RAG-konteksti, otsingu seisu ega allikabaasi laiust/);
   assert.match(retrievalAssembler, /Ära raamista sünteesi väljenditega/);
+  assert.match(retrievalAssembler, /Esimesed kaks sisulist lauset esita ilma sõnadeta/);
   assert.doesNotMatch(evidencePackage, /State naturally when the selected source base is narrow/);
 });
 

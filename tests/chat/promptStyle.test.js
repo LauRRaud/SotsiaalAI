@@ -52,6 +52,7 @@ test("Estonian base prompt discourages search-status phrasing in ordinary answer
   assert.match(system, /Ma ei leidnud praeguse otsinguga sellele piisavalt täpset õiguslikku allikakinnitust/);
   assert.match(system, /Ära väida, et midagi ei eksisteeri ainult seetõttu/);
   assert.match(system, /nimeta konkreetne allikas .* mitte üldise meta-fraasina/);
+  assert.match(system, /Vastuse kaks esimest sisulist lauset ei tohi sisaldada sõnu/);
   assert.doesNotMatch(system, /Sõnasta loomulikult: "leidsin allikatest"/);
 });
 
