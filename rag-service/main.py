@@ -2913,18 +2913,37 @@ def _lexical_token_counts(text: str, limit: int = 1000) -> Dict[str, int]:
 
 def _lexical_token_frequency(query_token: str, counts: Dict[str, int]) -> int:
     exact = int(counts.get(query_token, 0) or 0)
-    if exact or len(query_token) < 9:
+    if exact:
         return exact
+    prefix_matches = sum(
+        int(frequency or 0)
+        for token, frequency in counts.items()
+        if min(len(query_token), len(token)) >= 5
+        and abs(len(query_token) - len(token)) <= 4
+        and (query_token.startswith(token) or token.startswith(query_token))
+    )
+    if prefix_matches or len(query_token) < 9:
+        return prefix_matches
     # Estonian case endings often change only the tail of a long compound
     # (isikuandmeid/isikuandmete, andmekorralduse/andmekorraldust). Treat a
-    # shared eight-character stem as the same lexical clue. Short words stay
-    # exact so this cannot turn common fragments into broad matches.
+    # shared eight-character stem as the same lexical clue after the bounded
+    # prefix comparison above has handled shorter inflected forms.
     stem = query_token[:8]
     return sum(
         int(frequency or 0)
         for token, frequency in counts.items()
         if len(token) >= 9 and token[:8] == stem
     )
+
+def _query_named_entity_tokens(query: str) -> set:
+    tokens = set()
+    for index, raw_word in enumerate(re.findall(r"[^\W_]+", str(query or ""), flags=re.UNICODE)):
+        normalized = _normalize_search_text(raw_word)
+        if index == 0 or len(normalized) < 5 or normalized in LEXICAL_STOPWORDS:
+            continue
+        if raw_word[:1].isupper():
+            tokens.add(normalized)
+    return tokens
 
 def _lexical_match(query: str, md: Dict, document: str) -> Optional[Dict[str, object]]:
     title_norm = _normalize_search_text(md.get("title") or md.get("fileName") or md.get("source_url") or "")
@@ -2937,6 +2956,7 @@ def _lexical_match(query: str, md: Dict, document: str) -> Optional[Dict[str, ob
 
     phrases = _query_phrases(query)
     query_tokens = _search_tokens(query)
+    named_entity_tokens = _query_named_entity_tokens(query)
     paragraph_refs = _extract_query_paragraph_refs(query)
     paragraph_number = _normalize_search_text(md.get("paragraph_number") or "")
     title_counts = _lexical_token_counts(title_norm, limit=80)
@@ -2949,6 +2969,7 @@ def _lexical_match(query: str, md: Dict, document: str) -> Optional[Dict[str, ob
     bm25_matches = 0
     bm25_title_matches = 0
     bm25_body_matches = 0
+    bm25_named_entity_matches = 0
     bm25_coverage = 0.0
 
     full_query = phrases[0] if phrases else _normalize_search_text(query)
@@ -3018,12 +3039,17 @@ def _lexical_match(query: str, md: Dict, document: str) -> Optional[Dict[str, ob
             if body_freq:
                 bm25_body_matches += 1
                 bm25_score += RAG_BM25_BODY_WEIGHT * (body_freq / (body_freq + RAG_BM25_BODY_K))
+            if token in named_entity_tokens and (title_freq or body_freq):
+                bm25_named_entity_matches += 1
         bm25_coverage = bm25_matches / max(1, len(query_tokens))
         if bm25_matches and (
             bm25_coverage >= RAG_BM25_MIN_COVERAGE
             or bm25_matches >= min(3, len(query_tokens))
+            or bm25_named_entity_matches >= 1
         ):
             score += min(5.0, bm25_score)
+            if bm25_named_entity_matches:
+                score += min(3.5, 2.5 + 0.5 * bm25_named_entity_matches)
             if "bm25" not in channels:
                 channels.append("bm25")
 
@@ -3036,6 +3062,7 @@ def _lexical_match(query: str, md: Dict, document: str) -> Optional[Dict[str, ob
         "bm25_matches": bm25_matches if query_tokens else None,
         "bm25_title_matches": bm25_title_matches if query_tokens else None,
         "bm25_body_matches": bm25_body_matches if query_tokens else None,
+        "bm25_named_entity_matches": bm25_named_entity_matches if query_tokens else None,
         "bm25_coverage": round(bm25_coverage, 6) if query_tokens else None,
         "bm25_query_tokens": len(query_tokens) if query_tokens else None,
     }
@@ -3097,6 +3124,7 @@ def _search_result_from_metadata(
         "bm25_matches": lexical_details.get("bm25_matches") if isinstance(lexical_details, dict) else None,
         "bm25_title_matches": lexical_details.get("bm25_title_matches") if isinstance(lexical_details, dict) else None,
         "bm25_body_matches": lexical_details.get("bm25_body_matches") if isinstance(lexical_details, dict) else None,
+        "bm25_named_entity_matches": lexical_details.get("bm25_named_entity_matches") if isinstance(lexical_details, dict) else None,
         "bm25_query_tokens": lexical_details.get("bm25_query_tokens") if isinstance(lexical_details, dict) else None,
         "doc_id": md.get("doc_id") or md.get("docId"),
         "docId": md.get("docId") or md.get("doc_id"),
@@ -3233,23 +3261,27 @@ def _apply_hybrid_ranking(results: List[Dict[str, object]]) -> None:
         except Exception:
             bm25_coverage = 0.0
         bm25_matches = _to_int(item.get("bm25_matches")) or 0
+        named_entity_matches = _to_int(item.get("bm25_named_entity_matches")) or 0
         bm25_coverage_boost = (
             min(0.24, (bm25_coverage - 0.5) * 0.6)
             if "bm25" in channels and bm25_matches >= 3 and bm25_coverage > 0.5
             else 0.0
         )
+        named_entity_boost = min(0.42, 0.26 + 0.08 * named_entity_matches) if named_entity_matches else 0.0
         hybrid_score = (
             (dense_score * 0.58)
             + (lexical_score * 0.34)
             + (rrf_score * 8.0)
             + channel_boost
             + bm25_coverage_boost
+            + named_entity_boost
         )
         item["dense_score"] = round(dense_score, 6) if dense_score else None
         item["lexical_score_normalized"] = round(lexical_score, 6) if lexical_score else None
         item["rrf_score"] = round(rrf_score, 6)
         item["channel_boost"] = round(channel_boost, 6)
         item["bm25_coverage_boost"] = round(bm25_coverage_boost, 6)
+        item["named_entity_boost"] = round(named_entity_boost, 6)
         item["hybrid_score"] = round(hybrid_score, 6)
         item["hybridScore"] = item["hybrid_score"]
         item["retrieval_scores"] = {
@@ -3259,10 +3291,12 @@ def _apply_hybrid_ranking(results: List[Dict[str, object]]) -> None:
             "bm25_score": item.get("bm25_score"),
             "bm25_coverage": item.get("bm25_coverage"),
             "bm25_matches": item.get("bm25_matches"),
+            "bm25_named_entity_matches": item.get("bm25_named_entity_matches"),
             "bm25_query_tokens": item.get("bm25_query_tokens"),
             "rrf_score": item.get("rrf_score"),
             "channel_boost": item.get("channel_boost"),
             "bm25_coverage_boost": item.get("bm25_coverage_boost"),
+            "named_entity_boost": item.get("named_entity_boost"),
             "hybrid_score": item.get("hybrid_score"),
             "dense_rank": dense_rank,
             "lexical_rank": lexical_rank,
@@ -3427,10 +3461,42 @@ def _score_lexical_rows(
             "bm25_matches": match.get("bm25_matches"),
             "bm25_title_matches": match.get("bm25_title_matches"),
             "bm25_body_matches": match.get("bm25_body_matches"),
+            "bm25_named_entity_matches": match.get("bm25_named_entity_matches"),
             "bm25_query_tokens": match.get("bm25_query_tokens"),
         })
     scored.sort(key=lambda item: float(item.get("score") or 0), reverse=True)
     return scored
+
+def _select_lexical_candidates(
+    candidates: List[Dict[str, object]],
+    limit: int,
+    per_document: int = 4,
+) -> List[Dict[str, object]]:
+    selected: List[Dict[str, object]] = []
+    document_counts: Dict[str, int] = {}
+    target = max(1, int(limit or 1))
+    document_cap = max(1, int(per_document or 1))
+    for candidate in candidates:
+        metadata = candidate.get("metadata") if isinstance(candidate.get("metadata"), dict) else {}
+        document_key = str(
+            metadata.get("doc_id")
+            or metadata.get("docId")
+            or metadata.get("document_id")
+            or metadata.get("documentId")
+            or metadata.get("article_id")
+            or metadata.get("articleId")
+            or candidate.get("id")
+            or ""
+        ).strip()
+        if document_key:
+            count = document_counts.get(document_key, 0)
+            if count >= document_cap:
+                continue
+            document_counts[document_key] = count + 1
+        selected.append(candidate)
+        if len(selected) >= target:
+            break
+    return selected
 
 def _registry_title_shortlist_doc_ids(
     query: str,
@@ -3541,21 +3607,20 @@ def _fetch_lexical_candidates(
         title_doc_ids = _registry_title_shortlist_doc_ids(query, chroma_where)
     except Exception:
         title_doc_ids = []
-    if not title_doc_ids:
-        try:
-            targeted = _targeted_document_shortlist(query, chroma_where, top_k)
-            targeted_used = bool(targeted.get("ids"))
-            shortlist_scanned += int(targeted.get("scanned") or 0)
-            for index, item_id in enumerate(targeted.get("ids") or []):
-                key = str(item_id or "")
-                if not key or key in shortlist_seen:
-                    continue
-                shortlist_seen.add(key)
-                shortlist_ids.append(item_id)
-                shortlist_docs.append((targeted.get("documents") or [])[index])
-                shortlist_metas.append((targeted.get("metadatas") or [])[index])
-        except Exception:
-            logger.exception("targeted document shortlist retrieval failed")
+    try:
+        targeted = _targeted_document_shortlist(query, chroma_where, top_k)
+        targeted_used = bool(targeted.get("ids"))
+        shortlist_scanned += int(targeted.get("scanned") or 0)
+        for index, item_id in enumerate(targeted.get("ids") or []):
+            key = str(item_id or "")
+            if not key or key in shortlist_seen:
+                continue
+            shortlist_seen.add(key)
+            shortlist_ids.append(item_id)
+            shortlist_docs.append((targeted.get("documents") or [])[index])
+            shortlist_metas.append((targeted.get("metadatas") or [])[index])
+    except Exception:
+        logger.exception("targeted document shortlist retrieval failed")
     if title_doc_ids and "title_match" in allowed_channels:
         shortlist_where: Dict[str, object] = {"doc_id": {"$in": title_doc_ids}}
         if chroma_where:
@@ -3588,7 +3653,7 @@ def _fetch_lexical_candidates(
             if shortlist_scored:
                 shortlist_limit = max(0, min(max(1, top_k), RAG_LEXICAL_TOP_K))
                 return {
-                    "candidates": shortlist_scored[:shortlist_limit],
+                    "candidates": _select_lexical_candidates(shortlist_scored, shortlist_limit),
                     "scanned": shortlist_scanned,
                     "complete": False,
                     "error": None,
@@ -3607,7 +3672,7 @@ def _fetch_lexical_candidates(
         if shortlist_scored:
             shortlist_limit = max(0, min(max(1, top_k), RAG_LEXICAL_TOP_K))
             return {
-                "candidates": shortlist_scored[:shortlist_limit],
+                "candidates": _select_lexical_candidates(shortlist_scored, shortlist_limit),
                 "scanned": shortlist_scanned,
                 "complete": False,
                 "error": None,
@@ -3650,7 +3715,7 @@ def _fetch_lexical_candidates(
     scored = _score_lexical_rows(query, allowed_channels, all_ids, all_docs, all_metas)
     limit = max(0, min(max(1, top_k), RAG_LEXICAL_TOP_K))
     return {
-        "candidates": scored[:limit],
+        "candidates": _select_lexical_candidates(scored, limit),
         "scanned": len(all_ids),
         "complete": complete,
         "error": None,
@@ -5501,6 +5566,7 @@ def _execute_search(
                 "bm25_matches",
                 "bm25_title_matches",
                 "bm25_body_matches",
+                "bm25_named_entity_matches",
                 "bm25_query_tokens",
             ]:
                 if candidate.get(detail_key) is not None:

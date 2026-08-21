@@ -154,6 +154,17 @@ test("reported practice instruction is not enabled without a background practice
   ), false);
 });
 
+test("ordinary RAG answers are instructed to present found knowledge directly", () => {
+  const systemPrompt = readSource("lib/chat/systemPrompts/et.js");
+  const retrievalAssembler = readSource("lib/chat/retrievalContextAssembler.js");
+  const evidencePackage = readSource("lib/chat/evidencePackage.js");
+
+  assert.match(systemPrompt, /esita teadmine otse/);
+  assert.match(systemPrompt, /Ära kurda kasutajale/);
+  assert.doesNotMatch(retrievalAssembler, /Kui valitud allikabaas on kitsas, ütle seda loomulikult/);
+  assert.doesNotMatch(evidencePackage, /State naturally when the selected source base is narrow/);
+});
+
 test("municipality chat context can use service map KOV contacts", () => {
   const source = readSource("lib/chat/retrievalContextAssembler.js");
 

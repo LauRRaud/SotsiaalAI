@@ -96,6 +96,29 @@ class LexicalRecallTests(unittest.TestCase):
         self.assertIn("independent-report", selected_ids)
         self.assertEqual(len([item for item in selected if item.get("doc_id") == "article-a"]), 3)
 
+    def test_lexical_candidates_leave_room_for_a_second_document(self):
+        crowded = [
+            {
+                "id": f"guide-{index}",
+                "score": 10 - index / 10,
+                "metadata": {"doc_id": "privacy-guide"},
+            }
+            for index in range(10)
+        ]
+        targeted = {
+            "id": "hester-detail",
+            "score": 6.7,
+            "metadata": {"doc_id": "ai-article"},
+        }
+
+        selected = main._select_lexical_candidates([*crowded, targeted], 8)
+
+        self.assertIn("hester-detail", [item["id"] for item in selected])
+        self.assertEqual(
+            len([item for item in selected if item["metadata"]["doc_id"] == "privacy-guide"]),
+            4,
+        )
+
     def test_dense_candidate_pool_reaches_beyond_one_long_article(self):
         self.assertEqual(main._dense_candidate_limit(8), 64)
         self.assertEqual(main._dense_candidate_limit(14), 84)
@@ -128,6 +151,44 @@ class LexicalRecallTests(unittest.TestCase):
         self.assertTrue(scored)
         self.assertEqual(scored[0]["id"], "hester")
         self.assertIn("bm25", scored[0]["channels"])
+
+    def test_named_entity_case_form_can_anchor_a_specific_passage(self):
+        scored = main._score_lexical_rows(
+            "Kuidas kaitseb Helsingi Hester isikuandmeid ja kui kaua vestluslogisid säilitatakse?",
+            {"bm25"},
+            ["hester-detail"],
+            [
+                "Delikaatne teave eemaldatakse automaatselt ja logid kustutatakse "
+                "kuue kuu möödudes. Hesteri näide toetab inimkeskset teenust."
+            ],
+            [{"title": "Tehisintellekt sotsiaaltöös"}],
+        )
+
+        self.assertEqual(scored[0]["id"], "hester-detail")
+        self.assertEqual(scored[0]["bm25_named_entity_matches"], 1)
+
+    def test_named_entity_anchor_is_not_buried_below_generic_dense_results(self):
+        named = {
+            "id": "hester-detail",
+            "retrieval_channels": ["bm25"],
+            "lexical_score": 4.0,
+            "lexical_rank": 1,
+            "bm25_matches": 1,
+            "bm25_coverage": 0.125,
+            "bm25_named_entity_matches": 1,
+        }
+        generic = {
+            "id": "generic-dense",
+            "retrieval_channels": ["dense"],
+            "distance": 1.0,
+            "dense_rank": 1,
+        }
+
+        rows = [generic, named]
+        main._apply_hybrid_ranking(rows)
+
+        self.assertEqual(rows[0]["id"], "hester-detail")
+        self.assertGreater(named["named_entity_boost"], 0)
 
     def test_targeted_document_shortlist_reaches_a_chunk_beyond_the_bounded_full_scan(self):
         class Collection:
@@ -170,6 +231,45 @@ class LexicalRecallTests(unittest.TestCase):
 
         self.assertTrue(any(call.get("where_document") for call in collection.calls))
         self.assertIn("article-29", [item["id"] for item in result["candidates"]])
+
+    def test_targeted_body_match_is_kept_when_a_different_title_also_matches(self):
+        class Collection:
+            def __init__(self):
+                self.calls = []
+
+            def get(self, **kwargs):
+                self.calls.append(kwargs)
+                if kwargs.get("where_document"):
+                    return {
+                        "ids": ["hester-detail"],
+                        "documents": [
+                            "Helsingi Hester kaitseb isikuandmeid nii, et delikaatne "
+                            "teave eemaldatakse automaatselt ja vestluslogisid "
+                            "säilitatakse kuus kuud."
+                        ],
+                        "metadatas": [{"title": "Tehisintellekt sotsiaaltöös"}],
+                    }
+                if kwargs.get("where"):
+                    return {
+                        "ids": ["privacy-guide"],
+                        "documents": ["Isikuandmete kaitse üldised põhimõtted."],
+                        "metadatas": [{"title": "Isikuandmete töötleja üldjuhend"}],
+                    }
+                return {"ids": [], "documents": [], "metadatas": []}
+
+        collection = Collection()
+        with patch.object(main, "collection", collection), patch.object(
+            main, "_registry_title_shortlist_doc_ids", return_value=["privacy-guide"]
+        ):
+            result = main._fetch_lexical_candidates(
+                "Kuidas kaitseb Helsingi Hester isikuandmeid ja kui kaua vestluslogisid säilitatakse?",
+                None,
+                20,
+                ["title_match", "exact_phrase", "bm25"],
+            )
+
+        self.assertTrue(any(call.get("where_document") for call in collection.calls))
+        self.assertIn("hester-detail", [item["id"] for item in result["candidates"]])
 
     def test_found_article_expands_to_question_relevant_sibling_chunks(self):
         class Collection:
