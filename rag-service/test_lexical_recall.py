@@ -63,6 +63,43 @@ class LexicalRecallTests(unittest.TestCase):
         self.assertEqual(rows[0]["id"], "precise")
         self.assertGreater(precise["bm25_coverage_boost"], 0)
 
+    def test_journal_chunks_leave_result_slots_for_independent_sources(self):
+        rows = [
+            {
+                "id": f"article-a-{index}",
+                "doc_id": "article-a",
+                "source_type": "journal_article",
+            }
+            for index in range(6)
+        ] + [
+            {
+                "id": "independent-report",
+                "doc_id": "report-b",
+                "source_type": "research_report",
+            },
+            {
+                "id": "article-c-1",
+                "doc_id": "article-c",
+                "source_type": "journal_article",
+            },
+            {
+                "id": "article-c-2",
+                "doc_id": "article-c",
+                "source_type": "journal_article",
+            },
+        ]
+
+        selected = main._select_diverse_search_results(rows, 8)
+        selected_ids = [item["id"] for item in selected]
+
+        self.assertEqual(selected_ids[:3], ["article-a-0", "article-a-1", "article-a-2"])
+        self.assertIn("independent-report", selected_ids)
+        self.assertEqual(len([item for item in selected if item.get("doc_id") == "article-a"]), 3)
+
+    def test_dense_candidate_pool_reaches_beyond_one_long_article(self):
+        self.assertEqual(main._dense_candidate_limit(8), 96)
+        self.assertEqual(main._dense_candidate_limit(36), 200)
+
     def test_inflected_long_terms_and_named_entities_rank_the_matching_passage(self):
         query = "Kuidas kasutab Helsingi Hester tehisintellekti ja kuidas kaitseb isikuandmeid?"
         ids = ["generic", "hester"]
@@ -157,12 +194,15 @@ class LexicalRecallTests(unittest.TestCase):
                 }
 
         collection = Collection()
-        dense_results = [{
-            "id": "article-7",
-            "doc_id": "ai-article",
-            "articleId": "ai-2025",
-            "source_type": "journal_article",
-        }]
+        dense_results = [
+            {
+                "id": f"article-{index}",
+                "doc_id": f"ai-article-{index}",
+                "articleId": f"ai-2025-{index}",
+                "source_type": "journal_article",
+            }
+            for index in range(1, 7)
+        ]
         with patch.object(main, "collection", collection):
             siblings = main._fetch_article_sibling_candidates(
                 "Kuidas kasutab Helsingi Hester tehisintellekti ja kuidas kaitseb isikuandmeid?",
@@ -175,6 +215,10 @@ class LexicalRecallTests(unittest.TestCase):
         self.assertTrue(siblings)
         self.assertEqual(siblings[0]["id"], "article-8")
         self.assertIn("$and", collection.where)
+        self.assertEqual(
+            collection.where["$and"][1]["doc_id"]["$in"],
+            ["ai-article-1", "ai-article-2", "ai-article-3"],
+        )
 
 
 if __name__ == "__main__":

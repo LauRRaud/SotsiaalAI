@@ -3285,6 +3285,41 @@ def _apply_hybrid_ranking(results: List[Dict[str, object]]) -> None:
             item["retrieval_scores"]["hybrid_rank"] = rank
         item.pop("_hybrid_original_index", None)
 
+def _select_diverse_search_results(
+    results: List[Dict[str, object]],
+    limit: int,
+    journal_chunks_per_document: int = 3,
+) -> List[Dict[str, object]]:
+    selected: List[Dict[str, object]] = []
+    journal_counts: Dict[str, int] = {}
+    target = max(1, int(limit or 1))
+    per_document = max(1, int(journal_chunks_per_document or 1))
+
+    for item in results:
+        source_type = str(item.get("source_type") or item.get("legacy_source_type") or "").strip().lower()
+        if source_type in {"journal_article", "article"}:
+            document_key = str(
+                item.get("doc_id")
+                or item.get("docId")
+                or item.get("document_id")
+                or item.get("documentId")
+                or item.get("articleId")
+                or ""
+            ).strip()
+            if document_key:
+                current = journal_counts.get(document_key, 0)
+                if current >= per_document:
+                    continue
+                journal_counts[document_key] = current + 1
+        selected.append(item)
+        if len(selected) >= target:
+            break
+
+    return selected
+
+def _dense_candidate_limit(top_k: int) -> int:
+    return max(1, min(200, int(top_k or 1) * 12))
+
 def _build_hybrid_merge_strategy(requested_retrievers: List[str]) -> Dict[str, object]:
     return {
         "strategy": "weighted_hybrid_rrf",
@@ -3642,7 +3677,7 @@ def _fetch_article_sibling_candidates(
             continue
         if doc_id not in doc_ids:
             doc_ids.append(doc_id)
-        if len(doc_ids) >= 12:
+        if len(doc_ids) >= 3:
             break
     if not doc_ids:
         return []
@@ -3652,7 +3687,7 @@ def _fetch_article_sibling_candidates(
         sibling_where = {"$and": [chroma_where, sibling_where]}
     got = collection.get(
         include=["documents", "metadatas"],
-        limit=min(5000, max(240, len(doc_ids) * 160)),
+        limit=min(800, max(120, len(doc_ids) * 80)),
         where=sibling_where,
     )
     scored = _score_lexical_rows(
@@ -5257,7 +5292,7 @@ def _execute_search(
 
         res = collection.query(
             query_embeddings=[q_emb],
-            n_results=max(1, min(200, int(payload.top_k or 5) * 4)),
+            n_results=_dense_candidate_limit(payload.top_k or 5),
             where=chroma_where,
             include=include_items,
         )
@@ -5486,7 +5521,7 @@ def _execute_search(
         flat.append(lexical_result)
     _apply_hybrid_ranking(flat)
     requested_top_k = max(1, min(50, int(payload.top_k or 5)))
-    flat = flat[:requested_top_k]
+    flat = _select_diverse_search_results(flat, requested_top_k)
     result_count = len(flat)
     retrievers_used: List[str] = []
     for item in flat:
