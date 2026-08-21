@@ -372,6 +372,145 @@ class SearchObservabilityTests(unittest.TestCase):
             0,
         )
 
+    def test_single_part_fact_search_reuses_primary_embedding_and_recovers_article_numbers(self):
+        class SinglePartCollection:
+            def __init__(self):
+                self.query_calls = []
+
+            def query(self, **kwargs):
+                self.query_calls.append(kwargs)
+                article_md = {
+                    "doc_id": "care-home-2017",
+                    "article_id": "care-home-2017",
+                    "title": "Suurte erihooldekodude ümberkorraldamine",
+                    "source_type": "journal_article",
+                    "collection_id": "sotsiaaltoo_articles",
+                    "chunk_index": 0,
+                }
+                if len(self.query_calls) == 1:
+                    statistics_md = {
+                        "doc_id": "integration-statistics-2020",
+                        "title": "Puudega inimeste sotsiaalne lõimumine",
+                        "source_type": "research_report",
+                        "collection_id": "research_reports",
+                        "chunk_index": 215,
+                    }
+                    return {
+                        "ids": [["article-intro", "wrong-statistics"]],
+                        "documents": [[
+                            "Artikli sissejuhatus kirjeldab erihooldekodude ümberkorraldamist.",
+                            "Institutsioonides elas 5,1%, neist 80% olid tegevuspiiranguga ja 70% raskete piirangutega.",
+                        ]],
+                        "metadatas": [[article_md, statistics_md]],
+                        "distances": [[0.05, 0.08]],
+                    }
+                return {
+                    "ids": [["article-intro"]],
+                    "documents": [["Artikli sissejuhatus kirjeldab erihooldekodude ümberkorraldamist."]],
+                    "metadatas": [[article_md]],
+                    "distances": [[0.02]],
+                }
+
+            def get(self, **_kwargs):
+                article_md = {
+                    "doc_id": "care-home-2017",
+                    "article_id": "care-home-2017",
+                    "title": "Suurte erihooldekodude ümberkorraldamine",
+                    "source_type": "journal_article",
+                    "collection_id": "sotsiaaltoo_articles",
+                    "chunk_index": 0,
+                }
+                return {
+                    "ids": ["article-intro", "article-percentages"],
+                    "documents": [
+                        "Artikli sissejuhatus kirjeldab erihooldekodude ümberkorraldamist.",
+                        "Ligi 25% saaks hakkama kergemal teenusel, 45% vajab juhendamist "
+                        "ööpäev läbi ning umbes 30% pidevalt hooldamistoiminguid.",
+                    ],
+                    "metadatas": [article_md, {**article_md, "chunk_index": 1}],
+                }
+
+        query = "Millised kolm osakaalu näitas erihooldekodude elanike kaardistus?"
+        embed = Mock(return_value={
+            "embeddings": [[0.1, 0.2]],
+            "model": "test-embedding",
+            "latency_ms": 3,
+            "embedding_input_count": 1,
+        })
+        collection = SinglePartCollection()
+        with patch.object(main, "collection", collection), patch.object(
+            main, "_embed_batch_with_usage", embed
+        ), patch.object(
+            main, "_fetch_lexical_candidates", return_value={
+                "candidates": [], "scanned": 0, "complete": True, "error": None,
+            }
+        ), patch.object(main, "_fetch_document_sibling_candidates", return_value=[]):
+            result = main._execute_search(
+                main.SearchIn(
+                    query=query,
+                    top_k=12,
+                    journal_chunks_per_document=8,
+                ),
+                make_request(),
+            )
+
+        embed.assert_called_once_with([query])
+        self.assertEqual(len(collection.query_calls), 2)
+        target = next(item for item in result["results"] if item["id"] == "article-percentages")
+        self.assertEqual(target["fact_segment_hits"], 1)
+        self.assertEqual(target["fact_numeric_evidence_count"], 3)
+        self.assertEqual(result["strategy_decisions"]["fact_query_mode"], "full_query_fallback")
+        self.assertEqual(result["strategy_decisions"]["fact_query_segment_count"], 1)
+        self.assertGreaterEqual(result["strategy_decisions"]["fact_segment_candidate_count"], 1)
+
+    def test_current_version_filter_keeps_legacy_missing_marker_and_rejects_explicit_false(self):
+        class CurrentVersionCollection:
+            def __init__(self):
+                self.query_where = None
+
+            def query(self, **kwargs):
+                self.query_where = kwargs.get("where")
+                base = {"source_type": "journal_article", "collection_id": "sotsiaaltoo_articles"}
+                return {
+                    "ids": [["legacy-current", "explicit-old"]],
+                    "documents": [["Kehtiv vana artikkel.", "Asendatud artikkel."]],
+                    "metadatas": [[
+                        {**base, "doc_id": "legacy-current", "title": "Kehtiv"},
+                        {**base, "doc_id": "explicit-old", "title": "Asendatud", "is_current_version": False},
+                    ]],
+                    "distances": [[0.1, 0.2]],
+                }
+
+            def get(self, **_kwargs):
+                return {"ids": [], "documents": [], "metadatas": []}
+
+        collection = CurrentVersionCollection()
+        embed = Mock(return_value={
+            "embeddings": [[0.1, 0.2]],
+            "model": "test-embedding",
+            "embedding_input_count": 1,
+        })
+        with patch.object(main, "collection", collection), patch.object(
+            main, "_embed_batch_with_usage", embed
+        ), patch.object(
+            main, "_fetch_lexical_candidates", return_value={
+                "candidates": [], "scanned": 0, "complete": True, "error": None,
+            }
+        ), patch.object(main, "_fetch_document_sibling_candidates", return_value=[]):
+            result = main._execute_search(
+                main.SearchIn(
+                    query="kehtiv artikkel",
+                    top_k=12,
+                    journal_chunks_per_document=3,
+                    where={"is_current_version": {"$ne": False}},
+                ),
+                make_request(),
+            )
+
+        self.assertNotIn("is_current_version", str(collection.query_where))
+        self.assertEqual([item["id"] for item in result["results"]], ["legacy-current"])
+        self.assertTrue(result["strategy_decisions"]["current_version_post_filter"])
+
     def test_lexical_scan_pages_and_exposes_the_completeness_contract(self):
         class PagedCollection:
             def __init__(self):

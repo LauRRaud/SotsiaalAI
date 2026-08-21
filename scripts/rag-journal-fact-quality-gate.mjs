@@ -25,6 +25,17 @@ const CASES = [
     ]
   },
   {
+    // The short wording used to find only the article introduction and then
+    // substitute unrelated percentages from a 2020 statistics report.
+    id: "2017_erihooldekodud_short",
+    query: "Millised kolm osakaalu näitas erihooldekodude elanike kaardistus?",
+    facts: [
+      ["25% kergem teenus", /25\s*%[^.]{0,260}kergemal\s+teenusel/iu],
+      ["45% ööpäevaringne juhendamine", /45\s*%[^.]{0,180}juhendamist\s+ööpäev/iu],
+      ["30% pidevad hooldamistoimingud", /30\s*%[^.]{0,220}pidevalt\s+hooldamistoiminguid/iu]
+    ]
+  },
+  {
     id: "2018_vaimse_tervise_kriis",
     query: "Millal käsitles 2018. aasta vaimse tervise esmaabi artikkel olukorda kriisina ja millistele telefoninumbritele soovitas helistada?",
     facts: [

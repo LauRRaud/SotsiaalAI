@@ -388,6 +388,8 @@ test("groupMatches preserves hybrid retrieval score components for trace", () =>
       channel_boost: 0.14,
       hybrid_rank: 1,
       dense_rank: 3,
+      global_dense_rank: 177,
+      fact_segment_dense_rank: 1,
       lexical_rank: 1,
       retrieval_scores: {
         hybrid_score: 0.82,
@@ -408,6 +410,8 @@ test("groupMatches preserves hybrid retrieval score components for trace", () =>
   assert.equal(groups[0].channelBoost, 0.14);
   assert.equal(groups[0].hybridRank, 1);
   assert.equal(groups[0].denseRank, 3);
+  assert.equal(groups[0].globalDenseRank, 177);
+  assert.equal(groups[0].factSegmentDenseRank, 1);
   assert.equal(groups[0].lexicalRank, 1);
   assert.equal(groups[0].retrievalScores.hybrid_score, 0.82);
 });

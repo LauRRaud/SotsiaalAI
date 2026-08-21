@@ -2845,6 +2845,46 @@ def _normalize_search_filter_clause(source: Dict[str, object]) -> Dict[str, obje
     _copy_bool_metadata_filter(source, target, "historical", "historical")
     return target
 
+def _requires_current_version(where: Optional[Dict[str, object]]) -> bool:
+    if not isinstance(where, dict) or "is_current_version" not in where:
+        return False
+    value = where.get("is_current_version")
+    if value is True:
+        return True
+    if isinstance(value, str):
+        return value.strip().lower() in {"1", "true", "yes", "on"}
+    if isinstance(value, dict) and "$ne" in value:
+        excluded = value.get("$ne")
+        if excluded is False:
+            return True
+        if isinstance(excluded, str):
+            return excluded.strip().lower() in {"0", "false", "no", "off"}
+    return False
+
+def _metadata_matches_current_version_requirement(
+    metadata: Dict[str, object],
+    require_current: bool,
+) -> bool:
+    if not require_current:
+        return True
+    # Legacy rows have no explicit marker and are still current. Forwarding
+    # ``{$ne: false}`` to Chroma would silently exclude every missing field, so
+    # enforce this predicate after retrieval and reject only explicit false.
+    current = (
+        metadata.get("is_current_version")
+        if metadata.get("is_current_version") is not None
+        else metadata.get("isCurrentVersion")
+    )
+    if isinstance(current, str):
+        normalized = current.strip().lower()
+        if normalized in {"1", "true", "yes", "on"}:
+            current = True
+        elif normalized in {"0", "false", "no", "off"}:
+            current = False
+        else:
+            current = None
+    return current is not False
+
 SEARCH_METADATA_STRING_FILTERS: List[Tuple[str, str]] = [
     ("document_id", "document_id"),
     ("documentId", "document_id"),
@@ -3043,6 +3083,53 @@ def _split_fact_query_segments(
         if len(segments) >= max_segments:
             break
     return segments if len(segments) >= 2 else []
+
+_PERCENTAGE_COUNT_WORDS = {
+    "uks": 1,
+    "uhe": 1,
+    "one": 1,
+    "kaks": 2,
+    "two": 2,
+    "kolm": 3,
+    "three": 3,
+    "neli": 4,
+    "four": 4,
+    "viis": 5,
+    "five": 5,
+    "kuus": 6,
+    "six": 6,
+}
+
+def _expected_percentage_fact_count(query: object) -> int:
+    normalized = _normalize_search_text(query)
+    if not normalized or not re.search(
+        r"(?:\bosakaal\w*\b|\bprotsent\w*\b|%|\bkui\s+suur\s+osa\b)",
+        normalized,
+    ):
+        return 0
+    count_match = re.search(
+        r"\b(\d{1,2}|uks|uhe|one|kaks|two|kolm|three|neli|four|viis|five|kuus|six)\s+"
+        r"(?:\S+\s+){0,2}?(?:osakaal\w*|protsent\w*|naitaja\w*)\b",
+        normalized,
+    )
+    if not count_match:
+        return 1
+    token = count_match.group(1)
+    if token.isdigit():
+        return max(1, min(12, int(token)))
+    return _PERCENTAGE_COUNT_WORDS.get(token, 1)
+
+def _percentage_evidence_count(document: object) -> int:
+    body = _strip_synthetic_rag_prefix(str(document or ""))
+    values = {
+        match.group(1).replace(",", ".")
+        for match in re.finditer(
+            r"\b(\d{1,3}(?:[.,]\d+)?)\s*(?:%|protsent\w*)",
+            body,
+            flags=re.I,
+        )
+    }
+    return len(values)
 
 def _query_phrases(query: str) -> List[str]:
     phrases: List[str] = []
@@ -3401,7 +3488,16 @@ def _apply_hybrid_ranking(results: List[Dict[str, object]]) -> None:
     rrf_k = max(1, RAG_RRF_K)
     for original_index, item in enumerate(results):
         channels = item.get("retrieval_channels") if isinstance(item.get("retrieval_channels"), list) else []
-        dense_rank = _to_int(item.get("dense_rank") or item.get("retrieval_rank"))
+        global_dense_rank = _to_int(item.get("global_dense_rank"))
+        fact_segment_dense_rank = _to_int(item.get("fact_segment_dense_rank"))
+        # ``dense_rank`` stays as a backwards-compatible ranking input. The
+        # explicit fields preserve whether that rank came from the corpus-wide
+        # query or from a bounded query inside already selected documents.
+        dense_rank = (
+            global_dense_rank
+            or fact_segment_dense_rank
+            or _to_int(item.get("dense_rank") or item.get("retrieval_rank"))
+        )
         lexical_rank = _to_int(item.get("lexical_rank"))
         dense_score = _hybrid_dense_score(item.get("distance")) if "dense" in channels else 0.0
         lexical_score = _hybrid_lexical_score(item.get("lexical_score")) if any(
@@ -3487,6 +3583,15 @@ def _apply_hybrid_ranking(results: List[Dict[str, object]]) -> None:
             "fact_segment_boost": item.get("fact_segment_boost"),
             "hybrid_score": item.get("hybrid_score"),
             "dense_rank": dense_rank,
+            "global_dense_rank": global_dense_rank,
+            "fact_segment_dense_rank": fact_segment_dense_rank,
+            "dense_rank_scope": (
+                "global"
+                if global_dense_rank
+                else "fact_segment"
+                if fact_segment_dense_rank
+                else None
+            ),
             "lexical_rank": lexical_rank,
             "rrf_contributions": rrf_contributions,
             "channel_boosts": channel_boosts,
@@ -4038,7 +4143,12 @@ def _targeted_document_shortlist(
     metadatas: List[object] = []
     seen = set()
     scanned = 0
-    per_term_limit = max(40, min(240, max(1, top_k) * 6))
+    # Candidate collection is not the response size. At top_k=12 the old
+    # 72-row term window missed a measured journal title that the same search
+    # found quickly at top_k=36 with a 216-row window, forcing either a wrong
+    # answer or a 50k-row corpus scan. Keep this shortlist bounded but deep
+    # enough independently of how many results the caller wants back.
+    per_term_limit = max(216, min(240, max(1, top_k) * 6))
     terms = _targeted_document_terms(query)
     compound_query = len(_split_fact_query_segments(query, anchor_short=False)) >= 2
     scoring_channels = set(allowed_channels or {"title_match", "exact_phrase", "bm25"})
@@ -4480,6 +4590,7 @@ def _fetch_fact_segment_candidates(
                     rank=rank,
                 )
                 existing["dense_rank"] = rank
+                existing["fact_segment_dense_rank"] = rank
                 existing["fact_segment_indexes"] = []
                 existing["fact_segment_ranks"] = {}
                 by_id[item_id] = existing
@@ -4506,6 +4617,10 @@ def _fetch_fact_segment_candidates(
             except Exception:
                 pass
             existing["dense_rank"] = min(_to_int(existing.get("dense_rank")) or rank, rank)
+            existing["fact_segment_dense_rank"] = min(
+                _to_int(existing.get("fact_segment_dense_rank")) or rank,
+                rank,
+            )
 
     # Semantiline alamotsing võib eesti käändelise või väga lühikese küsimuse
     # puhul valida küll õige dokumendi, kuid vale lõigu. Hinda samade, juba
@@ -4536,6 +4651,54 @@ def _fetch_fact_segment_candidates(
                 max(2, min(12, int(per_document or 1))),
                 per_document=max(2, min(4, math.ceil(max(1, int(per_document or 1)) / 3))),
             )
+            expected_percentage_count = _expected_percentage_fact_count(segment_query)
+            if expected_percentage_count:
+                numeric_by_doc: Dict[str, tuple] = {}
+                for row_index, item_id_value in enumerate(lexical_ids):
+                    item_id = str(item_id_value or "").strip()
+                    md = (
+                        lexical_metadatas[row_index]
+                        if row_index < len(lexical_metadatas) and isinstance(lexical_metadatas[row_index], dict)
+                        else {}
+                    )
+                    document = (
+                        lexical_documents[row_index]
+                        if row_index < len(lexical_documents) and isinstance(lexical_documents[row_index], str)
+                        else ""
+                    )
+                    candidate_doc_id = str(md.get("doc_id") or md.get("docId") or "").strip()
+                    evidence_count = _percentage_evidence_count(document)
+                    if not item_id or not candidate_doc_id or evidence_count < expected_percentage_count:
+                        continue
+                    chunk_index = _to_int(md.get("chunk_index") or md.get("chunkIndex"))
+                    sort_key = (
+                        abs(evidence_count - expected_percentage_count),
+                        -evidence_count,
+                        chunk_index if chunk_index is not None else 10**9,
+                    )
+                    previous = numeric_by_doc.get(candidate_doc_id)
+                    if previous is None or sort_key < previous[0]:
+                        numeric_by_doc[candidate_doc_id] = (sort_key, {
+                            "id": item_id,
+                            "document": document,
+                            "metadata": md,
+                            "score": 0.0,
+                            "channels": ["numeric_fact_shape"],
+                            "fact_numeric_evidence_count": evidence_count,
+                        })
+                candidate_ids = {str(candidate.get("id") or "") for candidate in candidates}
+                for _sort_key, numeric_candidate in sorted(numeric_by_doc.values(), key=lambda item: item[0]):
+                    if str(numeric_candidate.get("id") or "") not in candidate_ids:
+                        candidates.append(numeric_candidate)
+                    else:
+                        for candidate in candidates:
+                            if str(candidate.get("id") or "") == str(numeric_candidate.get("id") or ""):
+                                channels = candidate.get("channels") if isinstance(candidate.get("channels"), list) else []
+                                if "numeric_fact_shape" not in channels:
+                                    channels.append("numeric_fact_shape")
+                                candidate["channels"] = channels
+                                candidate["fact_numeric_evidence_count"] = numeric_candidate["fact_numeric_evidence_count"]
+                                break
             for rank, candidate in enumerate(candidates, start=1):
                 item_id = str(candidate.get("id") or "").strip()
                 md = candidate.get("metadata") if isinstance(candidate.get("metadata"), dict) else {}
@@ -4548,6 +4711,7 @@ def _fetch_fact_segment_candidates(
                 existing = by_id.get(item_id)
                 if existing is None:
                     channels = [str(value) for value in candidate.get("channels") or [] if str(value or "").strip()]
+                    lexical_channels = set(channels).intersection({"title_match", "exact_phrase", "bm25"})
                     existing = _search_result_from_metadata(
                         item_id=item_id,
                         document=str(candidate.get("document") or ""),
@@ -4555,20 +4719,29 @@ def _fetch_fact_segment_candidates(
                         distance=None,
                         channels=channels or ["bm25"],
                         rank=rank,
-                        lexical_score=float(candidate.get("score") or 0),
-                        lexical_details=candidate,
+                        lexical_score=float(candidate.get("score") or 0) if lexical_channels else None,
+                        lexical_details=candidate if lexical_channels else None,
                     )
-                    existing["lexical_rank"] = rank
+                    if lexical_channels:
+                        existing["lexical_rank"] = rank
                     existing["fact_segment_indexes"] = []
                     existing["fact_segment_ranks"] = {}
                     by_id[item_id] = existing
                 else:
                     _append_channels(existing, candidate.get("channels") or ["bm25"])
-                    existing["lexical_score"] = max(
-                        float(existing.get("lexical_score") or 0),
-                        float(candidate.get("score") or 0),
+                    candidate_channels = set(candidate.get("channels") or [])
+                    if candidate_channels.intersection({"title_match", "exact_phrase", "bm25"}):
+                        existing["lexical_score"] = max(
+                            float(existing.get("lexical_score") or 0),
+                            float(candidate.get("score") or 0),
+                        )
+                        existing["lexical_rank"] = min(_to_int(existing.get("lexical_rank")) or rank, rank)
+                numeric_evidence_count = _to_int(candidate.get("fact_numeric_evidence_count"))
+                if numeric_evidence_count:
+                    existing["fact_numeric_evidence_count"] = max(
+                        _to_int(existing.get("fact_numeric_evidence_count")) or 0,
+                        numeric_evidence_count,
                     )
-                    existing["lexical_rank"] = min(_to_int(existing.get("lexical_rank")) or rank, rank)
                 indexes = existing.get("fact_segment_indexes")
                 if not isinstance(indexes, list):
                     indexes = []
@@ -4689,6 +4862,13 @@ def _merge_fact_segment_candidates(
             results.append(candidate)
             continue
         existing = by_id[item_id]
+        candidate_fact_dense_rank = _to_int(candidate.get("fact_segment_dense_rank"))
+        existing_fact_dense_rank = _to_int(existing.get("fact_segment_dense_rank"))
+        if candidate_fact_dense_rank:
+            existing["fact_segment_dense_rank"] = min(
+                existing_fact_dense_rank or candidate_fact_dense_rank,
+                candidate_fact_dense_rank,
+            )
         existing_indexes = existing.get("fact_segment_indexes")
         if not isinstance(existing_indexes, list):
             existing_indexes = []
@@ -6136,6 +6316,7 @@ def _execute_search(
     agent_document_ids: Optional[List[str]] = None,
 ):
     is_general_search = agent_document_ids is None
+    require_current_version = _requires_current_version(payload.where)
     md_where: Dict[str, object] = {}
     requested_retrievers = _normalize_requested_retrievers(payload.retrievers)
 
@@ -6262,16 +6443,28 @@ def _execute_search(
         channel in requested_retrievers
         for channel in ["title_match", "exact_phrase", "bm25"]
     )
-    fact_query_segments = (
+    deep_document_fact_search = payload.journal_chunks_per_document > 3
+    split_fact_query_segments = (
         _split_fact_query_segments(payload.query, anchor_short=False)
-        if payload.journal_chunks_per_document > 3
+        if deep_document_fact_search
+        else []
+    )
+    reuse_primary_fact_embedding = deep_document_fact_search and not split_fact_query_segments
+    fact_query_segments = (
+        split_fact_query_segments
+        if split_fact_query_segments
+        else [payload.query]
+        if reuse_primary_fact_embedding
         else []
     )
     fact_embedding_segments = (
         _split_fact_query_segments(payload.query, anchor_short=True)
-        if fact_query_segments
+        if split_fact_query_segments
         else []
     )
+    # A short single-part fact question already has the exact embedding needed
+    # for the document-internal pass. Reuse it instead of billing and waiting
+    # for an identical second embedding input.
     embedding_inputs = [payload.query, *fact_embedding_segments]
     embed_t0 = time.perf_counter()
     embedding_degraded = False
@@ -6307,7 +6500,13 @@ def _execute_search(
         raise
     embedding_ms = _ms_since(embed_t0)
     q_embeds = list(embed_result.get("embeddings") or [])
-    segment_embeddings = q_embeds[1:1 + len(fact_query_segments)] if q_embeds else []
+    segment_embeddings = (
+        [q_embeds[0]]
+        if q_embeds and reuse_primary_fact_embedding
+        else q_embeds[1:1 + len(fact_query_segments)]
+        if q_embeds
+        else []
+    )
     if not embedding_degraded:
         _log_stage(
             "embedding",
@@ -6402,6 +6601,8 @@ def _execute_search(
             continue
         if not _metadata_matches_filter(md, chroma_where):
             continue
+        if not _metadata_matches_current_version_requirement(md, require_current_version):
+            continue
         source_path = md.get("source_path")
         file_name = None
         if source_path:
@@ -6421,6 +6622,7 @@ def _execute_search(
             "retrieval_channels": ["dense"],
             "retrieval_rank": i + 1,
             "dense_rank": i + 1,
+            "global_dense_rank": i + 1,
             "doc_id": md.get("doc_id") or md.get("docId"),
             "docId": md.get("docId") or md.get("doc_id"),
             "chunk_id": md.get("chunk_id") or md.get("chunkId"),
@@ -6444,6 +6646,7 @@ def _execute_search(
             "section": md.get("section"),
             "item_type": md.get("item_type"),
             "content_status": md.get("content_status"),
+            "is_current_version": md.get("is_current_version") if md.get("is_current_version") is not None else md.get("isCurrentVersion"),
             "resource_type": md.get("resource_type"),
             "checked_at": md.get("checked_at"),
             "pages": md.get("pages"),
@@ -6560,6 +6763,8 @@ def _execute_search(
             continue
         if not _metadata_matches_filter(candidate_md, chroma_where):
             continue
+        if not _metadata_matches_current_version_requirement(candidate_md, require_current_version):
+            continue
         channels = [str(item) for item in candidate.get("channels") or [] if str(item or "").strip()]
         if not channels:
             continue
@@ -6617,6 +6822,11 @@ def _execute_search(
     if fact_segment_candidates:
         _merge_fact_segment_candidates(flat, fact_segment_candidates)
         _apply_hybrid_ranking(flat)
+    if require_current_version:
+        flat = [
+            item for item in flat
+            if _metadata_matches_current_version_requirement(item, True)
+        ]
     flat = _select_fact_covered_search_results(
         flat,
         baseline_results,
@@ -6820,6 +7030,28 @@ def _execute_search(
             "exhaustive": bool(lexical_fetch.get("exhaustive")),
             "strategy": lexical_fetch.get("strategy") or "corpus_scan",
             "error": lexical_fetch.get("error"),
+        },
+        "strategy_decisions": {
+            "requested_top_k": requested_top_k,
+            "dense_candidate_limit": _dense_candidate_limit(payload.top_k or 5),
+            "dense_candidate_count": len(ids),
+            "journal_chunks_per_document": payload.journal_chunks_per_document,
+            "deep_document_fact_search": deep_document_fact_search,
+            "fact_query_mode": (
+                "split_segments"
+                if split_fact_query_segments
+                else "full_query_fallback"
+                if reuse_primary_fact_embedding
+                else "disabled"
+            ),
+            "fact_query_segment_count": len(fact_query_segments),
+            "dense_article_anchor_document_count": len(dense_article_doc_ids),
+            "sibling_max_documents": 3 if deep_document_fact_search else 1,
+            "sibling_candidate_count": len(sibling_candidates),
+            "fact_segment_max_documents": 5 if deep_document_fact_search else 0,
+            "fact_segment_candidate_count": len(fact_segment_candidates),
+            "current_version_post_filter": require_current_version,
+            "lexical_strategy": lexical_fetch.get("strategy") or "corpus_scan",
         },
         "request_id": stage_request_id,
         "timings": {

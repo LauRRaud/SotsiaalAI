@@ -11,10 +11,61 @@ import {
   isMunicipalityServiceBenefitListRequest,
   mergePackageDisplayedSources,
   resolveKovContactMode,
+  selectSingleSourceNumericFactGroups,
   selectGroupsWithPreferredSourceYear,
   shouldIncludeContextAuthors,
   shouldUseReportedPracticeInstruction
 } from "../../lib/chat/retrievalContextAssembler.js";
+
+test("numeric fact selection never borrows percentages from a different source group", () => {
+  const groups = [
+    {
+      key: "care-home-2017",
+      docId: "care-home-2017",
+      title: "Suurte erihooldekodude ümberkorraldamine",
+      bodies: ["Artikli sissejuhatus kirjeldab erihooldekodude ümberkorraldamist."]
+    },
+    {
+      key: "integration-statistics-2020",
+      docId: "integration-statistics-2020",
+      title: "Puudega inimeste sotsiaalne lõimumine",
+      bodies: ["Institutsioonides elas 5,1%, neist 80% olid tegevuspiiranguga ja 70% raskete piirangutega."]
+    }
+  ];
+
+  const result = selectSingleSourceNumericFactGroups(
+    "Millised kolm osakaalu näitas erihooldekodude elanike kaardistus?",
+    groups
+  );
+
+  assert.equal(result.enabled, true);
+  assert.equal(result.sufficient, false);
+  assert.equal(result.expectedCount, 3);
+  assert.equal(result.evidenceCount, 0);
+  assert.deepEqual(result.groups.map(group => group.key), ["care-home-2017"]);
+});
+
+test("numeric fact selection accepts all requested percentages from the primary source group", () => {
+  const groups = [{
+    key: "care-home-2017",
+    docId: "care-home-2017",
+    bodies: ["Ligi 25% saaks hakkama kergemal teenusel, 45% vajab juhendamist ja 30% pidevat hooldamist."]
+  }, {
+    key: "other",
+    docId: "other",
+    bodies: ["Teises aruandes oli 80%." ]
+  }];
+
+  const result = selectSingleSourceNumericFactGroups(
+    "Millised kolm osakaalu näitas erihooldekodude elanike kaardistus?",
+    groups
+  );
+
+  assert.equal(result.enabled, true);
+  assert.equal(result.sufficient, true);
+  assert.equal(result.evidenceCount, 3);
+  assert.deepEqual(result.groups.map(group => group.key), ["care-home-2017"]);
+});
 
 test("a lower-scored group from the explicitly named source year is selected first", () => {
   const selected = selectGroupsWithPreferredSourceYear([

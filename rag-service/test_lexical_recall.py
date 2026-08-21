@@ -650,6 +650,49 @@ class LexicalRecallTests(unittest.TestCase):
         self.assertTrue(any(call.get("where_document") for call in collection.calls))
         self.assertIn("article-29", [item["id"] for item in result["candidates"]])
 
+    def test_targeted_shortlist_budget_is_independent_of_twelve_result_response_limit(self):
+        class Collection:
+            def __init__(self):
+                self.calls = []
+
+            def get(self, **kwargs):
+                self.calls.append(kwargs)
+                if kwargs.get("where_document") and int(kwargs.get("limit") or 0) >= 216:
+                    return {
+                        "ids": ["care-home-intro"],
+                        "documents": [
+                            "Erihooldekodude elanike kaardistus näitas kolme osakaalu: "
+                            "25%, 45% ja 30%."
+                        ],
+                        "metadatas": [{
+                            "doc_id": "care-home-2017",
+                            "title": "Suurte erihooldekodude ümberkorraldamine",
+                        }],
+                    }
+                if kwargs.get("where_document"):
+                    return {"ids": [], "documents": [], "metadatas": []}
+                return {"ids": [], "documents": [], "metadatas": []}
+
+        collection = Collection()
+        with patch.object(main, "collection", collection), patch.object(
+            main, "_registry_title_shortlist_doc_ids", return_value=[]
+        ):
+            result = main._fetch_lexical_candidates(
+                "Millised kolm osakaalu näitas erihooldekodude elanike kaardistus?",
+                None,
+                12,
+                ["title_match", "exact_phrase", "bm25"],
+            )
+
+        targeted_limits = [
+            int(call.get("limit") or 0)
+            for call in collection.calls
+            if call.get("where_document")
+        ]
+        self.assertTrue(targeted_limits)
+        self.assertGreaterEqual(targeted_limits[0], 216)
+        self.assertIn("care-home-intro", [item["id"] for item in result["candidates"]])
+
     def test_strong_targeted_body_match_skips_the_bounded_corpus_scan(self):
         class Collection:
             def __init__(self):
@@ -935,6 +978,63 @@ class LexicalRecallTests(unittest.TestCase):
             next(item for item in candidates if item["id"] == "after").get("fact_adjacent_to_best_segments", []),
         )
         self.assertTrue(next(item for item in candidates if item["id"] == "after").get("fact_neighbor"))
+
+    def test_global_and_fact_segment_dense_ranks_keep_separate_provenance(self):
+        results = [{
+            "id": "target",
+            "doc_id": "care-home-2017",
+            "retrieval_channels": ["dense"],
+            "dense_rank": 177,
+            "global_dense_rank": 177,
+        }]
+        candidates = [{
+            "id": "target",
+            "doc_id": "care-home-2017",
+            "retrieval_channels": ["dense"],
+            "dense_rank": 1,
+            "fact_segment_dense_rank": 1,
+            "fact_segment_indexes": [0],
+            "fact_segment_ranks": {"0": 1},
+            "fact_segment_hits": 1,
+            "fact_segment_best_rank": 1,
+        }]
+
+        main._merge_fact_segment_candidates(results, candidates)
+        main._apply_hybrid_ranking(results)
+
+        self.assertEqual(results[0]["dense_rank"], 177)
+        self.assertEqual(results[0]["global_dense_rank"], 177)
+        self.assertEqual(results[0]["fact_segment_dense_rank"], 1)
+        self.assertEqual(results[0]["retrieval_scores"]["global_dense_rank"], 177)
+        self.assertEqual(results[0]["retrieval_scores"]["fact_segment_dense_rank"], 1)
+
+    def test_percentage_shape_intent_counts_requested_facts_but_ignores_plain_years(self):
+        self.assertEqual(
+            main._expected_percentage_fact_count(
+                "Millised kolm osakaalu näitas erihooldekodude elanike kaardistus?"
+            ),
+            3,
+        )
+        self.assertEqual(
+            main._expected_percentage_fact_count("Mida näitas 2022. aasta uuring?"),
+            0,
+        )
+
+    def test_current_version_filter_rejects_only_explicit_false_and_keeps_legacy_rows(self):
+        requirement = main._requires_current_version({
+            "is_current_version": {"$ne": False},
+        })
+
+        self.assertTrue(requirement)
+        self.assertFalse(main._metadata_matches_current_version_requirement(
+            {"is_current_version": False},
+            requirement,
+        ))
+        self.assertTrue(main._metadata_matches_current_version_requirement(
+            {"is_current_version": True},
+            requirement,
+        ))
+        self.assertTrue(main._metadata_matches_current_version_requirement({}, requirement))
 
     def test_sibling_ranking_ignores_repeated_description_and_scores_real_body(self):
         repeated_prefix = (
