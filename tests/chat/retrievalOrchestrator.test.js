@@ -16,10 +16,38 @@ import {
   hasRecentAssistantSources,
   inferRetrieversUsed,
   isBroadMultiSourceRagQuestion,
+  isSpecificDocumentFactRagQuestion,
   isThematicSynthesisRagQuestion,
   searchRagQueries,
   shouldUseAnswerHistory
 } from "../../lib/chat/retrievalOrchestrator.js";
+
+test("single named document fact questions are not widened into corpus synthesis", () => {
+  const questions = [
+    "Mida soovitas 2025. aasta dementsuse ennetamise artikkel nädalase liikumise ja ööune kohta ning mitu korda suurem on dementsuse risk kuulmislangusega inimesel?",
+    "Millised ohumärgid on selles juhendis kirjas?",
+    "Mitu inimest osales 2024. aasta uuringus?"
+  ];
+
+  for (const question of questions) {
+    assert.equal(isSpecificDocumentFactRagQuestion(question), true, question);
+    assert.equal(isThematicSynthesisRagQuestion(question), false, question);
+    assert.equal(isBroadMultiSourceRagQuestion(question), false, question);
+  }
+});
+
+test("plural and explicit cross-source requests still use synthesis", () => {
+  const questions = [
+    "Milliseid probleeme käsitlevad artiklid sotsiaaltöös?",
+    "Võrdle eri uuringute järeldusi hoolduskoormuse kohta.",
+    "Anna ülevaade ajakirjas käsitletud vaimse tervise teemadest."
+  ];
+
+  for (const question of questions) {
+    assert.equal(isSpecificDocumentFactRagQuestion(question), false, question);
+    assert.equal(isBroadMultiSourceRagQuestion(question), true, question);
+  }
+});
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

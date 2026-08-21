@@ -89,6 +89,44 @@ test("konkreetne faktiküsimus küsib sama artikli seest sügavamat tõendikompl
   assert.equal(searchOptions?.journalChunksPerDocument, 8);
 });
 
+test("ühe nimetatud artikli mitme fakti küsimus ei muutu overview-sünteesiks", async () => {
+  let searchOptions = null;
+  const { result } = await runAssembler({
+    effectiveMessage: "Mida soovitas 2025. aasta dementsuse ennetamise artikkel nädalase liikumise ja ööune kohta ning mitu korda suurem on dementsuse risk kuulmislangusega inimesel?",
+    searchImpl: async (options) => {
+      searchOptions = options;
+      return [];
+    }
+  });
+
+  assert.equal(searchOptions?.journalChunksPerDocument, 8);
+  assert.notEqual(result.retrievalMeta.queryPlan?.mode, "overview_synthesis");
+  assert.notEqual(result.retrievalMeta.queryPlan?.selection_strategy, "overview_diversity_then_depth");
+});
+
+test("ühe artikli eri lõikudes olevad faktid jõuavad koos vestluse konteksti", async () => {
+  const doc = {
+    doc_id: "dementsuse-ennetus-2025",
+    title: "Dementsuse ennetus",
+    source_type: "journal_article",
+    journalTitle: "Sotsiaaltöö",
+    year: 2025,
+    retriever: "dense"
+  };
+  const { result } = await runAssembler({
+    effectiveMessage: "Mida soovitas 2025. aasta dementsuse ennetamise artikkel nädalase liikumise ja ööune kohta ning mitu korda suurem on dementsuse risk kuulmislangusega inimesel?",
+    searchImpl: async () => [
+      { ...doc, id: "movement", chunk_index: 1, text: "Nädalas soovitati 150 minutit mõõdukat või 75 minutit intensiivset liikumist." },
+      { ...doc, id: "sleep", chunk_index: 6, text: "Hea eesmärk on seitse–kaheksa tundi ööund." },
+      { ...doc, id: "hearing", chunk_index: 9, text: "Kuulmislangusega inimesel on dementsuse risk 2–5 korda suurem." }
+    ]
+  });
+
+  assert.match(result.effectiveContext, /150 minutit/);
+  assert.match(result.effectiveContext, /seitse–kaheksa tundi/);
+  assert.match(result.effectiveContext, /2–5 korda suurem/);
+});
+
 test("lai teemaküsimus säilitab artiklitevahelise mitmekesisuse", async () => {
   let searchOptions = null;
   await runAssembler({
