@@ -10,6 +10,7 @@ import {
   selectMultiSourceGroups,
   selectOverviewSynthesisGroups
 } from "../../lib/chat/ragContext.js";
+import { extractTopicHints } from "../../lib/chat/retrievalPlanning.js";
 
 test("topic hints outrank generic high-scoring noise for named concept questions", () => {
   const ranked = rankGroupsWithTopicHints([
@@ -32,14 +33,15 @@ test("topic hints outrank generic high-scoring noise for named concept questions
   assert.equal(ranked[0].key, "voimaluste-kohvik");
 });
 
-test("topic hints move the matching article chunk ahead of generic chunks before context truncation", () => {
+test("topic hints move the matching article chunk and passage ahead of context truncation", () => {
+  const longLead = "Üldine taust käsitleb digilahenduste arengut, kaalutlusi ja rahvusvahelisi näiteid. ".repeat(14);
   const ranked = rankGroupsWithTopicHints([
     {
       key: "ai-article",
       title: "Tehisintellekt sotsiaaltöös",
       bodies: [
         "Üldine sissejuhatus kirjeldab tehisintellekti kasutamise võimalusi ja eetilisi piire sotsiaaltöös.",
-        "Eesti töötukassa OTT-süsteem hindab pikaajalise töötuse riski 45 näitaja alusel ning toetab spetsialisti otsust.",
+        `${longLead}Eesti töötukassa OTT-süsteem hindab pikaajalise töötuse riski 45 näitaja alusel ning toetab spetsialisti otsust.`,
         "Rahvusvahelised näited käsitlevad dokumenteerimist ja automatiseerimist."
       ],
       bestScore: 0.8,
@@ -51,6 +53,13 @@ test("topic hints move the matching article chunk ahead of generic chunks before
   assert.match(
     renderOneContextBlock(ranked[0], 0, { bodyMaxChars: 180 }),
     /OTT-süsteem/
+  );
+});
+
+test("topic hint extraction removes inflected generic field words but keeps the named entity", () => {
+  assert.deepEqual(
+    extractTopicHints("tehisintellekt sotsiaalvaldkonnas? töötukassas?"),
+    ["tehisintellekt", "tootukassas"]
   );
 });
 
