@@ -76,6 +76,32 @@ test("otsene nimetatud näide säilib kontekstis ja saab vale eituse vastase tõ
   );
 });
 
+test("konkreetne faktiküsimus küsib sama artikli seest sügavamat tõendikomplekti", async () => {
+  let searchOptions = null;
+  await runAssembler({
+    effectiveMessage: "Mitu omavalitsust oli STARis menetlusi algatanud ning mitu koolitust korraldati?",
+    searchImpl: async (options) => {
+      searchOptions = options;
+      return [];
+    }
+  });
+
+  assert.equal(searchOptions?.journalChunksPerDocument, 8);
+});
+
+test("lai teemaküsimus säilitab artiklitevahelise mitmekesisuse", async () => {
+  let searchOptions = null;
+  await runAssembler({
+    effectiveMessage: "Millised on peamised probleemid ja lahendused, millest lastekaitse artiklites räägitakse?",
+    searchImpl: async (options) => {
+      searchOptions = options;
+      return [];
+    }
+  });
+
+  assert.equal(searchOptions?.journalChunksPerDocument, 3);
+});
+
 test("abortitud otsing seab ragSearchFailed=true ja logib rag_error", async () => {
   const { result, events } = await runAssembler({
     searchImpl: async () => {

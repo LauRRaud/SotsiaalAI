@@ -240,7 +240,7 @@ Teekonnaloogikast on praegu puudu keskne `JourneyDraft`/`Journey` objekt, teekon
 
 Kõige väiksem ohutu lisamiskoht JourneyDraftile oleks optional metadata `/api/chat` vastuses, mille koostab uus eraldi `lib/journey/draft.js` teenus olemasoleva chat/RAG orchestrationi tulemuste põhjal. Seda ei tohiks panna RAG retrievali ega source attribution tuuma sisse ning see ei tohiks automaatselt püsivat Journey objekti luua.
 
-## Lõpukontroll
+## Algse kaardistuse lõppkontroll
 
 - Koodifaile ei muudetud.
 - Prisma skeemi ei muudetud.
@@ -248,3 +248,326 @@ Kõige väiksem ohutu lisamiskoht JourneyDraftile oleks optional metadata `/api/
 - Pakette ei installitud.
 - Build/deploy käske ei käivitatud.
 - Loodi või muudeti ainult `docs/audits/praegune-vestlus-rag-susteem-kaardistus.md`.
+
+---
+
+## 15. 21.08.2026 terviklik RAG-failipuu ja andmevoo audit
+
+See osa asendab varasema üldise mulje RAG-i tehnilise failikaardi ja mõõdetud piiridega.
+Inventuur hõlmas RAG-teenust, vestluse serverikoodi, RAG-i metaandmekihti, adminiliidest,
+API-route'e, sisestus- ja käitusskripte ning kandvaid teste. Lai inventuur andis 393
+teekonnakirjet; rühmad on tahtlikult osaliselt kattuvad (näiteks admini route kuulub nii
+API- kui adminirühma). See arv ei ole toodangu moodulite arv ega kvaliteedimõõdik.
+
+### 15.1. Tootmise failipuu
+
+```text
+SotsiaalAI/
+├─ app/api/chat/
+│  ├─ route.js                         # vestluse põhisisenemispunkt
+│  ├─ conversations/**                 # vestluse omanik, ajalugu ja taastamine
+│  ├─ run/route.js                     # püsiva vastuse taastamine
+│  └─ analyze-file, analyze-usage,
+│     export                           # dokumendi kõrvalharud
+│
+├─ lib/chat/                           # 57 faili kokku
+│  ├─ requestBootstrap.js              # auth, privaatsus, kriis, ajalugu, töövood
+│  ├─ sourceNeed.js                    # kas pööre vajab väliseid allikaid
+│  ├─ questionPlanner.js               # küsimuse liik ja elulise olukorra signaalid
+│  ├─ queryPlanner.js                  # päringud, filtrid, top-k, valikustrateegia
+│  ├─ retrievalPlanning.js             # teema- ja ajafookus
+│  ├─ retrievalStrategySelector.js     # otsingustrateegia leping
+│  ├─ retrievalOrchestrator.js         # /search päringud, timeout, deduplikatsioon
+│  ├─ retrievalContextAssembler.js     # kogu retrievali orkestreerimine
+│  ├─ ragContext.js                    # grupeerimine, skoor, MMR, lõigud ja eelarve
+│  ├─ evidencePackage.js
+│  ├─ sourcePackages.js
+│  ├─ packageAwareContext.js
+│  ├─ sectionAttribution.js            # tõendi- ja SourcePackage'i kihid
+│  ├─ promptBuilder.js                 # RAG_CONTEXT ja grounding mudelile
+│  ├─ openaiRuntime.js
+│  ├─ mainResponseHandler.js           # mudelikõne / voog
+│  ├─ sourceAttribution.js             # kuvatavate allikate järelvalik
+│  ├─ responseFinalizer.js
+│  ├─ persistence.js
+│  ├─ turnRegistry.js                  # salvestus ja korduspäringu leping
+│  ├─ settings.js                      # frontendi RAG- ja mudeliseaded
+│  └─ systemPrompts/{common,et,en,ru}.js
+│
+├─ rag-service/                        # 31 faili, sh teenuse enda testid
+│  ├─ main.py                          # ingest, chunk, embedding, Chroma, search, API
+│  ├─ auth_config.py                   # teenuse API-võti
+│  ├─ request_limits.py
+│  ├─ upload_limits.py                 # sisendi piirid
+│  ├─ parser_worker.py                 # PDF/DOCX/HTML eraldamine protsessipiiridega
+│  ├─ pinned_fetch.py                  # URL-i turvaline allalaadimine
+│  ├─ search_security.py               # otsingufiltrite kaitse
+│  ├─ document_versions.py             # vektorversiooni atomaarne vahetus
+│  ├─ registry_store.py                # dokumendiregister
+│  ├─ storage_paths.py                 # failitee piiramine
+│  ├─ requirements.txt
+│  └─ test_*.py                        # 18 teenuse sihttestifaili
+│
+├─ lib/rag/                            # 16 faili
+│  ├─ sourceMetadata.js                # ühtne metaandmeleping
+│  ├─ sourceFreshness.js
+│  ├─ riskPolicy.js
+│  ├─ sourceQualityMetrics.js
+│  ├─ sourcePackageSnapshots.js
+│  ├─ masterSourceLifecycle.js
+│  ├─ masterSourceRagClient.js
+│  ├─ metadataBackfillPlan.js
+│  ├─ legacyAjakiriCleanup.js
+│  ├─ ragServiceFreshnessFallback.js
+│  ├─ adminProxyPolicy.js
+│  ├─ adminProxyExecution.js
+│  ├─ proxyBodyLimit.js
+│  └─ graph/{graphSchema,graphRetrieval,kovGraphBuilder}.js
+│
+├─ app/api/rag/[...path]/route.js      # auditeeritud admin-proxy RAG-teenusele
+├─ app/api/rag/selftest/route.js
+├─ app/api/internal/rag-cost-usage/route.js
+├─ app/api/admin/rag/**                # 35 admini RAG-route'i
+├─ lib/admin/rag/**                    # 28 admini teenusefaili
+└─ components/admin/rag/**             # 33 admini RAG-komponenti
+```
+
+### 15.2. Sisestus- ja andmehoolduspuu
+
+```text
+scripts/
+├─ ingest-ajakiri-sotsiaaltoo.mjs      # Sotsiaaltöö PDF + JSON -> pdf-with-metadata
+├─ ingest-kov-rag.mjs                  # KOV veebipakk -> ingest/text
+├─ ingest-kov-web-batch.mjs
+├─ ingest-kov-rt-batch.mjs
+├─ ingest-national-rt-xml.mjs          # Riigi Teataja XML -> lõigud
+├─ ingest-organization-rag-folder.mjs  # organisatsiooni rag.md -> ingest/text
+├─ ingest-knowledge-doc-folder.mjs     # teadmuse PDF + meta
+├─ ingest-source-master-pdfs.mjs       # source-master PDF-id
+├─ download-source-master-pdfs.mjs
+├─ reindex-rag-documents.mjs           # registriallika uuesti tükeldamine/embedding
+├─ backfill-rag-metadata.mjs
+├─ upgrade-* / validate-*              # metaandmete tõstmine ja kontroll
+├─ inventory-* / list-rag-documents    # registri- ja indeksivaade
+├─ cleanup-* / delete-*                # piiratud puhastusrajad
+├─ build-rag-graph / apply-rag-graph   # graph-lite
+├─ rag-quality-baseline.mjs
+├─ smoke-rag-*.mjs                     # teenuse ja kvaliteedi suitsud
+└─ ops/b0-idle-rag-*                   # mõõtmine ja ajastuse analüüs
+```
+
+RAG-iga seotud skriptiinventuuris on 81 faili. Nende kõrval on 91 laia RAG-/retrieval-/
+Teenusekaardi testifaili `tests/` all. Testide hulk ei tõenda vastuse õigsust: kandvad väravad
+peavad kontrollima vähemalt korpust, õige artikli leidmist, õige lõigu leidmist, lõigu jõudmist
+mudeli konteksti ning lõppvastust eraldi.
+
+### 15.3. Tegelik andmevoog
+
+```text
+PDF / TXT / HTML / XML + metaandmed
+  -> vastava allikapere ingest-skript
+  -> rag-service ingest endpoint
+  -> parser_worker / tekstipuhastus
+  -> main.py tükeldus
+  -> embeddingud + Chroma dokumendid + metaandmed
+  -> document_versions + registry_store
+
+Kasutaja küsimus
+  -> POST /api/chat
+  -> requestBootstrap
+  -> sourceNeed + questionPlanner
+  -> queryPlanner + retrievalStrategySelector
+  -> retrievalOrchestrator -> rag-service POST /search
+  -> dense + title_match + exact_phrase + BM25
+  -> hybrid/RRF järjestus
+  -> sama artikli asjakohaste sibling-lõikude laiendus
+  -> ühe dokumendi lõigupiir
+  -> ragContext groupMatches + teema/risk/MMR valik
+  -> konteksti lõigu- ja tähemärgieelarve
+  -> EvidencePackage / SourcePackage / section attribution
+  -> promptBuilder -> OpenAI Responses API
+  -> sourceAttribution -> displayed_sources
+  -> responseFinalizer -> andmebaas -> vestlusaken
+```
+
+### 15.4. Kõik kohad, kus tõendit piiratakse
+
+| Kiht | Toodangu väärtus enne parandust | Mõju |
+|---|---:|---|
+| Tükeldus | 700 tokenit, kattuvus 120 | Üks detailne artikkel jaguneb kümneteks lõikudeks. |
+| Ühe lõigu piir | 1200 tokenit | Lühem tekst võis varem üheks jääda; `RAG_ALWAYS_CHUNK=1` sunnib praegu tükeldama. |
+| Dense kandidaadibaas | `max(64, top_k*6)`, kuni 200 | Chroma vektorotsingu ajutine valim. |
+| Leksikaalne lehekülg | 8000 | Ühe täisskanni leht; see ei ole indeksi suurus. |
+| Leksikaalne maksimum | 8000 | Üldotsing ei skanni iga päringuga kõiki 49 727 lõiku. |
+| Leksikaalsed tulemused | 20 | BM25/title/exact kandidaadid enne hübriidjärjestust. |
+| Sama artikli lõigud teenuses | varem alati 3 | Õige artikkel võis leitud olla, kuid neljas vajalik fakt kadus. |
+| Artikli sibling-laiendus | varem ainult esimene dense-artikkel | Teise tugeva artikli sisulõikeid ei laiendatud. |
+| Vestluse allikagrupid | 8 | Ühte vastusesse valitavate eri dokumentide ülempiir. |
+| Sama grupi kehatekstid | varem 2 | Teenusest tulnud kolmas lõik ei jõudnud kunagi mudelini. |
+| Ühe grupi keha | 1500 märki | 700-tokenine lõik võis poole pealt ära lõigatud saada. |
+| Kogu RAG-kontekst | 8500 märki, 15% varu | Mudelile jõuab umbes 7225 märki tõendikonteksti. |
+| Vestluse RAG-timeout | 30 000 ms | Timeout on läbikukkumine, mitte tõend sisu puudumise kohta. |
+| Mudeli väljund | 3000 tokenit | Kliendi ja spetsialisti vastuse väljundlagi. |
+
+### 15.5. Kinnitatud süsteemsed vead
+
+1. **P0 — metaandmete kokkuvõte kordus igas artiklilõigus.** `_build_ingest_payload`
+   lisas iga lõigu ette `[TITLE]`, pika `[DESC]`, autorid, numbri, aasta ja muu meta ning
+   saatis sama teksti embeddingusse ja Chroma `document` väljale. Ühe artikli lõigud said
+   seetõttu peaaegu sama otsingusignaali. Hiljem eemaldas `ragContext.js` prefiksi mudeli
+   kontekstist, mistõttu otsing võis skoorida just teksti, mida mudel kunagi ei näinud.
+2. **P0 — sama tõendit kärbiti kahes sõltumatus kihis.** RAG-teenus jättis ühest artiklist
+   alles kolm lõiku, kuid `renderOneContextBlock` kasutas neist ainult kahte ja piiras kogu
+   grupi 1500 märgiga.
+3. **P1 — konkreetne arvuküsimus liigitati sõna „mitu” tõttu laiaks sünteesiks.** See suunas
+   näiteks „mitu koolitust?” mitme allika mitmekesisuse rajale.
+4. **P1 — sibling-laiendus vaatas ainult esimest dense-artiklit.** Kui õige või täiendav
+   artikkel oli teisel kohal, ei järjestatud tema kõiki kehalõike küsimuse järgi.
+5. **P1 — leksikaalne 8000 on osaline skann, mitte indeksi suurus.** Dense-otsing kasutab
+   kogu Chroma indeksit ning pealkirja-/dokumendilühivalim võib jõuda kaugemale, kuid puhas
+   üldine BM25 ei vaata iga pöördega kõiki 49 727 lõiku. Seda tuleb kvaliteedi ja latentsuse
+   mõõtmisel eraldi näidata.
+6. **P1 — leitud artikli järgmine õige lõik visati uuesti välja.** Sibling-laiendus leidis
+   näiteks OTT-artikli lõigu 4, kuid üldise ja sibling-leksikaalse valimi liitmise järel
+   rakendati uuesti üldist 20 kandidaadi piiri. Lõik 4 kadus enne hübriidjärjestust, kuigi
+   ta oli oma artikli sees küsimusele teine parim lõik.
+7. **P1 — lühivalim ei saanud otsingut õigel ajal lõpetada.** Piisavust hinnati ainult
+   skooritabeli esimese kirje järgi ja alles pärast kuni kaheksa `where_document` päringut.
+   Nimeline kontaktileht võis olla skooriga esimene, samal ajal kui täpset fakti sisaldav
+   lõik oli esimeses 20 kirjes olemas; selle tõttu käivitati ikkagi 8000 lõigu varuskann.
+8. **P1 — sama nimega seaded on kahes `.env` failis.** Frontendi `RAG_LEXICAL_*` read ei
+   juhi Python-teenust; otsingu autoriteetne väärtus tuleb `/etc/sotsiaalai/rag.env` failist.
+   Duplikaat võib jätta eksliku mulje, et muudetud seadistus jõudis teenusesse.
+9. **P2 — kaks liiga suurt koondfaili.** `rag-service/main.py` kannab ingestist otsinguni
+   peaaegu kogu teenust ning `retrievalContextAssembler.js` kannab plannerit, otsingut,
+   KOV-kontakte, SourcePackage'e ja kontekstivalikut. See ei ole üksi tänase valevastuse
+   põhjus, kuid teeb varjatud piiride lisamise ja testimata koosmõju lihtsaks.
+10. **P0 — osaküsimuse semantiline ja täpne otsing vajasid eri kuju.** Lühike „ööune
+    kohta” vajab embeddingus artikliankrut, kuid sama ankur mattis dokumendisisese
+    sõnaotsingu üldsõnade alla. Nüüd saab dense-rada ankurdatud ja leksikaalne rada puhta
+    osaküsimuse.
+11. **P0 — täidetud top-k sisse vahetamine ei taganud kõigi faktide säilimist.** Kui mitu
+    osaküsimust kattusid või vajalik lause jätkus järgmises PDF-lõigus, võis kohustuslikuks
+    märgitud lõik ikkagi välja jääda. Valik ehitatakse nüüd deterministlikult: kolm parimat
+    täispäringu allikat, iga osaküsimuse otsesed tõendid ja alles siis ülejäänud kohad.
+12. **P1 — ühe teema konkureerivad juhendid vajasid sügavamat dokumendivalimit.** Tuleohutuse
+    küsimuses oli täpne ühe-leheküljeline juhend dense-tulemuses 12. kohal, kuid kolm esimest
+    sama teema suurt käsiraamatut tõrjusid selle välja. Kitsas faktirada uurib nüüd kuni viit
+    juba leitud dokumenti, säilitades samal ajal kolme allika mitmekesisuse.
+13. **P1 — puuduv hübriidskoor muutus ekslikult nulliks.** JavaScripti `Number(null)` andis
+    0 ja takistas mitme päringu liitmisel vahemaaskoori kasutamist. Puuduv väärtus eristatakse
+    nüüd päris nullskoorist.
+
+### 15.6. Parandus selles tööharus
+
+- Uus ingest salvestab Chroma `document` väljale ainult päris lõigu teksti.
+- Embedding saab endiselt lühikesed pealkirja-, autori-, numbri- ja aastaankrud, kuid mitte
+  igas lõigus korduvat pikka kirjeldust; kirjeldus jääb metaandmetesse.
+- Vana indeksiga üleminekuajal eemaldab kogu leksikaalne otsing sünteetilise prefiksi ning
+  skoorib lõigu päris keha.
+- Lai küsimus säilitab ühe artikli piiri 3; konkreetne faktiküsimus võib võtta kuni 8
+  kandidaat-lõiku.
+- Konkreetse küsimuse sibling-laiendus võib uurida kuni kolme leitud dokumendi lõike ning
+  faktiosade süvaotsing kuni viit juba leitud konkureerivat dokumenti.
+- Sibling-laienduse leitud lõike ei visata enam üldise 20 leksikaalse kandidaadi piiri tõttu
+  enne hübriidjärjestust uuesti välja.
+- Haruldase termini lühivalim peatub kohe, kui mõni esimese 20 kandidaadi pärislõik katab
+  faktiküsimuse tugevalt; osalise vaste korral säilib 8000 lõigu piiratud varuskann.
+- Vestluse kontekst võib konkreetse faktiküsimuse puhul kanda ühest artiklist nelja
+  asjakohast lõiku ja kuni 6000 märki; lai mitme allika vastus säilitab senise väiksema
+  dokumendieelarve.
+- Paljas „mitu” ei käivita enam mitme allika sünteesi.
+- Mitme faktiga küsimus jagatakse piiratud osadeks. Dense-otsing kasutab lühikese osa puhul
+  dokumendiankrut, leksikaalne otsing puhast osa ning PDF-piiril hoitakse ka parima lõigu
+  mõlemad vahetud naabrid.
+- Mitme päringu tulemuste liitmisel ei käsitleta puuduvat hübriidskoori nullina.
+
+Kontrollitud seis 21.08 enne deploy'd. Sihttestid on ainult muutunud harude
+regressioonikaitse, mitte väide, et platvorm töötab:
+
+| Värav | Seis |
+|---|---|
+| Node'i retrieval/konteksti sihttestid | **DONE — 95/95** |
+| RAG-teenuse Python-sihttestid serveri päris venv-is | **DONE — 58/58** |
+| Muudetud JS-failide lint | **DONE** |
+| `git diff --check` | **DONE** |
+| Ajutine parandatud teenus + serveri tegelik 49 727-lõiguline vana indeks: OTT piirangud | **DONE — õiged sama artikli lõigud kohtadel 1 ja 2; RAG 2,005 s** |
+| Ajutine parandatud teenus + serveri tegelik 49 727-lõiguline vana indeks: Hesteri andmekaitse | **DONE — õige lõik kohal 1; RAG 0,756 s** |
+| Ajutine parandatud teenus + vana indeks: 2024 dementsuse mitme allika päring aastafiltriga | **DONE — esimese 8 tulemuse seas 6 eri 2024. aasta allikat; täielik 3154 lõigu kontroll 8,333 s** |
+| Ajakirja faktivärav, 2016–2025 | **DONE — 10/10 küsimust, iga nõutud fakt sama artikli lõikudes, `partial=false`** |
+| Uuringute, juhendite ja õppematerjalide faktivärav | **DONE — 10/10 küsimust, 45/45 nõutud fakti õige dokumendi lõikudes, `partial=false`** |
+| Kogu `TZ=UTC npm test` | **PARTIAL — RAG-i muudetud rajad rohelised; tööharu lähte-SHA-l eraldi olemasolev Teenusekaardi popup-kontrasti test on punane ja selle faile see plokk ei muuda** |
+| Kood toodangus | **NOT_DONE** |
+| Ajakirja korpus uue ingest-kujuga uuesti indekseeritud | **NOT_DONE** |
+| Toodangu otseotsing ja päris vestlus | **NOT_PROVEN** |
+
+### 15.7. Serveri tegelik käitus ja `.env` seadistus
+
+Teenused:
+
+| Teenus | Käivitus |
+|---|---|
+| `sotsiaalai-frontend.service` | `/usr/bin/npm run start`, töökaust `/home/ubuntu/apps/sotsiaalai`, seadistus `/etc/sotsiaalai/frontend.env` |
+| `sotsiaalai-rag.service` | `/home/ubuntu/.venvs/sotsiaalai-rag/bin/uvicorn main:app --host 127.0.0.1 --port 8000 --workers 1`, töökaust `/home/ubuntu/apps/sotsiaalai/rag-service`, seadistus `/etc/sotsiaalai/rag.env` |
+
+Frontendi vastuse- ja retrieval-seaded:
+
+```dotenv
+OPENAI_MODEL=gpt-5.6-luna
+OPENAI_REASONING_EFFORT=medium
+OPENAI_TEXT_VERBOSITY=medium
+OPENAI_MAX_OUTPUT_TOKENS=3000
+OPENAI_MAX_OUTPUT_TOKENS_CLIENT=3000
+OPENAI_MAX_OUTPUT_TOKENS_WORKER=3000
+CHAT_PROMPT_TOKEN_AUDIT=0
+RAG_API_BASE=http://127.0.0.1:8000
+RAG_INTERNAL_HOST=http://127.0.0.1:8000
+RAG_TOP_K=12
+RAG_TIMEOUT_MS=30000
+RAG_CONTEXT_GROUPS_MAX=8
+RAG_MMR_LAMBDA=0.60
+RAG_CTX_MAX_CHARS=8500
+RAG_GROUP_BODY_MAX_CHARS=1500
+RAG_GRAPH_CHANNEL_ENABLED=1
+RAG_TRACE_V1_ENABLED=true
+RAG_ATTRIBUTION_DECISIONS_ENABLED=true
+RAG_DISPLAYED_SOURCES_ENFORCED=true
+```
+
+RAG-teenuse indeksi-, tükeldus- ja otsinguseaded:
+
+```dotenv
+RAG_STORAGE_DIR=/var/lib/sotsiaalai-rag
+RAG_COLLECTION=sotsiaalai
+RAG_EMBED_MODEL=text-embedding-3-large
+RAG_ALWAYS_CHUNK=1
+RAG_CHUNK_MODE=tokens
+RAG_CHUNK_TOKENS=700
+RAG_CHUNK_TOKENS_OVERLAP=120
+RAG_SINGLE_CHUNK_TOKEN_LIMIT=1200
+RAG_LEXICAL_SEARCH_ENABLED=true
+RAG_LEXICAL_SCAN_LIMIT=8000
+RAG_LEXICAL_MAX_SCAN=8000
+RAG_LEXICAL_TOP_K=20
+RAG_RRF_K=60
+RAG_SERVER_MAX_MB=25
+CHROMA_DISABLE_TELEMETRY=1
+CHROMA_TELEMETRY_ENABLED=false
+```
+
+`OPENAI_API_KEY`, `RAG_SERVICE_API_KEY` ja `RAG_COST_MIRROR_SECRET` muutujate nimed on
+seadistusfailides olemas; väärtused on sellest kaardist tahtlikult välja jäetud. Sama kehtib
+muude võtmete ja projektiidentifikaatorite kohta.
+
+### 15.8. Ohutu rakendusjärjekord
+
+1. Viia kontrollitud kood RAG-teenusesse ja frontendi.
+2. Käivitada teenuste health ja üks vana-indeksi otseotsingu kontroll.
+3. Indekseerida 863 Sotsiaaltöö dokumenti uuesti uue body-only salvestuse ja ilma korduva
+   `[DESC]`-embeddinguta; kasutada väikest paralleelsust ning kontrollida vigu jooksvalt.
+4. Kontrollida juhuvalimiga, et Chroma dokumendid algavad päris artiklitekstiga ja registri
+   metaandmed, leheküljed ning allikalingid säilisid.
+5. Korrata 20-küsimuselist ajakirja- ja materjaliväravat teenuse `/search` rajal ning valim
+   neist sisselogitud `/vestlus` lõppvastuses.
+6. Alles pärast neid väravaid võib S1.0 väita, et konkreetse artikli vajalikud lõigud jõuavad
+   vastusesse. Õige artikli leid 11/11 ei ole iseseisvalt enam DONE-kriteerium.

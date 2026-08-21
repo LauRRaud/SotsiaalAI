@@ -266,7 +266,10 @@ function buildArticleMetadataContract(meta, item) {
     language: String(meta?.language || "et").trim(),
     last_checked: dateOnly(meta?.last_checked || meta?.lastChecked || meta?.retrieved_at || meta?.retrievedAt),
     retrieved_at: meta?.retrieved_at || meta?.retrievedAt || new Date().toISOString(),
-    historical: typeof meta?.historical === "boolean" ? meta.historical : true,
+    // Ajakirja ilmumisaasta ei tee allikast iseenesest kehtetut versiooni.
+    // `historical=true` on reserveeritud sõnaselgelt arhiveeritud või
+    // asendatud kirjetele; ajalise konteksti kannavad year/source_year väljad.
+    historical: typeof meta?.historical === "boolean" ? meta.historical : false,
     source_status: String(meta?.source_status || meta?.sourceStatus || "active").trim(),
     canonical_item_id: meta?.canonical_item_id || meta?.canonicalItemId || null,
     valid_from: meta?.valid_from || meta?.validFrom || null,

@@ -145,7 +145,7 @@ test("backfill maps legacy Sotsiaaltoo article metadata to canonical journal pro
   assert.equal(plan.metadata.journalTitle, "Sotsiaaltöö");
   assert.equal(plan.metadata.issueLabel, "4/2019");
   assert.equal(plan.metadata.year, 2019);
-  assert.equal(plan.metadata.historical, true);
+  assert.equal(plan.metadata.historical, false);
   assert.equal(plan.metadata.source_status, "active");
   assert.equal(plan.metadata.last_checked, "2026-04-28");
   assert.equal(plan.metadata.url_canonical, null);

@@ -60,6 +60,22 @@ test("Estonian base prompt discourages search-status phrasing in ordinary answer
   assert.doesNotMatch(system, /Sõnasta loomulikult: "leidsin allikatest"/);
 });
 
+test("material message uses a human source heading instead of leaking an internal RAG label", () => {
+  const input = toResponsesInput({
+    history: [],
+    userMessage: "Mis on OTT-süsteem?",
+    context: "(1) OTT-süsteem hindab pikaajalise töötuse riski.",
+    effectiveRole: "SOCIAL_WORKER",
+    grounding: "strong",
+    replyLang: "et"
+  });
+  const material = input.input.find(item => item.role === "system" && item.content.includes("OTT-süsteem hindab"));
+
+  assert.ok(material);
+  assert.match(material.content, /^Kinnitatud allikakatkendid\n/);
+  assert.doesNotMatch(material.content, /RAG_CONTEXT/);
+});
+
 test("Estonian base prompt requires time context for older projects", () => {
   const input = toResponsesInput({
     history: [],

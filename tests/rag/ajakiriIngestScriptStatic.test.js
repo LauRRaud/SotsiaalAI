@@ -23,3 +23,10 @@ test("ajakiri ingest script protects RAG HTTP calls with a request timeout", () 
   assert.match(source, /await fetchWithTimeout\(`\$\{baseUrl\}\/documents\/\$\{encodeURIComponent\(expectedDocId\)\}`/);
   assert.match(source, /await fetchWithTimeout\(`\$\{baseUrl\}\/ingest\/pdf-with-metadata`/);
 });
+
+test("ajakiri ingest does not mark every immutable article historical by default", () => {
+  const source = readIngestScript();
+
+  assert.match(source, /historical:\s*typeof meta\?\.historical === "boolean" \? meta\.historical : false/);
+  assert.doesNotMatch(source, /historical:\s*typeof meta\?\.historical === "boolean" \? meta\.historical : true/);
+});

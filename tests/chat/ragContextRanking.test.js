@@ -5,6 +5,7 @@ import {
   filterMatchesToMunicipalities,
   groupMatches,
   rankGroupsWithTopicHints,
+  buildContextWithBudget,
   renderOneContextBlock,
   resolveDocumentIdentity,
   selectMultiSourceGroups,
@@ -84,6 +85,49 @@ test("context budget preserves the second relevant chunk from the same article",
   assert.match(block, /kuue kuu möödudes/);
 });
 
+test("narrow fact context can carry four independently relevant passages from one article", () => {
+  const block = renderOneContextBlock({
+    title: "Eakate abivajaduse uuring",
+    sourceType: "journal_article",
+    bodies: [
+      "15% vastanutest ei saanud oma hinnangul piisavalt abi.",
+      "Abi ebapiisavust kogenutest 61% vajas igapäevaseks toimetulekuks lisaabi.",
+      "26% vastanutest ei teadnud, kust täiendavat abi küsida.",
+      "Uuringus kirjeldati ka lähedaste rolli ja teenuste kättesaadavust."
+    ]
+  }, 0, {
+    bodyMaxChars: 2400,
+    maxBodies: 4,
+    allowExpandedBodyBudget: true
+  });
+
+  assert.match(block, /15%/);
+  assert.match(block, /61%/);
+  assert.match(block, /26%/);
+  assert.match(block, /lähedaste rolli/);
+});
+
+test("narrow fact context can carry six passages without the ordinary 6000 character funnel", () => {
+  const bodies = Array.from({ length: 6 }, (_, index) => (
+    `${"Selgitav artiklitekst. ".repeat(42)} FAKT-${index + 1}.`
+  ));
+  const packed = buildContextWithBudget([{
+    key: "compound-article",
+    title: "Mitme näitajaga uuring",
+    sourceType: "journal_article",
+    bodies,
+    bestScore: 0.9,
+    tags: []
+  }], {
+    maxBodies: 6,
+    allowExpandedBodyBudget: true
+  });
+
+  for (let index = 1; index <= 6; index += 1) {
+    assert.match(packed.text, new RegExp(`FAKT-${index}\\.`));
+  }
+});
+
 test("topic matching treats Estonian case endings as the same long-word stem", () => {
   const ranked = rankGroupsWithTopicHints([{
     key: "privacy-article",
@@ -105,6 +149,12 @@ test("topic hint extraction removes inflected generic field words but keeps the 
     extractTopicHints("tehisintellekt sotsiaalvaldkonnas? töötukassas?"),
     ["tehisintellekt", "tootukassas"]
   );
+});
+
+test("topic hint extraction keeps meaningful three-letter Estonian words", () => {
+  const hints = extractTopicHints("Mida soovitati une kohta?");
+
+  assert.ok(hints.includes("une"));
 });
 
 test("groupMatches strips repeated synthetic metadata prefix from chunk body", () => {
@@ -596,6 +646,33 @@ test("historical or inactive sources are penalized below active current sources"
   ], []);
 
   assert.equal(ranked[0].key, "current");
+});
+
+test("journal publication is not demoted solely by a legacy historical flag", () => {
+  const ranked = rankGroupsWithTopicHints([
+    {
+      key: "legacy-flag",
+      title: "Erihooldekodude elanike kaardistus",
+      bodies: ["Artikkel kirjeldab 2017. aasta kaardistuse tulemusi."],
+      bestScore: 0.6,
+      sourceType: "journal_article",
+      sourceStatus: "active",
+      historical: true,
+      tags: []
+    },
+    {
+      key: "correct-flag",
+      title: "Erihooldekodude elanike kaardistus",
+      bodies: ["Artikkel kirjeldab 2017. aasta kaardistuse tulemusi."],
+      bestScore: 0.6,
+      sourceType: "journal_article",
+      sourceStatus: "active",
+      historical: false,
+      tags: []
+    }
+  ], []);
+
+  assert.equal(ranked[0].qualityAdjust, ranked[1].qualityAdjust);
 });
 
 test("groupMatches preserves source validity metadata for later evidence checks", () => {

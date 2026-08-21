@@ -213,6 +213,8 @@
     "rag:hybrid:test": "node scripts/test-rag-hybrid-search.mjs",
     "rag:smoke:v1": "node scripts/smoke-rag-v1-contract.mjs",
     "rag:smoke:v2": "node scripts/smoke-rag-v2-quality.mjs",
+    "rag:quality:journal-facts": "node scripts/rag-journal-fact-quality-gate.mjs",
+    "rag:quality:material-facts": "node scripts/rag-material-fact-quality-gate.mjs",
     "rag:check:v24a-live-trace": "node scripts/check-v24a-live-trace.mjs",
     "rag:smoke:legal": "node scripts/smoke-rag-legal-lookup.mjs",
     "rag:smoke:legal-exact": "node scripts/smoke-rag-legal-exact.mjs",

@@ -92,19 +92,19 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**Vestluse artiklitäpsus, mitme allika süntees ja sama vestluse kontekst on 21.08 toodangus
-parandatud (`ced7cba2`).** Ajakirja Sotsiaaltöö 863 unikaalset dokumenti indekseeriti uuesti;
-aktiivses teadmusbaasis on 49 727 lõiku. Aastate 2016–2026 otsekontroll leidis õige artikli
-11 küsimusel 11-st. Konkreetse artikli olulised tükid püsivad koos, lai küsimus säilitab eri
-allikad ning tekstisisene algviide on väite autoriteetsem päritolu kui seda vahendava artikli
-autor. Uus iseseisev küsimus ei päri enam vana assistendivastust, kuid viitav jätkuküsimus
-säilitab vestluse konteksti. Sama avatud vestluse toodangukontroll vastas Töötukassa OTT-i
-kohta 45 näitaja, motivatsiooni, terviseseisundi, läbipaistmatuse ja koormava tagasisidega,
-viitas Vihalemm jt 2023 uuringule ega omistanud väidet vahendava ülevaate autorile; järgnev
-„Aga …?” küsimus kasutas eelmist vastust õigesti. Viimase ploki 109/109 sihttesti, lint,
-`git diff --check`, toodangu build, avalik HTTP 200 ja RAG health on rohelised. Omaniku soovil
-ei käivitatud kogu ligi 5000 testiga sviiti. Külmkäivituse soojendus jääb järgmiseks
-jõudlusplokiks.
+**Vestluse RAG-i süsteemne parandus on 21.08 enne deploy'd päris 49 727-lõigulise indeksi
+vastu sisuliselt tõendatud, kuid toodangus veel mitte.** `codex/repair-a` eraldab embeddingu
+metaankru salvestatud lõigust, skoorib vana indeksi päris keha, jagab mitme faktiga küsimuse
+semantilisteks ja täpseteks osadeks, säilitab PDF-piiri jätkulõigud, uurib kuni viit
+konkureerivat dokumenti ning annab kitsale küsimusele suurema tõendieelarve. Uus
+allikapõhine värav läbis ajakirjas 10/10 küsimust (2016–2025) ja uuringutes, juhendites ning
+õppematerjalides 10/10 küsimust ehk 45/45 nõutud fakti; ükski otsing ei olnud `partial`.
+Python-sihttestid 58/58, Node'i RAG-sihttestid 95/95, lint, i18n ja diff-kontroll on rohelised.
+Ühekordne kogu `TZ=UTC npm test` jäi **PARTIAL**, sest lähte-SHA-l on eraldiseisev muutmata
+Teenusekaardi popup-kontrasti test punane; RAG-i failid seda ei puuduta. Kood on
+**NOT_DEPLOYED** ja korpus uue ingest-kujuga **NOT_REINDEXED**. Järgmine samm on commit,
+push, deploy, 863 dokumendi kontrollitud uus indekseerimine ning sama sisselogitud
+`/vestlus` akna lõppvastused; täielik kaart ja serveri sanitiseeritud `.env` on auditikaardis.
 
 **Vestluse, RAG-i ja Teenusekaardi regressiooniplokk on 21.08 parandatud.** Paljas KOV-i
 mitmuseküsimus (nt „Harku valla sotsiaalteenused?”) kasutab nüüd täieliku loendi rada ning

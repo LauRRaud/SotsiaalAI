@@ -5,7 +5,7 @@ import os
 import shutil
 import tempfile
 import unittest
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 os.environ.setdefault("OPENAI_API_KEY", "test-key")
 os.environ.setdefault("RAG_ALLOW_INSECURE_NO_AUTH", "1")
@@ -276,6 +276,102 @@ class SearchObservabilityTests(unittest.TestCase):
                 self.assertEqual(len(result["results"]), top_k)
                 self.assertEqual(result["channel_stats"]["result_count"], top_k)
 
+    def test_search_request_controls_same_article_evidence_depth(self):
+        dense = chroma_result([f"article-chunk-{index}" for index in range(9)])
+        dense["metadatas"] = [[{
+            **metadata,
+            "doc_id": "article-a",
+            "article_id": "article-a",
+            "source_type": "journal_article",
+            "collection_id": "sotsiaaltoo_articles",
+        } for metadata in dense["metadatas"][0]]]
+
+        default_result = self.run_search(
+            main.SearchIn(query="private query", top_k=9),
+            collection=FakeCollection(dense),
+        )
+        deep_result = self.run_search(
+            main.SearchIn(
+                query="private query",
+                top_k=9,
+                journal_chunks_per_document=8,
+            ),
+            collection=FakeCollection(dense),
+        )
+
+        self.assertEqual(len(default_result["results"]), 3)
+        self.assertEqual(len(deep_result["results"]), 8)
+
+    def test_compound_fact_search_embeds_once_and_recovers_each_article_segment(self):
+        class SegmentCollection:
+            def __init__(self):
+                self.calls = []
+
+            def query(self, **kwargs):
+                self.calls.append(kwargs)
+                embeddings = kwargs.get("query_embeddings") or []
+                article_md = {
+                    "doc_id": "dementia-article",
+                    "article_id": "dementia-article",
+                    "title": "Dementsuse ennetamine",
+                    "source_type": "journal_article",
+                    "collection_id": "sotsiaaltoo_articles",
+                }
+                if len(embeddings) == 1:
+                    return {
+                        "ids": [["movement-chunk"]],
+                        "documents": [["Nädalase liikumise soovitus."]],
+                        "metadatas": [[article_md]],
+                        "distances": [[0.1]],
+                    }
+                return {
+                    "ids": [["sleep-chunk"], ["hearing-chunk"]],
+                    "documents": [["Öösel tuleb magada seitse-kaheksa tundi."], ["Kuulmislangus suurendab riski."]],
+                    "metadatas": [[article_md], [article_md]],
+                    "distances": [[0.05], [0.06]],
+                }
+
+            def get(self, **_kwargs):
+                return {"ids": [], "documents": [], "metadatas": []}
+
+        query = "Mida soovitati liikumise ja ööune kohta ning kui suur on kuulmisrisk?"
+        segments = ["ööune kohta", "kui suur on kuulmisrisk"]
+        embed = Mock(return_value={
+            "embeddings": [[0.1, 0.2], [0.3, 0.4], [0.5, 0.6]],
+            "model": "test-embedding",
+            "latency_ms": 3,
+            "embedding_input_count": 3,
+        })
+        segment_collection = SegmentCollection()
+        with patch.object(main, "collection", segment_collection), patch.object(
+            main, "_embed_batch_with_usage", embed
+        ), patch.object(
+            main, "_split_fact_query_segments", return_value=segments
+        ), patch.object(
+            main, "_fetch_lexical_candidates", return_value={
+                "candidates": [], "scanned": 0, "complete": True, "error": None,
+            }
+        ), patch.object(main, "_fetch_document_sibling_candidates", return_value=[]):
+            result = main._execute_search(
+                main.SearchIn(
+                    query=query,
+                    top_k=4,
+                    journal_chunks_per_document=8,
+                ),
+                make_request(),
+            )
+
+        embed.assert_called_once_with([query, *segments])
+        self.assertEqual(len(segment_collection.calls), 2)
+        self.assertEqual(
+            {item["id"] for item in result["results"]},
+            {"movement-chunk", "sleep-chunk", "hearing-chunk"},
+        )
+        self.assertGreater(
+            next(item for item in result["results"] if item["id"] == "sleep-chunk")["fact_segment_hits"],
+            0,
+        )
+
     def test_lexical_scan_pages_and_exposes_the_completeness_contract(self):
         class PagedCollection:
             def __init__(self):
@@ -344,7 +440,8 @@ class SearchObservabilityTests(unittest.TestCase):
         self.assertGreaterEqual(len(title_collection.calls), 1)
         self.assertFalse(any("offset" in call for call in title_collection.calls))
         self.assertEqual(fetched["scanned"], 2)
-        self.assertFalse(fetched["complete"])
+        self.assertTrue(fetched["complete"])
+        self.assertFalse(fetched["exhaustive"])
         self.assertEqual(fetched["strategy"], "targeted_document_shortlist")
         self.assertEqual([item["id"] for item in fetched["candidates"]], ["chunk-laur"])
 
@@ -379,7 +476,8 @@ class SearchObservabilityTests(unittest.TestCase):
                         "ids": ["ott-claim"],
                         "documents": [
                             "Eesti töötukassa OTT-süsteem hindab pikaajalise töötuse riski "
-                            "45 näitaja alusel."
+                            "45 näitaja alusel. Kasutajad tõid piirangutena esile "
+                            "läbipaistvuse ja koormava tagasisidestamise."
                         ],
                         "metadatas": [{
                             "doc_id": "ai-article",
@@ -395,7 +493,7 @@ class SearchObservabilityTests(unittest.TestCase):
             main, "RAG_LEXICAL_MAX_SCAN", 10
         ):
             fetched = main._fetch_lexical_candidates(
-                "Eesti Töötukassa OTT süsteem 45 näitajat",
+                "Eesti Töötukassa OTT süsteem 45 näitajat läbipaistvus tagasisidestamine",
                 None,
                 5,
                 ["title_match", "exact_phrase", "bm25"],

@@ -202,6 +202,32 @@ test("searchRagQueries can request dense-only retrieval for an exhaustive filter
   }
 });
 
+test("searchRagQueries forwards a bounded same-article evidence depth", async () => {
+  const previousFetch = global.fetch;
+  let requestBody = null;
+  global.fetch = async (_url, options = {}) => {
+    requestBody = JSON.parse(String(options.body || "{}"));
+    return {
+      ok: true,
+      async text() {
+        return JSON.stringify({ results: [] });
+      }
+    };
+  };
+
+  try {
+    await searchRagQueries({
+      queries: ["Kui palju omavalitsusi ja mitu koolitust?"],
+      topK: 12,
+      journalChunksPerDocument: 8
+    });
+
+    assert.equal(requestBody?.journal_chunks_per_document, 8);
+  } finally {
+    global.fetch = previousFetch;
+  }
+});
+
 test("searchRagQueries throws on rag-service retrieval 503 instead of returning no evidence", async () => {
   const originalFetch = global.fetch;
   global.fetch = async () => ({
@@ -422,6 +448,21 @@ test("buildSourceAnchoredRagQueries sends one diversified query for thematic syn
   assert.match(queries[0], /probleemsed kohad/i);
 });
 
+test("numeric mitu question is not mistaken for multi-source synthesis", () => {
+  assert.equal(
+    isBroadMultiSourceRagQuestion(
+      "Mitu omavalitsust oli STARis menetlusi algatanud ning mitu koolitust korraldati?"
+    ),
+    false
+  );
+  assert.equal(
+    isBroadMultiSourceRagQuestion(
+      "Võrdle mitme artikli käsitlusi ja anna ülevaade peamistest erinevustest"
+    ),
+    true
+  );
+});
+
 test("detectSourceAvailabilityRequest treats inflected legal provision lists as source lookup", () => {
   assert.equal(
     detectSourceAvailabilityRequest([], "Millised Sotsiaalhoolekande seaduse paragrahvid reguleerivad toimetulekutoetust?"),
@@ -500,8 +541,10 @@ test("searchRagQueries keeps independent multi-query retrieval concurrent", asyn
   let active = 0;
   let maxActive = 0;
   const completed = [];
+  const requestedDepths = [];
   global.fetch = async (_url, options = {}) => {
     const body = JSON.parse(String(options.body || "{}"));
+    requestedDepths.push([body.query, body.top_k]);
     active += 1;
     maxActive = Math.max(maxActive, active);
     await new Promise((resolve) => setTimeout(resolve, 15));
@@ -527,9 +570,80 @@ test("searchRagQueries keeps independent multi-query retrieval concurrent", asyn
     assert.equal(maxActive, 3);
     assert.deepEqual(completed.sort(), ["esimene", "kolmas", "teine"]);
     assert.deepEqual(results.map(item => item.id), ["result-esimene", "result-teine", "result-kolmas"]);
+    assert.deepEqual(requestedDepths, [
+      ["esimene", 9],
+      ["teine", 5],
+      ["kolmas", 5]
+    ]);
   } finally {
     global.fetch = previousFetch;
   }
+});
+
+test("supplemental query cannot overwrite or outscore the primary query on an incomparable scale", async () => {
+  const previousFetch = global.fetch;
+  global.fetch = async (_url, options = {}) => {
+    const body = JSON.parse(String(options.body || "{}"));
+    const primary = body.query === "tervikküsimus";
+    return {
+      ok: true,
+      async text() {
+        return JSON.stringify({
+          retrievers_used: ["dense", "bm25"],
+          results: primary
+            ? [{ id: "shared", text: "põhitulemus", hybrid_score: 0.42, hybrid_rank: 4 }]
+            : [
+                { id: "shared", text: "põhitulemus", hybrid_score: 0.95, hybrid_rank: 1 },
+                { id: "supplement", text: "lisatulemus", hybrid_score: 0.9, hybrid_rank: 1 }
+              ]
+        });
+      }
+    };
+  };
+
+  try {
+    const results = await searchRagQueries({
+      queries: ["tervikküsimus", "kitsas osapäring"],
+      topK: 8
+    });
+
+    assert.equal(results[0].id, "shared");
+    assert.equal(results[0].hybrid_score, 0.42);
+    assert.equal(results[0].hybrid_rank, 4);
+    assert.equal(results[1].id, "supplement");
+    assert.ok(results[1].hybrid_score < 0.42);
+    assert.equal(results[1].multi_query_supplemental, true);
+  } finally {
+    global.fetch = previousFetch;
+  }
+});
+
+test("null hybrid scores fall back to distance when capping supplemental results", async () => {
+  const seenQueries = [];
+  const fetchImpl = async (_url, options) => {
+    const body = JSON.parse(options.body);
+    seenQueries.push(body.query);
+    const result = body.query === "primary"
+      ? { id: "primary", hybrid_score: null, distance: 0.2 }
+      : { id: "supplemental", hybrid_score: null, distance: 0.05 };
+    return {
+      ok: true,
+      text: async () => JSON.stringify({ results: [result] })
+    };
+  };
+
+  const results = await searchRagQueries({
+    queries: ["primary", "supplemental"],
+    topK: 1,
+    fetchImpl,
+    timeoutMs: 1000
+  });
+
+  assert.deepEqual(seenQueries, ["primary", "supplemental"]);
+  const supplemental = results.find(item => item.id === "supplemental");
+  assert.ok(supplemental);
+  assert.ok(supplemental.distance > 0.2);
+  assert.equal(supplemental.hybrid_score, null);
 });
 
 test("searchRagQueries keeps fulfilled multi-query results when another query aborts", async () => {

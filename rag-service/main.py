@@ -1861,6 +1861,11 @@ def clean_include(include):
 class SearchIn(BaseModel):
     query: str = Field(min_length=1, max_length=MAX_QUERY_CHARS)
     top_k: int = 5
+    # Tagasiühilduva nimega sügavuspiir kehtib kõigile dokumentidele. Lai otsing
+    # hoiab vaikimisi ühe allika mahu väikese; konkreetne faktiküsimus saab sama
+    # dokumendi seest küsida sügavama, kuid endiselt piiratud tõendikomplekti.
+    # See ei suurenda kogu vektorindeksi kandidaadibaasi.
+    journal_chunks_per_document: int = Field(default=3, ge=1, le=12)
     filterDocId: Optional[str] = None
     where: Optional[dict] = None
     include: Optional[List[str]] = None
@@ -2033,24 +2038,28 @@ def _build_ingest_payload(doc_id: str, text_or_pages, meta_common: Dict) -> Dict
 
     section_index = _normalize_section_index(meta_common)
 
-    # PREFIKS – lisame chunk’i teksti ette (autor/pealkiri/jne saavad embeddingusse)
-    prefix_lines: List[str] = []
-    if title:         prefix_lines.append(f"[TITLE] {title}")
-    if description:   prefix_lines.append(f"[DESC] {description}")
-    if authors:       prefix_lines.append(f"[AUTHORS] {', '.join(authors)}")
-    if journal_title: prefix_lines.append(f"[JOURNAL] {journal_title}")
-    if issue_label:   prefix_lines.append(f"[ISSUE] {issue_label}")
-    elif issue_id:    prefix_lines.append(f"[ISSUE] {issue_id}")
-    if section:       prefix_lines.append(f"[SECTION] {section}")
-    if year:          prefix_lines.append(f"[YEAR] {year}")
-    if item_type:     prefix_lines.append(f"[ITEM_TYPE] {item_type}")
-    if status_label:   prefix_lines.append(f"[STATUS] {status_label}")
-    if resource_type: prefix_lines.append(f"[RESOURCE_TYPE] {resource_type}")
-    if administering_body: prefix_lines.append(f"[ADMIN_BODY] {administering_body}")
-    if county:        prefix_lines.append(f"[COUNTY] {county}")
-    if municipality_name: prefix_lines.append(f"[MUNICIPALITY] {municipality_name}")
-    if page_range:    prefix_lines.append(f"[PAGES] {page_range}")
-    prefix = ("\n".join(prefix_lines) + "\n") if prefix_lines else ""
+    # Embedding võib kasutada lühikesi dokumendiankruid, kuid Chroma `document`
+    # peab jääma päris lõigu tekstiks. Varem lisati iga lõigu ette ka pikk
+    # `[DESC]`-kokkuvõte ning sama prefiks salvestati dokumendina. See muutis ühe
+    # artikli kõik lõigud otsingule peaaegu ühesuguseks: retriever skooris
+    # kokkuvõtet, vastuse koostaja eemaldas selle hiljem ja päris tõend jäi sageli
+    # teise, välja langenud lõiku. Kirjeldus jääb metaandmetesse, kuid seda ei
+    # korrata enam igas embeddingus.
+    embedding_prefix_lines: List[str] = []
+    if title:         embedding_prefix_lines.append(f"[TITLE] {title}")
+    if authors:       embedding_prefix_lines.append(f"[AUTHORS] {', '.join(authors)}")
+    if journal_title: embedding_prefix_lines.append(f"[JOURNAL] {journal_title}")
+    if issue_label:   embedding_prefix_lines.append(f"[ISSUE] {issue_label}")
+    elif issue_id:    embedding_prefix_lines.append(f"[ISSUE] {issue_id}")
+    if section:       embedding_prefix_lines.append(f"[SECTION] {section}")
+    if year:          embedding_prefix_lines.append(f"[YEAR] {year}")
+    if item_type:     embedding_prefix_lines.append(f"[ITEM_TYPE] {item_type}")
+    if status_label:  embedding_prefix_lines.append(f"[STATUS] {status_label}")
+    if resource_type: embedding_prefix_lines.append(f"[RESOURCE_TYPE] {resource_type}")
+    if administering_body: embedding_prefix_lines.append(f"[ADMIN_BODY] {administering_body}")
+    if county:        embedding_prefix_lines.append(f"[COUNTY] {county}")
+    if municipality_name: embedding_prefix_lines.append(f"[MUNICIPALITY] {municipality_name}")
+    embedding_prefix = ("\n".join(embedding_prefix_lines) + "\n") if embedding_prefix_lines else ""
 
     # Teksti tükeldamine
     def _token_len(s: str) -> int:
@@ -2111,23 +2120,25 @@ def _build_ingest_payload(doc_id: str, text_or_pages, meta_common: Dict) -> Dict
             "embeddings": [],
         }
 
-    final_texts = []
+    stored_texts = []
+    embedding_texts = []
     for i, ch in enumerate(chunks):
         section_meta = _section_for_page(section_index, page_nums[i] if i < len(page_nums) else None)
         section_title = str(section_meta.get("title") or "").strip() if section_meta else ""
-        section_prefix = prefix
+        section_prefix = embedding_prefix
         if section_title and section_title != section:
             section_prefix = f"{section_prefix}[PDF_SECTION] {section_title}\n"
-        final_texts.append((section_prefix + ch).strip() if section_prefix else ch)
+        stored_texts.append(ch)
+        embedding_texts.append((section_prefix + ch).strip() if section_prefix else ch)
 
     # STABIILNE ID: doc_id + jrk + 8-kohaline hash chunkist
     ids = []
-    for i, txt in enumerate(final_texts):
+    for i, txt in enumerate(stored_texts):
         h = hashlib.sha1(txt.encode("utf-8")).hexdigest()[:8]
         ids.append(f"{doc_id}:{i}:{h}")
 
     metadatas = []
-    for i, _ in enumerate(final_texts):
+    for i, _ in enumerate(stored_texts):
         chunk_id = f"{doc_id}:{i}"
         section_meta = _section_for_page(section_index, page_nums[i] if i < len(page_nums) else None)
         m = {
@@ -2224,11 +2235,11 @@ def _build_ingest_payload(doc_id: str, text_or_pages, meta_common: Dict) -> Dict
                 cleaned[k] = v2
         metadatas.append(cleaned)
 
-    embed_result = _embed_batch_with_usage(final_texts)
+    embed_result = _embed_batch_with_usage(embedding_texts)
     embeddings = list(embed_result.get("embeddings") or [])
     return {
-        "count": len(final_texts),
-        "documents": final_texts,
+        "count": len(stored_texts),
+        "documents": stored_texts,
         "metadatas": metadatas,
         "ids": ids,
         "embeddings": embeddings,
@@ -2919,6 +2930,7 @@ LEXICAL_STOPWORDS = {
     "kes",
     "kelle",
     "kellele",
+    "kohta",
     "kuidas",
     "kus",
     "kuhu",
@@ -2972,13 +2984,65 @@ def _search_tokens(value: object, limit: int = 24) -> List[str]:
     out: List[str] = []
     seen = set()
     for token in normalized.split(" "):
-        if len(token) < 3 or token in LEXICAL_STOPWORDS or token in seen:
+        if (len(token) < 3 and not token.isdigit()) or token in LEXICAL_STOPWORDS or token in seen:
             continue
         seen.add(token)
         out.append(token)
         if len(out) >= limit:
             break
     return out
+
+def _split_fact_query_segments(
+    query: object,
+    max_segments: int = 6,
+    anchor_short: bool = True,
+) -> List[str]:
+    """Return bounded semantic subqueries for a compound, narrow fact question.
+
+    The caller still searches with the complete question first. These fragments
+    are only used inside the journal articles that the complete question has
+    already identified, so a short coordinated item such as ``ööune kohta`` is
+    useful without being allowed to steer the whole-corpus search.
+    """
+    source = re.sub(r"\s+", " ", str(query or "")).strip()
+    if not source or max_segments <= 0:
+        return []
+
+    raw_parts = re.split(
+        r"\s*(?:[?;]+|,(?=\s)|\bning\b|\bja\b)\s*",
+        source,
+        flags=re.I,
+    )
+    first_words = str(raw_parts[0] if raw_parts else "").strip().split()
+    if len(first_words) >= 5:
+        context_lead = " ".join(first_words[:-2])
+    else:
+        context_lead = " ".join(first_words)
+    full_normalized = _normalize_search_text(source)
+    segments: List[str] = []
+    seen = set()
+    for part_index, raw_part in enumerate(raw_parts):
+        part = re.sub(r"^[,.:!?;\-–—\s]+|[,.:!?;\-–—\s]+$", "", raw_part).strip()
+        if not part:
+            continue
+        initial_content_tokens = _search_tokens(part, limit=12)
+        # Üks või kaks sisusõna (nt „ööune kohta“) vajavad dokumendiankrut.
+        # Kolm sisusõna moodustavad juba piisavalt täpse alamküsimuse; kogu
+        # küsimuse üldise alguse lisamine mataks siis täpse lõigu sagedaste
+        # üldsõnade alla (nt „hooldekodude nõuete täitmise“).
+        if anchor_short and part_index > 0 and context_lead and len(initial_content_tokens) <= 2:
+            part = f"{context_lead} {part}".strip()
+        normalized = _normalize_search_text(part)
+        if not normalized or normalized == full_normalized or normalized in seen:
+            continue
+        content_tokens = _search_tokens(part, limit=12)
+        if not content_tokens or not any(len(token) >= 5 for token in content_tokens):
+            continue
+        seen.add(normalized)
+        segments.append(part)
+        if len(segments) >= max_segments:
+            break
+    return segments if len(segments) >= 2 else []
 
 def _query_phrases(query: str) -> List[str]:
     phrases: List[str] = []
@@ -3000,7 +3064,7 @@ def _lexical_token_counts(text: str, limit: int = 1000) -> Dict[str, int]:
     seen = 0
     for token in str(text or "").split(" "):
         cleaned = token.strip()
-        if len(cleaned) < 3 or cleaned in LEXICAL_STOPWORDS:
+        if (len(cleaned) < 3 and not cleaned.isdigit()) or cleaned in LEXICAL_STOPWORDS:
             continue
         counts[cleaned] = counts.get(cleaned, 0) + 1
         seen += 1
@@ -3042,7 +3106,7 @@ def _query_named_entity_tokens(query: str) -> set:
             tokens.add(normalized)
     return tokens
 
-def _lexical_match(query: str, md: Dict, document: str) -> Optional[Dict[str, object]]:
+def _lexical_match(query: str, md: Dict, document: str, min_score: float = 3.0) -> Optional[Dict[str, object]]:
     title_norm = _normalize_search_text(md.get("title") or md.get("fileName") or md.get("source_url") or "")
     paragraph_title_norm = _normalize_search_text(md.get("paragraph_title") or "")
     section_norm = _normalize_search_text(md.get("section") or "")
@@ -3121,7 +3185,11 @@ def _lexical_match(query: str, md: Dict, document: str) -> Optional[Dict[str, ob
             score += min(4.0, title_overlap * 1.2)
         if body_overlap >= 2:
             score += min(2.5, body_overlap * 0.35)
-        if title_overlap >= max(1, min(3, len(query_tokens))):
+        long_title_anchor = any(
+            len(token) >= 8 and _lexical_token_frequency(token, title_counts)
+            for token in query_tokens
+        )
+        if title_overlap >= max(1, min(3, len(query_tokens))) or long_title_anchor:
             if "title_match" not in channels:
                 channels.append("title_match")
         for token in query_tokens:
@@ -3143,6 +3211,7 @@ def _lexical_match(query: str, md: Dict, document: str) -> Optional[Dict[str, ob
             bm25_coverage >= RAG_BM25_MIN_COVERAGE
             or bm25_matches >= min(3, len(query_tokens))
             or bm25_named_entity_matches >= 1
+            or (min_score < 1.0 and bm25_body_matches >= 1)
         ):
             score += min(5.0, bm25_score)
             if bm25_named_entity_matches:
@@ -3155,7 +3224,7 @@ def _lexical_match(query: str, md: Dict, document: str) -> Optional[Dict[str, ob
             if "bm25" not in channels:
                 channels.append("bm25")
 
-    if score < 3.0 or not channels:
+    if score < max(0.0, float(min_score or 0)) or not channels:
         return None
     return {
         "score": round(score, 4),
@@ -3370,6 +3439,18 @@ def _apply_hybrid_ranking(results: List[Dict[str, object]]) -> None:
             else 0.0
         )
         named_entity_boost = min(0.42, 0.26 + 0.08 * named_entity_matches) if named_entity_matches else 0.0
+        fact_segment_hits = _to_int(item.get("fact_segment_hits")) or 0
+        fact_segment_best_rank = _to_int(item.get("fact_segment_best_rank")) or 0
+        fact_segment_boost = (
+            min(
+                0.55,
+                0.20
+                + (0.08 * fact_segment_hits)
+                + max(0.0, 0.18 - (0.02 * max(0, fact_segment_best_rank - 1))),
+            )
+            if fact_segment_hits and fact_segment_best_rank
+            else 0.0
+        )
         hybrid_score = (
             (dense_score * 0.58)
             + (lexical_score * 0.34)
@@ -3377,6 +3458,7 @@ def _apply_hybrid_ranking(results: List[Dict[str, object]]) -> None:
             + channel_boost
             + bm25_coverage_boost
             + named_entity_boost
+            + fact_segment_boost
         )
         item["dense_score"] = round(dense_score, 6) if dense_score else None
         item["lexical_score_normalized"] = round(lexical_score, 6) if lexical_score else None
@@ -3384,6 +3466,7 @@ def _apply_hybrid_ranking(results: List[Dict[str, object]]) -> None:
         item["channel_boost"] = round(channel_boost, 6)
         item["bm25_coverage_boost"] = round(bm25_coverage_boost, 6)
         item["named_entity_boost"] = round(named_entity_boost, 6)
+        item["fact_segment_boost"] = round(fact_segment_boost, 6)
         item["hybrid_score"] = round(hybrid_score, 6)
         item["hybridScore"] = item["hybrid_score"]
         item["retrieval_scores"] = {
@@ -3399,6 +3482,9 @@ def _apply_hybrid_ranking(results: List[Dict[str, object]]) -> None:
             "channel_boost": item.get("channel_boost"),
             "bm25_coverage_boost": item.get("bm25_coverage_boost"),
             "named_entity_boost": item.get("named_entity_boost"),
+            "fact_segment_hits": fact_segment_hits,
+            "fact_segment_best_rank": fact_segment_best_rank or None,
+            "fact_segment_boost": item.get("fact_segment_boost"),
             "hybrid_score": item.get("hybrid_score"),
             "dense_rank": dense_rank,
             "lexical_rank": lexical_rank,
@@ -3427,31 +3513,149 @@ def _select_diverse_search_results(
     journal_chunks_per_document: int = 3,
 ) -> List[Dict[str, object]]:
     selected: List[Dict[str, object]] = []
-    journal_counts: Dict[str, int] = {}
+    document_counts: Dict[str, int] = {}
     target = max(1, int(limit or 1))
     per_document = max(1, int(journal_chunks_per_document or 1))
 
     for item in results:
-        source_type = str(item.get("source_type") or item.get("legacy_source_type") or "").strip().lower()
-        if source_type in {"journal_article", "article"}:
-            document_key = str(
-                item.get("doc_id")
-                or item.get("docId")
-                or item.get("document_id")
-                or item.get("documentId")
-                or item.get("articleId")
-                or ""
-            ).strip()
-            if document_key:
-                current = journal_counts.get(document_key, 0)
-                if current >= per_document:
-                    continue
-                journal_counts[document_key] = current + 1
+        document_key = _result_document_key(item)
+        if document_key:
+            current = document_counts.get(document_key, 0)
+            if current >= per_document:
+                continue
+            document_counts[document_key] = current + 1
         selected.append(item)
         if len(selected) >= target:
             break
 
     return selected
+
+def _result_document_key(item: Dict[str, object]) -> str:
+    return str(
+        item.get("doc_id")
+        or item.get("docId")
+        or item.get("document_id")
+        or item.get("documentId")
+        or item.get("articleId")
+        or item.get("id")
+        or ""
+    ).strip()
+
+def _select_fact_covered_search_results(
+    results: List[Dict[str, object]],
+    baseline_results: List[Dict[str, object]],
+    limit: int,
+    journal_chunks_per_document: int,
+) -> List[Dict[str, object]]:
+    """Add subquery evidence without deleting a source found by the full query."""
+    target = max(1, int(limit or 1))
+    per_document = max(1, int(journal_chunks_per_document or 1))
+    if per_document <= 3 or not baseline_results:
+        return _select_diverse_search_results(results, target, per_document)
+
+    result_by_id = {
+        str(item.get("id") or "").strip(): item
+        for item in results
+        if str(item.get("id") or "").strip()
+    }
+    result_order = {
+        item_id: index
+        for index, item_id in enumerate(result_by_id.keys())
+    }
+    protected_ids: List[str] = []
+    protected_documents = set()
+    for baseline in baseline_results:
+        item_id = str(baseline.get("id") or "").strip()
+        item = result_by_id.get(item_id)
+        if item is None:
+            continue
+        document_key = _result_document_key(item)
+        # Kitsas faktiküsimus peab säilitama mitme allika sünteesi, kuid iga
+        # juhuslikku ühe lõiguga allikat ei saa kaitsta täpse tõendi arvelt.
+        # Hoia alles kolm parimat täispäringu allikat; ülejäänud kohad võivad
+        # alamküsimuste otsesed lõigud välja vahetada.
+        if document_key not in protected_documents and len(protected_documents) < 3:
+            protected_documents.add(document_key)
+            protected_ids.append(item_id)
+
+    by_segment: Dict[str, List[Tuple[int, int, int, str]]] = {}
+    for result_index, item in enumerate(results):
+        item_id = str(item.get("id") or "").strip()
+        segment_ranks = item.get("fact_segment_ranks")
+        if not item_id or not isinstance(segment_ranks, dict):
+            continue
+        lexical_segment_ranks = item.get("fact_segment_lexical_ranks")
+        if not isinstance(lexical_segment_ranks, dict):
+            lexical_segment_ranks = {}
+        for segment_index, rank_value in segment_ranks.items():
+            lexical_rank = _to_int(lexical_segment_ranks.get(str(segment_index)))
+            rank = lexical_rank or _to_int(rank_value)
+            if rank:
+                adjacent_best_segments = item.get("fact_adjacent_to_best_segments")
+                is_adjacent_to_best = isinstance(adjacent_best_segments, list) and (
+                    str(segment_index) in {str(value) for value in adjacent_best_segments}
+                )
+                if lexical_rank and item.get("fact_neighbor") is not True:
+                    evidence_priority = 0
+                elif rank == 1 and item.get("fact_neighbor") is not True:
+                    evidence_priority = 1
+                elif is_adjacent_to_best or item.get("fact_neighbor") is True:
+                    evidence_priority = 2
+                else:
+                    # Kui täpne sõnatabamus puudub, on parima semantilise
+                    # lõigu vahetu jätk PDF-i tükelduspiiril sageli kasulikum
+                    # kui teine, sisult sarnane, kuid kaugem lõik.
+                    evidence_priority = 3
+                by_segment.setdefault(str(segment_index), []).append((evidence_priority, rank, result_index, item_id))
+    primary_fact_ids: List[str] = []
+    secondary_fact_ids: List[str] = []
+    tertiary_fact_ids: List[str] = []
+    for segment_index in sorted(
+        by_segment,
+        key=lambda value: (0, int(value)) if str(value).isdigit() else (1, str(value)),
+    ):
+        candidates = by_segment[segment_index]
+        candidates.sort()
+        if candidates:
+            primary_fact_ids.append(candidates[0][3])
+        if len(candidates) > 1:
+            secondary_fact_ids.append(candidates[1][3])
+        if len(candidates) > 2:
+            tertiary_fact_ids.append(candidates[2][3])
+
+    baseline_ids = [
+        str(item.get("id") or "").strip()
+        for item in baseline_results
+        if str(item.get("id") or "").strip()
+    ]
+    desired_order = [
+        *protected_ids,
+        *primary_fact_ids,
+        *secondary_fact_ids,
+        *tertiary_fact_ids,
+        *baseline_ids,
+        *result_by_id.keys(),
+    ]
+    selected: List[Dict[str, object]] = []
+    selected_ids = set()
+    document_counts: Dict[str, int] = {}
+    for item_id in desired_order:
+        if len(selected) >= target:
+            break
+        if not item_id or item_id in selected_ids:
+            continue
+        item = result_by_id.get(item_id)
+        if item is None:
+            continue
+        document_key = _result_document_key(item)
+        if document_counts.get(document_key, 0) >= per_document:
+            continue
+        selected.append(item)
+        selected_ids.add(item_id)
+        document_counts[document_key] = document_counts.get(document_key, 0) + 1
+
+    selected.sort(key=lambda item: result_order.get(str(item.get("id") or "").strip(), len(results)))
+    return selected[:target]
 
 def _dense_candidate_limit(top_k: int) -> int:
     return max(1, min(200, max(64, int(top_k or 1) * 6)))
@@ -3535,18 +3739,70 @@ def _build_channel_stats(results: List[Dict[str, object]]) -> Dict[str, object]:
         "bm25": bm25_summary,
     }
 
+def _strip_synthetic_rag_prefix(document: str) -> str:
+    """Return the real chunk body from legacy prefixed Chroma documents."""
+    raw = str(document or "").strip()
+    if not raw.startswith("[TITLE]"):
+        return raw
+
+    # Legacy chunks normally contain STATUS (and sometimes PAGES) as the final
+    # synthetic fields. This also handles old single-line fixtures.
+    known_markers = {
+        "TITLE", "DESC", "AUTHORS", "JOURNAL", "ISSUE", "SECTION", "YEAR",
+        "ITEM_TYPE", "STATUS", "RESOURCE_TYPE", "ADMIN_BODY", "COUNTY",
+        "MUNICIPALITY", "PAGES", "PDF_SECTION",
+    }
+
+    def strip_leading_marker_lines(value: str) -> str:
+        lines = str(value or "").splitlines()
+        first_body = 0
+        for index, line in enumerate(lines):
+            marker = re.match(r"^\s*\[([A-Z_]+)\]", line)
+            if not marker or marker.group(1) not in known_markers:
+                first_body = index
+                break
+        else:
+            return ""
+        return "\n".join(lines[first_body:]).strip()
+
+    body = re.sub(
+        r"^\[TITLE\][\s\S]*?\[STATUS\]\s*(?:active|inactive|archived|stale|unknown|historical)\s*",
+        "",
+        raw,
+        flags=re.IGNORECASE,
+    )
+    body = strip_leading_marker_lines(body)
+    if body and body != raw:
+        return body
+
+    # Fallback for older records without STATUS: strip consecutive marker lines
+    # only. If no unambiguous boundary exists, keep the original text.
+    candidate = strip_leading_marker_lines(raw)
+    return candidate or raw
+
+
 def _score_lexical_rows(
     query: str,
     allowed_channels: set,
     ids: List[object],
     documents: List[object],
     metadatas: List[object],
+    body_only: bool = False,
+    include_title: bool = True,
+    min_score: float = 3.0,
 ) -> List[Dict[str, object]]:
     scored: List[Dict[str, object]] = []
     for i, item_id in enumerate(ids):
         document = documents[i] if i < len(documents) and isinstance(documents[i], str) else ""
         md = metadatas[i] if i < len(metadatas) and isinstance(metadatas[i], dict) else {}
-        match = _lexical_match(query, md, document)
+        scoring_document = _strip_synthetic_rag_prefix(document) if body_only else document
+        scoring_metadata = md if include_title else {
+            **md,
+            "title": None,
+            "fileName": None,
+            "source_url": None,
+        }
+        match = _lexical_match(query, scoring_metadata, scoring_document, min_score=min_score)
         if not match:
             continue
         channels = [item for item in list(match["channels"]) if item in allowed_channels]
@@ -3600,6 +3856,67 @@ def _select_lexical_candidates(
             break
     return selected
 
+def _compound_document_shortlist_candidates(
+    query: str,
+    allowed_channels: set,
+    ids: List[object],
+    documents: List[object],
+    metadatas: List[object],
+    limit: int,
+) -> List[Dict[str, object]]:
+    """Return bounded evidence when every query segment matches one document."""
+    segments = _split_fact_query_segments(query, anchor_short=False)
+    if len(segments) < 2 or not ids:
+        return []
+    candidates_by_id: Dict[str, Dict[str, object]] = {}
+    common_doc_ids: Optional[set] = None
+    for segment in segments:
+        scored = _score_lexical_rows(
+            segment,
+            allowed_channels,
+            ids,
+            documents,
+            metadatas,
+            body_only=True,
+            include_title=False,
+            min_score=0.2,
+        )
+        segment_candidates = _select_lexical_candidates(
+            scored,
+            max(12, min(50, int(limit or 1) * 3)),
+            per_document=4,
+        )
+        segment_doc_ids = {
+            str((candidate.get("metadata") or {}).get("doc_id") or (candidate.get("metadata") or {}).get("docId") or "").strip()
+            for candidate in segment_candidates
+            if isinstance(candidate.get("metadata"), dict)
+        }
+        segment_doc_ids.discard("")
+        common_doc_ids = segment_doc_ids if common_doc_ids is None else common_doc_ids.intersection(segment_doc_ids)
+        if not common_doc_ids:
+            return []
+        for candidate in segment_candidates:
+            item_id = str(candidate.get("id") or "").strip()
+            if not item_id:
+                continue
+            existing = candidates_by_id.get(item_id)
+            if existing is None or float(candidate.get("score") or 0) > float(existing.get("score") or 0):
+                candidates_by_id[item_id] = candidate
+    if not common_doc_ids:
+        return []
+    candidates = [
+        candidate
+        for candidate in candidates_by_id.values()
+        if str((candidate.get("metadata") or {}).get("doc_id") or (candidate.get("metadata") or {}).get("docId") or "").strip()
+        in common_doc_ids
+    ]
+    candidates.sort(key=lambda item: float(item.get("score") or 0), reverse=True)
+    return _select_lexical_candidates(
+        candidates,
+        max(1, min(50, int(limit or 1))),
+        per_document=max(4, min(12, int(limit or 1))),
+    )
+
 def _registry_title_shortlist_doc_ids(
     query: str,
     chroma_where: Optional[Dict[str, object]],
@@ -3620,6 +3937,59 @@ def _registry_title_shortlist_doc_ids(
         matches.append((coverage, overlap, str(doc_id)))
     matches.sort(key=lambda item: (-item[0], -item[1], item[2]))
     return [doc_id for _coverage, _overlap, doc_id in matches[:max(1, limit)]]
+
+def _dense_article_anchor_doc_ids(
+    query: str,
+    dense_results: List[Dict[str, object]],
+    limit: int = 3,
+) -> List[str]:
+    """Return dense article matches whose titles strongly anchor a fact query."""
+    query_tokens = _search_tokens(query, limit=32)
+    if not query_tokens:
+        return []
+    acronym_tokens = {
+        _normalize_search_text(word)
+        for word in re.findall(r"[^\W_]+", str(query or ""), flags=re.UNICODE)
+        if len(word) >= 3 and word.isupper()
+    }
+    top_doc_counts: Dict[str, int] = {}
+    for result in dense_results[:8]:
+        source_type = str(result.get("source_type") or result.get("legacy_source_type") or "").strip().lower()
+        doc_id = str(result.get("doc_id") or result.get("docId") or "").strip()
+        if source_type in {"journal_article", "article"} and doc_id:
+            top_doc_counts[doc_id] = top_doc_counts.get(doc_id, 0) + 1
+    dominant_doc_ids = {
+        doc_id for doc_id, count in top_doc_counts.items() if count >= 5
+    }
+    doc_ids: List[str] = []
+    for result in dense_results[:24]:
+        source_type = str(result.get("source_type") or result.get("legacy_source_type") or "").strip().lower()
+        doc_id = str(result.get("doc_id") or result.get("docId") or "").strip()
+        title = str(result.get("title") or "").strip()
+        if source_type not in {"journal_article", "article"} or not doc_id or not title:
+            continue
+        title_counts = _lexical_token_counts(_normalize_search_text(title), limit=80)
+        matched_tokens = [
+            token
+            for token in query_tokens
+            if _lexical_token_frequency(token, title_counts)
+        ]
+        acronym_anchor = any(
+            token in acronym_tokens and _lexical_token_frequency(token, title_counts)
+            for token in query_tokens
+        )
+        # Üks pikk ühine valdkonnasõna (nt „erihoolekande”) ei kinnita veel
+        # konkreetset artiklit. Vastasel korral võib uuem üldartikkel lukustada
+        # kogu õdelõikude otsingu vale doc_id külge. Akronüüm on ise piisavalt
+        # eristav; tavatekstis nõuame vähemalt kaht pealkirjatunnust.
+        strong_anchor = acronym_anchor or len(matched_tokens) >= 2 or doc_id in dominant_doc_ids
+        if not strong_anchor:
+            continue
+        if doc_id not in doc_ids:
+            doc_ids.append(doc_id)
+        if len(doc_ids) >= max(1, min(5, int(limit or 1))):
+            break
+    return doc_ids
 
 def _targeted_document_terms(query: str, limit: int = 8) -> List[str]:
     words = re.findall(r"[^\W_]+", str(query or ""), flags=re.UNICODE)
@@ -3661,6 +4031,7 @@ def _targeted_document_shortlist(
     query: str,
     chroma_where: Optional[Dict[str, object]],
     top_k: int,
+    allowed_channels: Optional[set] = None,
 ) -> Dict[str, object]:
     ids: List[object] = []
     documents: List[object] = []
@@ -3669,6 +4040,8 @@ def _targeted_document_shortlist(
     scanned = 0
     per_term_limit = max(40, min(240, max(1, top_k) * 6))
     terms = _targeted_document_terms(query)
+    compound_query = len(_split_fact_query_segments(query, anchor_short=False)) >= 2
+    scoring_channels = set(allowed_channels or {"title_match", "exact_phrase", "bm25"})
     for term in terms:
         kwargs = {
             "include": ["documents", "metadatas"],
@@ -3690,6 +4063,21 @@ def _targeted_document_shortlist(
             ids.append(item_id)
             documents.append(got_documents[index] if index < len(got_documents) else "")
             metadatas.append(got_metadatas[index] if index < len(got_metadatas) else {})
+        # Chroma's where_document call is the expensive part of the shortlist.
+        # A rare first term (for example OTT or Hester) can already return a
+        # passage that covers the factual question, so do not query every
+        # remaining term before making the same bounded sufficiency decision.
+        if not compound_query and ids and _lexical_shortlist_is_conclusive(
+            _score_lexical_rows(
+                query,
+                scoring_channels,
+                ids,
+                documents,
+                metadatas,
+                body_only=True,
+            )
+        ):
+            break
     return {
         "ids": ids,
         "documents": documents,
@@ -3702,30 +4090,86 @@ def _lexical_shortlist_is_conclusive(candidates: List[Dict[str, object]]) -> boo
     """Only let a shortlist replace the corpus scan when it covers the query."""
     if not candidates:
         return False
-    top = candidates[0]
-    try:
-        coverage = float(top.get("bm25_coverage") or 0)
-    except (TypeError, ValueError):
-        coverage = 0.0
-    matches = _to_int(top.get("bm25_matches")) or 0
-    query_tokens = _to_int(top.get("bm25_query_tokens")) or 0
-    channels = {str(channel) for channel in top.get("channels") or []}
-    required_matches = max(2, math.ceil(query_tokens * 0.8))
-    return (
-        coverage >= 0.8
-        and matches >= required_matches
-        and bool(channels.intersection({"title_match", "exact_phrase"}))
-    )
+    for candidate in candidates[:max(1, min(50, RAG_LEXICAL_TOP_K))]:
+        try:
+            coverage = float(candidate.get("bm25_coverage") or 0)
+        except (TypeError, ValueError):
+            coverage = 0.0
+        matches = _to_int(candidate.get("bm25_matches")) or 0
+        query_tokens = _to_int(candidate.get("bm25_query_tokens")) or 0
+        body_matches = _to_int(candidate.get("bm25_body_matches")) or 0
+        named_entity_matches = _to_int(candidate.get("bm25_named_entity_matches")) or 0
+        channels = {str(channel) for channel in candidate.get("channels") or []}
+        strong_body_match = (
+            "bm25" in channels
+            and coverage >= 0.9
+            and matches >= max(3, math.ceil(query_tokens * 0.9))
+            and body_matches >= max(3, math.ceil(query_tokens * 0.9))
+        )
+        strong_named_body_match = (
+            "bm25" in channels
+            and named_entity_matches >= 2
+            and coverage >= 0.5
+            and matches >= max(4, math.ceil(query_tokens * 0.5))
+            and body_matches >= max(4, math.ceil(query_tokens * 0.5))
+        )
+        anchored_title_or_phrase_match = (
+            coverage >= 0.4
+            and matches >= min(query_tokens, max(2, math.ceil(query_tokens * 0.4)))
+            and bool(channels.intersection({"title_match", "exact_phrase"}))
+        )
+        if anchored_title_or_phrase_match or strong_body_match or strong_named_body_match:
+            return True
+    return False
 
 def _fetch_lexical_candidates(
     query: str,
     chroma_where: Optional[Dict[str, object]],
     top_k: int,
     requested_retrievers: Optional[List[str]] = None,
+    dense_article_doc_ids: Optional[List[str]] = None,
 ) -> Dict[str, object]:
     if not RAG_LEXICAL_SEARCH_ENABLED or not str(query or "").strip():
         return {"candidates": [], "scanned": 0, "complete": True, "error": None}
     allowed_channels = set(requested_retrievers or ["title_match", "exact_phrase", "bm25"])
+    anchored_doc_ids = [str(value).strip() for value in dense_article_doc_ids or [] if str(value).strip()]
+    if anchored_doc_ids:
+        anchor_where: Dict[str, object] = {"doc_id": {"$in": anchored_doc_ids[:5]}}
+        if chroma_where:
+            anchor_where = {"$and": [chroma_where, anchor_where]}
+        try:
+            anchored = collection.get(
+                include=["documents", "metadatas"],
+                limit=min(5000, max(100, len(anchored_doc_ids) * 100)),
+                where=anchor_where,
+            )
+            anchored_ids = list(anchored.get("ids") or [])
+            anchored_docs = list(anchored.get("documents") or [])
+            anchored_metas = list(anchored.get("metadatas") or [])
+            anchored_scored = _score_lexical_rows(
+                query,
+                allowed_channels,
+                anchored_ids,
+                anchored_docs,
+                anchored_metas,
+                body_only=True,
+            )
+            if anchored_scored:
+                anchored_limit = max(0, min(max(1, top_k), RAG_LEXICAL_TOP_K))
+                return {
+                    "candidates": _select_lexical_candidates(
+                        anchored_scored,
+                        anchored_limit,
+                        per_document=max(4, min(12, int(top_k or 1))),
+                    ),
+                    "scanned": len(anchored_ids),
+                    "complete": True,
+                    "exhaustive": False,
+                    "error": None,
+                    "strategy": "dense_article_shortlist",
+                }
+        except Exception:
+            logger.exception("dense article shortlist retrieval failed")
     page_size = max(1, min(5000, RAG_LEXICAL_SCAN_LIMIT))
     max_scan = max(page_size, RAG_LEXICAL_MAX_SCAN)
     shortlist_ids: List[object] = []
@@ -3741,7 +4185,12 @@ def _fetch_lexical_candidates(
     except Exception:
         title_doc_ids = []
     try:
-        targeted = _targeted_document_shortlist(query, chroma_where, top_k)
+        targeted = _targeted_document_shortlist(
+            query,
+            chroma_where,
+            top_k,
+            allowed_channels,
+        )
         targeted_used = bool(targeted.get("ids"))
         shortlist_scanned += int(targeted.get("scanned") or 0)
         for index, item_id in enumerate(targeted.get("ids") or []):
@@ -3782,6 +4231,7 @@ def _fetch_lexical_candidates(
                 shortlist_ids,
                 shortlist_docs,
                 shortlist_metas,
+                body_only=True,
             )
             shortlist_scored_candidates = shortlist_scored
             if _lexical_shortlist_is_conclusive(shortlist_scored):
@@ -3789,7 +4239,8 @@ def _fetch_lexical_candidates(
                 return {
                     "candidates": _select_lexical_candidates(shortlist_scored, shortlist_limit),
                     "scanned": shortlist_scanned,
-                    "complete": False,
+                    "complete": True,
+                    "exhaustive": False,
                     "error": None,
                     "strategy": "targeted_document_shortlist" if targeted_used else "registry_title_shortlist",
                 }
@@ -3802,6 +4253,7 @@ def _fetch_lexical_candidates(
             shortlist_ids,
             shortlist_docs,
             shortlist_metas,
+            body_only=True,
         )
         shortlist_scored_candidates = shortlist_scored
         if _lexical_shortlist_is_conclusive(shortlist_scored):
@@ -3809,10 +4261,28 @@ def _fetch_lexical_candidates(
             return {
                 "candidates": _select_lexical_candidates(shortlist_scored, shortlist_limit),
                 "scanned": shortlist_scanned,
-                "complete": False,
+                "complete": True,
+                "exhaustive": False,
                 "error": None,
                 "strategy": "targeted_document_shortlist",
             }
+    compound_candidates = _compound_document_shortlist_candidates(
+        query,
+        allowed_channels,
+        shortlist_ids,
+        shortlist_docs,
+        shortlist_metas,
+        max(1, min(50, top_k)),
+    )
+    if compound_candidates:
+        return {
+            "candidates": compound_candidates,
+            "scanned": shortlist_scanned,
+            "complete": True,
+            "exhaustive": False,
+            "error": None,
+            "strategy": "targeted_compound_document_shortlist",
+        }
     all_ids: List[object] = []
     all_docs: List[object] = []
     all_metas: List[object] = []
@@ -3847,7 +4317,14 @@ def _fetch_lexical_candidates(
             "error": f"{type(exc).__name__}",
         }
 
-    scanned_scored = _score_lexical_rows(query, allowed_channels, all_ids, all_docs, all_metas)
+    scanned_scored = _score_lexical_rows(
+        query,
+        allowed_channels,
+        all_ids,
+        all_docs,
+        all_metas,
+        body_only=True,
+    )
     scored_by_id: Dict[str, Dict[str, object]] = {}
     for candidate in [*shortlist_scored_candidates, *scanned_scored]:
         candidate_id = str(candidate.get("id") or "").strip()
@@ -3866,15 +4343,18 @@ def _fetch_lexical_candidates(
         "candidates": _select_lexical_candidates(scored, limit),
         "scanned": len(all_ids),
         "complete": complete,
+        "exhaustive": complete,
         "error": None,
     }
 
-def _fetch_article_sibling_candidates(
+def _fetch_document_sibling_candidates(
     query: str,
     chroma_where: Optional[Dict[str, object]],
     dense_results: List[Dict[str, object]],
     top_k: int,
     requested_retrievers: Optional[List[str]] = None,
+    max_documents: int = 1,
+    per_document: int = 4,
 ) -> List[Dict[str, object]]:
     if not RAG_LEXICAL_SEARCH_ENABLED:
         return []
@@ -3884,13 +4364,11 @@ def _fetch_article_sibling_candidates(
     doc_ids: List[str] = []
     for result in dense_results:
         doc_id = str(result.get("doc_id") or result.get("docId") or "").strip()
-        article_id = str(result.get("articleId") or result.get("article_id") or "").strip()
-        source_type = str(result.get("source_type") or "").strip().lower()
-        if not doc_id or (not article_id and source_type not in {"journal_article", "article"}):
+        if not doc_id:
             continue
         if doc_id not in doc_ids:
             doc_ids.append(doc_id)
-        if len(doc_ids) >= 1:
+        if len(doc_ids) >= max(1, min(8, int(max_documents or 1))):
             break
     if not doc_ids:
         return []
@@ -3909,9 +4387,366 @@ def _fetch_article_sibling_candidates(
         list(got.get("ids") or []),
         list(got.get("documents") or []),
         list(got.get("metadatas") or []),
+        body_only=True,
+        include_title=False,
     )
     limit = max(0, min(max(1, top_k), RAG_LEXICAL_TOP_K))
-    return scored[:limit]
+    return _select_lexical_candidates(
+        scored,
+        limit,
+        per_document=max(1, min(12, int(per_document or 1))),
+    )
+
+def _fetch_fact_segment_candidates(
+    segment_embeddings: List[List[float]],
+    segment_queries: List[str],
+    chroma_where: Optional[Dict[str, object]],
+    initial_results: List[Dict[str, object]],
+    version_registry: Dict[str, object],
+    *,
+    is_general_search: bool,
+    per_document: int,
+    max_documents: int = 3,
+) -> List[Dict[str, object]]:
+    """Search each question segment inside already identified documents."""
+    if not segment_embeddings and not segment_queries:
+        return []
+
+    doc_ids: List[str] = []
+    for result in initial_results:
+        doc_id = str(result.get("doc_id") or result.get("docId") or "").strip()
+        if not doc_id:
+            continue
+        if doc_id not in doc_ids:
+            doc_ids.append(doc_id)
+        if len(doc_ids) >= max(1, min(5, int(max_documents or 1))):
+            break
+    if not doc_ids:
+        return []
+
+    segment_where: Dict[str, object] = {"doc_id": {"$in": doc_ids}}
+    if chroma_where:
+        segment_where = {"$and": [chroma_where, segment_where]}
+    n_results = min(40, max(8, len(doc_ids) * max(1, min(12, int(per_document or 1)))))
+    res = (
+        collection.query(
+            query_embeddings=segment_embeddings,
+            n_results=n_results,
+            where=segment_where,
+            include=["documents", "metadatas", "distances"],
+        )
+        if segment_embeddings
+        else {"ids": [], "documents": [], "metadatas": [], "distances": []}
+    )
+
+    id_rows = list(res.get("ids") or [])
+    doc_rows = list(res.get("documents") or [])
+    metadata_rows = list(res.get("metadatas") or [])
+    distance_rows = list(res.get("distances") or [])
+    by_id: Dict[str, Dict[str, object]] = {}
+    per_segment_document_limit = max(2, min(4, math.ceil(max(1, int(per_document or 1)) / 3)))
+    for segment_index, row_ids in enumerate(id_rows):
+        row_docs = doc_rows[segment_index] if segment_index < len(doc_rows) else []
+        row_metadatas = metadata_rows[segment_index] if segment_index < len(metadata_rows) else []
+        row_distances = distance_rows[segment_index] if segment_index < len(distance_rows) else []
+        segment_doc_counts: Dict[str, int] = {}
+        for rank, item_id_value in enumerate(list(row_ids or []), start=1):
+            item_id = str(item_id_value or "").strip()
+            if not item_id:
+                continue
+            document = row_docs[rank - 1] if rank - 1 < len(row_docs) and isinstance(row_docs[rank - 1], str) else ""
+            md = row_metadatas[rank - 1] if rank - 1 < len(row_metadatas) and isinstance(row_metadatas[rank - 1], dict) else {}
+            distance = row_distances[rank - 1] if rank - 1 < len(row_distances) else None
+            if not is_active_document_version(md, version_registry):
+                continue
+            if is_general_search and not is_general_search_metadata_allowed(md):
+                continue
+            if not _metadata_matches_filter(md, segment_where):
+                continue
+            candidate_doc_id = str(md.get("doc_id") or md.get("docId") or "").strip()
+            current_doc_count = segment_doc_counts.get(candidate_doc_id, 0)
+            if current_doc_count >= per_segment_document_limit:
+                continue
+            segment_doc_counts[candidate_doc_id] = current_doc_count + 1
+
+            existing = by_id.get(item_id)
+            if existing is None:
+                existing = _search_result_from_metadata(
+                    item_id=item_id,
+                    document=document,
+                    md=md,
+                    distance=distance,
+                    channels=["dense"],
+                    rank=rank,
+                )
+                existing["dense_rank"] = rank
+                existing["fact_segment_indexes"] = []
+                existing["fact_segment_ranks"] = {}
+                by_id[item_id] = existing
+            indexes = existing.get("fact_segment_indexes")
+            if not isinstance(indexes, list):
+                indexes = []
+                existing["fact_segment_indexes"] = indexes
+            if segment_index not in indexes:
+                indexes.append(segment_index)
+            segment_ranks = existing.get("fact_segment_ranks")
+            if not isinstance(segment_ranks, dict):
+                segment_ranks = {}
+                existing["fact_segment_ranks"] = segment_ranks
+            segment_key = str(segment_index)
+            previous_segment_rank = _to_int(segment_ranks.get(segment_key))
+            segment_ranks[segment_key] = min(previous_segment_rank or rank, rank)
+            existing["fact_segment_hits"] = len(indexes)
+            previous_rank = _to_int(existing.get("fact_segment_best_rank"))
+            existing["fact_segment_best_rank"] = min(previous_rank or rank, rank)
+            previous_distance = existing.get("distance")
+            try:
+                if previous_distance is None or (distance is not None and float(distance) < float(previous_distance)):
+                    existing["distance"] = distance
+            except Exception:
+                pass
+            existing["dense_rank"] = min(_to_int(existing.get("dense_rank")) or rank, rank)
+
+    # Semantiline alamotsing võib eesti käändelise või väga lühikese küsimuse
+    # puhul valida küll õige dokumendi, kuid vale lõigu. Hinda samade, juba
+    # tuvastatud dokumentide lõike ka iga küsimuse osa sõnade järgi. See on
+    # piiratud dokumendisisene läbivaatus, mitte uus kogu korpuse täisskann.
+    if segment_queries:
+        got = collection.get(
+            include=["documents", "metadatas"],
+            limit=min(5000, max(200, len(doc_ids) * 600)),
+            where=segment_where,
+        )
+        lexical_ids = list(got.get("ids") or [])
+        lexical_documents = list(got.get("documents") or [])
+        lexical_metadatas = list(got.get("metadatas") or [])
+        for segment_index, segment_query in enumerate(segment_queries):
+            scored = _score_lexical_rows(
+                segment_query,
+                {"title_match", "exact_phrase", "bm25"},
+                lexical_ids,
+                lexical_documents,
+                lexical_metadatas,
+                body_only=True,
+                include_title=False,
+                min_score=0.2,
+            )
+            candidates = _select_lexical_candidates(
+                scored,
+                max(2, min(12, int(per_document or 1))),
+                per_document=max(2, min(4, math.ceil(max(1, int(per_document or 1)) / 3))),
+            )
+            for rank, candidate in enumerate(candidates, start=1):
+                item_id = str(candidate.get("id") or "").strip()
+                md = candidate.get("metadata") if isinstance(candidate.get("metadata"), dict) else {}
+                if not item_id or not is_active_document_version(md, version_registry):
+                    continue
+                if is_general_search and not is_general_search_metadata_allowed(md):
+                    continue
+                if not _metadata_matches_filter(md, segment_where):
+                    continue
+                existing = by_id.get(item_id)
+                if existing is None:
+                    channels = [str(value) for value in candidate.get("channels") or [] if str(value or "").strip()]
+                    existing = _search_result_from_metadata(
+                        item_id=item_id,
+                        document=str(candidate.get("document") or ""),
+                        md=md,
+                        distance=None,
+                        channels=channels or ["bm25"],
+                        rank=rank,
+                        lexical_score=float(candidate.get("score") or 0),
+                        lexical_details=candidate,
+                    )
+                    existing["lexical_rank"] = rank
+                    existing["fact_segment_indexes"] = []
+                    existing["fact_segment_ranks"] = {}
+                    by_id[item_id] = existing
+                else:
+                    _append_channels(existing, candidate.get("channels") or ["bm25"])
+                    existing["lexical_score"] = max(
+                        float(existing.get("lexical_score") or 0),
+                        float(candidate.get("score") or 0),
+                    )
+                    existing["lexical_rank"] = min(_to_int(existing.get("lexical_rank")) or rank, rank)
+                indexes = existing.get("fact_segment_indexes")
+                if not isinstance(indexes, list):
+                    indexes = []
+                    existing["fact_segment_indexes"] = indexes
+                if segment_index not in indexes:
+                    indexes.append(segment_index)
+                ranks = existing.get("fact_segment_ranks")
+                if not isinstance(ranks, dict):
+                    ranks = {}
+                    existing["fact_segment_ranks"] = ranks
+                key = str(segment_index)
+                previous_rank = _to_int(ranks.get(key))
+                ranks[key] = min(previous_rank or rank, rank)
+                lexical_ranks = existing.get("fact_segment_lexical_ranks")
+                if not isinstance(lexical_ranks, dict):
+                    lexical_ranks = {}
+                    existing["fact_segment_lexical_ranks"] = lexical_ranks
+                previous_lexical_rank = _to_int(lexical_ranks.get(key))
+                lexical_ranks[key] = min(previous_lexical_rank or rank, rank)
+                existing["fact_segment_hits"] = len(indexes)
+                best_rank = _to_int(existing.get("fact_segment_best_rank"))
+                existing["fact_segment_best_rank"] = min(best_rank or rank, rank)
+
+        # PDF-i lehekülje- või lõigupiir võib jätta vastuse järgmise lõigu
+        # algusse. Lisa iga faktitabamuse vahetud naabrid kandidaatidena; lõplik
+        # top-k ja dokumendisügavuse piir otsustavad endiselt, kas need jõuavad
+        # vastusesse. Nii ei kao näiteks lause teine pool tükelduspiiri taha.
+        rows_by_position: Dict[Tuple[str, int], Tuple[str, str, Dict[str, object]]] = {}
+        for index, item_id_value in enumerate(lexical_ids):
+            md = lexical_metadatas[index] if index < len(lexical_metadatas) and isinstance(lexical_metadatas[index], dict) else {}
+            doc_id = str(md.get("doc_id") or md.get("docId") or "").strip()
+            chunk_index = _to_int(md.get("chunk_index") or md.get("chunkIndex"))
+            if not doc_id or chunk_index is None:
+                continue
+            document = lexical_documents[index] if index < len(lexical_documents) and isinstance(lexical_documents[index], str) else ""
+            rows_by_position[(doc_id, chunk_index)] = (str(item_id_value or ""), document, md)
+        for seed in list(by_id.values()):
+            doc_id = str(seed.get("doc_id") or seed.get("docId") or "").strip()
+            chunk_index = _to_int(seed.get("chunk_index") or seed.get("chunkIndex"))
+            segment_indexes = list(seed.get("fact_segment_indexes") or [])
+            segment_ranks = seed.get("fact_segment_ranks") if isinstance(seed.get("fact_segment_ranks"), dict) else {}
+            if not doc_id or chunk_index is None or not segment_indexes:
+                continue
+            for neighbor_index in [chunk_index - 1, chunk_index + 1]:
+                row = rows_by_position.get((doc_id, neighbor_index))
+                if row is None:
+                    continue
+                item_id, document, md = row
+                if not item_id:
+                    continue
+                neighbor = by_id.get(item_id)
+                created_as_neighbor = neighbor is None
+                if neighbor is None:
+                    neighbor = _search_result_from_metadata(
+                        item_id=item_id,
+                        document=document,
+                        md=md,
+                        distance=seed.get("distance"),
+                        channels=list(seed.get("retrieval_channels") or ["bm25"]),
+                        rank=_to_int(seed.get("retrieval_rank")),
+                        lexical_score=max(0.0, float(seed.get("lexical_score") or 0) * 0.8),
+                    )
+                    neighbor["dense_rank"] = _to_int(seed.get("dense_rank"))
+                    neighbor["lexical_rank"] = _to_int(seed.get("lexical_rank"))
+                    neighbor["fact_segment_indexes"] = []
+                    neighbor["fact_segment_ranks"] = {}
+                    by_id[item_id] = neighbor
+                neighbor_indexes = neighbor.get("fact_segment_indexes")
+                if not isinstance(neighbor_indexes, list):
+                    neighbor_indexes = []
+                    neighbor["fact_segment_indexes"] = neighbor_indexes
+                neighbor_ranks = neighbor.get("fact_segment_ranks")
+                if not isinstance(neighbor_ranks, dict):
+                    neighbor_ranks = {}
+                    neighbor["fact_segment_ranks"] = neighbor_ranks
+                neighbor_lexical_ranks = neighbor.get("fact_segment_lexical_ranks")
+                if not isinstance(neighbor_lexical_ranks, dict):
+                    neighbor_lexical_ranks = {}
+                    neighbor["fact_segment_lexical_ranks"] = neighbor_lexical_ranks
+                seed_lexical_ranks = seed.get("fact_segment_lexical_ranks") if isinstance(seed.get("fact_segment_lexical_ranks"), dict) else {}
+                adjacent_best_segments = neighbor.get("fact_adjacent_to_best_segments")
+                if not isinstance(adjacent_best_segments, list):
+                    adjacent_best_segments = []
+                    neighbor["fact_adjacent_to_best_segments"] = adjacent_best_segments
+                for segment_index in segment_indexes:
+                    if segment_index not in neighbor_indexes:
+                        neighbor_indexes.append(segment_index)
+                    key = str(segment_index)
+                    rank = (_to_int(segment_ranks.get(key)) or 1) + 1
+                    previous_rank = _to_int(neighbor_ranks.get(key))
+                    neighbor_ranks[key] = min(previous_rank or rank, rank)
+                    if (_to_int(segment_ranks.get(key)) or 0) == 1 and key not in adjacent_best_segments:
+                        adjacent_best_segments.append(key)
+                    seed_lexical_rank = _to_int(seed_lexical_ranks.get(key))
+                    if seed_lexical_rank:
+                        lexical_rank = seed_lexical_rank + 1
+                        previous_lexical_rank = _to_int(neighbor_lexical_ranks.get(key))
+                        neighbor_lexical_ranks[key] = min(previous_lexical_rank or lexical_rank, lexical_rank)
+                neighbor["fact_segment_hits"] = len(neighbor_indexes)
+                neighbor["fact_segment_best_rank"] = min(neighbor_ranks.values())
+                if created_as_neighbor:
+                    neighbor["fact_neighbor"] = True
+                    neighbor.setdefault("fact_neighbor_of", str(seed.get("id") or "").strip())
+
+    return list(by_id.values())
+
+def _merge_fact_segment_candidates(
+    results: List[Dict[str, object]],
+    candidates: List[Dict[str, object]],
+) -> None:
+    by_id = {str(item.get("id") or ""): item for item in results if item.get("id")}
+    for candidate in candidates:
+        item_id = str(candidate.get("id") or "").strip()
+        if not item_id:
+            continue
+        if item_id not in by_id:
+            by_id[item_id] = candidate
+            results.append(candidate)
+            continue
+        existing = by_id[item_id]
+        existing_indexes = existing.get("fact_segment_indexes")
+        if not isinstance(existing_indexes, list):
+            existing_indexes = []
+        for segment_index in candidate.get("fact_segment_indexes") or []:
+            if segment_index not in existing_indexes:
+                existing_indexes.append(segment_index)
+        existing["fact_segment_indexes"] = existing_indexes
+        existing["fact_segment_hits"] = len(existing_indexes)
+        existing_segment_ranks = existing.get("fact_segment_ranks")
+        if not isinstance(existing_segment_ranks, dict):
+            existing_segment_ranks = {}
+        for segment_index, segment_rank in (candidate.get("fact_segment_ranks") or {}).items():
+            previous_segment_rank = _to_int(existing_segment_ranks.get(str(segment_index)))
+            candidate_segment_rank = _to_int(segment_rank)
+            if candidate_segment_rank:
+                existing_segment_ranks[str(segment_index)] = min(
+                    previous_segment_rank or candidate_segment_rank,
+                    candidate_segment_rank,
+                )
+        existing["fact_segment_ranks"] = existing_segment_ranks
+        existing_lexical_ranks = existing.get("fact_segment_lexical_ranks")
+        if not isinstance(existing_lexical_ranks, dict):
+            existing_lexical_ranks = {}
+        for segment_index, segment_rank in (candidate.get("fact_segment_lexical_ranks") or {}).items():
+            previous_segment_rank = _to_int(existing_lexical_ranks.get(str(segment_index)))
+            candidate_segment_rank = _to_int(segment_rank)
+            if candidate_segment_rank:
+                existing_lexical_ranks[str(segment_index)] = min(
+                    previous_segment_rank or candidate_segment_rank,
+                    candidate_segment_rank,
+                )
+        if existing_lexical_ranks:
+            existing["fact_segment_lexical_ranks"] = existing_lexical_ranks
+        if candidate.get("fact_neighbor") is True:
+            existing["fact_neighbor"] = True
+            existing.setdefault("fact_neighbor_of", candidate.get("fact_neighbor_of"))
+        existing_adjacent = existing.get("fact_adjacent_to_best_segments")
+        if not isinstance(existing_adjacent, list):
+            existing_adjacent = []
+        for segment_index in candidate.get("fact_adjacent_to_best_segments") or []:
+            key = str(segment_index)
+            if key not in existing_adjacent:
+                existing_adjacent.append(key)
+        if existing_adjacent:
+            existing["fact_adjacent_to_best_segments"] = existing_adjacent
+        candidate_rank = _to_int(candidate.get("fact_segment_best_rank"))
+        existing_rank = _to_int(existing.get("fact_segment_best_rank"))
+        if candidate_rank:
+            existing["fact_segment_best_rank"] = min(existing_rank or candidate_rank, candidate_rank)
+        try:
+            candidate_distance = candidate.get("distance")
+            existing_distance = existing.get("distance")
+            if candidate_distance is not None and (
+                existing_distance is None or float(candidate_distance) < float(existing_distance)
+            ):
+                existing["distance"] = candidate_distance
+        except Exception:
+            pass
 
 # --------------------
 # Routes
@@ -5427,11 +6262,22 @@ def _execute_search(
         channel in requested_retrievers
         for channel in ["title_match", "exact_phrase", "bm25"]
     )
+    fact_query_segments = (
+        _split_fact_query_segments(payload.query, anchor_short=False)
+        if payload.journal_chunks_per_document > 3
+        else []
+    )
+    fact_embedding_segments = (
+        _split_fact_query_segments(payload.query, anchor_short=True)
+        if fact_query_segments
+        else []
+    )
+    embedding_inputs = [payload.query, *fact_embedding_segments]
     embed_t0 = time.perf_counter()
     embedding_degraded = False
     embedding_error_code: Optional[str] = None
     try:
-        embed_result = _embed_batch_with_usage([payload.query])
+        embed_result = _embed_batch_with_usage(embedding_inputs)
     except HTTPException as e:
         if e.status_code not in {502, 503} or not lexical_requested:
             _log_stage("embedding", embed_t0, "error", error_class=e.__class__.__name__)
@@ -5461,6 +6307,7 @@ def _execute_search(
         raise
     embedding_ms = _ms_since(embed_t0)
     q_embeds = list(embed_result.get("embeddings") or [])
+    segment_embeddings = q_embeds[1:1 + len(fact_query_segments)] if q_embeds else []
     if not embedding_degraded:
         _log_stage(
             "embedding",
@@ -5654,27 +6501,35 @@ def _execute_search(
             "distance": dists[i] if i < len(dists) else None,
         })
 
+    dense_article_doc_ids = (
+        _dense_article_anchor_doc_ids(payload.query, flat)
+        if payload.journal_chunks_per_document > 3
+        else []
+    )
     lexical_fetch = (
         _fetch_lexical_candidates(
             payload.query,
             chroma_where,
             max(1, min(50, payload.top_k or 5)),
             requested_retrievers,
+            dense_article_doc_ids=dense_article_doc_ids,
         )
         if lexical_requested
         else {"candidates": [], "scanned": 0, "complete": True, "error": None}
     )
     lexical_candidates = list(lexical_fetch.get("candidates") or [])
     try:
-        sibling_candidates = _fetch_article_sibling_candidates(
+        sibling_candidates = _fetch_document_sibling_candidates(
             payload.query,
             chroma_where,
             flat,
             max(1, min(50, payload.top_k or 5)),
             requested_retrievers,
+            max_documents=3 if payload.journal_chunks_per_document > 3 else 1,
+            per_document=payload.journal_chunks_per_document,
         )
     except Exception:
-        logger.exception("article sibling retrieval failed")
+        logger.exception("document sibling retrieval failed")
         sibling_candidates = []
     lexical_by_id: Dict[str, Dict[str, object]] = {}
     for candidate in [*lexical_candidates, *sibling_candidates]:
@@ -5684,11 +6539,15 @@ def _execute_search(
         existing = lexical_by_id.get(item_id)
         if existing is None or float(candidate.get("score") or 0) > float(existing.get("score") or 0):
             lexical_by_id[item_id] = candidate
+    # The general lexical pass and document-sibling expansion each already have
+    # their own bounded candidate pool. Do not collapse the merged pool back to
+    # RAG_LEXICAL_TOP_K: that used to discard the question-relevant next chunk
+    # of a document after the sibling pass had successfully found it.
     lexical_candidates = sorted(
         lexical_by_id.values(),
         key=lambda item: float(item.get("score") or 0),
         reverse=True,
-    )[:max(1, min(50, RAG_LEXICAL_TOP_K))]
+    )[:50]
     flat_by_id = {str(item.get("id") or ""): item for item in flat if item.get("id")}
     for rank, candidate in enumerate(lexical_candidates, start=1):
         item_id = str(candidate.get("id") or "").strip()
@@ -5736,7 +6595,34 @@ def _execute_search(
         flat.append(lexical_result)
     _apply_hybrid_ranking(flat)
     requested_top_k = max(1, min(50, int(payload.top_k or 5)))
-    flat = _select_diverse_search_results(flat, requested_top_k)
+    baseline_results = _select_diverse_search_results(
+        flat,
+        requested_top_k,
+        journal_chunks_per_document=payload.journal_chunks_per_document,
+    )
+    try:
+        fact_segment_candidates = _fetch_fact_segment_candidates(
+            segment_embeddings,
+            fact_query_segments,
+            chroma_where,
+            flat,
+            version_registry,
+            is_general_search=is_general_search,
+            per_document=payload.journal_chunks_per_document,
+            max_documents=5,
+        )
+    except Exception:
+        logger.exception("fact segment retrieval failed")
+        fact_segment_candidates = []
+    if fact_segment_candidates:
+        _merge_fact_segment_candidates(flat, fact_segment_candidates)
+        _apply_hybrid_ranking(flat)
+    flat = _select_fact_covered_search_results(
+        flat,
+        baseline_results,
+        requested_top_k,
+        journal_chunks_per_document=payload.journal_chunks_per_document,
+    )
     result_count = len(flat)
     retrievers_used: List[str] = []
     for item in flat:
@@ -5931,6 +6817,8 @@ def _execute_search(
         "lexical_scan": {
             "scanned": int(lexical_fetch.get("scanned") or 0),
             "complete": bool(lexical_fetch.get("complete")),
+            "exhaustive": bool(lexical_fetch.get("exhaustive")),
+            "strategy": lexical_fetch.get("strategy") or "corpus_scan",
             "error": lexical_fetch.get("error"),
         },
         "request_id": stage_request_id,

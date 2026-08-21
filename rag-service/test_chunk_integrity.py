@@ -108,7 +108,7 @@ class ChunkIntegrityTests(unittest.TestCase):
             captured.extend(texts)
             return {"embeddings": [[1.0] for _ in texts]}
 
-        with patch.object(main, "CHUNK_MODE", "chars"), patch.object(main, "SINGLE_CHUNK_CHAR_LIMIT", 10_000), patch.object(
+        with patch.object(main, "CHUNK_MODE", "chars"), patch.object(main, "ALWAYS_CHUNK", False), patch.object(main, "SINGLE_CHUNK_CHAR_LIMIT", 10_000), patch.object(
             main, "_embed_batch_with_usage", side_effect=embed
         ):
             payload = main._build_ingest_payload(
@@ -121,7 +121,37 @@ class ChunkIntegrityTests(unittest.TestCase):
         self.assertEqual(payload["metadatas"][0]["pages"], "1, 2, 3")
         self.assertEqual(payload["metadatas"][0]["pageRange"], "1–3")
         self.assertIn("LAST-PAGE-NEEDLE", payload["documents"][0])
-        self.assertEqual(captured, payload["documents"])
+        self.assertEqual(len(captured), 1)
+        self.assertIn(payload["documents"][0], captured[0])
+
+    def test_ingest_stores_body_only_and_does_not_repeat_description_in_embedding(self):
+        captured = []
+
+        def embed(texts):
+            captured.extend(texts)
+            return {"embeddings": [[1.0] for _ in texts]}
+
+        with patch.object(main, "ALWAYS_CHUNK", False), patch.object(
+            main, "_embed_batch_with_usage", side_effect=embed
+        ):
+            payload = main._build_ingest_payload(
+                "journal-article",
+                "Päris artiklilõik sisaldab kontrollitavat fakti.",
+                {
+                    "title": "Kontrollitud artikkel",
+                    "description": "Pikk kokkuvõte, mida ei tohi igas lõigus korrata.",
+                    "authors": ["Mari Näide"],
+                    "content_status": "active",
+                },
+            )
+
+        self.assertEqual(payload["documents"], ["Päris artiklilõik sisaldab kontrollitavat fakti."])
+        self.assertEqual(len(captured), 1)
+        self.assertIn("[TITLE] Kontrollitud artikkel", captured[0])
+        self.assertIn("Päris artiklilõik sisaldab kontrollitavat fakti.", captured[0])
+        self.assertNotIn("[DESC]", captured[0])
+        self.assertNotIn("Pikk kokkuvõte", captured[0])
+        self.assertEqual(payload["metadatas"][0]["description"], "Pikk kokkuvõte, mida ei tohi igas lõigus korrata.")
 
     def test_empty_extraction_is_422_before_collection_or_registry_change(self):
         with patch.object(main, "stage_document_version") as stage:
