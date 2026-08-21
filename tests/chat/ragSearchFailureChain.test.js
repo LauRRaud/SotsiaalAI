@@ -10,14 +10,14 @@ function abortError() {
   return Object.assign(new Error("This operation was aborted"), { name: "AbortError" });
 }
 
-async function runAssembler({ searchImpl }) {
+async function runAssembler({ searchImpl, effectiveMessage = "Kas Jõhvi vallas saab isikliku abistaja teenust?" }) {
   const events = [];
   const errors = [];
   const result = await assembleRetrievalContext({
     payloadAudience: null,
     normalizedRole: "SOCIAL_WORKER",
     rawHistory: [],
-    effectiveMessage: "Kas Jõhvi vallas saab isikliku abistaja teenust?",
+    effectiveMessage,
     forceSources: true,
     forcedMode: null,
     hasHistory: false,
@@ -40,6 +40,41 @@ async function runAssembler({ searchImpl }) {
   });
   return { result, events, errors };
 }
+
+test("otsene nimetatud näide säilib kontekstis ja saab vale eituse vastase tõendireegli", async () => {
+  const { result } = await runAssembler({
+    effectiveMessage: "Tehisintellekt sotsiaalvaldkonnas? Töötukassas?",
+    searchImpl: async () => [
+      {
+        id: "ai-generic",
+        doc_id: "ai-article",
+        title: "Tehisintellekt sotsiaaltöös",
+        text: "Tehisintellekt võib toetada dokumenteerimist ja spetsialisti tööd.",
+        source_type: "journal_article",
+        year: 2025,
+        retriever: "dense"
+      },
+      {
+        id: "ai-ott",
+        doc_id: "ai-article",
+        title: "Tehisintellekt sotsiaaltöös",
+        text: "Eesti töötukassa OTT-süsteem hindab pikaajalise töötuse riski 45 näitaja alusel ja toetab spetsialisti otsust.",
+        source_type: "journal_article",
+        year: 2025,
+        retriever: "dense"
+      }
+    ]
+  });
+
+  assert.match(result.effectiveContext, /OTT-süsteem/);
+  assert.equal(
+    result.extraSystemInstructions.some(instruction =>
+      instruction.includes("EVIDENCE_PRESERVATION") &&
+      instruction.includes("Ära väida, et materjalides konkreetset näidet ei ole")
+    ),
+    true
+  );
+});
 
 test("abortitud otsing seab ragSearchFailed=true ja logib rag_error", async () => {
   const { result, events } = await runAssembler({
