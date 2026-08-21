@@ -1,7 +1,10 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { buildTemporalRetrievalPlan } from "../../lib/chat/retrievalPlanning.js";
+import {
+  buildTemporalRetrievalPlan,
+  extractExplicitSourceYears
+} from "../../lib/chat/retrievalPlanning.js";
 
 const previousMultiYearHistory = [
   {
@@ -45,4 +48,20 @@ test("an explicit reference to those years may carry temporal history", () => {
 
   assert.equal(plan.enabled, true);
   assert.deepEqual(plan.years, [2018, 2019, 2024]);
+});
+
+test("a named source year is separated from a factual deadline year", () => {
+  const message = "Mida näitas OSKA 2025. aasta seire ja mis muutub 2026. aasta juulis?";
+
+  assert.deepEqual(extractExplicitSourceYears(message), [2025]);
+
+  const plan = buildTemporalRetrievalPlan({ message, history: [], baseQuery: message });
+  assert.equal(plan.enabled, false);
+  assert.deepEqual(plan.preferredYears, [2025]);
+  assert.match(plan.focusText, /OSKA/);
+  assert.doesNotMatch(plan.focusText, /2025/);
+});
+
+test("a lone year without an aasta phrase is still a source preference", () => {
+  assert.deepEqual(extractExplicitSourceYears("Mida OSKA 2025 seire leidis?"), [2025]);
 });

@@ -560,6 +560,22 @@ test("RAG context budgeting compacts broad national legal section lookups", () =
   });
 });
 
+test("a named source year adds a filtered query without removing unfiltered retrieval", () => {
+  const plan = basePlan({
+    message: "Mida näitas OSKA 2025. aasta seire ja mis muutub 1. juulil 2026?",
+    temporalRetrievalPlan: {
+      enabled: false,
+      years: [],
+      preferredYears: [2025],
+      focusText: "Mida näitas OSKA seire ja mis muutub 1. juulil?",
+      queries: []
+    }
+  });
+
+  assert.equal(plan.primaryRagQueries.some(query => typeof query === "string"), true);
+  assert.equal(plan.primaryRagQueries.some(query => query?.filters?.year === 2025), true);
+});
+
 test("Query Planner V2 eval fixture keeps planner modes stable", () => {
   const cases = readPlannerCases();
   assert.equal(Array.isArray(cases), true);

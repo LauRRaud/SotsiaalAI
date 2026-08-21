@@ -11,9 +11,30 @@ import {
   isMunicipalityServiceBenefitListRequest,
   mergePackageDisplayedSources,
   resolveKovContactMode,
+  selectGroupsWithPreferredSourceYear,
   shouldIncludeContextAuthors,
   shouldUseReportedPracticeInstruction
 } from "../../lib/chat/retrievalContextAssembler.js";
+
+test("a lower-scored group from the explicitly named source year is selected first", () => {
+  const selected = selectGroupsWithPreferredSourceYear([
+    { key: "old", year: 2017, bestScore: 0.98, bodies: ["Vana seire."] },
+    { key: "wanted", year: 2025, bestScore: 0.71, bodies: ["Uus seire."] },
+    { key: "other", year: 2022, bestScore: 0.8, bodies: ["Muu aruanne."] }
+  ], [2025], 3, 0.7);
+
+  assert.equal(selected[0].key, "wanted");
+  assert.deepEqual(new Set(selected.map(item => item.key)).size, selected.length);
+});
+
+test("year preference falls back to ordinary ranking when that year is absent", () => {
+  const selected = selectGroupsWithPreferredSourceYear([
+    { key: "best", year: 2024, bestScore: 0.9, bodies: ["Parim."] },
+    { key: "second", year: 2023, bestScore: 0.7, bodies: ["Teine."] }
+  ], [2025], 2, 0.7);
+
+  assert.equal(selected[0].key, "best");
+});
 
 test("topic questions hide intermediary authors while author questions preserve them", () => {
   const groups = [{ authors: ["Laur Raudsoo"] }];

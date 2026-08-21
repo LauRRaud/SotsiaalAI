@@ -149,6 +149,44 @@ test("narrow fact context carries all eight passages requested from one document
   }
 });
 
+test("deep primary context leaves room for a capped secondary source", () => {
+  const primaryBodies = Array.from({ length: 8 }, (_, index) => (
+    `${"Põhidokumendi selgitus. ".repeat(28)} PÕHI-${index + 1}.`
+  ));
+  const packed = buildContextWithBudget([
+    {
+      key: "primary-2025",
+      title: "2025. aasta sihtallikas",
+      year: 2025,
+      bodies: primaryBodies,
+      bestScore: 0.8,
+      tags: []
+    },
+    {
+      key: "secondary-2017",
+      title: "2017. aasta taustallikas",
+      year: 2017,
+      bodies: [
+        `TEISENE-1. ${"Taust. ".repeat(80)}`,
+        `TEISENE-2. ${"Taust. ".repeat(80)}`,
+        `TEISENE-3. ${"Taust. ".repeat(80)}`
+      ],
+      bestScore: 0.95,
+      tags: []
+    }
+  ], {
+    maxBodies: 8,
+    secondaryMaxBodies: 2,
+    secondaryBodyMaxChars: 1100,
+    allowExpandedBodyBudget: true
+  });
+
+  assert.equal(packed.used.length, 2);
+  assert.match(packed.text, /PÕHI-8\./);
+  assert.match(packed.text, /TEISENE-2\./);
+  assert.doesNotMatch(packed.text, /TEISENE-3\./);
+});
+
 test("topic matching treats Estonian case endings as the same long-word stem", () => {
   const ranked = rankGroupsWithTopicHints([{
     key: "privacy-article",
