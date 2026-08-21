@@ -62,9 +62,13 @@ test("context budget preserves the second relevant chunk from the same article",
     "annab ööpäev läbi teavet tervise, vanemluse, eakate hoolduse ja toimetuleku kohta. "
   ).repeat(12);
   const privacyChunk = (
-    "Hesteri vestluslogide analüüs aitab vastuseid parandada. " +
+    "Teenuse sisu loovad ja uuendavad hoolekandespetsialistid, lähtudes kasutajate " +
+    "päringutest ja tagasisidest. Vestluslogide korrakindel analüüs aitab täiustada " +
+    "vastuseid ja arendada uusi teemakäsitlusi. Vajadusel saab kasutaja suunata " +
+    "vestluse otse klienditeenindajale. " +
     "Isikuandmete kaitseks eemaldatakse automaatselt delikaatne teave ja " +
-    "logid kustutatakse süsteemist kuue kuu möödudes."
+    "logid kustutatakse süsteemist kuue kuu möödudes. " +
+    "Hesteri näide illustreerib inimkeskset ja professionaalselt juhitud teenust."
   );
   const ranked = rankGroupsWithTopicHints([{
     key: "ai-article",
@@ -78,6 +82,22 @@ test("context budget preserves the second relevant chunk from the same article",
 
   assert.match(block, /Helsingi Hester/);
   assert.match(block, /kuue kuu möödudes/);
+});
+
+test("topic matching treats Estonian case endings as the same long-word stem", () => {
+  const ranked = rankGroupsWithTopicHints([{
+    key: "privacy-article",
+    title: "Tehisintellekt sotsiaaltöös",
+    bodies: [
+      "Hester on Helsingi linna vestlusrobot ja tehisintellektil põhinev teenus.",
+      "Vestluse järel kaitstakse privaatsust. Isikuandmete kaitseks eemaldatakse " +
+        "delikaatne teave ning logid kustutatakse kuue kuu möödudes. Hesteri näide jätkub."
+    ],
+    bestScore: 0.8,
+    tags: []
+  }], ["hester", "isikuandmeid"]);
+
+  assert.match(ranked[0].bodies[0], /Isikuandmete kaitseks/);
 });
 
 test("topic hint extraction removes inflected generic field words but keeps the named entity", () => {
