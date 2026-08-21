@@ -32,6 +32,28 @@ test("topic hints outrank generic high-scoring noise for named concept questions
   assert.equal(ranked[0].key, "voimaluste-kohvik");
 });
 
+test("topic hints move the matching article chunk ahead of generic chunks before context truncation", () => {
+  const ranked = rankGroupsWithTopicHints([
+    {
+      key: "ai-article",
+      title: "Tehisintellekt sotsiaaltöös",
+      bodies: [
+        "Üldine sissejuhatus kirjeldab tehisintellekti kasutamise võimalusi ja eetilisi piire sotsiaaltöös.",
+        "Eesti töötukassa OTT-süsteem hindab pikaajalise töötuse riski 45 näitaja alusel ning toetab spetsialisti otsust.",
+        "Rahvusvahelised näited käsitlevad dokumenteerimist ja automatiseerimist."
+      ],
+      bestScore: 0.8,
+      tags: []
+    }
+  ], ["tehisintellekt", "tootukassas"]);
+
+  assert.match(ranked[0].bodies[0], /OTT-süsteem/);
+  assert.match(
+    renderOneContextBlock(ranked[0], 0, { bodyMaxChars: 180 }),
+    /OTT-süsteem/
+  );
+});
+
 test("groupMatches strips repeated synthetic metadata prefix from chunk body", () => {
   const groups = groupMatches([
     {
