@@ -1874,7 +1874,9 @@
     "edit": "Edit text",
     "send_redacted": "Send redacted",
     "send_original": "Send anyway",
-    "unavailable": "Privacy check failed. Please try again."
+    "unavailable_title": "Privacy check is temporarily unavailable",
+    "unavailable": "Your message was not sent. Please check again.",
+    "retry": "Check again"
   },
   "privacy": {
     "title": "Privacy",

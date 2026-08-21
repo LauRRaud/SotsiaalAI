@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import Button from "@/components/ui/Button";
 import Form from "@/components/ui/Form";
 import { MAX_USER_MESSAGE_CHARS, MESSAGE_COUNTER_VISIBLE_FROM } from "@/lib/chat/messageLimits";
+import { requestPrivacyCheck } from "@/lib/privacy/privacyCheckClient";
 
 function resolvePrivacyWorkflow({ activeModeKey, isRoomMode }) {
   if (isRoomMode) return "room_private";
@@ -26,7 +27,9 @@ function privacyLabels(t) {
     edit: read("privacy_guard.edit", "Muudan teksti"),
     redacted: read("privacy_guard.send_redacted", "Saada maskeeritult"),
     original: read("privacy_guard.send_original", "Saada siiski"),
-    unavailable: read("privacy_guard.unavailable", "Privaatsuskontroll ei õnnestunud. Proovi uuesti.")
+    unavailableTitle: read("privacy_guard.unavailable_title", "Privaatsuskontroll on ajutiselt häiritud"),
+    unavailable: read("privacy_guard.unavailable", "Sõnumit ei saadetud. Kontrolli palun uuesti."),
+    retry: read("privacy_guard.retry", "Kontrolli uuesti")
   };
 }
 function DocumentModeIcon({
@@ -498,17 +501,10 @@ export default function ChatComposer({
   const checkPrivacyBeforeSend = useCallback(async (text) => {
     const workflow = resolvePrivacyWorkflow({ activeModeKey, isRoomMode });
     try {
-      const response = await fetch("/api/privacy/check", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          text,
-          workflow
-        })
+      const { response, payload } = await requestPrivacyCheck({
+        text,
+        workflow
       });
-      const payload = await response.json().catch(() => ({}));
       if (response.status === 409 && payload?.needsPrivacyConfirmation) {
         setPrivacyPrompt({
           ...payload,
@@ -530,8 +526,9 @@ export default function ChatComposer({
       setPrivacyPrompt({
         originalText: text,
         workflow,
+        unavailable: true,
         warning: privacyLabels(t).unavailable,
-        actions: ["edit"],
+        actions: ["retry", "edit"],
         allowOriginal: false,
         findings: [],
         categories: []
@@ -671,6 +668,16 @@ export default function ChatComposer({
     setPrivacyPrompt(null);
     focusComposerField();
   }, [focusComposerField]);
+  const handlePrivacyRetry = useCallback(() => {
+    const prompt = privacyPrompt;
+    const text = String(prompt?.originalText || draft).trim();
+    if (!text) return;
+    setPrivacyPrompt(null);
+    void submitSend({
+      textOverride: text,
+      restoreDraft: prompt?.originalText || draft
+    });
+  }, [draft, privacyPrompt, submitSend]);
   const handlePrivacyRedacted = useCallback(() => {
     const prompt = privacyPrompt;
     if (!prompt?.redactedText) return;
@@ -758,17 +765,28 @@ export default function ChatComposer({
   const privacyFindingLabels = Array.isArray(privacyPrompt?.findings)
     ? privacyPrompt.findings.map((finding) => finding?.label).filter(Boolean)
     : [];
+  const privacyPromptUnavailable = privacyPrompt?.unavailable === true;
   const privacyPromptNode = privacyPrompt ? (
-    <div>
-      <div>
-        <strong>{privacyCopy.title}</strong>
+    <div
+      className="conv-privacy-prompt"
+      role="alert"
+      aria-live="polite"
+      data-state={privacyPrompt.unavailable ? "unavailable" : "confirmation"}
+    >
+      <div className="conv-privacy-prompt__copy">
+        <strong>{privacyPromptUnavailable ? privacyCopy.unavailableTitle : privacyCopy.title}</strong>
         <span>{privacyPrompt.warning || privacyCopy.body}</span>
         {privacyFindingLabels.length ? (
           <span>{privacyFindingLabels.join(", ")}</span>
         ) : null}
       </div>
-      <div>
-        <Button as="button" type="button" size="sm" variant="primary" onClick={handlePrivacyEdit}>
+      <div className="conv-privacy-prompt__actions">
+        {privacyPromptUnavailable ? (
+          <Button as="button" type="button" size="sm" variant="primary" onClick={handlePrivacyRetry}>
+            {privacyCopy.retry}
+          </Button>
+        ) : null}
+        <Button as="button" type="button" size="sm" variant={privacyPromptUnavailable ? "secondary" : "primary"} onClick={handlePrivacyEdit}>
           {privacyCopy.edit}
         </Button>
         {privacyPrompt.redactedText ? (

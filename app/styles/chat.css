@@ -206,7 +206,7 @@ form:has(#chat-input) > div:has(#chat-input) {
   flex: 1;
   min-width: 0;
 }
-form:has(#chat-input) > div:has(#chat-input) > div {
+form:has(#chat-input) > div:has(#chat-input) > div:has(#chat-input) {
   display: flex;
   align-items: flex-end;
   gap: 0.35rem;
@@ -216,7 +216,7 @@ form:has(#chat-input) > div:has(#chat-input) > div {
   padding: 0.4rem 0.45rem 0.4rem 2.95rem;
   transition: border-color var(--dur-fast) var(--ease-soft);
 }
-form:has(#chat-input) > div:has(#chat-input) > div:focus-within {
+form:has(#chat-input) > div:has(#chat-input) > div:has(#chat-input):focus-within {
   border-color: rgba(255, 255, 255, 0.4);
 }
 /* Tekstiala ümbris venib; nuppude ümbris rivistub ritta */
@@ -225,11 +225,74 @@ form:has(#chat-input) div:has(> #chat-input) {
   min-width: 0;
   display: flex;
 }
-form:has(#chat-input) > div:has(#chat-input) > div > div:not(:has(#chat-input)) {
+form:has(#chat-input) > div:has(#chat-input) > div:has(#chat-input) > div:not(:has(#chat-input)) {
   display: flex;
   align-items: center;
   gap: 0.3rem;
   flex: none;
+}
+
+.conv-privacy-prompt {
+  display: grid;
+  max-width: 100%;
+  width: fit-content;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.65rem 1rem;
+  margin: 0 auto 0.55rem;
+  padding: 0.72rem 0.78rem 0.72rem 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 1rem;
+  background: rgba(18, 20, 19, 0.82);
+  -webkit-backdrop-filter: blur(14px) saturate(125%);
+  backdrop-filter: blur(14px) saturate(125%);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
+  color: var(--text-warm);
+}
+
+.conv-privacy-prompt[data-state="unavailable"] {
+  border-color: rgba(225, 188, 110, 0.42);
+  background: rgba(29, 27, 22, 0.84);
+}
+
+.conv-privacy-prompt__copy {
+  display: grid;
+  min-width: 0;
+  gap: 0.18rem;
+  line-height: 1.35;
+}
+
+.conv-privacy-prompt__copy strong {
+  font-size: 0.94rem;
+  font-weight: 680;
+}
+
+.conv-privacy-prompt__copy span {
+  color: var(--text-soft);
+  font-size: 0.84rem;
+}
+
+.conv-privacy-prompt__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.4rem;
+}
+
+.conv-privacy-prompt__actions button {
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .conv-privacy-prompt {
+    width: 100%;
+    grid-template-columns: 1fr;
+    padding: 0.72rem;
+  }
+
+  .conv-privacy-prompt__actions {
+    justify-content: flex-start;
+  }
 }
 #chat-input {
   flex: 1;

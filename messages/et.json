@@ -1874,7 +1874,9 @@
     "edit": "Muudan teksti",
     "send_redacted": "Saada maskeeritult",
     "send_original": "Saada siiski",
-    "unavailable": "Privaatsuskontroll ei õnnestunud. Proovi uuesti."
+    "unavailable_title": "Privaatsuskontroll on ajutiselt häiritud",
+    "unavailable": "Sõnumit ei saadetud. Kontrolli palun uuesti.",
+    "retry": "Kontrolli uuesti"
   },
   "privacy": {
     "title": "Privaatsus",
