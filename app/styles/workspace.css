@@ -1319,8 +1319,10 @@
 }
 /* Popupid klaasikeeles */
 .service-map-canvas .leaflet-popup-content-wrapper {
-  background: rgba(21, 21, 21, 0.96);
-  color: var(--text-warm);
+  /* Leafleti CSS lisatakse brauseris hiljem ja on kihistamata. Need kaks
+     väärtust peavad seepärast võitma ka tema valge vaike-popupi. */
+  background: #171717 !important;
+  color: #f5f1e8 !important;
   border-radius: 14px;
   border: 1px solid var(--glass-border-soft);
   box-shadow: var(--glass-shadow);
@@ -1332,14 +1334,14 @@
   scrollbar-gutter: stable;
 }
 .service-map-canvas .leaflet-popup-tip {
-  background: rgba(21, 21, 21, 0.96);
+  background: #171717 !important;
 }
 .service-map-popup {
   font-size: var(--fs-small);
-  color: var(--text-soft);
+  color: #ded8cc;
 }
 .service-map-popup__label {
-  color: var(--text-dim);
+  color: #bdb5a8;
 }
 .service-map-popup__action,
 .service-map-popup__contact-button {
@@ -1347,7 +1349,7 @@
   margin: 0.25rem 0.3rem 0 0;
   padding: 0.35em 0.85em;
   border-radius: 999px;
-  color: var(--text-warm);
+  color: #f5f1e8 !important;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.28);
   text-decoration: none;
@@ -1453,7 +1455,7 @@
 }
 
 .service-map-canvas .leaflet-container a.leaflet-popup-close-button {
-  color: var(--text-soft);
+  color: #f5f1e8 !important;
 }
 
 @media (max-width: 1120px) {
