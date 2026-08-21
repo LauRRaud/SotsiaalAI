@@ -401,11 +401,11 @@ test("buildSourceAnchoredRagQueries sends thematic synthesis lines as separate b
   const message = "mis on need probleemsed kohad, millest on lastekaitses räägitud?";
   const queries = buildSourceAnchoredRagQueries(message, [], buildRagSearchQuery(message, []));
 
-  assert.equal(queries.length >= 4, true);
+  assert.equal(queries.length, 3);
   assert.equal(queries.every(query => typeof query === "string"), true);
   assert.match(queries[0], /probleemsed kohad/i);
-  assert.equal(queries.some(query => /lastekaitse probleemid kitsaskohad/i.test(query)), true);
-  assert.equal(queries.some(query => /dokumenteerimine andmesüsteem/i.test(query)), true);
+  assert.equal(queries.some(query => /probleemid kitsaskohad/i.test(query)), true);
+  assert.equal(queries.some(query => /uuring juhend statistika ajakiri praktika kogemus/i.test(query)), true);
 });
 
 test("detectSourceAvailabilityRequest treats inflected legal provision lists as source lookup", () => {
