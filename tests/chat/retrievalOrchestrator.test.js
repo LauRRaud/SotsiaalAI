@@ -17,7 +17,8 @@ import {
   inferRetrieversUsed,
   isBroadMultiSourceRagQuestion,
   isThematicSynthesisRagQuestion,
-  searchRagQueries
+  searchRagQueries,
+  shouldUseAnswerHistory
 } from "../../lib/chat/retrievalOrchestrator.js";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -279,6 +280,21 @@ test("buildRagSearchQuery does not pollute a short independent topic with older 
   assert.match(topicQuery, /töötukassas/i);
   assert.doesNotMatch(topicQuery, /Harku/i);
   assert.doesNotMatch(topicQuery, /toetused/i);
+});
+
+test("answer history is limited to turns that explicitly depend on the conversation", () => {
+  assert.equal(shouldUseAnswerHistory("Tehisintellekt sotsiaaltöös?"), false);
+  assert.equal(shouldUseAnswerHistory("Kes on Laur Raudsoo?"), false);
+  assert.equal(
+    shouldUseAnswerHistory(
+      "Kuidas kasutab Eesti Töötukassa OTT-süsteem tehisintellekti ning milliseid piiranguid kasutajad esile tõid?"
+    ),
+    false
+  );
+  assert.equal(shouldUseAnswerHistory("Aga milliseid piiranguid kasutajad nimetasid?"), true);
+  assert.equal(shouldUseAnswerHistory("Mida sellest järeldada?"), true);
+  assert.equal(shouldUseAnswerHistory("Miks?"), true);
+  assert.equal(shouldUseAnswerHistory("Soome"), true);
 });
 
 test("buildRagSearchQuery does not add a separate exact-anchor query for named example lists", () => {

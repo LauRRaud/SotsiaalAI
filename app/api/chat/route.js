@@ -9,6 +9,7 @@ import {
 import { logEvent } from "@/lib/chat/logger";
 import { enforceChatRateLimit, readChatRateLimit } from "@/lib/chat-api-rate-limit";
 import { assembleRetrievalContext } from "@/lib/chat/retrievalContextAssembler";
+import { shouldUseAnswerHistory } from "@/lib/chat/retrievalOrchestrator";
 import { buildReplayResponse, handleMainChatResponse } from "@/lib/chat/mainResponseHandler";
 import { readCompletedChatTurnReplay } from "@/lib/chat/turnRegistry";
 import { buildImmediateChatResponse, finalizeAssistantReply } from "@/lib/chat/responseFinalizer";
@@ -422,6 +423,11 @@ export async function POST(req, deps = {}) {
         }
       : {})
   };
+  const modelHistory = shouldUseAnswerHistory(effectiveMessage) ? history : [];
+  logChatInfo("answer.history_selection", {
+    included: modelHistory.length > 0,
+    messageCount: modelHistory.length
+  });
   return routeRuntime.handleMainChatResponse({
     req,
     wantStream,
@@ -432,7 +438,7 @@ export async function POST(req, deps = {}) {
     effectiveMessage,
     modelUserMessage: effectiveMessage.slice(0, MAX_USER_MESSAGE_CHARS),
     messageLength: effectiveMessage.length,
-    history,
+    history: modelHistory,
     effectiveContext,
     grounding,
     includeSources,
