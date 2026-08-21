@@ -92,19 +92,19 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**Vestluse RAG-i süsteemne parandus on 21.08 enne deploy'd päris 49 727-lõigulise indeksi
-vastu sisuliselt tõendatud, kuid toodangus veel mitte.** `codex/repair-a` eraldab embeddingu
-metaankru salvestatud lõigust, skoorib vana indeksi päris keha, jagab mitme faktiga küsimuse
-semantilisteks ja täpseteks osadeks, säilitab PDF-piiri jätkulõigud, uurib kuni viit
-konkureerivat dokumenti ning annab kitsale küsimusele suurema tõendieelarve. Uus
-allikapõhine värav läbis ajakirjas 10/10 küsimust (2016–2025) ja uuringutes, juhendites ning
-õppematerjalides 10/10 küsimust ehk 45/45 nõutud fakti; ükski otsing ei olnud `partial`.
-Python-sihttestid 58/58, Node'i RAG-sihttestid 95/95, lint, i18n ja diff-kontroll on rohelised.
-Ühekordne kogu `TZ=UTC npm test` jäi **PARTIAL**, sest lähte-SHA-l on eraldiseisev muutmata
-Teenusekaardi popup-kontrasti test punane; RAG-i failid seda ei puuduta. Kood on
-**NOT_DEPLOYED** ja korpus uue ingest-kujuga **NOT_REINDEXED**. Järgmine samm on commit,
-push, deploy, 863 dokumendi kontrollitud uus indekseerimine ning sama sisselogitud
-`/vestlus` akna lõppvastused; täielik kaart ja serveri sanitiseeritud `.env` on auditikaardis.
+**Vestluse RAG-i süsteemne parandus on 22.08 toodangus ja päris vestluses tõendatud
+(`a08d65b5`).** Otsing skoorib ka vana indeksi päris teksti, säilitab sama dokumendi kuni
+kaheksa vajalikku lõiku, eelistab kasutaja nimetatud allika aastat ning jätab sügava esimese
+dokumendi järel ruumi ka järgmistele allikatele. Toodangu 49 727-lõigulisel indeksil läbisid
+ajakirja küsimused 10/10 ja uuringute, juhendite ning muude materjalide küsimused 10/10;
+OSKA 2025, Päästeameti tuleohutusjuhend, mitme artikli süntees ja sama vestluse järelküsimus
+andsid brauseris sisulise vastuse ilma „Uus vestlus” vajutamata. Esimene tekst ilmus neis
+0,45–0,99 sekundiga ja vastus stabiliseerus 9,3–18,5 sekundiga; vestluse nähtav `00:38–00:40`
+loendur ei mõõda tegelikku päringu ooteaega õigesti ning jääb eraldi UI-mõõdiku veaks.
+Registri täpne ajakirjavalim on 873 dokumenti, mitte 863. Korpust ei indekseeritud pimesi
+uuesti: olemasolev indeks läbis 20/20 sisuvärava ning otsingukiht ühildub vana kujuga;
+body-only kuju rakendub uutele ingestidele. UTC täisväravas jäi ainult muutmata
+Teenusekaardi vana popup-kontrasti leping punaseks, RAG-i muudetud rajad on rohelised.
 
 **Vestluse, RAG-i ja Teenusekaardi regressiooniplokk on 21.08 parandatud.** Paljas KOV-i
 mitmuseküsimus (nt „Harku valla sotsiaalteenused?”) kasutab nüüd täieliku loendi rada ning

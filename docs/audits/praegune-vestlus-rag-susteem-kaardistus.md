@@ -457,6 +457,14 @@ Kasutaja küsimus
 13. **P1 — puuduv hübriidskoor muutus ekslikult nulliks.** JavaScripti `Number(null)` andis
     0 ja takistas mitme päringu liitmisel vahemaaskoori kasutamist. Puuduv väärtus eristatakse
     nüüd päris nullskoorist.
+14. **P0 — kasutaja nimetatud allika aasta ei juhtinud lõppvalikut.** OSKA 2025 aruanne oli
+    otsingutulemustes olemas, kuid kõrgema skooriga 2017 allikas valiti esimeseks. Nüüd lisab
+    nimetatud allika aasta ühe filtreeritud varupäringu ja sama aasta grupp valitakse enne
+    teiste aastate dokumente; kui selle aasta allikat ei ole, säilib tavaline varuvalik.
+15. **P0 — vale esimese dokumendi süvalõigud võisid kogu konteksti täita.** Kõigile valitud
+    dokumentidele rakendus sama kuni kaheksa lõigu eelarve. Nüüd saab täissügavuse esimene
+    ehk parim dokument, järgmiste dokumentide lõigu- ja märgieelarve on piiratud ning nad ei
+    saa esimest allikat välja tõrjuda ega vastupidi kogu varuruumist kaduda.
 
 ### 15.6. Parandus selles tööharus
 
@@ -473,21 +481,23 @@ Kasutaja küsimus
   enne hübriidjärjestust uuesti välja.
 - Haruldase termini lühivalim peatub kohe, kui mõni esimese 20 kandidaadi pärislõik katab
   faktiküsimuse tugevalt; osalise vaste korral säilib 8000 lõigu piiratud varuskann.
-- Vestluse kontekst võib konkreetse faktiküsimuse puhul kanda ühest artiklist nelja
-  asjakohast lõiku ja kuni 6000 märki; lai mitme allika vastus säilitab senise väiksema
-  dokumendieelarve.
+- Vestluse kontekst võib konkreetse faktiküsimuse puhul kanda esimesest dokumendist kuni
+  kaheksa asjakohast lõiku. Järgmised dokumendid saavad kuni kaks lõiku ja piiratud
+  märgieelarve; lai mitme allika vastus säilitab väiksema dokumendieelarve.
 - Paljas „mitu” ei käivita enam mitme allika sünteesi.
 - Mitme faktiga küsimus jagatakse piiratud osadeks. Dense-otsing kasutab lühikese osa puhul
   dokumendiankrut, leksikaalne otsing puhast osa ning PDF-piiril hoitakse ka parima lõigu
   mõlemad vahetud naabrid.
 - Mitme päringu tulemuste liitmisel ei käsitleta puuduvat hübriidskoori nullina.
+- Küsimuses nimetatud allika aasta eraldatakse faktis nimetatud tähtajast: näiteks OSKA
+  2025 seire jääb eelistatud allikaks ka siis, kui küsimus küsib 2026 jõustuva nõude kohta.
 
-Kontrollitud seis 21.08 enne deploy'd. Sihttestid on ainult muutunud harude
-regressioonikaitse, mitte väide, et platvorm töötab:
+Kontrollitud seis 22.08 pärast deploy'd `a08d65b5`. Sihttestid on regressioonikaitse;
+toimimist tõendavad eraldi toodangu otseotsing ja sisselogitud brauserirada:
 
 | Värav | Seis |
 |---|---|
-| Node'i retrieval/konteksti sihttestid | **DONE — 95/95** |
+| Node'i retrieval/konteksti sihttestid | **DONE — uusima ploki lai sihtvalim 128/128** |
 | RAG-teenuse Python-sihttestid serveri päris venv-is | **DONE — 58/58** |
 | Muudetud JS-failide lint | **DONE** |
 | `git diff --check` | **DONE** |
@@ -497,9 +507,13 @@ regressioonikaitse, mitte väide, et platvorm töötab:
 | Ajakirja faktivärav, 2016–2025 | **DONE — 10/10 küsimust, iga nõutud fakt sama artikli lõikudes, `partial=false`** |
 | Uuringute, juhendite ja õppematerjalide faktivärav | **DONE — 10/10 küsimust, 45/45 nõutud fakti õige dokumendi lõikudes, `partial=false`** |
 | Kogu `TZ=UTC npm test` | **PARTIAL — RAG-i muudetud rajad rohelised; tööharu lähte-SHA-l eraldi olemasolev Teenusekaardi popup-kontrasti test on punane ja selle faile see plokk ei muuda** |
-| Kood toodangus | **NOT_DONE** |
-| Ajakirja korpus uue ingest-kujuga uuesti indekseeritud | **NOT_DONE** |
-| Toodangu otseotsing ja päris vestlus | **NOT_PROVEN** |
+| Kood toodangus | **DONE — serveri HEAD `a08d65b5`; frontend ja RAG aktiivsed** |
+| Ajakirja korpus uue ingest-kujuga uuesti indekseeritud | **NOT_DONE_BY_DESIGN — täpne registrivalim 873; vana 49 727-lõiguline indeks läbis sisuväravad ja otsing ühildub vana kujuga, seega kulukat pimedat reindexit ei tehtud** |
+| Toodangu otseotsing | **DONE — ajakiri 10/10 ja muud materjalid 10/10; RAG health 49 727 lõiku / 6089 registridokumenti** |
+| Sisselogitud `/vestlus`: OSKA 2025 | **DONE — 16%, 18%, 68%, 1.07.2026 ning 95 koolitust / umbes 1750 osalejat** |
+| Sisselogitud `/vestlus`: ametlik juhend | **DONE — ukse kontroll, 112, evakueerimine, ohutu kustutamine ja ukse sulgemine** |
+| Sisselogitud `/vestlus`: lai süntees ja järelküsimus | **DONE — mitme lahenduse süntees; järelküsimus töötas samas vestluses ilma uue vestluseta** |
+| Brauseri tegelik aeg | **DONE — esimene tekst 0,45–0,99 s; stabiilne vastus 9,3–18,5 s. Nähtav `00:38–00:40` loendur on eraldi ebatäpne UI-mõõdik** |
 
 ### 15.7. Serveri tegelik käitus ja `.env` seadistus
 
@@ -559,15 +573,15 @@ CHROMA_TELEMETRY_ENABLED=false
 seadistusfailides olemas; väärtused on sellest kaardist tahtlikult välja jäetud. Sama kehtib
 muude võtmete ja projektiidentifikaatorite kohta.
 
-### 15.8. Ohutu rakendusjärjekord
+### 15.8. Rakendatud järjekord ja reindexi otsus
 
-1. Viia kontrollitud kood RAG-teenusesse ja frontendi.
-2. Käivitada teenuste health ja üks vana-indeksi otseotsingu kontroll.
-3. Indekseerida 863 Sotsiaaltöö dokumenti uuesti uue body-only salvestuse ja ilma korduva
-   `[DESC]`-embeddinguta; kasutada väikest paralleelsust ning kontrollida vigu jooksvalt.
-4. Kontrollida juhuvalimiga, et Chroma dokumendid algavad päris artiklitekstiga ja registri
-   metaandmed, leheküljed ning allikalingid säilisid.
-5. Korrata 20-küsimuselist ajakirja- ja materjaliväravat teenuse `/search` rajal ning valim
-   neist sisselogitud `/vestlus` lõppvastuses.
-6. Alles pärast neid väravaid võib S1.0 väita, et konkreetse artikli vajalikud lõigud jõuavad
-   vastusesse. Õige artikli leid 11/11 ei ole iseseisvalt enam DONE-kriteerium.
+1. Kontrollitud kood viidi RAG-teenusesse ja frontendi; serveri HEAD on `a08d65b5`.
+2. Frontend ja RAG on aktiivsed ning RAG health on 49 727 lõiku / 6089 registridokumenti.
+3. Toodangu `/search` rajal korrati 20-küsimuselist ajakirja- ja materjaliväravat: 20/20.
+4. Sisselogitud `/vestlus` aknas kontrolliti OSKA 2025 aruannet, ametlikku tuleohutusjuhendit,
+   laia artiklisünteesi ning sama vestluse järelküsimust.
+5. Registri ajakirjavalim mõõdeti täpselt: 873 dokumenti. Uuesti indekseerimist ei käivitatud,
+   sest olemasolev indeks läbis kõik sisuväravad ning parandus toetab teadlikult vana kuju.
+   Body-only salvestus kehtib uutele ingestidele.
+6. Tulevane täielik reindex on eraldi hooldustöö: enne tuleb võtta taastatav indeksikoopia,
+   mõõta kettaruum, kasutada piiratud paralleelsust ja korrata samu 20/20 ning brauseriväravaid.
