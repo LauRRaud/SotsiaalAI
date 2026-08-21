@@ -92,6 +92,19 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Vestluse artiklitäpsus, mitme allika süntees ja vastuse hääl on 21.08 toodangus parandatud
+(`704fea84`).** Eestikeelsete käändevormide ja nimede leksikaalne sobitamine, dokumendipõhine
+tulemuste lagi ning nimelise tabamuse kaal hoiavad konkreetse artiklilõigu üldiste vastete kohal;
+samal ajal säilitab lai otsing eri dokumendid ega laadi ühe pika artikli kõiki lõike vastusesse.
+Toodangus vastas Hesteri kontroll otse, et delikaatne teave eemaldatakse automaatselt ja logid
+kustutatakse kuue kuu pärast; lai AI-küsimus sünteesis OSKA 2021, Raudsoo 2025 ja Soosaare 2026
+materjali. Parandatud indeksi mõõt oli Hesteril 2,50 s ja laial ühe päringu otsingul 1,26 s; nähtava
+laia vastuse koguaeg oli 27,8 s. Sihttõend: 11/11 RAG-teenuse ja 19/19 Node'i testi, muudetud
+JS-failide lint, `git diff --check`, i18n-kontroll ja toodangu build; omaniku soovil ei käivitatud
+kogu ligi 5000 testiga sviiti. Vastusejuhis keelab RAG-i, otsingu ja allikabaasi protsessijutu,
+kuid mudeli vaba sõnastus võib vahel kasutada üldist allikaviidet; voo puhverdamist ei lisatud,
+et mitte aeglustada esimese teksti ilmumist.
+
 **Vestluse, RAG-i ja Teenusekaardi regressiooniplokk on 21.08 parandatud.** Paljas KOV-i
 mitmuseküsimus (nt „Harku valla sotsiaalteenused?”) kasutab nüüd täieliku loendi rada ning
 registri pealkirjaga täpselt kattuv isikunimeotsing ei skanni enam enne vastamist kogu
@@ -1729,6 +1742,12 @@ sama vestlus taastub lehe uuesti avamisel; RAG-otsing kasutab ühtset 30-sekundi
 KOV-i teenuste mitmuseküsimus kasutab täieliku loendi rada, täpne registripealkirjaga
 nimeotsing alustab väikesest pealkirjavalimist ning kontrollitud Teenusekaardi kontaktikiht
 on sama KOV-i vanast RAG-kontaktikoopiast autoriteetsem.
+Artikliotsing arvestab eesti käändevormide ühiseid tüvesid ja nimede lühikesi käändelõppe,
+annab nimelisele täppistabamusele üldise semantilise vaste ees kaalu ning piirab ühe dokumendi
+lõikude arvu nii leksikaalses valimis kui lõppvastuses. Laias küsimuses valitakse mitu eri
+dokumenti; konkreetse fakti küsimuses hoitakse sama artikli kõige asjakohasemad lõigud koos.
+Vastus esitab leitud teadmise otse: RAG-i, otsingu seisu ja allikabaasi laiust kasutajale ei
+jutustata ning allika aega märgitakse lühidalt, kui see on väite täpsuse jaoks vajalik.
 
 Vestlusesse on sisse ehitatud kriisirada: kui jutust tuleb välja vahetu oht elule või
 tervisele, katkeb tavaline vastamine ja ette tulevad hädaabi ja usaldustelefonide numbrid.
