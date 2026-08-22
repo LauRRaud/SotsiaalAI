@@ -3,8 +3,8 @@
 Kuupäev: 22.08.2026
 Tööharu: `codex/rag-quality-repair-20260822`
 Varasem toodangusse viidud RAG-paranduste commit: `08cbd94ac86597911e22e3731ee812c717f04110`
-Praegune toodangu `HEAD` ja `origin/main`: `2c142000841fe630aa1baf92aaf524be7e64d0ac` (mõõdetud 22.08.2026 kell 19:38 +03:00)
-Praegune lokaalne avaldamata P0-kandidaat: worktree lähte-HEAD `08cbd94a` + käesoleva dokumendi punktis 18.1 nimetatud commit'imata muudatused.
+Praegune toodangu `HEAD` ja `origin/main`: `9cad5105fc30d68f1df7bb084f79a59e68b110d7` (mõõdetud 22.08.2026 pärast seire ajal toimunud järgmist deploy'd)
+P0-parandused jõudsid toodangusse commit'iga `73d381a7febd017bc32d2a8976da60b2b9c9d42a`; deploy-järgne autentitud RAG-kontroll tehti selle SHA vastu. Hilisem `9cad5105` muutis ainult hääleavatari faile ja sisaldab RAG-paranduse commit'i esivanemana. 75 juhtumi lõppvärav ei ole tehtud.
 Seis: **PARTIAL — süsteemi ei ole tõendatud 10/10 töökindlaks**
 
 See dokument vastab neljale eri küsimusele:
@@ -72,7 +72,7 @@ RAG-teenus ei ole avalikult internetti binditud. Frontend pöördub selle poole 
 
 | kontroll | tulemus |
 |---|---|
-| serveri HEAD | `2c142000841fe630aa1baf92aaf524be7e64d0ac` |
+| serveri HEAD | `9cad5105fc30d68f1df7bb084f79a59e68b110d7` |
 | `origin/main` | sama SHA |
 | RAG health | `{"ok":true,"status":"ok","vectors":49727,"documents":6089}` |
 | aktiivsed vektorlõigud | **49 727** |
@@ -705,17 +705,17 @@ Parandused puudutasid süsteemseid kihte, mitte ühe küsimuse hardcode'i:
 
 Need parandused ei tähenda veel, et 75/75 juhtumit on toodangus õiged.
 
-### 18.1 Avaldamata P0-paranduskandidaat 22.08 kell 19:38
+### 18.1 Deploy'tud P0-parandused ja esimene autentitud järelkontroll
 
-Pärast koodipõhist juurpõhjuse analüüsi tehti eraldatud worktree's uus üldine paranduskandidaat. Seda ei ole commit'itud, push'itud ega deploy'tud ning tootmise brauser ei kasuta seda koodi.
+Pärast koodipõhist juurpõhjuse analüüsi tehti eraldatud worktree's üldised P0-parandused. Need commit'iti SHA-ga `73d381a7febd017bc32d2a8976da60b2b9c9d42a`, lükati omaniku otsese loa alusel `origin/main`-i ja deploy'ti. `origin/main`, serveri HEAD ja autentitud brauseri kasutatud toodang olid järelkontrolli ajal samal SHA-l.
 
-Kandidaadi lähte-HEAD on `08cbd94a`, kuid mõõdetud `origin/main` ja server on juba `2c142000`. Kontroll `HEAD..origin/main` ei näidanud erinevust üheski selle kandidaadi muudetavas RAG-põhifailis; enne võimalikku integratsiooni tuleb haru siiski värske `main`-iga sünkroonida ja väravad lõpliku puu peal uuesti kinnitada.
+Parandused ei teinud RAG-i 10/10 töökindlaks. Esimene nelja päringu autentitud sama vestluse kontroll andis kaks õiget ja kaks valet tulemust: lapse eraldamise `169 / 2018` fakt säilis kahes sõnastuses, kuid Elin Küti intervjuude küsimus andis ühe vale keeldumise ja ühe enesekindla vale `17 + 6` vastuse.
 
 | P0 plokk | lokaalne muudatus | tõendusseis |
 |---|---|---|
-| tõendipiir | atribuutika `evidenceText` tuleb nüüd täpselt mudelile renderdatud plokist; trace säilitab konteksti-, algbody- ja renderdatud body hash'id, kärpeoleku ning start/end-offsetid | **CODE_DONE / runtime NOT_PROVEN** |
-| mitme päringu järjestus | lisapäringute sundskoorilagi ja `preserveFirstScores` asendati ankurdatud päringuteülese RRF-fusion'iga; täpne lisapäring saab tõusta ainult kontrollitava ankru või päringuteülese kokkulangevuse toel | **CODE_DONE / runtime NOT_PROVEN** |
-| faktidokumendi shortlist | pime esimese viie dokumendi piir asendati identiteediskooriga; pealkirja-, autori-, registri- või täpse fraasi ankruga shortlist võib laieneda kuni 12 dokumendini, ankruta varurada jääb viiele | **CODE_DONE / runtime NOT_PROVEN** |
+| tõendipiir | atribuutika `evidenceText` tuleb nüüd täpselt mudelile renderdatud plokist; trace säilitab konteksti-, algbody- ja renderdatud body hash'id, kärpeoleku ning start/end-offsetid | **CODE_DONE / runtime PARTIAL** — kahel õigel vastusel oli allikanupp, kuid paneel ei avanenud kontrollitavalt |
+| mitme päringu järjestus | lisapäringute sundskoorilagi ja `preserveFirstScores` asendati ankurdatud päringuteülese RRF-fusion'iga; täpne lisapäring saab tõusta ainult kontrollitava ankru või päringuteülese kokkulangevuse toel | **CODE_DONE / runtime PARTIAL** — J17/V06 PASS, J11 FAIL |
+| faktidokumendi shortlist | pime esimese viie dokumendi piir asendati identiteediskooriga; pealkirja-, autori-, registri- või täpse fraasi ankruga shortlist võib laieneda kuni 12 dokumendini, ankruta varurada jääb viiele | **CODE_DONE / runtime PARTIAL** — täpse pealkirjaga J11 leidis dokumendi kohtadel 1–3, loomulikud parafraasid ei leidnud seda esimese 12 seast |
 | arvufakti leping | täpsed arvuküsimused puhverdatakse enne esimese teksti kuvamist; kontroll nõuab arvuliteralide leidumist ühes ja samas renderdatud allikas, eristab küsitud andmeaastat pelgast `source_year` päisest ning kontrollib üldarvu/alamrühma järjekorda | **PARTIAL** — ühiku semantiline samasus ja täielik faktipesade ekstraktsioon puuduvad |
 
 Kandidaat lisab trace'i fusion'i kandidaadid ja põhjused, faktidokumendi shortlist'i identiteediskoorid, täpselt renderdatud konteksti hash'id ning faktivalidaatori otsuse. Nii saab järgmises runtime-katses eristada korje, järjestuse, kontekstivaliku ja vastusekoostamise viga ilma küsimuse sõnu koodi hardcode'imata.
@@ -724,7 +724,7 @@ Kandidaat lisab trace'i fusion'i kandidaadid ja põhjused, faktidokumendi shortl
 
 Varasema commit'i `08cbd94a` ajal dokumenteeritud automaatväravad olid 50/50 Pythoni sihttesti, 34/34 JavaScripti sihttesti ja 4963/4963 täissviit. Neid faile ega `npm test` skripti praegusel `origin/main`-il enam ei ole. Seetõttu ei esitata vanu rohelisi numbreid praeguse kandidaadi tõendina ning uusi teste, negatiivkontrolle, fixture'e ega probe'e ei loodud.
 
-Praeguse avaldamata kandidaadi kontrollid:
+Deploy'tud kandidaadi kontrollid:
 
 | värav | tulemus |
 |---|---:|
@@ -735,16 +735,17 @@ Praeguse avaldamata kandidaadi kontrollid:
 | `git diff --check` | roheline |
 | `npm run build` | **BLOCKED** enne kompileerimist: Turbopack ei luba eraldatud worktree välisele `node_modules`-symlinkile ligi |
 | sama lõpliku puu `next build --webpack` | **roheline** — kompileerimine, TypeScript ja 70 staatilist lehte läbisid |
+| serveri ametlik Turbopacki build | **roheline**, 35,2 s |
 | skeem/migratsioon | **NOT_APPLICABLE** — Prisma skeemi ei muudetud |
 
 Need tõendavad koodi staatilist ja kompileerimisvalmidust. Need **ei tõenda** otsingu ega mudeli sisulist vastust päris andmete, päris vestlusajaloo ja päris toodanguindeksi vastu.
 
 ## 20. Mis on veel tõendamata
 
-- kogu 75 juhtumi otsene kordus praegusel toodangu commit'il `2c142000`;
+- kogu 75 juhtumi otsene kordus praegusel toodangu commit'il `73d381a7`;
 - sama 75 juhtumi autentitud `/vestlus` kordus;
-- kõik juhtumid ühes normaalselt jätkuvas vestluses ilma „Uus vestlus” workaround'ita;
-- vastuse esimese teksti ja lõppvastuse ajad viimase commit'i peal;
+- ülejäänud 72 põhijuhtumit ühes normaalselt jätkuvas vestluses ilma „Uus vestlus” workaround'ita;
+- täpne esimese teksti aeg: arvufakti puhverdus näitas ainult lõpptulemust, mis saabus mõõdetud J17/V06 juhtudel umbes 36–41 sekundiga;
 - iga vastuse kuvatud allika sisuline toetus;
 - allikapaneeli viimane visuaalne kuju päris sisselogitud aknas;
 - laiade sünteeside allikate mitmekesisus;
@@ -771,7 +772,7 @@ Need tõendavad koodi staatilist ja kompileerimisvalmidust. Need **ei tõenda** 
 ## 22. Järgmine kontrollijärjekord
 
 1. Kontrollida autentitud aknas allikapaneeli kujundust ja ühe avatud allika tegelikku viiteteksti.
-2. Korrata esimesena lapse eraldamise ja töötamise toetamise küsimust kumbagi vähemalt kahe loomuliku sõnastusega.
+2. **TEHTUD esimese väravana:** lapse eraldamise ja töötamise toetamise küsimus kumbki kahe loomuliku sõnastusega; tulemused vastavalt 2 PASS ja 2 FAIL.
 3. Mõõta otsing ja vestlus eraldi: dokument, lõik, kanalid, `partial`, otsinguaeg, esimene tekst, lõppvastus ja koguaeg.
 4. Läbida kõik kaheksa parafraasi ning kümme autorijuhtumit.
 5. Läbida kümme laia sünteesi, kontrollides allikate mitmekesisust.
@@ -786,14 +787,14 @@ Need arvud ei ole töökindluse protsent.
 
 | seis | arv | tähendus |
 |---|---:|---|
-| DONE | **0/75** | viimase commit'i puhul ei ole veel ühtegi juhtumit mõlemal tasandil lõpuni uuesti tõendatud |
-| PARTIAL | **16/75** | varasema paranduskandidaadi sihitud otsinguväravas läbinud juhud; autentitud lõppvastus viimase deploy peal puudub |
-| NOT_PROVEN | **59/75** | viimase commit'i täielik otsingu- ja vestluskordus puudub |
+| DONE | **2/75** | J17 ja V06 vastasid viimase deploy järel õigesti; kuvatud atribuutika on eraldi NOT_PROVEN |
+| PARTIAL | **15/75** | 14 muud juhtumit on tõendatud ainult kandidaadi otsingukihis; J11 mõõdeti end-to-end ja kukkus läbi |
+| NOT_PROVEN | **58/75** | viimase commit'i ülejäänud otsingu- ja vestluskordus puudub |
 
 ## 24. Lõpphinnang
 
 SotsiaalAI-l on päris hübriidne, versioonitud ja turvapiiridega RAG-süsteem: eraldi FastAPI teenus, Chroma indeks, JSON-register, versioonitud dokumendifailid, mitmekanaliline otsing, planner, kontekstivalik, tõendipaketid, atribuutika ja autentitud vestlusliides.
 
-Süsteemi tehniline olemasolu on tõendatud. Algse kvaliteediseirega on tõendatud ka mitu süsteemset viga ning nende vastu on tehtud üldised parandused. Varasem RAG-paranduste deploy oli commit'il `08cbd94a`, praegune toodang on commit'il `2c142000` ja uus P0-kandidaat on ainult eraldatud worktree's. Terviklik sisuline töökindlus on seetõttu **NOT_PROVEN**, kuni sama muutumatu kandidaat läbib nii otsese otsingu kui ka autentitud vestluse ning allikad toetavad vastuse väiteid.
+Süsteemi tehniline olemasolu on tõendatud. Algse kvaliteediseirega on tõendatud mitu süsteemset viga ning nende vastu tehtud P0-parandused on nüüd toodangus commit'il `73d381a7`. Deploy-järgne kontroll tõendas lapse eraldamise fakti paranemist, kuid Elin Küti juhtum paljastas endiselt loomuliku parafraasi korje-, planner'i- ja kontekstivaliku vea. Terviklik sisuline töökindlus on seetõttu **NOT_PROVEN**, kuni sama muutumatu commit läbib nii otsese otsingu kui ka autentitud vestluse ning allikad toetavad vastuse väiteid.
 
 Hetkehinnang: **PARTIAL, mitte 10/10**.

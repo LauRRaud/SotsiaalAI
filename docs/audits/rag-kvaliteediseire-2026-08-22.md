@@ -317,26 +317,53 @@ V03 kontrollfakt kinnitati algallikast `17-1/ministeerium-toetab-2017-1.json`: 2
 
 | kontroll | tulemus |
 |---|---:|
-| RAG leksikaalse korje ja järjestuse sihttestid | **48/48 PASS** |
-| vestluse planner'i, otsingu, konteksti, atribuutika, allikaloendi, U8 ja 75-pöörde sihttestid | **186/186 PASS** |
+| olemasolev automaattestisviit | **PUUDUB** |
+| selle paranduse jaoks loodud ajutised testid | **PUUDUVAD** |
 | muudetud JS/JSX failide ESLint | vigu 0; pärast lõppkorrektsiooni hoiatusi 0 |
-| `git diff --check` | vigu 0; ainult Windowsi rea-lõpu informatiivsed hoiatused |
-| kogu olemasolev 4931 testi sviit | **NOT_RUN** |
+| Python AST süntaksikontroll | **PASS** |
+| `git diff --check` | vigu 0 |
+| lokaalne Next.js Webpacki tootmisbuild | **PASS** |
+| serveri ametlik Turbopacki tootmisbuild | **PASS**, 35,2 s |
 
-Rohelised 234 sihttesti tõendavad konkreetseid koodilepinguid, mitte RAG-i sisulist 10/10 töökindlust. Täissviiti ei kasutatud sisukvaliteedi asendustõendina. Kandidaadi parandatud veaklassid on sihitud otsinguväravas rohelised, kuid kogu 75 juhtumi otsing ja sama kandidaadi autentitud vastamiskiht on endiselt tõendamata.
+Projektis ei ole praeguses seisus automaatteste. Seetõttu ei esitata siin ajaloolisi testiarve praeguse kandidaadi tõendina. Eeltoodud kontrollid tõendavad ainult ehitatavust ja staatilisi lepinguid, mitte RAG-i sisulist 10/10 töökindlust. Kandidaadi parandatud veaklassid olid sihitud otsinguväravas rohelised, kuid kogu 75 juhtumi otsing ja sama kandidaadi autentitud vastamiskiht olid enne deploy'd endiselt tõendamata.
+
+### Deploy-järgne autentitud `/vestlus` kontroll
+
+Parandus commit'iti, lükati `origin/main`-i ja deploy'ti omaniku hilisema otsese loa alusel. Testitud commit oli `73d381a7febd017bc32d2a8976da60b2b9c9d42a`; sama SHA kinnitati `origin/main`-is ja serveris 22.08.2026 pärast deploy'd. RAG health näitas 49 727 vektorit ja 6089 registridokumenti. Järgmised päringud tehti päris autentitud `/vestlus` aknas järjest samas vestluses, ilma „Uus vestlus” workaround'ita.
+
+Seire ajal liikus `origin/main` ja server hiljem commit'ile `9cad5105fc30d68f1df7bb084f79a59e68b110d7`, mis muutis ainult hääleavatari binaarfaili ja selle ehitusskripti. Alltoodud RAG-tulemused on fikseeritud testitud commit'ile `73d381a7`; uuem commit sisaldab seda esivanemana, kuid selle vastu ei korratud vestluspäringuid rituaalselt.
+
+| juhtum | küsimus | autentitud vastus | lõpptulemus / kestus | hinnang |
+|---|---|---|---:|---|
+| J17 | „Kui palju lapse perekonnast eraldamise kohtulahendeid analüüsiti ja mis aastal need lahendid tehti?” | `169` kohtulahendit; `2018. aastal` jõustunud maakohtute lõpplahendid | **PASS**, u 41 s | arv ja andmeaasta säilisid, kõrvalrühma arvu 21 ega allika aastat vastusega ei segatud |
+| V06 | „Mitu lapse perest eraldamise otsust uuringus vaadeldi ja mis aasta otsused need olid?” | `169`; `2018`; lisaks eristas 2022. aastal kaitstud magistritöö | **PASS**, u 36 s | teine loomulik sõnastus oli samuti õige; viivitus on ebamõistlik |
+| J11 | „Mitu intervjuud tehti töötamise toetamise uuringus?” | „allikakatkenditest ei saa ... piisavalt üheselt kinnitada” | **FAIL**, u 22 s | vale keeldumine; kontrollfakt on 7 intervjuud |
+| J11 variant | „Kui paljude intervjuude põhjal tehti Elin Küti kirjeldatud töötamise toetamise uuring?” | `17 intervjuud` ja „lisaks kuus tööandjaintervjuud” | **FAIL**, u 23 s | vale kindel vastus; segas teise töövõimeteemalise uuringu arvud Elin Küti 2016. aasta uuringuga |
+
+Allikanupp oli J17 ja V06 vastuste juures nähtav, kuid kahes brauserikatses ei avanenud kontrollitavat allikapaneeli ega „Ava allikas” linke. Seetõttu on nende vastuste kuvatud atribuutika **NOT_PROVEN**, kuigi vastusetekst ise oli õige.
+
+J11 vea kihiline tõend:
+
+- algallikas `ajakiri_sotsiaaltoo/10-aastat/10-aastat-sotsiaaltood-eestis-puhtand.html` kinnitab seitset poolstruktureeritud intervjuud: kuus individuaalset ja üks kolme osalejaga rühmaintervjuu;
+- loomuliku küsimuse otsene `/search` ei toonud Elin Küti 2016. aasta artiklit esimese 12 tulemuse hulka; `partial=false`, otsingu kogukestused olid vastavalt 6284 ms ja 1256 ms;
+- täpse autori, aasta ja artikli pealkirjaga kontrollpäring tõi õige dokumendi kohtadele 1–3, kuid see ei ole tavakasutajale vastuvõetav sõnastusnõue;
+- autentitud vestluse logis jäid mõlemad päringud `queryPlanMode: default`, `capability: rag_guidance`; sihtallika 2016. aasta ei jõudnud vastuse `contextYears` hulka;
+- sama vestluse järgmistes päringutes näitas logi `hasHistory: true`, kuid `answer.history_selection included: false`. See ei tõenda iseenesest vale vastuse põhjust, kuid tõendab, et vestlusjärjepidevus ei jõudnud vastuse koostamisse.
+
+Seega ei ole J11 ühe arvu valideerimisviga. Süsteemne veaklass on loomuliku parafraasi nõrk korje koos faktiküsimuse planner'i valesti klassifitseerimise ja vale kontekstivalikuga; vastuse koostaja muudab selle ühel juhul valeks keeldumiseks ja teisel juhul enesekindlaks allikaseguks.
 
 ### 10/10 avaldamisvärav
 
 | värava osa | seis | põhjus |
 |---|---|---|
 | paranduskandidaadi kogu 75 juhtumi otsene otsing | **NOT_PROVEN** | parandatud veaklasside 16 põhijuhtumit on otsingukihis rohelised, kuid kogu muutumatu kandidaadi 75/75 kordus on tegemata |
-| paranduskandidaadi 75 juhtumit samas autentitud vestluses | **NOT_PROVEN** | kandidaati ei deploy'tud ning sama vestluse patched runtime'i ei asendatud tootmisega |
-| allikaloendi päris brauserikäitumine kandidaadis | **PARTIAL** | semantiline renderdus ja lingid on testitud, kuid autentitud deploy-järgne brauserirada puudub |
-| commit | **EI TEHTUD** | 10/10 eeltingimus ei täitunud |
-| push | **EI TEHTUD** | 10/10 eeltingimus ei täitunud |
-| deploy | **EI TEHTUD** | 10/10 eeltingimus ei täitunud |
+| deploy-järgne sama vestluse kontroll | **PARTIAL** | neli autentitud päringut: J17 ja V06 PASS; J11 ja selle variant FAIL; ülejäänud 72 põhijuhtumit deploy-järgse SHA vastu mõõtmata |
+| allikaloendi päris brauserikäitumine | **FAIL / NOT_PROVEN** | allikanupud olid kahel õigel vastusel nähtavad, kuid paneel ja avatavad allikad ei ilmunud kahes katses |
+| commit | **TEHTUD** | `73d381a7`; omaniku hilisem otsene luba |
+| push | **TEHTUD** | `origin/main` = `73d381a7` |
+| deploy | **TEHTUD** | serveri HEAD = `73d381a7`; frontend, RAG ja research worker aktiivsed |
 
-Järeldus: paranduskandidaat lahendab mitu tõendatud veaklassi, kuid kogu RAG-süsteemi hinne ei ole 10/10. Kandidaadi avaldamine oleks kasutaja seatud värava rikkumine.
+Järeldus: deploy-järgne päris vestlus tõendab J17/V06 parandust, kuid J11 kahe sõnastuse läbikukkumine, allikapaneeli kontrollimatus ja mõõtmata 72 põhijuhtumit välistavad 10/10 hinnangu.
 
 ## Prioriteedid ja järgmised põhjusepõhised parandused
 
@@ -375,9 +402,9 @@ Paranduskandidaadi lõppvärav eraldi:
 
 | seis | arv | tähendus |
 |---|---:|---|
-| DONE | **0/75** | ühtegi juhtumit ei loeta paranduskandidaadi end-to-end DONE-ks enne sama kandidaadi autentitud vestluse mõõtmist |
-| PARTIAL | **16/75** | A01–A10, V01, V02, V03, V06, V07 ja S02 mõõdeti paranduskandidaadi otsingukihis ning kõik 16 läbisid sihitud värava; autentitud vastamiskiht on endiselt tõendamata |
-| NOT_PROVEN | **59/75** | paranduskandidaadi täielik otsingu kordus ja kogu autentitud vastamiskiht jäid tõendamata |
+| DONE | **2/75** | J17 ja V06 vastasid deploy-järgses päris autentitud vestluses õigesti; atribuutika jääb eraldi NOT_PROVEN |
+| PARTIAL | **15/75** | 14 muud sihitud otsingujuhtumit on ainult otsingukihis rohelised; J11 mõõdeti end-to-end ja kukkus läbi |
+| NOT_PROVEN | **58/75** | ülejäänud juhtumite deploy-järgne autentitud vastamiskiht või täielik kordus puudub |
 
 Omaniku tõstatatud Laur Raudsoo reprodutseerimiskatse ei kuulu 75 põhijuhtumi hulka ja on tabelis eraldi. Nii ei paisuta lisakontroll põhimaatriksi nimetajat.
 
@@ -389,7 +416,9 @@ Omaniku tõstatatud Laur Raudsoo reprodutseerimiskatse ei kuulu 75 põhijuhtumi 
 - uue vestluse taastumiskatse ei tõenda algse pika vestluse töökindlust;
 - KOV-i kontaktid, tasud ja taotlemisviisid on ajas muutuvad ning vajavad eraldi värskuseväravat;
 - `partial=false` ja roheline health ei kata sisulist katvust;
-- kogu 4931 testi sviiti ei jooksutatud auditi read-only etapis; pärast V03 ja S02 süsteemsete paranduste sihtväravate läbimist jäi lokaalne kandidaat enne omaniku eraldi deploy-luba avaldamata. 234 rohelist sihttesti ega otsingu PASS ei tõenda veel autentitud vestluse sisulist töökindlust.
+- projektis ei ole praegu automaatteste; build, lint, süntaks ja otsingu PASS ei tõenda autentitud vestluse sisulist töökindlust;
+- deploy-järgne J11 näitab, et loomulik parafraas võib endiselt õige dokumendi korjest välja jätta või suunata planner'i valele üldjuhise rajale;
+- J17 ja V06 vastuste 36–41 sekundi viivitus on sisuliselt õige vastuse kõrval endiselt kasutatavusrisk.
 
 ## Võrdlusmaterjalid
 
