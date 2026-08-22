@@ -142,3 +142,12 @@ test("does not use RAG when the user asks about the source UI itself", () => {
     false
   );
 });
+
+test("uses RAG when source wording asks for a substantive cross-article synthesis", () => {
+  assert.equal(
+    shouldUseExternalSourcesForTurn(
+      "Milliseid ühiseid lahendusi kirjeldavad Sotsiaaltöö artiklid 2021–2025 eakate kodus elamise toetamiseks ning kuidas need allikad üksteist täiendavad?"
+    ),
+    true
+  );
+});
