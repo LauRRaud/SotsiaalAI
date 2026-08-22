@@ -3,7 +3,7 @@
 Kuupäev: 22.08.2026
 Tööharu: `codex/rag-quality-repair-20260822`
 Varasem toodangusse viidud RAG-paranduste lähtecommit: `08cbd94ac86597911e22e3731ee812c717f04110`
-Testitud RAG-loogika SHA: `771795e2c2b3f74ea8362e1cd9bbd4ba8729d3d0`; runtime-kontrolli ajal 22.08.2026 kell 20:40:16 UTC olid ka toodangu `HEAD` ja `origin/main` samal SHA-l. Hilisem dokumentatsiooni commit ei nimeta runtime-tõendit enda tõendiks.
+Testitud RAG-loogika SHA: `663552723`; runtime-kontrolli ajal 22.08.2026 kell 22:22 UTC olid ka toodangu `HEAD` ja `origin/main` samal SHA-l. Hilisem dokumentatsiooni commit ei nimeta runtime-tõendit enda tõendiks.
 Põhjusepõhised parandused on jõudnud toodangusse commit'ijadana `73d381a7` → `735ff837` → `7f3aa503` → `faf6ff14` → `3c53611f` → `771795e2`. Viimase SHA vastu on samas autentitud vestluses läbitud kogu kaheksa parafraasi plokk; 7/8 juhtumit läbis ning V04 jäi tõendatud veaks. Kogu 75 juhtumi lõppvärav ei ole tehtud.
 Seis: **PARTIAL — süsteemi ei ole tõendatud 10/10 töökindlaks**
 
@@ -730,7 +730,7 @@ Deploy'tud kandidaadi kontrollid:
 
 | värav | tulemus |
 |---|---:|
-| püsiv RAG-regressioonikomplekt | **23/23 PASS** |
+| püsiv RAG-regressioonikomplekt | **38/38 PASS** |
 | negatiivtõend | esimese lisaploki vana käitumine **4/19 FAIL**; teise lisaploki vana käitumine **4/23 FAIL** |
 | i18n | roheline |
 | muudetud JavaScripti failide lint | roheline |
@@ -792,8 +792,8 @@ Need arvud ei ole töökindluse protsent.
 | seis | arv | tähendus |
 |---|---:|---|
 | DONE | **10/75** | J11 faktiküsimus ja parafraas, J17 ning V01, V02, V03, V05, V06, V07 ja V08 läbisid õige tõendi, vastuse ja toetava kuvatud allika värava |
-| PARTIAL | **10/75** | need juhtumid on tõendatud ainult otsingukihis, mitte täielikus autentitud vastamis- ja allikaväravas |
-| FAIL | **1/75** | V04 on kahel sõnastusel tõendatud süsteemne viga |
+| PARTIAL | **11/75** | kümme juhtumit on tõendatud ainult otsingukihis; V04 otsing, vastus, faktivärav ja kuvatud source ID on õiged, kuid allikapaneeli UI jäi tõendamata |
+| FAIL | **0/75** | lõpp-SHA kordusplokis ei ole alles tõendatud valet vastust; mõõtmata juhtumid ei ole seetõttu rohelised |
 | NOT_PROVEN | **54/75** | lõpp-SHA ülejäänud otsingu- ja autentitud vestluskordus puudub |
 
 FAIL on eraldi, et vale vastus ei paistaks osalise ega mõõtmata tulemusena. Kõigi olekute summa on 75.
@@ -802,7 +802,7 @@ FAIL on eraldi, et vale vastus ei paistaks osalise ega mõõtmata tulemusena. K�
 
 SotsiaalAI-l on päris hübriidne, versioonitud ja turvapiiridega RAG-süsteem: eraldi FastAPI teenus, Chroma indeks, JSON-register, versioonitud dokumendifailid, mitmekanaliline otsing, planner, kontekstivalik, tõendipaketid, atribuutika ja autentitud vestlusliides.
 
-Süsteemi tehniline olemasolu on tõendatud. Algse kvaliteediseirega on tõendatud mitu süsteemset viga ning nende vastu tehtud P0-parandused on nüüd toodangus lõpp-SHA-l `771795e2`. Deploy-järgne kontroll tõendas J11/J17 ning parafraasiplokis 7/8 juhtumi õige tõendi, vastuse ja toetava allika. V04 tõendab samal ajal, et arvutokenite leidumine ühes allikas ei taga arvude semantiliste rollide õigsust. Terviklik sisuline töökindlus on endiselt **NOT_PROVEN**, kuni sama muutumatu commit läbib kogu 75 juhtumi otsese otsingu ja autentitud vestluse ning iga kuvatud allikas toetab vastuse väiteid.
+Süsteemi tehniline olemasolu on tõendatud. Algse kvaliteediseirega on tõendatud mitu süsteemset viga ning nende vastu tehtud P0-parandused on nüüd toodangus lõpp-SHA-l `66355272`. Deploy-järgne kontroll tõendas parafraasiplokis 8/8 sisuliselt õiget vastust; V04 valitud ja kuvatud source ID kattusid, kuid selle allikapaneeli UI jäi automatiseeritud katses avamata. Terviklik sisuline töökindlus on endiselt **NOT_PROVEN**, kuni sama muutumatu commit läbib kogu 75 juhtumi otsese otsingu ja autentitud vestluse ning iga kuvatud allikas toetab vastuse väiteid.
 
 Hetkehinnang: **PARTIAL, mitte 10/10**.
 
@@ -843,3 +843,13 @@ See on tõendatud süsteemne piir, mitte metaandme- ega sõnastusviga. Järgmine
 Repo sisaldab nüüd omaniku loal kitsast püsivat regressioonikomplekti: `npm run test:rag-regression` läbib 23/23. See kaitseb tõendatud lepinguid, kuid ei ole 75 juhtumi ega päris mudelivastuste asendus. `771795e2` vastu läbisid ka muudetud JavaScripti lint, `git diff --check`, lokaalne Webpacki tootmisbuild ja serveri ametlik Turbopack-build; migratsioone ei olnud.
 
 22.08 kell 20:40:16 UTC mõõdeti käsuga, et kohalik HEAD, `origin/main` ja server olid SHA-l `771795e2c2b3f74ea8362e1cd9bbd4ba8729d3d0`, serveri tööpuu oli puhas, frontend/RAG/research-worker aktiivsed, `/vestlus` vastas 200 ning RAG health oli `ok`, 49 727 vektorit / 6089 dokumenti. Korpust, indeksit, andmebaasi ega serveri keskkonda selles paranduste jadas ei muudetud.
+
+## 28. V04 arvusemantika ja dokumendisisene recall — toodangus sisuliselt tõendatud
+
+V04 varem tõendatud kaks veateed parandati üldiste lepingutega. Uuringu liitsõna ei tohi enam peita teematerminit; kõrge kindlusega tuvastatud dokumendis tehakse küsitud arvuliste ankrute järelotsing; kolme protsendi küsimus nõuab just küsitud protsente; `X% (n=Y)` säilib protsendi ja loenduse paarina ning järgmisse lausesse viidud valimitõlgendus või uus tuletatud inimeste arv lükatakse tagasi. Lühike protsentidega küsimus läbib nüüd samuti faktivalidaatori. V04 sõnu, autoreid ega vastuseid koodi ei hardcode'itud.
+
+Lõpp-SHA `663552723` vastu vastas sama autentitud vestlus ilma „Uus vestlus” workaround'ita õigesti kahel kujul. Lühivorm säilitas 10% = 640, 6% = 227 ja 2% = 100 ning eristas haldusandmed ohvriuuringust (36 269 / 36 289 ms). Pikk loomulik vorm sidus 2023. aasta 10%/640 ja 6%/227 näidud eraldi 2024. aasta ohvriuuringu 2%/100 näidust (33 376 / 33 395 ms). Mõlema trace oli `all_claims_in_one_rendered_source`; valitud, vastuse aluseks olnud ja kuvatud source ID oli sama Anu Lepsi ja Lenne Indovi 2025 artikkel.
+
+Lõppkoodil läbis kitsas püsiv regressioonikomplekt 38/38, lint, i18n, diff-kontroll, lokaalne Webpack-build ja serveri Turbopack-build. Server, kohalik HEAD ja `origin/main` olid samal SHA-l; kolm teenust olid aktiivsed ning health oli 49 727 / 6089. Korpust, indeksit, andmebaasi ega serveri keskkonda ei muudetud.
+
+V04 jääb range release-värava järgi **PARTIAL**, sest nähtav ja aktiivne allikanupp ei avanud automatiseeritud lõppkatses kontrollitavat paneeli, kuigi andmebaasi kuvatud source ID oli õige. Samuti on 33–36 sekundit lühikese faktivastuse jaoks ebamõistlik. Üldseis on **DONE 10/75 · PARTIAL 11/75 · FAIL 0/75 · NOT_PROVEN 54/75**, mitte 10/10.

@@ -435,24 +435,41 @@ Parafraasiploki tulemus on seega **7/8 algset juhtumit end-to-end PASS**. V02 ja
 
 V04 ei ole metaandmeviga ning seda ei parandata küsimuse sõnade või ühe vastuse hardcode'iga. Järgmine põhjusepõhine P0 on arvuliste tõendituplite (`protsent`, `n`, sihtrühm, mõõdik, aeg) ekstraheerimine ja sama rollijaotuse nõudmine vastuses; eraldi tuleb parandada numbriliste ankrutega lühiküsimuse kandidaatide recall.
 
+### V04 põhjusepõhine P0-parandus ja lõppkontroll — SHA `66355272`
+
+V04 parandati ilma korpust, indeksit, andmebaasi või serveri keskkonda muutmata. Tõendatud veaahelas oli neli järjestikust kihti: liitsõna „vägivallauuring” üldine „uuring” neelas teematermini; õige dokumendi tuvastamise järel ei otsitud kõiki arvulisi ankruid dokumendi seest; sama artikli muud protsendid rahuldasid ekslikult kolme küsitud protsendi katvuse; lõpuks käsitles vastuse koostaja kuju `2% (n=100)` 100-liikmelise valimina ja faktivalidaator ei märganud järgmisse lausesse viidud tuletist „2 inimest”.
+
+Commit'ide `f41143dd`, `913350af`, `db9aaa71`, `908d1a07`, `0b7104b6` ja `66355272` üldised parandused eristavad teemaankrut üldisest dokumendiliigist, teevad kõrge kindlusega tuvastatud dokumendis arvulise järelotsingu, nõuavad just küsimuses nimetatud protsente, seovad `X% (n=Y)` protsendi ja loenduse üheks rollipaariks, keelavad `X% × Y` uue arvu tuletamise ka järgmises lauses ning rakendavad faktiväravat ka lühikesele protsendiküsimusele. Koodis ei ole V04 vastust ega Anu Lepsi nime hardcode'itud.
+
+Lõppkontroll tehti samas jätkuvas autentitud vestluses ilma „Uus vestlus” workaround'ita:
+
+| sõnastus | vastus | esimene tekst / lõpp | trace ja allikas | seis |
+|---|---|---:|---|---|
+| `Eakate vägivallauuring: mis olid 10%, 6% ja 2% näidud?` | 10% = 640 üle 60-aastast kuriteoohvrit; 6% = 227 üle 60-aastast ohvriabisse pöördunut; 2% = 100 üle 75-aastast, kes puutusid viimase aasta jooksul kuritegevusega kokku; haldusandmed ja ohvriuuring eristati | 36 269 / 36 289 ms | faktivärav `all_claims_in_one_rendered_source`; valitud = kuvatud Anu Lepsi ja Lenne Indovi 2025 artikkel | **PARTIAL** |
+| pikk loomulik vorm | 2023: 10% = 640 ja 6% = 227; 2024. aasta ohvriuuring: 2% = 100 | 33 376 / 33 395 ms | sama faktivärav ja sama valitud/kuvatud allika ID | **PARTIAL** |
+
+Mõlemas lõppvastuses olid faktid ja arvude rollid õiged ning andmebaasi trace kinnitas sama valitud ja kuvatud source ID-d. Vastuse allikanupp oli nähtav ja aktiivne, kuid automatiseeritud hiireklõpsuga ei tekkinud kontrollitavat paneeli (`panelTitleCount=0`) ka korduskatsel. Seetõttu ei tõsteta V04 rangelt DONE-iks: **otsing leidis ja vestlus vastas õigesti, allikapaneeli UI on selle juhtumi jaoks NOT_PROVEN**. JAWS jäi samuti mõõtmata.
+
+Püsiv RAG-regressioonikomplekt läbis lõppkoodil 38/38, muudetud failide lint, i18n, `git diff --check`, lokaalne Webpacki tootmisbuild ja serveri ametlik Turbopack-build olid rohelised. Server, `origin/main` ja kohalik HEAD olid SHA-l `663552723`; frontend, RAG ja research-worker olid aktiivsed ning health jäi 49 727 vektori / 6089 dokumendi peale. Vastuste 33–36 sekundit on endiselt ebamõistlik viivitus, mitte kvaliteedivõit.
+
 ### 10/10 avaldamisvärav
 
 | värava osa | seis | põhjus |
 |---|---|---|
-| paranduskandidaadi kogu 75 juhtumi otsene otsing | **NOT_PROVEN** | parandatud veaklasside sihtjuhtumid on otsingukihis rohelised, kuid kogu muutumatu `771795e2` 75/75 kordus on tegemata |
-| deploy-järgne sama vestluse kontroll | **PARTIAL** | J11/J17 ja parafraasiploki 7/8 juhtumit on PASS; V04 on tõendatud FAIL ning teised plokid kordamata |
-| allikaloendi päris brauserikäitumine | **PARTIAL** | kontrollitud faktivastuste paneelid, leheküljevahemikud, Escape ja fookuse taastamine töötasid; JAWS ning kõik vastusetüübid on mõõtmata |
-| püsiv RAG-regressioonikomplekt | **TEHTUD, piiratud** | 23/23 PASS; kaitseb tõendatud planner'i, identiteedi, arvufakti ja atribuutika lepinguid, mitte mudeli kogu sisulist käitumist |
-| commit | **TEHTUD** | testitud RAG-loogika SHA `771795e2`; omaniku otsene luba |
-| push | **TEHTUD** | `origin/main` = `771795e2` |
-| deploy | **TEHTUD** | serveri HEAD = `771795e2`; frontend, RAG ja research worker aktiivsed; 20:40:16 UTC health 49 727 / 6089 |
+| paranduskandidaadi kogu 75 juhtumi otsene otsing | **NOT_PROVEN** | parandatud veaklasside sihtjuhtumid on otsingukihis rohelised, kuid kogu muutumatu `66355272` 75/75 kordus on tegemata |
+| deploy-järgne sama vestluse kontroll | **PARTIAL** | parafraasiploki 8/8 vastused on sisuliselt õiged, kuid V04 allikapaneeli UI ja teised plokid on tõendamata |
+| allikaloendi päris brauserikäitumine | **PARTIAL** | varasemate faktivastuste paneelid, Escape ja fookuse taastamine töötasid; V04 paneel ei avanenud automatiseeritud katses, JAWS ning kõik vastusetüübid on mõõtmata |
+| püsiv RAG-regressioonikomplekt | **TEHTUD, piiratud** | 38/38 PASS; kaitseb tõendatud planner'i, identiteedi, arvufakti ja atribuutika lepinguid, mitte mudeli kogu sisulist käitumist |
+| commit | **TEHTUD** | testitud RAG-loogika SHA `66355272`; omaniku otsene luba |
+| push | **TEHTUD** | `origin/main` = `66355272` |
+| deploy | **TEHTUD** | serveri HEAD = `66355272`; frontend, RAG ja research worker aktiivsed; health 49 727 / 6089 |
 
-Järeldus: deploy-järgne päris vestlus tõendab J11 ning parafraasiploki enamiku parandusi, kuid V04 enesekindel semantiline arvuviga, mõõtmata ülejäänud maatriks ja kuni u 39-sekundilised faktivastused välistavad kogu RAG-i 10/10 hinnangu.
+Järeldus: V04 varem tõendatud enesekindel semantiline arvuviga on kahe sõnastusega sisuliselt suletud, kuid selle allikapaneeli UI, ülejäänud maatriks ja kuni u 39-sekundilised faktivastused välistavad kogu RAG-i 10/10 hinnangu.
 
 ## Prioriteedid ja järgmised põhjusepõhised parandused
 
-1. **P0 – struktureeritud arvutõendi värav.** Ekstraheerida tõendist ja vastusest vähemalt `protsent + n + sihtrühm + mõõdik + aeg`; sama arvutokenite hulk ei tohi lubada muuta `n=100` valimiks ja tuletada sellest uut `2 inimest` väidet.
-2. **P0 – numbriliste ankrutega lühiküsimuse recall.** 10% / 6% / 2% kombinatsioon peab suutma tuua õige dokumendi faktikandidaatide sekka ka siis, kui pealkiri kasutab „vanemaealised”, küsimus „eakad”. Edu nõuab sihtlõiku, mitte pealkirja.
+1. **P0 – faktipäringu jõudlus.** V04 korrektne vastus võttis 33–36 sekundit; trace'i retrieval'i mõõdikud on vastuoluliselt isegi kogukestusest suuremad. Parandada mõõtmine ja optimeerida alles tõendatud pudelikaela järgi.
+2. **P0 – allikapaneeli avamine.** V04 valitud ja kuvatud source ID kattusid, kuid nähtav aktiivne nupp ei avanud automatiseeritud katses kontrollitavat paneeli. Eristada koordinaadi/custom-kursori probleem Reacti sündmuse või sõnumi allikaobjekti veast.
 3. **P0 – sama vestluse rate-limit runtime-lahknevus.** Logida tegelik scope, limit, window, remaining ja `Retry-After` ilma kasutaja/IP väärtust avaldamata; kinnitada, miks 60 s vaikeaken ei taastunud vähemalt seitsme minuti jooksul.
 4. **P1 – autoripäringu autentitud vastamisvärav.** Otsingu 10/10 sihtvalim on roheline; kinnitada nüüd, et vastuse koostamine kasutab autorimeta tõendit ega taanda inimest vale koondartikli rolliks.
 5. **P1 – faktipäringu parafraasimaatriks.** Dokumendisisene järelotsing ja registrikirjelduse ankur on sihttestis olemas; korrata vähemalt pika, lühikese ja teise sõnavaraga küsimusega üle kõigi parandatud faktiklasside.
@@ -482,13 +499,13 @@ Kvaliteedi lõppvaade eraldi:
 
 Seega on tõendatud vaid **21 end-to-end õiget juhtumit 75-st**, kuid seda arvu ei tohi kasutada väitena „RAG on 28% töökindel”: 25 juhtumi vastamiskiht on tõendamata, valim on sihipäraselt kihiline, kategooriate raskus erineb ning sama vestluse pikkus paljastas eraldi planner'i ja rate-limit riskid.
 
-### Praeguse release'i end-to-end värav — SHA `771795e2`
+### Praeguse release'i end-to-end värav — SHA `66355272`
 
 | seis | arv | tähendus |
 |---|---:|---|
 | DONE | **10/75** | J11 faktiküsimus ja parafraas, J17 ning V01, V02, V03, V05, V06, V07 ja V08: õige tõend, vastus ja toetav kuvatud allikas |
-| PARTIAL | **10/75** | juhtumid on praegu tõendatud ainult otsingukihis, mitte täielikus autentitud vastamis- ja allikaväravas |
-| FAIL | **1/75** | V04: lühivormis korje ebaõnnestus; pikemas vormis õige allikas, kuid enesekindlalt vale `2% (n=100)` tõlgendus |
+| PARTIAL | **11/75** | kümme juhtumit on tõendatud ainult otsingukihis; V04 otsing ja vastus on õiged, kuid selle allikapaneeli UI jäi tõendamata |
+| FAIL | **0/75** | lõpp-SHA-l ei ole praeguse kordusploki sees alles tõendatud valet vastust; see ei tähenda, et mõõtmata juhtumid oleksid õiged |
 | NOT_PROVEN | **54/75** | ülejäänud juhtumite lõpp-SHA otsingu- ja autentitud vestluskordus puudub |
 
 `DONE + PARTIAL + FAIL + NOT_PROVEN = 75`. FAIL hoitakse eraldi, et tõendatud valet vastust ei peidetaks PARTIAL-i ega NOT_PROVEN-i sisse. Need arvud ei ole töökindluse protsent.
@@ -503,7 +520,7 @@ Omaniku tõstatatud Laur Raudsoo reprodutseerimiskatse ei kuulu 75 põhijuhtumi 
 - uue vestluse taastumiskatse ei tõenda algse pika vestluse töökindlust;
 - KOV-i kontaktid, tasud ja taotlemisviisid on ajas muutuvad ning vajavad eraldi värskuseväravat;
 - `partial=false` ja roheline health ei kata sisulist katvust;
-- projektis on nüüd 23 püsivat sihitud RAG-regressioonitesti; need ei asenda päris indeksi, mudeli, pika vestluse ega 75 juhtumi runtime-väravat;
+- projektis on nüüd 38 püsivat sihitud RAG-regressioonitesti; need ei asenda päris indeksi, mudeli, pika vestluse ega 75 juhtumi runtime-väravat;
 - J11 kaks vormi on lõpp-SHA-l rohelised, kuid see ei tõenda teisi parafraasi-, arvusõna- ega dokumendiklasside kombinatsioone;
 - faktivastuste u 7–39 sekundi hajuvus on kasutatavusrisk; kiirus ei tõenda õigsust ning praegune valim ei tõenda p50/p95 stabiilsust.
 
