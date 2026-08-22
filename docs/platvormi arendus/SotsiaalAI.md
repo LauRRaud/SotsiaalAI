@@ -103,10 +103,11 @@ vana ikoonikomplekt. Deploy järel olid serveri tööpuu ja SHA kooskõlas `orig
 RAG ning research-worker aktiivsed, avaleht, vestlus ja RAG-admin vastasid 200 ning RAG-i otsing
 tagastas tulemused ilma osalise vastuse või veata. Järgmine tööots valitakse eraldi.
 
-**Skriptide järelpuhastus on 22.08 eraldi `codex/script-cleanup` harus valmis, kuid veel
-integreerimata.** Eemaldatud on 11 `package.json` käsuta QA-, eval'i- ja mõõteskripti;
+**Skriptide järelpuhastus on 22.08 toodangus (`3a8ed672`).** Eemaldatud on 11 `package.json`
+käsuta QA-, eval'i- ja mõõteskripti;
 `package.json` 126 käsku ning nende 78 otsest skriptifaili jäid muutmata. Alles jäid ka käsitsi
-kasutatavad deploy-, migratsiooni-, RAG-i sisu-, KOV-i ja dokumendihalduse tööriistad.
+kasutatavad deploy-, migratsiooni-, RAG-i sisu-, KOV-i ja dokumendihalduse tööriistad. Deploy
+järgselt olid serveri tööpuu puhas, kolm teenust aktiivsed ning HTTPS ja RAG-i otsing rohelised.
 
 **Vestluse eraldi häälrežiim on 22.08 ehitatud (`8e09478a`).** Tühja tekstivälja korral muutub
 komposeri senine saatmisnupp häälvestluse nupuks; kirjutamisel on sama 40 × 40 px kontroll jälle
