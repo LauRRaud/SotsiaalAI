@@ -4206,7 +4206,7 @@ _REGISTRY_RESEARCH_METHOD_PREFIXES = (
 def _is_research_method_fact_query(query: object) -> bool:
     normalized = _normalize_search_text(query)
     singular_research_source = re.search(
-        r"\b(?:uuringu|uuringus|uuringust|uurimuse|uurimuses|uurimusest|artikli|artiklis|artiklist|aruande|aruandes|aruandest|raporti|raportis|raportist|analuusi|analuusis|analuusist)\b",
+        r"\b(?:uuring|uuringu|uuringus|uuringust|uurimus|uurimuse|uurimuses|uurimusest|artikkel|artikli|artiklis|artiklist|aruanne|aruande|aruandes|aruandest|raport|raporti|raportis|raportist|analuus|analuusi|analuusis|analuusist)\b",
         normalized,
     )
     method_or_sample_fact = re.search(
