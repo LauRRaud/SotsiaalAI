@@ -114,6 +114,23 @@ const VERTEX_SHADER = `
     // valgustas poolt keha ja pleegitas sinise ära.
     float rim = pow(1.0 - abs(facing), 5.0);
 
+    // Kõrva-vööde: KOLJU servavalgus tõmmatakse maha. Päris peas katab kõrv
+    // selle joone ära, aga sügavustesti ei ole ja ta jooksis kõrva EEST läbi
+    // (omanik 22.08). Piirid on mudeliruumis, seega kehtivad igal pöördel;
+    // kõrv ise jääb 0.40 taha ja säilitab oma serva.
+    float earBand = smoothstep(0.28, 0.34, position.y)
+      * (1.0 - smoothstep(0.58, 0.65, position.y));
+    float earSide = smoothstep(0.22, 0.30, abs(position.x))
+      * (1.0 - smoothstep(0.40, 0.46, abs(position.x)));
+    rim *= 1.0 - 0.88 * earBand * earSide;
+
+    // Suunavalgus. Ilma temata küllastub front-tegur kohe ühte ja kogu esikülg on
+    // ühtlaselt hele — siis ei paista silmakoobas ega ninaselg otsevaates
+    // kuidagi välja ja nägu loeb pallina (omanik 22.08 „nägu on eest ikka
+    // liiga pall"). Mõjutab AINULT heledust, mitte tooni.
+    vec3 lightDir = normalize(vec3(-0.34, 0.42, 0.84));
+    float diffuse = 0.48 + 0.52 * max(0.0, dot(viewNormal, lightDir));
+
     // Lähtepildi täpid on üksikuna tumedad — pildil tuleb heledus täppide
     // kattumisest ja sisseküpsetatud hõõgusest, mida pilves ei ole. Võimendus
     // toob need tagasi; küllastuse laseb fragment üle ääre minna.
@@ -121,7 +138,7 @@ const VERTEX_SHADER = `
     // premultiplied over kuhjab kattuvatel täppidel üle piiri, mille peale
     // kanalid lõikuvad ja sinine pleegib valgeks (mõõdetud: sinisus 38 -> 8).
     vColor = clamp(aColor * 1.15 * warmGain * coolGain, 0.0, 1.0);
-    vAlpha = (0.72 + 0.28 * aSize) * (mix(0.05, 1.0, front) + rim * 0.6);
+    vAlpha = (0.72 + 0.28 * aSize) * (mix(0.05, 1.0, front) + rim * 0.6) * diffuse;
     vRim = rim;
     vGlow = mouthGlow * front;
   }

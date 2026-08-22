@@ -194,12 +194,24 @@ function faceSculpt(x, y, unit) {
   const dx = x - LANDMARK.centerX;
   let delta = 0;
 
-  // Silmakoopad
+  // Silmakoopad ja neid katev kulmuluu. Kulm on tähtsam kui koobas ise:
+  // just tema alla jääv vari teeb koopast koopa ja näost näo.
   for (const side of [-1, 1]) {
-    const ex = (dx - side * LANDMARK.eyeOffsetX) / 58;
-    const ey = (y - LANDMARK.eyeY) / 40;
+    const ex = (dx - side * LANDMARK.eyeOffsetX) / 60;
+    const ey = (y - LANDMARK.eyeY) / 42;
     const socket = Math.max(0, 1 - (ex * ex + ey * ey));
-    delta -= unit * 0.055 * socket * socket;
+    delta -= unit * 0.075 * socket * socket;
+
+    const bx = (dx - side * LANDMARK.eyeOffsetX) / 72;
+    const by = (y - (LANDMARK.eyeY - 44)) / 22;
+    const brow = Math.max(0, 1 - (bx * bx + by * by));
+    delta += unit * 0.032 * brow;
+
+    // Põsesarn: koopa all olev tugipind, muidu vajub põsk lamedaks.
+    const cx = (dx - side * 112) / 62;
+    const cy = (y - (LANDMARK.eyeY + 78)) / 52;
+    const cheek = Math.max(0, 1 - (cx * cx + cy * cy));
+    delta += unit * 0.022 * cheek;
   }
 
   // Ninaselg: kitsas hari ninajuurest tipuni
