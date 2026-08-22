@@ -217,6 +217,9 @@ export default function PanelFrame({ children }) {
   const isWorkspaceHub = normalized === "/toolaud" || normalized.startsWith("/toolaud/");
   const isAdmin = normalized.startsWith("/admin");
   const isConversation = normalized.startsWith("/vestlus");
+  const workspaceParam = String(searchParams?.get("workspace") || "").trim();
+  const isWorkspaceView = isConversation && Boolean(workspaceParam);
+  const isConversationSurface = isConversation && !isWorkspaceView;
   const isChat = isConversation || normalized.startsWith("/teekond");
   const isCovision = normalized === "/kovisioon";
   /* Suured tööpinnad vajavad laia ja kõrget akent (tellija 06.07 öö):
@@ -230,15 +233,13 @@ export default function PanelFrame({ children }) {
   const isCanvas = isCanvasRoute(normalized);
   /* Dokiga aknal EI OLE nurga-risti: väljapääs on ruumi dokis, ühes ja
      samas kohas (omanik 26.07). Esc jääb tööle igal juhul. */
-  const hasRoomDock = panelHasRoomDock(normalized);
+  const hasRoomDock = panelHasRoomDock(normalized, { workspace: workspaceParam });
   /* Lõuend, mille oma dokk kannab tagasi-noolt (Hinnastus): rist kaob
      sealtki, aga sulgemisloogika jääb SIIA — leht kutsub teda
      PanelExitProvider'i kaudu. */
   const hasOwnExit = panelHasOwnExit(normalized);
   /* ☰ (vestluste sahtel) AINULT vestlusevaates; töölaual ja mujal ⓘ
      (tellija 06.07 öö) */
-  const workspaceParam = String(searchParams?.get("workspace") || "").trim();
-  const isWorkspaceView = normalized.startsWith("/vestlus") && Boolean(workspaceParam);
   const showConversationsMenu = normalized.startsWith("/vestlus") && !workspaceParam;
   /* Lehe registreeritud ⓘ-sisu võidab staatilise marsruudikaardi: nii saavad
      rollipõhised (/eelpoordumised), dünaamilised (?workspace=X) ja kaardis
@@ -503,7 +504,7 @@ export default function PanelFrame({ children }) {
       data-canvas={isCanvas ? "1" : "0"}
       data-covision={isCovision ? "1" : "0"}
       data-chat={isChat ? "1" : "0"}
-      data-conversation={isConversation ? "1" : "0"}
+      data-conversation={isConversationSurface ? "1" : "0"}
       data-compact={isCompact ? "1" : "0"}
       data-wide={isWide ? "1" : "0"}
       data-dock={hasRoomDock ? "1" : "0"}

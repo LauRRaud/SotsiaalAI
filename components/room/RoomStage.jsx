@@ -224,6 +224,8 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
   const a11y = useAccessibility();
 
   const normalized = normalizePathname(pathname);
+  const workspaceParam = String(searchParams?.get("workspace") || "").trim();
+  const isWorkspacePanelRoute = normalized === "/vestlus" && Boolean(workspaceParam);
   const isHome = normalized === "/";
   /* Profiil on samuti karussell: sektsioonikaardid (Konto seaded,
      Uuenda PIN jt); avatud sektsioon on tavaline paneel. */
@@ -1007,8 +1009,12 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
      väljapääsuta (ainult Esc). */
   const isHubRoute = isHome || isProfileHub || isWorkspaceRoute;
   useEffect(() => {
-    setDockHub(isHubRoute ? null : isAdminRoute && isAdmin ? "/admin" : readRoomHubPath("/"));
-  }, [isHubRoute, isAdminRoute, isAdmin, pathname]);
+    let nextDockHub = readRoomHubPath("/");
+    if (isHubRoute) nextDockHub = null;
+    else if (isWorkspacePanelRoute) nextDockHub = "/toolaud";
+    else if (isAdminRoute && isAdmin) nextDockHub = "/admin";
+    setDockHub(nextDockHub);
+  }, [isHubRoute, isWorkspacePanelRoute, isAdminRoute, isAdmin, pathname]);
 
   /* ---------- login-modali kest ---------- */
   useEffect(() => {
@@ -1300,7 +1306,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
      kaardilt kaardile hüpata ilma karusselli tagasi ronimata. */
   const panelDockItems = useMemo(() => {
     if (isHubRoute || !dockHub) return null;
-    if (!panelHasRoomDock(normalized)) return null;
+    if (!panelHasRoomDock(normalized, { workspace: workspaceParam })) return null;
     if (dockHub === "/profiil") return infoHub ? teaveItems : profileItems;
     if (dockHub === "/toolaud/tooheaolu") return wellbeingItems;
     if (dockHub === "/toolaud/kovisioon") return kovisionItems;
@@ -1311,6 +1317,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     isHubRoute,
     dockHub,
     normalized,
+    workspaceParam,
     infoHub,
     teaveItems,
     profileItems,

@@ -105,6 +105,14 @@
    Nihe = risti laius (3rem, panel.css `:is(.panel-menu, .panel-close)`) +
    0.5rem vahe, täpselt sama arvutus mis ⓘ-nupul (`.panel-menu--info`). */
 @media (max-width: 768px) {
+  /* `/vestlus?workspace=…` kannab korraga data-chat ja data-dock märki.
+     chat.css-i hilisem data-chat polsterdus lähtestab PanelFrame'i üldise
+     mobiili-dokireservi, kui me seda siin Töölaua stiilikihis tagasi ei
+     pane. Ilma reservita jäävad pika vormi viimased read püsidoki taha. */
+  .panel-scrim[data-chat="1"][data-dock="1"] .panel-body {
+    padding-bottom: var(--room-dock-reserve);
+  }
+
   .panel-scrim[data-chat="1"] .admin-role-view-cycle {
     top: clamp(1.1rem, 2.8lvh, 1.8rem);
     bottom: auto;

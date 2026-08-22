@@ -513,6 +513,10 @@ export default function WorkspacePanel({
       title: text(t, meta.titleKey, meta.fallback)
     };
   }, [activeEmbeddedFeature, t]);
+  const activeEmbeddedInfoId =
+    activeEmbeddedFeature === "pre_inquiries" && activeRole === "CLIENT"
+      ? "pre_inquiry"
+      : activeEmbeddedMeta?.infoId || "workspace";
   const activeTitleId = embeddedPanelNode
     ? "chat-workspace-embedded-panel-title"
     : activeEmbeddedFeature
@@ -531,7 +535,7 @@ export default function WorkspacePanel({
       }
     : activeEmbeddedFeature && activeEmbeddedFeature !== "kovision"
     ? {
-        infoId: activeEmbeddedMeta?.infoId || "workspace",
+        infoId: activeEmbeddedInfoId,
         title: activeEmbeddedMeta?.title || text(t, "chat.workspace.title", "Töölaud")
       }
     : null;

@@ -92,6 +92,13 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Tööalade sisuvaadete kiirmenüü ja leheinfo on 22.08 parandatud.** Kõik
+`/vestlus?workspace=…` tööalad kasutavad nüüd sisu klaaspinda ning lehe nime, tagasinupu ja
+lehepõhise infoga alumist kiirmenüüd; päris vestlus jääb teadlikult ilma klaaspinna ja
+kiirmenüüta. Kiirmenüü senine kerimiskäitumine säilis ning mobiilis ei jää viimane sisu enam
+menüü alla. Töölaua- ja mobiilivaate visuaalkontroll läbis dokumendi koostamise, eelpäringu,
+abipalvete, abipakkumiste ja infovaated; sihttõend on 13/13 ning lõplik UTC värav 4934/4934.
+
 **Vestluse rahuliku liikumise UI-plokk on 22.08 toodangus ja päris vestluses tõendatud
 (`36c3a92d`).** Pika vastuse kerimine ei rakenda enam blur'i kogu sõnumimullile; ootamisel
 jääb nähtavale ainult väike ligipääsetav S ilma „Mõtlen” teksti ja eraldi mullita; komposeri
