@@ -1,5 +1,12 @@
 import { normalizePageReferences, uniqueSortedPageNumbers } from "../../../lib/chat/pageRanges.js";
 
+export function normalizeSourceLabelPages(value) {
+  return String(value || "").replace(/\blk\s+([\d](?:[\d\s,;\-–—]*\d)?)/giu, (match, pages) => {
+    const normalized = normalizePageReferences(pages);
+    return normalized ? `lk ${normalized}` : match;
+  });
+}
+
 function uniqueSortedPages(pages) {
   return uniqueSortedPageNumbers(pages);
 }
@@ -52,7 +59,7 @@ export function isSyntheticEvidenceRef(value) {
 }
 export function formatSourceLabel(src) {
   const shortRef = typeof src?.short_ref === "string" && src.short_ref.trim()
-    ? src.short_ref.trim()
+    ? normalizeSourceLabelPages(src.short_ref.trim())
     : "";
   const syntheticEvidenceRef = isSyntheticEvidenceRef(shortRef);
   if (shortRef && shortRef.length > 8 && !syntheticEvidenceRef) return shortRef;

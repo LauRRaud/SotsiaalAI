@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { describe, test } from "node:test";
 
-import { formatSourceLabel } from "../../components/chat/utils/sources.js";
+import { formatSourceLabel, normalizeSourceLabelPages } from "../../components/chat/utils/sources.js";
 import { validateExactFactAnswer } from "../../lib/chat/factContract.js";
 import { normalizePageReferences } from "../../lib/chat/pageRanges.js";
 import { buildQuestionPlan } from "../../lib/chat/questionPlanner.js";
@@ -26,6 +26,10 @@ describe("allikaviite leheküljed", () => {
       pages: [68, 64, 67, 65, 66]
     });
     assert.match(label, /lk 64–68/u);
+    assert.equal(
+      normalizeSourceLabelPages("Merli Laur, 2022. Lapse perekonnast eraldamine · lk 2, 4, 7, 1, 5, 3 · Uurimus"),
+      "Merli Laur, 2022. Lapse perekonnast eraldamine · lk 1–5, 7 · Uurimus"
+    );
   });
 });
 

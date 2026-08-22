@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { collapsePages, formatSourceLabel, isSyntheticEvidenceRef, normalizePageRange } from "../utils/sources.js";
+import { collapsePages, formatSourceLabel, isSyntheticEvidenceRef, normalizePageRange, normalizeSourceLabelPages } from "../utils/sources.js";
 
 const RAG_SOURCE_TYPE_HINTS = new Set([
   "national_law",
@@ -178,7 +178,7 @@ export function collectMessageSources(message, uploadPreview) {
   sources.forEach((src, idx) => {
     if (!isDbSource(src, uploadName)) return;
     const url = getSourceUrl(src);
-    const rawLabel = typeof src?.label === "string" ? src.label.trim() : "";
+    const rawLabel = typeof src?.label === "string" ? normalizeSourceLabelPages(src.label.trim()) : "";
     const label =
       rawLabel && !isSyntheticEvidenceRef(rawLabel)
         ? rawLabel
@@ -265,7 +265,7 @@ export function collectConversationSources(messages, uploadPreview) {
     sources.forEach((src, idx) => {
       if (!isDbSource(src, uploadName)) return;
       const url = getSourceUrl(src);
-      const rawLabel = typeof src?.label === "string" ? src.label.trim() : "";
+      const rawLabel = typeof src?.label === "string" ? normalizeSourceLabelPages(src.label.trim()) : "";
       const label =
         rawLabel && !isSyntheticEvidenceRef(rawLabel)
           ? rawLabel
