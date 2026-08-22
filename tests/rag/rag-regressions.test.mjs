@@ -371,6 +371,19 @@ describe("täpse faktivastuse värav", () => {
     assert.equal(result.trace.reason, "numeric_relation_mismatch");
   });
 
+  test("leiab n-väärtuse vale valimitõlgenduse ka järgmisest lausest", () => {
+    const result = validateExactFactAnswer({
+      message: "Kui palju üle 75-aastaseid oli viimase aasta jooksul kuritegevusega kokku puutunud?",
+      reply: "Kuritegevusega puutus kokku 2% üle 75-aastastest. Valimis oli 100 üle 75-aastast inimest, seega vastas sellele ligikaudu 2 inimest.",
+      sources: [{
+        id: "older-violence-2025",
+        evidenceText: "(1) Vägivald vanemaealiste vastu.\nÜle 75-aastastest oli viimase aasta jooksul kuritegevusega kokku puutunud 2% (n=100)."
+      }]
+    });
+    assert.equal(result.passed, false);
+    assert.equal(result.trace.reason, "numeric_relation_mismatch");
+  });
+
   test("kolme protsendi küsimus nõuab samast dokumendist kõigi kolme protsendi lõike", () => {
     const result = selectSingleSourceNumericFactGroups(
       "Eakate vägivallauuring: mis olid 10%, 6% ja 2% näidud?",
