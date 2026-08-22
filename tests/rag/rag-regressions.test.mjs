@@ -121,6 +121,48 @@ describe("uuringudokumendi identiteet", () => {
     assert.equal(result.matched, true);
     assert.equal(result.selectedDocumentId, "erihoole-2017");
   });
+
+  test("teemaankruga kandidaat võidab ankruta kanaliboostiga kandidaadi", () => {
+    const compactPlan = buildQuestionPlan({
+      message: "E-kursuse järelmõju – millal ja kelle hinnangud?"
+    });
+    const unrelated = {
+      docId: "elulugu-2016",
+      title: "Asenduskodulapse identiteedi kujunemise toetamine elulootöö meetodil",
+      sourceType: "journal_article",
+      retrievalChannels: ["registry_fact"]
+    };
+    const correct = {
+      docId: "e-kursus-2026",
+      title: "Uus e-kursus pakub tuge sotsiaalvaldkonna koolitajatele",
+      sourceType: "journal_article",
+      retrievalChannels: ["dense"]
+    };
+    const result = selectSpecificResearchFactGroups("", [unrelated, correct], compactPlan);
+    assert.equal(result.matched, true);
+    assert.equal(result.selectedDocumentId, "e-kursus-2026");
+  });
+
+  test("eakas ja vanemaealine on dokumendiidentiteedis sama teema", () => {
+    const violencePlan = buildQuestionPlan({
+      message: "Eakate vägivallauuring: mis olid 10%, 6% ja 2% näidud?"
+    });
+    const generic = {
+      docId: "generic-violence",
+      title: "Eesti elanikkonna teadlikkuse uuring soopõhise vägivalla valdkonnas",
+      sourceType: "research_report",
+      retrievalChannels: ["registry_fact"]
+    };
+    const correct = {
+      docId: "older-violence-2025",
+      title: "Vägivald vanemaealiste vastu vajab tähelepanu",
+      sourceType: "journal_article",
+      retrievalChannels: ["dense"]
+    };
+    const result = selectSpecificResearchFactGroups("", [generic, correct], violencePlan);
+    assert.equal(result.matched, true);
+    assert.equal(result.selectedDocumentId, "older-violence-2025");
+  });
 });
 
 describe("aasta roll otsingus", () => {
@@ -198,6 +240,31 @@ describe("täpse faktivastuse värav", () => {
     });
     assert.equal(result.passed, false);
     assert.equal(result.trace.reason, "source_year_not_body_year");
+  });
+
+  test("millal-küsimuse kuuekuuline ajavahemik ei nõua kalendriaastat", () => {
+    const result = validateExactFactAnswer({
+      message: "Millal tehakse e-kursuse järelhindamine ja kelle hinnangud kaasatakse?",
+      reply: "Järelhindamine tehakse kuus kuud pärast koolitust ning kaasatakse osaleja ja tööandja.",
+      sources: [{
+        id: "e-kursus-2026",
+        evidenceText: "(1) Uus e-kursus. source_year=2026.\nKuus kuud pärast koolitust tehakse järelhindamine, kuhu on kaasatud nii osaleja kui ka tema tööandja."
+      }]
+    });
+    assert.equal(result.passed, true);
+    assert.equal(result.trace.year_mode, "not_requested");
+  });
+
+  test("mitme mõõdiku küsimuse vanusepiir ei muutu koguarvuks", () => {
+    const result = validateExactFactAnswer({
+      message: "Kui palju üle 60-aastasi oli 2023. aastal kuriteoohvrite ja ohvriabisse pöördunute seas ning mitu üle 75-aastast oli kuritegevusega kokku puutunud?",
+      reply: "2023. aastal olid üle 60-aastastest 10% ehk 640 kuriteoohvrid ja 6% ehk 227 ohvriabisse pöördunud; üle 75-aastastest oli 2% ehk 100 kuritegevusega kokku puutunud.",
+      sources: [{
+        id: "older-violence-2025",
+        evidenceText: "(1) Vägivald vanemaealiste vastu. source_year=2025.\nAastal 2023 olid üle 60-aastastest 10% ehk 640 kuriteoohvrid ja 6% ehk 227 ohvriabisse pöördunud. Üle 75-aastastest oli 2% ehk 100 kuritegevusega kokku puutunud. Kokku käsitles ülevaade 999 kirjet."
+      }]
+    });
+    assert.equal(result.passed, true);
   });
 });
 
