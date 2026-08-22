@@ -187,6 +187,26 @@ test("deep primary context leaves room for a capped secondary source", () => {
   assert.doesNotMatch(packed.text, /TEISENE-3\./);
 });
 
+test("compact multi-source context reserves evidence space for all eight selected documents", () => {
+  const groups = Array.from({ length: 8 }, (_, index) => ({
+    key: `source-${index + 1}`,
+    title: `Allikas ${index + 1}`,
+    sourceType: index % 2 === 0 ? "journal_article" : "research_report",
+    bodies: [`ERISTAV-FAKT-${index + 1}. ${"Pikk allikapõhine selgitus. ".repeat(80)}`]
+  }));
+
+  const packed = buildContextWithBudget(groups, {
+    compact: true,
+    maxGroups: 8,
+    maxBodies: 2
+  });
+
+  assert.equal(packed.used.length, 8);
+  for (let index = 1; index <= 8; index += 1) {
+    assert.match(packed.text, new RegExp(`ERISTAV-FAKT-${index}\\.`));
+  }
+});
+
 test("topic matching treats Estonian case endings as the same long-word stem", () => {
   const ranked = rankGroupsWithTopicHints([{
     key: "privacy-article",
@@ -235,6 +255,39 @@ test("groupMatches strips repeated synthetic metadata prefix from chunk body", (
   assert.doesNotMatch(groups[0].bodies[0], /^\[TITLE\]/);
   assert.match(groups[0].bodies[0], /^Eesti/);
   assert.match(groups[0].bodies[0], /OTT-sĆ¼steem/);
+});
+
+test("groupMatches keeps distinct legacy siblings after unknown status and trailing marker fields", () => {
+  const sharedPrefix = [
+    "[TITLE] Ühine artikkel",
+    "[DESC] Sama vana kirjeldus kõigis lõikudes",
+    "[AUTHORS] Test Autor",
+    "[STATUS] current",
+    "[RESOURCE_TYPE] journal_article",
+    "[MUNICIPALITY] Tallinn"
+  ].join("\n");
+  const groups = groupMatches([
+    {
+      id: "legacy-1",
+      doc_id: "legacy-doc",
+      title: "Ühine artikkel",
+      chunk: `${sharedPrefix}\nESIMENE ERISTUV SISULÕIK.`,
+      metadata: { source_type: "journal_article" }
+    },
+    {
+      id: "legacy-2",
+      doc_id: "legacy-doc",
+      title: "Ühine artikkel",
+      chunk: `${sharedPrefix}\nTEINE ERISTUV SISULÕIK.`,
+      metadata: { source_type: "journal_article" }
+    }
+  ]);
+
+  assert.equal(groups.length, 1);
+  assert.equal(groups[0].bodies.length, 2);
+  assert.match(groups[0].bodies.join("\n"), /ESIMENE ERISTUV/);
+  assert.match(groups[0].bodies.join("\n"), /TEINE ERISTUV/);
+  assert.doesNotMatch(groups[0].bodies.join("\n"), /RESOURCE_TYPE/);
 });
 
 test("groupMatches preserves organization official website URL aliases", () => {

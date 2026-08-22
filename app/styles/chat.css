@@ -1090,7 +1090,68 @@ button[aria-controls="chat-window-scroll"] {
   width: 1.1rem;
   height: 1.1rem;
 }
-/* Allikate nupp on markupis tühi — glüüf (kihtide virn) maskina */
+/* Allikate avaldus on native details: see töötab ka siis, kui dialoogi
+   oleku-ahel katkeb, ning jätab lingid klaviatuuri ja abitehnoloogia jaoks
+   tavaliseks HTML-iks. */
+.panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] details[data-chat-message-sources] {
+  position: relative;
+}
+.panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] details[data-chat-message-sources] > summary {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  color: rgba(234, 234, 234, 0.6);
+  cursor: pointer;
+  list-style: none;
+}
+.panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] details[data-chat-message-sources] > summary::-webkit-details-marker {
+  display: none;
+}
+.panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] details[data-chat-message-sources] > summary:hover,
+.panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] details[data-chat-message-sources] > summary:focus-visible {
+  color: var(--text-warm);
+  background: rgba(243, 243, 243, 0.08);
+  box-shadow: 0 0 14px rgba(182, 182, 182, 0.18);
+}
+.panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] details[data-chat-message-sources] > summary::before {
+  content: "";
+  width: 1.05rem;
+  height: 1.05rem;
+  background: currentColor;
+  -webkit-mask: var(--glyph) center / contain no-repeat;
+  mask: var(--glyph) center / contain no-repeat;
+  --glyph: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3.5 3.5 8 12 12.5 20.5 8Z'/%3E%3Cpath d='M3.5 12 12 16.5 20.5 12'/%3E%3Cpath d='M3.5 16 12 20.5 20.5 16'/%3E%3C/svg%3E");
+}
+.panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] details[data-chat-message-sources] > ol {
+  position: absolute;
+  z-index: 12;
+  top: calc(100% + 0.35rem);
+  left: 0;
+  width: min(32rem, calc(100vw - 4rem));
+  max-height: min(26rem, 60vh);
+  margin: 0;
+  padding: 0.85rem 0.85rem 0.85rem 2.1rem;
+  overflow: auto;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 0.85rem;
+  background: rgba(18, 18, 18, 0.97);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.42);
+  color: var(--text-warm);
+}
+.panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] details[data-chat-message-sources] li + li {
+  margin-top: 0.7rem;
+}
+.panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] details[data-chat-message-sources] a {
+  display: inline-block;
+  margin-top: 0.25rem;
+  margin-right: 0.55rem;
+  color: var(--accent, #dfc58e);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+/* Vanema nupu varureegel. */
 .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] > div[aria-label] > button:empty::before {
   content: "";
   width: 1.05rem;

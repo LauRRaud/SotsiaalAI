@@ -154,7 +154,7 @@
       "query_order": "broad_first",
       "selection_strategy": "multi_source_diversity",
       "has_per_query_filters": true,
-      "filter_keys": ["$in", "audience", "doc_id"],
+      "filter_keys": ["$in", "$or", "audience", "doc_id"],
       "first_query_kind": "unfiltered",
       "second_query_filters": {
         "doc_id": "article-doc-2025"
@@ -186,7 +186,7 @@
       "query_order": "broad_first",
       "selection_strategy": "multi_source_diversity",
       "has_per_query_filters": true,
-      "filter_keys": ["$in", "audience", "doc_id"],
+      "filter_keys": ["$in", "$or", "audience", "doc_id"],
       "first_query_kind": "unfiltered",
       "second_query_filters": {
         "doc_id": "article-doc-2025"

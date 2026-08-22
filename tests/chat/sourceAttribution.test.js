@@ -46,6 +46,40 @@ test("keeps only sources that overlap with the direct answer", () => {
   assert.equal("evidenceText" in filtered[0], false);
 });
 
+test("keeps an authored source when the queried person appears only in author metadata", () => {
+  const attribution = buildSourceAttribution(
+    "Laur Raudsoo on kirjutanud kogemusnõustamisest ja sotsiaaltöö väärtustest.",
+    [
+      {
+        id: "laur-authored",
+        source_type: "journal_article",
+        title: "Kogemuse jõud sotsiaaltöös",
+        authors: ["Laur Raudsoo"],
+        evidenceText: "Artikkel käsitleb kogemusnõustamist ja sotsiaaltöö väärtusi."
+      },
+      {
+        id: "laur-mentioned",
+        source_type: "journal_article",
+        title: "Ajakirja toimetuse ajalugu",
+        evidenceText: "Laur Raudsood mainitakse ajakirja endise tegevtoimetajana."
+      }
+    ],
+    {
+      query: "Millest on Laur Raudsoo kirjutanud?",
+      queryPlan: {
+        mode: "person_source_lookup",
+        selection_strategy: "person_authorship_first"
+      },
+      riskPolicy: {
+        riskLevel: "low",
+        requiredEvidence: "medium"
+      }
+    }
+  );
+
+  assert.equal(attribution.displayed_source_ids.includes("laur-authored"), true);
+});
+
 test("requires named question anchors for displayed answer sources", () => {
   const reply = [
     "Võimaluste kohvik oli 2017. aasta paiku kirjeldatud projekt,",

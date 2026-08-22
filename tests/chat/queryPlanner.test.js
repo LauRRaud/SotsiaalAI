@@ -86,6 +86,58 @@ function assertQueryKind(query, kind, id) {
   assert.fail(`${id}: unknown query kind ${kind}`);
 }
 
+test("explicit Sotsiaaltöö article synthesis applies a journal-only retrieval filter", () => {
+  const message = "Milliseid sotsiaaltöötajate turvalisuse probleeme ja lahendusi käsitlevad eri Sotsiaaltöö artiklid?";
+  const questionPlan = buildQuestionPlan({ message, role: "SOCIAL_WORKER" });
+  const result = basePlan({
+    effectiveMessage: message,
+    baseRagQueryText: message,
+    questionPlan,
+    overviewSynthesisQuestion: true,
+    thematicSynthesisQuestion: true,
+    broadMultiSourceQuestion: true
+  });
+
+  assert.equal(questionPlan.mode, "overview_synthesis");
+  assert.deepEqual(result.searchFilters, {
+    ...audienceFilter,
+    $or: [
+      { source_type: { $in: ["journal_article", "article"] } },
+      { collection_id: { $in: ["sotsiaaltoo_articles", "journal_articles"] } }
+    ]
+  });
+  assert.deepEqual(result.ragRetrievers, ["dense"]);
+});
+
+test("journal synthesis routing is stable across natural source and topic wording", () => {
+  const variants = [
+    "Mida on ajakirja Sotsiaaltöö eri lugudes kirjutatud töötajate kaitsest, vägivallast ja tööheaolust?",
+    "Tee mitme Sotsiaaltöö teksti põhjal ülevaade sotsiaaltöötajate ohutusest, riskidest ja neile pakutavast toest."
+  ];
+
+  for (const message of variants) {
+    const questionPlan = buildQuestionPlan({ message, role: "SOCIAL_WORKER" });
+    const result = basePlan({
+      effectiveMessage: message,
+      baseRagQueryText: message,
+      questionPlan,
+      overviewSynthesisQuestion: questionPlan.mode === "overview_synthesis",
+      thematicSynthesisQuestion: questionPlan.mode === "overview_synthesis",
+      broadMultiSourceQuestion: questionPlan.needs_multiple_sources === true
+    });
+
+    assert.equal(questionPlan.mode, "overview_synthesis", message);
+    assert.deepEqual(result.ragRetrievers, ["dense"], message);
+    assert.deepEqual(result.searchFilters, {
+      ...audienceFilter,
+      $or: [
+        { source_type: { $in: ["journal_article", "article"] } },
+        { collection_id: { $in: ["sotsiaaltoo_articles", "journal_articles"] } }
+      ]
+    }, message);
+  }
+});
+
 function queryText(query) {
   return typeof query === "string" ? query : String(query?.query || "");
 }

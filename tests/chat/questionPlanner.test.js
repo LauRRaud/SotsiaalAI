@@ -146,3 +146,29 @@ test("Question Planner routes worksheet material questions to resource discovery
   assert.equal(result.mode, "resource_discovery");
   assert.equal(result.needs_rag, true);
 });
+
+test("Question Planner routes named author and person questions to exact person-source lookup", () => {
+  for (const message of [
+    "Millest on Krister Tüllinen kirjutanud?",
+    "Kes on Laur Raudsoo?"
+  ]) {
+    const result = plan(message);
+
+    assert.equal(result.mode, "person_source_lookup", message);
+    assert.equal(result.needs_rag, true, message);
+    assert.equal(result.needs_multiple_sources, true, message);
+    assert.equal(result.retrieval_strategy, "exact_person_metadata_then_content", message);
+    assert.equal(result.person_name.split(" ").length >= 2, true, message);
+  }
+});
+
+test("Question Planner does not mistake generic who-questions for named people", () => {
+  for (const message of [
+    "Kes on lapse eestkostja?",
+    "Kes on sotsiaaltöötaja?",
+    "Kes on teenuse saaja?"
+  ]) {
+    const result = plan(message);
+    assert.notEqual(result.mode, "person_source_lookup", message);
+  }
+});

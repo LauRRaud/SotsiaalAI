@@ -18,6 +18,283 @@ import main
 
 
 class LexicalRecallTests(unittest.TestCase):
+    def test_journal_synthesis_lexical_query_keeps_topic_and_drops_question_shell(self):
+        focused = main._synthesis_focus_query(
+            "Milliseid sotsiaaltöötajate turvalisuse probleeme ja lahendusi "
+            "käsitlevad eri Sotsiaaltöö artiklid?"
+        )
+
+        self.assertEqual(focused, "sotsiaaltootajate turvalisuse")
+
+    def test_journal_synthesis_focus_is_stable_across_natural_wording(self):
+        variants = {
+            (
+                "Mida on ajakirja Sotsiaaltöö eri lugudes kirjutatud töötajate "
+                "kaitsest, vägivallast ja tööheaolust?"
+            ): "tootajate kaitsest vagivallast tooheaolust",
+            (
+                "Tee mitme Sotsiaaltöö teksti põhjal ülevaade sotsiaaltöötajate "
+                "ohutusest, riskidest ja neile pakutavast toest."
+            ): "sotsiaaltootajate ohutusest riskidest neile pakutavast toest",
+        }
+
+        for query, expected in variants.items():
+            with self.subTest(query=query):
+                self.assertEqual(main._synthesis_focus_query(query), expected)
+
+    def test_journal_synthesis_leaves_ranking_to_semantic_retrieval(self):
+        class Collection:
+            def get(self, **_kwargs):
+                raise AssertionError("broad journal synthesis must not scan lexical candidates")
+
+        with patch.object(main, "collection", Collection()), patch.object(
+            main, "_registry_author_shortlist_doc_ids", return_value=[]
+        ), patch.object(
+            main, "_registry_fact_description_shortlist_doc_ids", return_value=[]
+        ):
+            result = main._fetch_lexical_candidates(
+                "Milliseid sotsiaaltöötajate turvalisuse probleeme ja lahendusi "
+                "käsitlevad eri Sotsiaaltöö artiklid?",
+                {"source_type": {"$in": ["journal_article", "article"]}},
+                top_k=24,
+                requested_retrievers=["dense", "title_match", "exact_phrase", "bm25"],
+            )
+
+        self.assertEqual(result["strategy"], "synthesis_dense_only")
+        self.assertEqual(result["candidates"], [])
+
+    def test_exact_author_metadata_outranks_an_article_that_only_mentions_the_person(self):
+        query = "Millest on Krister Tüllinen kirjutanud?"
+        authored = main._lexical_match(
+            query,
+            {
+                "title": "Sotsiaaltöö praktika muutumises",
+                "authors": ["Krister Tüllinen"],
+            },
+            "Artikkel käsitleb kohaliku sotsiaaltöö arengut.",
+        )
+        mention = main._lexical_match(
+            query,
+            {
+                "title": "Sotsiaaltöö ajakirja kujundanud inimesed",
+                "authors": ["Teine Autor"],
+            },
+            "Krister Tüllinen meenutab ajakirja arengut.",
+        )
+
+        self.assertIsNotNone(authored)
+        self.assertIn("author_match", authored["channels"])
+        self.assertGreater(authored["score"], mention["score"])
+
+    def test_registry_author_shortlist_returns_every_exactly_authored_document(self):
+        registry = {
+            "authored-one": {
+                "doc_id": "authored-one",
+                "author_token_1": "krister tullinen",
+                "audience": "BOTH",
+            },
+            "authored-two": {
+                "doc_id": "authored-two",
+                "author_token_2": "krister tullinen",
+                "audience": "BOTH",
+            },
+            "mention-only": {
+                "doc_id": "mention-only",
+                "author_token_1": "teine autor",
+                "audience": "BOTH",
+            },
+        }
+        with patch.object(main, "_load_registry", return_value=registry):
+            doc_ids = main._registry_author_shortlist_doc_ids(
+                "Millest on Krister Tüllinen kirjutanud?",
+                {"audience": {"$in": ["BOTH", "SOCIAL_WORKER"]}},
+            )
+
+        self.assertEqual(doc_ids, ["authored-one", "authored-two"])
+
+    def test_registry_title_shortlist_ignores_requested_fact_shape_words(self):
+        registry = {
+            "human-development": {
+                "doc_id": "human-development",
+                "title": "Värske inimarengu aruanne: vaimset heaolu loob igapäevane elukeskkond",
+            },
+            "accessibility": {
+                "doc_id": "accessibility",
+                "title": "Ligipääsetavuse kulu-tulu analüüs. Lõpparuanne",
+            },
+        }
+        with patch.object(main, "_load_registry", return_value=registry):
+            doc_ids = main._registry_title_shortlist_doc_ids(
+                "Inimarengu aruanne: leheküljed, autorite arv ja stsenaariumid?",
+                None,
+            )
+
+        self.assertEqual(doc_ids, ["human-development"])
+
+    def test_registry_title_shortlist_accepts_one_distinctive_inflected_subject(self):
+        registry = {
+            "institutional-care": {
+                "doc_id": "institutional-care",
+                "title": "Suurte erihooldekodude ümberkorraldamine on hoolikalt läbimõeldud protsess",
+            },
+            "general-care": {
+                "doc_id": "general-care",
+                "title": "Hooldekodu elanike autonoomiaga arvestamine",
+            },
+        }
+        with patch.object(main, "_load_registry", return_value=registry):
+            doc_ids = main._registry_title_shortlist_doc_ids(
+                "Mis olid erihooldekodude kaardistuse kolm protsenti?",
+                None,
+            )
+
+        self.assertEqual(doc_ids, ["institutional-care"])
+
+    def test_registry_title_shortlist_treats_requested_decision_count_as_fact_shape(self):
+        registry = {
+            "separation": {
+                "doc_id": "separation",
+                "title": "Lapse perekonnast eraldamine vaimse tervise probleemiga vanemalt",
+            },
+            "wellbeing": {
+                "doc_id": "wellbeing",
+                "title": "Lapse heaolu hindamise käsiraamat",
+            },
+        }
+        with patch.object(main, "_load_registry", return_value=registry):
+            doc_ids = main._registry_title_shortlist_doc_ids(
+                "Laste eraldamise otsused: arv ja aasta?",
+                None,
+            )
+
+        self.assertEqual(doc_ids, ["separation"])
+
+    def test_registry_fact_description_shortlist_recovers_an_uninformative_title(self):
+        registry = {
+            "county-supervision": {
+                "doc_id": "county-supervision",
+                "title": "Ministeerium toetab",
+                "description": (
+                    "2017. aastal toimub viis rühmasupervisiooni kohtumist "
+                    "iga maakonna omavalitsuste sotsiaaltöötajatele."
+                ),
+                "source_type": "journal_article",
+                "status": "active",
+            },
+            "child-protection-supervision": {
+                "doc_id": "child-protection-supervision",
+                "title": "Kogemusi lastekaitsetöötajate supervisioonist",
+                "description": (
+                    "Lastekaitsetöötajate grupisupervisioon toimub korrapäraselt "
+                    "kohalikes omavalitsustes üle Eesti."
+                ),
+                "source_type": "journal_article",
+                "status": "active",
+            },
+            "general-supervision": {
+                "doc_id": "general-supervision",
+                "title": "Supervisioon",
+                "description": "Infomaterjal supervisiooni protsessi ja tagasiside kohta.",
+                "source_type": "information_material",
+                "status": "active",
+            },
+        }
+        with patch.object(main, "_load_registry", return_value=registry):
+            doc_ids = main._registry_fact_description_shortlist_doc_ids(
+                "Palju neid supervisioone maakonna kohta tehti?",
+                {"source_type": {"$in": ["journal_article", "article"]}},
+            )
+
+        self.assertEqual(doc_ids[0], "county-supervision")
+        self.assertNotIn("general-supervision", doc_ids)
+
+    def test_fact_description_anchor_fetches_the_matching_article_evidence(self):
+        class Collection:
+            def get(self, **kwargs):
+                if kwargs.get("where_document"):
+                    return {"ids": [], "documents": [], "metadatas": []}
+                return {
+                    "ids": ["intro", "county-count"],
+                    "documents": [
+                        "Ministeerium kirjeldab sotsiaalvaldkonna tööjõu arendamist.",
+                        (
+                            "2017. aastal korraldatakse viis rühmasupervisiooni "
+                            "kohtumist iga maakonna omavalitsuste sotsiaaltöötajatele."
+                        ),
+                    ],
+                    "metadatas": [
+                        {"doc_id": "county-supervision", "title": "Ministeerium toetab"},
+                        {"doc_id": "county-supervision", "title": "Ministeerium toetab"},
+                    ],
+                }
+
+        registry = {
+            "county-supervision": {
+                "doc_id": "county-supervision",
+                "title": "Ministeerium toetab",
+                "description": (
+                    "2017. aastal toimub viis rühmasupervisiooni kohtumist "
+                    "iga maakonna omavalitsuste sotsiaaltöötajatele."
+                ),
+                "status": "active",
+            }
+        }
+        with patch.object(main, "collection", Collection()), patch.object(
+            main, "_load_registry", return_value=registry
+        ):
+            result = main._fetch_lexical_candidates(
+                "Palju neid supervisioone maakonna kohta tehti?",
+                None,
+                12,
+                ["dense", "title_match", "exact_phrase", "bm25"],
+            )
+
+        self.assertEqual(result["strategy"], "registry_fact_description_shortlist")
+        self.assertEqual(result["candidates"][0]["id"], "county-count")
+        self.assertIn("registry_fact", result["candidates"][0]["channels"])
+
+    def test_title_anchored_percentage_question_keeps_numeric_evidence_chunk(self):
+        class Collection:
+            def get(self, **kwargs):
+                if kwargs.get("where_document"):
+                    return {"ids": [], "documents": [], "metadatas": []}
+                return {
+                    "ids": ["intro", "percentages"],
+                    "documents": [
+                        "Artikkel kirjeldab suurte erihooldekodude ümberkorraldamist.",
+                        "Kaardistus näitas: 25% vajas vähem tuge, 45% ööpäevast juhendamist ja 30% pidevat hooldust.",
+                    ],
+                    "metadatas": [
+                        {"doc_id": "institutional-care", "title": "Suurte erihooldekodude ümberkorraldamine"},
+                        {"doc_id": "institutional-care", "title": "Suurte erihooldekodude ümberkorraldamine"},
+                    ],
+                }
+
+        registry = {
+            "institutional-care": {
+                "doc_id": "institutional-care",
+                "title": "Suurte erihooldekodude ümberkorraldamine",
+            }
+        }
+        with patch.object(main, "collection", Collection()), patch.object(
+            main, "_load_registry", return_value=registry
+        ):
+            result = main._fetch_lexical_candidates(
+                "Mis olid erihooldekodude kaardistuse kolm protsenti?",
+                None,
+                12,
+                ["dense", "title_match", "exact_phrase", "bm25"],
+            )
+
+        self.assertEqual(result["strategy"], "registry_title_fact_anchor")
+        self.assertEqual(result["candidates"][0]["id"], "percentages")
+        self.assertIn("numeric_fact_shape", result["candidates"][0]["channels"])
+        self.assertTrue(any(
+            "exact_phrase" in candidate["channels"]
+            for candidate in result["candidates"]
+            if candidate["id"] == "intro"
+        ))
+
     def test_compound_body_or_anchored_title_shortlist_can_finish_without_corpus_scan(self):
         compound_body = {
             "channels": ["title_match", "bm25"],

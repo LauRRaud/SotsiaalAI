@@ -179,7 +179,7 @@ test("searchRagQueries sends hybrid retriever request and preserves returned cha
       topK: 5
     });
 
-    assert.deepEqual(calls[0].retrievers, ["dense", "title_match", "exact_phrase", "bm25"]);
+    assert.deepEqual(calls[0].retrievers, ["dense", "author_match", "title_match", "exact_phrase", "bm25"]);
     assert.deepEqual(results[0].retrieval_channels, ["dense", "title_match", "bm25"]);
     assert.equal(results[0].hybrid_score, 0.82);
     assert.equal(results[0].rrf_score, 0.04);

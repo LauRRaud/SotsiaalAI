@@ -151,11 +151,13 @@ RAG_BM25_BODY_K = float(os.getenv("RAG_BM25_BODY_K", "1.5"))
 RAG_RRF_K = int(os.getenv("RAG_RRF_K", "60"))
 HYBRID_CHANNEL_WEIGHTS = {
     "dense": 1.0,
+    "author_match": 1.5,
     "title_match": 1.35,
     "exact_phrase": 1.15,
     "bm25": 1.0,
 }
 HYBRID_CHANNEL_BOOSTS = {
+    "author_match": 0.14,
     "title_match": 0.09,
     "exact_phrase": 0.06,
     "bm25": 0.05,
@@ -3032,6 +3034,63 @@ def _search_tokens(value: object, limit: int = 24) -> List[str]:
             break
     return out
 
+
+_SYNTHESIS_SHELL_EXACT_TOKENS = {
+    "eri",
+    "ja",
+    "mitme",
+    "mitmest",
+    "sotsiaaltoo",
+    "tee",
+}
+_SYNTHESIS_SHELL_PREFIXES = (
+    "ajakirj",
+    "allik",
+    "artikl",
+    "kasitle",
+    "kirjut",
+    "lahendus",
+    "lugu",
+    "millis",
+    "pohjal",
+    "probleem",
+    "tekst",
+    "vordl",
+    "ulevaad",
+)
+
+
+def _synthesis_focus_query(query: object) -> str:
+    """Strip broad question scaffolding from journal synthesis lexical search.
+
+    Dense retrieval still receives the complete natural-language question. The
+    lexical channel should instead rank on its subject: otherwise ubiquitous
+    words such as ``artiklid``, ``probleemid`` and ``Sotsiaaltöö`` promote many
+    formally matching but topically unrelated journal chunks.
+    """
+    tokens = _search_tokens(query, limit=32)
+    if not tokens:
+        return str(query or "").strip()
+    source_signal = any(
+        token.startswith(("allik", "artikl", "kasitlus", "kirjutis", "lugu", "tekst"))
+        for token in tokens
+    )
+    cross_source_signal = any(
+        token == "eri" or token.startswith("mitm")
+        or token.startswith(("ulevaad", "vordl"))
+        for token in tokens
+    )
+    journal_signal = "sotsiaaltoo" in tokens
+    if not journal_signal or not source_signal or not cross_source_signal:
+        return str(query or "").strip()
+    focused = [
+        token
+        for token in tokens
+        if token not in _SYNTHESIS_SHELL_EXACT_TOKENS
+        and not any(token.startswith(prefix) for prefix in _SYNTHESIS_SHELL_PREFIXES)
+    ]
+    return " ".join(focused) if len(focused) >= 2 else str(query or "").strip()
+
 def _split_fact_query_segments(
     query: object,
     max_segments: int = 6,
@@ -3177,10 +3236,21 @@ def _lexical_token_frequency(query_token: str, counts: Dict[str, int]) -> int:
     # shared eight-character stem as the same lexical clue after the bounded
     # prefix comparison above has handled shorter inflected forms.
     stem = query_token[:8]
-    return sum(
+    stem_matches = sum(
         int(frequency or 0)
         for token, frequency in counts.items()
         if len(token) >= 9 and token[:8] == stem
+    )
+    if stem_matches:
+        return stem_matches
+    # Estonian compounds can add a qualifier before the queried noun
+    # (supervisioon -> rühmasupervisioon). An eight-character internal stem is
+    # specific enough for lexical recall without treating short substrings as
+    # evidence.
+    return sum(
+        int(frequency or 0)
+        for token, frequency in counts.items()
+        if len(token) >= 11 and stem in token
     )
 
 def _query_named_entity_tokens(query: str) -> set:
@@ -3199,6 +3269,11 @@ def _lexical_match(query: str, md: Dict, document: str, min_score: float = 3.0) 
     section_norm = _normalize_search_text(md.get("section") or "")
     act_title_norm = _normalize_search_text(md.get("act_title") or "")
     body_norm = _normalize_search_text(document[:12000])
+    author_norms = [
+        _normalize_search_text(author)
+        for author in normalize_authors(md.get("authors") or md.get("authors_list"))
+        if _normalize_search_text(author)
+    ]
     if not title_norm and not body_norm:
         return None
 
@@ -3221,6 +3296,17 @@ def _lexical_match(query: str, md: Dict, document: str, min_score: float = 3.0) 
     bm25_coverage = 0.0
 
     full_query = phrases[0] if phrases else _normalize_search_text(query)
+    exact_author_match = next(
+        (
+            author
+            for author in author_norms
+            if len(author.split()) >= 2 and re.search(rf"(?:^|\s){re.escape(author)}(?:$|\s)", full_query)
+        ),
+        None,
+    )
+    if exact_author_match:
+        score += 18.0
+        channels.append("author_match")
     if paragraph_number and paragraph_number in paragraph_refs:
         score += 16.0
         channels.append("title_match")
@@ -3344,7 +3430,7 @@ def _normalize_requested_retrievers(value) -> List[str]:
         cleaned = re.sub(r"[^a-z0-9]+", "_", str(item or "").strip().lower()).strip("_")
         if cleaned and cleaned not in out:
             out.append(cleaned)
-    return out or ["dense", "title_match", "exact_phrase", "bm25"]
+    return out or ["dense", "author_match", "title_match", "exact_phrase", "bm25"]
 
 def _search_result_from_metadata(
     *,
@@ -3501,7 +3587,7 @@ def _apply_hybrid_ranking(results: List[Dict[str, object]]) -> None:
         lexical_rank = _to_int(item.get("lexical_rank"))
         dense_score = _hybrid_dense_score(item.get("distance")) if "dense" in channels else 0.0
         lexical_score = _hybrid_lexical_score(item.get("lexical_score")) if any(
-            channel in channels for channel in ["title_match", "exact_phrase", "bm25"]
+            channel in channels for channel in ["author_match", "title_match", "exact_phrase", "bm25"]
         ) else 0.0
         rrf_score = 0.0
         rrf_contributions: Dict[str, float] = {}
@@ -3795,7 +3881,7 @@ def _build_channel_stats(results: List[Dict[str, object]]) -> Dict[str, object]:
         channels = item.get("retrieval_channels") if isinstance(item.get("retrieval_channels"), list) else []
         channel_set = {str(channel or "").strip() for channel in channels if str(channel or "").strip()}
         has_dense = "dense" in channel_set
-        has_lexical = any(channel in channel_set for channel in ["title_match", "exact_phrase", "bm25"])
+        has_lexical = any(channel in channel_set for channel in ["author_match", "title_match", "exact_phrase", "bm25"])
         if has_dense and not has_lexical:
             dense_only_count += 1
         elif has_lexical and not has_dense:
@@ -4027,21 +4113,182 @@ def _registry_title_shortlist_doc_ids(
     chroma_where: Optional[Dict[str, object]],
     limit: int = 20,
 ) -> List[str]:
-    query_tokens = set(_search_tokens(query))
+    # Fact-shape words describe the requested answer, not the document's
+    # subject. Counting them in title coverage made concise questions such as
+    # “Inimarengu aruanne: leheküljed, autorite arv ja stsenaariumid?” miss a
+    # title that contains the complete subject phrase. The same happened with
+    # inflected one-subject questions (“erihooldekodude ... protsenti”).
+    intent_prefixes = (
+        "aast",
+        "arv",
+        "autor",
+        "kaardist",
+        "kohtum",
+        "kolm",
+        "lehek",
+        "maakond",
+        "millal",
+        "naitaj",
+        "osakaal",
+        "otsus",
+        "palju",
+        "protsent",
+        "sagedus",
+        "stsena",
+        "tehti",
+    )
+    query_tokens = [
+        token
+        for token in _search_tokens(query)
+        if not any(token.startswith(prefix) for prefix in intent_prefixes)
+    ]
+    if not query_tokens:
+        return []
+    matches: List[tuple] = []
+    for doc_id, metadata in _load_registry().items():
+        if not isinstance(metadata, dict) or not _metadata_matches_filter(metadata, chroma_where):
+            continue
+        title_counts = _lexical_token_counts(
+            _normalize_search_text(metadata.get("title") or metadata.get("fileName")),
+            limit=80,
+        )
+        matched_tokens = [
+            token for token in query_tokens if _lexical_token_frequency(token, title_counts)
+        ]
+        overlap = len(matched_tokens)
+        coverage = overlap / max(1, len(query_tokens))
+        distinctive_single = (
+            overlap == 1
+            and len(query_tokens) <= 2
+            and len(matched_tokens[0]) >= 9
+            and coverage >= 0.5
+        )
+        if not distinctive_single and (overlap < 2 or coverage < 0.6):
+            continue
+        matches.append((coverage, overlap, str(doc_id)))
+    matches.sort(key=lambda item: (-item[0], -item[1], item[2]))
+    return [doc_id for _coverage, _overlap, doc_id in matches[:max(1, limit)]]
+
+
+_REGISTRY_FACT_ANSWER_SHAPE_PREFIXES = (
+    "arv",
+    "kokku",
+    "millal",
+    "mitu",
+    "neid",
+    "nende",
+    "oli",
+    "olid",
+    "palju",
+    "saadi",
+    "selle",
+    "tehti",
+)
+
+
+def _registry_fact_description_query_tokens(query: object) -> List[str]:
+    return [
+        token
+        for token in _search_tokens(query, limit=24)
+        if not any(token.startswith(prefix) for prefix in _REGISTRY_FACT_ANSWER_SHAPE_PREFIXES)
+    ]
+
+
+def _registry_fact_description_shortlist_doc_ids(
+    query: str,
+    chroma_where: Optional[Dict[str, object]],
+    limit: int = 12,
+) -> List[str]:
+    """Use registry descriptions to anchor concise quantitative fact questions.
+
+    Some journal entries intentionally have generic titles (for example a
+    ministry news roundup), while their registry description and article body
+    contain the exact fact. This bounded shortlist is used only when the query
+    asks for a quantity/time fact and at least two meaningful query tokens
+    match the description. A single topical word such as ``supervisioon`` is
+    not enough to lock retrieval to a document.
+    """
+    normalized_query = _normalize_search_text(query)
+    if not normalized_query or not re.search(
+        r"\b(?:arv\w*|kui\s+palju|millal|mitu|palju|protsent\w*|osakaal\w*|sagedus\w*)\b",
+        normalized_query,
+    ):
+        return []
+    query_tokens = _registry_fact_description_query_tokens(query)
     if len(query_tokens) < 2:
         return []
     matches: List[tuple] = []
     for doc_id, metadata in _load_registry().items():
         if not isinstance(metadata, dict) or not _metadata_matches_filter(metadata, chroma_where):
             continue
-        title_tokens = set(_search_tokens(metadata.get("title") or metadata.get("fileName"), limit=80))
-        overlap = len(query_tokens.intersection(title_tokens))
-        coverage = overlap / max(1, len(query_tokens))
-        if overlap < 2 or coverage < 0.6:
+        description = _normalize_search_text(
+            metadata.get("description")
+            or metadata.get("summary")
+            or metadata.get("description_et")
+        )
+        if not description:
             continue
-        matches.append((coverage, overlap, str(doc_id)))
-    matches.sort(key=lambda item: (-item[0], -item[1], item[2]))
-    return [doc_id for _coverage, _overlap, doc_id in matches[:max(1, limit)]]
+        description_counts = _lexical_token_counts(description, limit=400)
+        matched_tokens = [
+            token
+            for token in query_tokens
+            if _lexical_token_frequency(token, description_counts)
+            or (
+                len(token) >= 8
+                and any(token[:8] in description_token for description_token in description_counts)
+            )
+        ]
+        overlap = len(matched_tokens)
+        coverage = overlap / max(1, len(query_tokens))
+        if overlap < 2 or coverage < 0.66:
+            continue
+        distinctive_matches = sum(1 for token in matched_tokens if len(token) >= 8)
+        if distinctive_matches < 1:
+            continue
+        numeric_cue = bool(re.search(
+            r"\b(?:\d+(?:[.,]\d+)?|uks|uhe|kaks|kolm|neli|viis|kuus|seitse|kaheksa|uheksa|kumme)\b|%",
+            description,
+        ))
+        resolved_doc_id = str(metadata.get("doc_id") or metadata.get("docId") or doc_id).strip()
+        if not resolved_doc_id:
+            continue
+        matches.append((coverage, overlap, distinctive_matches, numeric_cue, resolved_doc_id))
+    matches.sort(key=lambda item: (-item[0], -item[1], -item[2], -int(item[3]), item[4]))
+    return [doc_id for _coverage, _overlap, _distinctive, _numeric, doc_id in matches[:max(1, limit)]]
+
+
+def _registry_author_shortlist_doc_ids(
+    query: str,
+    chroma_where: Optional[Dict[str, object]],
+    limit: int = 50,
+) -> List[str]:
+    normalized_query = _normalize_search_text(query)
+    if not normalized_query:
+        return []
+    matches: List[str] = []
+    for doc_id, metadata in _load_registry().items():
+        if not isinstance(metadata, dict) or not _metadata_matches_filter(metadata, chroma_where):
+            continue
+        author_tokens = []
+        for index in range(MAX_AUTHOR_TOKEN_SLOTS):
+            token = _normalize_search_text(metadata.get(f"author_token_{index + 1}"))
+            if token and token not in author_tokens:
+                author_tokens.append(token)
+        if not author_tokens:
+            author_tokens = normalize_author_tokens(metadata.get("authors") or metadata.get("authors_list"))
+        exact = any(
+            len(author.split()) >= 2
+            and re.search(rf"(?:^|\s){re.escape(author)}(?:$|\s)", normalized_query)
+            for author in author_tokens
+        )
+        if not exact:
+            continue
+        resolved_doc_id = str(metadata.get("doc_id") or metadata.get("docId") or doc_id).strip()
+        if resolved_doc_id and resolved_doc_id not in matches:
+            matches.append(resolved_doc_id)
+        if len(matches) >= max(1, int(limit or 1)):
+            break
+    return matches
 
 def _dense_article_anchor_doc_ids(
     query: str,
@@ -4151,7 +4398,7 @@ def _targeted_document_shortlist(
     per_term_limit = max(216, min(240, max(1, top_k) * 6))
     terms = _targeted_document_terms(query)
     compound_query = len(_split_fact_query_segments(query, anchor_short=False)) >= 2
-    scoring_channels = set(allowed_channels or {"title_match", "exact_phrase", "bm25"})
+    scoring_channels = set(allowed_channels or {"author_match", "title_match", "exact_phrase", "bm25"})
     for term in terms:
         kwargs = {
             "include": ["documents", "metadatas"],
@@ -4241,7 +4488,111 @@ def _fetch_lexical_candidates(
 ) -> Dict[str, object]:
     if not RAG_LEXICAL_SEARCH_ENABLED or not str(query or "").strip():
         return {"candidates": [], "scanned": 0, "complete": True, "error": None}
-    allowed_channels = set(requested_retrievers or ["title_match", "exact_phrase", "bm25"])
+    allowed_channels = set(requested_retrievers or ["author_match", "title_match", "exact_phrase", "bm25"])
+    try:
+        author_doc_ids = _registry_author_shortlist_doc_ids(query, chroma_where)
+    except Exception:
+        logger.exception("registry author shortlist lookup failed")
+        author_doc_ids = []
+    if author_doc_ids and "author_match" in allowed_channels:
+        author_where: Dict[str, object] = {"doc_id": {"$in": author_doc_ids}}
+        if chroma_where:
+            author_where = {"$and": [chroma_where, author_where]}
+        try:
+            authored = collection.get(
+                include=["documents", "metadatas"],
+                limit=min(5000, max(200, len(author_doc_ids) * 120)),
+                where=author_where,
+            )
+            authored_ids = list(authored.get("ids") or [])
+            authored_docs = list(authored.get("documents") or [])
+            authored_metas = list(authored.get("metadatas") or [])
+            authored_scored = _score_lexical_rows(
+                query,
+                allowed_channels,
+                authored_ids,
+                authored_docs,
+                authored_metas,
+                body_only=True,
+            )
+            if authored_scored:
+                authored_limit = max(0, min(max(1, top_k), RAG_LEXICAL_TOP_K))
+                return {
+                    "candidates": _select_lexical_candidates(
+                        authored_scored,
+                        authored_limit,
+                        per_document=max(1, min(3, int(top_k or 1))),
+                    ),
+                    "scanned": len(authored_ids),
+                    "complete": True,
+                    "exhaustive": False,
+                    "error": None,
+                    "strategy": "registry_author_shortlist",
+                }
+        except Exception:
+            logger.exception("registry author shortlist retrieval failed")
+    try:
+        fact_description_doc_ids = _registry_fact_description_shortlist_doc_ids(query, chroma_where)
+    except Exception:
+        logger.exception("registry fact description shortlist lookup failed")
+        fact_description_doc_ids = []
+    if len(fact_description_doc_ids) == 1 and "bm25" in allowed_channels:
+        fact_doc_id = fact_description_doc_ids[0]
+        fact_where: Dict[str, object] = {"doc_id": fact_doc_id}
+        if chroma_where:
+            fact_where = {"$and": [chroma_where, fact_where]}
+        try:
+            fact_rows = collection.get(
+                include=["documents", "metadatas"],
+                limit=min(5000, max(100, top_k * 12)),
+                where=fact_where,
+            )
+            fact_ids = list(fact_rows.get("ids") or [])
+            fact_documents = list(fact_rows.get("documents") or [])
+            fact_metadatas = list(fact_rows.get("metadatas") or [])
+            fact_scoring_query = " ".join(_registry_fact_description_query_tokens(query))
+            fact_scored = _score_lexical_rows(
+                fact_scoring_query or query,
+                allowed_channels,
+                fact_ids,
+                fact_documents,
+                fact_metadatas,
+                body_only=True,
+                min_score=0.2,
+            )
+            if fact_scored:
+                for candidate in fact_scored:
+                    candidate["score"] = float(candidate.get("score") or 0) + 18.0
+                    channels = candidate.get("channels") if isinstance(candidate.get("channels"), list) else []
+                    for channel in ["bm25", "registry_fact"]:
+                        if channel not in channels:
+                            channels.append(channel)
+                    candidate["channels"] = channels
+                fact_limit = max(0, min(max(1, top_k), RAG_LEXICAL_TOP_K))
+                return {
+                    "candidates": _select_lexical_candidates(
+                        fact_scored,
+                        fact_limit,
+                        per_document=max(4, min(12, int(top_k or 1))),
+                    ),
+                    "scanned": len(fact_ids),
+                    "complete": True,
+                    "exhaustive": False,
+                    "error": None,
+                    "strategy": "registry_fact_description_shortlist",
+                }
+        except Exception:
+            logger.exception("registry fact description shortlist retrieval failed")
+    lexical_query = _synthesis_focus_query(query)
+    if lexical_query != str(query or "").strip():
+        return {
+            "candidates": [],
+            "scanned": 0,
+            "complete": True,
+            "exhaustive": False,
+            "error": None,
+            "strategy": "synthesis_dense_only",
+        }
     anchored_doc_ids = [str(value).strip() for value in dense_article_doc_ids or [] if str(value).strip()]
     if anchored_doc_ids:
         anchor_where: Dict[str, object] = {"doc_id": {"$in": anchored_doc_ids[:5]}}
@@ -4257,7 +4608,7 @@ def _fetch_lexical_candidates(
             anchored_docs = list(anchored.get("documents") or [])
             anchored_metas = list(anchored.get("metadatas") or [])
             anchored_scored = _score_lexical_rows(
-                query,
+                lexical_query,
                 allowed_channels,
                 anchored_ids,
                 anchored_docs,
@@ -4291,12 +4642,12 @@ def _fetch_lexical_candidates(
     shortlist_scored_candidates: List[Dict[str, object]] = []
 
     try:
-        title_doc_ids = _registry_title_shortlist_doc_ids(query, chroma_where)
+        title_doc_ids = _registry_title_shortlist_doc_ids(lexical_query, chroma_where)
     except Exception:
         title_doc_ids = []
     try:
         targeted = _targeted_document_shortlist(
-            query,
+            lexical_query,
             chroma_where,
             top_k,
             allowed_channels,
@@ -4336,7 +4687,7 @@ def _fetch_lexical_candidates(
                 shortlist_docs.append(title_docs[index] if index < len(title_docs) else "")
                 shortlist_metas.append(title_metas[index] if index < len(title_metas) else {})
             shortlist_scored = _score_lexical_rows(
-                query,
+                lexical_query,
                 allowed_channels,
                 shortlist_ids,
                 shortlist_docs,
@@ -4344,6 +4695,128 @@ def _fetch_lexical_candidates(
                 body_only=True,
             )
             shortlist_scored_candidates = shortlist_scored
+            title_fact_cue = re.search(
+                r"\b(?:arv\w*|aast\w*|lehek\w*|mitu|millal|palju|protsent\w*|"
+                r"osakaal\w*|naitaj\w*|näitaj\w*|sagedus\w*|stsenaarium\w*)\b",
+                str(query or ""),
+                flags=re.I,
+            )
+            if len(title_doc_ids) == 1 and title_fact_cue:
+                anchored_doc_id = str(title_doc_ids[0])
+                title_version_registry = _load_registry()
+                title_anchored = [
+                    candidate
+                    for candidate in shortlist_scored
+                    if str(
+                        (candidate.get("metadata") or {}).get("doc_id")
+                        or (candidate.get("metadata") or {}).get("docId")
+                        or ""
+                    ).strip() == anchored_doc_id
+                    and is_active_document_version(
+                        candidate.get("metadata") if isinstance(candidate.get("metadata"), dict) else {},
+                        title_version_registry,
+                    )
+                ]
+                title_anchored_ids = {str(candidate.get("id") or "") for candidate in title_anchored}
+                for item_id, document, metadata in zip(
+                    shortlist_ids,
+                    shortlist_docs,
+                    shortlist_metas,
+                ):
+                    candidate_id = str(item_id or "")
+                    candidate_doc_id = str(
+                        (metadata or {}).get("doc_id")
+                        or (metadata or {}).get("docId")
+                        or ""
+                    ).strip()
+                    if (
+                        not candidate_id
+                        or candidate_id in title_anchored_ids
+                        or candidate_doc_id != anchored_doc_id
+                        or not is_active_document_version(metadata or {}, title_version_registry)
+                    ):
+                        continue
+                    title_anchored.append({
+                        "id": item_id,
+                        "document": document,
+                        "metadata": metadata,
+                        "score": 8.0,
+                        "channels": ["title_match", "exact_phrase"],
+                    })
+                    title_anchored_ids.add(candidate_id)
+                for candidate in title_anchored:
+                    candidate["score"] = max(16.0, float(candidate.get("score") or 0) + 12.0)
+                    channels = candidate.get("channels") if isinstance(candidate.get("channels"), list) else []
+                    for channel in ["title_match", "exact_phrase"]:
+                        if channel not in channels:
+                            channels.append(channel)
+                    candidate["channels"] = channels
+                expected_percentage_count = _expected_percentage_fact_count(query)
+                if expected_percentage_count:
+                    existing_ids = {str(candidate.get("id") or "") for candidate in title_anchored}
+                    for item_id, document, metadata in zip(
+                        shortlist_ids,
+                        shortlist_docs,
+                        shortlist_metas,
+                    ):
+                        candidate_doc_id = str(
+                            (metadata or {}).get("doc_id")
+                            or (metadata or {}).get("docId")
+                            or ""
+                        ).strip()
+                        evidence_count = _percentage_evidence_count(document)
+                        if (
+                            candidate_doc_id != anchored_doc_id
+                            or not is_active_document_version(metadata or {}, title_version_registry)
+                            or evidence_count < expected_percentage_count
+                        ):
+                            continue
+                        if str(item_id or "") in existing_ids:
+                            for candidate in title_anchored:
+                                if str(candidate.get("id") or "") != str(item_id or ""):
+                                    continue
+                                channels = candidate.get("channels") if isinstance(candidate.get("channels"), list) else []
+                                if "numeric_fact_shape" not in channels:
+                                    channels.append("numeric_fact_shape")
+                                candidate["channels"] = channels
+                                candidate["score"] = max(float(candidate.get("score") or 0), 40.0 + min(3, evidence_count))
+                                candidate["fact_numeric_evidence_count"] = evidence_count
+                                break
+                            continue
+                        title_anchored.append({
+                            "id": item_id,
+                            "document": document,
+                            "metadata": metadata,
+                            "score": 40.0 + min(3, evidence_count),
+                            "channels": ["title_match", "numeric_fact_shape"],
+                            "fact_numeric_evidence_count": evidence_count,
+                        })
+                    numeric_anchor_score = max(
+                        (float(candidate.get("score") or 0) for candidate in title_anchored),
+                        default=0.0,
+                    ) + 10.0
+                    for candidate in title_anchored:
+                        evidence_count = int(candidate.get("fact_numeric_evidence_count") or 0)
+                        if evidence_count >= expected_percentage_count:
+                            candidate["score"] = numeric_anchor_score + min(3, evidence_count)
+                if title_anchored:
+                    title_anchored.sort(
+                        key=lambda item: float(item.get("score") or 0),
+                        reverse=True,
+                    )
+                    shortlist_limit = max(0, min(max(1, top_k), RAG_LEXICAL_TOP_K))
+                    return {
+                        "candidates": _select_lexical_candidates(
+                            title_anchored,
+                            shortlist_limit,
+                            per_document=max(4, min(12, int(top_k or 1))),
+                        ),
+                        "scanned": shortlist_scanned,
+                        "complete": True,
+                        "exhaustive": False,
+                        "error": None,
+                        "strategy": "registry_title_fact_anchor",
+                    }
             if _lexical_shortlist_is_conclusive(shortlist_scored):
                 shortlist_limit = max(0, min(max(1, top_k), RAG_LEXICAL_TOP_K))
                 return {
@@ -4358,7 +4831,7 @@ def _fetch_lexical_candidates(
             logger.exception("registry title shortlist retrieval failed")
     elif shortlist_ids:
         shortlist_scored = _score_lexical_rows(
-            query,
+            lexical_query,
             allowed_channels,
             shortlist_ids,
             shortlist_docs,
@@ -4377,7 +4850,7 @@ def _fetch_lexical_candidates(
                 "strategy": "targeted_document_shortlist",
             }
     compound_candidates = _compound_document_shortlist_candidates(
-        query,
+        lexical_query,
         allowed_channels,
         shortlist_ids,
         shortlist_docs,
@@ -4428,7 +4901,7 @@ def _fetch_lexical_candidates(
         }
 
     scanned_scored = _score_lexical_rows(
-        query,
+        lexical_query,
         allowed_channels,
         all_ids,
         all_docs,
@@ -4468,8 +4941,8 @@ def _fetch_document_sibling_candidates(
 ) -> List[Dict[str, object]]:
     if not RAG_LEXICAL_SEARCH_ENABLED:
         return []
-    allowed_channels = set(requested_retrievers or ["title_match", "exact_phrase", "bm25"])
-    if not allowed_channels.intersection({"title_match", "exact_phrase", "bm25"}):
+    allowed_channels = set(requested_retrievers or ["author_match", "title_match", "exact_phrase", "bm25"])
+    if not allowed_channels.intersection({"author_match", "title_match", "exact_phrase", "bm25"}):
         return []
     doc_ids: List[str] = []
     for result in dense_results:
@@ -6441,7 +6914,7 @@ def _execute_search(
 
     lexical_requested = any(
         channel in requested_retrievers
-        for channel in ["title_match", "exact_phrase", "bm25"]
+        for channel in ["author_match", "title_match", "exact_phrase", "bm25"]
     )
     deep_document_fact_search = payload.journal_chunks_per_document > 3
     split_fact_query_segments = (

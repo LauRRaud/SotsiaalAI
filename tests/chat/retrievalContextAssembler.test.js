@@ -4,6 +4,7 @@ import { readFileSync } from "node:fs";
 
 import {
   buildLegalExactSelection,
+  buildRagContextBudgetOptions,
   buildRagSearchErrorPayload,
   buildServiceMapKovContactContext,
   buildServiceMapKovContactInstruction,
@@ -11,11 +12,22 @@ import {
   isMunicipalityServiceBenefitListRequest,
   mergePackageDisplayedSources,
   resolveKovContactMode,
+  selectPersonSourceGroups,
   selectSingleSourceNumericFactGroups,
   selectGroupsWithPreferredSourceYear,
   shouldIncludeContextAuthors,
   shouldUseReportedPracticeInstruction
 } from "../../lib/chat/retrievalContextAssembler.js";
+
+test("multi-source synthesis compacts context so every selected source gets evidence space", () => {
+  const options = buildRagContextBudgetOptions({
+    broadMultiSourceQuestion: true,
+    contextGroupTarget: 8
+  });
+
+  assert.equal(options.compact, true);
+  assert.equal(options.maxGroups, 8);
+});
 
 test("numeric fact selection never borrows percentages from a different source group", () => {
   const groups = [
@@ -96,6 +108,35 @@ test("topic questions hide intermediary authors while author questions preserve 
   ), false);
   assert.equal(shouldIncludeContextAuthors("Kes on Laur Raudsoo?", groups), true);
   assert.equal(shouldIncludeContextAuthors("Kes selle artikli kirjutas?", groups), true);
+});
+
+test("person-source selection prefers actual authorship over an article that merely mentions the person", () => {
+  const selected = selectPersonSourceGroups("Millest on Krister Tüllinen kirjutanud?", [
+    {
+      key: "mentions-person",
+      title: "Sotsiaaltöö ajakirja kujundanud inimesed",
+      authors: ["Teine Autor"],
+      bodies: ["Krister Tüllinen meenutab ajakirja arengut."],
+      bestScore: 0.99
+    },
+    {
+      key: "authored-one",
+      title: "Esimene sisuline artikkel",
+      authors: ["Krister Tüllinen"],
+      bodies: ["Artikkel käsitleb sotsiaaltöö praktikat."],
+      bestScore: 0.72
+    },
+    {
+      key: "authored-two",
+      title: "Teine sisuline artikkel",
+      authors: ["Krister Tüllinen", "Kaasautor"],
+      bodies: ["Artikkel käsitleb teenuste korraldust."],
+      bestScore: 0.68
+    }
+  ], 3);
+
+  assert.deepEqual(selected.slice(0, 2).map(group => group.key), ["authored-one", "authored-two"]);
+  assert.equal(selected[2].key, "mentions-person");
 });
 
 test("bare municipality social-services heading is treated as a list request", () => {

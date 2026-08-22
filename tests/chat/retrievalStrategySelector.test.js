@@ -46,6 +46,21 @@ test("retrieval strategy selector maps comparison to balanced multi-source retri
   assert.equal(strategy.needs_multiple_sources, true);
 });
 
+test("retrieval strategy selector maps named people to exact authorship before body mentions", () => {
+  const questionPlan = buildQuestionPlan({
+    message: "Millest on Laur Raudsoo kirjutanud?",
+    role: "SOCIAL_WORKER"
+  });
+  const strategy = selectRetrievalStrategy({ questionPlan });
+
+  assert.equal(strategy.mode, "person_source_lookup");
+  assert.equal(strategy.retrieval_strategy, "exact_person_metadata_then_content");
+  assert.equal(strategy.selection_strategy, "person_authorship_first");
+  assert.equal(strategy.query_order, "exact_metadata_first");
+  assert.equal(strategy.needs_multiple_sources, true);
+  assert.equal(strategy.rag_top_k_min, 36);
+});
+
 test("retrieval strategy selector lets legal route override planner mapping", () => {
   const questionPlan = buildQuestionPlan({
     message: "Mis utleb SHS paragrahv 42?",
