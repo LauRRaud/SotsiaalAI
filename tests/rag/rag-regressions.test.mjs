@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { describe, test } from "node:test";
 
 import { formatSourceLabel, normalizeSourceLabelPages } from "../../components/chat/utils/sources.js";
-import { validateExactFactAnswer } from "../../lib/chat/factContract.js";
+import { shouldValidateExactFactAnswer, validateExactFactAnswer } from "../../lib/chat/factContract.js";
 import { normalizePageReferences } from "../../lib/chat/pageRanges.js";
 import {
   buildDocumentScopedResearchFactQueries,
@@ -282,6 +282,14 @@ describe("täpse faktivastuse värav", () => {
     assert.match(instruction, /6% = n 227/u);
     assert.match(instruction, /2% = n 100/u);
     assert.match(instruction, /ära arvuta X% × Y/u);
+    assert.match(instruction, /ära pane kõiki ühe ühise aastapealkirja alla/u);
+  });
+
+  test("lühike protsentidega näiduküsimus läbib faktivastuse värava", () => {
+    assert.equal(shouldValidateExactFactAnswer({
+      message: "Eakate vägivallauuring: mis olid 10%, 6% ja 2% näidud?",
+      sources: [{ evidenceText: "10% (n=640), 6% (n=227), 2% (n=100)" }]
+    }), true);
   });
 
   test("võrdsustab eesti arvsõnad ja numbrikujud ühe renderdatud allika sees", () => {
