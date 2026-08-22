@@ -340,7 +340,7 @@ Seire ajal liikus `origin/main` ja server hiljem commit'ile `9cad5105fc30d68f1df
 | J11 | „Mitu intervjuud tehti töötamise toetamise uuringus?” | „allikakatkenditest ei saa ... piisavalt üheselt kinnitada” | **FAIL**, u 22 s | vale keeldumine; kontrollfakt on 7 intervjuud |
 | J11 variant | „Kui paljude intervjuude põhjal tehti Elin Küti kirjeldatud töötamise toetamise uuring?” | `17 intervjuud` ja „lisaks kuus tööandjaintervjuud” | **FAIL**, u 23 s | vale kindel vastus; segas teise töövõimeteemalise uuringu arvud Elin Küti 2016. aasta uuringuga |
 
-Allikanupp oli J17 ja V06 vastuste juures nähtav, kuid kahes brauserikatses ei avanenud kontrollitavat allikapaneeli ega „Ava allikas” linke. Seetõttu on nende vastuste kuvatud atribuutika **NOT_PROVEN**, kuigi vastusetekst ise oli õige.
+Selles algses deploy-järgses katses oli allikanupp J17 ja V06 vastuste juures nähtav, kuid kahes brauserikatses ei avanenud kontrollitavat allikapaneeli ega „Ava allikas” linke. Seetõttu jäi nende vastuste kuvatud atribuutika sel hetkel **NOT_PROVEN**, kuigi vastusetekst ise oli õige. Hilisem SHA `7f3aa503` kordus avas mõlema paneeli ja asendab praeguse release'i arvestuses selle ajaloolise seisu.
 
 J11 vea kihiline tõend:
 
@@ -388,16 +388,36 @@ Tõendatud süsteemsed lisapõhjused ja parandused:
 
 Brauseri semantiline klõps ei liiguta platvormi custom-hiire nähtavat noolt; see tekitas varasemas kuvatõmmises näilise möödaklõpsu. Kursori SVG tipp ja `mousemove`-ankur on koodis mõlemad `(0,0)`, seega kalibreerimisviga ei tõendatud. Omaniku käsitsi avatud allikapaneel ja praeguse vastuse serverisse talletatud `displayed_source_ids`/`sources` kinnitasid sama Elin Küti allikakaardi sisulise viite.
 
+### J17/V06 atribuutika ja sõnastustundlikkuse lõppkontroll — SHA `7f3aa503`
+
+J17 ja V06 kontroll algas commit'il `d29571bd`, mille RAG-loogika alus oli `735ff837`. J17 vastas õigesti `169 / 2018` ja selle allikapaneel avanes, kuid V06 loomulik variant keeldus 18 036 ms järel valesti. Otsene `/search` oli samal ajal `partial=false`, õige Merli Lauri artikkel kohtadel 1–8 ning koguaeg 14 506 ms. Trace näitas, et planner valis õigesti `specific_research_fact`, kuid dokumendiidentiteet kuulutati ühepunktilise `9 : 8` skoorivahe tõttu ebamääraseks: ainult esimesel kandidaadil oli vähemalt kahe teematermini pealkirjaankur, teisel oli üks pealkirjavaste ja ülejäänud kattuvus meta-/teematekstis.
+
+Viga kordus teise sõnastusega „Laste eraldamise otsused: arv ja aasta?”. See läks ekslikult üldrajale, mudel koostas arvud `21 / 2022 / 3 / 18` ning faktivalidaator peatas need `unsupported_numeric_claim` otsusega; kasutajale jõudis 16 830 ms järel vale keeldumine. Seega olid eraldi tõendatud planner'i kompaktse faktikuju auk ning liiga jäik dokumendiidentiteedi ebamäärasusvärav.
+
+Parandus ei sisalda lapse eraldamise sõnu ega vastuse arve. Üldine kompaktne `teema: faktipesa + faktipesa` kuju läheb ühe uuringu faktirajale ainult siis, kui teemas on vähemalt kaks sisuterminit, faktiosas vähemalt kaks eri faktipesa ning küsimus ei ole õigus-, KOV-, teenuse- ega toetuspäring. Ühepunktiline identiteedivahe loetakse piisavaks ainult siis, kui esimesel kandidaadil on vähemalt kahe teematermini unikaalne pealkirjaedu; kahe võrdselt ankurdatud dokumendi konflikt jääb fail-closed.
+
+Ajutine deterministlik sihtkontroll oli vana käitumisega 2/4 punane ja pärast parandust 4/4 roheline; see kontrollis lisaks, et autori-, sünteesi-, õigus- ja KOV-rada ei neeldu faktirežiimi ning päris kahe pealkirja viik jääb ebamääraseks. Vastavalt repo praegusele töökorrale ajutine testifail eemaldati. JavaScripti lint ja `git diff --check` läbisid, lokaalne Webpacki tootmisbuild kompileeris TypeScripti ja 70 lehte ning serveri ametlik Turbopack-build läbis 36,0 sekundiga. Korpust, indeksit, andmebaasi ega serveri konfiguratsiooni ei muudetud.
+
+Commit `7f3aa503fe5f54a92d4b9c04cf017e8987decae3` push'iti ja deploy'ti omaniku varasema selge loa alusel 22.08 kell 19:05 UTC. `origin/main`, server ja autentitud brauser olid järelkontrollis samal SHA-l; kolm teenust olid aktiivsed, `/vestlus` vastas 200 ning RAG health oli 49 727 vektorit / 6089 dokumenti.
+
+| juhtum | autentitud vastus samas vestluses | esimene tekst / lõpp | planner, tõend ja kuvatud allikas | seis |
+|---|---|---:|---|---|
+| V06 loomulik | `169` kohtulahendit; `2018` | 25 202 / 26 718 ms | `specific_research_fact`; identiteet `high`; faktivalidaator `all_claims_in_one_rendered_source`; üks valitud ja kuvatud Merli Lauri 2022 artikkel | **DONE** |
+| V06 kompaktne | `169`; `2018`; artikli `2022` eristati õigesti | 25 534 / 27 092 ms | `compact_single_research_fact_shape`; identiteet `high`; sama ühe allika faktivärav ja avatud paneel | **DONE** |
+| J17 | `169`; `2018. aastal jõustunud maakohtute lõpplahendid` | 15 935 / 17 492 ms | faktivalidaator läbis; valitud=kuvatud; avatud paneelis üks sama Merli Lauri artikkel | **DONE** |
+
+Kõigi kolme vastuse allikapaneel avati ning `Escape` sulges dialoogi ja taastas fookuse vastuse allikanupule. See tõendab põhilise klaviatuuritee, mitte JAWS-i ega kogu paneeli ligipääsetavust. Kaartide bibliograafiline sisu oli õige, kuid leheküljenumbrite järjekord oli endiselt sorteerimata. V06 trace'i `year_mode=not_requested` on observability-ebakõla, sest `claim_values` sisaldas 2018 ja 2022 ning mõlemad kontrolliti samast allikast; see ei muutnud nende vastuste sisulist tulemust.
+
 ### 10/10 avaldamisvärav
 
 | värava osa | seis | põhjus |
 |---|---|---|
 | paranduskandidaadi kogu 75 juhtumi otsene otsing | **NOT_PROVEN** | parandatud veaklasside sihtjuhtumid on otsingukihis rohelised, kuid kogu muutumatu kandidaadi 75/75 kordus on tegemata |
-| deploy-järgne sama vestluse kontroll | **PARTIAL** | J11 kaks sõnastust on lõpp-SHA-l PASS; kogu ülejäänud 75 juhtumi maatriksit ei korratud |
-| allikaloendi päris brauserikäitumine | **PARTIAL** | J11 toetav allikakaart on käsitsi avatud ja serverijäljes valitud=kuvatud; kõigi vastuste väitepõhine atribuutika on mõõtmata |
-| commit | **TEHTUD** | lõpp-SHA `735ff837`; omaniku otsene luba |
-| push | **TEHTUD** | `origin/main` = `735ff837` |
-| deploy | **TEHTUD** | serveri HEAD = `735ff837`; frontend, RAG ja research worker aktiivsed |
+| deploy-järgne sama vestluse kontroll | **PARTIAL** | J11 kaks vormi ning J17/V06 on praegusel lõpp-SHA-l PASS; kogu ülejäänud maatriksit ei korratud |
+| allikaloendi päris brauserikäitumine | **PARTIAL** | J11, J17 ja V06 toetavad allikakaardid avanesid ning serverijäljes valitud=kuvatud; kõigi vastusetüüpide atribuutika on mõõtmata |
+| commit | **TEHTUD** | lõpp-SHA `7f3aa503`; omaniku otsene luba |
+| push | **TEHTUD** | `origin/main` = `7f3aa503` |
+| deploy | **TEHTUD** | serveri HEAD = `7f3aa503`; frontend, RAG ja research worker aktiivsed |
 
 Järeldus: deploy-järgne päris vestlus tõendab J11 kahe sõnastuse parandust, kuid mõõtmata ülejäänud maatriks ja endiselt 10–20 sekundi vastuseaeg välistavad kogu RAG-i 10/10 hinnangu.
 
@@ -415,7 +435,7 @@ Järeldus: deploy-järgne päris vestlus tõendab J11 kahe sõnastuse parandust,
 
 Üksikküsimuse hardcode ei lahenda ühtegi neist klassidest.
 
-## DONE / PARTIAL / NOT_PROVEN
+## Algse auditi mõõtmisvalmidus: DONE / PARTIAL / NOT_PROVEN
 
 Need arvud kirjeldavad **mõõtmise valmidust**, mitte RAG-i kvaliteediprotsenti.
 
@@ -434,12 +454,12 @@ Kvaliteedi lõppvaade eraldi:
 
 Seega on tõendatud vaid **21 end-to-end õiget juhtumit 75-st**, kuid seda arvu ei tohi kasutada väitena „RAG on 28% töökindel”: 25 juhtumi vastamiskiht on tõendamata, valim on sihipäraselt kihiline, kategooriate raskus erineb ning sama vestluse pikkus paljastas eraldi planner'i ja rate-limit riskid.
 
-Paranduskandidaadi lõppvärav eraldi:
+### Praeguse release'i end-to-end värav
 
 | seis | arv | tähendus |
 |---|---:|---|
-| DONE | **2/75** | J11 faktiküsimus ja selle loomulik autoriankruga parafraas: õige otsing, õige vastus ja toetav kuvatud allikas lõpp-SHA-l |
-| PARTIAL | **16/75** | J17/V06 vastus oli õige, kuid nende atribuutika jäi eraldi NOT_PROVEN; 14 muud juhtumit on ainult otsingukihis rohelised |
+| DONE | **4/75** | J11 faktiküsimus ja parafraas ning J17/V06: õige otsing või tõendipakett, õige vastus ja toetav kuvatud allikas lõpp-SHA-l |
+| PARTIAL | **14/75** | juhtumid on praegu tõendatud ainult otsingukihis, mitte täielikus autentitud vastamis- ja allikaväravas |
 | NOT_PROVEN | **57/75** | ülejäänud juhtumite lõpp-SHA otsingu- ja autentitud vastamiskiht või täielik kordus puudub |
 
 Omaniku tõstatatud Laur Raudsoo reprodutseerimiskatse ei kuulu 75 põhijuhtumi hulka ja on tabelis eraldi. Nii ei paisuta lisakontroll põhimaatriksi nimetajat.
@@ -447,14 +467,14 @@ Omaniku tõstatatud Laur Raudsoo reprodutseerimiskatse ei kuulu 75 põhijuhtumi 
 ## Jääkriskid
 
 - täpne UI-s kasutatud kontekstilõik ja kärpekoht ei ole kasutajale nähtav;
-- allikakaartide puudumise tõttu ei saa eristada mudeli väidet ja tõendatud allikaväidet;
+- J11/J17/V06 allikakaardid on tõendatud, kuid ülejäänud vastuste väitepõhine atribuutika on mõõtmata;
 - aktiivsete ajakirjadokumentide kanoniline arv on lahendamata;
 - uue vestluse taastumiskatse ei tõenda algse pika vestluse töökindlust;
 - KOV-i kontaktid, tasud ja taotlemisviisid on ajas muutuvad ning vajavad eraldi värskuseväravat;
 - `partial=false` ja roheline health ei kata sisulist katvust;
 - projektis ei ole praegu automaatteste; build, lint, süntaks ja otsingu PASS ei tõenda autentitud vestluse sisulist töökindlust;
 - J11 kaks vormi on lõpp-SHA-l rohelised, kuid see ei tõenda teisi parafraasi-, arvusõna- ega dokumendiklasside kombinatsioone;
-- J11 11–20 sekundi ning J17/V06 36–41 sekundi viivitus on sisuliselt õige vastuse kõrval endiselt kasutatavusrisk.
+- J11 11–20 sekundi ning V06 27 sekundi viivitus on sisuliselt õige vastuse kõrval endiselt kasutatavusrisk; kolm kordust ei tõenda p50/p95 stabiilsust.
 
 ## Võrdlusmaterjalid
 

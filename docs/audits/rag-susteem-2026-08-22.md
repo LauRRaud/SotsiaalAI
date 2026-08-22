@@ -722,13 +722,14 @@ Kandidaat lisab trace'i fusion'i kandidaadid ja põhjused, faktidokumendi shortl
 
 ## 19. Automaatväravad ja nende tähendus
 
-Varasema commit'i `08cbd94a` ajal dokumenteeritud automaatväravad olid 50/50 Pythoni sihttesti, 34/34 JavaScripti sihttesti ja 4963/4963 täissviit. Neid faile ega `npm test` skripti praegusel `origin/main`-il enam ei ole. Seetõttu ei esitata vanu rohelisi numbreid praeguse kandidaadi tõendina ning uusi teste, negatiivkontrolle, fixture'e ega probe'e ei loodud.
+Varasema commit'i `08cbd94a` ajal dokumenteeritud automaatväravad olid 50/50 Pythoni sihttesti, 34/34 JavaScripti sihttesti ja 4963/4963 täissviit. Neid faile ega `npm test` skripti praegusel `origin/main`-il enam ei ole. Seetõttu ei esitata vanu rohelisi numbreid praeguse kandidaadi tõendina ega lisatud püsivat testitaristut. V06 jääkvea jaoks loodud ajutine deterministlik sihtkontroll oli vana koodi peal 2/4 punane ja paranduse järel 4/4 roheline; see eemaldati enne commit'i.
 
 Deploy'tud kandidaadi kontrollid:
 
 | värav | tulemus |
 |---|---:|
 | automaattestid | **NOT_RUN / puuduvad** |
+| V06 ajutine sihtkontroll | vana käitumine **2/4 FAIL**, parandatud käitumine **4/4 PASS**, fail pärast kontrolli eemaldatud |
 | i18n | roheline |
 | muudetud JavaScripti failide lint | roheline |
 | `rag-service/main.py` süntaks | roheline |
@@ -742,10 +743,10 @@ Need tõendavad koodi staatilist ja kompileerimisvalmidust. Need **ei tõenda** 
 
 ## 20. Mis on veel tõendamata
 
-- kogu 75 juhtumi otsene kordus praegusel toodangu commit'il `735ff837`;
+- kogu 75 juhtumi otsene kordus praegusel toodangu commit'il `7f3aa503`;
 - sama 75 juhtumi autentitud `/vestlus` kordus;
 - ülejäänud põhijuhtumid ühes normaalselt jätkuvas vestluses ilma „Uus vestlus” workaround'ita;
-- täpne esimese teksti aeg ülejäänud juhtumites; J11 kaks vormi mõõdeti 18 719 / 9942 ms ning J17/V06 lõppvastused saabusid umbes 36–41 sekundiga;
+- täpne esimese teksti aeg ülejäänud juhtumites; J11 kaks vormi mõõdeti 18 719 / 9942 ms, praeguse SHA J17 15 935 ms ning V06 kaks vormi 25 202 / 25 534 ms;
 - iga vastuse kuvatud allika sisuline toetus;
 - allikapaneeli käitumine ja viitetekst kõigi juhtumiklasside päris sisselogitud vastustel;
 - laiade sünteeside allikate mitmekesisus;
@@ -772,7 +773,7 @@ Need tõendavad koodi staatilist ja kompileerimisvalmidust. Need **ei tõenda** 
 ## 22. Järgmine kontrollijärjekord
 
 1. Kontrollida autentitud aknas allikapaneeli kujundust ja ühe avatud allika tegelikku viiteteksti.
-2. **TEHTUD esimese ja teise P0-väravana:** lapse eraldamise ja töötamise toetamise küsimus kumbki kahe loomuliku sõnastusega; viimases lõppseisus on mõlemad paarid sisuliselt 2 PASS, kuid lapse eraldamise kahe varasema vastuse kuvatud atribuutika jäi eraldi NOT_PROVEN.
+2. **TEHTUD esimese ja teise P0-väravana:** lapse eraldamise ja töötamise toetamise küsimused läbisid loomulikud sõnastused; praegusel SHA-l avanesid J17/V06 ja J11 toetavad allikapaneelid ning valitud ja kuvatud source ID-d kattusid.
 3. Mõõta otsing ja vestlus eraldi: dokument, lõik, kanalid, `partial`, otsinguaeg, esimene tekst, lõppvastus ja koguaeg.
 4. Läbida kõik kaheksa parafraasi ning kümme autorijuhtumit.
 5. Läbida kümme laia sünteesi, kontrollides allikate mitmekesisust.
@@ -787,15 +788,15 @@ Need arvud ei ole töökindluse protsent.
 
 | seis | arv | tähendus |
 |---|---:|---|
-| DONE | **2/75** | J11 faktiküsimus ja selle loomulik autoriankruga parafraas läbisid õige otsingu, vastuse ja toetava kuvatud allika värava lõpp-SHA-l |
-| PARTIAL | **16/75** | J17/V06 vastus oli õige, kuid nende atribuutika jäi NOT_PROVEN; 14 muud juhtumit on ainult otsingukihis tõendatud |
+| DONE | **4/75** | J11 faktiküsimus ja parafraas ning J17/V06 läbisid õige tõendi, vastuse ja toetava kuvatud allika värava lõpp-SHA-l |
+| PARTIAL | **14/75** | need juhtumid on tõendatud ainult otsingukihis, mitte täielikus autentitud vastamis- ja allikaväravas |
 | NOT_PROVEN | **57/75** | lõpp-SHA ülejäänud otsingu- ja autentitud vestluskordus puudub |
 
 ## 24. Lõpphinnang
 
 SotsiaalAI-l on päris hübriidne, versioonitud ja turvapiiridega RAG-süsteem: eraldi FastAPI teenus, Chroma indeks, JSON-register, versioonitud dokumendifailid, mitmekanaliline otsing, planner, kontekstivalik, tõendipaketid, atribuutika ja autentitud vestlusliides.
 
-Süsteemi tehniline olemasolu on tõendatud. Algse kvaliteediseirega on tõendatud mitu süsteemset viga ning nende vastu tehtud P0-parandused on nüüd toodangus lõpp-SHA-l `735ff837`. Deploy-järgne kontroll tõendas lapse eraldamise fakti paranemist ning J11 lõppkontroll tõendas kahe loomuliku sõnastusega õige uuringudokumendi, õige vastuse ja toetava allika. Terviklik sisuline töökindlus on siiski **NOT_PROVEN**, kuni sama muutumatu commit läbib kogu 75 juhtumi otsese otsingu ja autentitud vestluse ning iga kuvatud allikas toetab vastuse väiteid.
+Süsteemi tehniline olemasolu on tõendatud. Algse kvaliteediseirega on tõendatud mitu süsteemset viga ning nende vastu tehtud P0-parandused on nüüd toodangus lõpp-SHA-l `7f3aa503`. Deploy-järgne kontroll tõendas J11 ning lapse eraldamise J17/V06 puhul õige uuringudokumendi, õige vastuse ja toetava allika. Terviklik sisuline töökindlus on siiski **NOT_PROVEN**, kuni sama muutumatu commit läbib kogu 75 juhtumi otsese otsingu ja autentitud vestluse ning iga kuvatud allikas toetab vastuse väiteid.
 
 Hetkehinnang: **PARTIAL, mitte 10/10**.
 
@@ -810,3 +811,19 @@ Samas autentitud vestluses ilma „Uus vestlus” workaround'ita vastas lühike 
 Kontrollid: muudetud JavaScripti lint, i18n ja `git diff --check` rohelised; automaatteste projektis ei ole ega loodud. Lokaalne Turbopack jäi enne kompileerimist välise `node_modules`-symlingi taha, kuid serveri ametlik Turbopack-build kompileerus lõppdeploy'l 37,7 sekundiga, TypeScript ja 70 staatilist lehte läbisid ning migratsioone ei olnud.
 
 Lõppseis on endiselt **PARTIAL, mitte 10/10**. J11 kaks vormi on DONE, kuid kogu 75 juhtumi lõpp-SHA kordus, laiad sünteesid, autoriplokk, mitteajakirja materjalid, KOV/õigusrajad ja pika vestluse jõudlus ei ole sama muutumatu puu vastu täielikult tõendatud.
+
+## 26. J17/V06 jääkparandus — toodangus tõendatud
+
+J17 allikapaneeli kontrolli järel kukkus V06 commit'il `d29571bd` uuesti läbi kahe sõnastusega. Loomulik küsimus läks õigesse `specific_research_fact` režiimi ja otsene `/search` tõi õige artikli ette, kuid dokumendiidentiteedi ühepunktiline `9 : 8` vahe kuulutati ebamääraseks. Kompaktne „teema: arv ja aasta?” kuju läks üldrajale; mudeli valed arvud peatas faktivalidaator ning kasutaja nägi vale keeldumist.
+
+Commit `7f3aa503fe5f54a92d4b9c04cf017e8987decae3` lisab kaks üldist lepingut: vähemalt kahe teematermini unikaalne pealkirjaedu võib lahendada ühepunktilise identiteedivahe, kuid päris samaväärne konflikt jääb fail-closed; vähemalt kahe teema- ja kahe faktipesaga kompaktne kuju saab ühe uuringu faktiraja, kui tegu ei ole õigus-, KOV-, teenuse- või toetuspäringuga. Lapse eraldamise sõnu ega arve koodi ei lisatud.
+
+Serveri ametlik Turbopack-build läbis 36,0 sekundiga, migratsioone ei olnud ja indeks jäi muutmata. Järelkontroll tehti samas autentitud vestluses ilma „Uus vestlus” workaround'ita:
+
+| juhtum | tulemus | esimene tekst / lõpp | tõend |
+|---|---|---:|---|
+| V06 loomulik | `169 / 2018` | 25 202 / 26 718 ms | identiteet `high`, `all_claims_in_one_rendered_source`, üks valitud ja kuvatud Merli Lauri artikkel |
+| V06 kompaktne | `169 / 2018`, artikli 2022 aasta õigesti eristatud | 25 534 / 27 092 ms | `compact_single_research_fact_shape`, sama ühe allika faktivärav |
+| J17 | `169 / 2018` | 15 935 / 17 492 ms | faktivalidaator PASS, valitud=kuvatud, sama Merli Lauri artikkel |
+
+Kõigi kolme vastuse paneel avati ning põhiline `Escape`-sulgemine töötas; JAWS ja kogu paneeli üldine ligipääsetavus jäävad `NOT_PROVEN`. Kaardi bibliograafiline sisu oli õige, kuid leheküljenumbrid olid sorteerimata. Release-arvestus on nüüd `DONE 4/75 · PARTIAL 14/75 · NOT_PROVEN 57/75`; see ei ole töökindluse protsent ega 10/10 hinnang.
