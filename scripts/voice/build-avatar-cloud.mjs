@@ -52,10 +52,14 @@ const LANDMARK = {
      olemas: mõõdetud täppide keskmine heledus seal 0.81, põsel kõrval
      0.15-0.25. Omanik soovis ta maha võtta (22.08), seega summutatakse
      tema täppide mõõt ja sellega ka heledus. */
-  seamInner: 118,
-  seamPlateauIn: 150,
-  seamPlateauOut: 178,
-  seamOuter: 200,
+  /* Aken oli esimesel katsel liiga kitsas: hele ala algab juba 134 px
+     juurest, aga plateau algas alles 150 px pealt, nii et kõige heledam
+     riba jäi summutusest välja (mõõdetud mõõduprofiil: 134-156 px = 0.94
+     samal ajal kui 167-178 px = 0.45-0.49). */
+  seamInner: 96,
+  seamPlateauIn: 126,
+  seamPlateauOut: 180,
+  seamOuter: 202,
   /* Silmajoon on pea poolel kõrgusel; suu Loomise proportsiooniga ~0.79. */
   eyeY: 247,
   eyeOffsetX: 92,
