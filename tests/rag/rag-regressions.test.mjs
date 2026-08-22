@@ -6,7 +6,9 @@ import { validateExactFactAnswer } from "../../lib/chat/factContract.js";
 import { normalizePageReferences } from "../../lib/chat/pageRanges.js";
 import { buildSpecificResearchFactQueries } from "../../lib/chat/queryPlanner.js";
 import { buildQuestionPlan } from "../../lib/chat/questionPlanner.js";
+import { resolveMultiQueryTopK } from "../../lib/chat/retrievalOrchestrator.js";
 import {
+  prioritizeRequestedNumericEvidence,
   selectSingleSourceNumericFactGroups,
   selectSpecificResearchFactGroups
 } from "../../lib/chat/retrievalContextAssembler.js";
@@ -76,6 +78,16 @@ describe("faktiküsimuse planner", () => {
     assert.match(queries[0], /\buuring\b/u);
     assert.match(queries[1], /10% 6% 2%/u);
     assert.ok(queries.some(query => /(?:^|\s)2%(?:\s|$)/u.test(query) && !/10%|6%/u.test(query)));
+  });
+
+  test("üksiku protsendi faktipäring säilitab piisava lõigusügavuse", () => {
+    const plan = buildQuestionPlan({
+      message: "Eakate vägivallauuring: mis olid 10%, 6% ja 2% näidud?"
+    });
+    const queries = buildSpecificResearchFactQueries([], "", plan);
+    const twoPercent = queries.find(entry => /(?:^|\s)2%(?:\s|$)/u.test(entry.query) && !/10%|6%/u.test(entry.query));
+    assert.equal(twoPercent?.min_top_k, 16);
+    assert.equal(resolveMultiQueryTopK({ index: 4, topK: 18, queryCount: 6, minTopK: twoPercent.min_top_k }), 16);
   });
 
   test("laiendab vanusepiiriga faktiküsimuse vanemaealiste otsingusõnavaraks", () => {
@@ -195,6 +207,29 @@ describe("uuringudokumendi identiteet", () => {
       retrievalChannels: ["dense"]
     };
     const result = selectSpecificResearchFactGroups("", [generic, correct], violencePlan);
+    assert.equal(result.matched, true);
+    assert.equal(result.selectedDocumentId, "older-violence-2025");
+  });
+
+  test("loomulik mitme vanuserühma faktiküsimus valib kõiki arvulisi ankruid katva dokumendi", () => {
+    const message = "Kui palju üle 60-aastasi oli 2023. aastal kuriteoohvrite ja ohvriabisse pöördunute seas ning mitu üle 75-aastast oli viimase aasta jooksul kuritegevusega kokku puutunud?";
+    const plan = buildQuestionPlan({ message });
+    const result = selectSpecificResearchFactGroups(message, [{
+      docId: "older-violence-2025",
+      title: "Vägivald vanemaealiste vastu vajab tähelepanu",
+      tags: ["vanemaealised", "ohvriabi"],
+      bodies: [
+        "2023. aastal olid üle 60-aastased kuriteoohvrite ja ohvriabisse pöördunute seas.",
+        "2% (n=100) üle 75-aastastest puutus viimase aasta jooksul kokku kuritegevusega."
+      ],
+      retrievalChannels: ["dense"]
+    }, {
+      docId: "generic-ageing-2025",
+      title: "Vanemaealiste heaolu 2023. aastal",
+      tags: ["vanemaealised"],
+      bodies: ["Üle 60-aastaste heaolu üldine ülevaade."],
+      retrievalChannels: ["title_match"]
+    }], plan);
     assert.equal(result.matched, true);
     assert.equal(result.selectedDocumentId, "older-violence-2025");
   });
@@ -323,6 +358,20 @@ describe("täpse faktivastuse värav", () => {
     assert.equal(result.expectedCount, 3);
     assert.equal(result.evidenceCount, 2);
     assert.equal(result.sufficient, false);
+  });
+
+  test("renderduse ette tõusevad sama dokumendi kõiki küsitud protsente katvad lõigud", () => {
+    const [group] = prioritizeRequestedNumericEvidence(
+      "Eakate vägivallauuring: mis olid 10%, 6% ja 2% näidud?",
+      [{ bodies: [
+        "Üldine sissejuhatus.",
+        "10% (n=640) ja 6% (n=227) olid üle 60-aastased.",
+        "Muu taustainfo.",
+        "2% (n=100) üle 75-aastastest puutus kuritegevusega kokku."
+      ] }]
+    );
+    assert.match(group.bodies[0], /10%.*6%/u);
+    assert.match(group.bodies[1], /2%/u);
   });
 
   test("säilitab allika n-väärtuse loendusena ega nimeta seda valimiks", () => {
