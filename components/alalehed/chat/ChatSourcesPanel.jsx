@@ -178,13 +178,14 @@ const ChatSourcesPanel = memo(function ChatSourcesPanel({
       onClick={onClose}
       tabIndex={-1}
     >
-      <div onClick={e => e.stopPropagation()}>
-        <div>
+      <div className="chat-sources-dialog" onClick={e => e.stopPropagation()}>
+        <div className="chat-sources-header">
           <h2>
             {t("chat.sources.heading")}
           </h2>
           <button
             type="button"
+            className="chat-sources-close"
             ref={closeRef}
             onClick={onClose}
             aria-label={t("buttons.close")}
@@ -193,9 +194,9 @@ const ChatSourcesPanel = memo(function ChatSourcesPanel({
           </button>
         </div>
 
-        <div>
+        <div className="chat-sources-content">
           {showScopeSwitch ? (
-            <div role="tablist" aria-label={t("chat.sources.scope_label")}>
+            <div className="chat-sources-scope" role="tablist" aria-label={t("chat.sources.scope_label")}>
               {scopeOptions.map(option => {
                 const isActive = selectedScope === option.key;
                 return (
@@ -218,30 +219,33 @@ const ChatSourcesPanel = memo(function ChatSourcesPanel({
               {emptyText}
             </p>
           ) : (
-            <ol>
+            <ol className="chat-sources-list">
               {selectedSources.map((src, idx) => {
                 const pageText = String(src.pageText || "").trim();
+                const checkedAtText = formatCheckedAt(src.checkedAt);
                 const showPageText =
                   pageText &&
                   !/^0+(?:\s*[-,]\s*0+)*$/.test(pageText) &&
                   !`${src.label}`.toLowerCase().includes("lk");
                 return (
                   <li key={src.key || idx} data-source-trust={src.freshness || "unknown"}>
-                    <div>{src.label}</div>
-                    <div className="chat-source-trust-row">
-                      <span>
-                        {formatCheckedAt(src.checkedAt)
-                          ? t("chat.sources.checked_at").replace("{date}", formatCheckedAt(src.checkedAt))
-                          : t("chat.sources.checked_unknown")}
-                      </span>
+                    <div className="chat-source-title">{src.label}</div>
+                    {checkedAtText || src.warning ? (
+                      <div className="chat-source-trust-row">
+                        {checkedAtText ? (
+                          <span>
+                            {t("chat.sources.checked_at").replace("{date}", checkedAtText)}
+                          </span>
+                        ) : null}
                       {src.warning ? (
                         <span role="status" className="chat-source-warning">
                           {t(`chat.sources.warning_${src.warning}`)}
                         </span>
                       ) : null}
-                    </div>
+                      </div>
+                    ) : null}
                     {src.occurrences > 1 ? (
-                      <div>
+                      <div className="chat-source-meta">
                         {t("chat.sources.used_multiple").replace(
                           "{count}",
                           String(src.occurrences)
@@ -250,51 +254,52 @@ const ChatSourcesPanel = memo(function ChatSourcesPanel({
                     ) : null}
 
                     {showPageText ? (
-                      <div>
+                      <div className="chat-source-meta">
                         {t("chat.sources.pages").replace(
                           "{pages}",
                           pageText
                         )}
                       </div>
                     ) : null}
-                    {src.allUrls && src.allUrls.length ? (
-                      <div>
-                        {src.allUrls.map((url, urlIdx) => (
-                          <a
-                            key={`${src.key || idx}-url-${urlIdx}`}
-                            href={url}
-                            target="_blank"
-                            rel="noreferrer"
+                    <div className="chat-source-actions">
+                      {src.allUrls && src.allUrls.length ? (
+                        <div className="chat-source-links">
+                          {src.allUrls.map((url, urlIdx) => (
+                            <a
+                              key={`${src.key || idx}-url-${urlIdx}`}
+                              href={url}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              {src.allUrls.length > 1
+                                ? t("chat.sources.open_indexed").replace(
+                                    "{index}",
+                                    String(urlIdx + 1)
+                                  )
+                                : t("chat.sources.open_single")}
+                            </a>
+                          ))}
+                        </div>
+                      ) : null}
+                      {src.messageId && src.sourceId ? (
+                        <div className="chat-source-feedback">
+                          {ownFeedback[src.sourceId] ? (
+                            <span className="chat-source-feedback-status">
+                              {ownFeedback[src.sourceId].status === "RESOLVED"
+                                ? t("chat.sources.report_resolved")
+                                : t("chat.sources.report_open")}
+                            </span>
+                          ) : null}
+                          <button
+                            type="button"
+                            aria-expanded={reportingKey === src.key}
+                            onClick={() => {
+                              setReportingKey(current => current === src.key ? "" : src.key);
+                              setReportState(current => ({ ...current, [src.key]: "idle" }));
+                            }}
                           >
-                            {src.allUrls.length > 1
-                              ? t("chat.sources.open_indexed").replace(
-                                  "{index}",
-                                  String(urlIdx + 1)
-                                )
-                              : t("chat.sources.open_single")}
-                          </a>
-                        ))}
-                      </div>
-                    ) : null}
-                    {src.messageId && src.sourceId ? (
-                      <div className="chat-source-feedback">
-                        {ownFeedback[src.sourceId] ? (
-                          <span className="chat-source-feedback-status">
-                            {ownFeedback[src.sourceId].status === "RESOLVED"
-                              ? t("chat.sources.report_resolved")
-                              : t("chat.sources.report_open")}
-                          </span>
-                        ) : null}
-                        <button
-                          type="button"
-                          aria-expanded={reportingKey === src.key}
-                          onClick={() => {
-                            setReportingKey(current => current === src.key ? "" : src.key);
-                            setReportState(current => ({ ...current, [src.key]: "idle" }));
-                          }}
-                        >
-                          {t("chat.sources.report_action")}
-                        </button>
+                            {t("chat.sources.report_action")}
+                          </button>
                         {reportingKey === src.key ? (
                           <Form onSubmit={event => {
                             event.preventDefault();
@@ -335,8 +340,9 @@ const ChatSourcesPanel = memo(function ChatSourcesPanel({
                               ? t("chat.sources.report_failed")
                               : ""}
                         </span>
-                      </div>
-                    ) : null}
+                        </div>
+                      ) : null}
+                    </div>
                   </li>
                 );
               })}

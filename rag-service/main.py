@@ -4334,6 +4334,13 @@ def _registry_fact_description_shortlist_doc_ids(
             _normalize_search_text(registry_fact_text),
             limit=500,
         )
+        identity_counts = _lexical_token_counts(
+            _normalize_search_text(" ".join(
+                str(value or "")
+                for value in [metadata.get("title"), metadata.get("tags")]
+            )),
+            limit=200,
+        )
         matched_tokens = [
             token
             for token in query_tokens
@@ -4348,6 +4355,19 @@ def _registry_fact_description_shortlist_doc_ids(
         coverage = overlap / max(1, len(query_tokens))
         if overlap < 2 or coverage < 0.66:
             continue
+        if research_method_query:
+            identity_overlap = sum(
+                1
+                for token in query_tokens
+                if _lexical_token_frequency(token, identity_counts)
+                or _registry_derivational_token_frequency(token, identity_counts)
+            )
+            # Interview and analysis terms describe the requested answer shape,
+            # not the study subject. Require the remaining subject words to
+            # identify the title/tags before a methods-heavy description may
+            # anchor retrieval to one document.
+            if identity_overlap < min(2, len(query_tokens)):
+                continue
         distinctive_matches = sum(1 for token in matched_tokens if len(token) >= 8)
         if distinctive_matches < 1:
             continue

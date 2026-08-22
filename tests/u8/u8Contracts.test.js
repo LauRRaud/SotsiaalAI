@@ -21,6 +21,19 @@ test("source report UI has semantic status and bounded fields", () => {
   assert.doesNotMatch(source, /conversation:\s|prompt:\s|answerText:/);
 });
 
+test("source dialog keeps close and actions in deliberate layout and hides unknown internal freshness", () => {
+  const source = fs.readFileSync("components/alalehed/chat/ChatSourcesPanel.jsx", "utf8");
+  const css = fs.readFileSync("app/styles/chat.css", "utf8");
+
+  assert.match(source, /className="chat-sources-header"/);
+  assert.match(source, /className="chat-sources-close"/);
+  assert.match(source, /className="chat-source-actions"/);
+  assert.doesNotMatch(source, /chat\.sources\.checked_unknown/);
+  assert.match(css, /\.chat-sources-header\s*\{/);
+  assert.match(css, /\.chat-sources-close\s*\{/);
+  assert.match(css, /\.chat-source-actions\s*\{/);
+});
+
 test("migration is additive and source feedback has owner, status and audit fields", () => {
   const migration = fs.readFileSync("prisma/migrations/20260714223000_source_feedback_trust_layer/migration.sql", "utf8");
   assert.match(migration, /CREATE TABLE "SourceFeedback"/);

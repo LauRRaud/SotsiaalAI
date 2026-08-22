@@ -1703,35 +1703,150 @@ html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] [role="article"
   z-index: 90;
   display: grid;
   place-items: center;
-  padding: clamp(1rem, 4vw, 3rem);
-  background: rgba(18, 18, 18, 0.68);
-  backdrop-filter: blur(12px);
+  padding: clamp(0.75rem, 3vw, 2.5rem);
+  background: rgba(7, 9, 12, 0.76);
+  backdrop-filter: blur(16px) saturate(0.8);
 }
 
-#chat-sources-panel > div {
-  width: min(42rem, 100%);
-  max-height: min(78vh, 48rem);
-  overflow: auto;
-  padding: clamp(1rem, 3vw, 1.75rem);
+#chat-sources-panel > .chat-sources-dialog {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  width: min(46rem, 100%);
+  max-height: min(84vh, 52rem);
+  overflow: hidden;
   border: 1px solid var(--glass-border);
-  border-radius: 1.4rem;
-  background: var(--glass-bg-strong);
-  box-shadow: var(--glass-shadow);
+  border-radius: 1.5rem;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.035), transparent 42%),
+    var(--glass-bg-strong);
+  box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.48), var(--glass-shadow);
+}
+
+.chat-sources-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.15rem 1.15rem 1rem 1.4rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--glass-border) 72%, transparent);
+}
+
+.chat-sources-header h2 {
+  margin: 0;
+  font-size: clamp(1.2rem, 2.5vw, 1.55rem);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+.chat-sources-close {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 50%;
+  background: var(--glass-cell-bg);
+  color: var(--text-soft);
+  font-size: 1.55rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 150ms ease, background 150ms ease, border-color 150ms ease, transform 150ms ease;
+}
+
+.chat-sources-close:hover,
+.chat-sources-close:focus-visible {
+  border-color: var(--glass-border);
+  background: color-mix(in srgb, var(--glass-cell-bg) 70%, white 8%);
+  color: var(--text-main);
+  transform: rotate(4deg);
+}
+
+.chat-sources-content {
+  min-height: 0;
+  overflow: auto;
+  padding: 1rem clamp(0.8rem, 2.5vw, 1.4rem) 1.4rem;
+  scrollbar-gutter: stable;
+}
+
+.chat-sources-scope {
+  display: inline-flex;
+  gap: 0.25rem;
+  margin-bottom: 0.8rem;
+  padding: 0.25rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.chat-sources-scope button {
+  padding: 0.45rem 0.75rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-dim);
+  font: inherit;
+  font-size: var(--fs-small);
+  cursor: pointer;
+}
+
+.chat-sources-scope button[aria-selected="true"] {
+  background: var(--glass-cell-bg);
+  color: var(--text-main);
+  box-shadow: inset 0 0 0 1px var(--glass-cell-border);
+}
+
+.chat-sources-list {
+  display: grid;
+  gap: 0.7rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: chat-source;
 }
 
 #chat-sources-panel li {
-  margin-block: 0.85rem;
-  padding: 1rem;
+  position: relative;
+  margin: 0;
+  padding: 1rem 1rem 0.95rem 3.45rem;
   border: 1px solid var(--glass-cell-border);
-  border-radius: 1rem;
-  background: var(--glass-cell-bg);
+  border-radius: 1.05rem;
+  background:
+    linear-gradient(110deg, rgba(255, 255, 255, 0.025), transparent 46%),
+    var(--glass-cell-bg);
+  counter-increment: chat-source;
+}
+
+#chat-sources-panel li::before {
+  content: counter(chat-source);
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  display: grid;
+  place-items: center;
+  width: 1.65rem;
+  height: 1.65rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 0.55rem;
+  background: rgba(0, 0, 0, 0.14);
+  color: var(--text-dim);
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+.chat-source-title {
+  color: var(--text-main);
+  font-weight: 650;
+  line-height: 1.45;
+  text-wrap: pretty;
 }
 
 .chat-source-trust-row {
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem 0.75rem;
-  margin-block: 0.45rem;
+  margin-top: 0.42rem;
   color: var(--text-dim);
   font-size: var(--fs-small);
 }
@@ -1741,10 +1856,76 @@ html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] [role="article"
   font-weight: 600;
 }
 
+.chat-source-meta {
+  margin-top: 0.38rem;
+  color: var(--text-dim);
+  font-size: var(--fs-small);
+}
+
+.chat-source-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem 0.9rem;
+  margin-top: 0.75rem;
+}
+
+.chat-source-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.chat-source-links a,
+.chat-source-feedback > button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.25rem;
+  padding: 0.42rem 0.72rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 0.7rem;
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--text-main);
+  font: inherit;
+  font-size: var(--fs-small);
+  font-weight: 620;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.chat-source-links a:hover,
+.chat-source-links a:focus-visible,
+.chat-source-feedback > button:hover,
+.chat-source-feedback > button:focus-visible {
+  border-color: var(--glass-border);
+  background: rgba(255, 255, 255, 0.075);
+}
+
 .chat-source-feedback {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   gap: 0.55rem;
-  margin-top: 0.8rem;
+  margin-left: auto;
+}
+
+.chat-source-feedback:has(form) {
+  flex-basis: 100%;
+  margin-left: 0;
+}
+
+.chat-source-feedback-status {
+  color: var(--text-dim);
+  font-size: var(--fs-small);
+}
+
+.chat-source-feedback form {
+  flex-basis: 100%;
+  width: 100%;
+  margin-top: 0.2rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--glass-cell-border);
 }
 
 .chat-source-feedback form,
@@ -1766,6 +1947,39 @@ html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] [role="article"
   background: var(--glass-cell-bg);
   color: inherit;
   font: inherit;
+}
+
+@media (max-width: 560px) {
+  #chat-sources-panel {
+    place-items: end center;
+    padding: 0.5rem;
+  }
+
+  #chat-sources-panel > .chat-sources-dialog {
+    width: 100%;
+    max-height: 88dvh;
+    border-radius: 1.3rem;
+  }
+
+  #chat-sources-panel li {
+    padding: 0.9rem 0.85rem 0.85rem 3.15rem;
+  }
+
+  #chat-sources-panel li::before {
+    top: 0.9rem;
+    left: 0.85rem;
+  }
+
+  .chat-source-actions,
+  .chat-source-links,
+  .chat-source-feedback {
+    align-items: stretch;
+  }
+
+  .chat-source-feedback {
+    flex-basis: 100%;
+    margin-left: 0;
+  }
 }
 
 /* T03 E3: komposeri tähemärgiloendur. Ilmub piirile lähenedes (JS-värav),

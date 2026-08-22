@@ -12,6 +12,7 @@ import {
   excludeSupersededKovContactMatches,
   isMunicipalityServiceBenefitListRequest,
   mergePackageDisplayedSources,
+  prioritizeNumericScopeEvidence,
   resolveKovContactMode,
   selectPersonSourceGroups,
   selectSingleSourceNumericFactGroups,
@@ -34,6 +35,23 @@ test("numeric count-and-year questions preserve overall and subset scope", () =>
   assert.match(instruction, /koguvalim/i);
   assert.match(instruction, /alamrühm/i);
   assert.match(instruction, /avaldamisaasta/i);
+});
+
+test("numeric scope evidence puts an explicit whole-sample total before a subgroup count", () => {
+  const [group] = prioritizeNumericScopeEvidence(
+    "Laste eraldamise otsused: arv ja aasta?",
+    [{
+      key: "separation-study",
+      bodies: [
+        "Vaimse tervise probleemiga seotud esimese astme kohtulahendeid oli 21.",
+        "Artikkel käsitleb lapse perekonnast eraldamist ja kohtu kaalutlusi.",
+        "Kogu valimi moodustas 169 perekonnast lapse eraldamise lahendit 2018. aastast."
+      ]
+    }]
+  );
+
+  assert.match(group.bodies[0], /Kogu valimi moodustas 169/);
+  assert.match(group.bodies[1], /kohtulahendeid oli 21/);
 });
 
 test("municipality history is not carried into independent research and journal fact questions", () => {
