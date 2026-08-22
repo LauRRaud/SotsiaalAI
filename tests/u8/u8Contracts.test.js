@@ -26,12 +26,15 @@ test("source dialog keeps close and actions in deliberate layout and hides unkno
   const css = fs.readFileSync("app/styles/chat.css", "utf8");
 
   assert.match(source, /className="chat-sources-header"/);
-  assert.match(source, /className="chat-sources-close"/);
+  assert.match(source, /<IconButton[\s\S]*layoutClassName="chat-sources-close"/);
+  assert.match(source, /<CloseIcon\s*\/>/);
   assert.match(source, /className="chat-source-actions"/);
   assert.doesNotMatch(source, /chat\.sources\.checked_unknown/);
   assert.match(css, /\.chat-sources-header\s*\{/);
   assert.match(css, /\.chat-sources-close\s*\{/);
   assert.match(css, /\.chat-source-actions\s*\{/);
+  const headerRule = css.match(/\.chat-sources-header\s*\{([^}]*)\}/)?.[1] || "";
+  assert.doesNotMatch(headerRule, /border-(?:bottom|block-end)/);
 });
 
 test("migration is additive and source feedback has owner, status and audit fields", () => {

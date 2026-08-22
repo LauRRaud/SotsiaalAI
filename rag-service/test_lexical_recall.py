@@ -438,6 +438,37 @@ class LexicalRecallTests(unittest.TestCase):
         self.assertEqual(rows[0]["id"], "precise")
         self.assertGreater(precise["bm25_coverage_boost"], 0)
 
+    def test_unique_registry_fact_identity_outranks_a_generic_methods_report(self):
+        generic_report = {
+            "id": "generic-methods-report",
+            "retrieval_channels": ["dense", "bm25"],
+            "distance": 0.7869314551353455,
+            "dense_rank": 17,
+            "global_dense_rank": 17,
+            "lexical_score": 5.281,
+            "lexical_rank": 4,
+            "bm25_coverage": 0.6,
+            "bm25_matches": 6,
+            "fact_segment_hits": 1,
+            "fact_segment_best_rank": 3,
+        }
+        identified_fact_source = {
+            "id": "identified-fact-source",
+            "retrieval_channels": ["bm25", "registry_fact"],
+            "lexical_score": 19.5,
+            "lexical_rank": 2,
+            "bm25_coverage": 1.0,
+            "bm25_matches": 2,
+            "fact_segment_hits": 1,
+            "fact_segment_best_rank": 8,
+        }
+
+        rows = [generic_report, identified_fact_source]
+        main._apply_hybrid_ranking(rows)
+
+        self.assertEqual(rows[0]["id"], "identified-fact-source")
+        self.assertGreater(identified_fact_source["channel_boost"], 0.3)
+
     def test_journal_chunks_leave_result_slots_for_independent_sources(self):
         rows = [
             {

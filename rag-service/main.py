@@ -155,12 +155,17 @@ HYBRID_CHANNEL_WEIGHTS = {
     "title_match": 1.35,
     "exact_phrase": 1.15,
     "bm25": 1.0,
+    "registry_fact": 1.7,
 }
 HYBRID_CHANNEL_BOOSTS = {
     "author_match": 0.14,
     "title_match": 0.09,
     "exact_phrase": 0.06,
     "bm25": 0.05,
+    # A registry-fact candidate is emitted only when the fact description and
+    # the document identity narrow to one active source. Treat that bounded
+    # match as stronger than a generic methods-heavy dense result.
+    "registry_fact": 0.32,
 }
 RAG_METADATA_SCHEMA_VERSION = os.getenv("RAG_METADATA_SCHEMA_VERSION", "v2.5").strip() or "v2.5"
 
@@ -3587,7 +3592,7 @@ def _apply_hybrid_ranking(results: List[Dict[str, object]]) -> None:
         lexical_rank = _to_int(item.get("lexical_rank"))
         dense_score = _hybrid_dense_score(item.get("distance")) if "dense" in channels else 0.0
         lexical_score = _hybrid_lexical_score(item.get("lexical_score")) if any(
-            channel in channels for channel in ["author_match", "title_match", "exact_phrase", "bm25"]
+            channel in channels for channel in ["author_match", "title_match", "exact_phrase", "bm25", "registry_fact"]
         ) else 0.0
         rrf_score = 0.0
         rrf_contributions: Dict[str, float] = {}

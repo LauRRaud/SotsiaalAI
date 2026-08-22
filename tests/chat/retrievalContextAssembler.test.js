@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 
 import {
+  buildNumericScopeEvidenceSummary,
   buildLegalExactSelection,
   buildRagContextBudgetOptions,
   buildRagSearchErrorPayload,
@@ -38,7 +39,7 @@ test("numeric count-and-year questions preserve overall and subset scope", () =>
 });
 
 test("numeric scope evidence puts an explicit whole-sample total before a subgroup count", () => {
-  const [group] = prioritizeNumericScopeEvidence(
+  const groups = prioritizeNumericScopeEvidence(
     "Laste eraldamise otsused: arv ja aasta?",
     [{
       key: "separation-study",
@@ -49,9 +50,17 @@ test("numeric scope evidence puts an explicit whole-sample total before a subgro
       ]
     }]
   );
+  const [group] = groups;
 
   assert.match(group.bodies[0], /Kogu valimi moodustas 169/);
   assert.match(group.bodies[1], /kohtulahendeid oli 21/);
+  const summary = buildNumericScopeEvidenceSummary(
+    "Laste eraldamise otsused: arv ja aasta?",
+    groups
+  );
+  assert.match(summary, /Kogu valimi moodustas 169/);
+  assert.match(summary, /2018/);
+  assert.doesNotMatch(summary, /^\[\d+\].*kohtulahendeid oli 21/m);
 });
 
 test("municipality history is not carried into independent research and journal fact questions", () => {

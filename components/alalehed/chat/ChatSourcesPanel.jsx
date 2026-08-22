@@ -3,6 +3,8 @@
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
+import CloseIcon from "@/components/brand/icons/CloseIcon";
+import IconButton from "@/components/glass/IconButton";
 import Dropdown from "@/components/ui/Dropdown";
 import Form from "@/components/ui/Form";
 const ChatSourcesPanel = memo(function ChatSourcesPanel({
@@ -183,15 +185,14 @@ const ChatSourcesPanel = memo(function ChatSourcesPanel({
           <h2>
             {t("chat.sources.heading")}
           </h2>
-          <button
-            type="button"
-            className="chat-sources-close"
+          <IconButton
+            layoutClassName="chat-sources-close"
             ref={closeRef}
             onClick={onClose}
             aria-label={t("buttons.close")}
           >
-            <span aria-hidden="true">&times;</span>
-          </button>
+            <CloseIcon />
+          </IconButton>
         </div>
 
         <div className="chat-sources-content">
