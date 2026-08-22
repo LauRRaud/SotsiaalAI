@@ -197,18 +197,19 @@ describe("uuringudokumendi identiteet", () => {
       message: "Eakate vägivallauuring: mis olid 10%, 6% ja 2% näidud?"
     });
     const generic = {
-      docId: "generic-violence",
-      title: "Eesti elanikkonna teadlikkuse uuring soopõhise vägivalla valdkonnas",
+      docId: "generic-ageing-study",
+      title: "Vanemaealiste ja eakate toimetuleku uuring 2015",
       sourceType: "research_report",
-      retrievalChannels: ["registry_fact"]
+      retrievalChannels: ["registry_fact", "title_match"]
     };
     const correct = {
       docId: "older-violence-2025",
       title: "Vägivald vanemaealiste vastu vajab tähelepanu",
       sourceType: "journal_article",
-      retrievalChannels: ["dense"]
+      retrievalChannels: ["dense", "bm25", "title_match"]
     };
     const result = selectSpecificResearchFactGroups("", [generic, correct], violencePlan);
+    assert.deepEqual(violencePlan.document_subject_terms, ["eakate", "vagivalla"]);
     assert.equal(result.matched, true);
     assert.equal(result.selectedDocumentId, "older-violence-2025");
   });
