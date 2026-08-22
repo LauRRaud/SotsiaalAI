@@ -44,6 +44,14 @@ const LANDMARK = {
   earTopY: 250,
   earBottomY: 382,
   earInnerX: 186,
+  /* Kõrva sisemise serva hele kontuur. Ta EI OLE viga vaid on lähtepildis
+     olemas: mõõdetud täppide keskmine heledus seal 0.81, põsel kõrval
+     0.15-0.25. Omanik soovis ta maha võtta (22.08), seega summutatakse
+     tema täppide mõõt ja sellega ka heledus. */
+  seamInner: 118,
+  seamPlateauIn: 150,
+  seamPlateauOut: 178,
+  seamOuter: 200,
   /* Silmajoon on pea poolel kõrgusel; suu Loomise proportsiooniga ~0.79. */
   eyeY: 247,
   eyeOffsetX: 92,
@@ -189,51 +197,69 @@ const BODY_DEPTH = [
 ];
 
 /**
- * Näo vorm: silmakoopad sisse, ninaselg välja, suujoon kergelt sisse.
- * Ühtegi joont ega täppi juurde ei joonistata — muutub ainult sügavus, seega
- * otsevaates ei ole neid näha, aga pööratud peas loeb profiil näona.
+ * Näo vorm. Ühtegi joont ega täppi juurde EI joonistata — muutub ainult
+ * sügavus, seega otsevaates ei ole "jooniseid" näha ja täpimuster jääb
+ * omaniku renderduseks. Vorm ilmub varjutuse kaudu.
+ *
+ * Orientiirid on Loomise proportsioonidest, pea kõrgus 446 px:
+ * kulm 0.40, silmad 0.50, ninaalus 0.72, suu 0.79, lõug 1.00.
  * Tagastab sügavuse muutuse pikslites.
  */
+function blob(dx, dy, rx, ry, amount) {
+  const t = 1 - (dx * dx) / (rx * rx) - (dy * dy) / (ry * ry);
+  return t > 0 ? amount * t * t : 0;
+}
+
 function faceSculpt(x, y, unit) {
   const dx = x - LANDMARK.centerX;
-  let delta = 0;
+  let d = 0;
 
-  // Silmakoopad ja neid katev kulmuluu. Kulm on tähtsam kui koobas ise:
-  // just tema alla jääv vari teeb koopast koopa ja näost näo.
   for (const side of [-1, 1]) {
-    const ex = (dx - side * LANDMARK.eyeOffsetX) / 60;
-    const ey = (y - LANDMARK.eyeY) / 42;
-    const socket = Math.max(0, 1 - (ex * ex + ey * ey));
-    delta -= unit * 0.075 * socket * socket;
+    const ex = dx - side * LANDMARK.eyeOffsetX;
 
-    const bx = (dx - side * LANDMARK.eyeOffsetX) / 72;
-    const by = (y - (LANDMARK.eyeY - 44)) / 22;
-    const brow = Math.max(0, 1 - (bx * bx + by * by));
-    delta += unit * 0.032 * brow;
+    // Kulmuluu on tähtsam kui koobas ise: näo loeb välja tema ALLA jääv vari.
+    d += blob(ex, y - 203, 82, 26, unit * 0.042);
+    d -= blob(ex, y - 252, 64, 46, unit * 0.085);
 
-    // Põsesarn: koopa all olev tugipind, muidu vajub põsk lamedaks.
-    const cx = (dx - side * 112) / 62;
-    const cy = (y - (LANDMARK.eyeY + 78)) / 52;
-    const cheek = Math.max(0, 1 - (cx * cx + cy * cy));
-    delta += unit * 0.022 * cheek;
+    // Oimukoht: kerge lohk, mis annab koljule laiuse asemel vormi.
+    d -= blob(dx - side * 152, y - 218, 50, 64, unit * 0.03);
+
+    // Põsesarn ja selle all lohk — üksi ei loe kumbki.
+    d += blob(dx - side * 118, y - 300, 68, 50, unit * 0.032);
+    d -= blob(dx - side * 104, y - 360, 58, 48, unit * 0.028);
+
+    // Ninatiib
+    d += blob(dx - side * 38, y - 350, 27, 21, unit * 0.03);
+
+    // Lõuanurk: serv, mis eraldab põske lõua alaküljest.
+    d += blob(dx - side * 146, y - 382, 34, 40, unit * 0.022);
   }
 
-  // Ninaselg: kitsas hari ninajuurest tipuni
+  // Ninaselg: kitsas ninajuurel, laieneb ja tõuseb tipu poole.
   const noseSpan = LANDMARK.noseTipY - LANDMARK.noseTopY;
   const along = (y - LANDMARK.noseTopY) / noseSpan;
-  if (along > -0.1 && along < 1.25) {
-    const ridge = Math.max(0, 1 - Math.abs(dx) / 26);
-    const lengthwise = Math.max(0, 1 - Math.abs(along - 0.75) / 0.9);
-    delta += unit * 0.05 * ridge * ridge * lengthwise;
+  if (along > -0.15 && along < 1.3) {
+    const t = clamp(along, 0, 1);
+    const halfWidth = 15 + 30 * t * t;
+    const rise = -unit * 0.014 + unit * 0.09 * Math.pow(t, 1.5);
+    const across = Math.max(0, 1 - Math.abs(dx) / halfWidth);
+    const lengthwise = 1 - Math.pow(Math.abs(clamp(along, -0.15, 1.3) - 0.72) / 0.95, 2);
+    d += rise * across * across * Math.max(0, lengthwise);
   }
 
-  // Suujoon
-  const mx = dx / 70;
-  const my = (y - LANDMARK.mouthY) / 26;
-  const mouth = Math.max(0, 1 - (mx * mx + my * my));
-  delta -= unit * 0.018 * mouth;
+  // Ninaalune vari ja philtrum
+  d -= blob(dx, y - 364, 46, 13, unit * 0.032);
 
-  return delta;
+  // Huuled: ülahuul ette, suujoon sisse, alahuul ette, lõuavagu sisse.
+  d += blob(dx, y - 370, 74, 15, unit * 0.022);
+  d -= blob(dx, y - 379, 80, 9, unit * 0.038);
+  d += blob(dx, y - 390, 68, 16, unit * 0.026);
+  d -= blob(dx, y - 406, 72, 15, unit * 0.03);
+
+  // Lõuapall
+  d += blob(dx, y - 438, 62, 34, unit * 0.042);
+
+  return d;
 }
 
 /**
@@ -412,7 +438,19 @@ export async function buildAvatarCloud({ source = SOURCE, target = TARGET, quiet
       const cb = Math.round(sb / denom);
 
       const depth = depthField[i];
-      const size = Math.min(1, v * 1.8);
+      let size = Math.min(1, v * 1.8);
+
+      // Kõrva-esine hele kontuur maha. Lai pehme kaal, et ei jääks tumedat
+      // triipu asemele — täpid jäävad alles, ainult sähvatus kaob.
+      const seamBand = smoothstep(LANDMARK.earTopY - 16, LANDMARK.earTopY + 14, y)
+        * (1 - smoothstep(LANDMARK.earBottomY - 14, LANDMARK.earBottomY + 16, y));
+      // Lai lauge aken, mitte kitsas: kitsas summutus lõikas heleda vöö
+      // keskele SÜVENDI (mõõdetud 0.49 vs naabrid 0.76 ja 0.70) ja tumedast
+      // triibust ei ole parem kui heledast. Kõrv ise (üle 200 px) jääb puutumata.
+      const adx = Math.abs(x - LANDMARK.centerX);
+      const seamNear = smoothstep(LANDMARK.seamInner, LANDMARK.seamPlateauIn, adx)
+        * (1 - smoothstep(LANDMARK.seamPlateauOut, LANDMARK.seamOuter, adx));
+      size *= 1 - 0.55 * seamBand * seamNear;
 
       // Esikoor on kõrgusväli z = D(x, y), seega normaal = (-dD/dx, -dD/dy, 1).
       // Nii kannab ta ka silmakoopa ja ninaselja vormi, mitte ainult ristlõiget.
