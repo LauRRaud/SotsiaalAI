@@ -92,16 +92,16 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**Repo puhastus on 22.08 eraldatud harus valmis, kuid veel `main`-i integreerimata.** Kõik
-automaattestid ning lepingu-, käitumis-, privaatsus-, DB-, runtime-, probe-, smoke- ja E2E-kihid
-koos fikstuuride ja käivituskäskudega on eemaldatud. Alles jäid teksti/tõlgete kontroll,
-eslint, tootmisbuild ja Prisma skeemi valideerimine; need ei anna enam runtime-tõendit ning
-kontrollimata käitumine märgitakse edaspidi `NOT_PROVEN`. **Admini RAG-lehe käsitsi käivitatav
-enesetest jääb alles**, sest see on platvormi operatiivne tervisekontroll: ta kontrollib RAG-i
-ühendust, otsingut ja OpenAI vastust. Samuti eemaldati 145,8 MiB vana
-`output/imagegen` väljundit, 18,8 MiB `.codex-logs` kuvatõmmiseid, ajutine
-analüütikakomponendi koopia, kasutuseta ruumipildi tööriistad ja vana ikoonikomplekt. Järgmine
-samm on omaniku loal eraldatud haru commit ja integratsioon; push'i ega deploy'd ei ole tehtud.
+**Repo puhastus on 22.08 toodangus (`456f840d`).** Kõik automaattestid ning lepingu-,
+käitumis-, privaatsus-, DB-, runtime-, probe-, smoke- ja E2E-kihid koos fikstuuride ja
+käivituskäskudega on eemaldatud. Alles jäid teksti/tõlgete kontroll, eslint, tootmisbuild ja
+Prisma skeemi valideerimine; need ei anna runtime-tõendit ning kontrollimata käitumine märgitakse
+edaspidi `NOT_PROVEN`. **Admini RAG-lehe käsitsi käivitatav enesetest jäi alles**, sest see on
+platvormi operatiivne tervisekontroll: ta kontrollib RAG-i ühendust, otsingut ja OpenAI vastust.
+Samuti eemaldati vanad pildi- ja kuvatõmmiseväljundid, ajutised koopiad, kasutuseta tööriistad ja
+vana ikoonikomplekt. Deploy järel olid serveri tööpuu ja SHA kooskõlas `origin/main`-iga, frontend,
+RAG ning research-worker aktiivsed, avaleht, vestlus ja RAG-admin vastasid 200 ning RAG-i otsing
+tagastas tulemused ilma osalise vastuse või veata. Järgmine tööots valitakse eraldi.
 
 **Vestluse eraldi häälrežiim on 22.08 ehitatud (`8e09478a`).** Tühja tekstivälja korral muutub
 komposeri senine saatmisnupp häälvestluse nupuks; kirjutamisel on sama 40 × 40 px kontroll jälle
