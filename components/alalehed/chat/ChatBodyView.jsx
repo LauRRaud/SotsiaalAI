@@ -59,6 +59,7 @@ export default function ChatBodyView({
   roomBlocked,
   roomAuthRequired,
   roomCallNode,
+  voiceModeNode,
   roomSummaryApprovalNode,
   chatWindowRef,
   isStreamingAny,
@@ -90,6 +91,7 @@ export default function ChatBodyView({
   onOpenHelpListings,
   onStop,
   onSend,
+  onOpenVoiceMode,
   onActivateInfoMode,
   onActivateDeepResearchMode,
   onActivateHelpRequestMode,
@@ -132,7 +134,7 @@ export default function ChatBodyView({
       <>
         {showChatFace ? <div aria-hidden={profileOpen ? "true" : "false"}>
           <div>
-            <div className={chatContainerClassName} style={chatRingStyle} role="region" aria-label={t("chat.page_label")} ref={chatContainerRef} data-chat-container="true">
+            <div className={chatContainerClassName} style={chatRingStyle} role="region" aria-label={t("chat.page_label")} ref={chatContainerRef} data-chat-container="true" data-voice-active={voiceModeNode ? "true" : undefined}>
               {/* MOBIILI ÜLARIBA EI RENDERDATA. Ruumi-paneeli redisain võttis
                   ChatMobileTopNav'ilt aluse ära: karusselli mähis jäi
                   `position: static`-uks (inline left/top/right on inertsed) ja
@@ -176,11 +178,13 @@ export default function ChatBodyView({
                   ruumis on aktiivne ring (node ise tagastab muidu null). */}
               {showChatInterface ? roomSummaryApprovalNode : null}
 
+              {showChatInterface ? voiceModeNode : null}
+
               {showChatInterface ? <ConversationView t={t} chatWindowRef={chatWindowRef} isStreamingAny={isStreamingAny} hiddenCount={hiddenCount} pageSize={pageSize} onRevealOlder={onRevealOlder} canHideOlder={canHideOlder} onHideOlder={onHideOlder} onJumpToBottom={onJumpToBottom} messageItems={messageItems} onWindowDoubleClick={onWindowDoubleClick} focusActive={focusActive} isMobile={isMobile} isLightTheme={isLightTheme} hasConversationSources={hasConversationSources} conversationSourcesCount={conversationSources.length} toggleSourcesPanel={toggleSourcesPanel} showSourcesPanel={showSourcesPanel} sourcesPulse={sourcesPulse} sourcesButtonRef={sourcesButtonRef} /> : null}
 
               {showChatInterface && showVisibleAnalysisPanel && !analysis.uploadPreview ? <ChatAnalysisPanel {...chatAnalysisPanelProps} /> : null}
 
-              {showChatInterface ? <ChatComposer key={roomId ? `room:${roomId}:${isHelpMatchRoom ? "help" : "standard"}` : "chat:default"} t={t} locale={locale} isLightTheme={isLightTheme} hideTools={hideComposerTools} inputGlow placeholderText={placeholderText} forcePlaceholderVisible={forcePlaceholderVisible} acceptAttr={analysis.acceptAttr} ensureAnalysisPanelVisible={analysis.ensureAnalysisPanelVisible} fileInputRef={analysis.fileInputRef} onFileChange={analysis.onFileChange} inputRowRef={inputRowRef} inputBarRef={inputBarRef} inputRef={inputRef} onFocusInput={onFocusComposer} onBlurInput={onBlurInput} isGenerating={isGenerating} isStreamingAny={isStreamingAny} isRoomMode={isRoomMode} roomBlocked={roomBlocked} roomAuthRequired={roomAuthRequired} onStop={onStop} onSend={onSend} onActivateInfoMode={onActivateInfoMode} onActivateDeepResearchMode={onActivateDeepResearchMode} onActivateHelpRequestMode={onActivateHelpRequestMode} onActivateHelpOfferMode={onActivateHelpOfferMode} showDocumentAttachButton={documentFlowActive} onPickDocumentFile={onPickDocumentFile} voiceEnabled={voiceEnabled} recording={recording} recordingPulse={recordingPulse} handleMic={handleMic} cancelRecording={cancelRecording} draftApiRef={composerDraftApiRef} onDraftStateChange={onDraftStateChange} onLayoutChange={onComposerLayoutChange} inputFocused={inputFocused} isMobile={isMobile} activeModeLabel={activeModeLabel} roomModeLabel={roomModeLabel} activeModeKey={activeModeKey} focusActive={focusActive} allowAssistantForward={allowAssistantForward} isHelpMatchRoom={isHelpMatchRoom} sendToAssistant={sendToAssistant} setSendToAssistant={setSendToAssistant} aiNote={aiNote} callControlsNode={roomCallNode} /> : null}
+              {showChatInterface ? <ChatComposer key={roomId ? `room:${roomId}:${isHelpMatchRoom ? "help" : "standard"}` : "chat:default"} t={t} locale={locale} isLightTheme={isLightTheme} hideTools={hideComposerTools} inputGlow placeholderText={placeholderText} forcePlaceholderVisible={forcePlaceholderVisible} acceptAttr={analysis.acceptAttr} ensureAnalysisPanelVisible={analysis.ensureAnalysisPanelVisible} fileInputRef={analysis.fileInputRef} onFileChange={analysis.onFileChange} inputRowRef={inputRowRef} inputBarRef={inputBarRef} inputRef={inputRef} onFocusInput={onFocusComposer} onBlurInput={onBlurInput} isGenerating={isGenerating} isStreamingAny={isStreamingAny} isRoomMode={isRoomMode} roomBlocked={roomBlocked} roomAuthRequired={roomAuthRequired} onStop={onStop} onSend={onSend} onOpenVoiceMode={onOpenVoiceMode} onActivateInfoMode={onActivateInfoMode} onActivateDeepResearchMode={onActivateDeepResearchMode} onActivateHelpRequestMode={onActivateHelpRequestMode} onActivateHelpOfferMode={onActivateHelpOfferMode} showDocumentAttachButton={documentFlowActive} onPickDocumentFile={onPickDocumentFile} voiceEnabled={voiceEnabled} recording={recording} recordingPulse={recordingPulse} handleMic={handleMic} cancelRecording={cancelRecording} draftApiRef={composerDraftApiRef} onDraftStateChange={onDraftStateChange} onLayoutChange={onComposerLayoutChange} inputFocused={inputFocused} isMobile={isMobile} activeModeLabel={activeModeLabel} roomModeLabel={roomModeLabel} activeModeKey={activeModeKey} focusActive={focusActive} allowAssistantForward={allowAssistantForward} isHelpMatchRoom={isHelpMatchRoom} sendToAssistant={sendToAssistant} setSendToAssistant={setSendToAssistant} aiNote={aiNote} callControlsNode={roomCallNode} /> : null}
               {showChatInterface ? <ChatRecordingNotice recordingError={recordingError} voiceNotice={voiceNotice} floating /> : null}
 
               {showChatInterface ? <footer /> : null}

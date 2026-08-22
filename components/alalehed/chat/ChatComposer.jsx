@@ -158,6 +158,7 @@ export default function ChatComposer({
   roomAuthRequired,
   onStop,
   onSend,
+  onOpenVoiceMode,
   onActivateInfoMode,
   onActivateDeepResearchMode,
   onActivateHelpRequestMode,
@@ -811,6 +812,23 @@ export default function ChatComposer({
       <div>
         {/* Helikõne kontrollid — kompaktne ikoon-grupp mikri juures (omanik 23.07). */}
         {callControlsNode}
+        {!isRoomMode && !hasActiveWorkflowMode && onOpenVoiceMode ? (
+          <button
+            type="button"
+            className="conv-voice-mode-trigger"
+            aria-label={t("chat.voice.open")}
+            title={t("chat.voice.open")}
+            onClick={onOpenVoiceMode}
+            onMouseDown={preserveDesktopInputFocusOnMouseDown}
+            disabled={isGenerating || isStreamingAny}
+            data-voice-mode-trigger="true"
+          >
+            <svg aria-hidden="true" viewBox="0 0 32 32" fill="none">
+              <path d="M5.5 17.6v-3.2M10 21v-10M14.5 24v-16M19 21.6V10.4M23.5 19v-6M28 17v-2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+              <path d="M3.8 16h24.4" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" opacity=".28" />
+            </svg>
+          </button>
+        ) : null}
         {isRoomMode && assistantForwardEnabled ? (
           <>
             {/* Saatmise siht — üksik nupp mikri VASAKUL (omanik 23.07, valik B).

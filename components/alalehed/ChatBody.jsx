@@ -10,6 +10,7 @@ import { useEffectiveRole } from "@/components/auth/useEffectiveRole";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import ChatMessageItem from "./chat/ChatMessageItem";
 import { useSpeech } from "../chat/hooks/useSpeech";
+import { useRealtimeVoice } from "../chat/hooks/useRealtimeVoice";
 import { useChatStream } from "@/components/chat/hooks/useChatStream";
 import { useChatConversationState } from "../chat/hooks/useChatConversationState";
 import { prettifyFileName } from "@/components/chat/utils/sources";
@@ -26,6 +27,7 @@ import { useChatMobileRail } from "./chat/hooks/useChatMobileRail";
 import { useChatProfileRoll } from "./chat/hooks/useChatProfileRoll";
 import { useChatRoomMode, useSyncRoomAssistantMessages } from "./chat/hooks/useChatRoomMode";
 import ChatBodyView from "./chat/ChatBodyView";
+import VoiceModeSurface from "./chat/VoiceModeSurface";
 import RoomCallBar from "@/components/rooms/RoomCallBar";
 import RoomSummaryApprovalCard from "@/components/rooms/RoomSummaryApprovalCard";
 import { useRoomCall } from "@/components/rooms/useRoomCall";
@@ -47,6 +49,7 @@ import {
   consumeWorkspacePanelMorph,
   resolveWorkspaceRestoreTransition
 } from "@/lib/workspacePanelMorph";
+import { requestPrivacyCheck } from "@/lib/privacy/privacyCheckClient";
 const useIsomorphicLayoutEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect;
 const MOBILE_KEYBOARD_OPEN_THRESHOLD = 88;
@@ -431,6 +434,7 @@ export default function ChatBody({
   );
   const voiceEnabled = Boolean(session?.user?.isAdmin || session?.subActive);
   const [inputFocused, setInputFocused] = useState(false);
+  const [voiceModeOpen, setVoiceModeOpen] = useState(false);
   const [workspaceOpen, setWorkspaceOpen] = useState(() => initialWorkspaceOpenFromSearch);
   const [workspaceSurfaceReady, setWorkspaceSurfaceReady] = useState(() => initialWorkspaceOpenFromSearch);
   const [workspaceSuppressOpenTransition, setWorkspaceSuppressOpenTransition] = useState(() => initialWorkspaceOpenFromSearch);
@@ -1437,6 +1441,7 @@ export default function ChatBody({
     speechReady,
     isSpeaking,
     speakText,
+    stopSpeaking,
     recording,
     recordingPulse,
     recordingError,
@@ -2471,6 +2476,64 @@ export default function ChatBody({
     }
     return sendMessage(text, options);
   }, [activeWorkflow, handleJourneyWorkflowMessage, isRoomMode, sendMessage]);
+  const handleVoiceTranscript = useCallback(async (rawText) => {
+    const text = String(rawText || "").trim();
+    if (!text) return { ok: false };
+    try {
+      const { response, payload } = await requestPrivacyCheck({
+        text,
+        workflow: "chat_private"
+      });
+      if (response.status === 409 && payload?.needsPrivacyConfirmation) {
+        composerDraftApiRef.current?.appendText?.(text);
+        return { ok: false, reason: "privacy" };
+      }
+      if (!response.ok || payload?.ok === false) return { ok: false };
+      const safeText = String(payload?.text || text).trim();
+      const ok = await handleSendMessage(safeText, {
+        privacyDecision: payload?.appliedDecision
+          ? { action: payload.appliedDecision }
+          : undefined
+      });
+      return { ok: Boolean(ok) };
+    } catch {
+      return { ok: false };
+    }
+  }, [handleSendMessage]);
+  const realtimeVoice = useRealtimeVoice({
+    enabled: voiceEnabled,
+    locale,
+    latestAiText,
+    isGenerating,
+    isSpeaking,
+    speakText,
+    stopSpeaking,
+    onTranscript: handleVoiceTranscript,
+    onStopResponse: stop,
+    t
+  });
+  const endRealtimeVoiceSession = realtimeVoice.endSession;
+  const openVoiceMode = useCallback(() => {
+    if (isRoomMode || activeWorkflow !== "default" || isGenerating) return false;
+    setErrorBanner(null);
+    setVoiceModeOpen(true);
+    return true;
+  }, [activeWorkflow, isGenerating, isRoomMode]);
+  const closeVoiceMode = useCallback(() => {
+    endRealtimeVoiceSession("ended");
+    setVoiceModeOpen(false);
+  }, [endRealtimeVoiceSession]);
+  const showVoiceSources = useCallback(() => {
+    endRealtimeVoiceSession("ended");
+    setVoiceModeOpen(false);
+    openMessageSources(latestAnswerSources);
+  }, [endRealtimeVoiceSession, latestAnswerSources, openMessageSources]);
+  useEffect(() => {
+    if (!voiceModeOpen) return;
+    if (!workspaceOpen && !isRoomMode && activeWorkflow === "default") return;
+    endRealtimeVoiceSession("ended");
+    setVoiceModeOpen(false);
+  }, [activeWorkflow, endRealtimeVoiceSession, isRoomMode, voiceModeOpen, workspaceOpen]);
   const handleDraftStateChange = useCallback(({ ready: _ready, hasDraft }) => {
     setComposerHasDraft(Boolean(hasDraft));
   }, []);
@@ -2917,6 +2980,16 @@ export default function ChatBody({
           session={roomCallSession}
         />
       ) : null}
+      voiceModeNode={voiceModeOpen ? (
+        <VoiceModeSurface
+          t={t}
+          voice={realtimeVoice}
+          latestAiText={latestAiText}
+          sourceCount={latestAnswerSources.length}
+          onShowSources={showVoiceSources}
+          onClose={closeVoiceMode}
+        />
+      ) : null}
       roomSummaryApprovalNode={isRoomMode && sessionUserId && !roomBlocked && !roomAuthRequired ? (
         <RoomSummaryApprovalCard
           roomId={effectiveRoomId}
@@ -2957,6 +3030,7 @@ export default function ChatBody({
       onOpenHelpListings={openHelpPanelByKey}
       onStop={stop}
       onSend={handleSendMessage}
+      onOpenVoiceMode={openVoiceMode}
       onActivateInfoMode={activateInfoMode}
       onActivateDeepResearchMode={activateDeepResearchMode}
       onActivateHelpRequestMode={activateHelpRequestMode}
