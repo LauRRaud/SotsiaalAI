@@ -6,6 +6,7 @@ import { validateExactFactAnswer } from "../../lib/chat/factContract.js";
 import { normalizePageReferences } from "../../lib/chat/pageRanges.js";
 import { buildQuestionPlan } from "../../lib/chat/questionPlanner.js";
 import { selectSpecificResearchFactGroups } from "../../lib/chat/retrievalContextAssembler.js";
+import { extractExplicitSourceYears } from "../../lib/chat/retrievalPlanning.js";
 import { buildSourceAttribution } from "../../lib/chat/sourceAttribution.js";
 
 describe("allikaviite leheküljed", () => {
@@ -38,7 +39,9 @@ describe("faktiküsimuse planner", () => {
     "Mitu intervjuud tehti töötamise toetamise uuringus?",
     "Kui paljude intervjuude põhjal tehti Elin Küti kirjeldatud töötamise toetamise uuring?",
     "Mitu lapse perest eraldamise otsust uuringus vaadeldi ja mis aasta otsused need olid?",
-    "Laste eraldamise otsused: arv ja aasta?"
+    "Laste eraldamise otsused: arv ja aasta?",
+    "Eakate vägivallauuring: mis olid 10%, 6% ja 2% näidud?",
+    "Millal tehakse sotsiaalvaldkonna koolitajate e-kursusega seotud järelhindamine ja kelle hinnangud sinna kaasatakse?"
   ];
 
   for (const message of specificResearchCases) {
@@ -95,6 +98,41 @@ describe("uuringudokumendi identiteet", () => {
     const result = selectSpecificResearchFactGroups("", groups, plan);
     assert.equal(result.matched, false);
     assert.equal(result.confidence, "ambiguous");
+  });
+
+  test("lühike teemaankur valib selge exact- ja title-tabamusega dokumendi", () => {
+    const shortPlan = buildQuestionPlan({
+      message: "Erihooldekodude kaardistus: mis olid need kolm protsenti?"
+    });
+    const correct = {
+      docId: "erihoole-2017",
+      title: "Suurte erihooldekodude ümberkorraldamine on hoolikalt läbimõeldud protsess",
+      sourceType: "journal_article",
+      retrievalChannels: ["title_match", "exact_phrase"]
+    };
+    const distractor = {
+      docId: "hooldekodu-2021",
+      title: "Hooldekodu elanike autonoomiaga arvestamine kolme hooldekodu näitel",
+      sourceType: "journal_article",
+      retrievalChannels: ["dense"]
+    };
+    const result = selectSpecificResearchFactGroups("", [correct, distractor], shortPlan);
+    assert.deepEqual(shortPlan.document_subject_terms, ["erihooldekodude"]);
+    assert.equal(result.matched, true);
+    assert.equal(result.selectedDocumentId, "erihoole-2017");
+  });
+});
+
+describe("aasta roll otsingus", () => {
+  test("andmeaasta ei muutu allika ilmumisaasta filtriks", () => {
+    assert.deepEqual(
+      extractExplicitSourceYears("Kui palju üle 60-aastasi oli 2023. aastal kuriteoohvrite ja ohvriabisse pöördunute seas?"),
+      []
+    );
+  });
+
+  test("selgelt nimetatud allika ilmumisaasta jääb filtriks", () => {
+    assert.deepEqual(extractExplicitSourceYears("Mida ütles 2023. aasta aruanne?"), [2023]);
   });
 });
 
