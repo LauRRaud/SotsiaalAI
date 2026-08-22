@@ -4426,18 +4426,19 @@ def _registry_author_shortlist_doc_ids(
             # registry identity check, not a global fuzzy person search.
             first_name = parts[0]
             surname = parts[-1]
-            if first_name not in query_words:
-                return False
-            for word in query_words:
-                if word == first_name or len(word) < 3:
+            for index, word in enumerate(query_words[:-1]):
+                if word != first_name:
+                    continue
+                query_surname = query_words[index + 1]
+                if len(query_surname) < 3:
                     continue
                 common = 0
-                for left, right in zip(surname, word):
+                for left, right in zip(surname, query_surname):
                     if left != right:
                         break
                     common += 1
-                required = max(3, min(len(surname), len(word)) - 1)
-                if common >= required and abs(len(surname) - len(word)) <= 2:
+                required = max(3, min(len(surname), len(query_surname)) - 1)
+                if common >= required and abs(len(surname) - len(query_surname)) <= 2:
                     return True
             return False
 
