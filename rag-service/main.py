@@ -4205,10 +4205,15 @@ _REGISTRY_RESEARCH_METHOD_PREFIXES = (
 
 def _is_research_method_fact_query(query: object) -> bool:
     normalized = _normalize_search_text(query)
-    return bool(
-        re.search(r"\bintervju\w*\b", normalized)
-        and re.search(r"\banaluus\w*\b", normalized)
+    singular_research_source = re.search(
+        r"\b(?:uuringu|uuringus|uuringust|uurimuse|uurimuses|uurimusest|artikli|artiklis|artiklist|aruande|aruandes|aruandest|raporti|raportis|raportist|analuusi|analuusis|analuusist)\b",
+        normalized,
     )
+    method_or_sample_fact = re.search(
+        r"\b(?:intervju\w*|analuusimeetod\w*|meetod\w*|valim\w*|osalej\w*|vastaj\w*)\b",
+        normalized,
+    )
+    return bool(singular_research_source and method_or_sample_fact)
 
 
 def _estonian_derivational_roots(token: object) -> List[str]:
@@ -4407,11 +4412,36 @@ def _registry_author_shortlist_doc_ids(
                 author_tokens.append(token)
         if not author_tokens:
             author_tokens = normalize_author_tokens(metadata.get("authors") or metadata.get("authors_list"))
-        exact = any(
-            len(author.split()) >= 2
-            and re.search(rf"(?:^|\s){re.escape(author)}(?:$|\s)", normalized_query)
-            for author in author_tokens
-        )
+        query_words = _search_tokens(normalized_query, limit=40)
+
+        def author_matches(author: str) -> bool:
+            parts = [part for part in author.split() if part]
+            if len(parts) < 2:
+                return False
+            if re.search(rf"(?:^|\s){re.escape(author)}(?:$|\s)", normalized_query):
+                return True
+            # Estonian questions inflect names (for example Kütt -> Küti).
+            # Require the first name exactly and only allow a conservative
+            # one-stem difference in the final name token. This is a bounded
+            # registry identity check, not a global fuzzy person search.
+            first_name = parts[0]
+            surname = parts[-1]
+            if first_name not in query_words:
+                return False
+            for word in query_words:
+                if word == first_name or len(word) < 3:
+                    continue
+                common = 0
+                for left, right in zip(surname, word):
+                    if left != right:
+                        break
+                    common += 1
+                required = max(3, min(len(surname), len(word)) - 1)
+                if common >= required and abs(len(surname) - len(word)) <= 2:
+                    return True
+            return False
+
+        exact = any(author_matches(author) for author in author_tokens)
         if not exact:
             continue
         resolved_doc_id = str(metadata.get("doc_id") or metadata.get("docId") or doc_id).strip()
