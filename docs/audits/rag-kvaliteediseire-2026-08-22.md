@@ -367,18 +367,39 @@ Käsitsi planner-kontrollis läksid mõlemad J11 loomulikud sõnastused uude re�
 
 Seis on siiski **PARTIAL / runtime NOT_PROVEN**: kandidaat on commit'itud ainult kohalikku parandusharusse commit'ina `db20ded0`, kuid seda ei ole push'itud ega deploy'tud ning päris toodanguindeks ega autentitud `/vestlus` ei kasuta seda koodi. 22.08 kell 17:34:34 UTC oli mõõdetud `origin/main` `0970f7b27c60c5e27eab4859d8a6511d995a0730`, serveri HEAD `9cad5105fc30d68f1df7bb084f79a59e68b110d7`; frontend, RAG ja research-worker olid aktiivsed. Allikapaneeli eraldi P0 on endiselt **NOT_PROVEN** ning seda ei maskeerita retrieval'i paranduse osaks.
 
+### J11 lõplik toodangu järelkontroll — 22.08, SHA `735ff837`
+
+Eelmine `runtime NOT_PROVEN` seis on nüüd ajalooline lähtepunkt. Omaniku selge loa alusel push'iti ja deploy'ti põhjusepõhine parandusjada; lõppkontrolli ajal olid `origin/main`, serveri HEAD ja brauseris kasutatud toodang samal SHA-l `735ff8375377071807acb14ea052f47562cefe77`. Frontend, RAG ja research-worker olid aktiivsed; RAG health oli `status=ok`, 49 727 vektorit ja 6089 dokumenti. Korpust ega indeksit selle ploki käigus ei muudetud.
+
+Tõendatud süsteemsed lisapõhjused ja parandused:
+
+1. lühikese küsimuse õige uuringuartikkel sai identiteediskoori 8, kuid kolm sama sõnavaraga sotsiaalhoolekande seaduse paragrahvi said 7; ühe punkti ebamäärasusvärav viskas kogu tõendi ära;
+2. `specific_research_fact` dokumendivalik välistab nüüd õigusallika uuringu identiteedi konkurendina, kuid jätab õigusallikate tavapärased otsingurajad muutmata;
+3. õige mudelivastus lükati kord tagasi `unsupported_numeric_claim` ja kord `no_numeric_claim` põhjusega, sest tõend või vastus kasutas eesti arvsõnu `seitse`, `kuus`, `üks` numbrikujude asemel;
+4. täpne faktivärav normaliseerib nüüd eesti põhiarvsõnad ja käändevormid nii renderdatud tõendis kui ka mudelivastuses. See on üldine arvukuju leping, mitte J11 sõnade erand.
+
+| tase | lühike loomulik küsimus | Elin Küti nimega variant |
+|---|---|---|
+| otsene RAG | õige dokument kohtadel 2–3, faktilõik olemas, `bm25 + registry_fact`, `partial=false`, 6645 ms | õige dokument kohtadel 4–5, täpne seitsme intervjuu lõik, `bm25 + author_match`, `partial=false`, 4334 ms |
+| autentitud `/vestlus`, sama vestlus | **PASS** — 7 poolstruktureeritud intervjuud, 6 individuaalset ja 1 kolme osalejaga grupiintervjuu; osalejate lause kinnitati algallikast | **PASS** — 7 poolstruktureeritud intervjuud, 6 individuaalset ja 1 kolme osalejaga grupiintervjuu |
+| esimene sisuline tekst / lõpp | 18 719 / 19 897 ms | 9942 / 11 143 ms |
+| dokumendi- ja faktijälg | identiteet `high`; õigusallikad `source_compatible=false`; `passed=true`, `all_claims_in_one_rendered_source`, väited 7/6/1/3 | valitud ja kuvatud allika ID-d võrdsed; üks allikas |
+| kuvatud allikas | Elin Kütt, 2016, „Sotsiaaltöötajate tööalase toetuse kogemused”, Sotsiaaltöö 3/2016, lk 64–68, Uurimus | sama toetav allikas |
+
+Brauseri semantiline klõps ei liiguta platvormi custom-hiire nähtavat noolt; see tekitas varasemas kuvatõmmises näilise möödaklõpsu. Kursori SVG tipp ja `mousemove`-ankur on koodis mõlemad `(0,0)`, seega kalibreerimisviga ei tõendatud. Omaniku käsitsi avatud allikapaneel ja praeguse vastuse serverisse talletatud `displayed_source_ids`/`sources` kinnitasid sama Elin Küti allikakaardi sisulise viite.
+
 ### 10/10 avaldamisvärav
 
 | värava osa | seis | põhjus |
 |---|---|---|
-| paranduskandidaadi kogu 75 juhtumi otsene otsing | **NOT_PROVEN** | parandatud veaklasside 16 põhijuhtumit on otsingukihis rohelised, kuid kogu muutumatu kandidaadi 75/75 kordus on tegemata |
-| deploy-järgne sama vestluse kontroll | **PARTIAL** | neli autentitud päringut: J17 ja V06 PASS; J11 ja selle variant FAIL; ülejäänud 72 põhijuhtumit deploy-järgse SHA vastu mõõtmata |
-| allikaloendi päris brauserikäitumine | **FAIL / NOT_PROVEN** | allikanupud olid kahel õigel vastusel nähtavad, kuid paneel ja avatavad allikad ei ilmunud kahes katses |
-| commit | **TEHTUD** | `73d381a7`; omaniku hilisem otsene luba |
-| push | **TEHTUD** | `origin/main` = `73d381a7` |
-| deploy | **TEHTUD** | serveri HEAD = `73d381a7`; frontend, RAG ja research worker aktiivsed |
+| paranduskandidaadi kogu 75 juhtumi otsene otsing | **NOT_PROVEN** | parandatud veaklasside sihtjuhtumid on otsingukihis rohelised, kuid kogu muutumatu kandidaadi 75/75 kordus on tegemata |
+| deploy-järgne sama vestluse kontroll | **PARTIAL** | J11 kaks sõnastust on lõpp-SHA-l PASS; kogu ülejäänud 75 juhtumi maatriksit ei korratud |
+| allikaloendi päris brauserikäitumine | **PARTIAL** | J11 toetav allikakaart on käsitsi avatud ja serverijäljes valitud=kuvatud; kõigi vastuste väitepõhine atribuutika on mõõtmata |
+| commit | **TEHTUD** | lõpp-SHA `735ff837`; omaniku otsene luba |
+| push | **TEHTUD** | `origin/main` = `735ff837` |
+| deploy | **TEHTUD** | serveri HEAD = `735ff837`; frontend, RAG ja research worker aktiivsed |
 
-Järeldus: deploy-järgne päris vestlus tõendab J17/V06 parandust, kuid J11 kahe sõnastuse läbikukkumine, allikapaneeli kontrollimatus ja mõõtmata 72 põhijuhtumit välistavad 10/10 hinnangu.
+Järeldus: deploy-järgne päris vestlus tõendab J11 kahe sõnastuse parandust, kuid mõõtmata ülejäänud maatriks ja endiselt 10–20 sekundi vastuseaeg välistavad kogu RAG-i 10/10 hinnangu.
 
 ## Prioriteedid ja järgmised põhjusepõhised parandused
 
@@ -417,9 +438,9 @@ Paranduskandidaadi lõppvärav eraldi:
 
 | seis | arv | tähendus |
 |---|---:|---|
-| DONE | **0/75** | ükski deploy-järgne juhtum ei täitnud korraga õige otsingu, õige vastuse ja kontrollitava kuvatud allika nõuet |
-| PARTIAL | **17/75** | J17/V06 vastus oli õige, kuid atribuutika NOT_PROVEN; 14 muud juhtumit on ainult otsingukihis rohelised; J11 mõõdeti end-to-end ja kukkus läbi |
-| NOT_PROVEN | **58/75** | ülejäänud juhtumite deploy-järgne autentitud vastamiskiht või täielik kordus puudub |
+| DONE | **2/75** | J11 faktiküsimus ja selle loomulik autoriankruga parafraas: õige otsing, õige vastus ja toetav kuvatud allikas lõpp-SHA-l |
+| PARTIAL | **16/75** | J17/V06 vastus oli õige, kuid nende atribuutika jäi eraldi NOT_PROVEN; 14 muud juhtumit on ainult otsingukihis rohelised |
+| NOT_PROVEN | **57/75** | ülejäänud juhtumite lõpp-SHA otsingu- ja autentitud vastamiskiht või täielik kordus puudub |
 
 Omaniku tõstatatud Laur Raudsoo reprodutseerimiskatse ei kuulu 75 põhijuhtumi hulka ja on tabelis eraldi. Nii ei paisuta lisakontroll põhimaatriksi nimetajat.
 
@@ -432,8 +453,8 @@ Omaniku tõstatatud Laur Raudsoo reprodutseerimiskatse ei kuulu 75 põhijuhtumi 
 - KOV-i kontaktid, tasud ja taotlemisviisid on ajas muutuvad ning vajavad eraldi värskuseväravat;
 - `partial=false` ja roheline health ei kata sisulist katvust;
 - projektis ei ole praegu automaatteste; build, lint, süntaks ja otsingu PASS ei tõenda autentitud vestluse sisulist töökindlust;
-- deploy-järgne J11 näitab, et loomulik parafraas võib endiselt õige dokumendi korjest välja jätta või suunata planner'i valele üldjuhise rajale;
-- J17 ja V06 vastuste 36–41 sekundi viivitus on sisuliselt õige vastuse kõrval endiselt kasutatavusrisk.
+- J11 kaks vormi on lõpp-SHA-l rohelised, kuid see ei tõenda teisi parafraasi-, arvusõna- ega dokumendiklasside kombinatsioone;
+- J11 11–20 sekundi ning J17/V06 36–41 sekundi viivitus on sisuliselt õige vastuse kõrval endiselt kasutatavusrisk.
 
 ## Võrdlusmaterjalid
 

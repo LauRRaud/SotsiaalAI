@@ -742,12 +742,12 @@ Need tõendavad koodi staatilist ja kompileerimisvalmidust. Need **ei tõenda** 
 
 ## 20. Mis on veel tõendamata
 
-- kogu 75 juhtumi otsene kordus praegusel toodangu commit'il `73d381a7`;
+- kogu 75 juhtumi otsene kordus praegusel toodangu commit'il `735ff837`;
 - sama 75 juhtumi autentitud `/vestlus` kordus;
-- ülejäänud 72 põhijuhtumit ühes normaalselt jätkuvas vestluses ilma „Uus vestlus” workaround'ita;
-- täpne esimese teksti aeg: arvufakti puhverdus näitas ainult lõpptulemust, mis saabus mõõdetud J17/V06 juhtudel umbes 36–41 sekundiga;
+- ülejäänud põhijuhtumid ühes normaalselt jätkuvas vestluses ilma „Uus vestlus” workaround'ita;
+- täpne esimese teksti aeg ülejäänud juhtumites; J11 kaks vormi mõõdeti 18 719 / 9942 ms ning J17/V06 lõppvastused saabusid umbes 36–41 sekundiga;
 - iga vastuse kuvatud allika sisuline toetus;
-- allikapaneeli viimane visuaalne kuju päris sisselogitud aknas;
+- allikapaneeli käitumine ja viitetekst kõigi juhtumiklasside päris sisselogitud vastustel;
 - laiade sünteeside allikate mitmekesisus;
 - autori- ja „millest autor on kirjutanud?” ploki täielik kvaliteet;
 - mitteajakirja 15 juhtumi täielik vestlusvärav;
@@ -772,7 +772,7 @@ Need tõendavad koodi staatilist ja kompileerimisvalmidust. Need **ei tõenda** 
 ## 22. Järgmine kontrollijärjekord
 
 1. Kontrollida autentitud aknas allikapaneeli kujundust ja ühe avatud allika tegelikku viiteteksti.
-2. **TEHTUD esimese väravana:** lapse eraldamise ja töötamise toetamise küsimus kumbki kahe loomuliku sõnastusega; tulemused vastavalt 2 PASS ja 2 FAIL.
+2. **TEHTUD esimese ja teise P0-väravana:** lapse eraldamise ja töötamise toetamise küsimus kumbki kahe loomuliku sõnastusega; viimases lõppseisus on mõlemad paarid sisuliselt 2 PASS, kuid lapse eraldamise kahe varasema vastuse kuvatud atribuutika jäi eraldi NOT_PROVEN.
 3. Mõõta otsing ja vestlus eraldi: dokument, lõik, kanalid, `partial`, otsinguaeg, esimene tekst, lõppvastus ja koguaeg.
 4. Läbida kõik kaheksa parafraasi ning kümme autorijuhtumit.
 5. Läbida kümme laia sünteesi, kontrollides allikate mitmekesisust.
@@ -787,22 +787,26 @@ Need arvud ei ole töökindluse protsent.
 
 | seis | arv | tähendus |
 |---|---:|---|
-| DONE | **0/75** | ükski deploy-järgne juhtum ei täitnud korraga õige otsingu, õige vastuse ja kontrollitava kuvatud allika nõuet |
-| PARTIAL | **17/75** | J17/V06 vastus oli õige, kuid atribuutika NOT_PROVEN; 14 muud juhtumit on ainult otsingukihis tõendatud; J11 mõõdeti end-to-end ja kukkus läbi |
-| NOT_PROVEN | **58/75** | viimase commit'i ülejäänud otsingu- ja vestluskordus puudub |
+| DONE | **2/75** | J11 faktiküsimus ja selle loomulik autoriankruga parafraas läbisid õige otsingu, vastuse ja toetava kuvatud allika värava lõpp-SHA-l |
+| PARTIAL | **16/75** | J17/V06 vastus oli õige, kuid nende atribuutika jäi NOT_PROVEN; 14 muud juhtumit on ainult otsingukihis tõendatud |
+| NOT_PROVEN | **57/75** | lõpp-SHA ülejäänud otsingu- ja autentitud vestluskordus puudub |
 
 ## 24. Lõpphinnang
 
 SotsiaalAI-l on päris hübriidne, versioonitud ja turvapiiridega RAG-süsteem: eraldi FastAPI teenus, Chroma indeks, JSON-register, versioonitud dokumendifailid, mitmekanaliline otsing, planner, kontekstivalik, tõendipaketid, atribuutika ja autentitud vestlusliides.
 
-Süsteemi tehniline olemasolu on tõendatud. Algse kvaliteediseirega on tõendatud mitu süsteemset viga ning nende vastu tehtud P0-parandused on nüüd toodangus commit'il `73d381a7`. Deploy-järgne kontroll tõendas lapse eraldamise fakti paranemist, kuid Elin Küti juhtum paljastas endiselt loomuliku parafraasi korje-, planner'i- ja kontekstivaliku vea. Terviklik sisuline töökindlus on seetõttu **NOT_PROVEN**, kuni sama muutumatu commit läbib nii otsese otsingu kui ka autentitud vestluse ning allikad toetavad vastuse väiteid.
+Süsteemi tehniline olemasolu on tõendatud. Algse kvaliteediseirega on tõendatud mitu süsteemset viga ning nende vastu tehtud P0-parandused on nüüd toodangus lõpp-SHA-l `735ff837`. Deploy-järgne kontroll tõendas lapse eraldamise fakti paranemist ning J11 lõppkontroll tõendas kahe loomuliku sõnastusega õige uuringudokumendi, õige vastuse ja toetava allika. Terviklik sisuline töökindlus on siiski **NOT_PROVEN**, kuni sama muutumatu commit läbib kogu 75 juhtumi otsese otsingu ja autentitud vestluse ning iga kuvatud allikas toetab vastuse väiteid.
 
 Hetkehinnang: **PARTIAL, mitte 10/10**.
 
-## 25. J11 teine P0-paranduskandidaat — runtime veel tõendamata
+## 25. J11 teine P0-plokk — toodangus tõendatud
 
-22.08 õhtul lisati eraldatud tööpuus süsteemne `specific_research_fact` rada. See ei muuda üht küsimust „otsingusõbralikumaks”, vaid teeb kaks eri otsust: esmalt tuvastab autorist, teemast, pealkirjast ja registritunnustest konkreetse dokumendi, alles seejärel otsib ja lubab sama dokumendi faktisegmendi. Kui identiteet jääb ebaselgeks, ei tohi vastuse koostaja kasutada teise uuringu arve. Eesti nimekäändeid käsitletakse registri piires konservatiivselt ning numbriline järelvalidaator näeb sama valitud dokumendi tõendit, mis mudelile renderdati.
+22.08 õhtul lisatud süsteemne `specific_research_fact` rada on nüüd toodangus lõpp-SHA-l `735ff8375377071807acb14ea052f47562cefe77`. `origin/main`, server ja autentitud brauser olid kontrolli ajal samal SHA-l; kolm teenust olid aktiivsed ning RAG health näitas 49 727 vektorit ja 6089 dokumenti. Korpust ega indeksit selle paranduse käigus ei muudetud.
 
-Lisatud trace kannab eraldi dokumendikandidaadid, valikupõhjused ja ajad: planner, mitme päringu korje, dokumendiidentiteet, faktisegment, konteksti renderdus, esimene mudelikõne ja faktivalidatsioon. See võimaldab järgmises päris kontrollis eristada planner'i, korje, järjestuse, kontekstivaliku ja vastuse koostamise kihti.
+Runtime tõendas kaks järjestikust juurpõhjust. Esmalt blokeeris õige Elin Küti artikli dokumendiidentiteedi kolme sama sõnavaraga sotsiaalhoolekande seaduse paragrahvi ühepunktiline skoorivahe. Uuringu faktirežiim välistab nüüd õigusallika uuringudokumendi identiteedi konkurendina, jättes õigusotsingu enda puutumata. Seejärel lükkas faktivärav õige mudelivastuse tagasi, sest `seitse`, `kuus` ja `üks` ei olnud numbrikujudega võrreldavad. Täpne faktivärav normaliseerib nüüd eesti põhiarvsõnu ja käändevorme nii tõendis kui vastuses.
 
-Staatiline seis: JavaScripti lint, Python AST, `git diff --check`, i18n ning Webpacki produktsioonibuild rohelised; teste projektis ei ole ega loodud. Turbopacki build on selles eraldatud worktree's keskkonna tõttu blokitud, sest `node_modules` on välisele kaustale viitav symlink. Kandidaat on kohalikus parandusharus commit'il `db20ded0`. Runtime-seis: **NOT_PROVEN**, sest commit'i ei ole push'itud ega deploy'tud. 22.08 kell 17:34:34 UTC oli `origin/main` `0970f7b27c60c5e27eab4859d8a6511d995a0730`, server `9cad5105fc30d68f1df7bb084f79a59e68b110d7`; kolm teenust olid aktiivsed.
+Samas autentitud vestluses ilma „Uus vestlus” workaround'ita vastas lühike küsimus õigesti 7/6/1 intervjuud (esimene sisuline tekst 18 719 ms, lõpp 19 897 ms) ning Elin Küti nimega parafraas samuti õigesti (9942 / 11 143 ms). Lühikese vastuse trace kinnitas kõrge kindlusega sama dokumendi identiteeti ja `all_claims_in_one_rendered_source` tulemust väidetele 7, 6, 1 ja 3. Mõlema ainsaks valitud ja kuvatud allikaks oli Elin Kütt, 2016, „Sotsiaaltöötajate tööalase toetuse kogemused”, Sotsiaaltöö 3/2016, lk 64–68, Uurimus. Algallikas kinnitas ka vastuses nimetatud osalejad.
+
+Kontrollid: muudetud JavaScripti lint, i18n ja `git diff --check` rohelised; automaatteste projektis ei ole ega loodud. Lokaalne Turbopack jäi enne kompileerimist välise `node_modules`-symlingi taha, kuid serveri ametlik Turbopack-build kompileerus lõppdeploy'l 37,7 sekundiga, TypeScript ja 70 staatilist lehte läbisid ning migratsioone ei olnud.
+
+Lõppseis on endiselt **PARTIAL, mitte 10/10**. J11 kaks vormi on DONE, kuid kogu 75 juhtumi lõpp-SHA kordus, laiad sünteesid, autoriplokk, mitteajakirja materjalid, KOV/õigusrajad ja pika vestluse jõudlus ei ole sama muutumatu puu vastu täielikult tõendatud.
