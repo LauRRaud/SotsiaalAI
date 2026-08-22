@@ -95,13 +95,15 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 **Vestluse eraldi häälrežiim on 22.08 ehitatud (`8e09478a`).** Tühja tekstivälja korral muutub
 komposeri senine saatmisnupp häälvestluse nupuks; kirjutamisel on sama 40 × 40 px kontroll jälle
 saatmisnupp ning eraldi häälnuppu ei ole. Sealt avaneb premium-toonides täppidest naise pea ja õlgade avatar, mis jälgib kursori liikumist ning
-reageerib kuulamisele, mõtlemisele ja rääkimisele. `gpt-realtime-2.1-mini` teeb ainult
-vooruvahetuse ja transkriptsiooni; vastus käib endiselt olemasoleva vestluse RAG-i,
-allikate, kriisiraja, privaatsuskontrolli ja kvootide kaudu. Hääl loeb ette kuni kolm lauset,
+reageerib kuulamisele, mõtlemisele ja rääkimisele. `gpt-realtime-2.1-mini` teeb
+vooruvahetuse ja transkriptsiooni ning loeb kontrollitud vastuse tuuma oma `marin`-häälega;
+vastuse sisu käib endiselt olemasoleva vestluse RAG-i, allikate, kriisiraja,
+privaatsuskontrolli ja kvootide kaudu. TartuNLP ei ole avatari häälerajal. Hääl loeb ette kuni kolm lauset,
 täisvastus ja allikad jäävad vestlusse. Iga seanss on opt-in, kuni 5 minutit, lõpeb 90 sekundi
-tegevusetuse järel ning reserveerib enne ühendust kogu võimaliku STT-mahu; lehe peitmine,
+tegevusetuse järel ning reserveerib enne ühendust 300 STT-sekundit ja kuni 3000 TTS-märki;
+üks helivastus on lisaks piiratud 1200 väljundtokeniga. Lehe peitmine,
 lahkumine, piir, viga ja käsitsi lõpetamine sulgevad WebRTC, mikrofoni ja helirajad. Sihttõend:
-29/29 hääletesti, i18n, lint, `git diff --check`, tootmisbuild ning töölaua ja mobiili
+44/44 hääletesti, i18n, lint, `git diff --check`, tootmisbuild ning töölaua ja mobiili
 brauserivaade ilma konsoolivigade ja Realtime-kutseta. Päris autentitud
 mikrofon → Realtime → RAG → TTS rada on **NOT_PROVEN**, sest tasulist seanssi ei avatud.
 
@@ -1921,9 +1923,10 @@ helilaineid. Sinise-oranži asemel kasutab vaade grafiidi, sügava ploomi, pärl
 violeti ja šampanja-roosikulla paletti. Subtiitrid, allesjäänud aeg, vaigistamine, allikad ja
 alati nähtav lõpetamisnupp jäävad ekraanile; dikteerimismikrofon on endiselt eraldi funktsioon.
 
-Realtime ei ole teine vastusemootor: `gpt-realtime-2.1-mini` tuvastab kõnevooru ja teeb
-transkriptsiooni, valmis tekst läheb olemasolevasse vestlusse ning vastus sünnib sama RAG-i,
-allikate, kriisi-, privaatsus- ja kvoodilepinguga nagu kirjutades. Hääl annab kuni kolme lause
+Realtime ei ole teine vastusemootor: `gpt-realtime-2.1-mini` tuvastab kõnevooru, teeb
+transkriptsiooni ja renderdab valmis kontrollitud vastuse `marin`-häälega, kuid vastuse sisu
+sünnib endiselt sama RAG-i, allikate, kriisi-, privaatsus- ja kvoodilepinguga nagu kirjutades.
+Avatariga häälrežiim ei kasuta TartuNLP-d. Hääl annab kuni kolme lause
 tuuma, täisvastus koos allikatega jääb tekstina vestlusse; vahele rääkimine peatab nii
 ettelugemise kui poolelioleva vastuse. Mikrofon avaneb alles nupust „Alusta". Seansil on
 5 minuti kõvapiir, hoiatus 45 sekundit enne lõppu ja 90 sekundi jõudeolekupiir. Enne tasulise
@@ -3400,10 +3403,12 @@ Juhtprintsiip: **hääl ja kaamera on liides, mitte teine aju** — iga sisuline
 sama tekstitorustiku (RAG + allikad + kriisirada + kvoodid), mis kannab platvormi lepingut.
 
 1. **Realtime-kõnemudel + RAG — TEHTUD 22.08:** WebRTC kaudu ühenduv
-   `gpt-realtime-2.1-mini` hoiab ainult kõnevooru ja transkriptsiooni; mudeli oma vastamine on
+   `gpt-realtime-2.1-mini` hoiab kõnevooru ja transkriptsiooni; mudeli automaatne vastamine on
    välja lülitatud (`create_response: false`). Valmis lausung läheb olemasolevasse
    tekstitorustikku ning sealt RAG-i, allikatesse, kriisi- ja privaatsusrajale. Puhas
-   kõne-kõne ei ole arhitektuuri omanik. Allikad ja täisvastus kuvatakse samas vestluses,
+   kõne-kõne ei ole arhitektuuri omanik. Pärast kontrollitud tekstivastust saab Realtime eraldi
+   vestlusvälise `response.create` käsu lugeda kuni kolm lauset `marin`-häälega; TartuNLP seda
+   rada ei teeni. Allikad ja täisvastus kuvatakse samas vestluses,
    hääl loeb ette kuni kolm lauset.
 2. **Hääl „ilma viivituseta" = käskude ja vestluse lahutamine.** OLEMASOLEV komplekt
    (kontrollitud koodist 28.07): STT = OpenAI `gpt-4o-mini-transcribe`

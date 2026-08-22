@@ -3141,6 +3141,7 @@
       "rate_limited": "Voice conversations were started too frequently. Wait a moment and try again.",
       "limit_warning": "45 seconds remain in this session.",
       "limit_reached": "The 5-minute limit was reached and the voice connection was closed.",
+      "speech_limit_reached": "This voice session reached its read-aloud limit and the connection was closed.",
       "idle_reached": "No speech was detected for 90 seconds and the voice connection was closed."
     },
     "fallback": {

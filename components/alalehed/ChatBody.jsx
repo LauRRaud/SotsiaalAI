@@ -2505,8 +2505,6 @@ export default function ChatBody({
     locale,
     latestAiText,
     isGenerating,
-    isSpeaking,
-    speakText,
     stopSpeaking,
     onTranscript: handleVoiceTranscript,
     onStopResponse: stop,

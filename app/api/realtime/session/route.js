@@ -7,6 +7,7 @@ import {
   REALTIME_MODEL,
   VOICE_SESSION_LIMIT_MS,
   VOICE_SESSION_LIMIT_SECONDS,
+  VOICE_SESSION_SPEECH_CHAR_LIMIT,
   buildRealtimeSessionConfig
 } from "@/lib/chat/realtimeVoice";
 import {
@@ -100,6 +101,7 @@ export async function POST(request) {
   }
 
   let usageHandle = null;
+  let ttsUsageHandle = null;
   try {
     usageHandle = await reserveUsageForRequest({
       request,
@@ -117,6 +119,30 @@ export async function POST(request) {
 
   // Replaying one client key must not create another paid provider session.
   if (usageHandle.reused) {
+    return json({ ok: false, messageKey: "api.common.conflict" }, 409);
+  }
+
+  try {
+    ttsUsageHandle = await reserveUsageForRequest({
+      request,
+      userId: session.user.id,
+      metric: "TTS_CHARS",
+      amount: VOICE_SESSION_SPEECH_CHAR_LIMIT,
+      scope: "realtime.voice.tts",
+      idempotencyKey: sessionId,
+      metadata: {
+        model: OPENAI_REALTIME_MODEL,
+        maximumCharacters: VOICE_SESSION_SPEECH_CHAR_LIMIT
+      }
+    });
+  } catch (error) {
+    await releaseUsageForRequest(usageHandle, { reason: "tts_quota_unavailable" }).catch(() => {});
+    const descriptor = usageErrorDescriptor(error, "realtime.voice.tts");
+    return json(descriptor.body, descriptor.status, descriptor.headers);
+  }
+
+  if (ttsUsageHandle.reused) {
+    await releaseUsageForRequest(usageHandle, { reason: "idempotency_conflict" }).catch(() => {});
     return json({ ok: false, messageKey: "api.common.conflict" }, 409);
   }
 
@@ -147,6 +173,7 @@ export async function POST(request) {
     const settlementToken = createVoiceSettlementToken({
       userId: session.user.id,
       idempotencyKey: usageHandle.idempotencyKey,
+      ttsIdempotencyKey: ttsUsageHandle.idempotencyKey,
       startedAt,
       expiresAt
     }, secret);
@@ -159,7 +186,10 @@ export async function POST(request) {
       expiresAt: new Date(expiresAt).toISOString()
     });
   } catch {
-    await releaseUsageForRequest(usageHandle, { reason: "provider_error" }).catch(() => {});
+    await Promise.allSettled([
+      releaseUsageForRequest(usageHandle, { reason: "provider_error" }),
+      releaseUsageForRequest(ttsUsageHandle, { reason: "provider_error" })
+    ]);
     return json({ ok: false, messageKey: "api.common.service_unavailable" }, 503);
   }
 }

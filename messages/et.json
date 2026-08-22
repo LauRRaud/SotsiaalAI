@@ -3141,6 +3141,7 @@
       "rate_limited": "Häälvestlusi alustati liiga tihti. Oota hetk ja proovi uuesti.",
       "limit_warning": "Seansi lõpuni on jäänud 45 sekundit.",
       "limit_reached": "5 minuti piir täitus ja häälühendus suleti.",
+      "speech_limit_reached": "Selle häälseansi ettelugemise piir täitus ja ühendus suleti.",
       "idle_reached": "90 sekundit ei olnud kõnet ja häälühendus suleti."
     },
     "fallback": {

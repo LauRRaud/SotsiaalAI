@@ -2,7 +2,12 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 
 import { authConfig } from "@/auth";
-import { VOICE_SESSION_LIMIT_SECONDS, clampVoiceUsageSeconds } from "@/lib/chat/realtimeVoice";
+import {
+  VOICE_SESSION_LIMIT_SECONDS,
+  VOICE_SESSION_SPEECH_CHAR_LIMIT,
+  clampVoiceSpeechChars,
+  clampVoiceUsageSeconds
+} from "@/lib/chat/realtimeVoice";
 import { verifyVoiceSettlementToken } from "@/lib/chat/realtimeVoiceToken";
 import { usageService } from "@/lib/usage/service";
 import { commitUsageForRequest } from "@/lib/usage/routeAdapter";
@@ -42,20 +47,38 @@ export async function POST(request) {
   // Serveri kell on arvelduse alus; klient ei saa kasutatud sekundeid väiksemaks valetada.
   const elapsedSeconds = (Date.now() - claim.iat) / 1000;
   const actualSeconds = clampVoiceUsageSeconds(elapsedSeconds);
-  const handle = {
+  const actualSpeechChars = clampVoiceSpeechChars(payload?.speechChars);
+  const sttHandle = {
     userId: session.user.id,
     metric: "STT_SECONDS",
     amount: BigInt(VOICE_SESSION_LIMIT_SECONDS),
     idempotencyKey: claim.key,
     service: usageService
   };
+  const ttsHandle = claim.ttsKey ? {
+    userId: session.user.id,
+    metric: "TTS_CHARS",
+    amount: BigInt(VOICE_SESSION_SPEECH_CHAR_LIMIT),
+    idempotencyKey: claim.ttsKey,
+    service: usageService
+  } : null;
 
   try {
-    await commitUsageForRequest(handle, {
-      actualAmount: actualSeconds,
-      metadata: { actualSeconds, interface: "realtime-voice" }
+    await Promise.all([
+      commitUsageForRequest(sttHandle, {
+        actualAmount: actualSeconds,
+        metadata: { actualSeconds, interface: "realtime-voice" }
+      }),
+      ttsHandle ? commitUsageForRequest(ttsHandle, {
+        actualAmount: actualSpeechChars,
+        metadata: { actualSpeechChars, interface: "realtime-voice" }
+      }) : null
+    ]);
+    return json({
+      ok: true,
+      chargedSeconds: actualSeconds,
+      chargedSpeechChars: actualSpeechChars
     });
-    return json({ ok: true, chargedSeconds: actualSeconds });
   } catch {
     return json({ ok: false }, 503);
   }
