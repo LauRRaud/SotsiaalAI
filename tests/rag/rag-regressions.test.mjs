@@ -4,7 +4,10 @@ import { describe, test } from "node:test";
 import { formatSourceLabel, normalizeSourceLabelPages } from "../../components/chat/utils/sources.js";
 import { validateExactFactAnswer } from "../../lib/chat/factContract.js";
 import { normalizePageReferences } from "../../lib/chat/pageRanges.js";
-import { buildSpecificResearchFactQueries } from "../../lib/chat/queryPlanner.js";
+import {
+  buildDocumentScopedResearchFactQueries,
+  buildSpecificResearchFactQueries
+} from "../../lib/chat/queryPlanner.js";
 import { buildQuestionPlan } from "../../lib/chat/questionPlanner.js";
 import { resolveMultiQueryTopK } from "../../lib/chat/retrievalOrchestrator.js";
 import {
@@ -90,6 +93,21 @@ describe("faktiküsimuse planner", () => {
     assert.match(twoPercent.query, /eakate.*vanemaealiste.*vagivalla.*uuring.*2%/u);
     assert.doesNotMatch(twoPercent.query, /vagivallauuring.*vagivallauuring/u);
     assert.equal(resolveMultiQueryTopK({ index: 4, topK: 18, queryCount: 6, minTopK: twoPercent.min_top_k }), 16);
+  });
+
+  test("pärast dokumendi tuvastamist otsib iga arvulist fakti ainult selle dokumendi seest", () => {
+    const plan = buildQuestionPlan({
+      message: "Eakate vägivallauuring: mis olid 10%, 6% ja 2% näidud?"
+    });
+    assert.deepEqual(
+      buildDocumentScopedResearchFactQueries(plan),
+      [
+        { query: "10% 6% 2%", min_top_k: 12 },
+        { query: "10%", min_top_k: 12 },
+        { query: "6%", min_top_k: 12 },
+        { query: "2%", min_top_k: 12 }
+      ]
+    );
   });
 
   test("laiendab vanusepiiriga faktiküsimuse vanemaealiste otsingusõnavaraks", () => {
