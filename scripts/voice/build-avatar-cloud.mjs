@@ -484,6 +484,11 @@ export async function buildAvatarCloud({ source = SOURCE, target = TARGET, quiet
     }
   }
 
+  /* SILMI EI JOONISTATA. Lisasin nad omaniku palvel („vähemalt midagi"),
+     aga tulemus ei kõlvanud (22.08) ja nägu tuleb hoopis uue lähtepildiga.
+     See ongi õige koht: iga näojoon peab tulema renderdusest, mitte koodist —
+     ekstraktor võtab uue faili täpid muutmata kujul üles. */
+
   const count = positions.length / 3;
   if (!count) throw new Error("punktipilv jäi tühjaks — kontrolli läve ja lähtefaili");
 

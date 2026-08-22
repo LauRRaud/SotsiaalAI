@@ -43,10 +43,13 @@ export default function VoiceModeSurface({ t, voice, latestAiText, onClose }) {
     return typeof value === "string" && value.trim() && value !== key ? value : fallback;
   };
   const live = LIVE_STATES.includes(voice.status);
-  const visibleCaption = useMemo(() => {
-    if (voice.status === "speaking") return cleanCaption(latestAiText);
-    return cleanCaption(voice.partialCaption || voice.caption);
-  }, [latestAiText, voice.caption, voice.partialCaption, voice.status]);
+  // AINULT tema vastus. Kasutaja enda kõne tekstina tagasi ei näidata
+  // (omanik 22.08: „ma ei taha enda teksti kui ma räägin") — ta on niikuinii
+  // vestluses olemas, kui häälreziim sulgeda.
+  const visibleCaption = useMemo(
+    () => (voice.status === "speaking" ? cleanCaption(latestAiText) : ""),
+    [latestAiText, voice.status]
+  );
 
   useEffect(() => {
     const onKeyDown = event => {

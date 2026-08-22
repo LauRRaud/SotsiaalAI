@@ -80,6 +80,21 @@
   opacity: 0.72;
 }
 
+/* Taustarežiim: kuju seisab vestluse taga, ei püüa klikke ega fookust.
+   Tekstimullid tõstetakse tema ette (`> main` allpool). */
+.voice-avatar[data-backdrop="true"] {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  cursor: default;
+}
+
+[data-chat-container] > main {
+  position: relative;
+  z-index: 1;
+}
+
 .voice-avatar[data-webgl="unavailable"] .voice-avatar__fallback,
 .voice-avatar--loading::before {
   display: block;

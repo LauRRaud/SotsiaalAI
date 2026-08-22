@@ -7,6 +7,7 @@ import ChatSourcesPanel from "./ChatSourcesPanel";
 import WorkspacePanel from "@/components/chat/WorkspacePanel";
 import RoleViewSwitcher from "@/components/workspace/RoleViewSwitcher";
 import { ChatRecordingNotice, ChatTopNotices } from "./view/ChatNotices";
+import VoiceAvatarBackdrop from "./VoiceAvatarBackdrop";
 
 export default function ChatBodyView({
   embedded: _embedded,
@@ -177,6 +178,11 @@ export default function ChatBodyView({
               {/* T20 P2: kokkuvõtte kinnitusring — nähtav ainult siis, kui
                   ruumis on aktiivne ring (node ise tagastab muidu null). */}
               {showChatInterface ? roomSummaryApprovalNode : null}
+
+              {/* Sama punktikuju tavavestluse taustal (omanik 22.08). Ainult
+                  siis, kui häälreziim on kinni — kaks WebGL-konteksti korraga
+                  oleks kaks korda joonistamist ilma ühegi kasuta. */}
+              {showChatInterface && !voiceModeNode ? <VoiceAvatarBackdrop /> : null}
 
               {showChatInterface ? voiceModeNode : null}
 

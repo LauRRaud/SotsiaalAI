@@ -101,8 +101,10 @@ const VERTEX_SHADER = `
     float warm = clamp((aColor.r - aColor.b) * 3.2, 0.0, 1.0);
     float flow = 0.5 + 0.5 * sin(p.y * 9.0 - uTime * 2.6);
     float warmGain = 1.0 + warm * uSpeaking * (0.3 + uEnergy * 0.85) * (0.4 + 0.6 * flow);
-    float coolGain = 1.0 + (1.0 - warm) * uListening * uEnergy * 0.35
-      * (0.5 + 0.5 * sin(p.y * 7.0 + uTime * 1.2));
+    // Kuulamine: kogu kuju kumab kasutaja hääle tugevusega, mitte ainult
+    // külmad täpid — omanik tahtis just seda ("tervenisti veidi kumada").
+    float coolGain = 1.0 + uListening * uEnergy * 0.5
+      * (0.75 + 0.25 * sin(p.y * 7.0 + uTime * 1.2));
 
     // Võlts-oklusioon. Sügavustesti ei ole (täpid on läbipaistvad ja
     // sorteerimata), seega tuleb tagakülg kustutada pinnasuuna järgi —
@@ -177,14 +179,18 @@ const FRAGMENT_SHADER = `
   }
 `;
 
+/* Olek EI muuda kuju heledust (omanik 22.08: „ta ei tohiks heledust muuta").
+   Varem jäi kuju pärast Alusta/Lõpeta tumedaks, sest ended/error tõmbasid
+   dim-i alla. Ainus, mis heledust liigutab, on hääl: tema kõne süütab näo ja
+   kuulamisel kumab kogu kuju kasutaja hääle tugevusega kaasa. */
 const STATE_VALUE = {
-  idle: { speaking: 0, listening: 0, dim: 0.88 },
-  connecting: { speaking: 0, listening: 0.45, dim: 0.94 },
-  listening: { speaking: 0, listening: 1, dim: 1 },
-  thinking: { speaking: 0, listening: 0.6, dim: 0.96 },
-  speaking: { speaking: 1, listening: 0, dim: 1 },
-  ended: { speaking: 0, listening: 0, dim: 0.5 },
-  error: { speaking: 0, listening: 0, dim: 0.45 }
+  idle: { speaking: 0, listening: 0 },
+  connecting: { speaking: 0, listening: 0.45 },
+  listening: { speaking: 0, listening: 1 },
+  thinking: { speaking: 0, listening: 0.6 },
+  speaking: { speaking: 1, listening: 0 },
+  ended: { speaking: 0, listening: 0 },
+  error: { speaking: 0, listening: 0 }
 };
 
 function parseCloud(buffer) {
@@ -229,11 +235,22 @@ function parseCloud(buffer) {
   return { count, position, normal, color, rig, size, mouth, pivot };
 }
 
-export default function VoicePointAvatar({ status = "idle", audioLevel = 0, label = "" }) {
+/* Taustarežiimis on sama kuju tavavestluse taga: tuhm, kliki mitte püüdev.
+   Omanik nägi teda veaolekus tumedana ja soovis just seda (22.08). */
+const BACKDROP_DIM = 0.34;
+
+export default function VoicePointAvatar({
+  status = "idle",
+  audioLevel = 0,
+  label = "",
+  backdrop = false
+}) {
   const hostRef = useRef(null);
   const statusRef = useRef(status);
   const energyRef = useRef(audioLevel);
+  const backdropRef = useRef(backdrop);
 
+  useEffect(() => { backdropRef.current = backdrop; }, [backdrop]);
   useEffect(() => { statusRef.current = status; }, [status]);
   useEffect(() => { energyRef.current = audioLevel; }, [audioLevel]);
 
@@ -297,7 +314,7 @@ export default function VoicePointAvatar({ status = "idle", audioLevel = 0, labe
           uEnergy: { value: 0 },
           uSpeaking: { value: 0 },
           uListening: { value: 0 },
-          uDim: { value: STATE_VALUE.idle.dim },
+          uDim: { value: 1 },
           uSizeScale: { value: 900 },
           uPointer: { value: [0, 0] },
           uMouth: { value: cloud.mouth },
@@ -366,7 +383,8 @@ export default function VoicePointAvatar({ status = "idle", audioLevel = 0, labe
         program.uniforms.uEnergy.value += (target - program.uniforms.uEnergy.value) * 0.16;
         program.uniforms.uSpeaking.value += (state.speaking - program.uniforms.uSpeaking.value) * 0.1;
         program.uniforms.uListening.value += (state.listening - program.uniforms.uListening.value) * 0.06;
-        program.uniforms.uDim.value += (state.dim - program.uniforms.uDim.value) * 0.05;
+        const targetDim = backdropRef.current ? BACKDROP_DIM : 1;
+        program.uniforms.uDim.value += (targetDim - program.uniforms.uDim.value) * 0.05;
         program.uniforms.uPointer.value = pointerCurrent;
 
         renderer.render({ scene: mesh, camera });
@@ -394,7 +412,15 @@ export default function VoicePointAvatar({ status = "idle", audioLevel = 0, labe
   }, []);
 
   return (
-    <div ref={hostRef} className="voice-avatar" data-state={status} role="img" aria-label={label}>
+    <div
+      ref={hostRef}
+      className="voice-avatar"
+      data-state={status}
+      data-backdrop={backdrop ? "true" : undefined}
+      role={backdrop ? "presentation" : "img"}
+      aria-hidden={backdrop ? "true" : undefined}
+      aria-label={backdrop ? undefined : label}
+    >
       <div className="voice-avatar__fallback" aria-hidden="true" />
     </div>
   );
