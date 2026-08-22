@@ -15,7 +15,7 @@
 //   node scripts/css-cleanup/important-budget.mjs          # check against budget
 //   node scripts/css-cleanup/important-budget.mjs --set     # set budget = current count
 //
-// Wire into CI / `npm test` to enforce. Budget file: reports/css-cleanup/important-budget.json
+// CI saab seda käivitada käsuga `npm run css:budget`.
 
 import { readFileSync, writeFileSync, readdirSync, statSync, existsSync, mkdirSync } from "node:fs";
 import path from "node:path";

@@ -4,8 +4,8 @@
  *
  * OTSUS ILMA KÄIVITAJATA EI OLE SÄILITUSREEGEL. L7 ütleb, mis peab juhtuma;
  * see fail on koht, kus see päriselt juhtub. Kogu loogika elab
- * `lib/casework/retention.js`-is ja on testitud — siin on ainult käivitus,
- * väljund ja väljumiskood.
+ * `lib/casework/retention.js`-is — siin on ainult käivitus, väljund ja
+ * väljumiskood.
  *
  * KOLM TÖÖD, ÜKS KÄIVITUS:
  *   1. ülekantud mustandi SISU kustub 12 kuud pärast ülekannet
@@ -20,8 +20,8 @@
  *   npm run casework:retention:dry    ainult loendab, ei kirjuta
  *
  * AJASTUS ON NÜÜD REPOSITOORIUMI OMA (SOL-CW-14), mitte näide selles päises.
- * Vt `deploy/systemd/` — lukustatud (`flock`), monitooritud
- * (`CaseWorkRetentionRun` + `npm run casework:retention:smoke`) ja
+ * Vt `deploy/systemd/` — lukustatud (`flock`), jälgitav `CaseWorkRetentionRun`
+ * ridade ja systemd journal'i kaudu ning
  * vahelejäänud jooksu järelt käivituv (`Persistent=true`).
  *
  * IGA JOOKS JÄTAB RIDA, ka see, mis kukub. Rida tekib ENNE tööd: töö, mis suri

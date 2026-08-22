@@ -234,7 +234,7 @@ ALTER TABLE "WellbeingSupportShare"
 --
 -- VÄRAV ENNE ROLLBACK'I — KÄIVITA SKRIPT, ära loe seda kommentaari:
 --
---   node --import ./scripts/register-node-test-loader.mjs \
+--   node --import ./scripts/register-node-source-loader.mjs \
 --     scripts/org-profile-support-preflight.mjs
 --
 -- Väljundkood 0 = ohutu, 1 = EI OLE ohutu, 2 = kontroll ise kukkus.

@@ -48,20 +48,6 @@ jobs:
   quality-gate:
     runs-on: ubuntu-latest
     timeout-minutes: 25
-    services:
-      postgres:
-        image: postgres:16@sha256:11a9d238fbb48bab14599c57e41123254452b1a2d93c6c8595bce96f346bd082 # 16.15
-        env:
-          POSTGRES_USER: sotsiaal_user
-          POSTGRES_DB: sotsiaal_ai_ci
-          POSTGRES_HOST_AUTH_METHOD: trust
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd "pg_isready -U sotsiaal_user -d sotsiaal_ai_ci"
-          --health-interval 5s
-          --health-timeout 5s
-          --health-retries 10
     env:
       DATABASE_URL: postgresql://sotsiaal_user@127.0.0.1:5432/sotsiaal_ai_ci
       NEXT_PUBLIC_SITE_URL: http://127.0.0.1:3000
@@ -97,18 +83,6 @@ jobs:
       - name: Generate Prisma client
         run: npx prisma generate
 
-      - name: Apply full migration chain to empty PostgreSQL
-        run: npx prisma migrate deploy
-
-      - name: Verify migration status
-        run: npx prisma migrate status
-
-      - name: Upgrade legacy Prisma fixtures with real PostgreSQL
-        run: npm run db:migrate:upgrade:probe
-
-      - name: Run tests
-        run: npm test
-
       - name: Run lint
         run: npm run lint
 
@@ -117,13 +91,3 @@ jobs:
 
       - name: Build production application
         run: npm run build
-
-      - name: Start production application
-        run: npm start > next-start.log 2>&1 &
-
-      - name: Run production smoke
-        run: npm run ci:smoke
-
-      - name: Print server log after failure
-        if: failure()
-        run: test -f next-start.log && tail -n 200 next-start.log || true

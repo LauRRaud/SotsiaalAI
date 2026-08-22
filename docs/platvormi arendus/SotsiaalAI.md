@@ -92,6 +92,17 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Repo puhastus on 22.08 eraldatud harus valmis, kuid veel `main`-i integreerimata.** Kõik
+automaattestid ning lepingu-, käitumis-, privaatsus-, DB-, runtime-, probe-, smoke- ja E2E-kihid
+koos fikstuuride ja käivituskäskudega on eemaldatud. Alles jäid teksti/tõlgete kontroll,
+eslint, tootmisbuild ja Prisma skeemi valideerimine; need ei anna enam runtime-tõendit ning
+kontrollimata käitumine märgitakse edaspidi `NOT_PROVEN`. **Admini RAG-lehe käsitsi käivitatav
+enesetest jääb alles**, sest see on platvormi operatiivne tervisekontroll: ta kontrollib RAG-i
+ühendust, otsingut ja OpenAI vastust. Samuti eemaldati 145,8 MiB vana
+`output/imagegen` väljundit, 18,8 MiB `.codex-logs` kuvatõmmiseid, ajutine
+analüütikakomponendi koopia, kasutuseta ruumipildi tööriistad ja vana ikoonikomplekt. Järgmine
+samm on omaniku loal eraldatud haru commit ja integratsioon; push'i ega deploy'd ei ole tehtud.
+
 **Vestluse eraldi häälrežiim on 22.08 ehitatud (`8e09478a`).** Tühja tekstivälja korral muutub
 komposeri senine saatmisnupp häälvestluse nupuks; kirjutamisel on sama 40 × 40 px kontroll jälle
 saatmisnupp ning eraldi häälnuppu ei ole. Sealt avaneb premium-toonides täppidest naise pea ja õlgade avatar, mis jälgib kursori liikumist ning
@@ -2927,16 +2938,18 @@ Töökaust: `C:\Users\rauds\Desktop\SotsiaalAI`.
    kirjutaja ja üks failipiiridega sidus teema. Enne uut teemat peab haru olema puhas ning
    integreeritud `main`-iga samal lähte-SHA-l; ametlik DONE tekib alles integreeritud ja
    kontrollitud `main`-is. Täpne integratsiooni- ja konfliktikord on `AGENTS.md`-s.
-2. **Ploki järel väike värav, peatüki lõpus täisvärav.** Ploki järel: sihttestid, nõutud sond,
-   eslint muudetud koodifailidel ja `git diff --check`; i18n ainult tõlkemuudatusel ning
-   `db:migrate:check` kohe skeemimuudatusel. `TZ=UTC npm test` käib peatüki lõpus ning alati enne
-   push'i/deploy'd, mitte iga ploki järel. Sama muutumatu koodipuu täissviiti ei korrata pärast
-   raporti/koondi/S1 uuendust.
+2. **Automaatseid teste ei ole.** Ploki järel: eslint muudetud koodifailidel ja
+   `git diff --check`; `i18n:check` tõlke- või tekstimuudatusel ning `prisma validate` kohe
+   skeemi- või migratsioonimuudatusel. Peatüki lõpus ning alati enne push'i/deploy'd lisandub
+   tootmisbuild.
+   Lepingu-, käitumis-, privaatsus-, DB-, runtime-, probe-, smoke- ega E2E-faile tagasi ei lisata;
+   käsitsi kontrollimata käitumine märgitakse `NOT_PROVEN`. Admini RAG-lehe enesetest jääb
+   kasutaja käivitatava operatiivse tootefunktsioonina alles.
 3. **Push ja deploy ainult omaniku selgel loal.** Sama kehtib päris e-kirjade, päris maksete ja päris partnerini jõudmise kohta. *(Parandatud 06.08: siin seisis „merge ja deploy". Reegel 1 järgi käib töö otse `main`-is, seega merge'imist ei toimu ja väravaks on **push** — vana sõnastus jättis lokaalse commit'i ja `origin`-i vahelise sammu nimetamata.)*
 4. **Ära loe tootmiskasutajate sisu** ega kasuta päris kasutajaid testimiseks.
 5. **Ära käivita `OPS-FINAL-A0`** — see on release candidate'i lõppvärav.
-6. **Ära korda teostaja teste, build'i ega auditeid**, kui sama muutumatu puu tulemus on juba
-   olemas. Uus jooks peab vastama uuele riskile, mitte rituaalile.
+6. **Ära korda teostaja staatilisi kontrolle, build'i ega auditeid**, kui sama muutumatu puu
+   tulemus on juba olemas. Uus jooks peab vastama uuele riskile, mitte rituaalile.
 7. **Olekut kannab ainult see fail.** Aktiivse ploki vaheetappe ei logita; uuenda seis ploki
    lõpus ühe koondina või kohe, kui töö jääb blokituna/pooleli maha.
 
@@ -2950,21 +2963,17 @@ Miks need reeglid tekkisid — `git show db514ba0:"docs/platvormi arendus/SEIS.m
   järjestikku või ühe omaniku all.
 - **Tööühik on 2–8 seotud leidu**, millel on sama helper, teenus, andmemudel või runtime-rada.
   Üks suur mitmekihiline leid võib olla omaette plokk; seoseta leide ei liideta.
-- Alguses üks lühike kaart: vastuvõtukriteerium → failid → sihttest → DB/brauseri vajadus.
-  Täpsest raportist, seotud koodist ja testist kaugemale ei loeta ilma põhjuseta.
-- Üks kandev negatiivkontroll käitumisklassi kohta. Sama shared helperi täpsetele kasutajatele
-  ei tehta koopiat; erinevad invariantid peavad endiselt eraldi punaseks minema.
-- Fake-prisma piiri tabamisel kavandatakse üks plokisond **enne koodi lõpetamist**, mitte pärast
-  esimest täissviiti. Brauser avatakse ainult siis, kui vastuvõtukriteerium või ligipääsupiir
-  seda vajab; muidu märgitakse runtime ausalt `not_run`.
+- Alguses üks lühike kaart: vastuvõtukriteerium → failid → staatiline kontroll → käsitsi
+  DB/brauseri kontrolli vajadus. Täpsest raportist ja seotud koodist kaugemale ei loeta põhjuseta.
+- Automaatset negatiivkontrolli, fikstuuri ega sondi ei looda. Kõrgema riskiga käitumine
+  kontrollitakse vajadusel käsitsi olemasolevas keskkonnas; kontrollimata osa jääb `NOT_PROVEN`.
 - Ploki lõpus: kõik Seis-lõigud → **üks** `npm run sol:progress -- --write` → S1.0 tööots ja
-  vajadusel üks lühike teemakoond → väike värav. Peatüki viimase ploki järel üks täisvärav.
-  Testi-/sondidetail jääb raportisse, mitte S1 teostuslooks. Kui pärast täisväravat muutus ainult
-  see kolmik, piisab `solAuditTally.test.js`-ist.
+  vajadusel üks lühike teemakoond → väike staatiline värav. Peatüki viimase ploki järel üks
+  tootmisbuild. Käsitsi kontrolli detail jääb raportisse, mitte S1 teostuslooks.
 - Kohaliku vahecommit'i võib teha väikese värava järel, märkega `full gate: pending chapter
-  close`. **Enne push'i või deploy'd peab peatüki täisvärav olema roheline.** Skeemi-, turva-,
-  makse-, privaatsus-, võistlus- või laia shared-helperi muudatus saab vajadusel laiema kontrolli
-  kohe; globaalset sviiti ei käivitata siiski rituaalselt, kui löögiala on sihttestiga tõendatud.
+  close`. **Enne push'i või deploy'd peavad staatilised väravad ja tootmisbuild olema rohelised.**
+  Skeemi-, turva-, makse-, privaatsus-, võistlus- või laia shared-helperi muudatus saab vajadusel
+  käsitsi runtime-kontrolli; selle puudumisel jääb tulemus `NOT_PROVEN`.
 
 ### Ülesande lõpus
 

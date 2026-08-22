@@ -26,6 +26,8 @@ KOV/key.json/
 # Logs and local outputs
 *.log
 logs/
+/.codex-logs/
+/output/
 /Andmebaasi/Admebaasi-materjali-lisa/master_sources.state.json
 /Andmebaasi/Admebaasi-materjali-lisa/master_sources.korje.json
 /Andmebaasi/Admebaasi-materjali-lisa/master_sources.runtime.json
@@ -37,7 +39,10 @@ coverage/
 
 # Backups and temp files
 *.bak
+*.backup*
+*.old
 *.tmp
+*.temp
 *.patch
 *.tgz
 backups/
@@ -50,6 +55,8 @@ safety_snapshots/
 # Codex / local review artifacts
 .codex/
 .playwright-mcp/
+/.claude/worktrees/
+/handoff/
 *.codex_tmp
 *.segment.txt
 

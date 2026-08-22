@@ -2,7 +2,7 @@
 /**
  * T25 viil C (`20260802090000_org_profile_support_v1`) — ROLLBACK'i PREFLIGHT.
  *
- *   node --import ./scripts/register-node-test-loader.mjs scripts/org-profile-support-preflight.mjs
+ *   node --import ./scripts/register-node-source-loader.mjs scripts/org-profile-support-preflight.mjs
  *
  * MIKS SEE SKRIPT OLEMAS ON. Migratsioonis oli rollback'i värav kommentaarina
  * ja ta luges AINULT ORGANIZATION-režiimi profiile. Sellest ei piisa: rollback

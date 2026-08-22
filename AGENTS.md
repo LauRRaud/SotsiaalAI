@@ -32,18 +32,19 @@ peatükk. Plokk on tavaliselt 2–8 leidu, millel on sama teenus, andmemudel, he
 UI + eksport). Seoseta leide ühte plokki ei panda.
 
 1. **Kaart enne koodi, maksimaalselt üks lühike ring:** vastuvõtukriteerium → puudutatud failid
-   → sihttest → kas päris DB/brauser on nõutud. Ära tee laia repo- ega dokumendiekskursiooni.
-2. **Negatiivtõend kõigepealt.** Käitumisklassi kohta üks kandev punane kontroll; sama shared
-   helperi täpsetele koopiatele ei tehta rituaalselt sama kontrolli uuesti.
-3. **Arenduse ajal ainult sihttestid.** Käivita muutuvate failide testid; ära jooksuta täissviiti
-   iga leiu ega väikese patch'i järel.
-4. **Tõendid koonda ploki lõppu.** Sama ploki DB-invariandid katab võimalusel üks sond ja UI-rada
-   üks runtime-läbisõit.
-5. **Ploki kontroll on väike; täisvärav on peatüki kontroll.** Uuenda ploki Seis-lõigud,
-   genereeri koond ja uuenda S1.0. Ploki järel jooksuta sihttestid, nõutud sond, muudetud
-   koodifailide lint ja `git diff --check`. Kogu `TZ=UTC npm test` käib peatüki lõpus, mitte iga
-   ploki järel. Kui pärast täissviiti muutusid ainult raport, genereeritud plokk ja S1, jooksuta
-   ainult `solAuditTally.test.js`, mitte kogu sviiti uuesti.
+   → vajalik staatiline kontroll → kas käsitsi DB/brauseri kontroll on nõutud. Ära tee laia repo-
+   ega dokumendiekskursiooni.
+2. **Automaatseid teste ei looda ega käivitata.** Repo ei kanna lähtekoodi-, lepingu-, käitumis-,
+   privaatsus-, DB-, runtime-, smoke- ega E2E-teste ega nende fikstuure/proove. Erand on
+   administraatori käsitsi käivitatav RAG-i enesetest: see on platvormi operatiivne
+   tervisekontroll ja peab admini RAG-lehel alles jääma.
+3. **Arenduse ajal kasuta väikseid staatilisi kontrolle.** Lint, teksti/tõlgete kontroll ja
+   Prisma skeemi valideerimine käivad ainult siis, kui muudatus nende pinda puudutab.
+4. **Tõendid koonda ploki lõppu.** Kui vastuvõtukriteerium nõuab päris UI- või teenuserada,
+   kontrolli seda käsitsi olemasolevas keskkonnas; uut automatiseeritud sondi selleks ei kirjutata.
+5. **Ploki kontroll on väike; peatüki lõpus lisandub build.** Uuenda ploki Seis-lõigud,
+   genereeri koond ja uuenda S1.0. Ploki järel käivita asjakohased staatilised kontrollid ning
+   `git diff --check`; peatüki lõpus ja enne push'i/deploy'd ka tootmisbuild.
 
 Read-only kaardistused ja sõltumatud lõpuväravad võib käivitada paralleelselt. Sama tööpuu
 failide muutmist paralleelsetele kirjutajatele ei jagata. Paralleelseks SOL-paranduseks on kolm
@@ -72,64 +73,47 @@ tööpuu vahel.
 - **Push, merge ja deploy ainult omaniku selgel loal.**
 - Commit'i sõnum ütleb, MIS oli katki ja MIKS parandus selline on — mitte ainult mida muudeti.
 
-## Väike värav ploki järel, täisvärav peatüki lõpus
+## Väike värav ploki järel, build peatüki lõpus
 
 **Iga sidusa ploki järel:**
 
 ```
-node --import ./scripts/register-node-test-loader.mjs --test <sihttestid>
-<nõutud päris DB/runtime sond>
 npx eslint <muudetud koodifailid>
 git diff --check
 npm run i18n:check            # ainult kui sõnumikataloog või tõlkevõtmed muutusid
-npm run db:migrate:check      # kohe, kui prisma/schema.prisma muutus
+npx prisma validate          # ainult kui Prisma skeem või migratsioonid muutusid
 ```
 
 **Peatüki lõpus ning alati enne push'i või deploy'd:**
 
 ```
-TZ=UTC npm test
 npm run i18n:check
 npx eslint <muudetud failid>
-npm run db:migrate:check     # ainult kui prisma/schema.prisma muutus
+npx prisma validate         # ainult kui Prisma skeem või migratsioonid muutusid
+npm run build
 ```
 
-Täisvärav käib **üks kord peatüki lõpliku muutumatu koodipuu kohta**. Sama puu peal juba
-rohelist täissviiti ei korrata commit'i mehaanilise jagamise, raporti Seis-lõigu, genereeritud
-koondi ega S1 uuenduse pärast. Kohaliku vahecommit'i võib teha väikese värava järel; commit'i
-üleandmises märgi siis ausalt `full gate: pending chapter close`. Push'i ega deploy'd enne
-täisväravat ei tehta.
+Peatükilõpu värav käib **üks kord lõpliku muutumatu koodipuu kohta**. Sama puu peal juba rohelist
+build'i ei korrata commit'i mehaanilise jagamise, raporti Seis-lõigu, genereeritud koondi ega S1
+uuenduse pärast. Kohaliku vahecommit'i võib teha väikese värava järel; üleandmises märgi siis
+ausalt `build: pending chapter close`. Push'i ega deploy'd enne peatükilõpu väravat ei tehta.
 
-**Varasem lai kontroll on erand, mitte vaikimisi:** skeem/migratsioon, autentimine või
-autoriseerimine, maksed, privaatsus/säilitus, võistlus või mitut peatükki puudutav shared helper.
-Ka siis jooksuta kõigepealt asjakohane lai testslice/sond; kogu globaalne sviit ainult siis, kui
-muudatuse löögiala ei ole usaldusväärselt kitsendatav.
+**Kõrgema riskiga muudatus ei taasta testikihti.** Skeemi/migratsiooni, autentimise,
+autoriseerimise, maksete, privaatsuse/säilituse või võistluse muutus vajab selget käsitsi
+kontrolliplaani. Kui päris keskkonda ei kontrollitud, märgi runtime ausalt `not_run` või
+`NOT_PROVEN`; lint, build ja skeemi valideerimine ei tõenda käitumist.
 
 `TZ=UTC` ei ole kosmeetika: arendusmasin on Europe/Tallinn, server UTC — kuupäevaviga on
 lokaalselt NÄHTAMATU ja läheb rohelisena toodangusse.
 
-## Tõendamine
+## Tõendamine ilma testikihita
 
-**Enne commit'i vasta ühele küsimusele: kas see test oleks vana koodi peal LÄBI läinud?**
-
-Kui vastus ei ole pilguga selge — võistlus, võõrvõti või muu andmebaasi tasandi käitumine,
-neelatud viga, järjekord, ajastus — siis **mõõda see ära**: jooksuta sama test vana käitumise
-vastu ja nõua, et ta kukuks. Kirjuta tulemus commit'i.
-
-Otsusta sondi vajadus vastuvõtukriteeriumist **enne** esimese täissviidi käivitamist. Üks sond
-võib tõendada sama ploki mitut leidu, kui ta süstib ja mõõdab iga invariandi eraldi.
-
-Puhta ümbernimetamise, koodi kokkutõstmise või tõlkevõtme juures seda ei nõuta — seal ei ole
-vana käitumist, mille vastu jooksutada, ja väljamõeldud negatiivkontroll on rituaal.
-
-Sama küsimus käib **fikstuuri** kohta: kui muudad testi andmeid, kontrolli, et test mõõdab ikka
-oma asja. Fikstuur võib vaikselt kaotada mõõdetava omaduse, kui mõni piirmäär tema alt liigub.
-
-**`npm test` ei kasuta elavat andmebaasi (fake-prisma) ja fake EI tõenda:** referentsiaalset
-käitumist (`ON DELETE`), unikaalsuspiiranguid, võistlusi, tehingu rollback'i ega ligipääsupiiri.
-Kui leid on üks neist, kirjuta **sond päris PostgreSQL-i vastu**. Muster on olemas:
-`scripts/*-probe.mjs` (nt `payment-archive-probe.mjs`) — ajutine andmebaas + `prisma migrate
-deploy` + negatiivkontroll samas harnessis. Registreeri ta `package.json`-i.
+Staatilised kontrollid tõendavad ainult oma kitsast pinda: lint koodikuju, `i18n:check`
+sõnumikataloogide kooskõla, `prisma validate` skeemi kuju ja build kompileerumise.
+Need ei tõenda referentsiaalset käitumist, võistlusi, tehingu rollback'i, ligipääsupiire ega päris
+kasutajaliidest. Sellise nõude puhul kirjelda käsitsi kontrollitud rada ja tulemus; kontrollimata
+osa jääb `NOT_PROVEN`. Testi-, probe-, smoke- ega E2E-faile selleks reposse tagasi ei lisata.
+Admini RAG-i enesetest on kasutaja käivitatav tootefunktsioon, mitte arendussviit.
 
 ## Dev-server
 
@@ -153,11 +137,10 @@ DONE / PARTIAL / NOT_DONE" on genereeritud; käsi sinna ei lähe.
 
 1. uuenda kõigi lõpetatud leidude Seis-lõigud raportis;
 2. jooksuta ploki kohta **üks kord** `npm run sol:progress -- --write` (uuendab genereeritud
-   DONE / PARTIAL / NOT_DONE ploki; vana `npm run sol:tally -- --write` jääb tagasiühilduvaks; tegemata jätmine
-   viib `tests/scripts/solAuditTally.test.js` punaseks — see on tahtlik);
+   DONE / PARTIAL / NOT_DONE ploki; vana `npm run sol:tally -- --write` jääb tagasiühilduvaks);
 3. uuenda S1.0 tööotsa ja vajadusel teemaseisundit. Koond on maksimaalselt üks lühike lõik:
-   mis muutus inimese jaoks + järgmine plokk. Testi-, sondi- ja failidetail jääb raporti
-   Seis-lõiku ning commit'i, mitte S1 teostuslooks.
+   mis muutus inimese jaoks + järgmine plokk. Kontrolli- ja failidetail jääb raporti Seis-lõiku
+   ning commit'i, mitte S1 teostuslooks.
 
 Kolmeastmelised numbrid tulevad `npm run sol:progress` väljundist; ametliku DONE/lahtise vaate
 annab endiselt `npm run sol:tally`. Käsitsi neid kuhugi ei kirjutata.

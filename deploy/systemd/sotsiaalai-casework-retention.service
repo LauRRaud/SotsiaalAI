@@ -30,8 +30,8 @@ ExecStart=/usr/bin/flock -n /var/lock/sotsiaalai-casework-retention.lock \
   /bin/bash -lc 'cd /home/ubuntu/apps/sotsiaalai && npm run casework:retention'
 
 # Ühe jooksu ülempiir. Ilma selleta hoiaks kinni jäänud jooks LUKKU ja kõik
-# järgmised jooksud jääksid vaikselt tegemata — täpselt see seis, mille smoke
-# alles tundide pärast avastaks.
+# järgmised jooksud jääksid vaikselt tegemata. Seisu jälgitakse systemd journal'ist
+# ja `CaseWorkRetentionRun` ridadest.
 TimeoutStartSec=900
 
 # RETRY. `oneshot` + `Restart` ei ole lubatud kombinatsioon, seega kordus tuleb

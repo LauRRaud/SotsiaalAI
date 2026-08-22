@@ -26,7 +26,7 @@ kustutamine viib profiili kaasa — täpselt selle, mille viil C parandas.
 ## 2. Preflight — kohustuslik värav
 
 ```bash
-node --import ./scripts/register-node-test-loader.mjs scripts/org-profile-support-preflight.mjs
+node --import ./scripts/register-node-source-loader.mjs scripts/org-profile-support-preflight.mjs
 ```
 
 Väljundkoodid: **0** = ohutu · **1** = ei ole ohutu · **2** = kontroll ise kukkus.

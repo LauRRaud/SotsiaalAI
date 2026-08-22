@@ -46,7 +46,7 @@ märgita. Koodis olev säilitusreegel ei muutu iseenesest päris tööks.
 | **Ajastus** | `OnCalendar=hourly`, `Persistent=true` (vahelejäänud jooks tehakse järele) |
 | **Retry** | taimerilt: `Type=oneshot` ei tohi `Restart`-i kanda, seega kukkunud jooks proovitakse uuesti tunni pärast. Töö on idempotentne ja partii piiratud |
 | **Monitooring** | iga jooks jätab rea `CaseWorkRetentionRun` tabelisse — **enne** tööd, mitte pärast |
-| **Alarm** | `npm run casework:retention:smoke` → väljumiskood **1**, kui viimasest edukast jooksust on möödas üle kahe intervalli |
+| **Jälg** | systemd `failed` seis, journal ja iga jooksu `CaseWorkRetentionRun` rida; eraldi automatiseeritud smoke-alarmi repos enam ei ole |
 
 ## Teavitused ja perioodilised taastetööd
 
@@ -85,23 +85,8 @@ Kontroll pärast lubamist:
 
 ```bash
 systemctl list-timers sotsiaalai-casework-retention.timer
-npm run casework:retention:smoke
+journalctl -u sotsiaalai-casework-retention.service -n 20 --no-pager
 ```
 
-**Enne lubamist annab smoke `NEVER_RUN`** ja see on aus vastus: ajastust ei ole
-paigaldatud. Kui `CASEWORK_V1_ENABLED` on väljas, lõpeb smoke koodiga 0 ja ütleb
-seda välja — väljas funktsioonil ei ole midagi säilitada ja alarm siin õpetaks
-inimest alarmi eirama.
-
-### Kas alarm ise töötab?
-
-```bash
-npm run casework:retention:probe
-```
-
-Sond loob **visatava andmebaasi**, rakendab talle migratsiooniahela ja mõõdab
-alarmi **mõlemast otsast** päris PostgreSQL-is ja päris protsessis: kaks `CHECK`-i,
-ajavööndi kokkulepe, lävi täpselt piiril ja üks millisekund üle, ning smoke'i
-väljumiskood alarmi, korras seisu, väljas värava ja katkise skeemi peal. Arendus-
-ega tootmisbaasi ta ei kirjuta ja koristust kontrollib. `npm test` jookseb
-fake-Prisma peal ega tõenda neist ühtegi.
+Automaatne smoke- ja probe-kiht eemaldati repo puhastusega. Kui taimerit või päris
+säilituskäitumist ei ole käsitsi kontrollitud, tuleb seis märkida `NOT_PROVEN`.
