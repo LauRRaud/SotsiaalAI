@@ -352,6 +352,21 @@ J11 vea kihiline tõend:
 
 Seega ei ole J11 ühe arvu valideerimisviga. Süsteemne veaklass on loomuliku parafraasi nõrk korje koos faktiküsimuse planner'i valesti klassifitseerimise ja vale kontekstivalikuga; vastuse koostaja muudab selle ühel juhul valeks keeldumiseks ja teisel juhul enesekindlaks allikaseguks.
 
+### J11 põhjusepõhine P0-paranduskandidaat — 22.08 õhtu
+
+Lisaanalüüs kinnitas, et J11 ei vaja küsimuse sõnade asendamist ega ühe vastuse hardcode'i. Eraldatud tööpuus on nüüd rakendatud üldine ühe uuringu faktirada:
+
+1. planner eristab `specific_research_fact` päringud autori-, sünteesi- ja tavapärasest taustapäringust;
+2. esimene lisapäring otsib dokumendi identiteeti autori, teema ja allikaliigi järgi, teine sama dokumendi faktipesa järgi;
+3. registri autoriankur lubab konservatiivselt eesti nimekäändeid, näiteks `Kütt` ↔ `Küti`, kuid ei tee globaalset hägust isikuotsingut;
+4. kontekstivalik lubab arvulise või meetodiväite ainult kindlalt tuvastatud dokumendist; võrdse dokumendikandidaadi korral on tulemus fail-closed ja peab küsima täpsustust, mitte võtma naaberdokumendi arvu;
+5. järelvalidaator kontrollib, et vastuse arvud sisalduvad just valitud dokumendi mudelile renderdatud tõendis;
+6. trace eristab planner'i, mitme päringu korje, dokumendiidentiteedi, faktisegmendi, konteksti renderduse, mudelikõne ja faktivalidatsiooni ajad ning talletab dokumendivaliku põhjused.
+
+Käsitsi planner-kontrollis läksid mõlemad J11 loomulikud sõnastused uude režiimi; `Millest on Laur Raudsoo kirjutanud?` jäi autoriotsinguks ja lai mitme uuringu küsimus jäi sünteesiks. Muudetud JavaScripti lint, Python AST, `git diff --check`, i18n ja Webpacki produktsioonibuild on rohelised. Ametlik Turbopack-build ei käivitunud eraldatud worktree välise `node_modules`-symlingi tõttu; sama kood kompileerus Webpackiga, TypeScript ja 70 staatilist lehte läbisid.
+
+Seis on siiski **PARTIAL / runtime NOT_PROVEN**: kandidaat on commit'itud ainult kohalikku parandusharusse commit'ina `db20ded0`, kuid seda ei ole push'itud ega deploy'tud ning päris toodanguindeks ega autentitud `/vestlus` ei kasuta seda koodi. 22.08 kell 17:34:34 UTC oli mõõdetud `origin/main` `0970f7b27c60c5e27eab4859d8a6511d995a0730`, serveri HEAD `9cad5105fc30d68f1df7bb084f79a59e68b110d7`; frontend, RAG ja research-worker olid aktiivsed. Allikapaneeli eraldi P0 on endiselt **NOT_PROVEN** ning seda ei maskeerita retrieval'i paranduse osaks.
+
 ### 10/10 avaldamisvärav
 
 | värava osa | seis | põhjus |

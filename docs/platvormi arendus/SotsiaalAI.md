@@ -92,6 +92,8 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**J11 ühe uuringu faktipäringu P0-paranduskandidaat on 22.08 kohalikul commit'il `db20ded0`, kuid runtime on NOT_PROVEN.** Planner eristab nüüd ühe uuringu faktiküsimuse autoriotsingust ja laiast sünteesist, otsib enne dokumendi identiteeti ning lubab arve ainult sama tuvastatud dokumendi renderdatud tõendist. Eesti nimekäändeid arvestatakse registri piires konservatiivselt; ebaselge dokumendivalik keeldub naaberdokumendi arvust. Trace eristab planner'i, korje, dokumendiidentiteedi, faktisegmendi, konteksti, mudelikõne ja validaatori ajad. Lint, Python AST, diff-kontroll, i18n ja Webpacki produktsioonibuild on rohelised; teste ei ole ega loodud, worktree symlink blokeerib ainult Turbopacki lokaalse buildi. Commit'i ei ole push'itud ega deploy'tud. Mõõdetud 22.08 17:34:34 UTC: `origin/main` `0970f7b27`, server `9cad5105`, kolm teenust aktiivsed. Järgmine värav on omaniku loaga deploy ning J11 kahe loomuliku sõnastuse otsene otsing + autentitud sama vestluse vastus; allikapaneel jääb eraldi P0-ks.
+
 **Repo puhastus on 22.08 toodangus (`456f840d`).** Kõik automaattestid ning lepingu-,
 käitumis-, privaatsus-, DB-, runtime-, probe-, smoke- ja E2E-kihid koos fikstuuride ja
 käivituskäskudega on eemaldatud. Alles jäid teksti/tõlgete kontroll, eslint, tootmisbuild ja

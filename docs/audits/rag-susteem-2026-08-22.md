@@ -798,3 +798,11 @@ SotsiaalAI-l on päris hübriidne, versioonitud ja turvapiiridega RAG-süsteem: 
 Süsteemi tehniline olemasolu on tõendatud. Algse kvaliteediseirega on tõendatud mitu süsteemset viga ning nende vastu tehtud P0-parandused on nüüd toodangus commit'il `73d381a7`. Deploy-järgne kontroll tõendas lapse eraldamise fakti paranemist, kuid Elin Küti juhtum paljastas endiselt loomuliku parafraasi korje-, planner'i- ja kontekstivaliku vea. Terviklik sisuline töökindlus on seetõttu **NOT_PROVEN**, kuni sama muutumatu commit läbib nii otsese otsingu kui ka autentitud vestluse ning allikad toetavad vastuse väiteid.
 
 Hetkehinnang: **PARTIAL, mitte 10/10**.
+
+## 25. J11 teine P0-paranduskandidaat — runtime veel tõendamata
+
+22.08 õhtul lisati eraldatud tööpuus süsteemne `specific_research_fact` rada. See ei muuda üht küsimust „otsingusõbralikumaks”, vaid teeb kaks eri otsust: esmalt tuvastab autorist, teemast, pealkirjast ja registritunnustest konkreetse dokumendi, alles seejärel otsib ja lubab sama dokumendi faktisegmendi. Kui identiteet jääb ebaselgeks, ei tohi vastuse koostaja kasutada teise uuringu arve. Eesti nimekäändeid käsitletakse registri piires konservatiivselt ning numbriline järelvalidaator näeb sama valitud dokumendi tõendit, mis mudelile renderdati.
+
+Lisatud trace kannab eraldi dokumendikandidaadid, valikupõhjused ja ajad: planner, mitme päringu korje, dokumendiidentiteet, faktisegment, konteksti renderdus, esimene mudelikõne ja faktivalidatsioon. See võimaldab järgmises päris kontrollis eristada planner'i, korje, järjestuse, kontekstivaliku ja vastuse koostamise kihti.
+
+Staatiline seis: JavaScripti lint, Python AST, `git diff --check`, i18n ning Webpacki produktsioonibuild rohelised; teste projektis ei ole ega loodud. Turbopacki build on selles eraldatud worktree's keskkonna tõttu blokitud, sest `node_modules` on välisele kaustale viitav symlink. Kandidaat on kohalikus parandusharus commit'il `db20ded0`. Runtime-seis: **NOT_PROVEN**, sest commit'i ei ole push'itud ega deploy'tud. 22.08 kell 17:34:34 UTC oli `origin/main` `0970f7b27c60c5e27eab4859d8a6511d995a0730`, server `9cad5105fc30d68f1df7bb084f79a59e68b110d7`; kolm teenust olid aktiivsed.
