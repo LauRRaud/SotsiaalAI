@@ -92,6 +92,18 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Vestluse eraldi häälrežiim on 22.08 ehitatud (`8e09478a`).** Vestluse komposerist avaneb
+premium-toonides täppidest naise pea ja õlgade avatar, mis jälgib kursori liikumist ning
+reageerib kuulamisele, mõtlemisele ja rääkimisele. `gpt-realtime-2.1-mini` teeb ainult
+vooruvahetuse ja transkriptsiooni; vastus käib endiselt olemasoleva vestluse RAG-i,
+allikate, kriisiraja, privaatsuskontrolli ja kvootide kaudu. Hääl loeb ette kuni kolm lauset,
+täisvastus ja allikad jäävad vestlusse. Iga seanss on opt-in, kuni 5 minutit, lõpeb 90 sekundi
+tegevusetuse järel ning reserveerib enne ühendust kogu võimaliku STT-mahu; lehe peitmine,
+lahkumine, piir, viga ja käsitsi lõpetamine sulgevad WebRTC, mikrofoni ja helirajad. Sihttõend:
+28/28 hääletesti, i18n, lint, `git diff --check`, tootmisbuild ning töölaua ja mobiili
+brauserivaade ilma konsoolivigade ja Realtime-kutseta. Päris autentitud
+mikrofon → Realtime → RAG → TTS rada on **NOT_PROVEN**, sest tasulist seanssi ei avatud.
+
 **Tööalade sisuvaadete kiirmenüü ja leheinfo on 22.08 parandatud.** Kõik
 `/vestlus?workspace=…` tööalad kasutavad nüüd sisu klaaspinda ning lehe nime, tagasinupu ja
 lehepõhise infoga alumist kiirmenüüd; päris vestlus jääb teadlikult ilma klaaspinna ja
@@ -1899,6 +1911,25 @@ kvoodid), mis kannab platvormi lubadusi.
 
 ### Tehtud
 
+**Eraldi häälvestlus täpp-avatariga.**
+Vestluse lehel saab avada telefonikõne laadse pinna, mille keskmes on umbes 10 000
+valguspunktist moodustatud naise pea, kael ja õlad. Pea liigub kursori suunas, õlad püsivad
+rahulikud ning kuulamise, mõtlemise ja rääkimise olekud muudavad punktide liikumist ja
+helilaineid. Sinise-oranži asemel kasutab vaade grafiidi, sügava ploomi, pärli, suitsuse
+violeti ja šampanja-roosikulla paletti. Subtiitrid, allesjäänud aeg, vaigistamine, allikad ja
+alati nähtav lõpetamisnupp jäävad ekraanile; dikteerimismikrofon on endiselt eraldi funktsioon.
+
+Realtime ei ole teine vastusemootor: `gpt-realtime-2.1-mini` tuvastab kõnevooru ja teeb
+transkriptsiooni, valmis tekst läheb olemasolevasse vestlusse ning vastus sünnib sama RAG-i,
+allikate, kriisi-, privaatsus- ja kvoodilepinguga nagu kirjutades. Hääl annab kuni kolme lause
+tuuma, täisvastus koos allikatega jääb tekstina vestlusse; vahele rääkimine peatab nii
+ettelugemise kui poolelioleva vastuse. Mikrofon avaneb alles nupust „Alusta". Seansil on
+5 minuti kõvapiir, hoiatus 45 sekundit enne lõppu ja 90 sekundi jõudeolekupiir. Enne tasulise
+ühenduse loomist reserveeritakse olemasolevast `STT_SECONDS` kvoodist kogu 300 sekundit;
+lõpetamisel kantakse kasutusse ainult serverikella järgi tegelikult möödunud aeg. Sama
+seansivõtit ei saa uue tasulise ühenduse avamiseks korrata ja uusi algusi piiratakse kolmele
+minutis.
+
 **Dikteerimine vestlusaknas.**
 Kui kirjutamine on raske — käed on kinni, silmad väsinud, olukord ärev või kirjatöö lihtsalt
 ei ole inimese tugevus — saab oma mure vestlusaknasse rääkida. Mikrofon on komposeris
@@ -2066,7 +2097,7 @@ iOS/Safari peal, ja art. 28 paberitöö. Kumbki ei blokeeri midagi täna.
 
 | Idee | Mis see on | Mis seda avab |
 |---|---|---|
-| **Kõnerežiim** | eraldi pind nagu telefonikõne: lahtine mikrofon, VAD teeb vooruvahetuse (~0,7 s vaikus), elavad subtiitrid + allikakaardid ekraanil, barge-in kohustuslik. Arhitektuur: kaskaad (STT → olemasolev torustik → voogav TTS) → siht „õhuke hääl, paks server". **Uusi teenusepakkujaid ei vaja, uut kvooti ei looda.** „3 lause leping": hääl annab tuuma, täisvastus koos allikatega maandub tekstina | omaniku hinnastusotsus (kas kõigil tasulistel või 14,99+) |
+| ~~Kõnerežiim~~ — **TEHTUD 22.08** | eraldi premium täpp-avatariga pind, Realtime-vooruvahetus ja transkriptsioon, olemasolev RAG-vastus, elavad subtiitrid, allikad, barge-in ning kolme lause häälvastus. Tasulise paketi värav, 5 min kõvapiir ja 90 s jõudeolekupiir on koodis | — |
 | **Häälkäsklused — „kaks rada, üks mikrofon"** | ruuter valib raja: sõnastikuvaste → kohalik refleks (sõnastik olemas, `roomDock.js`); muu → LLM kui kavatsuste tõlk. **AI ei saa kunagi vaba kätt ekraani üle** — sama piiratud kavatsuste sõnastik mis nooleklahvidel; navigeerimine kohe, loomine/saatmine/kustutamine kinnitusega | faas 1 (sõnastik + esiletõst) on otsustevaba |
 | ~~Eesti TTS suveräänsus — TartuNLP~~ | **TEHTUD JA LUKUS 03.08** — eesti ettelugemine käib toodangus `kylli` häälega, tasuta. Ise-hostimist ei tehta. Vt „Eesti TTS — teema lukus" ülal | — |
 | **Lokaalsed mudelid** | Whisper/whisper.cpp eesti dikteerimiseks seadmes; VAD; eesti TTS-mudel; PII-märkaja | päästikud: riigipartneri „kus heli töödeldakse?", kasvav pilvearve, võrguta välitöö |
@@ -2433,9 +2464,10 @@ kinnitab tingimused ja lülitab sisse. Enne seda ei näe rada ükski inimene.
 
 #### Hääl ja multimodaalsus
 
-Kõnerežiim, häälkäsklused („kaks rada, üks mikrofon"), eesti TTS suveräänsus, lokaalsed
-mudelid, häälvestlus supervisiooniruumis, kaamera ja žestid — täiskirjeldused koos
-blokeerijatega on **S3**-s, siin ei dubleerita.
+Kõnerežiim on 22.08 tehtud. Lahti jäävad häälkäsklused („kaks rada, üks mikrofon"), lokaalsed
+mudelid, häälvestlus supervisiooniruumis ning kaamera ja žestid; eesti TTS suveräänsus on
+samuti juba tehtud ja lukus. Täiskirjeldused koos blokeerijatega on **S3**-s, siin ei
+dubleerita.
 
 ---
 
@@ -3365,13 +3397,12 @@ KOV-V2-A0.
 Juhtprintsiip: **hääl ja kaamera on liides, mitte teine aju** — iga sisuline vastus käib läbi
 sama tekstitorustiku (RAG + allikad + kriisirada + kvoodid), mis kannab platvormi lepingut.
 
-1. **Realtime-kõnemudel + RAG:** töötab tool-calling'uga. Arhitektuurivalik: kaskaad
-   (STT → olemasolev torustik → voogav TTS; ~1,5–2,5 s, leping muutmata) → siht on hübriid
-   „õhuke hääl, paks server" (realtime-mudel hoiab ainult vooru ja kutsub KOHUSTUSLIKULT
-   sisu-tooli; ~1 s tunnetuslikult). Puhas kõne-kõne (mudel vastab ise) EI sobi — vastuseleping
-   nõrgeneks. Allikad kuvatakse ekraanil rääkimise ajal. **LiveKit on toodangus olemas** —
-   häältorustik ehitada LiveKit Agents mustris, Realtime-mini on vahetatav komponent, mitte
-   arhitektuuri omanik.
+1. **Realtime-kõnemudel + RAG — TEHTUD 22.08:** WebRTC kaudu ühenduv
+   `gpt-realtime-2.1-mini` hoiab ainult kõnevooru ja transkriptsiooni; mudeli oma vastamine on
+   välja lülitatud (`create_response: false`). Valmis lausung läheb olemasolevasse
+   tekstitorustikku ning sealt RAG-i, allikatesse, kriisi- ja privaatsusrajale. Puhas
+   kõne-kõne ei ole arhitektuuri omanik. Allikad ja täisvastus kuvatakse samas vestluses,
+   hääl loeb ette kuni kolm lauset.
 2. **Hääl „ilma viivituseta" = käskude ja vestluse lahutamine.** OLEMASOLEV komplekt
    (kontrollitud koodist 28.07): STT = OpenAI `gpt-4o-mini-transcribe`
    (`lib/transcription/provider.js`, failipõhine), TTS = Google Cloud `et-EE-Standard-A`
@@ -3404,16 +3435,15 @@ sama tekstitorustiku (RAG + allikad + kriisirada + kvoodid), mis kannab platvorm
    küsida heli@eki.ee. Eelistus on (a).
    Aktiveerimispäästikud endised: riigipartneri „kus heli töödeldakse?", kasvav pilvearve,
    võrguta välitöö.
-   **Kõnerežiimi majandus (omanik 28.07: „hea ja soodne; piirang kasutajal, millegi muu
+   **Kõnerežiimi majandus (teostatud 22.08; omaniku lähteküsimus 28.07: „hea ja soodne; piirang kasutajal, millegi muu
    arvelt; vastused 10–15 s; kas RAG kannab pikka kõnet; nuppudeta"):** (a) kaskaad on
-   struktuurselt odavam ja jookseb OLEMASOLEVATE teenustega — STT = senine OpenAI
-   mini-transcribe (voogavas režiimis), mõistmine = olemasolev kvooditud torustik, TTS =
-   senine Google/OpenAI lausekaupa; Realtime-mini arveldab helisekundeid mõlemas suunas ja on
-   hilisem „tunnetuse-turbo", mitte alus (transport on LiveKitis nagunii); (b) **uut kvooti EI
+   struktuurselt odavam ja jookseb OLEMASOLEVATE teenustega — Realtime-mini teeb ainult
+   sisendheli vooruvahetuse ja transkriptsiooni, mõistmine = olemasolev kvooditud torustik,
+   TTS = senine TartuNLP/brauseri ettelugemine; väljundheli Realtime-mudel ei loo. (b) **uut kvooti EI
    looda** — kõne põletab olemasolevaid arvesteid (`STT_SECONDS` + `CHAT_ASSISTANT_REPLY` +
-   `TTS_CHARS`), mis ONGI „millegi muu arvelt"; lisada ainult kõne maksimumpikkus (~10 min) +
-   päevane häälelimiit; tasandi-värav (kas kõigil tasulistel või 14,99+) = omaniku
-   hinnastusotsus; (c) **3 lause leping**: 10–15 s ≈ 2–3 lauset ≈ 150–250 tm; hääl annab tuuma,
+   `TTS_CHARS`), mis ONGI „millegi muu arvelt"; seansi maksimumpikkus on 5 minutit,
+   jõudeolekupiir 90 sekundit ja enne ühendust reserveeritakse kogu 300 sekundi võimalik
+   STT-kulu; tasandi-värav on aktiivne tasuline tellimus; (c) **3 lause leping**: hääl annab tuuma,
    TÄISVASTUS koos allikatega maandub alati tekstina vestlusesse — lahendab korraga UX-i,
    kulu ja allika-lubaduse; (d) RAG kannab pikka kõnet juba täna (vestluslõng + ajalugu);
    lisada otsingu-ruuter pöörde kohta (jätkuküsimus ei käivita otsingut), lausekaupa voogav
