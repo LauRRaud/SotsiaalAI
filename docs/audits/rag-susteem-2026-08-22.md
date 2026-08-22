@@ -787,8 +787,8 @@ Need arvud ei ole töökindluse protsent.
 
 | seis | arv | tähendus |
 |---|---:|---|
-| DONE | **2/75** | J17 ja V06 vastasid viimase deploy järel õigesti; kuvatud atribuutika on eraldi NOT_PROVEN |
-| PARTIAL | **15/75** | 14 muud juhtumit on tõendatud ainult kandidaadi otsingukihis; J11 mõõdeti end-to-end ja kukkus läbi |
+| DONE | **0/75** | ükski deploy-järgne juhtum ei täitnud korraga õige otsingu, õige vastuse ja kontrollitava kuvatud allika nõuet |
+| PARTIAL | **17/75** | J17/V06 vastus oli õige, kuid atribuutika NOT_PROVEN; 14 muud juhtumit on ainult otsingukihis tõendatud; J11 mõõdeti end-to-end ja kukkus läbi |
 | NOT_PROVEN | **58/75** | viimase commit'i ülejäänud otsingu- ja vestluskordus puudub |
 
 ## 24. Lõpphinnang

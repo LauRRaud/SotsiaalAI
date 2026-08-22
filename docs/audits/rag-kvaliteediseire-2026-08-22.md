@@ -402,8 +402,8 @@ Paranduskandidaadi lõppvärav eraldi:
 
 | seis | arv | tähendus |
 |---|---:|---|
-| DONE | **2/75** | J17 ja V06 vastasid deploy-järgses päris autentitud vestluses õigesti; atribuutika jääb eraldi NOT_PROVEN |
-| PARTIAL | **15/75** | 14 muud sihitud otsingujuhtumit on ainult otsingukihis rohelised; J11 mõõdeti end-to-end ja kukkus läbi |
+| DONE | **0/75** | ükski deploy-järgne juhtum ei täitnud korraga õige otsingu, õige vastuse ja kontrollitava kuvatud allika nõuet |
+| PARTIAL | **17/75** | J17/V06 vastus oli õige, kuid atribuutika NOT_PROVEN; 14 muud juhtumit on ainult otsingukihis rohelised; J11 mõõdeti end-to-end ja kukkus läbi |
 | NOT_PROVEN | **58/75** | ülejäänud juhtumite deploy-järgne autentitud vastamiskiht või täielik kordus puudub |
 
 Omaniku tõstatatud Laur Raudsoo reprodutseerimiskatse ei kuulu 75 põhijuhtumi hulka ja on tabelis eraldi. Nii ei paisuta lisakontroll põhimaatriksi nimetajat.
