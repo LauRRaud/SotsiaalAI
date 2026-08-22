@@ -38,6 +38,10 @@ const LANDMARK = {
   neckY: 504,
   shoulderY: 700,
   bottomY: 1023,
+  /* Torso alumine lõige. Omanik märkis punase joonega (22.08): rindkeret oli
+     liiga palju ja pealagi puutus ekraani ülaserva. Joon mõõdetud tema pildilt
+     maailma-y -0.95 peale, mis on lähtepildi rida 947. */
+  cropY: 947,
   centerX: 769,
   /* Kõrvamügar: reaprofiil hüppab poollaiuselt 184 -> 203 ja langeb 382 järel
      tagasi 157 peale. Kolju enda poollaius on selles vöötmes ~185. */
@@ -407,6 +411,8 @@ export async function buildAvatarCloud({ source = SOURCE, target = TARGET, quiet
       }
       if (!isPeak) continue;
 
+      if (y > LANDMARK.cropY) continue;
+
       const rig = rigWeight(y);
       if (rig <= 0.001 && v < BODY_LINE_LUM && hash01(x, y) > BODY_FILL_KEEP) {
         bodyDropped += 1;
@@ -482,6 +488,7 @@ export async function buildAvatarCloud({ source = SOURCE, target = TARGET, quiet
   if (!count) throw new Error("punktipilv jäi tühjaks — kontrolli läve ja lähtefaili");
 
   const midY = (LANDMARK.crownY + LANDMARK.bottomY) / 2;
+  const cropWorldY = (midY - LANDMARK.cropY) / unit;
   let extent = 0;
   const world = new Float32Array(count * 3);
   for (let i = 0; i < count; i += 1) {
@@ -533,6 +540,7 @@ export async function buildAvatarCloud({ source = SOURCE, target = TARGET, quiet
   log(`keha hõrendus: ${bodyDropped} tuhmi täidetäppi välja, jooned puutumata`);
   log(`suu: y ${((midY - LANDMARK.mouthY) / unit).toFixed(3)}, z ${(mouthDepth / unit).toFixed(3)}`
     + ` | pöördetelg y ${((midY - LANDMARK.pivotY) / unit).toFixed(3)}`);
+  log(`lõige: maailma-y ${cropWorldY.toFixed(3)} (pildirida ${LANDMARK.cropY})`);
   log(`ulatus: ${scale.toFixed(3)} pea-kõrgust | fail: ${(blob.length / 1024).toFixed(0)} KB`);
   log(`kirjutatud: ${target}`);
   return { count, scale, bytes: blob.length };

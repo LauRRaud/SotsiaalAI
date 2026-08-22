@@ -309,6 +309,9 @@ export default function VoicePointAvatar({ status = "idle", audioLevel = 0, labe
       program.setBlendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
 
       const mesh = new Mesh(gl, { mode: gl.POINTS, geometry, program });
+      // Pilv on tsentreeritud lähtepildi keskele; pärast alumist lõiget on
+      // figuuri kese 0.085 võrra ülalpool, see toob ta kaadri keskele tagasi.
+      mesh.position.y = -0.085;
 
       const reducedMotion = document.documentElement.dataset.reduceMotion === "1"
         || window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
@@ -333,7 +336,9 @@ export default function VoicePointAvatar({ status = "idle", audioLevel = 0, labe
         renderer.setSize(width, height);
         camera.perspective({ aspect: width / height });
         // Kõrgus mahutatakse tervikuna, õlad tohivad kaadrist välja minna.
-        const fitHeight = 2.34 / (2 * Math.tan(halfFov));
+        // 2.65 vs figuuri 2.07 jätab ~11% veerise üles ja alla: pealagi ei
+        // tohi ekraani ülaserva puutuda (omanik 22.08).
+        const fitHeight = 2.65 / (2 * Math.tan(halfFov));
         const fitWidth = 1.62 / (2 * Math.tan(halfFov) * (width / height));
         camera.position.z = Math.max(fitHeight, fitWidth);
         // gl_PointSize on kaadripuhvri pikslites, seega kannab ta dpr-i.

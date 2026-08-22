@@ -227,6 +227,12 @@ export function useRealtimeVoice({
     }
 
     if (type === "conversation.item.input_audio_transcription.failed") {
+      // Põhjus jõuab ainult siia. Ilma temata oli 22.08 võimatu öelda, kas
+      // transkriptsioon kukkus mudeli, sõnavaravihje või heli pärast — ja
+      // mikrofoni ei saa arendusmasinast katsetada.
+      if (process.env.NODE_ENV !== "production") {
+        console.warn("[voice] transcription failed", payload?.error || payload);
+      }
       setPartialCaption("");
       setErrorKey("chat.voice.transcription_failed");
       setStatus("listening");
