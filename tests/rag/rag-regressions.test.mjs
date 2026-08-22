@@ -87,6 +87,8 @@ describe("faktiküsimuse planner", () => {
     const queries = buildSpecificResearchFactQueries([], "", plan);
     const twoPercent = queries.find(entry => /(?:^|\s)2%(?:\s|$)/u.test(entry.query) && !/10%|6%/u.test(entry.query));
     assert.equal(twoPercent?.min_top_k, 16);
+    assert.match(twoPercent.query, /eakate.*vanemaealiste.*vagivalla.*uuring.*2%/u);
+    assert.doesNotMatch(twoPercent.query, /vagivallauuring.*vagivallauuring/u);
     assert.equal(resolveMultiQueryTopK({ index: 4, topK: 18, queryCount: 6, minTopK: twoPercent.min_top_k }), 16);
   });
 
