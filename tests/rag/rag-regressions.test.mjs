@@ -53,6 +53,13 @@ describe("faktiküsimuse planner", () => {
     });
   }
 
+  test("säilitab protsendid faktipäringu täpsete otsinguankrutena", () => {
+    const plan = buildQuestionPlan({
+      message: "Eakate vägivallauuring: mis olid 10%, 6% ja 2% näidud?"
+    });
+    assert.deepEqual(plan.document_fact_terms, ["10%", "6%", "2%"]);
+  });
+
   test("ei neela õigus-, KOV-, autori- ega sünteesipäringut faktirajale", () => {
     assert.equal(buildQuestionPlan({ message: "Mida ütleb SHS § 15?" }).mode, "legal_exact");
     assert.equal(buildQuestionPlan({ message: "Millised on Tartu linna koduteenuse tingimused?" }).mode, "kov_service_or_benefit");
@@ -265,6 +272,19 @@ describe("täpse faktivastuse värav", () => {
       }]
     });
     assert.equal(result.passed, true);
+  });
+
+  test("ei luba tõlgendada protsendi n-väärtust valimi suuruseks ega tuletada uut isikute arvu", () => {
+    const result = validateExactFactAnswer({
+      message: "Kui palju üle 75-aastaseid oli kuritegevusega kokku puutunud?",
+      reply: "Üle 75-aastastest oli kokku puutunud 2% ehk 100 inimese suuruses valimis 2 inimest.",
+      sources: [{
+        id: "older-violence-2025",
+        evidenceText: "(1) Vägivald vanemaealiste vastu.\nÜle 75-aastastest oli viimase aasta jooksul kuritegevusega kokku puutunud 2% (n=100)."
+      }]
+    });
+    assert.equal(result.passed, false);
+    assert.equal(result.trace.reason, "numeric_relation_mismatch");
   });
 });
 
