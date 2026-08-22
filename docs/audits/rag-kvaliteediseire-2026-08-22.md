@@ -2,6 +2,8 @@
 
 Kuupäev: 22.08.2026
 
+> **Jätkuseis:** see fail kirjeldab algset auditit ja selle tollast paranduskandidaati. Hilisemad parandused deploy'ti kuni commit'ini `08cbd94a`. Praegune proovitud/parandatud/tõendamata kokkuvõte on failis [rag-susteem-2026-08-22.md](./rag-susteem-2026-08-22.md).
+
 Mõõteaken: 04:52–06:20 Europe/Tallinn
 
 Testitud commit: `e580be85c76fe3f2be19249198f3d4bc2aed059f`

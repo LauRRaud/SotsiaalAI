@@ -5111,6 +5111,176 @@ def _fetch_document_sibling_candidates(
         per_document=max(1, min(12, int(per_document or 1))),
     )
 
+def _select_fact_document_shortlist(
+    query: str,
+    chroma_where: Optional[Dict[str, object]],
+    initial_results: List[Dict[str, object]],
+    max_documents: int = 12,
+) -> Dict[str, object]:
+    """Select document identities before searching for evidence inside them.
+
+    A document may enter the expanded shortlist only through a checkable
+    identity anchor. Dense rank alone is deliberately not such an anchor: if
+    no document reaches the threshold, the old bounded five-document fallback
+    remains in use instead of widening a weak semantic guess.
+    """
+    limit = max(1, min(20, int(max_documents or 1)))
+    query_tokens = _search_tokens(query, limit=32)
+    acronym_tokens = {
+        _normalize_search_text(word)
+        for word in re.findall(r"[^\W_]+", str(query or ""), flags=re.UNICODE)
+        if len(word) >= 3 and word.isupper()
+    }
+    candidates: Dict[str, Dict[str, object]] = {}
+
+    def ensure_candidate(doc_id: object) -> Optional[Dict[str, object]]:
+        key = str(doc_id or "").strip()
+        if not key:
+            return None
+        existing = candidates.get(key)
+        if existing is None:
+            existing = {
+                "doc_id": key,
+                "best_rank": None,
+                "result_hits": 0,
+                "channels": set(),
+                "reasons": set(),
+                "identity_score": 0.0,
+            }
+            candidates[key] = existing
+        return existing
+
+    for rank, result in enumerate(initial_results, start=1):
+        doc_id = str(result.get("doc_id") or result.get("docId") or "").strip()
+        candidate = ensure_candidate(doc_id)
+        if candidate is None:
+            continue
+        candidate["result_hits"] = int(candidate.get("result_hits") or 0) + 1
+        previous_rank = _to_int(candidate.get("best_rank"))
+        candidate["best_rank"] = min(previous_rank or rank, rank)
+        channels = {
+            str(value).strip()
+            for value in result.get("retrieval_channels") or []
+            if str(value or "").strip()
+        }
+        candidate["channels"].update(channels)
+        title = str(result.get("title") or "").strip()
+        if title:
+            title_counts = _lexical_token_counts(_normalize_search_text(title), limit=100)
+            matched_title_tokens = [
+                token for token in query_tokens
+                if _lexical_token_frequency(token, title_counts)
+            ]
+            acronym_match = any(
+                token in acronym_tokens and _lexical_token_frequency(token, title_counts)
+                for token in query_tokens
+            )
+            if acronym_match:
+                candidate["reasons"].add("title_acronym")
+            if len(matched_title_tokens) >= 2:
+                candidate["reasons"].add("title_terms")
+            elif any(len(token) >= 9 for token in matched_title_tokens):
+                candidate["reasons"].add("title_distinctive_term")
+
+    try:
+        registry_fact_ids = set(_registry_fact_description_shortlist_doc_ids(query, chroma_where, limit=limit))
+    except Exception:
+        logger.exception("fact document registry shortlist lookup failed")
+        registry_fact_ids = set()
+    try:
+        registry_author_ids = set(_registry_author_shortlist_doc_ids(query, chroma_where, limit=limit))
+    except Exception:
+        logger.exception("fact document author shortlist lookup failed")
+        registry_author_ids = set()
+    dense_title_ids = set(_dense_article_anchor_doc_ids(query, initial_results, limit=5))
+
+    for doc_id in registry_fact_ids:
+        candidate = ensure_candidate(doc_id)
+        if candidate is not None:
+            candidate["reasons"].add("registry_fact")
+    for doc_id in registry_author_ids:
+        candidate = ensure_candidate(doc_id)
+        if candidate is not None:
+            candidate["reasons"].add("author_exact")
+    for doc_id in dense_title_ids:
+        candidate = ensure_candidate(doc_id)
+        if candidate is not None:
+            candidate["reasons"].add("dense_title_anchor")
+
+    channel_weights = {
+        "registry_fact": 4.5,
+        "exact_phrase": 4.0,
+        "author_match": 3.5,
+        "title_match": 3.0,
+    }
+    reason_weights = {
+        "registry_fact": 4.5,
+        "author_exact": 3.5,
+        "dense_title_anchor": 3.0,
+        "title_acronym": 3.0,
+        "title_terms": 3.0,
+        "title_distinctive_term": 1.5,
+    }
+    for candidate in candidates.values():
+        score = sum(channel_weights.get(channel, 0.0) for channel in candidate["channels"])
+        score += sum(reason_weights.get(reason, 0.0) for reason in candidate["reasons"])
+        hit_count = int(candidate.get("result_hits") or 0)
+        if hit_count >= 2:
+            score += min(1.5, 0.5 + ((hit_count - 2) * 0.25))
+            candidate["reasons"].add("repeated_result_hits")
+        candidate["identity_score"] = round(score, 4)
+
+    anchored = [
+        candidate for candidate in candidates.values()
+        if float(candidate.get("identity_score") or 0) >= 3.0
+    ]
+    anchored.sort(key=lambda item: (
+        -float(item.get("identity_score") or 0),
+        _to_int(item.get("best_rank")) or 10**9,
+        str(item.get("doc_id") or ""),
+    ))
+    if anchored:
+        selected = anchored[:limit]
+        strategy = "anchored_document_identity_v1"
+    else:
+        fallback: List[Dict[str, object]] = []
+        seen = set()
+        for result in initial_results:
+            doc_id = str(result.get("doc_id") or result.get("docId") or "").strip()
+            if not doc_id or doc_id in seen:
+                continue
+            seen.add(doc_id)
+            candidate = candidates.get(doc_id) or {
+                "doc_id": doc_id,
+                "best_rank": len(fallback) + 1,
+                "result_hits": 1,
+                "channels": set(),
+                "reasons": set(),
+                "identity_score": 0.0,
+            }
+            fallback.append(candidate)
+            if len(fallback) >= 5:
+                break
+        selected = fallback
+        strategy = "ranked_fallback_v1"
+
+    return {
+        "strategy": strategy,
+        "threshold": 3.0,
+        "doc_ids": [str(item.get("doc_id") or "") for item in selected],
+        "candidates": [
+            {
+                "doc_id": str(item.get("doc_id") or ""),
+                "identity_score": float(item.get("identity_score") or 0),
+                "best_rank": _to_int(item.get("best_rank")),
+                "result_hits": int(item.get("result_hits") or 0),
+                "channels": sorted(str(value) for value in item.get("channels") or []),
+                "reasons": sorted(str(value) for value in item.get("reasons") or []),
+            }
+            for item in selected
+        ],
+    }
+
 def _fetch_fact_segment_candidates(
     segment_embeddings: List[List[float]],
     segment_queries: List[str],
@@ -5120,21 +5290,30 @@ def _fetch_fact_segment_candidates(
     *,
     is_general_search: bool,
     per_document: int,
+    document_ids: Optional[List[str]] = None,
     max_documents: int = 3,
 ) -> List[Dict[str, object]]:
     """Search each question segment inside already identified documents."""
     if not segment_embeddings and not segment_queries:
         return []
 
+    document_limit = max(1, min(20, int(max_documents or 1)))
     doc_ids: List[str] = []
-    for result in initial_results:
-        doc_id = str(result.get("doc_id") or result.get("docId") or "").strip()
-        if not doc_id:
-            continue
-        if doc_id not in doc_ids:
+    for value in document_ids or []:
+        doc_id = str(value or "").strip()
+        if doc_id and doc_id not in doc_ids:
             doc_ids.append(doc_id)
-        if len(doc_ids) >= max(1, min(5, int(max_documents or 1))):
+        if len(doc_ids) >= document_limit:
             break
+    if not doc_ids:
+        for result in initial_results:
+            doc_id = str(result.get("doc_id") or result.get("docId") or "").strip()
+            if not doc_id:
+                continue
+            if doc_id not in doc_ids:
+                doc_ids.append(doc_id)
+            if len(doc_ids) >= min(5, document_limit):
+                break
     if not doc_ids:
         return []
 
@@ -7409,6 +7588,21 @@ def _execute_search(
         requested_top_k,
         journal_chunks_per_document=payload.journal_chunks_per_document,
     )
+    fact_document_shortlist = (
+        _select_fact_document_shortlist(
+            payload.query,
+            chroma_where,
+            flat,
+            max_documents=12,
+        )
+        if deep_document_fact_search
+        else {
+            "strategy": "disabled",
+            "threshold": None,
+            "doc_ids": [],
+            "candidates": [],
+        }
+    )
     try:
         fact_segment_candidates = _fetch_fact_segment_candidates(
             segment_embeddings,
@@ -7418,7 +7612,8 @@ def _execute_search(
             version_registry,
             is_general_search=is_general_search,
             per_document=payload.journal_chunks_per_document,
-            max_documents=5,
+            document_ids=fact_document_shortlist.get("doc_ids") or [],
+            max_documents=12,
         )
     except Exception:
         logger.exception("fact segment retrieval failed")
@@ -7652,7 +7847,8 @@ def _execute_search(
             "dense_article_anchor_document_count": len(dense_article_doc_ids),
             "sibling_max_documents": 3 if deep_document_fact_search else 1,
             "sibling_candidate_count": len(sibling_candidates),
-            "fact_segment_max_documents": 5 if deep_document_fact_search else 0,
+            "fact_segment_max_documents": 12 if deep_document_fact_search else 0,
+            "fact_document_shortlist": fact_document_shortlist,
             "fact_segment_candidate_count": len(fact_segment_candidates),
             "current_version_post_filter": require_current_version,
             "lexical_strategy": lexical_fetch.get("strategy") or "corpus_scan",
