@@ -6,7 +6,10 @@ import { validateExactFactAnswer } from "../../lib/chat/factContract.js";
 import { normalizePageReferences } from "../../lib/chat/pageRanges.js";
 import { buildSpecificResearchFactQueries } from "../../lib/chat/queryPlanner.js";
 import { buildQuestionPlan } from "../../lib/chat/questionPlanner.js";
-import { selectSpecificResearchFactGroups } from "../../lib/chat/retrievalContextAssembler.js";
+import {
+  selectSingleSourceNumericFactGroups,
+  selectSpecificResearchFactGroups
+} from "../../lib/chat/retrievalContextAssembler.js";
 import { extractExplicitSourceYears } from "../../lib/chat/retrievalPlanning.js";
 import { buildSourceAttribution } from "../../lib/chat/sourceAttribution.js";
 
@@ -42,6 +45,7 @@ describe("faktiküsimuse planner", () => {
     "Mitu lapse perest eraldamise otsust uuringus vaadeldi ja mis aasta otsused need olid?",
     "Laste eraldamise otsused: arv ja aasta?",
     "Eakate vägivallauuring: mis olid 10%, 6% ja 2% näidud?",
+    "Kui palju üle 60-aastasi oli 2023. aastal kuriteoohvrite ja ohvriabisse pöördunute seas ning mitu üle 75-aastast oli viimase aasta jooksul kuritegevusega kokku puutunud?",
     "Millal tehakse sotsiaalvaldkonna koolitajate e-kursusega seotud järelhindamine ja kelle hinnangud sinna kaasatakse?"
   ];
 
@@ -71,6 +75,17 @@ describe("faktiküsimuse planner", () => {
     assert.match(queries[0], /\bvagivalla\b/u);
     assert.match(queries[0], /\buuring\b/u);
     assert.match(queries[1], /10% 6% 2%/u);
+    assert.ok(queries.some(query => /(?:^|\s)2%(?:\s|$)/u.test(query) && !/10%|6%/u.test(query)));
+  });
+
+  test("laiendab vanusepiiriga faktiküsimuse vanemaealiste otsingusõnavaraks", () => {
+    const plan = buildQuestionPlan({
+      message: "Kui palju üle 60-aastasi oli 2023. aastal kuriteoohvrite ja ohvriabisse pöördunute seas ning mitu üle 75-aastast oli viimase aasta jooksul kuritegevusega kokku puutunud?"
+    });
+    const queries = buildSpecificResearchFactQueries([], "", plan).map(entry => entry.query);
+    assert.equal(plan.mode, "specific_research_fact");
+    assert.match(queries[0], /\bvanemaealiste\b/u);
+    assert.match(queries[0], /\beakate\b/u);
   });
 
   test("ei neela õigus-, KOV-, autori- ega sünteesipäringut faktirajale", () => {
@@ -298,6 +313,28 @@ describe("täpse faktivastuse värav", () => {
     });
     assert.equal(result.passed, false);
     assert.equal(result.trace.reason, "numeric_relation_mismatch");
+  });
+
+  test("kolme protsendi küsimus nõuab samast dokumendist kõigi kolme protsendi lõike", () => {
+    const result = selectSingleSourceNumericFactGroups(
+      "Eakate vägivallauuring: mis olid 10%, 6% ja 2% näidud?",
+      [{ bodies: ["10% (n=640) ja 6% (n=227)"] }]
+    );
+    assert.equal(result.expectedCount, 3);
+    assert.equal(result.evidenceCount, 2);
+    assert.equal(result.sufficient, false);
+  });
+
+  test("säilitab allika n-väärtuse loendusena ega nimeta seda valimiks", () => {
+    const result = validateExactFactAnswer({
+      message: "Mida näitas 2% vanemaealiste kohta?",
+      reply: "Üle 75-aastastest oli 2% (n=100) viimase aasta jooksul kuritegevusega kokku puutunud.",
+      sources: [{
+        id: "older-violence-2025",
+        evidenceText: "(1) Vägivald vanemaealiste vastu.\nÜle 75-aastastest oli viimase aasta jooksul kuritegevusega kokku puutunud 2% (n=100)."
+      }]
+    });
+    assert.equal(result.passed, true);
   });
 });
 
