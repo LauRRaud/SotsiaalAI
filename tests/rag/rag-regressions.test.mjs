@@ -381,6 +381,16 @@ describe("täpse faktivastuse värav", () => {
     assert.equal(result.sufficient, false);
   });
 
+  test("küsitud protsente ei asenda sama artikli muud protsendid", () => {
+    const result = selectSingleSourceNumericFactGroups(
+      "Eakate vägivallauuring: mis olid 10%, 6% ja 2% näidud?",
+      [{ bodies: ["2% (n=100), 9% (n=225) ja 11% puutusid eri nähtustega kokku."] }]
+    );
+    assert.equal(result.expectedCount, 3);
+    assert.equal(result.evidenceCount, 1);
+    assert.equal(result.sufficient, false);
+  });
+
   test("renderduse ette tõusevad sama dokumendi kõiki küsitud protsente katvad lõigud", () => {
     const [group] = prioritizeRequestedNumericEvidence(
       "Eakate vägivallauuring: mis olid 10%, 6% ja 2% näidud?",
