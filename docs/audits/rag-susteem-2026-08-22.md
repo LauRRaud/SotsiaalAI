@@ -3,7 +3,7 @@
 Kuupäev: 22.08.2026
 Tööharu: `codex/rag-quality-repair-20260822`
 Varasem toodangusse viidud RAG-paranduste lähtecommit: `08cbd94ac86597911e22e3731ee812c717f04110`
-Praegune testitud RAG-loogika, toodangu `HEAD` ja `origin/main`: `771795e2c2b3f74ea8362e1cd9bbd4ba8729d3d0` (mõõdetud 22.08.2026 kell 20:40:16 UTC)
+Testitud RAG-loogika SHA: `771795e2c2b3f74ea8362e1cd9bbd4ba8729d3d0`; runtime-kontrolli ajal 22.08.2026 kell 20:40:16 UTC olid ka toodangu `HEAD` ja `origin/main` samal SHA-l. Hilisem dokumentatsiooni commit ei nimeta runtime-tõendit enda tõendiks.
 Põhjusepõhised parandused on jõudnud toodangusse commit'ijadana `73d381a7` → `735ff837` → `7f3aa503` → `faf6ff14` → `3c53611f` → `771795e2`. Viimase SHA vastu on samas autentitud vestluses läbitud kogu kaheksa parafraasi plokk; 7/8 juhtumit läbis ning V04 jäi tõendatud veaks. Kogu 75 juhtumi lõppvärav ei ole tehtud.
 Seis: **PARTIAL — süsteemi ei ole tõendatud 10/10 töökindlaks**
 
