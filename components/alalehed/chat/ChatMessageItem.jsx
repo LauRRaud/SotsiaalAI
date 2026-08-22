@@ -109,6 +109,7 @@ const ChatMessageItem = memo(function ChatMessageItem({
   isSpeaking = false,
   onSpeak,
   messageSources = [],
+  onShowSources,
   isStreaming = false,
   completionStatus = null,
   onRetry,
@@ -400,33 +401,12 @@ const ChatMessageItem = memo(function ChatMessageItem({
             </svg>
           </button>
           {hasMessageSources ? (
-            <details data-chat-message-sources="true">
-              <summary aria-label={sourcesLabel} title={sourcesTitle} />
-              <ol>
-                {messageSources.map((source, sourceIndex) => {
-                  const urls = Array.isArray(source?.allUrls)
-                    ? source.allUrls.filter(Boolean)
-                    : [];
-                  const pageText = String(source?.pageText || "").trim();
-                  return (
-                    <li key={source?.key || sourceIndex}>
-                      <div>{String(source?.label || sourcesLabel)}</div>
-                      {pageText ? <div>{pageText}</div> : null}
-                      {urls.map((url, urlIndex) => (
-                        <a
-                          key={`${source?.key || sourceIndex}-url-${urlIndex}`}
-                          href={url}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          {urls.length > 1 ? `${sourcesLabel} ${urlIndex + 1}` : sourcesLabel}
-                        </a>
-                      ))}
-                    </li>
-                  );
-                })}
-              </ol>
-            </details>
+            <button
+              type="button"
+              aria-label={sourcesLabel}
+              title={sourcesTitle}
+              onClick={() => onShowSources?.(messageSources)}
+            />
           ) : null}
           {messageTime ? (
             <time dateTime={messageTime.iso}>
