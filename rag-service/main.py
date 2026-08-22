@@ -4678,6 +4678,15 @@ def _fetch_lexical_candidates(
                 body_only=True,
             )
             if authored_scored:
+                for candidate in authored_scored:
+                    channels = [
+                        str(channel)
+                        for channel in candidate.get("channels") or []
+                        if str(channel or "").strip()
+                    ]
+                    if "author_match" not in channels:
+                        channels.append("author_match")
+                    candidate["channels"] = channels
                 authored_limit = max(0, min(max(1, top_k), RAG_LEXICAL_TOP_K))
                 return {
                     "candidates": _select_lexical_candidates(
