@@ -15,9 +15,31 @@ import {
   selectPersonSourceGroups,
   selectSingleSourceNumericFactGroups,
   selectGroupsWithPreferredSourceYear,
+  shouldCarryMunicipalityFromHistory,
   shouldIncludeContextAuthors,
   shouldUseReportedPracticeInstruction
 } from "../../lib/chat/retrievalContextAssembler.js";
+
+test("municipality history is not carried into independent research and journal fact questions", () => {
+  for (const message of [
+    "MAPPA kohtumised – kui tihti ja mitu neid kolmes Virumaa linnas oli?",
+    "Mis olid erihooldekodude kaardistuse kolm protsenti?",
+    "Laste eraldamise otsused: arv ja aasta?",
+    "Mitu intervjuud tehti töötamise toetamise uuringus, millised need olid ja kuidas andmeid analüüsiti?"
+  ]) {
+    assert.equal(shouldCarryMunicipalityFromHistory(message), false, message);
+  }
+});
+
+test("municipality history is carried only for clear service follow-ups", () => {
+  for (const message of [
+    "Kas koduteenus on tasuta?",
+    "Milliseid teenuseid ja toetusi seal pakutakse?",
+    "Aga lastega peredele?"
+  ]) {
+    assert.equal(shouldCarryMunicipalityFromHistory(message), true, message);
+  }
+});
 
 test("multi-source synthesis compacts context so every selected source gets evidence space", () => {
   const options = buildRagContextBudgetOptions({

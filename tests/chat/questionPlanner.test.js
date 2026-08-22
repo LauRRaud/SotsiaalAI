@@ -172,3 +172,16 @@ test("Question Planner does not mistake generic who-questions for named people",
     assert.notEqual(result.mode, "person_source_lookup", message);
   }
 });
+
+test("Question Planner does not mistake broad journal synthesis wording for an author name", () => {
+  for (const message of [
+    "Kuidas käsitlevad eri Sotsiaaltöö artiklid lapse osalemist otsustes?",
+    "Mida räägivad eri Sotsiaaltöö artiklid digivahenditest ja tehisintellektist sotsiaaltöös?"
+  ]) {
+    const result = plan(message);
+
+    assert.equal(result.mode, "overview_synthesis", message);
+    assert.equal(result.needs_multiple_sources, true, message);
+    assert.equal(result.person_name, undefined, message);
+  }
+});
