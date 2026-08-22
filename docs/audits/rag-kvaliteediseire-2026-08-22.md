@@ -2,7 +2,7 @@
 
 Kuupäev: 22.08.2026
 
-> **Jätkuseis:** see fail kirjeldab algset auditit ja selle tollast paranduskandidaati. Hilisemad parandused deploy'ti kuni commit'ini `08cbd94a`. Praegune proovitud/parandatud/tõendamata kokkuvõte on failis [rag-susteem-2026-08-22.md](./rag-susteem-2026-08-22.md).
+> **Jätkuseis:** see fail säilitab algse auditi ajaloolise lähtejoone ja lisab allpool iga deploy-järgse korduse. Praegune testitud RAG-loogika on `771795e2`; 22.08 kell 20:40:16 UTC olid kohalik HEAD, `origin/main` ja server samal SHA-l, kolm teenust aktiivsed, `/vestlus` vastas 200 ning health näitas 49 727 vektorit / 6089 dokumenti. Süsteemikaart on failis [rag-susteem-2026-08-22.md](./rag-susteem-2026-08-22.md).
 
 Mõõteaken: 04:52–06:20 Europe/Tallinn
 
@@ -408,23 +408,51 @@ Commit `7f3aa503fe5f54a92d4b9c04cf017e8987decae3` push'iti ja deploy'ti omaniku 
 
 Kõigi kolme vastuse allikapaneel avati ning `Escape` sulges dialoogi ja taastas fookuse vastuse allikanupule. See tõendab põhilise klaviatuuritee, mitte JAWS-i ega kogu paneeli ligipääsetavust. Kaartide bibliograafiline sisu oli õige, kuid leheküljenumbrite järjekord oli endiselt sorteerimata. V06 trace'i `year_mode=not_requested` on observability-ebakõla, sest `claim_values` sisaldas 2018 ja 2022 ning mõlemad kontrolliti samast allikast; see ei muutnud nende vastuste sisulist tulemust.
 
+### Parafraasiploki järelkontroll ja uued süsteemsed veaklassid — SHA `771795e2`
+
+Pärast `7f3aa503` vahefinišit tehti kolm eraldatud üldparandust: `faf6ff14` normaliseeris kuvatud leheküljeviited ja allikadialoogi fookuspiiri, `3c53611f` lahutas andmeaasta allika ilmumisaastast ning tugevdas hõreda teemaankru dokumendiidentiteeti, `771795e2` eristas kestuse kalendriaastast ja lõpetas mitme faktipesa käsitlemise ühe koguarvuna. Korpust, indeksit, andmebaasi ega serveri keskkonda ei muudetud.
+
+Parandused ei ole küsimusepõhised: koodis ei ole erihooldekodu protsente, e-kursuse kuue kuu vastust ega vanemaealiste arve. Püsiv regressioonikomplekt kontrollib planner'it, uuringudokumendi identiteeti, aasta rolli, ühe renderdatud allika arvukatvust, arvsõnade normaliseerimist, valitud ja kuvatud source ID võrdsust ning leheküljevahemikke. Esimese ploki neli uut kontrolli olid vana käitumisega 4/19 punased; teise ploki neli uut kontrolli olid vana käitumisega 4/23 punased. Parandatud puul läbis `npm run test:rag-regression` 23/23 kontrolli.
+
+Kõik alltoodud vestluspäringud tehti samas jätkuvas autentitud `/vestlus` vestluses, ilma „Uus vestlus” workaround'ita. PASS nõudis õiget fakti ning seda toetavat kuvatud allikat; pealkirjavaste üksi ei lugenud.
+
+| juhtum | otsene RAG / kontekst | autentitud vastus ja aeg | kuvatud allikas | lõppseis |
+|---|---|---|---|---|
+| V01 MAPPA | **PASS**, varasem sama indeksi sihtmõõtmine 1549 ms; lõigus olid nelja kuu intervall ja Rakvere/Jõhvi/Narva 5/7/5 | **PASS**, lõpp u 20,3 s | MAPPA väiteid toetav ajakirjaallikas | **DONE** |
+| V02 erihooldekodud | **PASS**, 2899 ms; sama artikli lõigus 25% / 45% / 30% | **PASS**, 31,2 s; teine loomulik vorm 22,3 s, mõlemad 25% kergem teenus / 45% ööpäevaringne juhendamine / 30% pidev hooldus | „Suurte erihooldekodude ümberkorraldamine on hoolikalt läbimõeldud protsess” | **DONE** |
+| V03 supervisioon | **PASS**, 5167 ms; 2017, igas maakonnas viis kohtumist | **PASS**, esimene tekst u 8,5 s, lõpp u 9,1 s | vastuse arvu ja eraldi 2020 tausta toetavad allikad | **DONE** |
+| V04 vanemaealiste vägivald, lühivorm | **FAIL** viimasel SHA-l: õige 2025 artikkel ei jõudnud viie rühmitatud kandidaadi sekka | **FAIL**, vale keeldumine 15 970 / 15 990 ms | puudus | **FAIL** |
+| V04 vanemaealiste vägivald, pikk vorm | õige Anu Lepsi 2025 artikkel valiti | **FAIL**, 30 810 / 30 820 ms: 10% = 640 ja 6% = 227 olid õiged, kuid `2% (n=100)` tõlgendati valesti „100 inimese valim, 2 inimest” | õige Anu Lepsi artikkel, kuid vastus ei järginud tõendi arvude rolle | **FAIL** |
+| V05 e-kursuse järelmõju | **PASS**: õige Marina Vaino artikkel, identiteet `high`, kestus ei muutunud aastanõudeks | **PASS**, 14 350 / 14 370 ms; pikem loomulik vorm 26 690 / 26 700 ms: kuus kuud, osaleja ja tööandja | Marina Vaino, 2026, „Uus e-kursus pakub tuge sotsiaalvaldkonna koolitajatele” | **DONE** |
+| V06 lapse eraldamine | **PASS**, 5648 ms; 169 / 2018 | **PASS**, korduses u 39 s; varasemad kaks vormi 26 718 ja 27 092 ms | üks Merli Lauri 2022 artikkel, andmeaasta 2018 säilis | **DONE** |
+| V07 inimarengu aruanne | **PASS**, õiges lõigus 380 lehekülge, 71 autorit ja stsenaariumid | **PASS**, lõpp u 25,9 s | Merike Sisaski 2023 artikkel | **DONE** |
+| V08 Perepesad | **PASS**, algses otseses mõõtmises 906 ms | **PASS**, esimene tekst u 5,1 s, lõpp u 7,4 s; 2022 asukohad ja hilisemad lisandused eristati | kaks vastuse ajakihti toetavat allikat | **DONE** |
+
+Parafraasiploki tulemus on seega **7/8 algset juhtumit end-to-end PASS**. V02 ja V05 parandused on mõlemad kahe sõnastusega reprodutseeritud. V04 on endiselt FAIL ning näitab kahte eri kihti:
+
+1. **korje/kandidaatide recall:** protsendiankrutega lühiküsimus ei too õiget dokumenti faktisüvaotsingu kandidaatideni;
+2. **vastuse koostamine ja faktivalidatsioon:** õige tõendi korral kontrollitakse praegu arvutokeneid, kuid mitte struktureeritud seost `protsent + n + sihtrühm + aasta`. Seetõttu läbis semantiliselt vale, kuid samad arvud sisaldav vastus värava.
+
+V04 ei ole metaandmeviga ning seda ei parandata küsimuse sõnade või ühe vastuse hardcode'iga. Järgmine põhjusepõhine P0 on arvuliste tõendituplite (`protsent`, `n`, sihtrühm, mõõdik, aeg) ekstraheerimine ja sama rollijaotuse nõudmine vastuses; eraldi tuleb parandada numbriliste ankrutega lühiküsimuse kandidaatide recall.
+
 ### 10/10 avaldamisvärav
 
 | värava osa | seis | põhjus |
 |---|---|---|
-| paranduskandidaadi kogu 75 juhtumi otsene otsing | **NOT_PROVEN** | parandatud veaklasside sihtjuhtumid on otsingukihis rohelised, kuid kogu muutumatu kandidaadi 75/75 kordus on tegemata |
-| deploy-järgne sama vestluse kontroll | **PARTIAL** | J11 kaks vormi ning J17/V06 on praegusel lõpp-SHA-l PASS; kogu ülejäänud maatriksit ei korratud |
-| allikaloendi päris brauserikäitumine | **PARTIAL** | J11, J17 ja V06 toetavad allikakaardid avanesid ning serverijäljes valitud=kuvatud; kõigi vastusetüüpide atribuutika on mõõtmata |
-| commit | **TEHTUD** | lõpp-SHA `7f3aa503`; omaniku otsene luba |
-| push | **TEHTUD** | `origin/main` = `7f3aa503` |
-| deploy | **TEHTUD** | serveri HEAD = `7f3aa503`; frontend, RAG ja research worker aktiivsed |
+| paranduskandidaadi kogu 75 juhtumi otsene otsing | **NOT_PROVEN** | parandatud veaklasside sihtjuhtumid on otsingukihis rohelised, kuid kogu muutumatu `771795e2` 75/75 kordus on tegemata |
+| deploy-järgne sama vestluse kontroll | **PARTIAL** | J11/J17 ja parafraasiploki 7/8 juhtumit on PASS; V04 on tõendatud FAIL ning teised plokid kordamata |
+| allikaloendi päris brauserikäitumine | **PARTIAL** | kontrollitud faktivastuste paneelid, leheküljevahemikud, Escape ja fookuse taastamine töötasid; JAWS ning kõik vastusetüübid on mõõtmata |
+| püsiv RAG-regressioonikomplekt | **TEHTUD, piiratud** | 23/23 PASS; kaitseb tõendatud planner'i, identiteedi, arvufakti ja atribuutika lepinguid, mitte mudeli kogu sisulist käitumist |
+| commit | **TEHTUD** | testitud RAG-loogika SHA `771795e2`; omaniku otsene luba |
+| push | **TEHTUD** | `origin/main` = `771795e2` |
+| deploy | **TEHTUD** | serveri HEAD = `771795e2`; frontend, RAG ja research worker aktiivsed; 20:40:16 UTC health 49 727 / 6089 |
 
-Järeldus: deploy-järgne päris vestlus tõendab J11 kahe sõnastuse parandust, kuid mõõtmata ülejäänud maatriks ja endiselt 10–20 sekundi vastuseaeg välistavad kogu RAG-i 10/10 hinnangu.
+Järeldus: deploy-järgne päris vestlus tõendab J11 ning parafraasiploki enamiku parandusi, kuid V04 enesekindel semantiline arvuviga, mõõtmata ülejäänud maatriks ja kuni u 39-sekundilised faktivastused välistavad kogu RAG-i 10/10 hinnangu.
 
 ## Prioriteedid ja järgmised põhjusepõhised parandused
 
-1. **P0 – faktikatvuse värav enne vastust.** Arvuküsimuse vastus tohib kasutada arve ainult samast teemakohasest allikarühmast; puuduva katvuse korral ei tohi kõrvalaruande protsente asendada.
-2. **P0 – allikate kuvamine tööle.** Iga sisuline väide peab olema seotud nähtava, avatava allikakaardiga. Nupu olemasolu ilma avaneva sisuta ei ole atribuutika.
+1. **P0 – struktureeritud arvutõendi värav.** Ekstraheerida tõendist ja vastusest vähemalt `protsent + n + sihtrühm + mõõdik + aeg`; sama arvutokenite hulk ei tohi lubada muuta `n=100` valimiks ja tuletada sellest uut `2 inimest` väidet.
+2. **P0 – numbriliste ankrutega lühiküsimuse recall.** 10% / 6% / 2% kombinatsioon peab suutma tuua õige dokumendi faktikandidaatide sekka ka siis, kui pealkiri kasutab „vanemaealised”, küsimus „eakad”. Edu nõuab sihtlõiku, mitte pealkirja.
 3. **P0 – sama vestluse rate-limit runtime-lahknevus.** Logida tegelik scope, limit, window, remaining ja `Retry-After` ilma kasutaja/IP väärtust avaldamata; kinnitada, miks 60 s vaikeaken ei taastunud vähemalt seitsme minuti jooksul.
 4. **P1 – autoripäringu autentitud vastamisvärav.** Otsingu 10/10 sihtvalim on roheline; kinnitada nüüd, et vastuse koostamine kasutab autorimeta tõendit ega taanda inimest vale koondartikli rolliks.
 5. **P1 – faktipäringu parafraasimaatriks.** Dokumendisisene järelotsing ja registrikirjelduse ankur on sihttestis olemas; korrata vähemalt pika, lühikese ja teise sõnavaraga küsimusega üle kõigi parandatud faktiklasside.
@@ -454,27 +482,30 @@ Kvaliteedi lõppvaade eraldi:
 
 Seega on tõendatud vaid **21 end-to-end õiget juhtumit 75-st**, kuid seda arvu ei tohi kasutada väitena „RAG on 28% töökindel”: 25 juhtumi vastamiskiht on tõendamata, valim on sihipäraselt kihiline, kategooriate raskus erineb ning sama vestluse pikkus paljastas eraldi planner'i ja rate-limit riskid.
 
-### Praeguse release'i end-to-end värav
+### Praeguse release'i end-to-end värav — SHA `771795e2`
 
 | seis | arv | tähendus |
 |---|---:|---|
-| DONE | **4/75** | J11 faktiküsimus ja parafraas ning J17/V06: õige otsing või tõendipakett, õige vastus ja toetav kuvatud allikas lõpp-SHA-l |
-| PARTIAL | **14/75** | juhtumid on praegu tõendatud ainult otsingukihis, mitte täielikus autentitud vastamis- ja allikaväravas |
-| NOT_PROVEN | **57/75** | ülejäänud juhtumite lõpp-SHA otsingu- ja autentitud vastamiskiht või täielik kordus puudub |
+| DONE | **10/75** | J11 faktiküsimus ja parafraas, J17 ning V01, V02, V03, V05, V06, V07 ja V08: õige tõend, vastus ja toetav kuvatud allikas |
+| PARTIAL | **10/75** | juhtumid on praegu tõendatud ainult otsingukihis, mitte täielikus autentitud vastamis- ja allikaväravas |
+| FAIL | **1/75** | V04: lühivormis korje ebaõnnestus; pikemas vormis õige allikas, kuid enesekindlalt vale `2% (n=100)` tõlgendus |
+| NOT_PROVEN | **54/75** | ülejäänud juhtumite lõpp-SHA otsingu- ja autentitud vestluskordus puudub |
+
+`DONE + PARTIAL + FAIL + NOT_PROVEN = 75`. FAIL hoitakse eraldi, et tõendatud valet vastust ei peidetaks PARTIAL-i ega NOT_PROVEN-i sisse. Need arvud ei ole töökindluse protsent.
 
 Omaniku tõstatatud Laur Raudsoo reprodutseerimiskatse ei kuulu 75 põhijuhtumi hulka ja on tabelis eraldi. Nii ei paisuta lisakontroll põhimaatriksi nimetajat.
 
 ## Jääkriskid
 
 - täpne UI-s kasutatud kontekstilõik ja kärpekoht ei ole kasutajale nähtav;
-- J11/J17/V06 allikakaardid on tõendatud, kuid ülejäänud vastuste väitepõhine atribuutika on mõõtmata;
+- J11/J17 ning parafraasiploki PASS-vastuste allikad on kontrollitud, kuid ülejäänud vastuste väitepõhine atribuutika on mõõtmata;
 - aktiivsete ajakirjadokumentide kanoniline arv on lahendamata;
 - uue vestluse taastumiskatse ei tõenda algse pika vestluse töökindlust;
 - KOV-i kontaktid, tasud ja taotlemisviisid on ajas muutuvad ning vajavad eraldi värskuseväravat;
 - `partial=false` ja roheline health ei kata sisulist katvust;
-- projektis ei ole praegu automaatteste; build, lint, süntaks ja otsingu PASS ei tõenda autentitud vestluse sisulist töökindlust;
+- projektis on nüüd 23 püsivat sihitud RAG-regressioonitesti; need ei asenda päris indeksi, mudeli, pika vestluse ega 75 juhtumi runtime-väravat;
 - J11 kaks vormi on lõpp-SHA-l rohelised, kuid see ei tõenda teisi parafraasi-, arvusõna- ega dokumendiklasside kombinatsioone;
-- J11 11–20 sekundi ning V06 27 sekundi viivitus on sisuliselt õige vastuse kõrval endiselt kasutatavusrisk; kolm kordust ei tõenda p50/p95 stabiilsust.
+- faktivastuste u 7–39 sekundi hajuvus on kasutatavusrisk; kiirus ei tõenda õigsust ning praegune valim ei tõenda p50/p95 stabiilsust.
 
 ## Võrdlusmaterjalid
 

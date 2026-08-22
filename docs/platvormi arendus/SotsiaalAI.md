@@ -92,13 +92,13 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**J11 ning lapse eraldamise J17/V06 faktipäringute P0-parandused on 22.08 toodangus päris vestluses tõendatud (`7f3aa503`).** Üldine `specific_research_fact` rada tuvastab konkreetse uuringudokumendi, välistab õigusallika uuringuidentiteedist, lubab ühepunktilise skoorivahe lahendada ainult vähemalt kahe teematermini unikaalsel pealkirjaedul ning käsitleb konservatiivselt ka kompaktset `teema: faktipesa + faktipesa` küsimust; tõeline dokumendiviik jääb fail-closed. Eesti arvsõnad ja numbrikujud on võrreldavad ning vastuse arvud peavad pärinema ühest renderdatud allikast. Samas autentitud vestluses ilma „Uus vestlus” workaround'ita läbisid J11 kaks vormi `7/6/1`, J17 `169/2018` ning V06 loomulik ja kompaktne vorm `169/2018`; kõigil avanes toetav allikapaneel ja valitud=kuvatud source ID. `origin/main`, server ja mõõdetud brauser olid SHA-l `7f3aa503`; kolm teenust aktiivsed, health 49 727 vektorit / 6089 dokumenti. Praeguse release'i end-to-end seis on **DONE 4/75 · PARTIAL 14/75 · NOT_PROVEN 57/75**; see ei ole töökindluse protsent ega kogu RAG-i 10/10 hinnang. Järgmine töö on parafraasi- ja autoriploki läbimine samal külmutatud RAG-loogikal ning jõudluse p50/p95 mõõtmine enne uut häälestust.
+**RAG-i kaheksa parafraasi plokk on 22.08 samas autentitud vestluses läbi mõõdetud SHA-l `771795e2`: 7/8 PASS, V04 FAIL.** J11/J17 ning V01, V02, V03, V05, V06, V07 ja V08 läbisid õige tõendi, vastuse ja kuvatud allika värava; V02 ja V05 korrati kahe loomuliku sõnastusega. V04 lühivorm ei toonud õiget 2025 artiklit kandidaatideni ning pikem vorm leidis õige allika, kuid tõlgendas `2% (n=100)` valesti 100 inimese valimiks ja väitis sellest tuletatud kahte inimest. See tõendab, et ühe allika arvutokenite kontroll ei asenda struktureeritud `protsent + n + sihtrühm + mõõdik + aeg` faktirollide kontrolli. Omaniku loal on nüüd püsiv kitsas RAG-regressioonikomplekt 23/23; see ei ole vana täissviidi ega runtime-värava asendus. 20:40:16 UTC olid kohalik HEAD, `origin/main` ja server samal SHA-l, kolm teenust aktiivsed, `/vestlus` 200 ja health 49 727 / 6089. Praeguse release'i seis on **DONE 10/75 · PARTIAL 10/75 · FAIL 1/75 · NOT_PROVEN 54/75**; see ei ole töökindluse protsent ega 10/10. Järgmine töö on V04 põhjusepõhine faktituplite ja numbrilise recall'i parandus, seejärel kümme autorijuhtumit.
 
-**Repo puhastus on 22.08 toodangus (`456f840d`).** Kõik automaattestid ning lepingu-,
+**Repo puhastus on 22.08 toodangus (`456f840d`).** Tollal eemaldati kõik automaattestid ning lepingu-,
 käitumis-, privaatsus-, DB-, runtime-, probe-, smoke- ja E2E-kihid koos fikstuuride ja
 käivituskäskudega on eemaldatud. Alles jäid teksti/tõlgete kontroll, eslint, tootmisbuild ja
 Prisma skeemi valideerimine; need ei anna runtime-tõendit ning kontrollimata käitumine märgitakse
-edaspidi `NOT_PROVEN`. **Admini RAG-lehe käsitsi käivitatav enesetest jäi alles**, sest see on
+edaspidi `NOT_PROVEN`. Hiljem lisati omaniku loal tagasi ainult kitsas püsiv RAG-regressioonikomplekt; üldist testi- ega E2E-taristut ei taastatud. **Admini RAG-lehe käsitsi käivitatav enesetest jäi alles**, sest see on
 platvormi operatiivne tervisekontroll: ta kontrollib RAG-i ühendust, otsingut ja OpenAI vastust.
 Samuti eemaldati vanad pildi- ja kuvatõmmiseväljundid, ajutised koopiad, kasutuseta tööriistad ja
 vana ikoonikomplekt. Deploy järel olid serveri tööpuu ja SHA kooskõlas `origin/main`-iga, frontend,
@@ -2946,11 +2946,11 @@ Töökaust: `C:\Users\rauds\Desktop\SotsiaalAI`.
    kirjutaja ja üks failipiiridega sidus teema. Enne uut teemat peab haru olema puhas ning
    integreeritud `main`-iga samal lähte-SHA-l; ametlik DONE tekib alles integreeritud ja
    kontrollitud `main`-is. Täpne integratsiooni- ja konfliktikord on `AGENTS.md`-s.
-2. **Automaatseid teste ei ole.** Ploki järel: eslint muudetud koodifailidel ja
+2. **Üldist automaattestitaristut ei ole; omaniku loal on üks püsiv kitsas RAG-regressioonikomplekt.** RAG-i planner'i, retrieval'i, faktivalidaatori või atribuutika muutus peab läbima `npm run test:rag-regression`; see sihttest ei tõenda päris indeksi ega autentitud vestluse vastust. Muude plokkide järel: eslint muudetud koodifailidel ja
    `git diff --check`; `i18n:check` tõlke- või tekstimuudatusel ning `prisma validate` kohe
    skeemi- või migratsioonimuudatusel. Peatüki lõpus ning alati enne push'i/deploy'd lisandub
    tootmisbuild.
-   Lepingu-, käitumis-, privaatsus-, DB-, runtime-, probe-, smoke- ega E2E-faile tagasi ei lisata;
+   Uut üldist lepingu-, käitumis-, privaatsus-, DB-, runtime-, probe-, smoke- ega E2E-taristut omaniku uue loata tagasi ei lisata;
    käsitsi kontrollimata käitumine märgitakse `NOT_PROVEN`. Admini RAG-lehe enesetest jääb
    kasutaja käivitatava operatiivse tootefunktsioonina alles.
 3. **Push ja deploy ainult omaniku selgel loal.** Sama kehtib päris e-kirjade, päris maksete ja päris partnerini jõudmise kohta. *(Parandatud 06.08: siin seisis „merge ja deploy". Reegel 1 järgi käib töö otse `main`-is, seega merge'imist ei toimu ja väravaks on **push** — vana sõnastus jättis lokaalse commit'i ja `origin`-i vahelise sammu nimetamata.)*
