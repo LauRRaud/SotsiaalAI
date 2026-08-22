@@ -5,12 +5,20 @@
  * binaarne punktipilv, mida brauser joonistab. Pilti ennast avatarina EI
  * kasutata — temast võetakse ainult TÄPID: nende asukoht, värv ja heledus.
  *
- * Sügavus (z) ei ole pildis olemas, seega tuletatakse ta siluetist:
- *   1. alfamaskist kaugusteisendus (mitu pikslit servani),
- *   2. rea kohalik maksimum annab selle lõike "poollaiuse",
- *   3. z = sügavustegur * sqrt(1 - (1 - n)^2), kus n on normaliseeritud kaugus.
- * See on ellipsi profiil: servas z=0, keskel maksimum. Sügavustegur sõltub
- * kehaosast — pea on laiusest sügavam, rindkere selgelt lamedam.
+ * Sügavus (z) ei ole pildis olemas ja tuleb tuletada. Esikoor on KÕRGUSVÄLI
+ * z = D(x, y), seega tulevad normaalid otse selle välja gradiendist — nii
+ * kannavad nad ka näo vormi (silmakoopad, ninaselg), mitte ainult ristlõiget.
+ *
+ * Kolm asja, mille esimene versioon valesti tegi (omanik 22.08, pööratud pea):
+ *   1. KÕRVAD said suure ristlõike sügavuse (~70 px) ja tagakoor peegeldas
+ *      nad teist korda — pööratud peas paistis kaks kõrva. Kõrv on lest:
+ *      mõõdetud vöönd y 250..382, |x-kesk| > 186, sügavus lukustatud õhukeseks
+ *      ja tagakoorest välja jäetud.
+ *   2. TAGAKOOR kandis oma halli värvi, mis tegi temast eraldi objekti. Nüüd
+ *      on tal esikoore värv ja tuhmumise teeb varjutaja pinnasuuna järgi.
+ *   3. PEA sügavus oli reaLAIUSEGA võrdeline: lõua juures kitsenes rida ja
+ *      nägu vajus alt ära, ülal jäi puhas pall. Nüüd on peal OMA sügavuskõver
+ *      (kraniaal → silmad → lõug) ja näole eraldi vormistus.
  *
  * Käivitus:  node scripts/voice/build-avatar-cloud.mjs
  */
@@ -24,76 +32,71 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const SOURCE = join(ROOT, "public", "voice", "Torso-läbipaistev.png");
 const TARGET = join(ROOT, "public", "voice", "avatar-cloud.bin");
 
-/* Mõõdetud lähtefaili alfakanalist (1536x1024) — vt build-logi. */
+/* Kõik mõõdetud lähtefaili alfakanalist (1536x1024). */
 const LANDMARK = {
   crownY: 24,
-  headWidestY: 274,
   chinY: 470,
   neckY: 504,
   shoulderY: 700,
   bottomY: 1023,
   centerX: 769,
-  /* Suu: Loomise proportsioon lagipea-lõug vahemikus (~0.79). Nägu on tühi,
-     seega valgusvõnked süttivad SIIN olevates täppides. */
+  /* Kõrvamügar: reaprofiil hüppab poollaiuselt 184 -> 203 ja langeb 382 järel
+     tagasi 157 peale. Kolju enda poollaius on selles vöötmes ~185. */
+  earTopY: 250,
+  earBottomY: 382,
+  earInnerX: 186,
+  /* Silmajoon on pea poolel kõrgusel; suu Loomise proportsiooniga ~0.79. */
+  eyeY: 247,
+  eyeOffsetX: 92,
+  noseTopY: 252,
+  noseTipY: 348,
   mouthY: 375,
-  /* Pöördetelg: kolju alus, veidi näotasandist tagapool. */
   pivotY: 482,
   pivotZ: 0.12
 };
 
 const PEAK_THRESHOLD = 0.085;
+/* Keha täpid hõrendatakse: lähtepildil on rindkere tihedam kui vaja ja
+   kaadris loeb see müraks (omanik 22.08 „osakesi liiga palju, eriti keha"). */
+const BODY_KEEP = 0.55;
 
-/**
- * Siluett tuleb täppidest KINNI ehitada. Lähtepilt on hõre punktimmuster:
- * alfamask on täppide kogum, mitte täidetud keha, ja kaugusteisendus mõõdaks
- * iga üksiku täpi sisemust (mõõdetud: z jäi 0..0.135 pea-kõrgust, õige on
- * kordades rohkem). Sulgemine = paisuta R võrra, täida sisemised augud,
- * kahanda R võrra tagasi.
- */
-function closeSilhouette(dots, w, h, radius) {
-  const near = distanceTransform(invert(dots, w, h), w, h);
-  const grown = new Uint8Array(w * h);
-  for (let i = 0; i < w * h; i++) grown[i] = near[i] <= radius ? 1 : 0;
-
-  // Ujutus servadest: kõik, kuhu taust ei ulatu, on keha sisemus.
-  const outside = new Uint8Array(w * h);
-  const stack = [];
-  for (let x = 0; x < w; x++) { stack.push(x, (h - 1) * w + x); }
-  for (let y = 0; y < h; y++) { stack.push(y * w, y * w + w - 1); }
-  while (stack.length) {
-    const i = stack.pop();
-    if (outside[i] || grown[i]) continue;
-    outside[i] = 1;
-    const x = i % w, y = (i / w) | 0;
-    if (x > 0) stack.push(i - 1);
-    if (x < w - 1) stack.push(i + 1);
-    if (y > 0) stack.push(i - w);
-    if (y < h - 1) stack.push(i + w);
-  }
-  const filled = new Uint8Array(w * h);
-  for (let i = 0; i < w * h; i++) filled[i] = outside[i] ? 0 : 1;
-
-  // Kahandus: kaugus taustast peab olema vähemalt sama, mis paisutus.
-  const back = distanceTransform(filled, w, h);
-  const result = new Uint8Array(w * h);
-  for (let i = 0; i < w * h; i++) result[i] = back[i] >= radius ? 1 : 0;
-  return result;
+function clamp(value, min, max) {
+  return value < min ? min : value > max ? max : value;
 }
 
-function invert(mask, w, h) {
-  const out = new Uint8Array(w * h);
-  for (let i = 0; i < w * h; i++) out[i] = mask[i] ? 0 : 1;
-  return out;
+function smoothstep(edge0, edge1, value) {
+  const t = clamp((value - edge0) / (edge1 - edge0), 0, 1);
+  return t * t * (3 - 2 * t);
+}
+
+/** Lineaarne interpolatsioon sõlmpunktide tabelist. */
+function curve(stops, x) {
+  if (x <= stops[0][0]) return stops[0][1];
+  for (let i = 1; i < stops.length; i += 1) {
+    if (x <= stops[i][0]) {
+      const [x0, v0] = stops[i - 1];
+      const [x1, v1] = stops[i];
+      return v0 + (v1 - v0) * ((x - x0) / (x1 - x0));
+    }
+  }
+  return stops[stops.length - 1][1];
+}
+
+/** Deterministlik räsi: hõrendus peab olema iga ehituse järel sama. */
+function hash01(x, y) {
+  const n = Math.sin(x * 12.9898 + y * 78.233) * 43758.5453;
+  return n - Math.floor(n);
 }
 
 /** Kahekäiguline chamfer-kaugusteisendus: kui kaugel on piksel maski servast. */
 function distanceTransform(mask, w, h) {
   const INF = 1e9;
   const dist = new Float32Array(w * h);
-  for (let i = 0; i < w * h; i++) dist[i] = mask[i] ? INF : 0;
-  const D1 = 1, D2 = Math.SQRT2;
-  for (let y = 0; y < h; y++) {
-    for (let x = 0; x < w; x++) {
+  for (let i = 0; i < w * h; i += 1) dist[i] = mask[i] ? INF : 0;
+  const D1 = 1;
+  const D2 = Math.SQRT2;
+  for (let y = 0; y < h; y += 1) {
+    for (let x = 0; x < w; x += 1) {
       const i = y * w + x;
       if (dist[i] === 0) continue;
       let best = dist[i];
@@ -104,8 +107,8 @@ function distanceTransform(mask, w, h) {
       dist[i] = best;
     }
   }
-  for (let y = h - 1; y >= 0; y--) {
-    for (let x = w - 1; x >= 0; x--) {
+  for (let y = h - 1; y >= 0; y -= 1) {
+    for (let x = w - 1; x >= 0; x -= 1) {
       const i = y * w + x;
       if (dist[i] === 0) continue;
       let best = dist[i];
@@ -119,29 +122,103 @@ function distanceTransform(mask, w, h) {
   return dist;
 }
 
-/** Kehaosa sügavus laiuse suhtes: pea sügav, kael ümar, rindkere lame. */
-function depthFactor(y) {
-  // z mõõdetakse siluetitasandist, seega tegur on POOLsügavus laiuse suhtes.
-  // 1.25 andis peale 0,55 pea-kõrgust paksu koonu; inimese pea poolsügavus
-  // on ligikaudu laiusega võrdne, seega ~0.9.
-  const stops = [
-    [LANDMARK.crownY, 0.85],
-    [LANDMARK.headWidestY, 0.95],
-    [LANDMARK.chinY, 0.85],
-    [LANDMARK.neckY, 0.8],
-    [LANDMARK.shoulderY, 0.5],
-    [1024, 0.34]
-  ];
-  if (y <= stops[0][0]) return stops[0][1];
-  for (let i = 1; i < stops.length; i++) {
-    if (y <= stops[i][0]) {
-      const [y0, v0] = stops[i - 1];
-      const [y1, v1] = stops[i];
-      const t = (y - y0) / (y1 - y0);
-      return v0 + (v1 - v0) * t;
-    }
+function invert(mask, w, h) {
+  const out = new Uint8Array(w * h);
+  for (let i = 0; i < w * h; i += 1) out[i] = mask[i] ? 0 : 1;
+  return out;
+}
+
+/**
+ * Siluett tuleb täppidest KINNI ehitada. Lähtepilt on hõre punktimuster:
+ * alfamask on täppide kogum, mitte täidetud keha, ja kaugusteisendus mõõdaks
+ * iga üksiku täpi sisemust (mõõdetud: z jäi 0..0.135 pea-kõrgust, õige on
+ * kordades rohkem). Sulgemine = paisuta R võrra, täida sisemised augud,
+ * kahanda R võrra tagasi.
+ */
+function closeSilhouette(dots, w, h, radius) {
+  const near = distanceTransform(invert(dots, w, h), w, h);
+  const grown = new Uint8Array(w * h);
+  for (let i = 0; i < w * h; i += 1) grown[i] = near[i] <= radius ? 1 : 0;
+
+  const outside = new Uint8Array(w * h);
+  const stack = [];
+  for (let x = 0; x < w; x += 1) stack.push(x, (h - 1) * w + x);
+  for (let y = 0; y < h; y += 1) stack.push(y * w, y * w + w - 1);
+  while (stack.length) {
+    const i = stack.pop();
+    if (outside[i] || grown[i]) continue;
+    outside[i] = 1;
+    const x = i % w;
+    const y = (i / w) | 0;
+    if (x > 0) stack.push(i - 1);
+    if (x < w - 1) stack.push(i + 1);
+    if (y > 0) stack.push(i - w);
+    if (y < h - 1) stack.push(i + w);
   }
-  return stops[stops.length - 1][1];
+  const filled = new Uint8Array(w * h);
+  for (let i = 0; i < w * h; i += 1) filled[i] = outside[i] ? 0 : 1;
+
+  const back = distanceTransform(filled, w, h);
+  const result = new Uint8Array(w * h);
+  for (let i = 0; i < w * h; i += 1) result[i] = back[i] >= radius ? 1 : 0;
+  return result;
+}
+
+/**
+ * Pea POOLsügavus pea-kõrguse ühikutes. Ei sõltu rea laiusest: laiusega
+ * seotud sügavus kitsenes lõua poole ja nägu vajus alt ära, ülal jäi pall.
+ */
+const HEAD_DEPTH = [
+  [0.0, 0.24],   // lagipea
+  [0.18, 0.38],  // kraniaal
+  [0.45, 0.42],  // silmajoon, kõige sügavam
+  [0.68, 0.40],  // ninaalus
+  [0.85, 0.33],  // suu
+  [1.0, 0.25]    // lõug — jääb ette ulatuma, ei kao
+];
+
+/** Kaela ja keha sügavus on endiselt laiusega võrdeline. */
+const BODY_DEPTH = [
+  [LANDMARK.chinY, 0.86],
+  [LANDMARK.neckY, 0.8],
+  [LANDMARK.shoulderY, 0.5],
+  [LANDMARK.bottomY, 0.34]
+];
+
+/**
+ * Näo vorm: silmakoopad sisse, ninaselg välja, suujoon kergelt sisse.
+ * Ühtegi joont ega täppi juurde ei joonistata — muutub ainult sügavus, seega
+ * otsevaates ei ole neid näha, aga pööratud peas loeb profiil näona.
+ * Tagastab sügavuse muutuse pikslites.
+ */
+function faceSculpt(x, y, unit) {
+  const dx = x - LANDMARK.centerX;
+  let delta = 0;
+
+  // Silmakoopad
+  for (const side of [-1, 1]) {
+    const ex = (dx - side * LANDMARK.eyeOffsetX) / 58;
+    const ey = (y - LANDMARK.eyeY) / 40;
+    const socket = Math.max(0, 1 - (ex * ex + ey * ey));
+    delta -= unit * 0.055 * socket * socket;
+  }
+
+  // Ninaselg: kitsas hari ninajuurest tipuni
+  const noseSpan = LANDMARK.noseTipY - LANDMARK.noseTopY;
+  const along = (y - LANDMARK.noseTopY) / noseSpan;
+  if (along > -0.1 && along < 1.25) {
+    const ridge = Math.max(0, 1 - Math.abs(dx) / 26);
+    const lengthwise = Math.max(0, 1 - Math.abs(along - 0.75) / 0.9);
+    delta += unit * 0.05 * ridge * ridge * lengthwise;
+  }
+
+  // Suujoon
+  const mx = dx / 70;
+  const my = (y - LANDMARK.mouthY) / 26;
+  const mouth = Math.max(0, 1 - (mx * mx + my * my));
+  delta -= unit * 0.018 * mouth;
+
+  return delta;
 }
 
 /**
@@ -160,58 +237,106 @@ export async function buildAvatarCloud({ source = SOURCE, target = TARGET, quiet
 
   const { data, info } = await sharp(source).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
   const { width: w, height: h, channels: ch } = info;
+  const unit = LANDMARK.chinY - LANDMARK.crownY;
 
   const lum = new Float32Array(w * h);
-  const mask = new Uint8Array(w * h);
-  for (let i = 0, p = 0; i < w * h; i++, p += ch) {
+  const dotMask = new Uint8Array(w * h);
+  for (let i = 0, p = 0; i < w * h; i += 1, p += ch) {
     const a = data[p + 3] / 255;
     lum[i] = (0.2126 * data[p] + 0.7152 * data[p + 1] + 0.0722 * data[p + 2]) / 255 * a;
-    // Täpp = selgelt läbipaistmatu piksel. Halo on poolläbipaistev, mitte keha.
-    mask[i] = a > 0.42 ? 1 : 0;
+    dotMask[i] = a > 0.42 ? 1 : 0;
   }
 
-  const body = closeSilhouette(mask, w, h, 9);
-  let bodyPixels = 0;
-  for (let i = 0; i < w * h; i++) bodyPixels += body[i];
-  log(`siluett suletud: ${(bodyPixels / (w * h) * 100).toFixed(1)}% lõuendist`);
+  const body = closeSilhouette(dotMask, w, h, 9);
   const dist = distanceTransform(body, w, h);
 
-  // Rea kohalik "poollaius": maksimaalne kaugus servast selles reas. Pehmendus
-  // hoiab ära, et üks kitsas rida (nt kõrvade kohal) annaks järsu sügavushüppe.
-  const rowMax = new Float32Array(h);
-  for (let y = 0; y < h; y++) {
-    let m = 0;
-    for (let x = 0; x < w; x++) {
-      const d = dist[y * w + x];
-      if (d > m) m = d;
-    }
-    rowMax[y] = m;
-  }
-  const rowSmooth = new Float32Array(h);
-  const R = 12;
-  for (let y = 0; y < h; y++) {
-    let sum = 0, n = 0;
-    for (let k = -R; k <= R; k++) {
-      const yy = y + k;
-      if (yy < 0 || yy >= h) continue;
-      sum += rowMax[yy];
-      n++;
-    }
-    rowSmooth[y] = sum / n;
-  }
-
-  // Rea keskjoon: normaal osutab keskteljelt väljapoole. Ilma normaalideta
-  // ei saa eristada esi- ja tagakülge ning pöörav pea loeb lameda maskina.
+  // Rea poollaius ja keskjoon.
+  const rowHalf = new Float32Array(h);
   const rowCenter = new Float32Array(h);
-  for (let y = 0; y < h; y++) {
-    let min = -1, max = -1;
-    for (let x = 0; x < w; x++) {
+  for (let y = 0; y < h; y += 1) {
+    let min = -1;
+    let max = -1;
+    for (let x = 0; x < w; x += 1) {
       if (!body[y * w + x]) continue;
       if (min < 0) min = x;
       max = x;
     }
+    rowHalf[y] = min < 0 ? 0 : (max - min) / 2;
     rowCenter[y] = min < 0 ? LANDMARK.centerX : (min + max) / 2;
   }
+
+  // Kolju poollaius: kõrvamügar interpoleeritakse välja, muidu arvab mudel,
+  // et pea on kõrvade kohal 20 px laiem ja annab kõrvale koljusügavuse.
+  const skullHalf = Float32Array.from(rowHalf);
+  const above = rowHalf[LANDMARK.earTopY - 2];
+  const below = rowHalf[LANDMARK.earBottomY + 2];
+  for (let y = LANDMARK.earTopY; y <= LANDMARK.earBottomY; y += 1) {
+    const t = (y - LANDMARK.earTopY) / (LANDMARK.earBottomY - LANDMARK.earTopY);
+    skullHalf[y] = above + (below - above) * t;
+  }
+
+  const earMaskAt = (x, y) => {
+    if (y < LANDMARK.earTopY - 8 || y > LANDMARK.earBottomY + 8) return 0;
+    const band = smoothstep(LANDMARK.earTopY - 8, LANDMARK.earTopY + 6, y)
+      * (1 - smoothstep(LANDMARK.earBottomY - 6, LANDMARK.earBottomY + 8, y));
+    return band * smoothstep(LANDMARK.earInnerX - 10, LANDMARK.earInnerX + 12, Math.abs(x - LANDMARK.centerX));
+  };
+
+  // Sügavusväli kogu keha kohta. Normaalid tulevad tema gradiendist, seega
+  // peab ta olema olemas ka täppide vahel.
+  const depthField = new Float32Array(w * h);
+  for (let y = 0; y < h; y += 1) {
+    const reference = Math.max(1, y <= LANDMARK.earBottomY ? skullHalf[y] : rowHalf[y]);
+    // Pea- ja kehamudel SEGATAKSE lõuavöötmes, mitte ei vahetu järsult.
+    // Järsk vahetus andis lõuajoonele 13,5 px sügavusastme ühe rea peal;
+    // kuna normaal tuleb sügavusvälja gradiendist, pöördus normaal seal
+    // peaaegu külili ja lõua alla tekkis hele kaar (omanik 22.08).
+    const toBody = smoothstep(LANDMARK.chinY - 50, LANDMARK.chinY + 70, y);
+    const headHalf = unit * curve(HEAD_DEPTH, clamp((y - LANDMARK.crownY) / unit, 0, 1));
+    const bodyHalf = reference * curve(BODY_DEPTH, Math.max(y, LANDMARK.chinY));
+    const halfDepth = headHalf + (bodyHalf - headHalf) * toBody;
+    for (let x = 0; x < w; x += 1) {
+      const i = y * w + x;
+      if (!body[i]) continue;
+      const n = Math.min(1, dist[i] / reference);
+      let depth = halfDepth * Math.sqrt(Math.max(0, 1 - (1 - n) * (1 - n)));
+      if (toBody < 1) depth += faceSculpt(x, y, unit) * n * (1 - toBody);
+      const ear = earMaskAt(x, y);
+      if (ear > 0) {
+        // Kõrv on lest, mitte koljulõik.
+        depth = depth + (Math.min(depth, unit * 0.05) - depth) * ear;
+      }
+      depthField[i] = Math.max(0, depth);
+    }
+  }
+
+  // Kerge silumine: normaal tuleb gradiendist, seega üksik ebaühtlane rida
+  // paistaks heleda joonena. Kolm käiku 3x3 keskmistamist keha sees.
+  for (let pass = 0; pass < 3; pass += 1) {
+    const copy = Float32Array.from(depthField);
+    for (let y = 1; y < h - 1; y += 1) {
+      for (let x = 1; x < w - 1; x += 1) {
+        const i = y * w + x;
+        if (!body[i]) continue;
+        let sum = 0;
+        let n = 0;
+        for (let dy = -1; dy <= 1; dy += 1) {
+          for (let dx = -1; dx <= 1; dx += 1) {
+            const j = i + dy * w + dx;
+            if (!body[j]) continue;
+            sum += copy[j];
+            n += 1;
+          }
+        }
+        if (n) depthField[i] = sum / n;
+      }
+    }
+  }
+
+  const sampleDepth = (x, y) => {
+    if (x < 0 || y < 0 || x >= w || y >= h) return 0;
+    return depthField[y * w + x];
+  };
 
   const positions = [];
   const normals = [];
@@ -220,18 +345,17 @@ export async function buildAvatarCloud({ source = SOURCE, target = TARGET, quiet
   const sizes = [];
   let warmCount = 0;
   let backCount = 0;
+  let bodyDropped = 0;
 
-  for (let y = 1; y < h - 1; y++) {
-    for (let x = 1; x < w - 1; x++) {
+  for (let y = 1; y < h - 1; y += 1) {
+    for (let x = 1; x < w - 1; x += 1) {
       const i = y * w + x;
       const v = lum[i];
       if (v < PEAK_THRESHOLD) continue;
 
-      // Kohalik maksimum = ühe täpi kese. Võrdsete naabrite puhul võidab
-      // ainult üks suund, muidu loeks sama täpi mitu korda.
       let isPeak = true;
-      for (let dy = -1; dy <= 1 && isPeak; dy++) {
-        for (let dx = -1; dx <= 1; dx++) {
+      for (let dy = -1; dy <= 1 && isPeak; dy += 1) {
+        for (let dx = -1; dx <= 1; dx += 1) {
           if (!dx && !dy) continue;
           const n = lum[i + dy * w + dx];
           if (n > v || (n === v && (dy < 0 || (dy === 0 && dx < 0)))) { isPeak = false; break; }
@@ -239,19 +363,18 @@ export async function buildAvatarCloud({ source = SOURCE, target = TARGET, quiet
       }
       if (!isPeak) continue;
 
-      const half = Math.max(1, rowSmooth[y]);
-      const normalized = Math.min(1, dist[i] / half);
-      const profile = Math.sqrt(Math.max(0, 1 - (1 - normalized) * (1 - normalized)));
-      const depth = half * depthFactor(y) * profile;
+      const rig = rigWeight(y);
+      if (rig <= 0.001 && hash01(x, y) > BODY_KEEP) { bodyDropped += 1; continue; }
 
-      // Värv EI tule tipp-pikslist: täpi kese on lähtepildis peaaegu valge ja
-      // iseloomulik sinine elab tema ümber hõõguses. Tipust võetud värv andis
-      // valge pilve (mõõdetud sinisus B-R 5, lähtepildil 37). Seepärast
-      // heledusega kaalutud keskmine 5x5 aknast.
-      let sr = 0, sg = 0, sb = 0, sw = 0;
-      for (let ny = -2; ny <= 2; ny++) {
-        for (let nx = -2; nx <= 2; nx++) {
-          const j = i + ny * w + nx;
+      // Värv EI tule tipp-pikslist: täpi kese on peaaegu valge ja iseloomulik
+      // sinine elab tema ümber hõõguses (mõõdetud sinisus B-R 5 vs 37).
+      let sr = 0;
+      let sg = 0;
+      let sb = 0;
+      let sw = 0;
+      for (let ny = -2; ny <= 2; ny += 1) {
+        for (let nx2 = -2; nx2 <= 2; nx2 += 1) {
+          const j = i + ny * w + nx2;
           if (j < 0 || j >= w * h) continue;
           const q = j * ch;
           const weight = data[q + 3] / 255;
@@ -267,33 +390,35 @@ export async function buildAvatarCloud({ source = SOURCE, target = TARGET, quiet
       const cg = Math.round(sg / denom);
       const cb = Math.round(sb / denom);
 
-      const localX = x - rowCenter[y];
-      const rig = rigWeight(y);
+      const depth = depthField[i];
       const size = Math.min(1, v * 1.8);
-      // Ristlõige on täispuhutud ellips, seega väljapoole osutab (x, 0, z).
-      const nLen = Math.hypot(localX, depth) || 1;
-      const nx = localX / nLen;
-      const nz = depth / nLen;
+
+      // Esikoor on kõrgusväli z = D(x, y), seega normaal = (-dD/dx, -dD/dy, 1).
+      // Nii kannab ta ka silmakoopa ja ninaselja vormi, mitte ainult ristlõiget.
+      const gx = (sampleDepth(x + 2, y) - sampleDepth(x - 2, y)) / 4;
+      const gy = (sampleDepth(x, y + 2) - sampleDepth(x, y - 2)) / 4;
+      const nLen = Math.hypot(-gx, gy, 1) || 1;
 
       positions.push(x - LANDMARK.centerX, y, depth);
-      normals.push(nx, 0, nz);
+      normals.push(-gx / nLen, gy / nLen, 1 / nLen);
       colors.push(cr, cg, cb);
       rigs.push(rig);
       sizes.push(size);
       if (cr > cb + 12) warmCount += 1;
 
-      // Tagakoor AINULT pea ja kaela jaoks: seal käib pööre ja ainult seal
-      // paistab õõnsus välja. Rindkere tagakülge ei näe kunagi, tema täpid
-      // oleksid puhas raiskamine.
-      if (rig > 0.02) {
-        // Kukal on näotasandist täidlasem, seepärast 1.05.
+      // Tagakoor ainult pea ja kaela jaoks — ainult seal käib pööre ja ainult
+      // seal paistaks õõnsus välja. Kõrvad jäävad välja: nemad on üks lest,
+      // mitte kaks (omanik 22.08 „topelt kõrvad").
+      const ear = earMaskAt(x, y);
+      if (rig > 0.02 && ear < 0.25) {
+        // Kukal on näotasandist täidlasem.
         positions.push(x - LANDMARK.centerX, y, -depth * 1.05);
-        normals.push(nx, 0, -nz);
-        // Tagakülg on ühtlaselt jahe: kuldsed jooned on keha EES.
-        const cool = Math.round((cr + cg + cb) / 3 * 0.62);
-        colors.push(Math.round(cool * 0.82), Math.round(cool * 0.92), cool);
+        normals.push(-gx / nLen, gy / nLen, -1 / nLen);
+        // SAMA värv mis esikoorel: oma hall toon tegi tagakoorest eraldi
+        // objekti. Tuhmumise teeb varjutaja pinnasuuna järgi.
+        colors.push(cr, cg, cb);
         rigs.push(rig);
-        sizes.push(size * 0.85);
+        sizes.push(size * 0.9);
         backCount += 1;
       }
     }
@@ -302,12 +427,10 @@ export async function buildAvatarCloud({ source = SOURCE, target = TARGET, quiet
   const count = positions.length / 3;
   if (!count) throw new Error("punktipilv jäi tühjaks — kontrolli läve ja lähtefaili");
 
-  // Normaliseeri: pikkusühik = pea kõrgus (lagipeast lõuani), null keskel.
-  const unit = LANDMARK.chinY - LANDMARK.crownY;
   const midY = (LANDMARK.crownY + LANDMARK.bottomY) / 2;
   let extent = 0;
   const world = new Float32Array(count * 3);
-  for (let i = 0; i < count; i++) {
+  for (let i = 0; i < count; i += 1) {
     const wx = positions[i * 3] / unit;
     // Pildi y kasvab alla, maailma y üles.
     const wy = (midY - positions[i * 3 + 1]) / unit;
@@ -318,32 +441,29 @@ export async function buildAvatarCloud({ source = SOURCE, target = TARGET, quiet
     extent = Math.max(extent, Math.abs(wx), Math.abs(wy), Math.abs(wz));
   }
 
-  // Suu sügavus loetakse sama sügavusväljaga, mis täppidelgi — nii ei saa
-  // võnked näost sisse ega välja jääda.
   const mouthIndex = LANDMARK.mouthY * w + LANDMARK.centerX;
-  const mouthHalf = Math.max(1, rowSmooth[LANDMARK.mouthY]);
-  const mouthNorm = Math.min(1, dist[mouthIndex] / mouthHalf);
-  const mouthDepth = mouthHalf * depthFactor(LANDMARK.mouthY)
-    * Math.sqrt(Math.max(0, 1 - (1 - mouthNorm) * (1 - mouthNorm)));
+  const mouthDepth = depthField[mouthIndex];
 
   const scale = extent;
   const header = Buffer.alloc(32);
   header.write("SAV3", 0, "ascii");
   header.writeUInt32LE(count, 4);
   header.writeFloatLE(scale, 8);
-  header.writeFloatLE(0, 12);                                   // suu x (keskjoonel)
-  header.writeFloatLE((midY - LANDMARK.mouthY) / unit, 16);     // suu y
-  header.writeFloatLE(mouthDepth / unit, 20);                   // suu z
-  header.writeFloatLE((midY - LANDMARK.pivotY) / unit, 24);     // pöördetelje y
-  header.writeFloatLE(LANDMARK.pivotZ, 28);                     // pöördetelje z
+  header.writeFloatLE(0, 12);
+  header.writeFloatLE((midY - LANDMARK.mouthY) / unit, 16);
+  header.writeFloatLE(mouthDepth / unit, 20);
+  header.writeFloatLE((midY - LANDMARK.pivotY) / unit, 24);
+  header.writeFloatLE(LANDMARK.pivotZ, 28);
 
   const pos = new Int16Array(count * 3);
-  for (let i = 0; i < count * 3; i++) pos[i] = Math.round(world[i] / scale * 32767);
+  for (let i = 0; i < count * 3; i += 1) pos[i] = Math.round(world[i] / scale * 32767);
   const nrm = new Int8Array(count * 3);
-  for (let i = 0; i < count * 3; i++) nrm[i] = Math.max(-127, Math.min(127, Math.round(normals[i] * 127)));
+  for (let i = 0; i < count * 3; i += 1) {
+    nrm[i] = Math.max(-127, Math.min(127, Math.round(normals[i] * 127)));
+  }
   const col = Uint8Array.from(colors);
-  const rig = Uint8Array.from(rigs.map(r => Math.round(r * 255)));
-  const size = Uint8Array.from(sizes.map(s => Math.round(s * 255)));
+  const rig = Uint8Array.from(rigs.map(value => Math.round(value * 255)));
+  const size = Uint8Array.from(sizes.map(value => Math.round(value * 255)));
 
   const blob = Buffer.concat([
     header,
@@ -356,11 +476,12 @@ export async function buildAvatarCloud({ source = SOURCE, target = TARGET, quiet
   writeFileSync(target, blob);
 
   log(`täppe: ${count} (esikoor ${count - backCount}, tagakoor ${backCount}, soojad ${warmCount})`);
+  log(`keha hõrendus: ${bodyDropped} täppi jäetud välja (${(BODY_KEEP * 100).toFixed(0)}% alles)`);
   log(`suu: y ${((midY - LANDMARK.mouthY) / unit).toFixed(3)}, z ${(mouthDepth / unit).toFixed(3)}`
-      + ` | pöördetelg y ${((midY - LANDMARK.pivotY) / unit).toFixed(3)}`);
+    + ` | pöördetelg y ${((midY - LANDMARK.pivotY) / unit).toFixed(3)}`);
   log(`ulatus: ${scale.toFixed(3)} pea-kõrgust | fail: ${(blob.length / 1024).toFixed(0)} KB`);
   log(`kirjutatud: ${target}`);
-  return { count, scale, bytes: blob.length, world, colors, rigs, sizes };
+  return { count, scale, bytes: blob.length };
 }
 
 /* Windowsil on `import.meta.url` ja argv[1] eri kujul — võrdlus tuleb teha
