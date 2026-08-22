@@ -55,9 +55,13 @@ const LANDMARK = {
 };
 
 const PEAK_THRESHOLD = 0.085;
-/* Keha täpid hõrendatakse: lähtepildil on rindkere tihedam kui vaja ja
-   kaadris loeb see müraks (omanik 22.08 „osakesi liiga palju, eriti keha"). */
-const BODY_KEEP = 0.55;
+/* Keha hõrendus. PUHTJUHUSLIK kustutus rebib lähtepildi voojooned katki —
+   need jooned ON keha vorm, ja auk keskel loeb rebendina (omanik 22.08
+   „keha on mitmest kohast katki, nagu ära rebitud"). Seepärast: heledad
+   täpid (= jooned) jäävad ALATI alles ja hõrendatakse ainult tuhmi täidet.
+   Mõõdetud heledusjaotus keha täppidel: p25 0.191, p45 0.394, p50 0.447. */
+const BODY_LINE_LUM = 0.33;
+const BODY_FILL_KEEP = 0.45;
 
 function clamp(value, min, max) {
   return value < min ? min : value > max ? max : value;
@@ -290,7 +294,11 @@ export async function buildAvatarCloud({ source = SOURCE, target = TARGET, quiet
     if (y < LANDMARK.earTopY - 8 || y > LANDMARK.earBottomY + 8) return 0;
     const band = smoothstep(LANDMARK.earTopY - 8, LANDMARK.earTopY + 6, y)
       * (1 - smoothstep(LANDMARK.earBottomY - 6, LANDMARK.earBottomY + 8, y));
-    return band * smoothstep(LANDMARK.earInnerX - 10, LANDMARK.earInnerX + 12, Math.abs(x - LANDMARK.centerX));
+    // Üleminek on LAI (70 px). Kitsas lukustus jättis sügavusvälja järsu
+    // serva ja normaalid pöördusid seal külili — kuumkoht ei kadunud, vaid
+    // nihkus koos maski servaga (mõõdetud: kõrval 47,8% -> 0%, aga kolju
+    // küljel 4,7% -> 21,4%). Sile üleminek ei tekita seda kuskil.
+    return band * smoothstep(LANDMARK.earInnerX - 56, LANDMARK.earInnerX + 14, Math.abs(x - LANDMARK.centerX));
   };
 
   // Sügavusväli kogu keha kohta. Normaalid tulevad tema gradiendist, seega
@@ -323,7 +331,7 @@ export async function buildAvatarCloud({ source = SOURCE, target = TARGET, quiet
 
   // Kerge silumine: normaal tuleb gradiendist, seega üksik ebaühtlane rida
   // paistaks heleda joonena. Kolm käiku 3x3 keskmistamist keha sees.
-  for (let pass = 0; pass < 3; pass += 1) {
+  for (let pass = 0; pass < 6; pass += 1) {
     const copy = Float32Array.from(depthField);
     for (let y = 1; y < h - 1; y += 1) {
       for (let x = 1; x < w - 1; x += 1) {
@@ -374,7 +382,10 @@ export async function buildAvatarCloud({ source = SOURCE, target = TARGET, quiet
       if (!isPeak) continue;
 
       const rig = rigWeight(y);
-      if (rig <= 0.001 && hash01(x, y) > BODY_KEEP) { bodyDropped += 1; continue; }
+      if (rig <= 0.001 && v < BODY_LINE_LUM && hash01(x, y) > BODY_FILL_KEEP) {
+        bodyDropped += 1;
+        continue;
+      }
 
       // Värv EI tule tipp-pikslist: täpi kese on peaaegu valge ja iseloomulik
       // sinine elab tema ümber hõõguses (mõõdetud sinisus B-R 5 vs 37).
@@ -481,7 +492,7 @@ export async function buildAvatarCloud({ source = SOURCE, target = TARGET, quiet
   writeFileSync(target, blob);
 
   log(`täppe: ${count} (üks koor, soojad ${warmCount})`);
-  log(`keha hõrendus: ${bodyDropped} täppi jäetud välja (${(BODY_KEEP * 100).toFixed(0)}% alles)`);
+  log(`keha hõrendus: ${bodyDropped} tuhmi täidetäppi välja, jooned puutumata`);
   log(`suu: y ${((midY - LANDMARK.mouthY) / unit).toFixed(3)}, z ${(mouthDepth / unit).toFixed(3)}`
     + ` | pöördetelg y ${((midY - LANDMARK.pivotY) / unit).toFixed(3)}`);
   log(`ulatus: ${scale.toFixed(3)} pea-kõrgust | fail: ${(blob.length / 1024).toFixed(0)} KB`);
