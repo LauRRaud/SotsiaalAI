@@ -83,3 +83,26 @@ test("detectMentionedMunicipalitiesFromUserText resolves settlement aliases to K
   assert.deepEqual(kaberneemeMatches.map(item => item.id), ["joelahtme_vald"]);
   assert.deepEqual(kaberneemeMatches.map(item => item.displayName), ["Jõelähtme vald"]);
 });
+
+test("detectMentionedMunicipalitiesFromUserText does not geocode a verb after a generic city phrase", async () => {
+  const geocodedPlaces = [];
+  const matches = await detectMentionedMunicipalitiesFromUserText(
+    [],
+    "MAPPA kohtumised – kui tihti ja mitu neid kolmes Virumaa linnas oli?",
+    {
+      geocodePlaceFn: async (rawPlace) => {
+        geocodedPlaces.push(rawPlace);
+        return {
+          rawPlace,
+          matchedPlace: "Pärnu linn",
+          municipalityDisplayName: "Pärnu linn",
+          candidateStrings: ["Pärnu linn"],
+          confidence: "medium"
+        };
+      }
+    }
+  );
+
+  assert.deepEqual(geocodedPlaces, []);
+  assert.deepEqual(matches, []);
+});

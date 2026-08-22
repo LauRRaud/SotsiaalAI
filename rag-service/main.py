@@ -4173,8 +4173,12 @@ def _registry_title_shortlist_doc_ids(
 _REGISTRY_FACT_ANSWER_SHAPE_PREFIXES = (
     "arv",
     "kokku",
+    "kui",
+    "kuju",
     "millal",
+    "millise",
     "mitu",
+    "need",
     "neid",
     "nende",
     "oli",
@@ -4185,12 +4189,96 @@ _REGISTRY_FACT_ANSWER_SHAPE_PREFIXES = (
     "tehti",
 )
 
+_REGISTRY_RESEARCH_METHOD_PREFIXES = (
+    "analuus",
+    "andm",
+    "intervju",
+    "uurim",
+    "uuring",
+)
+
+
+def _is_research_method_fact_query(query: object) -> bool:
+    normalized = _normalize_search_text(query)
+    return bool(
+        re.search(r"\bintervju\w*\b", normalized)
+        and re.search(r"\banaluus\w*\b", normalized)
+    )
+
+
+def _estonian_derivational_roots(token: object) -> List[str]:
+    """Return conservative long roots for registry-description recall.
+
+    The registry stores natural Estonian summaries, so a query noun such as
+    ``toetamise`` can refer to title text using ``toetuse``. These roots are
+    deliberately used only by the bounded registry fact shortlist, not by the
+    global lexical ranker.
+    """
+    normalized = _normalize_search_text(token)
+    if not normalized:
+        return []
+    roots = {normalized}
+    suffixes = (
+        "jatega",
+        "jatele",
+        "jatest",
+        "misega",
+        "misest",
+        "mises",
+        "mised",
+        "mist",
+        "mise",
+        "mine",
+        "usega",
+        "usest",
+        "uses",
+        "used",
+        "ust",
+        "use",
+        "sid",
+        "ti",
+        "s",
+    )
+    for suffix in suffixes:
+        if normalized.endswith(suffix) and len(normalized) - len(suffix) >= 4:
+            roots.add(normalized[:-len(suffix)])
+    return sorted(roots, key=lambda value: (-len(value), value))
+
+
+def _registry_derivational_token_frequency(query_token: str, counts: Dict[str, int]) -> int:
+    query_roots = _estonian_derivational_roots(query_token)
+    if not query_roots:
+        return 0
+    total = 0
+    for token, frequency in counts.items():
+        token_roots = _estonian_derivational_roots(token)
+        matched = False
+        for query_root in query_roots:
+            for token_root in token_roots:
+                shorter, longer = sorted((query_root, token_root), key=len)
+                if len(shorter) >= 4 and longer.startswith(shorter):
+                    matched = True
+                    break
+                if len(query_root) >= 5 and len(token_root) >= 9 and query_root in token_root:
+                    matched = True
+                    break
+            if matched:
+                break
+        if matched:
+            total += int(frequency or 0)
+    return total
+
 
 def _registry_fact_description_query_tokens(query: object) -> List[str]:
+    research_method_query = _is_research_method_fact_query(query)
     return [
         token
         for token in _search_tokens(query, limit=24)
         if not any(token.startswith(prefix) for prefix in _REGISTRY_FACT_ANSWER_SHAPE_PREFIXES)
+        and not (
+            research_method_query
+            and any(token.startswith(prefix) for prefix in _REGISTRY_RESEARCH_METHOD_PREFIXES)
+        )
     ]
 
 
@@ -4228,11 +4316,29 @@ def _registry_fact_description_shortlist_doc_ids(
         )
         if not description:
             continue
-        description_counts = _lexical_token_counts(description, limit=400)
+        research_method_query = _is_research_method_fact_query(query)
+        if research_method_query and not (
+            re.search(r"\bintervju\w*\b", description)
+            and re.search(r"\banaluus\w*\b", description)
+        ):
+            continue
+        registry_fact_text = " ".join(
+            str(value or "")
+            for value in [
+                metadata.get("title"),
+                description,
+                metadata.get("tags"),
+            ]
+        )
+        description_counts = _lexical_token_counts(
+            _normalize_search_text(registry_fact_text),
+            limit=500,
+        )
         matched_tokens = [
             token
             for token in query_tokens
             if _lexical_token_frequency(token, description_counts)
+            or _registry_derivational_token_frequency(token, description_counts)
             or (
                 len(token) >= 8
                 and any(token[:8] in description_token for description_token in description_counts)

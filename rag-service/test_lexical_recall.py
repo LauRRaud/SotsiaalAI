@@ -208,6 +208,52 @@ class LexicalRecallTests(unittest.TestCase):
         self.assertEqual(doc_ids[0], "county-supervision")
         self.assertNotIn("general-supervision", doc_ids)
 
+    def test_research_method_fact_shortlist_prefers_subject_over_generic_method_overlap(self):
+        registry = {
+            "work-support-experience": {
+                "doc_id": "work-support-experience",
+                "title": "Sotsiaaltöötajate tööalase toetuse kogemused",
+                "description": (
+                    "Magistritöö põhineb seitsmel poolstruktureeritud intervjuul: "
+                    "kuus individuaal- ja üks grupiintervjuu. Vastuseid analüüsiti "
+                    "kolmeetapilise temaatilise analüüsiga."
+                ),
+                "tags": ["uurimus", "tööalane toetus", "sotsiaaltöötaja"],
+                "source_type": "journal_article",
+                "status": "active",
+            },
+            "work-ability-support-system": {
+                "doc_id": "work-ability-support-system",
+                "title": "Töövõime toetamise süsteemi analüüs",
+                "description": (
+                    "Uuringus tehti 38 intervjuud ning andmeid analüüsiti "
+                    "teemade kaupa."
+                ),
+                "tags": ["töövõime", "töötukassa", "toetamise süsteem"],
+                "source_type": "research_report",
+                "status": "active",
+            },
+        }
+        variants = [
+            (
+                "Mitu intervjuud tehti töötamise toetamise uuringus, millised "
+                "need olid ja kuidas andmeid analüüsiti?"
+            ),
+            (
+                "Töötamise toetamise uurimus: kui palju intervjuusid, mis kujul "
+                "ja millise analüüsimeetodiga?"
+            ),
+        ]
+
+        with patch.object(main, "_load_registry", return_value=registry):
+            for query in variants:
+                with self.subTest(query=query):
+                    doc_ids = main._registry_fact_description_shortlist_doc_ids(
+                        query,
+                        None,
+                    )
+                    self.assertEqual(doc_ids, ["work-support-experience"])
+
     def test_fact_description_anchor_fetches_the_matching_article_evidence(self):
         class Collection:
             def get(self, **kwargs):

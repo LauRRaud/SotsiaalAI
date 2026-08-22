@@ -6,6 +6,7 @@ import {
   buildLegalExactSelection,
   buildRagContextBudgetOptions,
   buildRagSearchErrorPayload,
+  buildNumericScopeInstruction,
   buildServiceMapKovContactContext,
   buildServiceMapKovContactInstruction,
   excludeSupersededKovContactMatches,
@@ -17,8 +18,23 @@ import {
   selectGroupsWithPreferredSourceYear,
   shouldCarryMunicipalityFromHistory,
   shouldIncludeContextAuthors,
+  shouldUseNumericScopeInstruction,
   shouldUseReportedPracticeInstruction
 } from "../../lib/chat/retrievalContextAssembler.js";
+
+test("numeric count-and-year questions preserve overall and subset scope", () => {
+  for (const message of [
+    "Laste eraldamise otsused: arv ja aasta?",
+    "Kui palju lapse perest eraldamise lahendeid valimis oli ja mis aastast need pärinesid?"
+  ]) {
+    assert.equal(shouldUseNumericScopeInstruction(message), true, message);
+  }
+
+  const instruction = buildNumericScopeInstruction("et");
+  assert.match(instruction, /koguvalim/i);
+  assert.match(instruction, /alamrühm/i);
+  assert.match(instruction, /avaldamisaasta/i);
+});
 
 test("municipality history is not carried into independent research and journal fact questions", () => {
   for (const message of [
