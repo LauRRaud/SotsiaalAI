@@ -10,12 +10,11 @@
  * kannavad nad ka näo vormi (silmakoopad, ninaselg), mitte ainult ristlõiget.
  *
  * Kolm asja, mille esimene versioon valesti tegi (omanik 22.08, pööratud pea):
- *   1. KÕRVAD said suure ristlõike sügavuse (~70 px) ja tagakoor peegeldas
- *      nad teist korda — pööratud peas paistis kaks kõrva. Kõrv on lest:
- *      mõõdetud vöönd y 250..382, |x-kesk| > 186, sügavus lukustatud õhukeseks
- *      ja tagakoorest välja jäetud.
- *   2. TAGAKOOR kandis oma halli värvi, mis tegi temast eraldi objekti. Nüüd
- *      on tal esikoore värv ja tuhmumise teeb varjutaja pinnasuuna järgi.
+ *   1. KÕRVAD said suure ristlõike sügavuse (~70 px) ja lugesid koljulõiguna.
+ *      Kõrv on lest: mõõdetud vöönd y 250..382, |x-kesk| > 186, sügavus
+ *      lukustatud õhukeseks.
+ *   2. TAGAKOOR andis pöördel teise paralleelse siluetikontuuri. Ta on nüüd
+ *      täielikult eemaldatud — vt selgitust täpiemitteri juures.
  *   3. PEA sügavus oli reaLAIUSEGA võrdeline: lõua juures kitsenes rida ja
  *      nägu vajus alt ära, ülal jäi puhas pall. Nüüd on peal OMA sügavuskõver
  *      (kraniaal → silmad → lõug) ja näole eraldi vormistus.
@@ -344,7 +343,6 @@ export async function buildAvatarCloud({ source = SOURCE, target = TARGET, quiet
   const rigs = [];
   const sizes = [];
   let warmCount = 0;
-  let backCount = 0;
   let bodyDropped = 0;
 
   for (let y = 1; y < h - 1; y += 1) {
@@ -406,21 +404,16 @@ export async function buildAvatarCloud({ source = SOURCE, target = TARGET, quiet
       sizes.push(size);
       if (cr > cb + 12) warmCount += 1;
 
-      // Tagakoor ainult pea ja kaela jaoks — ainult seal käib pööre ja ainult
-      // seal paistaks õõnsus välja. Kõrvad jäävad välja: nemad on üks lest,
-      // mitte kaks (omanik 22.08 „topelt kõrvad").
-      const ear = earMaskAt(x, y);
-      if (rig > 0.02 && ear < 0.25) {
-        // Kukal on näotasandist täidlasem.
-        positions.push(x - LANDMARK.centerX, y, -depth * 1.05);
-        normals.push(-gx / nLen, gy / nLen, -1 / nLen);
-        // SAMA värv mis esikoorel: oma hall toon tegi tagakoorest eraldi
-        // objekti. Tuhmumise teeb varjutaja pinnasuuna järgi.
-        colors.push(cr, cg, cb);
-        rigs.push(rig);
-        sizes.push(size * 0.9);
-        backCount += 1;
-      }
+      /* TAGAKOORT EI OLE — ja see on mõõdetud otsus, mitte tegemata töö.
+         Ta lisati selleks, et pööratud pea ei paistaks õõnsana. Aga kuna
+         sügavustesti ei ole, jäi tagakoore SILUETT nähtavaks: pöördel läks
+         ta esikoore siluetist lahku ja pea kõrvale tekkis teine paralleelne
+         hele kontuur (omanik 22.08 kolm korda järjest: „tagumine kõrv",
+         „topelt kõrvad, kael ja pea", „mina näen topelt").
+         A/B-renderdus sama pilve peal: tagakoorega kaks kontuuri, ilma
+         temata üks — ja pea EI lähe lamedaks, sest vormi kannavad
+         täppide tihenemine serva poole ja sügavusväljast tulevad normaalid.
+         13760 -> 9269 täppi, 188 -> 126 KB. */
     }
   }
 
@@ -475,7 +468,7 @@ export async function buildAvatarCloud({ source = SOURCE, target = TARGET, quiet
   ]);
   writeFileSync(target, blob);
 
-  log(`täppe: ${count} (esikoor ${count - backCount}, tagakoor ${backCount}, soojad ${warmCount})`);
+  log(`täppe: ${count} (üks koor, soojad ${warmCount})`);
   log(`keha hõrendus: ${bodyDropped} täppi jäetud välja (${(BODY_KEEP * 100).toFixed(0)}% alles)`);
   log(`suu: y ${((midY - LANDMARK.mouthY) / unit).toFixed(3)}, z ${(mouthDepth / unit).toFixed(3)}`
     + ` | pöördetelg y ${((midY - LANDMARK.pivotY) / unit).toFixed(3)}`);
