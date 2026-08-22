@@ -11,6 +11,7 @@ import {
 import { buildQuestionPlan } from "../../lib/chat/questionPlanner.js";
 import { resolveMultiQueryTopK } from "../../lib/chat/retrievalOrchestrator.js";
 import {
+  buildPercentCountSemanticsInstruction,
   prioritizeRequestedNumericEvidence,
   selectSingleSourceNumericFactGroups,
   selectSpecificResearchFactGroups
@@ -270,6 +271,19 @@ describe("aasta roll otsingus", () => {
 });
 
 describe("täpse faktivastuse värav", () => {
+  test("annab protsendi ja n-loenduse semantika ka loomulikule mitu-küsimusele", () => {
+    const instruction = buildPercentCountSemanticsInstruction([{
+      bodies: [
+        "Üle 60-aastasi kuriteoohvreid oli 10% (n=640) ja ohvriabisse pöördunuid 6% (n=227).",
+        "Üle 75-aastastest puutus kuritegevusega kokku 2% (n=100)."
+      ]
+    }]);
+    assert.match(instruction, /10% = n 640/u);
+    assert.match(instruction, /6% = n 227/u);
+    assert.match(instruction, /2% = n 100/u);
+    assert.match(instruction, /ära arvuta X% × Y/u);
+  });
+
   test("võrdsustab eesti arvsõnad ja numbrikujud ühe renderdatud allika sees", () => {
     const result = validateExactFactAnswer({
       message: "Mitu intervjuud tehti töötamise toetamise uuringus?",
