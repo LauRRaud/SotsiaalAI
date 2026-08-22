@@ -1,61 +1,17 @@
+import { normalizePageReferences, uniqueSortedPageNumbers } from "../../../lib/chat/pageRanges.js";
+
 function uniqueSortedPages(pages) {
-  if (!Array.isArray(pages)) return [];
-  const nums = pages.map(p => Number(p)).filter(p => Number.isFinite(p) && p > 0);
-  return [...new Set(nums)].sort((a, b) => a - b);
+  return uniqueSortedPageNumbers(pages);
 }
 export function collapsePages(pages) {
-  const sorted = uniqueSortedPages(pages);
-  if (!sorted.length) return "";
-  const out = [];
-  let start = null;
-  let prev = null;
-  for (const page of sorted) {
-    if (start === null) {
-      start = prev = page;
-      continue;
-    }
-    if (page === prev + 1) {
-      prev = page;
-      continue;
-    }
-    out.push(start === prev ? `${start}` : `${start}-${prev}`);
-    start = prev = page;
-  }
-  if (start !== null) out.push(start === prev ? `${start}` : `${start}-${prev}`);
-  return out.join(", ");
+  return normalizePageReferences(pages);
 }
 export function normalizePageRange(value) {
   if (typeof value !== "string" && typeof value !== "number") return "";
   const raw = String(value).trim();
   if (!raw) return "";
   if (/^0+$/.test(raw)) return "";
-
-  const tokens = raw
-    .split(",")
-    .map(part => part.trim())
-    .filter(Boolean);
-  if (!tokens.length) return "";
-
-  const normalized = [];
-  for (const token of tokens) {
-    const rangeMatch = token.match(/^(\d+)\s*[-–]\s*(\d+)$/);
-    if (rangeMatch) {
-      const start = Number(rangeMatch[1]);
-      const end = Number(rangeMatch[2]);
-      if (!Number.isFinite(start) || !Number.isFinite(end) || end <= 0) continue;
-      const safeStart = Math.max(1, start);
-      normalized.push(safeStart === end ? `${end}` : `${safeStart}-${end}`);
-      continue;
-    }
-    const singleMatch = token.match(/^\d+$/);
-    if (singleMatch) {
-      const page = Number(token);
-      if (page > 0) normalized.push(`${page}`);
-      continue;
-    }
-    normalized.push(token);
-  }
-  return normalized.join(", ");
+  return normalizePageReferences(raw);
 }
 function asAuthorArray(v) {
   if (!v) return [];

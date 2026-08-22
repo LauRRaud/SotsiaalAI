@@ -7,6 +7,9 @@ import CloseIcon from "@/components/brand/icons/CloseIcon";
 import IconButton from "@/components/glass/IconButton";
 import Dropdown from "@/components/ui/Dropdown";
 import Form from "@/components/ui/Form";
+import { inertOutside } from "@/lib/inertOutside";
+
+const SOURCES_DIALOG_TITLE_ID = "chat-sources-title";
 const ChatSourcesPanel = memo(function ChatSourcesPanel({
   open,
   t,
@@ -60,6 +63,7 @@ const ChatSourcesPanel = memo(function ChatSourcesPanel({
       prevFocusRef.current = document.activeElement;
     } catch {}
     const root = dialogRef.current;
+    const releaseInert = inertOutside(root);
     const fallbackFocus = returnFocusRef?.current;
     const initial = closeRef.current || getFocusables(root)[0] || root;
     setTimeout(() => initial?.focus?.(), 0);
@@ -91,6 +95,7 @@ const ChatSourcesPanel = memo(function ChatSourcesPanel({
     document.addEventListener("keydown", onKeyDown, true);
     return () => {
       document.removeEventListener("keydown", onKeyDown, true);
+      releaseInert();
       const prev = prevFocusRef.current;
       setTimeout(() => {
         const target = prev && typeof prev.focus === "function" ? prev : fallbackFocus;
@@ -176,13 +181,13 @@ const ChatSourcesPanel = memo(function ChatSourcesPanel({
       ref={dialogRef}
       role="dialog"
       aria-modal="true"
-      aria-label={t("chat.sources.dialog_label")}
+      aria-labelledby={SOURCES_DIALOG_TITLE_ID}
       onClick={onClose}
       tabIndex={-1}
     >
       <div className="chat-sources-dialog" onClick={e => e.stopPropagation()}>
         <div className="chat-sources-header">
-          <h2>
+          <h2 id={SOURCES_DIALOG_TITLE_ID}>
             {t("chat.sources.heading")}
           </h2>
           <IconButton
