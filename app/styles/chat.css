@@ -406,9 +406,19 @@ form:has(#chat-input) button[type="submit"]::before {
    mõõt ja DOM-tüüp jäävad samaks, et ikoonivahetus ei nihutaks komposerit
    ega kaotaks klaviatuuri fookust. */
 form:has(#chat-input) button[type="submit"][data-voice-mode-trigger="true"]::before {
-  width: 1.65rem;
-  height: 1.65rem;
-  --glyph: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M3.5 13v-2M7 15.5v-7M10.5 18V6M14 16V8M17.5 14v-4M21 12.5v-1'/%3E%3C/svg%3E");
+  /* Sama kast (1.5rem) ja sama joonepaksus (1.6) mis mikril — kõrvuti
+     seisvad glüüfid peavad ühest joonistusmõõdust olema.
+     Ribade VAHE peab olema joonest laiem, muidu läheb glüüf umbseks:
+     samm 4.0 − joon 1.6 = vahe 2.4 (1,5× joon). Varasem 5 riba sammul 3.25
+     andis vahe 1.35 ehk joonest KITSAMA — just seda omanik 22.08 nägi
+     („liiga paksud jooned või liiga väikesed vahed").
+     Mõõt on mikri järgi: kõrgeim riba 16,6/24 (mikk 17), laius koos
+     ümarate otstega 13,6/24 (mikk 14) — kõrvuti mõõdetud, mitte silmaga
+     pakutud. Kõrgused on ebasümmeetrilised: see on KÕNE laine, mitte
+     helitugevuse riba. */
+  width: 1.5rem;
+  height: 1.5rem;
+  --glyph: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M6 8.8v6.4M10 4.5v15M14 6.5v11M18 9.2v5.6'/%3E%3C/svg%3E");
 }
 /* Peatamise seisund (voogedastus): puhas ümar ruut, ilma topeltglüüfita
    (varem oli SAMAL nupul ka päris <svg> laps + see mask peal — kaks
@@ -1443,10 +1453,16 @@ button[aria-controls="chat-window-scroll"] {
    oleva reegli SPETSIIFIKAST SÕLTUMATA. Siia kirjutatud 2.5rem kaotaks
    vaikselt kihita `.room-call-controls > button { width: 2.35rem }`-ile.
    Nende kasv on seepärast oma plokkides allpool. */
+/* Komposeri vaikse ikooni toon. Elab muutujas, sest teda kannab KAKS
+   kõrvuti seisvat nuppu — dikteerimise mikk ja häälvestluse päästik — ja
+   kaks koopiat lahkneksid. */
+.panel-scrim[data-conversation="1"] form:has(#chat-input) {
+  --conv-icon-quiet: rgba(233, 233, 233, 0.64);
+}
 /* Mikrofon: lihtne ikoon; salvestus = korall + laienevad helilained */
 .panel-scrim[data-conversation="1"] form:has(#chat-input) button[data-recording],
 .panel-scrim[data-conversation="1"] form:has(#chat-input) button[data-recording-cancel] {
-  color: rgba(233, 233, 233, 0.64);
+  color: var(--conv-icon-quiet);
   background: none;
   transition:
     color var(--dur-fast) var(--ease-soft),
@@ -1487,6 +1503,26 @@ button[aria-controls="chat-window-scroll"] {
     scale var(--dur-fast) var(--ease-soft),
     filter var(--dur-fast) var(--ease-soft),
     opacity var(--dur-fast) var(--ease-soft);
+}
+
+/* Häälvestluse päästik istub SAADA-nupu pesas (sama DOM-sõlm, et ikooni
+   vahetus komposerit ei nihutaks), aga ta EI OLE saatmine: ta ilmub ainult
+   tühja väljaga ja seisab siis dikteerimise mikri kõrval. Seega kannab ta
+   mikri vaikset tooni ja saatmise hõõgust ei ole — merevaigune hõõguv
+   ikoon neutraalse mikri kõrval luges võõrkehana (omanik 22.08).
+   Lisaatribuut annab (1,4,2) ja võidab saada-reegli (1,3,2) SÕLTUMATA
+   failijärjekorrast; võrdse spetsiifikaga jäi ta vaikselt kaotama. */
+.panel-scrim[data-conversation="1"] form:has(#chat-input)
+  button.conv-voice-mode-trigger[data-voice-mode-trigger="true"] {
+  color: var(--conv-icon-quiet);
+  filter: none;
+}
+.panel-scrim[data-conversation="1"] form:has(#chat-input)
+  button.conv-voice-mode-trigger[data-voice-mode-trigger="true"]:hover,
+.panel-scrim[data-conversation="1"] form:has(#chat-input)
+  button.conv-voice-mode-trigger[data-voice-mode-trigger="true"]:focus-visible {
+  color: var(--text-warm);
+  filter: none;
 }
 .panel-scrim[data-conversation="1"] form:has(#chat-input) button[type="submit"]:hover {
   color: #f8f8f8;

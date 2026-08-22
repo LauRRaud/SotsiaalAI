@@ -61,6 +61,11 @@ export default function GlassCarousel({
   /* Dokirežiimis: lehe info-lüliti lehe nime kõrval ({label, icon, active}).
      null = sellel lehel infot ei ole. */
   infoItem = null,
+  /* Dokirežiimis: lehe OMA tegevus ({label, icon, active, tone}) — nt
+     häälvestluse Alusta/Lõpeta. Erineb currentItem'ist selle poolest, et
+     ta on nupp, mitte silt: leht, mille ainus juhtnupp on dokis, ei pea
+     eraldi nupurida kasvatama. */
+  actionItem = null,
 }) {
   const n = items.length;
 
@@ -835,7 +840,7 @@ export default function GlassCarousel({
                 tea), jäi ta üksinda rippuma — kriips ilma teise pooleta
                 (omanik 29.07). Karussellis ja laual on rada alati olemas,
                 dokis ainult siis, kui lehel on nimi või ⓘ. */}
-            {backItem && (dockOnly ? Boolean(currentItem || infoItem) : true) ? (
+            {backItem && (dockOnly ? Boolean(currentItem || infoItem || actionItem) : true) ? (
               <span className="gc-shortcut-divider" aria-hidden="true" />
             ) : null}
             {dockOnly ? (
@@ -846,8 +851,27 @@ export default function GlassCarousel({
                  iga kerimisega doki laiust ja terve riba nihkuks. Siin
                  seda ohtu ei ole: avatud lehel on dokis üks kirje ja tema
                  laius ei muutu enne, kui leht ise vahetub. */
-              currentItem || infoItem ? (
+              currentItem || infoItem || actionItem ? (
                 <>
+                  {actionItem ? (
+                    <button
+                      type="button"
+                      className="gc-shortcut gc-shortcut--action"
+                      data-on={actionItem.active ? "1" : "0"}
+                      data-tone={actionItem.tone || undefined}
+                      onClick={() => handleShortcut(actionItem)}
+                    >
+                      {/* Ikoon on VALIKULINE: häälvestluse tegevus on puhas
+                          sõna („Alusta" / „Lõpeta"), sest silt ise ütleb
+                          oleku ära ja glüüf kordaks teda. */}
+                      {actionItem.icon ? (
+                        <span className="gc-shortcut-icon" aria-hidden="true">
+                          {actionItem.icon}
+                        </span>
+                      ) : null}
+                      <span className="gc-shortcut-text">{actionItem.label}</span>
+                    </button>
+                  ) : null}
                   {currentItem ? (
                     <span className="gc-shortcut gc-shortcut--current" data-on="1" aria-current="page">
                       <span className="gc-shortcut-icon" aria-hidden="true">

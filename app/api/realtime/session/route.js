@@ -5,6 +5,7 @@ import { authConfig } from "@/auth";
 import { requireSubscription, resolveSessionRoleState } from "@/lib/authz";
 import {
   REALTIME_MODEL,
+  REALTIME_TRANSCRIPTION_MODEL,
   VOICE_SESSION_LIMIT_MS,
   VOICE_SESSION_LIMIT_SECONDS,
   VOICE_SESSION_SPEECH_CHAR_LIMIT,
@@ -29,6 +30,8 @@ export const revalidate = 0;
 
 const OPENAI_REALTIME_URL = "https://api.openai.com/v1/realtime/calls";
 const OPENAI_REALTIME_MODEL = process.env.OPENAI_REALTIME_MODEL || REALTIME_MODEL;
+const OPENAI_TRANSCRIBE_MODEL = process.env.OPENAI_REALTIME_TRANSCRIBE_MODEL
+  || REALTIME_TRANSCRIPTION_MODEL;
 const SESSION_CREATE_TIMEOUT_MS = 20_000;
 const SESSION_RATE_LIMIT_MAX = 3;
 const SESSION_RATE_LIMIT_WINDOW_MS = 60_000;
@@ -151,7 +154,8 @@ export async function POST(request) {
     form.set("sdp", sdp);
     form.set("session", JSON.stringify(buildRealtimeSessionConfig({
       locale: payload?.locale,
-      model: OPENAI_REALTIME_MODEL
+      model: OPENAI_REALTIME_MODEL,
+      transcriptionModel: OPENAI_TRANSCRIBE_MODEL
     })));
 
     const upstream = await fetch(OPENAI_REALTIME_URL, {

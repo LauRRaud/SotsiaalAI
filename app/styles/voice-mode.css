@@ -1,127 +1,45 @@
-/* Häälvestlus — pärlmutter, suitsune violetne ja roosakuldne energia. */
+/* Häälvestlus — pärlmutter, süsi ja šampanjakuldne energia. Violetne on
+   teadlikult välja jäetud: lilla taust tappis avatari preemiumtooni.
+
+   Pind on TAUSTATA (omanik 22.08): ei paneeli, ei raami, ei pealkirja, ei
+   olekumulli. Avatar seisab otse vestluse peal ja kogu navigatsioon elab
+   platvormi dokis (.room-dock-wrap) — tagasi-nool, üks olekunupp ja ⓘ. */
 .voice-mode {
   --voice-pearl: #e6dfd8;
   --voice-platinum: #a6a4aa;
-  --voice-violet: #75617f;
-  --voice-champagne: #d6ae87;
-  --voice-rose: #bf746b;
+  --voice-smoke: #55555d;
+  --voice-champagne: #dcb47f;
+  --voice-rose: #c68d63;
   position: absolute;
   inset: 0;
   z-index: 36;
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto auto auto;
+  grid-template-rows: minmax(0, 1fr) auto;
   min-height: 0;
   overflow: hidden;
-  padding: clamp(1rem, 2.8vw, 2rem);
+  /* Alumine polster hoiab subtiitri doki alt vabana. */
+  padding: clamp(0.75rem, 2vw, 1.4rem) clamp(0.75rem, 2vw, 1.4rem) clamp(5rem, 11vh, 7rem);
   color: var(--voice-pearl);
-  border-radius: inherit;
-  background:
-    radial-gradient(70% 68% at 50% 42%, rgba(111, 82, 121, 0.2), transparent 68%),
-    radial-gradient(55% 50% at 50% 70%, rgba(190, 119, 105, 0.09), transparent 74%),
-    linear-gradient(145deg, rgba(13, 11, 17, 0.985), rgba(24, 18, 29, 0.985) 53%, rgba(10, 10, 13, 0.99));
-  isolation: isolate;
+  background: none;
+  border: 0;
   animation: voice-mode-arrive 520ms cubic-bezier(0.22, 0.76, 0.22, 1) both;
 }
 
-.voice-mode::before,
-.voice-mode::after,
-.voice-mode__ambient {
+/* Vestlus jääb avatari taha nähtavaks, aga ei konkureeri temaga: pehme
+   udu ilma servadeta. Kastiks teeks ta alles raam ja nurgaraadius. */
+.voice-mode::before {
   content: "";
   position: absolute;
-  pointer-events: none;
-}
-
-.voice-mode::before {
   inset: 0;
-  z-index: -2;
-  opacity: 0.26;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
-  mix-blend-mode: soft-light;
-}
-
-.voice-mode::after {
-  inset: 0.65rem;
   z-index: -1;
-  border: 1px solid rgba(230, 223, 216, 0.09);
-  border-radius: 1.15rem;
-  box-shadow: inset 0 0 80px rgba(190, 119, 105, 0.035);
-}
-
-.voice-mode__ambient {
-  top: 24%;
-  left: 50%;
-  z-index: -1;
-  width: min(62vw, 40rem);
-  aspect-ratio: 1;
-  translate: -50% -18%;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(213, 173, 135, 0.08), rgba(107, 82, 119, 0.04) 44%, transparent 70%);
-  filter: blur(12px);
-  animation: voice-ambient-breathe 6s ease-in-out infinite;
-}
-
-.voice-mode__header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1rem;
-  z-index: 2;
-}
-
-.voice-mode__eyebrow {
-  display: block;
-  margin-bottom: 0.18rem;
-  color: rgba(230, 223, 216, 0.58);
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.21em;
-  text-transform: uppercase;
-}
-
-.voice-mode__header h2 {
-  margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.25rem, 3vw, 1.65rem);
-  font-weight: 400;
-  letter-spacing: 0.025em;
-}
-
-.voice-mode__session-meta {
-  display: flex;
-  align-items: center;
-  gap: 0.62rem;
-  padding: 0.38rem 0.58rem;
-  border: 1px solid rgba(230, 223, 216, 0.12);
-  border-radius: 999px;
-  color: rgba(230, 223, 216, 0.68);
-  background: rgba(12, 10, 15, 0.34);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  font-size: 0.72rem;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.05em;
-}
-
-.voice-mode__session-meta > span {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.36rem;
-}
-
-.voice-mode__session-meta > span[data-live]::before {
-  content: "";
-  width: 0.38rem;
-  height: 0.38rem;
-  border-radius: 50%;
-  background: var(--voice-rose);
-  box-shadow: 0 0 0.7rem rgba(191, 116, 107, 0.65);
-  animation: voice-live-pulse 1.8s ease-in-out infinite;
-}
-
-.voice-mode__session-meta time {
-  padding-left: 0.58rem;
-  border-left: 1px solid rgba(230, 223, 216, 0.12);
-  color: var(--voice-pearl);
+  pointer-events: none;
+  /* Kate on servadeta, aga LÄBIPAISTMATU: pooleldi läbipaistva katte alt
+     luges vestluse tekst avatarist läbi — ka 0.957 alfa jättis ta loetavaks.
+     „Ilma kastita" ei tähenda „läbi paistev": kaob raam ja nurgaraadius,
+     mitte kate ise. */
+  background: radial-gradient(76% 60% at 50% 36%, #0d0d10, #08080a 70%);
+  -webkit-backdrop-filter: blur(26px);
+  backdrop-filter: blur(26px);
 }
 
 .voice-mode__stage {
@@ -142,7 +60,7 @@
   display: block;
   width: 100%;
   height: 100%;
-  filter: drop-shadow(0 0 24px rgba(161, 126, 154, 0.1));
+  filter: drop-shadow(0 0 26px rgba(214, 186, 146, 0.11));
 }
 
 .voice-avatar__fallback {
@@ -156,7 +74,7 @@
   border-radius: 48% 48% 38% 38% / 42% 42% 58% 58%;
   background:
     radial-gradient(circle at 28% 33%, var(--voice-pearl) 0 1px, transparent 1.7px) 0 0 / 8px 8px,
-    radial-gradient(circle at 68% 62%, var(--voice-violet) 0 1px, transparent 1.7px) 0 0 / 9px 9px;
+    radial-gradient(circle at 68% 62%, var(--voice-smoke) 0 1px, transparent 1.7px) 0 0 / 9px 9px;
   -webkit-mask-image: linear-gradient(#000 0 74%, transparent 96%);
   mask-image: linear-gradient(#000 0 74%, transparent 96%);
   opacity: 0.72;
@@ -177,58 +95,14 @@
   translate: -50% -50%;
   border-radius: 50%;
   border: 1px solid rgba(230, 223, 216, 0.12);
-  box-shadow: 0 0 3rem rgba(117, 97, 127, 0.18);
-}
-
-.voice-mode__state {
-  position: absolute;
-  left: 50%;
-  bottom: clamp(0.1rem, 2vh, 1.15rem);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  translate: -50% 0;
-  padding: 0.45rem 0.7rem;
-  border: 1px solid rgba(230, 223, 216, 0.1);
-  border-radius: 999px;
-  background: rgba(10, 9, 13, 0.52);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  color: rgba(230, 223, 216, 0.72);
-  font-size: 0.74rem;
-  letter-spacing: 0.06em;
-  white-space: nowrap;
-}
-
-.voice-mode__state > span {
-  width: 0.42rem;
-  height: 0.42rem;
-  border-radius: 50%;
-  background: var(--voice-platinum);
-  box-shadow: 0 0 0.8rem rgba(166, 164, 170, 0.5);
-}
-
-.voice-mode__state[data-state="listening"] > span {
-  background: var(--voice-champagne);
-  box-shadow: 0 0 0.8rem rgba(214, 174, 135, 0.7);
-  animation: voice-listen-pulse 1.25s ease-out infinite;
-}
-
-.voice-mode__state[data-state="thinking"] > span,
-.voice-mode__state[data-state="connecting"] > span {
-  background: var(--voice-violet);
-  animation: voice-think-orbit 1.5s linear infinite;
-}
-
-.voice-mode__state[data-state="speaking"] > span {
-  background: var(--voice-rose);
-  box-shadow: 0 0 0.9rem rgba(191, 116, 107, 0.76);
+  box-shadow: 0 0 3rem rgba(180, 176, 168, 0.14);
 }
 
 .voice-mode__caption {
   z-index: 2;
   width: min(38rem, 94%);
-  min-height: 4.8rem;
+  /* Tühi subtiiter ei tohi lõuendit kärpida: kõrgus tuleb sisust. */
+  min-height: 0;
   margin: 0 auto;
   text-align: center;
 }
@@ -246,15 +120,9 @@
   -webkit-line-clamp: 3;
 }
 
-.voice-mode__caption p[data-placeholder="true"] {
-  color: rgba(230, 223, 216, 0.48);
-  font-family: inherit;
-  font-size: 0.88rem;
-  line-height: 1.45;
-}
-
 .voice-mode__notice,
-.voice-mode__error {
+.voice-mode__error,
+.voice-mode__clock {
   display: block;
   margin-top: 0.38rem;
   font-size: 0.75rem;
@@ -263,95 +131,66 @@
 .voice-mode__notice { color: var(--voice-champagne); }
 .voice-mode__error { color: #e49b93; }
 
-.voice-mode__controls {
+.voice-mode__clock {
+  color: rgba(230, 223, 216, 0.42);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.09em;
+}
+
+/* ⓘ vahetab pinna sisu, ei ava modaali — sama komme nagu mujal platvormil. */
+.voice-mode__info {
   z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.55rem;
-  margin-top: 0.55rem;
+  grid-row: 1 / -1;
+  align-self: center;
+  width: min(34rem, 92%);
+  margin: 0 auto;
 }
 
-.voice-mode__controls button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  min-height: 2.65rem;
-  padding: 0.58rem 0.86rem;
-  border: 1px solid rgba(230, 223, 216, 0.15);
-  border-radius: 999px;
-  color: rgba(239, 233, 227, 0.86);
-  background: rgba(32, 27, 37, 0.68);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  font-size: 0.78rem;
-  transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
+.voice-mode__info h2 {
+  margin: 0 0 0.85rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.15rem, 2.6vw, 1.5rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
 }
 
-.voice-mode__controls button:hover {
-  transform: translateY(-1px);
-  border-color: rgba(230, 223, 216, 0.3);
-  background: rgba(48, 39, 54, 0.8);
+.voice-mode__info p {
+  margin: 0 0 0.7rem;
+  color: rgba(230, 223, 216, 0.72);
+  font-size: 0.9rem;
+  line-height: 1.6;
 }
 
-.voice-mode__start {
-  color: #171319 !important;
-  border-color: rgba(230, 223, 216, 0.52) !important;
-  background: linear-gradient(120deg, #d5cbc1, #bda88f) !important;
-  box-shadow: 0 0.65rem 2rem rgba(190, 151, 117, 0.14);
+/* Doki tegevusnupp (GlassCarousel actionItem). Kuju ja materjal tulevad
+   .gc-shortcut'ist; siin on ainult olekuvärv, et Alusta ja Lõpeta oleks
+   riba pealt eristatavad. */
+.gc-shortcut--action[data-tone="start"] { color: var(--voice-champagne); }
+.gc-shortcut--action[data-tone="stop"] { color: #e0a09a; }
+
+/* Doki otsetee tekst on vaikimisi kokku volditud (carousel.css:
+   `max-width: 0; opacity: 0`) ja avaneb ainult `data-on="1"` pealt — seega
+   oli „Alusta" DOM-is olemas, aga nähtamatu. Siin on ta ALATI lahti, sest
+   see nupp ONGI sõna. Neli klassi/atribuuti, et võita `.gc-shortcut
+   [data-on="1"] .gc-shortcut-text` (0,3,0) sõltumata failide järjekorrast. */
+.room-dock-wrap[data-voice-dock="1"] .gc-shortcut--action .gc-shortcut-text {
+  max-width: 11rem;
+  margin-left: 0;
+  opacity: 1;
 }
 
-.voice-mode__start > span,
-.voice-mode__mute > span {
-  width: 0.95rem;
-  height: 0.95rem;
-  background: currentColor;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3Zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21H8v2h8v-2h-3v-3.08A7 7 0 0 0 19 11h-2Z'/%3E%3C/svg%3E") center / contain no-repeat;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3Zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21H8v2h8v-2h-3v-3.08A7 7 0 0 0 19 11h-2Z'/%3E%3C/svg%3E") center / contain no-repeat;
+/* Kitsal ekraanil peidab carousel.css KOGU doki teksti (`display: none`,
+   erand ainult lehe nimel). Tegevusnupp vajab sama erandit: ilma temata
+   jääb „Alusta" alla 768 px täiesti nähtamatuks — nupust saab tühi ring. */
+@media (max-width: 768px) {
+  .room-dock-wrap[data-voice-dock="1"] .gc-shortcut--action .gc-shortcut-text {
+    display: block;
+  }
 }
 
-.voice-mode__mute[data-muted="true"] { color: var(--voice-rose); }
-
-.voice-mode__end {
-  color: #e7b0aa !important;
-  border-color: rgba(191, 116, 107, 0.34) !important;
-  background: rgba(92, 43, 45, 0.42) !important;
-}
-
-.voice-mode__end > span {
-  width: 0.78rem;
-  height: 0.78rem;
-  border-radius: 0.18rem;
-  background: currentColor;
-}
-
-.voice-mode__sources > span {
-  min-width: 1.25rem;
-  padding: 0.05rem 0.32rem;
-  border-radius: 999px;
-  background: rgba(230, 223, 216, 0.12);
-  font-size: 0.66rem;
-}
-
-.voice-mode__limit-copy {
-  z-index: 2;
-  margin: 0.62rem 0 0;
-  color: rgba(230, 223, 216, 0.38);
-  font-size: 0.66rem;
-  letter-spacing: 0.025em;
-  text-align: center;
-}
-
-.conv-voice-mode-trigger {
-  color: rgba(214, 174, 135, 0.76) !important;
-}
-
-.conv-voice-mode-trigger:hover {
-  color: #e0c3a5 !important;
-  filter: drop-shadow(0 0 0.5rem rgba(214, 174, 135, 0.34));
-}
+/* Häälvestluse päästiku VÄRVI siin ei ole. Ta seisab komposeris dikteerimise
+   mikri kõrval ja kannab sama värvireeglit — vt chat.css, kus mikri ja
+   päästiku selektorid on ühes plokis. Siin olnud merevaigune `!important`
+   tegi temast kõrvalseisja (omanik 22.08 „kole ja vale värvi ka"). */
 
 .panel-scrim:has([data-chat-container][data-voice-active="true"]) :is(.panel-menu, .panel-close) {
   opacity: 0;
@@ -363,48 +202,17 @@
   to { opacity: 1; transform: scale(1); filter: blur(0); }
 }
 
-@keyframes voice-ambient-breathe {
-  0%, 100% { scale: 0.92; opacity: 0.55; }
-  50% { scale: 1.08; opacity: 1; }
-}
-
-@keyframes voice-live-pulse {
-  50% { opacity: 0.5; scale: 0.78; }
-}
-
-@keyframes voice-listen-pulse {
-  from { box-shadow: 0 0 0 0 rgba(214, 174, 135, 0.55); }
-  to { box-shadow: 0 0 0 0.55rem rgba(214, 174, 135, 0); }
-}
-
-@keyframes voice-think-orbit {
-  to { transform: rotate(1turn); border-radius: 30%; }
-}
-
 @media (max-width: 640px) {
   .voice-mode {
-    padding: max(0.9rem, env(safe-area-inset-top)) 0.9rem max(0.85rem, env(safe-area-inset-bottom));
-    grid-template-rows: auto minmax(16rem, 1fr) auto auto auto;
+    padding: 0.9rem 0.9rem calc(max(4.6rem, env(safe-area-inset-bottom)) + 2.6rem);
   }
-  .voice-mode__eyebrow { font-size: 0.59rem; }
-  .voice-mode__session-meta > span { display: none; }
-  .voice-mode__session-meta time { padding-left: 0; border-left: 0; }
   .voice-avatar { inset-inline: 0; }
-  .voice-mode__caption { min-height: 4.15rem; }
-  .voice-mode__controls { gap: 0.4rem; }
-  .voice-mode__controls button { min-height: 2.5rem; padding: 0.52rem 0.72rem; }
 }
 
-html[data-contrast="hc"] .voice-mode {
+html[data-contrast="hc"] .voice-mode::before {
   background: #080808;
-  border: 2px solid #fff;
-}
-
-html[data-contrast="hc"] .voice-mode__controls button,
-html[data-contrast="hc"] .voice-mode__state,
-html[data-contrast="hc"] .voice-mode__session-meta {
-  border-color: #fff;
-  background: #000;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 
 html[data-reduce-motion="1"] .voice-mode,

@@ -2521,11 +2521,6 @@ export default function ChatBody({
     endRealtimeVoiceSession("ended");
     setVoiceModeOpen(false);
   }, [endRealtimeVoiceSession]);
-  const showVoiceSources = useCallback(() => {
-    endRealtimeVoiceSession("ended");
-    setVoiceModeOpen(false);
-    openMessageSources(latestAnswerSources);
-  }, [endRealtimeVoiceSession, latestAnswerSources, openMessageSources]);
   useEffect(() => {
     if (!voiceModeOpen) return;
     if (!workspaceOpen && !isRoomMode && activeWorkflow === "default") return;
@@ -2983,8 +2978,6 @@ export default function ChatBody({
           t={t}
           voice={realtimeVoice}
           latestAiText={latestAiText}
-          sourceCount={latestAnswerSources.length}
-          onShowSources={showVoiceSources}
           onClose={closeVoiceMode}
         />
       ) : null}

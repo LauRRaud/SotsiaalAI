@@ -1,12 +1,19 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
+
+import GlassCarousel from "@/components/room/GlassCarousel";
+import ChevronIcon from "@/components/brand/icons/ChevronIcon";
+import { AboutInfoIcon } from "@/components/brand/icons/CardIcons";
 
 const VoicePointAvatar = dynamic(() => import("./VoicePointAvatar"), {
   ssr: false,
   loading: () => <div className="voice-avatar voice-avatar--loading" aria-hidden="true" />
 });
+
+const LIVE_STATES = ["connecting", "listening", "thinking", "speaking"];
 
 function formatRemaining(milliseconds) {
   const total = Math.max(0, Math.ceil(Number(milliseconds || 0) / 1000));
@@ -22,59 +29,89 @@ function cleanCaption(value) {
     .slice(0, 360);
 }
 
-export default function VoiceModeSurface({
-  t,
-  voice,
-  latestAiText,
-  sourceCount = 0,
-  onShowSources,
-  onClose
-}) {
+/**
+ * Häälpind on avatar läbipaistval taustal ja subtiiter — ei paneeli, ei
+ * pealkirja, ei olekumulli. Navigatsioon käib platvormi DOKI kaudu
+ * (tagasi-nool + üks olekunupp + ⓘ), täpselt nagu teistel avatud lehtedel.
+ */
+export default function VoiceModeSurface({ t, voice, latestAiText, onClose }) {
   const surfaceRef = useRef(null);
-  const startButtonRef = useRef(null);
-  const endButtonRef = useRef(null);
+  const [infoOpen, setInfoOpen] = useState(false);
   const endSession = voice.endSession;
   const read = (key, fallback) => {
     const value = typeof t === "function" ? t(key) : "";
     return typeof value === "string" && value.trim() && value !== key ? value : fallback;
   };
-  const connected = ["connecting", "listening", "thinking", "speaking"].includes(voice.status);
-  const canStart = ["idle", "error", "ended"].includes(voice.status);
+  const live = LIVE_STATES.includes(voice.status);
   const visibleCaption = useMemo(() => {
     if (voice.status === "speaking") return cleanCaption(latestAiText);
     return cleanCaption(voice.partialCaption || voice.caption);
   }, [latestAiText, voice.caption, voice.partialCaption, voice.status]);
 
   useEffect(() => {
-    (startButtonRef.current || endButtonRef.current)?.focus?.({ preventScroll: true });
     const onKeyDown = event => {
-      if (event.key === "Escape") {
-        event.preventDefault();
-        endSession("ended");
-        onClose?.();
-        return;
-      }
-      if (event.key !== "Tab") return;
-      const controls = [...(surfaceRef.current?.querySelectorAll?.("button:not([disabled])") || [])];
-      if (!controls.length) return;
-      const first = controls[0];
-      const last = controls[controls.length - 1];
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault();
-        first.focus();
-      }
+      if (event.key !== "Escape") return;
+      event.preventDefault();
+      endSession("ended");
+      onClose?.();
     };
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [endSession, onClose]);
 
-  const close = () => {
+  // Tagasi-nool viib vestlusesse ja lõpetab seansi: lahtine mikrofon
+  // nähtamatu pinna taga oleks vaikne loaületus.
+  const leave = () => {
     voice.endSession("ended");
     onClose?.();
   };
+  // Üks nupp kannab mõlemat olekut — alustab seansi või lõpetab ta.
+  const toggleSession = () => {
+    if (live) {
+      voice.endSession("ended");
+      return;
+    }
+    setInfoOpen(false);
+    voice.startSession();
+  };
+  const onDockSelect = item => {
+    if (item?.key === "voice-back") return leave();
+    if (item?.key === "voice-info") return setInfoOpen(open => !open);
+    return toggleSession();
+  };
+
+  const dock = typeof document === "undefined" ? null : createPortal(
+    /* Dokk portaalitakse body'sse: paneelil on backdrop-filter, mis loob
+       oma sisaldusploki ja muudaks `position: fixed` doki paneeli-siseseks. */
+    <div className="room-dock-wrap" data-room-ui data-voice-dock="1">
+      <GlassCarousel
+        dockOnly
+        items={[]}
+        t={t}
+        forceInitial
+        backItem={{
+          key: "voice-back",
+          label: read("chat.voice.back", "Tagasi vestlusesse"),
+          icon: <ChevronIcon direction="left" strokeWidth={1.05} />
+        }}
+        actionItem={{
+          key: "voice-toggle",
+          // Dokis on lühivorm: "Alusta häälvestlust" venitaks riba laiaks.
+          label: live ? read("chat.voice.end", "Lõpeta") : read("chat.voice.start_short", "Alusta"),
+          active: live,
+          tone: live ? "stop" : "start"
+        }}
+        infoItem={{
+          key: "voice-info",
+          label: read("chat.voice.info", "Kuidas häälvestlus töötab"),
+          icon: <AboutInfoIcon />,
+          active: infoOpen
+        }}
+        onSelect={onDockSelect}
+      />
+    </div>,
+    document.body
+  );
 
   return (
     <section
@@ -82,73 +119,44 @@ export default function VoiceModeSurface({
       className="voice-mode"
       data-voice-mode="true"
       data-state={voice.status}
+      data-info-open={infoOpen ? "true" : undefined}
       role="dialog"
       aria-modal="true"
-      aria-labelledby="voice-mode-title"
+      aria-label={read("chat.voice.eyebrow", "Häälvestlus")}
     >
-      <div className="voice-mode__ambient" aria-hidden="true" />
-      <header className="voice-mode__header">
-        <div>
-          <span className="voice-mode__eyebrow">{read("chat.voice.eyebrow", "Häälvestlus")}</span>
-          <h2 id="voice-mode-title">{read("chat.voice.title", "SotsiaalAI")}</h2>
+      {infoOpen ? (
+        /* ⓘ vahetab pinna sisu, ei ava modaali — nii nagu mujal platvormil. */
+        <div className="voice-mode__info">
+          <h2>{read("chat.voice.info", "Kuidas häälvestlus töötab")}</h2>
+          <p>{read("chat.voice.info_mic", "Mikrofon avaneb alles sinu loal ja sulgub seansi lõpus.")}</p>
+          <p>{read("chat.voice.info_path", "Sinu kõne teisendatakse tekstiks ja vastus tuleb sama teed pidi nagu kirjalikus vestluses — samadest allikatest ja sama kontrolliga.")}</p>
+          <p>{read("chat.voice.limit_copy", "Seanss sulgub automaatselt 5 minuti või 90 sekundi vaikuse järel.")}</p>
         </div>
-        <div className="voice-mode__session-meta">
-          <span data-live={connected ? "true" : undefined}>{connected ? read("chat.voice.live", "Otse") : read("chat.voice.ready", "Valmis")}</span>
-          <time aria-label={read("chat.voice.time_left", "Seansi lõpuni")}>{formatRemaining(voice.remainingMs)}</time>
-        </div>
-      </header>
+      ) : (
+        <>
+          <div className="voice-mode__stage">
+            <VoicePointAvatar
+              status={voice.status}
+              audioLevel={voice.audioLevel}
+              label={read("chat.voice.avatar_label", "Täppidest digitaalne vestlusavatar")}
+            />
+          </div>
 
-      <div className="voice-mode__stage">
-        <VoicePointAvatar
-          status={voice.status}
-          audioLevel={voice.audioLevel}
-          label={read("chat.voice.avatar_label", "Täppidest digitaalne vestlusavatar")}
-        />
-        <div className="voice-mode__state" data-state={voice.status}>
-          <span aria-hidden="true" />
-          <strong>{voice.stateLabel}</strong>
-        </div>
-      </div>
-
-      <div className="voice-mode__caption" aria-live="polite" aria-atomic="true">
-        {visibleCaption ? <p>{visibleCaption}</p> : (
-          <p data-placeholder="true">
-            {canStart
-              ? read("chat.voice.start_hint", "Vajuta Alusta. Mikrofon avaneb alles sinu loal.")
-              : read("chat.voice.listening_hint", "Räägi loomulikult — vastuse saad nii hääle kui tekstina.")}
-          </p>
-        )}
-        {voice.notice ? <span className="voice-mode__notice" role="status">{voice.notice}</span> : null}
-        {voice.error ? <span className="voice-mode__error" role="alert">{voice.error}</span> : null}
-      </div>
-
-      <div className="voice-mode__controls">
-        {canStart ? (
-          <button ref={startButtonRef} type="button" className="voice-mode__start" onClick={voice.startSession}>
-            <span aria-hidden="true" />
-            {read("chat.voice.start", "Alusta häälvestlust")}
-          </button>
-        ) : null}
-        {connected ? (
-          <button type="button" className="voice-mode__mute" data-muted={voice.muted ? "true" : undefined} onClick={voice.toggleMuted}>
-            <span aria-hidden="true" />
-            {voice.muted ? read("chat.voice.unmute", "Lülita mikrofon sisse") : read("chat.voice.mute", "Vaigista")}
-          </button>
-        ) : null}
-        {sourceCount > 0 ? (
-          <button type="button" className="voice-mode__sources" onClick={onShowSources}>
-            {read("chat.voice.sources", "Allikad")} <span>{sourceCount}</span>
-          </button>
-        ) : null}
-        <button ref={endButtonRef} type="button" className="voice-mode__end" onClick={close}>
-          <span aria-hidden="true" />
-          {read("chat.voice.end", "Lõpeta")}
-        </button>
-      </div>
-
-      <p className="voice-mode__limit-copy">
-        {read("chat.voice.limit_copy", "Seanss sulgub automaatselt 5 minuti või 90 sekundi vaikuse järel.")}
-      </p>
+          {/* Subtiiter kannab AINULT elavat kõnet. Püsivad juhised elavad ⓘ
+              all — pinnal seisev vihjelause oli lihtsalt müra avatari kõrval. */}
+          <div className="voice-mode__caption" aria-live="polite" aria-atomic="true">
+            {visibleCaption ? <p>{visibleCaption}</p> : null}
+            {voice.notice ? <span className="voice-mode__notice" role="status">{voice.notice}</span> : null}
+            {voice.error ? <span className="voice-mode__error" role="alert">{voice.error}</span> : null}
+            {live ? (
+              <time className="voice-mode__clock" aria-label={read("chat.voice.time_left", "Seansi lõpuni")}>
+                {formatRemaining(voice.remainingMs)}
+              </time>
+            ) : null}
+          </div>
+        </>
+      )}
+      {dock}
     </section>
   );
 }

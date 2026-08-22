@@ -3142,7 +3142,12 @@
       "limit_warning": "Seansi lõpuni on jäänud 45 sekundit.",
       "limit_reached": "5 minuti piir täitus ja häälühendus suleti.",
       "speech_limit_reached": "Selle häälseansi ettelugemise piir täitus ja ühendus suleti.",
-      "idle_reached": "90 sekundit ei olnud kõnet ja häälühendus suleti."
+      "idle_reached": "90 sekundit ei olnud kõnet ja häälühendus suleti.",
+      "back": "Tagasi vestlusesse",
+      "info": "Kuidas häälvestlus töötab",
+      "info_mic": "Mikrofon avaneb alles sinu loal ja sulgub seansi lõpus.",
+      "info_path": "Sinu kõne teisendatakse tekstiks ja vastus tuleb sama teed pidi nagu kirjalikus vestluses — samadest allikatest ja sama kontrolliga.",
+      "start_short": "Alusta"
     },
     "fallback": {
       "no_context_client": "Ma ei leidnud praegu materjalidest sellele täpset vastust. Kirjelda palun oma olukorda veidi täpsemalt ja lisa vähemalt vald või linn.",

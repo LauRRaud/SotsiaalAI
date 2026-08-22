@@ -3142,7 +3142,12 @@
       "limit_warning": "45 seconds remain in this session.",
       "limit_reached": "The 5-minute limit was reached and the voice connection was closed.",
       "speech_limit_reached": "This voice session reached its read-aloud limit and the connection was closed.",
-      "idle_reached": "No speech was detected for 90 seconds and the voice connection was closed."
+      "idle_reached": "No speech was detected for 90 seconds and the voice connection was closed.",
+      "back": "Back to the conversation",
+      "info": "How voice chat works",
+      "info_mic": "The microphone opens only with your permission and closes when the session ends.",
+      "info_path": "Your speech is turned into text and the answer travels the same path as in written chat — same sources, same checks.",
+      "start_short": "Start"
     },
     "fallback": {
       "no_context_client": "I could not find an exact answer in the materials right now. Please describe your situation in a bit more detail and include at least your municipality or city.",
