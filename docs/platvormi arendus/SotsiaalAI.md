@@ -92,15 +92,16 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**Vestluse eraldi häälrežiim on 22.08 ehitatud (`8e09478a`).** Vestluse komposerist avaneb
-premium-toonides täppidest naise pea ja õlgade avatar, mis jälgib kursori liikumist ning
+**Vestluse eraldi häälrežiim on 22.08 ehitatud (`8e09478a`).** Tühja tekstivälja korral muutub
+komposeri senine saatmisnupp häälvestluse nupuks; kirjutamisel on sama 40 × 40 px kontroll jälle
+saatmisnupp ning eraldi häälnuppu ei ole. Sealt avaneb premium-toonides täppidest naise pea ja õlgade avatar, mis jälgib kursori liikumist ning
 reageerib kuulamisele, mõtlemisele ja rääkimisele. `gpt-realtime-2.1-mini` teeb ainult
 vooruvahetuse ja transkriptsiooni; vastus käib endiselt olemasoleva vestluse RAG-i,
 allikate, kriisiraja, privaatsuskontrolli ja kvootide kaudu. Hääl loeb ette kuni kolm lauset,
 täisvastus ja allikad jäävad vestlusse. Iga seanss on opt-in, kuni 5 minutit, lõpeb 90 sekundi
 tegevusetuse järel ning reserveerib enne ühendust kogu võimaliku STT-mahu; lehe peitmine,
 lahkumine, piir, viga ja käsitsi lõpetamine sulgevad WebRTC, mikrofoni ja helirajad. Sihttõend:
-28/28 hääletesti, i18n, lint, `git diff --check`, tootmisbuild ning töölaua ja mobiili
+29/29 hääletesti, i18n, lint, `git diff --check`, tootmisbuild ning töölaua ja mobiili
 brauserivaade ilma konsoolivigade ja Realtime-kutseta. Päris autentitud
 mikrofon → Realtime → RAG → TTS rada on **NOT_PROVEN**, sest tasulist seanssi ei avatud.
 
@@ -1912,7 +1913,8 @@ kvoodid), mis kannab platvormi lubadusi.
 ### Tehtud
 
 **Eraldi häälvestlus täpp-avatariga.**
-Vestluse lehel saab avada telefonikõne laadse pinna, mille keskmes on umbes 10 000
+Kui tekstiväli on tühi, on komposeri senine saatmisnupp häälvestluse avaja; teksti sisestamisel
+muutub sama nupp tagasi saatmisnupuks. Eraldi häälnuppu ei kuvata. Vestluse lehel saab nii avada telefonikõne laadse pinna, mille keskmes on umbes 10 000
 valguspunktist moodustatud naise pea, kael ja õlad. Pea liigub kursori suunas, õlad püsivad
 rahulikud ning kuulamise, mõtlemise ja rääkimise olekud muudavad punktide liikumist ja
 helilaineid. Sinise-oranži asemel kasutab vaade grafiidi, sügava ploomi, pärli, suitsuse

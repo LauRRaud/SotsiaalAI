@@ -475,6 +475,7 @@ export default function ChatComposer({
     };
   }, [inputRef, onDraftStateChange]);
   const hasInput = Boolean(draft.trim());
+  const canOpenVoiceMode = !isRoomMode && !hasActiveWorkflowMode && Boolean(onOpenVoiceMode);
   // T03 E3: nähtav tähemärgiloendur ilmub piirile lähenedes; üle piiri → over-limit olek.
   const draftLength = draft.length;
   const showCharCounter = draftLength >= MESSAGE_COUNTER_VISIBLE_FROM;
@@ -593,12 +594,16 @@ export default function ChatComposer({
     }
     e.preventDefault();
     closeToolsMenu();
-    if (isGenerating) {
+    if (isGenerating || isStreamingAny) {
       onStop?.(e);
       return;
     }
+    if (!draft.trim() && canOpenVoiceMode) {
+      onOpenVoiceMode?.(e);
+      return;
+    }
     void submitSend();
-  }, [closeToolsMenu, isGenerating, onStop, submitSend]);
+  }, [canOpenVoiceMode, closeToolsMenu, draft, isGenerating, isStreamingAny, onOpenVoiceMode, onStop, submitSend]);
   const handleKeyDown = useCallback(e => {
     // Escape = katkesta salvestus. Sama žest, mis mujal platvormil sulgeb
     // pooleli oleva tegevuse; klaviatuuriga kasutaja ei pea nuppu otsima.
@@ -627,10 +632,14 @@ export default function ChatComposer({
       void submitSend();
       return;
     }
+    if (canOpenVoiceMode) {
+      onOpenVoiceMode?.(event);
+      return;
+    }
     if (showDictationButton && voiceEnabled && !useSimpleRoomActionButtons) {
       handleMic?.(event);
     }
-  }, [closeToolsMenu, draft, handleMic, isGenerating, isStreamingAny, onStop, showDictationButton, submitSend, useSimpleRoomActionButtons, voiceEnabled]);
+  }, [canOpenVoiceMode, closeToolsMenu, draft, handleMic, isGenerating, isStreamingAny, onOpenVoiceMode, onStop, showDictationButton, submitSend, useSimpleRoomActionButtons, voiceEnabled]);
   const handleDictateClick = useCallback(event => {
     closeToolsMenu();
     handleMic?.(event);
@@ -812,23 +821,6 @@ export default function ChatComposer({
       <div>
         {/* Helikõne kontrollid — kompaktne ikoon-grupp mikri juures (omanik 23.07). */}
         {callControlsNode}
-        {!isRoomMode && !hasActiveWorkflowMode && onOpenVoiceMode ? (
-          <button
-            type="button"
-            className="conv-voice-mode-trigger"
-            aria-label={t("chat.voice.open")}
-            title={t("chat.voice.open")}
-            onClick={onOpenVoiceMode}
-            onMouseDown={preserveDesktopInputFocusOnMouseDown}
-            disabled={isGenerating || isStreamingAny}
-            data-voice-mode-trigger="true"
-          >
-            <svg aria-hidden="true" viewBox="0 0 32 32" fill="none">
-              <path d="M5.5 17.6v-3.2M10 21v-10M14.5 24v-16M19 21.6V10.4M23.5 19v-6M28 17v-2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-              <path d="M3.8 16h24.4" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" opacity=".28" />
-            </svg>
-          </button>
-        ) : null}
         {isRoomMode && assistantForwardEnabled ? (
           <>
             {/* Saatmise siht — üksik nupp mikri VASAKUL (omanik 23.07, valik B).
@@ -854,7 +846,7 @@ export default function ChatComposer({
             (T03 E4 punkt 1: privaatsuslubadus, mitte mugavus). */}
         {showDictationButton && !useSimpleRoomActionButtons && recording && cancelRecording ? <button type="button" aria-label={t("chat.mic.cancel")} title={t("chat.mic.cancel")} onClick={handleDiscardRecordingClick} onMouseDown={preserveDesktopInputFocusOnMouseDown} data-recording-cancel="true" /> : null}
         {showDictationButton && !useSimpleRoomActionButtons ? <button type="button" aria-label={recording ? t("chat.mic.stop") : micBlockedLabel || t("chat.mic.start")} title={recording ? t("chat.mic.stop") : micBlockedLabel || t("chat.mic.start")} onClick={handleDictateClick} onMouseDown={preserveDesktopInputFocusOnMouseDown} disabled={isRoomMode && (roomBlocked || roomAuthRequired)} data-speaking={recording ? "true" : "false"} data-recording={recording ? "true" : "false"} data-recording-blocked={micBlockedLabel ? "true" : undefined} data-recording-complete={recordingPulse ? "true" : "false"} /> : null}
-        {isGenerating || isStreamingAny ? <button type="submit" aria-label={t("chat.send.stop")} title={t("chat.send.title_stop")} disabled={isRoomMode && (roomBlocked || roomAuthRequired) || !hasInput && !isGenerating && !isStreamingAny} data-loader-active="true" onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} /> : hasInput ? <button type="submit" aria-label={t("chat.send.send")} title={t("chat.send.title_send")} disabled={isRoomMode && (roomBlocked || roomAuthRequired)} onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} /> : <button type="submit" aria-label={t("chat.send.send")} title={t("chat.send.title_send")} disabled={!hasInput || isRoomMode && (roomBlocked || roomAuthRequired)} data-empty-disabled={!hasInput ? "true" : undefined} onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} />}
+        {isGenerating || isStreamingAny ? <button type="submit" aria-label={t("chat.send.stop")} title={t("chat.send.title_stop")} disabled={isRoomMode && (roomBlocked || roomAuthRequired) || !hasInput && !isGenerating && !isStreamingAny} data-loader-active="true" onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} /> : hasInput ? <button type="submit" aria-label={t("chat.send.send")} title={t("chat.send.title_send")} disabled={isRoomMode && (roomBlocked || roomAuthRequired)} onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} /> : canOpenVoiceMode ? <button type="submit" className="conv-voice-mode-trigger" aria-label={t("chat.voice.open")} title={t("chat.voice.open")} data-voice-mode-trigger="true" onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} /> : <button type="submit" aria-label={t("chat.send.send")} title={t("chat.send.title_send")} disabled={!hasInput || isRoomMode && (roomBlocked || roomAuthRequired)} data-empty-disabled={!hasInput ? "true" : undefined} onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} />}
       </div>
     </>;
   return <Form ref={inputRowRef} style={inputRowStyle} onSubmit={handleSubmit} autoComplete="off">

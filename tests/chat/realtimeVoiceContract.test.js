@@ -21,6 +21,7 @@ import {
 const root = join(dirname(fileURLToPath(import.meta.url)), "../..");
 const hook = readFileSync(join(root, "components/chat/hooks/useRealtimeVoice.js"), "utf8");
 const surface = readFileSync(join(root, "components/alalehed/chat/VoiceModeSurface.jsx"), "utf8");
+const composer = readFileSync(join(root, "components/alalehed/chat/ChatComposer.jsx"), "utf8");
 const route = readFileSync(join(root, "app/api/realtime/session/route.js"), "utf8");
 const settleRoute = readFileSync(join(root, "app/api/realtime/session/settle/route.js"), "utf8");
 
@@ -93,4 +94,10 @@ test("voice mode is explicit, captioned and always exposes an end control", () =
   assert.match(surface, /voice\.end/);
   assert.match(surface, /aria-live="polite"/);
   assert.match(surface, /VoicePointAvatar/);
+});
+
+test("an empty chat draft turns the single primary send control into voice mode", () => {
+  assert.match(composer, /const canOpenVoiceMode = !isRoomMode && !hasActiveWorkflowMode && Boolean\(onOpenVoiceMode\);/);
+  assert.match(composer, /hasInput \? <button type="submit"[^>]+chat\.send\.send[\s\S]+: canOpenVoiceMode \? <button type="submit"[^>]+chat\.voice\.open/);
+  assert.doesNotMatch(composer, /type="button"\s+className="conv-voice-mode-trigger"/);
 });

@@ -402,6 +402,14 @@ form:has(#chat-input) button[type="submit"]::before {
   height: 1.5rem;
   --glyph: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 15l6-6 6 6'/%3E%3C/svg%3E");
 }
+/* Tühi tekstiväli muudab sama primaarse nupu häälvestluse avajaks. Nupu
+   mõõt ja DOM-tüüp jäävad samaks, et ikoonivahetus ei nihutaks komposerit
+   ega kaotaks klaviatuuri fookust. */
+form:has(#chat-input) button[type="submit"][data-voice-mode-trigger="true"]::before {
+  width: 1.65rem;
+  height: 1.65rem;
+  --glyph: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M3.5 13v-2M7 15.5v-7M10.5 18V6M14 16V8M17.5 14v-4M21 12.5v-1'/%3E%3C/svg%3E");
+}
 /* Peatamise seisund (voogedastus): puhas ümar ruut, ilma topeltglüüfita
    (varem oli SAMAL nupul ka päris <svg> laps + see mask peal — kaks
    kattuvat ruutu; tellija 07.07 "katkine, kaks valget ruutu"). */

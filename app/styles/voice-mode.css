@@ -348,11 +348,6 @@
   color: rgba(214, 174, 135, 0.76) !important;
 }
 
-.conv-voice-mode-trigger svg {
-  width: 1.9rem;
-  height: 1.9rem;
-}
-
 .conv-voice-mode-trigger:hover {
   color: #e0c3a5 !important;
   filter: drop-shadow(0 0 0.5rem rgba(214, 174, 135, 0.34));
