@@ -4,6 +4,7 @@ import { describe, test } from "node:test";
 import { formatSourceLabel, normalizeSourceLabelPages } from "../../components/chat/utils/sources.js";
 import { validateExactFactAnswer } from "../../lib/chat/factContract.js";
 import { normalizePageReferences } from "../../lib/chat/pageRanges.js";
+import { buildSpecificResearchFactQueries } from "../../lib/chat/queryPlanner.js";
 import { buildQuestionPlan } from "../../lib/chat/questionPlanner.js";
 import { selectSpecificResearchFactGroups } from "../../lib/chat/retrievalContextAssembler.js";
 import { extractExplicitSourceYears } from "../../lib/chat/retrievalPlanning.js";
@@ -58,6 +59,18 @@ describe("faktiküsimuse planner", () => {
       message: "Eakate vägivallauuring: mis olid 10%, 6% ja 2% näidud?"
     });
     assert.deepEqual(plan.document_fact_terms, ["10%", "6%", "2%"]);
+  });
+
+  test("laiendab uuringuteema morfoloogia ja liitsõna enne otsingut", () => {
+    const plan = buildQuestionPlan({
+      message: "Eakate vägivallauuring: mis olid 10%, 6% ja 2% näidud?"
+    });
+    const queries = buildSpecificResearchFactQueries([], "", plan).map(entry => entry.query);
+    assert.match(queries[0], /\beakas\b/u);
+    assert.match(queries[0], /\bvanemaealiste\b/u);
+    assert.match(queries[0], /\bvagivalla\b/u);
+    assert.match(queries[0], /\buuring\b/u);
+    assert.match(queries[1], /10% 6% 2%/u);
   });
 
   test("ei neela õigus-, KOV-, autori- ega sünteesipäringut faktirajale", () => {
