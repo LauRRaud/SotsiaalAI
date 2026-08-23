@@ -76,6 +76,7 @@ from document_versions import (
     patch_document_metadata_consistently,
     stage_document_version,
 )
+from lexical_index import LexicalIndexError, PersistentLexicalIndex
 
 # OpenAI embeddings
 from openai import OpenAI, OpenAIError, RateLimitError
@@ -143,6 +144,18 @@ RAG_LEXICAL_SEARCH_ENABLED = os.getenv("RAG_LEXICAL_SEARCH_ENABLED", "1").strip(
 RAG_LEXICAL_SCAN_LIMIT = int(os.getenv("RAG_LEXICAL_SCAN_LIMIT", "2000"))
 RAG_LEXICAL_MAX_SCAN = int(os.getenv("RAG_LEXICAL_MAX_SCAN", "100000"))
 RAG_LEXICAL_TOP_K = int(os.getenv("RAG_LEXICAL_TOP_K", "20"))
+RAG_PERSISTENT_LEXICAL_INDEX_ENABLED = os.getenv(
+    "RAG_PERSISTENT_LEXICAL_INDEX_ENABLED", "1"
+).strip().lower() in {"1", "true", "yes"}
+RAG_PERSISTENT_LEXICAL_INDEX_PATH = Path(
+    os.getenv("RAG_PERSISTENT_LEXICAL_INDEX_PATH", str(STORAGE_DIR / "lexical-index.sqlite3"))
+).resolve()
+RAG_PERSISTENT_LEXICAL_INDEX_PAGE_SIZE = int(
+    os.getenv("RAG_PERSISTENT_LEXICAL_INDEX_PAGE_SIZE", "2000")
+)
+RAG_PERSISTENT_LEXICAL_INDEX_CANDIDATES = int(
+    os.getenv("RAG_PERSISTENT_LEXICAL_INDEX_CANDIDATES", "320")
+)
 RAG_BM25_MIN_COVERAGE = float(os.getenv("RAG_BM25_MIN_COVERAGE", "0.35"))
 RAG_BM25_TITLE_WEIGHT = float(os.getenv("RAG_BM25_TITLE_WEIGHT", "1.8"))
 RAG_BM25_BODY_WEIGHT = float(os.getenv("RAG_BM25_BODY_WEIGHT", "1.0"))
@@ -194,6 +207,11 @@ REGISTRY_STORE = RegistryStore(REGISTRY_PATH)
 # Chroma client (persistent) – we send precomputed OpenAI embeddings
 client = chromadb.PersistentClient(path=str(STORAGE_DIR / "chroma"))
 collection = client.get_or_create_collection(name=COLLECTION_NAME)
+LEXICAL_INDEX = PersistentLexicalIndex(
+    RAG_PERSISTENT_LEXICAL_INDEX_PATH,
+    page_size=RAG_PERSISTENT_LEXICAL_INDEX_PAGE_SIZE,
+    candidate_limit=RAG_PERSISTENT_LEXICAL_INDEX_CANDIDATES,
+)
 
 # OpenAI client
 oa = OpenAI(api_key=OPENAI_API_KEY)
@@ -2631,8 +2649,62 @@ def _remove_staged_source(path: Optional[Path]) -> None:
     except Exception:
         pass
 
+
+def _rebuild_persistent_lexical_index(reason: str) -> Dict[str, object]:
+    if not RAG_PERSISTENT_LEXICAL_INDEX_ENABLED:
+        return {"ready": False, "reason": "LEXICAL_INDEX_DISABLED"}
+    started_at = time.perf_counter()
+    registry = _load_registry()
+    status = LEXICAL_INDEX.rebuild(
+        collection,
+        registry,
+        is_active_document_version=is_active_document_version,
+        normalize_search_text=_normalize_search_text,
+        load_registry=_load_registry,
+    )
+    stage_logger.info(
+        "rag.lexical_index.rebuild %s",
+        json.dumps(
+            {
+                "reason": str(reason or "unspecified")[:80],
+                "outcome": "ok",
+                "duration_ms": int((time.perf_counter() - started_at) * 1000),
+                "chunk_count": int(status.get("chunk_count") or 0),
+                "document_count": int(status.get("document_count") or 0),
+                "size_bytes": int(status.get("size_bytes") or 0),
+            },
+            ensure_ascii=False,
+        ),
+    )
+    return status
+
+
+def _mark_persistent_lexical_index_stale(reason: str) -> None:
+    if RAG_PERSISTENT_LEXICAL_INDEX_ENABLED:
+        LEXICAL_INDEX.mark_stale(reason)
+
+
+def _refresh_persistent_lexical_index(reason: str) -> None:
+    if not RAG_PERSISTENT_LEXICAL_INDEX_ENABLED:
+        return
+    try:
+        _rebuild_persistent_lexical_index(reason)
+    except Exception as exc:
+        logger.error(
+            "Persistent lexical index refresh failed reason=%s error=%s",
+            str(reason or "unspecified")[:80],
+            exc.__class__.__name__,
+        )
+
+
 def _commit_vector_stage(stage, entry: Dict):
-    result = stage.commit(entry, updated_at=now_iso())
+    _mark_persistent_lexical_index_stale("corpus_version_commit")
+    try:
+        result = stage.commit(entry, updated_at=now_iso())
+    except Exception:
+        _refresh_persistent_lexical_index("corpus_version_rollback")
+        raise
+    _refresh_persistent_lexical_index("corpus_version_commit")
     old_path_value = result.previous_entry.get("path")
     new_path_value = entry.get("path")
     if old_path_value and old_path_value != new_path_value:
@@ -3331,25 +3403,59 @@ def _query_named_entity_tokens(query: str) -> set:
             tokens.add(normalized)
     return tokens
 
-def _lexical_match(query: str, md: Dict, document: str, min_score: float = 3.0) -> Optional[Dict[str, object]]:
-    title_norm = _normalize_search_text(md.get("title") or md.get("fileName") or md.get("source_url") or "")
-    paragraph_title_norm = _normalize_search_text(md.get("paragraph_title") or "")
-    section_norm = _normalize_search_text(md.get("section") or "")
-    act_title_norm = _normalize_search_text(md.get("act_title") or "")
-    body_norm = _normalize_search_text(document[:12000])
-    author_norms = [
-        _normalize_search_text(author)
-        for author in normalize_authors(md.get("authors") or md.get("authors_list"))
-        if _normalize_search_text(author)
-    ]
+def _prepare_lexical_query(query: str) -> Dict[str, object]:
+    phrases = _query_phrases(query)
+    return {
+        "phrases": phrases,
+        "query_tokens": _search_tokens(query),
+        "named_entity_tokens": _query_named_entity_tokens(query),
+        "paragraph_refs": _extract_query_paragraph_refs(query),
+        "full_query": phrases[0] if phrases else _normalize_search_text(query),
+    }
+
+
+def _prepare_lexical_row(md: Dict, document: str) -> Dict[str, object]:
+    author_norms: List[str] = []
+    for author in normalize_authors(md.get("authors") or md.get("authors_list")):
+        normalized = _normalize_search_text(author)
+        if normalized:
+            author_norms.append(normalized)
+    return {
+        "title_norm": _normalize_search_text(md.get("title") or md.get("fileName") or md.get("source_url") or ""),
+        "paragraph_title_norm": _normalize_search_text(md.get("paragraph_title") or ""),
+        "section_norm": _normalize_search_text(md.get("section") or ""),
+        "act_title_norm": _normalize_search_text(md.get("act_title") or ""),
+        "body_norm": _normalize_search_text(document[:12000]),
+        "author_norms": author_norms,
+        "paragraph_number": _normalize_search_text(md.get("paragraph_number") or ""),
+    }
+
+
+def _lexical_match(
+    query: str,
+    md: Dict,
+    document: str,
+    min_score: float = 3.0,
+    *,
+    prepared_query: Optional[Dict[str, object]] = None,
+    prepared_row: Optional[Dict[str, object]] = None,
+) -> Optional[Dict[str, object]]:
+    query_data = prepared_query or _prepare_lexical_query(query)
+    row_data = prepared_row or _prepare_lexical_row(md, document)
+    title_norm = str(row_data.get("title_norm") or "")
+    paragraph_title_norm = str(row_data.get("paragraph_title_norm") or "")
+    section_norm = str(row_data.get("section_norm") or "")
+    act_title_norm = str(row_data.get("act_title_norm") or "")
+    body_norm = str(row_data.get("body_norm") or "")
+    author_norms = list(row_data.get("author_norms") or [])
     if not title_norm and not body_norm:
         return None
 
-    phrases = _query_phrases(query)
-    query_tokens = _search_tokens(query)
-    named_entity_tokens = _query_named_entity_tokens(query)
-    paragraph_refs = _extract_query_paragraph_refs(query)
-    paragraph_number = _normalize_search_text(md.get("paragraph_number") or "")
+    phrases = list(query_data.get("phrases") or [])
+    query_tokens = list(query_data.get("query_tokens") or [])
+    named_entity_tokens = set(query_data.get("named_entity_tokens") or set())
+    paragraph_refs = set(query_data.get("paragraph_refs") or set())
+    paragraph_number = str(row_data.get("paragraph_number") or "")
     title_counts = _lexical_token_counts(title_norm, limit=80)
     body_counts = _lexical_token_counts(body_norm, limit=900)
     title_tokens = set(title_counts.keys())
@@ -3363,7 +3469,7 @@ def _lexical_match(query: str, md: Dict, document: str, min_score: float = 3.0) 
     bm25_named_entity_matches = 0
     bm25_coverage = 0.0
 
-    full_query = phrases[0] if phrases else _normalize_search_text(query)
+    full_query = str(query_data.get("full_query") or "")
     exact_author_match = next(
         (
             author
@@ -4040,6 +4146,52 @@ def _strip_synthetic_rag_prefix(document: str) -> str:
     return candidate or raw
 
 
+def _new_lexical_metrics() -> Dict[str, object]:
+    return {
+        "lexical_registry_shortlist_ms": 0.0,
+        "lexical_chroma_fetch_ms": 0.0,
+        "lexical_chroma_materialize_ms": 0.0,
+        "lexical_chroma_page_count": 0,
+        "lexical_rows_loaded": 0,
+        "lexical_index_validation_ms": 0.0,
+        "lexical_index_query_ms": 0.0,
+        "lexical_index_materialize_ms": 0.0,
+        "lexical_normalization_ms": 0.0,
+        "lexical_scoring_ms": 0.0,
+        "lexical_ranking_ms": 0.0,
+        "lexical_overhead_ms": 0.0,
+        "lexical_total_ms": 0.0,
+    }
+
+
+def _add_lexical_elapsed(metrics: Optional[Dict[str, object]], key: str, started_at: float) -> None:
+    if metrics is None:
+        return
+    metrics[key] = float(metrics.get(key) or 0.0) + ((time.perf_counter() - started_at) * 1000.0)
+
+
+def _finalize_lexical_metrics(metrics: Dict[str, object], started_at: float) -> Dict[str, object]:
+    total_ms = (time.perf_counter() - started_at) * 1000.0
+    measured_keys = (
+        "lexical_registry_shortlist_ms",
+        "lexical_chroma_fetch_ms",
+        "lexical_chroma_materialize_ms",
+        "lexical_index_validation_ms",
+        "lexical_index_query_ms",
+        "lexical_index_materialize_ms",
+        "lexical_normalization_ms",
+        "lexical_scoring_ms",
+        "lexical_ranking_ms",
+    )
+    measured_ms = sum(float(metrics.get(key) or 0.0) for key in measured_keys)
+    metrics["lexical_overhead_ms"] = max(0.0, total_ms - measured_ms)
+    metrics["lexical_total_ms"] = total_ms
+    for key, value in list(metrics.items()):
+        if key.endswith("_ms"):
+            metrics[key] = int(round(float(value or 0.0)))
+    return metrics
+
+
 def _score_lexical_rows(
     query: str,
     allowed_channels: set,
@@ -4049,8 +4201,12 @@ def _score_lexical_rows(
     body_only: bool = False,
     include_title: bool = True,
     min_score: float = 3.0,
+    metrics: Optional[Dict[str, object]] = None,
 ) -> List[Dict[str, object]]:
-    scored: List[Dict[str, object]] = []
+    normalization_t0 = time.perf_counter()
+    prepared_query = _prepare_lexical_query(query)
+    prepared_rows: List[Dict[str, object]] = []
+    row_values: List[Tuple[object, str, Dict[str, object], Dict[str, object]]] = []
     for i, item_id in enumerate(ids):
         document = documents[i] if i < len(documents) and isinstance(documents[i], str) else ""
         md = metadatas[i] if i < len(metadatas) and isinstance(metadatas[i], dict) else {}
@@ -4061,7 +4217,21 @@ def _score_lexical_rows(
             "fileName": None,
             "source_url": None,
         }
-        match = _lexical_match(query, scoring_metadata, scoring_document, min_score=min_score)
+        prepared_rows.append(_prepare_lexical_row(scoring_metadata, scoring_document))
+        row_values.append((item_id, document, md, scoring_metadata))
+    _add_lexical_elapsed(metrics, "lexical_normalization_ms", normalization_t0)
+
+    scoring_t0 = time.perf_counter()
+    scored: List[Dict[str, object]] = []
+    for i, (item_id, document, md, scoring_metadata) in enumerate(row_values):
+        match = _lexical_match(
+            query,
+            scoring_metadata,
+            document,
+            min_score=min_score,
+            prepared_query=prepared_query,
+            prepared_row=prepared_rows[i],
+        )
         if not match:
             continue
         channels = [item for item in list(match["channels"]) if item in allowed_channels]
@@ -4081,7 +4251,10 @@ def _score_lexical_rows(
             "bm25_named_entity_matches": match.get("bm25_named_entity_matches"),
             "bm25_query_tokens": match.get("bm25_query_tokens"),
         })
+    _add_lexical_elapsed(metrics, "lexical_scoring_ms", scoring_t0)
+    ranking_t0 = time.perf_counter()
     scored.sort(key=lambda item: float(item.get("score") or 0), reverse=True)
+    _add_lexical_elapsed(metrics, "lexical_ranking_ms", ranking_t0)
     return scored
 
 def _select_lexical_candidates(
@@ -4122,6 +4295,7 @@ def _compound_document_shortlist_candidates(
     documents: List[object],
     metadatas: List[object],
     limit: int,
+    metrics: Optional[Dict[str, object]] = None,
 ) -> List[Dict[str, object]]:
     """Return bounded evidence when every query segment matches one document."""
     segments = _split_fact_query_segments(query, anchor_short=False)
@@ -4139,6 +4313,7 @@ def _compound_document_shortlist_candidates(
             body_only=True,
             include_title=False,
             min_score=0.2,
+            metrics=metrics,
         )
         segment_candidates = _select_lexical_candidates(
             scored,
@@ -4604,11 +4779,34 @@ def _targeted_document_terms(query: str, limit: int = 8) -> List[str]:
     ranked.sort(key=lambda item: (-item[0], -item[1], -item[2], item[3].casefold()))
     return [item[3] for item in ranked[:max(1, limit)]]
 
+
+def _needs_specialized_lexical_shortlist(query: str) -> bool:
+    source = str(query or "")
+    normalized = _normalize_search_text(source)
+    if not normalized:
+        return False
+    proper_words = [
+        word
+        for word in re.findall(r"[^\W_]+", source, flags=re.UNICODE)
+        if len(word) >= 3 and word[:1].isupper()
+    ]
+    if len(proper_words) >= 2:
+        return True
+    if re.search(r"[\"“”„«»]|(?:^|\s)§\s*\d", source):
+        return True
+    return bool(re.search(
+        r"\b(?:artikl\w*|aruand\w*|autor\w*|dokumend\w*|juhend\w*|lehek\w*|"
+        r"mitu|palju|protsent\w*|osakaal\w*|raport\w*|uuring\w*)\b|%|\d",
+        normalized,
+    ))
+
+
 def _targeted_document_shortlist(
     query: str,
     chroma_where: Optional[Dict[str, object]],
     top_k: int,
     allowed_channels: Optional[set] = None,
+    metrics: Optional[Dict[str, object]] = None,
 ) -> Dict[str, object]:
     ids: List[object] = []
     documents: List[object] = []
@@ -4632,10 +4830,18 @@ def _targeted_document_shortlist(
         }
         if chroma_where:
             kwargs["where"] = chroma_where
+        fetch_t0 = time.perf_counter()
         got = collection.get(**kwargs)
+        _add_lexical_elapsed(metrics, "lexical_chroma_fetch_ms", fetch_t0)
+        if metrics is not None:
+            metrics["lexical_chroma_page_count"] = int(metrics.get("lexical_chroma_page_count") or 0) + 1
+        materialize_t0 = time.perf_counter()
         got_ids = list(got.get("ids") or [])
         got_documents = list(got.get("documents") or [])
         got_metadatas = list(got.get("metadatas") or [])
+        _add_lexical_elapsed(metrics, "lexical_chroma_materialize_ms", materialize_t0)
+        if metrics is not None:
+            metrics["lexical_rows_loaded"] = int(metrics.get("lexical_rows_loaded") or 0) + len(got_ids)
         scanned += len(got_ids)
         for index, item_id in enumerate(got_ids):
             key = str(item_id or "")
@@ -4657,6 +4863,7 @@ def _targeted_document_shortlist(
                 documents,
                 metadatas,
                 body_only=True,
+                metrics=metrics,
             )
         ):
             break
@@ -4710,28 +4917,60 @@ def _fetch_lexical_candidates(
     top_k: int,
     requested_retrievers: Optional[List[str]] = None,
     dense_article_doc_ids: Optional[List[str]] = None,
+    version_registry: Optional[Dict[str, Dict]] = None,
 ) -> Dict[str, object]:
+    lexical_started_at = time.perf_counter()
+    metrics = _new_lexical_metrics()
+
+    def finish(result: Dict[str, object]) -> Dict[str, object]:
+        result["timings"] = _finalize_lexical_metrics(metrics, lexical_started_at)
+        return result
+
+    def registry_lookup(callback):
+        started_at = time.perf_counter()
+        try:
+            return callback()
+        finally:
+            _add_lexical_elapsed(metrics, "lexical_registry_shortlist_ms", started_at)
+
+    def chroma_get(**kwargs):
+        started_at = time.perf_counter()
+        try:
+            return collection.get(**kwargs)
+        finally:
+            _add_lexical_elapsed(metrics, "lexical_chroma_fetch_ms", started_at)
+            metrics["lexical_chroma_page_count"] = int(metrics.get("lexical_chroma_page_count") or 0) + 1
+
+    def materialize(result: Dict[str, object]) -> Tuple[List[object], List[object], List[object]]:
+        started_at = time.perf_counter()
+        ids = list(result.get("ids") or [])
+        documents = list(result.get("documents") or [])
+        metadatas = list(result.get("metadatas") or [])
+        _add_lexical_elapsed(metrics, "lexical_chroma_materialize_ms", started_at)
+        metrics["lexical_rows_loaded"] = int(metrics.get("lexical_rows_loaded") or 0) + len(ids)
+        return ids, documents, metadatas
+
     if not RAG_LEXICAL_SEARCH_ENABLED or not str(query or "").strip():
-        return {"candidates": [], "scanned": 0, "complete": True, "error": None}
+        return finish({"candidates": [], "scanned": 0, "complete": True, "error": None})
     allowed_channels = set(requested_retrievers or ["author_match", "title_match", "exact_phrase", "bm25"])
-    try:
-        author_doc_ids = _registry_author_shortlist_doc_ids(query, chroma_where)
-    except Exception:
-        logger.exception("registry author shortlist lookup failed")
-        author_doc_ids = []
+    use_specialized_shortlists = _needs_specialized_lexical_shortlist(query)
+    author_doc_ids: List[str] = []
+    if use_specialized_shortlists:
+        try:
+            author_doc_ids = registry_lookup(lambda: _registry_author_shortlist_doc_ids(query, chroma_where))
+        except Exception:
+            logger.exception("registry author shortlist lookup failed")
     if author_doc_ids and "author_match" in allowed_channels:
         author_where: Dict[str, object] = {"doc_id": {"$in": author_doc_ids}}
         if chroma_where:
             author_where = {"$and": [chroma_where, author_where]}
         try:
-            authored = collection.get(
+            authored = chroma_get(
                 include=["documents", "metadatas"],
                 limit=min(5000, max(200, len(author_doc_ids) * 120)),
                 where=author_where,
             )
-            authored_ids = list(authored.get("ids") or [])
-            authored_docs = list(authored.get("documents") or [])
-            authored_metas = list(authored.get("metadatas") or [])
+            authored_ids, authored_docs, authored_metas = materialize(authored)
             authored_scored = _score_lexical_rows(
                 query,
                 allowed_channels,
@@ -4739,6 +4978,7 @@ def _fetch_lexical_candidates(
                 authored_docs,
                 authored_metas,
                 body_only=True,
+                metrics=metrics,
             )
             if authored_scored:
                 for candidate in authored_scored:
@@ -4751,7 +4991,7 @@ def _fetch_lexical_candidates(
                         channels.append("author_match")
                     candidate["channels"] = channels
                 authored_limit = max(0, min(max(1, top_k), RAG_LEXICAL_TOP_K))
-                return {
+                return finish({
                     "candidates": _select_lexical_candidates(
                         authored_scored,
                         authored_limit,
@@ -4762,28 +5002,29 @@ def _fetch_lexical_candidates(
                     "exhaustive": False,
                     "error": None,
                     "strategy": "registry_author_shortlist",
-                }
+                })
         except Exception:
             logger.exception("registry author shortlist retrieval failed")
-    try:
-        fact_description_doc_ids = _registry_fact_description_shortlist_doc_ids(query, chroma_where)
-    except Exception:
-        logger.exception("registry fact description shortlist lookup failed")
-        fact_description_doc_ids = []
+    fact_description_doc_ids: List[str] = []
+    if use_specialized_shortlists:
+        try:
+            fact_description_doc_ids = registry_lookup(
+                lambda: _registry_fact_description_shortlist_doc_ids(query, chroma_where)
+            )
+        except Exception:
+            logger.exception("registry fact description shortlist lookup failed")
     if len(fact_description_doc_ids) == 1 and "bm25" in allowed_channels:
         fact_doc_id = fact_description_doc_ids[0]
         fact_where: Dict[str, object] = {"doc_id": fact_doc_id}
         if chroma_where:
             fact_where = {"$and": [chroma_where, fact_where]}
         try:
-            fact_rows = collection.get(
+            fact_rows = chroma_get(
                 include=["documents", "metadatas"],
                 limit=min(5000, max(100, top_k * 12)),
                 where=fact_where,
             )
-            fact_ids = list(fact_rows.get("ids") or [])
-            fact_documents = list(fact_rows.get("documents") or [])
-            fact_metadatas = list(fact_rows.get("metadatas") or [])
+            fact_ids, fact_documents, fact_metadatas = materialize(fact_rows)
             fact_scoring_query = " ".join(_registry_fact_description_query_tokens(query))
             fact_scored = _score_lexical_rows(
                 fact_scoring_query or query,
@@ -4793,6 +5034,7 @@ def _fetch_lexical_candidates(
                 fact_metadatas,
                 body_only=True,
                 min_score=0.2,
+                metrics=metrics,
             )
             if fact_scored:
                 for candidate in fact_scored:
@@ -4803,7 +5045,7 @@ def _fetch_lexical_candidates(
                             channels.append(channel)
                     candidate["channels"] = channels
                 fact_limit = max(0, min(max(1, top_k), RAG_LEXICAL_TOP_K))
-                return {
+                return finish({
                     "candidates": _select_lexical_candidates(
                         fact_scored,
                         fact_limit,
@@ -4814,33 +5056,31 @@ def _fetch_lexical_candidates(
                     "exhaustive": False,
                     "error": None,
                     "strategy": "registry_fact_description_shortlist",
-                }
+                })
         except Exception:
             logger.exception("registry fact description shortlist retrieval failed")
     lexical_query = _synthesis_focus_query(query)
     if lexical_query != str(query or "").strip():
-        return {
+        return finish({
             "candidates": [],
             "scanned": 0,
             "complete": True,
             "exhaustive": False,
             "error": None,
             "strategy": "synthesis_dense_only",
-        }
+        })
     anchored_doc_ids = [str(value).strip() for value in dense_article_doc_ids or [] if str(value).strip()]
     if anchored_doc_ids:
         anchor_where: Dict[str, object] = {"doc_id": {"$in": anchored_doc_ids[:5]}}
         if chroma_where:
             anchor_where = {"$and": [chroma_where, anchor_where]}
         try:
-            anchored = collection.get(
+            anchored = chroma_get(
                 include=["documents", "metadatas"],
                 limit=min(5000, max(100, len(anchored_doc_ids) * 100)),
                 where=anchor_where,
             )
-            anchored_ids = list(anchored.get("ids") or [])
-            anchored_docs = list(anchored.get("documents") or [])
-            anchored_metas = list(anchored.get("metadatas") or [])
+            anchored_ids, anchored_docs, anchored_metas = materialize(anchored)
             anchored_scored = _score_lexical_rows(
                 lexical_query,
                 allowed_channels,
@@ -4848,10 +5088,11 @@ def _fetch_lexical_candidates(
                 anchored_docs,
                 anchored_metas,
                 body_only=True,
+                metrics=metrics,
             )
             if anchored_scored:
                 anchored_limit = max(0, min(max(1, top_k), RAG_LEXICAL_TOP_K))
-                return {
+                return finish({
                     "candidates": _select_lexical_candidates(
                         anchored_scored,
                         anchored_limit,
@@ -4862,7 +5103,7 @@ def _fetch_lexical_candidates(
                     "exhaustive": False,
                     "error": None,
                     "strategy": "dense_article_shortlist",
-                }
+                })
         except Exception:
             logger.exception("dense article shortlist retrieval failed")
     page_size = max(1, min(5000, RAG_LEXICAL_SCAN_LIMIT))
@@ -4875,42 +5116,43 @@ def _fetch_lexical_candidates(
     targeted_used = False
     shortlist_scored_candidates: List[Dict[str, object]] = []
 
-    try:
-        title_doc_ids = _registry_title_shortlist_doc_ids(lexical_query, chroma_where)
-    except Exception:
-        title_doc_ids = []
-    try:
-        targeted = _targeted_document_shortlist(
-            lexical_query,
-            chroma_where,
-            top_k,
-            allowed_channels,
-        )
-        targeted_used = bool(targeted.get("ids"))
-        shortlist_scanned += int(targeted.get("scanned") or 0)
-        for index, item_id in enumerate(targeted.get("ids") or []):
-            key = str(item_id or "")
-            if not key or key in shortlist_seen:
-                continue
-            shortlist_seen.add(key)
-            shortlist_ids.append(item_id)
-            shortlist_docs.append((targeted.get("documents") or [])[index])
-            shortlist_metas.append((targeted.get("metadatas") or [])[index])
-    except Exception:
-        logger.exception("targeted document shortlist retrieval failed")
+    title_doc_ids: List[str] = []
+    if use_specialized_shortlists:
+        try:
+            title_doc_ids = registry_lookup(lambda: _registry_title_shortlist_doc_ids(lexical_query, chroma_where))
+        except Exception:
+            title_doc_ids = []
+        try:
+            targeted = _targeted_document_shortlist(
+                lexical_query,
+                chroma_where,
+                top_k,
+                allowed_channels,
+                metrics=metrics,
+            )
+            targeted_used = bool(targeted.get("ids"))
+            shortlist_scanned += int(targeted.get("scanned") or 0)
+            for index, item_id in enumerate(targeted.get("ids") or []):
+                key = str(item_id or "")
+                if not key or key in shortlist_seen:
+                    continue
+                shortlist_seen.add(key)
+                shortlist_ids.append(item_id)
+                shortlist_docs.append((targeted.get("documents") or [])[index])
+                shortlist_metas.append((targeted.get("metadatas") or [])[index])
+        except Exception:
+            logger.exception("targeted document shortlist retrieval failed")
     if title_doc_ids and "title_match" in allowed_channels:
         shortlist_where: Dict[str, object] = {"doc_id": {"$in": title_doc_ids}}
         if chroma_where:
             shortlist_where = {"$and": [chroma_where, shortlist_where]}
         try:
-            shortlist = collection.get(
+            shortlist = chroma_get(
                 include=["documents", "metadatas"],
                 limit=min(5000, max(100, top_k * 8)),
                 where=shortlist_where,
             )
-            title_ids = list(shortlist.get("ids") or [])
-            title_docs = list(shortlist.get("documents") or [])
-            title_metas = list(shortlist.get("metadatas") or [])
+            title_ids, title_docs, title_metas = materialize(shortlist)
             shortlist_scanned += len(title_ids)
             for index, item_id in enumerate(title_ids):
                 key = str(item_id or "")
@@ -4927,6 +5169,7 @@ def _fetch_lexical_candidates(
                 shortlist_docs,
                 shortlist_metas,
                 body_only=True,
+                metrics=metrics,
             )
             shortlist_scored_candidates = shortlist_scored
             title_fact_cue = re.search(
@@ -5039,7 +5282,7 @@ def _fetch_lexical_candidates(
                         reverse=True,
                     )
                     shortlist_limit = max(0, min(max(1, top_k), RAG_LEXICAL_TOP_K))
-                    return {
+                    return finish({
                         "candidates": _select_lexical_candidates(
                             title_anchored,
                             shortlist_limit,
@@ -5050,17 +5293,17 @@ def _fetch_lexical_candidates(
                         "exhaustive": False,
                         "error": None,
                         "strategy": "registry_title_fact_anchor",
-                    }
+                    })
             if _lexical_shortlist_is_conclusive(shortlist_scored):
                 shortlist_limit = max(0, min(max(1, top_k), RAG_LEXICAL_TOP_K))
-                return {
+                return finish({
                     "candidates": _select_lexical_candidates(shortlist_scored, shortlist_limit),
                     "scanned": shortlist_scanned,
                     "complete": True,
                     "exhaustive": False,
                     "error": None,
                     "strategy": "targeted_document_shortlist" if targeted_used else "registry_title_shortlist",
-                }
+                })
         except Exception:
             logger.exception("registry title shortlist retrieval failed")
     elif shortlist_ids:
@@ -5071,18 +5314,19 @@ def _fetch_lexical_candidates(
             shortlist_docs,
             shortlist_metas,
             body_only=True,
+            metrics=metrics,
         )
         shortlist_scored_candidates = shortlist_scored
         if _lexical_shortlist_is_conclusive(shortlist_scored):
             shortlist_limit = max(0, min(max(1, top_k), RAG_LEXICAL_TOP_K))
-            return {
+            return finish({
                 "candidates": _select_lexical_candidates(shortlist_scored, shortlist_limit),
                 "scanned": shortlist_scanned,
                 "complete": True,
                 "exhaustive": False,
                 "error": None,
                 "strategy": "targeted_document_shortlist",
-            }
+            })
     compound_candidates = _compound_document_shortlist_candidates(
         lexical_query,
         allowed_channels,
@@ -5090,16 +5334,108 @@ def _fetch_lexical_candidates(
         shortlist_docs,
         shortlist_metas,
         max(1, min(50, top_k)),
+        metrics=metrics,
     )
     if compound_candidates:
-        return {
+        return finish({
             "candidates": compound_candidates,
             "scanned": shortlist_scanned,
             "complete": True,
             "exhaustive": False,
             "error": None,
             "strategy": "targeted_compound_document_shortlist",
-        }
+        })
+    if RAG_PERSISTENT_LEXICAL_INDEX_ENABLED:
+        try:
+            registry_t0 = time.perf_counter()
+            index_registry = version_registry if version_registry is not None else _load_registry()
+            _add_lexical_elapsed(metrics, "lexical_registry_shortlist_ms", registry_t0)
+            index_t0 = time.perf_counter()
+            indexed = LEXICAL_INDEX.search(
+                query_tokens=_search_tokens(lexical_query),
+                where=chroma_where,
+                registry=index_registry,
+                limit=RAG_PERSISTENT_LEXICAL_INDEX_CANDIDATES,
+            )
+            index_total_ms = (time.perf_counter() - index_t0) * 1000.0
+            index_sql_ms = float(indexed.get("sql_ms") or 0.0)
+            index_materialize_ms = float(indexed.get("materialize_ms") or 0.0)
+            metrics["lexical_index_query_ms"] = float(metrics.get("lexical_index_query_ms") or 0.0) + index_sql_ms
+            metrics["lexical_index_materialize_ms"] = (
+                float(metrics.get("lexical_index_materialize_ms") or 0.0) + index_materialize_ms
+            )
+            metrics["lexical_index_validation_ms"] = (
+                float(metrics.get("lexical_index_validation_ms") or 0.0)
+                + max(0.0, index_total_ms - index_sql_ms - index_materialize_ms)
+            )
+            indexed_ids = list(indexed.get("ids") or [])
+            indexed_documents = list(indexed.get("documents") or [])
+            indexed_metadatas = list(indexed.get("metadatas") or [])
+            filtered_ids: List[object] = []
+            filtered_documents: List[object] = []
+            filtered_metadatas: List[object] = []
+            for item_id, document, metadata in zip(indexed_ids, indexed_documents, indexed_metadatas):
+                if not isinstance(metadata, dict):
+                    continue
+                if not is_active_document_version(metadata, index_registry):
+                    continue
+                if not _metadata_matches_filter(metadata, chroma_where):
+                    continue
+                filtered_ids.append(item_id)
+                filtered_documents.append(document)
+                filtered_metadatas.append(metadata)
+            metrics["lexical_rows_loaded"] = int(metrics.get("lexical_rows_loaded") or 0) + len(filtered_ids)
+            indexed_scored = _score_lexical_rows(
+                lexical_query,
+                allowed_channels,
+                filtered_ids,
+                filtered_documents,
+                filtered_metadatas,
+                body_only=True,
+                metrics=metrics,
+            )
+            scored_by_id: Dict[str, Dict[str, object]] = {}
+            for candidate in [*shortlist_scored_candidates, *indexed_scored]:
+                candidate_id = str(candidate.get("id") or "").strip()
+                if not candidate_id:
+                    continue
+                existing = scored_by_id.get(candidate_id)
+                if existing is None or float(candidate.get("score") or 0) > float(existing.get("score") or 0):
+                    scored_by_id[candidate_id] = candidate
+            ranking_t0 = time.perf_counter()
+            scored = sorted(
+                scored_by_id.values(),
+                key=lambda item: float(item.get("score") or 0),
+                reverse=True,
+            )
+            _add_lexical_elapsed(metrics, "lexical_ranking_ms", ranking_t0)
+            limit = max(0, min(max(1, top_k), RAG_LEXICAL_TOP_K))
+            index_status = indexed.get("status") if isinstance(indexed.get("status"), dict) else {}
+            return finish({
+                "candidates": _select_lexical_candidates(scored, limit),
+                "scanned": int(index_status.get("chunk_count") or 0),
+                "complete": True,
+                "exhaustive": True,
+                "error": None,
+                "strategy": "persistent_fts5",
+                "index": {
+                    "ready": True,
+                    "generation": index_status.get("generation"),
+                    "chunk_count": int(index_status.get("chunk_count") or 0),
+                    "document_count": int(index_status.get("document_count") or 0),
+                    "size_bytes": int(index_status.get("size_bytes") or 0),
+                },
+            })
+        except LexicalIndexError as exc:
+            return finish({
+                "candidates": [],
+                "scanned": 0,
+                "complete": False,
+                "exhaustive": False,
+                "error": exc.code,
+                "strategy": "persistent_fts5_unavailable",
+                "index": {"ready": False, "reason": exc.code},
+            })
     all_ids: List[object] = []
     all_docs: List[object] = []
     all_metas: List[object] = []
@@ -5111,10 +5447,8 @@ def _fetch_lexical_candidates(
             kwargs = {"include": ["documents", "metadatas"], "limit": limit, "offset": offset}
             if chroma_where:
                 kwargs["where"] = chroma_where
-            got = collection.get(**kwargs)
-            page_ids = list(got.get("ids") or [])
-            page_docs = list(got.get("documents") or [])
-            page_metas = list(got.get("metadatas") or [])
+            got = chroma_get(**kwargs)
+            page_ids, page_docs, page_metas = materialize(got)
             all_ids.extend(page_ids)
             all_docs.extend(page_docs)
             all_metas.extend(page_metas)
@@ -5127,12 +5461,12 @@ def _fetch_lexical_candidates(
                 break
     except Exception as exc:
         logger.exception("lexical retrieval failed")
-        return {
+        return finish({
             "candidates": [],
             "scanned": len(all_ids),
             "complete": False,
             "error": f"{type(exc).__name__}",
-        }
+        })
 
     scanned_scored = _score_lexical_rows(
         lexical_query,
@@ -5141,6 +5475,7 @@ def _fetch_lexical_candidates(
         all_docs,
         all_metas,
         body_only=True,
+        metrics=metrics,
     )
     scored_by_id: Dict[str, Dict[str, object]] = {}
     for candidate in [*shortlist_scored_candidates, *scanned_scored]:
@@ -5150,19 +5485,22 @@ def _fetch_lexical_candidates(
         existing = scored_by_id.get(candidate_id)
         if existing is None or float(candidate.get("score") or 0) > float(existing.get("score") or 0):
             scored_by_id[candidate_id] = candidate
+    ranking_t0 = time.perf_counter()
     scored = sorted(
         scored_by_id.values(),
         key=lambda item: float(item.get("score") or 0),
         reverse=True,
     )
+    _add_lexical_elapsed(metrics, "lexical_ranking_ms", ranking_t0)
     limit = max(0, min(max(1, top_k), RAG_LEXICAL_TOP_K))
-    return {
+    return finish({
         "candidates": _select_lexical_candidates(scored, limit),
         "scanned": len(all_ids),
         "complete": complete,
         "exhaustive": complete,
         "error": None,
-    }
+        "strategy": "corpus_scan",
+    })
 
 def _fetch_document_sibling_candidates(
     query: str,
@@ -5817,6 +6155,33 @@ def _merge_fact_segment_candidates(
 # --------------------
 # Routes
 # --------------------
+def _initialize_persistent_lexical_index() -> None:
+    if not RAG_PERSISTENT_LEXICAL_INDEX_ENABLED:
+        return
+    try:
+        registry = _load_registry()
+        status = LEXICAL_INDEX.status(registry, verify=True)
+        if not status.get("ready"):
+            status = _rebuild_persistent_lexical_index("startup")
+        stage_logger.info(
+            "rag.lexical_index.ready %s",
+            json.dumps(
+                {
+                    "outcome": "ok",
+                    "chunk_count": int(status.get("chunk_count") or 0),
+                    "document_count": int(status.get("document_count") or 0),
+                    "size_bytes": int(status.get("size_bytes") or 0),
+                },
+                ensure_ascii=False,
+            ),
+        )
+    except Exception as exc:
+        logger.error("Persistent lexical index startup failed error=%s", exc.__class__.__name__)
+
+
+app.router.add_event_handler("startup", _initialize_persistent_lexical_index)
+
+
 @app.get("/health")
 def health():
     try:
@@ -5840,7 +6205,38 @@ def health():
         "status": "ok",
         "vectors": n,
         "documents": len(reg),
+        "lexical_index": (
+            LEXICAL_INDEX.status(reg)
+            if RAG_PERSISTENT_LEXICAL_INDEX_ENABLED
+            else {"ready": False, "reason": "LEXICAL_INDEX_DISABLED"}
+        ),
     }
+
+
+@app.get("/lexical-index/status", dependencies=[Depends(_require_key)])
+def lexical_index_status():
+    registry = _load_registry()
+    return {
+        "ok": True,
+        "enabled": RAG_PERSISTENT_LEXICAL_INDEX_ENABLED,
+        "lexical_index": (
+            LEXICAL_INDEX.status(registry, verify=True)
+            if RAG_PERSISTENT_LEXICAL_INDEX_ENABLED
+            else {"ready": False, "reason": "LEXICAL_INDEX_DISABLED"}
+        ),
+    }
+
+
+@app.post("/lexical-index/rebuild", dependencies=[Depends(_require_key), Depends(_require_registry_available)])
+def rebuild_lexical_index():
+    if not RAG_PERSISTENT_LEXICAL_INDEX_ENABLED:
+        raise HTTPException(409, {"code": "LEXICAL_INDEX_DISABLED"})
+    _mark_persistent_lexical_index_stale("admin_rebuild")
+    try:
+        status = _rebuild_persistent_lexical_index("admin_rebuild")
+    except LexicalIndexError as exc:
+        raise HTTPException(503, {"code": exc.code}) from exc
+    return {"ok": True, "lexical_index": status}
 
 # --- Ephemeral analyze (no persistence) ---
 @app.post("/analyze", dependencies=[Depends(_require_key)])
@@ -7158,15 +7554,22 @@ def patch_document_metadata(doc_id: str, payload: PatchMetadata):
 
     if doc_id not in _load_registry():
         raise HTTPException(404, "Document not in registry")
-    chunks_updated = patch_document_metadata_consistently(
-        collection,
-        REGISTRY_STORE,
-        STORAGE_DIR / ".document-locks",
-        doc_id,
-        updates,
-        updated_at=now_iso(),
-        clear_fields=clear_fields,
-    )
+    _mark_persistent_lexical_index_stale("metadata_patch")
+    try:
+        chunks_updated = patch_document_metadata_consistently(
+            collection,
+            REGISTRY_STORE,
+            STORAGE_DIR / ".document-locks",
+            doc_id,
+            updates,
+            updated_at=now_iso(),
+            clear_fields=clear_fields,
+        )
+    except Exception:
+        # If the shared metadata transaction could not prove its rollback, the
+        # old FTS file remains present but deliberately unusable until rebuild.
+        raise
+    _refresh_persistent_lexical_index("metadata_patch")
 
     return {
         "ok": True,
@@ -7185,14 +7588,20 @@ def delete_doc(doc_id: str):
         if sub.exists():
             raise OSError("document source directory still exists")
 
-    result = delete_document_versioned(
-        collection,
-        REGISTRY_STORE,
-        STORAGE_DIR / ".document-locks",
-        doc_id,
-        updated_at=now_iso(),
-        delete_source=delete_source,
-    )
+    _mark_persistent_lexical_index_stale("document_delete")
+    try:
+        result = delete_document_versioned(
+            collection,
+            REGISTRY_STORE,
+            STORAGE_DIR / ".document-locks",
+            doc_id,
+            updated_at=now_iso(),
+            delete_source=delete_source,
+        )
+    finally:
+        # A failed delete can still leave a durable tombstone. Rebuild from the
+        # resulting registry/Chroma state; a failed rebuild keeps the stale gate.
+        _refresh_persistent_lexical_index("document_delete")
     return {"ok": True, "deleted": doc_id, "hadEntry": result.had_entry}
 
 def _execute_search(
@@ -7611,11 +8020,25 @@ def _execute_search(
             max(1, min(50, payload.top_k or 5)),
             requested_retrievers,
             dense_article_doc_ids=dense_article_doc_ids,
+            version_registry=version_registry,
         )
         if lexical_requested
         else {"candidates": [], "scanned": 0, "complete": True, "error": None}
     )
-    lexical_ms = _ms_since(lexical_t0)
+    lexical_timings = dict(lexical_fetch.get("timings") or {})
+    lexical_ms = int(lexical_timings.get("lexical_total_ms") or _ms_since(lexical_t0))
+    _log_stage(
+        "lexical",
+        lexical_t0,
+        "error" if lexical_fetch.get("error") else "partial" if not lexical_fetch.get("complete") else "ok",
+        **{
+            key: value
+            for key, value in lexical_timings.items()
+            if key.startswith("lexical_")
+        },
+        strategy=lexical_fetch.get("strategy") or "corpus_scan",
+        complete=bool(lexical_fetch.get("complete")),
+    )
     lexical_candidates = list(lexical_fetch.get("candidates") or [])
     sibling_t0 = time.perf_counter()
     try:
@@ -7946,6 +8369,7 @@ def _execute_search(
             "exhaustive": bool(lexical_fetch.get("exhaustive")),
             "strategy": lexical_fetch.get("strategy") or "corpus_scan",
             "error": lexical_fetch.get("error"),
+            "index": lexical_fetch.get("index"),
         },
         "strategy_decisions": {
             "requested_top_k": requested_top_k,
@@ -7976,6 +8400,7 @@ def _execute_search(
             "dense_ms": dense_ms,
             "registry_ms": registry_ms,
             "lexical_ms": lexical_ms,
+            **lexical_timings,
             "document_sibling_ms": document_sibling_ms,
             "fact_segment_ms": fact_segment_ms,
             "retrieval_ms": retrieval_ms,
