@@ -977,13 +977,13 @@ Release `da2c79c4` lisas määruse tuvastajale kitsad käändevormid. Sama auten
 
 Kumulatiivne ajalooline arvestus jääb **DONE 21/75 · NOT_PROVEN 54/75**, kuid neid 21 juhtumit ei pärita automaatselt `da2c79c4` kogu-release'i tõendiks. Praeguse release-jada sihtplokk on neli neljast PASS; Kadri meta, päris ingest/reindex/delete sünkroonsus ja ülejäänud maatriks jäävad avatuks. Üldhinnang on **PARTIAL**, mitte 10/10.
 
-## 33. ET/RU/EN keelepõhise RAG-i arhitektuur — kaardistatud, mitte rakendatud
+## 33. ET/RU/EN keelepõhise RAG-i arhitektuur — kitsas autorirada rakendatud, üldvärav PARTIAL
 
-Praegu ei ole üksikut „RAG-i keele” lülitit. `requestBootstrap` annab `uiLocale`-ile vastuse keele valikul eelisõiguse; `questionPlanner` intentsõnavara ja entiteedimustrid on valdavalt eestikeelsed; sama algne küsimus saadetakse nii mitmekeelse `text-embedding-3-large` dense-kanali kui eestikeelse FTS5 BM25 kanali sisendiks. Seetõttu ei piisa ainult mitmekeelsest embedding'ust.
+Lähteversioonis ei olnud üksikut „RAG-i keele” lülitit. `requestBootstrap` andis `uiLocale`-ile vastuse keele valikul eelisõiguse; `questionPlanner` intentsõnavara ja entiteedimustrid olid valdavalt eestikeelsed; sama algne küsimus saadeti nii mitmekeelse `text-embedding-3-large` dense-kanali kui eestikeelse FTS5 BM25 kanali sisendiks. Seetõttu ei piisanud ainult mitmekeelsest embedding'ust.
 
-Autentitud vene kontroll `Кто такой Лаур Раудсоо и о чём он писал?` võttis brauseris 5332 ms. Dense leidis 36 kandidaati, kuid planner jäi `default` režiimi, `person_name` puudus, BM25 andis 0, kuvatud allikaid oli 0 ning eestikeelse UI tõttu tuli vastus eesti keeles. See on nelja kihi lepinguviga — intentsus, leksikaalne recall, vastuse keel ja atribuutika — mitte tõend toimivast venekeelsest RAG-ist.
+Lähte-SHA autentitud vene kontroll `Кто такой Лаур Раудсоо и о чём он писал?` võttis brauseris 5332 ms. Dense leidis 36 kandidaati, kuid planner jäi `default` režiimi, `person_name` puudus, BM25 andis 0, kuvatud allikaid oli 0 ning eestikeelse UI tõttu tuli vastus eesti keeles. See tõendas nelja kihi lepinguviga — intentsus, leksikaalne recall, vastuse keel ja atribuutika — mitte toimivat venekeelset RAG-i.
 
-Sihtarhitektuur on üks ühine RAG eestikeelse korpuse kohal, mitte kolm eraldi indeksit:
+Täieliku keelekihi sihtarhitektuur on endiselt üks ühine RAG eestikeelse korpuse kohal, mitte kolm eraldi indeksit:
 
 1. `interface_language` kannab kasutajaliidese valikut, `query_language` küsimuse tegelikku keelt ja `answer_language` selle vooru vastuse keelt;
 2. vastuse keele eelisjärjekord on kasutaja selge voorupõhine soov, kindlalt tuvastatud küsimuse keel ning alles seejärel profiili või UI fallback;
@@ -995,3 +995,21 @@ Sihtarhitektuur on üks ühine RAG eestikeelse korpuse kohal, mitte kolm eraldi 
 8. madala kindlusega või puuduva tõlke korral jätkub turvaline algkeele dense-otsing, kuid diagnostika ei tohi väita täielikku hübriidotsingut.
 
 Privaatsust säilitav trace peab talletama ainult keelekoodid, tõlke olemasolu ja kindluse, kanalite kandidaadiarvud ning kestused; küsimuse ega tõlke täisteksti ei logita. Enne tõlkekihi mudeli või lisakutse valikut tuleb mõõta selle latentsus, kulu ja ET/RU/EN samatähenduslike küsimuste source/chunk-pariteet. Mudelit, prompt'i, top-k-d, FTS5 indeksit ega korpust ei muudeta keeleplokis oletuse järgi.
+
+### 33.1 Tootmisrakendus — RAG-loogika SHA `c9672a05`
+
+Esimene rakendus ei ava üldist tõlke-RAG-i. See aktiveerib ainult konservatiivselt tuvastatud vene- või ingliskeelse täisnimega autoriküsimuse. `languagePlan` eristab `interface_language`, `query_language`, `retrieval_language`, soovitud `answer_language` ja vana runtime'i keelevaliku; trace talletab ainult keelekoodid, transliteratsiooni/tõlke olemasolu, kontrollitud teematerminite arvu ning selle, kas kanoniseeritud retrieval oli aktiivne. Küsimuse, kanoniseeritud päringu, nime ega chunk'i teksti `language_plan` sündmusse ei kirjutata.
+
+Toetatud rajal säilib isikunimi runtime'is muutmata, planner saab `person_source_lookup` lepingu ja eestikeelse kanoniseeritud otsinguvariandi. Täpne author-metadata rada, title/exact-phrase, FTS5 BM25 ja dense-kanal jäävad olemasolevasse fusion'i; mudelit, prompt'i, top-k-d, korpust, indeksit ega serveri env-i ei muudetud. Vastuse keel tuleb küsimuse keelest. Runtime-rollback on `RAG_MULTILINGUAL_AUTHOR_RETRIEVAL_ENABLED=0` koos RAG-teenuse restardiga.
+
+Autentitud sama vestluse kontroll:
+
+| küsimus | vastus ja aeg | trace | avatud allikad | seis |
+|---|---|---|---|---|
+| `Who is Laur Raudsoo and what has he written?` | ingliskeelne isiku- ja artiklikokkuvõte, 13,60 s | `person_source_lookup`; `query=en`, `retrieval=et`, `answer=en`; retrieval 3964 ms; valitud 5 = kuvatud 5 | nupp nähtav; ID-komplektid kattusid | **PASS, kitsas autorirada** |
+| `Что писал Лаур Раудсоо о пожилых людях?` enne teemakitsendust | venekeelne Maardu näide, 13,19 s | retrieval 1512 ms; valitud 5 = kuvatud 5 | paneel sisaldas ka üldisi autorallikaid | **PARTIAL — atribuutika liiga lai** |
+| sama küsimus SHA-l `c9672a05` | venekeelne AI- ja Padise näidetega vastus, 12,45 s | kontrollitud teematermine 4; retrieval 7934 ms pärast restarti; valitud 3 = kuvatud 3 | Maardu 2019, AI sotsiaaltöös 2025 ja Padise 2017; kaks allikat toetasid vastuses nimetatud näiteid, Maardu artikkel oli küsimuse teemaga seotud lisallikas | **PASS, kitsas teemaga autorirada** |
+
+Lõppversioon kasutab kontrollitud eestikeelseid teematüvesid ainult kandidaadi- ja allikagrupi kitsendamiseks. Need ei ole vastuse hardcode ega üldine masintõlge. Esimese restartijärgse päringu retrieval 7,93 s ja sama raja varasem soe 1,51 s näitavad endiselt külma/sooja hajuvust; keeleplokk ei lisanud warm-up'i ega timeout'i muudatust.
+
+Tõendipiir: see on RU/EN autorimustri sihtvärav, mitte kogu mitmekeelse RAG-i valmimine. Üldised sünteesid, KOV ja teenused, õigusallikad, arvulised uuringufaktid, segakeel, lühikesed jätkuküsimused ning ET/RU/EN samatähenduslike source/chunk-pariteet jäävad `NOT_PROVEN`. Kumulatiivset eestikeelset 75 juhtumi maatriksit need lisakontrollid ei muuda: **DONE 21/75 · NOT_PROVEN 54/75**. Automaatteste ei loodud ega käivitatud; scoped lint, i18n, `git diff --check` ja muutumatu lõppkoodi tootmisbuild olid rohelised.
