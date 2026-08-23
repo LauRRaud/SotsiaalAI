@@ -1,9 +1,9 @@
 /**
  * Häälavatari punktipilve ehitaja.
  *
- * Sisend on omaniku renderdus (public/voice/Torso-läbipaistev.png), väljund
- * binaarne punktipilv, mida brauser joonistab. Pilti ennast avatarina EI
- * kasutata — temast võetakse ainult TÄPID: nende asukoht, värv ja heledus.
+ * Sisendid on omaniku eest- ja külgvaate renderdused. Eestvaatest võetakse
+ * ainult TÄPID: nende asukoht, värv ja heledus. Külgvaade ei lisa ühtegi
+ * nähtavat täppi, vaid annab otsmiku, nina, huulte ja lõua sügavuskõvera.
  *
  * Sügavus (z) ei ole pildis olemas ja tuleb tuletada. Esikoor on KÕRGUSVÄLI
  * z = D(x, y), seega tulevad normaalid otse selle välja gradiendist — nii
@@ -28,26 +28,29 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { dirname, join } from "node:path";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const SOURCE = join(ROOT, "public", "voice", "Torso-läbipaistev.png");
+const SOURCE = join(ROOT, "public", "voice", "Torsonägu.png");
+const PROFILE_SOURCE = join(ROOT, "public", "voice", "Nägukülg.png");
 const TARGET = join(ROOT, "public", "voice", "avatar-cloud.bin");
 
-/* Kõik mõõdetud lähtefaili alfakanalist (1536x1024). */
+/* Kõik mõõdetud uue eestvaate alfakanalist (1448x1086). */
 const LANDMARK = {
-  crownY: 24,
-  chinY: 470,
-  neckY: 504,
-  shoulderY: 700,
-  bottomY: 1023,
-  /* Torso alumine lõige. Omanik märkis punase joonega (22.08): rindkeret oli
-     liiga palju ja pealagi puutus ekraani ülaserva. Joon mõõdetud tema pildilt
-     maailma-y -0.95 peale, mis on lähtepildi rida 947. */
-  cropY: 947,
-  centerX: 769,
-  /* Kõrvamügar: reaprofiil hüppab poollaiuselt 184 -> 203 ja langeb 382 järel
-     tagasi 157 peale. Kolju enda poollaius on selles vöötmes ~185. */
-  earTopY: 250,
-  earBottomY: 382,
-  earInnerX: 186,
+  crownY: 22,
+  browY: 278,
+  eyeY: 307,
+  chinY: 558,
+  neckY: 590,
+  shoulderY: 710,
+  bottomY: 1085,
+  /* Uus renderdus ulatub rinnal madalamale kui avataripind vajab. Lõige on
+     samas õla-rindkere vöötmes nagu Opus 5 algpilvel, mitte PNG alumises
+     servas; nii ei tee lisandunud torso nägu ekraanil väiksemaks. */
+  cropY: 1020,
+  centerX: 718,
+  /* Kõrvamügar on uuel eestvaatel y 238..392; kolju enda poollaius on seal
+     ~185 px ja kõrvade välimine serv ~216 px. */
+  earTopY: 238,
+  earBottomY: 392,
+  earInnerX: 188,
   /* Kõrva sisemise serva hele kontuur. Ta EI OLE viga vaid on lähtepildis
      olemas: mõõdetud täppide keskmine heledus seal 0.81, põsel kõrval
      0.15-0.25. Omanik soovis ta maha võtta (22.08), seega summutatakse
@@ -56,18 +59,31 @@ const LANDMARK = {
      juurest, aga plateau algas alles 150 px pealt, nii et kõige heledam
      riba jäi summutusest välja (mõõdetud mõõduprofiil: 134-156 px = 0.94
      samal ajal kui 167-178 px = 0.45-0.49). */
-  seamInner: 96,
-  seamPlateauIn: 126,
-  seamPlateauOut: 180,
-  seamOuter: 202,
-  /* Silmajoon on pea poolel kõrgusel; suu Loomise proportsiooniga ~0.79. */
-  eyeY: 247,
-  eyeOffsetX: 92,
-  noseTopY: 252,
-  noseTipY: 348,
-  mouthY: 375,
-  pivotY: 482,
-  pivotZ: 0.12
+  seamInner: 104,
+  seamPlateauIn: 136,
+  seamPlateauOut: 194,
+  seamOuter: 222,
+  eyeOffsetX: 94,
+  noseTopY: 326,
+  noseTipY: 415,
+  mouthY: 472,
+  pivotY: 576,
+  pivotZ: 0.12,
+  /* Vana pilve 1.186 ulatus hoiab uue, suhteliselt kitsama torso ekraanil
+     sama mõõtu ega lase näol kaadrit vallutada. */
+  frameExtent: 1.1861,
+  centerYInHeadUnits: 1.12
+};
+
+/* Külgvaade on samal 1448x1086 lõuendil ja vaatab paremale. Läbipaistva
+   halo asemel loetakse ainult vähemalt 60% alfaga keha serv. x=720 on
+   renderduse sagitaaltelg: sellest paremale jääv serv on näo eesprofiil. */
+const PROFILE = {
+  centerX: 720,
+  crownY: 5,
+  chinY: 524,
+  alphaThreshold: 0.6,
+  smoothRadius: 28
 };
 
 const PEAK_THRESHOLD = 0.085;
@@ -187,15 +203,6 @@ function closeSilhouette(dots, w, h, radius) {
  * Pea POOLsügavus pea-kõrguse ühikutes. Ei sõltu rea laiusest: laiusega
  * seotud sügavus kitsenes lõua poole ja nägu vajus alt ära, ülal jäi pall.
  */
-const HEAD_DEPTH = [
-  [0.0, 0.24],   // lagipea
-  [0.18, 0.38],  // kraniaal
-  [0.45, 0.42],  // silmajoon, kõige sügavam
-  [0.68, 0.40],  // ninaalus
-  [0.85, 0.33],  // suu
-  [1.0, 0.25]    // lõug — jääb ette ulatuma, ei kao
-];
-
 /** Kaela ja keha sügavus on endiselt laiusega võrdeline. */
 const BODY_DEPTH = [
   [LANDMARK.chinY, 0.86],
@@ -226,48 +233,99 @@ function faceSculpt(x, y, unit) {
     const ex = dx - side * LANDMARK.eyeOffsetX;
 
     // Kulmuluu on tähtsam kui koobas ise: näo loeb välja tema ALLA jääv vari.
-    d += blob(ex, y - 203, 82, 26, unit * 0.042);
-    d -= blob(ex, y - 252, 64, 46, unit * 0.085);
+    d += blob(ex, y - LANDMARK.browY, unit * 0.16, unit * 0.052, unit * 0.02);
+    /* Eestvaates on silmakoopa täpid juba olemas ja külgvaade annab kogu
+       näopinna taandumise. Vana faceless-pilve tugev koobas tõmbas pöördel
+       silma kõrgusel terve näopoole järsult sisse. Siin on ainult lokaalne,
+       madal lohk — silm loeb valgusest, mitte kolju astmest. */
+    d -= blob(ex, y - LANDMARK.eyeY, unit * 0.12, unit * 0.09, unit * 0.026);
 
     // Oimukoht: kerge lohk, mis annab koljule laiuse asemel vormi.
-    d -= blob(dx - side * 152, y - 218, 50, 64, unit * 0.03);
+    d -= blob(dx - side * unit * 0.30, y - (LANDMARK.eyeY - unit * 0.05), unit * 0.11, unit * 0.14, unit * 0.011);
 
     // Põsesarn ja selle all lohk — üksi ei loe kumbki.
-    d += blob(dx - side * 118, y - 300, 68, 50, unit * 0.032);
-    d -= blob(dx - side * 104, y - 360, 58, 48, unit * 0.028);
+    d += blob(dx - side * unit * 0.22, y - (LANDMARK.noseTipY - unit * 0.10), unit * 0.125, unit * 0.09, unit * 0.03);
+    d -= blob(dx - side * unit * 0.19, y - (LANDMARK.mouthY - unit * 0.07), unit * 0.105, unit * 0.085, unit * 0.023);
 
     // Ninatiib
-    d += blob(dx - side * 38, y - 350, 27, 21, unit * 0.03);
+    d += blob(dx - side * unit * 0.065, y - LANDMARK.noseTipY, unit * 0.05, unit * 0.04, unit * 0.02);
 
     // Lõuanurk: serv, mis eraldab põske lõua alaküljest.
-    d += blob(dx - side * 146, y - 382, 34, 40, unit * 0.022);
+    d += blob(dx - side * unit * 0.25, y - (LANDMARK.chinY - unit * 0.08), unit * 0.065, unit * 0.075, unit * 0.018);
   }
 
-  // Ninaselg: kitsas ninajuurel, laieneb ja tõuseb tipu poole.
-  const noseSpan = LANDMARK.noseTipY - LANDMARK.noseTopY;
-  const along = (y - LANDMARK.noseTopY) / noseSpan;
-  if (along > -0.15 && along < 1.3) {
-    const t = clamp(along, 0, 1);
-    const halfWidth = 15 + 30 * t * t;
-    const rise = -unit * 0.014 + unit * 0.09 * Math.pow(t, 1.5);
-    const across = Math.max(0, 1 - Math.abs(dx) / halfWidth);
-    const lengthwise = 1 - Math.pow(Math.abs(clamp(along, -0.15, 1.3) - 0.72) / 0.95, 2);
-    d += rise * across * across * Math.max(0, lengthwise);
-  }
-
-  // Ninaalune vari ja philtrum
-  d -= blob(dx, y - 364, 46, 13, unit * 0.032);
-
-  // Huuled: ülahuul ette, suujoon sisse, alahuul ette, lõuavagu sisse.
-  d += blob(dx, y - 370, 74, 15, unit * 0.022);
-  d -= blob(dx, y - 379, 80, 9, unit * 0.038);
-  d += blob(dx, y - 390, 68, 16, unit * 0.026);
-  d -= blob(dx, y - 406, 72, 15, unit * 0.03);
-
-  // Lõuapall
-  d += blob(dx, y - 438, 62, 34, unit * 0.042);
+  /* Keskjoone kuju tuleb nüüd päris külgvaatest. Siia jäävad ainult väikesed
+     kahepoolse vormi täpsustused, mida üks profiil ei saa anda. */
+  d -= blob(dx, y - (LANDMARK.noseTipY + unit * 0.015), unit * 0.085, unit * 0.026, unit * 0.018);
+  d += blob(dx, y - (LANDMARK.mouthY - unit * 0.018), unit * 0.12, unit * 0.028, unit * 0.012);
+  d -= blob(dx, y - LANDMARK.mouthY, unit * 0.13, unit * 0.018, unit * 0.016);
+  d += blob(dx, y - (LANDMARK.mouthY + unit * 0.026), unit * 0.115, unit * 0.03, unit * 0.013);
 
   return d;
+}
+
+function readRightProfile(data, info) {
+  const { width, height, channels } = info;
+  const edge = new Float32Array(height);
+  edge.fill(Number.NaN);
+  const threshold = Math.round(PROFILE.alphaThreshold * 255);
+
+  for (let y = 0; y < height; y += 1) {
+    for (let x = width - 1; x >= 0; x -= 1) {
+      if (data[(y * width + x) * channels + 3] < threshold) continue;
+      edge[y] = x;
+      break;
+    }
+  }
+
+  // Üksik läbipaistev rida ei tohi teha sügavusse astet: täida vahed
+  // lähimate mõõdetud servade lineaarse interpolatsiooniga.
+  let previous = -1;
+  for (let y = 0; y < height; y += 1) {
+    if (!Number.isFinite(edge[y])) continue;
+    if (previous >= 0 && y - previous > 1) {
+      const from = edge[previous];
+      const to = edge[y];
+      for (let q = previous + 1; q < y; q += 1) {
+        edge[q] = from + (to - from) * ((q - previous) / (y - previous));
+      }
+    }
+    previous = y;
+  }
+  return edge;
+}
+
+function smoothProfile(values, radius) {
+  const result = new Float32Array(values.length);
+  for (let i = 0; i < values.length; i += 1) {
+    let sum = 0;
+    let weightSum = 0;
+    for (let d = -radius; d <= radius; d += 1) {
+      const q = clamp(i + d, 0, values.length - 1);
+      const value = values[q];
+      if (!Number.isFinite(value)) continue;
+      const weight = radius + 1 - Math.abs(d);
+      sum += value * weight;
+      weightSum += weight;
+    }
+    result[i] = weightSum ? sum / weightSum : 0;
+  }
+  return result;
+}
+
+function buildFaceProfile(edge, unit, height) {
+  const raw = new Float32Array(height);
+  const profileUnit = PROFILE.chinY - PROFILE.crownY;
+  const scale = unit / profileUnit;
+
+  for (let y = 0; y < height; y += 1) {
+    const headT = clamp((y - LANDMARK.crownY) / unit, 0, 1);
+    const profileY = Math.round(PROFILE.crownY + headT * profileUnit);
+    const frontX = edge[clamp(profileY, PROFILE.crownY, PROFILE.chinY)];
+    raw[y] = clamp((frontX - PROFILE.centerX) * scale, unit * 0.02, unit * 0.56);
+  }
+
+  return { raw, smooth: smoothProfile(raw, PROFILE.smoothRadius) };
 }
 
 /**
@@ -281,12 +339,27 @@ function rigWeight(y) {
   return Math.max(0, 1 - t * t * (3 - 2 * t));
 }
 
-export async function buildAvatarCloud({ source = SOURCE, target = TARGET, quiet = false } = {}) {
+export async function buildAvatarCloud({
+  source = SOURCE,
+  profileSource = PROFILE_SOURCE,
+  target = TARGET,
+  quiet = false
+} = {}) {
   const log = (...args) => { if (!quiet) console.log(...args); };
 
-  const { data, info } = await sharp(source).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+  const [frontImage, profileImage] = await Promise.all([
+    sharp(source).ensureAlpha().raw().toBuffer({ resolveWithObject: true }),
+    sharp(profileSource).ensureAlpha().raw().toBuffer({ resolveWithObject: true })
+  ]);
+  const { data, info } = frontImage;
   const { width: w, height: h, channels: ch } = info;
   const unit = LANDMARK.chinY - LANDMARK.crownY;
+  if (w <= LANDMARK.centerX || h <= LANDMARK.bottomY) {
+    throw new Error(`eestvaate mõõt ${w}x${h} ei kata mõõdetud orientiire`);
+  }
+
+  const profileEdge = readRightProfile(profileImage.data, profileImage.info);
+  const faceProfile = buildFaceProfile(profileEdge, unit, h);
 
   const lum = new Float32Array(w * h);
   const dotMask = new Uint8Array(w * h);
@@ -345,7 +418,7 @@ export async function buildAvatarCloud({ source = SOURCE, target = TARGET, quiet
     // kuna normaal tuleb sügavusvälja gradiendist, pöördus normaal seal
     // peaaegu külili ja lõua alla tekkis hele kaar (omanik 22.08).
     const toBody = smoothstep(LANDMARK.chinY - 50, LANDMARK.chinY + 70, y);
-    const headHalf = unit * curve(HEAD_DEPTH, clamp((y - LANDMARK.crownY) / unit, 0, 1));
+    const headHalf = clamp(faceProfile.smooth[y], unit * 0.06, unit * 0.5);
     const bodyHalf = reference * curve(BODY_DEPTH, Math.max(y, LANDMARK.chinY));
     const halfDepth = headHalf + (bodyHalf - headHalf) * toBody;
     for (let x = 0; x < w; x += 1) {
@@ -353,7 +426,23 @@ export async function buildAvatarCloud({ source = SOURCE, target = TARGET, quiet
       if (!body[i]) continue;
       const n = Math.min(1, dist[i] / reference);
       let depth = halfDepth * Math.sqrt(Math.max(0, 1 - (1 - n) * (1 - n)));
-      if (toBody < 1) depth += faceSculpt(x, y, unit) * n * (1 - toBody);
+      if (toBody < 1) {
+        /* Profiili peen kuju (nina, huuled, lõug) peab jääma keskjoonele,
+           mitte paisutama sama y-rea põski. Laius muutub näo kõrgusega:
+           nina on kõige kitsam, lõug ja laup laiemad. */
+        const headT = clamp((y - LANDMARK.crownY) / unit, 0, 1);
+        const featureWidth = unit * curve([
+          [0, 0.28],
+          [0.48, 0.24],
+          [0.72, 0.11],
+          [0.84, 0.16],
+          [1, 0.23]
+        ], headT);
+        const centerWeight = Math.exp(-Math.pow(Math.abs(x - LANDMARK.centerX) / Math.max(1, featureWidth), 4));
+        const profileDetail = clamp(faceProfile.raw[y] - faceProfile.smooth[y], -unit * 0.05, unit * 0.12);
+        depth += profileDetail * centerWeight * n * (1 - toBody);
+        depth += faceSculpt(x, y, unit) * n * (1 - toBody);
+      }
       const ear = earMaskAt(x, y);
       if (ear > 0) {
         // Kõrv on lest, mitte koljulõik.
@@ -404,6 +493,7 @@ export async function buildAvatarCloud({ source = SOURCE, target = TARGET, quiet
       const i = y * w + x;
       const v = lum[i];
       if (v < PEAK_THRESHOLD) continue;
+      if (!body[i]) continue;
 
       let isPeak = true;
       for (let dy = -1; dy <= 1 && isPeak; dy += 1) {
@@ -488,15 +578,14 @@ export async function buildAvatarCloud({ source = SOURCE, target = TARGET, quiet
     }
   }
 
-  /* SILMI EI JOONISTATA. Lisasin nad omaniku palvel („vähemalt midagi"),
-     aga tulemus ei kõlvanud (22.08) ja nägu tuleb hoopis uue lähtepildiga.
-     See ongi õige koht: iga näojoon peab tulema renderdusest, mitte koodist —
-     ekstraktor võtab uue faili täpid muutmata kujul üles. */
+  /* SILMI EGA TEISI NÄOJOONI EI JOONISTATA KOODIGA. Uue eestvaate silmad,
+     nina ja suu tulevad tema enda täppidest; külgvaade annab neile ainult
+     ruumilise sügavuse. Nii ei kleebita näole võõrast protseduurset maski. */
 
   const count = positions.length / 3;
   if (!count) throw new Error("punktipilv jäi tühjaks — kontrolli läve ja lähtefaili");
 
-  const midY = (LANDMARK.crownY + LANDMARK.bottomY) / 2;
+  const midY = LANDMARK.crownY + unit * LANDMARK.centerYInHeadUnits;
   const cropWorldY = (midY - LANDMARK.cropY) / unit;
   let extent = 0;
   const world = new Float32Array(count * 3);
@@ -514,7 +603,7 @@ export async function buildAvatarCloud({ source = SOURCE, target = TARGET, quiet
   const mouthIndex = LANDMARK.mouthY * w + LANDMARK.centerX;
   const mouthDepth = depthField[mouthIndex];
 
-  const scale = extent;
+  const scale = Math.max(extent, LANDMARK.frameExtent);
   const header = Buffer.alloc(32);
   header.write("SAV3", 0, "ascii");
   header.writeUInt32LE(count, 4);
@@ -546,6 +635,7 @@ export async function buildAvatarCloud({ source = SOURCE, target = TARGET, quiet
   writeFileSync(target, blob);
 
   log(`täppe: ${count} (üks koor, soojad ${warmCount})`);
+  log(`näosügavus: ${profileSource}`);
   log(`keha hõrendus: ${bodyDropped} tuhmi täidetäppi välja, jooned puutumata`);
   log(`suu: y ${((midY - LANDMARK.mouthY) / unit).toFixed(3)}, z ${(mouthDepth / unit).toFixed(3)}`
     + ` | pöördetelg y ${((midY - LANDMARK.pivotY) / unit).toFixed(3)}`);

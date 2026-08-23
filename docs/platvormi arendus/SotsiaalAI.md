@@ -152,6 +152,18 @@ Ainult iseseisev tervitus kasutab kiiret
 tervitusvastust; tervitusele lisatud küsimus või muu sisu läbib endiselt kogu RAG-i ja
 turvatoru. Parandusejärgne päris mikrofonivoor on endiselt **NOT_PROVEN**.
 
+**Näoga täpp-avatar on 23.08 lokaalselt `repair-a` harus valmis, kuid `main`-i integreerimata ja
+deploy'mata.** Opus 5 senine ühe esikoorega punktipilve-, värvi-, hõrenduse-, kõrva- ja
+WebGL-toru säilis; uus `Torsonägu.png` annab 13 923 nähtava täpi asukoha ning värvi ja
+`Nägukülg.png` ainult otsmiku, nina, huulte ja lõua sagitaalsügavuse. Alumine torso lõigatakse
+enne PNG serva ning kaadrimõõt jäi vana pilvega samaks. Kohalikus 946 × 842 brauserivaates olid
+eestvaade ja mõlemad pöörded ruumilised, ilma tagakoore/topeltkõrvata, ning WebGL-laadimine oli
+roheline. Silma kõrgusel olnud järsk sügavusaste muudeti madalaks lokaalseks silmakoopaks.
+Kõrva ja näokülje liiga lai värvisummutus võeti omaniku vaatluse järel täielikult tagasi;
+kõrvaesine hele joon jäi teadlikult eraldi lahendamata, et mitte figuuri punkte kustutada.
+Automaatseid teste ei loodud ega käivitatud; peatükilõpu build, integratsioon ja deploy on
+**NOT_PROVEN** / tegemata.
+
 **Tööalade sisuvaadete kiirmenüü ja leheinfo on 22.08 parandatud.** Kõik
 `/vestlus?workspace=…` tööalad kasutavad nüüd sisu klaaspinda ning lehe nime, tagasinupu ja
 lehepõhise infoga alumist kiirmenüüd; päris vestlus jääb teadlikult ilma klaaspinna ja
@@ -1970,6 +1982,11 @@ mõõtu muutmata kuvatakse torso all eraldi dokieelses alas ainult lühike töö
 „Otsin vastust ja allikaid“. Allesjäänud aeg muutub nähtavaks üksnes viimase 45 sekundi
 lõpuhoiatuse ajal.
 Dikteerimismikrofon on endiselt eraldi funktsioon.
+
+Lokaalses `repair-a` jätkus sama ühe esikoorega tehnika näoga renderduste peale: eestvaate
+13 923 punkti saavad külgvaatest ainult sügavuse, mitte teist nähtavat punktikihti. See haru on
+brauseris eest ja mõlemalt pöördelt kontrollitud, kuid ei ole veel `main`-i integreeritud ega
+toodangusse saadetud; ametliku avatarina kehtib kuni integratsioonini eelnev versioon.
 
 Realtime on ainult kuulamisliides: spetsiaalne `type: "transcription"` WebRTC-seanss kasutab
 `gpt-4o-mini-transcribe` mudelit kõnevooru tuvastamiseks ja transkriptsiooniks. Seanss määrab
