@@ -146,8 +146,9 @@ avanes tühi uus vestlus. Uus mikrofoni kaudu häälvastus ootab omaniku järgmi
 seni **NOT_PROVEN**. Häälpinna järgmine paigutusparandus (`8d84ef9a`) eemaldab tavalisest
 ühendamise, kuulamise ja RAG-i ooteolekust viieminutilise taimeri: kell ilmub alles viimase
 45 sekundi lõpuhoiatusena. Lühike tööolek paikneb nüüd torso all eraldi dokieelses alas ega
-muuda avatari mõõtu. Kohalikus 1280 × 720 brauserivaates oli „Loon turvalist ühendust“ torso
-all, taimer puudus ja avatar säilitas oma mõõdu. Ainult iseseisev tervitus kasutab kiiret
+muuda avatari mõõtu. Kohalikus ja pärast deploy'd tootmise 1280 × 720 brauserivaates olid
+„Loon turvalist ühendust“ ning „Kuulan“ torso all, taimer puudus ja avatar säilitas oma mõõdu.
+Ainult iseseisev tervitus kasutab kiiret
 tervitusvastust; tervitusele lisatud küsimus või muu sisu läbib endiselt kogu RAG-i ja
 turvatoru. Parandusejärgne päris mikrofonivoor on endiselt **NOT_PROVEN**.
 
