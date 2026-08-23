@@ -319,8 +319,21 @@ fi
 systemctl is-active sotsiaalai-frontend.service
 
 if [ -d "$BACKUP_DIR" ]; then
+  if [ "$SKIP_BUILD" != "1" ] && [ -d "$APP_DIR/.next" ]; then
+    current_artifact="$BACKUP_DIR/frontend-current-$(date -u +%Y%m%dT%H%M%SZ)-$(git rev-parse --short HEAD).tar.gz"
+    tar -czf "$current_artifact" -C "$APP_DIR" .next
+    echo "[deploy:server] Current frontend artifact: $current_artifact"
+  fi
+
+  mapfile -t rollback_artifacts < <(
+    find "$BACKUP_DIR" -maxdepth 1 -type f -name 'frontend-artifact-*.tar.gz' -printf '%p\n'
+  )
+  for rollback_artifact in "\${rollback_artifacts[@]}"; do
+    rm -f -- "$rollback_artifact"
+  done
+
   mapfile -t artifact_backups < <(
-    find "$BACKUP_DIR" -maxdepth 1 -type f -name 'frontend-artifact-*.tar.gz' -printf '%p\n' | sort -r
+    find "$BACKUP_DIR" -maxdepth 1 -type f -name 'frontend-current-*.tar.gz' -printf '%p\n' | sort -r
   )
   if [ "\${#artifact_backups[@]}" -gt "$ARTIFACT_BACKUP_KEEP" ]; then
     removed_artifacts=0
@@ -328,7 +341,7 @@ if [ -d "$BACKUP_DIR" ]; then
       rm -f -- "\${artifact_backups[$index]}"
       removed_artifacts=$((removed_artifacts + 1))
     done
-    echo "[deploy:server] Removed $removed_artifacts stale frontend artifact backups; kept $ARTIFACT_BACKUP_KEEP"
+    echo "[deploy:server] Removed $removed_artifacts stale current frontend artifacts; kept $ARTIFACT_BACKUP_KEEP"
   fi
 fi
 
