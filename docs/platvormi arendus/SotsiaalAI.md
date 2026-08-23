@@ -143,7 +143,13 @@ vestluse ID saatmisrajale nähtavaks samas renderduses. Hääletranskript kannab
 suletud `inputModality: voice` märgist: vastus käitub loomuliku häälvestlusena, kuid ei väida
 ligipääsu toorhelile. Päris serveris vajutati „Uus“ kohe loendi avamise järel; vana lõim kadus ja
 avanes tühi uus vestlus. Uus mikrofoni kaudu häälvastus ootab omaniku järgmist lausungit ja on
-seni **NOT_PROVEN**.
+seni **NOT_PROVEN**. Häälpinna järgmine paigutusparandus (`8d84ef9a`) eemaldab tavalisest
+ühendamise, kuulamise ja RAG-i ooteolekust viieminutilise taimeri: kell ilmub alles viimase
+45 sekundi lõpuhoiatusena. Lühike tööolek paikneb nüüd torso all eraldi dokieelses alas ega
+muuda avatari mõõtu. Kohalikus 1280 × 720 brauserivaates oli „Loon turvalist ühendust“ torso
+all, taimer puudus ja avatar säilitas oma mõõdu. Ainult iseseisev tervitus kasutab kiiret
+tervitusvastust; tervitusele lisatud küsimus või muu sisu läbib endiselt kogu RAG-i ja
+turvatoru. Parandusejärgne päris mikrofonivoor on endiselt **NOT_PROVEN**.
 
 **Tööalade sisuvaadete kiirmenüü ja leheinfo on 22.08 parandatud.** Kõik
 `/vestlus?workspace=…` tööalad kasutavad nüüd sisu klaaspinda ning lehe nime, tagasinupu ja
@@ -1959,8 +1965,9 @@ telefonikõne laadse pinna, mille keskmes on umbes 10 000 valguspunktist moodust
 kael ja õlad. Avatari efekte 23.08 torumuudatuses ei muudetud. Häälrežiimis renderdatakse ainult
 avatar, lühike tööolek ja häälrežiimi dokk; standardvestluse mullid, komposer ja rollilülitid
 tulevad tagasi alles tekstivestlusse naastes. Nii ei võta vastuse tekst avatarilt ruumi. Avatari
-mõõtu muutmata ülekattena kuvatakse ainult lühike tööolek, sh RAG-i ajal „Otsin vastust ja
-allikaid“, ning allesjäänud aeg.
+mõõtu muutmata kuvatakse torso all eraldi dokieelses alas ainult lühike tööolek, sh RAG-i ajal
+„Otsin vastust ja allikaid“. Allesjäänud aeg muutub nähtavaks üksnes viimase 45 sekundi
+lõpuhoiatuse ajal.
 Dikteerimismikrofon on endiselt eraldi funktsioon.
 
 Realtime on ainult kuulamisliides: spetsiaalne `type: "transcription"` WebRTC-seanss kasutab
@@ -1982,9 +1989,11 @@ Hääletranskript märgitakse tavavestluse päringus suletud väärtusega `input
 See ei muuda RAG-i ega Luna rolli, vaid annab vastusemudelile teada, et kasutaja rääkis: mudel
 ei tohi vastata „ma ei kuule heli“ ega „näen ainult kirjutatud teksti“, kuid ei tohi ka väita,
 et tal on toorheli. Esimese tervituse serverivastus kasutab sama eristust ja ütleb häälsisendi
-korral, et kasutaja kõne jõudis kohale. „Uus vestlus“ töötab ka ajal, kui külgriba alles laeb
-ajalugu; loomine on ühe päringu kaupa lukustatud ja uus `convId` jõuab saatmisrajale samas
-renderduses, et kiire järgmine häälvoor ei saaks minna vanasse lõime.
+korral, et kasutaja kõne jõudis kohale. Kiire tervitusrada kehtib ainult iseseisvale tervitusele;
+tervitus koos küsimuse või muu sisuga läbib tavalise RAG-i, allikate ja turvatoru. „Uus vestlus“
+töötab ka ajal, kui külgriba alles laeb ajalugu; loomine on ühe päringu kaupa lukustatud ja uus
+`convId` jõuab saatmisrajale samas renderduses, et kiire järgmine häälvoor ei saaks minna vanasse
+lõime.
 
 **Dikteerimine vestlusaknas.**
 Kui kirjutamine on raske — käed on kinni, silmad väsinud, olukord ärev või kirjatöö lihtsalt
