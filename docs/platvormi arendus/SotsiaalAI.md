@@ -154,11 +154,28 @@ turvatoru. Parandusejärgne päris mikrofonivoor on endiselt **NOT_PROVEN**.
 
 **Näoga täpp-avatar on 23.08 lokaalselt `repair-a` harus valmis, kuid `main`-i integreerimata ja
 deploy'mata.** Opus 5 senine ühe esikoorega punktipilve-, värvi-, hõrenduse-, kõrva- ja
-WebGL-toru säilis; uus `Torsonägu.png` annab 13 923 nähtava täpi asukoha ning värvi ja
-`Nägukülg.png` ainult otsmiku, nina, huulte ja lõua sagitaalsügavuse. Alumine torso lõigatakse
+WebGL-toru säilis; uus `Torsonägu.png` annab 12 848 nähtava täpi asukoha ning värvi ja
+`Nägukülg.png` ainult otsmiku, nina, huulte ja lõua sagitaalsügavuse. Külgprofiil kujundab
+nüüd näo kitsast keskosa, mitte kogu näorea sügavust, nii et nina ulatub põskedest eraldi ette.
+Alumine torso lõigatakse
 enne PNG serva ning kaadrimõõt jäi vana pilvega samaks. Kohalikus 946 × 842 brauserivaates olid
 eestvaade ja mõlemad pöörded ruumilised, ilma tagakoore/topeltkõrvata, ning WebGL-laadimine oli
 roheline. Silma kõrgusel olnud järsk sügavusaste muudeti madalaks lokaalseks silmakoopaks.
+Oimukohale ei lisata enam külgvaate peale teist lohku. Lõug säilitab nüüd külgvaatest saadud
+eesmise sügavuse kogu lõuajooneni ning kael hakkab taanduma alles selle all; nii paikneb hele
+lõuakontuur väljaulatuval lõual. Pea pöördub täies ulatuses, kaela ülaserva pöördekaal langeb
+sujuvalt 45%-ni ja õlgadel nullini, et lõug ja kael ei liiguks ühe jäiga tükina.
+Nina-suu detailalas jäid 2708 lähest heledusmaksimumist minimaalse vahe järel alles 1638
+selgemat ja veidi väiksemat täppi; nina kasutab rangemat vahet kui suu. Silmi, põski, kõrvu
+ega torsot see puhastus ei hõrenda.
+Nina juurt tõstab olemasolevate punktide kitsas sügavushari ja suurem loetavus, ninaotsa
+kaksikmügar on kitsam, terav keskpunkt jääb heledaks ning kõrvaaluse lõuanurga lisasügavus on
+vähendatud. Kõrva ja lõuajoone vahel varem püsinud 55% täpisuuruse summutus on täielikult
+eemaldatud, et nähtav pind ei katkeks. Kõik pealae, oimu ja kõrva servatäpid jäävad alles;
+kiivrihelki vähendab ainult servatäppide tumedam toon. Silmade, ninajuure, ninaotsa ja huulte
+816 olemasolevat heledat punkti saavad torso paletiga kooskõlalise sooja aktsendi. Lõua all
+olevad üksikud külgmised soojad punktid jahutatakse siniseks, et nad ei moodustaks laia kuldset
+lõuajoont.
 Kõrva ja näokülje liiga lai värvisummutus võeti omaniku vaatluse järel täielikult tagasi;
 kõrvaesine hele joon jäi teadlikult eraldi lahendamata, et mitte figuuri punkte kustutada.
 Automaatseid teste ei loodud ega käivitatud; peatükilõpu build, integratsioon ja deploy on
@@ -1984,9 +2001,15 @@ lõpuhoiatuse ajal.
 Dikteerimismikrofon on endiselt eraldi funktsioon.
 
 Lokaalses `repair-a` jätkus sama ühe esikoorega tehnika näoga renderduste peale: eestvaate
-13 923 punkti saavad külgvaatest ainult sügavuse, mitte teist nähtavat punktikihti. See haru on
-brauseris eest ja mõlemalt pöördelt kontrollitud, kuid ei ole veel `main`-i integreeritud ega
-toodangusse saadetud; ametliku avatarina kehtib kuni integratsioonini eelnev versioon.
+12 848 punkti saavad külgvaatest ainult keskse näoprofiili sügavuse, mitte teist nähtavat
+punktikihti. Nina ulatub põskedest eraldi ette, lõug püsib külgvaate eesmises sügavuses ning
+kael taandub ja pöördub lõua all vähem. Kõrv kasutab taas senist laia sujuvat üleminekut.
+Nina ja suu lähestikku kuhjunud helendusmaksimumid on minimaalse vahega selgeteks
+üksiktäppideks hõrendatud. Olemasolevad silma-, nina- ja suukontuuri punktid saavad mõõduka
+sooja aktsendi; nina juur ja terav ninaots püüavad valgust, ninaots ning kõrvaalune lõuanurk on
+kitsamad, kõrva–lõuajoone pind katkematu ja kõik pealae servatäpid alles.
+Haru ei ole veel `main`-i integreeritud ega toodangusse saadetud; ametliku avatarina kehtib
+kuni integratsioonini eelnev versioon.
 
 Realtime on ainult kuulamisliides: spetsiaalne `type: "transcription"` WebRTC-seanss kasutab
 `gpt-4o-mini-transcribe` mudelit kõnevooru tuvastamiseks ja transkriptsiooniks. Seanss määrab

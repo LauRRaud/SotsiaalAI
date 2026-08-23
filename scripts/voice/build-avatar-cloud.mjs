@@ -51,18 +51,6 @@ const LANDMARK = {
   earTopY: 238,
   earBottomY: 392,
   earInnerX: 188,
-  /* Kõrva sisemise serva hele kontuur. Ta EI OLE viga vaid on lähtepildis
-     olemas: mõõdetud täppide keskmine heledus seal 0.81, põsel kõrval
-     0.15-0.25. Omanik soovis ta maha võtta (22.08), seega summutatakse
-     tema täppide mõõt ja sellega ka heledus. */
-  /* Aken oli esimesel katsel liiga kitsas: hele ala algab juba 134 px
-     juurest, aga plateau algas alles 150 px pealt, nii et kõige heledam
-     riba jäi summutusest välja (mõõdetud mõõduprofiil: 134-156 px = 0.94
-     samal ajal kui 167-178 px = 0.45-0.49). */
-  seamInner: 104,
-  seamPlateauIn: 136,
-  seamPlateauOut: 194,
-  seamOuter: 222,
   eyeOffsetX: 94,
   noseTopY: 326,
   noseTipY: 415,
@@ -87,6 +75,13 @@ const PROFILE = {
 };
 
 const PEAK_THRESHOLD = 0.085;
+const FACIAL_DETAIL = {
+  topY: 320,
+  bottomY: 535,
+  halfWidth: 125,
+  minSpacing: 3,
+  noseSpacing: 4
+};
 /* Keha hõrendus. PUHTJUHUSLIK kustutus rebib lähtepildi voojooned katki —
    need jooned ON keha vorm, ja auk keskel loeb rebendina (omanik 22.08
    „keha on mitmest kohast katki, nagu ära rebitud"). Seepärast: heledad
@@ -203,6 +198,18 @@ function closeSilhouette(dots, w, h, radius) {
  * Pea POOLsügavus pea-kõrguse ühikutes. Ei sõltu rea laiusest: laiusega
  * seotud sügavus kitsenes lõua poole ja nägu vajus alt ära, ülal jäi pall.
  */
+/* Kolju ja näokülje stabiilne põhisügavus. Külgvaate nina, huuled ja lõug
+   lisatakse sellele keskjoone ümber; profiili kogu rea peale kandmine tegi
+   nina asemel terve näorea ettepoole paisuvaks. */
+const HEAD_DEPTH = [
+  [0.0, 0.24],
+  [0.18, 0.38],
+  [0.45, 0.42],
+  [0.68, 0.4],
+  [0.85, 0.33],
+  [1.0, 0.25]
+];
+
 /** Kaela ja keha sügavus on endiselt laiusega võrdeline. */
 const BODY_DEPTH = [
   [LANDMARK.chinY, 0.86],
@@ -240,28 +247,133 @@ function faceSculpt(x, y, unit) {
        madal lohk — silm loeb valgusest, mitte kolju astmest. */
     d -= blob(ex, y - LANDMARK.eyeY, unit * 0.12, unit * 0.09, unit * 0.026);
 
-    // Oimukoht: kerge lohk, mis annab koljule laiuse asemel vormi.
-    d -= blob(dx - side * unit * 0.30, y - (LANDMARK.eyeY - unit * 0.05), unit * 0.11, unit * 0.14, unit * 0.011);
+    /* Külgvaade annab oimukoha taandumise juba ise. Eraldi lohk tegi
+       pöördel kõrva kohal otsmiku ja näo vahele teise sügavusastme. */
 
     // Põsesarn ja selle all lohk — üksi ei loe kumbki.
     d += blob(dx - side * unit * 0.22, y - (LANDMARK.noseTipY - unit * 0.10), unit * 0.125, unit * 0.09, unit * 0.03);
     d -= blob(dx - side * unit * 0.19, y - (LANDMARK.mouthY - unit * 0.07), unit * 0.105, unit * 0.085, unit * 0.023);
 
-    // Ninatiib
-    d += blob(dx - side * unit * 0.065, y - LANDMARK.noseTipY, unit * 0.05, unit * 0.04, unit * 0.02);
+    // Ninatiib on kitsas; suurem kaksikmügar tegi ninaotsa raskeks.
+    d += blob(dx - side * unit * 0.055, y - LANDMARK.noseTipY, unit * 0.045, unit * 0.04, unit * 0.012);
 
-    // Lõuanurk: serv, mis eraldab põske lõua alaküljest.
-    d += blob(dx - side * unit * 0.25, y - (LANDMARK.chinY - unit * 0.08), unit * 0.065, unit * 0.075, unit * 0.018);
+    // Lõuanurk jääb loetav, kuid ei paisuta kõrvaalust tagumist lõuga.
+    d += blob(dx - side * unit * 0.25, y - (LANDMARK.chinY - unit * 0.08), unit * 0.065, unit * 0.075, unit * 0.006);
   }
 
   /* Keskjoone kuju tuleb nüüd päris külgvaatest. Siia jäävad ainult väikesed
      kahepoolse vormi täpsustused, mida üks profiil ei saa anda. */
+  // Nina juurest tipuni kulgev kitsas selg püüab valguse ka otsevaates.
+  d += blob(dx, y - (LANDMARK.noseTopY + unit * 0.055), unit * 0.048, unit * 0.14, unit * 0.018);
   d -= blob(dx, y - (LANDMARK.noseTipY + unit * 0.015), unit * 0.085, unit * 0.026, unit * 0.018);
   d += blob(dx, y - (LANDMARK.mouthY - unit * 0.018), unit * 0.12, unit * 0.028, unit * 0.012);
   d -= blob(dx, y - LANDMARK.mouthY, unit * 0.13, unit * 0.018, unit * 0.016);
   d += blob(dx, y - (LANDMARK.mouthY + unit * 0.026), unit * 0.115, unit * 0.03, unit * 0.013);
 
   return d;
+}
+
+function ellipseOutline(dx, dy, rx, ry, inner = 0.08, outer = 0.28) {
+  const radial = Math.hypot(dx / rx, dy / ry);
+  return 1 - smoothstep(inner, outer, Math.abs(radial - 1));
+}
+
+/** Olemasolevate täppide soe anatoomiline aktsent, mitte lisatud joon. */
+function facialAccentWeight(x, y, unit) {
+  const dx = x - LANDMARK.centerX;
+  let eyes = 0;
+  for (const side of [-1, 1]) {
+    eyes = Math.max(eyes, ellipseOutline(
+      dx - side * LANDMARK.eyeOffsetX,
+      y - LANDMARK.eyeY,
+      unit * 0.115,
+      unit * 0.038
+    ));
+  }
+
+  const bridge = smoothstep(LANDMARK.eyeY - 8, LANDMARK.eyeY + 18, y)
+    * (1 - smoothstep(LANDMARK.noseTipY - 38, LANDMARK.noseTipY - 8, y))
+    * (1 - smoothstep(unit * 0.02, unit * 0.065, Math.abs(dx)));
+  const tip = ellipseOutline(
+    dx,
+    y - LANDMARK.noseTipY,
+    unit * 0.07,
+    unit * 0.04,
+    0.08,
+    0.3
+  );
+  const mouth = ellipseOutline(
+    dx,
+    y - LANDMARK.mouthY,
+    unit * 0.13,
+    unit * 0.036,
+    0.08,
+    0.32
+  );
+
+  return clamp(Math.max(eyes * 0.72, bridge * 0.62, tip * 0.52, mouth * 0.68), 0, 1);
+}
+
+/**
+ * Nina ja suu lähtepildis on tugeva helenduse sees mitu peaaegu kõrvuti
+ * lokaalset maksimumi. Kõigi nende eraldi täpiks muutmine teeb näo pudruseks.
+ * Valime heledamad maksimumid enne ja jätame neile kindla minimaalse vahe;
+ * silmad, põsed, kõrvad ning ülejäänud torso seda hõrendust ei kasuta.
+ */
+function buildFacialFeaturePeakMask(lum, w, h) {
+  const candidates = [];
+  const minX = Math.max(1, LANDMARK.centerX - FACIAL_DETAIL.halfWidth);
+  const maxX = Math.min(w - 2, LANDMARK.centerX + FACIAL_DETAIL.halfWidth);
+  const minY = Math.max(1, FACIAL_DETAIL.topY);
+  const maxY = Math.min(h - 2, FACIAL_DETAIL.bottomY);
+
+  for (let y = minY; y <= maxY; y += 1) {
+    for (let x = minX; x <= maxX; x += 1) {
+      const i = y * w + x;
+      const value = lum[i];
+      if (value < PEAK_THRESHOLD) continue;
+      let isPeak = true;
+      for (let dy = -1; dy <= 1 && isPeak; dy += 1) {
+        for (let dx = -1; dx <= 1; dx += 1) {
+          if (!dx && !dy) continue;
+          const neighbour = lum[i + dy * w + dx];
+          if (neighbour > value || (neighbour === value && (dy < 0 || (dy === 0 && dx < 0)))) {
+            isPeak = false;
+            break;
+          }
+        }
+      }
+      if (isPeak) candidates.push(i);
+    }
+  }
+
+  candidates.sort((a, b) => lum[b] - lum[a] || a - b);
+  const accepted = new Uint8Array(w * h);
+  let acceptedCount = 0;
+  for (const i of candidates) {
+    const x = i % w;
+    const y = (i / w) | 0;
+    const inNose = y >= LANDMARK.noseTopY - 6
+      && y <= LANDMARK.noseTipY + 34
+      && Math.abs(x - LANDMARK.centerX) <= LANDMARK.eyeOffsetX;
+    const radius = inNose ? FACIAL_DETAIL.noseSpacing : FACIAL_DETAIL.minSpacing;
+    let blocked = false;
+    for (let dy = -radius; dy <= radius && !blocked; dy += 1) {
+      for (let dx = -radius; dx <= radius; dx += 1) {
+        if (dx * dx + dy * dy > radius * radius) continue;
+        if (accepted[i + dy * w + dx]) {
+          blocked = true;
+          break;
+        }
+      }
+    }
+    if (!blocked) {
+      accepted[i] = 1;
+      acceptedCount += 1;
+    }
+  }
+
+  return { accepted, acceptedCount, candidates: candidates.length };
 }
 
 function readRightProfile(data, info) {
@@ -334,9 +446,14 @@ function buildFaceProfile(edge, unit, height) {
  */
 function rigWeight(y) {
   if (y <= LANDMARK.chinY) return 1;
+  if (y <= LANDMARK.neckY) {
+    const t = (y - LANDMARK.chinY) / (LANDMARK.neckY - LANDMARK.chinY);
+    // Pea pöördub täies ulatuses, kaela ülaserv jõuab sujuvalt 45% peale.
+    return 1 - 0.55 * smoothstep(0, 1, t);
+  }
   if (y >= LANDMARK.shoulderY) return 0;
-  const t = (y - LANDMARK.chinY) / (LANDMARK.shoulderY - LANDMARK.chinY);
-  return Math.max(0, 1 - t * t * (3 - 2 * t));
+  const t = (y - LANDMARK.neckY) / (LANDMARK.shoulderY - LANDMARK.neckY);
+  return 0.45 * (1 - smoothstep(0, 1, t));
 }
 
 export async function buildAvatarCloud({
@@ -371,6 +488,7 @@ export async function buildAvatarCloud({
 
   const body = closeSilhouette(dotMask, w, h, 9);
   const dist = distanceTransform(body, w, h);
+  const facialFeaturePeaks = buildFacialFeaturePeakMask(lum, w, h);
 
   // Rea poollaius ja keskjoon.
   const rowHalf = new Float32Array(h);
@@ -417,8 +535,13 @@ export async function buildAvatarCloud({
     // Järsk vahetus andis lõuajoonele 13,5 px sügavusastme ühe rea peal;
     // kuna normaal tuleb sügavusvälja gradiendist, pöördus normaal seal
     // peaaegu külili ja lõua alla tekkis hele kaar (omanik 22.08).
-    const toBody = smoothstep(LANDMARK.chinY - 50, LANDMARK.chinY + 70, y);
-    const headHalf = clamp(faceProfile.smooth[y], unit * 0.06, unit * 0.5);
+    /* Lõuajoon on näo eesmine serv, mitte kaela esimene rida. Vana segu
+       algas 50 px enne lõuga ja tõmbas lõua 38% ulatuses kaela sügavusse.
+       Nüüd püsib lõug külgvaatest saadud sügavusel ning kael taandub tema
+       all pika, normaale mitte murdva üleminekuga. */
+    const toBody = smoothstep(LANDMARK.chinY + 2, LANDMARK.neckY + 50, y);
+    const headT = clamp((y - LANDMARK.crownY) / unit, 0, 1);
+    const headHalf = unit * curve(HEAD_DEPTH, headT);
     const bodyHalf = reference * curve(BODY_DEPTH, Math.max(y, LANDMARK.chinY));
     const halfDepth = headHalf + (bodyHalf - headHalf) * toBody;
     for (let x = 0; x < w; x += 1) {
@@ -430,16 +553,21 @@ export async function buildAvatarCloud({
         /* Profiili peen kuju (nina, huuled, lõug) peab jääma keskjoonele,
            mitte paisutama sama y-rea põski. Laius muutub näo kõrgusega:
            nina on kõige kitsam, lõug ja laup laiemad. */
-        const headT = clamp((y - LANDMARK.crownY) / unit, 0, 1);
         const featureWidth = unit * curve([
-          [0, 0.28],
-          [0.48, 0.24],
-          [0.72, 0.11],
-          [0.84, 0.16],
-          [1, 0.23]
+          [0, 0.31],
+          [0.48, 0.3],
+          [0.62, 0.24],
+          [0.72, 0.105],
+          [0.84, 0.18],
+          [1, 0.17]
         ], headT);
         const centerWeight = Math.exp(-Math.pow(Math.abs(x - LANDMARK.centerX) / Math.max(1, featureWidth), 4));
+        /* Sile külgprofiil kujundab ainult näo keskosa. Keskjoonel jõuab
+           sügavus täpselt renderduse profiilini; põskede ja oimu poole
+           hajub ta kolju põhisügavusse. Nii ulatub nina eraldi ette. */
+        const profileShape = clamp(faceProfile.smooth[y] - headHalf, -unit * 0.05, unit * 0.18);
         const profileDetail = clamp(faceProfile.raw[y] - faceProfile.smooth[y], -unit * 0.05, unit * 0.12);
+        depth += profileShape * centerWeight * n * (1 - toBody);
         depth += profileDetail * centerWeight * n * (1 - toBody);
         depth += faceSculpt(x, y, unit) * n * (1 - toBody);
       }
@@ -486,6 +614,7 @@ export async function buildAvatarCloud({
   const rigs = [];
   const sizes = [];
   let warmCount = 0;
+  let facialWarmCount = 0;
   let bodyDropped = 0;
 
   for (let y = 1; y < h - 1; y += 1) {
@@ -504,6 +633,11 @@ export async function buildAvatarCloud({
         }
       }
       if (!isPeak) continue;
+
+      const inFacialDetail = y >= FACIAL_DETAIL.topY
+        && y <= FACIAL_DETAIL.bottomY
+        && Math.abs(x - LANDMARK.centerX) <= FACIAL_DETAIL.halfWidth;
+      if (inFacialDetail && !facialFeaturePeaks.accepted[i]) continue;
 
       if (y > LANDMARK.cropY) continue;
 
@@ -533,24 +667,70 @@ export async function buildAvatarCloud({
         }
       }
       const denom = sw || 1;
-      const cr = Math.round(sr / denom);
-      const cg = Math.round(sg / denom);
-      const cb = Math.round(sb / denom);
+      let cr = Math.round(sr / denom);
+      let cg = Math.round(sg / denom);
+      let cb = Math.round(sb / denom);
+
+      const accent = facialAccentWeight(x, y, unit) * smoothstep(0.12, 0.38, v);
+      if (accent > 0.04) {
+        const blend = accent * 0.72;
+        cr = Math.round(cr + (242 - cr) * blend);
+        cg = Math.round(cg + (170 - cg) * blend);
+        cb = Math.round(cb + (86 - cb) * blend);
+        facialWarmCount += 1;
+      }
+
+      // Lõua all olid vaid mõned soojad külgmised punktid, kuid nad lugesid
+      // koos laia kuldse lõuajoonena. Hoia soojus kaelas, mitte lõua servas.
+      const jawWarmBand = smoothstep(LANDMARK.chinY - 55, LANDMARK.chinY - 32, y)
+        * (1 - smoothstep(LANDMARK.chinY + 5, LANDMARK.chinY + 22, y));
+      const jawLateral = smoothstep(unit * 0.08, unit * 0.14, Math.abs(x - LANDMARK.centerX));
+      const jawWarmGuard = jawWarmBand * jawLateral;
+      if (jawWarmGuard > 0 && cr > cb + 12) {
+        const coolBlend = jawWarmGuard * 0.78;
+        cr = Math.round(cr + (72 - cr) * coolBlend);
+        cg = Math.round(cg + (154 - cg) * coolBlend);
+        cb = Math.round(cb + (244 - cb) * coolBlend);
+      }
 
       const depth = depthField[i];
       let size = Math.min(1, v * 1.8);
-
-      // Kõrva-esine hele kontuur maha. Lai pehme kaal, et ei jääks tumedat
-      // triipu asemele — täpid jäävad alles, ainult sähvatus kaob.
-      const seamBand = smoothstep(LANDMARK.earTopY - 16, LANDMARK.earTopY + 14, y)
-        * (1 - smoothstep(LANDMARK.earBottomY - 14, LANDMARK.earBottomY + 16, y));
-      // Lai lauge aken, mitte kitsas: kitsas summutus lõikas heleda vöö
-      // keskele SÜVENDI (mõõdetud 0.49 vs naabrid 0.76 ja 0.70) ja tumedast
-      // triibust ei ole parem kui heledast. Kõrv ise (üle 200 px) jääb puutumata.
       const adx = Math.abs(x - LANDMARK.centerX);
-      const seamNear = smoothstep(LANDMARK.seamInner, LANDMARK.seamPlateauIn, adx)
-        * (1 - smoothstep(LANDMARK.seamPlateauOut, LANDMARK.seamOuter, adx));
-      size *= 1 - 0.55 * seamBand * seamNear;
+
+      // Nina ja suu valitud detailtäpid jäävad eraldi loetavateks, mitte
+      // suurteks kattuvateks helenduslaikudeks.
+      if (inFacialDetail) size *= 0.9;
+
+      // Nina juure olemasolevad tuhmimad täpid jäävad nähtavaks; ninaotsa
+      // eriti heledad punktid on veidi väiksemad ja loevad õrnema tipuna.
+      const bridgeBand = smoothstep(LANDMARK.browY + 4, LANDMARK.eyeY + 14, y)
+        * (1 - smoothstep(LANDMARK.noseTopY + 30, LANDMARK.noseTipY - 18, y))
+        * (1 - smoothstep(unit * 0.025, unit * 0.085, adx));
+      size = Math.min(1, size * (1 + 0.48 * bridgeBand));
+      const noseTipBand = smoothstep(LANDMARK.noseTipY - 42, LANDMARK.noseTipY - 8, y)
+        * (1 - smoothstep(LANDMARK.noseTipY + 8, LANDMARK.noseTipY + 36, y))
+        * (1 - smoothstep(unit * 0.06, unit * 0.15, adx));
+      size *= 1 - 0.16 * noseTipBand;
+      const sharpTipBand = smoothstep(LANDMARK.noseTipY - 18, LANDMARK.noseTipY - 4, y)
+        * (1 - smoothstep(LANDMARK.noseTipY + 8, LANDMARK.noseTipY + 22, y))
+        * (1 - smoothstep(unit * 0.015, unit * 0.045, adx));
+      size = Math.min(1, size * (1 + 0.55 * sharpTipBand));
+
+      // Lähtepildi väga hele koljukontuur luges suure täpisuurusega kiivri
+      // servana. Kontuur jääb alles, kuid on läbi oimukoha selgelt peenem.
+      if (y < LANDMARK.noseTopY) {
+        const reference = Math.max(1, y <= LANDMARK.earBottomY ? skullHalf[y] : rowHalf[y]);
+        const inset = Math.min(1, dist[i] / reference);
+        const scalpRim = 1 - smoothstep(0.015, 0.075, inset);
+        const scalpBand = 1 - smoothstep(LANDMARK.browY - 8, LANDMARK.noseTopY, y);
+        const helmetRim = scalpRim * scalpBand;
+        // Servatäpid jäävad kõik alles; tumedam toon vähendab kiivrihelki
+        // ilma kõrva või pealae kontuuri „hammustatud“ aukudeta.
+        cr = Math.round(cr * (1 - 0.34 * helmetRim));
+        cg = Math.round(cg * (1 - 0.34 * helmetRim));
+        cb = Math.round(cb * (1 - 0.28 * helmetRim));
+        size *= 1 - 0.76 * helmetRim;
+      }
 
       // Esikoor on kõrgusväli z = D(x, y), seega normaal = (-dD/dx, -dD/dy, 1).
       // Nii kannab ta ka silmakoopa ja ninaselja vormi, mitte ainult ristlõiget.
@@ -637,6 +817,9 @@ export async function buildAvatarCloud({
   log(`täppe: ${count} (üks koor, soojad ${warmCount})`);
   log(`näosügavus: ${profileSource}`);
   log(`keha hõrendus: ${bodyDropped} tuhmi täidetäppi välja, jooned puutumata`);
+  log(`näodetail: ${facialFeaturePeaks.candidates} lähest maksimumist jäi ${facialFeaturePeaks.acceptedCount}`);
+  log(`näoaktsent: ${facialWarmCount} olemasolevat täppi soojas struktuuris`);
+  log("pealae kontuur: kõik servatäpid alles, kiivrihelk tumedam");
   log(`suu: y ${((midY - LANDMARK.mouthY) / unit).toFixed(3)}, z ${(mouthDepth / unit).toFixed(3)}`
     + ` | pöördetelg y ${((midY - LANDMARK.pivotY) / unit).toFixed(3)}`);
   log(`lõige: maailma-y ${cropWorldY.toFixed(3)} (pildirida ${LANDMARK.cropY})`);
