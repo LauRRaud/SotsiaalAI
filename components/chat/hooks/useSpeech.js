@@ -232,13 +232,13 @@ export function useSpeech({
     }
   }, [locale, tr]);
   const speakText = useCallback(async (textToSpeak) => {
-    if (typeof window === "undefined") return;
+    if (typeof window === "undefined") return false;
     if (isSpeaking) {
       stopSpeaking();
-      return;
+      return false;
     }
     const text = String(textToSpeak || "").trim();
-    if (!text) return;
+    if (!text) return false;
     stopSpeaking();
     setVoiceNotice(null);
     setIsSpeaking(true);
@@ -279,12 +279,12 @@ export function useSpeech({
             setVoiceNotice(tr(VOICE_NOTICE_KEYS.tts_unavailable));
           };
           await audio.play();
-          return;
+          return true;
         }
       } catch (error) {
         // Katkestus ei ole tõrge: Stop on kasutaja enda otsus ja tema järel ei tohi
         // brauserihääl varuna tööle hüpata.
-        if (isAbortError(error) || !attempt.isCurrent()) return;
+        if (isAbortError(error) || !attempt.isCurrent()) return false;
       }
     }
     stopSpeaking();
@@ -295,6 +295,7 @@ export function useSpeech({
       browserIsPrimary: !serverRoute
     });
     if (outcome.noticeKey) setVoiceNotice(tr(outcome.noticeKey));
+    return browserSpoke;
   }, [isSpeaking, locale, speakWithBrowser, stopSpeaking, tr]);
   const speakLatestReply = useCallback(() => {
     return speakText(latestAiText);

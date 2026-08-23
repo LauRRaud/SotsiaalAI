@@ -2505,6 +2505,8 @@ export default function ChatBody({
     locale,
     latestAiText,
     isGenerating,
+    isSpeaking,
+    speakText,
     stopSpeaking,
     onTranscript: handleVoiceTranscript,
     onStopResponse: stop,
@@ -2977,7 +2979,6 @@ export default function ChatBody({
         <VoiceModeSurface
           t={t}
           voice={realtimeVoice}
-          latestAiText={latestAiText}
           onClose={closeVoiceMode}
         />
       ) : null}

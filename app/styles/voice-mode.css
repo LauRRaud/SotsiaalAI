@@ -14,10 +14,11 @@
   inset: 0;
   z-index: 36;
   display: grid;
-  grid-template-rows: minmax(0, 1fr) auto;
+  grid-template-rows: minmax(0, 1fr);
   min-height: 0;
   overflow: hidden;
-  /* Alumine polster hoiab subtiitri doki alt vabana. */
+  /* Alumine polster hoiab avatari doki alt vabana. Olekutekst on ülekattena
+     ega võta avatarilt oma grid-rida. */
   padding: clamp(0.75rem, 2vw, 1.4rem) clamp(0.75rem, 2vw, 1.4rem) clamp(5rem, 11vh, 7rem);
   color: var(--voice-pearl);
   background: none;
@@ -114,33 +115,29 @@
 }
 
 .voice-mode__caption {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(5rem, 11vh, 7rem);
+  translate: -50% 0;
   z-index: 2;
   width: min(38rem, 94%);
-  /* Tühi subtiiter ei tohi lõuendit kärpida: kõrgus tuleb sisust. */
   min-height: 0;
-  margin: 0 auto;
   text-align: center;
+  pointer-events: none;
 }
 
-.voice-mode__caption p {
-  display: -webkit-box;
-  margin: 0;
-  overflow: hidden;
-  color: rgba(239, 233, 227, 0.9);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1rem, 2.2vw, 1.22rem);
-  line-height: 1.5;
-  text-wrap: balance;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-}
-
+.voice-mode__state,
 .voice-mode__notice,
 .voice-mode__error,
 .voice-mode__clock {
   display: block;
   margin-top: 0.38rem;
   font-size: 0.75rem;
+}
+
+.voice-mode__state {
+  color: rgba(230, 223, 216, 0.72);
+  letter-spacing: 0.035em;
 }
 
 .voice-mode__notice { color: var(--voice-champagne); }
@@ -222,6 +219,9 @@
     padding: 0.9rem 0.9rem calc(max(4.6rem, env(safe-area-inset-bottom)) + 2.6rem);
   }
   .voice-avatar { inset-inline: 0; }
+  .voice-mode__caption {
+    bottom: calc(max(4.6rem, env(safe-area-inset-bottom)) + 2.6rem);
+  }
 }
 
 html[data-contrast="hc"] .voice-mode::before {

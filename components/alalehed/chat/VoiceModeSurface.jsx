@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 import GlassCarousel from "@/components/room/GlassCarousel";
@@ -20,21 +20,12 @@ function formatRemaining(milliseconds) {
   return `${String(Math.floor(total / 60)).padStart(2, "0")}:${String(total % 60).padStart(2, "0")}`;
 }
 
-function cleanCaption(value) {
-  return String(value || "")
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
-    .replace(/[*_#>`~]/g, "")
-    .replace(/\s+/g, " ")
-    .trim()
-    .slice(0, 360);
-}
-
 /**
- * Häälpind on avatar läbipaistval taustal ja subtiiter — ei paneeli, ei
+ * Häälpind on avatar läbipaistval taustal — ei paneeli, ei vastuse subtiitrit,
  * pealkirja, ei olekumulli. Navigatsioon käib platvormi DOKI kaudu
  * (tagasi-nool + üks olekunupp + ⓘ), täpselt nagu teistel avatud lehtedel.
  */
-export default function VoiceModeSurface({ t, voice, latestAiText, onClose }) {
+export default function VoiceModeSurface({ t, voice, onClose }) {
   const surfaceRef = useRef(null);
   const [infoOpen, setInfoOpen] = useState(false);
   const endSession = voice.endSession;
@@ -43,13 +34,6 @@ export default function VoiceModeSurface({ t, voice, latestAiText, onClose }) {
     return typeof value === "string" && value.trim() && value !== key ? value : fallback;
   };
   const live = LIVE_STATES.includes(voice.status);
-  // AINULT tema vastus. Kasutaja enda kõne tekstina tagasi ei näidata
-  // (omanik 22.08: „ma ei taha enda teksti kui ma räägin") — ta on niikuinii
-  // vestluses olemas, kui häälreziim sulgeda.
-  const visibleCaption = useMemo(
-    () => (voice.status === "speaking" ? cleanCaption(latestAiText) : ""),
-    [latestAiText, voice.status]
-  );
 
   useEffect(() => {
     const onKeyDown = event => {
@@ -145,10 +129,10 @@ export default function VoiceModeSurface({ t, voice, latestAiText, onClose }) {
             />
           </div>
 
-          {/* Subtiiter kannab AINULT elavat kõnet. Püsivad juhised elavad ⓘ
-              all — pinnal seisev vihjelause oli lihtsalt müra avatari kõrval. */}
+          {/* Vastuse tekst jääb vestlusse. Siin on ainult lühike olek, et pikk
+              RAG-paus oleks arusaadav ega muudaks avatari mõõtu. */}
           <div className="voice-mode__caption" aria-live="polite" aria-atomic="true">
-            {visibleCaption ? <p>{visibleCaption}</p> : null}
+            {live ? <span className="voice-mode__state" role="status">{voice.stateLabel}</span> : null}
             {voice.notice ? <span className="voice-mode__notice" role="status">{voice.notice}</span> : null}
             {voice.error ? <span className="voice-mode__error" role="alert">{voice.error}</span> : null}
             {live ? (

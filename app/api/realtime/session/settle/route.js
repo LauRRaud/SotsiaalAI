@@ -77,7 +77,9 @@ export async function POST(request) {
     return json({
       ok: true,
       chargedSeconds: actualSeconds,
-      chargedSpeechChars: actualSpeechChars
+      // Uued TartuNLP seansid arvestavad tähemärgid /api/tts rajal. Väärtus
+      // jääb vanade, enne deploy'd väljastatud Realtime tokenite jaoks alles.
+      chargedSpeechChars: ttsHandle ? actualSpeechChars : 0
     });
   } catch {
     return json({ ok: false }, 503);

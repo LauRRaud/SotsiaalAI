@@ -7,7 +7,7 @@ import {
   VOICE_SESSION_LIMIT_MS,
   VOICE_SESSION_SPEECH_CHAR_LIMIT,
   VOICE_SESSION_WARNING_MS,
-  buildRealtimeSpeechResponse
+  voiceReplyExcerpt
 } from "@/lib/chat/realtimeVoice";
 
 function createVoiceSessionId() {
@@ -21,21 +21,13 @@ function stopMediaStream(stream) {
   } catch {}
 }
 
-function sendRealtimeEvent(channel, payload) {
-  if (!channel || channel.readyState !== "open" || !payload) return false;
-  try {
-    channel.send(JSON.stringify(payload));
-    return true;
-  } catch {
-    return false;
-  }
-}
-
 export function useRealtimeVoice({
   enabled = true,
   locale,
   latestAiText,
   isGenerating,
+  isSpeaking,
+  speakText,
   stopSpeaking,
   onTranscript,
   onStopResponse,
@@ -55,7 +47,6 @@ export function useRealtimeVoice({
   const peerConnectionRef = useRef(null);
   const dataChannelRef = useRef(null);
   const mediaStreamRef = useRef(null);
-  const remoteAudioRef = useRef(null);
   const audioContextRef = useRef(null);
   const meterFrameRef = useRef(null);
   const settlementTokenRef = useRef("");
@@ -67,19 +58,23 @@ export function useRealtimeVoice({
   const clockTimerRef = useRef(null);
   const idleTimerRef = useRef(null);
   const awaitingReplyRef = useRef(null);
-  const nativeResponseActiveRef = useRef(false);
+  const ttsActiveRef = useRef(false);
   const spokenCharsRef = useRef(0);
   const isGeneratingRef = useRef(isGenerating);
+  const isSpeakingRef = useRef(isSpeaking);
   const latestAiTextRef = useRef(latestAiText);
   const onTranscriptRef = useRef(onTranscript);
   const onStopResponseRef = useRef(onStopResponse);
+  const speakTextRef = useRef(speakText);
   const stopSpeakingRef = useRef(stopSpeaking);
 
   useEffect(() => { statusRef.current = status; }, [status]);
   useEffect(() => { isGeneratingRef.current = isGenerating; }, [isGenerating]);
+  useEffect(() => { isSpeakingRef.current = isSpeaking; }, [isSpeaking]);
   useEffect(() => { latestAiTextRef.current = latestAiText; }, [latestAiText]);
   useEffect(() => { onTranscriptRef.current = onTranscript; }, [onTranscript]);
   useEffect(() => { onStopResponseRef.current = onStopResponse; }, [onStopResponse]);
+  useEffect(() => { speakTextRef.current = speakText; }, [speakText]);
   useEffect(() => { stopSpeakingRef.current = stopSpeaking; }, [stopSpeaking]);
 
   const tr = useCallback((key, fallback = key) => {
@@ -109,12 +104,6 @@ export function useRealtimeVoice({
     dataChannelRef.current = null;
     try { peerConnectionRef.current?.close?.(); } catch {}
     peerConnectionRef.current = null;
-    try {
-      remoteAudioRef.current?.pause?.();
-      if (remoteAudioRef.current) remoteAudioRef.current.srcObject = null;
-    } catch {}
-    remoteAudioRef.current = null;
-    nativeResponseActiveRef.current = false;
     stopMediaStream(mediaStreamRef.current);
     mediaStreamRef.current = null;
   }, [clearTimers, stopMeter]);
@@ -140,6 +129,7 @@ export function useRealtimeVoice({
     const token = settlementTokenRef.current;
     const speechChars = spokenCharsRef.current;
     settlementTokenRef.current = "";
+    ttsActiveRef.current = false;
     cleanupConnection();
     try { stopSpeakingRef.current?.(); } catch {}
     awaitingReplyRef.current = null;
@@ -200,10 +190,9 @@ export function useRealtimeVoice({
       touchActivity();
       setNoticeKey("");
       setPartialCaption("");
-      if (nativeResponseActiveRef.current) {
-        sendRealtimeEvent(dataChannelRef.current, { type: "response.cancel" });
-        sendRealtimeEvent(dataChannelRef.current, { type: "output_audio_buffer.clear" });
-        nativeResponseActiveRef.current = false;
+      if (ttsActiveRef.current || isSpeakingRef.current) {
+        ttsActiveRef.current = false;
+        stopSpeakingRef.current?.();
       }
       if (isGeneratingRef.current) {
         stopSpeakingRef.current?.();
@@ -269,36 +258,11 @@ export function useRealtimeVoice({
       return;
     }
 
-    if (type === "response.created" || type === "output_audio_buffer.started") {
-      nativeResponseActiveRef.current = true;
-      touchActivity();
-      setStatus("speaking");
-      return;
+    if (type === "error") {
+      setErrorKey("chat.voice.connection_failed");
+      endSession("error");
     }
-
-    if (type === "output_audio_buffer.stopped" || type === "output_audio_buffer.cleared") {
-      nativeResponseActiveRef.current = false;
-      touchActivity();
-      setStatus(isGeneratingRef.current || awaitingReplyRef.current ? "thinking" : "listening");
-      return;
-    }
-
-    if (type === "response.done") {
-      const responseStatus = String(payload?.response?.status || "");
-      if (["failed", "incomplete"].includes(responseStatus)) {
-        nativeResponseActiveRef.current = false;
-        setErrorKey("chat.voice.send_failed");
-        setStatus(isGeneratingRef.current || awaitingReplyRef.current ? "thinking" : "listening");
-      }
-      return;
-    }
-
-    if (type === "error" && nativeResponseActiveRef.current) {
-      nativeResponseActiveRef.current = false;
-      setErrorKey("chat.voice.send_failed");
-      setStatus(isGeneratingRef.current || awaitingReplyRef.current ? "thinking" : "listening");
-    }
-  }, [touchActivity]);
+  }, [endSession, touchActivity]);
 
   const startSession = useCallback(async () => {
     if (statusRef.current === "connecting" || statusRef.current === "listening") return false;
@@ -315,6 +279,7 @@ export function useRealtimeVoice({
     setCaption("");
     setPartialCaption("");
     setRemainingMs(VOICE_SESSION_LIMIT_MS);
+    ttsActiveRef.current = false;
     spokenCharsRef.current = 0;
 
     let stream = null;
@@ -335,16 +300,6 @@ export function useRealtimeVoice({
 
       const peer = new RTCPeerConnection();
       peerConnectionRef.current = peer;
-      const remoteAudio = new Audio();
-      remoteAudio.autoplay = true;
-      remoteAudio.playsInline = true;
-      remoteAudioRef.current = remoteAudio;
-      peer.addEventListener("track", (event) => {
-        const [remoteStream] = event.streams || [];
-        if (!remoteStream || remoteAudioRef.current !== remoteAudio) return;
-        remoteAudio.srcObject = remoteStream;
-        void remoteAudio.play().catch(() => {});
-      });
       stream.getTracks().forEach(track => peer.addTrack(track, stream));
       const channel = peer.createDataChannel("oai-events");
       dataChannelRef.current = channel;
@@ -448,22 +403,46 @@ export function useRealtimeVoice({
       endSession("speech_limit");
       return;
     }
-    const speechEvent = buildRealtimeSpeechResponse(answer, {
-      locale,
+    const spokenText = voiceReplyExcerpt(answer, {
       maxChars: Math.min(900, remainingChars)
     });
-    if (!speechEvent || !sendRealtimeEvent(dataChannelRef.current, speechEvent)) {
+    const speak = speakTextRef.current;
+    if (!spokenText || typeof speak !== "function") {
       setErrorKey("chat.voice.send_failed");
       setStatus("listening");
       return;
     }
-    const spokenText = String(speechEvent.response.input[0].content[0].text || "");
     spokenCharsRef.current = Math.min(
       VOICE_SESSION_SPEECH_CHAR_LIMIT,
       spokenCharsRef.current + spokenText.length
     );
-    setStatus("speaking");
-  }, [endSession, isGenerating, latestAiText, locale, touchActivity]);
+    ttsActiveRef.current = true;
+    void Promise.resolve(speak(spokenText)).then(started => {
+      if (!ttsActiveRef.current || !mountedRef.current) return;
+      if (!started) {
+        ttsActiveRef.current = false;
+        setErrorKey("chat.tts.unavailable");
+        setStatus("listening");
+        return;
+      }
+      touchActivity();
+      setStatus("speaking");
+    }).catch(() => {
+      if (!ttsActiveRef.current || !mountedRef.current) return;
+      ttsActiveRef.current = false;
+      setErrorKey("chat.voice.send_failed");
+      setStatus("listening");
+    });
+  }, [endSession, isGenerating, latestAiText, touchActivity]);
+
+  useEffect(() => {
+    // useSpeech seab isSpeaking=false alles päris heli lõpus. Nii saab
+    // häälvestlus kuulamise juurde tagasi minna ilma Realtime audioeventideta.
+    if (isSpeaking || !ttsActiveRef.current || statusRef.current !== "speaking") return;
+    ttsActiveRef.current = false;
+    touchActivity();
+    setStatus("listening");
+  }, [isSpeaking, touchActivity]);
 
   useEffect(() => {
     const closeOnPageExit = () => endSession("ended", { silent: true });

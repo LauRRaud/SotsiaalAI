@@ -9,7 +9,7 @@ import { getRequestIpFromRequest } from "@/lib/request-ip";
 import { normalizeServerLocale, serverT } from "@/lib/i18n/serverMessages";
 import { normalizeTartuNlpSpeaker, tartuNlpSupportsLocale } from "@/lib/chat/voiceState";
 import { readAudioDurationSecondsFromBuffer } from "@/lib/audio/duration";
-import { convertFloat32WavToPcm16 } from "@/lib/audio/wavPcm";
+import { convertFloat32WavToPcm16, prependWavSilence } from "@/lib/audio/wavPcm";
 import { resolveGoogleApplicationCredentialsPath } from "@/lib/googleCredentials";
 import { safeError } from "@/lib/privacy/safeError";
 import {
@@ -40,6 +40,7 @@ const TARTUNLP_TTS_URL = process.env.TARTUNLP_TTS_URL || "";
 // Omaniku valik 03.08 pärast viie hääle kuulamist: `kylli`.
 const TARTUNLP_TTS_SPEAKER = process.env.TARTUNLP_TTS_SPEAKER || "kylli";
 const TARTUNLP_TTS_TIMEOUT_MS = Number(process.env.TARTUNLP_TTS_TIMEOUT_MS || 20_000);
+const TARTUNLP_LEADING_SILENCE_MS = 300;
 const TTS_RATE_LIMIT_WINDOW_MS = Number(process.env.TTS_RATE_LIMIT_WINDOW_MS || 60_000);
 const TTS_RATE_LIMIT_MAX = Number(process.env.TTS_RATE_LIMIT_MAX || 30);
 const NO_STORE_HEADERS = {
@@ -172,7 +173,10 @@ async function synthTartuNlp({ text, speaker, signal }) {
       return { ok: false, messageKey: "api.tts.synthesis_failed" };
     }
     // Float32 → PCM16: pool mahtu ja formaadikood, mida iga brauser tunneb.
-    const buf = convertFloat32WavToPcm16(raw);
+    const buf = prependWavSilence(
+      convertFloat32WavToPcm16(raw),
+      TARTUNLP_LEADING_SILENCE_MS
+    );
     return {
       ok: true,
       audioBuffer: buf,

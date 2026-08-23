@@ -4,11 +4,9 @@ import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
 import { requireSubscription, resolveSessionRoleState } from "@/lib/authz";
 import {
-  REALTIME_MODEL,
   REALTIME_TRANSCRIPTION_MODEL,
   VOICE_SESSION_LIMIT_MS,
   VOICE_SESSION_LIMIT_SECONDS,
-  VOICE_SESSION_SPEECH_CHAR_LIMIT,
   buildRealtimeSessionConfig
 } from "@/lib/chat/realtimeVoice";
 import {
@@ -29,7 +27,6 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 const OPENAI_REALTIME_URL = "https://api.openai.com/v1/realtime/calls";
-const OPENAI_REALTIME_MODEL = process.env.OPENAI_REALTIME_MODEL || REALTIME_MODEL;
 const OPENAI_TRANSCRIBE_MODEL = process.env.OPENAI_REALTIME_TRANSCRIBE_MODEL
   || REALTIME_TRANSCRIPTION_MODEL;
 const SESSION_CREATE_TIMEOUT_MS = 20_000;
@@ -104,7 +101,6 @@ export async function POST(request) {
   }
 
   let usageHandle = null;
-  let ttsUsageHandle = null;
   try {
     usageHandle = await reserveUsageForRequest({
       request,
@@ -113,7 +109,10 @@ export async function POST(request) {
       amount: VOICE_SESSION_LIMIT_SECONDS,
       scope: "realtime.voice",
       idempotencyKey: sessionId,
-      metadata: { model: OPENAI_REALTIME_MODEL, maximumSeconds: VOICE_SESSION_LIMIT_SECONDS }
+      metadata: {
+        model: OPENAI_TRANSCRIBE_MODEL,
+        maximumSeconds: VOICE_SESSION_LIMIT_SECONDS
+      }
     });
   } catch (error) {
     const descriptor = usageErrorDescriptor(error, "realtime.voice");
@@ -126,35 +125,10 @@ export async function POST(request) {
   }
 
   try {
-    ttsUsageHandle = await reserveUsageForRequest({
-      request,
-      userId: session.user.id,
-      metric: "TTS_CHARS",
-      amount: VOICE_SESSION_SPEECH_CHAR_LIMIT,
-      scope: "realtime.voice.tts",
-      idempotencyKey: sessionId,
-      metadata: {
-        model: OPENAI_REALTIME_MODEL,
-        maximumCharacters: VOICE_SESSION_SPEECH_CHAR_LIMIT
-      }
-    });
-  } catch (error) {
-    await releaseUsageForRequest(usageHandle, { reason: "tts_quota_unavailable" }).catch(() => {});
-    const descriptor = usageErrorDescriptor(error, "realtime.voice.tts");
-    return json(descriptor.body, descriptor.status, descriptor.headers);
-  }
-
-  if (ttsUsageHandle.reused) {
-    await releaseUsageForRequest(usageHandle, { reason: "idempotency_conflict" }).catch(() => {});
-    return json({ ok: false, messageKey: "api.common.conflict" }, 409);
-  }
-
-  try {
     const form = new FormData();
     form.set("sdp", sdp);
     form.set("session", JSON.stringify(buildRealtimeSessionConfig({
       locale: payload?.locale,
-      model: OPENAI_REALTIME_MODEL,
       transcriptionModel: OPENAI_TRANSCRIBE_MODEL
     })));
 
@@ -177,7 +151,6 @@ export async function POST(request) {
     const settlementToken = createVoiceSettlementToken({
       userId: session.user.id,
       idempotencyKey: usageHandle.idempotencyKey,
-      ttsIdempotencyKey: ttsUsageHandle.idempotencyKey,
       startedAt,
       expiresAt
     }, secret);
@@ -190,10 +163,7 @@ export async function POST(request) {
       expiresAt: new Date(expiresAt).toISOString()
     });
   } catch {
-    await Promise.allSettled([
-      releaseUsageForRequest(usageHandle, { reason: "provider_error" }),
-      releaseUsageForRequest(ttsUsageHandle, { reason: "provider_error" })
-    ]);
+    await releaseUsageForRequest(usageHandle, { reason: "provider_error" }).catch(() => {});
     return json({ ok: false, messageKey: "api.common.service_unavailable" }, 503);
   }
 }

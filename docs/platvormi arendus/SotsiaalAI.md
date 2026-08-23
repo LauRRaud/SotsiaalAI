@@ -111,20 +111,19 @@ käsuta QA-, eval'i- ja mõõteskripti;
 kasutatavad deploy-, migratsiooni-, RAG-i sisu-, KOV-i ja dokumendihalduse tööriistad. Deploy
 järgselt olid serveri tööpuu puhas, kolm teenust aktiivsed ning HTTPS ja RAG-i otsing rohelised.
 
-**Vestluse eraldi häälrežiim on 22.08 ehitatud (`8e09478a`).** Tühja tekstivälja korral muutub
-komposeri senine saatmisnupp häälvestluse nupuks; kirjutamisel on sama 40 × 40 px kontroll jälle
-saatmisnupp ning eraldi häälnuppu ei ole. Sealt avaneb premium-toonides täppidest naise pea ja õlgade avatar, mis jälgib kursori liikumist ning
-reageerib kuulamisele, mõtlemisele ja rääkimisele. `gpt-realtime-2.1-mini` teeb
-vooruvahetuse ja transkriptsiooni ning loeb kontrollitud vastuse tuuma oma `marin`-häälega;
-vastuse sisu käib endiselt olemasoleva vestluse RAG-i, allikate, kriisiraja,
-privaatsuskontrolli ja kvootide kaudu. TartuNLP ei ole avatari häälerajal. Hääl loeb ette kuni kolm lauset,
-täisvastus ja allikad jäävad vestlusse. Iga seanss on opt-in, kuni 5 minutit, lõpeb 90 sekundi
-tegevusetuse järel ning reserveerib enne ühendust 300 STT-sekundit ja kuni 3000 TTS-märki;
-üks helivastus on lisaks piiratud 1200 väljundtokeniga. Lehe peitmine,
-lahkumine, piir, viga ja käsitsi lõpetamine sulgevad WebRTC, mikrofoni ja helirajad. Sihttõend:
-44/44 hääletesti, i18n, lint, `git diff --check`, tootmisbuild ning töölaua ja mobiili
-brauserivaade ilma konsoolivigade ja Realtime-kutseta. Päris autentitud
-mikrofon → Realtime → RAG → TTS rada on **NOT_PROVEN**, sest tasulist seanssi ei avatud.
+**Vestluse häälrežiimi toru on 23.08 ümber tehtud.** Realtime WebRTC-seanss
+kasutab ainult `gpt-4o-mini-transcribe` mudelit kõnevooru tuvastamiseks ja tekstiks muutmiseks;
+ta ei koosta ega loe vastust. Transkript läheb olemasolevasse RAG-i, allikate, kriisi-,
+privaatsus- ja kvooditorusse ning vastuse vaikemudel on `gpt-5.6-luna` (keskkond võib selle
+teadlikult `OPENAI_MODEL`-iga üle kirjutada). Eesti keeles loeb kuni kolme lause pikkuse
+kontrollitud tuuma ette olemasolev TartuNLP `kylli`; heli algusesse lisatakse 300 ms vaikust,
+et esimene silp heliseadme ärkamisel ei kaoks. Täisvastus ja allikad jäävad vestlusse, kuid
+avataripinnal ei näidata enam vastuse subtiitrit: RAG-i ooteajal on avatari suurust muutmata
+ülekattena lühike olek „Otsin vastust ja allikaid“. Avatari efekte selles plokis ei muudetud.
+Seanss reserveerib enne ühendust 300 STT-sekundit; TartuNLP ettelugemise täpne märgikulu
+arvestatakse tavalisel `/api/tts` rajal, mitte 3000 märgi ettemaksuna. i18n, lint,
+`git diff --check` ja tootmisbuild on rohelised. Päris autentitud
+mikrofon → Realtime transkriptsioon → RAG/Luna → TartuNLP rada on **NOT_PROVEN**.
 
 **Tööalade sisuvaadete kiirmenüü ja leheinfo on 22.08 parandatud.** Kõik
 `/vestlus?workspace=…` tööalad kasutavad nüüd sisu klaaspinda ning lehe nime, tagasinupu ja
@@ -1935,24 +1934,25 @@ kvoodid), mis kannab platvormi lubadusi.
 
 **Eraldi häälvestlus täpp-avatariga.**
 Kui tekstiväli on tühi, on komposeri senine saatmisnupp häälvestluse avaja; teksti sisestamisel
-muutub sama nupp tagasi saatmisnupuks. Eraldi häälnuppu ei kuvata. Vestluse lehel saab nii avada telefonikõne laadse pinna, mille keskmes on umbes 10 000
-valguspunktist moodustatud naise pea, kael ja õlad. Pea liigub kursori suunas, õlad püsivad
-rahulikud ning kuulamise, mõtlemise ja rääkimise olekud muudavad punktide liikumist ja
-helilaineid. Sinise-oranži asemel kasutab vaade grafiidi, sügava ploomi, pärli, suitsuse
-violeti ja šampanja-roosikulla paletti. Subtiitrid, allesjäänud aeg, vaigistamine, allikad ja
-alati nähtav lõpetamisnupp jäävad ekraanile; dikteerimismikrofon on endiselt eraldi funktsioon.
+muutub sama nupp tagasi saatmisnupuks. Eraldi häälnuppu ei kuvata. Vestluse lehel saab nii avada
+telefonikõne laadse pinna, mille keskmes on umbes 10 000 valguspunktist moodustatud naise pea,
+kael ja õlad. Avatari efekte 23.08 torumuudatuses ei muudetud. Täisvastuse subtiiter on pinnalt
+eemaldatud, sest see võttis avatarilt eraldi paanirea; avatari mõõtu muutmata ülekattena kuvatakse
+ainult lühike tööolek, sh RAG-i ajal „Otsin vastust ja allikaid“, ning allesjäänud aeg.
+Dikteerimismikrofon on endiselt eraldi funktsioon.
 
-Realtime ei ole teine vastusemootor: `gpt-realtime-2.1-mini` tuvastab kõnevooru, teeb
-transkriptsiooni ja renderdab valmis kontrollitud vastuse `marin`-häälega, kuid vastuse sisu
-sünnib endiselt sama RAG-i, allikate, kriisi-, privaatsus- ja kvoodilepinguga nagu kirjutades.
-Avatariga häälrežiim ei kasuta TartuNLP-d. Hääl annab kuni kolme lause
-tuuma, täisvastus koos allikatega jääb tekstina vestlusse; vahele rääkimine peatab nii
-ettelugemise kui poolelioleva vastuse. Mikrofon avaneb alles nupust „Alusta". Seansil on
-5 minuti kõvapiir, hoiatus 45 sekundit enne lõppu ja 90 sekundi jõudeolekupiir. Enne tasulise
-ühenduse loomist reserveeritakse olemasolevast `STT_SECONDS` kvoodist kogu 300 sekundit;
-lõpetamisel kantakse kasutusse ainult serverikella järgi tegelikult möödunud aeg. Sama
-seansivõtit ei saa uue tasulise ühenduse avamiseks korrata ja uusi algusi piiratakse kolmele
-minutis.
+Realtime on ainult kuulamisliides: spetsiaalne `type: "transcription"` WebRTC-seanss kasutab
+`gpt-4o-mini-transcribe` mudelit kõnevooru tuvastamiseks ja transkriptsiooniks. Transkript saadetakse
+sama RAG-i, allikate, kriisi-, privaatsus- ja kvoodilepinguga vestlusse nagu kirjutatud küsimus;
+vastuse vaikemudel on `gpt-5.6-luna`. Valmis kontrollitud vastusest loetakse kuni kolme lause
+pikkune tuum eesti keeles ette TartuNLP `kylli` häälega, inglise ja vene keel jäävad olemasoleva
+tasuta brauserihääle reegli alla. Vahele rääkimine peatab ettelugemise ja poolelioleva vastuse.
+Mikrofon avaneb alles nupust „Alusta“. Seansil on 5 minuti kõvapiir, hoiatus 45 sekundit enne
+lõppu ja 90 sekundi jõudeolekupiir. Enne tasulise ühenduse loomist reserveeritakse
+`STT_SECONDS` kvoodist 300 sekundit; lõpetamisel kantakse kasutusse serverikella järgi tegelikult
+möödunud aeg. TTS-i enam seansi alguses 3000 märgi ulatuses ette ei reserveerita, vaid iga
+TartuNLP väljastus arvestatakse täpse tekstimahuga tavalisel `/api/tts` rajal. Sama seansivõtit
+ei saa uue tasulise ühenduse avamiseks korrata ja uusi algusi piiratakse kolmele minutis.
 
 **Dikteerimine vestlusaknas.**
 Kui kirjutamine on raske — käed on kinni, silmad väsinud, olukord ärev või kirjatöö lihtsalt
@@ -2054,7 +2054,9 @@ kasutamine on lubatud. **Ise-hostimist ei tehta** — vt „Miks mitte ise-hosti
 env-muutujata ei muutu ükski rada (arendusmasinal saab teda niimoodi välja lülitada).
 Admin võib päringus kõneleja valida
 (`speaker`), et 12 häält järjest kuulata ilma restardita. Vaikimisi hääl on
-`TARTUNLP_TTS_SPEAKER`, vaikeväärtus **`kylli`** (omaniku valik 03.08).
+`TARTUNLP_TTS_SPEAKER`, vaikeväärtus **`kylli`** (omaniku valik 03.08). TartuNLP WAV-i
+algusesse lisatakse 300 ms vaikust, et brauseri või Bluetooth-heliseadme käivitumine esimest
+sõna ei kärbiks; Google'i ja OpenAI varuteid see ei muuda.
 
 **Läbiv rada tõendatud 03.08** sünteetilise kontoga (`ai.client@sotsiaalai.test`,
 CLIENT + aktiivne tellimus): päris sisselogimine → `POST /api/tts` locale `et` → HTTP 200,
@@ -2121,7 +2123,7 @@ iOS/Safari peal, ja art. 28 paberitöö. Kumbki ei blokeeri midagi täna.
 
 | Idee | Mis see on | Mis seda avab |
 |---|---|---|
-| ~~Kõnerežiim~~ — **TEHTUD 22.08** | eraldi premium täpp-avatariga pind, Realtime-vooruvahetus ja transkriptsioon, olemasolev RAG-vastus, elavad subtiitrid, allikad, barge-in ning kolme lause häälvastus. Tasulise paketi värav, 5 min kõvapiir ja 90 s jõudeolekupiir on koodis | — |
+| ~~Kõnerežiim~~ — **UUENDATUD 23.08** | eraldi premium täpp-avatariga pind, Realtime-transkriptsioon, olemasolev RAG/Luna-vastus, lühike olekuülekate, allikad, barge-in ning TartuNLP `kylli` kolme lause häälvastus. Tasulise paketi värav, 5 min kõvapiir ja 90 s jõudeolekupiir on koodis | — |
 | **Häälkäsklused — „kaks rada, üks mikrofon"** | ruuter valib raja: sõnastikuvaste → kohalik refleks (sõnastik olemas, `roomDock.js`); muu → LLM kui kavatsuste tõlk. **AI ei saa kunagi vaba kätt ekraani üle** — sama piiratud kavatsuste sõnastik mis nooleklahvidel; navigeerimine kohe, loomine/saatmine/kustutamine kinnitusega | faas 1 (sõnastik + esiletõst) on otsustevaba |
 | ~~Eesti TTS suveräänsus — TartuNLP~~ | **TEHTUD JA LUKUS 03.08** — eesti ettelugemine käib toodangus `kylli` häälega, tasuta. Ise-hostimist ei tehta. Vt „Eesti TTS — teema lukus" ülal | — |
 | **Lokaalsed mudelid** | Whisper/whisper.cpp eesti dikteerimiseks seadmes; VAD; eesti TTS-mudel; PII-märkaja | päästikud: riigipartneri „kus heli töödeldakse?", kasvav pilvearve, võrguta välitöö |
@@ -3420,26 +3422,21 @@ KOV-V2-A0.
 Juhtprintsiip: **hääl ja kaamera on liides, mitte teine aju** — iga sisuline vastus käib läbi
 sama tekstitorustiku (RAG + allikad + kriisirada + kvoodid), mis kannab platvormi lepingut.
 
-1. **Realtime-kõnemudel + RAG — TEHTUD 22.08:** WebRTC kaudu ühenduv
-   `gpt-realtime-2.1-mini` hoiab kõnevooru ja transkriptsiooni; mudeli automaatne vastamine on
-   välja lülitatud (`create_response: false`). Valmis lausung läheb olemasolevasse
-   tekstitorustikku ning sealt RAG-i, allikatesse, kriisi- ja privaatsusrajale. Puhas
-   kõne-kõne ei ole arhitektuuri omanik. Pärast kontrollitud tekstivastust saab Realtime eraldi
-   vestlusvälise `response.create` käsu lugeda kuni kolm lauset `marin`-häälega; TartuNLP seda
-   rada ei teeni. Allikad ja täisvastus kuvatakse samas vestluses,
-   hääl loeb ette kuni kolm lauset.
-2. **Hääl „ilma viivituseta" = käskude ja vestluse lahutamine.** OLEMASOLEV komplekt
-   (kontrollitud koodist 28.07): STT = OpenAI `gpt-4o-mini-transcribe`
-   (`lib/transcription/provider.js`, failipõhine), TTS = Google Cloud `et-EE-Standard-A`
-   (+ ru/en; varuks OpenAI `gpt-4o-mini-tts`) — mõlemad kvooditud (`STT_SECONDS`/`TTS_CHARS`)
-   ja rate-limititud. **Kõnerežiim EI vaja uusi teenusepakkujaid** — kaks režiimimuudatust:
-   (a) STT failist voogavaks (sama OpenAI mudel toetab Realtime-transkriptsiooni liidest;
-   või VAD lõikab lausungi ja saadab tervikuna — ~0,5–1,5 s, vestluseks piisav);
-   (b) TTS lausekaupa (Google'ile lause haaval = pseudo-vooguv). Käsklused: Silero VAD (WASM)
-   + fikseeritud ~20–30 fraasi ruuter; AUS latentsus pilve-STT-ga on ~0,5–1 s, mitte <300 ms —
-   osatulemuse esiletõst (kaart süttib enne lause lõppu) päästab tunnetuse; päris-instant
-   vajaks kunagi lokaalset mudelit (optimeering, mitte eeldus). Barge-in kohustuslik. Hääl ei
-   käivita pöördumatut tegevust kinnituseta.
+1. **Realtime-transkriptsioon + RAG — UUENDATUD 23.08:** WebRTC kaudu ühenduv spetsiaalne
+   `type: "transcription"` seanss kasutab `gpt-4o-mini-transcribe` mudelit kõnevooru ja
+   transkriptsiooni jaoks; Realtime ei koosta ega renderda vastust. Valmis lausung läheb
+   olemasolevasse tekstitorustikku ning sealt RAG-i, allikatesse, kriisi- ja privaatsusrajale;
+   vastuse vaikemudel on `gpt-5.6-luna`. Kontrollitud kuni kolme lause pikkuse tuuma loeb eesti
+   keeles ette TartuNLP `kylli`, mille WAV-i alguses on 300 ms vaikust. Allikad ja täisvastus
+   jäävad samasse vestlusse.
+2. **Hääl „ilma viivituseta" = käskude ja vestluse lahutamine.** OLEMASOLEV komplekt:
+   failipõhine dikteerimine ja Realtime-häälvestlus kasutavad OpenAI
+   `gpt-4o-mini-transcribe` mudelit eri liideste kaudu; eesti TTS = TartuNLP `kylli`,
+   Google/OpenAI jäävad serveri varuteeks ning ru/en kasutavad omaniku otsusel tasuta
+   brauserihäält. Kõik serverirajad on kvooditud (`STT_SECONDS`/`TTS_CHARS`) ja rate-limititud.
+   Serveri VAD lõpetab kõnevooru 900 ms vaikuse järel; päris-instant vajaks kunagi lokaalset
+   mudelit (optimeering, mitte eeldus). Barge-in on kohustuslik ja hääl ei käivita pöördumatut
+   tegevust kinnituseta.
    **TalTech/EKI = valikulised TULEVIKU-alternatiivid, mitte eeldused** (omanik 28.07: „ma ei
    tea nendest midagi" — õigustatud): TalTechi keeletehnoloogia labor avaldab tasuta eesti
    STT-mudeleid oma serveris jooksutamiseks („voogav" = transkribeerib sõna haaval heli
@@ -3450,11 +3447,10 @@ sama tekstitorustiku (RAG + allikad + kriisirada + kvoodid), mis kannab platvorm
    nägu) — `POST api.tartunlp.ai/text-to-speech/v2` `{text ≤10 000 tm, speaker, speed}` →
    WAV; võtmeta; **12 eesti neuraalset häält + 2 võro**; **MIT-litsents, kood+mudelid
    GitHubis (`TartuNLP/text-to-speech-api`) = ISE-HOSTITAV** — suveräänsuse-rada ilma
-   loaküsimiseta. Hostitud API miinused tootmises: SLA puudub + kasutajate vastusetekstid
-   läheksid kolmandale osapoolele (GDPR volitatud töötleja küsimus) → tootmisse
-   ise-hostituna; viisakuskiri ping@tartunlp.ai (võimalik koostöö). Katsetus: lisa
-   `tartunlp` kolmanda pakkujana olemasolevasse TTS-route'i (~50 rida, lipu taga),
-   kõrvavõrdlus Google `et-EE-Standard-A` (mitteneuraalne) vastu.
+   loaküsimiseta. Hostitud API-l puudub SLA ja vastusetekst läheb kolmandale osapoolele,
+   kuid omaniku kasutusluba ning privaatsustingimuste §5 kate on 03.08 kinnitatud; seetõttu
+   on avalik API praegu tootmistee. Ise-hostimine jääb võimalikuks tuleviku suveräänsus- või
+   SLA-valikuks, mitte tänase kasutuse eelduseks.
    (b) **EKI** (Eesti Keele Instituut, vanem teenus, `teenus.eki.ee/synthub`) —
    litsentsikonks: arhiivileht lubab „privaatselt mitteärilistel eesmärkidel"; ärikasutuseks
    küsida heli@eki.ee. Eelistus on (a).
@@ -3462,7 +3458,7 @@ sama tekstitorustiku (RAG + allikad + kriisirada + kvoodid), mis kannab platvorm
    võrguta välitöö.
    **Kõnerežiimi majandus (teostatud 22.08; omaniku lähteküsimus 28.07: „hea ja soodne; piirang kasutajal, millegi muu
    arvelt; vastused 10–15 s; kas RAG kannab pikka kõnet; nuppudeta"):** (a) kaskaad on
-   struktuurselt odavam ja jookseb OLEMASOLEVATE teenustega — Realtime-mini teeb ainult
+   struktuurselt odavam ja jookseb OLEMASOLEVATE teenustega — `gpt-4o-mini-transcribe` teeb ainult
    sisendheli vooruvahetuse ja transkriptsiooni, mõistmine = olemasolev kvooditud torustik,
    TTS = senine TartuNLP/brauseri ettelugemine; väljundheli Realtime-mudel ei loo. (b) **uut kvooti EI
    looda** — kõne põletab olemasolevaid arvesteid (`STT_SECONDS` + `CHAT_ASSISTANT_REPLY` +
@@ -3473,8 +3469,9 @@ sama tekstitorustiku (RAG + allikad + kriisirada + kvoodid), mis kannab platvorm
    kulu ja allika-lubaduse; (d) RAG kannab pikka kõnet juba täna (vestluslõng + ajalugu);
    lisada otsingu-ruuter pöörde kohta (jätkuküsimus ei käivita otsingut), lausekaupa voogav
    TTS, barge-in = olemasolev aus Stop; (e) **kõnerežiim on eraldi pind nagu telefonikõne**:
-   opt-in, lahtine mikrofon, lokaalne VAD teeb vooruvahetuse (~0,7 s vaikus = vooru lõpp),
-   elavad subtiitrid + allikakaardid ekraanil, „vaigista" ja „lõpeta" — dikteerimis-mikker
+   opt-in, lahtine mikrofon, serveri VAD teeb vooruvahetuse (0,9 s vaikus = vooru lõpp),
+   pikkade subtiitrite asemel kuvatakse lühike olekuülekate ning allikad jäävad vestlusse;
+   „vaigista" ja „lõpeta" on alati saadaval — dikteerimis-mikker
    jääb komposeris eraldi funktsiooniks.
    **Kaks rada, üks mikrofon (omanik 28.07: „ava vestlus" JA „selgitan, AI mõistab ja
    tegutseb"):** ruuter valib raja, mitte kasutaja — sõnastikuvaste (kõrge kindlus) → RADA 1
@@ -3517,15 +3514,16 @@ V1 STT+TTS nupuga = **JUBA VALMIS** (mikker + ettelugemine) →
 saadab, vastus loetakse ette) — sama tariif mis V1 →
 (3) **H1 häälnavigatsioon**: sama mikrofonisilmus + käsuruuter (doki sildid = sõnastik) +
 kaardi süttimine osatulemusel →
-(4) **V3 kõne-pind**: voogav STT (sama OpenAI mudel, uus ühendusviis) + lausekaupa TTS +
-barge-in + elavad subtiitrid + allikad; kaitseriivid (max kõne ~10 min, päevalimiit) →
+(4) **V3 kõne-pind — TEHTUD 23.08**: `gpt-4o-mini-transcribe` Realtime-seanss + TartuNLP
+`kylli` TTS + barge-in + lühike olekuülekate + vestlusse jäävad allikad; kaitseriivid on
+5 minutit seansi ja 90 sekundit jõudeoleku kohta →
 (5) **V4+H2 assistent „kätega"**: tool-calling kavatsuste sõnastiku peal; navigeerib vabalt,
 muudab ainult kinnitusega; platvorm küsib täpsustusi häälega („kumba mustandit?"); LLM-tõlk =
 mini-mudel, sent-murdosad käsu kohta →
-(paralleelselt, sõltumatu) **TartuNLP TTS kolmanda pakkujana** lipu taha, kõrvavõrdlus, võidu
-korral ise-hostituna tootmisse. Kolm suurimat kuluhooba on disainiotsused: 3 lause leping,
+(paralleelselt, sõltumatu) **TartuNLP TTS kolmanda pakkujana — TEHTUD 03.08**: `kylli` töötab
+avaliku API kaudu, ise-hostimine ei ole tänase tootmise eeldus. Kolm suurimat kuluhooba on disainiotsused: 3 lause leping,
 otsingu-ruuter (jätkuküsimus ei käivita RAG-i), barge-in (poolelijäänud vastust ei genereerita
-lõpuni). Realtime-mini jääb V3 valikuliseks „tunnetuse-turboks". Lisaks: WER-mõõtmine eesti
+lõpuni). Lisaks: WER-mõõtmine eesti
 keeles enne mudelivahetusi; näpistus-prototüüp kavatsuste siini peal pärast sammu 3.
 
 ### Järjestusloogika (kuidas „kõik lõpuni" ellu jääb)
