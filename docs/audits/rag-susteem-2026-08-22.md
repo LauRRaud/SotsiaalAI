@@ -3,8 +3,8 @@
 Kuupäev: 22.08.2026
 Tööharu: `codex/rag-quality-repair-20260822`
 Varasem toodangusse viidud RAG-paranduste lähtecommit: `08cbd94ac86597911e22e3731ee812c717f04110`
-Testitud RAG-loogika SHA: `663552723`; runtime-kontrolli ajal 22.08.2026 kell 22:22 UTC olid ka toodangu `HEAD` ja `origin/main` samal SHA-l. Hilisem dokumentatsiooni commit ei nimeta runtime-tõendit enda tõendiks.
-Põhjusepõhised parandused on jõudnud toodangusse commit'ijadana `73d381a7` → `735ff837` → `7f3aa503` → `faf6ff14` → `3c53611f` → `771795e2`. Viimase SHA vastu on samas autentitud vestluses läbitud kogu kaheksa parafraasi plokk; 7/8 juhtumit läbis ning V04 jäi tõendatud veaks. Kogu 75 juhtumi lõppvärav ei ole tehtud.
+Praegune brauseris kontrollitud RAG- ja vestlusloogika SHA: `815f15f6`; 23.08 runtime-kontrollis olid ka toodangu `HEAD` ja `origin/main` samal SHA-l. Hilisem dokumentatsiooni commit ei nimeta runtime-tõendit enda tõendiks.
+Põhjusepõhiste paranduste viimane jätk jõudis toodangusse commit'ijadana `15fc81a3` → `8b4f4d69` → `bdaa8afd` → `2b0bd86` → `429469dd` → `56b4a13d` → `d7c35346` → `815f15f6`. V04 ja kümme autorijuhtumit läbisid end-to-end värava; kogu 75 juhtumi lõppvärav ei ole tehtud.
 Seis: **PARTIAL — süsteemi ei ole tõendatud 10/10 töökindlaks**
 
 See dokument vastab neljale eri küsimusele:
@@ -853,3 +853,28 @@ Lõpp-SHA `663552723` vastu vastas sama autentitud vestlus ilma „Uus vestlus�
 Lõppkoodil läbis kitsas püsiv regressioonikomplekt 38/38, lint, i18n, diff-kontroll, lokaalne Webpack-build ja serveri Turbopack-build. Server, kohalik HEAD ja `origin/main` olid samal SHA-l; kolm teenust olid aktiivsed ning health oli 49 727 / 6089. Korpust, indeksit, andmebaasi ega serveri keskkonda ei muudetud.
 
 V04 jääb range release-värava järgi **PARTIAL**, sest nähtav ja aktiivne allikanupp ei avanud automatiseeritud lõppkatses kontrollitavat paneeli, kuigi andmebaasi kuvatud source ID oli õige. Samuti on 33–36 sekundit lühikese faktivastuse jaoks ebamõistlik. Üldseis on **DONE 10/75 · PARTIAL 11/75 · FAIL 0/75 · NOT_PROVEN 54/75**, mitte 10/10.
+
+## 29. Allikapaneel, autorivärav, prompt cache ja külma retrieval'i mõõtmine — SHA `815f15f6`
+
+23.08 jätkus tõendati samas autentitud `/vestlus` vestluses ilma „Uus vestlus” workaround'ita V04 allikapaneel ja kümme autorijuhtumit. Sõnumimulli hover teeb tegevusnupud nähtavaks; klaviatuurifookuse ning aktiveerimise järel avanenud V04 paneel kuvas sama Anu Lepsi ja Lenne Indovi 2025 artiklit, mille source ID oli trace'is valitud, vastuse aluseks ja kuvatud. Source-objekt ja paneeli state olid seega korras; varasem `panelTitleCount=0` kirjeldas puudulikku interaktsiooniteed, mitte puuduvat allikat. V04 viimane vastus läbis `exact_numeric_fact_v2` värava ja säilitas õiged seosed 10%/640, 6%/227, 2%/100 ning 2023/2024. V04 on nüüd **DONE**.
+
+Autoripäringu loomulik täisnimi tuvastatakse planner'is ja suunatakse täpsesse metadata author-välja otsingusse enne üldist semantilist rada; see ei ole chunki vabateksti nimeotsing. Kümme algallikatest koostatud juhtumit Krister Kruusmaa, Maarja Krais-Leoski, Kadi Lubi, Ave Rootsi, Jane Soki, Liina Kriiski, Kadri Soo, Merle Kriisa, Heli Raudla ja Judit Strömpli kohta läbisid sisulise vastuse ning avatud toetava allikapaneeli värava. Kaasautorlusega kirje lühisilt võib näidata esimest autorit, kuid metadata ja source-objekt säilitasid küsitud autori täpse vaste. Maarja nime kõrge riskiga õigusrajale saatnud lai `maar*` vaste piirati päris „määr” nimisõna käänetega. Tulemuseks on **10/10 autoriplokk**, mitte kogu RAG-i 10/10.
+
+Iga kasutaja saatmine teeb uue Responses API päringu ja värske RAG-otsingu. Täielik uus küsimus ei päri automaatselt eelmise vastuse teemat; lähiajalugu lisatakse ainult kontekstist sõltuvale lühikesele jätkuküsimusele. Stabiilne süsteemiprompt on nüüd eksplitsiitse cache-breakpoint'i ees, dünaamiline RAG-kontekst selle järel. Toodangus kirjutas esimene päring 1896 cache-tokenit; järgmised sama kasutaja, rolli, keele ja kriisirežiimi võtmega päringud lugesid 1896 ning kirjutasid 0. Cache vähendab seega stabiilse prefiksi sisendikulu, kuid ei taaskasuta vana RAG-vastust ega seo uut autorit vana teemaga.
+
+Markdowni järjestatud loendi parser säilitab nüüd iga lõigu eksplitsiitse algusnumbri. Pesastatud täpploendiga eraldatud A07 ja A10 kolm artiklit renderdusid brauseris `<ol>`, `<ol start="2">`, `<ol start="3">`, mitte kolm korda numbriga 1.
+
+Etapilogimine eristab paralleelsete retrieval-alampäringute summa tegelikust seinakella ajast. V04 viimane voor võttis 13 565 ms: retrieval 11 331 ms, retrieval'iga konteksti koostamine 11 411 ms, mudel 2084 ms, faktivalidaator 10 ms ja salvestus 9 ms. Ka autoriploki esimene voor pärast deploy'd näitas retrieval'i 12–14 s; soojad autorivoorud jäid 1,3–2,1 s retrieval'i vahemikku. Tõendatud jääkpudelikael on külm otsingukiht. Selle järgmine parandus vajab kontrollitud külma/sooja mõõtepaari; mudelit või faktiväravat ei muudeta kiiruse nimel.
+
+AGENTS.md uue korra järgi automaatteste ei loodud ega käivitatud. Muudetud koodifailide lint, i18n, `git diff --check` ja muutumatu lõppkoodi tootmisbuild olid rohelised. Korpust, indeksit, andmebaasi ega serveri keskkonda ei muudetud. Lõppkoodi kontrolli ajal olid kohalik HEAD, `origin/main` ja server SHA-l `815f15f6`; frontend, RAG ja research-worker olid aktiivsed ning health oli 49 727 vektorit / 6089 dokumenti.
+
+Peatüki 23 varasemat release-arvestust asendab:
+
+| seis | arv | tähendus |
+|---|---:|---|
+| DONE | **21/75** | varasemad kümme DONE juhtumit, V04 ja kümme autorijuhtumit läbisid end-to-end värava |
+| PARTIAL | **0/75** | V04 paneel ja autoriploki vastamiskiht on tõendatud |
+| FAIL | **0/75** | praeguse kordusploki sees pole alles tõendatud valet vastust |
+| NOT_PROVEN | **54/75** | ülejäänud juhtumite sama release'i otsingu- ja autentitud vestluskordus puudub |
+
+Kogu RAG-i sisuline töökindlus on endiselt **NOT_PROVEN**; 21/75 ei ole kvaliteediprotsent ega 10/10 hinnang.

@@ -2,7 +2,7 @@
 
 Kuupäev: 22.08.2026
 
-> **Jätkuseis:** see fail säilitab algse auditi ajaloolise lähtejoone ja lisab allpool iga deploy-järgse korduse. Praegune testitud RAG-loogika on `771795e2`; 22.08 kell 20:40:16 UTC olid kohalik HEAD, `origin/main` ja server samal SHA-l, kolm teenust aktiivsed, `/vestlus` vastas 200 ning health näitas 49 727 vektorit / 6089 dokumenti. Süsteemikaart on failis [rag-susteem-2026-08-22.md](./rag-susteem-2026-08-22.md).
+> **Jätkuseis:** see fail säilitab algse auditi ajaloolise lähtejoone ja lisab allpool iga deploy-järgse korduse. Praegune brauseris kontrollitud RAG- ja vestlusloogika on `815f15f6`; 23.08 olid kohalik HEAD, `origin/main` ja server samal SHA-l, kolm teenust aktiivsed ning health näitas 49 727 vektorit / 6089 dokumenti. Süsteemikaart on failis [rag-susteem-2026-08-22.md](./rag-susteem-2026-08-22.md).
 
 Mõõteaken: 04:52–06:20 Europe/Tallinn
 
@@ -464,19 +464,48 @@ Püsiv RAG-regressioonikomplekt läbis lõppkoodil 38/38, muudetud failide lint,
 | push | **TEHTUD** | `origin/main` = `66355272` |
 | deploy | **TEHTUD** | serveri HEAD = `66355272`; frontend, RAG ja research worker aktiivsed; health 49 727 / 6089 |
 
-Järeldus: V04 varem tõendatud enesekindel semantiline arvuviga on kahe sõnastusega sisuliselt suletud, kuid selle allikapaneeli UI, ülejäänud maatriks ja kuni u 39-sekundilised faktivastused välistavad kogu RAG-i 10/10 hinnangu.
+Järeldus: V04 varem tõendatud enesekindel semantiline arvuviga oli kahe sõnastusega sisuliselt suletud; allikapaneeli, jõudluse ja autoriploki järgnev kontroll on allpool.
+
+### 23.08 jätk — allikapaneel, jõudlus, autorivärav ja vestluse puhver
+
+Kõik siinsed päringud tehti samas jätkuvas autentitud `/vestlus` vestluses ilma „Uus vestlus” workaround'ita. Lõppkoodi SHA on `815f15f6`; korpust, indeksit, andmebaasi ega serveri keskkonda ei muudetud.
+
+**Allikapaneel.** Sõnumimulli hover toob tegevusnupud nähtavale. Varem puudu jäänud V04 tõend ei olnud vigane source-objekt ega Reacti paneeli state: klaviatuurifookuse ja nupu aktiveerimise järel avanes paneel, kuvades täpselt Anu Lepsi ja Lenne Indovi 2025 artikli. Sama source ID oli valitud, vastuse aluseks ja kuvatud allikaks. V04 faktivalidaator läbis `exact_numeric_fact_v2` värava ning vastus säilitas 10%/640 ja 6%/227 kui 2023. aasta haldusandmed ning 2%/100 kui 2024. aasta ohvriuuringu tulemuse. V04 on seega **DONE**.
+
+**Jõudlus.** Etapilogimine eristab päris seinakella aega paralleelsete alampäringute summast. Viimane V04 võttis kokku 13 565 ms: retrieval 11 331 ms, konteksti koostamine koos retrieval'iga 11 411 ms, mudel 2084 ms, faktivalidaator 10 ms ja salvestus 9 ms. Autoriploki esimene päring pärast kumbagi deploy'd näitas samuti külma retrieval'i 12–14 s, kuid soojad autoripäringud 1,3–2,1 s. Tõendatud jääkpudelikael on seega külm otsingukiht, mitte mudel, faktivalidaator ega salvestus; seda ei optimeerita ilma eraldi külma/sooja mõõtepaari ja kontrollitud soojenduse väravata.
+
+**Autorivärav.** Loomulikus küsimuses tuvastatud täisnimi läheb autorite metaandmevälja täpsesse otsingusse, mitte chunki vabateksti nimevasteks. Planner annab selle raja ettepoole üldisest semantilisest otsingust. Maarja nime valesti kõrge riskiga õigusrajale saatnud liiga lai `maar*` regulaaravaldis asendati päris määra-nimisõna piiratud käänetega. Kümne algallikast koostatud juhtumi lõppseis:
+
+| juhtum | autor | kontrollitud teema | vastus + allikapaneel |
+|---|---|---|---|
+| A01 | Krister Kruusmaa | deinstitutsionaliseerimine, vangla taasühiskonnastamine | **PASS** |
+| A02 | Maarja Krais-Leosk | pikaajaline hooldus, erihoolekanne, harvikhaigusega pered | **PASS** |
+| A03 | Kadi Lubi | tervise- ja sotsiaaltöö koostöö, eetika, tervisekirjaoskus | **PASS** |
+| A04 | Ave Roots | COVID-19 tööjõu- ja oskustemuutus | **PASS** |
+| A05 | Jane Sokk | erihoolekanne, rehabilitatsioon ja Käo keskus | **PASS** |
+| A06 | Liina Kriisk | rehabilitatsiooniteenus ja võrgustikutöö | **PASS** |
+| A07 | Kadri Soo | elukutsed, lastekaitse ja hoolduspraktika | **PASS** |
+| A08 | Merle Kriisa | kristlikud sotsiaalteenused, kvaliteet ja vaimne tervis | **PASS** |
+| A09 | Heli Raudla | eestkoste ja kohaliku omavalitsuse nõustamine | **PASS** |
+| A10 | Judit Strömpl | õigused, uurimiseetika ja taastav õigus | **PASS** |
+
+Kõigil kümnel juhul vastas sisuline kokkuvõte küsitud autori materjalidele ja avatud allikapaneel näitas toetavaid autoriharu dokumente. Kaasautorlusega kirje nähtav lühisilt võib näidata ainult esimest autorit; valiku aluseks olev metadata author-väli ja source-objekt säilitasid täpse autorivaste. See on **10/10 ainult autoriplokis**, mitte kogu RAG-i hinnang.
+
+**Vestluse mälu ja prompt cache.** Iga saatmine teeb uue Responses API päringu ja uue RAG-otsingu. Täielik uus autoriküsimus vahetab teemat iseseisvalt; lähiajalugu lisatakse ainult kontekstist sõltuvale lühikesele jätkuküsimusele. Stabiilne süsteemiprompt on nüüd eraldi eksplitsiitses cache-prefix'is, dünaamiline RAG-kontekst mitte. Toodangulogis kirjutas esimene päring 1896 cache-tokenit ning järgmised sama kasutaja/rolli/keele/kriisirežiimi päringud lugesid 1896 tokenit ja kirjutasid 0; seega töötab puhver tõendatult, kuid ei külmuta teemat ega taaskasuta vana RAG-vastust.
+
+**Nummerdus.** Markdowni järjestatud loendi jätkumine pärast pesastatud täpploendit säilitab nüüd iga `<ol>`-segmendi algusnumbri. A07 ja A10 salvestatud vastustes olid kolm artiklit semantiliselt `1, 2, 3`; brauser renderdas järgnevad segmendid `start="2"` ja `start="3"`, mitte `1, 1, 1`.
+
+AGENTS.md uue korra järgi automaatteste ei loodud ega käivitatud. Muudetud koodifailide lint, i18n, `git diff --check` ja muutumatu lõppkoodi tootmisbuild olid rohelised; runtime-tõend on käsitsi autentitud brauserirada.
 
 ## Prioriteedid ja järgmised põhjusepõhised parandused
 
-1. **P0 – faktipäringu jõudlus.** V04 korrektne vastus võttis 33–36 sekundit; trace'i retrieval'i mõõdikud on vastuoluliselt isegi kogukestusest suuremad. Parandada mõõtmine ja optimeerida alles tõendatud pudelikaela järgi.
-2. **P0 – allikapaneeli avamine.** V04 valitud ja kuvatud source ID kattusid, kuid nähtav aktiivne nupp ei avanud automatiseeritud katses kontrollitavat paneeli. Eristada koordinaadi/custom-kursori probleem Reacti sündmuse või sõnumi allikaobjekti veast.
+1. **P0 – külma retrieval'i lisakulu.** Korrata sama küsimust vahetult pärast kontrollitud teenusekäivitust ja soojas olekus; rakendada soojendus või muu parandus ainult siis, kui sama etappide logi tõendab põhjuse ning vastuse/allika värav jääb muutumatuks.
+2. **P0 – ülejäänud 54 juhtumi release-värav.** Jätkata sidusate plokkidena samas autentitud vestluses ja samal muutumatul SHA-l; mõõtmata juhtumid jäävad `NOT_PROVEN`.
 3. **P0 – sama vestluse rate-limit runtime-lahknevus.** Logida tegelik scope, limit, window, remaining ja `Retry-After` ilma kasutaja/IP väärtust avaldamata; kinnitada, miks 60 s vaikeaken ei taastunud vähemalt seitsme minuti jooksul.
-4. **P1 – autoripäringu autentitud vastamisvärav.** Otsingu 10/10 sihtvalim on roheline; kinnitada nüüd, et vastuse koostamine kasutab autorimeta tõendit ega taanda inimest vale koondartikli rolliks.
-5. **P1 – faktipäringu parafraasimaatriks.** Dokumendisisene järelotsing ja registrikirjelduse ankur on sihttestis olemas; korrata vähemalt pika, lühikese ja teise sõnavaraga küsimusega üle kõigi parandatud faktiklasside.
-6. **P1 – laia sünteesi päris mitmekesisus.** S02 otsing on kolme sõnastusega roheline; kinnitada kogu kümne sünteesiküsimuse peal, et konteksti valik ja lõppvastus säilitavad mitu teemakohast dokumenti, mitte mitu sama dokumendi lõiku.
-7. **P1 – ajaloo mõju nähtavaks ja piiratud.** Logida, milline varasem tekst embeditavasse päringusse lisati; lühike küsimus ei tohi automaatselt saada kuue vana pöörde 4200-märgilist saba.
-8. **P2 – loenduse definitsioon.** Selgitada 863 vs 877/864; valida üks kanoniline aktiivse ajakirjaartikli definitsioon ja teha health/registry raportis nähtavaks.
-9. **P2 – parafraasipaarid evali põhiosaks.** Iga fakt vähemalt pikk, lühike ja käändeline variant; edu mõõta sihtlõigu ja vastuse, mitte pealkirja järgi.
+4. **P1 – faktipäringu parafraasimaatriks.** Korrata vähemalt pika, lühikese ja teise sõnavaraga küsimusega üle kõigi parandatud faktiklasside.
+5. **P1 – laia sünteesi päris mitmekesisus.** Kinnitada kümne sünteesiküsimuse peal, et konteksti valik ja lõppvastus säilitavad mitu teemakohast dokumenti, mitte mitu sama dokumendi lõiku.
+6. **P1 – ajaloo mõju nähtavaks ja piiratud.** Logida, milline varasem tekst embeditavasse päringusse lisati; lühike küsimus ei tohi automaatselt saada põhjendamata vana saba.
+7. **P2 – loenduse definitsioon.** Selgitada 863 vs 877/864; valida üks kanoniline aktiivse ajakirjaartikli definitsioon ja teha health/registry raportis nähtavaks.
 
 Üksikküsimuse hardcode ei lahenda ühtegi neist klassidest.
 
@@ -499,12 +528,12 @@ Kvaliteedi lõppvaade eraldi:
 
 Seega on tõendatud vaid **21 end-to-end õiget juhtumit 75-st**, kuid seda arvu ei tohi kasutada väitena „RAG on 28% töökindel”: 25 juhtumi vastamiskiht on tõendamata, valim on sihipäraselt kihiline, kategooriate raskus erineb ning sama vestluse pikkus paljastas eraldi planner'i ja rate-limit riskid.
 
-### Praeguse release'i end-to-end värav — SHA `66355272`
+### Praeguse release'i end-to-end värav — SHA `815f15f6`
 
 | seis | arv | tähendus |
 |---|---:|---|
-| DONE | **10/75** | J11 faktiküsimus ja parafraas, J17 ning V01, V02, V03, V05, V06, V07 ja V08: õige tõend, vastus ja toetav kuvatud allikas |
-| PARTIAL | **11/75** | kümme juhtumit on tõendatud ainult otsingukihis; V04 otsing ja vastus on õiged, kuid selle allikapaneeli UI jäi tõendamata |
+| DONE | **21/75** | varasemad kümme DONE juhtumit, V04 ning kümme autorijuhtumit läbisid õige tõendi, vastuse ja toetava avatud allikapaneeli värava |
+| PARTIAL | **0/75** | V04 allikapaneel ja autoriploki vastamiskiht on nüüd tõendatud; ühtegi pooleldi mõõdetud juhtumit praeguses release-arvestuses ei ole |
 | FAIL | **0/75** | lõpp-SHA-l ei ole praeguse kordusploki sees alles tõendatud valet vastust; see ei tähenda, et mõõtmata juhtumid oleksid õiged |
 | NOT_PROVEN | **54/75** | ülejäänud juhtumite lõpp-SHA otsingu- ja autentitud vestluskordus puudub |
 
@@ -520,9 +549,9 @@ Omaniku tõstatatud Laur Raudsoo reprodutseerimiskatse ei kuulu 75 põhijuhtumi 
 - uue vestluse taastumiskatse ei tõenda algse pika vestluse töökindlust;
 - KOV-i kontaktid, tasud ja taotlemisviisid on ajas muutuvad ning vajavad eraldi värskuseväravat;
 - `partial=false` ja roheline health ei kata sisulist katvust;
-- projektis on nüüd 38 püsivat sihitud RAG-regressioonitesti; need ei asenda päris indeksi, mudeli, pika vestluse ega 75 juhtumi runtime-väravat;
+- ajalooline kitsas RAG-regressioonikomplekt ei ole uue AGENTS.md korra järgi praegune värav; selles jätkus automaatteste ei loodud ega käivitatud;
 - J11 kaks vormi on lõpp-SHA-l rohelised, kuid see ei tõenda teisi parafraasi-, arvusõna- ega dokumendiklasside kombinatsioone;
-- faktivastuste u 7–39 sekundi hajuvus on kasutatavusrisk; kiirus ei tõenda õigsust ning praegune valim ei tõenda p50/p95 stabiilsust.
+- faktivastuste u 3–20 sekundi hajuvus ja pärast deploy'd korduv 12–14 sekundi külm retrieval on kasutatavusrisk; kiirus ei tõenda õigsust ning praegune valim ei tõenda p50/p95 stabiilsust.
 
 ## Võrdlusmaterjalid
 

@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**RAG-i V04 arvusemantika ja dokumendisisene recall on 22.08 toodangus sisuliselt parandatud SHA-l `66355272`.** Kaks loomulikku sõnastust vastasid samas autentitud vestluses ilma „Uus vestlus” workaround'ita õigesti 10%/640, 6%/227 ja 2%/100, säilitasid 2023. aasta haldusandmete ning 2024. aasta ohvriuuringu erinevuse, läbisid ühe renderdatud allika faktivärava ja kasutasid sama Anu Lepsi / Lenne Indovi 2025 source ID-d. Parandus ei ole küsimuse hardcode: süsteem eristab nüüd uuringu teemaankrut üldisest liigist, otsib tuvastatud dokumendi seest küsitud arvulisi ankruid ning keelab `X% (n=Y)` käsitlemise valimi ja uue `X% × Y` tuletisena. Kitsas püsiv RAG-regressioonikomplekt on 38/38; server, `origin/main` ja kohalik HEAD olid samal SHA-l, kolm teenust aktiivsed ja health 49 727 / 6089. V04 allikanupp oli nähtav, kuid paneel ei avanenud automatiseeritud lõppkatses, ning vastused võtsid 33–36 sekundit; seetõttu on release endiselt **DONE 10/75 · PARTIAL 11/75 · FAIL 0/75 · NOT_PROVEN 54/75**, mitte 10/10. Järgmine töö on allikapaneeli avamistee ja jõudluse põhjusmõõtmine, seejärel kümme autorijuhtumit.
+**RAG-i V04 ja kümne autori end-to-end värav on 23.08 toodangus läbitud koodi-SHA-l `815f15f6`.** Samas autentitud vestluses ilma „Uus vestlus” workaround'ita avanes V04 allikapaneel täpse Anu Lepsi / Lenne Indovi 2025 artikliga ning vastus säilitas 10%/640, 6%/227, 2%/100 ja 2023/2024; kümme algallikast koostatud autorijuhtumit läbisid sisulise vastuse ja avatud toetava allika värava. Loomulik autorinimi läheb täpsesse author-metaandmete otsingusse, stabiilse süsteemiprompti cache kirjutas esimesel voorul 1896 tokenit ja luges järgmistel voorudel sama prefiksi 0 uue kirjutusega ning pesastatud loendite nähtav nummerdus säilitab 1–2–3. Etapimõõtmine eristas mudelist külma retrieval'i 12–14 s lisakulu; soojad autoripäringud jäid retrieval'is 1,3–2,1 s juurde. Server, `origin/main` ja kohalik HEAD olid samal SHA-l, kolm teenust aktiivsed ja health 49 727 / 6089; korpust, indeksit, DB-d ega env-i ei muudetud. Range seis on **DONE 21/75 · PARTIAL 0/75 · FAIL 0/75 · NOT_PROVEN 54/75**, mitte kogu RAG-i 10/10. Järgmine sidus töö on kontrollitud külma/sooja retrieval'i põhjusparandus ning ülejäänud 54 juhtumi värav plokkidena.
 
 **Repo puhastus on 22.08 toodangus (`456f840d`).** Tollal eemaldati kõik automaattestid ning lepingu-,
 käitumis-, privaatsus-, DB-, runtime-, probe-, smoke- ja E2E-kihid koos fikstuuride ja
@@ -2541,7 +2541,7 @@ Liik: **VIGA** = lubadus on katki · **SABA** = väljalastud funktsiooni lõpeta
 | 27 | ~~Art. 28 andmetöötlusleping TartuNLP-ga~~ — **SULETUD 03.08**: kasutusluba on omaniku kinnitusel olemas; paberitöö läks T27 juristi-kinnituste korvi (S10) | juriidiline | viidud T27-sse |
 | 28 | ~~Vestlus nimetab KOV-ist ainult üht-kaht üldnimetusega spetsialisti~~ — **KOOD TEHTUD JA SERVERIS** (`496e8aaf`, kontrollitud 04.08; deploy'mata on ainult viimistlus `e1934c5c`): kontaktiplokk kannab nüüd rollide katet (nt Harku vallal 15 kontakti seitsmes rollis, mitte kaks nime) ja vastus valib kolme režiimi vahel — teemata küsimuses kirjeldab rolle ja küsib teemat, kontaktipäringus nimetab kõik selle teema rolliga inimesed, konkreetse teenuse juures teemale lähima rolli. Kehtib kõigis KOV-ides | vestlus / KOV-kontaktid | tehtud (viimistlus ootab deploy'd) |
 | 29 | ~~Laadimisloor ei olnud ekraanilugejaga läbitav — „Sisenen" oli kättesaamatu~~ — **TEHTUD 07.08** (omaniku teade nägemispuudega kasutajatelt). `role="dialog" aria-modal="true"` ei kärbi Chrome'i\TalkBacki puud: mõõdetuna oli loori all 23–31 sihitavat juhtelementi („Jäta vahele", „Lülita taustaheli välja", „Käivita", kiirriba, esmakülastuse a11y-akna dokk) ja loori enda „Sisenen" alles kuues — TalkBack luges täpselt seda järjekorda. Uus `lib/inertOutside.js` märgib kogu tausta `inert`-iks (fookus + klõps + ekraanilugeja kirje kaovad korraga), loor võtab fookuse endale ja annab ta sisenemisel `#main`-ile; sr-only `role="status"` ütleb, et lävi ilmub mõne sekundi pärast (`room.enter_pending`\`enter_ready`). Sama värav on nüüd ka esmakülastuse ligipääsetavusaknal, mis seisab loorist kõrgemal. Mõõdetud pärast: **1 sihitav element = „Sisenen"** | ruum / a11y | tehtud |
-| 30 | **RAG-i külmkäivituse soojendus.** Soe lai otsing võttis 2,09 s ja esimene tekst ilmus 4,94 s järel, kuid kohe pärast teenuse restarti võttis sama üksik RAG-otsing 9,86 s ning esimene tekst 12,32 s. Lisa kontrollitud käivitusaegne soojendus või kõrvalda külma indeksi esimese päringu lisakulu; tõenda eraldi külma ja sooja päringuga | vestlus / RAG jõudlus | SABA |
+| 30 | **RAG-i külmkäivituse soojendus.** 23.08 etapilogid kinnitasid sama klassi uuesti: esimene autoripäring pärast deploy'd kulutas retrieval'ile 12–14 s ja V04 11,33 s, soojad autoripäringud 1,3–2,1 s; mudel, faktivärav ja salvestus ei olnud V04 pudelikael. Lisa kontrollitud käivitusaegne soojendus või kõrvalda külma indeksi esimese päringu lisakulu; tõenda sama küsimuse eraldi külma ja sooja vooruga ning säilita vastuse/allika värav | vestlus / RAG jõudlus | SABA |
 
 **KONTROLLITUD KOODIST 03.08 — kaks „viga" olid juba parandatud.** Analüüsidokument
 `fable-5-ruumid-liitumine-ja-konevoog.md` kirjeldab hilise liituja salvestamist ja
@@ -2946,13 +2946,14 @@ Töökaust: `C:\Users\rauds\Desktop\SotsiaalAI`.
    kirjutaja ja üks failipiiridega sidus teema. Enne uut teemat peab haru olema puhas ning
    integreeritud `main`-iga samal lähte-SHA-l; ametlik DONE tekib alles integreeritud ja
    kontrollitud `main`-is. Täpne integratsiooni- ja konfliktikord on `AGENTS.md`-s.
-2. **Üldist automaattestitaristut ei ole; omaniku loal on üks püsiv kitsas RAG-regressioonikomplekt.** RAG-i planner'i, retrieval'i, faktivalidaatori või atribuutika muutus peab läbima `npm run test:rag-regression`; see sihttest ei tõenda päris indeksi ega autentitud vestluse vastust. Muude plokkide järel: eslint muudetud koodifailidel ja
-   `git diff --check`; `i18n:check` tõlke- või tekstimuudatusel ning `prisma validate` kohe
-   skeemi- või migratsioonimuudatusel. Peatüki lõpus ning alati enne push'i/deploy'd lisandub
-   tootmisbuild.
-   Uut üldist lepingu-, käitumis-, privaatsus-, DB-, runtime-, probe-, smoke- ega E2E-taristut omaniku uue loata tagasi ei lisata;
-   käsitsi kontrollimata käitumine märgitakse `NOT_PROVEN`. Admini RAG-lehe enesetest jääb
-   kasutaja käivitatava operatiivse tootefunktsioonina alles.
+2. **Automaatseid teste ei looda ega käivitata.** Repo ei kanna lähtekoodi-, lepingu-, käitumis-,
+   privaatsus-, DB-, runtime-, smoke- ega E2E-teste ega nende fikstuure/proove. Ploki järel
+   kasutatakse ainult asjakohast eslinti ja `git diff --check` kontrolli; `i18n:check` lisandub
+   sõnumikataloogi või tõlkevõtmete ning `prisma validate` skeemi või migratsiooni muutusel.
+   Peatüki lõpus ja enne push'i/deploy'd tehakse üks tootmisbuild muutumatu koodipuu kohta.
+   Käitumine tõendatakse vajadusel käsitsi olemasolevas keskkonnas ning kontrollimata osa jääb
+   `NOT_PROVEN`. Admini RAG-lehe kasutaja käivitatav enesetest jääb operatiivse
+   tootefunktsioonina alles.
 3. **Push ja deploy ainult omaniku selgel loal.** Sama kehtib päris e-kirjade, päris maksete ja päris partnerini jõudmise kohta. *(Parandatud 06.08: siin seisis „merge ja deploy". Reegel 1 järgi käib töö otse `main`-is, seega merge'imist ei toimu ja väravaks on **push** — vana sõnastus jättis lokaalse commit'i ja `origin`-i vahelise sammu nimetamata.)*
 4. **Ära loe tootmiskasutajate sisu** ega kasuta päris kasutajaid testimiseks.
 5. **Ära käivita `OPS-FINAL-A0`** — see on release candidate'i lõppvärav.
