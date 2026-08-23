@@ -320,8 +320,17 @@ systemctl is-active sotsiaalai-frontend.service
 
 if [ -d "$BACKUP_DIR" ]; then
   if [ "$SKIP_BUILD" != "1" ] && [ -d "$APP_DIR/.next" ]; then
+    if [ "$APP_DIR" = "/" ] || [ -z "$APP_DIR" ]; then
+      echo "[deploy:server] Unsafe APP_DIR; refusing cache cleanup" >&2
+      exit 91
+    fi
+    rm -rf -- "$APP_DIR/.next/cache"
+    npm cache clean --force >/dev/null 2>&1 || echo "[deploy:server] npm cache cleanup failed" >&2
+    rm -rf -- /home/ubuntu/.cache/prisma
+
     current_artifact="$BACKUP_DIR/frontend-current-$(date -u +%Y%m%dT%H%M%SZ)-$(git rev-parse --short HEAD).tar.gz"
     tar -czf "$current_artifact" -C "$APP_DIR" .next
+    tar -tzf "$current_artifact" >/dev/null
     echo "[deploy:server] Current frontend artifact: $current_artifact"
   fi
 
