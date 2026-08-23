@@ -2,7 +2,7 @@
 
 Kuupäev: 22.08.2026
 
-> **Jätkuseis:** see fail säilitab algse auditi ajaloolise lähtejoone ja lisab allpool iga deploy-järgse korduse. Praegune brauseris kontrollitud RAG- ja vestlusloogika on `815f15f6`; 23.08 olid kohalik HEAD, `origin/main` ja server samal SHA-l, kolm teenust aktiivsed ning health näitas 49 727 vektorit / 6089 dokumenti. Süsteemikaart on failis [rag-susteem-2026-08-22.md](./rag-susteem-2026-08-22.md).
+> **Jätkuseis:** see fail säilitab algse auditi ajaloolise lähtejoone ja lisab allpool iga deploy-järgse korduse. Brauseris kontrollitud sisulise RAG- ja vestlusloogika baasseis on `815f15f6`; 23.08 jõudlusparanduse runtime-release oli `5796178f`. Kontrollis olid frontend, RAG ja research-worker aktiivsed ning health näitas 49 727 vektorit / 6089 dokumenti. Süsteemikaart on failis [rag-susteem-2026-08-22.md](./rag-susteem-2026-08-22.md).
 
 Mõõteaken: 04:52–06:20 Europe/Tallinn
 
@@ -470,15 +470,17 @@ Järeldus: V04 varem tõendatud enesekindel semantiline arvuviga oli kahe sõnas
 
 Kõik siinsed päringud tehti samas jätkuvas autentitud `/vestlus` vestluses ilma „Uus vestlus” workaround'ita. Lõppkoodi SHA on `815f15f6`; korpust, indeksit, andmebaasi ega serveri keskkonda ei muudetud.
 
-**Allikapaneel.** Sõnumimulli hover toob tegevusnupud nähtavale. Varem puudu jäänud V04 tõend ei olnud vigane source-objekt ega Reacti paneeli state: klaviatuurifookuse ja nupu aktiveerimise järel avanes paneel, kuvades täpselt Anu Lepsi ja Lenne Indovi 2025 artikli. Sama source ID oli valitud, vastuse aluseks ja kuvatud allikaks. V04 faktivalidaator läbis `exact_numeric_fact_v2` värava ning vastus säilitas 10%/640 ja 6%/227 kui 2023. aasta haldusandmed ning 2%/100 kui 2024. aasta ohvriuuringu tulemuse. V04 on seega **DONE**.
+**Allikapaneel.** Sõnumimulli hover või aktiveerimine toob tegevusnupud nähtavale. Varem puudu jäänud V04 tõend ei olnud vigane source-objekt ega Reacti paneeli state: mulli aktiveerimise ja seejärel allikanupu vajutamise järel avanes paneel. Paneeli nähtav lühisilt oli `Anu Leps, 2025. Vägivald vanemaealiste vastu vajab tähelepanu`; sama Anu Lepsi ja Lenne Indovi artikli source ID oli trace'is valitud, vastuse aluseks ja kuvatud allikaks. V04 faktivalidaator läbis `exact_numeric_fact_v2` värava ning vastus säilitas 10%/640 ja 6%/227 kui 2023. aasta haldusandmed ning 2%/100 kui 2024. aasta ohvriuuringu tulemuse. V04 on seega **DONE**. Ilma mulli eelneva aktiveerimiseta peidetud tegevusrea nupu automatiseeritud klõps paneeli ei avanud; see on interaktsioonitee eripära, mitte puuduva allika tõend.
 
-**Jõudlus.** Etapilogimine eristab päris seinakella aega paralleelsete alampäringute summast. Viimane V04 võttis kokku 13 565 ms: retrieval 11 331 ms, konteksti koostamine koos retrieval'iga 11 411 ms, mudel 2084 ms, faktivalidaator 10 ms ja salvestus 9 ms. Autoriploki esimene päring pärast kumbagi deploy'd näitas samuti külma retrieval'i 12–14 s, kuid soojad autoripäringud 1,3–2,1 s. Tõendatud jääkpudelikael on seega külm otsingukiht, mitte mudel, faktivalidaator ega salvestus; seda ei optimeerita ilma eraldi külma/sooja mõõtepaari ja kontrollitud soojenduse väravata.
+**Jõudlus.** Etapilogimine eristab päris seinakella aega paralleelsete alampäringute summast. Kontrollitud täisdeploy järel võttis esimese lihtsa autoripäringu retrieval 9935 ms, millest dense-otsing 7837 ms; vahetu soe kordus langes retrieval'is 1922 ms ja dense'is 229 ms-ni. Ühe tulemusega naiivne startup-päring ei soojendanud toodangu `n_results=64` rada piisavalt. Lõplik käivitusaegne soojendus loeb ühe olemasoleva embedding'u ning teeb sama mahuga üld- ja dokumendifiltriga Chroma kontrollpäringud enne teenuse ready-olekut. Pärast seda võttis esimene deploy-järgne autoripäring brauseris 7095 ms, retrieval 2433 ms ja dense 263 ms; järgmised A/B retrieval'id olid 1848 ja 1700 ms. Praktiline külma retrieval'i siht kuni 5 s ja sooja siht kuni 2,5 s on selles mõõtejadas täidetud.
+
+V04 on sellest eraldi kuue tõendipäringu fanout: lõpliku ohutu release'i kordus võttis brauseris 15 696 ms, retrieval 10 491 ms, mudel 3900 ms ja faktivalidaator 8 ms. Kuue päringu korraga käivitamise katse suurendas Chroma/SQLite'i konkurentsi: retrieval halvenes 17 056 ms-ni, dense-alampäringute summa 41 810 ms-ni ja brauser 21 702 ms-ni. Katse võeti tagasi commit'is `5796178f`. Järgmine V04 jõudlusparandus peab vähendama dubleerivat tööd või kasutama päris batch'i; sama protsessi Chroma päringute paralleelsust lihtsalt ei suurendata.
 
 **Autorivärav.** Loomulikus küsimuses tuvastatud täisnimi läheb autorite metaandmevälja täpsesse otsingusse, mitte chunki vabateksti nimevasteks. Planner annab selle raja ettepoole üldisest semantilisest otsingust. Maarja nime valesti kõrge riskiga õigusrajale saatnud liiga lai `maar*` regulaaravaldis asendati päris määra-nimisõna piiratud käänetega. Kümne algallikast koostatud juhtumi lõppseis:
 
 | juhtum | autor | kontrollitud teema | vastus + allikapaneel |
 |---|---|---|---|
-| A01 | Krister Kruusmaa | deinstitutsionaliseerimine, vangla taasühiskonnastamine | **PASS** |
+| A01 | Krister Tüllinen | deinstitutsionaliseerimine, vangla taasühiskonnastamine | **PASS** |
 | A02 | Maarja Krais-Leosk | pikaajaline hooldus, erihoolekanne, harvikhaigusega pered | **PASS** |
 | A03 | Kadi Lubi | tervise- ja sotsiaaltöö koostöö, eetika, tervisekirjaoskus | **PASS** |
 | A04 | Ave Roots | COVID-19 tööjõu- ja oskustemuutus | **PASS** |
@@ -497,9 +499,11 @@ Kõigil kümnel juhul vastas sisuline kokkuvõte küsitud autori materjalidele j
 
 AGENTS.md uue korra järgi automaatteste ei loodud ega käivitatud. Muudetud koodifailide lint, i18n, `git diff --check` ja muutumatu lõppkoodi tootmisbuild olid rohelised; runtime-tõend on käsitsi autentitud brauserirada.
 
+**Serveriressursid.** RAM-i ei suurendatud. Deploy-build peatab hooldusväravas frontend'i, RAG-i ja research-workeri ning hoiab frontend'i runtime-maskiga väljas kuni valmis artefaktini; build'i ajal oli nii 5,3 GiB mälu saadaval. See vähendab varem tõendatud hosti OOM-riski, kus uvicorn oli kasvanud umbes 3,38 GiB anonüümse RSS-ni. 104 aegunud frontend'i deploy-artefakti eemaldamine vähendas selle backup-kataloogi 8,5 GiB-lt 113 MiB-ni ja juurketta kasutuse 96%-lt 79%-ni; edukas deploy hoiab edaspidi ühe uusima frontend-artefakti. DB varukoopiaid ei kustutatud ega muudeta selle reegliga. Neli ajaloolist RAG-i korpuse/Chroma snapshot'i kasutavad endiselt umbes 6,1 GiB ja vajavad enne kustutamist eraldi säilitusotsust.
+
 ## Prioriteedid ja järgmised põhjusepõhised parandused
 
-1. **P0 – külma retrieval'i lisakulu.** Korrata sama küsimust vahetult pärast kontrollitud teenusekäivitust ja soojas olekus; rakendada soojendus või muu parandus ainult siis, kui sama etappide logi tõendab põhjuse ning vastuse/allika värav jääb muutumatuks.
+1. **P0 – V04 kuue tõendipäringu fanout.** Külmkäivitus on suletud; V04 allesjäänud 10,49 s retrieval vajab päringusisese dubleerimise või batch'imise põhjusepõhist parandust. Chroma/SQLite'i sama protsessi paralleelsust ei suurendata, sest mõõdetud katse aeglustas vastust.
 2. **P0 – ülejäänud 54 juhtumi release-värav.** Jätkata sidusate plokkidena samas autentitud vestluses ja samal muutumatul SHA-l; mõõtmata juhtumid jäävad `NOT_PROVEN`.
 3. **P0 – sama vestluse rate-limit runtime-lahknevus.** Logida tegelik scope, limit, window, remaining ja `Retry-After` ilma kasutaja/IP väärtust avaldamata; kinnitada, miks 60 s vaikeaken ei taastunud vähemalt seitsme minuti jooksul.
 4. **P1 – faktipäringu parafraasimaatriks.** Korrata vähemalt pika, lühikese ja teise sõnavaraga küsimusega üle kõigi parandatud faktiklasside.
@@ -551,7 +555,7 @@ Omaniku tõstatatud Laur Raudsoo reprodutseerimiskatse ei kuulu 75 põhijuhtumi 
 - `partial=false` ja roheline health ei kata sisulist katvust;
 - ajalooline kitsas RAG-regressioonikomplekt ei ole uue AGENTS.md korra järgi praegune värav; selles jätkus automaatteste ei loodud ega käivitatud;
 - J11 kaks vormi on lõpp-SHA-l rohelised, kuid see ei tõenda teisi parafraasi-, arvusõna- ega dokumendiklasside kombinatsioone;
-- faktivastuste u 3–20 sekundi hajuvus ja pärast deploy'd korduv 12–14 sekundi külm retrieval on kasutatavusrisk; kiirus ei tõenda õigsust ning praegune valim ei tõenda p50/p95 stabiilsust.
+- faktivastuste u 3–16 sekundi hajuvus ja V04 kuue päringu 10,49-sekundiline retrieval on kasutatavusrisk; startup-soojenduse üks kontrolljada ei tõenda p50/p95 stabiilsust.
 
 ## Võrdlusmaterjalid
 

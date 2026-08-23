@@ -3,7 +3,7 @@
 Kuupäev: 22.08.2026
 Tööharu: `codex/rag-quality-repair-20260822`
 Varasem toodangusse viidud RAG-paranduste lähtecommit: `08cbd94ac86597911e22e3731ee812c717f04110`
-Praegune brauseris kontrollitud RAG- ja vestlusloogika SHA: `815f15f6`; 23.08 runtime-kontrollis olid ka toodangu `HEAD` ja `origin/main` samal SHA-l. Hilisem dokumentatsiooni commit ei nimeta runtime-tõendit enda tõendiks.
+Praegune brauseris kontrollitud sisulise RAG- ja vestlusloogika baasseis: `815f15f6`; 23.08 jõudlusparanduse runtime-release oli `5796178f`. Hilisem dokumentatsiooni commit ei nimeta runtime-tõendit enda tõendiks.
 Põhjusepõhiste paranduste viimane jätk jõudis toodangusse commit'ijadana `15fc81a3` → `8b4f4d69` → `bdaa8afd` → `2b0bd86` → `429469dd` → `56b4a13d` → `d7c35346` → `815f15f6`. V04 ja kümme autorijuhtumit läbisid end-to-end värava; kogu 75 juhtumi lõppvärav ei ole tehtud.
 Seis: **PARTIAL — süsteemi ei ole tõendatud 10/10 töökindlaks**
 
@@ -858,7 +858,7 @@ V04 jääb range release-värava järgi **PARTIAL**, sest nähtav ja aktiivne al
 
 23.08 jätkus tõendati samas autentitud `/vestlus` vestluses ilma „Uus vestlus” workaround'ita V04 allikapaneel ja kümme autorijuhtumit. Sõnumimulli hover teeb tegevusnupud nähtavaks; klaviatuurifookuse ning aktiveerimise järel avanenud V04 paneel kuvas sama Anu Lepsi ja Lenne Indovi 2025 artiklit, mille source ID oli trace'is valitud, vastuse aluseks ja kuvatud. Source-objekt ja paneeli state olid seega korras; varasem `panelTitleCount=0` kirjeldas puudulikku interaktsiooniteed, mitte puuduvat allikat. V04 viimane vastus läbis `exact_numeric_fact_v2` värava ja säilitas õiged seosed 10%/640, 6%/227, 2%/100 ning 2023/2024. V04 on nüüd **DONE**.
 
-Autoripäringu loomulik täisnimi tuvastatakse planner'is ja suunatakse täpsesse metadata author-välja otsingusse enne üldist semantilist rada; see ei ole chunki vabateksti nimeotsing. Kümme algallikatest koostatud juhtumit Krister Kruusmaa, Maarja Krais-Leoski, Kadi Lubi, Ave Rootsi, Jane Soki, Liina Kriiski, Kadri Soo, Merle Kriisa, Heli Raudla ja Judit Strömpli kohta läbisid sisulise vastuse ning avatud toetava allikapaneeli värava. Kaasautorlusega kirje lühisilt võib näidata esimest autorit, kuid metadata ja source-objekt säilitasid küsitud autori täpse vaste. Maarja nime kõrge riskiga õigusrajale saatnud lai `maar*` vaste piirati päris „määr” nimisõna käänetega. Tulemuseks on **10/10 autoriplokk**, mitte kogu RAG-i 10/10.
+Autoripäringu loomulik täisnimi tuvastatakse planner'is ja suunatakse täpsesse metadata author-välja otsingusse enne üldist semantilist rada; see ei ole chunki vabateksti nimeotsing. Kümme algallikatest koostatud juhtumit Krister Tüllineni, Maarja Krais-Leoski, Kadi Lubi, Ave Rootsi, Jane Soki, Liina Kriiski, Kadri Soo, Merle Kriisa, Heli Raudla ja Judit Strömpli kohta läbisid sisulise vastuse ning avatud toetava allikapaneeli värava. Kaasautorlusega kirje lühisilt võib näidata esimest autorit, kuid metadata ja source-objekt säilitasid küsitud autori täpse vaste. Maarja nime kõrge riskiga õigusrajale saatnud lai `maar*` vaste piirati päris „määr” nimisõna käänetega. Tulemuseks on **10/10 autoriplokk**, mitte kogu RAG-i 10/10.
 
 Iga kasutaja saatmine teeb uue Responses API päringu ja värske RAG-otsingu. Täielik uus küsimus ei päri automaatselt eelmise vastuse teemat; lähiajalugu lisatakse ainult kontekstist sõltuvale lühikesele jätkuküsimusele. Stabiilne süsteemiprompt on nüüd eksplitsiitse cache-breakpoint'i ees, dünaamiline RAG-kontekst selle järel. Toodangus kirjutas esimene päring 1896 cache-tokenit; järgmised sama kasutaja, rolli, keele ja kriisirežiimi võtmega päringud lugesid 1896 ning kirjutasid 0. Cache vähendab seega stabiilse prefiksi sisendikulu, kuid ei taaskasuta vana RAG-vastust ega seo uut autorit vana teemaga.
 
@@ -878,3 +878,17 @@ Peatüki 23 varasemat release-arvestust asendab:
 | NOT_PROVEN | **54/75** | ülejäänud juhtumite sama release'i otsingu- ja autentitud vestluskordus puudub |
 
 Kogu RAG-i sisuline töökindlus on endiselt **NOT_PROVEN**; 21/75 ei ole kvaliteediprotsent ega 10/10 hinnang.
+
+## 30. Külma retrieval'i, deploy-mälu ja ketta põhjusepõhine optimeerimine — runtime-release `5796178f`
+
+Kontrollitud täisdeploy tõendas, et esimese lihtsa autoripäringu 9935 ms retrieval'ist kulus 7837 ms Chroma dense-rajal; vahetu soe kordus oli 1922/229 ms. Ühe tulemusega naiivne startup-päring ei katnud toodangu `n_results=64` ja filtritega rada. Lõplik RAG startup-warmup loeb persisted kogust ühe olemasoleva embedding'u ning teeb 64 kandidaadiga üld- ja dokumendifiltriga kontrollpäringu enne ready-olekut. Ta ei kutsu embedding API-t, ei muuda korpust ega indeksit ega taaskasuta vana kasutajavastust.
+
+Pärast parandust võttis esimene täisdeploy-järgne autoripäring brauseris 7095 ms: retrieval 2433 ms, dense 263 ms, embedding 777 ms ja mudel 3705 ms. Vahetud A/B päringud olid retrieval'is 1848 ja 1700 ms. Seega langes tõendatud külm retrieval 9,94 sekundilt 2,43 sekundile ja täitis praktilise kuni 5 s sihi; sama jada ei ole p50/p95 koormusmõõtmine.
+
+V04 on eraldi kuue dokumendisisese tõendipäringu rada. Ohutu kolme kaupa käivitusega võttis viimane autentitud kordus brauseris 15 696 ms, retrieval 10 491 ms, mudel 3900 ms ja faktivalidaator 8 ms; vastus ning avatud paneeli Anu Lepsi 2025 allikas olid õiged. Kuue korraga päringu katse halvenes retrieval'is 17 056 ms ja brauseris 21 702 ms-ni, sest dense-alampäringute summa kasvas Chroma/SQLite'i konkurentsis 41 810 ms-ni. Katse võeti tagasi commit'is `5796178f`. See välistab edasise „rohkem paralleelsust” lahenduse; järgmine töö peab mõõdetult vähendama dubleerivat päringutööd või kasutama batch'i, säilitades kõik faktid ja allika.
+
+Serveri RAM-i ei suurendatud. Varem oli kernel OOM-is tapnud uvicorn'i umbes 3,38 GiB anonüümse RSS-i juures. Deploy hooldusvärav runtime-maskib frontend'i ning peatab build'i ajaks frontend'i, RAG-i ja research-workeri; mõõdetud vaba mälu tõusis build'i ajal 5,3 GiB-ni. Teenused taastatakse alles valmis build'i ja RAG health'i järel. Nii ei võistle mitme gigabaidine RAG indeks enam Next.js build'iga sama 6,8 GiB RAM-i pärast.
+
+Kettal kasutati 8,5 GiB 105 taastatava `.next` deploy-artefakti hoidmiseks. 104 aegunud artefakti eemaldati; kataloog vähenes 113 MiB-ni ning 48 GiB juurketta kasutus 96%-lt 79%-ni ehk vabaks jäi umbes 11 GiB. Deploy säilitab pärast edukat väljalaset automaatselt ühe uusima frontend-artefakti. Andmebaasi ei muudetud: aktiivne DB oli umbes 64 MiB ja leitud SotsiaalAI/RAIO DB-backup'id kokku umbes 40 MiB. Alles jäid neli ajaloolist RAG korpuse/Chroma snapshot'i kokku umbes 6,1 GiB, system journal umbes 1,8 GiB ning Playwrighti cache umbes 1,3 GiB; neid ei kustutatud ilma eraldi säilitusotsuseta.
+
+Automaatteste ei loodud ega käivitatud. Staatiline värav oli lint, i18n, `git diff --check`, Python compile ja tootmisbuild; runtime-värav oli käsitsi sama autentitud vestlus. Range RAG-seis ei muutunud: **DONE 21/75 · PARTIAL 0/75 · FAIL 0/75 · NOT_PROVEN 54/75**.
