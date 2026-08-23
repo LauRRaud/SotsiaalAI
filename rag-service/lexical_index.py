@@ -116,25 +116,23 @@ def _compile_filter(where: Optional[Dict[str, object]]) -> Tuple[str, List[objec
     if not isinstance(where, dict):
         raise LexicalIndexError("LEXICAL_INDEX_FILTER_UNSUPPORTED")
     if "$and" in where:
-        clauses = [
-            _compile_filter(clause)
-            for clause in list(where.get("$and") or [])
-            if isinstance(clause, dict)
-        ]
-        if not clauses:
-            return "1", []
+        raw_clauses = where.get("$and")
+        if set(where) != {"$and"} or not isinstance(raw_clauses, list) or not raw_clauses:
+            raise LexicalIndexError("LEXICAL_INDEX_FILTER_UNSUPPORTED")
+        if any(not isinstance(clause, dict) for clause in raw_clauses):
+            raise LexicalIndexError("LEXICAL_INDEX_FILTER_UNSUPPORTED")
+        clauses = [_compile_filter(clause) for clause in raw_clauses]
         return (
             "(" + " AND ".join(clause for clause, _params in clauses) + ")",
             [param for _clause, params in clauses for param in params],
         )
     if "$or" in where:
-        clauses = [
-            _compile_filter(clause)
-            for clause in list(where.get("$or") or [])
-            if isinstance(clause, dict)
-        ]
-        if not clauses:
-            return "0", []
+        raw_clauses = where.get("$or")
+        if set(where) != {"$or"} or not isinstance(raw_clauses, list) or not raw_clauses:
+            raise LexicalIndexError("LEXICAL_INDEX_FILTER_UNSUPPORTED")
+        if any(not isinstance(clause, dict) for clause in raw_clauses):
+            raise LexicalIndexError("LEXICAL_INDEX_FILTER_UNSUPPORTED")
+        clauses = [_compile_filter(clause) for clause in raw_clauses]
         return (
             "(" + " OR ".join(clause for clause, _params in clauses) + ")",
             [param for _clause, params in clauses for param in params],

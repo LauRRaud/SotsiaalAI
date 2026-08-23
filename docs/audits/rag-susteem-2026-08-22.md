@@ -46,6 +46,8 @@ Töökindluse jaoks peab sama juhtum läbima nii otsingu kui ka autentitud vestl
 ```mermaid
 flowchart LR
     U[Autenditud kasutaja /vestlus] --> N[Next.js frontend]
+    U --> RT[Realtime transcription<br/>gpt-4o-mini-transcribe]
+    RT --> C
     N --> C[/api/chat]
     C --> P[Planner ja retrieval orchestration]
     P --> R[RAG FastAPI 127.0.0.1:8000]
@@ -56,6 +58,8 @@ flowchart LR
     C --> M[OpenAI vastusemudel]
     C --> DB[PostgreSQL vestlused, jooksud ja allikapaketid]
     M --> UI[Vastus ja displayed_sources]
+    UI --> TTS[TartuNLP kylli]
+    TTS --> U
 ```
 
 ### 2.1 Serveriprotsessid
@@ -97,6 +101,33 @@ RAG-teenus ei ole avalikult internetti binditud. Frontend pöördub selle poole 
 
 See teekond selgitab, miks otsene RAG-otsing võib leida õige fakti, kuid vestlus vastata valesti: viga võib tekkida pärast otsingut planner'is, järjestuses, kontekstivalikus, ajaloo käsitluses, prompt'is, mudeli sünteesis või allika atribuutikas.
 
+### 3.1 Häälvestluse sisend- ja väljundrada — 23.08.2026
+
+Häälvestlus ei kasuta eraldi vastusemootorit. Mikrofon avab WebRTC kaudu OpenAI
+transkriptsiooniseansi `POST /api/realtime/session` rajal; seansi tüüp on `transcription`, mudel
+`gpt-4o-mini-transcribe`, keel `et`, sisendil on eestikeelne täpsusjuhis, `far_field`
+müravähendus ja serveripoolne kõnevooru tuvastus 900 ms vaikusepiiriga. Realtime'i ülesanne on
+ainult kõne tekstiks muuta — ta ei otsi RAG-ist, ei koosta teist vastust ega loe seda ette.
+
+Valmis transkript saadetakse sama `/api/chat` raja kaudu suletud `inputModality: voice`
+märgisega. Sealt edasi kehtivad samad vestluse omandi-, privaatsus-, kriisi-, kvoodi-, planner'i,
+RAG-i, tõendivaliku ja kuvatud allikate lepingud nagu kirjutatud küsimusel. Vastuse koostab
+seadistatud põhimudel, toodangus `gpt-5.6-luna`. Täisvastus ja allikad salvestatakse ning jäävad
+tekstivestluses nähtavaks; häälpinnal ei renderdata vastusemulle ega subtiitreid avatari peale.
+
+Kliendile saabunud vastusest loetakse TartuNLP `kylli` häälega ette kuni kolm lauset või 900
+märki. `/api/tts` lisab heli ette 300 ms vaikust, et heliseadme ärkamine ei lõikaks esimest silpi;
+kasutaja uue kõnevooru algus katkestab poolelioleva ettelugemise. Viie minuti seansikell ilmub
+alles viimase 45 sekundi hoiatusena ja lühike ühendamise, kuulamise või RAG-i tööolek paikneb
+torso all eraldi kihis, mis ei muuda avatari mõõtu. Ainult iseseisev tervitus võib kasutada kiiret
+tervitusvastust; tervitusele lisatud sisuline küsimus läbib kogu RAG-i ja turvatoru.
+
+23.08 päris brauseris töötasid ühendus, chat ja TartuNLP heli, kuid esimene lausung
+„tere, kas sa kuuled mind” transkribeeriti enne keele- ja müravähendusparandust kui „platin”.
+Parandus on toodangus, kuid parandusejärgne päris mikrofoni täpsus on endiselt **NOT_PROVEN**.
+See piir ei muuda RAG-i sisulise kvaliteedi tõendeid: kõnetuvastus, retrieval, vastus ja kuvatud
+allikas on neli eraldi kontrollitavat etappi.
+
 ## 4. Koodipuu ja failide rollid
 
 Allolev puu näitab RAG-i käitumist määravaid põhiosi. See ei loetle iga testi nime, kuid annab täieliku komponentide kaardi.
@@ -105,6 +136,7 @@ Allolev puu näitab RAG-i käitumist määravaid põhiosi. See ei loetle iga tes
 SotsiaalAI/
 ├─ rag-service/                         # eraldi Python/FastAPI RAG-teenus
 │  ├─ main.py                           # API, ingest, embeddings, otsing, hübriidjärjestus
+│  ├─ lexical_index.py                  # atomaarne SQLite FTS5 täiskorpuse pöördindeks
 │  ├─ auth_config.py                    # API võtme ja no-auth režiimi fail-closed reeglid
 │  ├─ document_versions.py              # dokumendiversioonid, staging, activeVersion
 │  ├─ registry_store.py                 # registry.json lugemine ja turvaline salvestus
@@ -120,6 +152,8 @@ SotsiaalAI/
 │
 ├─ app/api/chat/
 │  └─ route.js                           # autentitud vestluse põhitee
+├─ app/api/realtime/session/route.js     # OpenAI WebRTC transkriptsiooniseansi loomine
+├─ app/api/tts/route.js                  # TartuNLP kylli ja heli alguse vaikusepuhver
 │
 ├─ lib/chat/                              # 59 faili; planner, retrieval ja vastus
 │  ├─ questionPlanner.js
@@ -148,7 +182,10 @@ SotsiaalAI/
 ├─ components/admin/rag/                  # 33 faili; RAG haldusliides
 ├─ components/alalehed/chat/              # 15 faili; vestluse ja allikate UI
 │  ├─ ChatMessageItem.jsx
-│  └─ ChatSourcesPanel.jsx
+│  ├─ ChatSourcesPanel.jsx
+│  └─ VoiceModeSurface.jsx
+├─ components/chat/hooks/
+│  └─ useRealtimeVoice.js                 # STT-voorud, katkestamine ja TTS taasesitus
 │
 ├─ prisma/schema.prisma                   # vestlused, allikapaketid, tagasiside, graph-lite
 ├─ scripts/                               # ingest, audit, smoke, deploy ja hooldusskriptid
@@ -901,7 +938,7 @@ Vana lai `corpus_scan` varurada luges iga üldküsimuse ajal Chromast kuni 8000 
 
 Release-kandidaat asendab ainult laia `corpus_scan` varuraja rakendusega samas protsessis kasutatava SQLite FTS5 BM25-pöördindeksiga. Dense Chroma, graph-lite, planner, author/title/specific-document/fact/exact-phrase rajad, fusion/RRF, kvaliteediboonused, top-k, Luna vastus ja kuvatud allikate leping jäävad muutmata. Indeks tuletatakse `registry.json` aktiivversioonidest ja Chroma aktiivsetest lõikudest ning ei ole uus sisuline tõeallikas. Mõõdetud põlvkond sisaldas 49 727 aktiivset lõiku ja 6073 aktiivset dokumenti; registri 6089 kirjest 16 ei olnud aktiivsed. Indeksi maht oli 459 132 928 baiti ehk 437,9 MiB ning täisehitus kestis 37 791 ms.
 
-Ehitus toimub ajutisse faili, millele tehakse SQLite `quick_check`, faili ja emakausta `fsync` ning alles seejärel atomaarne `os.replace`. Registri põlvkond seotakse kogu registri SHA-256-ga; pooleli või ebaõnnestunud ehitus ei asenda eelmist tervet indeksit. Eraldi atomaarne `.stale` marker sulgeb tee kohe, kui Chroma/registri elutsükkel alustab muutust. Faili- ja tekstiingest, PDF/URL-ingest, artiklipakk, reindex, metaandmete muutmine, aktiivversiooni kinnitamine ning delete/tombstone kasutavad sama jagatud elutsüklit. Chroma õnnestumise ja FTS-i ebaõnnestumise korral säilib dense-otsing, kuid diagnostika on `partial=true`, `degraded=true` ja täpse põhjusega; vana põlvkonda ei esitata värske ega täielikuna. Admin saab olekut lugeda ning platvormiadmin kontrollitud rebuild'i käivitada.
+Ehitus toimub ajutisse faili, millele tehakse SQLite `quick_check`, faili ja emakausta `fsync` ning alles seejärel atomaarne `os.replace`. Registri põlvkond seotakse kogu registri SHA-256-ga; pooleli või ebaõnnestunud ehitus ei asenda eelmist tervet indeksit. Eraldi atomaarne `.stale` marker sulgeb tee kohe, kui Chroma/registri elutsükkel alustab muutust. Faili- ja tekstiingest, PDF/URL-ingest, artiklipakk, reindex, metaandmete muutmine, aktiivversiooni kinnitamine ning delete/tombstone kasutavad sama jagatud elutsüklit. Täisehitus ei blokeeri enam muutva veebipäringu vastust: pärast andmemuutuse kinnitamist ajastatakse üks taustal töötav koondatud refresh ning mitu lähestikust muudatust ei käivita paralleelseid täisehitusi. Admini rebuild vastab `202 Accepted`; olekurada ja health näitavad nii stale-põhjust kui ka taustatöö seisu. Teenuse startup jätkab sünkroonse kontrolli ja vajadusel ehitusega enne ready-olekut. Chroma õnnestumise ja FTS-i ebaõnnestumise või taasteehituse ajal säilib dense-otsing, kuid diagnostika on `partial=true`, `degraded=true` ja täpse põhjusega; vana põlvkonda ei esitata värske ega täielikuna.
 
 FTS-i SQL-kandidaadivalik rakendab enne järjestamist aktiivversiooni, lifecycle'i, collection'i, doc-ID, audience'i, municipality/KOV scope'i ja agentide dokumendikogumi filtreid; tundmatu väli või operaator sulgub tulemusetult. Põhirada kontrollib kandidaadid pärast SQL-i veel kord olemasoleva täpse metadata- ja aktiivversiooniloogikaga. Käsitsi kontrollis tagastas Kuusalu filter ainult Kuusalu read, `CLIENT` ainult `BOTH` audience'i read, `kov_services` ainult selle kollektsiooni ning synthetic deny-all agent-documents päring null tulemust. Ajutiselt puuduva indeksiga jäi dense tööle ja leksikaaldiagnostika oli `persistent_fts5_unavailable` / `LEXICAL_INDEX_MISSING`; keelatud ega vana lõiku ei lekkinud.
 

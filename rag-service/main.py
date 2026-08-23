@@ -11,6 +11,7 @@ import hashlib
 import math
 import secrets
 import shutil
+import threading
 import unicodedata
 from io import BytesIO
 import logging
@@ -220,6 +221,10 @@ logger = logging.getLogger("rag-service")
 # and INFO level carry the records to stderr/journald without touching root
 # logging or the application logger used by warnings and errors.
 stage_logger = logging.getLogger("uvicorn.error.rag_stage")
+_LEXICAL_REFRESH_LOCK = threading.Lock()
+_LEXICAL_REFRESH_THREAD: Optional[threading.Thread] = None
+_LEXICAL_REFRESH_PENDING_REASON: Optional[str] = None
+_LEXICAL_REFRESH_ACTIVE_REASON: Optional[str] = None
 
 
 def _warm_dense_index() -> None:
@@ -2697,14 +2702,87 @@ def _refresh_persistent_lexical_index(reason: str) -> None:
         )
 
 
+def _persistent_lexical_index_refresh_worker() -> None:
+    global _LEXICAL_REFRESH_THREAD
+    global _LEXICAL_REFRESH_PENDING_REASON
+    global _LEXICAL_REFRESH_ACTIVE_REASON
+
+    while True:
+        with _LEXICAL_REFRESH_LOCK:
+            reason = _LEXICAL_REFRESH_PENDING_REASON or "scheduled_refresh"
+            _LEXICAL_REFRESH_PENDING_REASON = None
+            _LEXICAL_REFRESH_ACTIVE_REASON = reason
+        try:
+            _refresh_persistent_lexical_index(reason)
+        finally:
+            with _LEXICAL_REFRESH_LOCK:
+                _LEXICAL_REFRESH_ACTIVE_REASON = None
+                should_exit = _LEXICAL_REFRESH_PENDING_REASON is None
+                if should_exit:
+                    _LEXICAL_REFRESH_THREAD = None
+        if should_exit:
+            return
+
+
+def _schedule_persistent_lexical_index_refresh(reason: str) -> Dict[str, object]:
+    global _LEXICAL_REFRESH_THREAD
+    global _LEXICAL_REFRESH_PENDING_REASON
+
+    if not RAG_PERSISTENT_LEXICAL_INDEX_ENABLED:
+        return {"scheduled": False, "reason": "LEXICAL_INDEX_DISABLED"}
+
+    normalized_reason = str(reason or "scheduled_refresh")[:80]
+    start_thread: Optional[threading.Thread] = None
+    with _LEXICAL_REFRESH_LOCK:
+        _LEXICAL_REFRESH_PENDING_REASON = normalized_reason
+        if _LEXICAL_REFRESH_THREAD is None:
+            start_thread = threading.Thread(
+                target=_persistent_lexical_index_refresh_worker,
+                name="rag-lexical-index-refresh",
+                daemon=True,
+            )
+            _LEXICAL_REFRESH_THREAD = start_thread
+        state = {
+            "scheduled": True,
+            "running": _LEXICAL_REFRESH_ACTIVE_REASON is not None,
+            "active_reason": _LEXICAL_REFRESH_ACTIVE_REASON,
+            "pending_reason": _LEXICAL_REFRESH_PENDING_REASON,
+        }
+    if start_thread is not None:
+        start_thread.start()
+    return state
+
+
+def _persistent_lexical_index_refresh_state() -> Dict[str, object]:
+    with _LEXICAL_REFRESH_LOCK:
+        return {
+            "scheduled": _LEXICAL_REFRESH_THREAD is not None,
+            "running": _LEXICAL_REFRESH_ACTIVE_REASON is not None,
+            "active_reason": _LEXICAL_REFRESH_ACTIVE_REASON,
+            "pending_reason": _LEXICAL_REFRESH_PENDING_REASON,
+        }
+
+
+def _persistent_lexical_index_status(
+    registry: Dict[str, Dict],
+    *,
+    verify: bool = False,
+) -> Dict[str, object]:
+    if not RAG_PERSISTENT_LEXICAL_INDEX_ENABLED:
+        return {"ready": False, "reason": "LEXICAL_INDEX_DISABLED"}
+    status = LEXICAL_INDEX.status(registry, verify=verify)
+    status["refresh"] = _persistent_lexical_index_refresh_state()
+    return status
+
+
 def _commit_vector_stage(stage, entry: Dict):
     _mark_persistent_lexical_index_stale("corpus_version_commit")
     try:
         result = stage.commit(entry, updated_at=now_iso())
     except Exception:
-        _refresh_persistent_lexical_index("corpus_version_rollback")
+        _schedule_persistent_lexical_index_refresh("corpus_version_rollback")
         raise
-    _refresh_persistent_lexical_index("corpus_version_commit")
+    _schedule_persistent_lexical_index_refresh("corpus_version_commit")
     old_path_value = result.previous_entry.get("path")
     new_path_value = entry.get("path")
     if old_path_value and old_path_value != new_path_value:
@@ -6205,11 +6283,7 @@ def health():
         "status": "ok",
         "vectors": n,
         "documents": len(reg),
-        "lexical_index": (
-            LEXICAL_INDEX.status(reg)
-            if RAG_PERSISTENT_LEXICAL_INDEX_ENABLED
-            else {"ready": False, "reason": "LEXICAL_INDEX_DISABLED"}
-        ),
+        "lexical_index": _persistent_lexical_index_status(reg),
     }
 
 
@@ -6219,24 +6293,26 @@ def lexical_index_status():
     return {
         "ok": True,
         "enabled": RAG_PERSISTENT_LEXICAL_INDEX_ENABLED,
-        "lexical_index": (
-            LEXICAL_INDEX.status(registry, verify=True)
-            if RAG_PERSISTENT_LEXICAL_INDEX_ENABLED
-            else {"ready": False, "reason": "LEXICAL_INDEX_DISABLED"}
-        ),
+        "lexical_index": _persistent_lexical_index_status(registry, verify=True),
     }
 
 
-@app.post("/lexical-index/rebuild", dependencies=[Depends(_require_key), Depends(_require_registry_available)])
+@app.post(
+    "/lexical-index/rebuild",
+    dependencies=[Depends(_require_key), Depends(_require_registry_available)],
+    status_code=202,
+)
 def rebuild_lexical_index():
     if not RAG_PERSISTENT_LEXICAL_INDEX_ENABLED:
         raise HTTPException(409, {"code": "LEXICAL_INDEX_DISABLED"})
     _mark_persistent_lexical_index_stale("admin_rebuild")
-    try:
-        status = _rebuild_persistent_lexical_index("admin_rebuild")
-    except LexicalIndexError as exc:
-        raise HTTPException(503, {"code": exc.code}) from exc
-    return {"ok": True, "lexical_index": status}
+    refresh = _schedule_persistent_lexical_index_refresh("admin_rebuild")
+    return {
+        "ok": True,
+        "accepted": True,
+        "refresh": refresh,
+        "lexical_index": _persistent_lexical_index_status(_load_registry()),
+    }
 
 # --- Ephemeral analyze (no persistence) ---
 @app.post("/analyze", dependencies=[Depends(_require_key)])
@@ -7569,7 +7645,7 @@ def patch_document_metadata(doc_id: str, payload: PatchMetadata):
         # If the shared metadata transaction could not prove its rollback, the
         # old FTS file remains present but deliberately unusable until rebuild.
         raise
-    _refresh_persistent_lexical_index("metadata_patch")
+    _schedule_persistent_lexical_index_refresh("metadata_patch")
 
     return {
         "ok": True,
@@ -7601,7 +7677,7 @@ def delete_doc(doc_id: str):
     finally:
         # A failed delete can still leave a durable tombstone. Rebuild from the
         # resulting registry/Chroma state; a failed rebuild keeps the stale gate.
-        _refresh_persistent_lexical_index("document_delete")
+        _schedule_persistent_lexical_index_refresh("document_delete")
     return {"ok": True, "deleted": doc_id, "hadEntry": result.had_entry}
 
 def _execute_search(
