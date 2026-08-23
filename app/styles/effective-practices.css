@@ -16,6 +16,7 @@
   min-height: 100%;
   padding: clamp(0.9rem, 1.8vw, 1.5rem);
   color: var(--text-warm);
+  container-type: inline-size;
 }
 
 /* ---------- Ülariba: Välju + bränd + funktsioonide nav + abi/profiil
@@ -802,7 +803,7 @@ button.epp-close {
   bottom: 1.25rem;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 70;
+  z-index: var(--z-floating);
   padding: 0.7rem 1.1rem;
   border: 1px solid rgba(235, 154, 118, 0.5);
   border-radius: 1rem;
@@ -831,4 +832,11 @@ button.epp-close {
     order: 3;
     flex-basis: 100%;
   }
+}
+
+@container (max-width: 56.25rem) {
+  .epp-detail-grid,
+  .epp-form-grid,
+  .epp-context-pair { grid-template-columns: minmax(0, 1fr); }
+  .epp-nav { order: 3; flex-basis: 100%; }
 }

@@ -74,7 +74,7 @@ function normalizeUIProfile(uiProfile) {
   return parseUIProfile(uiProfile) || DEFAULT_PREFS.uiProfile;
 }
 
-function resolveUIScaleValue(uiScale, uiProfile) {
+function resolveUIScaleFactors(uiScale, uiProfile) {
   const normalized = normalizeUIScale(uiScale);
   const textFactor =
     normalized === "sm"
@@ -86,7 +86,11 @@ function resolveUIScaleValue(uiScale, uiProfile) {
           : 1;
   const profile = normalizeUIProfile(uiProfile);
   const profileFactor = profile === "lg" ? 1.25 : profile === "mac" ? 1.18 : 1;
-  return profileFactor * textFactor;
+  return {
+    textFactor,
+    profileFactor,
+    combinedFactor: profileFactor * textFactor
+  };
 }
 const THEME_VALUES = ["light", "mid", "dark"];
 function isKnownThemeValue(theme) {
@@ -236,7 +240,10 @@ function applyPrefsToDom(prefs) {
   html.setAttribute("data-contrast", nextContrast);
   html.setAttribute("data-reduce-motion", prefs.reduceMotion ? "1" : "0");
   html.setAttribute("data-reduce-transparency", prefs.reduceTransparency ? "1" : "0");
-  html.style.setProperty("--ui-scale", String(resolveUIScaleValue(uiScale, uiProfile)));
+  const { textFactor, profileFactor, combinedFactor } = resolveUIScaleFactors(uiScale, uiProfile);
+  html.style.setProperty("--text-scale", String(textFactor));
+  html.style.setProperty("--display-scale", String(profileFactor));
+  html.style.setProperty("--ui-scale", String(combinedFactor));
   const theme = effectiveTheme({ theme: prefs.theme, contrast: nextContrast });
   html.setAttribute("data-theme-mode", theme);
   const hadThemeClass = THEME_VALUES.find((v) => html.classList.contains(`theme-${v}`)) || null;

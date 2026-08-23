@@ -12,12 +12,23 @@
    59px`) ja PWA olukorda ilma telefonita mõõta. */
 :root {
   --safe-top: env(safe-area-inset-top, 0px);
+  --app-dynamic-block-size: 100vh;
+  --overlay-available-block-size: calc(
+    var(--app-dynamic-block-size) - env(safe-area-inset-top, 0px) -
+      env(safe-area-inset-bottom, 0px) - 1rem
+  );
+}
+
+@supports (height: 100dvh) {
+  :root {
+    --app-dynamic-block-size: 100dvh;
+  }
 }
 
 .panel-scrim {
   position: relative;
   z-index: var(--z-panel);
-  min-height: 100lvh;
+  min-height: var(--app-dynamic-block-size);
   display: grid;
   place-items: center;
   padding: clamp(1rem, 3.2lvh, 2.6rem) clamp(0.75rem, 2.5vw, 2rem);
@@ -277,7 +288,7 @@ html[data-reduce-motion="1"] .panel-scrim[data-dock="1"] {
   width: min(var(--gc-w), 94vw);
   aspect-ratio: 0.72;
   min-height: 0;
-  max-height: min(86lvh, 43.75rem);
+  max-height: min(var(--overlay-available-block-size), 43.75rem);
   border-radius: clamp(20px, 2.4vw, 30px);
   /* Tellija 06.07 öö: MITTE mingit "kaart kasvab kaardi sees" efekti —
      sama kaardi sisu lihtsalt vahetub, raam ei liigu. */
@@ -547,7 +558,8 @@ button.panel-exit:hover > span {
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
-  overflow-x: hidden;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
   overscroll-behavior: contain;
   padding: var(--panel-pad);
   padding-top: calc(var(--panel-pad) + 0.6rem);
@@ -1054,7 +1066,7 @@ label[data-control-type][data-checked="true"] > span[aria-hidden="true"] svg {
   .panel-scrim[data-chat="1"] .panel,
   .panel-scrim[data-narrow="1"] .panel {
     width: 100%;
-    height: 100lvh;
+    height: var(--app-dynamic-block-size);
     border-radius: 0;
     border-left: none;
     border-right: none;
@@ -1080,7 +1092,7 @@ label[data-control-type][data-checked="true"] > span[aria-hidden="true"] svg {
      nurgad sirged — kast, mis ei ole ei aken ega leht. */
   .panel-scrim[data-dock="1"] {
     padding-bottom: 0;
-    --panel-max-h: 100lvh;
+    --panel-max-h: var(--app-dynamic-block-size);
   }
   .panel-scrim[data-dock="1"] .panel-body {
     padding-bottom: var(--room-dock-reserve);
@@ -1105,7 +1117,7 @@ label[data-control-type][data-checked="true"] > span[aria-hidden="true"] svg {
        tema sees). 0.78 on kõige täidetuma kaardi (Uuenda PIN, 437 px sisu)
        mõõt + hingamisruum; kitsam suhe pani PIN-kaardi 7 px pärast kerima. */
     aspect-ratio: 0.78;
-    max-height: min(78lvh, 34rem);
+    max-height: min(var(--overlay-available-block-size), 34rem);
   }
   .usage-overview__intro,
   .usage-meter__line,

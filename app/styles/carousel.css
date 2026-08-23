@@ -978,7 +978,7 @@ html[data-reduce-motion="1"] .gc-shortcuts {
      lehel täpselt ühel kõrgusel — vt tokens.css. Protsent siin oli üks
      kolmest eri arvust, mis lehed lahku ajas. */
   bottom: calc(env(safe-area-inset-bottom, 0px) + var(--dock-bottom));
-  z-index: 70;
+  z-index: var(--z-floating);
   display: flex;
   align-items: center;
   gap: 0.7rem;
@@ -1065,7 +1065,7 @@ html[data-reduce-motion="1"] .gc-shortcuts {
   bottom: max(5.2%, env(safe-area-inset-bottom, 0px) + 3.2%);
   left: auto;
   top: auto;
-  z-index: 70;
+  z-index: var(--z-floating);
   padding: 0.22rem;
   opacity: calc(var(--gc-shortcuts-opacity, 0) * 0.42);
   pointer-events: var(--gc-shortcuts-pointer, none);

@@ -12,7 +12,7 @@
   --voice-rose: #c68d63;
   position: absolute;
   inset: 0;
-  z-index: 36;
+  z-index: var(--chat-layer-overlay, var(--z-overlay));
   display: grid;
   grid-template-rows: minmax(0, 1fr);
   min-height: 0;
@@ -82,18 +82,14 @@
 }
 
 /* Taustarežiim: kuju seisab vestluse taga, ei püüa klikke ega fookust.
-   Tekstimullid tõstetakse tema ette (`> main` allpool). */
+   Tekstimullide ja komposeri järjestuse annab chat.css-i otseste laste
+   kihistusleping; see fail ei tõsta enam kõiki main-elemente pimesi. */
 .voice-avatar[data-backdrop="true"] {
   position: absolute;
   inset: 0;
   z-index: 0;
   pointer-events: none;
   cursor: default;
-}
-
-[data-chat-container] > main {
-  position: relative;
-  z-index: 1;
 }
 
 .voice-avatar[data-webgl="unavailable"] .voice-avatar__fallback,

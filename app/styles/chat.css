@@ -71,11 +71,35 @@
    (omanik 28.07: „input hüppas üles poole, kõrgemale kui peaks").
    Tarbija = ChatComposer'i mobiili inline-stiil. */
 [data-chat-container] {
+  /* Selle isoleeritud komponendi otseste laste kihistusleping. Numbrid on
+     teadlikult lokaalsed: globaalne overlay-skaala ei lahenda sibling'ite
+     maalijärjekorda uue stacking context'i sees. */
+  --chat-layer-backdrop: 0;
+  --chat-layer-content: 1;
+  --chat-layer-composer: 2;
+  --chat-layer-floating: 3;
+  --chat-layer-overlay: 4;
+  --chat-layer-modal: 5;
   --chat-composer-rest-inset: calc(
     max(env(safe-area-inset-bottom, 0px), var(--chat-browser-chrome, 0px)) +
       var(--chat-composer-mobile-bottom-base, 2.5rem)
   );
   --chat-composer-inset: var(--chat-composer-rest-inset);
+  position: relative;
+  isolation: isolate;
+}
+
+[data-chat-container] > .voice-avatar[data-backdrop="true"] {
+  z-index: var(--chat-layer-backdrop);
+}
+
+[data-chat-container] > main {
+  position: relative;
+  z-index: var(--chat-layer-content);
+}
+
+[data-chat-container] > form:has(#chat-input) {
+  z-index: var(--chat-layer-composer);
 }
 
 #chat-window {
@@ -187,6 +211,8 @@ form:has(#chat-input) > div:first-child button {
   place-items: center;
   width: 2.35rem;
   height: 2.35rem;
+  min-inline-size: var(--hit-target-min);
+  min-block-size: var(--hit-target-min);
   padding: 0;
   border-radius: 50%;
   color: var(--text-soft);
@@ -331,6 +357,8 @@ form:has(#chat-input) button[type="submit"] {
   place-items: center;
   width: 2.35rem;
   height: 2.35rem;
+  min-inline-size: var(--hit-target-min);
+  min-block-size: var(--hit-target-min);
   padding: 0;
   border-radius: 50%;
   color: var(--text-soft);
@@ -733,6 +761,8 @@ button[aria-controls="chat-window-scroll"] {
   place-items: center;
   width: 2.5rem;
   height: 2.5rem;
+  min-inline-size: var(--hit-target-min);
+  min-block-size: var(--hit-target-min);
   border-radius: 50%;
   color: var(--text-soft);
 }
@@ -1078,6 +1108,8 @@ button[aria-controls="chat-window-scroll"] {
   place-items: center;
   width: 2rem;
   height: 2rem;
+  min-inline-size: var(--hit-target-min);
+  min-block-size: var(--hit-target-min);
   padding: 0;
   margin: 0;
   border: 0;
@@ -1736,7 +1768,7 @@ html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] [role="article"
 #chat-sources-panel {
   position: fixed;
   inset: 0;
-  z-index: 90;
+  z-index: var(--chat-layer-modal, var(--z-overlay));
   display: grid;
   place-items: center;
   padding: clamp(0.75rem, 3vw, 2.5rem);
@@ -1748,7 +1780,7 @@ html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] [role="article"
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
   width: min(46rem, 100%);
-  max-height: min(84vh, 52rem);
+  max-height: min(var(--overlay-available-block-size), 52rem);
   overflow: hidden;
   border: 1px solid var(--glass-border);
   border-radius: 1.5rem;
@@ -2129,6 +2161,8 @@ form:has(#chat-input) button.conv-ai-target:focus-visible {
   place-items: center;
   width: 2.35rem;
   height: 2.35rem;
+  min-inline-size: var(--hit-target-min);
+  min-block-size: var(--hit-target-min);
   padding: 0;
   border: 1px solid transparent;
   background: transparent;

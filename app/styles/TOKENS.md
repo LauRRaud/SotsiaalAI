@@ -12,8 +12,11 @@ Näited:
 
 ```css
 :root {
-  --base-rem: 16px;
+  --base-rem: 1rem;
+  --text-scale: 1;
+  --display-scale: 1;
   --ui-scale: 1;
+  --hit-target-min: 2.75rem;
   --brand-primary: #c57171;
   --brand-accent: var(--brand-primary);
 

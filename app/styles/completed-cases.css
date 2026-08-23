@@ -16,6 +16,7 @@
   min-height: 100%;
   padding: clamp(0.9rem, 1.8vw, 1.5rem);
   color: var(--text-warm);
+  container-type: inline-size;
 }
 
 /* ---------- Ülariba: Välju + bränd + funktsioonide nav + abi/profiil
@@ -819,6 +820,11 @@ button.ccp-close {
   }
 }
 
+@container (max-width: 68.75rem) {
+  .ccp-layout { grid-template-columns: minmax(0, 1fr); }
+  .ccp-metrics { grid-template-columns: repeat(auto-fit, minmax(min(11rem, 100%), 1fr)); }
+}
+
 @media (max-width: 760px) {
   .ccp-header {
     grid-template-columns: 1fr;
@@ -835,4 +841,12 @@ button.ccp-close {
     order: 3;
     flex-basis: 100%;
   }
+}
+
+@container (max-width: 47.5rem) {
+  .ccp-header { grid-template-columns: minmax(0, 1fr); align-items: start; }
+  .ccp-scope { justify-content: flex-start; }
+  .ccp-detail-grid,
+  .ccp-followup-summary { grid-template-columns: minmax(0, 1fr); }
+  .ccp-nav { order: 3; flex-basis: 100%; }
 }
