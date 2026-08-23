@@ -137,7 +137,13 @@ tekstivestlusse naastes. Järelparandus on 23.08 toodangus koodi-SHA-l `c2e2df9b
 olid aktiivsed, `/vestlus` vastas 200 ja RAG-i tervis oli endiselt `ok=true` (49 727 / 6089).
 Autenditud brauseris näitas häälpind ainult avatarit ja dokki ning „Tagasi vestlusesse“ taastas
 sõnumid. Staatilised kontrollid ja tootmisbuild on rohelised; parandusejärgne mikrofoni täpsus
-on kuni uue päris lausungini **NOT_PROVEN**.
+on kuni uue päris lausungini **NOT_PROVEN**. Teine 23.08 järelparandus (`62a8863c`, toodangu
+koond-SHA `c6a8da8b`) lahutas „Uus vestlus“ nupu vestlusloendi laadimisest ja teeb vahetunud
+vestluse ID saatmisrajale nähtavaks samas renderduses. Hääletranskript kannab nüüd Luna jaoks
+suletud `inputModality: voice` märgist: vastus käitub loomuliku häälvestlusena, kuid ei väida
+ligipääsu toorhelile. Päris serveris vajutati „Uus“ kohe loendi avamise järel; vana lõim kadus ja
+avanes tühi uus vestlus. Uus mikrofoni kaudu häälvastus ootab omaniku järgmist lausungit ja on
+seni **NOT_PROVEN**.
 
 **Tööalade sisuvaadete kiirmenüü ja leheinfo on 22.08 parandatud.** Kõik
 `/vestlus?workspace=…` tööalad kasutavad nüüd sisu klaaspinda ning lehe nime, tagasinupu ja
@@ -1971,6 +1977,14 @@ lõppu ja 90 sekundi jõudeolekupiir. Enne tasulise ühenduse loomist reserveeri
 möödunud aeg. TTS-i enam seansi alguses 3000 märgi ulatuses ette ei reserveerita, vaid iga
 TartuNLP väljastus arvestatakse täpse tekstimahuga tavalisel `/api/tts` rajal. Sama seansivõtit
 ei saa uue tasulise ühenduse avamiseks korrata ja uusi algusi piiratakse kolmele minutis.
+
+Hääletranskript märgitakse tavavestluse päringus suletud väärtusega `inputModality: voice`.
+See ei muuda RAG-i ega Luna rolli, vaid annab vastusemudelile teada, et kasutaja rääkis: mudel
+ei tohi vastata „ma ei kuule heli“ ega „näen ainult kirjutatud teksti“, kuid ei tohi ka väita,
+et tal on toorheli. Esimese tervituse serverivastus kasutab sama eristust ja ütleb häälsisendi
+korral, et kasutaja kõne jõudis kohale. „Uus vestlus“ töötab ka ajal, kui külgriba alles laeb
+ajalugu; loomine on ühe päringu kaupa lukustatud ja uus `convId` jõuab saatmisrajale samas
+renderduses, et kiire järgmine häälvoor ei saaks minna vanasse lõime.
 
 **Dikteerimine vestlusaknas.**
 Kui kirjutamine on raske — käed on kinni, silmad väsinud, olukord ärev või kirjatöö lihtsalt
