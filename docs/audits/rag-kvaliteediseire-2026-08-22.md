@@ -532,7 +532,7 @@ Kvaliteedi lõppvaade eraldi:
 
 Seega on tõendatud vaid **21 end-to-end õiget juhtumit 75-st**, kuid seda arvu ei tohi kasutada väitena „RAG on 28% töökindel”: 25 juhtumi vastamiskiht on tõendamata, valim on sihipäraselt kihiline, kategooriate raskus erineb ning sama vestluse pikkus paljastas eraldi planner'i ja rate-limit riskid.
 
-### Praeguse release'i end-to-end värav — SHA `815f15f6`
+### Ajaloolise release'i end-to-end värav — SHA `815f15f6`
 
 | seis | arv | tähendus |
 |---|---:|---|
@@ -560,3 +560,27 @@ Omaniku tõstatatud Laur Raudsoo reprodutseerimiskatse ei kuulu 75 põhijuhtumi 
 ## Võrdlusmaterjalid
 
 Kontrolliti ka omaniku viidatud faile `rag-leidude-uuskontroll-2026-08-22.md` ja `rag-otsingu-jaakaugud-2026-08-22.md`. Neid kasutati hüpoteeside ja koodiviidete võrdluseks, mitte uute küsimuste kontrollvastusteks. Käesolev runtime-seire kinnitas nende põhiteesidest sõnastustundlikkuse, õige artikli/vale lõigu, laia raja vähese katvuse, autorimeta nõrkuse, ajaloo lahjenduse ja nähtamatu kontekstikärpe praktilise mõju. Samal ajal korrigeerib käesolev raport varasema `autenditud /vestlus NOT_PROVEN` staatuse 50 tegeliku sisulise vastuse võrra.
+
+### 23.08 FTS5 release'i autentitud sihtkordus — SHA-d `914e1452` ja `da2c79c4`
+
+Kontroll jätkus samas autentitud vestluses ilma „Uus vestlus” workaround'ita. FTS5-järgse üheksa juhtumi esmane plokk andis kuus PASS-i ja kolm viga: V06 täpne uuringufakt, Kadri Soo autorirada ning KOV-i järel esitatud sõltumatu üldküsimus. Omaniku eraldi brauseris ilmnes lisaks Lauri liitküsimuse nimeparseri viga. Need ei olnud üks FTS5 veaklass: V06 põhjus oli dokumendiidentiteedi järjestus, üldküsimusel ajaloo KOV-scope, Lauril asesõnafraasi valinud parser ning Kadri puhul praeguse registri author-meta puudujääk.
+
+SHA `914e1452` järelkontroll:
+
+| juhtum | vastus | brauseri lõppaeg | trace | avatud allikas | seis |
+|---|---|---:|---|---|---|
+| Laur Raudsoo liitküsimus | isik ja kirjutatud teemad õigesti | 15 022 ms | `person_source_lookup`, nimi `Laur Raudsoo`, retrieval 9457 ms | 5 toetavat autoriharu kaarti | **PASS** |
+| üldine eaka koduabi kohe Kuusalu järel | üldine koduteenus, KOV-saba puudus | 12 330 ms | `life_situation_guidance`, municipality ID puudus, retrieval 8465 ms | SHS § 18, § 17 ja § 26 | **PASS** |
+| V06 loomulik sõnastus | `169 / 2018` | 18 198 ms | `specific_research_fact`, identiteet `high`, retrieval 16 748 ms | Merli Lauri 2022 artikkel | **PASS** |
+
+See on sihtploki **3/3**, mitte kogu 75 juhtumi kordus. Kumulatiivne ajalooline arvestus jääb **DONE 21/75 · NOT_PROVEN 54/75**; `914e1452_end_to_end_revalidated` ei ole 21/75. Kadri Soo A07 ajalooline PASS ei tõenda praeguse registri täpset author-meta rada: käesolevas mõõtmises oli täpseid author-ridu 0 ning nimi esines ainult chunk'ide sisus. A07 jääb allika/meta kooskõla lahendamiseni praeguse release'i jaoks avatuks.
+
+Lisakontroll `Mida sätestab Kuusalu valla koduteenuse määruse § 6?` andis 3416 ms-ga vale keeldumise: planner valis `municipality_service_benefit_list` ja kuvas ainult teenuselehe. Sama aktiivse korpuse otsene täppisfilter `kov_regulation + kov_legal + kuusalu_vald + paragraph_number=6` tagastas ühe õige „§ 6 Koduteenus” lõigu, `partial=false`, `degraded=false`. Tõendatud põhjus oli määruse tuvastaja puuduv käändevorm „määruse”, mitte FTS5 puuduv katvus.
+
+Release `da2c79c4` järel vastas sama autentitud küsimus 6401 ms-ga õigesti § 6 eesmärgi, abitoimingute sisu ja personaalse hoolduskava kohta. Planner ja legal lookup olid `explicit_paragraph`, municipality ID `kuusalu_vald`, valitud allikaid 1 ja kuvatud allikaid 1 ning ID-d kattusid. Avatud paneel näitas toetavat „Sotsiaalhoolekandelise abi andmise kord Kuusalu vallas § 6 Koduteenus” kaarti. Release-jada mõõdetud sihtkontroll on seega **4/4 PASS**, kuid see ei ole kogu 75 juhtumi kordus.
+
+### 23.08 ET/RU/EN keeleproov — arhitektuurivärav `NOT_PROVEN`
+
+Autentitud küsimus `Кто такой Лаур Раудсоо и о чём он писал?` tõendas, et mitmekeelne embedding üksi ei moodusta mitmekeelset RAG-i. Brauseri lõppaeg oli 5332 ms; planner jäi `default` režiimi, `person_name` puudus, dense andis 36 kandidaati, BM25 0, kuvatud allikaid 0 ning vastus tuli eestikeelse `uiLocale` tõttu eesti keeles.
+
+Järgmise keeleploki värav peab sama tähendusega ET/RU/EN küsimuste puhul eraldi mõõtma: tegelik küsimuse keel, eestikeelse retrieval-variandi olemasolu ja kindlus, algse ning eestikeelse dense-kanali recall, FTS5 recall, kaitstud nimi/pealkiri/arv/§, valitud kontekst, vastuse keel, valitud ja kuvatud source-ID võrdsus ning paneeli toetus. Küsimuse ega tõlgitud päringu täisteksti trace'i ei lisata. Praegune venekeelne rada on **FAIL** selle lisajuhtumi jaoks ja kogu ET/RU/EN värav **NOT_PROVEN**; see ei muuda 75 eestikeelse põhijuhtumi nimetajat.

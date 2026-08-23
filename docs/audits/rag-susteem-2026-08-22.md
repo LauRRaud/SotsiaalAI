@@ -3,8 +3,8 @@
 Kuupäev: 22.08.2026
 Tööharu: `codex/rag-quality-repair-20260822`
 Varasem toodangusse viidud RAG-paranduste lähtecommit: `08cbd94ac86597911e22e3731ee812c717f04110`
-Praegune brauseris kontrollitud sisulise RAG- ja vestlusloogika baasseis on `815f15f6`; 23.08 külmkäivituse runtime-release oli `5796178f` ning püsiva leksikaalindeksi runtime-release on `d08b25a8`. Uue indeksi toodangu health ja otsene otsing on tõendatud, kuid sama SHA autentitud vastust ja allikapaneeli ei ole tehtud. Hilisem dokumentatsiooni commit ei nimeta ennast runtime-tõendiks.
-Põhjusepõhiste paranduste viimane jätk jõudis toodangusse commit'ijadana `15fc81a3` → `8b4f4d69` → `bdaa8afd` → `2b0bd86` → `429469dd` → `56b4a13d` → `d7c35346` → `815f15f6`. V04 ja kümme autorijuhtumit läbisid end-to-end värava; kogu 75 juhtumi lõppvärav ei ole tehtud.
+Praegune brauseris kontrollitud sisulise RAG- ja vestlusloogika baasseis on `da2c79c4`; 23.08 külmkäivituse runtime-release oli `5796178f` ning püsiva leksikaalindeksi runtime-release on `d08b25a8`. FTS5 indeksi health ja otsene otsing ning `914e1452`/`da2c79c4` autentitud sihtväravad on tõendatud, kuid kogu 75 juhtumi kordus ei ole tehtud. Hilisem dokumentatsiooni commit ei nimeta ennast runtime-tõendiks.
+Põhjusepõhiste paranduste jätk jõudis toodangusse commit'ijadana `15fc81a3` → `8b4f4d69` → `bdaa8afd` → `2b0bd86` → `429469dd` → `56b4a13d` → `d7c35346` → `815f15f6` → `5796178f` → `d08b25a8` → `914e1452` → `da2c79c4`. V04 ja kümme autorijuhtumit läbisid ajaloolise end-to-end värava; praegusel release'il on sihtkontroll, kuid kogu 75 juhtumi lõppvärav ei ole tehtud.
 Seis: **PARTIAL — süsteemi ei ole tõendatud 10/10 töökindlaks**
 
 See dokument vastab neljale eri küsimusele:
@@ -76,7 +76,7 @@ RAG-teenus ei ole avalikult internetti binditud. Frontend pöördub selle poole 
 
 | kontroll | tulemus |
 |---|---|
-| serveri HEAD | `d08b25a813be302ecda3d4cff71f12f520e23617` |
+| serveri HEAD | `da2c79c4bd5e76fe457520cde94e5d2e995b87d4` |
 | `origin/main` | sama SHA |
 | RAG health | `ok=true`, 49 727 vektorit, 6089 registrikirjet |
 | püsiv leksikaalindeks | `ready=true`, FTS5 v2, 49 727 lõiku / 6073 aktiivset dokumenti |
@@ -954,3 +954,44 @@ Runtime-release on SHA `d08b25a813be302ecda3d4cff71f12f520e23617`; `origin/main`
 Toodangu laia üldpäringu kolm järjestikust otsest `/search` korda kasutasid kõik `persistent_fts5` strateegiat ning olid `complete=true`, `partial=false`, `degraded=false`. Leksikaalajad olid 517, 512 ja 537 ms, retrieval 841, 811 ja 842 ms ning kogu päring 3198, 1453 ja 1038 ms; esimese korra suurem koguaeg jäi väljapoole leksikaalset rada. Juurkettal oli pärast deploy'd 20 GiB vaba ehk kasutus 59%, serveril 3,4 GiB mälu available ning kogu RAG-protsessi PSS 1 734 352 KiB. Need on hetktõendid, mitte p50/p95 koormustest.
 
 Autenditud in-app brauser avas `/vestlus` vaate ja komposeri ilma loginiväravata, kuid privaatsuse hoidmiseks uut vestlussõnumit ei saadetud ega olemasolevaid vestlusi loetud. Seetõttu on sama SHA vastuse, kuvatud allikapaneeli ning päris ingest/reindex/tombstone taustasünkroonsuse värav endiselt **NOT_PROVEN**. Python compile, scoped ESLint, i18n, `git diff --check` ja lõppkoodi kohalik ning serveri tootmisbuild olid rohelised; Prisma pinda ei muudetud ning automaatteste ega uusi testi-, smoke-, probe-, benchmark- või E2E-faile ei loodud ega käivitatud. Kiire runtime-rollback on `RAG_PERSISTENT_LEXICAL_INDEX_ENABLED=0` ning RAG-teenuse restart; see taastab vana skanni muutmata Chroma korpust, registrit, andmebaasi või kasutajaandmeid. Commit'i rollback on release-commit'ide revert ja tavapärane deploy; FTS-fail võib jääda kasutamata kettale.
+
+## 32. FTS5 release'i autentitud järelkontroll ja üldparandused — SHA-d `914e1452` ja `da2c79c4`
+
+Kontroll tehti samas autentitud `/vestlus` vestluses ilma „Uus vestlus” workaround'ita. Esimese üheksa juhtumi plokk andis kuus PASS-i ja kolm tõendatud viga: V06 uuringudokument kuulutati ühepunktilise identiteedivahe tõttu ekslikult ebamääraseks, Kadri Soo täpses author-meta rajas ei olnud praeguses registris ühtegi vastet ning KOV-i järel esitatud iseseisev üldine koduabi küsimus päris Kuusalu scope'i. Omaniku eraldi brauserikontrollis eksis ka liitküsimuse „Kes on Laur Raudsoo ja mida ta on kirjutanud?” nimeparser, valides nimeks asesõnafraasi „ta on”.
+
+`914e1452` parandab kolm koodipõhist üldlepingut: liitküsimuses võetakse täisnimi enne lihtsamaid mustreid ja asesõnafraas ei saa olla isik; KOV-i ajalugu kantakse üle ainult päriselt kontekstist sõltuvale jätkuküsimusele; konkreetse uuringudokumendi identiteedis eelistatakse täpset pealkirja teemakatvust üldisele chunk'i sisuteksti terminiloendusele. Ühe autori, KOV-i ega uuringu vastust koodi ei lisatud.
+
+Deploy-järgne autentitud sihtkontroll:
+
+| küsimus | brauseri lõppaeg | planner / retrieval | avatud toetav allikas | seis |
+|---|---:|---|---|---|
+| `Kes on Laur Raudsoo ja mida ta on kirjutanud?` | 15 022 ms | `person_source_lookup`, `person_name=Laur Raudsoo`, retrieval 9457 ms | viis autoriharu kaarti, sh Lauri 2025, 2018 ja 2017 artiklid | **PASS** |
+| `Millist abi saab eakas inimene kodus?` kohe Kuusalu küsimuse järel | 12 330 ms | `life_situation_guidance`, KOV ID puudus, retrieval 8465 ms | SHS § 18, § 17 ja § 26; Kuusalu allikat ei kuvatud | **PASS** |
+| V06 loomulik `169 / 2018` küsimus | 18 198 ms | `specific_research_fact`, identiteet `high`, retrieval 16 748 ms | Merli Lauri 2022 artikkel | **PASS** |
+
+Kõigi kolme sihtvastuse paneel avati ning valitud ja kuvatud tõend toetas vastust. FTS5 jäi `ready=true`, 49 727 lõigu / 6073 aktiivse dokumendi peale. Korpust, indeksit, andmebaasi ega serveri env-i ei muudetud. Automaatteste ei loodud ega käivitatud; muudetud koodi lint, i18n, diff-kontroll ja lõpliku koodipuu tootmisbuild olid rohelised.
+
+Järelkontroll avas kaks eraldi jääki. Praeguse registri täpne `author`-meta ei sisalda Kadri Soo vastet, kuigi tema nimi esineb chunk'ide sisus; ajaloolist A07 PASS-i ei käsitleta seetõttu uue release'i täpse author-meta tõendina enne allika ja metaandmete kooskõla lahendamist. Lühivorm `Mida sätestab Kuusalu valla koduteenuse määruse § 6?` läks esmalt `municipality_service_benefit_list` rajale ja andis vale keeldumise. Otsene täppisfilter leidis samast aktiivsest korpusest ainsa õige `kov_legal` / `kuusalu_vald` / § 6 „Koduteenus” lõigu; põhjus oli sõnavormi „määruse” puudumine määruse tuvastaja käändevormidest, mitte FTS5 recall ega puuduv õigusallikas.
+
+Release `da2c79c4` lisas määruse tuvastajale kitsad käändevormid. Sama autentitud küsimus vastas 6401 ms-ga § 6 eesmärgi, sisu, abitoimingud ja personaalse hoolduskava õigesti. Trace oli `explicit_paragraph`, municipality ID `kuusalu_vald`, valitud allikaid 1, kuvatud allikaid 1 ning ID-d kattusid. Avatud paneel näitas „Sotsiaalhoolekandelise abi andmise kord Kuusalu vallas § 6 Koduteenus · Koduteenus”.
+
+Kumulatiivne ajalooline arvestus jääb **DONE 21/75 · NOT_PROVEN 54/75**, kuid neid 21 juhtumit ei pärita automaatselt `da2c79c4` kogu-release'i tõendiks. Praeguse release-jada sihtplokk on neli neljast PASS; Kadri meta, päris ingest/reindex/delete sünkroonsus ja ülejäänud maatriks jäävad avatuks. Üldhinnang on **PARTIAL**, mitte 10/10.
+
+## 33. ET/RU/EN keelepõhise RAG-i arhitektuur — kaardistatud, mitte rakendatud
+
+Praegu ei ole üksikut „RAG-i keele” lülitit. `requestBootstrap` annab `uiLocale`-ile vastuse keele valikul eelisõiguse; `questionPlanner` intentsõnavara ja entiteedimustrid on valdavalt eestikeelsed; sama algne küsimus saadetakse nii mitmekeelse `text-embedding-3-large` dense-kanali kui eestikeelse FTS5 BM25 kanali sisendiks. Seetõttu ei piisa ainult mitmekeelsest embedding'ust.
+
+Autentitud vene kontroll `Кто такой Лаур Раудсоо и о чём он писал?` võttis brauseris 5332 ms. Dense leidis 36 kandidaati, kuid planner jäi `default` režiimi, `person_name` puudus, BM25 andis 0, kuvatud allikaid oli 0 ning eestikeelse UI tõttu tuli vastus eesti keeles. See on nelja kihi lepinguviga — intentsus, leksikaalne recall, vastuse keel ja atribuutika — mitte tõend toimivast venekeelsest RAG-ist.
+
+Sihtarhitektuur on üks ühine RAG eestikeelse korpuse kohal, mitte kolm eraldi indeksit:
+
+1. `interface_language` kannab kasutajaliidese valikut, `query_language` küsimuse tegelikku keelt ja `answer_language` selle vooru vastuse keelt;
+2. vastuse keele eelisjärjekord on kasutaja selge voorupõhine soov, kindlalt tuvastatud küsimuse keel ning alles seejärel profiili või UI fallback;
+3. nimed, KOV-id, täpsed pealkirjad, aastad, protsendid ja §-viited eraldatakse algsest küsimusest kaitstud entiteetidena ning neid ei tõlgita;
+4. vene ja inglise küsimusele koostatakse struktureeritud eestikeelne `retrieval_query_et`;
+5. dense-kanal otsib nii algse kui eestikeelse variandiga ning tulemused liidetakse olemasoleva fusion/RRF-i kaudu; FTS5 otsib eestikeelse variandiga;
+6. täpne author/title/doc/paragraph metadata rada kasutab kaitstud algentiteete, mitte tõlgitud nime;
+7. Luna koostab vastuse `answer_language` keeles, kuid allikate pealkirjad ja tekst jäävad algkeelde;
+8. madala kindlusega või puuduva tõlke korral jätkub turvaline algkeele dense-otsing, kuid diagnostika ei tohi väita täielikku hübriidotsingut.
+
+Privaatsust säilitav trace peab talletama ainult keelekoodid, tõlke olemasolu ja kindluse, kanalite kandidaadiarvud ning kestused; küsimuse ega tõlke täisteksti ei logita. Enne tõlkekihi mudeli või lisakutse valikut tuleb mõõta selle latentsus, kulu ja ET/RU/EN samatähenduslike küsimuste source/chunk-pariteet. Mudelit, prompt'i, top-k-d, FTS5 indeksit ega korpust ei muudeta keeleplokis oletuse järgi.
