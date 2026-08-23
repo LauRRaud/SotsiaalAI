@@ -24,6 +24,7 @@ import {
   buildChatOrchestrationMetadata,
   buildSourceLookupSystemInstruction,
   buildMissingMunicipalitySystemInstruction,
+  buildVoiceInputSystemInstruction,
   saveAssistantRoomMessage
 } from "@/lib/chat/mainRouteRuntime";
 import {
@@ -133,6 +134,7 @@ export async function POST(req, deps = {}) {
     greeting,
     clarifyingTurns,
     requestedThoroughness,
+    inputModality,
     L,
     isCrisis,
     hasHistory,
@@ -225,7 +227,9 @@ export async function POST(req, deps = {}) {
     });
   }
   if (greeting && !isCrisis && !hasHistory) {
-    const reply = normalizedRole === "SOCIAL_WORKER" ? L.greetingWorker : L.greetingClient;
+    const reply = inputModality === "voice"
+      ? normalizedRole === "SOCIAL_WORKER" ? L.voiceGreetingWorker : L.voiceGreetingClient
+      : normalizedRole === "SOCIAL_WORKER" ? L.greetingWorker : L.greetingClient;
     const { attachments } = await finalizeAssistantReply({
       persist,
       convId,
@@ -371,6 +375,7 @@ export async function POST(req, deps = {}) {
     retrievalMeta
   } = retrievalResult;
   const responseSystemInstructions = [
+    ...(inputModality === "voice" ? [buildVoiceInputSystemInstruction(replyLang)] : []),
     ...(Array.isArray(extraSystemInstructions) ? extraSystemInstructions : [])
   ].filter(Boolean);
 
@@ -417,6 +422,7 @@ export async function POST(req, deps = {}) {
     : null;
   const mainMetadataExtra = {
     ...buildChatOrchestrationMetadata(mainOrchestrationPlan),
+    input_modality: inputModality,
     ...(retryOf ? { retryOf } : {}),
     ...(retrievalMeta?.ragRiskPolicy
       ? {

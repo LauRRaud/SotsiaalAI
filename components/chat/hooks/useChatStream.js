@@ -761,10 +761,9 @@ export function resolveRetryTarget(messages) {
 
 export function useChatStream(config) {
   const cfgRef = useRef(config);
-
-  useEffect(() => {
-    cfgRef.current = config;
-  }, [config]);
+  // Vestluse vahetus peab jõudma saatmisrajale samas renderduses. Passiivse
+  // efekti ootamine jättis ühe akna, kus värske UI võis saata vana convId-ga.
+  cfgRef.current = config;
 
   const [isGenerating, setIsGenerating] = useState(false);
   const isGeneratingRef = useRef(false);
@@ -1555,7 +1554,8 @@ export function useChatStream(config) {
       buildIntentSignature({
         convId: cfg.convId || null,
         roomId: cfg.isRoomMode ? cfg.roomId || null : null,
-        text
+        text,
+        inputModality: options?.inputModality === "voice" ? "voice" : "text"
       })
     );
     const clientTurnKey = chatIntentRef.current.key;
@@ -1615,6 +1615,7 @@ export function useChatStream(config) {
               ? latestHelpWorkflowState
               : undefined,
             roomId: cfg.isRoomMode ? cfg.roomId : undefined,
+            inputModality: options?.inputModality === "voice" ? "voice" : undefined,
             privacyDecision: options?.privacyDecision,
             retryOf: options?.retryOf ? String(options.retryOf) : undefined,
             clientTurnKey,

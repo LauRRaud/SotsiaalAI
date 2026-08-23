@@ -2491,6 +2491,7 @@ export default function ChatBody({
       if (!response.ok || payload?.ok === false) return { ok: false };
       const safeText = String(payload?.text || text).trim();
       const ok = await handleSendMessage(safeText, {
+        inputModality: "voice",
         privacyDecision: payload?.appliedDecision
           ? { action: payload.appliedDecision }
           : undefined

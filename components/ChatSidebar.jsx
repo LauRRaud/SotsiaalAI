@@ -104,6 +104,7 @@ export default function ChatSidebar() {
   // SOL-CHAT-13: ruumiloendil on oma veaseis; ühine `error` kuulus vestlusloendile.
   const [roomsError, setRoomsError] = useState("");
   const [creating, setCreating] = useState(false);
+  const creatingRef = useRef(false);
   const [hasMore, setHasMore] = useState(false);
   const [selectMode, setSelectMode] = useState(false);
   const [selectedIds, setSelectedIds] = useState(() => new Set());
@@ -462,7 +463,11 @@ export default function ChatSidebar() {
     activateConversation(item.id);
   }, [activateConversation, isEmbeddedChat, locale, router, selectMode, updateChatUrl]);
   const onNew = useCallback(async () => {
-    if (busy || creating) return;
+    // Vestlusloendi GET ei ole uue vestluse loomise eeldus. Varem oli nupp
+    // loendi laadimise ajal keelatud ja kiire vajutus ei teinud kasutaja jaoks
+    // nähtavalt mitte midagi, mistõttu järgmine sõnum läks vanasse vestlusse.
+    if (creatingRef.current) return;
+    creatingRef.current = true;
     setCreating(true);
     setError("");
     const id = uuid();
@@ -489,9 +494,10 @@ export default function ChatSidebar() {
     } catch (e) {
       setError(e?.message || t("chat.sidebar.error.create"));
     } finally {
+      creatingRef.current = false;
       setCreating(false);
     }
-  }, [activateConversation, busy, conversationRole, creating, refreshAll, resolveErrorMessage, t]);
+  }, [activateConversation, conversationRole, refreshAll, resolveErrorMessage, t]);
 
   useEffect(() => {
     const onCreateConversation = () => {
@@ -779,7 +785,7 @@ export default function ChatSidebar() {
         </button>
       </div>
       {isConversationView ? <div className="drawer-actions">
-        <Button className="drawer-new" variant="primary" size="md" onClick={onNew} disabled={busy || creating} aria-busy={creating ? "true" : "false"}>
+        <Button className="drawer-new" variant="primary" size="md" onClick={onNew} disabled={creating} aria-busy={creating ? "true" : "false"}>
           {creating ? t("chat.sidebar.button.creating") : t("chat.sidebar.button.new_short")}
         </Button>
         <Button variant="primary" size="md" onClick={toggleSelectMode} disabled={isActionBusy}>
