@@ -128,6 +128,9 @@ export default function ChatBodyView({
   const panelSources = Array.isArray(scopedSources) ? scopedSources : null;
   const showWorkspaceFace = workspaceOpen;
   const showChatInterface = !workspaceOpen;
+  // Häälrežiim on omaette pind. Vestlus jääb mällu alles, kuid mullid,
+  // komposer ja muud tekstivaate juhtelemendid tulevad tagasi alles lahkudes.
+  const showStandardChat = showChatInterface && !voiceModeNode;
 
   return <>
     <InviteModal />
@@ -169,32 +172,32 @@ export default function ChatBodyView({
                   RAG-sihtrühma ja vastuse pikkust (lib/chat/requestBootstrap).
                   Töölaua-näol on oma lüliti (WorkspacePanel), seega ainult
                   vestlusevaates; ruumis roll ei mängi (liikmesuspõhine). */}
-              {showChatInterface && isAdmin && !isRoomMode ? <RoleViewSwitcher /> : null}
-              {listingsPanelNode}
-              {selectedListingContextNode}
+              {showStandardChat && isAdmin && !isRoomMode ? <RoleViewSwitcher /> : null}
+              {showStandardChat ? listingsPanelNode : null}
+              {showStandardChat ? selectedListingContextNode : null}
 
-              {showChatInterface ? <ChatTopNotices t={t} isRoomMode={isRoomMode} roomTitle={roomTitle} roomOrigin={roomOrigin} hideRoomTitle={hideRoomTitle} isCrisis={isCrisis} crisisText={crisisText} errorBanner={errorBanner} roomBlocked={roomBlocked} roomAuthRequired={roomAuthRequired} /> : null}
+              {showStandardChat ? <ChatTopNotices t={t} isRoomMode={isRoomMode} roomTitle={roomTitle} roomOrigin={roomOrigin} hideRoomTitle={hideRoomTitle} isCrisis={isCrisis} crisisText={crisisText} errorBanner={errorBanner} roomBlocked={roomBlocked} roomAuthRequired={roomAuthRequired} /> : null}
 
               {/* T20 P2: kokkuvõtte kinnitusring — nähtav ainult siis, kui
                   ruumis on aktiivne ring (node ise tagastab muidu null). */}
-              {showChatInterface ? roomSummaryApprovalNode : null}
+              {showStandardChat ? roomSummaryApprovalNode : null}
 
               {/* Sama punktikuju tavavestluse taustal (omanik 22.08). Ainult
                   siis, kui häälreziim on kinni — kaks WebGL-konteksti korraga
                   oleks kaks korda joonistamist ilma ühegi kasuta. */}
-              {showChatInterface && !voiceModeNode ? <VoiceAvatarBackdrop /> : null}
+              {showStandardChat ? <VoiceAvatarBackdrop /> : null}
 
               {showChatInterface ? voiceModeNode : null}
 
-              {showChatInterface ? <ConversationView t={t} chatWindowRef={chatWindowRef} isStreamingAny={isStreamingAny} hiddenCount={hiddenCount} pageSize={pageSize} onRevealOlder={onRevealOlder} canHideOlder={canHideOlder} onHideOlder={onHideOlder} onJumpToBottom={onJumpToBottom} messageItems={messageItems} onWindowDoubleClick={onWindowDoubleClick} focusActive={focusActive} isMobile={isMobile} isLightTheme={isLightTheme} hasConversationSources={hasConversationSources} conversationSourcesCount={conversationSources.length} toggleSourcesPanel={toggleSourcesPanel} showSourcesPanel={showSourcesPanel} sourcesPulse={sourcesPulse} sourcesButtonRef={sourcesButtonRef} /> : null}
+              {showStandardChat ? <ConversationView t={t} chatWindowRef={chatWindowRef} isStreamingAny={isStreamingAny} hiddenCount={hiddenCount} pageSize={pageSize} onRevealOlder={onRevealOlder} canHideOlder={canHideOlder} onHideOlder={onHideOlder} onJumpToBottom={onJumpToBottom} messageItems={messageItems} onWindowDoubleClick={onWindowDoubleClick} focusActive={focusActive} isMobile={isMobile} isLightTheme={isLightTheme} hasConversationSources={hasConversationSources} conversationSourcesCount={conversationSources.length} toggleSourcesPanel={toggleSourcesPanel} showSourcesPanel={showSourcesPanel} sourcesPulse={sourcesPulse} sourcesButtonRef={sourcesButtonRef} /> : null}
 
-              {showChatInterface && showVisibleAnalysisPanel && !analysis.uploadPreview ? <ChatAnalysisPanel {...chatAnalysisPanelProps} /> : null}
+              {showStandardChat && showVisibleAnalysisPanel && !analysis.uploadPreview ? <ChatAnalysisPanel {...chatAnalysisPanelProps} /> : null}
 
-              {showChatInterface ? <ChatComposer key={roomId ? `room:${roomId}:${isHelpMatchRoom ? "help" : "standard"}` : "chat:default"} t={t} locale={locale} isLightTheme={isLightTheme} hideTools={hideComposerTools} inputGlow placeholderText={placeholderText} forcePlaceholderVisible={forcePlaceholderVisible} acceptAttr={analysis.acceptAttr} ensureAnalysisPanelVisible={analysis.ensureAnalysisPanelVisible} fileInputRef={analysis.fileInputRef} onFileChange={analysis.onFileChange} inputRowRef={inputRowRef} inputBarRef={inputBarRef} inputRef={inputRef} onFocusInput={onFocusComposer} onBlurInput={onBlurInput} isGenerating={isGenerating} isStreamingAny={isStreamingAny} isRoomMode={isRoomMode} roomBlocked={roomBlocked} roomAuthRequired={roomAuthRequired} onStop={onStop} onSend={onSend} onOpenVoiceMode={onOpenVoiceMode} onActivateInfoMode={onActivateInfoMode} onActivateDeepResearchMode={onActivateDeepResearchMode} onActivateHelpRequestMode={onActivateHelpRequestMode} onActivateHelpOfferMode={onActivateHelpOfferMode} showDocumentAttachButton={documentFlowActive} onPickDocumentFile={onPickDocumentFile} voiceEnabled={voiceEnabled} recording={recording} recordingPulse={recordingPulse} handleMic={handleMic} cancelRecording={cancelRecording} draftApiRef={composerDraftApiRef} onDraftStateChange={onDraftStateChange} onLayoutChange={onComposerLayoutChange} inputFocused={inputFocused} isMobile={isMobile} activeModeLabel={activeModeLabel} roomModeLabel={roomModeLabel} activeModeKey={activeModeKey} focusActive={focusActive} allowAssistantForward={allowAssistantForward} isHelpMatchRoom={isHelpMatchRoom} sendToAssistant={sendToAssistant} setSendToAssistant={setSendToAssistant} aiNote={aiNote} callControlsNode={roomCallNode} /> : null}
-              {showChatInterface ? <ChatRecordingNotice recordingError={recordingError} voiceNotice={voiceNotice} floating /> : null}
+              {showStandardChat ? <ChatComposer key={roomId ? `room:${roomId}:${isHelpMatchRoom ? "help" : "standard"}` : "chat:default"} t={t} locale={locale} isLightTheme={isLightTheme} hideTools={hideComposerTools} inputGlow placeholderText={placeholderText} forcePlaceholderVisible={forcePlaceholderVisible} acceptAttr={analysis.acceptAttr} ensureAnalysisPanelVisible={analysis.ensureAnalysisPanelVisible} fileInputRef={analysis.fileInputRef} onFileChange={analysis.onFileChange} inputRowRef={inputRowRef} inputBarRef={inputBarRef} inputRef={inputRef} onFocusInput={onFocusComposer} onBlurInput={onBlurInput} isGenerating={isGenerating} isStreamingAny={isStreamingAny} isRoomMode={isRoomMode} roomBlocked={roomBlocked} roomAuthRequired={roomAuthRequired} onStop={onStop} onSend={onSend} onOpenVoiceMode={onOpenVoiceMode} onActivateInfoMode={onActivateInfoMode} onActivateDeepResearchMode={onActivateDeepResearchMode} onActivateHelpRequestMode={onActivateHelpRequestMode} onActivateHelpOfferMode={onActivateHelpOfferMode} showDocumentAttachButton={documentFlowActive} onPickDocumentFile={onPickDocumentFile} voiceEnabled={voiceEnabled} recording={recording} recordingPulse={recordingPulse} handleMic={handleMic} cancelRecording={cancelRecording} draftApiRef={composerDraftApiRef} onDraftStateChange={onDraftStateChange} onLayoutChange={onComposerLayoutChange} inputFocused={inputFocused} isMobile={isMobile} activeModeLabel={activeModeLabel} roomModeLabel={roomModeLabel} activeModeKey={activeModeKey} focusActive={focusActive} allowAssistantForward={allowAssistantForward} isHelpMatchRoom={isHelpMatchRoom} sendToAssistant={sendToAssistant} setSendToAssistant={setSendToAssistant} aiNote={aiNote} callControlsNode={roomCallNode} /> : null}
+              {showStandardChat ? <ChatRecordingNotice recordingError={recordingError} voiceNotice={voiceNotice} floating /> : null}
 
-              {showChatInterface ? <footer /> : null}
-              {showChatInterface ? <ChatSourcesPanel
+              {showStandardChat ? <footer /> : null}
+              {showStandardChat ? <ChatSourcesPanel
                 open={showSourcesPanel}
                 t={t}
                 locale={locale}
