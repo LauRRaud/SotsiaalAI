@@ -37,6 +37,10 @@ BACKUP_DIR="$(dirname "$APP_DIR")/sotsiaalai-deploy-backups"
 
 frontend_was_active="0"
 frontend_stopped_for_build="0"
+rag_was_active="0"
+rag_stopped_for_build="0"
+research_worker_was_active="0"
+research_worker_stopped_for_build="0"
 schema_migrated="0"
 migration_started="0"
 migration_state_file=""
@@ -64,6 +68,14 @@ restore_frontend_on_failure() {
       tar -xzf "$artifact_backup" -C "$APP_DIR"
     elif [ "$database_unchanged" = "0" ]; then
       echo "[deploy:server] Migration state changed; keeping the validated candidate artifact" >&2
+    fi
+    if [ "$rag_was_active" = "1" ] && [ "$rag_stopped_for_build" = "1" ]; then
+      echo "[deploy:server] Deploy interrupted/failed; restarting RAG service" >&2
+      sudo systemctl start sotsiaalai-rag.service || true
+    fi
+    if [ "$research_worker_was_active" = "1" ] && [ "$research_worker_stopped_for_build" = "1" ]; then
+      echo "[deploy:server] Deploy interrupted/failed; restarting research worker" >&2
+      sudo systemctl start sotsiaalai-research-worker.service || true
     fi
     if [ "$frontend_was_active" = "1" ] && [ "$frontend_stopped_for_build" = "1" ]; then
       echo "[deploy:server] Deploy interrupted/failed; restarting frontend" >&2
@@ -144,6 +156,12 @@ fi
 if systemctl is-active --quiet sotsiaalai-frontend.service; then
   frontend_was_active="1"
 fi
+if systemctl list-unit-files sotsiaalai-rag.service >/dev/null 2>&1 && systemctl is-active --quiet sotsiaalai-rag.service; then
+  rag_was_active="1"
+fi
+if systemctl list-unit-files sotsiaalai-research-worker.service >/dev/null 2>&1 && systemctl is-active --quiet sotsiaalai-research-worker.service; then
+  research_worker_was_active="1"
+fi
 
 if [ -f "$FRONTEND_ENV" ]; then
   set -a
@@ -175,6 +193,14 @@ if [ "$SKIP_BUILD" != "1" ]; then
     echo "[deploy:server] Entering maintenance gate before build"
     sudo systemctl stop sotsiaalai-frontend.service
     frontend_stopped_for_build="1"
+  fi
+  if [ "$research_worker_was_active" = "1" ]; then
+    sudo systemctl stop sotsiaalai-research-worker.service
+    research_worker_stopped_for_build="1"
+  fi
+  if [ "$rag_was_active" = "1" ]; then
+    sudo systemctl stop sotsiaalai-rag.service
+    rag_stopped_for_build="1"
   fi
 
   mkdir -p "$APP_DIR/deploy-build-logs"
@@ -250,9 +276,23 @@ fi
 
 if systemctl list-unit-files sotsiaalai-rag.service >/dev/null 2>&1; then
   sudo systemctl restart sotsiaalai-rag.service
+  rag_ready="0"
+  for attempt in $(seq 1 90); do
+    if curl --fail --silent --max-time 2 http://127.0.0.1:8000/health >/dev/null; then
+      rag_ready="1"
+      break
+    fi
+    sleep 1
+  done
+  if [ "$rag_ready" != "1" ]; then
+    echo "[deploy:server] RAG service did not become ready within 90 seconds" >&2
+    exit 5
+  fi
+  rag_stopped_for_build="0"
 fi
 if systemctl list-unit-files sotsiaalai-research-worker.service >/dev/null 2>&1; then
   sudo systemctl restart sotsiaalai-research-worker.service
+  research_worker_stopped_for_build="0"
 fi
 sudo systemctl restart sotsiaalai-frontend.service
 frontend_stopped_for_build="0"
