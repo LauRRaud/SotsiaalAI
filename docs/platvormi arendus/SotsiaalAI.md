@@ -126,7 +126,13 @@ arvestatakse tavalisel `/api/tts` rajal, mitte 3000 märgi ettemaksuna. i18n, li
 frontend, RAG ja research-worker aktiivsed, `/vestlus` vastas 200 ning RAG-i tervis oli
 `ok=true`, 49 727 vektorit ja 6 089 dokumenti; päris otsing tagastas tulemused. Serveris on
 `OPENAI_MODEL=gpt-5.6-luna` ja TartuNLP seadistatud. Päris autentitud mikrofon → Realtime
-transkriptsioon → RAG/Luna → TartuNLP rada on **NOT_PROVEN**.
+transkriptsioon → RAG/Luna → TartuNLP rada avati 23.08 päris brauseris: seanss, chat ja TTS
+vastasid, kuid esimene kõnevoor „tere, kas sa kuuled mind“ transkribeeriti valesti kui „platin“.
+Järelparandus annab `gpt-4o-mini-transcribe` mudelile lisaks `language: et` väärtusele eestikeelse
+täpsusjuhise ning kasutab veebiseadme mikrofoni jaoks `far_field` müravähendust. Häälpinnal ei
+renderdata enam standardvestluse mulle, komposerit ega rollilüliteid; need tulevad tagasi alles
+tekstivestlusse naastes. Staatilised kontrollid ja tootmisbuild on rohelised; parandusejärgne
+mikrofoni täpsus on kuni uue päris lausungini **NOT_PROVEN**.
 
 **Tööalade sisuvaadete kiirmenüü ja leheinfo on 22.08 parandatud.** Kõik
 `/vestlus?workspace=…` tööalad kasutavad nüüd sisu klaaspinda ning lehe nime, tagasinupu ja
@@ -1939,13 +1945,17 @@ kvoodid), mis kannab platvormi lubadusi.
 Kui tekstiväli on tühi, on komposeri senine saatmisnupp häälvestluse avaja; teksti sisestamisel
 muutub sama nupp tagasi saatmisnupuks. Eraldi häälnuppu ei kuvata. Vestluse lehel saab nii avada
 telefonikõne laadse pinna, mille keskmes on umbes 10 000 valguspunktist moodustatud naise pea,
-kael ja õlad. Avatari efekte 23.08 torumuudatuses ei muudetud. Täisvastuse subtiiter on pinnalt
-eemaldatud, sest see võttis avatarilt eraldi paanirea; avatari mõõtu muutmata ülekattena kuvatakse
-ainult lühike tööolek, sh RAG-i ajal „Otsin vastust ja allikaid“, ning allesjäänud aeg.
+kael ja õlad. Avatari efekte 23.08 torumuudatuses ei muudetud. Häälrežiimis renderdatakse ainult
+avatar, lühike tööolek ja häälrežiimi dokk; standardvestluse mullid, komposer ja rollilülitid
+tulevad tagasi alles tekstivestlusse naastes. Nii ei võta vastuse tekst avatarilt ruumi. Avatari
+mõõtu muutmata ülekattena kuvatakse ainult lühike tööolek, sh RAG-i ajal „Otsin vastust ja
+allikaid“, ning allesjäänud aeg.
 Dikteerimismikrofon on endiselt eraldi funktsioon.
 
 Realtime on ainult kuulamisliides: spetsiaalne `type: "transcription"` WebRTC-seanss kasutab
-`gpt-4o-mini-transcribe` mudelit kõnevooru tuvastamiseks ja transkriptsiooniks. Transkript saadetakse
+`gpt-4o-mini-transcribe` mudelit kõnevooru tuvastamiseks ja transkriptsiooniks. Seanss määrab
+sisendkeele (`et`/`en`/`ru`), annab samas keeles täpsusjuhise ning kasutab tavapärase veebiseadme
+mikrofoni jaoks `far_field` müravähendust. Transkript saadetakse
 sama RAG-i, allikate, kriisi-, privaatsus- ja kvoodilepinguga vestlusse nagu kirjutatud küsimus;
 vastuse vaikemudel on `gpt-5.6-luna`. Valmis kontrollitud vastusest loetakse kuni kolme lause
 pikkune tuum eesti keeles ette TartuNLP `kylli` häälega, inglise ja vene keel jäävad olemasoleva
