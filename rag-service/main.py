@@ -13,6 +13,7 @@ import secrets
 import shutil
 import threading
 import unicodedata
+from concurrent.futures import Future
 from io import BytesIO
 import logging
 import mimetypes
@@ -225,6 +226,98 @@ _LEXICAL_REFRESH_LOCK = threading.Lock()
 _LEXICAL_REFRESH_THREAD: Optional[threading.Thread] = None
 _LEXICAL_REFRESH_PENDING_REASON: Optional[str] = None
 _LEXICAL_REFRESH_ACTIVE_REASON: Optional[str] = None
+RAG_REQUEST_SHARED_READ_CACHE_ENABLED = os.getenv(
+    "RAG_REQUEST_SHARED_READ_CACHE_ENABLED",
+    "1",
+).strip().lower() in {"1", "true", "yes", "on"}
+RAG_REQUEST_SHARED_READ_CACHE_TTL_SECONDS = max(
+    5.0,
+    min(60.0, float(os.getenv("RAG_REQUEST_SHARED_READ_CACHE_TTL_SECONDS", "30"))),
+)
+RAG_REQUEST_SHARED_READ_CACHE_MAX_ENTRIES = max(
+    8,
+    min(128, int(os.getenv("RAG_REQUEST_SHARED_READ_CACHE_MAX_ENTRIES", "48"))),
+)
+_REQUEST_SHARED_READ_CACHE_LOCK = threading.Lock()
+_REQUEST_SHARED_READ_CACHE: Dict[str, Dict[str, object]] = {}
+RAG_MULTI_QUERY_EMBEDDING_BATCH_ENABLED = os.getenv(
+    "RAG_MULTI_QUERY_EMBEDDING_BATCH_ENABLED",
+    "1",
+).strip().lower() in {"1", "true", "yes", "on"}
+_REQUEST_EMBEDDING_BATCH_CACHE_LOCK = threading.Lock()
+_REQUEST_EMBEDDING_BATCH_CACHE: Dict[str, Dict[str, object]] = {}
+
+
+def _increment_shared_read_metric(metrics: Optional[Dict[str, int]], key: str) -> None:
+    if metrics is not None:
+        metrics[key] = int(metrics.get(key) or 0) + 1
+
+
+def _request_scoped_collection_get(
+    request_scope_key: Optional[str],
+    shared_read_metrics: Optional[Dict[str, int]] = None,
+    **kwargs,
+):
+    """Single-flight identical Chroma reads within one logical chat retrieval.
+
+    Multi-query chat retrieval deliberately gives all evidence subqueries the
+    same request id. Author, sibling and fact-segment paths can therefore ask
+    Chroma for the same bounded document set six times. Share only those
+    immutable read results for a few seconds; query scoring, access filters and
+    every subquery's dense search still run independently.
+    """
+    scope = str(request_scope_key or "").strip()
+    if not RAG_REQUEST_SHARED_READ_CACHE_ENABLED or not scope:
+        _increment_shared_read_metric(shared_read_metrics, "bypasses")
+        return collection.get(**kwargs)
+
+    encoded = json.dumps(kwargs, ensure_ascii=False, sort_keys=True, separators=(",", ":"), default=str)
+    cache_key = hashlib.sha256(f"{scope}\0{encoded}".encode("utf-8")).hexdigest()
+    now = time.monotonic()
+    owner = False
+    future: Future
+    with _REQUEST_SHARED_READ_CACHE_LOCK:
+        for key, entry in list(_REQUEST_SHARED_READ_CACHE.items()):
+            cached_future = entry.get("future")
+            expires_at = float(entry.get("expires_at") or 0)
+            if expires_at <= now and isinstance(cached_future, Future) and cached_future.done():
+                _REQUEST_SHARED_READ_CACHE.pop(key, None)
+
+        entry = _REQUEST_SHARED_READ_CACHE.get(cache_key)
+        if entry is not None and isinstance(entry.get("future"), Future):
+            future = entry["future"]
+            _increment_shared_read_metric(
+                shared_read_metrics,
+                "hits" if future.done() else "waits",
+            )
+        else:
+            if len(_REQUEST_SHARED_READ_CACHE) >= RAG_REQUEST_SHARED_READ_CACHE_MAX_ENTRIES:
+                for key, cached_entry in list(_REQUEST_SHARED_READ_CACHE.items()):
+                    cached_future = cached_entry.get("future")
+                    if isinstance(cached_future, Future) and cached_future.done():
+                        _REQUEST_SHARED_READ_CACHE.pop(key, None)
+                    if len(_REQUEST_SHARED_READ_CACHE) < RAG_REQUEST_SHARED_READ_CACHE_MAX_ENTRIES:
+                        break
+            if len(_REQUEST_SHARED_READ_CACHE) >= RAG_REQUEST_SHARED_READ_CACHE_MAX_ENTRIES:
+                _increment_shared_read_metric(shared_read_metrics, "bypasses")
+                return collection.get(**kwargs)
+            future = Future()
+            _REQUEST_SHARED_READ_CACHE[cache_key] = {
+                "future": future,
+                "expires_at": now + RAG_REQUEST_SHARED_READ_CACHE_TTL_SECONDS,
+            }
+            owner = True
+            _increment_shared_read_metric(shared_read_metrics, "misses")
+
+    if owner:
+        try:
+            future.set_result(collection.get(**kwargs))
+        except BaseException as exc:
+            future.set_exception(exc)
+            with _REQUEST_SHARED_READ_CACHE_LOCK:
+                _REQUEST_SHARED_READ_CACHE.pop(cache_key, None)
+            raise
+    return future.result()
 
 
 def _warm_dense_index() -> None:
@@ -248,28 +341,51 @@ def _warm_dense_index() -> None:
         stored_embedding = embeddings[0]
         if hasattr(stored_embedding, "tolist"):
             stored_embedding = stored_embedding.tolist()
-        general_started_at = time.perf_counter()
-        collection.query(
-            query_embeddings=[stored_embedding],
-            n_results=64,
-            where=build_general_search_where(None),
-            include=["documents", "metadatas", "distances"],
-        )
-        general_ms = int((time.perf_counter() - general_started_at) * 1000)
+        general_profile_ms: Dict[str, int] = {}
+        for candidate_limit in (64, 96, 200):
+            general_started_at = time.perf_counter()
+            collection.query(
+                query_embeddings=[stored_embedding],
+                n_results=candidate_limit,
+                where=build_general_search_where(None),
+                include=["documents", "metadatas", "distances"],
+            )
+            general_profile_ms[str(candidate_limit)] = int(
+                (time.perf_counter() - general_started_at) * 1000
+            )
+        general_ms = sum(general_profile_ms.values())
 
         document_ms = 0
+        fact_segment_ms = 0
+        document_read_ms = 0
         metadatas = sample.get("metadatas") or []
         sample_metadata = metadatas[0] if metadatas else {}
         sample_doc_id = str((sample_metadata or {}).get("doc_id") or "").strip()
         if sample_doc_id:
+            document_where = build_agent_document_search_where([sample_doc_id])
             document_started_at = time.perf_counter()
             collection.query(
                 query_embeddings=[stored_embedding],
                 n_results=64,
-                where=build_agent_document_search_where([sample_doc_id]),
+                where=document_where,
                 include=["documents", "metadatas", "distances"],
             )
             document_ms = int((time.perf_counter() - document_started_at) * 1000)
+            fact_started_at = time.perf_counter()
+            collection.query(
+                query_embeddings=[stored_embedding, stored_embedding, stored_embedding],
+                n_results=40,
+                where=document_where,
+                include=["documents", "metadatas", "distances"],
+            )
+            fact_segment_ms = int((time.perf_counter() - fact_started_at) * 1000)
+            read_started_at = time.perf_counter()
+            collection.get(
+                include=["documents", "metadatas"],
+                limit=600,
+                where=document_where,
+            )
+            document_read_ms = int((time.perf_counter() - read_started_at) * 1000)
         stage_logger.info(
             "rag.startup.warmup %s",
             json.dumps(
@@ -277,7 +393,10 @@ def _warm_dense_index() -> None:
                     "outcome": "ok",
                     "dense_ms": int((time.perf_counter() - started_at) * 1000),
                     "general_ms": general_ms,
+                    "general_profile_ms": general_profile_ms,
                     "document_ms": document_ms,
+                    "fact_segment_ms": fact_segment_ms,
+                    "document_read_ms": document_read_ms,
                 },
                 ensure_ascii=False,
             ),
@@ -287,7 +406,6 @@ def _warm_dense_index() -> None:
         raise RuntimeError("RAG dense index startup warm-up failed") from exc
 
 
-_warm_dense_index()
 OBSERVABILITY_ROUTE_HEADER = "X-Observability-Route"
 OBSERVABILITY_STAGE_HEADER = "X-Observability-Stage"
 # B0b: kliendipoolne korrelatsiooni-ID. Valikuline ja tagasiühilduv — kui
@@ -1459,6 +1577,98 @@ def _embed_batch_with_usage(texts: List[str]) -> Dict[str, object]:
         "cost_read_directly": usage_seen,
     }
 
+
+def _request_scoped_embedding_batch(
+    request_scope_key: Optional[str],
+    batch_inputs: List[str],
+    current_inputs: List[str],
+    shared_embedding_metrics: Optional[Dict[str, int]] = None,
+) -> Dict[str, object]:
+    """Embed every multi-query input once and reuse it inside one chat turn."""
+    scope = str(request_scope_key or "").strip()
+    unique_inputs: List[str] = []
+    seen = set()
+    for value in [*batch_inputs, *current_inputs]:
+        text = str(value or "")
+        if not text or text in seen:
+            continue
+        seen.add(text)
+        unique_inputs.append(text)
+    if (
+        not RAG_MULTI_QUERY_EMBEDDING_BATCH_ENABLED
+        or not scope
+        or len(unique_inputs) <= len(current_inputs)
+    ):
+        _increment_shared_read_metric(shared_embedding_metrics, "bypasses")
+        return _embed_batch_with_usage(current_inputs)
+
+    encoded = json.dumps(unique_inputs, ensure_ascii=False, separators=(",", ":"))
+    cache_key = hashlib.sha256(f"{scope}\0{encoded}".encode("utf-8")).hexdigest()
+    now = time.monotonic()
+    owner = False
+    future: Future
+    with _REQUEST_EMBEDDING_BATCH_CACHE_LOCK:
+        for key, entry in list(_REQUEST_EMBEDDING_BATCH_CACHE.items()):
+            cached_future = entry.get("future")
+            expires_at = float(entry.get("expires_at") or 0)
+            if expires_at <= now and isinstance(cached_future, Future) and cached_future.done():
+                _REQUEST_EMBEDDING_BATCH_CACHE.pop(key, None)
+        entry = _REQUEST_EMBEDDING_BATCH_CACHE.get(cache_key)
+        if entry is not None and isinstance(entry.get("future"), Future):
+            future = entry["future"]
+            _increment_shared_read_metric(
+                shared_embedding_metrics,
+                "hits" if future.done() else "waits",
+            )
+        else:
+            if len(_REQUEST_EMBEDDING_BATCH_CACHE) >= 8:
+                for key, cached_entry in list(_REQUEST_EMBEDDING_BATCH_CACHE.items()):
+                    cached_future = cached_entry.get("future")
+                    if isinstance(cached_future, Future) and cached_future.done():
+                        _REQUEST_EMBEDDING_BATCH_CACHE.pop(key, None)
+                    if len(_REQUEST_EMBEDDING_BATCH_CACHE) < 8:
+                        break
+            if len(_REQUEST_EMBEDDING_BATCH_CACHE) >= 8:
+                _increment_shared_read_metric(shared_embedding_metrics, "bypasses")
+                return _embed_batch_with_usage(current_inputs)
+            future = Future()
+            _REQUEST_EMBEDDING_BATCH_CACHE[cache_key] = {
+                "future": future,
+                "expires_at": now + RAG_REQUEST_SHARED_READ_CACHE_TTL_SECONDS,
+            }
+            owner = True
+            _increment_shared_read_metric(shared_embedding_metrics, "misses")
+
+    if owner:
+        try:
+            future.set_result(_embed_batch_with_usage(unique_inputs))
+        except Exception as exc:
+            future.set_exception(exc)
+            with _REQUEST_EMBEDDING_BATCH_CACHE_LOCK:
+                _REQUEST_EMBEDDING_BATCH_CACHE.pop(cache_key, None)
+            raise
+    batch_result = future.result()
+    batch_embeddings = list(batch_result.get("embeddings") or [])
+    if len(batch_embeddings) != len(unique_inputs):
+        raise HTTPException(status_code=502, detail="Embedding batch returned an incomplete result")
+    embedding_by_input = dict(zip(unique_inputs, batch_embeddings))
+    current_embeddings = [embedding_by_input[text] for text in current_inputs]
+    if owner:
+        return {
+            **batch_result,
+            "embeddings": current_embeddings,
+        }
+    return {
+        **batch_result,
+        "embeddings": current_embeddings,
+        "prompt_tokens": 0,
+        "total_tokens": 0,
+        "embedding_input_count": 0,
+        "embedding_calls": 0,
+        "text_chars": 0,
+        "cost_read_directly": False,
+    }
+
 def _embed_batch(texts: List[str]) -> List[List[float]]:
     return list(_embed_batch_with_usage(texts).get("embeddings") or [])
 
@@ -1966,6 +2176,11 @@ class SearchIn(BaseModel):
     # B0b: valikuline korrelatsiooni-ID. Vanad kliendid ei saada seda ja
     # käitumine jääb muutumatuks.
     request_id: Optional[str] = None
+    # Mitmikpäringu klient saadab kogu sama pöörde küsimuseloendi igale
+    # alampäringule. Teenus kasutab seda ainult embedding'ute single-flight
+    # batch'imiseks; iga päringu filtrid, dense-otsing ja skoorimine jäävad
+    # endiselt eraldi ning tagurpidi ühilduvad.
+    batch_queries: Optional[List[str]] = None
 
     @field_validator("include")
     @classmethod
@@ -1978,6 +2193,23 @@ class SearchIn(BaseModel):
             if s and s != "ids" and s in ALLOWED_INCLUDE:
                 out.append(s)
         return out
+
+    @field_validator("batch_queries")
+    @classmethod
+    def validate_batch_queries(cls, value):
+        if not value:
+            return []
+        cleaned = []
+        seen = set()
+        for item in list(value or [])[:12]:
+            query = str(item or "").strip()
+            if not query or query in seen:
+                continue
+            if len(query) > MAX_QUERY_CHARS:
+                raise ValueError("batch query is too long")
+            seen.add(query)
+            cleaned.append(query)
+        return cleaned
 
 
 class AgentDocumentSearchIn(BaseModel):
@@ -3360,6 +3592,34 @@ def _split_fact_query_segments(
         if len(segments) >= max_segments:
             break
     return segments if len(segments) >= 2 else []
+
+
+def _fact_embedding_plan(query: object, deep_document_fact_search: bool) -> Dict[str, object]:
+    query_text = str(query or "").strip()
+    split_segments = (
+        _split_fact_query_segments(query_text, anchor_short=False)
+        if deep_document_fact_search
+        else []
+    )
+    reuse_primary = deep_document_fact_search and not split_segments
+    fact_query_segments = (
+        split_segments
+        if split_segments
+        else [query_text]
+        if reuse_primary and query_text
+        else []
+    )
+    fact_embedding_segments = (
+        _split_fact_query_segments(query_text, anchor_short=True)
+        if split_segments
+        else []
+    )
+    return {
+        "split_segments": split_segments,
+        "reuse_primary": reuse_primary,
+        "fact_query_segments": fact_query_segments,
+        "embedding_inputs": [query_text, *fact_embedding_segments] if query_text else [],
+    }
 
 _PERCENTAGE_COUNT_WORDS = {
     "uks": 1,
@@ -4885,6 +5145,8 @@ def _targeted_document_shortlist(
     top_k: int,
     allowed_channels: Optional[set] = None,
     metrics: Optional[Dict[str, object]] = None,
+    request_scope_key: Optional[str] = None,
+    shared_read_metrics: Optional[Dict[str, int]] = None,
 ) -> Dict[str, object]:
     ids: List[object] = []
     documents: List[object] = []
@@ -4909,7 +5171,11 @@ def _targeted_document_shortlist(
         if chroma_where:
             kwargs["where"] = chroma_where
         fetch_t0 = time.perf_counter()
-        got = collection.get(**kwargs)
+        got = _request_scoped_collection_get(
+            request_scope_key,
+            shared_read_metrics,
+            **kwargs,
+        )
         _add_lexical_elapsed(metrics, "lexical_chroma_fetch_ms", fetch_t0)
         if metrics is not None:
             metrics["lexical_chroma_page_count"] = int(metrics.get("lexical_chroma_page_count") or 0) + 1
@@ -4996,6 +5262,8 @@ def _fetch_lexical_candidates(
     requested_retrievers: Optional[List[str]] = None,
     dense_article_doc_ids: Optional[List[str]] = None,
     version_registry: Optional[Dict[str, Dict]] = None,
+    request_scope_key: Optional[str] = None,
+    shared_read_metrics: Optional[Dict[str, int]] = None,
 ) -> Dict[str, object]:
     lexical_started_at = time.perf_counter()
     metrics = _new_lexical_metrics()
@@ -5014,7 +5282,11 @@ def _fetch_lexical_candidates(
     def chroma_get(**kwargs):
         started_at = time.perf_counter()
         try:
-            return collection.get(**kwargs)
+            return _request_scoped_collection_get(
+                request_scope_key,
+                shared_read_metrics,
+                **kwargs,
+            )
         finally:
             _add_lexical_elapsed(metrics, "lexical_chroma_fetch_ms", started_at)
             metrics["lexical_chroma_page_count"] = int(metrics.get("lexical_chroma_page_count") or 0) + 1
@@ -5207,6 +5479,8 @@ def _fetch_lexical_candidates(
                 top_k,
                 allowed_channels,
                 metrics=metrics,
+                request_scope_key=request_scope_key,
+                shared_read_metrics=shared_read_metrics,
             )
             targeted_used = bool(targeted.get("ids"))
             shortlist_scanned += int(targeted.get("scanned") or 0)
@@ -5588,6 +5862,8 @@ def _fetch_document_sibling_candidates(
     requested_retrievers: Optional[List[str]] = None,
     max_documents: int = 1,
     per_document: int = 4,
+    request_scope_key: Optional[str] = None,
+    shared_read_metrics: Optional[Dict[str, int]] = None,
 ) -> List[Dict[str, object]]:
     if not RAG_LEXICAL_SEARCH_ENABLED:
         return []
@@ -5609,7 +5885,9 @@ def _fetch_document_sibling_candidates(
     sibling_where: Dict[str, object] = {"doc_id": {"$in": doc_ids}}
     if chroma_where:
         sibling_where = {"$and": [chroma_where, sibling_where]}
-    got = collection.get(
+    got = _request_scoped_collection_get(
+        request_scope_key,
+        shared_read_metrics,
         include=["documents", "metadatas"],
         limit=min(240, max(80, len(doc_ids) * 80)),
         where=sibling_where,
@@ -5811,6 +6089,8 @@ def _fetch_fact_segment_candidates(
     per_document: int,
     document_ids: Optional[List[str]] = None,
     max_documents: int = 3,
+    request_scope_key: Optional[str] = None,
+    shared_read_metrics: Optional[Dict[str, int]] = None,
 ) -> List[Dict[str, object]]:
     """Search each question segment inside already identified documents."""
     if not segment_embeddings and not segment_queries:
@@ -5929,7 +6209,9 @@ def _fetch_fact_segment_candidates(
     # tuvastatud dokumentide lõike ka iga küsimuse osa sõnade järgi. See on
     # piiratud dokumendisisene läbivaatus, mitte uus kogu korpuse täisskann.
     if segment_queries:
-        got = collection.get(
+        got = _request_scoped_collection_get(
+            request_scope_key,
+            shared_read_metrics,
             include=["documents", "metadatas"],
             limit=min(5000, max(200, len(doc_ids) * 600)),
             where=segment_where,
@@ -6258,6 +6540,87 @@ def _initialize_persistent_lexical_index() -> None:
 
 
 app.router.add_event_handler("startup", _initialize_persistent_lexical_index)
+
+
+def _warm_registry_and_lexical_paths() -> None:
+    """Prime bounded registry and FTS primitives without fixed corpus facts."""
+    started_at = time.perf_counter()
+    registry_started_at = time.perf_counter()
+    registry = _load_registry()
+    registry_load_ms = int((time.perf_counter() - registry_started_at) * 1000)
+    general_where = build_general_search_where(None)
+    sample_metadata: Dict[str, object] = {}
+    for metadata in registry.values():
+        if not isinstance(metadata, dict) or not _metadata_matches_filter(metadata, general_where):
+            continue
+        if metadata.get("title") or metadata.get("authors") or metadata.get("description"):
+            sample_metadata = metadata
+            break
+
+    author_ms = 0
+    title_ms = 0
+    fact_ms = 0
+    fts_ms = 0
+    if sample_metadata:
+        authors = normalize_author_tokens(
+            sample_metadata.get("authors") or sample_metadata.get("authors_list")
+        )
+        if authors:
+            path_started_at = time.perf_counter()
+            _registry_author_shortlist_doc_ids(authors[0], general_where, limit=12)
+            author_ms = int((time.perf_counter() - path_started_at) * 1000)
+        title = str(sample_metadata.get("title") or "").strip()
+        if title:
+            path_started_at = time.perf_counter()
+            _registry_title_shortlist_doc_ids(title, general_where, limit=12)
+            title_ms = int((time.perf_counter() - path_started_at) * 1000)
+        description = str(sample_metadata.get("description") or "").strip()
+        if description:
+            path_started_at = time.perf_counter()
+            _registry_fact_description_shortlist_doc_ids(description, general_where, limit=12)
+            fact_ms = int((time.perf_counter() - path_started_at) * 1000)
+
+        lexical_tokens = _search_tokens(" ".join([title, description]), limit=8)
+        lexical_status = LEXICAL_INDEX.status(registry)
+        if lexical_status.get("ready") and lexical_tokens:
+            path_started_at = time.perf_counter()
+            LEXICAL_INDEX.search(
+                query_tokens=lexical_tokens,
+                where=general_where,
+                registry=registry,
+                limit=min(320, RAG_PERSISTENT_LEXICAL_INDEX_CANDIDATES),
+            )
+            fts_ms = int((time.perf_counter() - path_started_at) * 1000)
+
+    stage_logger.info(
+        "rag.startup.retrieval_paths %s",
+        json.dumps(
+            {
+                "outcome": "ok" if sample_metadata else "empty",
+                "total_ms": int((time.perf_counter() - started_at) * 1000),
+                "registry_load_ms": registry_load_ms,
+                "registry_author_ms": author_ms,
+                "registry_title_ms": title_ms,
+                "registry_fact_ms": fact_ms,
+                "fts5_ms": fts_ms,
+            },
+            ensure_ascii=False,
+        ),
+    )
+
+
+def _initialize_retrieval_warmup() -> None:
+    # Uvicorn reports ready only after both the dense profiles and the bounded
+    # local retrieval primitives have completed. Dense failure remains fatal;
+    # the FTS lifecycle itself reports degraded state independently above.
+    _warm_dense_index()
+    try:
+        _warm_registry_and_lexical_paths()
+    except Exception as exc:
+        logger.warning("RAG specialized startup warm-up failed error=%s", exc.__class__.__name__)
+
+
+app.router.add_event_handler("startup", _initialize_retrieval_warmup)
 
 
 @app.get("/health")
@@ -7784,6 +8147,12 @@ def _execute_search(
         request.headers.get(OBSERVABILITY_STAGE_HEADER) if request is not None else None
     )
     stage_t0 = time.perf_counter()
+    shared_read_metrics: Dict[str, int] = {
+        "hits": 0,
+        "waits": 0,
+        "misses": 0,
+        "bypasses": 0,
+    }
 
     def _ms_since(start: float) -> int:
         return int((time.perf_counter() - start) * 1000)
@@ -7815,33 +8184,34 @@ def _execute_search(
         for channel in ["author_match", "title_match", "exact_phrase", "bm25"]
     )
     deep_document_fact_search = payload.journal_chunks_per_document > 3
-    split_fact_query_segments = (
-        _split_fact_query_segments(payload.query, anchor_short=False)
-        if deep_document_fact_search
-        else []
-    )
-    reuse_primary_fact_embedding = deep_document_fact_search and not split_fact_query_segments
-    fact_query_segments = (
-        split_fact_query_segments
-        if split_fact_query_segments
-        else [payload.query]
-        if reuse_primary_fact_embedding
-        else []
-    )
-    fact_embedding_segments = (
-        _split_fact_query_segments(payload.query, anchor_short=True)
-        if split_fact_query_segments
-        else []
-    )
+    embedding_plan = _fact_embedding_plan(payload.query, deep_document_fact_search)
+    split_fact_query_segments = list(embedding_plan.get("split_segments") or [])
+    reuse_primary_fact_embedding = embedding_plan.get("reuse_primary") is True
+    fact_query_segments = list(embedding_plan.get("fact_query_segments") or [])
     # A short single-part fact question already has the exact embedding needed
     # for the document-internal pass. Reuse it instead of billing and waiting
     # for an identical second embedding input.
-    embedding_inputs = [payload.query, *fact_embedding_segments]
+    embedding_inputs = list(embedding_plan.get("embedding_inputs") or [payload.query])
+    batch_embedding_inputs: List[str] = []
+    for batch_query in payload.batch_queries or []:
+        batch_plan = _fact_embedding_plan(batch_query, deep_document_fact_search)
+        batch_embedding_inputs.extend(list(batch_plan.get("embedding_inputs") or []))
+    shared_embedding_metrics: Dict[str, int] = {
+        "hits": 0,
+        "waits": 0,
+        "misses": 0,
+        "bypasses": 0,
+    }
     embed_t0 = time.perf_counter()
     embedding_degraded = False
     embedding_error_code: Optional[str] = None
     try:
-        embed_result = _embed_batch_with_usage(embedding_inputs)
+        embed_result = _request_scoped_embedding_batch(
+            stage_request_id,
+            batch_embedding_inputs,
+            embedding_inputs,
+            shared_embedding_metrics,
+        )
     except HTTPException as e:
         if e.status_code not in {502, 503} or not lexical_requested:
             _log_stage("embedding", embed_t0, "error", error_class=e.__class__.__name__)
@@ -8097,6 +8467,8 @@ def _execute_search(
             requested_retrievers,
             dense_article_doc_ids=dense_article_doc_ids,
             version_registry=version_registry,
+            request_scope_key=stage_request_id,
+            shared_read_metrics=shared_read_metrics,
         )
         if lexical_requested
         else {"candidates": [], "scanned": 0, "complete": True, "error": None}
@@ -8126,6 +8498,8 @@ def _execute_search(
             requested_retrievers,
             max_documents=3 if payload.journal_chunks_per_document > 3 else 1,
             per_document=payload.journal_chunks_per_document,
+            request_scope_key=stage_request_id,
+            shared_read_metrics=shared_read_metrics,
         )
     except Exception:
         logger.exception("document sibling retrieval failed")
@@ -8229,6 +8603,8 @@ def _execute_search(
             per_document=payload.journal_chunks_per_document,
             document_ids=fact_document_shortlist.get("doc_ids") or [],
             max_documents=12,
+            request_scope_key=stage_request_id,
+            shared_read_metrics=shared_read_metrics,
         )
     except Exception:
         logger.exception("fact segment retrieval failed")
@@ -8479,6 +8855,14 @@ def _execute_search(
             **lexical_timings,
             "document_sibling_ms": document_sibling_ms,
             "fact_segment_ms": fact_segment_ms,
+            "shared_read_cache_hits": int(shared_read_metrics.get("hits") or 0),
+            "shared_read_cache_waits": int(shared_read_metrics.get("waits") or 0),
+            "shared_read_cache_misses": int(shared_read_metrics.get("misses") or 0),
+            "shared_read_cache_bypasses": int(shared_read_metrics.get("bypasses") or 0),
+            "shared_embedding_batch_hits": int(shared_embedding_metrics.get("hits") or 0),
+            "shared_embedding_batch_waits": int(shared_embedding_metrics.get("waits") or 0),
+            "shared_embedding_batch_misses": int(shared_embedding_metrics.get("misses") or 0),
+            "shared_embedding_batch_bypasses": int(shared_embedding_metrics.get("bypasses") or 0),
             "retrieval_ms": retrieval_ms,
             "total_ms": total_ms,
             "outcome": final_outcome,
