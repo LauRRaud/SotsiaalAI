@@ -1,3 +1,5 @@
+import { performance } from "node:perf_hooks";
+
 import { NextResponse } from "next/server";
 import { bootstrapChatRequest, MAX_USER_MESSAGE_CHARS } from "@/lib/chat/requestBootstrap";
 import { CHAT_NO_STORE_HEADERS } from "@/lib/chat/routeServerUtils";
@@ -77,6 +79,7 @@ async function releaseUsageSafely(handle, reason, releaseUsage = releaseUsageFor
 }
 
 export async function POST(req, deps = {}) {
+  const requestStartedAtMs = performance.now();
   const routeRuntime = {
     bootstrapChatRequest: deps.bootstrapChatRequest || bootstrapChatRequest,
     handleDocumentWorkflowBranch: deps.handleDocumentWorkflowBranch || handleDocumentWorkflowBranch,
@@ -471,6 +474,7 @@ export async function POST(req, deps = {}) {
     logInfo: logChatInfo,
     logError: logChatError,
     logEvent: routeRuntime.logEvent,
+    requestStartedAtMs,
     /* SOL-CHAT-01/-02: mõlemad võtavad nüüd valikulise tehingukliendi, sest arveldus kuulub
        pöörde terminalse kirjutusega ühte tehingusse. Ilma `tx`-ita käitub kumbki nagu varem. */
     clientTurnKey,

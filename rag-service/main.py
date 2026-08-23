@@ -7368,6 +7368,8 @@ def _execute_search(
     )
 
     res = {"ids": [[]], "documents": [[]], "metadatas": [[]], "distances": [[]]}
+    dense_t0 = time.perf_counter()
+    dense_ms = 0
     try:
         include_items = list(payload.include or ["documents", "metadatas", "distances"])
         if "metadatas" not in include_items:
@@ -7379,7 +7381,9 @@ def _execute_search(
                 where=chroma_where,
                 include=include_items,
             )
+        dense_ms = _ms_since(dense_t0)
     except Exception as e:
+        dense_ms = _ms_since(dense_t0)
         _log_rag_cost_usage(
             model=embed_result.get("model"),
             latency_ms=embed_result.get("latency_ms"),
@@ -7401,6 +7405,8 @@ def _execute_search(
                 "request_id": stage_request_id,
                 "timings": {
                     "embedding_ms": embedding_ms,
+                    "dense_ms": dense_ms,
+                    "lexical_ms": None,
                     "retrieval_ms": _ms_since(retrieval_t0),
                     "total_ms": _ms_since(stage_t0),
                     "outcome": "query_failed",
@@ -7532,6 +7538,7 @@ def _execute_search(
         if payload.journal_chunks_per_document > 3
         else []
     )
+    lexical_t0 = time.perf_counter()
     lexical_fetch = (
         _fetch_lexical_candidates(
             payload.query,
@@ -7543,7 +7550,9 @@ def _execute_search(
         if lexical_requested
         else {"candidates": [], "scanned": 0, "complete": True, "error": None}
     )
+    lexical_ms = _ms_since(lexical_t0)
     lexical_candidates = list(lexical_fetch.get("candidates") or [])
+    sibling_t0 = time.perf_counter()
     try:
         sibling_candidates = _fetch_document_sibling_candidates(
             payload.query,
@@ -7557,6 +7566,7 @@ def _execute_search(
     except Exception:
         logger.exception("document sibling retrieval failed")
         sibling_candidates = []
+    document_sibling_ms = _ms_since(sibling_t0)
     lexical_by_id: Dict[str, Dict[str, object]] = {}
     for candidate in [*lexical_candidates, *sibling_candidates]:
         item_id = str(candidate.get("id") or "").strip()
@@ -7643,6 +7653,7 @@ def _execute_search(
             "candidates": [],
         }
     )
+    fact_segment_t0 = time.perf_counter()
     try:
         fact_segment_candidates = _fetch_fact_segment_candidates(
             segment_embeddings,
@@ -7658,6 +7669,7 @@ def _execute_search(
     except Exception:
         logger.exception("fact segment retrieval failed")
         fact_segment_candidates = []
+    fact_segment_ms = _ms_since(fact_segment_t0)
     if fact_segment_candidates:
         _merge_fact_segment_candidates(flat, fact_segment_candidates)
         _apply_hybrid_ranking(flat)
@@ -7896,6 +7908,10 @@ def _execute_search(
         "request_id": stage_request_id,
         "timings": {
             "embedding_ms": embedding_ms,
+            "dense_ms": dense_ms,
+            "lexical_ms": lexical_ms,
+            "document_sibling_ms": document_sibling_ms,
+            "fact_segment_ms": fact_segment_ms,
             "retrieval_ms": retrieval_ms,
             "total_ms": total_ms,
             "outcome": final_outcome,
