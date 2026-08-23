@@ -179,6 +179,7 @@ const ConversationView = memo(function ConversationView({
     }
   }, []);
   const handleScrollKeyDown = useCallback(event => {
+    if (isInteractiveTarget(event.target)) return;
     const node = event.currentTarget;
     if (!(node instanceof HTMLElement) || node.scrollHeight <= node.clientHeight) return;
 
