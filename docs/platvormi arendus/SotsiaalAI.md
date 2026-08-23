@@ -111,7 +111,7 @@ käsuta QA-, eval'i- ja mõõteskripti;
 kasutatavad deploy-, migratsiooni-, RAG-i sisu-, KOV-i ja dokumendihalduse tööriistad. Deploy
 järgselt olid serveri tööpuu puhas, kolm teenust aktiivsed ning HTTPS ja RAG-i otsing rohelised.
 
-**Vestluse häälrežiimi toru on 23.08 ümber tehtud.** Realtime WebRTC-seanss
+**Vestluse häälrežiimi toru on 23.08 toodangus (`d2bec66c`).** Realtime WebRTC-seanss
 kasutab ainult `gpt-4o-mini-transcribe` mudelit kõnevooru tuvastamiseks ja tekstiks muutmiseks;
 ta ei koosta ega loe vastust. Transkript läheb olemasolevasse RAG-i, allikate, kriisi-,
 privaatsus- ja kvooditorusse ning vastuse vaikemudel on `gpt-5.6-luna` (keskkond võib selle
@@ -122,8 +122,11 @@ avataripinnal ei näidata enam vastuse subtiitrit: RAG-i ooteajal on avatari suu
 ülekattena lühike olek „Otsin vastust ja allikaid“. Avatari efekte selles plokis ei muudetud.
 Seanss reserveerib enne ühendust 300 STT-sekundit; TartuNLP ettelugemise täpne märgikulu
 arvestatakse tavalisel `/api/tts` rajal, mitte 3000 märgi ettemaksuna. i18n, lint,
-`git diff --check` ja tootmisbuild on rohelised. Päris autentitud
-mikrofon → Realtime transkriptsioon → RAG/Luna → TartuNLP rada on **NOT_PROVEN**.
+`git diff --check` ja tootmisbuild on rohelised. Deploy järel olid 201 migratsiooni ajakohased,
+frontend, RAG ja research-worker aktiivsed, `/vestlus` vastas 200 ning RAG-i tervis oli
+`ok=true`, 49 727 vektorit ja 6 089 dokumenti; päris otsing tagastas tulemused. Serveris on
+`OPENAI_MODEL=gpt-5.6-luna` ja TartuNLP seadistatud. Päris autentitud mikrofon → Realtime
+transkriptsioon → RAG/Luna → TartuNLP rada on **NOT_PROVEN**.
 
 **Tööalade sisuvaadete kiirmenüü ja leheinfo on 22.08 parandatud.** Kõik
 `/vestlus?workspace=…` tööalad kasutavad nüüd sisu klaaspinda ning lehe nime, tagasinupu ja
