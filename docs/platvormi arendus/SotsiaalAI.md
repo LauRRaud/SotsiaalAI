@@ -133,8 +133,11 @@ vastasid, kuid esimene kõnevoor „tere, kas sa kuuled mind“ transkribeeriti 
 Järelparandus annab `gpt-4o-mini-transcribe` mudelile lisaks `language: et` väärtusele eestikeelse
 täpsusjuhise ning kasutab veebiseadme mikrofoni jaoks `far_field` müravähendust. Häälpinnal ei
 renderdata enam standardvestluse mulle, komposerit ega rollilüliteid; need tulevad tagasi alles
-tekstivestlusse naastes. Staatilised kontrollid ja tootmisbuild on rohelised; parandusejärgne
-mikrofoni täpsus on kuni uue päris lausungini **NOT_PROVEN**.
+tekstivestlusse naastes. Järelparandus on 23.08 toodangus koodi-SHA-l `c2e2df9b`: kolm teenust
+olid aktiivsed, `/vestlus` vastas 200 ja RAG-i tervis oli endiselt `ok=true` (49 727 / 6089).
+Autenditud brauseris näitas häälpind ainult avatarit ja dokki ning „Tagasi vestlusesse“ taastas
+sõnumid. Staatilised kontrollid ja tootmisbuild on rohelised; parandusejärgne mikrofoni täpsus
+on kuni uue päris lausungini **NOT_PROVEN**.
 
 **Tööalade sisuvaadete kiirmenüü ja leheinfo on 22.08 parandatud.** Kõik
 `/vestlus?workspace=…` tööalad kasutavad nüüd sisu klaaspinda ning lehe nime, tagasinupu ja
