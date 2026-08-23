@@ -5264,6 +5264,7 @@ def _fetch_lexical_candidates(
     version_registry: Optional[Dict[str, Dict]] = None,
     request_scope_key: Optional[str] = None,
     shared_read_metrics: Optional[Dict[str, int]] = None,
+    author_shortlist_doc_ids: Optional[List[str]] = None,
 ) -> Dict[str, object]:
     lexical_started_at = time.perf_counter()
     metrics = _new_lexical_metrics()
@@ -5304,12 +5305,13 @@ def _fetch_lexical_candidates(
         return finish({"candidates": [], "scanned": 0, "complete": True, "error": None})
     allowed_channels = set(requested_retrievers or ["author_match", "title_match", "exact_phrase", "bm25"])
     use_specialized_shortlists = _needs_specialized_lexical_shortlist(query)
-    author_doc_ids: List[str] = []
+    author_doc_ids: List[str] = list(author_shortlist_doc_ids or [])
     if use_specialized_shortlists:
-        try:
-            author_doc_ids = registry_lookup(lambda: _registry_author_shortlist_doc_ids(query, chroma_where))
-        except Exception:
-            logger.exception("registry author shortlist lookup failed")
+        if author_shortlist_doc_ids is None:
+            try:
+                author_doc_ids = registry_lookup(lambda: _registry_author_shortlist_doc_ids(query, chroma_where))
+            except Exception:
+                logger.exception("registry author shortlist lookup failed")
     if author_doc_ids and "author_match" in allowed_channels:
         author_where: Dict[str, object] = {"doc_id": {"$in": author_doc_ids}}
         if chroma_where:
@@ -6558,8 +6560,12 @@ def _warm_registry_and_lexical_paths() -> None:
             break
 
     author_ms = 0
+    author_chroma_ms = 0
+    author_chroma_rows = 0
     title_ms = 0
+    title_chroma_ms = 0
     fact_ms = 0
+    fact_chroma_ms = 0
     fts_ms = 0
     if sample_metadata:
         authors = normalize_author_tokens(
@@ -6567,18 +6573,43 @@ def _warm_registry_and_lexical_paths() -> None:
         )
         if authors:
             path_started_at = time.perf_counter()
-            _registry_author_shortlist_doc_ids(authors[0], general_where, limit=12)
+            author_doc_ids = _registry_author_shortlist_doc_ids(authors[0], general_where, limit=12)
             author_ms = int((time.perf_counter() - path_started_at) * 1000)
+            if author_doc_ids:
+                path_started_at = time.perf_counter()
+                author_rows = collection.get(
+                    include=["documents", "metadatas"],
+                    limit=min(5000, max(200, len(author_doc_ids) * 120)),
+                    where={"$and": [general_where, {"doc_id": {"$in": author_doc_ids}}]},
+                )
+                author_chroma_ms = int((time.perf_counter() - path_started_at) * 1000)
+                author_chroma_rows = len(list(author_rows.get("ids") or []))
         title = str(sample_metadata.get("title") or "").strip()
         if title:
             path_started_at = time.perf_counter()
-            _registry_title_shortlist_doc_ids(title, general_where, limit=12)
+            title_doc_ids = _registry_title_shortlist_doc_ids(title, general_where, limit=12)
             title_ms = int((time.perf_counter() - path_started_at) * 1000)
+            if title_doc_ids:
+                path_started_at = time.perf_counter()
+                collection.get(
+                    include=["documents", "metadatas"],
+                    limit=min(5000, max(100, len(title_doc_ids) * 100)),
+                    where={"$and": [general_where, {"doc_id": {"$in": title_doc_ids}}]},
+                )
+                title_chroma_ms = int((time.perf_counter() - path_started_at) * 1000)
         description = str(sample_metadata.get("description") or "").strip()
         if description:
             path_started_at = time.perf_counter()
-            _registry_fact_description_shortlist_doc_ids(description, general_where, limit=12)
+            fact_doc_ids = _registry_fact_description_shortlist_doc_ids(description, general_where, limit=12)
             fact_ms = int((time.perf_counter() - path_started_at) * 1000)
+            if fact_doc_ids:
+                path_started_at = time.perf_counter()
+                collection.get(
+                    include=["documents", "metadatas"],
+                    limit=min(5000, max(100, len(fact_doc_ids) * 100)),
+                    where={"$and": [general_where, {"doc_id": {"$in": fact_doc_ids}}]},
+                )
+                fact_chroma_ms = int((time.perf_counter() - path_started_at) * 1000)
 
         lexical_tokens = _search_tokens(" ".join([title, description]), limit=8)
         lexical_status = LEXICAL_INDEX.status(registry)
@@ -6600,8 +6631,12 @@ def _warm_registry_and_lexical_paths() -> None:
                 "total_ms": int((time.perf_counter() - started_at) * 1000),
                 "registry_load_ms": registry_load_ms,
                 "registry_author_ms": author_ms,
+                "author_chroma_ms": author_chroma_ms,
+                "author_chroma_rows": author_chroma_rows,
                 "registry_title_ms": title_ms,
+                "title_chroma_ms": title_chroma_ms,
                 "registry_fact_ms": fact_ms,
+                "fact_chroma_ms": fact_chroma_ms,
                 "fts5_ms": fts_ms,
             },
             ensure_ascii=False,
@@ -8053,6 +8088,7 @@ def _execute_search(
     require_current_version = _requires_current_version(payload.where)
     md_where: Dict[str, object] = {}
     requested_retrievers = _normalize_requested_retrievers(payload.retrievers)
+    requested_author_tokens: List[str] = []
 
     if payload.filterDocId:
         md_where["doc_id"] = payload.filterDocId
@@ -8090,6 +8126,7 @@ def _execute_search(
             author_filter = payload.where["authors"]
             author_values = list(author_filter.get("$in") or []) if isinstance(author_filter, dict) else author_filter
             normalized_authors = normalize_author_tokens(author_values)
+            requested_author_tokens = normalized_authors
             _add_search_or_group(md_where, [
                 {f"author_token_{idx + 1}": token}
                 for token in normalized_authors
@@ -8339,6 +8376,27 @@ def _execute_search(
     registry_t0 = time.perf_counter()
     version_registry = _load_registry()
     registry_ms = _ms_since(registry_t0)
+    author_metadata_summary: Optional[Dict[str, object]] = None
+    exact_author_document_ids: Optional[List[str]] = None
+    if len(requested_author_tokens) == 1:
+        try:
+            author_summary_t0 = time.perf_counter()
+            exact_author_document_ids = _registry_author_shortlist_doc_ids(
+                requested_author_tokens[0],
+                chroma_where,
+                limit=max(1, len(version_registry) + 1),
+            )
+            registry_ms += _ms_since(author_summary_t0)
+            author_metadata_summary = {
+                "requested_author": requested_author_tokens[0],
+                "document_count": len(exact_author_document_ids),
+                "document_ids": exact_author_document_ids[:500],
+                "document_ids_complete": len(exact_author_document_ids) <= 500,
+                "active_versions_only": True,
+                "complete": True,
+            }
+        except Exception:
+            logger.exception("registry author metadata summary failed")
 
     flat = []
     for i, _id in enumerate(ids):
@@ -8469,6 +8527,7 @@ def _execute_search(
             version_registry=version_registry,
             request_scope_key=stage_request_id,
             shared_read_metrics=shared_read_metrics,
+            author_shortlist_doc_ids=exact_author_document_ids,
         )
         if lexical_requested
         else {"candidates": [], "scanned": 0, "complete": True, "error": None}
@@ -8823,6 +8882,7 @@ def _execute_search(
             "error": lexical_fetch.get("error"),
             "index": lexical_fetch.get("index"),
         },
+        "author_metadata_summary": author_metadata_summary,
         "strategy_decisions": {
             "requested_top_k": requested_top_k,
             "dense_candidate_limit": _dense_candidate_limit(payload.top_k or 5),
