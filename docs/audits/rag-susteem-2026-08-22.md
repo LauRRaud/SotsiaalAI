@@ -3,7 +3,7 @@
 Kuupäev: 22.08.2026
 Tööharu: `codex/rag-quality-repair-20260822`
 Varasem toodangusse viidud RAG-paranduste lähtecommit: `08cbd94ac86597911e22e3731ee812c717f04110`
-Praegune brauseris kontrollitud sisulise RAG- ja vestlusloogika baasseis: `815f15f6`; 23.08 jõudlusparanduse runtime-release oli `5796178f`. Kohalik deploy'imata püsiva leksikaalse indeksi release-kandidaat on eraldi tööharus; selle otsese otsingu tõendid ei ole autentitud vestluse ega toodangu tõendid. Hilisem dokumentatsiooni commit ei nimeta runtime-tõendit enda tõendiks.
+Praegune brauseris kontrollitud sisulise RAG- ja vestlusloogika baasseis on `815f15f6`; 23.08 külmkäivituse runtime-release oli `5796178f` ning püsiva leksikaalindeksi runtime-release on `d08b25a8`. Uue indeksi toodangu health ja otsene otsing on tõendatud, kuid sama SHA autentitud vastust ja allikapaneeli ei ole tehtud. Hilisem dokumentatsiooni commit ei nimeta ennast runtime-tõendiks.
 Põhjusepõhiste paranduste viimane jätk jõudis toodangusse commit'ijadana `15fc81a3` → `8b4f4d69` → `bdaa8afd` → `2b0bd86` → `429469dd` → `56b4a13d` → `d7c35346` → `815f15f6`. V04 ja kümme autorijuhtumit läbisid end-to-end värava; kogu 75 juhtumi lõppvärav ei ole tehtud.
 Seis: **PARTIAL — süsteemi ei ole tõendatud 10/10 töökindlaks**
 
@@ -76,9 +76,12 @@ RAG-teenus ei ole avalikult internetti binditud. Frontend pöördub selle poole 
 
 | kontroll | tulemus |
 |---|---|
-| serveri HEAD | `9cad5105fc30d68f1df7bb084f79a59e68b110d7` |
+| serveri HEAD | `d08b25a813be302ecda3d4cff71f12f520e23617` |
 | `origin/main` | sama SHA |
-| RAG health | `{"ok":true,"status":"ok","vectors":49727,"documents":6089}` |
+| RAG health | `ok=true`, 49 727 vektorit, 6089 registrikirjet |
+| püsiv leksikaalindeks | `ready=true`, FTS5 v2, 49 727 lõiku / 6073 aktiivset dokumenti |
+| indeksi põlvkond | registri oodatud SHA-256-ga võrdne |
+| indeksi fail | 459 132 928 baiti ehk 437,9 MiB |
 | aktiivsed vektorlõigud | **49 727** |
 | registrikirjeid kokku | **6089** |
 | registris `ACTIVE` elutsükkel | **884** |
@@ -932,7 +935,7 @@ Alles on üks terviklikult kontrollitud RAG-snapshot `/var/backups/sotsiaalai-ra
 
 Automaatteste ei loodud ega käivitatud. Staatiline värav oli lint, i18n, `git diff --check`, Python compile ja tootmisbuild; runtime-värav oli käsitsi sama autentitud vestlus. Range RAG-seis ei muutunud: **DONE 21/75 · PARTIAL 0/75 · FAIL 0/75 · NOT_PROVEN 54/75**.
 
-## 31. Püsiv täiskorpuse leksikaalne indeks — kohalik release-kandidaat
+## 31. Püsiv täiskorpuse leksikaalne indeks — runtime-release `d08b25a8`
 
 Vana lai `corpus_scan` varurada luges iga üldküsimuse ajal Chromast kuni 8000 lõigu täisteksti ja skooris read Pythonis. Kontrollitud soojas päringus võttis leksikaalne etapp 5749 ms ning kogu otsene `/search` 6639 ms; tulemus oli `complete=false`, `partial=true`, kuigi aktiivses korpuses oli 49 727 lõiku. Etapiinstrumentatsioon näitas, et probleem ei olnud üksnes Pythonis: kolme mõõtevooru Chroma lugemine võttis 2493–4324 ms ning normaliseerimine ja skoorimine kokku 2575–2670 ms. Mõõdiku `lexical_rows_loaded=8621` sees olid 8000 laia skanni rida ja spetsiaalsete shortlist-radade lisaread; see ei olnud korpuse suurus.
 
@@ -946,4 +949,8 @@ Uue indeksi esimene lai päring võttis leksikaalselt 397 ms ja kokku 1309 ms. K
 
 Autoripäringu, täpse pealkirja, pika V04 arvuküsimuse ja Kuusalu teenusepäringu põhilised chunk- ja source-ID-d jäid vana ning uue raja võrdluses samaks. Kuusalu parafraasi kaks esimest tulemust jäid samaks ja kolmas muutus, kuid õige Kuusalu tõend püsis ees. Lühike otsene V04 variant „mis olid 10%, 6% ja 2% näidud?” eksis nii vana kui ka uue `/search` rajaga; see ei ole indeksi regressioon, kuid sõnastusvariant jääb lahendamata. Uue SHA vastu pole autentitud `/vestlus` vastust ega allikapaneeli kontrollitud, seega ei pärandata varasemaid 21 DONE-juhtumit automaatselt. Range seis jääb **DONE 21/75 · PARTIAL 0/75 · FAIL 0/75 · NOT_PROVEN 54/75**, uue SHA vestlusvärav `NOT_PROVEN`.
 
-Kohalik kandidaat põhineb SHA-l `a0650f716c5f6787cc016d865c2232bd42c3b544`, mis oli mõõtmisel ühtlasi värske `origin/main` ja serveri HEAD. Python compile, scoped ESLint, i18n, `git diff --check` ja muutumatu lõppkoodi tootmisbuild olid rohelised; Prisma pinda ei muudetud ning automaatteste ega uusi testi-, smoke-, probe-, benchmark- või E2E-faile ei loodud ega käivitatud. Push ja deploy on tegemata. Kiire runtime-rollback on `RAG_PERSISTENT_LEXICAL_INDEX_ENABLED=0` ning RAG-teenuse restart; see taastab vana skanni muutmata Chroma korpust, registrit, andmebaasi või kasutajaandmeid. Commit'i rollback on release-kandidaadi commit'i revert ja tavapärane deploy; FTS-fail võib jääda kasutamata kettale.
+Runtime-release on SHA `d08b25a813be302ecda3d4cff71f12f520e23617`; `origin/main` ja puhas serveri tööpuu olid kontrollis samal SHA-l. Frontend, RAG ning research-worker olid aktiivsed ja `/vestlus` vastas loopbackil ning avalikult 200. Startup ehitas 49 727 lõigu / 6073 aktiivse dokumendi / 459 132 928 baidi indeksi 46 585 ms-ga; health näitas `ready=true`, registri põlvkond ning oodatud põlvkond kattusid ja taustarefresh ei töötanud.
+
+Toodangu laia üldpäringu kolm järjestikust otsest `/search` korda kasutasid kõik `persistent_fts5` strateegiat ning olid `complete=true`, `partial=false`, `degraded=false`. Leksikaalajad olid 517, 512 ja 537 ms, retrieval 841, 811 ja 842 ms ning kogu päring 3198, 1453 ja 1038 ms; esimese korra suurem koguaeg jäi väljapoole leksikaalset rada. Juurkettal oli pärast deploy'd 20 GiB vaba ehk kasutus 59%, serveril 3,4 GiB mälu available ning kogu RAG-protsessi PSS 1 734 352 KiB. Need on hetktõendid, mitte p50/p95 koormustest.
+
+Autenditud in-app brauser avas `/vestlus` vaate ja komposeri ilma loginiväravata, kuid privaatsuse hoidmiseks uut vestlussõnumit ei saadetud ega olemasolevaid vestlusi loetud. Seetõttu on sama SHA vastuse, kuvatud allikapaneeli ning päris ingest/reindex/tombstone taustasünkroonsuse värav endiselt **NOT_PROVEN**. Python compile, scoped ESLint, i18n, `git diff --check` ja lõppkoodi kohalik ning serveri tootmisbuild olid rohelised; Prisma pinda ei muudetud ning automaatteste ega uusi testi-, smoke-, probe-, benchmark- või E2E-faile ei loodud ega käivitatud. Kiire runtime-rollback on `RAG_PERSISTENT_LEXICAL_INDEX_ENABLED=0` ning RAG-teenuse restart; see taastab vana skanni muutmata Chroma korpust, registrit, andmebaasi või kasutajaandmeid. Commit'i rollback on release-commit'ide revert ja tavapärane deploy; FTS-fail võib jääda kasutamata kettale.
