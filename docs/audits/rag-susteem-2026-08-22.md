@@ -3,8 +3,8 @@
 Kuupäev: 22.08.2026
 Tööharu: `codex/rag-quality-repair-20260822`
 Varasem toodangusse viidud RAG-paranduste lähtecommit: `08cbd94ac86597911e22e3731ee812c717f04110`
-Praegune brauseris kontrollitud sisulise RAG- ja vestlusloogika baasseis on `c9672a05`; 23.08 külmkäivituse runtime-release oli `5796178f`, püsiva leksikaalindeksi runtime-release `d08b25a8` ning kitsa RU/EN autoriraja esimene dokumenteeritud release `676bf27b`. FTS5 health ja otsene otsing, eestikeelsed `914e1452`/`da2c79c4` sihtväravad ning `c9672a05` inglise ja vene autorirada on tõendatud, kuid üldine mitmekeelne RAG ja kogu 75 juhtumi kordus ei ole tehtud. Hilisem docs-only commit ei nimeta ennast uueks runtime-tõendiks.
-Põhjusepõhiste paranduste jätk jõudis toodangusse commit'ijadana `15fc81a3` → `8b4f4d69` → `bdaa8afd` → `2b0bd86` → `429469dd` → `56b4a13d` → `d7c35346` → `815f15f6` → `5796178f` → `d08b25a8` → `914e1452` → `da2c79c4` → `e0e240cf` → `2f0318c4` → `c9672a05`. V04 ja kümme autorijuhtumit läbisid ajaloolise eestikeelse end-to-end värava; praegusel release'il on kitsas RU/EN autoriraja sihtkontroll, kuid kogu 75 juhtumi ja üldise mitmekeelsuse lõppvärav ei ole tehtud.
+Praegune brauseris kontrollitud sisulise RAG- ja vestlusloogika baasseis on `243da993`; 23.08 külmkäivituse runtime-release oli `5796178f`, püsiva leksikaalindeksi runtime-release `d08b25a8` ning kitsa RU/EN autoriraja esimene dokumenteeritud release `676bf27b`. FTS5 health ja otsene otsing, eestikeelsed `914e1452`/`da2c79c4` sihtväravad ning `243da993` kitsa mitmekeelse autoriraja mõjutatud juhtumid on tõendatud, kuid üldine mitmekeelne RAG ja kogu 75 juhtumi kordus ei ole tehtud. Hilisem docs-only commit ei nimeta ennast uueks runtime-tõendiks.
+Põhjusepõhiste paranduste jätk jõudis toodangusse commit'ijadana `15fc81a3` → `8b4f4d69` → `bdaa8afd` → `2b0bd86` → `429469dd` → `56b4a13d` → `d7c35346` → `815f15f6` → `5796178f` → `d08b25a8` → `914e1452` → `da2c79c4` → `e0e240cf` → `2f0318c4` → `c9672a05` → `ab267fd5` → `599e89dc` → `243da993`. V04 ja kümme autorijuhtumit läbisid ajaloolise eestikeelse end-to-end värava; praegusel release'il on kitsas RU/EN autoriraja sihtkontroll, kuid kogu 75 juhtumi ja üldise mitmekeelsuse lõppvärav ei ole tehtud.
 Seis: **PARTIAL — süsteemi ei ole tõendatud 10/10 töökindlaks**
 
 See dokument vastab neljale eri küsimusele:
@@ -1014,3 +1014,21 @@ Autentitud sama vestluse kontroll:
 Lõppversioon kasutab kontrollitud eestikeelseid teematüvesid ainult kandidaadi- ja allikagrupi kitsendamiseks. Need ei ole vastuse hardcode ega üldine masintõlge. Esimese restartijärgse päringu retrieval 7,93 s ja sama raja varasem soe 1,51 s näitavad endiselt külma/sooja hajuvust; keeleplokk ei lisanud warm-up'i ega timeout'i muudatust.
 
 Tõendipiir: see on RU/EN autorimustri sihtvärav, mitte kogu mitmekeelse RAG-i valmimine. Üldised sünteesid, KOV ja teenused, õigusallikad, arvulised uuringufaktid, segakeel, lühikesed jätkuküsimused ning ET/RU/EN samatähenduslike source/chunk-pariteet jäävad `NOT_PROVEN`. Kumulatiivset eestikeelset 75 juhtumi maatriksit need lisakontrollid ei muuda: **DONE 21/75 · NOT_PROVEN 54/75**. Automaatteste ei loodud ega käivitatud; scoped lint, i18n, `git diff --check` ja muutumatu lõppkoodi tootmisbuild olid rohelised.
+
+### 33.2 Keele- ja atribuutikavärava jätk — RAG-loogika SHA `243da993`
+
+14 juhtumiga käsitsi sihtmaatriks avas järgmised üldised veaklassid: pärisnime täpitäht võis küsimuse ekslikult eestikeelseks muuta, kirillitsas sidesõnaga algav ja ladina tähtedega kirjutatud vene küsimus vajas eraldi tuvastust, `ё` transliteratsioon ei kattunud registri `ö`-ga, kaasautoripäring ja kontrollitud teema ei piiranud kuvatavat tõendit ning selge voorupõhine vastusekeele korraldus ei jõudnud alati lõppvastuse ja fallback'ini. Parandused tehti jadana `ab267fd5`, `599e89dc` ja `243da993`; iga põhjuse järel korrati mõjutatud juhtumit, kuid kogu 14 juhtumi plokki ei pärita automaatselt viimase SHA täiskorduseks.
+
+`243da993` käsitsi autentitud lõppväravad samas olemasolevas vestluses, ilma „Uus vestlus” workaround'ita:
+
+| värav | tulemus | allikatõend |
+|---|---|---|
+| vene kaasautor + laste elulootöö | venekeelne õige vastus 11,453 s-ga | valitud 1 = kuvatud 1; avatud paneelis ainult Ingrid Sindi 2016 otsene artikkel |
+| ingliskeelne üldine Kadi Lubi autoriküsimus | ingliskeelne nelja töö ja kaasautorite kokkuvõte 5,614 s-ga | valitud 4 = kuvatud 4; paneelis neli vastavaid töid toetavat kaarti |
+| vene UI + eestikeelne küsimus | vastus jäi eesti keelde | trace `interface=ru`, `query=et`, `answer=et`; valitud 2 = kuvatud 2 |
+| inglise UI + venekeelne küsimus | vastus tuli vene keeles | trace `interface=en`, `query=ru`, `answer=ru`; valitud 1 = kuvatud 1 |
+| inglise UI + vene küsimus koos käsuga vastata eesti keeles | vastus tuli eesti keeles | `answer_language_reason=explicit_turn_instruction`; kahest valitud allikast kuvati üks otseselt toetav, teine filtreeriti välja |
+
+Kaasautori puhul ei piisa enam sellest, et teine sama autorikomplektiga dokument sisaldab üldist rahvastikurühma sõna. Kontrollitud teemas peavad sobima eristavad teematüved; üldised juured nagu `laps` või `sotsiaaltoo` ei saa üksinda tõendit avada. See jättis 2016 otsese töö paneeli ainsaks allikaks. Allikate eraldi `direct/related` UI-rolle ei lisatud: selles kitsas juhtumis sulges põhjusepõhine retrieval'i ja atribuutika piirang üleliigse kaardi enne kuvamist.
+
+UI keel ei määra enam vastuse keelt, kui küsimuse keel või sama vooru selge korraldus on teada. Keelevaliku dialoogis on valik eelvaade; püsiv muutus tekib alles seadete viimases jaamas nupuga „Salvesta”. Kontrolli järel taastati konto UI eesti keelde. Üldine ET/RU/EN RAG, laiad sünteesid, õigus- ja KOV-rajad, arvufaktid ning kogu 14 juhtumi täiskordus viimasel SHA-l jäävad `NOT_PROVEN`. Eestikeelne põhimaatriks jääb **DONE 21/75 · NOT_PROVEN 54/75**.
