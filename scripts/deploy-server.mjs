@@ -7,6 +7,7 @@ const appDir = process.env.DEPLOY_APP_DIR || "/home/ubuntu/apps/sotsiaalai";
 const branch = process.env.DEPLOY_BRANCH || "main";
 const frontendEnv = process.env.DEPLOY_FRONTEND_ENV || "/etc/sotsiaalai/frontend.env";
 const buildTimeoutSeconds = Number.parseInt(String(process.env.DEPLOY_BUILD_TIMEOUT_SECONDS || "900"), 10) || 900;
+const artifactBackupKeep = Number.parseInt(String(process.env.DEPLOY_ARTIFACT_BACKUP_KEEP || "1"), 10) || 1;
 const discardTracked = args.has("--discard-tracked");
 const skipBuild = args.has("--skip-build");
 const printScript = args.has("--print-script");
@@ -27,6 +28,7 @@ APP_DIR=${shellEscape(appDir)}
 BRANCH=${shellEscape(branch)}
 FRONTEND_ENV=${shellEscape(frontendEnv)}
 BUILD_TIMEOUT_SECONDS=${Math.max(60, buildTimeoutSeconds)}
+ARTIFACT_BACKUP_KEEP=${Math.max(1, artifactBackupKeep)}
 DISCARD_TRACKED=${discardTracked ? "1" : "0"}
 SKIP_BUILD=${skipBuild ? "1" : "0"}
 
@@ -262,6 +264,20 @@ if systemctl list-unit-files sotsiaalai-research-worker.service >/dev/null 2>&1;
   systemctl is-active sotsiaalai-research-worker.service
 fi
 systemctl is-active sotsiaalai-frontend.service
+
+if [ -d "$BACKUP_DIR" ]; then
+  mapfile -t artifact_backups < <(
+    find "$BACKUP_DIR" -maxdepth 1 -type f -name 'frontend-artifact-*.tar.gz' -printf '%p\n' | sort -r
+  )
+  if [ "\${#artifact_backups[@]}" -gt "$ARTIFACT_BACKUP_KEEP" ]; then
+    removed_artifacts=0
+    for ((index = ARTIFACT_BACKUP_KEEP; index < \${#artifact_backups[@]}; index += 1)); do
+      rm -f -- "\${artifact_backups[$index]}"
+      removed_artifacts=$((removed_artifacts + 1))
+    done
+    echo "[deploy:server] Removed $removed_artifacts stale frontend artifact backups; kept $ARTIFACT_BACKUP_KEEP"
+  fi
+fi
 
 echo "[deploy:server] Deployed $(git rev-parse --short HEAD)"
 git status --short
