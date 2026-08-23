@@ -3,8 +3,8 @@
 Kuupäev: 22.08.2026
 Tööharu: `codex/rag-quality-repair-20260822`
 Varasem toodangusse viidud RAG-paranduste lähtecommit: `08cbd94ac86597911e22e3731ee812c717f04110`
-Praegune brauseris kontrollitud sisulise RAG- ja vestlusloogika baasseis on `da2c79c4`; 23.08 külmkäivituse runtime-release oli `5796178f` ning püsiva leksikaalindeksi runtime-release on `d08b25a8`. FTS5 indeksi health ja otsene otsing ning `914e1452`/`da2c79c4` autentitud sihtväravad on tõendatud, kuid kogu 75 juhtumi kordus ei ole tehtud. Hilisem dokumentatsiooni commit ei nimeta ennast runtime-tõendiks.
-Põhjusepõhiste paranduste jätk jõudis toodangusse commit'ijadana `15fc81a3` → `8b4f4d69` → `bdaa8afd` → `2b0bd86` → `429469dd` → `56b4a13d` → `d7c35346` → `815f15f6` → `5796178f` → `d08b25a8` → `914e1452` → `da2c79c4`. V04 ja kümme autorijuhtumit läbisid ajaloolise end-to-end värava; praegusel release'il on sihtkontroll, kuid kogu 75 juhtumi lõppvärav ei ole tehtud.
+Praegune brauseris kontrollitud sisulise RAG- ja vestlusloogika baasseis on `c9672a05`; 23.08 külmkäivituse runtime-release oli `5796178f`, püsiva leksikaalindeksi runtime-release `d08b25a8` ning kitsa RU/EN autoriraja esimene dokumenteeritud release `676bf27b`. FTS5 health ja otsene otsing, eestikeelsed `914e1452`/`da2c79c4` sihtväravad ning `c9672a05` inglise ja vene autorirada on tõendatud, kuid üldine mitmekeelne RAG ja kogu 75 juhtumi kordus ei ole tehtud. Hilisem docs-only commit ei nimeta ennast uueks runtime-tõendiks.
+Põhjusepõhiste paranduste jätk jõudis toodangusse commit'ijadana `15fc81a3` → `8b4f4d69` → `bdaa8afd` → `2b0bd86` → `429469dd` → `56b4a13d` → `d7c35346` → `815f15f6` → `5796178f` → `d08b25a8` → `914e1452` → `da2c79c4` → `e0e240cf` → `2f0318c4` → `c9672a05`. V04 ja kümme autorijuhtumit läbisid ajaloolise eestikeelse end-to-end värava; praegusel release'il on kitsas RU/EN autoriraja sihtkontroll, kuid kogu 75 juhtumi ja üldise mitmekeelsuse lõppvärav ei ole tehtud.
 Seis: **PARTIAL — süsteemi ei ole tõendatud 10/10 töökindlaks**
 
 See dokument vastab neljale eri küsimusele:
@@ -76,8 +76,9 @@ RAG-teenus ei ole avalikult internetti binditud. Frontend pöördub selle poole 
 
 | kontroll | tulemus |
 |---|---|
-| serveri HEAD | `da2c79c4bd5e76fe457520cde94e5d2e995b87d4` |
-| `origin/main` | sama SHA |
+| serveri HEAD viimases release-kontrollis | `676bf27b34399b6a5f0ab8dde35d6197ae79fd75` |
+| `origin/main` samas kontrollis | sama SHA |
+| brauseris kontrollitud RAG-loogika | `c9672a0537c9c4448019a2e7b20d3a0722a65a7e` |
 | RAG health | `ok=true`, 49 727 vektorit, 6089 registrikirjet |
 | püsiv leksikaalindeks | `ready=true`, FTS5 v2, 49 727 lõiku / 6073 aktiivset dokumenti |
 | indeksi põlvkond | registri oodatud SHA-256-ga võrdne |

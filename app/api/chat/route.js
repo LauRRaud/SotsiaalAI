@@ -13,6 +13,7 @@ import { enforceChatRateLimit, readChatRateLimit } from "@/lib/chat-api-rate-lim
 import { assembleRetrievalContext } from "@/lib/chat/retrievalContextAssembler";
 import { shouldUseAnswerHistory } from "@/lib/chat/retrievalOrchestrator";
 import { buildReplayResponse, handleMainChatResponse } from "@/lib/chat/mainResponseHandler";
+import { langStrings } from "@/lib/chat/promptBuilder";
 import { readCompletedChatTurnReplay } from "@/lib/chat/turnRegistry";
 import { buildImmediateChatResponse, finalizeAssistantReply } from "@/lib/chat/responseFinalizer";
 import { handleDocumentWorkflowBranch, handleHelpWorkflowBranch } from "@/lib/chat/workflowBranchHandlers";
@@ -307,6 +308,7 @@ export async function POST(req, deps = {}) {
   }
 
   let retrievalResult;
+  const plannedRagReplyLang = languagePlan?.answerLanguage || replyLang;
   try {
     retrievalResult = await routeRuntime.assembleRetrievalContext({
       payloadAudience: payload?.audience,
@@ -317,7 +319,7 @@ export async function POST(req, deps = {}) {
       forceSources,
       forcedMode,
       hasHistory,
-      replyLang,
+      replyLang: plannedRagReplyLang,
       languagePlan,
       ephemeralChunks,
       ephemeralSource,
@@ -376,7 +378,10 @@ export async function POST(req, deps = {}) {
     sources,
     retrievalMeta
   } = retrievalResult;
-  const responseReplyLang = retrievalMeta?.responseReplyLang || replyLang;
+  const responseReplyLang = retrievalMeta?.responseReplyLang || plannedRagReplyLang;
+  const responseLanguageStrings = responseReplyLang === replyLang
+    ? L
+    : langStrings(responseReplyLang, normalizedRole);
   const responseSystemInstructions = [
     ...(inputModality === "voice" ? [buildVoiceInputSystemInstruction(responseReplyLang)] : []),
     ...(Array.isArray(extraSystemInstructions) ? extraSystemInstructions : [])
@@ -467,10 +472,10 @@ export async function POST(req, deps = {}) {
     // materjalidest vastust" — see palub tal küsimust täpsustada, mis siin ei
     // aita. Kriisisõnum jääb alati ülimuslikuks.
     noContextReply: isCrisis
-      ? L.crisisNoCtx
+      ? responseLanguageStrings.crisisNoCtx
       : retrievalMeta?.ragSearchFailed === true
-        ? L.retrievalFailed
-        : L.noContext,
+        ? responseLanguageStrings.retrievalFailed
+        : responseLanguageStrings.noContext,
     noContextMeta: {
       ragReturned: retrievalMeta.rawMatchesCount > 0,
       ragSearchFailed: retrievalMeta?.ragSearchFailed === true,
