@@ -7418,7 +7418,9 @@ def _execute_search(
     docs = (res.get("documents") or [[]])[0] if res.get("documents") else []
     metas = (res.get("metadatas") or [[]])[0] if res.get("metadatas") else []
     dists = (res.get("distances") or [[]])[0] if res.get("distances") else []
+    registry_t0 = time.perf_counter()
     version_registry = _load_registry()
+    registry_ms = _ms_since(registry_t0)
 
     flat = []
     for i, _id in enumerate(ids):
@@ -7909,6 +7911,7 @@ def _execute_search(
         "timings": {
             "embedding_ms": embedding_ms,
             "dense_ms": dense_ms,
+            "registry_ms": registry_ms,
             "lexical_ms": lexical_ms,
             "document_sibling_ms": document_sibling_ms,
             "fact_segment_ms": fact_segment_ms,
