@@ -7,6 +7,7 @@ import { createPortal } from "react-dom";
 import GlassCarousel from "@/components/room/GlassCarousel";
 import ChevronIcon from "@/components/brand/icons/ChevronIcon";
 import { AboutInfoIcon } from "@/components/brand/icons/CardIcons";
+import { VOICE_SESSION_WARNING_MS } from "@/lib/chat/realtimeVoice";
 
 const VoicePointAvatar = dynamic(() => import("./VoicePointAvatar"), {
   ssr: false,
@@ -34,6 +35,9 @@ export default function VoiceModeSurface({ t, voice, onClose }) {
     return typeof value === "string" && value.trim() && value !== key ? value : fallback;
   };
   const live = LIVE_STATES.includes(voice.status);
+  const showCountdown = live
+    && voice.remainingMs > 0
+    && voice.remainingMs <= VOICE_SESSION_WARNING_MS;
 
   useEffect(() => {
     const onKeyDown = event => {
@@ -129,13 +133,15 @@ export default function VoiceModeSurface({ t, voice, onClose }) {
             />
           </div>
 
-          {/* Vastuse tekst jääb vestlusse. Siin on ainult lühike olek, et pikk
-              RAG-paus oleks arusaadav ega muudaks avatari mõõtu. */}
+          {/* Vastuse tekst jääb vestlusse. Lühike olek elab avatari all eraldi
+              rahulikus alas, et pikk RAG-paus oleks arusaadav ega muudaks
+              avatari mõõtu. Kell ilmub ainult siis, kui 45-sekundiline
+              lõpuhoiatus on juba kasutajale vajalik. */}
           <div className="voice-mode__caption" aria-live="polite" aria-atomic="true">
             {live ? <span className="voice-mode__state" role="status">{voice.stateLabel}</span> : null}
             {voice.notice ? <span className="voice-mode__notice" role="status">{voice.notice}</span> : null}
             {voice.error ? <span className="voice-mode__error" role="alert">{voice.error}</span> : null}
-            {live ? (
+            {showCountdown ? (
               <time className="voice-mode__clock" aria-label={read("chat.voice.time_left", "Seansi lõpuni")}>
                 {formatRemaining(voice.remainingMs)}
               </time>
