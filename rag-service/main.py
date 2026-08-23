@@ -202,6 +202,50 @@ logger = logging.getLogger("rag-service")
 # and INFO level carry the records to stderr/journald without touching root
 # logging or the application logger used by warnings and errors.
 stage_logger = logging.getLogger("uvicorn.error.rag_stage")
+
+
+def _warm_dense_index() -> None:
+    """Load the persisted Chroma dense index before Uvicorn reports ready.
+
+    The warm-up is read-only and reuses one stored embedding, so it does not
+    call the embedding provider, alter ranking, or write to the corpus. A
+    failed dense read is a startup failure rather than a slow first user's
+    request against an index that was never proved readable.
+    """
+    started_at = time.perf_counter()
+    try:
+        sample = collection.get(limit=1, include=["embeddings"])
+        embeddings = sample.get("embeddings")
+        if embeddings is None or len(embeddings) == 0:
+            stage_logger.info(
+                "rag.startup.warmup %s",
+                json.dumps({"outcome": "empty", "dense_ms": 0}, ensure_ascii=False),
+            )
+            return
+        stored_embedding = embeddings[0]
+        if hasattr(stored_embedding, "tolist"):
+            stored_embedding = stored_embedding.tolist()
+        collection.query(
+            query_embeddings=[stored_embedding],
+            n_results=1,
+            include=["metadatas"],
+        )
+        stage_logger.info(
+            "rag.startup.warmup %s",
+            json.dumps(
+                {
+                    "outcome": "ok",
+                    "dense_ms": int((time.perf_counter() - started_at) * 1000),
+                },
+                ensure_ascii=False,
+            ),
+        )
+    except Exception as exc:
+        logger.exception("RAG dense index startup warm-up failed")
+        raise RuntimeError("RAG dense index startup warm-up failed") from exc
+
+
+_warm_dense_index()
 OBSERVABILITY_ROUTE_HEADER = "X-Observability-Route"
 OBSERVABILITY_STAGE_HEADER = "X-Observability-Stage"
 # B0b: kliendipoolne korrelatsiooni-ID. Valikuline ja tagasiühilduv — kui
