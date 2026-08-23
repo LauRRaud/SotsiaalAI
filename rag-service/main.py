@@ -5386,6 +5386,42 @@ def _fetch_lexical_candidates(
                 body_only=True,
                 metrics=metrics,
             )
+            if author_shortlist_doc_ids is not None:
+                best_by_document: Dict[str, Dict[str, object]] = {}
+                remaining_scored: List[Dict[str, object]] = []
+                for candidate in authored_scored:
+                    metadata = candidate.get("metadata") if isinstance(candidate.get("metadata"), dict) else {}
+                    candidate_doc_id = str(
+                        metadata.get("doc_id") or metadata.get("docId") or ""
+                    ).strip()
+                    if candidate_doc_id and candidate_doc_id not in best_by_document:
+                        best_by_document[candidate_doc_id] = candidate
+                    else:
+                        remaining_scored.append(candidate)
+                for index, item_id in enumerate(authored_ids):
+                    metadata = authored_metas[index] if index < len(authored_metas) and isinstance(authored_metas[index], dict) else {}
+                    candidate_doc_id = str(
+                        metadata.get("doc_id") or metadata.get("docId") or ""
+                    ).strip()
+                    if not candidate_doc_id or candidate_doc_id in best_by_document:
+                        continue
+                    document = authored_docs[index] if index < len(authored_docs) and isinstance(authored_docs[index], str) else ""
+                    best_by_document[candidate_doc_id] = {
+                        "id": item_id,
+                        "document": document,
+                        "metadata": metadata,
+                        "score": 3.5,
+                        "channels": ["author_match"],
+                    }
+                # Exact registry identity must contribute at least one active
+                # evidence chunk per authored document before extra chunks from
+                # already represented documents. Otherwise a long article can
+                # crowd a short but valid authored work out of the list.
+                authored_scored = sorted(
+                    best_by_document.values(),
+                    key=lambda item: float(item.get("score") or 0),
+                    reverse=True,
+                ) + remaining_scored
             if authored_scored:
                 for candidate in authored_scored:
                     channels = [
@@ -5396,7 +5432,10 @@ def _fetch_lexical_candidates(
                     if "author_match" not in channels:
                         channels.append("author_match")
                     candidate["channels"] = channels
-                authored_limit = max(0, min(max(1, top_k), RAG_LEXICAL_TOP_K))
+                authored_limit = max(0, min(
+                    max(1, top_k, len(author_doc_ids) if author_shortlist_doc_ids is not None else 0),
+                    RAG_LEXICAL_TOP_K,
+                ))
                 return finish({
                     "candidates": _select_lexical_candidates(
                         authored_scored,
