@@ -3260,6 +3260,41 @@ def _metadata_matches_filter(metadata: Dict[str, object], where: Optional[Dict[s
             return False
     return True
 
+
+def _is_pure_author_token_filter(where: object) -> bool:
+    if not isinstance(where, dict) or not where:
+        return False
+    if set(where) == {"$and"} or set(where) == {"$or"}:
+        operator = "$and" if "$and" in where else "$or"
+        clauses = [clause for clause in list(where.get(operator) or []) if isinstance(clause, dict)]
+        return bool(clauses) and all(_is_pure_author_token_filter(clause) for clause in clauses)
+    return all(re.fullmatch(r"author_token_\d+", str(key or "")) for key in where)
+
+
+def _without_author_token_filter_group(where: Optional[Dict[str, object]]) -> Optional[Dict[str, object]]:
+    """Remove only a standalone derived-author constraint from an AND tree.
+
+    The caller must already have exact active registry document IDs. Mixed OR
+    expressions are preserved unchanged so a client filter can never be
+    broadened accidentally.
+    """
+    if not isinstance(where, dict) or not where:
+        return where
+    if _is_pure_author_token_filter(where):
+        return None
+    if set(where) == {"$and"}:
+        clauses = []
+        for clause in list(where.get("$and") or []):
+            cleaned = _without_author_token_filter_group(clause) if isinstance(clause, dict) else None
+            if cleaned:
+                clauses.append(cleaned)
+        if not clauses:
+            return None
+        if len(clauses) == 1:
+            return clauses[0]
+        return {"$and": clauses}
+    return dict(where)
+
 def _copy_string_metadata_filter(source: Dict[str, object], target: Dict[str, object], input_key: str, metadata_key: str) -> None:
     if input_key not in source:
         return
@@ -5328,8 +5363,13 @@ def _fetch_lexical_candidates(
                 logger.exception("registry author shortlist lookup failed")
     if author_doc_ids and "author_match" in allowed_channels:
         author_where: Dict[str, object] = {"doc_id": {"$in": author_doc_ids}}
-        if chroma_where:
-            author_where = {"$and": [chroma_where, author_where]}
+        # Exact author identity has already been resolved from active registry
+        # metadata. Some older active Chroma chunks predate author_token_* but
+        # still carry the original authors field. Keep every other access and
+        # lifecycle boundary, then scope by the exact registry document IDs.
+        author_scope_where = _without_author_token_filter_group(chroma_where)
+        if author_scope_where:
+            author_where = {"$and": [author_scope_where, author_where]}
         try:
             authored = chroma_get(
                 include=["documents", "metadatas"],
@@ -8418,19 +8458,63 @@ def _execute_search(
     if len(requested_author_tokens) == 1:
         try:
             author_summary_t0 = time.perf_counter()
-            exact_author_document_ids = _registry_author_shortlist_doc_ids(
+            registry_author_document_ids = _registry_author_shortlist_doc_ids(
                 requested_author_tokens[0],
                 chroma_where,
                 limit=max(1, len(version_registry) + 1),
             )
+            author_scope_where = _without_author_token_filter_group(chroma_where)
+            indexed_author_document_ids: List[str] = []
+            author_index_complete = True
+            if registry_author_document_ids:
+                author_where: Dict[str, object] = {
+                    "doc_id": {"$in": registry_author_document_ids}
+                }
+                if author_scope_where:
+                    author_where = {"$and": [author_scope_where, author_where]}
+                author_row_limit = min(5000, max(200, len(registry_author_document_ids) * 120))
+                author_rows = _request_scoped_collection_get(
+                    stage_request_id,
+                    shared_read_metrics,
+                    include=["documents", "metadatas"],
+                    limit=author_row_limit,
+                    where=author_where,
+                )
+                row_ids = list(author_rows.get("ids") or [])
+                row_metas = list(author_rows.get("metadatas") or [])
+                indexed_ids = set()
+                allowed_ids = set(registry_author_document_ids)
+                for metadata in row_metas:
+                    if not isinstance(metadata, dict):
+                        continue
+                    indexed_doc_id = str(
+                        metadata.get("doc_id") or metadata.get("docId") or ""
+                    ).strip()
+                    if (
+                        indexed_doc_id in allowed_ids
+                        and is_active_document_version(metadata, version_registry)
+                        and (not is_general_search or is_general_search_metadata_allowed(metadata))
+                    ):
+                        indexed_ids.add(indexed_doc_id)
+                indexed_author_document_ids = [
+                    doc_id for doc_id in registry_author_document_ids if doc_id in indexed_ids
+                ]
+                # Hitting the cap before every registry document appears means
+                # coverage cannot be claimed as complete. The answer validator
+                # will then fail closed rather than publish a partial count.
+                author_index_complete = (
+                    len(row_ids) < author_row_limit
+                    or len(indexed_author_document_ids) == len(registry_author_document_ids)
+                )
+            exact_author_document_ids = indexed_author_document_ids
             registry_ms += _ms_since(author_summary_t0)
             author_metadata_summary = {
                 "requested_author": requested_author_tokens[0],
                 "document_count": len(exact_author_document_ids),
                 "document_ids": exact_author_document_ids[:500],
-                "document_ids_complete": len(exact_author_document_ids) <= 500,
+                "document_ids_complete": author_index_complete and len(exact_author_document_ids) <= 500,
                 "active_versions_only": True,
-                "complete": True,
+                "complete": author_index_complete,
             }
         except Exception:
             logger.exception("registry author metadata summary failed")
