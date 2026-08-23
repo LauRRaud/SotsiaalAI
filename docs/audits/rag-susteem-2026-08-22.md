@@ -1033,7 +1033,7 @@ Kaasautori puhul ei piisa enam sellest, et teine sama autorikomplektiga dokument
 
 UI keel ei määra enam vastuse keelt, kui küsimuse keel või sama vooru selge korraldus on teada. Keelevaliku dialoogis on valik eelvaade; püsiv muutus tekib alles seadete viimases jaamas nupuga „Salvesta”. Kontrolli järel taastati konto UI eesti keelde. Üldine ET/RU/EN RAG, laiad sünteesid, õigus- ja KOV-rajad, arvufaktid ning kogu 14 juhtumi täiskordus viimasel SHA-l jäävad `NOT_PROVEN`. Eestikeelne põhimaatriks jääb **DONE 21/75 · NOT_PROVEN 54/75**.
 
-## 34. Prompt cache'i kasutajapõhise jaotuse eemaldamine — lokaalne release candidate
+## 34. Prompt cache'i kasutajapõhise jaotuse eemaldamine — runtime-release `dfc04a29`
 
 23.08 OpenAI dashboardi päevamõõt näitas 587 907 sisendtokenit: 158 528 cache-read, 120 097 cache-write ja 309 282 uncached tokenit. Sama päeva read/write suhe oli umbes 1,32, kuid 22.–23.08 koond jäi varasema suure kirjutusmahu tõttu 0,24 peale. Mõne minuti jooksul kasvas cache-read 4823 tokeni võrra, cache-write jäi muutumatult 120 097 peale; see kinnitas, et sama kasutaja stabiilne prefiks taaskasutus.
 
@@ -1043,4 +1043,6 @@ Parandus muudab võtme versioonile `sotsiaalai:chat:v2` ning jätab sellesse ain
 
 Lahendus järgib [OpenAI prompt caching juhendit](https://developers.openai.com/api/docs/guides/prompt-caching): jagatud pika identse prefiksiga päringud kasutavad sama võtit, muutuv sisu on breakpoint'i järel ning eksplitsiitne režiim väldib muutuvate lõppude cache-write'i. Ühe võtme soovituslik piir on ligikaudu 15 päringut minutis; kui päris liiklus selle ületab, lisatakse rolli/keele/kriisivariandile väike deterministlik ämber, mitte ei taastata kasutajapõhist üks-ühele jaotust.
 
-Tõendipiir enne deploy'd: kood ja dokumentatsioon on lokaalses parandusharus; scoped lint, diff-kontroll, i18n-kontroll ja lõppkoodi tootmisbuild on rohelised, kuid runtime cache-read/write muutus, mitme kasutaja jagatud tabamus ja latentsus on `NOT_PROVEN`. Korpust, Chroma/FTS5 indeksit, planner'it, fusion'it, Luna seadeid, top-k väärtusi, kuvatud allikaid, andmebaasi ega serveri env-i ei muudeta. Rollback on selle kitsa commit'i revert ja tavaline frontend deploy; olemasolevad cache-kirjed aeguvad 30 minuti jooksul ega vaja serveriandmete puhastamist.
+Runtime-release `dfc04a29` on toodangus: kohalik HEAD, `origin/main` ja puhas server kattusid; frontend, RAG ja research-worker olid aktiivsed, `/vestlus` vastas 200, serverikoodis oli `sotsiaalai:chat:v2` ning vana `userPartition` puudus. RAG health jäi 49 727 vektori / 6089 registrikirje peale ja FTS5 oli `ready=true`. Scoped lint, diff-kontroll, i18n-kontroll ning kohalik ja serveri tootmisbuild olid rohelised. Korpust, Chroma/FTS5 indeksit, planner'it, fusion'it, Luna seadeid, top-k väärtusi, kuvatud allikaid, andmebaasi ega serveri env-i ei muudetud.
+
+Tõendipiir pärast deploy'd: võtme koodirakendus ja teenuste tervis on tõendatud, kuid päris liikluse cache-read/write muutus, mitme kasutaja jagatud tabamus ja latentsus on kuni dashboardi kordusmõõduni `NOT_PROVEN`. Rollback on kitsa `dfc04a29` commit'i revert ja tavaline frontend deploy; olemasolevad cache-kirjed aeguvad 30 minuti jooksul ega vaja serveriandmete puhastamist.
