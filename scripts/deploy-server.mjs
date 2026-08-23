@@ -37,6 +37,7 @@ BACKUP_DIR="$(dirname "$APP_DIR")/sotsiaalai-deploy-backups"
 
 frontend_was_active="0"
 frontend_stopped_for_build="0"
+frontend_masked_for_build="0"
 rag_was_active="0"
 rag_stopped_for_build="0"
 research_worker_was_active="0"
@@ -68,6 +69,10 @@ restore_frontend_on_failure() {
       tar -xzf "$artifact_backup" -C "$APP_DIR"
     elif [ "$database_unchanged" = "0" ]; then
       echo "[deploy:server] Migration state changed; keeping the validated candidate artifact" >&2
+    fi
+    if [ "$frontend_masked_for_build" = "1" ]; then
+      sudo systemctl unmask --runtime sotsiaalai-frontend.service || true
+      frontend_masked_for_build="0"
     fi
     if [ "$rag_was_active" = "1" ] && [ "$rag_stopped_for_build" = "1" ]; then
       echo "[deploy:server] Deploy interrupted/failed; restarting RAG service" >&2
@@ -191,6 +196,8 @@ if [ "$SKIP_BUILD" != "1" ]; then
 
   if [ "$frontend_was_active" = "1" ]; then
     echo "[deploy:server] Entering maintenance gate before build"
+    sudo systemctl mask --runtime sotsiaalai-frontend.service
+    frontend_masked_for_build="1"
     sudo systemctl stop sotsiaalai-frontend.service
     frontend_stopped_for_build="1"
   fi
@@ -293,6 +300,10 @@ fi
 if systemctl list-unit-files sotsiaalai-research-worker.service >/dev/null 2>&1; then
   sudo systemctl restart sotsiaalai-research-worker.service
   research_worker_stopped_for_build="0"
+fi
+if [ "$frontend_masked_for_build" = "1" ]; then
+  sudo systemctl unmask --runtime sotsiaalai-frontend.service
+  frontend_masked_for_build="0"
 fi
 sudo systemctl restart sotsiaalai-frontend.service
 frontend_stopped_for_build="0"

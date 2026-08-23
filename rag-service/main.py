@@ -214,7 +214,7 @@ def _warm_dense_index() -> None:
     """
     started_at = time.perf_counter()
     try:
-        sample = collection.get(limit=1, include=["embeddings"])
+        sample = collection.get(limit=1, include=["embeddings", "metadatas"])
         embeddings = sample.get("embeddings")
         if embeddings is None or len(embeddings) == 0:
             stage_logger.info(
@@ -225,17 +225,36 @@ def _warm_dense_index() -> None:
         stored_embedding = embeddings[0]
         if hasattr(stored_embedding, "tolist"):
             stored_embedding = stored_embedding.tolist()
+        general_started_at = time.perf_counter()
         collection.query(
             query_embeddings=[stored_embedding],
-            n_results=1,
-            include=["metadatas"],
+            n_results=64,
+            where=build_general_search_where(None),
+            include=["documents", "metadatas", "distances"],
         )
+        general_ms = int((time.perf_counter() - general_started_at) * 1000)
+
+        document_ms = 0
+        metadatas = sample.get("metadatas") or []
+        sample_metadata = metadatas[0] if metadatas else {}
+        sample_doc_id = str((sample_metadata or {}).get("doc_id") or "").strip()
+        if sample_doc_id:
+            document_started_at = time.perf_counter()
+            collection.query(
+                query_embeddings=[stored_embedding],
+                n_results=64,
+                where=build_agent_document_search_where([sample_doc_id]),
+                include=["documents", "metadatas", "distances"],
+            )
+            document_ms = int((time.perf_counter() - document_started_at) * 1000)
         stage_logger.info(
             "rag.startup.warmup %s",
             json.dumps(
                 {
                     "outcome": "ok",
                     "dense_ms": int((time.perf_counter() - started_at) * 1000),
+                    "general_ms": general_ms,
+                    "document_ms": document_ms,
                 },
                 ensure_ascii=False,
             ),
