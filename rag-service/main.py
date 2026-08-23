@@ -6551,12 +6551,23 @@ def _warm_registry_and_lexical_paths() -> None:
     registry = _load_registry()
     registry_load_ms = int((time.perf_counter() - registry_started_at) * 1000)
     general_where = build_general_search_where(None)
-    sample_metadata: Dict[str, object] = {}
+    sample_author_metadata: Dict[str, object] = {}
+    sample_title_metadata: Dict[str, object] = {}
+    sample_fact_metadata: Dict[str, object] = {}
     for metadata in registry.values():
         if not isinstance(metadata, dict) or not _metadata_matches_filter(metadata, general_where):
             continue
-        if metadata.get("title") or metadata.get("authors") or metadata.get("description"):
-            sample_metadata = metadata
+        if not sample_author_metadata and normalize_author_tokens(
+            metadata.get("authors") or metadata.get("authors_list")
+        ):
+            sample_author_metadata = metadata
+        if not sample_title_metadata and str(metadata.get("title") or "").strip():
+            sample_title_metadata = metadata
+        if not sample_fact_metadata and str(
+            metadata.get("description") or metadata.get("summary") or metadata.get("description_et") or ""
+        ).strip():
+            sample_fact_metadata = metadata
+        if sample_author_metadata and sample_title_metadata and sample_fact_metadata:
             break
 
     author_ms = 0
@@ -6567,9 +6578,9 @@ def _warm_registry_and_lexical_paths() -> None:
     fact_ms = 0
     fact_chroma_ms = 0
     fts_ms = 0
-    if sample_metadata:
+    if sample_author_metadata:
         authors = normalize_author_tokens(
-            sample_metadata.get("authors") or sample_metadata.get("authors_list")
+            sample_author_metadata.get("authors") or sample_author_metadata.get("authors_list")
         )
         if authors:
             path_started_at = time.perf_counter()
@@ -6584,7 +6595,8 @@ def _warm_registry_and_lexical_paths() -> None:
                 )
                 author_chroma_ms = int((time.perf_counter() - path_started_at) * 1000)
                 author_chroma_rows = len(list(author_rows.get("ids") or []))
-        title = str(sample_metadata.get("title") or "").strip()
+    title = str(sample_title_metadata.get("title") or "").strip()
+    if sample_title_metadata:
         if title:
             path_started_at = time.perf_counter()
             title_doc_ids = _registry_title_shortlist_doc_ids(title, general_where, limit=12)
@@ -6597,10 +6609,21 @@ def _warm_registry_and_lexical_paths() -> None:
                     where={"$and": [general_where, {"doc_id": {"$in": title_doc_ids}}]},
                 )
                 title_chroma_ms = int((time.perf_counter() - path_started_at) * 1000)
-        description = str(sample_metadata.get("description") or "").strip()
+    description = str(
+        sample_fact_metadata.get("description")
+        or sample_fact_metadata.get("summary")
+        or sample_fact_metadata.get("description_et")
+        or ""
+    ).strip()
+    fact_title = str(sample_fact_metadata.get("title") or "").strip()
+    if sample_fact_metadata:
         if description:
             path_started_at = time.perf_counter()
-            fact_doc_ids = _registry_fact_description_shortlist_doc_ids(description, general_where, limit=12)
+            fact_doc_ids = _registry_fact_description_shortlist_doc_ids(
+                " ".join(["kui palju", fact_title, description]).strip(),
+                general_where,
+                limit=12,
+            )
             fact_ms = int((time.perf_counter() - path_started_at) * 1000)
             if fact_doc_ids:
                 path_started_at = time.perf_counter()
@@ -6611,23 +6634,23 @@ def _warm_registry_and_lexical_paths() -> None:
                 )
                 fact_chroma_ms = int((time.perf_counter() - path_started_at) * 1000)
 
-        lexical_tokens = _search_tokens(" ".join([title, description]), limit=8)
-        lexical_status = LEXICAL_INDEX.status(registry)
-        if lexical_status.get("ready") and lexical_tokens:
-            path_started_at = time.perf_counter()
-            LEXICAL_INDEX.search(
-                query_tokens=lexical_tokens,
-                where=general_where,
-                registry=registry,
-                limit=min(320, RAG_PERSISTENT_LEXICAL_INDEX_CANDIDATES),
-            )
-            fts_ms = int((time.perf_counter() - path_started_at) * 1000)
+    lexical_tokens = _search_tokens(" ".join([title, fact_title, description]), limit=8)
+    lexical_status = LEXICAL_INDEX.status(registry)
+    if lexical_status.get("ready") and lexical_tokens:
+        path_started_at = time.perf_counter()
+        LEXICAL_INDEX.search(
+            query_tokens=lexical_tokens,
+            where=general_where,
+            registry=registry,
+            limit=min(320, RAG_PERSISTENT_LEXICAL_INDEX_CANDIDATES),
+        )
+        fts_ms = int((time.perf_counter() - path_started_at) * 1000)
 
     stage_logger.info(
         "rag.startup.retrieval_paths %s",
         json.dumps(
             {
-                "outcome": "ok" if sample_metadata else "empty",
+                "outcome": "ok" if (sample_author_metadata or sample_title_metadata or sample_fact_metadata) else "empty",
                 "total_ms": int((time.perf_counter() - started_at) * 1000),
                 "registry_load_ms": registry_load_ms,
                 "registry_author_ms": author_ms,
