@@ -8,6 +8,7 @@ const branch = process.env.DEPLOY_BRANCH || "main";
 const frontendEnv = process.env.DEPLOY_FRONTEND_ENV || "/etc/sotsiaalai/frontend.env";
 const buildTimeoutSeconds = Number.parseInt(String(process.env.DEPLOY_BUILD_TIMEOUT_SECONDS || "900"), 10) || 900;
 const artifactBackupKeep = Number.parseInt(String(process.env.DEPLOY_ARTIFACT_BACKUP_KEEP || "1"), 10) || 1;
+const buildLogKeep = Number.parseInt(String(process.env.DEPLOY_BUILD_LOG_KEEP || "1"), 10) || 1;
 const discardTracked = args.has("--discard-tracked");
 const skipBuild = args.has("--skip-build");
 const printScript = args.has("--print-script");
@@ -29,6 +30,7 @@ BRANCH=${shellEscape(branch)}
 FRONTEND_ENV=${shellEscape(frontendEnv)}
 BUILD_TIMEOUT_SECONDS=${Math.max(60, buildTimeoutSeconds)}
 ARTIFACT_BACKUP_KEEP=${Math.max(1, artifactBackupKeep)}
+BUILD_LOG_KEEP=${Math.max(1, buildLogKeep)}
 DISCARD_TRACKED=${discardTracked ? "1" : "0"}
 SKIP_BUILD=${skipBuild ? "1" : "0"}
 
@@ -327,6 +329,20 @@ if [ -d "$BACKUP_DIR" ]; then
       removed_artifacts=$((removed_artifacts + 1))
     done
     echo "[deploy:server] Removed $removed_artifacts stale frontend artifact backups; kept $ARTIFACT_BACKUP_KEEP"
+  fi
+fi
+
+if [ -d "$APP_DIR/deploy-build-logs" ]; then
+  mapfile -t build_logs < <(
+    find "$APP_DIR/deploy-build-logs" -maxdepth 1 -type f -name 'build-*.log' -printf '%p\n' | sort -r
+  )
+  if [ "\${#build_logs[@]}" -gt "$BUILD_LOG_KEEP" ]; then
+    removed_build_logs=0
+    for ((index = BUILD_LOG_KEEP; index < \${#build_logs[@]}; index += 1)); do
+      rm -f -- "\${build_logs[$index]}"
+      removed_build_logs=$((removed_build_logs + 1))
+    done
+    echo "[deploy:server] Removed $removed_build_logs stale build logs; kept $BUILD_LOG_KEEP"
   fi
 fi
 
