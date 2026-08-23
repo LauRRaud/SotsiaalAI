@@ -1306,6 +1306,7 @@
       "en": "inglise"
     },
     "close": "Sulge",
+    "dialog": "Dialoog",
     "back": "Tagasi"
   },
   "routes": {
@@ -3470,6 +3471,7 @@
       "uploading": "Laen üles...",
       "artifact_title_placeholder": "Tulemuse pealkiri (valikuline)",
       "title_label": "Pealkiri",
+      "content_label": "Sisu",
       "dropzone_idle": "Lohista fail siia või vajuta faili valimiseks",
       "dropzone_active": "Vabasta fail siia üleslaadimiseks"
     },

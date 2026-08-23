@@ -50,11 +50,14 @@
      suurem ja kaardi-morfi proportsioon jääb muutumatuks. */
   width: min(max(var(--gc-w), 20rem), calc(100vw - 1.5rem));
   height: auto;
-  max-height: min(92lvh, 40rem);
+  max-height: min(var(--overlay-available-block-size), 40rem);
   display: flex;
   flex-direction: column;
   gap: clamp(0.55rem, 1.3vh, 0.85rem);
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
   pointer-events: auto;
   /* Väiksem üla/ala-polster (tellija 07.07: "liiga suur sisemine
      padding üleval ja all") */
@@ -426,6 +429,8 @@
   place-items: center;
   width: 1.7rem;
   height: 1.7rem;
+  min-inline-size: var(--hit-target-min);
+  min-block-size: var(--hit-target-min);
   border-radius: 50%;
   color: var(--text-soft);
   background: rgba(255, 255, 255, 0.1); /* tellija 26.07: tumedal popoveril liiga hõre klaas mõjus katkisena */
@@ -545,18 +550,20 @@
   display: none;
 }
 
-/* Madala akna erikäsitlus EEMALDATUD (tellija 07.07): kaart on nüüd
-   container (aspect 0.72 + container-type: size) ja kogu sisu mõõt
-   tuleb cqh/cqw-ühikutes kaardi enda kõrgusest — mahub ise igas
-   viewport-kõrguses, sh 614px (Win 125%). Eraldi px/lvh-erandit ei
-   ole vaja ja see kirjutaks cqh-loogika kahjulikult üle. */
+/* Madalas aknas tuleb kõrgus dünaamilisest viewport'ist. Sisu kerib shell'is;
+   siin ei kasutata container-size/cqh lepingut, sest seda koodis pole. */
+@media (max-height: 44rem) {
+  .login-modal-shell {
+    top: 50%;
+  }
+}
 
 /* Mobiil: sama kaart, ekraani laiusele kohandatud */
 @media (max-width: 480px) {
   .login-modal-shell {
     width: min(94vw, 400px);
     top: 50%;
-    max-height: 92lvh;
+    max-height: var(--overlay-available-block-size);
   }
   .login-modal-shell [role="group"] {
     column-gap: clamp(1.35rem, 6vw, 1.6rem);

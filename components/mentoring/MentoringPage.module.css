@@ -1,5 +1,6 @@
 .page {
-  min-height: 100lvh;
+  min-height: var(--app-dynamic-block-size, 100vh);
+  container-type: inline-size;
   padding: clamp(4.5rem, 9vh, 7rem) clamp(1rem, 4vw, 3rem) 4rem;
   color: var(--text-warm);
   font-family: var(--font-ui);
@@ -267,6 +268,11 @@
     flex-direction: column;
     align-items: stretch;
   }
+}
+
+@container (max-width: 40rem) {
+  .cards { grid-template-columns: minmax(0, 1fr); }
+  .actions { flex-direction: column; align-items: stretch; }
 }
 
 @media (prefers-reduced-motion: reduce) {

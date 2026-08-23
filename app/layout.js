@@ -57,10 +57,11 @@ const UI_SCALE_INIT_SCRIPT = `(function () {
     if (!root) return;
     var resolvedTextScale = normalizeTextScale(textScale) || "md";
     var resolvedProfile = normalizeProfile(profile) || normalizeProfile(resolvedTextScale) || "sm";
-    root.style.setProperty(
-      "--ui-scale",
-      String(resolveTextScale(resolvedTextScale) * resolveProfileScale(resolvedProfile))
-    );
+    var textFactor = resolveTextScale(resolvedTextScale);
+    var displayFactor = resolveProfileScale(resolvedProfile);
+    root.style.setProperty("--text-scale", String(textFactor));
+    root.style.setProperty("--display-scale", String(displayFactor));
+    root.style.setProperty("--ui-scale", String(textFactor * displayFactor));
     root.setAttribute("data-text-scale", resolvedTextScale);
     root.setAttribute("data-ui-scale", resolvedProfile);
     root.setAttribute("data-ui-profile", resolvedProfile);
@@ -265,6 +266,7 @@ export const viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
+  interactiveWidget: "resizes-content",
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#140b07" },
     { media: "(prefers-color-scheme: dark)", color: "#140b07" }

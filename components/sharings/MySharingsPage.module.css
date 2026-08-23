@@ -7,6 +7,7 @@
    Siia jääb ainult see, mida paneel ise ei anna: lugemislaius ja rütm. */
 .page {
   width: 100%;
+  container-type: inline-size;
   color: var(--text-warm);
   font-family: var(--font-ui);
 }
@@ -210,6 +211,20 @@
   .ledger { gap: 2rem; }
   .section { padding-left: 1.15rem; }
   .ownershipBar { grid-template-columns: 1fr; }
+  .ownershipCell + .ownershipCell { border-top: 1px solid var(--glass-cell-border); border-left: 0; }
+  .cardTopline { align-items: flex-start; flex-direction: column; gap: 0.4rem; }
+  .cardTopline time,
+  .cardTopline > span { white-space: normal; }
+  .actions > * { flex: 1 1 auto; }
+  .modalActions > * { flex: 1 1 9rem; }
+}
+
+@container (max-width: 47.5rem) {
+  .shell { padding: 1rem 0.8rem 1.5rem; border-radius: 1.2rem; }
+  .lead { padding-inline: 0.5rem; text-align: left; }
+  .ledger { gap: 2rem; }
+  .section { padding-left: 1.15rem; }
+  .ownershipBar { grid-template-columns: minmax(0, 1fr); }
   .ownershipCell + .ownershipCell { border-top: 1px solid var(--glass-cell-border); border-left: 0; }
   .cardTopline { align-items: flex-start; flex-direction: column; gap: 0.4rem; }
   .cardTopline time,

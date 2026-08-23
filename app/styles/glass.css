@@ -363,6 +363,8 @@
     place-items: center;
     width: 2.6rem;
     height: 2.6rem;
+    min-inline-size: var(--hit-target-min);
+    min-block-size: var(--hit-target-min);
     padding: 0;
     border-radius: 50%;
     color: var(--text-soft);
@@ -373,6 +375,11 @@
       box-shadow var(--dur-fast) var(--ease-soft),
       scale 160ms var(--ease-soft),
       rotate var(--dur-med) var(--ease-soft);
+  }
+
+  :where(button[data-variant], a[data-variant], .glass-btn) {
+    min-block-size: var(--hit-target-min);
+    touch-action: manipulation;
   }
   .glass-iconbtn:hover {
     color: var(--text-warm);
@@ -389,6 +396,11 @@
     inset: 0;
     z-index: var(--z-modal);
     background: transparent;
+    padding:
+      max(0.5rem, env(safe-area-inset-top, 0px))
+      max(0.5rem, env(safe-area-inset-right, 0px))
+      max(0.5rem, env(safe-area-inset-bottom, 0px))
+      max(0.5rem, env(safe-area-inset-left, 0px));
   }
   /* Modal = KAART, terve geomeetriaga: sama laius, külgsuhe, materjal,
      serv ja raadius mis karussellil. Kõrgus EI muutu sisu järgi (omanik
@@ -402,7 +414,7 @@
     transform: translate(-50%, -50%);
     width: min(var(--gc-w), calc(100vw - 1.5rem));
     aspect-ratio: 0.72;
-    max-height: min(86lvh, 43.75rem);
+    max-height: min(var(--overlay-available-block-size), 43.75rem);
     display: flex;
     flex-direction: column;
     /* Pealkiri kaardi ÜLESERVA, sisu voolab tema alt (omanik 26.07:
@@ -413,6 +425,7 @@
        kõrguselt. */
     justify-content: flex-start;
     overflow-y: auto;
+    overscroll-behavior: contain;
     padding: clamp(1.3rem, 3lvh, 1.9rem) clamp(1.35rem, 3vw, 1.75rem);
     padding-top: clamp(2.4rem, 5lvh, 2.8rem);
     border-radius: clamp(20px, 2.4vw, 30px);
@@ -426,6 +439,11 @@
     box-shadow: var(--card-glass-shadow);
     color: var(--room-text);
     animation: none;
+  }
+  @media (max-height: 44rem) {
+    .glass-modal-shell {
+      top: 50%;
+    }
   }
   /* Läige — KOLMAS kiht, mis kaardil on ja siin puudus (omanik 26.07:
      „kontakti kaart tundub ikka teine kui peaks olema"). Materjal ja serv
@@ -456,8 +474,12 @@
     mask-composite: exclude;
     pointer-events: none;
   }
-  /* .glass-modal-close kadus koos nurga-ristiga (omanik 26.07) —
-     väljapääs on doki tagasi-noolel. */
+  .glass-modal-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    z-index: 2;
+  }
   /* Pealkiri = SAMA kiri mis kompaktse kaardi h1-l (panel.css
      [data-compact] .panel-body h1), mitte oma suurtähe-variant. Caps +
      5 px tähevahe oli teine asi, mis seda kaarti naabritest eristas

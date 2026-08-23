@@ -10,10 +10,10 @@
    ============================================================ */
 
 /* Taustkate — kerge hämardus + ÕRN hägu (ruum "astub tahaplaanile") */
-div[role="presentation"][aria-hidden="true"] {
+.a11f-veil[role="presentation"][aria-hidden="true"] {
   position: fixed;
   inset: 0;
-  z-index: calc(var(--z-modal) - 1);
+  z-index: var(--z-modal-backdrop);
   background: rgba(6, 6, 6, 0.32);
   -webkit-backdrop-filter: blur(3px);
   backdrop-filter: blur(3px);

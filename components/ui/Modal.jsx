@@ -32,9 +32,11 @@ export default function Modal({
   contentRef,
   closeOnOverlayClick = true,
   closeOnEscape = true,
+  onKeyDown,
   ...props
 }) {
   const [mounted, setMounted] = useState(false);
+  const overlayRef = useRef(null);
   const dialogRef = useRef(null);
   const openerRef = useRef(null);
 
@@ -69,6 +71,36 @@ export default function Modal({
     };
   }, [open, mounted]);
 
+  // A modal is the only active surface: lock document scrolling and make
+  // existing body siblings inert. Preserve prior inline/inert state so the
+  // page returns to its original interaction contract when this closes.
+  useEffect(() => {
+    if (!open || !mounted || typeof document === "undefined") return undefined;
+
+    const overlay = overlayRef.current;
+    const body = document.body;
+    const siblings = Array.from(body.children).filter((node) => node !== overlay);
+    const inertState = siblings.map((node) => ({
+      node,
+      hadInert: node.hasAttribute("inert")
+    }));
+    const previousOverflow = body.style.overflow;
+    const previousPaddingRight = body.style.paddingRight;
+    const scrollbarWidth = Math.max(0, window.innerWidth - document.documentElement.clientWidth);
+
+    for (const { node } of inertState) node.setAttribute("inert", "");
+    body.style.overflow = "hidden";
+    if (scrollbarWidth > 0) body.style.paddingRight = `${scrollbarWidth}px`;
+
+    return () => {
+      for (const { node, hadInert } of inertState) {
+        if (!hadInert) node.removeAttribute("inert");
+      }
+      body.style.overflow = previousOverflow;
+      body.style.paddingRight = previousPaddingRight;
+    };
+  }, [open, mounted]);
+
   if (!open) return null;
   if (!mounted || typeof document === "undefined") return null;
 
@@ -79,6 +111,9 @@ export default function Modal({
   }
 
   function handleKeyDown(event) {
+    onKeyDown?.(event);
+    if (event.defaultPrevented) return;
+
     if (event.key === "Escape") {
       if (closeOnEscape && onClose) {
         event.stopPropagation();
@@ -114,6 +149,7 @@ export default function Modal({
 
   const modal = (
     <div
+      ref={overlayRef}
       data-variant={variant}
       className={cn(className)}
       role="presentation"

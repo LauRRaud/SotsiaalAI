@@ -19,8 +19,13 @@
 
 :root {
   color-scheme: dark;
-  --base-rem: 16px;
+  /* 1rem säilitab brauseri kasutaja valitud baasfondi. See token on
+     geomeetria arvutuste jaoks; juurfondi tooteskaala rakendub base.css-is. */
+  --base-rem: 1rem;
+  --text-scale: 1;
+  --display-scale: 1;
   --ui-scale: 1;
+  --hit-target-min: 2.75rem;
 
   /* ---- Stseeni palett (kaadritest 1–7) ---- */
   --dusk-void: #0a0a0a; /* ukse pimedus, laadimisekraan */
@@ -180,8 +185,12 @@
   --z-room: 0;
   --z-home-ui: 20;
   --z-panel: 30;
+  --z-popover: 50;
+  --z-modal-backdrop: 59;
   --z-modal: 60;
+  --z-floating: 70;
   --z-veil: 80;
+  --z-overlay: 90;
   --z-skip: 100;
 
   /* ---- Karusselli kaardi mõõt (jagatud: kaardid + login-kaart) ---- */

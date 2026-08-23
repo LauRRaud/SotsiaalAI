@@ -1,12 +1,13 @@
 "use client"
 
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useId, useState } from "react"
 import { useRouter } from "next/navigation"
 import { useI18n } from "@/components/i18n/I18nProvider"
 import BackButton from "@/components/ui/BackButton"
 import Button from "@/components/ui/Button"
 import Input from "@/components/ui/Input"
 import Panel from "@/components/ui/Panel"
+import Textarea from "@/components/ui/Textarea"
 import MeetingSummaryRoomShare from "@/components/documents/MeetingSummaryRoomShare"
 import { localizePath } from "@/lib/localizePath"
 
@@ -43,6 +44,9 @@ export default function ArtifactDetailPage({ artifactId }) {
   const [saving, setSaving] = useState(false)
   const [approving, setApproving] = useState(false)
   const [approvalNotice, setApprovalNotice] = useState(null)
+  const titleInputId = useId()
+  const contentInputId = useId()
+  const draftNoticeId = useId()
 
   useEffect(() => {
     if (!approvalNotice) return undefined
@@ -232,17 +236,30 @@ export default function ArtifactDetailPage({ artifactId }) {
                 {artifact.status === "DRAFT" ? (
                   <>
                     <div>
-                      <Input
-                        value={title}
-                        onChange={(event) => setTitle(event.target.value)}
-                        placeholder={t("documents.form.artifact_title_placeholder")}
-                      />
-                      <textarea
-                        value={content}
-                        onChange={(event) => setContent(event.target.value)}
-                      />
+                      <label htmlFor={titleInputId}>
+                        <span>{t("documents.form.title_label")}</span>
+                        <Input
+                          id={titleInputId}
+                          name="artifactTitle"
+                          value={title}
+                          onChange={(event) => setTitle(event.target.value)}
+                          placeholder={t("documents.form.artifact_title_placeholder")}
+                          describedBy={draftNoticeId}
+                          autoComplete="off"
+                        />
+                      </label>
+                      <label htmlFor={contentInputId}>
+                        <span>{t("documents.form.content_label")}</span>
+                        <Textarea
+                          id={contentInputId}
+                          name="artifactContent"
+                          value={content}
+                          onChange={(event) => setContent(event.target.value)}
+                          aria-describedby={draftNoticeId}
+                        />
+                      </label>
                     </div>
-                    <div>
+                    <div id={draftNoticeId}>
                       {t("documents.draft_notice")}
                     </div>
                     <div>

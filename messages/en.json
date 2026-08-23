@@ -1306,6 +1306,7 @@
       "en": "English"
     },
     "close": "Close",
+    "dialog": "Dialog",
     "back": "Back"
   },
   "routes": {
@@ -3470,6 +3471,7 @@
       "uploading": "Uploading...",
       "artifact_title_placeholder": "Result title (optional)",
       "title_label": "Title",
+      "content_label": "Content",
       "dropzone_idle": "Drag a file here or click to choose a file",
       "dropzone_active": "Drop the file here to upload it"
     },

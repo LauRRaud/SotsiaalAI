@@ -2,7 +2,7 @@
   .pwa-install-action,
   .pwa-install-promotion-action,
   .pwa-install-later {
-    min-height: 44px;
+    min-height: var(--hit-target-min);
     border-radius: 999px;
     font: inherit;
     cursor: var(--cursor-pointer);

@@ -1321,7 +1321,7 @@
 .cv1-layer {
   position: fixed;
   inset: 0;
-  z-index: 70;
+  z-index: var(--z-floating);
   display: grid;
   place-items: center;
   padding: 1.2rem;
