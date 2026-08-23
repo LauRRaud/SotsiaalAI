@@ -376,8 +376,9 @@ export async function POST(req, deps = {}) {
     sources,
     retrievalMeta
   } = retrievalResult;
+  const responseReplyLang = retrievalMeta?.responseReplyLang || replyLang;
   const responseSystemInstructions = [
-    ...(inputModality === "voice" ? [buildVoiceInputSystemInstruction(replyLang)] : []),
+    ...(inputModality === "voice" ? [buildVoiceInputSystemInstruction(responseReplyLang)] : []),
     ...(Array.isArray(extraSystemInstructions) ? extraSystemInstructions : [])
   ].filter(Boolean);
 
@@ -453,7 +454,7 @@ export async function POST(req, deps = {}) {
     effectiveContext,
     grounding,
     includeSources,
-    replyLang,
+    replyLang: responseReplyLang,
     isCrisis,
     extraSystemInstructions: responseSystemInstructions,
     sources,
