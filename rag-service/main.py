@@ -4979,7 +4979,21 @@ def _registry_author_shortlist_doc_ids(
         return []
     matches: List[str] = []
     for doc_id, metadata in _load_registry().items():
-        if not isinstance(metadata, dict) or not _metadata_matches_filter(metadata, chroma_where):
+        if not isinstance(metadata, dict):
+            continue
+        # Chroma stores the normalized author slots used by the search filter,
+        # while registry.json remains the source-shaped lifecycle record and
+        # may only carry ``authors``/``authors_list``.  Apply the same derived
+        # slots before evaluating the full fail-closed filter; otherwise an
+        # exact author filter rejects every registry row and incorrectly
+        # reports a complete zero-document corpus summary.
+        registry_filter_metadata = dict(metadata)
+        for key, value in build_author_token_metadata(
+            metadata.get("authors") or metadata.get("authors_list")
+        ).items():
+            if not registry_filter_metadata.get(key) and value:
+                registry_filter_metadata[key] = value
+        if not _metadata_matches_filter(registry_filter_metadata, chroma_where):
             continue
         author_tokens = []
         for index in range(MAX_AUTHOR_TOKEN_SLOTS):
