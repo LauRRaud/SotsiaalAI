@@ -1008,21 +1008,6 @@ button[aria-controls="chat-window-scroll"] {
   mask-composite: exclude;
   pointer-events: none;
 }
-/* Voogedastuse aurora: valgusvöönd libiseb üle saabuva teksti */
-.panel-scrim[data-conversation="1"] [role="article"][data-role="ai"][data-streaming="true"] > div:not([aria-label]) {
-  border-radius: 0.6rem;
-  background: linear-gradient(105deg, transparent 40%, rgba(225, 225, 225, 0.07) 50%, transparent 60%) 0 0 / 230% 100% no-repeat;
-  animation: conv-aurora 2.3s linear infinite;
-}
-@keyframes conv-aurora {
-  from {
-    background-position: -30% 0;
-  }
-  to {
-    background-position: 130% 0;
-  }
-}
-
 /* ---------- Kasutaja mull: peaaegu värvitu läbipaistev klaas ----------
    Tellija 12.07: "peaaegu ilma värvita ja läbipaistvad, blur efektiga."
    Neutraalne valge klaas + taustablur (ruum hägustub mulli taga), ilma
