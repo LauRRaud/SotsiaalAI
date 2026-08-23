@@ -68,7 +68,10 @@ function AssistantMarkdown({ text }) {
         if (block.type === "unordered" || block.type === "ordered") {
           const ListTag = block.type === "ordered" ? "ol" : "ul";
           return (
-            <ListTag key={`${block.type}-${index}`}>
+            <ListTag
+              key={`${block.type}-${index}`}
+              {...(block.type === "ordered" && block.start > 1 ? { start: block.start } : {})}
+            >
               {block.items.map((item, itemIndex) => (
                 <li key={`${block.type}-${index}-${itemIndex}`}>
                   {renderInlineMarkdown(item, `${block.type}-${index}-${itemIndex}`)}
