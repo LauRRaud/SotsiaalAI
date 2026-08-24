@@ -17,9 +17,13 @@ async function main() {
   console.info(`[service-map:contacts:check] fetch failures: ${result.fetchedFailed}`);
 }
 
-main()
-  .catch(error => {
-    console.error("[service-map:contacts:check] failed", error);
-    process.exitCode = 1;
-  })
-  .finally(() => prisma.$disconnect());
+let exitCode = 0;
+try {
+  await main();
+} catch (error) {
+  console.error("[service-map:contacts:check] failed", error);
+  exitCode = 1;
+} finally {
+  await prisma.$disconnect();
+}
+process.exit(exitCode);
