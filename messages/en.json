@@ -2347,6 +2347,7 @@
       "load_more": "Load more",
       "loaded_count": "Loaded {count} results.",
       "peer_login_required": "Sign in to view peer help listings. The public Service Map does not reveal whether any listings exist.",
+      "contact_check_schedule_weekly": "Published municipal contact source pages are checked automatically once a week.",
       "target_not_public": "This entry is no longer public or visible to you.",
       "partial_warning": "One service map data source is unavailable. Results from the working source are shown as partial.",
       "partial_empty": "Not all service map sources could be checked, so the absence of results cannot be confirmed.",

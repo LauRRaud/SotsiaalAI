@@ -3235,6 +3235,24 @@ function hasServiceMapCoordinates(entry) {
   return Number.isFinite(latitude) && Number.isFinite(longitude);
 }
 
+function safeServiceMapWebsiteUrl(value) {
+  const raw = String(value || "").trim();
+  if (!raw) return "";
+  try {
+    const url = new URL(/^https?:\/\//iu.test(raw) ? raw : `https://${raw}`);
+    return url.protocol === "http:" || url.protocol === "https:" ? url.toString() : "";
+  } catch {
+    return "";
+  }
+}
+
+function serviceMapPhoneHref(value) {
+  const match = String(value || "").match(/\+?\d(?:[\s()-]*\d){6,11}/u);
+  if (!match) return "";
+  const normalized = String(match[0] || "").replace(/[^\d+]/gu, "");
+  return normalized ? `tel:${normalized}` : "";
+}
+
 function readInitialServiceMapFilters() {
   if (typeof window === "undefined") {
     return { keyword: "", region: "", entryType: "KOV_SOCIAL_CONTACT" };
@@ -3271,6 +3289,7 @@ function ServiceMapSurface({
   const [panelOpen, setPanelOpen] = useState(true);
   const [isMobilePanel, setIsMobilePanel] = useState(false);
   const [entries, setEntries] = useState([]);
+  const [mapEntries, setMapEntries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
@@ -3279,9 +3298,12 @@ function ServiceMapSurface({
   const [peerListingsAvailable, setPeerListingsAvailable] = useState(Boolean(isAuthenticated));
   const [loadingMore, setLoadingMore] = useState(false);
   const [partialResult, setPartialResult] = useState(false);
+  const [contactCheckSchedule, setContactCheckSchedule] = useState(null);
   const [loadMoreError, setLoadMoreError] = useState("");
   const [deepLinkEntry, setDeepLinkEntry] = useState(null);
+  const [hydratedMapEntries, setHydratedMapEntries] = useState({});
   const serviceMapRequestRef = useRef(0);
+  const mapEntryDetailRequestRef = useRef(0);
   const workspaceRef = useRef(null);
   const filtersShellRef = useRef(null);
   const keywordPlaceholder = readText(t, "workspace_feature_pages.service_map.placeholders.keyword", "Service, contact or need");
@@ -3396,14 +3418,17 @@ function ServiceMapSurface({
       if (requestId !== serviceMapRequestRef.current) return;
       if (!response.ok) throw new Error(readText(t, "workspace_feature_pages.service_map.errors.load_failed", payload?.message || "Map entries could not be loaded."));
       const nextEntries = Array.isArray(payload?.entries) ? payload.entries : [];
+      const nextMapEntries = Array.isArray(payload?.mapEntries) ? payload.mapEntries : [];
       setEntries((current) => {
         if (!append) return nextEntries;
         const merged = new Map(current.map((entry) => [entry.id, entry]));
         for (const entry of nextEntries) merged.set(entry.id, entry);
         return [...merged.values()];
       });
+      if (!append) setMapEntries(nextMapEntries);
       setServiceMapPage(payload?.page || { hasMore: false, nextCursor: null });
       setPartialResult((current) => append ? current || payload?.partial === true : payload?.partial === true);
+      if (!append) setContactCheckSchedule(payload?.contactCheckSchedule || null);
       if (typeof payload?.peerListingsAvailable === "boolean") {
         setPeerListingsAvailable(payload.peerListingsAvailable);
       }
@@ -3421,6 +3446,9 @@ function ServiceMapSurface({
   useEffect(() => {
     const controller = new AbortController();
     setEntries([]);
+    setMapEntries([]);
+    setHydratedMapEntries({});
+    mapEntryDetailRequestRef.current += 1;
     setServiceMapPage({ hasMore: false, nextCursor: null });
     setPartialResult(false);
     setLoading(true);
@@ -3454,17 +3482,41 @@ function ServiceMapSurface({
     return sourceEntries.filter((entry) => serviceMapEntryMatchesType(entry, entryType));
   }, [deepLinkEntry, entries, entryType]);
 
-  const mappableEntries = useMemo(
-    () => filteredEntries.filter((entry) => hasServiceMapCoordinates(entry)),
-    [filteredEntries]
+  const mappableEntries = useMemo(() => {
+    const merged = new Map();
+    for (const entry of [...mapEntries, ...Object.values(hydratedMapEntries), ...filteredEntries]) {
+      if (!entry?.id || !hasServiceMapCoordinates(entry) || !serviceMapEntryMatchesType(entry, entryType)) continue;
+      merged.set(entry.id, entry);
+    }
+    return [...merged.values()];
+  }, [entryType, filteredEntries, hydratedMapEntries, mapEntries]);
+
+  const selectedUnlocatedEntry = useMemo(() => {
+    if (!selectedEntryId) return null;
+    const entry = filteredEntries.find(item => item.id === selectedEntryId) || null;
+    return entry && !hasServiceMapCoordinates(entry) ? entry : null;
+  }, [filteredEntries, selectedEntryId]);
+  const selectedUnlocatedWebsite = useMemo(
+    () => safeServiceMapWebsiteUrl(selectedUnlocatedEntry?.website || selectedUnlocatedEntry?.sourceUrl),
+    [selectedUnlocatedEntry]
   );
+  const selectedUnlocatedPhoneHref = useMemo(
+    () => serviceMapPhoneHref(selectedUnlocatedEntry?.phone),
+    [selectedUnlocatedEntry]
+  );
+  const selectedUnlocatedEmail = useMemo(() => {
+    const email = String(selectedUnlocatedEntry?.email || "").trim();
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/u.test(email) ? email : "";
+  }, [selectedUnlocatedEntry]);
 
   useEffect(() => {
     if (!selectedEntryId) return;
-    if (!filteredEntries.some((entry) => entry.id === selectedEntryId)) {
+    const remainsSelectable = filteredEntries.some((entry) => entry.id === selectedEntryId) ||
+      mappableEntries.some((entry) => entry.id === selectedEntryId);
+    if (!remainsSelectable) {
       setSelectedEntryId("");
     }
-  }, [filteredEntries, selectedEntryId]);
+  }, [filteredEntries, mappableEntries, selectedEntryId]);
 
   const handleKeywordChange = useCallback((event) => {
     setSelectedEntryId("");
@@ -3483,8 +3535,26 @@ function ServiceMapSurface({
 
   const handleSelectEntry = useCallback((entryId) => {
     setSelectedEntryId(entryId);
-    if (entryId && isMobilePanel) setPanelOpen(false);
-  }, [isMobilePanel]);
+    const fullEntry = filteredEntries.find(item => item.id === entryId);
+    const markerEntry = mapEntries.find(item => item.id === entryId);
+    if (entryId && !fullEntry && markerEntry?.isLightweightMarker === true && !hydratedMapEntries[entryId]) {
+      const requestId = ++mapEntryDetailRequestRef.current;
+      const params = new URLSearchParams({ entryId });
+      void fetch(`/api/service-map/entries/resolve?${params.toString()}`, { cache: "no-store" })
+        .then(async (response) => ({ response, payload: await response.json().catch(() => ({})) }))
+        .then(({ response, payload }) => {
+          if (requestId !== mapEntryDetailRequestRef.current || !response.ok || !payload?.entry) return;
+          const canonicalEntryId = String(payload.canonicalEntryId || payload.entry.id || entryId);
+          setHydratedMapEntries(current => ({ ...current, [canonicalEntryId]: payload.entry }));
+        })
+        .catch(() => {});
+    } else {
+      mapEntryDetailRequestRef.current += 1;
+    }
+    if (!entryId || !isMobilePanel) return;
+    const entry = fullEntry || hydratedMapEntries[entryId];
+    setPanelOpen(entry ? !hasServiceMapCoordinates(entry) : false);
+  }, [filteredEntries, hydratedMapEntries, isMobilePanel, mapEntries]);
 
   const handleStartPreInquiry = useCallback((entry, policy = null) => {
     const recipientEntryId = String(entry?.parentEntryId || entry?.id || "").trim();
@@ -3606,6 +3676,11 @@ function ServiceMapSurface({
               {readText(t, "workspace_feature_pages.service_map.peer_login_required", "Abikuulutuste vaatamiseks logi sisse. Avalik Teenusekaart ei avalda, kas kuulutusi leidub.")}
             </p>
           ) : null}
+          {contactCheckSchedule?.cadence === "weekly" ? (
+            <p className="service-map-contact-monitor-note" role="note">
+              {readText(t, "workspace_feature_pages.service_map.contact_check_schedule_weekly", "Avaldatud KOV-kontaktide allikalehti kontrollitakse automaatselt kord nädalas.")}
+            </p>
+          ) : null}
           {partialResult ? (
             <p className="service-map-partial-warning" role="status" aria-live="polite">
               {filteredEntries.length
@@ -3615,7 +3690,11 @@ function ServiceMapSurface({
           ) : null}
 
           {showResults ? (
-            <div className="service-map-results" aria-label={readText(t, "workspace_feature_pages.service_map.results", "Tulemused")}>
+            <div
+              className="service-map-results"
+              data-has-detail={selectedUnlocatedEntry ? "true" : "false"}
+              aria-label={readText(t, "workspace_feature_pages.service_map.results", "Tulemused")}
+            >
               {loading ? <p role="status">{readText(t, "workspace_feature_pages.service_map.loading", "Laen kirjeid…")}</p> : null}
               {!loading && !partialResult && !filteredEntries.length ? <p role="status">{readText(t, "workspace_feature_pages.service_map.empty", "Selle filtriga kirjeid ei leitud.")}</p> : null}
               {!loading ? <p role="status">{readText(t, "workspace_feature_pages.service_map.loaded_count", "Laaditud {count} tulemust.").replace("{count}", String(filteredEntries.length))}</p> : null}
@@ -3629,6 +3708,43 @@ function ServiceMapSurface({
                   <span>{[entry.type === "HELP_REQUEST" ? readText(t, "workspace_feature_pages.service_map.types.help_request", "Abisoov") : entry.type === "HELP_OFFER" ? readText(t, "workspace_feature_pages.service_map.types.help_offer", "Abipakkumine") : entry.type === "SERVICE_PROVIDER" ? readText(t, "workspace_feature_pages.service_map.types.provider", "Teenused") : readText(t, "workspace_feature_pages.service_map.types.kov", "KOV"), entry.title, entry.regionLabel || entry.municipalityName || entry.county].filter(Boolean).join(" · ")}</span>
                 </button>
               ))}
+              {selectedUnlocatedEntry ? (
+                <article className="service-map-results-detail" aria-live="polite">
+                  <h3>{selectedUnlocatedEntry.title}</h3>
+                  {selectedUnlocatedEntry.description ? <p>{selectedUnlocatedEntry.description}</p> : null}
+                  <dl>
+                    {selectedUnlocatedEntry.address ? (
+                      <div>
+                        <dt>{readText(t, "workspace_feature_pages.service_map.popup.address", "Aadress")}</dt>
+                        <dd>{selectedUnlocatedEntry.address}</dd>
+                      </div>
+                    ) : null}
+                    {[selectedUnlocatedEntry.municipalityName, selectedUnlocatedEntry.county].filter(Boolean).length ? (
+                      <div>
+                        <dt>{readText(t, "workspace_feature_pages.service_map.popup.region", "Piirkond")}</dt>
+                        <dd>{[selectedUnlocatedEntry.municipalityName, selectedUnlocatedEntry.county].filter(Boolean).join(", ")}</dd>
+                      </div>
+                    ) : null}
+                    {selectedUnlocatedEntry.phone ? (
+                      <div>
+                        <dt>{readText(t, "workspace_feature_pages.service_map.popup.phone", "Telefon")}</dt>
+                        <dd>{selectedUnlocatedPhoneHref ? <a href={selectedUnlocatedPhoneHref}>{selectedUnlocatedEntry.phone}</a> : selectedUnlocatedEntry.phone}</dd>
+                      </div>
+                    ) : null}
+                    {selectedUnlocatedEmail ? (
+                      <div>
+                        <dt>{readText(t, "workspace_feature_pages.service_map.popup.email", "E-post")}</dt>
+                        <dd><a href={`mailto:${selectedUnlocatedEmail}`}>{selectedUnlocatedEmail}</a></dd>
+                      </div>
+                    ) : null}
+                  </dl>
+                  {selectedUnlocatedWebsite ? (
+                    <a className="service-map-results-detail__website" href={selectedUnlocatedWebsite} target="_blank" rel="noreferrer">
+                      {readText(t, "workspace_feature_pages.service_map.popup.website", "Veeb")}
+                    </a>
+                  ) : null}
+                </article>
+              ) : null}
               {loadMoreError ? <p role="status">{loadMoreError}</p> : null}
               {serviceMapPage?.hasMore && serviceMapPage?.nextCursor ? (
                 <Button

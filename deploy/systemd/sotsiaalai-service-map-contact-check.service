@@ -8,6 +8,10 @@ Type=oneshot
 WorkingDirectory=/home/ubuntu/apps/sotsiaalai
 EnvironmentFile=/etc/sotsiaalai/frontend.env
 ExecStart=/usr/bin/npm run service-map:contacts:check
+# 149 source URLs at concurrency 5 and a 12 s per-URL fetch limit can need
+# about six minutes when many sources are slow. Keep the full v2 audit run
+# alive long enough to commit one complete verification state.
+TimeoutStartSec=15min
 NoNewPrivileges=true
 PrivateTmp=true
 ProtectSystem=strict

@@ -2347,6 +2347,7 @@
       "load_more": "Laadi veel",
       "loaded_count": "Laaditud {count} tulemust.",
       "peer_login_required": "Abikuulutuste vaatamiseks logi sisse. Avalik Teenusekaart ei avalda, kas kuulutusi leidub.",
+      "contact_check_schedule_weekly": "Avaldatud KOV-kontaktide allikalehti kontrollitakse automaatselt kord nädalas.",
       "target_not_public": "See kirje ei ole enam avalik või sulle nähtav.",
       "partial_warning": "Üks Teenusekaardi andmeallikas ei ole praegu saadaval. Näitame toimiva allika osalisi tulemusi.",
       "partial_empty": "Kõiki Teenusekaardi allikaid ei saanud kontrollida, seega ei saa tulemuste puudumist kinnitada.",

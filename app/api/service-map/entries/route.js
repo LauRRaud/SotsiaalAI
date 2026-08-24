@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
 import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
 import { listPublishedHelpMapEntries } from "@/lib/help";
-import { listPublishedServiceMapEntries } from "@/lib/serviceProviderProfiles";
+import { listPublishedServiceMapEntries, listPublishedServiceMapMarkers } from "@/lib/serviceProviderProfiles";
 import { isAdmin } from "@/lib/authz";
 import {
   decodeServiceMapCursor,
@@ -14,15 +14,64 @@ import { consumeRateLimit } from "@/lib/rate-limit";
 import { getRequestIpFromRequest } from "@/lib/request-ip";
 import { loadPeerServiceMapEntries } from "@/lib/serviceMap/peerAccess";
 import { combineServiceMapSourceResults, isServiceMapAccessError, isServiceMapSourcePermissionError } from "@/lib/serviceMap/sourceResults";
+import { SERVICE_MAP_CONTACT_CHECK_SCHEDULE } from "@/lib/serviceMap/contactFreshnessProjection";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
+const MAP_MARKER_PAGE_LIMIT = 500;
+const MAP_MARKER_RESPONSE_LIMIT = 3_000;
+
+async function collectMapMarkerPages({ query, kind, loadPage }) {
+  const markerQuery = {
+    ...query,
+    includeUnlocated: false,
+    limit: MAP_MARKER_PAGE_LIMIT,
+    cursor: null,
+    cursorRaw: "",
+    combinedCursor: null,
+    paged: true,
+    mapOnly: kind === "service"
+  };
+  const entriesById = new Map();
+  let cursor = null;
+  let nextCursor = null;
+
+  do {
+    const result = await loadPage({ ...markerQuery, cursor });
+    const pageEntries = Array.isArray(result) ? result : result.entries;
+    for (const entry of Array.isArray(pageEntries) ? pageEntries : []) {
+      if (entry?.id) entriesById.set(entry.id, entry);
+    }
+    const page = Array.isArray(result) ? null : result.page;
+    nextCursor = page?.hasMore ? page.nextCursor : null;
+    if (!nextCursor || entriesById.size >= MAP_MARKER_RESPONSE_LIMIT) break;
+    cursor = decodeServiceMapCursor(nextCursor, markerQuery, kind);
+    if (!cursor) throw new Error("SERVICE_MAP_MARKER_CURSOR_INVALID");
+  } while (cursor);
+
+  const collectedEntries = [...entriesById.values()];
+  const responseLimitReached = collectedEntries.length > MAP_MARKER_RESPONSE_LIMIT;
+  const entries = collectedEntries.slice(0, MAP_MARKER_RESPONSE_LIMIT);
+
+  return {
+    entries,
+    page: {
+      hasMore: Boolean(nextCursor) || responseLimitReached,
+      nextCursor,
+      truncated: Boolean(nextCursor) || responseLimitReached,
+      returnedCount: entries.length,
+      responseLimit: MAP_MARKER_RESPONSE_LIMIT
+    }
+  };
+}
+
 export async function GET(request, deps = {}) {
   const locale = localeFromRequest(request);
   const getSession = deps.getSession || (() => getServerSession(authConfig));
   const loadServices = deps.loadServices || listPublishedServiceMapEntries;
+  const loadServiceMarkers = deps.loadServiceMarkers || (deps.loadServices ? loadServices : listPublishedServiceMapMarkers);
   const loadPeerListings = deps.loadPeerListings || loadPeerServiceMapEntries;
   const applyRateLimit = deps.consumeRateLimit || consumeRateLimit;
 
@@ -77,13 +126,32 @@ export async function GET(request, deps = {}) {
     )) {
       return errorJson("workspace_feature_pages.service_map.errors.invalid_cursor", 400, locale);
     }
-    const [serviceSettled, peerListingsSettled] = await Promise.allSettled([
+    const initialPage = !query.cursorRaw && !query.combinedCursor;
+    const [serviceSettled, peerListingsSettled, serviceMapSettled, peerMapSettled] = await Promise.allSettled([
       shouldLoadServices && combinedCursor.serviceDone !== true
         ? loadServices(serviceQuery)
         : Promise.resolve({ entries: [], page: { hasMore: false, nextCursor: null } }),
       shouldLoadHelp && canReadPeerListings && combinedCursor.peerDone !== true
         ? loadPeerListings({ userId: session?.user?.id || "", query: { ...peerQuery, locale }, loadHelpEntries: listPublishedHelpMapEntries })
-        : Promise.resolve({ entries: [], page: null, peerListingsAvailable: canReadPeerListings, peerListingsAccess: canReadPeerListings ? "AUTHORIZED" : "AUTH_REQUIRED" })
+        : Promise.resolve({ entries: [], page: null, peerListingsAvailable: canReadPeerListings, peerListingsAccess: canReadPeerListings ? "AUTHORIZED" : "AUTH_REQUIRED" }),
+      initialPage && shouldLoadServices
+        ? collectMapMarkerPages({
+            query: serviceQuery,
+            kind: "service",
+            loadPage: markerQuery => loadServiceMarkers(markerQuery)
+          })
+        : Promise.resolve({ entries: [], page: { hasMore: false, nextCursor: null, truncated: false, returnedCount: 0 } }),
+      initialPage && shouldLoadHelp && canReadPeerListings
+        ? collectMapMarkerPages({
+            query: { ...peerQuery, locale },
+            kind: "help",
+            loadPage: markerQuery => loadPeerListings({
+              userId: session?.user?.id || "",
+              query: markerQuery,
+              loadHelpEntries: listPublishedHelpMapEntries
+            })
+          })
+        : Promise.resolve({ entries: [], page: { hasMore: false, nextCursor: null, truncated: false, returnedCount: 0 } })
     ]);
     const combined = combineServiceMapSourceResults({
       servicesRequested: shouldLoadServices,
@@ -101,6 +169,21 @@ export async function GET(request, deps = {}) {
     }
     const { serviceResult, peerResult } = combined;
     const serviceEntries = Array.isArray(serviceResult) ? serviceResult : serviceResult.entries;
+    const serviceMapResult = serviceMapSettled.status === "fulfilled"
+      ? serviceMapSettled.value
+      : { entries: [], page: { hasMore: false, nextCursor: null, truncated: true, returnedCount: 0 } };
+    const peerMapResult = peerMapSettled.status === "fulfilled"
+      ? peerMapSettled.value
+      : { entries: [], page: { hasMore: false, nextCursor: null, truncated: true, returnedCount: 0 } };
+    const mapEntriesById = new Map();
+    for (const entry of [...serviceMapResult.entries, ...peerMapResult.entries]) {
+      if (entry?.id) mapEntriesById.set(entry.id, entry);
+    }
+    const mapEntries = [...mapEntriesById.values()];
+    const mapPartial = serviceMapSettled.status === "rejected" ||
+      peerMapSettled.status === "rejected" ||
+      serviceMapResult.page?.truncated === true ||
+      peerMapResult.page?.truncated === true;
     const helpEntries = peerResult.entries;
     const helpResult = peerResult;
     const entries = [...serviceEntries, ...helpEntries];
@@ -132,11 +215,22 @@ export async function GET(request, deps = {}) {
     return json({
       ok: true,
       entries,
+      mapEntries,
+      mapPage: {
+        complete: !mapPartial,
+        truncated: mapPartial,
+        returnedCount: mapEntries.length,
+        sources: {
+          services: serviceMapSettled.status === "fulfilled" ? serviceMapResult.page : { unavailable: true },
+          peerListings: peerMapSettled.status === "fulfilled" ? peerMapResult.page : { unavailable: true }
+        }
+      },
       page: activePage,
-      partial: combined.partial,
+      partial: combined.partial || mapPartial,
       sources: combined.sources,
       peerListingsAvailable: canReadPeerListings,
-      peerListingsAccess: canReadPeerListings ? "AUTHORIZED" : "AUTH_REQUIRED"
+      peerListingsAccess: canReadPeerListings ? "AUTHORIZED" : "AUTH_REQUIRED",
+      contactCheckSchedule: SERVICE_MAP_CONTACT_CHECK_SCHEDULE
     });
   } catch (error) {
     if (isServiceMapAccessError(error)) {
