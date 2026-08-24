@@ -336,13 +336,25 @@ export function useChatConversationState({
       text: m.text,
       sources: m.role === "ai" && Array.isArray(m.sources)
         ? m.sources.slice(0, 8).map(source => ({
+            id: typeof source?.id === "string" ? source.id : undefined,
+            sourceId: typeof source?.sourceId === "string" ? source.sourceId : undefined,
+            documentId: typeof source?.documentId === "string" ? source.documentId : undefined,
+            docId: typeof source?.docId === "string" ? source.docId : undefined,
             label: typeof source?.label === "string" ? source.label : undefined,
             title: typeof source?.title === "string" ? source.title : undefined,
+            authors: Array.isArray(source?.authors)
+              ? source.authors.filter(author => typeof author === "string").slice(0, 4)
+              : undefined,
+            journalTitle: typeof source?.journalTitle === "string" ? source.journalTitle : undefined,
+            issueLabel: typeof source?.issueLabel === "string" ? source.issueLabel : undefined,
+            year: typeof source?.year === "number" || typeof source?.year === "string"
+              ? source.year
+              : undefined,
             url: typeof source?.url === "string" ? source.url : undefined,
             pageRange: typeof source?.pageRange === "string" ? source.pageRange : undefined,
             paragraphTitle: typeof source?.paragraphTitle === "string" ? source.paragraphTitle : undefined,
             section: typeof source?.section === "string" ? source.section : undefined
-          })).filter(source => source.label || source.title || source.url)
+          })).filter(source => source.id || source.sourceId || source.documentId || source.docId || source.label || source.title || source.url)
         : undefined
     }));
   }, [visibleForHistory, isRoomMode]);
