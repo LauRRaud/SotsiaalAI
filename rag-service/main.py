@@ -8742,6 +8742,12 @@ def _execute_search(
         reverse=True,
     )[:50]
     flat_by_id = {str(item.get("id") or ""): item for item in flat if item.get("id")}
+    exact_author_document_id_set = set(exact_author_document_ids or [])
+    author_scope_where = (
+        _without_author_token_filter_group(chroma_where)
+        if exact_author_document_id_set
+        else chroma_where
+    )
     for rank, candidate in enumerate(lexical_candidates, start=1):
         item_id = str(candidate.get("id") or "").strip()
         if not item_id:
@@ -8751,7 +8757,26 @@ def _execute_search(
             continue
         if is_general_search and not is_general_search_metadata_allowed(candidate_md):
             continue
-        if not _metadata_matches_filter(candidate_md, chroma_where):
+        candidate_doc_id = str(
+            candidate_md.get("doc_id") or candidate_md.get("docId") or ""
+        ).strip()
+        candidate_channels = {
+            str(item)
+            for item in candidate.get("channels") or []
+            if str(item or "").strip()
+        }
+        # Registry and Chroma presence have already proven the exact active
+        # authored-document set above. Older active chunks can predate only the
+        # derived author_token_* slots, so reapplying those slots here would
+        # discard a valid authored work after the exact shortlist found it.
+        # Every lifecycle, audience and other access filter remains in force.
+        candidate_where = (
+            author_scope_where
+            if candidate_doc_id in exact_author_document_id_set
+            and "author_match" in candidate_channels
+            else chroma_where
+        )
+        if not _metadata_matches_filter(candidate_md, candidate_where):
             continue
         if not _metadata_matches_current_version_requirement(candidate_md, require_current_version):
             continue
