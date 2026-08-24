@@ -1,4 +1,5 @@
 import { checkDatabaseContactsFromWeb } from "../lib/admin/rag/contactRegistry/databaseService.js";
+import { prisma } from "../lib/prisma.js";
 
 function valueAfterFlag(name, fallback = "") {
   const index = process.argv.indexOf(name);
@@ -16,7 +17,9 @@ async function main() {
   console.info(`[service-map:contacts:check] fetch failures: ${result.fetchedFailed}`);
 }
 
-main().catch(error => {
-  console.error("[service-map:contacts:check] failed", error);
-  process.exitCode = 1;
-});
+main()
+  .catch(error => {
+    console.error("[service-map:contacts:check] failed", error);
+    process.exitCode = 1;
+  })
+  .finally(() => prisma.$disconnect());
