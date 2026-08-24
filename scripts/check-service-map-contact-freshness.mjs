@@ -13,6 +13,7 @@ async function main() {
   console.info(`[service-map:contacts:check] contacts: ${result.contacts}`);
   console.info(`[service-map:contacts:check] checked urls: ${result.checkedUrls}/${result.urls}`);
   console.info(`[service-map:contacts:check] verified contacts: ${result.verifiedContacts}`);
+  console.info(`[service-map:contacts:check] verified contact identities: ${result.verifiedIdentityContacts}`);
   console.info(`[service-map:contacts:check] review candidates: ${result.changedContacts}`);
   console.info(`[service-map:contacts:check] fetch failures: ${result.fetchedFailed}`);
 }
