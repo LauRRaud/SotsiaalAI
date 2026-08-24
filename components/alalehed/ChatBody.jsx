@@ -513,6 +513,7 @@ export default function ChatBody({
   const [layoutTransitionsReady, setLayoutTransitionsReady] = useState(false);
   const listingsPanelCloseTimerRef = useRef(null);
   const searchWorkflowHandledRef = useRef("");
+  const searchConversationHandledRef = useRef("");
   const chatWindowRef = useRef(null);
   const chatContainerRef = useRef(null);
   const isGeneratingRef = useRef(false);
@@ -2213,9 +2214,28 @@ export default function ChatBody({
   const startFreshConversation = useCallback((nextWorkflow = "default", options = {}) => {
     const {
       convId: requestedConvId = null,
-      closeAnalysis = true
+      closeAnalysis = true,
+      preserveConversationSearch = false
     } = options;
     const nextConvId = String(requestedConvId || "").trim() || createConversationId();
+
+    if (!preserveConversationSearch && typeof window !== "undefined") {
+      try {
+        const url = new URL(window.location.href);
+        const searchConversation = String(url.searchParams.get("conversation") || "").trim();
+        if (searchConversation) {
+          // URL-i conversation on ühekordne süvalingi sisend. Kohalik valik peab
+          // selle tarbima, muidu kirjutab vana query uue vestluse kohe üle.
+          searchConversationHandledRef.current = searchConversation;
+          url.searchParams.delete("conversation");
+          window.history.replaceState(
+            window.history.state,
+            "",
+            `${url.pathname}${url.search}${url.hash}`
+          );
+        }
+      } catch {}
+    }
 
     detach();
     setErrorBanner(null);
@@ -2262,8 +2282,18 @@ export default function ChatBody({
   useEffect(() => {
     if (isRoomMode || typeof searchParams?.get !== "function") return;
     const requestedConversation = String(searchParams.get("conversation") || "").trim();
-    if (!requestedConversation || requestedConversation === convId) return;
-    startFreshConversation("default", { convId: requestedConversation, closeAnalysis: false });
+    if (!requestedConversation) {
+      searchConversationHandledRef.current = "";
+      return;
+    }
+    if (searchConversationHandledRef.current === requestedConversation) return;
+    searchConversationHandledRef.current = requestedConversation;
+    if (requestedConversation === convId) return;
+    startFreshConversation("default", {
+      convId: requestedConversation,
+      closeAnalysis: false,
+      preserveConversationSearch: true
+    });
   }, [convId, isRoomMode, searchParams, startFreshConversation]);
   const activateInfoMode = useCallback((options = null) => {
     const preserveConversation = Boolean(options?.preserveConversation);
