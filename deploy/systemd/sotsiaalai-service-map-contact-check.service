@@ -1,0 +1,17 @@
+[Unit]
+Description=SotsiaalAI published KOV contact freshness check
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/ubuntu/apps/sotsiaalai
+EnvironmentFile=/etc/sotsiaalai/frontend.env
+ExecStart=/usr/bin/npm run service-map:contacts:check
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+
+# The check reads public KOV contact pages. It only refreshes checkedAt for
+# exact matches and writes possible changes to the admin review audit trail.
+# It never auto-publishes, hides, or rewrites contact details.

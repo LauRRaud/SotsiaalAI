@@ -37,6 +37,7 @@
     "service-map:sync:kov-municipalities": "node scripts/sync-kov-municipality-service-map-entries.mjs",
     "service-map:sync:rag:dry": "node scripts/sync-service-map-from-rag.mjs --dry-run",
     "service-map:sync:rag": "node scripts/sync-service-map-from-rag.mjs",
+    "service-map:contacts:check": "node scripts/check-service-map-contact-freshness.mjs",
     "service-map:geocode:dry": "node scripts/geocode-service-map-entries.mjs --dry-run",
     "service-map:geocode": "node scripts/geocode-service-map-entries.mjs",
     "service-availability:remind": "tsx --tsconfig jsconfig.json scripts/service-availability-reminders.mjs",

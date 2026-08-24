@@ -1,0 +1,11 @@
+[Unit]
+Description=Schedule weekly SotsiaalAI KOV contact freshness check
+
+[Timer]
+OnCalendar=Sun *-*-* 02:23:00 UTC
+RandomizedDelaySec=20m
+Persistent=true
+Unit=sotsiaalai-service-map-contact-check.service
+
+[Install]
+WantedBy=timers.target
