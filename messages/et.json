@@ -4211,7 +4211,6 @@
       "search_placeholder": "Otsi pealkirja või märksõna järgi…",
       "search_count": "Leitud {count} peatükki",
       "search_empty": "Otsingule ei vastanud ükski peatükk. Proovi teist märksõna või tühjenda otsing.",
-      "intro": "Vali esmalt roll. Juhend näitab sellele rollile sobivat Töölauda, töövooge ja alustamise samme; esmakülastuse, avalehe, sisselogimise, vestluse, ruumide, privaatsuse ja konto juhised on kõigile ühised.",
       "sections_v2": {
         "accessibility": {
           "title": "Keel ja ligipääsetavus",
@@ -4219,7 +4218,7 @@
         },
         "home": {
           "title": "Avaleht ja platvormiga ühendamine",
-          "body": "<p><strong>Esmakülastuse järjestus</strong></p><ol><li>Vali Keel ja ligipääsetavus moodulis sobivad seaded.</li><li>Valmidusvaates „Kõik algab selgusest” vajuta <strong>Sisenen</strong>.</li><li>Sissejuhatuses saad teksti kerida või valida <strong>Jäta vahele</strong>. Taustaheli saab sisse või välja lülitada; heli sisselülitamisel saab valida ka <strong>Järgmine lugu</strong>.</li><li>Vaates „Ühenda SotsiaalAI platvormiga” vajuta keskel olevat toitenuppu.</li></ol><p><strong>Avalehe kaardid ja menüüd</strong></p><ul><li>Sisselogimata vaates on 9 kaarti: Tutvu võimalustega, Kasutusjuhend, Logi sisse, Meist, Paigalda, Kasutustingimused, Privaatsuspoliitika, Hinnastus ja Kontakt.</li><li>Küljenooled kerivad kaarte ükshaaval. Alumine kiirmenüü viib otse soovitud kaardile.</li><li>Ülaserva peidetud käepide avaneb kursori või fookusega. Seal on taustaheli, Keel ja ligipääsetavus ning Ooterežiim.</li><li>Sisselogitud kasutaja näeb oma põhinavigatsiooni: Ruumid, Töölaud, Vestlus ja Profiil. Haldus ning S / P / T rollivahetus on nähtavad ainult administraatorile.</li></ul>"
+          "body": "<p><strong>Esmakülastuse järjestus</strong></p><ol><li>Vali Keel ja ligipääsetavus moodulis sobivad seaded.</li><li>Valmidusvaates „Kõik algab selgusest” vajuta <strong>Sisenen</strong>.</li><li>Sissejuhatuses saad teksti kerida või valida <strong>Jäta vahele</strong>. Taustaheli saad sisse või välja lülitada. Lugusid saad vahetada heli kõrval oleva noolega.</li><li>Vaates „Ühenda SotsiaalAI platvormiga” vajuta keskel olevat toitenuppu.</li></ol><p><strong>Avalehe kaardid ja menüüd</strong></p><ul><li>Sisselogimata vaates on 9 kaarti: Tutvu võimalustega, Kasutusjuhend, Logi sisse, Meist, Paigalda, Kasutustingimused, Privaatsuspoliitika, Hinnastus ja Kontakt.</li><li>Küljenooled kerivad kaarte ükshaaval. Alumine kiirmenüü viib otse soovitud kaardile.</li><li>Ülaserva peidetud käepide avaneb kursori või fookusega. Seal on taustaheli, Keel ja ligipääsetavus ning Ooterežiim.</li><li>Sisselogitud kasutaja näeb Ruumid, Töölaud, Vestlus ja Profiil.</li></ul>"
         },
         "register": {
           "title": "Konto loomine ja ligipääs",
@@ -4283,16 +4282,10 @@
         }
       },
       "role_picker": {
-        "title": "Millises rollis sa SotsiaalAI-d kasutad?",
-        "intro": "Valik muudab selle lehe rollipõhiseid peatükke. Rolli saad igal ajal vahetada.",
+        "title": "Vali oma roll",
         "client_name": "Pöörduja",
-        "client_hint": "Otsin enda või lähedase olukorras selgust ja abi.",
         "specialist_name": "Sotsiaaltöö spetsialist",
-        "specialist_hint": "Teen juhtumi-, dokumendi- ja koostööd.",
-        "provider_name": "Teenuseosutaja",
-        "provider_hint": "Osutan teenuseid ning korraldan vastuvõttu ja aruandlust.",
-        "selected": "{role} juhend on valitud.",
-        "prompt": "Vali roll, et näha oma Töölauda ja töövahendeid."
+        "provider_name": "Teenuseosutaja"
       },
       "role_sections": {
         "client": {

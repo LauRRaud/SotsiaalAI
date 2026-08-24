@@ -4211,7 +4211,6 @@
       "search_placeholder": "Search by title or keyword…",
       "search_count": "{count} chapters found",
       "search_empty": "No chapters matched your search. Try another keyword or clear the search.",
-      "intro": "Choose your role first. The guide then shows the matching Workspace, workflows and starting steps; first visit, home page, sign-in, chat, rooms, privacy and account guidance stays common to everyone.",
       "sections_v2": {
         "accessibility": {
           "title": "Language and accessibility",
@@ -4219,7 +4218,7 @@
         },
         "home": {
           "title": "Home page and connecting to the platform",
-          "body": "<p><strong>First-visit sequence</strong></p><ol><li>Choose settings in the Language and accessibility module.</li><li>In the “Everything starts with clarity” readiness view, select <strong>Enter</strong>.</li><li>Scroll through the introduction or choose <strong>Skip</strong>. Background audio can be switched on or off; once it is on, <strong>Next track</strong> is also available.</li><li>In “Connect to the SotsiaalAI platform”, press the central power button.</li></ol><p><strong>Cards and menus</strong></p><ul><li>Signed-out view has 9 cards: Explore features, User guide, Sign in, About, Install, Terms, Privacy policy, Pricing and Contact.</li><li>Side arrows move one card at a time. The bottom quick menu jumps directly to a card.</li><li>Focus or hover the hidden top handle to open background audio, Language and accessibility and Standby.</li><li>A signed-in user sees Rooms, Workspace, Chat and Profile. Administration and the S / P / T role switcher are visible only to an administrator.</li></ul>"
+          "body": "<p><strong>First-visit sequence</strong></p><ol><li>Choose settings in the Language and accessibility module.</li><li>In the “Everything starts with clarity” readiness view, select <strong>Enter</strong>.</li><li>Scroll through the introduction or choose <strong>Skip</strong>. Switch background audio on or off. Use the arrow next to the audio control to change tracks.</li><li>In “Connect to the SotsiaalAI platform”, press the central power button.</li></ol><p><strong>Cards and menus</strong></p><ul><li>Signed-out view has 9 cards: Explore features, User guide, Sign in, About, Install, Terms, Privacy policy, Pricing and Contact.</li><li>Side arrows move one card at a time. The bottom quick menu jumps directly to a card.</li><li>Focus or hover the hidden top handle to open background audio, Language and accessibility and Standby.</li><li>A signed-in user sees Rooms, Workspace, Chat and Profile.</li></ul>"
         },
         "register": {
           "title": "Create an account and activate access",
@@ -4283,16 +4282,10 @@
         }
       },
       "role_picker": {
-        "title": "How do you use SotsiaalAI?",
-        "intro": "This choice changes the role-specific chapters on this page. You can switch roles at any time.",
+        "title": "Choose your role",
         "client_name": "Client",
-        "client_hint": "I am looking for clarity and support for myself or someone close to me.",
         "specialist_name": "Social work specialist",
-        "specialist_hint": "I work with cases, documents and collaboration.",
-        "provider_name": "Service provider",
-        "provider_hint": "I provide services and manage intake and reporting.",
-        "selected": "{role} guide selected.",
-        "prompt": "Choose a role to see your Workspace and tools."
+        "provider_name": "Service provider"
       },
       "role_sections": {
         "client": {

@@ -172,18 +172,11 @@ export default function KasutusjuhendBody({ initialRole = "" }) {
             >
               {t("about.guide.short_title")}
             </SubpageHeader>
-            <p>
-              {t("about.guide.intro")}
-            </p>
             <fieldset
               className="guide-role-picker"
               id="guide-role-picker"
-              aria-describedby="guide-role-picker-intro"
             >
               <legend>{t("about.guide.role_picker.title")}</legend>
-              <p className="guide-role-picker__intro" id="guide-role-picker-intro">
-                {t("about.guide.role_picker.intro")}
-              </p>
               <div className="guide-role-picker__options">
                 {GUIDE_ROLES.map((role) => (
                   <label className="guide-role-option" key={role}>
@@ -197,19 +190,9 @@ export default function KasutusjuhendBody({ initialRole = "" }) {
                     <span className="guide-role-option__name">
                       {t(`about.guide.role_picker.${role}_name`)}
                     </span>
-                    <span className="guide-role-option__hint">
-                      {t(`about.guide.role_picker.${role}_hint`)}
-                    </span>
                   </label>
                 ))}
               </div>
-              <p className="guide-role-picker__status" aria-live="polite">
-                {selectedRole
-                  ? t("about.guide.role_picker.selected", {
-                      role: t(`about.guide.role_picker.${selectedRole}_name`)
-                    })
-                  : t("about.guide.role_picker.prompt")}
-              </p>
             </fieldset>
             <div className="reading-search" role="search">
               <label htmlFor="guide-search-input">
