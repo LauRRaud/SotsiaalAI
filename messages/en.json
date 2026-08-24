@@ -4211,75 +4211,131 @@
       "search_placeholder": "Search by title or keyword…",
       "search_count": "{count} chapters found",
       "search_empty": "No chapters matched your search. Try another keyword or clear the search.",
-      "intro": "This guide covers creating an account, activating access, using chat, settings, help and document work, group conversations, and profile features in SotsiaalAI.",
+      "intro": "Choose your role first. The guide then shows the matching Workspace, workflows and starting steps; first visit, home page, sign-in, chat, rooms, privacy and account guidance stays common to everyone.",
       "sections_v2": {
         "accessibility": {
-          "title": "1. Language and accessibility",
-          "body": "<p>On your first visit the <a href=\"#\" data-a11y-open=\"1\">Language and accessibility</a> window opens automatically. You can reopen the same view later on the <a href=\"/profiil\">Profile</a> page.</p><ul><li><strong>Language.</strong> Choose Estonian, Russian, or English.</li><li><strong>Screen profile.</strong> Choose \"Mobile / laptop screen\", \"Apple laptop\", or \"External monitor / PC\" so the display fits your device better.</li><li><strong>Text size.</strong> Adjust the text size to what feels most comfortable.</li><li><strong>Contrast.</strong> Choose <strong>Normal</strong> or <strong>High contrast</strong>. High contrast increases the separation between text and background.</li><li><strong>Motion and performance.</strong> This section now has two separate options: <strong>\"Reduce animations\"</strong> and <strong>\"Reduce transparency\"</strong>.</li><li><strong>Performance on older devices.</strong> Reducing transparency and animations can improve performance on older devices.</li><li><strong>Theme.</strong> Currently a single color theme (Dusk) is published; light and dark modes will be added later.</li><li><strong>Save and reset.</strong> Changes apply immediately, but you can change preferences on the Profile page and save them again when needed.</li></ul>"
+          "title": "Language and accessibility",
+          "body": "<p>On the first visit, the <strong>Language and accessibility</strong> module opens automatically. Choose language, contrast, text size, theme, screen profile, motion and transparency, background audio and app settings.</p><p>Changes apply immediately. Reopen the same module from the hidden top control menu or <a href=\"#\" data-a11y-open>from this guide</a>; account settings are also available in Profile.</p>"
         },
         "home": {
-          "title": "2. Home page",
-          "body": "<p>The home page has a <strong>Sign in</strong> button and a <strong>Register</strong> link. Your role is no longer chosen on the home page.</p><ul><li><strong>Sign in.</strong> If you are already signed in, the button takes you straight to the chat page. If not, it opens sign-in.</li><li><strong>Register.</strong> Takes you to the registration page, where you choose your role: help seeker, service provider, or social work professional.</li><li>The <a href=\"/meist\">About</a> page is available from the home page cards and includes platform information.</li><li>From the home page cards you can open the guide, terms of use, privacy policy, <a href=\"/voimalused\">Features</a>, <a href=\"/hinnastus\">Pricing</a>, and contact view. Features explains the platform's core functions; Pricing shows the price list.</li></ul>"
+          "title": "Home page and connecting to the platform",
+          "body": "<p><strong>First-visit sequence</strong></p><ol><li>Choose settings in the Language and accessibility module.</li><li>In the “Everything starts with clarity” readiness view, select <strong>Enter</strong>.</li><li>Scroll through the introduction or choose <strong>Skip</strong>. Background audio can be switched on or off; once it is on, <strong>Next track</strong> is also available.</li><li>In “Connect to the SotsiaalAI platform”, press the central power button.</li></ol><p><strong>Cards and menus</strong></p><ul><li>Signed-out view has 9 cards: Explore features, User guide, Sign in, About, Install, Terms, Privacy policy, Pricing and Contact.</li><li>Side arrows move one card at a time. The bottom quick menu jumps directly to a card.</li><li>Focus or hover the hidden top handle to open background audio, Language and accessibility and Standby.</li><li>A signed-in user sees Rooms, Workspace, Chat and Profile. Administration and the S / P / T role switcher are visible only to an administrator.</li></ul>"
         },
         "register": {
-          "title": "3. Registration and access activation",
-          "body": "<p>You need an account to use SotsiaalAI. To actively use chat, the account also needs an active subscription or sponsored access.</p><p><strong>Note: registration of new accounts is temporarily closed</strong> — the platform is preparing for public launch. Existing accounts can sign in; the steps below describe registration once it opens.</p><p><strong>3.1 Registration</strong></p><ol><li>Open <a href=\"/registreerimine\">Register</a> from the home page and choose your role: help seeker, service provider, or social work professional.</li><li>Fill in the form with your email address and PIN code (4-8 digits).</li><li>Accept the terms of use and privacy policy, and confirm that you have read the platform guide.</li><li>If you choose the role <strong>Social work professional</strong> and want to use the platform on behalf of an employer or organisation with identifiable data about a client or another person, additional professional-use and data-processing conditions may apply.</li><li>After registration, we send you a verification email. To activate your account, open the message and confirm your email address.</li></ol><p><strong>3.2 Subscription or sponsored access</strong></p><ul><li>After verification you can sign in with your email and PIN.</li><li>If you do not have active access, the platform directs you to the <a href=\"/tellimus\">Subscription</a> page.</li><li>When you start the subscription, you are redirected to the Maksekeskus checkout page. Access is activated after payment-provider confirmation.</li><li><strong>Monthly pricing is role-based:</strong> 7.99 EUR per month for a person seeking help, 14.99 EUR per month for a social work professional, and 19.99 EUR per month for a service provider.</li><li>If your access comes from a sponsored invite, it stays active for the sponsored period, usually one month, without a separate payment. After that, you can activate your own subscription to continue.</li></ul>"
+          "title": "Create an account and activate access",
+          "body": "<p>The role is not selected on the home page. When registration is open, use <a href=\"/registreerimine\">Registration</a> from the sign-in window and choose Client, Social work specialist or Service provider there. Before launch, the sign-in window may show “Registration — soon”.</p><ol><li>Enter email and a 4–8 digit PIN.</li><li>Review the terms, privacy policy and guide, and give only required consents.</li><li>For professional use, also review the <a href=\"/tooalase-kasutuse-raamistik\">work-use framework</a> and organisation agreements.</li><li>Confirm the email from the message sent to you.</li><li>Activate a suitable plan or sponsored access. Current plans and prices are always on <a href=\"/hinnastus\">Pricing</a>.</li></ol>"
         },
         "signin": {
-          "title": "4. Sign-in and role-based navigation",
-          "body": "<p>Sign-in starts from the <strong>Sign in</strong> button on the home page.</p><ul><li>Enter your email address and PIN.</li><li>On a previously trusted device, the PIN is usually enough.</li><li>If you sign in from a new or unusual environment, we send a confirmation link to your email.</li><li>You can optionally select \"Remember this device for 30 days\".</li><li>If you forgot your PIN, use <a href=\"/taasta-parool\">Forgot PIN</a>.</li><li>After a successful sign-in, the chat view for your role opens. If access is limited, the platform shows the next steps.</li></ul>"
+          "title": "Sign in",
+          "body": "<p>Open the <strong>Sign in</strong> card. If needed, open the email field from the envelope icon, enter email and then enter the PIN on the keypad. The arrow <strong>Enter</strong> submits sign-in. The question-mark button opens PIN recovery.</p><p>After a successful sign-in, the account navigation appears. If access needs a subscription or sponsored-period action, the platform directs you to the next required step.</p>"
         },
         "chat": {
-          "title": "5. Chat page",
-          "body": "<p><strong>The chat page</strong> opens after sign-in. It has an automatic assistant mode where you can ask for information, explanations, and next steps. The page is split into three areas: the left icon rail, the main chat area, and the right icon rail.</p><p><strong>Left icon rail</strong></p><ul><li><strong>Back.</strong> Return to the home page.</li><li><strong>New conversation.</strong> Quick action for starting a new conversation.</li><li><strong>Conversations.</strong> Open previous conversations.</li></ul><p><strong>Right icon rail</strong></p><ul><li><strong>Profile.</strong> Open account, subscription, and accessibility settings.</li><li><strong>Rooms.</strong> Open existing group conversations.</li><li><strong>Workspace.</strong> Open the role-based workspace. A person seeking help, service provider, and social work professional each see the tools and management views intended for their role.</li></ul><p><strong>Workspace</strong></p><ul><li>The workspace gives access to role-appropriate functions such as help requests, help offers, pre-inquiries, documents, document drafting, covision, invites, materials, service map, and service profile.</li><li>Short descriptions of these functions are available on the <a href=\"/voimalused\">Features</a> page.</li></ul><p><strong>Main chat area</strong></p><ul><li>Type your message in the input field. The input row has a dictation button and, to its right, the send button.</li><li>While the assistant is responding, the send button becomes a stop button.</li><li>Use the dictation button to turn speech into text.</li><li><strong>Message actions.</strong> Pressing a message bubble or focusing it with the keyboard reveals extra options under the bubble: read aloud, copy, and sources for an assistant reply, plus a Try again button for an interrupted reply; on touch screens the buttons are always visible. Pressing your own message bubble shows the time it was sent.</li><li>When you move to earlier messages, an arrow appears that takes you quickly back to the end of the conversation.</li><li>If the conversation indicates a possible crisis, the platform shows a red urgent-help notice with guidance.</li></ul><p><strong>Workflows and modes</strong></p><ul><li><strong>Plus button (+).</strong> The <strong>+</strong> next to the message field opens quick options: <strong>Help request</strong>, <strong>Help offer</strong>, <strong>Deep research</strong>, and <strong>Document analysis</strong>.</li><li><strong>Help request</strong> and <strong>Help offer.</strong> Use these options to describe a need for help or an offer of help. The assistant helps turn it into a clear listing, asks for missing details when needed, and shows matches after confirmation.</li><li><strong>Deep research.</strong> Starts a more detailed research mode. To exit the mode, press the magnifying-glass icon.</li><li><strong>Document analysis.</strong> Opens the file and analysis panel where you can ask for explanations about a document.</li><li>Documents, document drafting, covision, supervision, mentoring, field work, the method mirror, materials, service map, service profile, and other role-based tools open through the Workspace or from their own page when they are available for your role.</li></ul>"
+          "title": "Chat",
+          "body": "<p>Chat adapts to screen width. Write a question or describe the situation in your own words; while an answer is generated, Send becomes Stop.</p><ul><li><strong>Dictation</strong> turns speech into text before sending. Review the text.</li><li><strong>Voice chat</strong> opens a separate avatar view and uses the same knowledge, sources, privacy and urgent-help path as typed questions; the full answer remains in text chat.</li><li>Answer actions include read aloud, copy and retry. <strong>Sources</strong> appears when the answer used verifiable sources.</li><li>You can always ask for a simpler explanation.</li><li>The <strong>+</strong> next to the input opens Help request, Help offer, Deep research and Document analysis.</li></ul>"
         },
         "documents": {
-          "title": "8. Documents",
-          "body": "<p>The <strong>Documents</strong> page is meant for a <strong>social work professional</strong>. It is the place for managing persistent work files and results created in chat or document drafting.</p><ul><li>You can upload documents, open their detail views, and download files.</li><li>Documents can be marked for use in a workflow so they are included in agent work or other document tasks.</li><li>The page also shows drafts and approved results created from those documents.</li><li>Results can be opened in detail view, saved, approved, and after approval downloaded as DOCX or PDF files.</li><li>If a chat-created draft is meant for the specialist's work, it appears on this page.</li></ul>"
+          "title": "Documents and files",
+          "body": "<p>Documents are available to all three roles. Clients see personal files and results; specialists and providers can also manage work files, background materials, templates, drafts and confirmed outputs.</p><p>A file added to the persistent library remains in your files. A temporary file added to Document analysis belongs to that chat workflow and does not automatically become a persistent document. Review an audio transcript separately before creating a summary.</p>"
         },
         "agent_mode": {
-          "title": "10. Document drafting",
-          "body": "<p>The <strong>Document drafting</strong> page is a workspace where the agent helps create texts, reports, and drafts from selected files. For a person seeking help, this is the main place to continue documents that started in chat.</p><ul><li>You can choose the task type, tone, language, length, and, when needed, a template.</li><li>A help seeker can add files needed for their work directly in Document drafting and use the role-based file limit there.</li><li>The conversation with the agent happens on the same page: you can give the first instruction, ask for refinements, and generate new versions.</li><li>The page shows the current draft, version history, and previously saved or finished results.</li><li>If a chat-created result is meant for the help seeker's work, it opens here for further editing.</li></ul>"
+          "title": "Draft a document",
+          "body": "<p>Document drafting is available to all three roles for applications, statements, letters, reports, summaries and other drafts. Choose output type, tone, language, length and template and add suitable source files.</p><p>Refine instructions in the same workspace and create versions. A person must review and confirm the draft before use; a confirmed result can be saved and downloaded as DOCX or PDF.</p>"
         },
         "wellbeing": {
-          "title": "11. Wellbeing",
-          "body": "<p>The <a href=\"/tooheaolu\">Wellbeing</a> page is meant for a <strong>social work professional</strong> and helps you notice workload, emotional strain, the need for recovery, recurring interruptions, and the impact of difficult cases. You open it from the Workspace, and it lists tools that each open a separate workflow.</p><ul><li><strong>Quick check.</strong> A short workload and recovery check to choose your next small step.</li><li><strong>Overview.</strong> Weekly and monthly wellbeing trends, load factors, and patterns.</li><li><strong>Hard case.</strong> A workflow after a difficult or emotionally demanding case.</li><li><strong>Workplace violence.</strong> A workflow for threats, aggression, insults, stalking, or physical danger.</li><li><strong>Recovery.</strong> A workflow for breaks, recovery time, and restoring your energy.</li><li><strong>Work boundaries.</strong> Agreements about working hours, availability, breaks, and interruptions.</li><li><strong>Interruptions.</strong> Noticing recurring patterns of interruptions, task switching, and focus.</li><li><strong>Work processes.</strong> A \"what eats up the time?\" audit: documentation, duplication, and repeated tasks.</li><li><strong>Role boundaries.</strong> Wording your role, responsibilities, expectations, and collaboration limits more clearly.</li><li><strong>Starter support.</strong> A \"first 100 days\" guide, mentor questions, and a support plan for a new professional.</li></ul>"
+          "title": "Work wellbeing",
+          "body": "<p>Work wellbeing is a private workspace for social work specialists. It includes My records, quick check, weekly and monthly overview, difficult case, workplace violence, recovery, work boundaries, interruptions, work processes, role boundaries and starter support.</p>"
         },
         "profile": {
-          "title": "13. Profile",
-          "body": "<p>The <a href=\"/profiil\">Profile</a> page gathers your account, subscription, and personal preferences. The page has a menu from which you open the actions below.</p><ul><li><strong>Theme.</strong> Currently a single color theme (Dusk) is in use.</li><li><strong>Update PIN.</strong> Opens a separate page where you enter the current PIN, the new PIN, and confirmation.</li><li><strong>Update email.</strong> Opens a separate page where you enter the new email address and confirm the change with your current PIN.</li><li><strong>Account settings.</strong> Open a view where you can sign out on this device, sign out on all devices, or start account deletion.</li><li><strong>Manage subscription.</strong> Opens the subscription page, where you can see the active plan, sponsored-access end date, and role-based monthly pricing: 7.99 EUR per month for a person seeking help, 14.99 EUR per month for a social work professional, and 19.99 EUR per month for a service provider.</li><li><strong>Language and accessibility.</strong> Open language, screen profile, text size, contrast, theme, and the <strong>Motion and performance</strong> settings; changes apply immediately.</li><li><strong>My usage.</strong> Shows your plan’s usage allowance and the current period — how much has been used and when it renews.</li><li><strong>Sign out.</strong> End the current session on this device.</li></ul>"
+          "title": "Profile and account",
+          "body": "<p><a href=\"/profiil\">Profile</a> brings together account and usage settings. Change PIN and email, manage subscription or sponsored access, view usage, open accessibility settings and sign out.</p><p>Account settings let you end the current or all active sessions, request a copy of your data and start account deletion. Manage sharing separately in My shares.</p>"
         },
         "about": {
-          "title": "14. ABOUT",
-          "body": "<p>The <a href=\"/meist\">About</a> page opens from the home page cards. It includes a short explanation of the platform and quick links to the guide, terms of use, privacy policy, <a href=\"/voimalused\">Features</a>, <a href=\"/hinnastus\">Pricing</a>, and contact view.</p><p><strong>Features</strong> describes the main SotsiaalAI functions and who they are intended for. <strong>Pricing</strong> shows the price list and package comparison.</p>"
+          "title": "Public information and contact",
+          "body": "<p>Home-page cards and the bottom quick menu open <a href=\"/voimalused\">Features</a>, User guide, <a href=\"/meist\">About</a>, Install, <a href=\"/kasutustingimused\">Terms</a>, <a href=\"/privaatsustingimused\">Privacy policy</a>, <a href=\"/hinnastus\">Pricing</a> and <button type=\"button\" data-contact-open>Contact</button>. The platform’s origin story is on <a href=\"/autorilt\">From the author</a>.</p><p>The hidden top menu controls background audio, track switching, accessibility and Standby. In a supported browser, Install adds SotsiaalAI to a phone or computer as an app.</p>"
         },
         "before_use": {
-          "title": "15. Before using",
-          "body": "<p>The most important links are on the home page cards and the <a href=\"/meist\">About</a> page.</p><ul><li><strong>User guide.</strong> Opens this guide page.</li><li><strong>Terms of Use</strong> and <strong>Privacy Policy.</strong> Open the platform's terms and data-use pages.</li><li><strong>Features.</strong> Describes the workspace, knowledge base, assistants, help requests, help offers, deep research, documents, pre-inquiries, covision, materials, service map, and service profile.</li><li><strong>Pricing.</strong> Opens the price list and package comparison.</li><li><strong>Contact.</strong> Opens the SotsiaalAI contact view.</li></ul>"
+          "title": "Before professional use",
+          "body": "<p>An AI answer, draft, summary or match is not an official decision. Check content, sources and context and make the substantive decision yourself.</p><p>Professional use of identifiable client or staff data requires a suitable legal and contractual basis. Review the <a href=\"/kasutustingimused\">terms</a>, <a href=\"/privaatsustingimused\">privacy policy</a> and <a href=\"/tooalase-kasutuse-raamistik\">work-use framework</a>. Enter only information needed for the workflow.</p>"
         },
         "rooms": {
-          "title": "6. Rooms and calls",
-          "body": "<p>Rooms are group conversations where you can invite a help seeker, a social work professional, a service provider, or a colleague. Rooms open from the right icon rail under <strong>Rooms</strong>.</p><ul><li><strong>Creating and invites.</strong> A room is created by its owner, who invites the members; the owner can hand the room over to another owner or archive it when needed.</li><li><strong>Voice call.</strong> When needed, a voice call can be held in a room. The call starts with the parties’ consent. The call is not recorded by default. Recording requires the consent of all required parties.</li><li><strong>Sharing a summary.</strong> A professional can share a confirmed meeting summary as a room message; when sharing, they can optionally start an approval round among the participants.</li><li>A matching room opens automatically when a help request and a help offer are matched.</li></ul>"
+          "title": "Rooms and calls",
+          "body": "<p><a href=\"/ruum\">Rooms</a> are shared spaces for participants. The owner manages members, can transfer ownership and archive the room. A room can also follow a help match or an enquiry.</p><p>Voice calls are not recorded by default. Recording starts with a separate consent request and only after every required participant confirms. A confirmed meeting summary can be shared in the room and sent to participants for approval.</p>"
         },
         "journey": {
-          "title": "7. Journey and pre-inquiry",
-          "body": "<p><strong>The Journey</strong> keeps your steps together: a summary so far, related topics, and next steps. The Journey is private — you decide whether and with whom to share it, and sharing happens with your confirmation.</p><p><strong>A pre-inquiry</strong> helps you think a request through before submitting it. You can start in three ways: continuing from a chat, filling in a form, or from a blank page. You submit only once you have reviewed everything yourself; the inquiry reaches the recipient’s Workspace, and a shared room can be opened when needed.</p><ul><li><strong>My shares.</strong> On the <a href=\"/minu-jagamised\">My shares</a> page you can see your active shares and revoke a share.</li></ul>"
+          "title": "Journey and preliminary enquiry",
+          "body": "<p>The client Journey keeps the situation summary, related topics and next steps together. Start a preliminary enquiry from chat, a form or a blank page and submit only after your own review. My shares shows active shares and lets you withdraw them.</p>"
         },
         "search": {
-          "title": "9. Personal search",
-          "body": "<p>When signed in, you can use personal search on the <a href=\"/otsi\">Search</a> page: it searches your own content — conversations, documents, and other things you have created — and never shows other users’ materials. The guide search on this page searches only the public guide content.</p>"
+          "title": "My search",
+          "body": "<p><a href=\"/otsi\">My search</a> searches the signed-in user’s own chats, documents and created content. It never searches another user’s material. Search on this guide page covers only the public guide text.</p>"
         },
         "pro_tools": {
-          "title": "12. Specialist tools",
-          "body": "<p>For social work professionals and service providers, the following tools are also available when enabled for the role:</p><ul><li><strong>Supervision.</strong> A supervision process under a package agreed with the supervisor: meetings, agreements, and outputs stay together on the <a href=\"/supervisioon\">Supervision</a> page.</li><li><strong>Mentoring.</strong> The agreements and meetings of the mentoring relationship in the mentor’s and mentee’s shared view on the <a href=\"/mentorlus\">Mentoring</a> page.</li><li><strong>Field work.</strong> A view built for use on the move — visit preparation, notes, and the summary — on the <a href=\"/valitoo\">Field work</a> page.</li><li><strong>Method mirror.</strong> A private reflection tool on the <a href=\"/refleksioon\">Reflection</a> page: after a case you can note what worked and what to do differently next time; entries are visible only to you.</li><li><strong>Covision.</strong> Joint case discussion on the covision canvas, opened from the Workspace.</li></ul>"
+          "title": "Workspace for three roles",
+          "body": "<p>The Client Workspace has 9, the Social work specialist Workspace 19 and the Service provider Workspace 19 choices. Method mirror and Work wellbeing belong to the specialist; Service log and Service profile belong to the provider. The exact list follows the role selected at the top of this page.</p>"
         },
         "quickstart": {
-          "title": "17. Quick overview",
-          "body": "<p>If you want to get started quickly, follow these steps:</p><ol><li><strong>Choose your role</strong> on the home page and create an account.</li><li><strong>Accept the policies</strong>, confirm that you have read the platform guide, and then verify your email.</li><li><strong>Activate a subscription.</strong> Monthly pricing is 7.99 EUR for a person seeking help, 14.99 EUR for a social work professional, and 19.99 EUR for a service provider.</li><li><strong>Sign in</strong> and open the chat page.</li><li><strong>Write your question</strong> or describe your situation.</li><li>Use the plus button for quick options: help request, help offer, deep research, or document analysis.</li><li>Use the left icon rail for conversations and the right icon rail for Profile, Rooms, and Workspace. The Workspace contains the tools available for your role.</li><li>Function descriptions are on the <a href=\"/voimalused\">Features</a> page, and the price list is on <a href=\"/hinnastus\">Pricing</a>.</li><li>Manage settings, account, and subscription on the <a href=\"/profiil\">Profile</a> page.</li></ol>"
+          "title": "Quick start",
+          "body": "<p>Choose your role at the top of this guide, create the account on the registration page, confirm email and access, and sign in. Open Workspace or Chat, choose the workflow and review every draft, source and shared item before confirmation.</p>"
         },
         "privacy_safety": {
-          "title": "16. Privacy warnings and masking",
-          "body": "<p>If the privacy check detects a personal-data signal in text entered into a chat, pre-inquiry, document drafting instruction, or help listing, SotsiaalAI shows a privacy warning before sending. The signal can be a name, personal identification code, address, phone number, email address, or another sensitive detail.</p><ul><li><strong>Edit text</strong> keeps the text in the input field and nothing is sent.</li><li><strong>Send masked</strong> replaces sensitive parts with labels such as [address] or [phone number] and sends the masked version.</li><li><strong>Send anyway</strong> is shown only in private or professional workflows. It is not shown in public help requests or help offers.</li></ul><p>When drafting documents, the system may also mask source material before sending it to AI or RAG search. This helps reduce excessive data processing, but the final draft must always be reviewed by a person.</p>"
+          "title": "Privacy warnings and urgent help",
+          "body": "<p>If the privacy pre-check notices a possible name, personal code, address, phone, email or another sensitive detail, it warns before sending.</p><ul><li><strong>Edit text</strong> leaves the text for correction.</li><li><strong>Send masked</strong> replaces detected parts with labels.</li><li><strong>Send anyway</strong> is available only in an allowed private workflow. Public help requests and offers use stricter minimisation.</li></ul><p>In an urgent or dangerous situation, follow the displayed 112, Child Helpline or Victim Support guidance immediately. SotsiaalAI is not an emergency channel.</p>"
+        }
+      },
+      "role_picker": {
+        "title": "How do you use SotsiaalAI?",
+        "intro": "This choice changes the role-specific chapters on this page. You can switch roles at any time.",
+        "client_name": "Client",
+        "client_hint": "I am looking for clarity and support for myself or someone close to me.",
+        "specialist_name": "Social work specialist",
+        "specialist_hint": "I work with cases, documents and collaboration.",
+        "provider_name": "Service provider",
+        "provider_hint": "I provide services and manage intake and reporting.",
+        "selected": "{role} guide selected.",
+        "prompt": "Choose a role to see your Workspace and tools."
+      },
+      "role_sections": {
+        "client": {
+          "workspace": {
+            "title": "Client Workspace",
+            "body": "<p>The Client Workspace has 9 choices.</p><ul><li><strong>Journey</strong> keeps the situation summary and next steps together.</li><li><strong>Preliminary enquiry</strong> helps prepare an enquiry before submission.</li><li><strong>Help requests</strong> and <strong>Help offers</strong> support asking for or offering help.</li><li><strong>Invite participant</strong> opens an invitation.</li><li><strong>Service map</strong> helps find services, contacts and published help information.</li><li><strong>My search</strong> searches only your own content.</li><li><strong>Draft a document</strong> helps create an application, statement or other draft.</li><li><strong>My shares</strong> shows what you shared and lets you withdraw it.</li></ul>"
+          },
+          "workflows": {
+            "title": "Key client workflows",
+            "body": "<p>Start in <strong>Chat</strong> or <strong>Journey</strong> when you need an explanation and next steps. A preliminary enquiry can start from a chat summary, a form or a blank page; nothing is submitted before you confirm it.</p><p>Review the text and privacy warning before publishing a help request or offer. A match can open a shared room. Continue with the Service map, document drafting or My shares when you are ready for a concrete action.</p>"
+          },
+          "quickstart": {
+            "title": "Start as a client",
+            "body": "<ol><li>Choose <strong>Client</strong> when creating the account and confirm your email.</li><li>Sign in with email and PIN.</li><li>Open Chat or Workspace and choose Journey, Preliminary enquiry or another workflow.</li><li>Describe the situation in your own words; ask for a simpler explanation when needed.</li><li>Check the sources when the answer includes a Sources button.</li><li>Always review a draft or shared information before confirming it.</li></ol>"
+          }
+        },
+        "specialist": {
+          "workspace": {
+            "title": "Social work specialist Workspace",
+            "body": "<p>The Social work specialist Workspace has 19 choices.</p><p><strong>Enquiries · Help requests · Help offers · Invite participant · Fieldwork · My cases · Casework desk · Service map · My search · Materials · Draft a document · Documents · Supervision · Mentoring · Covision · Method mirror · Work wellbeing · Organisations · My shares.</strong></p><p>Method mirror and Work wellbeing belong to the specialist tools; Service log and Service profile belong to the service provider Workspace.</p>"
+          },
+          "workflows": {
+            "title": "Specialist case and work workflows",
+            "body": "<ul><li><strong>Enquiries</strong> brings together incoming enquiries and intake.</li><li><strong>My cases</strong> keeps core case information and links together; <strong>Casework desk</strong> brings together daily preparation, meetings, drafts and next steps.</li><li><strong>Fieldwork</strong>, <strong>Documents</strong> and <strong>Draft a document</strong> support preparation, notes and confirmed outputs.</li><li><strong>Covision</strong>, <strong>Supervision</strong>, <strong>Mentoring</strong>, <strong>Method mirror</strong> and <strong>Work wellbeing</strong> support professional reflection and resilience.</li><li><strong>Materials</strong> submits knowledge-base additions; <strong>Organisations</strong> opens the organisation workspace.</li></ul>"
+          },
+          "quickstart": {
+            "title": "Start as a social work specialist",
+            "body": "<ol><li>Choose <strong>Social work specialist</strong> when creating the account and confirm your email.</li><li>Before using identifiable client data professionally, check organisation agreements and the work-use framework.</li><li>Sign in and open Workspace.</li><li>Start with Enquiries, My cases or Casework desk; use Chat for a general question.</li><li>Use only necessary information and respond to privacy warnings.</li><li>Review AI text, summaries and sources before professional use.</li></ol>"
+          }
+        },
+        "provider": {
+          "workspace": {
+            "title": "Service provider Workspace",
+            "body": "<p>The Service provider Workspace has 19 choices.</p><p><strong>Enquiries · Help requests · Help offers · Invite participant · Fieldwork · Service log · My cases · Casework desk · Service map · My search · Materials · Draft a document · Documents · Service profile · Supervision · Mentoring · Covision · Organisations · My shares.</strong></p><p>Service log and Service profile belong to provider tools. Method mirror and Work wellbeing belong to the social work specialist Workspace.</p>"
+          },
+          "workflows": {
+            "title": "Service-delivery workflows",
+            "body": "<ul><li><strong>Enquiries</strong> and help workflows support intake and matching people.</li><li><strong>Service profile</strong> manages public organisation, service, location, target-group, price, waiting-time and contact information.</li><li><strong>Service log</strong> brings together delivered work, visits, corrections, monthly views, reports and exports with a controlled history.</li><li><strong>My cases</strong>, <strong>Casework desk</strong>, <strong>Fieldwork</strong> and document work support daily service delivery.</li><li><strong>Organisations</strong> opens member, intake, schedule, reporting, funding, audit and settings views.</li></ul>"
+          },
+          "quickstart": {
+            "title": "Start as a service provider",
+            "body": "<ol><li>Choose <strong>Service provider</strong> when creating the account and confirm your email.</li><li>Join an organisation through an invitation or set up your organisation workspace.</li><li>Complete the Service profile so services are findable on the Service map.</li><li>Use Enquiries for intake and Service log for delivered work.</li><li>Check documents, summaries, reports and public service information before confirming or publishing them.</li></ol>"
+          }
         }
       }
     }
@@ -7602,36 +7658,36 @@
     }
   },
   "voimalused": {
-    "title": "Features",
-    "intro": "Here is an overview of what SotsiaalAI makes possible. For each part we say what it does and how you can use it.",
-    "s1_title": "Chat window",
-    "s1_body": "The chat window is the central place. Describe a situation in your own words, ask about services, benefits, rights or professional practice, and refine possible solutions. The AI surfaces options, explains connections and prepares texts and next steps. With every answer you see the sources it rests on, and if needed you can have the answer presented in plainer language. If writing does not suit you, you can also describe the situation by voice, and from the chat you can start workflows: a help request, a help offer, deep research or document analysis.",
+    "title": "SotsiaalAI features",
+    "intro": "This is a complete overview of SotsiaalAI services and tools. Each feature explains who it is for and what it enables; exact access depends on the user's role and plan.",
+    "s1_title": "Chat and role-aware responses",
+    "s1_body": "For all three roles. In chat you can describe a situation in your own words, ask about services, benefits, rights, or professional practice, and ask for a simpler explanation. SotsiaalAI adapts its response style to the user's role, helps organise the issue, and suggests next steps; decisions always remain with people. The Sources action appears when a response uses verifiable sources.",
     "s2_title": "The SotsiaalAI knowledge base",
-    "s2_body": "SotsiaalAI's answers do not come from random sources — they rest on the platform's own knowledge base, which gathers the social field's legislation, guidance, methodologies, local government information and forms. The knowledge base is kept up to date and the validity of sources is checked so that answers rest on correct information. With every answer you see which source it rests on. The knowledge base grows with the field — materials submitted by specialists also reach it after review.",
+    "s2_body": "SotsiaalAI answers draw on the platform knowledge base, which brings together social-sector legislation, guidance, methods, local-government information and forms. When an answer uses sources, you can open the materials and verify where the information came from. The knowledge base is maintained and professional submissions are added after review.",
     "s3_title": "Journey",
     "s3_body": "Your steps stay together on the Journey: a summary of what has happened, related topics, missing information and next steps. The Journey is private. You decide whether and with whom to share it; sharing happens with your confirmation, and you can review and revoke your shares in the My shares view.",
     "s4_title": "Your control and safety",
     "s4_body": "Before a message is sent, the privacy pre-layer notices unnecessary personal data and offers to remove it. Sharing always happens with your confirmation. If the situation described is urgent, we show the right contacts right away — 112, Lasteabi and Ohvriabi.",
-    "s5_title": "Workspace",
-    "s5_body": "For getting things done, everyone has their own Workspace. A person with a life question can start their journey or a pre-inquiry there, a specialist receives inquiries, holds co-vision sessions and manages materials, and a service provider manages their service profile and inquiries. Help requests, help offers and document work are shared. From quick actions you can always start a new chat, open files and view notifications — notifications come only for important events.",
+    "s5_title": "Role-based Workspace",
+    "s5_body": "The Client Workspace has 9 choices: Journey, Preliminary enquiry, Help requests, Help offers, Invite participant, Service map, My search, Draft a document and My shares. The Social work specialist Workspace has 19 choices: Enquiries, Help requests, Help offers, Invite participant, Fieldwork, My cases, Casework desk, Service map, My search, Materials, Draft a document, Documents, Supervision, Mentoring, Covision, Method mirror, Work wellbeing, Organisations and My shares. The Service provider Workspace has 19 choices: Enquiries, Help requests, Help offers, Invite participant, Fieldwork, Service log, My cases, Casework desk, Service map, My search, Materials, Draft a document, Documents, Service profile, Supervision, Mentoring, Covision, Organisations and My shares.",
     "s6_title": "Inquiries and pre-inquiry",
     "s6_body": "A pre-inquiry helps you think an inquiry through before submitting it. You can start in three ways: continuing from a chat where a summary already exists, filling in a form, or from a blank page. The summary and draft take shape together with you — you submit only once you have reviewed everything yourself. The inquiry reaches the recipient's Workspace, and if needed a shared chat room can be opened with the parties.",
     "s7_title": "Help requests and help offers",
     "s7_body": "Describe what support you need, or offer what you can give. The platform helps match them, and when a match is made, a shared chat room opens for agreeing on next steps. Published help requests and help offers are also visible on the Service Map.",
-    "s8_title": "Chat rooms",
-    "s8_body": "When a question needs solving together with others, there are chat rooms. You can invite a person with a life question, a social work specialist, a service provider or a colleague. If needed, a voice call can be held in the room — the call happens with the parties' consent and is not recorded.",
+    "s8_title": "Rooms, voice calls, and approvals",
+    "s8_body": "For all roles. A room lets a help seeker, social work professional, service provider, or colleague communicate together. The owner manages members, can transfer ownership, and archive the room. Voice calls are not recorded by default; recording starts only after a separate consent request and approval by every required participant. An approved meeting summary can be shared and sent to participants for confirmation.",
     "s9_title": "Document drafting",
     "s9_body": "When you need an application, a statement or another document, describe what you need — the draft takes shape together with you based on your description, and you review it before use. The finished document stays in your files.",
-    "s10_title": "Documents",
-    "s10_body": "Documents are your personal files in one place. You can upload an existing file and have it analysed to understand its content and next steps. An audio file can be turned into a transcript, which you review yourself before use.",
+    "s10_title": "Document library and approved results",
+    "s10_body": "For all three roles. Help seekers see their personal files and results; social work professionals and service providers can also manage work files, background materials, templates, drafts, and approved outputs. A file can be assigned a role, used in document drafting, and an approved result downloaded as DOCX or PDF. A temporary file added to chat for analysis does not automatically enter the persistent library.",
     "s11_title": "Co-vision",
     "s11_body": "Specialists can discuss cases in co-vision: a shared case canvas keeps the discussion focused and the conclusions together, and best practices remain for the future. Colleagues' support is there even when people are in different places.",
-    "s12_title": "Wellbeing at work",
-    "s12_body": "A supported specialist is the foundation of strong social work. A specialist's wellbeing is not only a personal responsibility — it is part of the quality, sustainability and professional strength of social work. In the wellbeing view you find a quick check and an overview of your state, support for hard cases and workplace violence, the topics of recovery, work boundaries and role boundaries, and starter support.",
+    "s12_title": "Wellbeing tools",
+    "s12_body": "For social work professionals. The Wellbeing area includes My records, a quick check, weekly and monthly overview, difficult case, workplace violence, recovery, work boundaries, interruptions, work processes, role boundaries, and starter support. Records help identify strain and choose a small next step; personal wellbeing information is not shared with others by default.",
     "s13_title": "Materials",
     "s13_body": "A specialist can submit guidance, methodologies and practical materials to enrich the SotsiaalAI knowledge base. Material reaches the database after review. This way the environment grows together with the field's practice.",
-    "s14_title": "Service Map and service profile",
-    "s14_body": "The Service Map gathers the social field's points of contact into a map view: local government social welfare contacts and service providers, as well as published help requests and help offers. Official and community support live on one map. A service provider manages their service profile to be findable on the map with their services.",
+    "s14_title": "Service map",
+    "s14_body": "For all roles. The Service map helps find municipal social-service contacts, service providers, services, service locations, and published help requests and offers. Search by name, description, service, category, target group, address, or area.",
     "s15_title": "Supervision",
     "s15_body": "Professional supervision supports the specialist: the process runs under a package agreed with the supervisor, and meetings, agreements, and outputs stay together on the platform. The outputs remain yours after the process ends.",
     "s16_title": "Mentoring",
@@ -7641,7 +7697,58 @@
     "s18_title": "Personal search",
     "s18_body": "When signed in, you can search your own content — conversations, documents, and other things you have created — from one place. The search shows only your own materials, never anyone else's.",
     "s19_title": "Method mirror",
-    "s19_body": "The method mirror is the specialist's private reflection tool: after a case, you can briefly note what worked and what to do differently next time. Entries are visible only to you."
+    "s19_body": "The method mirror is the specialist's private reflection tool: after a case, you can briefly note what worked and what to do differently next time. Entries are visible only to you.",
+    "group_roles_title": "Workspace and three roles",
+    "group_roles_body": "The Workspace brings together the services and tools relevant to each person's role.",
+    "group_core_title": "Shared core features",
+    "group_core_body": "These features support asking questions, checking information, and working with your own materials.",
+    "group_client_title": "The help seeker's journey",
+    "group_client_body": "A help seeker can make sense of a situation, find support, and decide what to do or share next.",
+    "group_collaboration_title": "Documents, rooms, and collaboration",
+    "group_collaboration_body": "Document work and shared rooms help people prepare, share, and approve results they have chosen themselves.",
+    "group_professional_title": "Tools for professionals and service providers",
+    "group_professional_body": "Professional tools support case work, service delivery, wellbeing, and learning with colleagues.",
+    "group_account_title": "Organisation, account, and access",
+    "group_account_body": "These features support organisational work, account management, accessibility, and user rights.",
+    "group_admin_title": "Platform administration and quality",
+    "group_admin_body": "Administrator tools help keep services, sources, access, and platform health under control.",
+    "s20_title": "Dictation, voice chat, and read-aloud",
+    "s20_body": "For all roles. Dictation turns speech into editable text before sending. A separate avatar-based voice chat transcribes each turn and uses the same knowledge, sources, privacy, and safety path as text chat; a short answer is spoken while the full answer and available sources remain in chat. Responses can also be read aloud in the regular view.",
+    "s21_title": "Deep research",
+    "s21_body": "For all roles. Deep research creates a more detailed, source-based overview of a social topic, service, law, guide, or practical question. It highlights findings, connections, gaps, and next steps, and completed research remains available to the user.",
+    "s22_title": "Document analysis",
+    "s22_body": "For all roles. Add a file to chat, ask about its contents, and find important passages, explanations, or summaries. By default the analysis focuses on the uploaded document; SotsiaalAI domain context can be added when needed. A temporary analysis file does not automatically become a persistent document.",
+    "s23_title": "Sources and source feedback",
+    "s23_body": "For all roles. When a response uses sources, the source panel lets you inspect the law, guide, municipal page, service information, article, or other material used. Users can report an inaccurate or outdated source for review.",
+    "s24_title": "My shares",
+    "s24_body": "For all roles. My shares is the user's privacy control centre: it shows which Journey, case, or other workflow information has been shared and with whom, and lets the user revoke an active share. Sharing never happens without a deliberate action and confirmation.",
+    "s25_title": "Invites, sponsored access, and notifications",
+    "s25_body": "For all roles. A user can invite a help seeker, professional, service provider, or colleague to a room and, when needed, sponsor the invitee's role-based access. The notification centre gathers important invites, replies, approvals, and workflow changes, while the Workspace helps continue unfinished work.",
+    "s26_title": "My cases and Case workbench",
+    "s26_body": "For social work professionals and service providers. My cases gathers the case's core information, relationships, work items, and retention. The Case workbench provides a daily view of preparations, missing information, meetings, tasks, drafts, and next steps. AI can assist preparation but does not make official decisions or transfer information to another system without human review.",
+    "s27_title": "Service log",
+    "s27_body": "For service providers. The Service log records work performed, visits, service entries, and summaries, with controlled correction and cancellation history. Day and month views, a client view, reports, sharing, and export help reporting emerge as a by-product of real work.",
+    "s28_title": "Organisation workspace",
+    "s28_body": "For social work professionals and service providers. The organisation workspace includes overview, structure, members and invites, intake, schedule and daily route, service profile, staff support, Service log reports, funding and billing, audit, settings, and owner data export. People join through an invitation and access is role-based.",
+    "s29_title": "Topic seeds, completed cases, and best practices",
+    "s29_body": "For social work professionals and service providers. A topic seed brings a recurring observation into covision or a learning queue. Completed cases keep follow-up and learning together. Best practices turn a successful approach into a generalised entry, pass anonymity and quality review, and make an approved practice discoverable to others.",
+    "s30_title": "Urgent help and intake desk",
+    "s30_body": "For clients and urgent-help desk members. A regional urgent-help desk lets a client submit a structured request and follow its progress. A desk member can accept, hand over, resolve or route it into the ordinary workflow. This service does not replace 112, Child Helpline or Victim Support crisis channels.",
+    "s31_title": "Subsistence-benefit estimate",
+    "s31_body": "For help seekers. The tool uses entered household, housing-cost, and income information to make a preliminary browser-based estimate and explain what may be needed for an official application. The result is an estimate, not a municipal decision.",
+    "s32_title": "Service profile",
+    "s32_body": "For service providers. A Service profile manages organisation details, contacts, accessibility, service area and locations, plus each service's target group, price, availability, waiting time, referral requirements, and contact routes. Published information makes the service discoverable on the Service map and in SotsiaalAI recommendations.",
+    "s33_title": "Profile, subscription, and accessibility",
+    "s33_body": "For all roles. Profile lets users change PIN and email, manage a subscription or sponsored access, view usage, sign out, and open language and accessibility settings. Users can adjust language, text size, contrast, screen profile, motion, and transparency, and install SotsiaalAI as an app on a phone or computer.",
+    "s34_title": "Sessions, data copy, and account deletion",
+    "s34_body": "For all roles. Users can end the current or all active sessions, request a copy of their data, and start account deletion. Export and deletion follow role, ownership, sharing, and retention boundaries so another person's or organisation's content is not included.",
+    "s35_title": "Knowledge and source administration",
+    "s35_body": "For administrators. Administration views bring together knowledge-base health and self-checks, source packages, documents, content ingestion, municipal and organisation sources, source feedback and service freshness. Materials undergo provenance and quality review before publication.",
+    "s36_title": "Platform administration and analytics",
+    "s36_body": "For administrators. Platform administration covers usage and AI-cost analytics, urgent desks, wellbeing pilots, mentoring administration, professional-framework acceptances, and service availability. Operational views help detect problems and make controlled changes without opening users' private content by default.",
+    "s37_title": "Public information, guides, and installation",
+    "s37_body": "For every visitor. The public area includes About, From the author, Features, Guide, Pricing, Terms of Use, Privacy Policy, contact information, and the professional-use framework. In supported browsers SotsiaalAI can be installed on a phone or computer and opened from its own app icon.",
+    "toc_title": "Feature groups"
   },
   "subscriptionGate": {
     "readonly_title": "Your subscription is not active.",

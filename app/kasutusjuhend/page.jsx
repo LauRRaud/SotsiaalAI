@@ -17,6 +17,12 @@ export async function generateMetadata() {
   });
 }
 
-export default function KasutusjuhendPage() {
-  return <KasutusjuhendBody />;
+const GUIDE_ROLES = new Set(["client", "specialist", "provider"]);
+
+export default async function KasutusjuhendPage({ searchParams }) {
+  const params = await searchParams;
+  const requestedRole = typeof params?.role === "string" ? params.role : "";
+  const initialRole = GUIDE_ROLES.has(requestedRole) ? requestedRole : "";
+
+  return <KasutusjuhendBody initialRole={initialRole} />;
 }

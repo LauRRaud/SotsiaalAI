@@ -4211,75 +4211,131 @@
       "search_placeholder": "Otsi pealkirja või märksõna järgi…",
       "search_count": "Leitud {count} peatükki",
       "search_empty": "Otsingule ei vastanud ükski peatükk. Proovi teist märksõna või tühjenda otsing.",
-      "intro": "See juhend annab ülevaate SotsiaalAI konto loomisest, ligipääsu aktiveerimisest, vestlusest, seadetest, abi- ja dokumenditööst, grupivestlustest ning profiilist.",
+      "intro": "Vali esmalt roll. Juhend näitab sellele rollile sobivat Töölauda, töövooge ja alustamise samme; esmakülastuse, avalehe, sisselogimise, vestluse, ruumide, privaatsuse ja konto juhised on kõigile ühised.",
       "sections_v2": {
         "accessibility": {
-          "title": "1. Keel ja ligipääsetavus",
-          "body": "<p>Esimesel külastusel avaneb automaatselt <a href=\"#\" data-a11y-open=\"1\">Keel ja ligipääsetavus</a> aken. Sama vaate saad hiljem uuesti avada lehel <a href=\"/profiil\">Profiil</a>.</p><ul><li><strong>Keel.</strong> Vali kasutajaliidese keel: eesti, vene või inglise.</li><li><strong>Ekraani profiil.</strong> Vali \"Mobiil / sülearvuti ekraan\", \"Apple’i sülearvuti\" või \"Väline monitor / PC\", et kuva sobituks paremini sinu seadmega.</li><li><strong>Teksti suurus.</strong> Kohanda kirjasuurust endale mugavaks.</li><li><strong>Kontrast.</strong> Vali <strong>Tavaline</strong> või <strong>Kõrge kontrast</strong>. Kõrge kontrast suurendab teksti ja tausta eristatavust.</li><li><strong>Liikumine ja jõudlus.</strong> Selles jaotises on kaks eraldi valikut: <strong>\"Vähenda animatsioone\"</strong> ja <strong>\"Vähenda läbipaistvust\"</strong>.</li><li><strong>Jõudlus vanemas seadmes.</strong> Läbipaistvuse ja animatsioonide vähendamine võib vanemas seadmes jõudlust parandada.</li><li><strong>Teema.</strong> Praegu on avaldatud üks värviteema (Hämar); heleda ja tumeda režiimi valik lisandub hiljem.</li><li><strong>Salvestamine ja lähtestamine.</strong> Muudatused rakenduvad kohe, kuid vajadusel saad eelistusi profiili lehel muuta ja uuesti salvestada.</li></ul>"
+          "title": "Keel ja ligipääsetavus",
+          "body": "<p>Esimesel külastusel avaneb automaatselt <strong>Keel ja ligipääsetavus</strong> moodul. Seal saad valida keele, kontrasti, teksti suuruse, teema, ekraani profiili, liikumise ja läbipaistvuse, taustaheli ning rakenduse seaded.</p><p>Muudatused rakenduvad kohe. Sama mooduli saad hiljem avada ülaserva peidetud juhtmenüüst või <a href=\"#\" data-a11y-open>siit juhendist</a>; konto seaded on ka Profiilis.</p>"
         },
         "home": {
-          "title": "2. Avaleht",
-          "body": "<p>Avalehel on <strong>Logi sisse</strong> nupp ja <strong>Registreeru</strong> link. Rolli ei valita enam avalehel.</p><ul><li><strong>Logi sisse.</strong> Kui oled juba sisse logitud, viib nupp otse vestluslehele. Kui mitte, avab see sisselogimise.</li><li><strong>Registreeru.</strong> Viib registreerimislehele, kus valid oma rolli: pöörduja, teenuseosutaja või sotsiaaltöö spetsialist.</li><li>Avalehe kaardivalikus on leht <a href=\"/meist\">Meist</a>, kus on platvormi tutvustus.</li><li>Avalehe kaartidelt saad avada kasutusjuhendi, kasutustingimused, privaatsuspoliitika, <a href=\"/voimalused\">Võimalused</a>, <a href=\"/hinnastus\">Hinnastuse</a> ja kontaktivaate. Võimalused kirjeldab platvormi põhifunktsioone, Hinnastus näitab hinnakirja.</li></ul>"
+          "title": "Avaleht ja platvormiga ühendamine",
+          "body": "<p><strong>Esmakülastuse järjestus</strong></p><ol><li>Vali Keel ja ligipääsetavus moodulis sobivad seaded.</li><li>Valmidusvaates „Kõik algab selgusest” vajuta <strong>Sisenen</strong>.</li><li>Sissejuhatuses saad teksti kerida või valida <strong>Jäta vahele</strong>. Taustaheli saab sisse või välja lülitada; heli sisselülitamisel saab valida ka <strong>Järgmine lugu</strong>.</li><li>Vaates „Ühenda SotsiaalAI platvormiga” vajuta keskel olevat toitenuppu.</li></ol><p><strong>Avalehe kaardid ja menüüd</strong></p><ul><li>Sisselogimata vaates on 9 kaarti: Tutvu võimalustega, Kasutusjuhend, Logi sisse, Meist, Paigalda, Kasutustingimused, Privaatsuspoliitika, Hinnastus ja Kontakt.</li><li>Küljenooled kerivad kaarte ükshaaval. Alumine kiirmenüü viib otse soovitud kaardile.</li><li>Ülaserva peidetud käepide avaneb kursori või fookusega. Seal on taustaheli, Keel ja ligipääsetavus ning Ooterežiim.</li><li>Sisselogitud kasutaja näeb oma põhinavigatsiooni: Ruumid, Töölaud, Vestlus ja Profiil. Haldus ning S / P / T rollivahetus on nähtavad ainult administraatorile.</li></ul>"
         },
         "register": {
-          "title": "3. Registreerimine ja ligipääsu aktiveerimine",
-          "body": "<p>SotsiaalAI kasutamiseks on vaja kontot. Vestluse aktiivseks kasutamiseks peab kontol olema ka aktiivne tellimus või sponsoreeritud ligipääs.</p><p><strong>NB! Uute kontode registreerimine on praegu ajutiselt suletud</strong> — platvorm on avamise ettevalmistuses. Olemasoleva kontoga saab sisse logida; allolev kirjeldab registreerimist pärast avamist.</p><p><strong>3.1 Registreerimine</strong></p><ol><li>Ava avalehel <a href=\"/registreerimine\">Registreerimine</a> ja vali oma roll: pöörduja, teenuseosutaja või sotsiaaltöö spetsialist.</li><li>Täida vorm: sisesta e-posti aadress ja PIN-kood (4–8 numbrit).</li><li>Nõustu kasutustingimustega, kinnita, et oled tutvunud privaatsuspoliitikaga, anna vajalikud nõusolekud nende töötluste jaoks, mis põhinevad nõusolekul, ning kinnita, et oled tutvunud platvormi kasutusjuhendiga.</li><li>Kui valid rolli <strong>Sotsiaaltöö spetsialist</strong> ja soovid kasutada platvormi tööandja või organisatsiooni nimel kliendi või muu isiku tuvastatavate andmetega, võivad lisaks kohalduda tööalase kasutuse ja andmetöötluse eritingimused.</li><li>Pärast registreerumist saadame sulle kinnituskirja. Konto aktiveerimiseks ava kiri ja kinnita oma e-posti aadress.</li></ol><p><strong>3.2 Tellimus või sponsoreeritud ligipääs</strong></p><ul><li>Pärast kinnitamist saad sisse logida e-posti ja PIN-koodiga.</li><li>Kui sul puudub aktiivne ligipääs, suunab platvorm sind lehele <a href=\"/tellimus\">Tellimus</a>.</li><li>Tellimuse algatamisel suunatakse sind Maksekeskuse makselehele. Ligipääs aktiveeritakse pärast makseteenuse kinnitust.</li><li><strong>Kuutasu on rollipõhine:</strong> eluküsimusega pöördujale 7,99 € kuus, sotsiaaltöö spetsialistile 14,99 € kuus ja teenuseosutajale 19,99 € kuus.</li><li>Kui sinu ligipääs on sponsoreeritud kutse kaudu, kehtib see sponsoreeritud perioodi jooksul, tavaliselt ühe kuu, ilma eraldi makseta. Pärast selle lõppu saad kasutamise jätkamiseks aktiveerida oma tellimuse.</li></ul>"
+          "title": "Konto loomine ja ligipääs",
+          "body": "<p>Rolli ei valita avalehel. Kui registreerimine on avatud, mine sisselogimisaknast lehele <a href=\"/registreerimine\">Registreerimine</a> ja vali seal Pöörduja, Sotsiaaltöö spetsialist või Teenuseosutaja. Avamiseelsel perioodil võib sisselogimisaken näidata teadet „Registreeru — peagi”.</p><ol><li>Sisesta e-posti aadress ja 4–8-kohaline numbriline PIN.</li><li>Tutvu kasutustingimuste, privaatsuspoliitika ja kasutusjuhendiga ning anna ainult vajalikud nõusolekud.</li><li>Tööalase kasutuse korral kontrolli ka <a href=\"/tooalase-kasutuse-raamistik\">tööalase kasutuse raamistikku</a> ja organisatsiooni kokkuleppeid.</li><li>Kinnita e-posti aadress saadetud kirja kaudu.</li><li>Aktiveeri sobiv pakett või kasuta sponsoreeritud ligipääsu. Kehtivad paketid ja hinnad on alati lehel <a href=\"/hinnastus\">Hinnastus</a>.</li></ol>"
         },
         "signin": {
-          "title": "4. Sisselogimine ja rolli alusel liikumine",
-          "body": "<p>Sisselogimine algab avalehe <strong>Logi sisse</strong> nupust.</p><ul><li>Sisesta e-posti aadress ja PIN-kood.</li><li>Varem usaldatud seadmes piisab tavaliselt ainult PIN-ist.</li><li>Kui logid sisse uuest või ebatavalisest keskkonnast, saadame e-postile kinnitamise lingi.</li><li>Soovi korral märgi \"Mäleta seda seadet 30 päeva\".</li><li>Kui PIN on ununenud, kasuta linki <a href=\"/taasta-parool\">Unustasin PIN-i</a>.</li><li>Pärast edukat sisselogimist avaneb sinu rolli vestlusvaade; kui ligipääs on piiratud, kuvatakse järgmised sammud.</li></ul>"
+          "title": "Sisselogimine",
+          "body": "<p>Ava avalehe kaart <strong>Logi sisse</strong>. Vajaduse korral ava ümbrikuikoonist e-posti väli, sisesta e-posti aadress ja seejärel PIN numbriklahvistikult. Noolega <strong>Sisenen</strong> saadab sisselogimise. Küsimärgi nupp avab PIN-i taastamise.</p><p>Pärast edukat sisselogimist kuvatakse sinu konto põhinavigatsioon. Kui ligipääs vajab tellimuse või sponsoreeritud perioodi täpsustamist, suunab platvorm sind järgmise vajaliku sammuni.</p>"
         },
         "chat": {
-          "title": "5. Vestlusleht",
-          "body": "<p><strong>Vestlusleht</strong> avaneb pärast sisselogimist. Lehel on automaatne assistendirežiim, kus saad küsida infot, selgitusi ja järgmisi samme. Leht jaguneb kolmeks: vasak ikooniriba, keskmine vestlusala ja parem ikooniriba.</p><p><strong>Vasak ikooniriba</strong></p><ul><li><strong>Tagasi.</strong> Liigu tagasi avalehele.</li><li><strong>Uus vestlus.</strong> Kiirvalik uue vestluse loomiseks.</li><li><strong>Vestlused.</strong> Ava varasemad vestlused.</li></ul><p><strong>Parem ikooniriba</strong></p><ul><li><strong>Profiil.</strong> Ava konto-, tellimuse- ja ligipääsetavuse seaded.</li><li><strong>Ruumid.</strong> Ava olemasolevad grupivestlused.</li><li><strong>Töölaud.</strong> Ava rollipõhine töölaud. Pöördujal, teenuseosutajal ja sotsiaaltöö spetsialistil kuvatakse seal neile sobivad tööriistad ja haldusvaated.</li></ul><p><strong>Töölaud</strong></p><ul><li>Töölaual on ligipääs rolli järgi sobivatele funktsioonidele, näiteks abisoovidele, abipakkumistele, eelpöördumistele, dokumentidele, dokumendi koostamisele, kovisioonile, kutsetele, materjalidele, teenusekaardile ja teenuseprofiilile.</li><li>Funktsioonide lühikirjeldused leiad lehelt <a href=\"/voimalused\">Võimalused</a>.</li></ul><p><strong>Keskmine vestlusala</strong></p><ul><li>Kirjuta sõnum sisestusväljale. Sisestuslahtri real on dikteerimise nupp ja sellest paremal saatmisnupp.</li><li>Vastuse loomise ajal muutub saatenupp peatamise nupuks.</li><li>Dikteerimise nupuga saad kõne tekstiks muuta.</li><li><strong>Sõnumi lisavõimalused.</strong> Sõnumimullile vajutades või seda klaviatuuriga fookustades avanevad mulli all lisavõimalused: assistendi vastuse juures ettelugemine, kopeerimine ja allikad ning katkenud vastuse juures nupp Proovi uuesti; puuteekraanil on nupud alati nähtavad. Enda sõnumi mullile vajutades näed saatmisaega.</li><li>Kui liigud varasemate sõnumite juurde, ilmub nool, millega saad kiiresti tagasi vestluse lõppu minna.</li><li>Kui vestlus viitab võimalikule kriisiolukorrale, kuvatakse punane teavitus kiire abi juhistega.</li></ul><p><strong>Töövood ja režiimid</strong></p><ul><li><strong>Plussmärk (+).</strong> Sisestuslahtri kõrval olev pluss avab kiirvalikud: <strong>Abisoov</strong>, <strong>Abipakkumine</strong>, <strong>Süvauuring</strong> ja <strong>Dokumendi analüüs</strong>.</li><li><strong>Abisoov</strong> ja <strong>Abipakkumine.</strong> Nende valikutega saad kirjeldada abivajadust või abipakkumist. Assistent aitab koostada selge kuulutuse, küsib vajadusel puuduva info üle ja näitab pärast kinnitamist sobivaid vasteid.</li><li><strong>Süvauuring.</strong> Käivitab põhjalikuma uurimisrežiimi. Režiimi lõpetamiseks vajuta luubi ikoonile.</li><li><strong>Dokumendi analüüs.</strong> Avab failide lisamise ja analüüsi paneeli, kus saad küsida dokumendi kohta selgitusi.</li><li>Dokumendid, dokumendi koostamine, kovisioon, supervisioon, mentorlus, välitöö, Meetodipeegel, materjalid, teenusekaart, teenuseprofiil ja teised rollipõhised töövahendid avanevad Töölaua kaudu või oma lehelt, kui need on sinu rollile saadaval.</li></ul>"
+          "title": "Vestlus",
+          "body": "<p>Vestlus kohandub ekraani laiusega. Kirjuta küsimus või kirjelda olukorda oma sõnadega; vastuse loomise ajal muutub saatmisnupp peatamisnupuks.</p><ul><li><strong>Dikteerimine</strong> muudab kõne enne saatmist tekstiks. Vaata tekst üle.</li><li><strong>Häälvestlus</strong> avab eraldi avatariga vaate. Kõnevoor liigub samasse teadmiste, allikate, privaatsuse ja kiire abi töövoogu nagu kirjutatud küsimus; täisvastus jääb tekstivestlusse.</li><li>Vastuse juures saad kasutada ettelugemist, kopeerimist ja vajaduse korral uuesti proovimist. <strong>Allikad</strong> kuvatakse siis, kui vastus kasutas kontrollitavaid allikaid.</li><li>Võid alati paluda vastust lihtsamas keeles.</li><li>Sisestusvälja kõrval olev <strong>+</strong> avab Abisoovi, Abipakkumise, Süvauuringu ja Dokumendi analüüsi.</li></ul>"
         },
         "documents": {
-          "title": "8. Dokumendid",
-          "body": "<p>Leht <strong>Dokumendid</strong> on mõeldud <strong>sotsiaaltöö spetsialistile</strong>. Pöörduja suunatakse sellest vaatest dokumendi koostamise tööruumi.</p><ul><li>Saad üles laadida tööfaile, juhendeid, taustamaterjale ja malle.</li><li>Iga dokumendi juures saab määrata selle rolli, näiteks taustamaterjal või mall.</li><li>Dokumente saab märkida dokumendi koostamisel kasutatavaks, et need jõuaksid agendi tööruumi sisendiks.</li><li>Lehel kuvatakse ka agendi loodud mustandid ja kinnitatud tulemused.</li><li>Tulemusi saab avada, kopeerida, kustutada ning pärast kinnitamist alla laadida DOCX- või PDF-failina.</li><li>Kui dokumendi koostamise tööruumis valmib kohtumise kokkuvõte või muu tulemus, salvestatakse see samuti Dokumentidesse.</li></ul>"
+          "title": "Dokumendid ja failid",
+          "body": "<p>Dokumendid on kasutatavad kõigis kolmes rollis. Pöörduja näeb oma isiklikke faile ja tulemusi; sotsiaaltöö spetsialist ja teenuseosutaja saavad hallata ka tööfaile, taustamaterjale, malle, mustandeid ja kinnitatud väljundeid.</p><p>Püsivasse dokumenditeeki lisatud fail jääb kasutaja failidesse. Vestlusse Dokumendi analüüsiks lisatud ajutine fail kuulub selle vestluse töövoogu ega muutu automaatselt püsidokumendiks. Helifailist loodud transkript vaadatakse eraldi üle enne kokkuvõtte koostamist.</p>"
         },
         "agent_mode": {
-          "title": "10. Dokumendi koostamine",
-          "body": "<p>Leht <strong>Dokumendi koostamine</strong> on tööruum, kus agent aitab valitud failide põhjal koostada tekste, aruandeid, kokkuvõtteid ja mustandeid. Eluküsimusega pöördujale on see peamine koht vestlusest või failidest loodud dokumentide jätkamiseks.</p><ul><li>Saad valida väljundi tüübi, tooni, keele, pikkuse ja vajadusel malli.</li><li>Spetsialist saab kasutada Dokumentidesse lisatud faile ja malle; pöörduja saab lisada oma töö jaoks vajalikud failid otse dokumendi koostamises.</li><li>Vestlus agendiga käib samal lehel: saad anda esimese juhise, paluda täpsustusi ja luua uusi versioone.</li><li>Lehel kuvatakse praegune mustand, versiooniajalugu ning varasemad salvestatud või valmis märgitud tulemused.</li><li>Kohtumise kokkuvõtte töövoos saab mikrofoni abil salvestada sisendi, mis töödeldakse eraldi kokkuvõtteks ja lisatakse valmis saamisel Dokumentidesse.</li><li>Valmis mustand tuleb enne kasutamist üle vaadata ja kinnitada; pärast kinnitamist saab selle alla laadida DOCX- või PDF-failina.</li></ul>"
+          "title": "Dokumendi koostamine",
+          "body": "<p>Dokumendi koostamine on kõigi kolme rolli tööruum taotluste, avalduste, kirjade, aruannete, kokkuvõtete ja muude mustandite loomiseks. Saad valida väljundi tüübi, tooni, keele, pikkuse ja malli ning lisada sobivad allikfailid.</p><p>Vestluses saad juhist täpsustada ja luua uusi versioone. Mustand tuleb enne kasutamist inimesel üle vaadata ja kinnitada; kinnitatud tulemuse saab salvestada ning DOCX- või PDF-failina alla laadida.</p>"
         },
         "wellbeing": {
-          "title": "11. Tööheaolu",
-          "body": "<p>Leht <a href=\"/tooheaolu\">Tööheaolu</a> on mõeldud <strong>sotsiaaltöö spetsialistile</strong> ja aitab märgata töökoormust, emotsionaalset koormust, taastumise vajadust, korduvaid katkestusi ja keeruliste juhtumite mõju. Lehe avad Töölaualt ning seal on loend tööriistadest, mis avavad eraldi töövoo.</p><ul><li><strong>Kiirkontroll.</strong> Lühike töökoormuse ja taastumise kontroll järgmise väikese sammu valimiseks.</li><li><strong>Ülevaade.</strong> Nädala ja kuu tööheaolu trendid, koormustegurid ja mustrid.</li><li><strong>Raske juhtum.</strong> Töövoog pärast rasket või emotsionaalselt koormavat juhtumit.</li><li><strong>Töövägivald.</strong> Töövoog ähvarduse, agressiooni, solvamise, jälitamise või füüsilise ohu korral.</li><li><strong>Taastumine.</strong> Pauside, taastumisaja ja jõuvarude taastamise töövoog.</li><li><strong>Tööpiirid.</strong> Tööaja, kättesaadavuse, pauside ja katkestuste kokkulepped.</li><li><strong>Katkestused.</strong> Katkestuste, ümberlülitumise ja töörahu korduvmustri märkamine.</li><li><strong>Tööprotsessid.</strong> „Mis võtab aja ära?“ audit: dokumenteerimine, dubleerimine ja korduvtegevused.</li><li><strong>Rollipiirid.</strong> Rolli, vastutuse, ootuste ja koostööpiiride selgemaks sõnastamine.</li><li><strong>Alustaja tugi.</strong> „Esimeste 100 päeva“ juhis, mentori küsimused ja alustava spetsialisti töötoe plaan.</li></ul>"
+          "title": "Tööheaolu",
+          "body": "<p>Tööheaolu on sotsiaaltöö spetsialisti privaatne tööruum. Seal on Minu kirjed, kiirkontroll, nädala ja kuu ülevaade, raske juhtum, töövägivald, taastumine, tööpiirid, katkestused, tööprotsessid, rollipiirid ja alustaja tugi.</p>"
         },
         "profile": {
-          "title": "13. Profiil",
-          "body": "<p>Leht <a href=\"/profiil\">Profiil</a> koondab sinu konto, tellimuse ja kasutuseelistused. Lehel on menüü, kust avad järgmised toimingud.</p><ul><li><strong>Teema.</strong> Praegu on kasutusel üks värviteema (Hämar).</li><li><strong>Uuenda PIN.</strong> Avab eraldi lehe, kus sisestad praeguse PIN-i, uue PIN-i ja kinnituse.</li><li><strong>Uuenda e-post.</strong> Avab eraldi lehe, kus sisestad uue e-posti aadressi ja kinnitad muudatuse praeguse PIN-iga.</li><li><strong>Konto seaded.</strong> Ava vaade, kus saad välja logida sellest seadmest, logida välja kõigist seadmetest või alustada konto kustutamist.</li><li><strong>Halda tellimust.</strong> Avab tellimuse lehe, kus näed aktiivset paketti, sponsoreeritud ligipääsu lõppkuupäeva ja rollipõhist kuutasu: eluküsimusega pöördujale 7,99 € kuus, sotsiaaltöö spetsialistile 14,99 € kuus ning teenuseosutajale 19,99 € kuus.</li><li><strong>Keel ja ligipääsetavus.</strong> Ava keele, ekraani profiili, teksti suuruse, kontrasti, teema ning jaotise <strong>Liikumine ja jõudlus</strong> seaded; muudatused rakenduvad kohe.</li><li><strong>Minu kasutus.</strong> Näitab sinu paketi kasutusmahtu ja perioodi — kui palju mahust on kasutatud ja millal see uueneb.</li><li><strong>Logi välja.</strong> Lõpeta praegune sessioon sellel seadmel.</li></ul>"
+          "title": "Profiil ja konto",
+          "body": "<p><a href=\"/profiil\">Profiil</a> koondab konto ja kasutuse seaded. Sealt saad muuta PIN-i ja e-posti, hallata tellimust või sponsoreeritud ligipääsu, vaadata kasutusmahtu, avada keele ja ligipääsetavuse seaded ning välja logida.</p><p>Konto seadetes saad lõpetada praeguse või kõik aktiivsed seansid, taotleda oma andmetest koopiat ja alustada konto kustutamist. Jagamisi haldad eraldi vaates Minu jagamised.</p>"
         },
         "about": {
-          "title": "14. MEIST",
-          "body": "<p>Leht <a href=\"/meist\">Meist</a> avaneb avalehe kaardivalikust. Sealt leiad platvormi lühitutvustuse ning kiirlingid olulisematele lehtedele: kasutusjuhend, kasutustingimused, privaatsuspoliitika, <a href=\"/voimalused\">Võimalused</a>, <a href=\"/hinnastus\">Hinnastus</a> ja kontaktid.</p><p><strong>Võimalused</strong> kirjeldab SotsiaalAI põhifunktsioone ning seda, kellele need on mõeldud. <strong>Hinnastus</strong> kuvab hinnakirja ja pakettide võrdluse.</p>"
+          "title": "Avalik info ja kontaktid",
+          "body": "<p>Avalehe kaartidelt ja alumisest kiirmenüüst avanevad <a href=\"/voimalused\">Võimalused</a>, Kasutusjuhend, <a href=\"/meist\">Meist</a>, Paigalda, <a href=\"/kasutustingimused\">Kasutustingimused</a>, <a href=\"/privaatsustingimused\">Privaatsuspoliitika</a>, <a href=\"/hinnastus\">Hinnastus</a> ja <button type=\"button\" data-contact-open>Kontakt</button>. Autori ja platvormi kujunemise loo leiad lehelt <a href=\"/autorilt\">Autorilt</a>.</p><p>Ülaserva peidetud menüü haldab taustaheli, lugude vahetamist, ligipääsetavuse moodulit ja Ooterežiimi. Toetatud brauseris saab Paigalda kaardilt SotsiaalAI telefoni või arvutisse rakendusena lisada.</p>"
         },
         "before_use": {
-          "title": "15. Enne kasutamist",
-          "body": "<p>Olulisemad lingid leiad avalehe kaardivalikust ja lehelt <a href=\"/meist\">Meist</a>.</p><ul><li><strong>Kasutusjuhend.</strong> Avab juhendi lehe.</li><li><strong>Kasutustingimused</strong> ja <strong>privaatsuspoliitika.</strong> Avavad platvormi tingimuste ja andmekasutuse lehed.</li><li><strong>Võimalused.</strong> Kirjeldab töölauda, teadmuspõhja, assistente, abisoove, abipakkumisi, süvauuringut, dokumente, eelpöördumisi, kovisiooni, materjale, teenusekaarti ja teenuseprofiili.</li><li><strong>Hinnastus.</strong> Avab hinnakirja ja pakettide võrdluse.</li><li><strong>Kontaktid.</strong> Avab SotsiaalAI kontaktivaate.</li></ul>"
+          "title": "Enne tööalast kasutamist",
+          "body": "<p>Tehisintellekti vastus, mustand, kokkuvõte ega sobitus ei ole ametlik otsus. Kontrolli sisu, allikaid ja konteksti ning tee sisuline otsus ise.</p><p>Tuvastatavate kliendi- või töötajaandmete tööalaseks kasutamiseks peab organisatsioonil olema sobiv õiguslik ja lepinguline alus. Tutvu <a href=\"/kasutustingimused\">kasutustingimuste</a>, <a href=\"/privaatsustingimused\">privaatsuspoliitika</a> ja <a href=\"/tooalase-kasutuse-raamistik\">tööalase kasutuse raamistikuga</a>. Sisesta ainult töövoo jaoks vajalik info.</p>"
         },
         "rooms": {
-          "title": "6. Ruumid ja kõned",
-          "body": "<p>Ruumid on grupivestlused, kuhu saab kutsuda pöörduja, sotsiaaltöö spetsialisti, teenuseosutaja või kolleegi. Ruumid avanevad paremast ikoonirealt valikust <strong>Ruumid</strong>.</p><ul><li><strong>Loomine ja kutsed.</strong> Ruumi loob ruumi omanik, kes kutsub liikmed; omanik saab ruumi vajadusel teisele omanikule üle anda või arhiveerida.</li><li><strong>Helikõne.</strong> Vajadusel saab ruumis pidada helikõne. Kõne algab osapoolte nõusolekul. Kõnet ei salvestata vaikimisi. Salvestamine vajab kõigi nõutud osapoolte nõusolekut.</li><li><strong>Kokkuvõtte jagamine.</strong> Spetsialist saab kinnitatud kohtumise kokkuvõtte jagada ruumi sõnumina; jagamisel saab soovi korral käivitada osalejate kinnitusringi.</li><li>Sobitusruum avaneb automaatselt, kui abisoov ja abipakkumine kokku viiakse.</li></ul>"
+          "title": "Ruumid ja kõned",
+          "body": "<p><a href=\"/ruum\">Ruumid</a> on osalejate ühised suhtlusruumid. Omanik haldab liikmeid, saab omandi teisele osalejale üle anda ja ruumi arhiveerida. Ruum võib tekkida ka abisoovi ja abipakkumise sobitusest või pöördumise jätkuna.</p><p>Helikõnet ei salvestata vaikimisi. Salvestamine algab eraldi nõusolekutaotlusega ja alles pärast kõigi nõutud osapoolte kinnitust. Kinnitatud kohtumise kokkuvõtte saab jagada ruumi ning saata osalejatele kinnitamiseks.</p>"
         },
         "journey": {
-          "title": "7. Teekond ja eelpöördumine",
-          "body": "<p><strong>Teekond</strong> hoiab sinu sammud koos: kokkuvõte senisest, seotud teemad ja järgmised sammud. Teekond on privaatne — sina otsustad, kas ja kellega seda jagad, ning jagamine käib sinu kinnitusega.</p><p><strong>Eelpöördumine</strong> aitab pöördumise enne esitamist läbi mõelda. Alustada saab kolmel viisil: vestlusest jätkates, vormi täites või tühjalt lehelt. Esitad alles siis, kui oled ise kõik üle vaadanud; pöördumine jõuab vastuvõtja Töölauale ja vajadusel saab avada ühise vestlusruumi.</p><ul><li><strong>Minu jagamised.</strong> Lehel <a href=\"/minu-jagamised\">Minu jagamised</a> näed oma aktiivseid jagamisi ja saad jagamise tagasi võtta.</li></ul>"
+          "title": "Teekond ja eelpöördumine",
+          "body": "<p>Pöörduja Teekond hoiab olukorra kokkuvõtte, seotud teemad ja järgmised sammud koos. Eelpöördumise saad alustada vestlusest, vormiga või tühjalt lehelt; esitad selle alles pärast enda ülevaatust. Minu jagamised näitab aktiivseid jagamisi ja võimaldab need tagasi võtta.</p>"
         },
         "search": {
-          "title": "9. Isiklik otsing",
-          "body": "<p>Sisselogituna saad kasutada isiklikku otsingut lehel <a href=\"/otsi\">Otsi</a>: see otsib sinu enda sisust — vestlustest, dokumentidest ja muust sinu loodust — ning ei näita kunagi teiste kasutajate materjale. Käesoleva juhendi otsing siin lehel otsib ainult juhendi avalikku sisu.</p>"
+          "title": "Minu otsing",
+          "body": "<p><a href=\"/otsi\">Minu otsing</a> otsib sisselogitud kasutaja enda vestlustest, dokumentidest ja muust loodud sisust. See ei otsi teiste kasutajate materjale. Selle juhendilehe otsing otsib ainult avaliku juhendi tekstist.</p>"
         },
         "pro_tools": {
-          "title": "12. Spetsialisti tööriistad",
-          "body": "<p>Sotsiaaltöö spetsialistile ja teenuseosutajale on lisaks saadaval järgmised tööriistad, kui need on rollile avatud:</p><ul><li><strong>Supervisioon.</strong> Supervisiooniprotsess supervisoriga kokku lepitud paketi alusel: kohtumised, kokkulepped ja väljundid püsivad ühes kohas lehel <a href=\"/supervisioon\">Supervisioon</a>.</li><li><strong>Mentorlus.</strong> Mentorlussuhte kokkulepped ja kohtumised mentori ja mentee ühises vaates lehel <a href=\"/mentorlus\">Mentorlus</a>.</li><li><strong>Välitöö.</strong> Liikvel kasutamiseks mõeldud vaade visiidi ettevalmistuseks, märkmeteks ja kokkuvõtteks lehel <a href=\"/valitoo\">Välitöö</a>.</li><li><strong>Meetodipeegel.</strong> Privaatne refleksioonivahend lehel <a href=\"/refleksioon\">Refleksioon</a>: pärast juhtumit saad kirja panna, mis töötas ja mida järgmisel korral teisiti teha; kirjed on nähtavad ainult sulle.</li><li><strong>Kovisioon.</strong> Juhtumite ühine arutelu kovisioonilõuendil, mis avaneb Töölaualt.</li></ul>"
+          "title": "Töölaud kolmele rollile",
+          "body": "<p>Pöördujal on 9, sotsiaaltöö spetsialistil 19 ja teenuseosutajal 19 Töölauda valikut. Meetodipeegel ja Tööheaolu kuuluvad sotsiaaltöö spetsialistile; Teenuspäevik ja Teenuseprofiil teenuseosutajale. Täpne rolliloend kuvatakse selle lehe ülaosas tehtud rollivaliku järgi.</p>"
         },
         "quickstart": {
-          "title": "17. Kiire ülevaade",
-          "body": "<p>Kui soovid kiiresti alustada, liigu nii:</p><ol><li><strong>Vali avalehel roll</strong> ja loo konto.</li><li><strong>Nõustu tingimustega</strong>, kinnita, et oled kasutusjuhendiga tutvunud, ja kinnita seejärel oma e-post.</li><li><strong>Aktiveeri tellimus või sponsoreeritud ligipääs.</strong> Kuutasu on pöördujale 7,99 € kuus, sotsiaaltöö spetsialistile 14,99 € kuus ja teenuseosutajale 19,99 € kuus. Sponsoreeritud ligipääs kehtib tavaliselt ühe kuu ja pärast seda saad vajadusel oma tellimuse aktiveerida.</li><li><strong>Logi sisse</strong> ja ava vestlusleht.</li><li><strong>Kirjuta küsimus</strong> või kirjelda olukorda.</li><li>Vajadusel ava plussmärgist kiirvalikud: abisoov, abipakkumine, süvauuring või dokumendi analüüs.</li><li>Kasuta vasakut ikooniriba vestluste jaoks ning paremat ikooniriba profiili, ruumide ja Töölaua avamiseks. Töölaualt leiad oma rollile sobivad töövahendid.</li><li>Funktsioonide kirjeldused on lehel <a href=\"/voimalused\">Võimalused</a> ning hinnakirja näed lehel <a href=\"/hinnastus\">Hinnastus</a>.</li><li>Seadeid, kontot ja tellimust saad hallata lehel <a href=\"/profiil\">Profiil</a>.</li></ol>"
+          "title": "Kiire alustamine",
+          "body": "<p>Vali selle juhendi ülaosas oma roll, loo konto registreerimislehel, kinnita e-post ja ligipääs ning logi sisse. Ava Töölaud või Vestlus, vali vajalik töövoog ning vaata iga mustand, allikas ja jagatav info enne kinnitamist üle.</p>"
         },
         "privacy_safety": {
-          "title": "16. Privaatsushoiatused ja maskeerimine",
-          "body": "<p>Kui privaatsuskontroll tuvastab vestlusesse, eelpöördumisse, dokumendi koostamise juhisesse või abikuulutusse sisestatud tekstis isikuandmete tunnuse, kuvab SotsiaalAI enne saatmist privaatsushoiatuse. Tunnus võib olla näiteks nimi, isikukood, aadress, telefoninumber, e-posti aadress või muu tundlik detail.</p><ul><li><strong>Muudan teksti</strong> jätab teksti sisestusväljale alles ja midagi ei saadeta edasi.</li><li><strong>Saada maskeeritult</strong> asendab tundlikud osad märgenditega, näiteks [aadress] või [telefoninumber], ning saadab edasi maskeeritud versiooni.</li><li><strong>Saada siiski</strong> kuvatakse ainult privaatses või tööalases töövoos. Avalikus abisoovis ja abipakkumises seda valikut ei kuvata.</li></ul><p>Dokumendi koostamisel võib süsteem maskeerida ka allikmaterjali enne AI-le või RAG-otsingule edastamist. See aitab vähendada liigset andmetöötlust, kuid valmis mustand tuleb alati inimesel üle vaadata.</p>"
+          "title": "Privaatsushoiatused ja kiire abi",
+          "body": "<p>Kui privaatsuse eelkontroll märkab võimalikku nime, isikukoodi, aadressi, telefoni, e-posti või muud tundlikku detaili, kuvab platvorm hoiatuse enne saatmist.</p><ul><li><strong>Muudan teksti</strong> jätab teksti sulle parandamiseks.</li><li><strong>Saada maskeeritult</strong> asendab tuvastatud osad märgenditega.</li><li><strong>Saada siiski</strong> on kasutatav ainult lubatud privaatses töövoos. Avalikes abisoovides ja abipakkumistes on andmete minimeerimine rangem.</li></ul><p>Kiireloomulise või ohtliku olukorra korral järgi kohe kuvatud 112, Lasteabi või Ohvriabi juhiseid. SotsiaalAI ei ole hädaabikanal.</p>"
+        }
+      },
+      "role_picker": {
+        "title": "Millises rollis sa SotsiaalAI-d kasutad?",
+        "intro": "Valik muudab selle lehe rollipõhiseid peatükke. Rolli saad igal ajal vahetada.",
+        "client_name": "Pöörduja",
+        "client_hint": "Otsin enda või lähedase olukorras selgust ja abi.",
+        "specialist_name": "Sotsiaaltöö spetsialist",
+        "specialist_hint": "Teen juhtumi-, dokumendi- ja koostööd.",
+        "provider_name": "Teenuseosutaja",
+        "provider_hint": "Osutan teenuseid ning korraldan vastuvõttu ja aruandlust.",
+        "selected": "{role} juhend on valitud.",
+        "prompt": "Vali roll, et näha oma Töölauda ja töövahendeid."
+      },
+      "role_sections": {
+        "client": {
+          "workspace": {
+            "title": "Pöörduja Töölaud",
+            "body": "<p>Pöörduja Töölaud sisaldab 9 valikut.</p><ul><li><strong>Teekond</strong> hoiab olukorra kokkuvõtte ja järgmised sammud koos.</li><li><strong>Eelpöördumine</strong> aitab pöördumise enne esitamist läbi mõelda.</li><li><strong>Abisoovid</strong> ja <strong>Abipakkumised</strong> aitavad tuge küsida või pakkuda.</li><li><strong>Kutsu osaleja</strong> avab kutse koostamise.</li><li><strong>Teenusekaart</strong> aitab leida teenuseid, kontakte ning avaldatud abiinfot.</li><li><strong>Minu otsing</strong> otsib ainult sinu enda sisust.</li><li><strong>Koosta dokument</strong> aitab luua taotluse, avalduse või muu mustandi.</li><li><strong>Minu jagamised</strong> näitab, mida oled jaganud, ja võimaldab jagamise tagasi võtta.</li></ul>"
+          },
+          "workflows": {
+            "title": "Pöörduja peamised töövood",
+            "body": "<p>Alusta <strong>Vestlusest</strong> või <strong>Teekonnast</strong>, kui vajad selgitust ja järgmisi samme. Eelpöördumise saad luua vestluse kokkuvõttest, vormiga või tühjalt lehelt; midagi ei esitata enne sinu kinnitust.</p><p>Abisoovi või abipakkumise avaldamisel vaata tekst ja privaatsushoiatus üle. Sobituse korral saab avaneda ühine ruum. Teenusekaardi, dokumendi koostamise ja Minu jagamiste kaudu saad jätkata juba konkreetse tegevusega.</p>"
+          },
+          "quickstart": {
+            "title": "Alusta pöördujana",
+            "body": "<ol><li>Vali konto loomisel roll <strong>Pöörduja</strong> ja kinnita e-post.</li><li>Logi sisse e-posti ja PIN-iga.</li><li>Ava Vestlus või Töölaud ning vali Teekond, Eelpöördumine või muu vajalik töövoog.</li><li>Kirjelda olukorda oma sõnadega; vajaduse korral palu vastust lihtsamas keeles.</li><li>Kontrolli kasutatud allikaid, kui vastusel on Allikate nupp.</li><li>Vaata mustand või jagatav info enne kinnitamist alati ise üle.</li></ol>"
+          }
+        },
+        "specialist": {
+          "workspace": {
+            "title": "Sotsiaaltöö spetsialisti Töölaud",
+            "body": "<p>Sotsiaaltöö spetsialisti Töölaud sisaldab 19 valikut.</p><p><strong>Pöördumised · Abisoovid · Abipakkumised · Kutsu osaleja · Välitöö · Minu juhtumid · Juhtumitöö laud · Teenusekaart · Minu otsing · Materjalid · Koosta dokument · Dokumendid · Supervisioon · Mentorlus · Kovisioon · Meetodipeegel · Tööheaolu · Organisatsioonid · Minu jagamised.</strong></p><p>Meetodipeegel ja Tööheaolu kuuluvad spetsialisti töövahendite hulka; Teenuspäevik ja Teenuseprofiil kuuluvad teenuseosutaja Töölauda.</p>"
+          },
+          "workflows": {
+            "title": "Spetsialisti juhtumi- ja töövood",
+            "body": "<ul><li><strong>Pöördumised</strong> koondab saabunud pöördumised ja nende vastuvõtu.</li><li><strong>Minu juhtumid</strong> hoiab juhtumi põhinfo ja seosed koos; <strong>Juhtumitöö laud</strong> koondab päeva ettevalmistused, kohtumised, mustandid ja järgmised sammud.</li><li><strong>Välitöö</strong>, <strong>Dokumendid</strong> ja <strong>Koosta dokument</strong> toetavad ettevalmistust, märkmeid ja kinnitatavaid tulemusi.</li><li><strong>Kovisioon</strong>, <strong>Supervisioon</strong>, <strong>Mentorlus</strong>, <strong>Meetodipeegel</strong> ja <strong>Tööheaolu</strong> toetavad professionaalset refleksiooni ja tööjaksu.</li><li><strong>Materjalid</strong> võimaldab esitada teadmusbaasi täiendusi; <strong>Organisatsioonid</strong> avab organisatsioonitööruumi.</li></ul>"
+          },
+          "quickstart": {
+            "title": "Alusta sotsiaaltöö spetsialistina",
+            "body": "<ol><li>Vali konto loomisel roll <strong>Sotsiaaltöö spetsialist</strong> ja kinnita e-post.</li><li>Enne tuvastatavate kliendiandmete tööalast kasutamist kontrolli organisatsiooni kokkuleppeid ja tööalase kasutuse raamistikku.</li><li>Logi sisse ning ava Töölaud.</li><li>Alusta Pöördumistest, Minu juhtumitest või Juhtumitöö lauast; üldise küsimuse saad esitada Vestluses.</li><li>Kasuta ainult vajalikku infot ja reageeri privaatsushoiatustele.</li><li>Vaata AI loodud tekst, kokkuvõte ja allikad enne professionaalset kasutamist ise üle.</li></ol>"
+          }
+        },
+        "provider": {
+          "workspace": {
+            "title": "Teenuseosutaja Töölaud",
+            "body": "<p>Teenuseosutaja Töölaud sisaldab 19 valikut.</p><p><strong>Pöördumised · Abisoovid · Abipakkumised · Kutsu osaleja · Välitöö · Teenuspäevik · Minu juhtumid · Juhtumitöö laud · Teenusekaart · Minu otsing · Materjalid · Koosta dokument · Dokumendid · Teenuseprofiil · Supervisioon · Mentorlus · Kovisioon · Organisatsioonid · Minu jagamised.</strong></p><p>Teenuspäevik ja Teenuseprofiil kuuluvad teenuseosutaja töövahendite hulka. Meetodipeegel ja Tööheaolu kuuluvad sotsiaaltöö spetsialisti Töölauda.</p>"
+          },
+          "workflows": {
+            "title": "Teenuse osutamise töövood",
+            "body": "<ul><li><strong>Pöördumised</strong> ja abi töövood toetavad vastuvõttu ning osapoolte kokkuviimist.</li><li><strong>Teenuseprofiil</strong> haldab organisatsiooni, teenuste, teeninduskohtade, sihtrühmade, hinna, ooteaja ja pöördumisviiside avalikku infot.</li><li><strong>Teenuspäevik</strong> koondab tehtud töö, visiidid, parandused, kuuvaated, aruanded ja ekspordi kontrollitava ajalooga.</li><li><strong>Minu juhtumid</strong>, <strong>Juhtumitöö laud</strong>, <strong>Välitöö</strong> ja dokumenditöö toetavad igapäevast teenuse osutamist.</li><li><strong>Organisatsioonid</strong> avab liikmete, vastuvõtu, graafiku, aruandluse, rahastuse, auditi ja seadete tööruumi.</li></ul>"
+          },
+          "quickstart": {
+            "title": "Alusta teenuseosutajana",
+            "body": "<ol><li>Vali konto loomisel roll <strong>Teenuseosutaja</strong> ja kinnita e-post.</li><li>Liitu organisatsiooniga kutse kaudu või seadista oma organisatsioonitööruum.</li><li>Täida Teenuseprofiili üldandmed ja teenuste kirjeldused, et need oleksid Teenusekaardil leitavad.</li><li>Kasuta Pöördumisi vastuvõtuks ning Teenuspäevikut tehtud töö talletamiseks.</li><li>Kontrolli dokumentide, kokkuvõtete, aruannete ja avaliku teenuseinfo õigsust enne kinnitamist või avaldamist.</li></ol>"
+          }
         }
       }
     }
@@ -7602,36 +7658,36 @@
     }
   },
   "voimalused": {
-    "title": "Võimalused",
-    "intro": "Siin on ülevaade sellest, mida SotsiaalAI võimaldab. Iga osa juures ütleme, mida ta teeb ja kuidas sa teda kasutada saad.",
-    "s1_title": "Vestlusaken",
-    "s1_body": "Keskne koht on vestlusaken. Kirjelda olukorda oma sõnadega, küsi teenuste, toetuste, õiguste või tööpraktika kohta ja täpsusta võimalikke lahendusi. Tehisintellekt toob välja võimalused, selgitab seoseid ning valmistab ette tekste ja järgmisi samme. Iga vastuse juures näed allikaid, millele see toetub, ja vastuse saad vajadusel lasta esitada lihtsamas keeles. Kui kirjutamine ei sobi, saad olukorda kirjeldada ka häälega, ja vestlusest saad alustada töövooge: abisoovi, abipakkumist, süvauuringut või dokumendi analüüsi.",
+    "title": "SotsiaalAI võimalused",
+    "intro": "Siin on terviklik ülevaade SotsiaalAI teenustest ja töövahenditest. Iga funktsiooni juures on kirjeldatud, kellele see on mõeldud ja mida sellega teha saab; täpne ligipääs sõltub kasutaja rollist ja paketist.",
+    "s1_title": "Vestlus ja rollile sobiv vastamisviis",
+    "s1_body": "Kõigile kolmele rollile. Vestluses saad kirjeldada olukorda oma sõnadega, küsida teenuste, toetuste, õiguste või tööpraktika kohta ning paluda vastust lihtsamas keeles. SotsiaalAI arvestab vastamisviisis kasutaja rolli, aitab mõtteid korrastada ja pakub järgmisi samme; otsus jääb alati inimesele. Allikate nupp kuvatakse siis, kui vastus kasutab kontrollitavaid allikaid.",
     "s2_title": "SotsiaalAI teadmusbaas",
-    "s2_body": "SotsiaalAI vastused ei tule suvalistest allikatest — need toetuvad platvormi enda teadmusbaasile, kuhu on koondatud sotsiaalvaldkonna õigusaktid, juhendid, metoodikad, kohalike omavalitsuste info ja vormid. Teadmusbaasi hoitakse ajakohasena ja allikate kehtivust kontrollitakse, et vastused põhineksid õigel infol. Iga vastuse juures näed, millisele allikale see toetub. Teadmusbaas kasvab koos valdkonnaga — ka spetsialistide esitatud materjalid jõuavad sinna pärast ülevaatust.",
+    "s2_body": "SotsiaalAI vastused toetuvad platvormi teadmusbaasile, kuhu on koondatud sotsiaalvaldkonna õigusaktid, juhendid, metoodikad, kohalike omavalitsuste info ja vormid. Allikatele toetuva vastuse juures saab avada kasutatud materjalid ning kontrollida, kust info pärineb. Teadmusbaasi hoitakse ajakohasena ja spetsialistide esitatud materjalid jõuavad sinna pärast ülevaatust.",
     "s3_title": "Teekond",
     "s3_body": "Sinu sammud püsivad Teekonnal koos: kokkuvõte senisest, seotud teemad, puuduolev info ja järgmised sammud. Teekond on privaatne. Sina otsustad, kas ja kellega seda jagad; jagamine käib sinu kinnitusega ning ülevaate oma jagamistest ja tagasivõtmise leiad vaatest Minu jagamised.",
     "s4_title": "Sinu kontroll ja turvalisus",
     "s4_body": "Enne kui sõnum teele läheb, märkab privaatsuse eelkiht üleliigseid isikuandmeid ja pakub võimalust need eemaldada. Jagamine käib alati sinu kinnitusega. Kui kirjeldatud olukord on kiireloomuline, kuvame kohe õiged kontaktid — 112, Lasteabi ja Ohvriabi.",
-    "s5_title": "Töölaud",
-    "s5_body": "Tegutsemiseks on igaühel oma Töölaud. Pöörduja alustab sealt näiteks oma teekonda või eelpöördumist, spetsialist võtab pöördumisi vastu, peab kovisiooni ja haldab materjale, teenuseosutaja haldab teenuseprofiili ja pöördumisi. Ühised on abisoovid ja abipakkumised ning dokumenditöö. Kiirtoimingutest saad alati alustada uut vestlust, avada faile ja vaadata teavitusi — teavitusi tuleb ainult olulistest sündmustest.",
+    "s5_title": "Rollipõhine Töölaud",
+    "s5_body": "Pöörduja Töölaud sisaldab 9 valikut: Teekond, Eelpöördumine, Abisoovid, Abipakkumised, Kutsu osaleja, Teenusekaart, Minu otsing, Koosta dokument ja Minu jagamised. Sotsiaaltöö spetsialisti Töölaud sisaldab 19 valikut: Pöördumised, Abisoovid, Abipakkumised, Kutsu osaleja, Välitöö, Minu juhtumid, Juhtumitöö laud, Teenusekaart, Minu otsing, Materjalid, Koosta dokument, Dokumendid, Supervisioon, Mentorlus, Kovisioon, Meetodipeegel, Tööheaolu, Organisatsioonid ja Minu jagamised. Teenuseosutaja Töölaud sisaldab 19 valikut: Pöördumised, Abisoovid, Abipakkumised, Kutsu osaleja, Välitöö, Teenuspäevik, Minu juhtumid, Juhtumitöö laud, Teenusekaart, Minu otsing, Materjalid, Koosta dokument, Dokumendid, Teenuseprofiil, Supervisioon, Mentorlus, Kovisioon, Organisatsioonid ja Minu jagamised.",
     "s6_title": "Pöördumised ja eelpöördumine",
     "s6_body": "Eelpöördumine aitab pöördumise läbi mõelda enne selle esitamist. Alustada saad kolmel viisil: jätkates vestlusest, kus kokkuvõte on juba olemas, täites vormi või tühjalt lehelt. Kokkuvõte ja mustand valmivad koos sinuga — esitad alles siis, kui oled ise kõik üle vaadanud. Pöördumine jõuab vastuvõtja Töölauale, ja vajadusel saab osapooltega avada ühise vestlusruumi.",
     "s7_title": "Abisoovid ja abipakkumised",
     "s7_body": "Kirjelda, millist tuge vajad, või paku, mida saad anda. Platvorm aitab sobivad kokku viia, ja kui sobitus tekib, avaneb ühine vestlusruum järgmiste sammude täpsustamiseks. Avaldatud abisoovid ja abipakkumised on nähtavad ka Teenusekaardil.",
-    "s8_title": "Vestlusruumid",
-    "s8_body": "Kui küsimus vajab lahendamist koos teistega, on selleks vestlusruumid. Sinna saad kutsuda pöörduja, sotsiaaltöö spetsialisti, teenuseosutaja või kolleegi. Vajadusel saab ruumis pidada helikõne — kõne toimub osapoolte nõusolekul ja seda ei salvestata.",
+    "s8_title": "Vestlusruumid, helikõned ja kinnitamine",
+    "s8_body": "Kõigile rollidele. Ruumis saavad pöörduja, sotsiaaltöö spetsialist, teenuseosutaja või kolleeg ühiselt suhelda. Ruumi omanik haldab liikmeid, saab omandi üle anda ja ruumi arhiveerida. Helikõnet ei salvestata vaikimisi; salvestamine algab ainult eraldi nõusolekutaotluse ja kõigi nõutud osapoolte kinnituse järel. Kinnitatud kohtumise kokkuvõtet saab jagada ning saata osalejatele kinnitamiseks.",
     "s9_title": "Dokumendi koostamine",
     "s9_body": "Kui on vaja taotlust, avaldust või muud dokumenti, kirjelda, mida vajad — mustand valmib koos sinuga sinu kirjelduse põhjal, ja sina vaatad selle enne kasutamist üle. Valmis dokument jääb sinu failidesse.",
-    "s10_title": "Dokumendid",
-    "s10_body": "Dokumendid on sinu isiklikud failid ühes kohas. Olemasoleva faili saad üles laadida ja lasta analüüsida, et mõista sisu ja järgmisi samme. Helifailist saab teha transkripti, mille vaatad enne kasutamist ise üle.",
+    "s10_title": "Dokumenditeek ja kinnitatud tulemused",
+    "s10_body": "Kõigile kolmele rollile. Pöörduja näeb oma isiklikke faile ja tulemusi; sotsiaaltöö spetsialist ja teenuseosutaja saavad hallata ka tööfaile, taustamaterjale, malle, mustandeid ja kinnitatud väljundeid. Failile saab määrata rolli, kasutada seda dokumendi koostamisel ning kinnitatud tulemuse DOCX- või PDF-failina alla laadida. Vestlusse analüüsiks lisatud ajutine fail ei liigu automaatselt püsivasse dokumenditeeki.",
     "s11_title": "Kovisioon",
     "s11_body": "Spetsialistid saavad juhtumeid arutada kovisioonis: ühine juhtumilõuend hoiab arutelu fookuses ja järeldused koos, ning parimad praktikad jäävad edaspidiseks alles. Nii on kolleegide tugi olemas ka siis, kui ollakse eri kohtades.",
-    "s12_title": "Tööheaolu",
-    "s12_body": "Hoitud spetsialist on tugeva sotsiaaltöö alus. Spetsialisti heaolu ei ole ainult inimese isiklik vastutus, vaid sotsiaaltöö kvaliteedi, kestlikkuse ja professionaalse tugevuse osa. Tööheaolu vaatest leiad kiirkontrolli ja ülevaate enda seisust, toe raske juhtumi ja töövägivalla puhuks, taastumise, tööpiiride ja rollipiiride teemad ning alustaja toe.",
+    "s12_title": "Tööheaolu tööriistad",
+    "s12_body": "Sotsiaaltöö spetsialistile. Tööheaolu vaade koondab Minu kirjed, kiirkontrolli, nädala ja kuu ülevaate, raske juhtumi, töövägivalla, taastumise, tööpiirid, katkestused, tööprotsessid, rollipiirid ja alustaja toe. Kirjed aitavad märgata koormust ja sõnastada järgmise väikese sammu; isiklikku tööheaoluinfot ei jagata vaikimisi teistega.",
     "s13_title": "Materjalid",
     "s13_body": "Spetsialist saab esitada juhendeid, metoodikaid ja praktilisi materjale SotsiaalAI teadmusbaasi täiendamiseks. Materjal jõuab andmebaasi pärast ülevaatust. Nii kasvab keskkond koos valdkonna praktikaga.",
-    "s14_title": "Teenusekaart ja teenuseprofiil",
-    "s14_body": "Teenusekaart koondab sotsiaalvaldkonna pöördumiskohad ja kontaktid kaardivaatesse: kohalike omavalitsuste sotsiaalhoolekande kontaktid ja teenuseosutajad, aga ka avaldatud abisoovid ja abipakkumised. Nii on ametlik ja kogukondlik tugi ühel kaardil. Teenuseosutaja haldab teenuseprofiili, et olla teenustega kaardil leitav.",
+    "s14_title": "Teenusekaart",
+    "s14_body": "Kõigile rollidele. Teenusekaart aitab leida kohalike omavalitsuste sotsiaalvaldkonna kontakte, teenuseosutajaid, teenuseid, teeninduskohti ning avaldatud abisoove ja abipakkumisi. Otsida saab nime, kirjelduse, teenuse, kategooria, sihtrühma, aadressi või piirkonna järgi.",
     "s15_title": "Supervisioon",
     "s15_body": "Spetsialisti professionaalseks toeks on supervisioon: protsess toimub supervisoriga kokku lepitud paketi alusel ning kohtumised, kokkulepped ja väljundid püsivad platvormil ühes kohas. Väljundid jäävad sulle alles ka pärast protsessi lõppu.",
     "s16_title": "Mentorlus",
@@ -7641,7 +7697,58 @@
     "s18_title": "Isiklik otsing",
     "s18_body": "Sisselogituna saad otsida oma sisust — vestlustest, dokumentidest ja muust enda loodust — ühest kohast. Otsing näitab ainult sinu enda materjale, mitte kunagi teiste omi.",
     "s19_title": "Meetodipeegel",
-    "s19_body": "Meetodipeegel on spetsialisti privaatne refleksioonivahend: pärast juhtumit saad lühidalt kirja panna, mis töötas ja mida järgmisel korral teisiti teha. Kirjed on nähtavad ainult sulle."
+    "s19_body": "Meetodipeegel on spetsialisti privaatne refleksioonivahend: pärast juhtumit saad lühidalt kirja panna, mis töötas ja mida järgmisel korral teisiti teha. Kirjed on nähtavad ainult sulle.",
+    "group_roles_title": "Töölaud ja kolm rolli",
+    "group_roles_body": "Töölaud koondab inimesele tema rolli järgi sobivad teenused ja töövahendid.",
+    "group_core_title": "Ühised põhivõimalused",
+    "group_core_body": "Need võimalused toetavad küsimuste esitamist, info kontrollimist ja oma materjalidega töötamist.",
+    "group_client_title": "Pöörduja teekond ja abi leidmine",
+    "group_client_body": "Pöörduja saab oma olukorra läbi mõelda, leida abi ja otsustada ise, mida edasi teha või jagada.",
+    "group_collaboration_title": "Dokumendid, ruumid ja koostöö",
+    "group_collaboration_body": "Dokumenditöö ja ühised ruumid aitavad ette valmistada, jagada ja kinnitada kasutaja enda valitud tulemusi.",
+    "group_professional_title": "Spetsialisti ja teenuseosutaja töövahendid",
+    "group_professional_body": "Professionaalsed töövahendid toetavad juhtumitööd, teenuse osutamist, enesehoidu ja kolleegidega õppimist.",
+    "group_account_title": "Organisatsioon, konto ja ligipääs",
+    "group_account_body": "Need võimalused toetavad organisatsiooni tööd, konto haldamist, ligipääsetavust ja kasutaja õigusi.",
+    "group_admin_title": "Platvormi haldus ja kvaliteet",
+    "group_admin_body": "Administraatori töövahendid aitavad hoida teenused, allikad, ligipääsud ja platvormi töökindluse kontrolli all.",
+    "s20_title": "Dikteerimine, häälvestlus ja ettelugemine",
+    "s20_body": "Kõigile rollidele. Dikteerimine muudab kõne enne saatmist ülevaadatavaks tekstiks. Eraldi avatariga häälvestlus transkribeerib kõnevooru ja kasutab sama teadmiste, allikate, privaatsuse ning ohusuunamise rada nagu tekstivestlus; lühike vastus loetakse ette ning täisvastus ja saadaolevad allikad jäävad vestlusse. Vastuseid saab ka tavavaates ette lugeda.",
+    "s21_title": "Süvauuring",
+    "s21_body": "Kõigile rollidele. Süvauuring aitab koostada põhjalikuma, allikatele toetuva ülevaate sotsiaalvaldkonna teemast, teenusest, seadusest, juhendist või praktilisest küsimusest. Tulemuses tuuakse välja peamised tähelepanekud, seosed, lüngad ja järgmised sammud ning valminud uurimused jäävad kasutajale avatavaks.",
+    "s22_title": "Dokumendi analüüs",
+    "s22_body": "Kõigile rollidele. Laadi fail vestlusse, küsi selle sisu kohta ja lase leida olulised kohad, selgitused või kokkuvõte. Vaikimisi keskendub analüüs üles laaditud dokumendile; vajaduse korral saab lisada SotsiaalAI valdkondliku tausta. Vestluse ajutine analüüsifail ei muutu automaatselt püsidokumendiks.",
+    "s23_title": "Allikad ja allikatagasiside",
+    "s23_body": "Kõigile rollidele. Kui vastus kasutab allikaid, saab avada allikapaneeli ja kontrollida kasutatud õigusakti, juhendit, KOV-i lehte, teenuseinfot, artiklit või muud materjali. Kasutaja saab märku anda ebatäpsest või aegunud allikast; tagasiside jõuab ülevaatusse.",
+    "s24_title": "Minu jagamised",
+    "s24_body": "Kõigile rollidele. Minu jagamised on kasutaja privaatsuse juhtpult: seal näed, millist Teekonna, juhtumi või muu töövoo infot oled kellele jaganud, ning saad aktiivse jagamise tagasi võtta. Jagamine ei toimu ilma kasutaja teadliku tegevuse ja kinnitamiseta.",
+    "s25_title": "Kutsed, sponsoreeritud ligipääs ja teavitused",
+    "s25_body": "Kõigile rollidele. Kasutaja saab kutsuda ruumi pöörduja, spetsialisti, teenuseosutaja või kolleegi ning vajaduse korral tasuda kutsutu rollipõhise ligipääsu eest. Teavituskeskus toob kokku olulised kutsed, vastused, kinnitused ja töövoo muutused; Töölaud aitab pooleli jäänud töö juurde tagasi pöörduda.",
+    "s26_title": "Minu juhtumid ja Juhtumitöö laud",
+    "s26_body": "Sotsiaaltöö spetsialistile ja teenuseosutajale. Minu juhtumid koondab juhtumi põhinfo, seosed, tööobjektid ja säilituse. Juhtumitöö laud annab päeva koondvaate: ettevalmistused, puuduoleva info, kohtumised, tööülesanded, mustandid ja järgmised sammud. AI aitab ette valmistada, kuid ei tee ametlikke otsuseid ega kanna infot teise süsteemi ilma inimese kontrollita.",
+    "s27_title": "Teenuspäevik",
+    "s27_body": "Teenuseosutajale. Teenuspäevikus saab kirjeldada tehtud tööd, visiite, teenusekirjeid ja kokkuvõtteid ning parandada või tühistada kirjeid kontrollitava ajalooga. Päeva- ja kuuvaated, kliendivaade, aruanded, jagamine ja eksport aitavad aruandlusel tekkida päris töö kõrvalsaadusena.",
+    "s28_title": "Organisatsioonitööruum",
+    "s28_body": "Sotsiaaltöö spetsialistile ja teenuseosutajale. Organisatsioonitööruum koondab organisatsiooni ülevaate, struktuuri, liikmed ja kutsed, vastuvõtu, graafiku ja päevateekonna, teenuseprofiili, töötaja toe, Teenuspäeviku aruanded, rahastuse ja arvelduse, auditivaate, seaded ning omaniku andmeekspordi. Organisatsiooniga saab liituda kutse kaudu ja ligipääsud on rollipõhised.",
+    "s29_title": "Teemaseemned, lõpetatud juhtumid ja parimad praktikad",
+    "s29_body": "Sotsiaaltöö spetsialistile ja teenuseosutajale. Teemaseeme aitab korduva tähelepaneku tuua kovisiooni või õppimisjärjekorda. Lõpetatud juhtumite vaade hoiab järelvaate ja õppimise koos. Parimad praktikad võimaldavad üldistada toimiva töövõtte, läbida anonüümsuse ja kvaliteedi ülevaatuse ning teha kinnitatud praktika teistele leitavaks.",
+    "s30_title": "Kiireloomuline abi ja vastuvõtulaud",
+    "s30_body": "Pöördujale ja vastuvõtulaua liikmele. Piirkondliku kiireloomulise abi laua kaudu saab pöörduja saata struktureeritud abipalve ning jälgida selle liikumist. Laualiige saab palve vastu võtta, üle anda, lahendada või suunata tavapärasesse töövoogu. See teenus ei asenda 112, Lasteabi ega Ohvriabi kriisikanaleid.",
+    "s31_title": "Toimetulekutoetuse eelhinnang",
+    "s31_body": "Pöördujale. Toimetulekutoetuse tööriist aitab sisestatud leibkonna, eluasemekulude ja sissetuleku andmete põhjal teha brauseris esialgse arvutuse ning mõista, millist infot ametlikuks taotluseks vaja võib minna. Tulemus on eelhinnang, mitte kohaliku omavalitsuse otsus.",
+    "s32_title": "Teenuseprofiil",
+    "s32_body": "Teenuseosutajale. Teenuseprofiilis saab hallata organisatsiooni üldandmeid, kontakte, ligipääsetavust, teeninduspiirkonda ja teeninduskohti ning kirjeldada iga teenuse sihtrühma, hinda, kättesaadavust, ooteaega, suunamisnõudeid ja pöördumisviise. Avaldatud info muudab teenuse leitavaks Teenusekaardil ja SotsiaalAI soovitustes.",
+    "s33_title": "Profiil, tellimus ja ligipääsetavus",
+    "s33_body": "Kõigile rollidele. Profiilis saab muuta PIN-koodi ja e-posti aadressi, hallata tellimust või sponsoreeritud ligipääsu, vaadata kasutusmahtu, logida välja ning avada keele ja ligipääsetavuse seaded. Kohandada saab keelt, teksti suurust, kontrasti, ekraani profiili, liikumist ja läbipaistvust; SotsiaalAI saab paigaldada telefoni või arvutisse rakendusena.",
+    "s34_title": "Seansid, andmekoopia ja konto kustutamine",
+    "s34_body": "Kõigile rollidele. Kasutaja saab lõpetada praeguse või kõik aktiivsed seansid, taotleda oma andmetest koopiat ning alustada konto kustutamist. Andmekoopia ja kustutamine järgivad rolli-, omandi-, jagamis- ja säilituspiire, et teise inimese või organisatsiooni sisu ei satuks kasutaja ekspordi või kustutuse sisse.",
+    "s35_title": "Teadmusbaasi ja allikate haldus",
+    "s35_body": "Administraatorile. Haldusvaated koondavad teadmusbaasi töökindluse ja enesekontrolli, allikapaketid, dokumendid, sisu lisamise, KOV-i ja organisatsioonide allikad, allikatagasiside ning teenuste värskuse. Materjalid läbivad enne avaldamist ülevaatuse, päritolu- ja kvaliteedikontrolli.",
+    "s36_title": "Platvormi haldus ja analüütika",
+    "s36_body": "Administraatorile. Platvormi haldus hõlmab kasutuse ja AI-kulu analüütikat, kiireloomuliste laudade, tööheaolu pilootide, mentorlussüsteemi, tööalase raamistiku kinnituste ja teenuste kättesaadavuse haldust. Operatiivsed vaated aitavad märgata tõrkeid ja teha kontrollitud muudatusi ilma kasutajate privaatset sisu vaikimisi avamata.",
+    "s37_title": "Avalik info, juhendid ja rakenduse paigaldamine",
+    "s37_body": "Kõigile külastajatele. Avalik osa koondab lehed Meist, Autorilt, Võimalused, Kasutusjuhend, Hinnastus, kasutustingimused, privaatsuspoliitika, kontaktid ja tööalase kasutuse raamistiku. Rakenduse saab toetatud brauseris paigaldada telefoni või arvutisse ning kasutada eraldi rakenduseikoonist.",
+    "toc_title": "Võimaluste rühmad"
   },
   "subscriptionGate": {
     "readonly_title": "Tellimus ei ole aktiivne.",

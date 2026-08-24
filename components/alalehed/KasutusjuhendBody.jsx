@@ -16,10 +16,34 @@ import { backWithTransition, pushWithTransition } from "@/lib/routeTransition";
 import { focusPolicyScrollArea, handlePolicyScrollKeyDown } from "@/components/alalehed/policyScrollKeyboard";
 import { ReadingToc, useHashNavigation } from "@/components/alalehed/readingLayer";
 
-const SECTION_KEYS = ["accessibility", "home", "register", "signin", "chat", "rooms", "journey", "documents", "search", "agent_mode", "wellbeing", "pro_tools", "profile", "about", "before_use", "privacy_safety", "quickstart"];
-export default function KasutusjuhendBody() {
+const GUIDE_ROLES = ["client", "specialist", "provider"];
+const COMMON_SECTION_KEYS = [
+  "accessibility",
+  "home",
+  "register",
+  "signin",
+  "chat",
+  "rooms",
+  "documents",
+  "search",
+  "agent_mode",
+  "profile",
+  "about",
+  "before_use",
+  "privacy_safety"
+];
+const ROLE_SECTION_KEYS = ["workspace", "workflows", "quickstart"];
+
+function isGuideRole(value) {
+  return GUIDE_ROLES.includes(value);
+}
+
+export default function KasutusjuhendBody({ initialRole = "" }) {
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedRole, setSelectedRole] = useState(
+    isGuideRole(initialRole) ? initialRole : ""
+  );
   const activeSectionId = useHashNavigation();
   const router = useRouter();
   const {
@@ -60,21 +84,57 @@ export default function KasutusjuhendBody() {
       setIsContactOpen(true);
     }
   };
-  const guideContent = {
-    intro: t("about.guide.intro"),
-    sections: SECTION_KEYS.map(key => ({
+  const commonSections = useMemo(
+    () => COMMON_SECTION_KEYS.map(key => ({
       key,
       title: t(`about.guide.sections_v2.${key}.title`),
-      body: localizeInternalHtmlLinks(t(`about.guide.sections_v2.${key}.body`), locale)
-    }))
-  };
+      body: localizeInternalHtmlLinks(
+        t(`about.guide.sections_v2.${key}.body`),
+        locale
+      )
+    })),
+    [locale, t]
+  );
+  const roleSections = useMemo(() => {
+    if (!selectedRole) return [];
+    return ROLE_SECTION_KEYS.map(key => ({
+      key: `role-${key}`,
+      title: t(`about.guide.role_sections.${selectedRole}.${key}.title`),
+      body: localizeInternalHtmlLinks(
+        t(`about.guide.role_sections.${selectedRole}.${key}.body`),
+        locale
+      )
+    }));
+  }, [locale, selectedRole, t]);
+  const guideSections = useMemo(
+    () => [
+      ...commonSections.slice(0, 4),
+      ...roleSections,
+      ...commonSections.slice(4)
+    ],
+    [commonSections, roleSections]
+  );
   const visibleSections = useMemo(
-    () => filterGuideSections(guideContent.sections, searchQuery),
-    // sections sõltub ainult lokaadist; filtreerime päringu muutumisel
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [locale, searchQuery]
+    () => filterGuideSections(guideSections, searchQuery),
+    [guideSections, searchQuery]
   );
   const isFiltering = searchQuery.trim().length > 0;
+
+  const handleRoleChange = (event) => {
+    const nextRole = event.target.value;
+    if (!isGuideRole(nextRole)) return;
+    setSelectedRole(nextRole);
+    setSearchQuery("");
+
+    const url = new URL(window.location.href);
+    url.searchParams.set("role", nextRole);
+    url.hash = "";
+    window.history.replaceState(
+      window.history.state,
+      "",
+      `${url.pathname}${url.search}`
+    );
+  };
 
   /* Sisukorra klõps aktiivse otsingufiltri ajal: sihtpeatükk võib olla
      DOM-ist väljas ja brauseri ankruhüpe kukub vaikselt. Klõps tühjendab
@@ -113,8 +173,44 @@ export default function KasutusjuhendBody() {
               {t("about.guide.short_title")}
             </SubpageHeader>
             <p>
-              {guideContent.intro}
+              {t("about.guide.intro")}
             </p>
+            <fieldset
+              className="guide-role-picker"
+              id="guide-role-picker"
+              aria-describedby="guide-role-picker-intro"
+            >
+              <legend>{t("about.guide.role_picker.title")}</legend>
+              <p className="guide-role-picker__intro" id="guide-role-picker-intro">
+                {t("about.guide.role_picker.intro")}
+              </p>
+              <div className="guide-role-picker__options">
+                {GUIDE_ROLES.map((role) => (
+                  <label className="guide-role-option" key={role}>
+                    <input
+                      type="radio"
+                      name="guide-role"
+                      value={role}
+                      checked={selectedRole === role}
+                      onChange={handleRoleChange}
+                    />
+                    <span className="guide-role-option__name">
+                      {t(`about.guide.role_picker.${role}_name`)}
+                    </span>
+                    <span className="guide-role-option__hint">
+                      {t(`about.guide.role_picker.${role}_hint`)}
+                    </span>
+                  </label>
+                ))}
+              </div>
+              <p className="guide-role-picker__status" aria-live="polite">
+                {selectedRole
+                  ? t("about.guide.role_picker.selected", {
+                      role: t(`about.guide.role_picker.${selectedRole}_name`)
+                    })
+                  : t("about.guide.role_picker.prompt")}
+              </p>
+            </fieldset>
             <div className="reading-search" role="search">
               <label htmlFor="guide-search-input">
                 {t("about.guide.search_label")}
@@ -134,7 +230,7 @@ export default function KasutusjuhendBody() {
             </div>
             <ReadingToc
               title={t("legal.toc_title")}
-              items={guideContent.sections.map(({ key, title }) => ({
+              items={guideSections.map(({ key, title }) => ({
                 id: key,
                 label: title
               }))}
