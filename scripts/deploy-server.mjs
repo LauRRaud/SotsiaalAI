@@ -188,6 +188,22 @@ fi
 echo "[deploy:server] Installing locked dependencies"
 npm ci --include=dev --no-audit --no-fund
 
+# cross-env 10.1.0 can arrive from npm's cache without executable mode on its
+# declared bin targets. Builds do not use it, but both production services do,
+# so verify and repair the locked package immediately after every clean install.
+for node_bin in cross-env cross-env-shell; do
+  bin_path="node_modules/.bin/$node_bin"
+  bin_target="$(readlink -f "$bin_path" || true)"
+  if [ -z "$bin_target" ] || [ ! -f "$bin_target" ]; then
+    echo "[deploy:server] Required executable is missing: $bin_path" >&2
+    exit 6
+  fi
+  if [ ! -x "$bin_target" ]; then
+    chmod 0755 "$bin_target"
+    echo "[deploy:server] Restored executable mode: $node_bin"
+  fi
+done
+
 if [ "$SKIP_BUILD" != "1" ]; then
   mkdir -p "$BACKUP_DIR"
   if [ -d "$APP_DIR/.next" ]; then
