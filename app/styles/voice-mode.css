@@ -93,22 +93,8 @@
   cursor: default;
 }
 
-.voice-avatar[data-webgl="unavailable"] .voice-avatar__fallback,
-.voice-avatar--loading::before {
+.voice-avatar[data-webgl="unavailable"] .voice-avatar__fallback {
   display: block;
-}
-
-.voice-avatar--loading::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 48%;
-  width: 7rem;
-  aspect-ratio: 1;
-  translate: -50% -50%;
-  border-radius: 50%;
-  border: 1px solid rgba(230, 223, 216, 0.12);
-  box-shadow: 0 0 3rem rgba(180, 176, 168, 0.14);
 }
 
 .voice-mode__caption {

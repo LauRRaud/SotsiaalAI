@@ -1,6 +1,5 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
@@ -8,11 +7,7 @@ import GlassCarousel from "@/components/room/GlassCarousel";
 import ChevronIcon from "@/components/brand/icons/ChevronIcon";
 import { AboutInfoIcon } from "@/components/brand/icons/CardIcons";
 import { VOICE_SESSION_WARNING_MS } from "@/lib/chat/realtimeVoice";
-
-const VoicePointAvatar = dynamic(() => import("./VoicePointAvatar"), {
-  ssr: false,
-  loading: () => <div className="voice-avatar voice-avatar--loading" aria-hidden="true" />
-});
+import VoicePointAvatar from "./VoicePointAvatar";
 
 const LIVE_STATES = ["connecting", "listening", "thinking", "speaking"];
 

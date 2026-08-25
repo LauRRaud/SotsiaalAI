@@ -160,17 +160,17 @@ Ainult iseseisev tervitus kasutab kiiret
 tervitusvastust; tervitusele lisatud küsimus või muu sisu läbib endiselt kogu RAG-i ja
 turvatoru. Parandusejärgne päris mikrofonivoor on endiselt **NOT_PROVEN**.
 
-**Algne näota täpp-avatar on 25.08 omaniku valikul lokaalselt `repair-a` harus taastatud.**
+**Algne näota täpp-avatar on 25.08 omaniku valikul taastatud ja toodangusse viidud.**
 23.08 toodangusse jõudnud näoversioon ei sobinud visuaalselt ning ei ole enam soovitud suund.
 Taastatud on täpselt näokatsele eelnenud 9 849-punktiline `SAV3` pilv ja selle generaator;
 WebGL-renderdaja, häälrežiimi paigutus, olekud, hiirejärgne liikumine ning kõik hilisemad
 vestluse ja hääletoru parandused jäävad muutmata. `Torsonägu.png` ja `Nägukülg.png` säilivad
-kasutamata katsematerjalina ega ole avatari rajaga seotud. Kohalikus häälvaates renderdus
-taastatud näota pea ja torso korrektselt; commit, integratsioon ja deploy on veel tegemata ning
-toodangus püsib seni näoversioon. Omaniku tagasiside järel eemaldati 25.08 nii katsetatud
-otsmiku energiakuma kui ka suu
-kumakriips koos nende olekuanimatsioonidega. In-app käsikontroll kinnitas, et häälvaate nägu on
-jälle täiesti tühi: otsmikul ega suu kohal ei ole eraldi valgusefekti.
+kasutamata katsematerjalina ega ole avatari rajaga seotud. Omaniku tagasiside järel eemaldati
+nii katsetatud otsmiku energiakuma kui ka suu kumakriips koos nende olekuanimatsioonidega.
+Häälvaate avamisel ei asendata avatarit enam laadimisrõngaga: sama parsitud punktipilv jääb
+mällu ja uue vaate WebGL-lõuend luuakse enne kaadri näitamist. Kohalik in-app käsikontroll
+kinnitas tühja näo ning kolmel järjestikusel sisse- ja väljalülitusel oli lõuend kohe olemas,
+laadimisrõngast ei renderdatud kordagi.
 
 **Tööalade sisuvaadete kiirmenüü ja leheinfo on 22.08 parandatud.** Kõik
 `/vestlus?workspace=…` tööalad kasutavad nüüd sisu klaaspinda ning lehe nime, tagasinupu ja
@@ -2006,12 +2006,12 @@ mõõtu muutmata kuvatakse torso all eraldi dokieelses alas ainult lühike töö
 lõpuhoiatuse ajal.
 Dikteerimismikrofon on endiselt eraldi funktsioon.
 
-Omaniku 25.08 valikul on lokaalses parandusharus taastatud algne näota ühe esikoorega avatar:
+Omaniku 25.08 valikul on taastatud ja toodangusse viidud algne näota ühe esikoorega avatar:
 9 849 nähtavat punkti moodustavad abstraktse pea, kaela ja torso ilma silmade, nina, suu või
 teise punktikihita. Omaniku 25.08 tagasiside järel ei joonistata otsmikule ega suu asukohta
 eraldi kuma, joont või olekuanimatsiooni.
-Näokatse PNG-d jäävad kasutamata katsematerjalina alles. Toodang kasutab
-kuni eraldi commit'i ja deploy-loani veel 23.08 näoversiooni; täpne seis on kirjeldatud S1.0-s.
+Näokatse PNG-d jäävad kasutamata katsematerjalina alles. Häälvaate avamisel kasutatakse
+mällu jäetud punktipilve kohe ning varasem tühi laadimisvaade ja rõngas on eemaldatud.
 
 Realtime on ainult kuulamisliides: spetsiaalne `type: "transcription"` WebRTC-seanss kasutab
 `gpt-4o-mini-transcribe` mudelit kõnevooru tuvastamiseks ja transkriptsiooniks. Seanss määrab

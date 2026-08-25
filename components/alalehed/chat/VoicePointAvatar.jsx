@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { Camera, Geometry, Mesh, Program, Renderer } from "ogl";
 
 /*
@@ -18,6 +18,8 @@ import { Camera, Geometry, Mesh, Program, Renderer } from "ogl";
 
 const CLOUD_SRC = "/voice/avatar-cloud.bin";
 const HEADER_BYTES = 32;
+let cachedCloud = null;
+let cloudRequest = null;
 
 const VERTEX_SHADER = `
   precision highp float;
@@ -200,6 +202,26 @@ function parseCloud(buffer) {
   return { count, position, normal, color, rig, size, mouth, pivot };
 }
 
+function loadCloud() {
+  if (cachedCloud) return Promise.resolve(cachedCloud);
+  if (!cloudRequest) {
+    cloudRequest = fetch(CLOUD_SRC)
+      .then(response => {
+        if (!response.ok) throw new Error(`punktipilve ei laetud: ${response.status}`);
+        return response.arrayBuffer();
+      })
+      .then(buffer => {
+        cachedCloud = parseCloud(buffer);
+        return cachedCloud;
+      })
+      .catch(error => {
+        cloudRequest = null;
+        throw error;
+      });
+  }
+  return cloudRequest;
+}
+
 /* Taustarežiimis on sama kuju tavavestluse taga: tuhm, kliki mitte püüdev.
    Omanik nägi teda veaolekus tumedana ja soovis just seda (22.08). */
 const BACKDROP_DIM = 0.34;
@@ -219,23 +241,23 @@ export default function VoicePointAvatar({
   useEffect(() => { statusRef.current = status; }, [status]);
   useEffect(() => { energyRef.current = audioLevel; }, [audioLevel]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const host = hostRef.current;
     if (!host) return undefined;
 
     let renderer = null;
     let frame = null;
     let disposed = false;
-    const controller = new AbortController();
 
     (async () => {
       let cloud;
       try {
-        const response = await fetch(CLOUD_SRC, { signal: controller.signal });
-        if (!response.ok) throw new Error(`punktipilve ei laetud: ${response.status}`);
-        cloud = parseCloud(await response.arrayBuffer());
-      } catch (error) {
-        if (error?.name !== "AbortError") host.dataset.webgl = "unavailable";
+        // Tavavaate avatar on faili juba laadinud. Häälvaatesse minnes
+        // kasutame sama parsitud pilve kohe, et vahetusel ei tekiks tühja
+        // kaadrit ega eraldi laadimisrõngast.
+        cloud = cachedCloud || await loadCloud();
+      } catch {
+        host.dataset.webgl = "unavailable";
         return;
       }
       if (disposed) return;
@@ -367,7 +389,6 @@ export default function VoicePointAvatar({
 
     return () => {
       disposed = true;
-      controller.abort();
       if (frame) cancelAnimationFrame(frame);
       host.__voiceCleanup?.();
       host.__voiceCleanup = null;

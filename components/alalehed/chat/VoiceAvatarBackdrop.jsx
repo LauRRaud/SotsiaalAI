@@ -1,8 +1,6 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-const VoicePointAvatar = dynamic(() => import("./VoicePointAvatar"), { ssr: false });
+import VoicePointAvatar from "./VoicePointAvatar";
 
 /**
  * Sama punktikuju tavavestluse TAUSTAL: tuhm, liikumatu olekus, klikke mitte
