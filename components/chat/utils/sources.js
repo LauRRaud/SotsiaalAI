@@ -142,6 +142,24 @@ export function normalizeSources(sources) {
     const issueLabel = typeof src?.issueLabel === "string" ? src.issueLabel : typeof src?.issueId === "string" ? src.issueId : undefined;
     const year = typeof src?.year === "number" || typeof src?.year === "string" ? src.year : undefined;
     const sourceType = typeof src?.sourceType === "string" ? src.sourceType : typeof src?.source_type === "string" ? src.source_type : typeof src?.origin === "string" ? src.origin : typeof src?.type === "string" ? src.type : undefined;
+    const municipalityId = typeof src?.municipalityId === "string"
+      ? src.municipalityId
+      : typeof src?.municipality_id === "string"
+        ? src.municipality_id
+        : typeof src?.metadata?.municipalityId === "string"
+          ? src.metadata.municipalityId
+          : typeof src?.metadata?.municipality_id === "string"
+            ? src.metadata.municipality_id
+            : undefined;
+    const municipalityName = typeof src?.municipalityName === "string"
+      ? src.municipalityName
+      : typeof src?.municipality_name === "string"
+        ? src.municipality_name
+        : typeof src?.metadata?.municipalityName === "string"
+          ? src.metadata.municipalityName
+          : typeof src?.metadata?.municipality_name === "string"
+            ? src.metadata.municipality_name
+            : undefined;
     return {
       key,
       source_id: typeof sourceId === "string" ? sourceId : undefined,
@@ -160,7 +178,11 @@ export function normalizeSources(sources) {
       pageRange: pageLabel || undefined,
       fileName: src?.fileName,
       sourceType,
-      source_type: typeof src?.source_type === "string" ? src.source_type : undefined,
+      source_type: sourceType,
+      municipality_id: municipalityId,
+      municipalityId,
+      municipality_name: municipalityName,
+      municipalityName,
       origin: typeof src?.origin === "string" ? src.origin : undefined,
       short_ref: typeof src?.short_ref === "string" ? src?.short_ref : undefined,
       journalTitle: typeof src?.journalTitle === "string" ? src?.journalTitle : undefined,

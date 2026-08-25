@@ -340,6 +340,9 @@ export function useChatConversationState({
             sourceId: typeof source?.sourceId === "string" ? source.sourceId : undefined,
             documentId: typeof source?.documentId === "string" ? source.documentId : undefined,
             docId: typeof source?.docId === "string" ? source.docId : undefined,
+            sourceType: typeof source?.sourceType === "string" ? source.sourceType : undefined,
+            municipalityId: typeof source?.municipalityId === "string" ? source.municipalityId : undefined,
+            municipalityName: typeof source?.municipalityName === "string" ? source.municipalityName : undefined,
             label: typeof source?.label === "string" ? source.label : undefined,
             title: typeof source?.title === "string" ? source.title : undefined,
             authors: Array.isArray(source?.authors)
