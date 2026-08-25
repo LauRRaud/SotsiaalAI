@@ -12,9 +12,8 @@ import { Camera, Geometry, Mesh, Program, Renderer } from "ogl";
  * needsamad täpid — seega pöörab pea ennast PÄRISELT ruumis, mitte ei
  * nihku parallaksiga.
  *
- * Suu asemel on näol tühi pind. Kõne ajal süttivad SEAL olevad täpid
- * ribadena ja võnguvad kõne tugevusega — valgus tuleb kehast, mitte
- * pealekleebitud graafikast.
+ * Nägu jääb tahtlikult tühjaks: eraldi silmi, nina, suud ega otsmikuefekti
+ * ei joonistata.
  */
 
 const CLOUD_SRC = "/voice/avatar-cloud.bin";
@@ -37,12 +36,10 @@ const VERTEX_SHADER = `
   uniform float uListening;
   uniform float uSizeScale;
   uniform vec2 uPointer;
-  uniform vec3 uMouth;
   uniform vec3 uPivot;
 
   varying vec3 vColor;
   varying float vAlpha;
-  varying float vGlow;
   varying float vRim;
 
   mat3 headRotation(float yaw, float pitch) {
@@ -54,28 +51,6 @@ const VERTEX_SHADER = `
 
   void main() {
     vec3 p = position;
-
-    // Suu võnked: seitse riba näo tühjal pinnal. Amplituud tuleb kõne
-    // tugevusest, muster ajast — nii ei ole see silmus, vaid reageering.
-    vec3 toMouth = p - uMouth;
-    float lateral = toMouth.x / 0.135;
-    float vertical = toMouth.y / 0.052;
-    float depthGate = 1.0 - smoothstep(0.06, 0.2, abs(toMouth.z));
-    float mouthGlow = 0.0;
-    if (abs(lateral) < 1.0 && abs(vertical) < 2.6 && depthGate > 0.0) {
-      float bars = 7.0;
-      float slot = (lateral * 0.5 + 0.5) * bars;
-      float index = floor(slot);
-      float local = fract(slot) - 0.5;
-      float phase = uTime * (7.2 + index * 1.9) + index * 2.3;
-      float level = 0.3 + 0.7 * abs(sin(phase)) * (0.45 + 0.55 * abs(sin(phase * 0.37)));
-      float height = uEnergy * level * max(0.0, 1.0 - 0.55 * lateral * lateral) * 1.9;
-      float bar = smoothstep(0.46, 0.16, abs(local));
-      float body = smoothstep(height, height * 0.2, abs(vertical));
-      mouthGlow = bar * body * depthGate * uSpeaking;
-      // Süttinud täpid astuvad veidi ettepoole — valgus tuleb seest välja.
-      p += normalize(vec3(0.0, 0.0, 1.0)) * mouthGlow * 0.02;
-    }
 
     // Hingamine ja kerge elutus, et figuur ei seisaks surnult.
     p.y += sin(uTime * 0.62 + p.x * 1.4) * 0.0035;
@@ -91,10 +66,7 @@ const VERTEX_SHADER = `
     gl_Position = projectionMatrix * view;
     // Suurem täpp = rohkem kattumist = heledam pind. Lähtepildil tuleb
     // heledus just sellest ja sisseküpsetatud hõõgusest.
-    gl_PointSize = clamp(
-      aSize * uSizeScale * 2.4 * (1.0 + mouthGlow * 0.7) / max(0.2, -view.z),
-      1.4, 14.0
-    );
+    gl_PointSize = clamp(aSize * uSizeScale * 2.4 / max(0.2, -view.z), 1.4, 14.0);
 
     // Sooja ja külma kanali eristus tuleb ALLIKAVÄRVIST, mitte maskist:
     // kuldsed energiajooned on pildis juba olemas.
@@ -142,7 +114,6 @@ const VERTEX_SHADER = `
     vColor = clamp(aColor * 1.15 * warmGain * coolGain, 0.0, 1.0);
     vAlpha = (0.72 + 0.28 * aSize) * (mix(0.05, 1.0, front) + rim * 0.6) * diffuse;
     vRim = rim;
-    vGlow = mouthGlow * front;
   }
 `;
 
@@ -150,11 +121,9 @@ const FRAGMENT_SHADER = `
   precision highp float;
 
   uniform float uDim;
-  uniform float uEnergy;
 
   varying vec3 vColor;
   varying float vAlpha;
-  varying float vGlow;
   varying float vRim;
 
   void main() {
@@ -168,10 +137,6 @@ const FRAGMENT_SHADER = `
     // lähtepildil — soe valge (1.0, 0.96, 0.9) neutraliseeris sinise keha ja
     // kogu figuur luges hallina (mõõdetud: sinisus B-R 37 asemel 11).
     vec3 color = mix(vColor, vec3(0.82, 0.93, 1.0), clamp(vRim * 1.1, 0.0, 0.8));
-    if (vGlow > 0.0) {
-      vec3 spark = mix(vec3(1.0, 0.79, 0.46), vec3(1.0, 0.95, 0.86), min(0.65, vGlow * 0.65));
-      color = mix(color, spark, min(1.0, vGlow * 1.6)) * (1.0 + vGlow * (0.6 + uEnergy * 0.8));
-    }
 
     // Lai pehme halo asendab lähtepildi sisseküpsetatud hõõgust.
     float alpha = vAlpha * (core * 0.8 + halo * 0.72) * uDim;
@@ -317,7 +282,6 @@ export default function VoicePointAvatar({
           uDim: { value: 1 },
           uSizeScale: { value: 900 },
           uPointer: { value: [0, 0] },
-          uMouth: { value: cloud.mouth },
           uPivot: { value: cloud.pivot }
         }
       });

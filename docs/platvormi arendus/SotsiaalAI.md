@@ -160,38 +160,17 @@ Ainult iseseisev tervitus kasutab kiiret
 tervitusvastust; tervitusele lisatud küsimus või muu sisu läbib endiselt kogu RAG-i ja
 turvatoru. Parandusejärgne päris mikrofonivoor on endiselt **NOT_PROVEN**.
 
-**Näoga täpp-avatar on 23.08 koodi-SHA-l `a3a10437` toodangus.** Opus 5 senine ühe esikoorega punktipilve-, värvi-, hõrenduse-, kõrva- ja
-WebGL-toru säilis; uus `Torsonägu.png` annab 12 848 nähtava täpi asukoha ning värvi ja
-`Nägukülg.png` ainult otsmiku, nina, huulte ja lõua sagitaalsügavuse. Külgprofiil kujundab
-nüüd näo kitsast keskosa, mitte kogu näorea sügavust, nii et nina ulatub põskedest eraldi ette.
-Alumine torso lõigatakse
-enne PNG serva ning kaadrimõõt jäi vana pilvega samaks. Kohalikus 946 × 842 brauserivaates olid
-eestvaade ja mõlemad pöörded ruumilised, ilma tagakoore/topeltkõrvata, ning WebGL-laadimine oli
-roheline. Silma kõrgusel olnud järsk sügavusaste muudeti madalaks lokaalseks silmakoopaks.
-Oimukohale ei lisata enam külgvaate peale teist lohku. Lõug säilitab nüüd külgvaatest saadud
-eesmise sügavuse kogu lõuajooneni ning kael hakkab taanduma alles selle all; nii paikneb hele
-lõuakontuur väljaulatuval lõual. Pea pöördub täies ulatuses, kaela ülaserva pöördekaal langeb
-sujuvalt 45%-ni ja õlgadel nullini, et lõug ja kael ei liiguks ühe jäiga tükina.
-Nina-suu detailalas jäid 2708 lähest heledusmaksimumist minimaalse vahe järel alles 1638
-selgemat ja veidi väiksemat täppi; nina kasutab rangemat vahet kui suu. Silmi, põski, kõrvu
-ega torsot see puhastus ei hõrenda.
-Nina juurt tõstab olemasolevate punktide kitsas sügavushari ja suurem loetavus, ninaotsa
-kaksikmügar on kitsam, terav keskpunkt jääb heledaks ning kõrvaaluse lõuanurga lisasügavus on
-vähendatud. Kõrva ja lõuajoone vahel varem püsinud 55% täpisuuruse summutus on täielikult
-eemaldatud, et nähtav pind ei katkeks. Kõik pealae, oimu ja kõrva servatäpid jäävad alles;
-kiivrihelki vähendab ainult servatäppide tumedam toon. Silmade, ninajuure, ninaotsa ja huulte
-816 olemasolevat heledat punkti saavad torso paletiga kooskõlalise sooja aktsendi. Lõua all
-olevad üksikud külgmised soojad punktid jahutatakse siniseks, et nad ei moodustaks laia kuldset
-lõuajoont.
-Kõrva ja näokülje liiga lai värvisummutus võeti omaniku vaatluse järel täielikult tagasi;
-kõrvaesine hele joon jäi teadlikult eraldi lahendamata, et mitte figuuri punkte kustutada.
-Automaatseid teste ei loodud ega käivitatud. Muutumatu väljalaskepuu lint, tõlkekontroll,
-diff-kontroll ja kohalik Turbopacki tootmisbuild olid rohelised; serveri ametlik build läbis
-TypeScripti ning 70 staatilist lehte. Deploy-järgselt olid `origin/main` ja puhas serveri
-tööpuu samal koodi-SHA-l, frontend, RAG ja research-worker aktiivsed, `/vestlus` vastas nii
-loopbackil kui avalikult 200 ning RAG health jäi 49 727 vektori / 6089 dokumendi peale.
-Serverist ja avalikult väljastatav `SAV3` avatari fail oli 179 904 baiti ja kandis 12 848 täppi;
-serverifaili ning HTTP-vastuse SHA-256 kattusid kohaliku väljalaskefailiga.
+**Algne näota täpp-avatar on 25.08 omaniku valikul lokaalselt `repair-a` harus taastatud.**
+23.08 toodangusse jõudnud näoversioon ei sobinud visuaalselt ning ei ole enam soovitud suund.
+Taastatud on täpselt näokatsele eelnenud 9 849-punktiline `SAV3` pilv ja selle generaator;
+WebGL-renderdaja, häälrežiimi paigutus, olekud, hiirejärgne liikumine ning kõik hilisemad
+vestluse ja hääletoru parandused jäävad muutmata. `Torsonägu.png` ja `Nägukülg.png` säilivad
+kasutamata katsematerjalina ega ole avatari rajaga seotud. Kohalikus häälvaates renderdus
+taastatud näota pea ja torso korrektselt; commit, integratsioon ja deploy on veel tegemata ning
+toodangus püsib seni näoversioon. Omaniku tagasiside järel eemaldati 25.08 nii katsetatud
+otsmiku energiakuma kui ka suu
+kumakriips koos nende olekuanimatsioonidega. In-app käsikontroll kinnitas, et häälvaate nägu on
+jälle täiesti tühi: otsmikul ega suu kohal ei ole eraldi valgusefekti.
 
 **Tööalade sisuvaadete kiirmenüü ja leheinfo on 22.08 parandatud.** Kõik
 `/vestlus?workspace=…` tööalad kasutavad nüüd sisu klaaspinda ning lehe nime, tagasinupu ja
@@ -2027,16 +2006,12 @@ mõõtu muutmata kuvatakse torso all eraldi dokieelses alas ainult lühike töö
 lõpuhoiatuse ajal.
 Dikteerimismikrofon on endiselt eraldi funktsioon.
 
-Toodangus jätkub sama ühe esikoorega tehnika näoga renderduste peale: eestvaate
-12 848 punkti saavad külgvaatest ainult keskse näoprofiili sügavuse, mitte teist nähtavat
-punktikihti. Nina ulatub põskedest eraldi ette, lõug püsib külgvaate eesmises sügavuses ning
-kael taandub ja pöördub lõua all vähem. Kõrv kasutab taas senist laia sujuvat üleminekut.
-Nina ja suu lähestikku kuhjunud helendusmaksimumid on minimaalse vahega selgeteks
-üksiktäppideks hõrendatud. Olemasolevad silma-, nina- ja suukontuuri punktid saavad mõõduka
-sooja aktsendi; nina juur ja terav ninaots püüavad valgust, ninaots ning kõrvaalune lõuanurk on
-kitsamad, kõrva–lõuajoone pind katkematu ja kõik pealae servatäpid alles. See näoga versioon
-on koodi-SHA-l `a3a10437` ametlik avatar; deploy-järgne SHA-, teenuse-, HTTP- ja binaarfaili
-kontroll on kirjeldatud S1.0-s.
+Omaniku 25.08 valikul on lokaalses parandusharus taastatud algne näota ühe esikoorega avatar:
+9 849 nähtavat punkti moodustavad abstraktse pea, kaela ja torso ilma silmade, nina, suu või
+teise punktikihita. Omaniku 25.08 tagasiside järel ei joonistata otsmikule ega suu asukohta
+eraldi kuma, joont või olekuanimatsiooni.
+Näokatse PNG-d jäävad kasutamata katsematerjalina alles. Toodang kasutab
+kuni eraldi commit'i ja deploy-loani veel 23.08 näoversiooni; täpne seis on kirjeldatud S1.0-s.
 
 Realtime on ainult kuulamisliides: spetsiaalne `type: "transcription"` WebRTC-seanss kasutab
 `gpt-4o-mini-transcribe` mudelit kõnevooru tuvastamiseks ja transkriptsiooniks. Seanss määrab
