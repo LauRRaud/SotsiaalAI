@@ -959,6 +959,20 @@ html[data-reduce-transparency="1"] .feature-page__surface {
   --feature-content-max: 42rem;
 }
 
+.feature-page--rooms .feature-page__surface {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+.feature-page--rooms .feature-page__surface::before {
+  display: none;
+}
+
 .rooms-page {
   min-height: min(42rem, calc(var(--app-dynamic-block-size, 100dvh) - 8rem));
   display: flex;
@@ -1122,6 +1136,10 @@ html[data-reduce-transparency="1"] .feature-page__surface {
 }
 
 .room-list-card__actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
   min-inline-size: var(--hit-target-min, 2.75rem);
   min-block-size: var(--hit-target-min, 2.75rem);
   padding: 0.45rem 0.7rem;
@@ -1136,13 +1154,8 @@ html[data-reduce-transparency="1"] .feature-page__surface {
     color var(--dur-fast, 180ms) var(--ease-soft, ease);
 }
 
-.room-list-card__actions svg {
-  inline-size: 1rem;
-  block-size: 1rem;
-}
-
 .room-list-card__action--delete {
-  color: var(--status-error, #f0a49b) !important;
+  color: var(--text-dim) !important;
 }
 
 .room-list-card__actions button:focus-visible {
@@ -1162,6 +1175,10 @@ html[data-reduce-transparency="1"] .feature-page__surface {
   .room-list-card__actions button:hover:not(:disabled) {
     color: var(--text-warm);
     background: color-mix(in srgb, var(--text-warm) 7%, transparent);
+  }
+
+  .room-list-card__actions .room-list-card__action--delete:hover:not(:disabled) {
+    color: var(--status-error, #f0a49b) !important;
   }
 }
 
