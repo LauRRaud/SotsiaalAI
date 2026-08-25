@@ -1,11 +1,22 @@
 # SotsiaalAI RAG-süsteemi tehniline kaart ja kvaliteediseire hetkeseis
 
-Kuupäev: 22.08.2026
-Tööharu: `codex/rag-quality-repair-20260822`
-Varasem toodangusse viidud RAG-paranduste lähtecommit: `08cbd94ac86597911e22e3731ee812c717f04110`
-Praegune brauseris kontrollitud sisulise RAG- ja vestlusloogika baasseis on `243da993`; 23.08 külmkäivituse runtime-release oli `5796178f`, püsiva leksikaalindeksi runtime-release `d08b25a8` ning kitsa RU/EN autoriraja esimene dokumenteeritud release `676bf27b`. FTS5 health ja otsene otsing, eestikeelsed `914e1452`/`da2c79c4` sihtväravad ning `243da993` kitsa mitmekeelse autoriraja mõjutatud juhtumid on tõendatud, kuid üldine mitmekeelne RAG ja kogu 75 juhtumi kordus ei ole tehtud. Hilisem docs-only commit ei nimeta ennast uueks runtime-tõendiks.
-Põhjusepõhiste paranduste jätk jõudis toodangusse commit'ijadana `15fc81a3` → `8b4f4d69` → `bdaa8afd` → `2b0bd86` → `429469dd` → `56b4a13d` → `d7c35346` → `815f15f6` → `5796178f` → `d08b25a8` → `914e1452` → `da2c79c4` → `e0e240cf` → `2f0318c4` → `c9672a05` → `ab267fd5` → `599e89dc` → `243da993`. V04 ja kümme autorijuhtumit läbisid ajaloolise eestikeelse end-to-end värava; praegusel release'il on kitsas RU/EN autoriraja sihtkontroll, kuid kogu 75 juhtumi ja üldise mitmekeelsuse lõppvärav ei ole tehtud.
-Seis: **PARTIAL — süsteemi ei ole tõendatud 10/10 töökindlaks**
+Loodud: 22.08.2026
+Viimati uuendatud: 25.08.2026
+Tööharu: `codex/rag-quality-75`
+Aktiivne mõõdetud RAG-koodirelease: `cc9ec8de33de900453183191f1c37edf2778adc6`
+
+Viimases mõõtmises kattusid kohalik HEAD, `origin/main` ja puhas serveri checkout sellel SHA-l;
+frontend, RAG ja research-worker olid aktiivsed, `/vestlus` vastas HTTP 200, RAG health oli
+`ok=true` (49 727 vektorit / 6089 registrikirjet) ning püsiv FTS5 indeks oli `ready=true`
+(49 727 lõiku / 6073 aktiivset registridokumenti). Kontaktikontrolli timer oli aktiivne ja lubatud,
+viimane teenuse tulemus `success` ning järgmine käik 30.08.2026.
+
+Release `cc9ec8de` on diagnostiline, mitte 75/75 sertifitseerimisrelease: J08 õige dokument ja
+allikakomplekt jõuavad vastuseni, kuid faktivärav blokeerib tulemuse endiselt ekslikult. Ajalooline
+kumulatiivne maatriks on **DONE 21/75 · NOT_PROVEN 54/75**; need PASS-id ei kandu uuele SHA-le
+automaatselt. Release'ide ajalugu ja tõendipiirid on peatükkides 25–39.
+
+Seis: **PARTIAL — süsteemi ei ole tõendatud 10/10 ega 75/75 töökindlaks**
 
 See dokument vastab neljale eri küsimusele:
 
@@ -25,7 +36,7 @@ SotsiaalAI RAG ei ole üks otsingukäsk ega üks vektorandmebaas. See koosneb v�
 2. **korje ja registrikiht** — dokumendi fail, metaandmed, elutsükli olek ja versioonid;
 3. **indeks** — Chroma vektorindeks ning tekstilised otsingukanalid;
 4. **otsingu planeerimine ja järjestus** — küsimusetüübi tuvastamine, kanalite valik, hübriidotsing, rühmitamine ja kontekstivalik;
-5. **vastuse koostamine** — valitud tõendi lisamine mudeli konteksti, allikapaketid, atribuutika ja lõppvastus;
+5. **vastuse koostamine ja faktivärav** — valitud tõendi lisamine mudeli konteksti, mudelivastus, täpse fakti kontroll, allikapaketid ja atribuutika;
 6. **kasutajaliides** — autentitud sama vestlus, vastuse voogedastus ja kuvatud allikad.
 
 Seetõttu ei tõenda ükski järgmistest eraldi kogu RAG-i töökindlust:
@@ -34,7 +45,7 @@ Seetõttu ei tõenda ükski järgmistest eraldi kogu RAG-i töökindlust:
 - õige pealkirja leidmine;
 - `partial=false`;
 - 49 727 vektorlõigu olemasolu;
-- automaattestide roheline tulemus;
+- staatilise või ajaloolise regressioonikontrolli roheline tulemus;
 - otsese `/search` päringu edu;
 - kiire esimene tekst;
 - allikakaardi kuvamine.
@@ -49,17 +60,22 @@ flowchart LR
     U --> RT[Realtime transcription<br/>gpt-4o-mini-transcribe]
     RT --> C
     N --> C[/api/chat]
-    C --> P[Planner ja retrieval orchestration]
+    C --> P[questionPlan, queryPlan ja retrieval orchestration]
     P --> R[RAG FastAPI 127.0.0.1:8000]
     R --> CH[Chroma vektorindeks]
+    R --> LX[SQLite FTS5 leksikaalindeks]
     R --> RG[registry.json]
     R --> DS[versioonitud dokumendifailid]
     R --> O[OpenAI embeddings]
-    C --> M[OpenAI vastusemudel]
-    C --> DB[PostgreSQL vestlused, jooksud ja allikapaketid]
-    M --> UI[Vastus ja displayed_sources]
-    UI --> TTS[TartuNLP kylli]
+    P --> E[Valitud tõendiaknad ja retrieval trace]
+    E --> M[OpenAI vastusemudel]
+    M --> F[factContract ja sourceAttribution]
+    F --> DB[PostgreSQL vestlused, jooksud ja allikapaketid]
+    F --> UI[Vastus ja displayed_sources]
+    UI --> TTS[TartuNLP kylli<br/>eesti vastus]
+    UI --> BST[brauseri speech synthesis<br/>vene/inglise vastus]
     TTS --> U
+    BST --> U
 ```
 
 ### 2.1 Serveriprotsessid
@@ -70,19 +86,24 @@ flowchart LR
 | `sotsiaalai-rag.service` | `/home/ubuntu/apps/sotsiaalai/rag-service` | uvicorn `main:app --host 127.0.0.1 --port 8000 --workers 1` | `/etc/sotsiaalai/rag.env` |
 | `sotsiaalai-research-worker.service` | `/home/ubuntu/apps/sotsiaalai` | `/usr/bin/npm run research:worker` | `/etc/sotsiaalai/frontend.env` |
 
-RAG-teenus ei ole avalikult internetti binditud. Frontend pöördub selle poole loopback-aadressil. Viimases mõõtmises olid frontend ja RAG aktiivsed ning avalik `/vestlus` vastas HTTP 200.
+RAG-teenus ei ole avalikult internetti binditud. Frontend pöördub selle poole loopback-aadressil.
+Viimases mõõtmises olid frontend, RAG ja research-worker aktiivsed ning avalik `/vestlus` vastas
+HTTP 200.
 
 ### 2.2 Toodangu mõõdetud seis
 
 | kontroll | tulemus |
 |---|---|
-| serveri HEAD viimases release-kontrollis | `676bf27b34399b6a5f0ab8dde35d6197ae79fd75` |
-| `origin/main` samas kontrollis | sama SHA |
-| brauseris kontrollitud RAG-loogika | `c9672a0537c9c4448019a2e7b20d3a0722a65a7e` |
+| aktiivne RAG-koodirelease | `cc9ec8de33de900453183191f1c37edf2778adc6` |
+| kohalik HEAD / `origin/main` / serveri HEAD viimases kontrollis | sama SHA; serveri checkout puhas |
+| teenused | frontend, RAG ja research-worker `active` |
+| avalik vestlusrada | `/vestlus` HTTP 200 |
 | RAG health | `ok=true`, 49 727 vektorit, 6089 registrikirjet |
 | püsiv leksikaalindeks | `ready=true`, FTS5 v2, 49 727 lõiku / 6073 aktiivset dokumenti |
 | indeksi põlvkond | registri oodatud SHA-256-ga võrdne |
 | indeksi fail | 459 132 928 baiti ehk 437,9 MiB |
+| kontaktikontrolli timer | `active` + `enabled`; viimane `Result=success`; järgmine käik 30.08.2026 |
+| aktiivse release'i sisuline värav | J08 `FAIL`: õige allikas, kuid faktivärava vale `unsupported_numeric_category_relation` |
 | aktiivsed vektorlõigud | **49 727** |
 | registrikirjeid kokku | **6089** |
 | registris `ACTIVE` elutsükkel | **884** |
@@ -93,17 +114,38 @@ RAG-teenus ei ole avalikult internetti binditud. Frontend pöördub selle poole 
 
 ## 3. Küsimuse teekond
 
-1. Kasutaja kirjutab küsimuse autentitud `/vestlus` lehel.
-2. `app/api/chat/route.js` kontrollib seanssi, privaatsust, vestluse omandit, piiranguid ja kvooti.
-3. Küsimuse planner määrab küsimusetüübi ja otsinguplaani.
-4. Retrieval-orchestrator koostab otsingupäringud ja kutsub serverisiseselt RAG-i `POST /search`.
-5. Python-teenus käivitab valitud tiheda ja tekstilise otsingu kanalid, ühendab kandidaadid, järjestab ja rühmitab need.
-6. Next.js kontekstivalik valib rühmad ja lõigud mudeli konteksti.
-7. Vastusekoostaja annab mudelile küsimuse, vestlusajaloo, juhised ja tõendipaketi.
-8. Lõppvastuse järel moodustatakse `displayed_sources`.
-9. UI näitab vastust ning avab „Vastuste allikad” paneeli.
+1. Kasutaja saadab küsimuse autentitud `/vestlus` lehel; kliendi vestlushook teeb `POST /api/chat`.
+2. `requestBootstrap` kontrollib seanssi, privaatsust, vestluse omandit, rolli, kvooti,
+   kasutusreservatsiooni, ajalugu ja kriisipiiri. Dokumendi-, abi- ja puhta tervituse töövood võivad
+   siin minna oma kontrollitud harusse.
+3. `retrievalContextAssembler` ühendab keele- ja riskiplaani `questionPlanner`-i struktureeritud
+   küsimuse-/vastuse-intendiga. `queryPlanner` ja `retrievalStrategySelector` koostavad päringud,
+   filtrid, top-k ning kontekstivaliku plaani ja annavad `retrievalOrchestrator`-ile ühe või mitu
+   piiratud päringut.
+4. Orchestrator kutsub serverisiseselt RAG-i `POST /search`. Python-teenus käivitab lubatud dense-,
+   FTS5/BM25-, autori-, pealkirja-, täpse fraasi ja vajadusel registrifakti kanali, fuseerib ning
+   hübriidjärjestab lõigukandidaadid.
+5. Next.js ühendab mitme päringu kandidaadid, eemaldab duplikaadid, rühmitab need `ragContext.js`-is
+   ning rakendab dokumendiidentiteedi, õigus-, kontakti- ja arvutõendi erivaliku. Seejärel valib
+   `retrievalContextAssembler` dokumendid, tõendiaknad ja kered kontekstieelarvesse ning talletab
+   retrieval'i, identiteedi, kärpimise ja ajastuste trace'i.
+6. `mainResponseHandler` saadab küsimuse, lubatud ajaloo, juhised ja täpselt renderdatud
+   `RAG_CONTEXT`-i vastusemudelile. Struktureeritud `evidencePackage` lisandub ainult
+   `overview_synthesis`, `comparison`, `resource_discovery`, `life_situation_guidance`,
+   `thematic_synthesis` ja `broad_multi_source` režiimides. Täpse faktiküsimuse vastus puhverdatakse
+   enne kasutajale näitamist ning `factContract` võib selle tõendi suhtes kinnitada või blokeerida.
+7. `sourceAttribution` seob kinnitatud vastuse tegelikult valitud/toetavate source-ID-dega, rakendab
+   muu hulgas ajaloolise/värske allika piiri ning moodustab `displayed_sources`.
+8. `responseFinalizer` salvestab vastuse, jooksu ja allikapaketid ning saadab vastuse kliendile
+   JSON-i või SSE-voona.
+9. UI näitab vastust. Vastusemulli hoveril ilmub allikanupp, mis avab „Vastuste allikad” paneeli.
 
-See teekond selgitab, miks otsene RAG-otsing võib leida õige fakti, kuid vestlus vastata valesti: viga võib tekkida pärast otsingut planner'is, järjestuses, kontekstivalikus, ajaloo käsitluses, prompt'is, mudeli sünteesis või allika atribuutikas.
+See teekond selgitab, miks otsene RAG-otsing võib leida õige fakti, kuid vestlus ikkagi ebaõnnestuda:
+viga võib tekkida keele- või riskiplaanis, küsimuse- või päringuplanner'is, retrieval-kanalis,
+Next.js rühmitamises, dokumendiidentiteedis, tõendiakna valikus, mudeli sünteesis,
+`factContract`-is, värskus-/riskiväravas või atribuutikas. Praegune arhitektuuririsk on see, et planner'i struktureeritud
+tähendust ei kanta veel täielikult lõpukihtidesse ning validaator ja atribuutika parsivad osa
+toorküsimusest uuesti; peatükk 39 kirjeldab autoriteetse semantilise lepingu sihti.
 
 ### 3.1 Häälvestluse sisend- ja väljundrada — 23.08.2026
 
@@ -116,13 +158,17 @@ ainult kõne tekstiks muuta — ta ei otsi RAG-ist, ei koosta teist vastust ega 
 Valmis transkript saadetakse sama `/api/chat` raja kaudu suletud `inputModality: voice`
 märgisega. Sealt edasi kehtivad samad vestluse omandi-, privaatsus-, kriisi-, kvoodi-, planner'i,
 RAG-i, tõendivaliku ja kuvatud allikate lepingud nagu kirjutatud küsimusel. Vastuse koostab
-seadistatud põhimudel, toodangus `gpt-5.6-luna`. Täisvastus ja allikad salvestatakse ning jäävad
+seadistatud põhimudel; koodi vaikeseade on `gpt-5.6-luna` ja `OPENAI_MODEL` võib selle üle
+kirjutada. Täisvastus ja allikad salvestatakse ning jäävad
 tekstivestluses nähtavaks; häälpinnal ei renderdata vastusemulle ega subtiitreid avatari peale.
 
-Kliendile saabunud vastusest loetakse TartuNLP `kylli` häälega ette kuni kolm lauset või 900
+Eestikeelsest kliendile saabunud vastusest loetakse TartuNLP seadistatud häälega (koodi vaikeseade
+`kylli`) ette kuni kolm lauset või 900
 märki. `/api/tts` lisab heli ette 300 ms vaikust, et heliseadme ärkamine ei lõikaks esimest silpi;
-kasutaja uue kõnevooru algus katkestab poolelioleva ettelugemise. Viie minuti seansikell ilmub
-alles viimase 45 sekundi hoiatusena ja lühike ühendamise, kuulamise või RAG-i tööolek paikneb
+vene- ja ingliskeelne väljund kasutab esmalt brauseri kõnesünteesi. Kasutaja uue kõnevooru algus
+katkestab poolelioleva ettelugemise. Hoiatus käivitub 4 min 15 s pärast seansi algust ehk 45 s enne
+lõppu, kuid praegune `VoiceModeSurface` tingimus `remainingMs <= 255 s` teeb loenduri nähtavaks juba
+umbes 45 s pärast seansi algust ja hoiab seda nähtaval lõpuni. Lühike ühendamise, kuulamise või RAG-i tööolek paikneb
 torso all eraldi kihis, mis ei muuda avatari mõõtu. Ainult iseseisev tervitus võib kasutada kiiret
 tervitusvastust; tervitusele lisatud sisuline küsimus läbib kogu RAG-i ja turvatoru.
 
@@ -134,7 +180,8 @@ allikas on neli eraldi kontrollitavat etappi.
 
 ## 4. Koodipuu ja failide rollid
 
-Allolev puu näitab RAG-i käitumist määravaid põhiosi. See ei loetle iga testi nime, kuid annab täieliku komponentide kaardi.
+Allolev puu näitab praeguse kasutajaraja ja RAG-halduse põhiosi. See on rollikaart, mitte iga
+abifaili ammendav loetelu.
 
 ```text
 SotsiaalAI/
@@ -151,51 +198,66 @@ SotsiaalAI/
 │  ├─ upload_limits.py                   # üleslaadimise piirangud
 │  ├─ search_security.py                 # otsingu sisendi turvakontroll
 │  ├─ requirements.txt
-│  ├─ RECOVERY.md
-│  └─ (testifaile praegusel main-harul ei ole)
+│  ├─ REGISTRY_RECOVERY.md
+│  └─ (selles Python-teenuse alamkaustas eraldi testifaile ei ole)
 │
 ├─ app/api/chat/
 │  └─ route.js                           # autentitud vestluse põhitee
 ├─ app/api/realtime/session/route.js     # OpenAI WebRTC transkriptsiooniseansi loomine
 ├─ app/api/tts/route.js                  # TartuNLP kylli ja heli alguse vaikusepuhver
 │
-├─ lib/chat/                              # 59 faili; planner, retrieval ja vastus
+├─ lib/chat/                              # 63 faili; bootstrap, planner, retrieval, vastus ja jälg
+│  ├─ requestBootstrap.js                # autentimine, omand, privaatsus, ajalugu ja sisendleping
+│  ├─ orchestrationPolicy.js             # töörežiimi valik
+│  ├─ languagePlan.js                    # küsimuse, vastuse ja UI keele plaan
 │  ├─ questionPlanner.js
-│  ├─ queryPlanner.js
+│  ├─ queryPlanner.js                    # päringud ja trace'i queryPlan-projektsioon
+│  ├─ queryAnchors.js                    # nime-, pealkirja- ja fraasiankrud
 │  ├─ retrievalStrategySelector.js
 │  ├─ retrievalPlanning.js
 │  ├─ retrievalOrchestrator.js
-│  ├─ retrievalContextAssembler.js
+│  ├─ retrievalContextAssembler.js       # dokumendi-, tõendi- ja kontekstivalik
 │  ├─ ragContext.js
 │  ├─ legalLookup.js
 │  ├─ requestContext.js
+│  ├─ sourceNeed.js
+│  ├─ sourceTrust.js
+│  ├─ packageAwareContext.js
 │  ├─ sourcePackages.js
 │  ├─ sourceAttribution.js
 │  ├─ sectionAttribution.js
 │  ├─ evidencePackage.js
+│  ├─ factContract.js                    # täpse fakti tõendivärav
 │  ├─ promptBuilder.js
 │  ├─ openaiRuntime.js
-│  ├─ mainResponseHandler.js
-│  ├─ responseFinalizer.js
+│  ├─ requestGeneration.js
+│  ├─ mainRouteRuntime.js
+│  ├─ mainResponseHandler.js             # mudel, puhverdatud valideerimine ja SSE
+│  ├─ responseFinalizer.js               # vastuse, jooksu ja allikapaketi salvestus
+│  ├─ realtimeVoice.js                   # häälsisendi serveripoolne leping
 │  └─ settings.js
 │
 ├─ lib/rag/                               # 16 faili; RAG kliendid ja shared abiloogika
-├─ lib/admin/rag/                         # 28 faili; administraatori töövood
+├─ lib/admin/rag/                         # 29 faili; administraatori töövood
 ├─ app/api/rag/[...path]/route.js         # kontrollitud admin-proxy Python-teenusele
+├─ app/api/rag/selftest/route.js          # administraatori käsitsi RAG-enesetest
 ├─ app/api/admin/rag/                     # 35 faili; haldus-API rajad
 ├─ components/admin/rag/                  # 33 faili; RAG haldusliides
-├─ components/alalehed/chat/              # 15 faili; vestluse ja allikate UI
+├─ components/alalehed/chat/              # 16 faili; vestluse ja allikate UI
 │  ├─ ChatMessageItem.jsx
 │  ├─ ChatSourcesPanel.jsx
-│  └─ VoiceModeSurface.jsx
+│  ├─ VoiceModeSurface.jsx
+│  └─ VoicePointAvatar.jsx                # häälpinna avatar
 ├─ components/chat/hooks/
 │  └─ useRealtimeVoice.js                 # STT-voorud, katkestamine ja TTS taasesitus
 │
 ├─ prisma/schema.prisma                   # vestlused, allikapaketid, tagasiside, graph-lite
-├─ scripts/                               # ingest, audit, smoke, deploy ja hooldusskriptid
-├─ tests/                                 # praegusel main-harul puudub
-├─ Andmebaasi/                            # repos olev väike valik/testmaterjal
-├─ docs/ajakiri_sotsiaaltoo/              # ajakirja puudutav dokumentatsioon
+├─ scripts/                               # ingest-, audit-, kvaliteedivärava-, deploy- ja hooldusskriptid
+├─ tests/rag/rag-regressions.test.mjs     # olemasolev ajalooline kitsas regressioonifail
+├─ Andmebaasi/                            # piiratud reposisene lähte- ja metaandmete valik
+│  └─ ajakiri/                            # repos olevad ajakirja lähtefailid
+├─ docs/internal/rag-sotsiaaltoo-aastate-testipakett.md
+│                                         # ajakirja RAG-dokumentatsioon
 └─ docs/audits/                           # kvaliteediseire ja süsteemikaart
 ```
 
@@ -203,18 +265,26 @@ Mõõdetud failihulgad:
 
 | ala | failide arv |
 |---|---:|
-| `rag-service/` | 31 |
-| `lib/chat/` | 59 |
+| `rag-service/` | 13 |
+| `lib/chat/` | 63 |
 | `lib/rag/` | 16 |
-| `lib/admin/rag/` | 28 |
+| `lib/admin/rag/` | 29 |
 | `app/api/rag/` | 2 |
 | `app/api/admin/rag/` | 35 |
 | `app/api/chat/` | 8 |
-| `components/alalehed/chat/` | 15 |
+| `components/alalehed/chat/` | 16 |
 | `components/admin/rag/` | 33 |
-| `tests/` | 0 — kataloog ja `npm test` skript puuduvad praegusel `origin/main`-il |
-| nime järgi RAG-iga seotud skriptid | 79 |
-| nime järgi RAG-iga seotud testid | 72 |
+| `tests/` | 1 — `tests/rag/rag-regressions.test.mjs` |
+| `scripts/` kokku | 107 |
+| skriptid, mille failinimes on literal `rag` | 26 |
+| RAG-testifailid | 1 |
+
+`package.json`-is puudub üldine `npm test`; olemasoleva regressioonifaili jaoks on kitsas käsk
+`test:rag-regression`, kuid
+käesoleva 75 juhtumi töökorra järgi automaatteste ega test-, smoke-, probe-, benchmark- või
+E2E-radu ei looda ega käivitata. Faili olemasolu ja varasemad tulemused on ajalooline koodifakt,
+mitte aktiivse release'i runtime-tõend. Admini käsitsi käivitatav RAG-enesetest on eraldi
+operatiivne tootefunktsioon ja jääb alles.
 
 ## 5. Python RAG-teenuse API
 
@@ -223,6 +293,8 @@ Kõik rajad peale `GET /health` nõuavad päist `X-API-Key`.
 ### Tervise- ja otsingurajad
 
 - `GET /health`
+- `GET /lexical-index/status`
+- `POST /lexical-index/rebuild` — asünkroonne administraatori rebuild, HTTP 202
 - `POST /search`
 - `POST /search/agent-documents`
 - `POST /analyze`
@@ -248,7 +320,12 @@ Kõik rajad peale `GET /health` nõuavad päist `X-API-Key`.
 - `POST /documents/{doc_id}/patch-meta`
 - `DELETE /documents/{doc_id}`
 
-`POST /search` võtab muu hulgas küsimuse, `top_k`, dokumendifiltri, metaandmete `where` filtri, kanalivaliku, kaasatavad väljad ja `request_id`. Vastus sisaldab kandidaatide kõrval rühmi, kasutatud kanaleid, strateegiat, kanalistatistikat, `partial/degraded` olekut ning ajastusi. Need väljad on diagnostika, mitte iseenesest kvaliteedihinne.
+`POST /search` võtab muu hulgas küsimuse, `top_k`, dokumendifiltri, metaandmete `where` filtri,
+kanalivaliku, kaasatavad väljad, `request_id`, kuni 12 `batch_queries` päringut ning 1–12
+`journal_chunks_per_document` lõiku dokumendi kohta. `POST /search/agent-documents` piirab lubatud
+`doc_ids` hulga 50-ni. Vastus sisaldab kandidaatide kõrval rühmi, kasutatud kanaleid, strateegiat,
+kanalistatistikat, `partial/degraded` olekut ning ajastusi. Need väljad on diagnostika, mitte
+iseenesest kvaliteedihinne.
 
 ## 6. Toodanguindeks ja failisalvestus
 
@@ -258,6 +335,9 @@ RAG-i päris tehniline salvestus asub serveris:
 /var/lib/sotsiaalai-rag/
 ├─ registry.json                 # registri praegune seis
 ├─ registry.json.last-good       # viimane terve varukoopia
+├─ lexical-index.sqlite3         # registripõlvkonnaga seotud taastatav FTS5 indeks
+├─ lexical-index.sqlite3.lock    # indeksivahetuse lukk
+├─ lexical-index.sqlite3.stale   # ajutine fail-closed vananemismärgis korpuse muutmisel
 ├─ chroma/
 │  ├─ chroma.sqlite3
 │  └─ <UUID segment directory>/  # vektorsegmendid
@@ -268,7 +348,11 @@ RAG-i päris tehniline salvestus asub serveris:
 └─ .document-locks/              # dokumendipõhised lukud
 ```
 
-Mõõdetud suurused ja arvud:
+FTS5 fail on taastatav otsingukiirendi, mitte korpuse ega dokumendiregistri tehniline tõde.
+Korpuse muutmisel märgitakse see ajutiselt vanaks ja uus põlvkond vahetatakse sisse alles pärast
+tervikluskontrolli.
+
+22.08.2026 mõõdetud ajaloolise salvestussnapshot'i suurused ja arvud:
 
 | objekt | tulemus |
 |---|---:|
@@ -341,28 +425,33 @@ Ajakirjakollektsiooni eraldi mõõtmine: 903 registrikirjet, neist 877 `ACTIVE`,
 
 ### 8.1 Põhiline kohalik andmebaas
 
-Algallikate kontrolliks kasutatud põhikaust on:
+Algallikate kontrolliks kasutatud põhikausta värske failisüsteemi snapshot on:
 
 ```text
 C:\Users\rauds\sotsiaal.ai\Andmebaas/
-├─ ajakiri_sotsiaaltoo/        # 2840 faili
+├─ ajakiri_sotsiaaltoo/        # 2860 faili
 ├─ tmp/                        # 122 faili
+├─ _docx_review/               # 7 töö-/ülevaatusfaili, mitte canonical korpus
+├─ .playwright-cli/            # 8 tööriistafaili, mitte canonical korpus
 └─ README...                   # 1 fail
 ```
 
-Kokku mõõdeti 2963 faili. Ajakirjakaustas olid väljaanded 2016. aasta numbritest kuni 2026. aasta teise numbrini, erinumbrid ja muud ajaloolised kogumid.
+Kokku mõõdeti 2998 faili. Ajakirjakaustas olid väljaanded 2016. aasta numbritest kuni 2026. aasta
+teise numbrini, erinumbrid ja muud ajaloolised kogumid. Failisüsteemi koguarv sisaldab ülevaatus-
+ja tööriistakaustu; seda ei tohi esitada canonical artiklite ega korpusedokumentide arvuna.
 
 ### 8.2 `ajakiri_sotsiaaltoo` vormingud
 
 | laiend | arv |
 |---|---:|
-| `.json` | 896 |
+| `.json` | 895 |
 | `.txt` | 890 |
-| `.pdf` | 648 |
-| `.png` | 327 |
-| `.md` | 71 |
-| `.html` | 6 |
+| `.pdf` | 649 |
+| `.png` | 347 |
+| `.md` | 55 |
+| `.html` | 21 |
 | `.py` | 2 |
+| `.zip` | 1 |
 
 Ühe artikli mitu vormingut ei tähenda mitut sisuliselt eri dokumenti. Failide arv, artiklite arv, registrikirjete arv ja aktiivsete indeksikirjete arv on eri mõõdikud.
 
@@ -376,7 +465,8 @@ Isolatsioonitööpuus mõõdeti 35 faili:
 - `ajakiri/` — 4;
 - `organisatsioonid/` — 4.
 
-See repo kaust on väike arendus-/testmaterjalide valik, mitte toodangu kogu aktiivne korpus.
+See repo kaust on piiratud lähte- ja metaandmete valik, mitte toodangu kogu aktiivse korpuse
+täielik koopia.
 
 Selles worktree's ei olnud eraldi `KOV/` ega `imports/` failipuud. Toodanguregistris on KOV-i kollektsioonid olemas, kuid nende algse serveripoolse failipuu täielikku võrdlust ei ole käesolevas auditis tehtud. `master_sources_final.json` on dedupeerimis- ja planeerimiskaart, mitte aktiivse korpuse tõend.
 
@@ -409,26 +499,38 @@ Selle auditi ja parandusploki ajal korpust ega indeksit ei muudetud ja reindekse
 
 ## 10. Otsing, kanalid ja järjestus
 
-### 10.1 Vaikimisi otsingukanalid
+### 10.1 Otsingukanalid
+
+Kliendi vaikimisi otsingupäring küsib viis retriever'it:
 
 - `dense` — embedding'u sarnasus;
-- `author_match` — autori nime vaste;
+- `author_match` — registri autori-metaandmete täpsem shortlist;
 - `title_match` — pealkirja vaste;
-- `exact_phrase` — täpne fraas;
-- `bm25` — tekstiline leksikaalne vaste;
-- `registry_fact` — registri struktureeritud faktikandidaat, kui küsimus ja dokument on piisavalt üheselt seotud.
+- `exact_phrase` — täpse fraasi vaste;
+- `bm25` — leksikaalne vaste, mille lai põhitee kasutab püsivat SQLite FTS5 indeksit.
 
-Toodangu leksikaalsed seaded:
+`registry_fact` ei ole vaikimisi küsitud kuues retriever. RAG-teenus võib selle lisada tingimusliku
+spetsialiseeritud kanalina, kui registri faktikirjeldus piirab kandidaadi piisavalt üheselt ühe
+dokumendiga. Graph-lite on eraldi lipu taga: see loob seotud üksuste põhjal lisapäringud ja võib
+lisada kvoodiga kandidaate, kuid ei kirjuta ise vastust ega möödu tavalisest konteksti-,
+faktivalideerimise ega atribuutikateest.
 
-| seadistus | väärtus |
-|---|---|
-| `RAG_LEXICAL_SEARCH_ENABLED` | `true` |
-| `RAG_LEXICAL_TOP_K` | `20` |
-| `RAG_LEXICAL_MAX_SCAN` | `8000` |
-| `RAG_LEXICAL_SCAN_LIMIT` | `8000` |
-| `RAG_RRF_K` | `60` |
+`cc9ec8de` koodi vaikeseaded on:
 
-Hübriidjärjestuse põhivalem koodis:
+| seadistus | koodi vaikeväärtus | tähendus |
+|---|---:|---|
+| `RAG_LEXICAL_SEARCH_ENABLED` | `true` | leksikaalsed kanalid lubatud |
+| `RAG_LEXICAL_TOP_K` | `20` | leksikaalse shortlisti lagi |
+| `RAG_PERSISTENT_LEXICAL_INDEX_ENABLED` | `true` | persistent FTS5 põhitee lubatud |
+| `RAG_PERSISTENT_LEXICAL_INDEX_CANDIDATES` | `320` | FTS5 kandidaadilagi |
+| `RAG_RRF_K` | `60` | RRF konstant |
+| `RAG_LEXICAL_SCAN_LIMIT` | `2000` | ainult legacy corpus-scan fallbacki lehesuurus |
+| `RAG_LEXICAL_MAX_SCAN` | `100000` | ainult legacy corpus-scan fallbacki maksimaalne skann |
+
+Toodangu tegelikud env-väärtused tuleb release'i tõendamisel serverist uuesti mõõta; varasem
+`8000/8000` snapshot ei kirjelda `cc9ec8de` aktiivset FTS5 põhiteed.
+
+Hübriidjärjestuse põhivalem koodis on:
 
 ```text
 dense_score * 0.58
@@ -438,59 +540,110 @@ dense_score * 0.58
 + bm25_coverage_boost
 ```
 
-Kanali kaalud/boonused ei ole kasutajale nähtav hinne. Need mõjutavad ainult kandidaatide järjestust. Eraldi tugevdatakse tuvastatud autori, pealkirja ja registrifakti vasteid.
+Kanali kaalud ja boonused ei ole kasutajale nähtav hinne. Need järjestavad kandidaate; autori-,
+pealkirja-, täpse fraasi- ja registrifakti ankrud saavad eraldi tugevduse.
 
-### 10.2 Planner'i küsimusetüübid
+### 10.2 Küsimuse plaan ja route
 
-Planner eristab muu hulgas järgmisi radu:
+`questionPlanner.js` eristab järgmisi question-plan mode'e:
 
+- `default`;
 - `legal_exact`;
 - `kov_service_or_benefit`;
-- `specific_document_summary`;
 - `person_source_lookup`;
+- `specific_research_fact`;
+- `specific_document_summary`;
+- `specific_document_question`;
 - `overview_synthesis`;
 - `life_situation_guidance`;
 - `comparison`;
 - `resource_discovery`.
 
-See klassifikatsioon on oluline, sest autoripäring, lai süntees, KOV-i teenuse küsimus ja ühe uuringu arvuline fakt ei tohi kasutada täpselt sama retrieval-strateegiat.
+Plaan kannab lisaks mode'ile muu hulgas rolli ja kindlust, isiku- ja dokumendiankruid, mitme allika
+vajadust, eelistatud allikate arvu, allikakihte ning vastuse lepingut. `specific_research_fact`
+lisab dokumendi teema-, fakti-, liigi- ja aastaväljad ning tõendiperioodi, faasi ja mõõdikupesad;
+`specific_document_question` valib nimepidi küsitud dokumendi `source_focus_first` rajal ühe
+põhiallikana.
+
+Question-plan ei ole siiski kogu route'i ainus autoriteet. `queryPlanner.js` rakendab lisaks legal-,
+source-lookup-, temporal-, KOV-kontakti/teenuse-, riikliku teenuse ja jurisdiction'i route override'e.
+Täielik question-plan juhib retrieval'it otse, kuid trace'i `question_planner` projektsioon ei kanna
+praegu edasi välju `document_source_years`, `period_role`, `evidence_period_years`,
+`evidence_phase_ordinal`, `evidence_metric_terms`, `evidence_metric_slots` ega
+`bounded_episode_metric_fact`. `answer_contract` suunab strateegiat ja prompti, kuid ei ole veel
+universaalne käivitatav valideerimisleping: faktivalidaator ja atribuutika tõlgendavad osa intent'i
+endiselt algsest küsimusetekstist. Seda piirangut ei tohi dokumenteerida planner-authoritative
+lõppseisuna.
 
 ## 11. Kontekstivalik, vastus ja allikad
 
-Frontend kasutab mõõdetud seadistusi:
+### 11.1 Seadistus ja dünaamiline kontekst
 
-| seadistus | väärtus |
-|---|---|
-| `RAG_TOP_K` | `12` |
-| `RAG_CONTEXT_GROUPS_MAX` | `8` |
-| `RAG_CTX_MAX_CHARS` | `8500` |
-| `RAG_GROUP_BODY_MAX_CHARS` | `1500` |
-| `RAG_MMR_LAMBDA` | `0.60` |
-| `RAG_TIMEOUT_MS` | `30000` |
-| `RAG_GRAPH_CHANNEL_ENABLED` | `1` |
-| `RAG_ATTRIBUTION_DECISIONS_ENABLED` | `true` |
-| `RAG_DISPLAYED_SOURCES_ENFORCED` | `true` |
-| `RAG_TRACE_V1_ENABLED` | `true` |
+Allolev eristus on oluline: env-is mõõdetud runtime-väärtus ja koodi fallback ei ole sama tõend.
+
+| seadistus | varem mõõdetud runtime | `cc9ec8de` koodifallback |
+|---|---:|---:|
+| `RAG_TOP_K` | `12` | `12` |
+| `RAG_CONTEXT_GROUPS_MAX` | `8` | `8` |
+| `RAG_CTX_MAX_CHARS` | `8500` | `6000` |
+| `RAG_GROUP_BODY_MAX_CHARS` | `1500` | `1100` |
+| `RAG_MMR_LAMBDA` | `0.60` | `0.50` |
+| `RAG_TIMEOUT_MS` | `30000` | `30000` |
+| `RAG_GRAPH_CHANNEL_ENABLED` | `1` | väljas, kuni env on täpselt `1` |
+| `RAG_ATTRIBUTION_DECISIONS_ENABLED` | `true` | `true` |
+| `RAG_DISPLAYED_SOURCES_ENFORCED` | `true` | `true` |
+| `RAG_TRACE_V1_ENABLED` | `true` | `true` |
 
 Mudeliseaded:
 
-| seadistus | väärtus |
-|---|---|
-| `OPENAI_MODEL` | `gpt-5.6-luna` |
-| `OPENAI_REASONING_EFFORT` | `medium` |
-| `OPENAI_TEXT_VERBOSITY` | `medium` |
-| `OPENAI_MAX_OUTPUT_TOKENS_CLIENT` | `3000` |
-| `OPENAI_MAX_OUTPUT_TOKENS_WORKER` | `3000` |
+| seadistus | varem mõõdetud runtime | `cc9ec8de` koodifallback |
+|---|---:|---:|
+| `OPENAI_MODEL` | `gpt-5.6-luna` | `gpt-5.6-luna` |
+| `OPENAI_REASONING_EFFORT` | `medium` | `low` |
+| `OPENAI_TEXT_VERBOSITY` | `medium` | `medium` |
+| `OPENAI_MAX_OUTPUT_TOKENS_CLIENT` | `3000` | `900` |
+| `OPENAI_MAX_OUTPUT_TOKENS_WORKER` | `3000` | `1200` |
 
-Allikate teekond:
+Toodangu runtime-veergu ei tohi kanda järgmisele release'ile kontrollimata. Kontekst ei ole jäigalt
+ühe suurusega: laiad sünteesi- ja ressursirajad kasutavad mitme allika valikut ning tavaliselt kuni
+kolme keha dokumendi kohta; kitsas nimepidi dokumendi või faktirada võib kasutada kuni kaheksat
+keha, kahekordistada baas-eelarvet ning tõsta konteksti dünaamilise lae kuni `16000` märgini.
+`specific_document_question` valib kõrgeima asetusega ühe dokumendigrupi;
+`specific_research_fact` kinnitab esmalt dokumendi identiteedi ja otsib faktid sama dokumendi seest.
 
-1. otsingutulemusest moodustatakse tõendipakett;
-2. vastusekoostaja kasutab valitud lõike;
-3. atribuutikakiht seob vastuse tõendiga;
-4. `displayed_sources` läheb UI-le;
-5. `ChatMessageItem.jsx` avab `ChatSourcesPanel.jsx`.
+### 11.2 Tõendi-, vastuse- ja allikatee
 
-Viimases UI-paranduses vahetati allikapaneeli sulgemine sama jagatud `IconButton` + `CloseIcon` lahenduse vastu, mida kasutab vestlus, eemaldati päise alajoon ning seoti number visuaalselt allikakaardi sisse. „Kontrollimise aeg teadmata” ei ole tavakasutajale sobiv tekst ja see eemaldati kuvatavast kaardist. Visuaalne lõppkontroll viimase deploy järel autentitud aknas on siiski veel `NOT_PROVEN`.
+1. Question-plan ja route override määravad päringud, filtrid, top-k, valikustrateegia ning soovitud
+   allikate arvu.
+2. Hübriidotsingu kandidaadid rühmitatakse dokumentideks; valik on vastavalt rajale
+   MMR/multi-source, ühe nimepidi dokumendi või identity-first uuringufakti valik.
+3. Valitud grupid renderdatakse märgieelarvesse. Ainult tegelikult kasutatud `budgeted.used` grupid
+   moodustavad tavalise RAG-allikaloendi ning iga allika `evidenceText` on täpselt mudelile
+   renderdatud blokk, mitte kärpimata originaaltekst. Trace talletab valitud/kasutatud ID-d, hash'id,
+   mahud ja kärpimise.
+4. Vastusekoostaja saab renderdatud `RAG_CONTEXT`-i ja route'i lisajuhised.
+5. Kui küsimus käivitab täpse fakti lepingu, kontrollib `exact_numeric_fact_v5` vastust enne
+   atribuutikat. See kontrollib muu hulgas dokumendi identiteeti, sama renderdatud allika numbreid,
+   aasta rolle, protsendi-arvu ja kategooria seoseid ning KOV-kontakti struktuuri; streaming-vastus
+   võib ebaõnnestumisel enne salvestamist asenduda tõrketeatega.
+6. `sourceAttribution.js` filtreerib valitud allikatest vastust toetava `displayed_sources`
+   alamhulga. Otsus on route-spetsiifiline; pelk registriviide ei tohi jääda ainsaks kuvatud allikaks
+   ja usaldusmeta ei tohi valikut tagantjärele muuta.
+7. UI-s ilmub allikanupp assistendi vestlusmulli hoveril või klaviatuurifookusel ning avab
+   `ChatSourcesPanel.jsx` paneeli.
+
+Seetõttu on neli eraldi väravat: retrieval leidis kandidaadi; õige tõend jõudis renderdatud
+konteksti; vastus läbis faktilepingu; toetav `displayed_sources` jõudis kasutajani ja paneel avanes.
+Ühe värava PASS ei tõenda teisi.
+
+`exact_numeric_fact_v5` kontrollib juba arvulisi väärtusi, protsendi/loenduse paare,
+kategooriaseoseid, ajascope'i ja dokumendiidentiteeti, kuid ei ole üldine semantiline
+entailment-mootor. J08 `61% leidis, et ...` vale-FAIL näitab, et koma- ja klauslipõhine parser võib
+verbi ekslikult kategooriasildiks muuta. Autoriteetse tüübistatud downstream-lepingu siht on §39.1.
+
+Hilisemates autentitud kuldjuhtumites on allikapaneeli avamine tõendatud, kuid see ei ole globaalne
+ega release'ideülene tõend. Iga 75 maatriksi `DONE` rida vajab sama muutumatu SHA peal õiget vastust,
+trace'i, toetavaid kuvatud allikaid ja avatud hover/focus allikapaneeli.
 
 ## 12. Keskkonnafailid serveris
 
@@ -508,9 +661,10 @@ Systemd loeb need failid teenuste käivitamisel. Need ei ole repos ning nende sa
 
 Repos ei leitud mõõtmise ajal `.env`, `.env.example` ega muud terviklikku keskkonnamalli. See on dokumenteeritav konfiguratsioonidrifti risk: tootmise võtmete lepingut saab praegu tervikuna näha ainult serveris või koodist kokku lugeda.
 
-### 12.2 Töötava toodangu konsolideeritud saladusteta väljavõte
+### 12.2 Toodangu 22.08.2026 ajalooline konsolideeritud saladusteta väljavõte
 
-Väljavõte mõõdeti serverist 22.08.2026 kell 17:29 +03:00. Mõõtmise ajal olid
+Allolev väljavõte on täpselt 22.08.2026 kell 17:29 +03:00 serverist mõõdetud snapshot, mitte väide
+aktiivse `cc9ec8de` protsessikeskkonna värske korduslugemise kohta. Mõõtmise ajal olid
 `sotsiaalai-frontend.service` ja `sotsiaalai-rag.service` olekus `active` ning
 serveri `HEAD` ja `origin/main` olid mõlemad
 `2c142000841fe630aa1baf92aaf524be7e64d0ac`. Väärtused kontrolliti lisaks
@@ -540,9 +694,9 @@ RAG_CHUNK_TOKENS_OVERLAP=120
 
 See plokk ei sisalda API võtmeid, paroole, ühendusstringe, projektitunnuseid ega muid saladusi.
 
-### 12.3 `/etc/sotsiaalai/rag.env`
+### 12.3 `/etc/sotsiaalai/rag.env` — 22.08 snapshot
 
-Ohutud tegelikud väärtused:
+Tol mõõtmise hetkel kinnitatud ohutud väärtused:
 
 ```dotenv
 RAG_ALWAYS_CHUNK=1
@@ -589,9 +743,9 @@ RAG_STORAGE_DIR
 
 Saladused või turvatundlikud väärtused, mida siia tahtlikult ei kopeerita: `OPENAI_API_KEY`, `RAG_SERVICE_API_KEY`, `RAG_COST_MIRROR_SECRET` ning vajaduse järgi projekti-/origin-väärtused.
 
-### 12.4 `/etc/sotsiaalai/frontend.env`
+### 12.4 `/etc/sotsiaalai/frontend.env` — 22.08 snapshot
 
-RAG-i ja vastusekoostamise ohutud tegelikud väärtused:
+Tol mõõtmise hetkel kinnitatud RAG-i ja vastusekoostamise ohutud väärtused:
 
 ```dotenv
 CHAT_PROMPT_TOKEN_AUDIT=0
@@ -628,6 +782,22 @@ Frontend-failis on lisaks järgmiste rühmade võtmed:
 
 Nende kõigi **nimesid ja lepingut** tuleks tulevikus hoida redigeeritud `.env.example` failis. Päris väärtused peavad jääma ainult serveri salajasse konfiguratsiooni. Käesolev audit ei muuda serveri `.env` faile.
 
+### 12.5 Aktiivse koodi täiendavad vaikeseaded
+
+Need on `cc9ec8de` koodivaikimisi väärtused, mitte väide, et samanimelised võtmed on serveri
+env-faili kirjutatud:
+
+| seadistus | koodivaikimisi väärtus |
+|---|---|
+| `RAG_PERSISTENT_LEXICAL_INDEX_ENABLED` | `1` |
+| `RAG_PERSISTENT_LEXICAL_INDEX_PATH` | `$RAG_STORAGE_DIR/lexical-index.sqlite3` |
+| `RAG_PERSISTENT_LEXICAL_INDEX_PAGE_SIZE` | `2000` |
+| `RAG_PERSISTENT_LEXICAL_INDEX_CANDIDATES` | `320` |
+| `RAG_REQUEST_SHARED_READ_CACHE_ENABLED` | `1` |
+| `RAG_REQUEST_SHARED_READ_CACHE_TTL_SECONDS` | `30` |
+| `RAG_REQUEST_SHARED_READ_CACHE_MAX_ENTRIES` | `48` |
+| `RAG_MULTI_QUERY_EMBEDDING_BATCH_ENABLED` | `1` |
+
 ## 13. Administraatori RAG-proxy ja õigused
 
 `app/api/rag/[...path]/route.js` ei ole avatud läbipääs:
@@ -640,7 +810,11 @@ Nende kõigi **nimesid ja lepingut** tuleks tulevikus hoida redigeeritud `.env.e
 - lubab vaikimisi ainult lokaalset RAG-hosti;
 - kirjutab haldusoperatsiooni auditisse.
 
-`KNOWLEDGE_STEWARD` saab loetleda/lugeda dokumente, lõike ja lähtefaili, laadida materjale, reindekseerida ning muuta metaandmeid. Kustutamine ja URL-ist ingest nõuavad `PLATFORM_ADMIN` õigust. Toores file/text ingest, otsing ja analüüs on server-to-server rajad, mitte brauseri vaba proxy.
+`KNOWLEDGE_STEWARD` saab loetleda/lugeda dokumente, lõike, lähtefaili ja FTS5 olekut, laadida
+materjale, reindekseerida ning muuta metaandmeid. Kustutamine, URL-ist ingest ja FTS5 rebuild
+nõuavad `PLATFORM_ADMIN` õigust. Toores file/text ingest, otsing ja analüüs on server-to-server
+rajad, mitte brauseri vaba proxy. Eraldi administraatori `POST /api/rag/selftest` on käsitsi
+käivitatav operatiivne tervisekontroll, mitte catch-all proxy ega arenduse automaattestisviit.
 
 ## 14. Andmebaasi RAG-iga seotud mudelid
 
@@ -666,6 +840,11 @@ Registri `registry.json`, Chroma indeks, versioonitud lähtefail ning Prisma kir
 - Salvestusteed kontrollitakse, et vältida etteantud juurkaustast väljumist.
 - Katkine register ei tohi vaikides muutuda tühjaks registriks; kasutatakse fail-closed/last-good rada.
 - Dokumendiversiooni vahetus on etapiline, et ebaõnnestunud ingest ei asendaks töötavat versiooni.
+- FTS5 põlvkond seotakse registri SHA-ga; SQLite `quick_check`, fsync ja atomaarne failivahetus
+  takistavad poolikut indeksit aktiivseks nimetamast. Korpuse muutmisel sulgeb `.stale` märgis
+  leksikaalse raja kuni uue põlvkonna valmimiseni.
+- Leksikaalindeksi rike ei muuda FTS5-t tõeks ega peida degradatsiooni: dense-rada võib jätkata,
+  kuid vastus ja trace peavad kandma `partial/degraded` diagnostikat.
 - Agendid tohivad otsida ainult oma lubatud dokumendikogumist.
 
 ## 16. Mida on kvaliteedis proovitud
@@ -723,7 +902,11 @@ Lisaks tabas viis katset rate-limit'i; ülejäänud 20 juhtumit ei olnud selle m
 
 **Laur Raudsoo.** Vastus esitas ajaloolise tegevtoimetaja rolli praeguse identiteedina. Õige sõnastus peab ütlema, et ta oli kunagi ajakirja Sotsiaaltöö tegevtoimetaja, mitte et ta on seda praegu.
 
-## 18. Tehtud parandused
+## 18. 22.08 esimene ajalooline paranduste laine
+
+See peatükk säilitab esimese auditi paranduste ja tollase tõenduse ajaloo. See ei kirjelda
+`cc9ec8de` aktiivset validaatorit ega praegust release'i koondit; hilisemad parandused ja runtime-
+tõendid on peatükkides 25–39.
 
 Parandusjada:
 
@@ -752,100 +935,138 @@ Pärast koodipõhist juurpõhjuse analüüsi tehti eraldatud worktree's üldised
 
 Parandused ei teinud RAG-i 10/10 töökindlaks. Esimene nelja päringu autentitud sama vestluse kontroll andis kaks õiget ja kaks valet tulemust: lapse eraldamise `169 / 2018` fakt säilis kahes sõnastuses, kuid Elin Küti intervjuude küsimus andis ühe vale keeldumise ja ühe enesekindla vale `17 + 6` vastuse.
 
-| P0 plokk | lokaalne muudatus | tõendusseis |
+| P0 plokk | lokaalne muudatus | tolle etapi tõendusseis |
 |---|---|---|
 | tõendipiir | atribuutika `evidenceText` tuleb nüüd täpselt mudelile renderdatud plokist; trace säilitab konteksti-, algbody- ja renderdatud body hash'id, kärpeoleku ning start/end-offsetid | **CODE_DONE / runtime PARTIAL** — kahel õigel vastusel oli allikanupp, kuid paneel ei avanenud kontrollitavalt |
 | mitme päringu järjestus | lisapäringute sundskoorilagi ja `preserveFirstScores` asendati ankurdatud päringuteülese RRF-fusion'iga; täpne lisapäring saab tõusta ainult kontrollitava ankru või päringuteülese kokkulangevuse toel | **CODE_DONE / runtime PARTIAL** — J17/V06 PASS, J11 FAIL |
 | faktidokumendi shortlist | pime esimese viie dokumendi piir asendati identiteediskooriga; pealkirja-, autori-, registri- või täpse fraasi ankruga shortlist võib laieneda kuni 12 dokumendini, ankruta varurada jääb viiele | **CODE_DONE / runtime PARTIAL** — täpse pealkirjaga J11 leidis dokumendi kohtadel 1–3, loomulikud parafraasid ei leidnud seda esimese 12 seast |
 | arvufakti leping | täpsed arvuküsimused puhverdatakse enne esimese teksti kuvamist; kontroll nõuab arvuliteralide leidumist ühes ja samas renderdatud allikas, eristab küsitud andmeaastat pelgast `source_year` päisest ning kontrollib üldarvu/alamrühma järjekorda | **PARTIAL** — ühiku semantiline samasus ja täielik faktipesade ekstraktsioon puuduvad |
 
-Kandidaat lisab trace'i fusion'i kandidaadid ja põhjused, faktidokumendi shortlist'i identiteediskoorid, täpselt renderdatud konteksti hash'id ning faktivalidaatori otsuse. Nii saab järgmises runtime-katses eristada korje, järjestuse, kontekstivaliku ja vastusekoostamise viga ilma küsimuse sõnu koodi hardcode'imata.
+Kandidaat lisas trace'i fusion'i kandidaadid ja põhjused, faktidokumendi shortlist'i
+identiteediskoorid, täpselt renderdatud konteksti hash'id ning faktivalidaatori otsuse. Aktiivne
+`exact_numeric_fact_v5` on sellest esimesest variandist oluliselt rangem: ta kontrollib juba
+protsendi/arvu, kategooria, scope'i ja dokumendiidentiteedi seoseid. Praegune puudujääk ei ole
+pelgalt arvuliteralide olemasolu, vaid raw-text heuristika ning autoriteetse tüübistatud
+downstream-faktilepingu puudumine (§39).
 
-## 19. Automaatväravad ja nende tähendus
+## 19. Ajaloolised regressiooniväravad ja praegune kontrollikord
 
-Varasema commit'i `08cbd94a` ajal dokumenteeritud 4963-testist täissviiti praeguses repos enam ei ole ning selle ajaloolist rohelist tulemust ei esitata praeguse RAG-i tõendina. Omaniku hilisema selge juhise järgi lisati kitsas püsiv RAG-regressioonikomplekt `tests/rag/rag-regressions.test.mjs`, mida käivitab `npm run test:rag-regression`. See kaitseb ainult tõendatud RAG-lepinguid ega taasta vana üldist testitaristut.
+Varasema commit'i `08cbd94a` 4963-testist täissviiti praeguses repos enam ei ole. Repos on üks
+tracked kitsas fail `tests/rag/rag-regressions.test.mjs` ja käsk `test:rag-regression`; varasem
+38/38 tulemus kuulub oma tollasele SHA-le ega ole `cc9ec8de` tõend.
 
-Regressioonikomplektis on 23 deterministlikku kontrolli: allikaviite leheküljevahemikud; faktiküsimuse planner ja tema õigus/KOV/autori/sünteesi negatiivpiirid; uuringudokumendi identiteet ja fail-closed viik; eaka/vanemaealise teemaühtlus; andmeaasta ja allika-aasta eristus; arvsõnade normaliseerimine; eri allikate arvude segamise keeld; kestuse eristus kalendriaastast; mitme faktipesa kontroll; valitud ja kuvatud source ID võrdsus. Uued kontrollid olid enne vastavaid parandusi kahes plokis 4/19 ja 4/23 punased ning parandatud puul 23/23 rohelised.
+Kehtiva AGENTS.md ja omaniku töökorra järgi selles 75 juhtumi ringis automaatteste ega test-,
+smoke-, probe-, benchmark- või E2E-radu ei looda ega käivitata. Praegused lubatud arendusväravad
+on puudutatud failide scoped lint, vajadusel i18n-kontroll, `git diff --check` ning enne
+push'i/deploy'd tootmisbuild; Prisma kontroll lisandub ainult skeemi või migratsiooni muutmisel.
+Administraatori käsitsi RAG-enesetest on operatiivne tootefunktsioon ja ainus nimetatud erand.
 
-Deploy'tud kandidaadi kontrollid:
-
-| värav | tulemus |
-|---|---:|
-| püsiv RAG-regressioonikomplekt | **38/38 PASS** |
-| negatiivtõend | esimese lisaploki vana käitumine **4/19 FAIL**; teise lisaploki vana käitumine **4/23 FAIL** |
-| i18n | roheline |
-| muudetud JavaScripti failide lint | roheline |
-| `rag-service/main.py` süntaks | roheline |
-| `git diff --check` | roheline |
-| `npm run build` | **BLOCKED** enne kompileerimist: Turbopack ei luba eraldatud worktree välisele `node_modules`-symlinkile ligi |
-| sama lõpliku puu `next build --webpack` | **roheline** — kompileerimine, TypeScript ja 70 staatilist lehte läbisid |
-| serveri ametlik Turbopacki build | **roheline** viimastel RAG-deploy'del |
-| skeem/migratsioon | **NOT_APPLICABLE** — Prisma skeemi ei muudetud |
-
-Need tõendavad koodi staatilist ja kompileerimisvalmidust. Need **ei tõenda** otsingu ega mudeli sisulist vastust päris andmete, päris vestlusajaloo ja päris toodanguindeksi vastu.
+Staatiline kontroll ja build tõendavad ainult koodi kuju ning kompileerumist. Need ei tõenda
+retrieval'i, valitud konteksti, mudelivastust, faktiväravat, `displayed_sources`-eid ega hover-
+paneeli päris korpuse ja autentitud vestluse vastu.
 
 ## 20. Mis on veel tõendamata
 
-- kogu 75 juhtumi otsene kordus praegusel toodangu commit'il `771795e2`;
-- sama 75 juhtumi autentitud `/vestlus` kordus;
-- ülejäänud 67 põhijuhtumit ühes normaalselt jätkuvas vestluses ilma „Uus vestlus” workaround'ita;
-- täpne esimese teksti aeg ülejäänud juhtumites; parafraasiploki lõppajad jäid ligikaudu 7,4–39 sekundi vahele;
-- iga vastuse kuvatud allika sisuline toetus;
-- allikapaneeli käitumine ja viitetekst kõigi juhtumiklasside päris sisselogitud vastustel;
-- laiade sünteeside allikate mitmekesisus;
-- autori- ja „millest autor on kirjutanud?” ploki täielik kvaliteet;
-- mitteajakirja 15 juhtumi täielik vestlusvärav;
-- KOV/teenuse/õigusallika 10 juhtumi eraldi värav;
-- pika vestluse ajaloomüra;
-- korduva kasutuse tegelik rate-limit;
+- J08 uus `unsupported_numeric_category_relation` põhjus teise sõnastusega aktiivsel release'il,
+  selle üldine parandus ja kahe sõnastuse täielik autentitud järelkontroll;
+- üks külmutatud `FINAL_SHA`, millel kõik J01–J75 läbivad algusest lõpuni vastuse, valitud konteksti,
+  trace'i, toetavad kuvatud allikad ja avatava hover-paneeli ilma vahepealse deploy'ta;
+- iga juhtumi esimese renderdatud teksti aeg, lõppaeg ning trace'i retrieval/model ajad samal
+  lõpprelease'il;
+- laia sünteesi allikate mitmekesisus, mitteajakirja materjalid, KOV-toetused ja -teenused,
+  kontaktid, õigusallikad, uuringuarvud, meetodid/juhendid, ET/RU/EN ja päris jätkuküsimused samal
+  lõpprelease'il;
+- pärast 75/75 eraldi ettevalmistamata mitme kategooria juhuküsimused;
+- pika vestluse ajaloomüra, korduva kasutuse tegelik rate-limit ning külma/sooja retrieval'i
+  hajuvus;
 - 863, 864 ja 877 ajakirjadokumendi loenduste täpne semantiline lepitus;
-- kohaliku algmaterjali, registri, failisalvestuse ja Chroma täielik üks-ühele terviklus.
+- kohaliku algmaterjali, registri, versioonitud failisalvestuse, FTS5 ja Chroma täielik
+  üks-ühele terviklus.
 
 ## 21. Jääkriskid
 
-- Mudel võib õige tõendi olemasolul ikkagi anda vale arvuseose: V04 muutis `2% (n=100)` ekslikult 100 inimese valimiks ja väitis sellest tuletatud kahte inimest.
-- Praegune faktivalidaator kontrollib arvude olemasolu ja ühe allika piiri, kuid mitte veel täielikku tuplit `protsent + n + sihtrühm + mõõdik + aeg`.
-- Registrifakti tugevam kaal võib aidata üht fakti, kuid vale metaandme korral suurendada vale kindlust.
+- J08 aktiivne viga näitab, et vastuse `61% leidis, et ...` võib koma ees poolituda ja verb
+  `leidis` muutuda ekslikult kategooriasildiks. Sõna stopword'i lisamine peidaks sümptomi, mitte
+  ei parandaks klausli struktuuri.
+- Planner, route override'id, faktivalidaator ja atribuutika ei tarbi veel üht täielikku
+  provenance'iga tüübistatud semantilist lepingut; osa intent'ist tuletatakse toortekstist
+  mitmes kihis uuesti.
+- Õige dokument ei taga kõigi küsitud faktide jõudmist tõendiakendesse; document recall ja fact
+  coverage on eri väravad.
+- Registrifakti tugevam kaal võib aidata üht fakti, kuid vale metaandme korral suurendada vale
+  kindlust.
 - Laia sünteesi puhul võib üks kõrge skooriga allikas teised välja tõrjuda.
 - Vestlusajalugu võib lühikest uut küsimust valesti ankurdada.
-- `displayed_sources` olemasolu ei taga väite tasemel jälitatavust.
-- Kiire esimene token võib varjata 23–35 sekundi lõppvastust või sisulist viga.
-- KOV-i ja õigusallikate kehtivus vajab eraldi ajakohasuse kontrolli.
-- Paljudel registrikirjetel puudub uus lifecycle või `source_format`; vana ja uue skeemi kooseksisteerimine raskendab arvestust.
-- Repos puuduv redigeeritud env-mall teeb tootmise konfiguratsiooni driftimise raskemini märgatavaks.
+- `displayed_sources` olemasolu ei taga väite tasemel jälitatavust ega paneeli avatavust.
+- Kiire esimene tekst võib varjata pikka retrieval'i/lõppaega või sisulist viga.
+- Ajaloolise artikli fakt ja tänane KOV-/õigus-/kriisinõuanne vajavad eri current/historical
+  scope'i; värskus ei tohi ajaloolist küsimust ümber kirjutada.
+- Paljudel registrikirjetel puudub uus lifecycle või `source_format`; vana ja uue skeemi
+  kooseksisteerimine raskendab arvestust.
+- Repos puuduv redigeeritud env-mall teeb tootmise konfiguratsiooni driftimise raskemini
+  märgatavaks.
+
+V04 `2% (n=100)` segamine on ajalooline, hiljem parandatud ja paneeliga tõendatud juhtum; seda ei
+esitata enam aktiivse release'i lahendamata veana.
 
 ## 22. Järgmine kontrollijärjekord
 
-1. **TEHTUD:** allikapaneeli leheküljevahemikud, dialoogipiir, Escape ja fookuse taastamine on kontrollitud; JAWS jääb `NOT_PROVEN`.
-2. **TEHTUD:** kõik kaheksa parafraasi läbiti samas autentitud vestluses; 7/8 PASS, V04 FAIL.
-3. Parandada V04 põhjuse tasemel: numbriliste ankrutega kandidaadi recall ning struktureeritud protsendi/`n`/sihtrühma faktituplite kontroll.
-4. Korrata V04 vähemalt kahe sõnastusega ning nõuda nii õiget sihtlõiku kui semantiliselt õiget vastust.
-5. Läbida kümme autorijuhtumit.
-6. Läbida kümme laia sünteesi, kontrollides allikate mitmekesisust.
-7. Läbida 15 mitteajakirja juhtumit.
-8. Läbida kümme KOV/teenuse/õigusjuhtumit eraldi otsingurajana.
-9. Uuendada põhimaatriksit ainult sama muutumatu toodangu-SHA tulemustega.
+1. Reprodutseerida J08 praegune `leidis`-kategooria vale-FAIL teise sõnastusega samal
+   `cc9ec8de` release'il.
+2. Parandada üldiselt lause põhiverbi ja `et/that/что` komplementlause käsitlus, säilitades päris
+   kategoorialoendite komad; küsimust, protsente ega vastust ei hardcode'ita.
+3. Läbida lubatud staatilised väravad ja tootmisbuild, commit'ida nimeliselt, push'ida, deploy'da,
+   värskendada sama autentitud brauseriakent ning korrata mõlemat J08 sõnastust koos trace'i ja
+   hover-paneeliga.
+4. Kui veaklasside parandused on lõppenud, külmutada üks `FINAL_SHA` ja läbida J01–J75 algusest
+   lõpuni ilma vahepealse deploy'ta.
+5. Uuendada maatriksit ainult selle muutumatu SHA täielike vastuse-, trace'i- ja paneelitõenditega.
+6. Pärast tõelist 75/75 teha eraldi ettevalmistamata küsimused kõigis põhikategooriates ja kolmes
+   keeles.
 
-## 23. DONE / PARTIAL / NOT_PROVEN
+## 23. DONE / PARTIAL / FAIL / NOT_PROVEN
 
-Need arvud ei ole töökindluse protsent.
+Need arvud ei ole töökindluse protsent. Kaks vaadet peavad jääma lahku.
+
+**Ajalooline kumulatiivne diagnostikamaatriks** (eri release'idel täielikult tõendatud juhtumid):
 
 | seis | arv | tähendus |
 |---|---:|---|
-| DONE | **10/75** | J11 faktiküsimus ja parafraas, J17 ning V01, V02, V03, V05, V06, V07 ja V08 läbisid õige tõendi, vastuse ja toetava kuvatud allika värava |
-| PARTIAL | **11/75** | kümme juhtumit on tõendatud ainult otsingukihis; V04 otsing, vastus, faktivärav ja kuvatud source ID on õiged, kuid allikapaneeli UI jäi tõendamata |
-| FAIL | **0/75** | lõpp-SHA kordusplokis ei ole alles tõendatud valet vastust; mõõtmata juhtumid ei ole seetõttu rohelised |
-| NOT_PROVEN | **54/75** | lõpp-SHA ülejäänud otsingu- ja autentitud vestluskordus puudub |
+| DONE | **21/75** | juhtum läbis oma mõõdetud release'il vastuse, konteksti, allikad ja paneeli |
+| PARTIAL | **0/75** | osatõendit ei loeta DONE-ks |
+| FAIL | **0/75** | ajaloolisse kumulatiivsesse koondisse ei kanta aktiivse arendusringi ebaõnnestumist |
+| NOT_PROVEN | **54/75** | täielik ajalooline värav puudub |
 
-FAIL on eraldi, et vale vastus ei paistaks osalise ega mõõtmata tulemusena. Kõigi olekute summa on 75.
+**Aktiivse `cc9ec8de` range release-vaade**:
+
+| seis | arv | tähendus |
+|---|---:|---|
+| DONE | **0/75** | varasema SHA PASS ei kandu siia automaatselt |
+| PARTIAL | **0/75** | J08 ei ole osaline edu, sest kasutajale läks vale keeldumine |
+| FAIL | **1/75** | J08: õige allikas, kuid faktivärava vale `unsupported_numeric_category_relation` |
+| NOT_PROVEN | **74/75** | ülejäänud juhtumid ei ole selle SHA täielikul väraval läbinud |
+
+`cc9ec8de` on diagnostiline release, mitte lõplik kandidaat. Pärast järgmist koodimuudatust algab
+range release-vaade uuesti uuel SHA-l.
 
 ## 24. Lõpphinnang
 
-SotsiaalAI-l on päris hübriidne, versioonitud ja turvapiiridega RAG-süsteem: eraldi FastAPI teenus, Chroma indeks, JSON-register, versioonitud dokumendifailid, mitmekanaliline otsing, planner, kontekstivalik, tõendipaketid, atribuutika ja autentitud vestlusliides.
+SotsiaalAI-l on päris hübriidne, versioonitud ja turvapiiridega RAG-süsteem: eraldi FastAPI
+teenus, Chroma vektorindeks, püsiv SQLite FTS5 indeks, JSON-register, versioonitud dokumendifailid,
+mitmekanaliline otsing, küsimuse- ja päringuplaan, dokumendi- ning tõendivalik,
+`exact_numeric_fact_v5`, atribuutika, trace ja autentitud vestlusliides.
 
-Süsteemi tehniline olemasolu on tõendatud. Algse kvaliteediseirega on tõendatud mitu süsteemset viga ning nende vastu tehtud P0-parandused on nüüd toodangus lõpp-SHA-l `66355272`. Deploy-järgne kontroll tõendas parafraasiplokis 8/8 sisuliselt õiget vastust; V04 valitud ja kuvatud source ID kattusid, kuid selle allikapaneeli UI jäi automatiseeritud katses avamata. Terviklik sisuline töökindlus on endiselt **NOT_PROVEN**, kuni sama muutumatu commit läbib kogu 75 juhtumi otsese otsingu ja autentitud vestluse ning iga kuvatud allikas toetab vastuse väiteid.
+Süsteemi tehniline olemasolu ning mitu kitsast kuldväravat on tõendatud, kuid aktiivne
+`cc9ec8de` on diagnostiline ja J08 on sellel `FAIL`. Ükski varasem 21 PASS-ist ei muuda seda
+release'i 21/75-ks. Terviklik sisuline töökindlus jääb **NOT_PROVEN**, kuni üks külmutatud
+`FINAL_SHA` läbib 75/75 ning iga juhtumi õige vastus, valitud kontekst, toetavad kuvatud allikad,
+avatud hover-paneel ja trace on koos talletatud.
 
-Hetkehinnang: **PARTIAL, mitte 10/10**.
+Hetkehinnang: **PARTIAL, mitte 10/10 ega 75/75**.
+
+Järgmised peatükid 25–38 on kronoloogilised release-snapshot'id. Nendes kasutatud sõnad
+„praegune”, „toodangus” ja „lõppseis” kehtivad ainult vastava peatüki nimetatud SHA ning
+mõõteakna kohta; aktiivne süsteemiseis tuleb päisest, §2.2-st, §23-st ja kõige uuemast §39-st.
 
 ## 25. J11 teine P0-plokk — toodangus tõendatud
 
@@ -1075,7 +1296,7 @@ Canonical ajalooline J03 küsimus läbis release'il `caf15cf8` täieliku autenti
 
 Ajaloolise artikli riskipiiri ei lõdvendatud. Üldise tänase kriisinõuna kõlanud variandil võis retrieval ja numbriline sama-allika kontroll olla korrektne, kuid atribuutika peitis 2018. aasta artikli põhjusega `historical_source_not_current_evidence`; see on ausalt mitte-PASS. Release'i range seis on seetõttu **DONE 1/75 · PARTIAL 0/75 · FAIL 0/75 · NOT_PROVEN 74/75**. J01/J02 varasema `49b76109` tõend ei kandu uuele koodirelease'ile üle.
 
-## 38. J04–J11 järgmise release'i põhjuslepingud — runtime `NOT_PROVEN`
+## 38. J04–J11 release-eelne ajalooline põhjuslepingute snapshot — runtime `NOT_PROVEN`
 
 Lähte-release `caf15cf8` näitas viit eraldi sõnastustundlikku veaklassi ja igaüks kordus vähemalt kahe sõnastusega. Need ei olnud korpuse puudujäägid: kõigil juhtudel oli õige dokument aktiivses registris ning töötav kitsam sõnastus leidis sama tõendi.
 
@@ -1085,4 +1306,39 @@ Lähte-release `caf15cf8` näitas viit eraldi sõnastustundlikku veaklassi ja ig
 - J10 õige dokumendi hilisemad tõendikehad jäid välja, sest teematerminite kümnene piir täitus küsimuse grammatika ja palja aastaarvuga. Ainult teematerminitest eemaldatakse paljas arv ja üldised liimsõnad; arv jääb eraldi faktiterminiks ning globaalset top-k-d ei muudeta.
 - J11 inflekteeritud `artikli` ei sobinud varasema `artikkel…` allikavihjega ja sõna `sotsiaaltöötajate` käivitas värskete kontaktide validaatori. Allikavihje kasutab nüüd eesti `artikl…` käändetüve ning tunneb ka `kirjutis…` vormi.
 
-Need muudatused on lokaalses tööpuus, kuid neid ei ole veel push'itud ega deploy'tud. Seetõttu ei ole ükski parandatud rada veel kasutaja vastuse, valitud konteksti, faktivalidaatori, kuvatud allika ega hover-paneeli kaudu tõendatud. Lähte-release'i J06/J08/J09 PASS-id ei kandu järgmisele release'ile automaatselt. Korpust, indeksit, DB-d, env-i, mudelit, prompt'i, top-k-d, fusion'i kaale ega timeout'e ei muudeta ning automaatteste või sondifaile ei looda ega käivitata.
+Selle snapshot'i hetkel olid muudatused lokaalses tööpuus ning runtime `NOT_PROVEN`; hilisem deploy
+ja järelkontroll on §39-s. Lähte-release'i J06/J08/J09 PASS-id ei kandunud järgmisele release'ile
+automaatselt. Korpust, indeksit, DB-d, env-i, mudelit, prompt'i, top-k-d, fusion'i kaale ega
+timeout'e ei muudetud ning automaatteste või sondifaile ei loodud ega käivitatud.
+
+## 39. J07–J08 faktivärava diagnoos ja autoriteetse semantilise lepingu suund — 25.08
+
+Jaotise 38 release-eelne seis on ajalooline. Järgnevas arendusringis jõudsid üldparandused toodangusse ning aktiivne release liikus esmalt SHA-le `b1b6fe15` ja J08 paranduse käigus SHA-le `cc9ec8de`. Neid tulemusi käsitletakse diagnostilise tõendina; iga koodimuudatus lõpetab eelmise SHA sertifitseerimisakna.
+
+Release'il `b1b6fe15` läbis J07 kahe sõnastusega täieliku autentitud värava. Mõlemad vastused andsid ühe 2018–2020 katseetapi kohta 678 abisaajat, 273 vabatahtlikku, 21 600 töötundi, 12 maakonda ja 43 omavalitsust. Valitud, vastust toetav ja kuvatud allikas oli sama 2022. aasta artikkel „Seltsilised annavad sotsiaalhoolekande teenustele lisaväärtust”; dokumendiidentiteet oli `high`, faktivalidaator PASS ning hover-paneelis avanes õige allikakaart. Parandused normaliseerisid Unicode'i rühmitustühikud ja sidusid ainult kontrollitud tunni- ning maakonnavormid sama semantilise perekonnaga. See oli põhjendatud taktikaline parandus, mitte luba kasvatada faktivalidaatorisse piiramatut sõnapaaride sõnastikku.
+
+J01 MAPPA jäi samal release'il `PARTIAL`: mitu sõnastust ja täpne canonical kordus vastasid õigesti, kuid üks esmane canonical katse ei valinud allikat ning eraldi sõnastus sai faktivalidaatorilt `unsupported_numeric_category_relation`. Need on eri jäljed ja kumbki põhjus ei kordunud veel kahe sõnastusega; seetõttu ei nimetata J01-t DONE-ks ega tehta oletuslikku parandust.
+
+J08 kordus kahel sõnastusel release'il `b1b6fe15` sama vale-FAIL-iga. Õige hoolduskoormuse artikkel oli valitud, kuid `uniform_participant_groups` reegel tõlgendas artikli diskursusfraasi „Eelnevat kokku võttes … 14%” koguarvuks ning vastuse nummerdatud loendi `1.` vastuse koguarvuks. Trace võrdles seetõttu ekslikult `14 != 1` ja asendas vastuse üldise keeldumisega. Commit `82046c92` ankurdas rühmareegli allika päriselt tuvastatud „igas rühmas” seosesse; commit `cc9ec8de` eemaldas mitteaktiivse rühmareegli ekslikud koguarvud ka trace'ist. Sõltumatu staatiline ülevaade kinnitas, et J18-tüüpi „viis inimest igast sihtrühmast, kokku 15” jääb endiselt kontrollitavaks. Lint, i18n, diff-kontroll ja muutumatu lõppkoodi tootmisbuild olid rohelised; automaatteste ega probe-, smoke-, benchmark- või E2E-radu ei käivitatud.
+
+Deploy-järgne J08 canonical kordus SHA-l `cc9ec8de` näitas, et esimene põhjus suleti, kuid juhtum ei ole veel PASS. Uus trace ei käivitanud enam `uniform_participant_groups` koguarvuvõrdlust; vastuse peatas järgmine, eraldi värav põhjusega `unsupported_numeric_category_relation` ja tuvastatud toetamata sildiga `leidis`. Õige dokument, selected/answer/displayed source-ID ja dokumendiidentiteet säilisid. Seega on J08 aktiivsel release'il **FAIL**, parandusring pooleli ning `cc9ec8de` ei ole külmutatud 75/75 kandidaat.
+
+### 39.1 Koodikaardist kinnitatud arhitektuuriline põhjus
+
+Uut paralleelset intent'i parserit ega teist `QueryContract`-i ei ole vaja lisada. `questionPlanner` toodab juba struktureeritud `questionPlan`-i: `mode`, `retrieval_strategy`, `answer_contract`, allikakihid, perioodi roll ja aastad, episoodi faas, meetrikaterminid ja -slotid ning piiratud episoodifakti tunnus. Retrieval kasutab neid välju. Downstream-projektsioon jätab aga just perioodi-, faasi- ja meetrikaslotid osaliselt välja ning `answer_contract` jääb valdavalt trace'i kirjelduseks. `factContract` tuletab seejärel toorküsimusest uuesti arvulise kavatsuse, aasta, publikatsiooniaasta, kategooriajaotuse, koguskoobi ja kontaktikavatsuse. Attribution kasutab mitut struktureeritud välja, kuid parsib toorküsimusest uuesti ankruid, värskusvajadust ja osa isikunime fallback'ist. Nii võivad planner, retrieval, validaator ja attribution anda samale lausele erineva tähenduse.
+
+Pikaajaline siht on olemasoleva `questionPlan`-i versioneeritud autoriteetne downstream-projektsioon, näiteks `answerValidationContract`, mitte uus küsimust ümber tõlgendav parser. Leping peab kirjeldama:
+
+- mida kasutaja küsib: intent, allika- ja dokumendiscope, autor, geograafia, publikatsiooni- ja sündmuseaeg, current/historical režiim ning nõutud faktislotid;
+- iga välja päritolu ja kindlus: algteksti span, tuvastuskiht ja -meetod ning confidence;
+- millal kasutati struktureeritud välja ja millal nähtavat legacy/raw-text fallback'i.
+
+Planner on autoriteetne **küsimuse tähenduse**, mitte faktilise vastuse suhtes. Ta võib määrata, et kasutaja küsib ajaloolise artikli omavalitsuste arvu, kuid ei tohi anda `municipality_count = 3` kinnitatud tõena. Faktiväärtused tuletatakse valitud tõendist eraldi; vastus jagatakse kontrollitavateks väideteks ning validator võrdleb nõutud slotte tõendist tuletatud faktidega. Nii eristuvad näiteks `1220` telefoninumbrina ja aastana, publikatsiooniaeg ning sündmuseaeg, protsent ja loendi järjekorranumber ning asutuste arv ja osalejate arv. Hilisemad kihid võivad planneri lepingut kontrollida või madala kindluse korral tagasi lükata, kuid ei tohiks algtekstist iseseisvalt uut intent'i leiutada.
+
+Üleminek peab algama shadow-režiimis: praegune validator teeb tootmisotsuse, uus tüübistatud leping logib plaani, provenance'i, tõendifakti, vastuseväite, fallback'i ja tulemuse. Olemasolev 75 juhtumi maatriks saab siis mõõta vana ning uue otsuse lahknevusi ilma tootmisväravat korraga ümber vahetamata.
+
+### 39.2 Diagnostika ja lõplik release'i tõend
+
+Praegune J01–J75 ring on veaklasside avastamine ja käsitsi regressioonivärav, mitte veel lõplik sertifikaat. Pärast viimast koodimuudatust tuleb kõik 75 juhtumit uuesti kontrollida ühe külmutatud `FINAL_SHA` vastu ilma vahepealse deploy'ta. Sõltumatu canonical juhtum vajab kontrollitud konteksti; sama juhtumi A/B-sõnastused peavad jääma samasse juhtumikonteksti ning päris jätkuküsimused kuuluvad teadlikult mitmevoorulisse plokki. Värske vestlus ei tohi olla workaround, millega ühe juhtumi viga peidetakse.
+
+DONE suureneb ainult siis, kui viimasel muutumatul release'il on korraga tõendatud õige vastus, õige valitud kontekst, vastust toetavad kuvatud allikad, avatav „Vastuste allikad” paneel ja trace. Diagnostilise release'i PASS ei kandu järgmisele SHA-le automaatselt. Kogu RAG jääb `PARTIAL`, kuni külmutatud release on päriselt läbinud 75/75 ja sellele järgnevad eraldi ettevalmistamata mitme kategooria juhuküsimused.
