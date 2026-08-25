@@ -24,7 +24,6 @@
   color: var(--voice-pearl);
   background: none;
   border: 0;
-  animation: voice-mode-arrive 520ms cubic-bezier(0.22, 0.76, 0.22, 1) both;
 }
 
 /* Vestlus jääb avatari taha nähtavaks, aga ei konkureeri temaga: pehme
@@ -45,9 +44,16 @@
 }
 
 .voice-mode__stage {
-  position: relative;
+  position: absolute;
+  inset: 0;
   min-height: 0;
   z-index: 1;
+}
+
+/* Tavavaate ja häälvaate avatar peavad kasutama täpselt sama kaadriala.
+   Häälpinna sisemine polster kuulub tekstile ja dokile, mitte punktipilvele. */
+.voice-mode__stage > .voice-avatar {
+  inset: 0;
 }
 
 .voice-avatar {
@@ -191,11 +197,6 @@
 .panel-scrim:has([data-chat-container][data-voice-active="true"]) :is(.panel-menu, .panel-close) {
   opacity: 0;
   pointer-events: none;
-}
-
-@keyframes voice-mode-arrive {
-  from { opacity: 0; transform: scale(1.012); filter: blur(7px); }
-  to { opacity: 1; transform: scale(1); filter: blur(0); }
 }
 
 @media (max-width: 640px) {

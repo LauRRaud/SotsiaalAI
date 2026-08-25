@@ -170,7 +170,9 @@ nii katsetatud otsmiku energiakuma kui ka suu kumakriips koos nende olekuanimats
 Häälvaate avamisel ei asendata avatarit enam laadimisrõngaga: sama parsitud punktipilv jääb
 mällu ja uue vaate WebGL-lõuend luuakse enne kaadri näitamist. Kohalik in-app käsikontroll
 kinnitas tühja näo ning kolmel järjestikusel sisse- ja väljalülitusel oli lõuend kohe olemas,
-laadimisrõngast ei renderdatud kordagi.
+laadimisrõngast ei renderdatud kordagi. Häälpinna punktipilv kasutab nüüd sama täisekraani
+kaadriala nagu tavavaate taustaavatar ning häälpinna skaleeriv avanemisanimatsioon on eemaldatud,
+mistõttu avatari mõõt ja asukoht ei muutu ka vahetuse esimesel kaadril.
 
 **Tööalade sisuvaadete kiirmenüü ja leheinfo on 22.08 parandatud.** Kõik
 `/vestlus?workspace=…` tööalad kasutavad nüüd sisu klaaspinda ning lehe nime, tagasinupu ja
@@ -2011,7 +2013,8 @@ Omaniku 25.08 valikul on taastatud ja toodangusse viidud algne näota ühe esiko
 teise punktikihita. Omaniku 25.08 tagasiside järel ei joonistata otsmikule ega suu asukohta
 eraldi kuma, joont või olekuanimatsiooni.
 Näokatse PNG-d jäävad kasutamata katsematerjalina alles. Häälvaate avamisel kasutatakse
-mällu jäetud punktipilve kohe ning varasem tühi laadimisvaade ja rõngas on eemaldatud.
+mällu jäetud punktipilve kohe ning varasem tühi laadimisvaade ja rõngas on eemaldatud. Tavavaade
+ja häälvaade kasutavad avatari jaoks sama kaadriala, et kuju mõõt ega asukoht ei hüppaks.
 
 Realtime on ainult kuulamisliides: spetsiaalne `type: "transcription"` WebRTC-seanss kasutab
 `gpt-4o-mini-transcribe` mudelit kõnevooru tuvastamiseks ja transkriptsiooniks. Seanss määrab
