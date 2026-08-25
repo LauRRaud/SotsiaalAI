@@ -2566,7 +2566,7 @@ html[data-contrast="hc"] .room-call-details {
   white-space: pre-wrap;
 }
 
-@container room-composer (max-width: 34rem) {
+@container room-composer (max-width: 46rem) {
   .chat-composer__room-tools {
     width: auto;
   }
@@ -2590,4 +2590,44 @@ html[data-contrast="hc"] .room-call-details {
   .panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] button[data-tooltip]::after {
     transition: none;
   }
+}
+
+/* Hiline kihita leping: vanad #chat-input-põhised nupureeglid ei tohi
+   ruumikomposeri ühtlast kiirmenüükuju ega 44 px puutesihti üle kirjutada. */
+.panel-scrim[data-conversation="1"] form.chat-composer[data-room-mode="true"] .chat-composer__room-tools :is(.room-call-controls > button, button.conv-ai-target) {
+  inline-size: var(--hit-target-min, 2.75rem) !important;
+  block-size: var(--hit-target-min, 2.75rem) !important;
+  border: 1px solid transparent !important;
+  border-radius: 50% !important;
+  color: color-mix(in srgb, var(--text-warm) 84%, transparent) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.panel-scrim[data-conversation="1"] form.chat-composer[data-room-mode="true"] .chat-composer__room-tools :is(.room-call-controls > button, button.conv-ai-target):hover:not(:disabled) {
+  border-color: color-mix(in srgb, var(--text-warm) 16%, transparent) !important;
+  background: color-mix(in srgb, var(--text-warm) 7%, transparent) !important;
+}
+
+.panel-scrim[data-conversation="1"] form.chat-composer[data-room-mode="true"] .chat-composer__room-tools .room-call-icon > svg {
+  inline-size: 1.8rem !important;
+  block-size: 1.8rem !important;
+}
+
+.panel-scrim[data-conversation="1"] form.chat-composer[data-room-mode="true"] .chat-composer__room-tools button.conv-ai-target[data-active="true"] {
+  color: #fff !important;
+  border-color: color-mix(in srgb, var(--text-warm) 30%, transparent) !important;
+  background: transparent !important;
+}
+
+.panel-scrim[data-conversation="1"] .room-call-active-dot {
+  position: absolute;
+  inset-block-start: 0.18rem;
+  inset-inline-end: 0.16rem;
+  inline-size: 0.45rem;
+  block-size: 0.45rem;
+  border: 0.1rem solid rgba(8, 12, 9, 0.9);
+  border-radius: 50%;
+  background: #8bd3aa;
+  box-shadow: 0 0 0 0.12rem color-mix(in srgb, #8bd3aa 13%, transparent);
 }

@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 
-import ChevronIcon from "@/components/brand/icons/ChevronIcon";
 import Dropdown from "@/components/ui/Dropdown";
 import Input from "@/components/ui/Input";
 
@@ -86,16 +85,6 @@ function PhoneGlyph() {
   );
 }
 
-function MicGlyph({ muted }) {
-  return (
-    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
-      <rect x="9" y="3.5" width="6" height="11" rx="3" />
-      <path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v2.6" />
-      {muted ? <path d="M4 4l16 16" /> : null}
-    </svg>
-  );
-}
-
 // 14 K1: riba on puhas esitlus — useRoomCall'i omanik on leht (ChatBody), kes
 // annab hoogi tagastuse `session` propina. 23.07 (omanik): endine "riba" asendatud
 // KOMPAKTSE ikoon-kontrolliga composeri ikoonireas — 📞 lüliti (alusta/liitu =
@@ -162,23 +151,19 @@ export default function RoomCallBar({
   const micBlockedTitle = micControl?.reason === "no_audio"
     ? text(t, "calls.mic_control_no_audio", "Mikrofon ei ole selles vahekaardis ühendatud")
     : text(t, "calls.mic_control_other_tab", "Mikrofoni juhib see vahekaart, kust kõnega liituti");
-  const micTitle = micControlBlocked
-    ? micBlockedTitle
-    : micMuted
-      ? text(t, "calls.mic_off", "Mikrofon väljas")
-      : text(t, "calls.mic_on", "Mikrofon sees");
   // "Alusta" = "Liitu" (omanik 23.07): kõne olemas → liitu; kõnet pole → alusta;
   // kõnes → lahku (host jaoks lõpetab, kui viimane).
   const handleToggle = () => {
     if (busy || unavailable) return;
-    if (inCall) leave();
-    else if (call) join();
+    if (inCall) {
+      setDetailsOpen(value => !value);
+    } else if (call) join();
     else start();
   };
   const toggleTitle = unavailable
     ? text(t, "calls.not_configured", "Helikõne teenus ei ole veel seadistatud.")
     : inCall
-      ? text(t, "calls.leave", "Lahku")
+      ? text(t, "calls.open_details", "Ava helikõne detailid")
       : call
         ? text(t, "calls.join", "Liitu")
         : text(t, "calls.start_audio", "Alusta helikõnet");
@@ -189,10 +174,7 @@ export default function RoomCallBar({
   return (
     <div className="room-call-controls" data-call-active={inCall ? "true" : undefined}>
       {inCall ? (
-        <span className="room-call-live-state" role="status">
-          <span className="room-call-live-state__dot" aria-hidden="true" />
-          <span>{text(t, "calls.active", "Helikõne aktiivne")}</span>
-        </span>
+        <span className="sr-only" role="status">{text(t, "calls.active", "Helikõne aktiivne")}</span>
       ) : null}
       <button
         type="button"
@@ -203,45 +185,38 @@ export default function RoomCallBar({
         data-tooltip={toggleTitle}
         aria-label={toggleTitle}
         aria-pressed={inCall ? "true" : "false"}
+        aria-expanded={inCall ? showDetails : undefined}
       >
         <PhoneGlyph />
+        {inCall ? <span className="room-call-active-dot" aria-hidden="true" /> : null}
       </button>
-
-      {inCall ? (
-        <>
-          <button
-            type="button"
-            className="room-call-mute"
-            data-muted={micMuted ? "true" : undefined}
-            data-mic-elsewhere={micControlBlocked ? "true" : undefined}
-            onClick={() => setMuted(!micMuted)}
-            disabled={busy || micControlBlocked}
-            data-tooltip={micTitle}
-            aria-label={micTitle}
-            aria-pressed={micMuted ? "true" : "false"}
-          >
-            <MicGlyph muted={micMuted} />
-          </button>
-          <button
-            type="button"
-            className="room-call-details-btn"
-            data-badge={needsAttention ? "true" : undefined}
-            onClick={() => setDetailsOpen(value => !value)}
-            aria-expanded={showDetails}
-            data-tooltip={text(t, "calls.open_details", "Ava helikõne detailid")}
-            aria-label={text(t, "calls.open_details", "Ava helikõne detailid")}
-          >
-            <ChevronIcon direction={showDetails ? "down" : "up"} width={14} height={8} strokeWidth={1.35} />
-          </button>
-        </>
-      ) : null}
 
       {showDetails ? (
         <div className="room-call-details" role="dialog" aria-label={text(t, "calls.active", "Helikõne aktiivne")}>
           <div className="room-call-details-status">
+            <span className="room-call-live-state">
+              <span className="room-call-live-state__dot" aria-hidden="true" />
+              <span>{text(t, "calls.active", "Helikõne aktiivne")}</span>
+            </span>
             {call
               ? `${participants.length}/${call.maxParticipants || config.maxParticipants || 8} ${text(t, "calls.participants_short", "osalejat")}${speakCount ? `, ${pluralSpeak(t, speakCount)}` : ""}${recordingStatus ? `, ${recordingStatus}` : ""}`
               : ""}
+          </div>
+
+          <div className="room-call-actions-row">
+            <button
+              type="button"
+              onClick={() => setMuted(!micMuted)}
+              disabled={busy || micControlBlocked}
+              aria-pressed={micMuted ? "true" : "false"}
+            >
+              {micMuted
+                ? text(t, "calls.mic_on", "Lülita mikrofon sisse")
+                : text(t, "calls.mic_off", "Lülita mikrofon välja")}
+            </button>
+            <button type="button" onClick={leave} disabled={busy}>
+              {text(t, "calls.leave", "Lahku")}
+            </button>
           </div>
 
           {error ? (
