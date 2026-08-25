@@ -610,3 +610,60 @@ Kõik kontrollid tehti olemasolevas autentitud vestluses, „Uus vestlus” work
 | M07 release `f9b6fdd4` | avatud küsimused; kuula, ole kohal, hoidu hinnangutest | üks päring; üks valitud fail; 1182 + 248 märki tervikuna, `truncated=false`; retrieval 4587 ms | üks õige algkoolilapse tööleht | **PASS** |
 
 M07 paranduse leping on üldine: see ei sisalda Tarkvanema oodatud vastust ega küsimusepõhist arvu, vaid eristab nimepidi küsitud dokumendijuhise üldisest materjalide avastusrajast. M10 arvud kinnitab allikapõhine validaator; oodatud arve ei lisatud prompti ega korpusesse. Kumulatiivset ajaloolist arvestust ei suurendata sihtkorduste võrra ilma ülejäänud release'i kontrollimata: **DONE 21/75 · NOT_PROVEN 54/75**.
+
+### 25.08 canonical 75 aktiivse release'i kordus — koodirelease `49b76109`
+
+Canonical nimetaja on täpselt J01–J22, V01–V08, A01–A10, S01–S10, M01–M10, N11–N15 ja K01–K10 ehk 75 juhtumit. DONE loetakse ainult viimasel muutumatul koodirelease'il, kui õige vastus, valitud kontekst, vastust toetav kuvatud allikas, hoveriga avatav „Vastuste allikad” paneel ja trace on kõik tõendatud. Varasema release'i 21/75 ajaloolist koondit ega eraldi sihtkordusi ei kanta sellesse arvestusse automaatselt.
+
+J02 lähte-SHA `8f506014` esimene loomulik sõnastus läks `default` režiimi, valis sama vestluse varasema Eenmaa eestkosteartikli ning ei kuvanud allikaid; õige Ainsaare/Ojasuu artikkel oli retrieval-kandidaatides olemas. Teine sõnastus ilma aastanumbrita jäi samuti `default` režiimi ja üks retrieval-päring aegus 30 sekundiga. Võrdlev töötav sõnastus, milles oli „osakaal” ja `2/2017`, aktiveeris `specific_research_fact` raja. Põhjus oli seega kahes üldises sõnavarapiiris: planner ei tundnud arvuküsimusena väljendit „kui suur osa” ega allikaliigina „kirjutis”; pärast planner'i parandust jäi sama väljend veel arvufakti validaatori sissepääsust välja. Commit'id `3b40cb9d` ja `49b76109` laiendavad neid üldisi lepinguid, mitte konkreetset küsimust, artiklit, autorit ega protsente.
+
+Lõppkordus tehti pärast deploy'd ja sama brauseriakna värskendamist samas autentitud vestluses:
+
+| ID | kontrollvastus | esimene tekst / valmis | trace | hover-allikapaneel | seis |
+|---|---|---:|---|---|---|
+| J01 | vähemalt kord nelja kuu jooksul; Rakvere 5, Jõhvi 7, Narva 5 | 28 213 / 29 339 ms | `specific_research_fact`; identiteet `high`; selected = answer = displayed = Krista Schönbergi 2016 MAPPA artikkel; validator `all_claims_in_one_rendered_source`; retrieval 22 515 ms, model 2137 ms, validation 52 ms | avanes; üks vastust toetav MAPPA kaart | **DONE** |
+| J02 | ligi 25% kergem teenus, 45% ööpäevaringne juhendamine, u 30% pidevad hooldustoimingud | 7877 / 8945 ms | `specific_research_fact` v2.5; identiteet `high`; selected = answer = displayed = Ainsaare/Ojasuu 2017 artikkel; `exact_numeric_fact_v5` PASS; retrieval 5760 ms, model 1386 ms, validation 19 ms | avanes; üks vastust toetav Ainsaare/Ojasuu kaart | **DONE** |
+
+Praegune viimase muutumatu koodirelease'i koond:
+
+| seis | arv |
+|---|---:|
+| DONE | **2/75** |
+| PARTIAL | **0/75** |
+| FAIL | **0/75** |
+| NOT_PROVEN | **73/75** |
+
+Koodirelease'i eelväravad olid i18n, kahe muudetud faili ESLint, `git diff --check` ja tootmisbuild; automaatteste ega test-, smoke-, probe-, benchmark- või E2E-faile ei loodud ega käivitatud. Korpust, Chroma/FTS5 indeksit, andmebaasi, mudelit, prompt'i, top-k väärtusi, fusion'i kaale, timeout'e ega serveri env-i ei muudetud. Kontrolli hetkel olid kohalik HEAD, `origin/main` ja puhas server SHA-l `49b761094f1ae80f486d13ddae682d0bea2ab72d`; kolm teenust olid aktiivsed, `/vestlus` vastas 200, health oli `ok=true` 49 727 vektori / 6089 dokumendiga ja FTS5 `ready=true` 49 727 lõigu / 6073 aktiivse registridokumendiga. Kontaktikontrolli timer oli aktiivne, viimane service-result `success` ja järgmine käik 30.08.2026.
+
+### 25.08 J03 jätk — koodirelease `caf15cf8`
+
+J03 kaks esmast sõnastust paljastasid ühe üldise põhjuse. Kontaktikanalite võrdlusküsimus läks vaikimisi MMR-rada, õige 2018. aasta artikkel jäi kärbitud sekundaarallikaks ning teised kriisijuhendid panid vastusesse eri allikate telefoninumbreid. Üks vastus peatati põhjusega `unsupported_numeric_claim` ja teine põhjusega `cross_source_numeric_mix`. Release `caf15cf8` valib nüüd ainult kontaktikanali semantilise tunnuse ning vähemalt kahe küsimuses nimetatud 3–8-kohalise koodi korral ühe järjestatud allikagrupi, mis sisaldab kõiki koode. Küsimust, numbreid, vastust ega artiklit koodi ei lisatud ning validaatorit ei lõdvendatud.
+
+Canonical maatriksiküsimus nimetab selgelt 2018. aasta vaimse tervise esmaabi artiklit. Selle kontrollvastus saabus 28 613 ms-ga, valis ja kuvas ainult `sotsiaaltoo_vaimse-tervise-esmaabi-toole-2018`, säilitas õiged kriisitunnused ning telefoninumbrid 112 ja 1220. `exact_numeric_fact_v5` läbis põhjusega `all_claims_in_one_rendered_source`; dokumendiidentiteet oli `high`, selected = answer = displayed, retrieval oli 25 918 ms, model 1941 ms ja validation 15 ms. Vestlusemulli hoveri järel avanes ühe toetava kaardiga „Vastuste allikad” paneel.
+
+Kaks üldise tänase kriisinõuna kõlanud sõnastust ei ole canonical ajaloolise publikatsioonifakti asendus. Ühes neist valiti õige 1144-märgiline tõend tervikuna ja faktivalidaator läbis, kuid atribuutika peitis ajaloolise artikli põhjusega `historical_source_not_current_evidence`; teises ei tekkinud range dokumendiidentiteedi/faktivalidaatori lepingut ja sama riskipiir peitis allika. Neid tulemusi ei loeta PASS-iks ning high-risk ajaloolise allika poliitikat ei nõrgendatud.
+
+Praegune viimase muutumatu koodirelease'i koond:
+
+| seis | arv |
+|---|---:|
+| DONE | **1/75** |
+| PARTIAL | **0/75** |
+| FAIL | **0/75** |
+| NOT_PROVEN | **74/75** |
+
+J01 ja J02 jäid release'i `49b76109` ajalooliseks tõendiks ega kandu automaatselt `caf15cf8` arvestusse. Automaatteste ega test-, smoke-, probe-, benchmark- või E2E-faile ei loodud ega käivitatud; korpust, indeksit, DB-d ega env-i ei muudetud.
+
+### 25.08 J04–J11 release-eelne põhjuskaart — lähte-release `caf15cf8`
+
+J04–J11 canonical plokk mõõdeti samas autentitud vestluses. J06, J08 ja J09 läbisid lähte-release'il vastuse, trace'i ning hoveriga avatud toetava allikapaneeli värava, kuid need tulemused on järgmise koodirelease'i järel ajaloolised ja tuleb üle korrata. J04, J05, J07, J10 ja J11 andsid sõnastustundlikud vead, mis reprodutseeriti enne koodimuudatust vähemalt kahe sõnastusega.
+
+| ID | lähte-release'i tulemus | mõõdetud põhjus | release-eelne üldparandus | seis |
+|---|---|---|---|---|
+| J04 | canonical 23 593 / 24 951 ms: kolm omavalitsust õiged, ainult 1/4 põhiülesannet; allikapaneelil õige Perepesa artikkel. Artiklit ja aastat nimetanud variant 12 988 / 14 250 ms: täielik 4/4 | allikata nimega loeteluküsimus jäi MMR-i; õige 2019 artikkel oli teine ja sellest renderdati ainult kaks 547–548 märgi pikkust alguskatkendit | konservatiivne nimeankru, vähemalt kahe loendiarvu ja loeteluküsimuse kuju suunatakse ühe dokumendi faktirajale; oleviku-, KOV-, õigus- ja avastuspäringud on välistatud | **FAIL lähte-release'il; uus runtime NOT_PROVEN** |
+| J05 | canonical 6648 ms ja parafraas 7158 ms: mõlemad palusid ekslikult valda või linna täpsustada; sama küsimus verbiga „oli” vastas 30 spetsialisti / 12 riiki ning 60 inimest / 19 riiki | arvuküsimus koos sõnaga „spetsialist” liigitas ajaloolise osalemisfakti KOV-i kontaktinimekirjaks | ET/EN/RU arv + osalemisverb välistab kontaktiraja, välja arvatud selge olevikuviide | **FAIL lähte-release'il; uus runtime NOT_PROVEN** |
+| J07 | canonical 25 688 ms ja parafraas 26 613 / 26 786 ms: mõlemad vale keeldumine | sündmusperiood `2018–2020` muutus ekslikult allikate publikatsiooniaastateks; õige 2022 artikkel oli neljas ja ainult kaks 322-märgist alguskatkendit jõudsid konteksti; validaator peatas allikate arvusegu | piiritletud episood + aastavahemik + vähemalt kolm mõõdikupesa suunatakse ühe dokumendi faktirajale; aastavahemik märgitakse tõendiepisoodiks, kuid aastate kaupa/võrdluse/trendi rajad jäävad alles | **FAIL lähte-release'il; uus runtime NOT_PROVEN** |
+| J10 | canonical 30 365 / 30 565 ms ja teine pikk sõnastus 40 666 / 40 666 ms: mõlemad kinnitasid ainult 150/75 minutit, kuid mitte 7–8 tunni und ega kuulmislanguse 2–5-kordset riski. Lühem otsene variant 9449 / 10 161 ms oli täielik | õige 2025 artikkel valiti, kuid kümnekohalise teematerminite loendi täitsid küsimuse grammatika ja paljas aastaarv enne `kuulmislangus`-ankrut; 12 tõendikehast renderdati esimesed 8 | paljas arv ja üldised küsimuse liimsõnad eemaldatakse ainult dokumendi teematerminitest; aasta jääb eraldi faktiterminiks | **PARTIAL lähte-release'il; uus runtime NOT_PROVEN** |
+| J11 | canonical 12 641 ms ja teine sõnastus 26 065 ms: mõlemad vale värskete KOV-kontaktide keeldumine | õige Elin Küti artikkel valiti ja kuvati, kuid `artikli` ei sobinud allikavihje mustriga `artikkel…`; `sotsiaaltöötajate` käivitas seejärel eksliku kontaktivalidaatori `contact_inventory_unavailable` | eesti `artikl…` käändetüvi ja `kirjutis…` loetakse sõltumatu ajaloolise allika vihjeks | **FAIL lähte-release'il; uus runtime NOT_PROVEN** |
+
+J11 kontrollvastus on seitse poolstruktureeritud intervjuud, neist kuus individuaalset ja üks kolme osalejaga grupiintervjuu, ning kolmeetapiline temaatiline analüüs. J07 kontrollarvud on 678 inimest, 273 vabatahtlikku, 21 600 tundi, 12 maakonda ja 43 omavalitsust. Ühtegi neist küsimustest, vastustest, nimedest ega arvudest koodi ei lisatud. Korpust, indeksit, DB-d, env-i, globaalseid top-k väärtusi, fusion'i kaale, mudelit, prompt'i ega timeout'e ei muudetud. Automaatteste ega test-, smoke-, probe-, benchmark- või E2E-faile ei loodud ega käivitatud. Enne deploy'd ja muutumatu release'i kordust on kogu uue ploki runtime ausalt **NOT_PROVEN**.
