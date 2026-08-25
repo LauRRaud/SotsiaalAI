@@ -22,6 +22,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
+import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 
 function txt(t, key, fallback) {
   return typeof t === "function" ? t(key, fallback) : fallback;
@@ -41,7 +42,7 @@ function RequestDetail({ t, locale, request, trail, onAction, busy }) {
   if (!request) return null;
 
   return (
-    <section aria-labelledby="urgent-detail-title">
+    <section className="feature-section urgent-request-detail" aria-labelledby="urgent-detail-title">
       <h3 id="urgent-detail-title">{txt(t, "urgent.desk_queue.request.verbatim_label", "Inimese enda sõnad")}</h3>
       {/* Ainus koht, kust vastuvõtja sisu loeb. */}
       <blockquote>{request.situationVerbatim}</blockquote>
@@ -123,6 +124,10 @@ function RequestDetail({ t, locale, request, trail, onAction, busy }) {
 
 export default function UrgentDeskView() {
   const { t, locale } = useI18n();
+  usePanelInfoSlot({
+    infoId: "urgent_desk",
+    title: txt(t, "urgent.desk_queue.title", "Kiireloomuline vastuvõtt")
+  });
   const [desks, setDesks] = useState([]);
   const [deskId, setDeskId] = useState("");
   const [queue, setQueue] = useState(null);
@@ -216,11 +221,11 @@ export default function UrgentDeskView() {
     }
   }
 
-  if (loading) return <p role="status">{txt(t, "admin.common.loading_data", "Laen andmeid...")}</p>;
+  if (loading) return <section className="feature-page feature-page__surface urgent-page" data-dock-scroll-behavior="recede"><p role="status">{txt(t, "admin.common.loading_data", "Laen andmeid...")}</p></section>;
 
   if (!desks.length) {
     return (
-      <section>
+      <section className="feature-page feature-page__surface urgent-page" data-dock-scroll-behavior="recede">
         <h2>{txt(t, "urgent.desk_queue.title", "Kiireloomuline vastuvõtt")}</h2>
         <p>{txt(t, "urgent.desk_queue.no_desks", "Sa ei istu ühegi kiireloomulise vastuvõtu laua taga.")}</p>
       </section>
@@ -230,7 +235,7 @@ export default function UrgentDeskView() {
   const desk = desks.find((row) => row.id === deskId) || null;
 
   return (
-    <section aria-labelledby="urgent-desk-title">
+    <section className="feature-page feature-page__surface urgent-page urgent-desk-page" data-dock-scroll-behavior="recede" aria-labelledby="urgent-desk-title">
       <h2 id="urgent-desk-title">{txt(t, "urgent.desk_queue.title", "Kiireloomuline vastuvõtt")}</h2>
       <p>{txt(t, "urgent.desk_queue.lead", "Kaua oodanud on ees.")}</p>
       <p><small>{txt(t, "urgent.desk_queue.promise_note", "Lugemisaja lubadust kannab ainult kiireloomuline abipalve.")}</small></p>
@@ -253,7 +258,7 @@ export default function UrgentDeskView() {
       {error ? <p role="alert">{error}</p> : null}
 
       {queue?.incomingHandovers?.length ? (
-        <section aria-labelledby="urgent-handovers-title">
+        <section className="feature-section urgent-handovers" aria-labelledby="urgent-handovers-title">
           <h3 id="urgent-handovers-title">{txt(t, "urgent.desk_queue.handover.title", "Saabunud üleandmised")}</h3>
           <ul>
             {queue.incomingHandovers.map((row) => (

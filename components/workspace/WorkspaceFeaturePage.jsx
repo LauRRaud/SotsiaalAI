@@ -58,11 +58,9 @@ import { SERVICE_PROFILE_LIMITS } from "@/lib/serviceProviderProfileLimits";
 const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAALAI_CHAT_WORKSPACE_RESTORE__";
 const SERVICE_MAP_RESULT_BUTTON_LIMIT = 24;
 
-// Kujundus stripitud (Fable 5 teeb visuaali). Allesjäänud klassikonstandid on
-// tühjendatud; kasutuskohad jäävad alles, et struktuur ja loogika säiliksid.
-const bodyTextClassName = "";
-const receivingCheckboxLabelClassName = "";
-const serviceMapChoiceCardClassName = "";
+const bodyTextClassName = "feature-page__copy";
+const receivingCheckboxLabelClassName = "feature-page__checkbox";
+const serviceMapChoiceCardClassName = "service-map-choice-card";
 
 const ADMIN_WORKSPACE_ROLES = Object.freeze([
   "CLIENT",
@@ -173,7 +171,7 @@ function getWorkspaceFeatureInfoId(featureKey, activeRole) {
 
 function SectionCard({ title, children, className }) {
   return (
-    <section className={className}>
+    <section className={cn("feature-section", className)}>
       <h2>{title}</h2>
       {children}
     </section>
@@ -182,7 +180,7 @@ function SectionCard({ title, children, className }) {
 
 function ServiceProfileSection({ title, children, className }) {
   return (
-    <section className={className}>
+    <section className={cn("feature-section", "feature-section--profile", className)}>
       <h2>{title}</h2>
       {children}
     </section>
@@ -191,7 +189,7 @@ function ServiceProfileSection({ title, children, className }) {
 
 function Label({ children, className }) {
   return (
-    <label className={cn(className)}>
+    <label className={cn("feature-field", className)}>
       {children}
     </label>
   );
@@ -206,14 +204,14 @@ function PreInquiryAssessmentReviewSection({ t, title, review, situation = "", n
     <SectionCard title={title}>
       {note ? <p className={bodyTextClassName}>{note}</p> : null}
 
-      <div>
-        <div>
+      <div className="feature-review-grid">
+        <div className="feature-stat-card">
           <p>
             {readText(t, "workspace_feature_pages.pre_inquiries.assessment.review_path", "Valitud rada")}
           </p>
           <p>{review.pathTitle}</p>
         </div>
-        <div>
+        <div className="feature-stat-card">
           <p>
             {readText(t, "workspace_feature_pages.pre_inquiries.assessment.review_progress", "Põhiküsimuste ülevaade")}
           </p>
@@ -2255,8 +2253,8 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
 
   if (isRecipientRole) {
     return (
-      <div>
-        <div>
+      <div className="pre-inquiry-workflow pre-inquiry-workflow--receiver">
+        <div className="feature-page__intro">
           <p className={bodyTextClassName}>
             {`${roleLabel(t, activeRole)} · ${readText(t, "workspace_feature_pages.pre_inquiries.receiver_workspace", "Eelpöördumiste vastuvõtt")}`}
           </p>
@@ -5642,13 +5640,16 @@ export default function WorkspaceFeaturePage({ feature, embedded = false, onBack
           onChange={handleAdminWorkspaceRoleChange}
         />
       ) : null}
-      <div>
-        <div>
+      <div
+        className={cn(!isServiceMap && "feature-page feature-page--workspace")}
+        data-dock-scroll-behavior={!isServiceMap ? "recede" : undefined}
+      >
+        <div className={cn(!isServiceMap && "feature-page__surface workspace-feature-panel")}>
           {!hideHeader ? (
             <SubpageHeader
               onBack={handleBack}
               backAriaLabel={readText(t, "workspace_feature_pages.back_to_workspace", "Back to workspace")}
-              showBack={embedded || !isServiceMap}
+              showBack={false}
               holdPressedVisualDisabled
               anchorBack={!embedded && isServiceMap}
               /* ⓘ EI ole enam siin: platvormi ainus lehe-ⓘ elab paneeli
@@ -5671,7 +5672,7 @@ export default function WorkspaceFeaturePage({ feature, embedded = false, onBack
   return (
     <section
       lang={locale}
-      className={isServiceMap ? "workspace-feature-service-map-section" : undefined}
+      className={isServiceMap ? "workspace-feature-service-map-section" : "feature-page-frame"}
     >
       {content}
     </section>

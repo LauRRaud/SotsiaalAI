@@ -518,11 +518,12 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
   if (isClientRole) {
     if (embedded) return <div />
     return (
-      <section className="documents-page">
+      <section className="feature-page feature-page__surface feature-page--documents documents-page" data-dock-scroll-behavior="recede">
         <SubpageHeader
           title={t("documents.client_document_library.title")}
           onBack={() => router.push(localizePath("/dokreziim", locale))}
           backAriaLabel={t("documents.client_document_library.back_to_compose")}
+          showBack={false}
         />
         <Panel as="section" variant="secondary" padding="sm">
           <p>{t("documents.client_document_library.description")}</p>
@@ -762,9 +763,9 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
         />
       ) : null}
 
-      <div className="documents-page">
+      <div className="feature-page feature-page__surface feature-page--documents documents-page" data-dock-scroll-behavior="recede">
         {!hideHeader ? (
-          <SubpageHeader onBack={handleBack} backAriaLabel={t("buttons.back")} anchorBack={false}>
+          <SubpageHeader onBack={handleBack} backAriaLabel={t("buttons.back")} showBack={false} anchorBack={false}>
             {t("documents.page_title")}
           </SubpageHeader>
         ) : null}

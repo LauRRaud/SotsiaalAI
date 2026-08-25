@@ -6,5 +6,5 @@ export default function Panel({
   className,
   ...props
 }) {
-  return <Component data-variant={variant} data-padding={padding} className={cn(className)} {...props} />;
+  return <Component data-variant={variant} data-padding={padding} className={cn("ui-panel", className)} {...props} />;
 }

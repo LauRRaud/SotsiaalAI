@@ -140,11 +140,12 @@ export default function MaterialsPage({ locale = "et", embedded = false, onBack 
   }, [onBack, resolvedLocale, router])
 
   const content = (
-    <div>
+    <div className="feature-page feature-page__surface feature-page--materials materials-page-content" data-dock-scroll-behavior="recede">
           {!hideHeader ? (
             <SubpageHeader
               onBack={handleBack}
               backAriaLabel={t("profile.back_to_chat")}
+              showBack={false}
               holdPressedVisualDisabled
               anchorBack={false}
               /* ⓘ elab paneeli nurgas × kõrval (PanelFrame); vt
@@ -154,8 +155,8 @@ export default function MaterialsPage({ locale = "et", embedded = false, onBack 
             </SubpageHeader>
           ) : null}
 
-          <section>
-            <Form onSubmit={handleSubmit}>
+          <section className="feature-section materials-submit-section">
+            <Form className="feature-form" onSubmit={handleSubmit}>
               <input
                 ref={fileInputRef}
                 type="file"
@@ -209,7 +210,7 @@ export default function MaterialsPage({ locale = "et", embedded = false, onBack 
                 </p>
               ) : null}
 
-              <div>
+              <div className="feature-actions">
                 <Button
                   type="submit"
                   disabled={!files.length || submitting}
@@ -219,12 +220,12 @@ export default function MaterialsPage({ locale = "et", embedded = false, onBack 
               </div>
             </Form>
           </section>
-          <section>
+          <section className="feature-section materials-library-section">
             <h2>{t("materials_page.mine.title")}</h2>
             {loadingMine && !myMaterials.length ? <p>{t("materials_page.mine.loading")}</p> : null}
             {!loadingMine && !myMaterials.length ? <p>{t("materials_page.mine.empty")}</p> : null}
             {myMaterials.map((item) => (
-              <div key={item.id}>
+              <article className="materials-item" key={item.id}>
                 <strong>{item.originalName}</strong>
                 <span>{t(`materials_page.admin.status.${item.status}`, item.status)}</span>
                 <span>
@@ -250,7 +251,7 @@ export default function MaterialsPage({ locale = "et", embedded = false, onBack 
                     {t("materials_page.mine.withdraw")}
                   </Button>
                 ) : null}
-              </div>
+              </article>
             ))}
             {nextCursor ? (
               <Button type="button" onClick={() => void loadMine({ cursor: nextCursor, append: true })} disabled={loadingMine}>

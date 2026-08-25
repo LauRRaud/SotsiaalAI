@@ -5,18 +5,18 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
-import { localizePath } from "@/lib/localizePath";
 import { buildRoomChatPath } from "@/lib/roomPath";
 import { pushWithTransition } from "@/lib/routeTransition";
 import ModalConfirm from "@/components/ui/ModalConfirm";
 import Panel from "@/components/ui/Panel";
+import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import InviteModal from "@/components/invite/InviteModal";
-import BackButton from "@/components/ui/BackButton";
-import CenteredScrollPicker from "@/components/CenteredScrollPicker";
+import { RoomsCardIcon } from "@/components/brand/icons/CardIcons";
 
 export default function RoomsPage() {
   const router = useRouter();
   const { t, locale } = useI18n();
+  usePanelInfoSlot({ infoId: "rooms", title: t("rooms.title") });
   const resolveErrorMessage = useCallback(
     (payload, fallbackKey) =>
       resolveApiMessage({
@@ -28,11 +28,7 @@ export default function RoomsPage() {
     [t]
   );
 
-  const scrollRef = useRef(null);
   const loadRequestRef = useRef(0);
-  const initViewportModeRef = useRef(null);
-  const initialScrollTopRef = useRef(0);
-  const hasInitialScrollTopRef = useRef(false);
 
   const [rooms, setRooms] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -40,12 +36,6 @@ export default function RoomsPage() {
   const [actionError, setActionError] = useState(null);
   const [pendingAction, setPendingAction] = useState(null);
   const [confirmAction, setConfirmAction] = useState(null);
-  const [scrollPad, setScrollPad] = useState(0);
-  const [scrollPadTop, setScrollPadTop] = useState(0);
-  const [scrollPadBottom, setScrollPadBottom] = useState(0);
-  const [, setIsScrolled] = useState(false);
-  const [hasUserStartedScroll, setHasUserStartedScroll] = useState(false);
-  const [isMobileViewport, setIsMobileViewport] = useState(false);
 
   const timeFormatter = useMemo(
     () =>
@@ -254,180 +244,11 @@ export default function RoomsPage() {
     return visibleRooms;
   }, [visibleRooms]);
 
-  const {
-    getItemClassName,
-    scrollToIndex
-  } = CenteredScrollPicker({
-    containerRef: scrollRef,
-    itemSelector: ".rooms-step",
-    neighborDistance: isMobileViewport ? 2 : 1,
-    lockWheelToSteps: !isMobileViewport,
-    settleOnScroll: false,
-    enableArrowKeys: true,
-    captureArrowKeys: true,
-    settleMs: isMobileViewport ? 420 : 360,
-    maxStepPerSettle: isMobileViewport ? 99 : 1,
-    wheelCooldownMs: isMobileViewport ? 300 : 340,
-    minWheelDelta: isMobileViewport ? 10 : 16,
-    manageHiddenFocus: !isMobileViewport,
-    pauseSettleWhileTouch: isMobileViewport
-  });
-
-  const getRoomStepClassName = index => getItemClassName(index);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const query = window.matchMedia("(max-width: 768px)");
-    const apply = () => setIsMobileViewport(query.matches);
-    apply();
-    if (typeof query.addEventListener === "function") {
-      query.addEventListener("change", apply);
-      return () => query.removeEventListener("change", apply);
-    }
-    query.addListener(apply);
-    return () => query.removeListener(apply);
-  }, []);
-
-  useEffect(() => {
-    const scrollEl = scrollRef.current;
-    if (!scrollEl || typeof window === "undefined") return;
-
-    const updatePad = () => {
-      const steps = Array.from(scrollEl.querySelectorAll(".rooms-step"));
-      const firstStep = steps[0] || null;
-      const lastStep = steps[steps.length - 1] || firstStep;
-      if (!firstStep || !lastStep) return;
-
-      const firstH = firstStep.getBoundingClientRect().height || 0;
-      const lastH = lastStep.getBoundingClientRect().height || 0;
-      const viewH = Math.max(0, scrollEl.clientHeight || 0);
-      if (!viewH || !firstH || !lastH) return;
-
-      const nextPadTopBase = Math.max(0, Math.floor((viewH - firstH) / 2));
-      const nextPadBottomBase = Math.max(0, Math.floor((viewH - lastH) / 2));
-      const nextPad = nextPadTopBase;
-      setScrollPad(prev => (prev === nextPad ? prev : nextPad));
-
-      const liftPx = isMobileViewport ? 4 : 9;
-      const nextTop = Math.max(0, nextPadTopBase - liftPx);
-      const nextBottom = Math.max(0, nextPadBottomBase + liftPx);
-      setScrollPadTop(prev => (prev === nextTop ? prev : nextTop));
-      setScrollPadBottom(prev => (prev === nextBottom ? prev : nextBottom));
-    };
-
-    updatePad();
-    const ro =
-      typeof ResizeObserver !== "undefined"
-        ? new ResizeObserver(updatePad)
-        : null;
-    ro?.observe(scrollEl);
-    window.addEventListener("resize", updatePad);
-    return () => {
-      ro?.disconnect?.();
-      window.removeEventListener("resize", updatePad);
-    };
-  }, [isMobileViewport, loading, effectiveRooms.length]);
-
-  useEffect(() => {
-    const scrollEl = scrollRef.current;
-    if (!scrollEl || typeof window === "undefined") return;
-
-    const mode = isMobileViewport ? "mobile" : "desktop";
-    if (initViewportModeRef.current === mode) return;
-    initViewportModeRef.current = mode;
-
-    const resetToFirstStep = () => {
-      if (!isMobileViewport) {
-        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-      }
-      scrollEl.scrollTop = 0;
-      scrollToIndex(0, "auto");
-      setIsScrolled(false);
-      setHasUserStartedScroll(false);
-      hasInitialScrollTopRef.current = true;
-      initialScrollTopRef.current = scrollEl.scrollTop || 0;
-    };
-
-    resetToFirstStep();
-    const rafA = requestAnimationFrame(resetToFirstStep);
-    const rafB = requestAnimationFrame(() =>
-      requestAnimationFrame(resetToFirstStep)
-    );
-    const settleTimer = window.setTimeout(resetToFirstStep, 120);
-    return () => {
-      cancelAnimationFrame(rafA);
-      cancelAnimationFrame(rafB);
-      window.clearTimeout(settleTimer);
-    };
-  }, [scrollToIndex, isMobileViewport]);
-
-  useEffect(() => {
-    if (hasUserStartedScroll) return;
-    const scrollEl = scrollRef.current;
-    if (!scrollEl || typeof window === "undefined") return;
-    const alignToFirst = () => {
-      scrollToIndex(0, "auto");
-      setIsScrolled(false);
-      hasInitialScrollTopRef.current = true;
-      initialScrollTopRef.current = scrollEl.scrollTop || 0;
-    };
-    const raf = requestAnimationFrame(alignToFirst);
-    return () => cancelAnimationFrame(raf);
-  }, [scrollPadTop, scrollPadBottom, hasUserStartedScroll, scrollToIndex]);
-
-  useEffect(() => {
-    const scrollEl = scrollRef.current;
-    if (!scrollEl || typeof window === "undefined") return;
-    const onScroll = () => {
-      const top = scrollEl.scrollTop || 0;
-      if (!hasInitialScrollTopRef.current) {
-        hasInitialScrollTopRef.current = true;
-        initialScrollTopRef.current = top;
-      }
-      const delta = Math.abs(top - initialScrollTopRef.current);
-      const thresholdOn = isMobileViewport ? 14 : 8;
-      const thresholdOff = isMobileViewport ? 9 : 5;
-      if (delta > thresholdOn) {
-        setHasUserStartedScroll(prev => prev || true);
-      }
-      setIsScrolled(prev => {
-        const next = prev ? delta > thresholdOff : delta > thresholdOn;
-        return prev === next ? prev : next;
-      });
-    };
-    onScroll();
-    scrollEl.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      scrollEl.removeEventListener("scroll", onScroll);
-    };
-  }, [isMobileViewport]);
-
-  useEffect(() => {
-    if (loading) return;
-    const scrollEl = scrollRef.current;
-    if (!scrollEl || typeof window === "undefined") return;
-    const raf = requestAnimationFrame(() => {
-      scrollEl.scrollTop = 0;
-      scrollToIndex(0, "auto");
-      setIsScrolled(false);
-      setHasUserStartedScroll(false);
-      hasInitialScrollTopRef.current = true;
-      initialScrollTopRef.current = scrollEl.scrollTop || 0;
-    });
-    return () => cancelAnimationFrame(raf);
-  }, [loading, effectiveRooms.length, scrollToIndex]);
-
   return (
     <>
-      <section>
-        <div role="region" aria-label={t("rooms.aria")}>
-          <BackButton
-            onClick={() => pushWithTransition(router, localizePath("/vestlus", locale))}
-            ariaLabel={t("rooms.back_to_chats")}
-            holdPressedVisualDisabled
-          />
-
-          <div>
+      <section className="feature-page feature-page--rooms" data-dock-scroll-behavior="recede">
+        <div className="feature-page__surface rooms-page" role="region" aria-label={t("rooms.aria")}>
+          <div className="rooms-page__header">
             <h1>
               {t("rooms.title")}
             </h1>
@@ -442,17 +263,9 @@ export default function RoomsPage() {
             </div>
           ) : null}
 
-          <div>
+          <div className="rooms-page__viewport">
             <div
-              ref={scrollRef}
-              style={{
-                "--csp-pad-top": `${Math.max(0, scrollPadTop || scrollPad)}px`,
-                "--csp-pad-bottom": `${Math.max(
-                  0,
-                  scrollPadBottom || scrollPad
-                )}px`,
-                "--csp-center-offset": `${isMobileViewport ? -4 : -9}px`
-              }}
+              className="rooms-page__scroller"
               tabIndex={0}
               aria-label={t("rooms.title")}
             >
@@ -484,8 +297,8 @@ export default function RoomsPage() {
                   </Panel>
                 </div>
               ) : (
-                <ul>
-                  {effectiveRooms.map((room, index) => {
+                <ul className="rooms-list">
+                  {effectiveRooms.map(room => {
                     const canInviteRoom = room.canInvite === true;
                     const canLeaveRoom = room.canLeave === true;
                     const canDeleteRoom = room.canDelete === true;
@@ -504,10 +317,11 @@ export default function RoomsPage() {
                     return (
                       <li
                         key={room.id}
-                        className={`rooms-step ${getRoomStepClassName(index)}`}
+                        className="rooms-step"
                       >
-                        <article>
+                        <article className="room-list-card">
                           <Link
+                            className="room-list-card__main"
                             prefetch={false}
                             href={roomChatPath}
                             onClick={event => {
@@ -528,38 +342,44 @@ export default function RoomsPage() {
                               );
                             }}
                           >
-                            <div>
-                              <h2>
-                                {room.title || t("rooms.fallback_title")}
-                              </h2>
-                              {room.unreadCount ? (
-                                  <span
-                                    aria-label={`${t("rooms.unread")}: ${room.unreadCount}`}
-                                  >
-                                    <span>{room.unreadCount}</span>
-                                  </span>
-                              ) : null}
-                            </div>
+                            <span className="room-list-card__icon" aria-hidden="true">
+                              <RoomsCardIcon />
+                            </span>
+                            <div className="room-list-card__content">
+                              <div className="room-list-card__title">
+                                <h2>
+                                  {room.title || t("rooms.fallback_title")}
+                                </h2>
+                                {room.unreadCount ? (
+                                    <span
+                                      aria-label={`${t("rooms.unread")}: ${room.unreadCount}`}
+                                    >
+                                      <span>{room.unreadCount}</span>
+                                    </span>
+                                ) : null}
+                              </div>
 
-                            <div>
-                              {room.role ? (
-                                <span>
-                                  {t("rooms.role_label")}: {roleLabel(room.role)}
-                                </span>
-                              ) : null}
-                              {room.archivedAt ? (
-                                <span>{t("rooms.archived")}</span>
-                              ) : null}
-                              {Number.isFinite(room.memberCount) ? (
-                                <span>
-                                  {t("rooms.members_label")}: {room.memberCount}
-                                </span>
-                              ) : null}
+                              <div className="room-list-card__meta">
+                                {room.role ? (
+                                  <span>
+                                    {t("rooms.role_label")}: {roleLabel(room.role)}
+                                  </span>
+                                ) : null}
+                                {room.archivedAt ? (
+                                  <span>{t("rooms.archived")}</span>
+                                ) : null}
+                                {Number.isFinite(room.memberCount) ? (
+                                  <span>
+                                    {t("rooms.members_label")}: {room.memberCount}
+                                  </span>
+                                ) : null}
+                              </div>
                             </div>
+                            <span className="room-list-card__arrow" aria-hidden="true" />
                           </Link>
 
                           {formattedLastActivity || hasRoomActions ? (
-                            <div>
+                            <div className="room-list-card__footer">
                               {formattedLastActivity ? (
                                 <span>
                                   {formattedLastActivity}
@@ -567,10 +387,11 @@ export default function RoomsPage() {
                               ) : null}
 
                               {hasRoomActions ? (
-                                <div>
+                                <div className="room-list-card__actions">
                                   {canInviteRoom ? (
                                     <button
                                       type="button"
+                                      className="room-list-card__action room-list-card__action--invite"
                                       onClick={() => handleInvite(room.id)}
                                     >
                                       {t("rooms.invite")}
@@ -579,6 +400,7 @@ export default function RoomsPage() {
                                   {canLeaveRoom ? (
                                     <button
                                       type="button"
+                                      className="room-list-card__action room-list-card__action--leave"
                                       onClick={() => handleLeave(room)}
                                       disabled={roomPending}
                                     >
@@ -590,6 +412,7 @@ export default function RoomsPage() {
                                   {canArchiveRoom ? (
                                     <button
                                       type="button"
+                                      className="room-list-card__action room-list-card__action--archive"
                                       onClick={() => openRoomConfirm(room, "archive")}
                                       disabled={roomPending}
                                     >
@@ -599,6 +422,7 @@ export default function RoomsPage() {
                                   {canDeleteRoom ? (
                                     <button
                                       type="button"
+                                      className="room-list-card__action room-list-card__action--delete"
                                       onClick={() => openRoomConfirm(room, "delete")}
                                       disabled={roomPending}
                                       aria-label={t("rooms.delete")}

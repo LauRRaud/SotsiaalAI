@@ -89,15 +89,17 @@ export default function WellbeingPage({ activeTool = null, locale = "et" }) {
   }, [activeTool, navigate, router]);
 
   return (
-    <div>
+    <div className={activeTool ? "feature-page feature-page--wellbeing" : undefined} data-dock-scroll-behavior={activeTool ? "recede" : undefined}>
       <section
+        className={activeTool ? "feature-page__surface wellbeing-workflow" : undefined}
         role="region"
         aria-labelledby="wellbeing-title"
       >
-        <div>
+        <div className={activeTool ? "wellbeing-workflow__inner" : undefined}>
           <SubpageHeader
             onBack={handleBack}
             backAriaLabel={t("chat.workspace.wellbeing_page.back_label", "Tagasi")}
+            showBack={false}
             titleId="wellbeing-title"
             /* Ülevaade (tööriistade menüü) = pealkirjata nagu Töölaud (tellija
                07.07). Pealkiri jääb ekraanilugejale (sr-only). Üksik-tööriista
@@ -133,8 +135,8 @@ export default function WellbeingPage({ activeTool = null, locale = "et" }) {
           ) : activeTool?.id === "starter-support" ? (
             <StarterSupportWorkflow onNavigate={navigate} />
           ) : activeTool ? (
-            <div>
-              <section>
+            <div className="wellbeing-workflow__placeholder">
+              <section className="feature-section">
                 <h2>{activeTool.title}</h2>
                 <p>{activeTool.description}</p>
                 <p>

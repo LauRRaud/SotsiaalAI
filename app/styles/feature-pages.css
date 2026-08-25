@@ -1,0 +1,1326 @@
+@layer components {
+/* ============================================================
+   Jagatud töölehe kompositsioon
+
+   See kiht on teadlikult valdkonnaülene. Dokumendid, materjalid, pöördumised,
+   abikuulutused, ruumid, kiire abi ja tööheaolu kasutavad sama pinna-,
+   sektsiooni-, välja-, oleku- ja tegevuslepingut. Valdkonnaklassid täpsustavad
+   ainult paigutust, mitte ei loo uut visuaalset süsteemi.
+   ============================================================ */
+
+.feature-page-frame,
+.feature-page {
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+
+.feature-page {
+  --feature-content-max: 68rem;
+  --feature-section-radius: 1rem;
+  --feature-gap: clamp(0.8rem, 1.8cqi, 1.25rem);
+  position: relative;
+  width: min(100%, var(--feature-content-max));
+  margin-inline: auto;
+  color: var(--text-warm);
+  container: feature-page / inline-size;
+}
+
+.feature-page__surface {
+  position: relative;
+  isolation: isolate;
+  width: min(100%, var(--feature-content-max));
+  margin-inline: auto;
+  padding: clamp(1rem, 2.8cqi, 2rem);
+  border: 1px solid color-mix(in srgb, var(--text-warm) 14%, transparent);
+  border-radius: clamp(1.1rem, 2.5cqi, 1.7rem);
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--text-warm) 5%, transparent), transparent 42%),
+    color-mix(in srgb, var(--surface-elevated, #232323) 76%, transparent);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--text-warm) 10%, transparent),
+    0 1.4rem 3.8rem rgba(0, 0, 0, 0.22);
+}
+
+.feature-page__surface::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at 12% 0%,
+    color-mix(in srgb, var(--dusk-sunset, #c59b77) 10%, transparent),
+    transparent 34%
+  );
+  pointer-events: none;
+}
+
+html[data-reduce-transparency="1"] .feature-page__surface {
+  background: var(--surface-elevated, #232323);
+}
+
+.feature-page :where(h1, h2, h3, h4, p, ul, ol, dl, blockquote, pre) {
+  overflow-wrap: anywhere;
+}
+
+.feature-page :where(h1, h2, h3, h4) {
+  color: var(--text-warm);
+  text-wrap: balance;
+}
+
+.feature-page :where(p, li, dd, small) {
+  line-height: 1.55;
+}
+
+.feature-page :where(p, li, dd) {
+  color: var(--text-soft);
+}
+
+.feature-page :where(a:not([data-variant])) {
+  color: var(--text-warm);
+  text-underline-offset: 0.2em;
+  text-decoration-color: color-mix(in srgb, var(--dusk-sunset, #c59b77) 65%, transparent);
+}
+
+.feature-page :where(a:not([data-variant])):hover {
+  text-decoration-color: currentColor;
+}
+
+.feature-page :where(a, button, input, textarea, select, summary):focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* Päis ja tagasitee */
+.feature-page .glass-subpage-header {
+  min-width: 0;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0 0 clamp(1rem, 2.4cqi, 1.6rem);
+  padding-inline-start: 0;
+  padding-block-end: 0.85rem;
+  border-block-end: 1px solid color-mix(in srgb, var(--text-warm) 13%, transparent);
+}
+
+.feature-page .glass-subpage-title-wrap {
+  min-width: 0;
+}
+
+.feature-page .glass-subpage-back-button + .glass-subpage-header {
+  padding-inline-start: 3.25rem;
+}
+
+.feature-page .glass-subpage-title {
+  margin: 0;
+  font-family: var(--font-display, inherit);
+  font-size: clamp(1.55rem, 1.2rem + 1.35cqi, 2.35rem);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.018em;
+}
+
+.feature-page .glass-subpage-back-button,
+.feature-page .rooms-page > .glass-subpage-back-button {
+  position: absolute;
+  z-index: 3;
+  inset-block-start: clamp(0.9rem, 2.4cqi, 1.7rem);
+  inset-inline-start: clamp(0.9rem, 2.4cqi, 1.7rem);
+  inline-size: var(--hit-target-min, 2.75rem);
+  block-size: var(--hit-target-min, 2.75rem);
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 999px;
+  color: var(--text-warm);
+  background: var(--glass-cell-bg);
+  cursor: pointer;
+  transition:
+    background-color var(--dur-fast) var(--ease-soft),
+    border-color var(--dur-fast) var(--ease-soft),
+    opacity var(--dur-fast) var(--ease-soft);
+}
+
+.feature-page .glass-subpage-back-button:hover {
+  background: var(--glass-cell-bg-hover);
+  border-color: color-mix(in srgb, var(--text-warm) 34%, transparent);
+}
+
+.feature-page .glass-subpage-back-button svg {
+  inline-size: 1.15rem;
+  block-size: 1.15rem;
+}
+
+/* Ühised sektsioonid ja primitiivid */
+.feature-section,
+.feature-page .ui-panel {
+  min-width: 0;
+  display: grid;
+  gap: var(--feature-gap);
+  padding: clamp(1rem, 2.2cqi, 1.45rem);
+  border: 1px solid color-mix(in srgb, var(--text-warm) 12%, transparent);
+  border-radius: var(--feature-section-radius);
+  background: color-mix(in srgb, var(--glass-cell-bg) 84%, transparent);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--text-warm) 6%, transparent);
+}
+
+.feature-section > :first-child,
+.feature-page .ui-panel > :first-child {
+  margin-block-start: 0;
+}
+
+.feature-section > :last-child,
+.feature-page .ui-panel > :last-child {
+  margin-block-end: 0;
+}
+
+.feature-section > h2,
+.feature-section > h3,
+.feature-page .ui-panel > h2,
+.feature-page .ui-panel > h3 {
+  margin: 0;
+  font-family: var(--font-display, inherit);
+  font-size: clamp(1.05rem, 0.95rem + 0.5cqi, 1.35rem);
+  font-weight: 560;
+  line-height: 1.2;
+}
+
+.feature-page__intro,
+.feature-notice,
+.feature-page :where([role="alert"], [role="status"]):not(:empty) {
+  padding: 0.75rem 0.9rem;
+  border-inline-start: 0.18rem solid color-mix(in srgb, var(--dusk-sunset, #c59b77) 70%, transparent);
+  border-radius: 0 0.75rem 0.75rem 0;
+  background: color-mix(in srgb, var(--dusk-sunset, #c59b77) 8%, transparent);
+}
+
+.feature-page :where([role="alert"]):not(:empty) {
+  border-inline-start-color: var(--status-error, #f0a49b);
+  color: var(--status-error, #f0a49b);
+}
+
+.feature-notice--success {
+  border-inline-start-color: var(--success, #5da879);
+}
+
+.feature-page__copy {
+  margin: 0;
+  color: var(--text-soft);
+}
+
+.feature-form,
+.feature-page :where(form) {
+  min-width: 0;
+  display: grid;
+  gap: var(--feature-gap);
+}
+
+.feature-field,
+.feature-page :where(form > label, fieldset label, .artifact-detail-fields > label),
+.wellbeing-workflow :where(label):not(.ui-checkbox) {
+  min-width: 0;
+  display: grid;
+  gap: 0.42rem;
+  color: var(--text-soft);
+}
+
+.feature-field > span:first-child,
+.feature-page :where(form > label, fieldset label, .artifact-detail-fields > label) > span:first-child,
+.wellbeing-workflow :where(label):not(.ui-checkbox) > span:first-child {
+  color: var(--text-warm);
+  font-size: var(--fs-small, 0.9rem);
+  font-weight: 650;
+}
+
+.feature-page :where(input:not([type="checkbox"]):not([type="radio"]), textarea, select),
+.wellbeing-workflow :where(input:not([type="checkbox"]):not([type="radio"]), textarea, select) {
+  width: 100%;
+  min-width: 0;
+}
+
+.feature-page :where(textarea),
+.wellbeing-workflow :where(textarea) {
+  min-height: 7rem;
+  resize: vertical;
+}
+
+.feature-page :where(fieldset),
+.wellbeing-workflow :where(fieldset) {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  gap: 0.75rem;
+  margin: 0;
+  padding: clamp(0.85rem, 2cqi, 1.2rem);
+  border: 1px solid color-mix(in srgb, var(--text-warm) 12%, transparent);
+  border-radius: 0.9rem;
+  background: color-mix(in srgb, var(--surface-deep, #141414) 32%, transparent);
+}
+
+.feature-page :where(legend),
+.wellbeing-workflow :where(legend) {
+  padding-inline: 0.35rem;
+  color: var(--text-warm);
+  font-weight: 680;
+}
+
+.feature-page__checkbox,
+.feature-page .ui-checkbox,
+.wellbeing-workflow .ui-checkbox {
+  min-height: var(--hit-target-min, 2.75rem);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 0.6rem 0.7rem;
+  border-radius: 0.75rem;
+  background: color-mix(in srgb, var(--glass-cell-bg) 72%, transparent);
+}
+
+.feature-actions,
+.feature-page :where(.documents-item__actions, .documents-upload__actions),
+.urgent-page :where(section > div:has(> button), p:has(> button)),
+.wellbeing-workflow :where(section > div:has(> button)) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.feature-review-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: 0.75rem;
+}
+
+.feature-stat-card {
+  min-width: 0;
+  padding: 0.85rem 0.95rem;
+  border-radius: 0.85rem;
+  background: color-mix(in srgb, var(--text-warm) 6%, transparent);
+}
+
+.feature-stat-card > p {
+  margin: 0;
+}
+
+.feature-stat-card > p:first-child {
+  color: var(--text-dim);
+  font-size: var(--fs-micro, 0.78rem);
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.feature-stat-card > p + p {
+  margin-block-start: 0.3rem;
+  color: var(--text-warm);
+}
+
+.feature-page :where(dl) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr));
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.feature-page :where(dl > div) {
+  min-width: 0;
+  padding: 0.72rem 0.8rem;
+  border-radius: 0.75rem;
+  background: color-mix(in srgb, var(--text-warm) 5%, transparent);
+}
+
+.feature-page :where(dt) {
+  color: var(--text-dim);
+  font-size: var(--fs-micro, 0.78rem);
+  font-weight: 650;
+  letter-spacing: 0.04em;
+}
+
+.feature-page :where(dd) {
+  margin: 0.28rem 0 0;
+  color: var(--text-warm);
+}
+
+.feature-page :where(blockquote, pre) {
+  max-width: 100%;
+  margin: 0;
+  padding: 1rem;
+  border-inline-start: 0.18rem solid color-mix(in srgb, var(--dusk-sunset, #c59b77) 62%, transparent);
+  border-radius: 0 0.75rem 0.75rem 0;
+  background: color-mix(in srgb, var(--surface-deep, #141414) 52%, transparent);
+  color: var(--text-warm);
+  font: inherit;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.feature-page :where(table) {
+  width: 100%;
+  min-width: 42rem;
+  border-collapse: collapse;
+  color: var(--text-soft);
+}
+
+.feature-page :where(table caption) {
+  padding-block-end: 0.75rem;
+  color: var(--text-warm);
+  font-weight: 700;
+  text-align: start;
+}
+
+.feature-page :where(th, td) {
+  padding: 0.75rem;
+  border-block-end: 1px solid color-mix(in srgb, var(--text-warm) 11%, transparent);
+  text-align: start;
+  vertical-align: top;
+}
+
+.feature-page :where(th) {
+  color: var(--text-warm);
+  font-size: var(--fs-small, 0.9rem);
+}
+
+/* Dokumendid */
+.feature-page--documents {
+  --feature-content-max: 72rem;
+  display: grid;
+  gap: var(--feature-gap);
+}
+
+.documents-page > .ui-panel + .ui-panel {
+  margin-block-start: var(--feature-gap);
+}
+
+.documents-entry {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13.5rem), 1fr));
+  gap: 0.75rem;
+}
+
+.documents-entry__card {
+  position: relative;
+  min-width: 0;
+  min-height: 7.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.55rem;
+  padding: 1rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 0.9rem;
+  color: var(--text-warm);
+  background: var(--glass-cell-bg);
+  text-align: start;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-fast) var(--ease-soft),
+    border-color var(--dur-fast) var(--ease-soft);
+}
+
+.documents-entry__card:hover,
+.documents-entry__card:focus-visible {
+  background: var(--glass-cell-bg-hover);
+  border-color: color-mix(in srgb, var(--text-warm) 35%, transparent);
+}
+
+.documents-entry__card-title {
+  font-weight: 720;
+}
+
+.documents-entry__card-desc,
+.documents-entry__card-note {
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.9rem);
+  line-height: 1.45;
+}
+
+.documents-upload {
+  margin-block-start: 0.3rem;
+  padding-block-start: 1rem;
+  border-block-start: 1px solid color-mix(in srgb, var(--text-warm) 12%, transparent);
+}
+
+.documents-upload__row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.documents-upload__file {
+  margin-block-start: 0.45rem;
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.9rem);
+}
+
+.documents-list__head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(min(100%, 23rem), auto);
+  align-items: center;
+  gap: 0.8rem 1rem;
+}
+
+.documents-list__head > h2 {
+  margin: 0;
+}
+
+.documents-list__search {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+}
+
+.documents-list__filters {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 0.45rem;
+  padding-block-end: 0.2rem;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+}
+
+.documents-list__filters > label {
+  flex: 0 0 auto;
+  min-height: var(--hit-target-min, 2.75rem);
+  padding-inline: 0.9rem;
+}
+
+.documents-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.documents-item {
+  min-width: 0;
+  display: grid;
+  gap: 0.85rem;
+  padding: clamp(0.9rem, 2cqi, 1.2rem);
+  border: 1px solid color-mix(in srgb, var(--text-warm) 12%, transparent);
+  border-radius: 0.9rem;
+  background: color-mix(in srgb, var(--surface-deep, #141414) 34%, transparent);
+}
+
+.documents-item__head {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.documents-item :where(h2, h3, p) {
+  margin: 0;
+}
+
+.documents-item__type,
+.documents-item__updated,
+.documents-item__meta,
+.documents-item__disclaimer {
+  color: var(--text-dim);
+  font-size: var(--fs-micro, 0.78rem);
+}
+
+.documents-item__type {
+  display: inline-flex;
+  width: fit-content;
+  margin-block-end: 0.35rem;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--dusk-sunset, #c59b77) 12%, transparent);
+  color: var(--text-warm);
+}
+
+.documents-item__updated {
+  white-space: nowrap;
+}
+
+.documents-provenance {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 8rem), 1fr)) !important;
+}
+
+.documents-item__ragtoggle {
+  min-height: var(--hit-target-min, 2.75rem);
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: 0.75rem;
+  background: color-mix(in srgb, var(--text-warm) 5%, transparent);
+}
+
+.documents-item__analysis,
+.artifact-detail-document {
+  padding: 1rem;
+  border-radius: 0.8rem;
+  background: color-mix(in srgb, var(--surface-deep, #141414) 58%, transparent);
+}
+
+.documents-item__analysis-text {
+  white-space: pre-wrap;
+}
+
+.documents-list__status,
+.documents-list__truncated,
+.documents-notice,
+.documents-error {
+  padding: 0.85rem 1rem;
+  border-radius: 0.8rem;
+  background: color-mix(in srgb, var(--text-warm) 5%, transparent);
+}
+
+/* Dokumendi detail ja koostamine */
+.feature-page--document-detail {
+  --feature-content-max: 48rem;
+}
+
+.document-detail-card > h1 {
+  margin: 0;
+  font-size: clamp(1.4rem, 1.1rem + 1cqi, 2rem);
+}
+
+.feature-page--artifact {
+  --feature-content-max: 66rem;
+}
+
+.artifact-detail-card,
+.artifact-detail-layout,
+.artifact-detail-content,
+.artifact-detail-fields,
+.artifact-detail-sources > div {
+  display: grid;
+  gap: var(--feature-gap);
+}
+
+.artifact-detail-header,
+.artifact-detail-heading,
+.artifact-detail-heading h1,
+.artifact-detail-content :where(h2, p) {
+  margin: 0;
+}
+
+.artifact-detail-statuses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.artifact-detail-statuses > span {
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--dusk-sunset, #c59b77) 12%, transparent);
+  color: var(--text-warm);
+  font-size: var(--fs-small, 0.9rem);
+}
+
+.artifact-detail-sources > div > div {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  background: color-mix(in srgb, var(--text-warm) 5%, transparent);
+}
+
+.feature-page--agent {
+  --feature-content-max: 76rem;
+}
+
+.agent-mode-page,
+.agent-mode-workspace,
+.agent-mode-workspace > div {
+  display: grid;
+  gap: var(--feature-gap);
+}
+
+.agent-mode-workspace > div {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+}
+
+.agent-mode-workspace > div > section,
+.agent-mode-workspace > div > .ui-panel {
+  min-width: 0;
+}
+
+.agent-mode-workspace > div > section:has(.chat-window),
+.agent-mode-workspace > div > section:has(textarea[rows="14"]) {
+  grid-column: 1 / -1;
+}
+
+.agent-mode-page .ui-panel :where(article) {
+  min-width: 0;
+  padding: 0.8rem;
+  border-radius: 0.8rem;
+  background: color-mix(in srgb, var(--text-warm) 5%, transparent);
+}
+
+/* Materjalid */
+.feature-page--materials {
+  --feature-content-max: 58rem;
+  display: grid;
+  gap: var(--feature-gap);
+}
+
+.materials-submit-section,
+.materials-library-section {
+  margin-block-start: var(--feature-gap);
+}
+
+.materials-submit-section .feature-form > button:first-of-type {
+  min-height: 6rem;
+  border-style: dashed;
+  border-radius: 1rem;
+}
+
+.materials-item {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) auto;
+  gap: 0.45rem 0.8rem;
+  align-items: center;
+  padding: 0.85rem;
+  border: 1px solid color-mix(in srgb, var(--text-warm) 11%, transparent);
+  border-radius: 0.85rem;
+  background: color-mix(in srgb, var(--surface-deep, #141414) 34%, transparent);
+}
+
+.materials-item > span:nth-of-type(2) {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 0.2rem;
+  color: var(--text-dim);
+  font-size: var(--fs-micro, 0.78rem);
+}
+
+.materials-item > a,
+.materials-item > button {
+  justify-self: start;
+}
+
+/* Pöördumised ja teenuseprofiil */
+.feature-page--workspace {
+  --feature-content-max: 70rem;
+}
+
+.workspace-feature-panel,
+.pre-inquiry-workflow,
+.service-profile-licence-actions {
+  display: grid;
+  gap: var(--feature-gap);
+}
+
+.workspace-feature-panel > .feature-section,
+.pre-inquiry-workflow > .feature-section {
+  margin-block-start: 0;
+}
+
+.pre-inquiry-recipient-card {
+  min-width: 0;
+  display: grid;
+  gap: 0.55rem;
+  padding: 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--text-warm) 12%, transparent);
+  border-radius: 0.85rem;
+  background: color-mix(in srgb, var(--surface-deep, #141414) 32%, transparent);
+}
+
+.pre-inquiry-recipient-card__availability,
+.service-profile-availability {
+  padding: 0.65rem 0.75rem;
+  border-radius: 0.7rem;
+  background: color-mix(in srgb, var(--dusk-sunset, #c59b77) 9%, transparent);
+}
+
+.pre-inquiry-assistant-panel,
+.casework-preparation-sources,
+.casework-preparation-drafts,
+.casework-preparation-reflection {
+  min-width: 0;
+  padding: 0.9rem;
+  border-radius: 0.85rem;
+  background: color-mix(in srgb, var(--text-warm) 5%, transparent);
+}
+
+.feature-section--profile > div,
+.feature-section--profile > fieldset,
+.feature-section--profile > form {
+  min-width: 0;
+}
+
+/* Abisoovid ja -pakkumised */
+.feature-page--help-listings {
+  --feature-content-max: 58rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--feature-gap);
+}
+
+.help-listings-body,
+.help-listings-panel,
+.help-listings-scroll,
+.help-listings-scroll > div {
+  min-height: 0;
+}
+
+.help-listings-scroll > div {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.help-listings-item-card {
+  width: 100%;
+  min-height: var(--hit-target-min, 2.75rem);
+  display: grid;
+  gap: 0.55rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 0.85rem;
+  color: var(--text-warm);
+  background: var(--glass-cell-bg);
+  text-align: start;
+  cursor: pointer;
+}
+
+.help-listings-item-card:hover,
+.help-listings-item-card:focus-visible {
+  background: var(--glass-cell-bg-hover);
+  border-color: color-mix(in srgb, var(--text-warm) 34%, transparent);
+}
+
+/* Ruumid */
+.feature-page--rooms {
+  --feature-content-max: 58rem;
+}
+
+.rooms-page {
+  min-height: min(42rem, calc(var(--app-dynamic-block-size, 100dvh) - 8rem));
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2.5cqi, 1.6rem);
+  container: rooms-page / inline-size;
+}
+
+.rooms-page__header {
+  display: flex;
+  align-items: center;
+  min-height: 3rem;
+  padding-block-end: 0.9rem;
+  border-block-end: 1px solid color-mix(in srgb, var(--text-warm) 12%, transparent);
+}
+
+.rooms-page__header h1 {
+  margin: 0;
+  font-family: var(--font-display, inherit);
+  font-size: clamp(1.65rem, 1.3rem + 1.2cqi, 2.25rem);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.rooms-page__viewport,
+.rooms-page__scroller {
+  min-width: 0;
+  min-height: 0;
+}
+
+.rooms-page__viewport {
+  flex: 1 1 auto;
+}
+
+.rooms-page__scroller {
+  height: 100%;
+  max-height: min(52rem, calc(var(--app-dynamic-block-size, 100dvh) - 14rem));
+  padding: 0.1rem 0.35rem 1rem 0.1rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+
+.rooms-page__scroller:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--text-warm) 62%, transparent);
+  outline-offset: 0.25rem;
+  border-radius: 1rem;
+}
+
+.rooms-list {
+  display: grid;
+  gap: 0.85rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rooms-step {
+  min-width: 0;
+}
+
+.room-list-card {
+  min-width: 0;
+  display: grid;
+  gap: 0;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--text-warm) 14%, transparent);
+  border-radius: clamp(1rem, 2.2cqi, 1.35rem);
+  background:
+    radial-gradient(130% 110% at 0% 0%, color-mix(in srgb, var(--text-warm) 8%, transparent), transparent 48%),
+    color-mix(in srgb, var(--glass-cell-bg) 86%, transparent);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--text-warm) 9%, transparent),
+    0 1rem 2.6rem rgba(0, 0, 0, 0.16);
+  transition:
+    border-color var(--dur-fast, 180ms) var(--ease-soft, ease),
+    background-color var(--dur-fast, 180ms) var(--ease-soft, ease),
+    box-shadow var(--dur-fast, 180ms) var(--ease-soft, ease);
+}
+
+.room-list-card__main {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr) 1.1rem;
+  align-items: center;
+  gap: clamp(0.75rem, 2cqi, 1rem);
+  padding: clamp(0.95rem, 2.8cqi, 1.3rem);
+  color: inherit;
+  text-decoration: none !important;
+}
+
+.room-list-card__main:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--text-warm) 66%, transparent);
+  outline-offset: -0.25rem;
+  border-radius: inherit;
+}
+
+.room-list-card__icon {
+  display: grid;
+  place-items: center;
+  inline-size: 3rem;
+  block-size: 3rem;
+  border: 1px solid color-mix(in srgb, var(--text-warm) 18%, transparent);
+  border-radius: 1rem;
+  color: color-mix(in srgb, var(--text-warm) 86%, transparent);
+  background: color-mix(in srgb, var(--text-warm) 6%, transparent);
+}
+
+.room-list-card__icon svg {
+  inline-size: 1.65rem;
+  block-size: 1.65rem;
+}
+
+.room-list-card__content {
+  min-width: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.room-list-card__title,
+.room-list-card__meta,
+.room-list-card__footer,
+.room-list-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.7rem;
+}
+
+.room-list-card__title {
+  justify-content: space-between;
+}
+
+.room-list-card__title h2 {
+  min-width: 0;
+  margin: 0;
+  font-size: clamp(1rem, 0.9rem + 0.5cqi, 1.3rem);
+  font-weight: 600;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.room-list-card__title > span {
+  display: grid;
+  place-items: center;
+  min-inline-size: 1.65rem;
+  min-block-size: 1.65rem;
+  padding-inline: 0.4rem;
+  border-radius: 999px;
+  color: #111;
+  background: var(--text-warm);
+  font-size: var(--fs-micro, 0.75rem);
+  font-weight: 700;
+}
+
+.room-list-card__meta {
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.9rem);
+}
+
+.room-list-card__meta > span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.85rem;
+  padding-inline: 0.65rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--text-warm) 5%, transparent);
+}
+
+.room-list-card__arrow {
+  inline-size: 0.7rem;
+  block-size: 0.7rem;
+  border-block-start: 0.12rem solid currentColor;
+  border-inline-end: 0.12rem solid currentColor;
+  color: var(--text-dim);
+  rotate: 45deg;
+  transition: translate var(--dur-fast, 180ms) var(--ease-soft, ease);
+}
+
+.room-list-card__footer {
+  justify-content: space-between;
+  gap: 0.75rem 1rem;
+  padding: 0.75rem clamp(0.95rem, 2.8cqi, 1.3rem);
+  border-block-start: 1px solid color-mix(in srgb, var(--text-warm) 10%, transparent);
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.9rem);
+  background: color-mix(in srgb, #000 10%, transparent);
+}
+
+.room-list-card__actions button {
+  min-inline-size: var(--hit-target-min, 2.75rem);
+  min-block-size: var(--hit-target-min, 2.75rem);
+  padding: 0.55rem 0.85rem;
+  border: 1px solid color-mix(in srgb, var(--text-warm) 15%, transparent);
+  border-radius: 999px;
+  color: var(--text-warm);
+  background: color-mix(in srgb, var(--text-warm) 5%, transparent);
+  cursor: pointer;
+  transition:
+    border-color var(--dur-fast, 180ms) var(--ease-soft, ease),
+    background-color var(--dur-fast, 180ms) var(--ease-soft, ease),
+    color var(--dur-fast, 180ms) var(--ease-soft, ease);
+}
+
+.room-list-card__actions svg {
+  inline-size: 1rem;
+  block-size: 1rem;
+}
+
+.room-list-card__action--delete {
+  color: var(--status-error, #f0a49b) !important;
+}
+
+.room-list-card__actions button:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--text-warm) 66%, transparent);
+  outline-offset: 0.18rem;
+}
+
+@media (hover: hover) {
+  .room-list-card:has(.room-list-card__main:hover) {
+    border-color: color-mix(in srgb, var(--text-warm) 28%, transparent);
+    background-color: color-mix(in srgb, var(--text-warm) 3%, transparent);
+    box-shadow:
+      inset 0 1px 0 color-mix(in srgb, var(--text-warm) 12%, transparent),
+      0 1.2rem 3rem rgba(0, 0, 0, 0.22);
+  }
+
+  .room-list-card__main:hover .room-list-card__arrow {
+    translate: 0.2rem 0;
+  }
+
+  .room-list-card__actions button:hover:not(:disabled) {
+    border-color: color-mix(in srgb, var(--text-warm) 30%, transparent);
+    background: color-mix(in srgb, var(--text-warm) 10%, transparent);
+  }
+}
+
+@container rooms-page (max-width: 34rem) {
+  .room-list-card__main {
+    grid-template-columns: 2.65rem minmax(0, 1fr) 0.8rem;
+    gap: 0.7rem;
+  }
+
+  .room-list-card__icon {
+    inline-size: 2.65rem;
+    block-size: 2.65rem;
+    border-radius: 0.85rem;
+  }
+
+  .room-list-card__meta {
+    gap: 0.35rem;
+  }
+
+  .room-list-card__footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .room-list-card__actions {
+    width: 100%;
+  }
+
+  .room-list-card__actions button {
+    flex: 1 1 8rem;
+  }
+}
+
+/* Kiire abi */
+.urgent-page {
+  --feature-content-max: 58rem;
+  display: grid;
+  gap: var(--feature-gap);
+}
+
+.urgent-page > h2,
+.urgent-page > h3,
+.urgent-page > p,
+.urgent-page > ul,
+.urgent-page > form {
+  margin-block: 0;
+}
+
+.urgent-page > h2 {
+  font-family: var(--font-display, inherit);
+  font-size: clamp(1.55rem, 1.2rem + 1.35cqi, 2.35rem);
+  font-weight: 500;
+}
+
+.urgent-page > form,
+.urgent-request-detail {
+  display: grid;
+  gap: var(--feature-gap);
+}
+
+.urgent-page--emergency {
+  border-color: color-mix(in srgb, var(--status-error, #f0a49b) 45%, transparent);
+}
+
+.urgent-desk-card dl {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
+}
+
+.urgent-desk-page {
+  overflow-x: auto;
+}
+
+.urgent-handovers ul,
+.urgent-request-detail ol {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.urgent-handovers li,
+.urgent-request-detail li {
+  padding: 0.7rem 0.8rem;
+  border-radius: 0.75rem;
+  background: color-mix(in srgb, var(--text-warm) 5%, transparent);
+}
+
+/* Tööheaolu töövood ja piloot */
+.feature-page--wellbeing {
+  --feature-content-max: 66rem;
+}
+
+.wellbeing-workflow,
+.wellbeing-workflow__inner,
+.wellbeing-workflow__inner > div {
+  min-width: 0;
+}
+
+.wellbeing-workflow__inner > div {
+  display: grid;
+  gap: var(--feature-gap);
+}
+
+.wellbeing-workflow :where(section) {
+  min-width: 0;
+  display: grid;
+  gap: var(--feature-gap);
+  margin: 0;
+  padding: clamp(1rem, 2.2cqi, 1.45rem);
+  border: 1px solid color-mix(in srgb, var(--text-warm) 12%, transparent);
+  border-radius: var(--feature-section-radius);
+  background: color-mix(in srgb, var(--glass-cell-bg) 84%, transparent);
+}
+
+.wellbeing-workflow :where(section > h2, section > h3, section > p) {
+  margin-block: 0;
+}
+
+.wellbeing-workflow :where(section > div:has(> h2), section > div:has(> h3)) {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.wellbeing-workflow :where(section > div:has(> article), section > div:has(> ul)) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: 0.75rem;
+}
+
+.wellbeing-workflow :where(article) {
+  min-width: 0;
+  padding: 0.85rem;
+  border-radius: 0.8rem;
+  background: color-mix(in srgb, var(--surface-deep, #141414) 38%, transparent);
+}
+
+.wellbeing-workflow :where(article h4, article p, article pre) {
+  margin: 0;
+}
+
+.wellbeing-workflow :where(ul, ol) {
+  margin-block: 0;
+}
+
+.wellbeing-workflow .wellbeing-choice-btn {
+  min-height: var(--hit-target-min, 2.75rem);
+}
+
+.feature-page--wellbeing-pilot {
+  --feature-content-max: 76rem;
+  display: grid;
+  gap: var(--feature-gap);
+}
+
+.wellbeing-pilot__hero {
+  padding-block-end: 1rem;
+  border-block-end: 1px solid color-mix(in srgb, var(--text-warm) 13%, transparent);
+}
+
+.wellbeing-pilot__hero h1,
+.wellbeing-pilot__hero p {
+  margin: 0;
+}
+
+.wellbeing-pilot__hero h1 {
+  margin-block-start: 0.5rem;
+  font-family: var(--font-display, inherit);
+  font-size: clamp(1.65rem, 1.25rem + 1.5cqi, 2.45rem);
+  font-weight: 500;
+}
+
+.wellbeing-pilot__context > div:last-child,
+.wellbeing-pilot__metrics > div:first-child {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr));
+  gap: 0.7rem;
+}
+
+.wellbeing-pilot__context > div:last-child > div,
+.wellbeing-pilot__metrics > div:first-child > div,
+.wellbeing-pilot__report > div > div,
+.wellbeing-pilot__report article {
+  min-width: 0;
+  display: grid;
+  gap: 0.3rem;
+  padding: 0.8rem;
+  border-radius: 0.8rem;
+  background: color-mix(in srgb, var(--surface-deep, #141414) 38%, transparent);
+}
+
+.wellbeing-pilot__filters > div:first-child {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  gap: 0.75rem;
+}
+
+.wellbeing-pilot__filters > div:last-child {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.wellbeing-pilot__table {
+  overflow-x: auto;
+}
+
+@container feature-page (max-width: 42rem) {
+  .documents-upload__row,
+  .documents-list__head,
+  .agent-mode-workspace > div,
+  .materials-item {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .documents-list__search,
+  .documents-list__filters,
+  .materials-item > span:nth-of-type(2) {
+    grid-column: 1;
+  }
+
+  .documents-item__head {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .documents-item__updated {
+    white-space: normal;
+  }
+
+  .agent-mode-workspace > div > section:has(.chat-window),
+  .agent-mode-workspace > div > section:has(textarea[rows="14"]) {
+    grid-column: 1;
+  }
+}
+
+@container feature-page (max-width: 28rem) {
+  .feature-page__surface {
+    padding: 0.85rem;
+    border-radius: 1rem;
+  }
+
+  .feature-page .glass-subpage-header,
+  .rooms-page__header {
+    min-height: 2.75rem;
+    align-items: center;
+    padding-inline-start: 0;
+  }
+
+  .feature-page .glass-subpage-back-button + .glass-subpage-header {
+    padding-inline-start: 3.1rem;
+  }
+
+  .feature-section,
+  .feature-page .ui-panel,
+  .wellbeing-workflow :where(section) {
+    padding: 0.85rem;
+    border-radius: 0.85rem;
+  }
+
+  .feature-actions > *,
+  .documents-item__actions > *,
+  .documents-upload__actions > *,
+  .urgent-page :where(section > div:has(> button), p:has(> button)) > *,
+  .wellbeing-workflow :where(section > div:has(> button)) > * {
+    flex: 1 1 100%;
+    justify-content: center;
+  }
+
+  .documents-entry {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .documents-entry__card {
+    min-height: 5.8rem;
+  }
+
+  .materials-item > a,
+  .materials-item > button {
+    justify-self: stretch;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feature-page *,
+  .feature-page *::before,
+  .feature-page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+}

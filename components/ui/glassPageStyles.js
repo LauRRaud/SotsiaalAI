@@ -6,11 +6,11 @@ export const glassPageTitleMobileHeaderClassName = "";
 
 export const glassPageTitleProminentClassName = "";
 
-export const glassSubpageHeaderClassName = "";
+export const glassSubpageHeaderClassName = "glass-subpage-header";
 
-export const glassSubpageTitleWrapClassName = "";
+export const glassSubpageTitleWrapClassName = "glass-subpage-title-wrap";
 
-export const glassSubpageTitleClassName = "";
+export const glassSubpageTitleClassName = "glass-subpage-title";
 
 export const glassPrimaryButtonToneClassName = "";
 
@@ -24,7 +24,7 @@ export const glassPageBackMobileBottomCenterClassName = "";
 
 export const glassPageBackTopLeftClassName = "";
 
-export const glassSubpageBackButtonClassName = "";
+export const glassSubpageBackButtonClassName = "glass-subpage-back-button";
 
 export const glassPageBackRightClassName = "";
 

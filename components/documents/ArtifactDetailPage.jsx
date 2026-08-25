@@ -3,10 +3,10 @@
 import { useCallback, useEffect, useId, useState } from "react"
 import { useRouter } from "next/navigation"
 import { useI18n } from "@/components/i18n/I18nProvider"
-import BackButton from "@/components/ui/BackButton"
 import Button from "@/components/ui/Button"
 import Input from "@/components/ui/Input"
 import Panel from "@/components/ui/Panel"
+import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot"
 import Textarea from "@/components/ui/Textarea"
 import MeetingSummaryRoomShare from "@/components/documents/MeetingSummaryRoomShare"
 import { localizePath } from "@/lib/localizePath"
@@ -35,6 +35,7 @@ function joinMetaParts(parts) {
 export default function ArtifactDetailPage({ artifactId }) {
   const router = useRouter()
   const { t, locale } = useI18n()
+  usePanelInfoSlot({ infoId: "documents", title: t("documents.artifact_detail_title") })
   const [artifact, setArtifact] = useState(null)
   const [loading, setLoading] = useState(true)
   const [errorText, setErrorText] = useState("")
@@ -156,21 +157,13 @@ export default function ArtifactDetailPage({ artifactId }) {
     }
   }
 
-  const handleBack = useCallback(() => {
-    router.push(localizePath("/documents", locale))
-  }, [locale, router])
-
   return (
-    <section>
-      <div>
-        <Panel variant="secondary" padding="md">
-          <BackButton
-            onClick={handleBack}
-            ariaLabel={t("buttons.back")}
-          />
-          <div>
-            <header>
-              <div>
+    <section className="feature-page feature-page--artifact" data-dock-scroll-behavior="recede">
+      <div className="feature-page__surface artifact-detail-page">
+        <Panel className="artifact-detail-card" variant="secondary" padding="md">
+          <div className="artifact-detail-layout">
+            <header className="artifact-detail-header">
+              <div className="artifact-detail-heading">
                 <div>
                   <h1>{t("documents.artifact_detail_title")}</h1>
                 </div>
@@ -213,8 +206,8 @@ export default function ArtifactDetailPage({ artifactId }) {
             </header>
 
             {!loading && !errorText && artifact ? (
-              <div>
-                <div>
+              <div className="artifact-detail-content">
+                <div className="artifact-detail-statuses">
                   <span>
                     {artifactTypeLabel(artifact.type, t)}
                   </span>
@@ -235,7 +228,7 @@ export default function ArtifactDetailPage({ artifactId }) {
 
                 {artifact.status === "DRAFT" ? (
                   <>
-                    <div>
+                    <div className="artifact-detail-fields">
                       <label htmlFor={titleInputId}>
                         <span>{t("documents.form.title_label")}</span>
                         <Input
@@ -259,10 +252,10 @@ export default function ArtifactDetailPage({ artifactId }) {
                         />
                       </label>
                     </div>
-                    <div id={draftNoticeId}>
+                    <div className="feature-notice" id={draftNoticeId}>
                       {t("documents.draft_notice")}
                     </div>
-                    <div>
+                    <div className="feature-actions">
                       <Button type="button" size="sm" onClick={() => void approveArtifact()} disabled={approving}>
                         {approving ? t("documents.actions.approving") : t("documents.actions.approve")}
                       </Button>
@@ -282,13 +275,13 @@ export default function ArtifactDetailPage({ artifactId }) {
                   </>
                 ) : (
                   <>
-                    <div>
+                    <div className="artifact-detail-document">
                       {artifact.content}
                     </div>
-                    <div>
+                    <div className="feature-notice feature-notice--success">
                       {t("documents.feedback.approved")}
                     </div>
-                    <div>
+                    <div className="feature-actions">
                       {artifact.downloadUrls?.docx ? (
                         <Button as="a" href={artifact.downloadUrls.docx} size="sm">
                           {t("documents.actions.download_docx")}
@@ -313,14 +306,14 @@ export default function ArtifactDetailPage({ artifactId }) {
                 )}
 
                 {artifact.template ? (
-                  <div>
+                  <div className="feature-section artifact-detail-template">
                     <h2>{t("documents.template_label")}</h2>
                     <p>
                       {artifact.template.title || artifact.template.originalName}
                     </p>
                   </div>
                 ) : null}
-                <div>
+                <div className="feature-section artifact-detail-sources">
                   <h2>{t("documents.sources_section_title")}</h2>
                   <div>
                     {artifact.sources?.length ? (

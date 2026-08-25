@@ -394,16 +394,22 @@ export default function PanelFrame({ children }) {
       raf = requestAnimationFrame(apply);
     };
 
-    /* KAKS reeglit, mitte üks (omanik 26.07):
+    /* Kolm rada kasutavad sama ruumilist taandumist:
        — LUGEMISLEHED (Teave-alamkomplekt, lib/roomDock READING_ROUTES):
          dokk taandub igal ekraanil. Seal on pikk proosa, lugeja süveneb
          ja tahvel kasvab doki asemele — see ongi selle lehetüübi keel.
+       — TÖÖLEHED, mille sisupind kannab `data-dock-scroll-behavior="recede"`:
+         dokk taandub samuti igal ekraanil. Nii ei kata kiirmenüü pikka vormi,
+         loendit ega tulemust ning kõik uued töövaated järgivad kasutusjuhendi
+         juba tuttavat käitumist.
        — KÕIK MUU: ainult mobiilil („see peaks olema ainult mobiilis nii,
          sest katab seal aknas teksti"). Laual on aken dokist kitsam ja
          tema kohal, seega dokk ei kata midagi ja tema kadumine oleks
          lihtsalt väljapääsu peitmine.
        Piir 768px = sama, mis paneeli enda mobiilireeglitel (panel.css). */
-    const alwaysRecedes = panelDockRecedesAnywhere(normalized);
+    const alwaysRecedes = panelDockRecedesAnywhere(normalized) || Boolean(
+      el.querySelector?.('[data-dock-scroll-behavior="recede"]')
+    );
     const mq = window.matchMedia("(max-width: 768px)");
     const sync = () => {
       const want = alwaysRecedes || mq.matches;

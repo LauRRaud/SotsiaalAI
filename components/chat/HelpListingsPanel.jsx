@@ -51,6 +51,9 @@ export default function HelpListingsPanel({
     : undefined;
   const countLabel = `${items.length} ${items.length === 1 ? ui.listingSingular : ui.listingPlural}`;
   const helpListingsContentClassName = [
+    "feature-page",
+    "feature-page__surface",
+    "feature-page--help-listings",
     "help-listings-modal-content",
     isWorkspaceSubpageReturn ? "help-listings-modal-content--workspace" : "",
     embedded ? "help-listings-modal-content--embedded" : "",
@@ -144,10 +147,11 @@ export default function HelpListingsPanel({
           <SubpageHeader
             onBack={handleBackClick}
             backAriaLabel={backAriaLabel}
+            showBack={!isWorkspaceReturn}
             titleAs="h2"
             titleWrapClassName={isWorkspaceReturn ? "help-listings-workspace-title-wrap" : undefined}
             rightSlot={
-              infoId ? (
+              infoId && !isWorkspaceReturn ? (
                 <DashboardInfoTrigger
                   infoId={infoId}
                   title={title}

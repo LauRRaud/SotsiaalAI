@@ -1645,12 +1645,13 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
           ariaLabel={t("chat.workspace.view_role.label", "Töölaua vaade")}
         />
       ) : null}
-      <div>
-        <div>
+      <div className="feature-page feature-page--agent" data-dock-scroll-behavior="recede">
+        <div className="feature-page__surface agent-mode-page">
           {!hideHeader ? (
             <SubpageHeader
               onBack={handleBack}
               backAriaLabel={t("documents.agent_workspace.back_to_chat")}
+              showBack={false}
               anchorBack={false}
               /* ⓘ elab paneeli nurgas × kõrval (PanelFrame); vt
                  usePanelInfoSlot ülalpool. */
@@ -1658,7 +1659,7 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
               {t("chat.tools.agent_mode")}
             </SubpageHeader>
           ) : null}
-          <section>
+          <section className="agent-mode-workspace">
           {documentsError ? <div>{documentsError}</div> : null}
           {runError ? <div>{runError}</div> : null}
           {artifactError ? <div>{artifactError}</div> : null}
@@ -2588,7 +2589,7 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
   if (embedded) return content
 
   return (
-    <section>
+    <section className="feature-page-frame">
       {content}
     </section>
   )

@@ -187,14 +187,20 @@ export default function RoomCallBar({
   const showDetails = inCall && (detailsOpen || needsAttention);
 
   return (
-    <div className="room-call-controls">
+    <div className="room-call-controls" data-call-active={inCall ? "true" : undefined}>
+      {inCall ? (
+        <span className="room-call-live-state" role="status">
+          <span className="room-call-live-state__dot" aria-hidden="true" />
+          <span>{text(t, "calls.active", "Helikõne aktiivne")}</span>
+        </span>
+      ) : null}
       <button
         type="button"
         className="room-call-icon"
         data-active={inCall ? "true" : undefined}
         onClick={handleToggle}
         disabled={busy || unavailable}
-        title={toggleTitle}
+        data-tooltip={toggleTitle}
         aria-label={toggleTitle}
         aria-pressed={inCall ? "true" : "false"}
       >
@@ -210,7 +216,7 @@ export default function RoomCallBar({
             data-mic-elsewhere={micControlBlocked ? "true" : undefined}
             onClick={() => setMuted(!micMuted)}
             disabled={busy || micControlBlocked}
-            title={micTitle}
+            data-tooltip={micTitle}
             aria-label={micTitle}
             aria-pressed={micMuted ? "true" : "false"}
           >
@@ -222,7 +228,7 @@ export default function RoomCallBar({
             data-badge={needsAttention ? "true" : undefined}
             onClick={() => setDetailsOpen(value => !value)}
             aria-expanded={showDetails}
-            title={text(t, "calls.open_details", "Ava helikõne detailid")}
+            data-tooltip={text(t, "calls.open_details", "Ava helikõne detailid")}
             aria-label={text(t, "calls.open_details", "Ava helikõne detailid")}
           >
             <ChevronIcon direction={showDetails ? "down" : "up"} width={14} height={8} strokeWidth={1.35} />

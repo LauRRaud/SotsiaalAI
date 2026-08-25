@@ -2366,3 +2366,227 @@ html[data-contrast="hc"] .room-call-details {
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
 }
+
+/* ---------- Ruumivestluse komposer ----------
+   Tekstisisend on põhitegevus. Kõne ja assistendi lülitid elavad eraldi
+   klaasriiulil, et lisafunktsioonid ei võtaks kirjutamisruumi ära. */
+.panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] {
+  width: min(44rem, calc(100% - clamp(1rem, 3vw, 2rem)));
+  container: room-composer / inline-size;
+}
+
+.chat-composer__body {
+  min-width: 0;
+}
+
+.panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] .chat-composer__body {
+  display: grid;
+  gap: 0.42rem;
+}
+
+.panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] .chat-composer__room-tools {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  justify-self: end;
+  gap: 0.32rem;
+  width: fit-content;
+  max-width: 100%;
+  min-height: var(--hit-target-min, 2.75rem);
+  padding: 0.25rem 0.38rem;
+  border: 1px solid color-mix(in srgb, var(--text-warm) 15%, transparent);
+  border-radius: 999px;
+  background: linear-gradient(165deg, rgba(32, 32, 32, 0.7), rgba(12, 12, 12, 0.76));
+  -webkit-backdrop-filter: blur(18px) saturate(118%);
+  backdrop-filter: blur(18px) saturate(118%);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--text-warm) 10%, transparent),
+    0 0.75rem 2rem rgba(0, 0, 0, 0.24);
+  overflow: visible;
+}
+
+.panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] .chat-composer__input-bar {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 0.35rem;
+}
+
+.panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] .chat-composer__field {
+  min-width: 0;
+}
+
+.panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] .chat-composer__primary-actions {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+/* Kõne käib: nähtav olekusilt + oma staatusega mikrofon. */
+.room-call-live-state {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2rem;
+  padding: 0 0.62rem;
+  border-radius: 999px;
+  color: var(--text-warm);
+  background: color-mix(in srgb, #8bd3aa 9%, transparent);
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.025em;
+  white-space: nowrap;
+}
+
+.room-call-live-state__dot {
+  flex: none;
+  inline-size: 0.5rem;
+  block-size: 0.5rem;
+  border-radius: 50%;
+  background: #8bd3aa;
+  box-shadow: 0 0 0 0.24rem color-mix(in srgb, #8bd3aa 15%, transparent);
+}
+
+.panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] .room-call-controls {
+  gap: 0.18rem;
+}
+
+.panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] .room-call-controls > button,
+.panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] button.conv-ai-target {
+  position: relative;
+  width: var(--hit-target-min, 2.75rem);
+  height: var(--hit-target-min, 2.75rem);
+  border-color: transparent;
+}
+
+.panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] .room-call-controls > button > svg,
+.panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] button.conv-ai-target::before {
+  width: 1.45rem;
+  height: 1.45rem;
+}
+
+.panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] .room-call-controls > button.room-call-details-btn {
+  width: var(--hit-target-min, 2.75rem);
+  height: var(--hit-target-min, 2.75rem);
+}
+
+.panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] .room-call-controls > button.room-call-details-btn > svg {
+  width: 0.95rem;
+  height: 0.6rem;
+}
+
+.panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] .room-call-controls > button.room-call-icon[data-active="true"] {
+  color: #dff7e9;
+  border-color: color-mix(in srgb, #8bd3aa 48%, transparent);
+  background: color-mix(in srgb, #8bd3aa 15%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, #8bd3aa 10%, transparent);
+}
+
+.panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] .room-call-controls > button.room-call-mute:not([data-muted="true"]) {
+  color: #c9f0d9;
+  border-color: color-mix(in srgb, #8bd3aa 35%, transparent);
+  background: color-mix(in srgb, #8bd3aa 10%, transparent);
+}
+
+.panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] .room-call-controls > button.room-call-mute[data-muted="true"] {
+  color: #ffb09f;
+  border-color: color-mix(in srgb, #ff9d8a 48%, transparent);
+  background: color-mix(in srgb, #ff9d8a 12%, transparent);
+}
+
+/* Kiirmenüü sarnane klaassilt: sama info ilmub hover'il ja
+   klaviatuurifookuses; brauseri kandilist title-silti neil nuppudel pole. */
+.panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] button[data-tooltip] {
+  position: relative;
+}
+
+.panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] button[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 0.65rem);
+  z-index: var(--z-modal, 50);
+  width: max-content;
+  max-width: min(15rem, calc(100vw - 2rem));
+  padding: 0.48rem 0.72rem;
+  border: 1px solid color-mix(in srgb, var(--text-warm) 17%, transparent);
+  border-radius: 999px;
+  color: var(--text-warm);
+  background: rgba(25, 25, 25, 0.94);
+  box-shadow: 0 0.7rem 1.7rem rgba(0, 0, 0, 0.3);
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 650;
+  line-height: 1.2;
+  letter-spacing: 0.055em;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: normal;
+  pointer-events: none;
+  opacity: 0;
+  translate: -50% 0.3rem;
+  transition:
+    opacity var(--dur-fast, 180ms) var(--ease-soft, ease),
+    translate var(--dur-fast, 180ms) var(--ease-soft, ease);
+}
+
+.panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] button[data-tooltip]:is(:hover, :focus-visible)::after {
+  opacity: 1;
+  translate: -50% 0;
+}
+
+/* Pikk tühikuteta tekst ei tohi määrata flex-elemendi miinimumlaiust ega
+   klaasmullist välja joosta. Sama leping kehtib kasutaja- ja AI-sõnumile. */
+.panel-scrim[data-conversation="1"] [role="article"][data-role] {
+  min-width: 0;
+  box-sizing: border-box;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.panel-scrim[data-conversation="1"] [role="article"][data-role] > *,
+.panel-scrim[data-conversation="1"] [role="article"][data-role] > * > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.panel-scrim[data-conversation="1"] [role="article"][data-role] :is(p, li, a, code, pre, div) {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.panel-scrim[data-conversation="1"] [role="article"][data-role] pre {
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+
+@container room-composer (max-width: 34rem) {
+  .chat-composer__room-tools {
+    justify-self: stretch;
+    width: 100%;
+  }
+
+  .chat-composer__room-tools .room-call-controls {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .room-call-live-state {
+    margin-inline-end: auto;
+    max-width: 9rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] button[data-tooltip]::after {
+    transition: none;
+  }
+}

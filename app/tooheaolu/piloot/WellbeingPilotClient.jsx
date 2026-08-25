@@ -7,6 +7,7 @@ import { shouldSettleRequest } from "@/lib/chat/sidebarListState";
 import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
 import Input from "@/components/ui/Input";
+import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 
 const copy = {
   title: "KOV piloodi koondvaade",
@@ -121,6 +122,7 @@ function scopeMeta(scope) {
 }
 
 export default function WellbeingPilotClient({ allowedRoleGroups = [], pilotScopes = [], isAdmin = false }) {
+  usePanelInfoSlot({ infoId: "wellbeing", title: copy.title });
   const normalizedPilotScopes = useMemo(() => (
     Array.isArray(pilotScopes) ? pilotScopes.filter((scope) => scope?.id) : []
   ), [pilotScopes]);
@@ -216,8 +218,8 @@ export default function WellbeingPilotClient({ allowedRoleGroups = [], pilotScop
   const currentScopeMeta = currentMunicipalityId ? `KOV: ${currentMunicipalityId}` : scopeMeta(selectedPilotScope);
 
   return (
-    <div>
-      <section>
+    <div className="feature-page feature-page__surface feature-page--wellbeing-pilot wellbeing-pilot" data-dock-scroll-behavior="recede">
+      <section className="wellbeing-pilot__hero">
         <div>
           <div>
             <PrivacyShieldIcon width={22} height={22} />
@@ -229,7 +231,7 @@ export default function WellbeingPilotClient({ allowedRoleGroups = [], pilotScop
         </div>
       </section>
 
-      <section>
+      <section className="feature-section wellbeing-pilot__context">
         <div>
           <PrivacyShieldIcon width={18} height={18} />
           <h2>{copy.viewContext}</h2>
@@ -242,7 +244,7 @@ export default function WellbeingPilotClient({ allowedRoleGroups = [], pilotScop
         </div>
       </section>
 
-      <section>
+      <section className="feature-section wellbeing-pilot__filters">
         <div>
           {hasPilotScopes ? (
             <label>
@@ -307,7 +309,7 @@ export default function WellbeingPilotClient({ allowedRoleGroups = [], pilotScop
         </div>
       </section>
 
-      <section aria-live="polite">
+      <section className="feature-section wellbeing-pilot__metrics" aria-live="polite">
         <div>
           <MetricCard label={copy.sampleSize} value={dataset?.sampleSize ?? "-"} />
           <MetricCard label={copy.recordCount} value={dataset?.recordCount ?? "-"} />
@@ -327,7 +329,7 @@ export default function WellbeingPilotClient({ allowedRoleGroups = [], pilotScop
         ) : null}
       </section>
 
-      <section>
+      <section className="feature-section wellbeing-pilot__report">
         <div>
           <TermsDocIcon width={18} height={18} />
           <h2>{copy.report}</h2>
@@ -395,7 +397,7 @@ export default function WellbeingPilotClient({ allowedRoleGroups = [], pilotScop
         </div>
       </section>
 
-      <section>
+      <section className="feature-section wellbeing-pilot__table">
         <div>
           <h2>{copy.metrics}</h2>
           <span>{metrics.length} {copy.rows}</span>

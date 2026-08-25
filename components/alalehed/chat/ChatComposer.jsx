@@ -812,45 +812,45 @@ export default function ChatComposer({
       </div>
     </div>
   ) : null;
+  const aiTargetLabel = sendToAssistant
+    ? t("chat.ai_toggle.on")
+    : t("chat.ai_toggle.off");
+  const roomToolsNode = isRoomMode && (callControlsNode || assistantForwardEnabled) ? (
+    <div className="chat-composer__room-tools" role="group" aria-label={roomModeLabel || t("rooms.title")}>
+      {callControlsNode}
+      {assistantForwardEnabled ? (
+        <button
+          type="button"
+          className="conv-ai-target"
+          aria-label={t("chat.ai_toggle.button_aria")}
+          aria-pressed={sendToAssistant ? "true" : "false"}
+          aria-describedby="chat-ai-hint"
+          data-active={sendToAssistant ? "true" : undefined}
+          data-tooltip={aiTargetLabel}
+          onMouseDown={preserveDesktopInputFocusOnMouseDown}
+          onClick={() => setSendToAssistant(!sendToAssistant)}
+        />
+      ) : null}
+      <span id="chat-ai-hint" className="sr-only">{aiNote}</span>
+    </div>
+  ) : null;
   const inputBarChildren = <>
-      <div>
+      <div className="chat-composer__field">
         <textarea id="chat-input" ref={inputRef} value={draft} placeholder={placeholderText ?? ""} onChange={e => setDraft(e.target.value)} onKeyDown={handleKeyDown} onFocus={e => {
         onFocusInput?.(e);
       }} onBlur={onBlurInput} disabled={isGenerating || isRoomMode && (roomBlocked || roomAuthRequired)} rows={1} />
       </div>
-      <div>
-        {/* Helikõne kontrollid — kompaktne ikoon-grupp mikri juures (omanik 23.07). */}
-        {callControlsNode}
-        {isRoomMode && assistantForwardEnabled ? (
-          <>
-            {/* Saatmise siht — üksik nupp mikri VASAKUL (omanik 23.07, valik B).
-                Aktiivne = assistent kaasatud (heledaks täidetud). EI lisa rida →
-                sisend ei tõuse fookusel. Ruumis läheb sõnum ALATI ruumi;
-                nupp lisab AI vastuse peale (routing muutmata). */}
-            <button
-              type="button"
-              className="conv-ai-target"
-              aria-label={t("chat.ai_toggle.button_aria")}
-              title={sendToAssistant ? t("chat.ai_toggle.on") : t("chat.ai_toggle.off")}
-              aria-pressed={sendToAssistant ? "true" : "false"}
-              aria-describedby="chat-ai-hint"
-              data-active={sendToAssistant ? "true" : undefined}
-              onMouseDown={preserveDesktopInputFocusOnMouseDown}
-              onClick={() => setSendToAssistant(!sendToAssistant)}
-            />
-            <span id="chat-ai-hint" className="sr-only">{aiNote}</span>
-          </>
-        ) : null}
+      <div className="chat-composer__primary-actions">
         {/* Katkesta salvestus — nähtav AINULT salvestamise ajal. Ilma
             selleta oli ainus väljapääs "lõpeta", mis SAADAB heli ära
             (T03 E4 punkt 1: privaatsuslubadus, mitte mugavus). */}
-        {showDictationButton && !useSimpleRoomActionButtons && recording && cancelRecording ? <button type="button" aria-label={t("chat.mic.cancel")} title={t("chat.mic.cancel")} onClick={handleDiscardRecordingClick} onMouseDown={preserveDesktopInputFocusOnMouseDown} data-recording-cancel="true" /> : null}
-        {showDictationButton && !useSimpleRoomActionButtons ? <button type="button" aria-label={recording ? t("chat.mic.stop") : micBlockedLabel || t("chat.mic.start")} title={recording ? t("chat.mic.stop") : micBlockedLabel || t("chat.mic.start")} onClick={handleDictateClick} onMouseDown={preserveDesktopInputFocusOnMouseDown} disabled={isRoomMode && (roomBlocked || roomAuthRequired)} data-speaking={recording ? "true" : "false"} data-recording={recording ? "true" : "false"} data-recording-blocked={micBlockedLabel ? "true" : undefined} data-recording-complete={recordingPulse ? "true" : "false"} /> : null}
+        {showDictationButton && !useSimpleRoomActionButtons && recording && cancelRecording ? <button type="button" aria-label={t("chat.mic.cancel")} title={isRoomMode ? undefined : t("chat.mic.cancel")} data-tooltip={isRoomMode ? t("chat.mic.cancel") : undefined} onClick={handleDiscardRecordingClick} onMouseDown={preserveDesktopInputFocusOnMouseDown} data-recording-cancel="true" /> : null}
+        {showDictationButton && !useSimpleRoomActionButtons ? <button type="button" aria-label={recording ? t("chat.mic.stop") : micBlockedLabel || t("chat.mic.start")} title={isRoomMode ? undefined : recording ? t("chat.mic.stop") : micBlockedLabel || t("chat.mic.start")} data-tooltip={isRoomMode ? recording ? t("chat.mic.stop") : micBlockedLabel || t("chat.mic.start") : undefined} onClick={handleDictateClick} onMouseDown={preserveDesktopInputFocusOnMouseDown} disabled={isRoomMode && (roomBlocked || roomAuthRequired)} data-speaking={recording ? "true" : "false"} data-recording={recording ? "true" : "false"} data-recording-blocked={micBlockedLabel ? "true" : undefined} data-recording-complete={recordingPulse ? "true" : "false"} /> : null}
         {isGenerating || isStreamingAny ? <button type="submit" aria-label={t("chat.send.stop")} title={t("chat.send.title_stop")} disabled={isRoomMode && (roomBlocked || roomAuthRequired) || !hasInput && !isGenerating && !isStreamingAny} data-loader-active="true" onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} /> : hasInput ? <button type="submit" aria-label={t("chat.send.send")} title={t("chat.send.title_send")} disabled={isRoomMode && (roomBlocked || roomAuthRequired)} onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} /> : canOpenVoiceMode ? <button type="submit" className="conv-voice-mode-trigger" aria-label={t("chat.voice.open")} title={t("chat.voice.open")} data-voice-mode-trigger="true" onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} /> : <button type="submit" aria-label={t("chat.send.send")} title={t("chat.send.title_send")} disabled={!hasInput || isRoomMode && (roomBlocked || roomAuthRequired)} data-empty-disabled={!hasInput ? "true" : undefined} onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} />}
       </div>
     </>;
-  return <Form ref={inputRowRef} style={inputRowStyle} onSubmit={handleSubmit} autoComplete="off">
-      {showSideControls ? <div>
+  return <Form ref={inputRowRef} className="chat-composer" data-room-mode={isRoomMode ? "true" : undefined} style={inputRowStyle} onSubmit={handleSubmit} autoComplete="off">
+      {showSideControls ? <div className="chat-composer__side-controls">
         {hideTools ? null : <>
             <button ref={toolsButtonRef} type="button" aria-label={modeToggleShowsActiveState ? activeModeKey === "deep_research" ? t("chat.deep_research.exit_mode_aria") : t("chat.tools.exit_mode_aria") : t("chat.tools.aria")} title={modeToggleShowsActiveState ? activeModeKey === "deep_research" ? t("chat.deep_research.exit_mode_aria") : t("chat.tools.exit_mode_aria") : t("chat.tools.tooltip")} aria-haspopup={modeToggleShowsActiveState ? undefined : "menu"} aria-expanded={modeToggleShowsActiveState ? undefined : toolsOpen ? "true" : "false"} onMouseDown={preserveDesktopInputFocusOnMouseDown} onClick={handleToolsButtonClick}>
                 {activeModeKey === "deep_research" ? <DeepResearchIcon stroke="currentColor" strokeWidth={1.45} />
@@ -874,9 +874,10 @@ export default function ChatComposer({
         {t("chat.input.label")}
       </label>
 
-      <div>
+      <div className="chat-composer__body">
         {privacyPromptNode}
-        <div ref={inputBarRef} onMouseDown={handleInputBarMouseDown}>
+        {roomToolsNode}
+        <div className="chat-composer__input-bar" ref={inputBarRef} onMouseDown={handleInputBarMouseDown}>
           {inputBarChildren}
         </div>
         {showCharCounter ? (

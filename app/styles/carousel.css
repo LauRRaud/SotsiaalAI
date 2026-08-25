@@ -1504,11 +1504,11 @@ html[data-reduce-motion="1"] .gc-shortcut-tooltip {
     height: 2.15rem;
     padding: 0 0.53rem;
   }
-  /* Dokk kasvab ka mobiilil (omanik 26.07). Ülalolev .gc-shortcut reegel
-     on ühine ja võidaks spetsiifikaga baasi mõõtumuutuja ära, seega tuleb
-     doki mõõt siin muutujast uuesti avaldada. */
+  /* Dokk säilitab mobiilil ühise minimaalse puutesihi. Ülalolev
+     .gc-shortcut reegel on ühine ja võidaks spetsiifikaga baasi
+     mõõtumuutuja ära, seega tuleb doki mõõt siin uuesti avaldada. */
   .gc-shortcut-menu {
-    --gc-shortcut-size: 2.5rem;
+    --gc-shortcut-size: var(--hit-target-min, 2.75rem);
   }
   .gc-shortcut-menu .gc-shortcut {
     min-width: var(--gc-shortcut-size);

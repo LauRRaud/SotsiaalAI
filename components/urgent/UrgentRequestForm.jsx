@@ -28,6 +28,7 @@ import { useSession } from "next-auth/react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
+import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import { detectCrisis } from "@/lib/chat/safety";
 
 function txt(t, key, fallback) {
@@ -53,7 +54,7 @@ function DeskCard({ t, desk }) {
     ["urgent.desk.emergency_boundary", "Millal helistada 112", desk.emergencyBoundary]
   ];
   return (
-    <section aria-labelledby="urgent-desk-heading">
+    <section className="feature-section urgent-desk-card" aria-labelledby="urgent-desk-heading">
       <h3 id="urgent-desk-heading">{txt(t, "urgent.desk.heading", "Kuhu see läheb")}</h3>
       <p><strong>{desk.publicName}</strong></p>
       <dl>
@@ -77,6 +78,10 @@ function DeskCard({ t, desk }) {
 export default function UrgentRequestForm() {
   const { t } = useI18n();
   const { status } = useSession();
+  usePanelInfoSlot({
+    infoId: "urgent_request",
+    title: txt(t, "urgent.title", "Kiireloomuline abipalve")
+  });
 
   const [regions, setRegions] = useState([]);
   const [loadingRegions, setLoadingRegions] = useState(true);
@@ -110,11 +115,11 @@ export default function UrgentRequestForm() {
     [regions, form.deskId]
   );
 
-  if (status === "loading") return <p>{txt(t, "urgent.loading", "Laen...")}</p>;
+  if (status === "loading") return <section className="feature-page feature-page__surface urgent-page" data-dock-scroll-behavior="recede"><p role="status">{txt(t, "urgent.loading", "Laen...")}</p></section>;
 
   if (status !== "authenticated") {
     return (
-      <section>
+      <section className="feature-page feature-page__surface urgent-page" data-dock-scroll-behavior="recede">
         <h2>{txt(t, "urgent.title", "Kiireloomuline abipalve")}</h2>
         <p><strong>{txt(t, "urgent.not_emergency", "See ei ole hädaabinumber. Vahetu ohu korral helista 112.")}</strong></p>
         <p>{txt(t, "urgent.auth_required", "Abipalve saatmiseks logi sisse.")}</p>
@@ -128,7 +133,7 @@ export default function UrgentRequestForm() {
   // ümberlükkamise.
   if (stage === "emergency") {
     return (
-      <section aria-labelledby="urgent-emergency-title">
+      <section className="feature-page feature-page__surface urgent-page urgent-page--emergency" data-dock-scroll-behavior="recede" aria-labelledby="urgent-emergency-title">
         <h2 id="urgent-emergency-title">{txt(t, "urgent.emergency.title", "Helista kohe 112")}</h2>
         <p>{txt(t, "urgent.emergency.body", "Sa kirjeldasid olukorda, kus keegi võib olla vahetus ohus.")}</p>
         <p>{txt(t, "chat.crisis.notice", "Vahetu ohu korral helista 112.")}</p>
@@ -141,7 +146,7 @@ export default function UrgentRequestForm() {
 
   if (stage === "sent" && sent) {
     return (
-      <section aria-labelledby="urgent-sent-title">
+      <section className="feature-page feature-page__surface urgent-page urgent-page--sent" data-dock-scroll-behavior="recede" aria-labelledby="urgent-sent-title">
         <h2 id="urgent-sent-title">{txt(t, "urgent.sent.title", "Abipalve on saadetud")}</h2>
         <p>{txt(t, `urgent.status.${sent.status}`, sent.status)}</p>
         <p>{txt(t, "urgent.sent.reading_time", "Lubatud lugemisaeg: {readingTime}").replace("{readingTime}", sent.readingTimePromise || "")}</p>
@@ -165,13 +170,13 @@ export default function UrgentRequestForm() {
     );
   }
 
-  if (loadingRegions) return <p>{txt(t, "urgent.loading", "Laen...")}</p>;
+  if (loadingRegions) return <section className="feature-page feature-page__surface urgent-page" data-dock-scroll-behavior="recede"><p role="status">{txt(t, "urgent.loading", "Laen...")}</p></section>;
 
   // Haru B: rada on peidetud. Mitte „nupp, mis annab vea", vaid aus vastus koos
   // sellega, mis ASEMEL olemas on.
   if (!regions.length) {
     return (
-      <section aria-labelledby="urgent-unavailable-title">
+      <section className="feature-page feature-page__surface urgent-page urgent-page--unavailable" data-dock-scroll-behavior="recede" aria-labelledby="urgent-unavailable-title">
         <h2 id="urgent-unavailable-title">{txt(t, "urgent.unavailable.title", "Selles piirkonnas seda rada praegu ei ole")}</h2>
         <p>{txt(t, "urgent.unavailable.body", "Kiireloomulise abipalve saab saata ainult sinna, kus on kokku lepitud vastuvõtulaud ja lugemisaeg.")}</p>
         <p><strong>{txt(t, "urgent.not_emergency", "See ei ole hädaabinumber. Vahetu ohu korral helista 112.")}</strong></p>
@@ -262,7 +267,7 @@ export default function UrgentRequestForm() {
 
   if (stage === "confirm") {
     return (
-      <section aria-labelledby="urgent-confirm-title">
+      <section className="feature-page feature-page__surface urgent-page urgent-page--confirm" data-dock-scroll-behavior="recede" aria-labelledby="urgent-confirm-title">
         <h2 id="urgent-confirm-title">{txt(t, "urgent.confirm.title", "Kontrolli enne saatmist")}</h2>
         <DeskCard t={t} desk={selected?.desk} />
         <h3>{txt(t, "urgent.confirm.what_goes", "Mis läheb")}</h3>
@@ -283,7 +288,7 @@ export default function UrgentRequestForm() {
   }
 
   return (
-    <section aria-labelledby="urgent-title">
+    <section className="feature-page feature-page__surface urgent-page urgent-page--request" data-dock-scroll-behavior="recede" aria-labelledby="urgent-title">
       <h2 id="urgent-title">{txt(t, "urgent.title", "Kiireloomuline abipalve")}</h2>
       <p><strong>{txt(t, "urgent.not_emergency", "See ei ole hädaabinumber. Vahetu ohu korral helista 112.")}</strong></p>
       <p>{txt(t, "urgent.lead", "Kui olukord ei kannata hommikuni, kirjelda see siin oma sõnadega.")}</p>
