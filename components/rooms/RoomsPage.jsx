@@ -11,7 +11,6 @@ import ModalConfirm from "@/components/ui/ModalConfirm";
 import Panel from "@/components/ui/Panel";
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import InviteModal from "@/components/invite/InviteModal";
-import { RoomsCardIcon } from "@/components/brand/icons/CardIcons";
 
 export default function RoomsPage() {
   const router = useRouter();
@@ -248,12 +247,6 @@ export default function RoomsPage() {
     <>
       <section className="feature-page feature-page--rooms" data-dock-scroll-behavior="recede">
         <div className="feature-page__surface rooms-page" role="region" aria-label={t("rooms.aria")}>
-          <div className="rooms-page__header">
-            <h1>
-              {t("rooms.title")}
-            </h1>
-          </div>
-
           {loadError && effectiveRooms.length > 0 ? (
             <div role="alert">
               <p>{loadError}</p>
@@ -269,6 +262,12 @@ export default function RoomsPage() {
               tabIndex={0}
               aria-label={t("rooms.title")}
             >
+              <div className="rooms-page__header">
+                <h1>
+                  {t("rooms.title")}
+                </h1>
+              </div>
+
               {loading && effectiveRooms.length === 0 ? (
                 <div className="rooms-step">
                   <Panel variant="subpage" padding="sm" aria-busy="true">
@@ -342,9 +341,6 @@ export default function RoomsPage() {
                               );
                             }}
                           >
-                            <span className="room-list-card__icon" aria-hidden="true">
-                              <RoomsCardIcon />
-                            </span>
                             <div className="room-list-card__content">
                               <div className="room-list-card__title">
                                 <h2>
@@ -374,20 +370,17 @@ export default function RoomsPage() {
                                   </span>
                                 ) : null}
                               </div>
+                              {formattedLastActivity ? (
+                                <time dateTime={room.lastMessage?.createdAt || undefined}>
+                                  {formattedLastActivity}
+                                </time>
+                              ) : null}
                             </div>
                             <span className="room-list-card__arrow" aria-hidden="true" />
                           </Link>
 
-                          {formattedLastActivity || hasRoomActions ? (
-                            <div className="room-list-card__footer">
-                              {formattedLastActivity ? (
-                                <span>
-                                  {formattedLastActivity}
-                                </span>
-                              ) : null}
-
-                              {hasRoomActions ? (
-                                <div className="room-list-card__actions">
+                          {hasRoomActions ? (
+                            <div className="room-list-card__actions">
                                   {canInviteRoom ? (
                                     <button
                                       type="button"
@@ -445,8 +438,6 @@ export default function RoomsPage() {
                                       <span>{t("rooms.delete")}</span>
                                     </button>
                                   ) : null}
-                                </div>
-                              ) : null}
                             </div>
                           ) : null}
                           {roomError && !confirmAction ? (

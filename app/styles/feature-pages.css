@@ -956,30 +956,27 @@ html[data-reduce-transparency="1"] .feature-page__surface {
 
 /* Ruumid */
 .feature-page--rooms {
-  --feature-content-max: 58rem;
+  --feature-content-max: 42rem;
 }
 
 .rooms-page {
   min-height: min(42rem, calc(var(--app-dynamic-block-size, 100dvh) - 8rem));
   display: flex;
   flex-direction: column;
-  gap: clamp(1rem, 2.5cqi, 1.6rem);
   container: rooms-page / inline-size;
 }
 
 .rooms-page__header {
-  display: flex;
-  align-items: center;
-  min-height: 3rem;
-  padding-block-end: 0.9rem;
+  padding: 0.2rem 0 1.35rem;
   border-block-end: 1px solid color-mix(in srgb, var(--text-warm) 12%, transparent);
+  text-align: center;
 }
 
 .rooms-page__header h1 {
   margin: 0;
   font-family: var(--font-display, inherit);
   font-size: clamp(1.65rem, 1.3rem + 1.2cqi, 2.25rem);
-  font-weight: 500;
+  font-weight: 550;
   letter-spacing: 0.01em;
 }
 
@@ -995,7 +992,7 @@ html[data-reduce-transparency="1"] .feature-page__surface {
 
 .rooms-page__scroller {
   height: 100%;
-  max-height: min(52rem, calc(var(--app-dynamic-block-size, 100dvh) - 14rem));
+  max-height: min(52rem, calc(var(--app-dynamic-block-size, 100dvh) - 9rem));
   padding: 0.1rem 0.35rem 1rem 0.1rem;
   overflow-y: auto;
   overflow-x: hidden;
@@ -1011,10 +1008,14 @@ html[data-reduce-transparency="1"] .feature-page__surface {
 
 .rooms-list {
   display: grid;
-  gap: 0.85rem;
+  gap: 0;
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.rooms-page__header + .rooms-list {
+  margin-block-start: 0.35rem;
 }
 
 .rooms-step {
@@ -1024,79 +1025,53 @@ html[data-reduce-transparency="1"] .feature-page__surface {
 .room-list-card {
   min-width: 0;
   display: grid;
-  gap: 0;
-  overflow: hidden;
-  border: 1px solid color-mix(in srgb, var(--text-warm) 14%, transparent);
-  border-radius: clamp(1rem, 2.2cqi, 1.35rem);
-  background:
-    radial-gradient(130% 110% at 0% 0%, color-mix(in srgb, var(--text-warm) 8%, transparent), transparent 48%),
-    color-mix(in srgb, var(--glass-cell-bg) 86%, transparent);
-  box-shadow:
-    inset 0 1px 0 color-mix(in srgb, var(--text-warm) 9%, transparent),
-    0 1rem 2.6rem rgba(0, 0, 0, 0.16);
-  transition:
-    border-color var(--dur-fast, 180ms) var(--ease-soft, ease),
-    background-color var(--dur-fast, 180ms) var(--ease-soft, ease),
-    box-shadow var(--dur-fast, 180ms) var(--ease-soft, ease);
+  padding-block: clamp(1.1rem, 3cqi, 1.65rem);
+  border-block-end: 1px solid color-mix(in srgb, var(--text-warm) 11%, transparent);
+}
+
+.rooms-step:last-child .room-list-card {
+  border-block-end: 0;
 }
 
 .room-list-card__main {
   min-width: 0;
   display: grid;
-  grid-template-columns: 3rem minmax(0, 1fr) 1.1rem;
+  grid-template-columns: minmax(0, 1fr) 1rem;
   align-items: center;
-  gap: clamp(0.75rem, 2cqi, 1rem);
-  padding: clamp(0.95rem, 2.8cqi, 1.3rem);
+  gap: 0.75rem;
+  padding: 0.35rem clamp(0.25rem, 1.5cqi, 0.7rem);
   color: inherit;
   text-decoration: none !important;
 }
 
 .room-list-card__main:focus-visible {
   outline: 2px solid color-mix(in srgb, var(--text-warm) 66%, transparent);
-  outline-offset: -0.25rem;
-  border-radius: inherit;
-}
-
-.room-list-card__icon {
-  display: grid;
-  place-items: center;
-  inline-size: 3rem;
-  block-size: 3rem;
-  border: 1px solid color-mix(in srgb, var(--text-warm) 18%, transparent);
-  border-radius: 1rem;
-  color: color-mix(in srgb, var(--text-warm) 86%, transparent);
-  background: color-mix(in srgb, var(--text-warm) 6%, transparent);
-}
-
-.room-list-card__icon svg {
-  inline-size: 1.65rem;
-  block-size: 1.65rem;
+  outline-offset: 0.2rem;
+  border-radius: 0.6rem;
 }
 
 .room-list-card__content {
   min-width: 0;
   display: grid;
-  gap: 0.55rem;
+  justify-items: center;
+  gap: 0.42rem;
+  text-align: center;
 }
 
 .room-list-card__title,
 .room-list-card__meta,
-.room-list-card__footer,
 .room-list-card__actions {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.45rem 0.7rem;
-}
-
-.room-list-card__title {
-  justify-content: space-between;
+  justify-content: center;
+  gap: 0.35rem 0.65rem;
 }
 
 .room-list-card__title h2 {
   min-width: 0;
   margin: 0;
-  font-size: clamp(1rem, 0.9rem + 0.5cqi, 1.3rem);
+  font-size: clamp(1.1rem, 1rem + 0.5cqi, 1.35rem);
   font-weight: 600;
   line-height: 1.25;
   overflow-wrap: anywhere;
@@ -1105,9 +1080,9 @@ html[data-reduce-transparency="1"] .feature-page__surface {
 .room-list-card__title > span {
   display: grid;
   place-items: center;
-  min-inline-size: 1.65rem;
-  min-block-size: 1.65rem;
-  padding-inline: 0.4rem;
+  min-inline-size: 1.45rem;
+  min-block-size: 1.45rem;
+  padding-inline: 0.35rem;
   border-radius: 999px;
   color: #111;
   background: var(--text-warm);
@@ -1120,13 +1095,15 @@ html[data-reduce-transparency="1"] .feature-page__surface {
   font-size: var(--fs-small, 0.9rem);
 }
 
-.room-list-card__meta > span {
-  display: inline-flex;
-  align-items: center;
-  min-height: 1.85rem;
-  padding-inline: 0.65rem;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--text-warm) 5%, transparent);
+.room-list-card__meta > span + span::before {
+  content: "·";
+  margin-inline-end: 0.65rem;
+  color: color-mix(in srgb, var(--text-warm) 42%, transparent);
+}
+
+.room-list-card__content > time {
+  color: color-mix(in srgb, var(--text-dim) 82%, transparent);
+  font-size: var(--fs-micro, 0.78rem);
 }
 
 .room-list-card__arrow {
@@ -1139,24 +1116,19 @@ html[data-reduce-transparency="1"] .feature-page__surface {
   transition: translate var(--dur-fast, 180ms) var(--ease-soft, ease);
 }
 
-.room-list-card__footer {
-  justify-content: space-between;
-  gap: 0.75rem 1rem;
-  padding: 0.75rem clamp(0.95rem, 2.8cqi, 1.3rem);
-  border-block-start: 1px solid color-mix(in srgb, var(--text-warm) 10%, transparent);
-  color: var(--text-dim);
-  font-size: var(--fs-small, 0.9rem);
-  background: color-mix(in srgb, #000 10%, transparent);
+.room-list-card__actions {
+  margin-block-start: 0.55rem;
+  padding-inline: 1.75rem;
 }
 
 .room-list-card__actions button {
   min-inline-size: var(--hit-target-min, 2.75rem);
   min-block-size: var(--hit-target-min, 2.75rem);
-  padding: 0.55rem 0.85rem;
-  border: 1px solid color-mix(in srgb, var(--text-warm) 15%, transparent);
-  border-radius: 999px;
-  color: var(--text-warm);
-  background: color-mix(in srgb, var(--text-warm) 5%, transparent);
+  padding: 0.45rem 0.7rem;
+  border: 0;
+  border-radius: 0.65rem;
+  color: var(--text-dim);
+  background: transparent;
   cursor: pointer;
   transition:
     border-color var(--dur-fast, 180ms) var(--ease-soft, ease),
@@ -1179,12 +1151,8 @@ html[data-reduce-transparency="1"] .feature-page__surface {
 }
 
 @media (hover: hover) {
-  .room-list-card:has(.room-list-card__main:hover) {
-    border-color: color-mix(in srgb, var(--text-warm) 28%, transparent);
-    background-color: color-mix(in srgb, var(--text-warm) 3%, transparent);
-    box-shadow:
-      inset 0 1px 0 color-mix(in srgb, var(--text-warm) 12%, transparent),
-      0 1.2rem 3rem rgba(0, 0, 0, 0.22);
+  .room-list-card__main:hover {
+    color: color-mix(in srgb, var(--text-warm) 94%, white 6%);
   }
 
   .room-list-card__main:hover .room-list-card__arrow {
@@ -1192,38 +1160,24 @@ html[data-reduce-transparency="1"] .feature-page__surface {
   }
 
   .room-list-card__actions button:hover:not(:disabled) {
-    border-color: color-mix(in srgb, var(--text-warm) 30%, transparent);
-    background: color-mix(in srgb, var(--text-warm) 10%, transparent);
+    color: var(--text-warm);
+    background: color-mix(in srgb, var(--text-warm) 7%, transparent);
   }
 }
 
 @container rooms-page (max-width: 34rem) {
   .room-list-card__main {
-    grid-template-columns: 2.65rem minmax(0, 1fr) 0.8rem;
-    gap: 0.7rem;
-  }
-
-  .room-list-card__icon {
-    inline-size: 2.65rem;
-    block-size: 2.65rem;
-    border-radius: 0.85rem;
+    grid-template-columns: minmax(0, 1fr) 0.8rem;
+    gap: 0.4rem;
   }
 
   .room-list-card__meta {
     gap: 0.35rem;
   }
 
-  .room-list-card__footer {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
   .room-list-card__actions {
     width: 100%;
-  }
-
-  .room-list-card__actions button {
-    flex: 1 1 8rem;
+    padding-inline: 1rem;
   }
 }
 
