@@ -1001,23 +1001,14 @@ html[data-reduce-transparency="1"] .feature-page__surface {
 }
 
 .rooms-page__viewport {
-  flex: 1 1 auto;
+  flex: none;
 }
 
 .rooms-page__scroller {
-  height: 100%;
-  max-height: min(52rem, calc(var(--app-dynamic-block-size, 100dvh) - 9rem));
-  padding: 0.1rem 0.35rem 1rem 0.1rem;
-  overflow-y: auto;
-  overflow-x: hidden;
-  overscroll-behavior: contain;
-  scrollbar-gutter: stable;
-}
-
-.rooms-page__scroller:focus-visible {
-  outline: 2px solid color-mix(in srgb, var(--text-warm) 62%, transparent);
-  outline-offset: 0.25rem;
-  border-radius: 1rem;
+  height: auto;
+  max-height: none;
+  padding: 0;
+  overflow: visible;
 }
 
 .rooms-list {

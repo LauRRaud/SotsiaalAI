@@ -259,8 +259,6 @@ export default function RoomsPage() {
           <div className="rooms-page__viewport">
             <div
               className="rooms-page__scroller"
-              tabIndex={0}
-              aria-label={t("rooms.title")}
             >
               <div className="rooms-page__header">
                 <h1>
