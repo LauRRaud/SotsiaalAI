@@ -598,3 +598,15 @@ Jätkumaatriks eristas keele, nime, teema, kaasautori ja atribuutika veaklassid.
 Viimase SHA vastu vastas vene kaasautoriküsimus õigesti 11,453 sekundiga ning valitud ja kuvatud tõend oli üks ja sama Ingrid Sindi 2016 artikkel. Ingliskeelne üldine Kadi Lubi küsimus vastas 5,614 sekundiga; neli valitud ja kuvatud allikat kattusid ning avatud paneeli neli kaarti toetasid vastuses loetletud töid. Keelelepingut kontrolliti kolme eraldi UI/küsimuse kombinatsiooniga: `interface=ru, query=et, answer=et`; `interface=en, query=ru, answer=ru`; ning inglise UI-ga venekeelne küsimus koos eestikeelse vastuse korraldusega andis `answer=et`, põhjus `explicit_turn_instruction`. Viimases väravas filtreeriti kahest valitud allikast üks otseselt toetav allikas kuvamiseks; see ei ole valitud/kuvatud komplekti võrdsuse juhtum.
 
 Kõik kontrollid tehti olemasolevas autentitud vestluses, „Uus vestlus” workaround'ita. Konto UI taastati eesti keelde. Kogu 14 juhtumi plokki ei korratud pärast viimast kitsast muudatust tervikuna; mõjutatud juhtumid korrati põhjuse järel. Seetõttu on `243da993` kitsa autoriraja mõjutatud sihtvärav **PASS**, üldine mitmekeelne RAG **NOT_PROVEN** ning eestikeelne põhimaatriks endiselt **DONE 21/75 · NOT_PROVEN 54/75**. Automaatteste ei loodud ega käivitatud.
+
+### 25.08 autentitud sihtkordus — Laur, V04, M10 ja M07
+
+| värav | vastus | retrieval / kontekst | kuvatud tõend | seis |
+|---|---|---|---|---|
+| Laur Raudsoo jätkloetelu | täpselt kuus õiget pealkirja, kõrvalisi 0 | üks piiratud päring; valitud 6 | kuvatud 6; hover-paneelis kõik kuus | **PASS, lisavärav väljaspool 75 maatriksit** |
+| V04 Leps/Indov | 10%=640, 6%=227 (2023) ja 2%=100 (2024) | faktivalidaator PASS | õige Lepsi/Indovi artikkel | **PASS, sihtkordus** |
+| M10 OSKA 2025 | 16%, 18%, 68%, 95 koolitust, u 1750 osalejat | üks päring; üks täpne aruanne; retrieval 20 248 ms; esimene tekst 3337 ms | üks sama OSKA PDF hover-paneelis | **PASS, jõudlus PARTIAL** |
+| M07 Tarkvanema tööleht enne parandust | ainult vestluse algus; järelkäitumine ekslikult „kinnitamata” | õige fail oli esikohal, kuid 1430 märgist renderdati 693 ja lisati üheksa kõrvalallikat | kolm töölehte | **FAIL — kontekstikärbe** |
+| M07 release `f9b6fdd4` | avatud küsimused; kuula, ole kohal, hoidu hinnangutest | üks päring; üks valitud fail; 1182 + 248 märki tervikuna, `truncated=false`; retrieval 4587 ms | üks õige algkoolilapse tööleht | **PASS** |
+
+M07 paranduse leping on üldine: see ei sisalda Tarkvanema oodatud vastust ega küsimusepõhist arvu, vaid eristab nimepidi küsitud dokumendijuhise üldisest materjalide avastusrajast. M10 arvud kinnitab allikapõhine validaator; oodatud arve ei lisatud prompti ega korpusesse. Kumulatiivset ajaloolist arvestust ei suurendata sihtkorduste võrra ilma ülejäänud release'i kontrollimata: **DONE 21/75 · NOT_PROVEN 54/75**.
