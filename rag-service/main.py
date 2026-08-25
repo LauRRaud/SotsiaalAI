@@ -14,6 +14,7 @@ import shutil
 import threading
 import unicodedata
 from concurrent.futures import Future
+from functools import lru_cache
 from io import BytesIO
 import logging
 import mimetypes
@@ -4728,6 +4729,7 @@ def _registry_title_shortlist_doc_ids(
     query: str,
     chroma_where: Optional[Dict[str, object]],
     limit: int = 20,
+    registry_snapshot: Optional[Dict[str, Dict]] = None,
 ) -> List[str]:
     # Fact-shape words describe the requested answer, not the document's
     # subject. Counting them in title coverage made concise questions such as
@@ -4761,7 +4763,8 @@ def _registry_title_shortlist_doc_ids(
     if not query_tokens:
         return []
     matches: List[tuple] = []
-    for doc_id, metadata in _load_registry().items():
+    registry = registry_snapshot if isinstance(registry_snapshot, dict) else _load_registry()
+    for doc_id, metadata in registry.items():
         if not isinstance(metadata, dict) or not _metadata_matches_filter(metadata, chroma_where):
             continue
         title_counts = _lexical_token_counts(
@@ -4827,17 +4830,11 @@ def _is_research_method_fact_query(query: object) -> bool:
     return bool(singular_research_source and method_or_sample_fact)
 
 
-def _estonian_derivational_roots(token: object) -> List[str]:
-    """Return conservative long roots for registry-description recall.
-
-    The registry stores natural Estonian summaries, so a query noun such as
-    ``toetamise`` can refer to title text using ``toetuse``. These roots are
-    deliberately used only by the bounded registry fact shortlist, not by the
-    global lexical ranker.
-    """
-    normalized = _normalize_search_text(token)
+@lru_cache(maxsize=32768)
+def _estonian_derivational_roots_cached(raw_token: str) -> Tuple[str, ...]:
+    normalized = _normalize_search_text(raw_token)
     if not normalized:
-        return []
+        return ()
     roots = {normalized}
     suffixes = (
         "jatega",
@@ -4863,7 +4860,19 @@ def _estonian_derivational_roots(token: object) -> List[str]:
     for suffix in suffixes:
         if normalized.endswith(suffix) and len(normalized) - len(suffix) >= 4:
             roots.add(normalized[:-len(suffix)])
-    return sorted(roots, key=lambda value: (-len(value), value))
+    return tuple(sorted(roots, key=lambda value: (-len(value), value)))
+
+
+def _estonian_derivational_roots(token: object) -> List[str]:
+    """Return conservative long roots for registry-description recall.
+
+    The registry stores natural Estonian summaries, so a query noun such as
+    ``toetamise`` can refer to title text using ``toetuse``. These roots are
+    deliberately used only by the bounded registry fact shortlist, not by the
+    global lexical ranker.
+    """
+    raw_token = "" if token is None else str(token)
+    return list(_estonian_derivational_roots_cached(raw_token))
 
 
 def _registry_derivational_token_frequency(query_token: str, counts: Dict[str, int]) -> int:
@@ -4907,6 +4916,7 @@ def _registry_fact_description_shortlist_doc_ids(
     query: str,
     chroma_where: Optional[Dict[str, object]],
     limit: int = 12,
+    registry_snapshot: Optional[Dict[str, Dict]] = None,
 ) -> List[str]:
     """Use registry descriptions to anchor concise quantitative fact questions.
 
@@ -4926,8 +4936,10 @@ def _registry_fact_description_shortlist_doc_ids(
     query_tokens = _registry_fact_description_query_tokens(query)
     if len(query_tokens) < 2:
         return []
+    research_method_query = _is_research_method_fact_query(query)
     matches: List[tuple] = []
-    for doc_id, metadata in _load_registry().items():
+    registry = registry_snapshot if isinstance(registry_snapshot, dict) else _load_registry()
+    for doc_id, metadata in registry.items():
         if not isinstance(metadata, dict) or not _metadata_matches_filter(metadata, chroma_where):
             continue
         description = _normalize_search_text(
@@ -4937,7 +4949,6 @@ def _registry_fact_description_shortlist_doc_ids(
         )
         if not description:
             continue
-        research_method_query = _is_research_method_fact_query(query)
         if research_method_query and not (
             re.search(r"\bintervju\w*\b", description)
             and re.search(r"\banaluus\w*\b", description)
@@ -5008,12 +5019,15 @@ def _registry_author_shortlist_doc_ids(
     query: str,
     chroma_where: Optional[Dict[str, object]],
     limit: int = 50,
+    registry_snapshot: Optional[Dict[str, Dict]] = None,
 ) -> List[str]:
     normalized_query = _normalize_search_text(query)
     if not normalized_query:
         return []
+    query_words = _search_tokens(normalized_query, limit=40)
     matches: List[str] = []
-    for doc_id, metadata in _load_registry().items():
+    registry = registry_snapshot if isinstance(registry_snapshot, dict) else _load_registry()
+    for doc_id, metadata in registry.items():
         if not isinstance(metadata, dict):
             continue
         # Chroma stores the normalized author slots used by the search filter,
@@ -5037,8 +5051,6 @@ def _registry_author_shortlist_doc_ids(
                 author_tokens.append(token)
         if not author_tokens:
             author_tokens = normalize_author_tokens(metadata.get("authors") or metadata.get("authors_list"))
-        query_words = _search_tokens(normalized_query, limit=40)
-
         def author_matches(author: str) -> bool:
             parts = [part for part in author.split() if part]
             if len(parts) < 2:
@@ -5358,7 +5370,11 @@ def _fetch_lexical_candidates(
     if use_specialized_shortlists:
         if author_shortlist_doc_ids is None:
             try:
-                author_doc_ids = registry_lookup(lambda: _registry_author_shortlist_doc_ids(query, chroma_where))
+                author_doc_ids = registry_lookup(lambda: _registry_author_shortlist_doc_ids(
+                    query,
+                    chroma_where,
+                    registry_snapshot=version_registry,
+                ))
             except Exception:
                 logger.exception("registry author shortlist lookup failed")
     if author_doc_ids and "author_match" in allowed_channels:
@@ -5454,7 +5470,11 @@ def _fetch_lexical_candidates(
     if use_specialized_shortlists:
         try:
             fact_description_doc_ids = registry_lookup(
-                lambda: _registry_fact_description_shortlist_doc_ids(query, chroma_where)
+                lambda: _registry_fact_description_shortlist_doc_ids(
+                    query,
+                    chroma_where,
+                    registry_snapshot=version_registry,
+                )
             )
         except Exception:
             logger.exception("registry fact description shortlist lookup failed")
@@ -5564,7 +5584,11 @@ def _fetch_lexical_candidates(
     title_doc_ids: List[str] = []
     if use_specialized_shortlists:
         try:
-            title_doc_ids = registry_lookup(lambda: _registry_title_shortlist_doc_ids(lexical_query, chroma_where))
+            title_doc_ids = registry_lookup(lambda: _registry_title_shortlist_doc_ids(
+                lexical_query,
+                chroma_where,
+                registry_snapshot=version_registry,
+            ))
         except Exception:
             title_doc_ids = []
         try:
@@ -5627,7 +5651,7 @@ def _fetch_lexical_candidates(
             )
             if len(title_doc_ids) == 1 and title_fact_cue:
                 anchored_doc_id = str(title_doc_ids[0])
-                title_version_registry = _load_registry()
+                title_version_registry = version_registry if isinstance(version_registry, dict) else _load_registry()
                 title_anchored = [
                     candidate
                     for candidate in shortlist_scored
@@ -8501,6 +8525,7 @@ def _execute_search(
                 requested_author_tokens[0],
                 chroma_where,
                 limit=max(1, len(version_registry) + 1),
+                registry_snapshot=version_registry,
             )
             author_scope_where = _without_author_token_filter_group(chroma_where)
             indexed_author_document_ids: List[str] = []
