@@ -791,6 +791,169 @@ html[data-reduce-transparency="1"] .feature-page__surface {
   border-color: color-mix(in srgb, var(--text-warm) 34%, transparent);
 }
 
+/* Halduse avaleht on valikupaneel, mitte täislai admin-töölaud. Admini
+   sisulehed säilitavad oma laia tööpinna; see leping rakendub ainult hub'ile. */
+.panel-scrim[data-admin="1"]:has(.admin-hub) {
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 3vw, 2rem);
+  padding-block-end: max(var(--room-dock-reserve, 6.5rem), clamp(1rem, 3vw, 2rem));
+}
+
+.panel-scrim[data-admin="1"]:has(.admin-hub) .panel {
+  width: min(48rem, calc(100vw - clamp(2rem, 6vw, 4rem)));
+  height: min(43rem, calc(100dvh - var(--room-dock-reserve, 6.5rem) - 2rem));
+  min-height: min(31rem, calc(100dvh - var(--room-dock-reserve, 6.5rem) - 2rem));
+}
+
+.panel-scrim[data-admin="1"]:has(.admin-hub) .panel-body {
+  padding: clamp(2.8rem, 5dvh, 3.35rem) clamp(1rem, 3.5cqi, 2rem) 1.5rem;
+  scrollbar-gutter: stable;
+}
+
+.admin-hub {
+  width: min(100%, 42rem);
+  min-width: 0;
+  display: grid;
+  gap: clamp(1.15rem, 3cqi, 1.75rem);
+  margin-inline: auto;
+  color: var(--text-warm);
+  container: admin-hub / inline-size;
+}
+
+.admin-hub__header {
+  display: grid;
+  gap: 0.45rem;
+  padding-inline: 0.15rem;
+}
+
+.admin-hub__header :where(p, h1),
+.admin-hub__group h2 {
+  margin: 0;
+}
+
+.admin-hub__header > p:first-child {
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.9rem);
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.admin-hub__header h1 {
+  font-family: var(--font-display, inherit);
+  font-size: clamp(1.65rem, 1.35rem + 1.3cqi, 2.15rem);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.admin-hub__header > p:last-child {
+  max-width: 35rem;
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.9rem);
+  line-height: 1.5;
+}
+
+.admin-hub__groups {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+  align-items: start;
+}
+
+.admin-hub__group {
+  min-width: 0;
+  display: grid;
+  gap: 0.7rem;
+  padding: 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--text-warm) 13%, transparent);
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--glass-cell-bg) 84%, transparent);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--text-warm) 7%, transparent);
+}
+
+.admin-hub__group h2 {
+  padding-inline: 0.25rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.admin-hub__group ul {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.admin-hub__group li {
+  min-width: 0;
+}
+
+.admin-hub__group a {
+  min-width: 0;
+  min-height: var(--hit-target-min, 2.75rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 0.75rem;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.62rem 0.75rem;
+  border: 1px solid transparent;
+  border-radius: 0.75rem;
+  color: var(--text-warm);
+  background: color-mix(in srgb, var(--text-warm) 4%, transparent);
+  font-size: var(--fs-small, 0.9rem);
+  font-weight: 600;
+  line-height: 1.25;
+  text-decoration: none !important;
+  transition:
+    border-color var(--dur-fast, 180ms) var(--ease-soft, ease),
+    background-color var(--dur-fast, 180ms) var(--ease-soft, ease);
+}
+
+.admin-hub__group a > span:first-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.admin-hub__arrow {
+  inline-size: 0.55rem;
+  block-size: 0.55rem;
+  border-block-start: 0.1rem solid currentColor;
+  border-inline-end: 0.1rem solid currentColor;
+  color: var(--text-dim);
+  rotate: 45deg;
+}
+
+.admin-hub__group a:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--text-warm) 65%, transparent);
+  outline-offset: 0.15rem;
+}
+
+@media (hover: hover) {
+  .admin-hub__group a:hover {
+    border-color: color-mix(in srgb, var(--text-warm) 20%, transparent);
+    background: color-mix(in srgb, var(--text-warm) 8%, transparent);
+  }
+}
+
+@container admin-hub (max-width: 34rem) {
+  .admin-hub__groups {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-height: 42rem) {
+  .panel-scrim[data-admin="1"]:has(.admin-hub) .panel {
+    height: calc(100dvh - var(--room-dock-reserve, 5.5rem) - 1rem);
+    min-height: 0;
+  }
+}
+
 /* Ruumid */
 .feature-page--rooms {
   --feature-content-max: 58rem;

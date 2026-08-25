@@ -37,29 +37,32 @@ export default async function AdminHubPage() {
 
   const groups = ["operations", "knowledge"];
   return (
-    <section aria-labelledby="admin-hub-title">
-      <div>
+    <section className="admin-hub" aria-labelledby="admin-hub-title" data-dock-scroll-behavior="recede">
+      <div className="admin-hub__header">
         <p>{serverT(locale, "admin.hub.eyebrow")}</p>
         <h1 id="admin-hub-title">{serverT(locale, "admin.hub.title")}</h1>
         <p>{serverT(locale, "admin.hub.description")}</p>
       </div>
 
-      {groups.map(group => (
-        <section key={group} aria-labelledby={`admin-hub-${group}`}>
-          <h2 id={`admin-hub-${group}`}>
-            {serverT(locale, `admin.hub.groups.${group}`)}
-          </h2>
-          <ul>
-            {ADMIN_SURFACES.filter(surface => surface.group === group).map(surface => (
-              <li key={surface.href}>
-                <Link href={localizePath(surface.href, locale)}>
-                  {serverT(locale, surface.labelKey)}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ))}
+      <div className="admin-hub__groups">
+        {groups.map(group => (
+          <section className="admin-hub__group" key={group} aria-labelledby={`admin-hub-${group}`}>
+            <h2 id={`admin-hub-${group}`}>
+              {serverT(locale, `admin.hub.groups.${group}`)}
+            </h2>
+            <ul>
+              {ADMIN_SURFACES.filter(surface => surface.group === group).map(surface => (
+                <li key={surface.href}>
+                  <Link href={localizePath(surface.href, locale)}>
+                    <span>{serverT(locale, surface.labelKey)}</span>
+                    <span className="admin-hub__arrow" aria-hidden="true" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
     </section>
   );
 }
