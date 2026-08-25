@@ -2368,8 +2368,8 @@ html[data-contrast="hc"] .room-call-details {
 }
 
 /* ---------- Ruumivestluse komposer ----------
-   Tekstisisend on põhitegevus. Kõne ja assistendi lülitid elavad eraldi
-   klaasriiulil, et lisafunktsioonid ei võtaks kirjutamisruumi ära. */
+   Tekstisisend on põhitegevus. Kõne ja assistendi kompaktsed ikoonid elavad
+   samal real, kuid eraldi kiirmenüülaadsete puutesihtidena. */
 .panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] {
   width: min(44rem, calc(100% - clamp(1rem, 3vw, 2rem)));
   container: room-composer / inline-size;
@@ -2388,32 +2388,19 @@ html[data-contrast="hc"] .room-call-details {
   position: relative;
   z-index: 3;
   display: flex;
-  flex-wrap: wrap;
+  flex: none;
   align-items: center;
-  justify-content: flex-end;
-  justify-self: end;
-  gap: 0.32rem;
-  width: fit-content;
-  max-width: 100%;
+  gap: 0.25rem;
   min-height: var(--hit-target-min, 2.75rem);
-  padding: 0.25rem 0.38rem;
-  border: 1px solid color-mix(in srgb, var(--text-warm) 15%, transparent);
-  border-radius: 999px;
-  background: linear-gradient(165deg, rgba(32, 32, 32, 0.7), rgba(12, 12, 12, 0.76));
-  -webkit-backdrop-filter: blur(18px) saturate(118%);
-  backdrop-filter: blur(18px) saturate(118%);
-  box-shadow:
-    inset 0 1px 0 color-mix(in srgb, var(--text-warm) 10%, transparent),
-    0 0.75rem 2rem rgba(0, 0, 0, 0.24);
   overflow: visible;
 }
 
 .panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] .chat-composer__input-bar {
   min-width: 0;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) auto auto;
   align-items: end;
-  gap: 0.35rem;
+  gap: 0.28rem;
 }
 
 .panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] .chat-composer__field {
@@ -2461,7 +2448,20 @@ html[data-contrast="hc"] .room-call-details {
   position: relative;
   width: var(--hit-target-min, 2.75rem);
   height: var(--hit-target-min, 2.75rem);
-  border-color: transparent;
+  border: 1px solid color-mix(in srgb, var(--text-warm) 18%, transparent);
+  border-radius: 50%;
+  color: color-mix(in srgb, var(--text-warm) 84%, transparent);
+  background: linear-gradient(155deg, rgba(47, 47, 47, 0.8), rgba(19, 19, 19, 0.86));
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, white 11%, transparent),
+    0 0.45rem 1.15rem rgba(0, 0, 0, 0.22);
+}
+
+.panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] .room-call-controls > button:hover:not(:disabled),
+.panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] button.conv-ai-target:hover:not(:disabled) {
+  border-color: color-mix(in srgb, var(--text-warm) 34%, transparent);
+  color: var(--text-warm);
+  background: linear-gradient(155deg, rgba(58, 58, 58, 0.88), rgba(25, 25, 25, 0.9));
 }
 
 .panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] .room-call-controls > button > svg,
@@ -2568,20 +2568,21 @@ html[data-contrast="hc"] .room-call-details {
 
 @container room-composer (max-width: 34rem) {
   .chat-composer__room-tools {
-    justify-self: stretch;
-    width: 100%;
+    width: auto;
   }
 
   .chat-composer__room-tools .room-call-controls {
-    flex: 1 1 auto;
-    min-width: 0;
+    flex: none;
   }
 
   .room-call-live-state {
-    margin-inline-end: auto;
-    max-width: 9rem;
+    inline-size: 0.85rem;
+    min-height: 0.85rem;
+    padding: 0;
     overflow: hidden;
-    text-overflow: ellipsis;
+    color: transparent;
+    background: transparent;
+    font-size: 0;
   }
 }
 

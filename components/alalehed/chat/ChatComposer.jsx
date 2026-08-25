@@ -840,6 +840,7 @@ export default function ChatComposer({
         onFocusInput?.(e);
       }} onBlur={onBlurInput} disabled={isGenerating || isRoomMode && (roomBlocked || roomAuthRequired)} rows={1} />
       </div>
+      {roomToolsNode}
       <div className="chat-composer__primary-actions">
         {/* Katkesta salvestus — nähtav AINULT salvestamise ajal. Ilma
             selleta oli ainus väljapääs "lõpeta", mis SAADAB heli ära
@@ -876,7 +877,6 @@ export default function ChatComposer({
 
       <div className="chat-composer__body">
         {privacyPromptNode}
-        {roomToolsNode}
         <div className="chat-composer__input-bar" ref={inputBarRef} onMouseDown={handleInputBarMouseDown}>
           {inputBarChildren}
         </div>
