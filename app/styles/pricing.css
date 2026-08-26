@@ -58,13 +58,6 @@
   line-height: 1.5;
   color: var(--room-text-dim);
 }
-.pc-closed {
-  margin: 0.6rem auto 0;
-  max-width: 34rem;
-  font-size: 0.82rem;
-  color: var(--room-text-dim);
-}
-
 /* ---------- Lava: üks 3D-tasand (perspective siin, kaardid otse all) ---------- */
 .pc-stage {
   position: relative;
@@ -288,15 +281,6 @@
   border-top: 1px solid rgba(247, 247, 247, 0.09);
   text-align: left;
 }
-.pc-all-title {
-  margin: 0.7rem 0 0.5rem;
-  font-family: var(--font-ui);
-  font-size: 0.68rem;
-  font-weight: 540;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: var(--room-text-soft);
-}
 .pc-all dl {
   margin: 0;
 }
@@ -307,7 +291,8 @@
   align-items: baseline;
   padding: 0.42rem 0;
   border-bottom: 1px solid rgba(247, 247, 247, 0.055);
-  font-size: 0.84rem;
+  font-size: 0.92rem;
+  letter-spacing: 0.012em;
 }
 .pc-all-row:last-child {
   border-bottom: 0;

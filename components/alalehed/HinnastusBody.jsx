@@ -26,8 +26,6 @@ import { localizePath } from "@/lib/localizePath";
 import { REGISTRATION_OPEN } from "@/lib/publicRegistration";
 import { backWithTransition, pushWithTransition } from "@/lib/routeTransition";
 
-const REGISTER_CLOSED_NOTE_ID = "hinnastus-register-closed-note";
-
 const planKeys = ["free", "client", "worker", "provider"];
 
 /* Peidus kaardid pargivad serva taga selle sammu kaugusel — sisenev
@@ -230,11 +228,6 @@ export default function HinnastusBody() {
           lõhuks keelte pariteedi (i18n:check) ja tekst võib veel naasta. */}
       <header className="pc-head">
         <h1 id="hinnastus-title">{t("about.pricing.title")}</h1>
-        {!REGISTRATION_OPEN ? (
-          <p id={REGISTER_CLOSED_NOTE_ID} className="pc-closed" role="note">
-            {t("auth.register.closed_notice")}
-          </p>
-        ) : null}
       </header>
 
       <p className="sr-only" aria-live="polite">
@@ -308,7 +301,6 @@ export default function HinnastusBody() {
                     className="pc-cta"
                     tabIndex={isCenter ? 0 : -1}
                     aria-disabled={!REGISTRATION_OPEN}
-                    aria-describedby={!REGISTRATION_OPEN ? REGISTER_CLOSED_NOTE_ID : undefined}
                     onClick={goRegister}
                   >
                     {t(`about.pricing.actions.${key}`)}
@@ -327,7 +319,6 @@ export default function HinnastusBody() {
 
                   {isOpen ? (
                     <div className="pc-all">
-                      <p className="pc-all-title">{t("about.pricing.card.all_title")}</p>
                       <dl>
                         {featureRows.map((row) => (
                           <div className="pc-all-row" key={row.key}>
