@@ -726,3 +726,28 @@ checkout samal SHA-l, frontend/RAG/research-worker aktiivsed, `/vestlus` HTTP 20
 plokk on requested-metric mapping lõplikult renderdatud tõendil; typed temporal promotion,
 author/year/history precedence, legal/KOV exact retrieval ja supporting→displayed atribuutika
 on jätkuvalt `NOT_PROVEN` või osalised.
+
+### 26.08 J08 v6 tõendikeha-/lauseulatuse kordus — release `d62f11d6`
+
+Pärast `20d876630` märgivahemiku ja `daf0e8dd` kandidaatide säilitamise parandusi jäi J08
+canonical veel `rendered_evidence_mapping_incomplete` olekusse. Juurpõhjus ei olnud retrieval
+ega validator: koordineeritud riskirühmade peer-väärtused pidid endiselt olema samas PDF-i
+fragmendis, kuigi pehme `�` eraldaja võis ühe tõendilause poolitada. Commit `d62f11d6` säilitab
+renderdatud tõendikeha ning lauseulatuse; peeri võib siduda üle pehme eraldaja ainult samas
+kehas, samas lauseulatuses, sama sulgussügavusega ja 640 märgi sees. Muud arvud, mudel,
+validator, top-k, fusion, korpus ja indeks jäid muutmata.
+
+Täieliku deploy järel (esimene katkestatud artefaktikäik ei olnud runtime-tõend) kattusid kohalik
+HEAD, `origin/main` ja server SHA-l `d62f11d6`; kolm teenust olid aktiivsed. Sama autentitud
+vestluse canonical andis ainult 61% / 26% / 11% / 18%. Trace oli v6 4/4, validator PASS ning
+selected = answer = displayed sisaldas üht Vaike Vainu 2023 artiklit; hoveri järel avanes
+„Vastuste allikad” paneel ühe sama kaardiga. Selge artikliankruga küsiv B-parafraas läbis sama
+värava ja andis samuti ainult 61/26/11/18. B trace: retrieval 9695 ms, model 4510 ms,
+validation 72 ms; käsitsi esimese teksti ja lõppaja mõõt jäi `NOT_PROVEN`.
+
+Nimisõnaline loeteluvariant („millised neli osakaalu …”) ei loonud requested-slot'e ning
+contract ei aktiveerunud; see jäi puuduliku vastusega üheks eraldi planneri sõnastuspiiriks.
+Seda ei loeta J08 canonicali ümberlükkeks ega parandata küsimusepõhise erandiga, kuid üldine
+nimisõnaliste slotiloendite katvus on `NOT_PROVEN`. Aktiivse SHA range maatriksivaade on
+**DONE 1/75 · PARTIAL 0/75 · NOT_PROVEN 74/75**; ajalooline koond jääb
+**DONE 21/75 · NOT_PROVEN 54/75**.

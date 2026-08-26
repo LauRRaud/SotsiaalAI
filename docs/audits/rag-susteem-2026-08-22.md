@@ -1457,3 +1457,42 @@ ajalooline koond jääb **DONE 21/75 · NOT_PROVEN 54/75**. Järgmine plokk on r
 contract'i stabiliseerimine lõplikult renderdatud tõendil; typed temporal promotion, author/year/
 history precedence, legal/KOV exact retrieval ja supporting→displayed atribuutika jäävad eraldi
 lahtiseks.
+
+## 42. Requested-metric mapping v6 — 26.08 release `d62f11d6`
+
+Release `20d876630` asendas varasema fragmendiarvu piiri lõpliku renderdatud tõendi
+märgivahemikuga ja `daf0e8dd` säilitas ühismäärangu jaoks kaheksa lokaalselt tugevat kandidaati.
+Mõlemal release'il jäi J08 canonical siiski `rendered_evidence_mapping_incomplete` olekusse.
+Juurpõhjus ei olnud retrieval ega validator: koordineeritud 11%/18% peer-paar pidi endiselt olema
+samas PDF-fragmendis, kuigi pehme `�` eraldaja võis ühe tõendilause poolitada.
+
+Commit `d62f11d6dc1942c057ddd4d20b96048f5a8042e0` säilitab iga kandidaadi renderdatud
+tõendikeha ning lauseulatuse indeksi. Pehme `�` eraldaja ei katkesta enam lauseulatust; punkt,
+küsimärk, hüüumärk ja reavahetus katkestavad selle endiselt. Koordineeritud peerid peavad olema
+samas tõendikehas, samas lauseulatuses, sama sulgussügavusega ja kuni 640 märgi kaugusel. Nii ei
+laiene parandus teise lõigu ega teise tõendikeha juhuslikele protsentidele. Trace sisaldab ainult
+bounded keha-/ulatusindekseid, mitte kasutaja küsimuseteksti ega tõendilauset.
+
+Esimene deploy-käik jõudis serveris Gitini, kuid aktiivne frontend-artifakt jäi vanaks; seda ei
+loetud runtime-tõendiks. Täielik kordusdeploy lõpetas build'i ning taaskäivitas frontend'i kell
+11:24 EEST. Seejärel kattusid kohalik HEAD, `origin/main` ja puhas server SHA-l `d62f11d6`;
+frontend, RAG ja research-worker olid aktiivsed. Samas autentitud vestluses läbis J08 canonical
+ainult 61% / 26% / 11% / 18% vastusega. Trace oli `requested_metric_contract_v1`, mapping
+`bounded_rendered_sentence_peer_alignment_v6`, `complete=true`, 4/4 slotiga ja
+`exact_numeric_fact_v5` PASS; selected = answer = displayed oli üks Vaike Vainu 2023 artikkel.
+Hoveri järel avanes üks sama kaart „Vastuste allikad” paneelis. Selge artikliankruga B kordus
+läbis samal SHA-l samuti ainult 61/26/11/18, mapping v6 4/4, validator PASS ning hover-paneeli.
+B trace'i retrieval oli 9695 ms, model 4510 ms ja validation 72 ms; brauseri esimese teksti ja
+valmisoleku käsimõõt jäi selles korduses `NOT_PROVEN`.
+
+Üks eraldi nimisõnaline loetelukuju („millised neli osakaalu …”) ei tootnud requested-slot'e;
+contract ei aktiveerunud ning vastus jäi puudulikuks. See on ühe sõnastuse planneri
+slotiekstraktori piir, mida ei maskeerita J08 arvude ega uue regex-erandiga. J08 canonical
+maatriksijuhtum ning tema selge küsiv B-parafraas on aktiivsel SHA-l läbitud; üldine
+nimisõnaliste slotiloendite katvus jääb `NOT_PROVEN` kuni põhjusepõhine eraldi plokk seda
+reprodutseerib ja lahendab.
+
+Range aktiivse SHA maatriksivaade on **DONE 1/75 · PARTIAL 0/75 · NOT_PROVEN 74/75**.
+Ajalooline koond jääb **DONE 21/75 · NOT_PROVEN 54/75**. Järgmine sidus tööplokk on typed
+temporal retrieval; author/year/history precedence, legal/KOV exact retrieval ning terviklik
+supporting→displayed atribuutika jäävad eraldi avatuks.
