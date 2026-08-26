@@ -697,3 +697,32 @@ Ajalooline koond jääb **DONE 21/75 · NOT_PROVEN 54/75**. Ülejäänud juhtume
 SHA-le üle. Typed temporal retrieval, author/year/history precedence, legal/KOV exact retrieval,
 terviklik supporting→displayed atribuutika, `FINAL_SHA`, kogu 75 täisring ja ettevalmistamata
 juhuküsimused on endiselt tegemata.
+
+### 26.08 typed aastarolli runtime-järelkontroll — release `6a7f0534`
+
+Pärast release'i `6a7f0534b4f7562d6e99be0b9b6e462ca2e28883` deploy'd kontrolliti sama
+autentitud vestluse shadow-v2 radu. Planneri aastamainimised säilitasid mainimise identiteedi:
+`2023. aasta artikkel` märgiti `document_source_year`-iks ja `2022. aasta uuring`
+`evidence_year`-iks. Projektsioon `document_source_years` sisaldas ainult `2023`-e; uuringu
+aasta ei läinud enam dokumendi avaldamisaasta filtrisse.
+
+J08 samas variandis olid requested-slotid täielikud: 4 unikaalset `proportion`-slotti,
+`recognized_clause_count=3`, `emitted_slot_count=4`, `complete=true`, `input_form=original`.
+Renderdatud tõendi slotikaardistus oli siiski `mapped_slot_count=0`, mistõttu generaator lisas
+küsimata 2%/3%. Olemasolev fail-closed validaator peatas vastuse; see on järgmise
+`requested_metric_contract`-i stabiliseerimisploki diagnoos, mitte slotiekstraktori PASS.
+
+J03 täpne ajaloolise artikli küsimus andis sisuliselt õige kriisitunnuste ning 112/1220 vastuse
+ja valis õige 2018. aasta dokumendi, kuid allikapaneel jäi kuvamata, sest atribuutika otsustas
+`historical_source_not_current_evidence`. Seda ei loeta PASS-iks. Seevastu Vaike Vainu 2023
+küsimuse juures kontrolliti hoveriga avatavat „Vastuste allikad” paneeli ja õige toetav
+allikakaart oli nähtav.
+
+Selle release'i range aktiivne maatriksivaade on **DONE 0/75 · PARTIAL 0/75 · NOT_PROVEN
+75/75**. Ajalooline koond jääb **DONE 21/75 · NOT_PROVEN 54/75**; varasemate SHA-de PASS-e ei
+kanta uuele release'ile üle. Kontrollhetkel olid kohalik HEAD, `origin/main` ja serveri
+checkout samal SHA-l, frontend/RAG/research-worker aktiivsed, `/vestlus` HTTP 200, RAG health
+`ok=true` ning kontaktikontrolli timer aktiivne ja viimase teenuse tulemus `success`. Järgmine
+plokk on requested-metric mapping lõplikult renderdatud tõendil; typed temporal promotion,
+author/year/history precedence, legal/KOV exact retrieval ja supporting→displayed atribuutika
+on jätkuvalt `NOT_PROVEN` või osalised.

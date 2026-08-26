@@ -3,7 +3,7 @@
 Loodud: 22.08.2026
 Viimati uuendatud: 26.08.2026
 Tööharu: `codex/rag-quality-75`
-Aktiivne mõõdetud RAG-koodirelease: `77a30a3d1551b369a01537d987c7ff25fbd25c88`
+Aktiivne mõõdetud RAG-koodirelease: `6a7f0534b4f7562d6e99be0b9b6e462ca2e28883`
 
 Viimases mõõtmises kattusid kohalik HEAD, `origin/main` ja puhas serveri checkout sellel SHA-l;
 frontend, RAG ja research-worker olid aktiivsed, `/vestlus` vastas HTTP 200, RAG health oli
@@ -11,16 +11,16 @@ frontend, RAG ja research-worker olid aktiivsed, `/vestlus` vastas HTTP 200, RAG
 (49 727 lõiku / 6073 aktiivset registridokumenti). Kontaktikontrolli timer oli aktiivne ja lubatud,
 viimane teenuse tulemus `success` ning järgmine käik 30.08.2026.
 
-Release `77a30a3d` on diagnostiline, mitte 75/75 sertifitseerimisrelease. Shadow-v2 kannab
-planneri semantilised väljad tõepäraselt downstream-trace'i, kuid ei tee tootmisotsuseid.
-Renderdatud tõendist tuletatud `requested_metric_contract` sulges J08 küsimata protsentide lekke
-ning kitsas `numeric_relation_contract` säilitas J18 osalejarühmade arvuseosed. J07 ja J08
-läbisid viimasel SHA-l täieliku vastuse-, trace'i- ja hover-allikapaneeli värava; J18 A/B vastus,
-trace ja allikapaneel läbisid, kuid brauseri esimese/lõpuaja mõõt jäi virtualiseerimise tõttu
-tabamata. Aktiivse release'i range vaade on seetõttu **DONE 2/75 · PARTIAL 1/75 · NOT_PROVEN
-72/75**. Ajalooline kumulatiivne maatriks on endiselt **DONE 21/75 · NOT_PROVEN 54/75**;
-need PASS-id ei kandu uuele SHA-le automaatselt. Release'ide ajalugu ja tõendipiirid on
-peatükkides 25–40.
+Release `6a7f0534` on diagnostiline, mitte 75/75 sertifitseerimisrelease. Viimane parandusring
+hoiab typed aastarollid retrieval'i dokument-aastascope'is: segaküsimuses on `2023` artikli
+allika-aasta ja `2022` uuringu tõendiaasta. Sama autentitud vestlus andis 61/26/11/18 vastuse
+ning õige Vaike Vainu hover-allikakaardi; ühes alternatiivses sõnastuses jäi
+`requested_metric_contract` renderdatud tõendi kaardistus ebapiisavaks ja generaator lisas
+küsimata 2%/3%. J03 sisuline vastus oli õige, kuid ajaloolise allika kuvamine jäi
+`historical_source_not_current_evidence` poliitika tõttu peidetuks. Aktiivse release'i aus vaade
+on **DONE 0/75 · PARTIAL 0/75 · NOT_PROVEN 75/75**. Ajalooline kumulatiivne maatriks on
+endiselt **DONE 21/75 · NOT_PROVEN 54/75**; need PASS-id ei kandu uuele SHA-le automaatselt.
+Release'ide ajalugu ja tõendipiirid on peatükkides 25–41.
 
 Seis: **PARTIAL — süsteemi ei ole tõendatud 10/10 ega 75/75 töökindlaks**
 
@@ -1425,3 +1425,35 @@ töökindlust. Järgmine juurpõhjus on typed temporal retrieval: planneri maini
 peab saama retrieval'i autoriteetseks sisendiks ning raw year parser peab jääma nähtavaks
 fallback'iks. Seejärel tulevad author/year/history precedence, legal/KOV exact retrieval ja
 supporting→displayed atribuutika, enne kui saab kaaluda `FINAL_SHA` külmutamist.
+
+## 41. Typed aastarolli paranduse runtime-järelkontroll — 26.08 release `6a7f0534`
+
+Release `6a7f0534b4f7562d6e99be0b9b6e462ca2e28883` kannab `document_source_years` projektsiooni
+ainult typed `year_role_mentions` väärtustest. See väldib olukorda, kus `2022. aasta uuring`
+lisatakse ekslikult dokumendi avaldamisaasta scope'i; retrieval võib aastat endiselt tekstilise
+terminina kasutada. Sama autentitud vestluse segatud aastaga küsimuse trace näitas nüüd:
+`2023` → `document_source_year`, `2022` → `evidence_year`, mõlemad eraldi mainimise-span'ina.
+
+J08 variandis olid requested-slot väljad korras: neli unikaalset `proportion`-slotti,
+`recognized_clause_count=3`, `emitted_slot_count=4`, `complete=true` ja input-kuju `original`.
+Selle sõnastuse lõplik tõendikaardistus jäi siiski ebapiisavaks (`mapped_slot_count=0`), mistõttu
+generaator lisas samast artiklist küsimata 2%/3% ning fail-closed validaator peatas vastuse.
+See on järgmise ploki üldine requested-metric mapping'u põhjus, mitte slotiekstraktori ega
+retrieval'i puuduvus; J08 jääb sellel SHA-l `NOT_PROVEN`.
+
+J03 täpne ajaloolise artikli küsimus andis sisuliselt õige kriisitunnuste ja 112/1220 vastuse ning
+valis õige 2018. aasta dokumendi, kuid `sourceAttribution` peitis kuvamisallika põhjusega
+`historical_source_not_current_evidence`. Seetõttu ei ole seda runtime'i kordust PASS-iks loetud.
+Kuvatav „Vastuste allikad” paneel on samas Vaike Vainu 2023 küsimuses hoveri järel avatav ja
+näitab õiget toetavat kaarti; see tõendab UI rada üksnes selle juhtumi puhul.
+
+Kontrollhetkel kattusid kohalik HEAD, `origin/main` ja serveri checkout selle SHA-ga; frontend,
+RAG ja research-worker olid aktiivsed, `/vestlus` vastas 200, health oli `ok=true` (49 727
+vektorit / 6089 dokumenti, FTS5 `ready=true`, 6073 aktiivset registridokumenti) ning
+kontaktikontrolli timer oli aktiivne ja viimane service-result `success`. Korpust, indeksit,
+andmebaasi, mudelit, prompt'i, top-k väärtusi, fusion'i kaale, timeout'e ega serveri env-i ei
+muudetud. Aktiivse SHA range vaade jääb **DONE 0/75 · PARTIAL 0/75 · NOT_PROVEN 75/75**;
+ajalooline koond jääb **DONE 21/75 · NOT_PROVEN 54/75**. Järgmine plokk on requested-metric
+contract'i stabiliseerimine lõplikult renderdatud tõendil; typed temporal promotion, author/year/
+history precedence, legal/KOV exact retrieval ja supporting→displayed atribuutika jäävad eraldi
+lahtiseks.
