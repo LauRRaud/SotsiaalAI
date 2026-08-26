@@ -667,3 +667,33 @@ J04–J11 canonical plokk mõõdeti samas autentitud vestluses. J06, J08 ja J09 
 | J11 | canonical 12 641 ms ja teine sõnastus 26 065 ms: mõlemad vale värskete KOV-kontaktide keeldumine | õige Elin Küti artikkel valiti ja kuvati, kuid `artikli` ei sobinud allikavihje mustriga `artikkel…`; `sotsiaaltöötajate` käivitas seejärel eksliku kontaktivalidaatori `contact_inventory_unavailable` | eesti `artikl…` käändetüvi ja `kirjutis…` loetakse sõltumatu ajaloolise allika vihjeks | **FAIL lähte-release'il; uus runtime NOT_PROVEN** |
 
 J11 kontrollvastus on seitse poolstruktureeritud intervjuud, neist kuus individuaalset ja üks kolme osalejaga grupiintervjuu, ning kolmeetapiline temaatiline analüüs. J07 kontrollarvud on 678 inimest, 273 vabatahtlikku, 21 600 tundi, 12 maakonda ja 43 omavalitsust. Ühtegi neist küsimustest, vastustest, nimedest ega arvudest koodi ei lisatud. Korpust, indeksit, DB-d, env-i, globaalseid top-k väärtusi, fusion'i kaale, mudelit, prompt'i ega timeout'e ei muudetud. Automaatteste ega test-, smoke-, probe-, benchmark- või E2E-faile ei loodud ega käivitatud. Enne deploy'd ja muutumatu release'i kordust on kogu uue ploki runtime ausalt **NOT_PROVEN**.
+
+### 26.08 shadow-v2 ja structured contract'ide sihtkordus — release `77a30a3d`
+
+Release `77a30a3d1551b369a01537d987c7ff25fbd25c88` kordus tehti pärast uue `.next` build'i ja
+frontendiprotsessi tegelikku käivitamist. Esimene deploy-katse oli jõudnud ainult Git-pullini;
+serveri vana build ning v4 trace ei olnud v5 koodi runtime-tõend. Täielik kordusdeploy lõpetas
+build'i, migratsioonieelkontrolli, migratsiooniraja ja kolme teenuse restardi. Kontrollis kattusid
+kohalik HEAD, `origin/main` ja puhas server; `/vestlus` vastas 200 ning RAG health oli `ok=true`
+49 727 vektori / 6089 registrikirjega, FTS5 `ready=true` ja 6073 aktiivse registridokumendiga.
+
+| ID | kontrollvastus | esimene tekst / valmis | trace | hover-allikapaneel | seis |
+|---|---|---:|---|---|---|
+| J08 canonical | 61%, 26%, 11%, 18%; küsimata 2%/3% puudusid | 13 299 / 16 505 ms | `requested_metric_contract_v1`, `bounded_evidence_subject_peer_alignment_v5`, 4/4; retrieval 10 503 ms, model 2140 ms, `exact_numeric_fact_v5` PASS; selected = answer = displayed | üks Vaike Vainu 2023 artikkel | **DONE** |
+| J08 artikliankruga A | sama 61/26/11/18 | 16 825 / 19 994 ms | mapping v5, 4/4, validator PASS; selected = answer = displayed | üks sama Vaike Vainu artikkel | **PASS parafraas** |
+| J08 artikliankruga B | sama 61/26/11/18 | 12 160 / 15 250 ms | mapping v5, 4/4, validator PASS; selected = answer = displayed | üks sama Vaike Vainu artikkel | **PASS parafraas** |
+| J18 A | 5 kohtunikku, 5 erihoolekandeasutuse töötajat, 5 KOV-i sotsiaaltöötajat; kokku 15 | brauseriaeg mõõtja virtualiseerumisvea tõttu `NOT_PROVEN` | `uniform_participant_relation_v4`, retrieval 5264 ms, model 1066 ms, validator PASS; selected = answer = displayed | üks Erle Eenmaa 2022 artikkel | **PARTIAL** |
+| J18 B | iga rühm 5, kogu valim 15 | brauseriaeg mõõtja virtualiseerumisvea tõttu `NOT_PROVEN` | sama relation-contract; retrieval 5286 ms, model 1454 ms, validator PASS; selected = answer = displayed | üks sama Eenmaa artikkel | **PARTIAL** |
+| J07 canonical | 678 inimest, 273 vabatahtlikku, 21 600 töötundi, 12 maakonda, 43 omavalitsust | 12 871 / 16 055 ms | `period_role=evidence_episode`, `evidence_period_years=[2018,2020]`, high identity; retrieval 9389 ms, model 1744 ms, validator PASS; selected = answer = displayed | üks Krista Pagolainen-Saare 2022 artikkel | **DONE** |
+
+J08 tõendab requested-scope veaklassi sulgemist, mitte kogu numeric RAG-i. Contract tuletatakse
+ainult lõplikult renderdatud tõendist ja seda kasutatakse generaatori piiramiseks; olemasolev
+validator jääb sõltumatuks lõppväravaks. J18 tõendab kitsast osalejarühma/koguarvu relation'i;
+asutuste katvusarve ei käsitleta osalejate arvuna ega lisata küsimata vastusesse. FAIL-i korral
+on `displayed_sources=[]`, kuid selected context säilib trace'is.
+
+Praeguse SHA range maatriksivaade on **DONE 2/75 · PARTIAL 1/75 · NOT_PROVEN 72/75**.
+Ajalooline koond jääb **DONE 21/75 · NOT_PROVEN 54/75**. Ülejäänud juhtumeid ei kanta sellele
+SHA-le üle. Typed temporal retrieval, author/year/history precedence, legal/KOV exact retrieval,
+terviklik supporting→displayed atribuutika, `FINAL_SHA`, kogu 75 täisring ja ettevalmistamata
+juhuküsimused on endiselt tegemata.

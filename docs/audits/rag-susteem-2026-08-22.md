@@ -1,9 +1,9 @@
 # SotsiaalAI RAG-süsteemi tehniline kaart ja kvaliteediseire hetkeseis
 
 Loodud: 22.08.2026
-Viimati uuendatud: 25.08.2026
+Viimati uuendatud: 26.08.2026
 Tööharu: `codex/rag-quality-75`
-Aktiivne mõõdetud RAG-koodirelease: `cc9ec8de33de900453183191f1c37edf2778adc6`
+Aktiivne mõõdetud RAG-koodirelease: `77a30a3d1551b369a01537d987c7ff25fbd25c88`
 
 Viimases mõõtmises kattusid kohalik HEAD, `origin/main` ja puhas serveri checkout sellel SHA-l;
 frontend, RAG ja research-worker olid aktiivsed, `/vestlus` vastas HTTP 200, RAG health oli
@@ -11,10 +11,16 @@ frontend, RAG ja research-worker olid aktiivsed, `/vestlus` vastas HTTP 200, RAG
 (49 727 lõiku / 6073 aktiivset registridokumenti). Kontaktikontrolli timer oli aktiivne ja lubatud,
 viimane teenuse tulemus `success` ning järgmine käik 30.08.2026.
 
-Release `cc9ec8de` on diagnostiline, mitte 75/75 sertifitseerimisrelease: J08 õige dokument ja
-allikakomplekt jõuavad vastuseni, kuid faktivärav blokeerib tulemuse endiselt ekslikult. Ajalooline
-kumulatiivne maatriks on **DONE 21/75 · NOT_PROVEN 54/75**; need PASS-id ei kandu uuele SHA-le
-automaatselt. Release'ide ajalugu ja tõendipiirid on peatükkides 25–39.
+Release `77a30a3d` on diagnostiline, mitte 75/75 sertifitseerimisrelease. Shadow-v2 kannab
+planneri semantilised väljad tõepäraselt downstream-trace'i, kuid ei tee tootmisotsuseid.
+Renderdatud tõendist tuletatud `requested_metric_contract` sulges J08 küsimata protsentide lekke
+ning kitsas `numeric_relation_contract` säilitas J18 osalejarühmade arvuseosed. J07 ja J08
+läbisid viimasel SHA-l täieliku vastuse-, trace'i- ja hover-allikapaneeli värava; J18 A/B vastus,
+trace ja allikapaneel läbisid, kuid brauseri esimese/lõpuaja mõõt jäi virtualiseerimise tõttu
+tabamata. Aktiivse release'i range vaade on seetõttu **DONE 2/75 · PARTIAL 1/75 · NOT_PROVEN
+72/75**. Ajalooline kumulatiivne maatriks on endiselt **DONE 21/75 · NOT_PROVEN 54/75**;
+need PASS-id ei kandu uuele SHA-le automaatselt. Release'ide ajalugu ja tõendipiirid on
+peatükkides 25–40.
 
 Seis: **PARTIAL — süsteemi ei ole tõendatud 10/10 ega 75/75 töökindlaks**
 
@@ -94,7 +100,7 @@ HTTP 200.
 
 | kontroll | tulemus |
 |---|---|
-| aktiivne RAG-koodirelease | `cc9ec8de33de900453183191f1c37edf2778adc6` |
+| aktiivne RAG-koodirelease | `77a30a3d1551b369a01537d987c7ff25fbd25c88` |
 | kohalik HEAD / `origin/main` / serveri HEAD viimases kontrollis | sama SHA; serveri checkout puhas |
 | teenused | frontend, RAG ja research-worker `active` |
 | avalik vestlusrada | `/vestlus` HTTP 200 |
@@ -103,7 +109,7 @@ HTTP 200.
 | indeksi põlvkond | registri oodatud SHA-256-ga võrdne |
 | indeksi fail | 459 132 928 baiti ehk 437,9 MiB |
 | kontaktikontrolli timer | `active` + `enabled`; viimane `Result=success`; järgmine käik 30.08.2026 |
-| aktiivse release'i sisuline värav | J08 `FAIL`: õige allikas, kuid faktivärava vale `unsupported_numeric_category_relation` |
+| aktiivse release'i sisuline värav | J07 ja J08 `DONE`; J18 `PARTIAL` ainult puuduva brauseriaja tõttu; ülejäänud 72 `NOT_PROVEN` |
 | aktiivsed vektorlõigud | **49 727** |
 | registrikirjeid kokku | **6089** |
 | registris `ACTIVE` elutsükkel | **884** |
@@ -1342,3 +1348,80 @@ Planner on autoriteetne **küsimuse tähenduse**, mitte faktilise vastuse suhtes
 Praegune J01–J75 ring on veaklasside avastamine ja käsitsi regressioonivärav, mitte veel lõplik sertifikaat. Pärast viimast koodimuudatust tuleb kõik 75 juhtumit uuesti kontrollida ühe külmutatud `FINAL_SHA` vastu ilma vahepealse deploy'ta. Sõltumatu canonical juhtum vajab kontrollitud konteksti; sama juhtumi A/B-sõnastused peavad jääma samasse juhtumikonteksti ning päris jätkuküsimused kuuluvad teadlikult mitmevoorulisse plokki. Värske vestlus ei tohi olla workaround, millega ühe juhtumi viga peidetakse.
 
 DONE suureneb ainult siis, kui viimasel muutumatul release'il on korraga tõendatud õige vastus, õige valitud kontekst, vastust toetavad kuvatud allikad, avatav „Vastuste allikad” paneel ja trace. Diagnostilise release'i PASS ei kandu järgmisele SHA-le automaatselt. Kogu RAG jääb `PARTIAL`, kuni külmutatud release on päriselt läbinud 75/75 ja sellele järgnevad eraldi ettevalmistamata mitme kategooria juhuküsimused.
+
+## 40. Shadow-v2 ja esimesed tootmislepingud — 26.08 release `77a30a3d`
+
+Pärast J08/J18 diagnoosi ei jätkatud vastuse või kontrollarvude küsimusepõhist hardcode'imist.
+Olemasoleva `questionPlan`-i väljad viidi esmalt tõepärasesse shadow-projektsiooni ning tootmisotsus
+jäi legacy/hübriidrajale. Shadow eristab välja puudumist tegelikust `false`/`[]` väärtusest,
+säilitab `evidence_phase_ordinal` string-enumina, märgib validaatori mitterakendumise `not_run`-ina
+ning ei logi toorküsimust ega piiramatut tõenditeksti. Aastarollid on mainimise-, mitte üksnes
+väärtusepõhised; sama aastaarv võib eri span'ides saada eri rolli. Requested-slot trace eristab
+tuvastatud klausleid emiteeritud slottidest ja hoiab `complete`/`truncated` tähenduse
+konservatiivsena.
+
+Shadow näitas ka promotion'i piiri. Bounded episoodi J07 puhul olid `period_role=evidence_episode`,
+`evidence_period_years=[2018, 2020]`, `evidence_phase_ordinal=first` ja viis mõõdikupesa õiged.
+J08 ET/EN küsimused andsid neli proportion-slotti. Segatud ajaküsimuses jäi selge
+`2023. aasta artikkel` enne parandust siiski `ambiguous`-rolli; seetõttu ei ole typed temporal
+semantics veel tervikuna tootmisautoriteet. Shadow ei pea veel olema otsustaja, kuid peab olema
+diagnostiliselt tõene.
+
+Kaks kitsast struktureeritud mehhanismi on nüüd tootmises:
+
+1. `numeric_relation_contract` tuletab lõplikult valitud tõendi ühest toetavast lausest
+   osalejarühma suuruse ja sama valimi koguarvu. Ta ei muuda validaatori tõde. J18 puhul säilitab
+   leping kolm viieliikmelist rühma ja koguarvu 15 ning ei seo asutuste katvusarve inimeste külge.
+2. `requested_metric_contract` seob ainult `complete=true` requested-slotid lõplikult
+   budgeted/renderdatud tõendi väärtustega. J08 puhul lubab ta generaatorile ainult väärtused
+   61%, 26%, 11% ja 18%; samas allikas leiduvad küsimata 2%/3% ei kuulu lepingusse. Mapping v5
+   nõuab koordineeritud slotipaarilt sama vahetut tõendisubjekti või iga sloti lokaalset
+   relation-head vastet; esimese sloti globaalse sildi pärimist ei kasutata.
+
+`factContract` jäi fail-closed. Kui validatsioon ebaõnnestub, on tavakasutaja
+`displayed_sources=[]`, kuid selected context ja dokumendiidentiteet säilivad trace'is. See
+parandas varasema lepinguvea, kus keeldumise all kuvati „Vastuste allikad” paneelis tegelikult
+valitud kandidaatallikat.
+
+Deploy tuli teha täielikult uuesti. Esimene käik tõi serverisse SHA `77a30a3d`, kuid aktiivne
+`.next` build ja frontendiprotsess jäid vanaks; v4 trace tõendas seda. Koodi ei muudetud.
+Repo tavapärane `npm run deploy:server` jooksutati lõpuni: uus build-ID tekkis 26.08 kell
+08:20:59 EEST, frontend käivitus 08:21:19 ning serveribundle sisaldas
+`bounded_evidence_subject_peer_alignment_v5`. Kohalik HEAD, `origin/main` ja puhas server
+kattusid SHA-l `77a30a3d1551b369a01537d987c7ff25fbd25c88`; kolm teenust olid aktiivsed,
+`/vestlus` vastas 200 ning RAG health oli `ok=true`, 49 727 vektorit / 6089 registrikirjet ja
+FTS5 `ready=true` 6073 aktiivse registridokumendiga.
+
+Sama autentitud vestluse muutumatu release'i sihtväravad:
+
+| juhtum | vastus | trace ja jõudlus | hover-allikas | aktiivse SHA seis |
+|---|---|---|---|---|
+| J08 artikliankruga A | 61 / 26 / 11 / 18; kõrvalisi 0 | metric-contract v1, mapping v5 4/4, validator PASS; esimene tekst 16 825 ms, valmis 19 994 ms | üks Vaike Vainu 2023 artikkel | **DONE sihtvärav** |
+| J08 artikliankruga B | 61 / 26 / 11 / 18; kõrvalisi 0 | metric-contract v1, mapping v5 4/4, validator PASS; esimene tekst 12 160 ms, valmis 15 250 ms | üks sama Vaike Vainu artikkel | **DONE sihtvärav** |
+| J08 canonical | 61 / 26 / 11 / 18; kõrvalisi 0 | retrieval 10 503 ms, model 2140 ms, validator PASS; esimene tekst 13 299 ms, valmis 16 505 ms | üks sama Vaike Vainu artikkel | **DONE** |
+| J18 A/B | igas rühmas 5, kokku 15; küsimata 3/3/5 katvusarve ei lisatud | relation-contract `uniform_participant_groups`; validator PASS; A retrieval 5264 ms, B 5286 ms | üks Erle Eenmaa 2022 artikkel kummalgi | **PARTIAL ainult brauseriaja puudumise tõttu** |
+| J07 canonical | 678 / 273 / 21 600 / 12 / 43 | `evidence_episode`, identiteet high, validator PASS; retrieval 9389 ms, model 1744 ms; esimene tekst 12 871 ms, valmis 16 055 ms | üks Krista Pagolainen-Saare 2022 artikkel | **DONE** |
+
+Readiness-kaart pärast seda plokki:
+
+| etapp | seis |
+|---|---|
+| shadow / contract propagation | **TEHTUD** |
+| shadow-v2 typed aastad + requested slots | **TEHTUD; temporal promotion ei ole veel valmis** |
+| J08 `requested_metric_contract` | **TEHTUD + runtime PASS** |
+| J18 `numeric_relation_contract` | **TEHTUD + A/B sisuline PASS** |
+| FAIL-allika peitmine | **TEHTUD** |
+| typed temporal retrieval | **TEGEMATA** |
+| author + year + history precedence | **TEGEMATA** |
+| legal/KOV exact retrieval | **TEGEMATA** |
+| supporting → displayed attribution tervikuna | **OSALINE** |
+| structured väljade laiem promotion | **TEGEMATA** |
+| legacy heuristikate eemaldamine | **TEGEMATA** |
+| `FINAL_SHA`, 75/75 ja juhuküsimused | **TEGEMATA** |
+
+Range aktiivse release'i vaade on **DONE 2/75 · PARTIAL 1/75 · NOT_PROVEN 72/75**. See ei
+asenda ajaloolist koondit **DONE 21/75 · NOT_PROVEN 54/75** ega tõenda kogu RAG-i
+töökindlust. Järgmine juurpõhjus on typed temporal retrieval: planneri mainimispõhine aastaroll
+peab saama retrieval'i autoriteetseks sisendiks ning raw year parser peab jääma nähtavaks
+fallback'iks. Seejärel tulevad author/year/history precedence, legal/KOV exact retrieval ja
+supporting→displayed atribuutika, enne kui saab kaaluda `FINAL_SHA` külmutamist.
