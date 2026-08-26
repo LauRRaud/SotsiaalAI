@@ -785,3 +785,31 @@ ankurdeta aasta küsimus näitab lisaks, et evidence-year sõltub endiselt valit
 precedence'i tööd ei alustata enne nende tulemuste omaniku järgmist otsust. Enne ametlikku
 mixed-year kontrolli käivitati üks liiga lai prooviküsimus, mis andis 45%/31%; seda ei loeta
 üheks kuuest sentinelist.
+
+### 26.08 bounded-episode koordinatsiooni runtime-värav — release `db119fa2`
+
+Pärast commit'i `db119fa237447baa66a9782d2a0efa90429abcd0` fast-forward'i, `origin/main` push'i ja
+täielikku production-deploy'd kattusid kohalik `main`, `origin/main` ja serveri `main` sama SHA-ga.
+Frontend-artifakt oli `frontend-current-20260826T112937Z-db119fa2.tar.gz`, build-ID
+`pJ8sPbS1iDBEGfxvHiu5S`; frontend, RAG ja research-worker olid aktiivsed, `/vestlus` vastas 200 ning
+RAG health oli `ok=true`, FTS5 `ready=true` (49 727 lõiku, 6073 aktiivset registridokumenti).
+Automaatteste, probe'e, smoke- ega E2E-radu ei loodud ega käivitatud.
+
+Kõik kolm küsimust saadeti eraldi autentitud tühjas vestluses. Allikakaart avati vastusemulli hoveri
+järel, kui vastusel oli „Vastuste allikad” nupp.
+
+| sentinel | planner / trace | nähtav vastus | allikapaneel | seis |
+|---|---|---|---|---|
+| J07 täpne varem failing-sõnastus | `query_plan.mode=specific_research_fact`; `bounded_episode_metric_fact=true`; `period_role=evidence_episode`; `evidence_period_years=[2018,2020]`; viis metric-slot'i; document identity `matched=true`, `confidence=high`; fact-validation `passed=true` | 678 inimest, 273 vabatahtlikku, 21 600 töötundi, 12 maakonda, 43 omavalitsust | hoveriga avanes üks Krista Pegolainen-Saar 2022 kaart; selected/supporting/displayed ID kattusid | **PASS** |
+| J07 varasem passing-sõnastus | `query_plan.mode=temporal`; küsimuse planner `specific_research_fact`, kuid `bounded_episode_metric_fact=false`; `query_count=6`; document identity `required=true`, `matched=false`, `confidence=low`; fact-validation `passed=false`, `reason=document_identity_unconfirmed` | keeldumine: „Kasutatud allikakatkenditest ei saa küsitud arvu, ulatust ja aastat piisavalt üheselt kinnitada.” | nuppu ei kuvatud; `displayed_source_ids=[]`; selected contextis 8 allikat, sh õige 2022 dokument | **FAIL — sõnastustundlik temporal-route / identity** |
+| Tavaline 2018–2020 aastavõrdlus | `query_plan.mode=temporal`; `period_role=breakdown`; `bounded_episode_metric_fact=false` (`not_applicable`); `breakdown_years=[2018,2019,2020]`; `temporal_query_contract=temporal_query_contract_v1`; `query_order=temporal_year_queries`; `selection_strategy=temporal_year_coverage` | keeldumine; fact-validation `passed=false`, `reason=cross_source_numeric_mix` | nuppu ei kuvatud; `displayed_source_ids=[]`; selected contextis 8 allikat | **PASS — temporal route / production-closure READY; fact-validation eraldi** |
+
+Esimene sentinel kinnitab uue koordinatsioonivärava tootmisrajal. Teine valis temporal-route'i,
+ei ankurdunud dokumendile ja jäi õigesti fail-closed. Kolmas jäi nõutud temporal/multi-year rajale
+ning bounded-episode ei aktiveerunud, kuid mitme allika numbriseos blokeeris vastuse. Kuna 2. ja 3.
+kontrolli vastus jäi `cross_source_numeric_mix` tõttu fail-closed, kuid temporal route ise on
+serveri run-trace'iga kinnitatud. Temporal production-closure on seega **READY**; `cross_source_numeric_mix`
+on eraldi evidence/fact-validation veaklass. Eelmise täpse J07 allikapaneeli avanemise `NOT_PROVEN`
+on UI/source observability piir, mitte temporal blocker. Tõendiks on PostgreSQL `rag_search`
+`cmta1aeo2001jqukm3ijroq03` (2026-08-26 11:52:04.802 UTC) ja paariline `rag_trace`
+`cmta1ahvt001nqukm0wwi15qf` (11:52:08.969 UTC); release'i kood-SHA oli `7c4b1c3aeab4079043d0e8b8752d58b9a84851e7`.
