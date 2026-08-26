@@ -232,11 +232,11 @@
   line-height: 1.5;
 }
 
-.pc-cta.pc-cta {
+button.pc-cta.pc-cta.specular-button[data-variant] {
   /* Nupp kuulub eeliste juurde, mitte eraldi plokki, aga vajab veidi
      hingamisruumi (omanik 24.07: vahe vähemaks → „nupp alla poole veidi"). */
   margin-top: 0.55rem;
-  width: 100%;
+  width: 92%;
 }
 
 /* ---------- Laienduse lüliti + täisvõrdlus ---------- */

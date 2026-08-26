@@ -100,6 +100,13 @@ button.specular-button[data-variant] {
     transform 0.15s ease;
 }
 
+/* Hinnastuse paketi „Vali …” nupud loevad mobiilis koos paketi
+   funktsiooniloendiga: veidi suurem kiri ja hõredam tähevahe. */
+button.specular-button.pc-cta[data-variant] {
+  font-size: 1rem;
+  letter-spacing: 0.055em;
+}
+
 button.specular-button[data-variant]:hover {
   background-color: var(--input-bg-hover);
   border: var(--input-border-hover);
