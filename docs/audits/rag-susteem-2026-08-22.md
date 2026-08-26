@@ -3,24 +3,27 @@
 Loodud: 22.08.2026
 Viimati uuendatud: 26.08.2026
 Tööharu: `codex/rag-quality-75`
-Aktiivne mõõdetud RAG-koodirelease: `6a7f0534b4f7562d6e99be0b9b6e462ca2e28883`
+Repo/docs HEAD runtime-mõõtmise ajal: `3c8886441a576dc87a67298d72b7d3b31fb98ddf`
+(dokumentatsioonikommit; ei ole uus runtime-koodirelease). Aktiivne mõõdetud RAG-koodirelease:
+`d62f11d6dc1942c057ddd4d20b96048f5a8042e0`.
 
-Viimases mõõtmises kattusid kohalik HEAD, `origin/main` ja puhas serveri checkout sellel SHA-l;
-frontend, RAG ja research-worker olid aktiivsed, `/vestlus` vastas HTTP 200, RAG health oli
+Viimases mõõtmises oli repo/docs HEAD `3c888644`, serveri aktiivne kood `d62f11d6` ja serveri
+checkout puhas; frontend, RAG ja research-worker olid aktiivsed, `/vestlus` vastas HTTP 200, RAG health oli
 `ok=true` (49 727 vektorit / 6089 registrikirjet) ning püsiv FTS5 indeks oli `ready=true`
 (49 727 lõiku / 6073 aktiivset registridokumenti). Kontaktikontrolli timer oli aktiivne ja lubatud,
 viimane teenuse tulemus `success` ning järgmine käik 30.08.2026.
 
-Release `6a7f0534` on diagnostiline, mitte 75/75 sertifitseerimisrelease. Viimane parandusring
+Release `d62f11d6` on diagnostiline, mitte 75/75 sertifitseerimisrelease. Viimane parandusring
 hoiab typed aastarollid retrieval'i dokument-aastascope'is: segaküsimuses on `2023` artikli
-allika-aasta ja `2022` uuringu tõendiaasta. Sama autentitud vestlus andis 61/26/11/18 vastuse
-ning õige Vaike Vainu hover-allikakaardi; ühes alternatiivses sõnastuses jäi
-`requested_metric_contract` renderdatud tõendi kaardistus ebapiisavaks ja generaator lisas
-küsimata 2%/3%. J03 sisuline vastus oli õige, kuid ajaloolise allika kuvamine jäi
+allika-aasta ja `2022` uuringu tõendiaasta. Sama autentitud vestluse J08 canonical ja selge
+artikliankruga B kordus andsid ainult 61/26/11/18 vastuse, `requested_metric_contract` oli
+4/4, validator PASS ning selected = answer = displayed sisaldas õiget Vaike Vainu hover-allikakaarti.
+Nimisõnaline „neli osakaalu” loetelu ei tootnud veel requested-slot'e ja jäi eraldi planneri
+sõnastuspiiriks. J03 sisuline vastus oli õige, kuid ajaloolise allika kuvamine jäi
 `historical_source_not_current_evidence` poliitika tõttu peidetuks. Aktiivse release'i aus vaade
-on **DONE 0/75 · PARTIAL 0/75 · NOT_PROVEN 75/75**. Ajalooline kumulatiivne maatriks on
+on **DONE 1/75 · PARTIAL 0/75 · NOT_PROVEN 74/75**. Ajalooline kumulatiivne maatriks on
 endiselt **DONE 21/75 · NOT_PROVEN 54/75**; need PASS-id ei kandu uuele SHA-le automaatselt.
-Release'ide ajalugu ja tõendipiirid on peatükkides 25–41.
+Release'ide ajalugu ja tõendipiirid on peatükkides 25–42.
 
 Seis: **PARTIAL — süsteemi ei ole tõendatud 10/10 ega 75/75 töökindlaks**
 
@@ -100,8 +103,9 @@ HTTP 200.
 
 | kontroll | tulemus |
 |---|---|
-| aktiivne RAG-koodirelease | `77a30a3d1551b369a01537d987c7ff25fbd25c88` |
-| kohalik HEAD / `origin/main` / serveri HEAD viimases kontrollis | sama SHA; serveri checkout puhas |
+| repo/docs HEAD runtime-mõõtmise ajal | `3c8886441a576dc87a67298d72b7d3b31fb98ddf` (dokumentatsioonikommit) |
+| aktiivne serveri RAG-koodirelease | `d62f11d6dc1942c057ddd4d20b96048f5a8042e0` |
+| serveri checkout | puhas; docs-only repo HEAD ei ole veel runtime-koodina deployitud |
 | teenused | frontend, RAG ja research-worker `active` |
 | avalik vestlusrada | `/vestlus` HTTP 200 |
 | RAG health | `ok=true`, 49 727 vektorit, 6089 registrikirjet |
@@ -109,7 +113,7 @@ HTTP 200.
 | indeksi põlvkond | registri oodatud SHA-256-ga võrdne |
 | indeksi fail | 459 132 928 baiti ehk 437,9 MiB |
 | kontaktikontrolli timer | `active` + `enabled`; viimane `Result=success`; järgmine käik 30.08.2026 |
-| aktiivse release'i sisuline värav | J07 ja J08 `DONE`; J18 `PARTIAL` ainult puuduva brauseriaja tõttu; ülejäänud 72 `NOT_PROVEN` |
+| aktiivse release'i sisuline värav | **DONE 1/75 · PARTIAL 0/75 · NOT_PROVEN 74/75** |
 | aktiivsed vektorlõigud | **49 727** |
 | registrikirjeid kokku | **6089** |
 | registris `ACTIVE` elutsükkel | **884** |
@@ -1496,3 +1500,34 @@ Range aktiivse SHA maatriksivaade on **DONE 1/75 · PARTIAL 0/75 · NOT_PROVEN 7
 Ajalooline koond jääb **DONE 21/75 · NOT_PROVEN 54/75**. Järgmine sidus tööplokk on typed
 temporal retrieval; author/year/history precedence, legal/KOV exact retrieval ning terviklik
 supporting→displayed atribuutika jäävad eraldi avatuks.
+
+## 43. Typed-temporal production coverage audit — 26.08
+
+Read-only koodiaudit täpsustas, et typed temporal retrieval ei ole tegemata nullist. Commit
+`6e9b41dc` lisas `article`/`artikkel` cue-katte, mention-local forward year-cue precedence'i,
+`year_role_mentions` projektsiooni ning `buildTemporalRetrievalPlan()` typed-first valiku.
+Commit `6a7f0534` muutis `specific_research_fact` dokumendi source-year terminid typed
+`document_source_year` rollidest tuletatavaks, jättes evidence-year'd sellest scope'ist välja.
+
+| consumer | praegune allikas | auditiseis |
+|---|---|---|
+| `questionPlanner.semanticYearMentions()` | typed mention-level rollid ja span'id | typed |
+| `questionPlanner.extractSpecificResearchFactIntent()` | typed source-year ja bounded evidence-year projektsioon | typed |
+| `retrievalPlanning.buildTemporalRetrievalPlan()` | typed source years esimesena; `extractExplicitSourceYears()` ainult siis, kui typed väli puudub | typed + raw fallback |
+| sama temporal-plaani multi-year `years` | `extractTemporalBreakdownYears(combined)` ning period/comparison cue'd | independent raw reparse; J07 bounded episode'i rada peab säilima |
+| `queryPlanner` temporal query/filter | temporal breakdown'i aastad; typed plan määrab route'i ja preferred source years | mixed; year-filter ei ole kõigis harudes mention-role põhine |
+| `retrievalContextAssembler.selectSpecificResearchFactGroups()` | typed `document_source_years` ja `evidence_period_years` | typed |
+| `retrievalContextAssembler.numericScopeBodyScore()` | raw `asksForYear` keha-skoor | independent raw reparse, madalama mõjuga |
+| `sourceAttribution` current/history gate | raw `currentStatusEvidenceRequested(query)` ja raw anchorid; structured shadow ainult vaatleb | hybrid existing + independent raw reparse |
+| `factContract` production year gate | raw `asksForYear()` / `asksForPublicationYear()`; typed väljad on shadow'is | independent raw reparse |
+| `sourceFreshness` / `riskPolicy` | allika metadata (`historical`, `source_status`, freshness policy), mitte küsimuse typed roll | policy consumer, mitte parser |
+
+Järeldus: `extractExplicitSourceYears()` on nüüd fallback, kuid temporal tervikrada ei ole veel
+täielikult typed. P1 jäägid on (1) raw `extractTemporalBreakdownYears()` ja query-filteri aastad, mis
+ei kanna kõigis harudes mention-level year role'i; (2) production `factContract` year/publication
+otsus, mis parsib küsimust endiselt ise; (3) `sourceAttribution` current/historical otsus, mis
+kasutab raw current-status cue'sid. `numericScopeBodyScore()` on väiksema mõjuga P2. P0-lünka
+read-only audit ei leidnud. Temporal plokk vajab seetõttu veel üht bounded completeness-auditit,
+mitte uut parserit; järgmine eraldi päris veaklass võib pärast seda olla author/year/history
+precedence. Validatorit, requested-metric contract'i, numeric relation-contract'i, top-k'd,
+fusion'it, korpust ega indeksit selles plokis ei muudetud.
