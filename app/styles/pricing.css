@@ -291,8 +291,8 @@
   align-items: baseline;
   padding: 0.42rem 0;
   border-bottom: 1px solid rgba(247, 247, 247, 0.055);
-  font-size: 0.92rem;
-  letter-spacing: 0.012em;
+  font-size: 1rem;
+  letter-spacing: 0.022em;
 }
 .pc-all-row:last-child {
   border-bottom: 0;
