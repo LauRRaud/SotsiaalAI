@@ -751,3 +751,37 @@ Seda ei loeta J08 canonicali ümberlükkeks ega parandata küsimusepõhise erand
 nimisõnaliste slotiloendite katvus on `NOT_PROVEN`. Aktiivse SHA range maatriksivaade on
 **DONE 1/75 · PARTIAL 0/75 · NOT_PROVEN 74/75**; ajalooline koond jääb
 **DONE 21/75 · NOT_PROVEN 54/75**.
+
+### 26.08 production temporal-värav — release `33c0a255`
+
+Täielik deploy viidi lõpuni pärast fast-forward'i `main`-i, `origin/main`-i ja serveri
+checkout'i samale SHA-le `33c0a25535204e0b59c891d275b7c851766a3e7a`. Aktiivne frontend-artifakt
+oli `/home/ubuntu/apps/sotsiaalai-deploy-backups/frontend-current-20260826T101126Z-33c0a255.tar.gz`
+ja build-ID `h3m-8k4N_u0JX4Z5raMui`; frontend, RAG ja research-worker olid aktiivsed,
+`/vestlus` vastas 200 ning RAG health oli `ok=true`, FTS5 `ready=true` (49 727 lõiku,
+6073 aktiivset registridokumenti). Automaatteste, probe'e, smoke- ega E2E-radu ei loodud
+ega käivitatud.
+
+Kasutati kuut uut autentitud brauserikontrolli. Trace'i täielikke planneri- ja
+fact-validation-välju tavakasutaja vastuse-/run-API ei väljasta; allpool on seepärast
+eristatud nähtav vastus, hoveriga avatud allikakaart ja `NOT_PROVEN` trace-väli.
+
+| sentinel | täpne tulemus | allikapaneel / trace | seis |
+|---|---|---|---|
+| mixed source/evidence year — „Vaike Vainu 2023. aasta artikli järgi: kui suur osa hooldajatest vajab 2022. aasta uuringu kohaselt täiendavat abi, kui suur osa vajab mõne tegevuse juures palju abi ning kui suur osa hooldajatest kuulub suure ja keskmise abivajadusega riskirühma?” | 61%, 26%, 11%, 18%; vastus sisaldas ainult nelja küsitud osakaalu | hoveriga avanes üks Vaike Vainu 2023 kaart; nähtav vastus oli õige, kuid `document_source_years`, `evidence_years`, `requested_metric_contract=4/4` ja validator PASS ei olnud user-API-st loetavad | **PARTIAL / trace NOT_PROVEN** |
+| J03 ajalooline 2018 küsimus — „Millised on vaimse tervise kriisi tunnused ning millistele telefoninumbritele tuleb nende korral helistada, 112 või 1220, 2018. aasta artikli järgi?” | sisuliselt õige vastus, 112 ja 1220 | hoveriga ei ilmunud allikanuppu; API kinnitas `sources=[]`, `displayed_sources=[]`; varasem põhjus on `historical_source_not_current_evidence`, seega `current_evidence_scope=source_bounded` ei ole runtime'is tõendatud | **FAIL allikaväravas / temporal NOT_PROVEN** |
+| J07 ekraanipildi täpne sõnastus — „Kui palju inimesi ja vabatahtlikke osales ning kui suur oli töötundide, maakondade ja omavalitsuste arv 2018–2020 katseetapis 2022. aasta artikli „Seltsilised annavad sotsiaalhoolekande teenustele lisaväärtust“ järgi?” | keeldumine: „Kasutatud allikakatkenditest ei saa … piisavalt üheselt kinnitada.” | hoveriga allikanuppu ei tekkinud; sama dokumendi mõõdikud saadi lähedase, kuid selgema slotisõnastusega, mis andis 678 / 273 / 21 600 / 12 / 43; sellel variandil avanes hoveriga üks Krista Pegolainen-Saare 2022 kaart | **FAIL sõnastustundlikus retrieval/evidence-rajas** |
+| J07 selge mõõdikukontroll — „2022. aasta artikli … järgi: mitu inimest sai teenust, mitu vabatahtlikku osales, mitu töötundi tehti ning mitmes maakonnas ja mitmes omavalitsuses tegutseti 2018–2020 katseetapis?” | 678, 273, 21 600, 12, 43 | hoveriga avanes üks toetav Krista Pegolainen-Saare 2022 kaart; API-s `sources` ja `displayed_sources` kattusid; `period_role=evidence_episode` ja faktivalidaatori PASS-i täielik trace jäi user-API-st `NOT_PROVEN` | **PASS nähtava vastuse/allika piires; trace PARTIAL** |
+| publication-year — „Mis aastal avaldati Erle Eenmaa artikkel „Psüühilise erivajadusega inimese osalus oma eestkostes“?” | 2022 | hoveriga avanes üks Erle Eenmaa 2022 kaart; `requested_year_role=publication_year`, `temporal_decision_source=typed_temporal_contract` ja `temporal_year_mode=publication_year` ei olnud user-API-st loetavad | **PASS nähtava vastuse/allika piires; typed trace NOT_PROVEN** |
+| vene evidence-year — täpne küsimus „В каком году проводилось исследование о нагрузке по уходу?” | vastas 2009, mitte Vaike Vainu 2022 uuringu aasta | allikanuppu ei ilmunud; sama küsimus koos Vaike Vainu 2023 artikliankruga vastas 2022, kuid ka sellel ei olnud kasutajale kuvatavat allikakaarti; `requested_year_role=evidence_year` ei olnud tõendatav | **FAIL ankurdeta RU-rada; anchored variant NOT_PROVEN** |
+| explicit current — „Milline on praegu kehtiv erihoolekandeteenuste õiguslik alus Eestis?” | sisuliselt õige tänane SHS-vastus | vastus ei toonud hoveriga allikanuppu; `current_evidence_scope=current` ja `current_status_decision_source=typed_temporal_contract` ei olnud user-API-st loetavad, seega downstream-allika puudumist ei nimetata automaatselt temporal-veaks | **NOT_PROVEN typed trace; nähtav vastus sisuliselt õige** |
+
+Järeldus: mixed-year, J07 selge mõõdikuküsimus ja publication-year vastus töötasid nähtava
+vastuse ning avatud allikakaardi tasemel. Kaks ekraanipildil olevat juhtumit ei ole sama klassi:
+J03 leidis õige sisu, kuid ajalooline source-attribution peitis allika; J07 täpne loomulik
+sõnastus ei jõudnud sama evidence/metric-katteni, kuigi lähedane selgem variant jõudis. Vene
+ankurdeta aasta küsimus näitab lisaks, et evidence-year sõltub endiselt valitud allikaskoopist.
+`33c0a255` temporal production-closure'i ei märgita valmisolevaks ning author/year/history
+precedence'i tööd ei alustata enne nende tulemuste omaniku järgmist otsust. Enne ametlikku
+mixed-year kontrolli käivitati üks liiga lai prooviküsimus, mis andis 45%/31%; seda ei loeta
+üheks kuuest sentinelist.
