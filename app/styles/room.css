@@ -1193,6 +1193,12 @@ html[data-reduce-motion="1"] .room-walk-audio {
     min-height: 2.6rem;
     padding: 0 1.2em;
   }
+  /* Helinupud on 3.1rem ja "Jäta vahele" 2.6rem kõrge. Alumist kaugust
+     korrigeerides paiknevad nende keskjooned samal real, ka safe-area'ga
+     telefonides. */
+  .room-walk-audio {
+    bottom: max(0.85rem, env(safe-area-inset-bottom, 0px) + 0.45rem);
+  }
   .room-hint {
     bottom: max(4.5rem, env(safe-area-inset-bottom, 0px) + 4.1rem);
     gap: 0.5rem;
