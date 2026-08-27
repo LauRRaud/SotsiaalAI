@@ -1,29 +1,30 @@
 # SotsiaalAI RAG-süsteemi tehniline kaart ja kvaliteediseire hetkeseis
 
 Loodud: 22.08.2026
-Viimati uuendatud: 26.08.2026
+Viimati uuendatud: 27.08.2026
 Tööharu: `codex/rag-quality-75`
-Repo/docs HEAD runtime-mõõtmise ajal: `3c8886441a576dc87a67298d72b7d3b31fb98ddf`
-(dokumentatsioonikommit; ei ole uus runtime-koodirelease). Aktiivne mõõdetud RAG-koodirelease:
-`d62f11d6dc1942c057ddd4d20b96048f5a8042e0`.
+Repo/docs HEAD runtime-mõõtmise ajal ja aktiivne mõõdetud RAG-koodirelease:
+`97f476730035f221a6216aabb7516e6f776038b5`.
 
-Viimases mõõtmises oli repo/docs HEAD `3c888644`, serveri aktiivne kood `d62f11d6` ja serveri
-checkout puhas; frontend, RAG ja research-worker olid aktiivsed, `/vestlus` vastas HTTP 200, RAG health oli
-`ok=true` (49 727 vektorit / 6089 registrikirjet) ning püsiv FTS5 indeks oli `ready=true`
-(49 727 lõiku / 6073 aktiivset registridokumenti). Kontaktikontrolli timer oli aktiivne ja lubatud,
-viimane teenuse tulemus `success` ning järgmine käik 30.08.2026.
+Viimases mõõtmises kattusid kohalik kood, `origin/main`, puhas serveri checkout ja aktiivne
+frontend-artifakt SHA-l `97f47673`; frontend, RAG ja research-worker olid aktiivsed ning
+`/vestlus` vastas HTTP 200. RAG health oli `ok=true` (49 727 vektorit / 6089 registrikirjet),
+püsiv originaalteksti FTS5 indeks oli `ready=true` (49 727 lõiku / 6073 aktiivset
+registridokumenti) ja uus eesti lemma-FTS shadow-indeks oli sama registripõlvkonnaga
+`ready=true` (49 727 / 6073; 360 472 576 baiti).
 
-Release `d62f11d6` on diagnostiline, mitte 75/75 sertifitseerimisrelease. Viimane parandusring
-hoiab typed aastarollid retrieval'i dokument-aastascope'is: segaküsimuses on `2023` artikli
-allika-aasta ja `2022` uuringu tõendiaasta. Sama autentitud vestluse J08 canonical ja selge
-artikliankruga B kordus andsid ainult 61/26/11/18 vastuse, `requested_metric_contract` oli
-4/4, validator PASS ning selected = answer = displayed sisaldas õiget Vaike Vainu hover-allikakaarti.
-Nimisõnaline „neli osakaalu” loetelu ei tootnud veel requested-slot'e ja jäi eraldi planneri
-sõnastuspiiriks. J03 sisuline vastus oli õige, kuid ajaloolise allika kuvamine jäi
-`historical_source_not_current_evidence` poliitika tõttu peidetuks. Aktiivse release'i aus vaade
-on **DONE 1/75 · PARTIAL 0/75 · NOT_PROVEN 74/75**. Ajalooline kumulatiivne maatriks on
-endiselt **DONE 21/75 · NOT_PROVEN 54/75**; need PASS-id ei kandu uuele SHA-le automaatselt.
-Release'ide ajalugu ja tõendipiirid on peatükkides 25–42.
+Release `97f47673` on diagnostiline, mitte 75/75 sertifitseerimisrelease. Ta lisab EstNLTK/
+Vabamorfi 1.7.5 põhise eraldi lemmaindeksi ning mõõdab selle kandidaate tootmisotsust muutmata.
+12 käsitsi autentitud küsimuses käivitus shadow 10 korral; kaks sisu poolest töötajaküsimust
+suunati enne retrieval'it ekslikult KOV-kontaktirajale. Kümnes RAG-voorus tekkis 29 shadow-
+vaatlust: ühe vaatluse keskmine lemmaanalüüsi ja FTS-i koguaeg oli 755,9 ms ning kogu vooru
+shadow-aeg käivitunud voorudes keskmiselt 2192,2 ms (maksimum 8023 ms). Lemma leidis J07,
+J08 ning mõlema J18 sõnastuse puhul õige dokumendi, kuid J08 kaotas vastuses 26%, J18 lühike
+ankur ei jõudnud toetatud vastuseni ja multi-year rada suleti põhjusega `cross_source_numeric_mix`.
+See tõendab, et lemma aitab kandidaatide leidmist, kuid ei lahenda planner'i, identiteedi,
+generaatori, validaatori ega atribuutika vigu. Aktiivse release'i range vaade on
+**DONE 1/75 · PARTIAL 0/75 · NOT_PROVEN 74/75**; ajalooline kumulatiivne maatriks jääb
+**DONE 21/75 · NOT_PROVEN 54/75**. Release'ide ajalugu ja tõendipiirid on peatükkides 25–44.
 
 Seis: **PARTIAL — süsteemi ei ole tõendatud 10/10 ega 75/75 töökindlaks**
 
@@ -72,7 +73,8 @@ flowchart LR
     C --> P[questionPlan, queryPlan ja retrieval orchestration]
     P --> R[RAG FastAPI 127.0.0.1:8000]
     R --> CH[Chroma vektorindeks]
-    R --> LX[SQLite FTS5 leksikaalindeks]
+    R --> LX[SQLite FTS5 originaalteksti indeks]
+    R -. ainult shadow .-> LM[SQLite FTS5 eesti lemmaindeks]
     R --> RG[registry.json]
     R --> DS[versioonitud dokumendifailid]
     R --> O[OpenAI embeddings]
@@ -103,15 +105,19 @@ HTTP 200.
 
 | kontroll | tulemus |
 |---|---|
-| repo/docs HEAD runtime-mõõtmise ajal | `3c8886441a576dc87a67298d72b7d3b31fb98ddf` (dokumentatsioonikommit) |
-| aktiivne serveri RAG-koodirelease | `d62f11d6dc1942c057ddd4d20b96048f5a8042e0` |
-| serveri checkout | puhas; docs-only repo HEAD ei ole veel runtime-koodina deployitud |
+| repo/docs HEAD runtime-mõõtmise ajal | `97f476730035f221a6216aabb7516e6f776038b5` |
+| aktiivne serveri RAG-koodirelease | `97f476730035f221a6216aabb7516e6f776038b5` |
+| serveri checkout | puhas |
 | teenused | frontend, RAG ja research-worker `active` |
 | avalik vestlusrada | `/vestlus` HTTP 200 |
 | RAG health | `ok=true`, 49 727 vektorit, 6089 registrikirjet |
 | püsiv leksikaalindeks | `ready=true`, FTS5 v2, 49 727 lõiku / 6073 aktiivset dokumenti |
+| eesti lemma-FTS shadow | `ready=true`, `lemma-fts-shadow-v1`, EstNLTK/Vabamorf 1.7.5, 49 727 / 6073 |
 | indeksi põlvkond | registri oodatud SHA-256-ga võrdne |
 | indeksi fail | 459 132 928 baiti ehk 437,9 MiB |
+| lemmaindeksi fail | 360 472 576 baiti ehk umbes 343,8 MiB |
+| lemmaindeksi esimene build | 629 552 ms; sellest analüüs 555 827 ms |
+| aktiivne frontend-artifakt | `frontend-current-20260827T170513Z-97f47673.tar.gz` |
 | kontaktikontrolli timer | `active` + `enabled`; viimane `Result=success`; järgmine käik 30.08.2026 |
 | aktiivse release'i sisuline värav | **DONE 1/75 · PARTIAL 0/75 · NOT_PROVEN 74/75** |
 | aktiivsed vektorlõigud | **49 727** |
@@ -142,6 +148,9 @@ HTTP 200.
    sektsiooniandmed, keel, sihtrühm, geograafiline ulatus, värskus ning `content_hash`, kui need
    väljad on allikas olemas. Metadata pärineb Chroma kirjest ja püsiva FTS5 raja
    `metadata_json` väljast ning seda kontrollitakse dokumendiregistri aktiivse versiooni suhtes.
+   Eesti küsimuse puhul käib samade filtritega paralleelselt eraldi EstNLTK/Vabamorfi lemma-FTS
+   shadow-otsing. Selle kandidaadid, kattuvused ja ajad lähevad bounded trace'i, kuid release'il
+   `97f47673` ei osale need fusion'is, top-k-s, dokumendivalikus ega vastuse otsustamises.
 5. Next.js ühendab mitme päringu kandidaadid, eemaldab duplikaadid, rühmitab need `ragContext.js`-is
    dokumendi- ja lõigumetadata järgi ning rakendab dokumendiidentiteedi, aktiivversiooni,
    ajaloolisuse/värskuse, õiguse, kontakti ja arvutõendi erivaliku. Metadata abil eristatakse
@@ -216,6 +225,7 @@ SotsiaalAI/
 ├─ rag-service/                         # eraldi Python/FastAPI RAG-teenus
 │  ├─ main.py                           # API, ingest, embeddings, otsing, hübriidjärjestus
 │  ├─ lexical_index.py                  # atomaarne SQLite FTS5 täiskorpuse pöördindeks
+│  ├─ lemma_index.py                    # EstNLTK/Vabamorf ja eraldi atomaarne lemma-FTS shadow
 │  ├─ auth_config.py                    # API võtme ja no-auth režiimi fail-closed reeglid
 │  ├─ document_versions.py              # dokumendiversioonid, staging, activeVersion
 │  ├─ registry_store.py                 # registry.json lugemine ja turvaline salvestus
@@ -293,8 +303,8 @@ Mõõdetud failihulgad:
 
 | ala | failide arv |
 |---|---:|
-| `rag-service/` | 13 |
-| `lib/chat/` | 63 |
+| `rag-service/` | 14 |
+| `lib/chat/` | 64 |
 | `lib/rag/` | 16 |
 | `lib/admin/rag/` | 29 |
 | `app/api/rag/` | 2 |
@@ -323,6 +333,8 @@ Kõik rajad peale `GET /health` nõuavad päist `X-API-Key`.
 - `GET /health`
 - `GET /lexical-index/status`
 - `POST /lexical-index/rebuild` — asünkroonne administraatori rebuild, HTTP 202
+- `GET /lemma-index/status`
+- `POST /lemma-index/rebuild` — asünkroonne shadow-indeksi rebuild, HTTP 202
 - `POST /search`
 - `POST /search/agent-documents`
 - `POST /analyze`
@@ -366,6 +378,9 @@ RAG-i päris tehniline salvestus asub serveris:
 ├─ lexical-index.sqlite3         # registripõlvkonnaga seotud taastatav FTS5 indeks
 ├─ lexical-index.sqlite3.lock    # indeksivahetuse lukk
 ├─ lexical-index.sqlite3.stale   # ajutine fail-closed vananemismärgis korpuse muutmisel
+├─ lemma-index.sqlite3           # registripõlvkonnaga seotud taastatav lemma-FTS shadow
+├─ lemma-index.sqlite3.lock      # shadow-indeksi vahetuse lukk
+├─ lemma-index.sqlite3.stale     # vananemismärgis korpuse muutmisel
 ├─ chroma/
 │  ├─ chroma.sqlite3
 │  └─ <UUID segment directory>/  # vektorsegmendid
@@ -379,6 +394,11 @@ RAG-i päris tehniline salvestus asub serveris:
 FTS5 fail on taastatav otsingukiirendi, mitte korpuse ega dokumendiregistri tehniline tõde.
 Korpuse muutmisel märgitakse see ajutiselt vanaks ja uus põlvkond vahetatakse sisse alles pärast
 tervikluskontrolli.
+
+Lemmaindeks on samuti taastatav ja sisaldab lõigu lemmatiseeritud otsinguvälju, bounded metadata't
+ning ID-sid, mitte uut algmaterjali ega teist dokumendiregistrit. Ta ehitatakse aktiivsetest Chroma
+lõikudest, seotakse sama registripõlvkonnaga ning märgitakse ingest'i, reindex'i, metadata patch'i
+ja tombstone'i korral stale'iks. Release'il `97f47673` on ta ainult shadow-mõõtekiht.
 
 22.08.2026 mõõdetud ajaloolise salvestussnapshot'i suurused ja arvud:
 
@@ -536,6 +556,10 @@ Kliendi vaikimisi otsingupäring küsib viis retriever'it:
 - `title_match` — pealkirja vaste;
 - `exact_phrase` — täpse fraasi vaste;
 - `bm25` — leksikaalne vaste, mille lai põhitee kasutab püsivat SQLite FTS5 indeksit.
+
+Eraldi `lemma_fts_shadow` ei ole kuues tootmisretriever. Ta lemmatiseerib ainult eestikeelse
+retrieval-päringu ning mõõdab eraldi FTS5 shortlisti kattuvust tootmise kandidaatidega; tema tulemus
+ei muuda veel järjestust, konteksti ega vastust.
 
 `registry_fact` ei ole vaikimisi küsitud kuues retriever. RAG-teenus võib selle lisada tingimusliku
 spetsialiseeritud kanalina, kui registri faktikirjeldus piirab kandidaadi piisavalt üheselt ühe
@@ -1549,3 +1573,63 @@ read-only audit ei leidnud. Temporal plokk vajab seetõttu veel üht bounded com
 mitte uut parserit; järgmine eraldi päris veaklass võib pärast seda olla author/year/history
 precedence. Validatorit, requested-metric contract'i, numeric relation-contract'i, top-k'd,
 fusion'it, korpust ega indeksit selles plokis ei muudetud.
+
+## 44. Eesti lemma-FTS shadow — 27.08 release `97f47673`
+
+### 44.1 Teostus ja deploy
+
+Release `97f476730035f221a6216aabb7516e6f776038b5` lisas olemasoleva originaalteksti FTS5 ja
+`text-embedding-3-large` dense-kanali kõrvale eraldi EstNLTK/Vabamorfi lemma-FTS shadow-kihi.
+Dokumente ei chunk'itud uuesti: `lemma_index.py` loeb aktiivsed olemasolevad Chroma lõigud,
+lemmatiseerib nende otsinguteksti ning ehitab atomaarse SQLite FTS5 indeksi sama registri-
+põlvkonnaga. Originaalteksti FTS, dense-otsing, fusion, top-k, kontekstivalik ja vastuse otsused
+jäävad muutmata. Eesti päringu shadow-tulemus talletab ainult bounded ID-d, kattuvused, kandidaadi-
+arvud ja ajad; küsimuse või allikakatkendi teksti trace'i ei kopeerita.
+
+Peatükilõpu värav oli roheline: muudetud JavaScripti ESLint, i18n-kontroll, Python AST,
+`git diff --check`, deploy-skripti bash-süntaks ja tootmisbuild. Automaatteste, probe-, smoke-,
+benchmark- ega E2E-radu ei loodud ega käivitatud. Täisdeploy paigaldas RAG-i lukustatud Python-
+sõltuvused, ehitas lemmaindeksi taustal ning säilitas teenuse health-vastuse. Esimene build kattis
+49 727 lõiku / 6073 dokumenti, kestis 629 552 ms (analüüs 555 827 ms), lõppfail oli
+360 472 576 baiti ning health kinnitas sama registri SHA-256 põlvkonna ja analyzer'i
+`estnltk-vabamorf-1.7.5-v1` oleku `available=true`.
+
+### 44.2 12 käsitsi autentitud küsimust
+
+Kõik küsimused saadeti 27.08 autentitud `/vestlus` kasutajarajas uue iseseisva vestlusena.
+Allikanuppu kontrolliti hover'i järel. Tabel on diagnostiline valim, mitte 75 juhtumi
+sertifitseerimisring.
+
+| # | küsimuseklass | nähtav tulemus | lemma-shadow / esimene järeldus |
+|---:|---|---|---|
+| 1 | J03 kriisitunnused, `112 / 1220`, 2018 artikkel | sisuline vastus õige; valitud allikas 1, kuvatud 0 | 3/3 vaatlust käivitus; allikaprobleem on attribution/UI, mitte lemma |
+| 2 | J07 viis 2018–2020 katseetapi mõõdikut | **PASS**: `678 / 273 / 21 600 / 12 / 43`; õige 2022 allikapaneel avanes | 3/3; kõigi päringute lemma top-dokument oli õige artikkel |
+| 3 | J08 Vaike Vainu neli protsendimõõdikut | ainult `61 / 11 / 18`; küsitud `26%` jäi puudu | 3/3; lemma top-dokument oli õige, seega viga on requested-slot/generation completeness'is |
+| 4 | J18 lühike `Erle Eenmaa + 2022 + eestkosteuuring` | keeldumine; allikat ei kuvatud | 3/3; lemma top-dokument oli õige Eenmaa artikkel, viga on identity/generation/attribution järelkihis |
+| 5 | J18 sama küsimus täispealkirjaga | **PASS**: igas rühmas 5, kokku 15; allikanupp olemas | 3/3; õige artikkel top-dokumendina |
+| 6 | teenused lastele ja peredele | lai sisuline vastus ja 7 kuvatud allikat | 1/1; lemma leidis eraldi asjakohase laste/perede dokumendi |
+| 7 | omavalitsustes töötavate sotsiaaltöötajate tugi | ekslik KOV-kontakti täpsustusküsimus | shadow 0/0, sest vale route lõpetas raja enne RAG-i |
+| 8 | toimetulekutoetuse taotlemine ja saajate tingimused | sisuline vastus; 4 valitud, 2 kuvatud allikat | 1/1; lemma top-dokument oli toimetulekutoetuse artikkel |
+| 9 | lastekaitsetöötajate toetamine lapse heaolu hindamisel | ekslik KOV-kontakti täpsustusküsimus | shadow 0/0; sama planner/route veaklass nagu #7 |
+| 10 | suure hoolduskoormusega inimeste ja pereliikmete abi | sisuline vastus; 4 valitud ja kuvatud allikat | 1/1; lemma töötas, kuid top-1 erines tootmise valitud allikatest |
+| 11 | psüühilise erivajadusega inimese osalus eestkostes | sisuline vastus; 2 valitud ja kuvatud allikat | 1/1; lemma top-dokument oli õige Eenmaa artikkel |
+| 12 | seltsilise teenuse 2018/2019/2020 trend | fail-closed keeldumine `cross_source_numeric_mix` | 10/10; lemma leidis mh õige 2022 artikli, kuid ei lahenda multi-source fact coverage'i |
+
+Kokku oli 29/29 käivitunud lemma-shadow vaatlust kümnes RAG-i jõudnud küsimuses. Kõigi
+vaatluste kandidaadilagi oli 80; tootmisega kattus summaarselt 206 lõiku ja 95 dokumenti.
+Ühe vaatluse keskmine analüüsiaeg oli 1,0 ms, FTS query 424,7 ms ja kogu shadow-töö 755,9 ms
+(min 408, max 1359 ms). Küsimuse tasemel oli käivitunud kümne vooru `lemma_fts_shadow_ms`
+keskmiselt 2192,2 ms ning multi-year kümne päringu voorus 8023 ms. Kuna shadow on praegu
+vastuseteel ära oodatud, on see jõudluse promotion-blocker isegi siis, kui järjestuse kvaliteet
+osutub heaks.
+
+### 44.3 Otsus ja järgmine piir
+
+Lemmaindeks on tehniliselt **READY shadow-mõõtmiseks**, kuid **NOT READY tootmisfusion'iks**.
+Valim tõendas kolme asja: (1) eesti käänete ja liitsõnade jaoks tekib eraldi sisukas shortlist;
+(2) mitu nähtavat viga asuvad planner'is või hilisemates identiteedi-, generation-, validation-
+ja attribution-kihtides, mitte candidate recall'is; (3) praegune mitmepäringu shadow lisab liiga
+palju ooteaega. Enne production-promotion'it tuleb võrrelda lemma unikaalsete kandidaatide tegelikku
+tõendiväärtust, muuta shadow kasutaja kriitilisest teest sõltumatuks või batch'ituks ning parandada
+eraldi tõendatud route-/slot-/identity veaklasse. Originaal-FTS-i ega embedding-mudelit selle
+tõendi põhjal välja ei vahetata.
