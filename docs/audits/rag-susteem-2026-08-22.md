@@ -1684,15 +1684,16 @@ Frontend, RAG ja research-worker olid aktiivsed, `/vestlus` vastas 200 ning RAG 
 `ok=true`: 49 727 vektorit / 6089 registridokumenti; originaal-FTS ja lemma-FTS shadow olid
 `ready=true`, kumbki 49 727 lõigu / 6073 aktiivse registridokumendiga.
 
-Kõik järgnevad kontrollid tehti samas autentitud vestluses
-`d688c823-e383-4c5b-b394-6c64333683c5`, ilma „Uus vestlus” workaround'ita.
+Esimene järelkontroll tehti autentitud vestluses
+`d688c823-e383-4c5b-b394-6c64333683c5`. Kaks KOV-i sisuküsimust korrati pärast lõplikku deploy'd
+eraldi värskes autentitud vestluses `085619d0-ab1b-4cfd-a24f-da13eb2b8137`.
 
 | veaklass | runtime-tulemus ja trace | seis |
 |---|---|---|
 | J08 neli osakaalu | vastus `61 / 26 / 11 / 18`; `requested_metric_contract` oli `complete=true`, 4/4, kolmas ja neljas slot said `shared_subject_head_matched=true`; validator PASS `all_claims_in_one_rendered_source`; valitud ja kuvatud oli Vaike Vainu 2023 artikkel. Sõnumid `cmtby4obi000dkykmjzdta4x7` / `cmtby4qr8000gkykmbo53xtkm` | **PASS** |
-| J18 lühike Erle Eenmaa ankur | igas kolmes sihtrühmas 5, kokku 15; valitud ja kuvatud dokument oli `sotsiaaltoo-1-2022-psuuhiline-erivajadus-eestkoste-osalus-2022-1`. Sõnumid `cmtbwq0mo000vokkmq34ew0wx` / `cmtbwq1es000yokkmivk56j7v` | **PASS** |
-| kaks töötajate toe küsimust | mõlemad andsid sisulise RAG-vastuse ja allikanupu, mitte KOV-i täpsustuse. Sõnumipaarid `cmtbwtlzi001bokkmytzi7dr5` / `cmtbwtpwx001eokkmg8bdoxc5` ning `cmtbwu17s001rokkmcuaglh7p` / `cmtbwu6sc001uokkmu9xe3mv0` | **PASS** |
-| päris kontaktiregressioon | Rakvere sotsiaaltöötajate telefoniküsimus jäi kontaktirajale ning tagastas Airiin Apsi ja Eelika Nõmmeloo kontaktiread. Sõnumid `cmtbwufs60023okkmdpig9hwe` / `cmtbwuft90026okkm0u72ezsy` | **PASS** |
+| J18 lühike Erle Eenmaa ankur | release'il `47f490b1` andis igas kolmes sihtrühmas 5, kokku 15; valitud ja kuvatud oli õige 2022 dokument. Sõnumid `cmtbwq0mo000vokkmq34ew0wx` / `cmtbwq1es000yokkmivk56j7v`. Pärast shared retrieval/history järelmuudatust seda ei korratud | **PASS `47f490b1`; runtime `3303466a` NOT_PROVEN** |
+| kaks töötajate toe küsimust | runtime'il `3303466a` andsid mõlemad sisulise RAG-vastuse, mitte KOV-i täpsustuse. `rag_search`: mode `default`, `hadRagContext=true`, `hadServiceMapKovContactContext=false`, kontaktide arv 0. Mõlemal oli 2 vastust toetavat ja kuvatud allikat. Sõnumipaarid `cmtbyu11s0024kykmkeztvurn` / `cmtbyu5g90027kykm91yrxt0i` ning `cmtbyuq4f002kkykm391cwfmo` / `cmtbyuy5v002nkykmuqegxmfp`; trace'id `cmtbyu11k0022kykmd4ksoio9` / `cmtbyu5g10026kykmilyp0beu` ja `cmtbyuq40002ikykm6j08wb8b` / `cmtbyuy5m002mkykm7bk0g7ep` | **PASS `3303466a`** |
+| päris kontaktiregressioon | release'il `47f490b1` jäi Rakvere telefoniküsimus kontaktirajale ning tagastas Airiin Apsi ja Eelika Nõmmeloo kontaktiread. Sõnumid `cmtbwufs60023okkmdpig9hwe` / `cmtbwuft90026okkm0u72ezsy`. Pärast shared retrieval/history järelmuudatust seda ei korratud | **PASS `47f490b1`; runtime `3303466a` NOT_PROVEN** |
 | 2018/2019/2020 trend | temporal route kandis ainult breakdown-aastaid `[2018,2019,2020]`; varasem 2022/Rakvere kontekst puudus. Evidence contract leidis kõrvalallikatest 2018/2019 `year + value` kandidaate, mille seos küsitud mõõdikuga ei olnud tõendatud; valitud/renderdatud tõendis puudus 2020 kvalifitseeruv rida. Validator peatas vastuse top-level põhjusega `cross_source_numeric_mix`, binding-põhjusega `temporal_year_value_not_answered`, ning `displayed_sources=[]`. Sõnumid `cmtby5aey0012kykm7xo1yn0y` / `cmtby5cyp0015kykmanyhln4o` | **PARTIAL: vale seos suletud, aastatrend NOT_PROVEN** |
 | J03 2018 kriisiartikkel | vastus eristas 112 kiire ohu ja 1220 nõuanderaja; fact-validation PASS, document identity high ja attribution `identified_publication_primary_evidence`. Avatud paneel näitas „Külli Mäe, 2018. Kuidas anda vaimse tervise probleemide korral töökohal esmaabi?”. Sõnumid `cmtby5nup001lkykmp3130dk1` / `cmtby5q33001okykmjp76501q` | **PASS** |
 
@@ -1703,5 +1704,7 @@ küsitlust, kuid ei anna samuti kolmeaastast aastarida. Seetõttu ei tohi releas
 küsimusele trendi konstrueerida. Selgem puuduvate aastaridade teade või kasutajalt koondperioodi
 soovi täpsustav küsimus on eraldi tooteleping; see ei tohi asendada retrieval-/evidence-viga.
 
-See on sihtveaklasside kontroll, mitte kogu 75 juhtumi kordus. `FINAL_SHA` ega 75/75 väidet ei
-anta; kõik mõõtmata juhtumid ja nimisõnaliste slotiloendite varasem piir jäävad `NOT_PROVEN`.
+See on sihtveaklasside kontroll, mitte kogu 75 juhtumi kordus. Runtime'il `3303466a` on J08,
+mõlemad KOV-i sisuküsimused ja J03 kinnitatud; J18, päris kontaktiregressioon ning sisuline
+kolmeaastane trend on selle SHA suhtes `NOT_PROVEN`. `FINAL_SHA` ega 75/75 väidet ei anta;
+kõik mõõtmata juhtumid ja nimisõnaliste slotiloendite varasem piir jäävad `NOT_PROVEN`.

@@ -814,22 +814,24 @@ on UI/source observability piir, mitte temporal blocker. Tõendiks on PostgreSQL
 `cmta1aeo2001jqukm3ijroq03` (2026-08-26 11:52:04.802 UTC) ja paariline `rag_trace`
 `cmta1ahvt001nqukm0wwi15qf` (11:52:08.969 UTC); release'i kood-SHA oli `7c4b1c3aeab4079043d0e8b8752d58b9a84851e7`.
 
-### 27.08 viie runtime-veaklassi lõppvärav — koodirelease `3303466a`
+### 27.08 viie runtime-veaklassi sihtvärav — koodirelease `3303466a`, seis PARTIAL
 
 Lähte-release `97f47673` reprodutseeris J08 puuduva `26%`, lühikese J18 identity-vea, kaks
 KOV-kontaktirajale eksinud töötajaküsimust, temporal `cross_source_numeric_mix` keeldumise ja
-J03 puuduva kuvatud allika. Esimene parandusrelease `47f490b1` sulges J18 ning KOV-i piirid;
+J03 puuduva kuvatud allika. Esimene parandusrelease `47f490b1` parandas J18 ning KOV-i piirid;
 sama vestluse järeltrace paljastas J08 koordineeritud ühismäärangu ja iseseisvate küsimuste
-history-lekke. Lõplik `3303466a8affc74fc3bdce45f4da34fca8928129` sulges need põhjused ilma
-küsimuse vastuseid või protsente hardcode'imata ning ilma fail-closed validaatorit lõdvendamata.
+history-lekke. Lõplik `3303466a8affc74fc3bdce45f4da34fca8928129` lisas nende kahe põhjuse
+paranduse ilma küsimuse vastuseid või protsente hardcode'imata ning ilma fail-closed validaatorit
+lõdvendamata. Allpool on iga sentineli tegelik SHA-põhine runtime-seis; varasema release'i PASS-i
+ei kanta viimasele SHA-le üle.
 
 | sentinel | nähtav vastus | trace / allikapaneel | lõppseis |
 |---|---|---|---|
 | J08 canonical | `61% / 26% / 11% / 18%`, küsimata arve ei lisatud | requested-slot 4/4, validator PASS; üks Vaike Vainu 2023 allikas valitud ja kuvatud | **PASS** |
-| J18 lühike `Erle Eenmaa + 2022 + artikkel` | kolm sihtrühma × 5, kokku 15 | täpne current-turn metadata-confirmation sidus ühe Eenmaa 2022 `document_id`; allikanupp olemas | **PASS** |
-| omavalitsustes töötavate sotsiaaltöötajate tugi | sisuline toe/juhendamise vastus | RAG käivitus; KOV-kontakti täpsustust ei tulnud; allikanupp olemas | **PASS** |
-| lastekaitsetöötajate toetamine | sisuline lapse heaolu hindamise toe vastus | RAG käivitus; KOV-kontakti täpsustust ei tulnud; allikanupp olemas | **PASS** |
-| Rakvere päris kontaktiküsimus | kaks nime ja telefoniread | kontaktiregistri rada säilis | **PASS regressioon** |
+| J18 lühike `Erle Eenmaa + 2022 + artikkel` | release'il `47f490b1` kolm sihtrühma × 5, kokku 15 | täpne current-turn metadata-confirmation sidus ühe Eenmaa 2022 `document_id`; pärast shared retrieval/history muudatust ei korratud | **PASS `47f490b1`; `3303466a` NOT_PROVEN** |
+| omavalitsustes töötavate sotsiaaltöötajate tugi | runtime'il `3303466a` sisuline juhtumipõhise nõustamise, võrgustikutöö ja supervisiooni vastus | mode `default`; RAG käivitus; kontaktikontekst puudus ja kontaktide arv oli 0; 2/2 vastust toetavat/kuvatud allikat | **PASS `3303466a`** |
+| lastekaitsetöötajate toetamine | runtime'il `3303466a` sisuline lapse heaolu hindamise vastus | mode `default`; RAG käivitus; kontaktikontekst puudus ja kontaktide arv oli 0; 2/2 vastust toetavat/kuvatud allikat | **PASS `3303466a`** |
+| Rakvere päris kontaktiküsimus | release'il `47f490b1` kaks nime ja telefoniread | kontaktiregistri rada säilis; pärast shared retrieval/history muudatust ei korratud | **PASS `47f490b1`; `3303466a` NOT_PROVEN** |
 | seltsiliste 2018/2019/2020 trend | kontrollitud üldkeeldumine | current-only temporal `[2018,2019,2020]`; valitud/renderdatud tõendis puudus kvalifitseeruv 2020 rida, top-level validator `cross_source_numeric_mix`, binding `temporal_year_value_not_answered`, `displayed_sources=[]` | **PARTIAL: ohutus PASS, trend NOT_PROVEN** |
 | J03 kriisitunnused ja 112/1220 | sisuliselt õige vastus | validator PASS; avatud paneelis Külli Mäe 2018 artikkel | **PASS** |
 
@@ -838,10 +840,14 @@ Seetõttu ei muudeta selle kontrollitud keeldumist vastuseveaks: parandus tõend
 ja allikaseos ei lähe kasutajale ning tulevane õigesti seotud `year + value + source_id` rida saab
 läbida. Täpse aastatrendi jaoks vajalik võrreldav tõend on selles valimis `NOT_PROVEN`.
 
-Kontrollid tehti ühes autentitud vestluses `d688c823-e383-4c5b-b394-6c64333683c5`, ilma uue
-vestluse workaround'ita. Runtime-kontrolli hetkel kattusid kohalik kood, `origin/main`, server ja aktiivne
-frontend-artifakt SHA-l `3303466a`; kolm teenust olid aktiivsed, `/vestlus` vastas 200 ning RAG,
+Esimene kontrolliplokk tehti autentitud vestluses `d688c823-e383-4c5b-b394-6c64333683c5`.
+Kaks KOV-i küsimust korrati lõplikul runtime'il värskes autentitud vestluses
+`085619d0-ab1b-4cfd-a24f-da13eb2b8137`; nende sõnumi- ja trace-ID-d on süsteemiauditi §45.2-s.
+Runtime-kontrolli hetkel kattusid kood, server ja aktiivne frontend-artifakt SHA-l `3303466a`;
+kolm teenust olid aktiivsed, `/vestlus` vastas 200 ning RAG,
 originaal-FTS ja lemma-FTS olid valmis. Scoped lint, süntaksikontroll, diff-kontroll, i18n ja
 tootmisbuild olid rohelised. Automaatteste, probe'e, smoke-, benchmark- ega E2E-radu ei loodud
-ega käivitatud. Seda sihtväravat ei kanta üle kogu 75 juhtumi ringile: 75/75 ja kõik mõõtmata
+ega käivitatud. Runtime'il `3303466a` on kinnitatud J08, mõlemad KOV-i sisuküsimused ja J03;
+J18, päris kontaktiregressioon ning sisuline kolmeaastane trend jäävad selle SHA suhtes
+`NOT_PROVEN`. Seda sihtväravat ei kanta üle kogu 75 juhtumi ringile: 75/75 ja kõik mõõtmata
 variandid jäävad `NOT_PROVEN`.
