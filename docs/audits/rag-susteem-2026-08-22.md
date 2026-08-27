@@ -131,21 +131,39 @@ HTTP 200.
 3. `retrievalContextAssembler` ühendab keele- ja riskiplaani `questionPlanner`-i struktureeritud
    küsimuse-/vastuse-intendiga. `queryPlanner` ja `retrievalStrategySelector` koostavad päringud,
    filtrid, top-k ning kontekstivaliku plaani ja annavad `retrievalOrchestrator`-ile ühe või mitu
-   piiratud päringut.
+   piiratud päringut. Võimaluse korral kannab plaan edasi ka tüübistatud ajarolle, küsitud
+   arvulisi faktislotte ja muid semantilisi lepinguvälju; shadow-väljad on diagnostilised ega
+   muuda tootmisotsust enne eraldi tõendatud promotion'it.
 4. Orchestrator kutsub serverisiseselt RAG-i `POST /search`. Python-teenus käivitab lubatud dense-,
    FTS5/BM25-, autori-, pealkirja-, täpse fraasi ja vajadusel registrifakti kanali, fuseerib ning
-   hübriidjärjestab lõigukandidaadid.
+   hübriidjärjestab lõigukandidaadid. Iga kandidaat ei ole ainult tekst: temaga liigub kaasa
+   lõigutaseme metadata, sealhulgas `doc_id`, `chunk_id`, dokumendiversioon, lõigu järjekord,
+   pealkiri, autor, aasta, `source_id`/`document_id`, allikatüüp ja -staatus, lehekülje- ja
+   sektsiooniandmed, keel, sihtrühm, geograafiline ulatus, värskus ning `content_hash`, kui need
+   väljad on allikas olemas. Metadata pärineb Chroma kirjest ja püsiva FTS5 raja
+   `metadata_json` väljast ning seda kontrollitakse dokumendiregistri aktiivse versiooni suhtes.
 5. Next.js ühendab mitme päringu kandidaadid, eemaldab duplikaadid, rühmitab need `ragContext.js`-is
-   ning rakendab dokumendiidentiteedi, õigus-, kontakti- ja arvutõendi erivaliku. Seejärel valib
+   dokumendi- ja lõigumetadata järgi ning rakendab dokumendiidentiteedi, aktiivversiooni,
+   ajaloolisuse/värskuse, õiguse, kontakti ja arvutõendi erivaliku. Metadata abil eristatakse
+   näiteks sama dokumendi lõike, autorit, avaldamisaastat, lehekülge, sektsiooni, omavalitsust ja
+   allika staatust; puuduvat metavälja ei käsitleta automaatselt negatiivse faktina. Seejärel valib
    `retrievalContextAssembler` dokumendid, tõendiaknad ja kered kontekstieelarvesse ning talletab
-   retrieval'i, identiteedi, kärpimise ja ajastuste trace'i.
+   retrieval'i, identiteedi, metadata-põhised otsused, kärpimise ja ajastuste trace'i.
 6. `mainResponseHandler` saadab küsimuse, lubatud ajaloo, juhised ja täpselt renderdatud
    `RAG_CONTEXT`-i vastusemudelile. Struktureeritud `evidencePackage` lisandub ainult
    `overview_synthesis`, `comparison`, `resource_discovery`, `life_situation_guidance`,
-   `thematic_synthesis` ja `broad_multi_source` režiimides. Täpse faktiküsimuse vastus puhverdatakse
-   enne kasutajale näitamist ning `factContract` võib selle tõendi suhtes kinnitada või blokeerida.
-7. `sourceAttribution` seob kinnitatud vastuse tegelikult valitud/toetavate source-ID-dega, rakendab
-   muu hulgas ajaloolise/värske allika piiri ning moodustab `displayed_sources`.
+   `thematic_synthesis` ja `broad_multi_source` režiimides. Sobiva täpse arvuküsimuse puhul võivad
+   generaatorit enne vastamist piirata lõplikust renderdatud tõendist tuletatud
+   `requested_metric_contract` ja `numeric_relation_contract`: esimene lubab vastata ainult
+   kasutaja küsitud mõõdikutele, teine säilitab arvu, rolli ja üksuse seose. Täpse faktiküsimuse
+   vastus puhverdatakse enne kasutajale näitamist. `factContract` ei käivitu iga vastuse puhul,
+   vaid ainult tema rakendustingimustele vastaval täpse fakti rajal; seal kinnitab ta vastuse
+   renderdatud tõendi suhtes või blokeerib selle fail-closed põhimõttel.
+7. `sourceAttribution` eristab valitud kontekstiallikad (`selected`), vastust tegelikult toetavad
+   allikad (`supporting`) ja kasutajale kuvatavad allikad (`displayed`). Ta seob kinnitatud vastuse
+   toetavate source-ID-dega, rakendab muu hulgas ajaloolise/värske allika piiri ning moodustab
+   `displayed_sources`; faktivalidaatori FAIL-i korral jääb kasutaja allikaloend tühjaks, samal ajal
+   kui valitud kontekst säilib diagnostilises trace'is.
 8. `responseFinalizer` salvestab vastuse, jooksu ja allikapaketid ning saadab vastuse kliendile
    JSON-i või SSE-voona.
 9. UI näitab vastust. Vastusemulli hoveril ilmub allikanupp, mis avab „Vastuste allikad” paneeli.

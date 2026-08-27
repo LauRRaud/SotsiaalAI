@@ -80,6 +80,7 @@ from document_versions import (
     stage_document_version,
 )
 from lexical_index import LexicalIndexError, PersistentLexicalIndex
+from lemma_index import EstonianLemmaAnalyzer, LemmaIndexError, PersistentLemmaIndex
 
 # OpenAI embeddings
 from openai import OpenAI, OpenAIError, RateLimitError
@@ -159,6 +160,18 @@ RAG_PERSISTENT_LEXICAL_INDEX_PAGE_SIZE = int(
 RAG_PERSISTENT_LEXICAL_INDEX_CANDIDATES = int(
     os.getenv("RAG_PERSISTENT_LEXICAL_INDEX_CANDIDATES", "320")
 )
+RAG_LEMMA_FTS_SHADOW_ENABLED = os.getenv(
+    "RAG_LEMMA_FTS_SHADOW_ENABLED", "1"
+).strip().lower() in {"1", "true", "yes"}
+RAG_LEMMA_FTS_SHADOW_PATH = Path(
+    os.getenv("RAG_LEMMA_FTS_SHADOW_PATH", str(STORAGE_DIR / "lemma-index.sqlite3"))
+).resolve()
+RAG_LEMMA_FTS_SHADOW_PAGE_SIZE = int(
+    os.getenv("RAG_LEMMA_FTS_SHADOW_PAGE_SIZE", "128")
+)
+RAG_LEMMA_FTS_SHADOW_CANDIDATES = int(
+    os.getenv("RAG_LEMMA_FTS_SHADOW_CANDIDATES", "80")
+)
 RAG_BM25_MIN_COVERAGE = float(os.getenv("RAG_BM25_MIN_COVERAGE", "0.35"))
 RAG_BM25_TITLE_WEIGHT = float(os.getenv("RAG_BM25_TITLE_WEIGHT", "1.8"))
 RAG_BM25_BODY_WEIGHT = float(os.getenv("RAG_BM25_BODY_WEIGHT", "1.0"))
@@ -215,6 +228,13 @@ LEXICAL_INDEX = PersistentLexicalIndex(
     page_size=RAG_PERSISTENT_LEXICAL_INDEX_PAGE_SIZE,
     candidate_limit=RAG_PERSISTENT_LEXICAL_INDEX_CANDIDATES,
 )
+LEMMA_ANALYZER = EstonianLemmaAnalyzer()
+LEMMA_INDEX = PersistentLemmaIndex(
+    RAG_LEMMA_FTS_SHADOW_PATH,
+    analyzer=LEMMA_ANALYZER,
+    page_size=RAG_LEMMA_FTS_SHADOW_PAGE_SIZE,
+    candidate_limit=RAG_LEMMA_FTS_SHADOW_CANDIDATES,
+)
 
 # OpenAI client
 oa = OpenAI(api_key=OPENAI_API_KEY)
@@ -227,6 +247,10 @@ _LEXICAL_REFRESH_LOCK = threading.Lock()
 _LEXICAL_REFRESH_THREAD: Optional[threading.Thread] = None
 _LEXICAL_REFRESH_PENDING_REASON: Optional[str] = None
 _LEXICAL_REFRESH_ACTIVE_REASON: Optional[str] = None
+_LEMMA_REFRESH_LOCK = threading.Lock()
+_LEMMA_REFRESH_THREAD: Optional[threading.Thread] = None
+_LEMMA_REFRESH_PENDING_REASON: Optional[str] = None
+_LEMMA_REFRESH_ACTIVE_REASON: Optional[str] = None
 RAG_REQUEST_SHARED_READ_CACHE_ENABLED = os.getenv(
     "RAG_REQUEST_SHARED_READ_CACHE_ENABLED",
     "1",
@@ -2164,6 +2188,9 @@ def clean_include(include):
 
 class SearchIn(BaseModel):
     query: str = Field(min_length=1, max_length=MAX_QUERY_CHARS)
+    # Olemasoleva Next.js keeleplaani bounded tulemus. Seda kasutatakse ainult
+    # eesti lemma-FTS shadow-kanali aktiveerimiseks, mitte retrieval'i otsuseks.
+    query_language: Optional[str] = None
     top_k: int = 5
     # Tagasiühilduva nimega sügavuspiir kehtib kõigile dokumentidele. Lai otsing
     # hoiab vaikimisi ühe allika mahu väikese; konkreetne faktiküsimus saab sama
@@ -2211,6 +2238,12 @@ class SearchIn(BaseModel):
             seen.add(query)
             cleaned.append(query)
         return cleaned
+
+    @field_validator("query_language", mode="before")
+    @classmethod
+    def validate_query_language(cls, value):
+        normalized = str(value or "").strip().lower()
+        return normalized if normalized in {"et", "en", "ru", "unknown"} else None
 
 
 class AgentDocumentSearchIn(BaseModel):
@@ -3008,14 +3041,248 @@ def _persistent_lexical_index_status(
     return status
 
 
+def _rebuild_lemma_fts_shadow(reason: str) -> Dict[str, object]:
+    if not RAG_LEMMA_FTS_SHADOW_ENABLED:
+        return {"ready": False, "reason": "LEMMA_FTS_SHADOW_DISABLED"}
+    started_at = time.perf_counter()
+    registry = _load_registry()
+    status = LEMMA_INDEX.rebuild(
+        collection,
+        registry,
+        is_active_document_version=is_active_document_version,
+        normalize_search_text=_normalize_search_text,
+        load_registry=_load_registry,
+    )
+    stage_logger.info(
+        "rag.lemma_fts_shadow.rebuild %s",
+        json.dumps(
+            {
+                "reason": str(reason or "unspecified")[:80],
+                "outcome": "ok",
+                "duration_ms": int((time.perf_counter() - started_at) * 1000),
+                "analysis_ms": int(status.get("analysis_ms") or 0),
+                "chunk_count": int(status.get("chunk_count") or 0),
+                "document_count": int(status.get("document_count") or 0),
+                "size_bytes": int(status.get("size_bytes") or 0),
+            },
+            ensure_ascii=False,
+        ),
+    )
+    return status
+
+
+def _mark_lemma_fts_shadow_stale(reason: str) -> None:
+    if RAG_LEMMA_FTS_SHADOW_ENABLED:
+        LEMMA_INDEX.mark_stale(reason)
+
+
+def _refresh_lemma_fts_shadow(reason: str) -> None:
+    if not RAG_LEMMA_FTS_SHADOW_ENABLED:
+        return
+    try:
+        _rebuild_lemma_fts_shadow(reason)
+    except Exception as exc:
+        logger.error(
+            "Lemma FTS shadow refresh failed reason=%s error=%s",
+            str(reason or "unspecified")[:80],
+            exc.__class__.__name__,
+        )
+
+
+def _lemma_fts_shadow_refresh_worker() -> None:
+    global _LEMMA_REFRESH_THREAD
+    global _LEMMA_REFRESH_PENDING_REASON
+    global _LEMMA_REFRESH_ACTIVE_REASON
+
+    while True:
+        with _LEMMA_REFRESH_LOCK:
+            reason = _LEMMA_REFRESH_PENDING_REASON or "scheduled_refresh"
+            _LEMMA_REFRESH_PENDING_REASON = None
+            _LEMMA_REFRESH_ACTIVE_REASON = reason
+        try:
+            _refresh_lemma_fts_shadow(reason)
+        finally:
+            with _LEMMA_REFRESH_LOCK:
+                _LEMMA_REFRESH_ACTIVE_REASON = None
+                should_exit = _LEMMA_REFRESH_PENDING_REASON is None
+                if should_exit:
+                    _LEMMA_REFRESH_THREAD = None
+        if should_exit:
+            return
+
+
+def _schedule_lemma_fts_shadow_refresh(reason: str) -> Dict[str, object]:
+    global _LEMMA_REFRESH_THREAD
+    global _LEMMA_REFRESH_PENDING_REASON
+
+    if not RAG_LEMMA_FTS_SHADOW_ENABLED:
+        return {"scheduled": False, "reason": "LEMMA_FTS_SHADOW_DISABLED"}
+
+    normalized_reason = str(reason or "scheduled_refresh")[:80]
+    start_thread: Optional[threading.Thread] = None
+    with _LEMMA_REFRESH_LOCK:
+        _LEMMA_REFRESH_PENDING_REASON = normalized_reason
+        if _LEMMA_REFRESH_THREAD is None:
+            start_thread = threading.Thread(
+                target=_lemma_fts_shadow_refresh_worker,
+                name="rag-lemma-fts-shadow-refresh",
+                daemon=True,
+            )
+            _LEMMA_REFRESH_THREAD = start_thread
+        state = {
+            "scheduled": True,
+            "running": _LEMMA_REFRESH_ACTIVE_REASON is not None,
+            "active_reason": _LEMMA_REFRESH_ACTIVE_REASON,
+            "pending_reason": _LEMMA_REFRESH_PENDING_REASON,
+        }
+    if start_thread is not None:
+        start_thread.start()
+    return state
+
+
+def _lemma_fts_shadow_refresh_state() -> Dict[str, object]:
+    with _LEMMA_REFRESH_LOCK:
+        return {
+            "scheduled": _LEMMA_REFRESH_THREAD is not None,
+            "running": _LEMMA_REFRESH_ACTIVE_REASON is not None,
+            "active_reason": _LEMMA_REFRESH_ACTIVE_REASON,
+            "pending_reason": _LEMMA_REFRESH_PENDING_REASON,
+        }
+
+
+def _lemma_fts_shadow_status(
+    registry: Dict[str, Dict],
+    *,
+    verify: bool = False,
+) -> Dict[str, object]:
+    if not RAG_LEMMA_FTS_SHADOW_ENABLED:
+        return {
+            "ready": False,
+            "reason": "LEMMA_FTS_SHADOW_DISABLED",
+            "analyzer": LEMMA_ANALYZER.status(),
+        }
+    status = LEMMA_INDEX.status(registry, verify=verify)
+    status["analyzer"] = LEMMA_ANALYZER.status()
+    status["refresh"] = _lemma_fts_shadow_refresh_state()
+    return status
+
+
+def _lemma_fts_shadow_observation(
+    *,
+    query: str,
+    query_language: Optional[str],
+    where: Optional[Dict[str, object]],
+    registry: Dict[str, Dict],
+    production_results: List[Dict],
+) -> Dict[str, object]:
+    started_at = time.perf_counter()
+    status = _lemma_fts_shadow_status(registry)
+    observation: Dict[str, object] = {
+        "version": "lemma_fts_shadow_v1",
+        "enabled": RAG_LEMMA_FTS_SHADOW_ENABLED,
+        "index_ready": status.get("ready") is True,
+        "executed": False,
+        "reason": None,
+        "query_language": query_language if query_language in {"et", "en", "ru"} else "unknown",
+        "query_input_form": "retrieval_query",
+        "analyzer_version": LEMMA_ANALYZER.version,
+        "query_token_count": 0,
+        "candidate_count": 0,
+        "production_result_count": len(production_results),
+        "chunk_overlap_count": 0,
+        "document_overlap_count": 0,
+        "top_candidates": [],
+        "analysis_ms": 0,
+        "query_ms": 0,
+        "total_ms": 0,
+    }
+    if not RAG_LEMMA_FTS_SHADOW_ENABLED:
+        observation["reason"] = "LEMMA_FTS_SHADOW_DISABLED"
+    elif query_language != "et":
+        observation["reason"] = "QUERY_LANGUAGE_NOT_ESTONIAN"
+    elif status.get("ready") is not True:
+        observation["reason"] = str(status.get("reason") or "LEMMA_INDEX_NOT_READY")[:80]
+    else:
+        try:
+            lemma_result = LEMMA_ANALYZER.lemmatize_texts([query])
+            observation["analysis_ms"] = int(lemma_result.get("analysis_ms") or 0)
+            lemma_texts = list(lemma_result.get("texts") or [])
+            lemma_tokens = _search_tokens(lemma_texts[0] if lemma_texts else "", limit=48)
+            observation["query_token_count"] = len(lemma_tokens)
+            if not lemma_tokens:
+                observation["reason"] = "LEMMA_QUERY_EMPTY"
+            else:
+                search_result = LEMMA_INDEX.search(
+                    lemma_query_tokens=lemma_tokens,
+                    where=where,
+                    registry=registry,
+                    limit=RAG_LEMMA_FTS_SHADOW_CANDIDATES,
+                )
+                candidates = list(search_result.get("candidates") or [])
+                production_chunk_ids = {
+                    str(item.get("id") or item.get("chunk_id") or "").strip()
+                    for item in production_results
+                    if isinstance(item, dict)
+                }
+                production_chunk_ids.discard("")
+                production_document_ids = {
+                    str(item.get("doc_id") or item.get("docId") or "").strip()
+                    for item in production_results
+                    if isinstance(item, dict)
+                }
+                production_document_ids.discard("")
+                candidate_chunk_ids = {
+                    str(item.get("chunk_id") or "").strip()
+                    for item in candidates
+                    if isinstance(item, dict)
+                }
+                candidate_chunk_ids.discard("")
+                candidate_document_ids = {
+                    str(item.get("document_id") or "").strip()
+                    for item in candidates
+                    if isinstance(item, dict)
+                }
+                candidate_document_ids.discard("")
+                observation.update(
+                    {
+                        "executed": True,
+                        "reason": "SHADOW_ONLY",
+                        "candidate_count": len(candidates),
+                        "chunk_overlap_count": len(candidate_chunk_ids & production_chunk_ids),
+                        "document_overlap_count": len(
+                            candidate_document_ids & production_document_ids
+                        ),
+                        "top_candidates": [
+                            {
+                                "chunk_id": str(item.get("chunk_id") or "")[:240],
+                                "document_id": str(item.get("document_id") or "")[:240],
+                                "rank": int(item.get("rank") or index + 1),
+                            }
+                            for index, item in enumerate(candidates[:12])
+                            if isinstance(item, dict)
+                        ],
+                        "query_ms": int(search_result.get("query_ms") or 0),
+                    }
+                )
+        except LemmaIndexError as error:
+            observation["reason"] = str(error.code or "LEMMA_SHADOW_FAILED")[:80]
+        except Exception:
+            observation["reason"] = "LEMMA_SHADOW_FAILED"
+    observation["total_ms"] = int((time.perf_counter() - started_at) * 1000)
+    return observation
+
+
 def _commit_vector_stage(stage, entry: Dict):
     _mark_persistent_lexical_index_stale("corpus_version_commit")
+    _mark_lemma_fts_shadow_stale("corpus_version_commit")
     try:
         result = stage.commit(entry, updated_at=now_iso())
     except Exception:
         _schedule_persistent_lexical_index_refresh("corpus_version_rollback")
+        _schedule_lemma_fts_shadow_refresh("corpus_version_rollback")
         raise
     _schedule_persistent_lexical_index_refresh("corpus_version_commit")
+    _schedule_lemma_fts_shadow_refresh("corpus_version_commit")
     old_path_value = result.previous_entry.get("path")
     new_path_value = entry.get("path")
     if old_path_value and old_path_value != new_path_value:
@@ -6661,6 +6928,45 @@ def _initialize_persistent_lexical_index() -> None:
 app.router.add_event_handler("startup", _initialize_persistent_lexical_index)
 
 
+def _initialize_lemma_fts_shadow() -> None:
+    if not RAG_LEMMA_FTS_SHADOW_ENABLED:
+        return
+    try:
+        registry = _load_registry()
+        status = LEMMA_INDEX.status(registry)
+        if status.get("ready"):
+            stage_logger.info(
+                "rag.lemma_fts_shadow.ready %s",
+                json.dumps(
+                    {
+                        "outcome": "ready",
+                        "chunk_count": int(status.get("chunk_count") or 0),
+                        "document_count": int(status.get("document_count") or 0),
+                        "size_bytes": int(status.get("size_bytes") or 0),
+                    },
+                    ensure_ascii=False,
+                ),
+            )
+            return
+        refresh = _schedule_lemma_fts_shadow_refresh("startup")
+        stage_logger.info(
+            "rag.lemma_fts_shadow.startup %s",
+            json.dumps(
+                {
+                    "outcome": "background_build_scheduled",
+                    "reason": str(status.get("reason") or "LEMMA_INDEX_NOT_READY")[:80],
+                    "scheduled": refresh.get("scheduled") is True,
+                },
+                ensure_ascii=False,
+            ),
+        )
+    except Exception as exc:
+        logger.error("Lemma FTS shadow startup failed error=%s", exc.__class__.__name__)
+
+
+app.router.add_event_handler("startup", _initialize_lemma_fts_shadow)
+
+
 def _warm_registry_and_lexical_paths() -> None:
     """Prime bounded registry and FTS primitives without fixed corpus facts."""
     started_at = time.perf_counter()
@@ -6822,6 +7128,7 @@ def health():
         "vectors": n,
         "documents": len(reg),
         "lexical_index": _persistent_lexical_index_status(reg),
+        "lemma_fts_shadow": _lemma_fts_shadow_status(reg),
     }
 
 
@@ -6850,6 +7157,34 @@ def rebuild_lexical_index():
         "accepted": True,
         "refresh": refresh,
         "lexical_index": _persistent_lexical_index_status(_load_registry()),
+    }
+
+
+@app.get("/lemma-index/status", dependencies=[Depends(_require_key)])
+def lemma_index_status():
+    registry = _load_registry()
+    return {
+        "ok": True,
+        "enabled": RAG_LEMMA_FTS_SHADOW_ENABLED,
+        "lemma_fts_shadow": _lemma_fts_shadow_status(registry, verify=True),
+    }
+
+
+@app.post(
+    "/lemma-index/rebuild",
+    dependencies=[Depends(_require_key), Depends(_require_registry_available)],
+    status_code=202,
+)
+def rebuild_lemma_index():
+    if not RAG_LEMMA_FTS_SHADOW_ENABLED:
+        raise HTTPException(409, {"code": "LEMMA_FTS_SHADOW_DISABLED"})
+    _mark_lemma_fts_shadow_stale("admin_rebuild")
+    refresh = _schedule_lemma_fts_shadow_refresh("admin_rebuild")
+    return {
+        "ok": True,
+        "accepted": True,
+        "refresh": refresh,
+        "lemma_fts_shadow": _lemma_fts_shadow_status(_load_registry()),
     }
 
 # --- Ephemeral analyze (no persistence) ---
@@ -8169,6 +8504,7 @@ def patch_document_metadata(doc_id: str, payload: PatchMetadata):
     if doc_id not in _load_registry():
         raise HTTPException(404, "Document not in registry")
     _mark_persistent_lexical_index_stale("metadata_patch")
+    _mark_lemma_fts_shadow_stale("metadata_patch")
     try:
         chunks_updated = patch_document_metadata_consistently(
             collection,
@@ -8184,6 +8520,7 @@ def patch_document_metadata(doc_id: str, payload: PatchMetadata):
         # old FTS file remains present but deliberately unusable until rebuild.
         raise
     _schedule_persistent_lexical_index_refresh("metadata_patch")
+    _schedule_lemma_fts_shadow_refresh("metadata_patch")
 
     return {
         "ok": True,
@@ -8203,6 +8540,7 @@ def delete_doc(doc_id: str):
             raise OSError("document source directory still exists")
 
     _mark_persistent_lexical_index_stale("document_delete")
+    _mark_lemma_fts_shadow_stale("document_delete")
     try:
         result = delete_document_versioned(
             collection,
@@ -8216,6 +8554,7 @@ def delete_doc(doc_id: str):
         # A failed delete can still leave a durable tombstone. Rebuild from the
         # resulting registry/Chroma state; a failed rebuild keeps the stale gate.
         _schedule_persistent_lexical_index_refresh("document_delete")
+        _schedule_lemma_fts_shadow_refresh("document_delete")
     return {"ok": True, "deleted": doc_id, "hadEntry": result.had_entry}
 
 def _execute_search(
@@ -8894,6 +9233,13 @@ def _execute_search(
         journal_chunks_per_document=payload.journal_chunks_per_document,
     )
     result_count = len(flat)
+    lemma_fts_shadow = _lemma_fts_shadow_observation(
+        query=payload.query,
+        query_language=payload.query_language,
+        where=chroma_where,
+        registry=version_registry,
+        production_results=flat,
+    )
     retrievers_used: List[str] = []
     for item in flat:
         for channel in item.get("retrieval_channels") if isinstance(item.get("retrieval_channels"), list) else []:
@@ -9092,6 +9438,7 @@ def _execute_search(
             "error": lexical_fetch.get("error"),
             "index": lexical_fetch.get("index"),
         },
+        "lemma_fts_shadow": lemma_fts_shadow,
         "author_metadata_summary": author_metadata_summary,
         "strategy_decisions": {
             "requested_top_k": requested_top_k,
@@ -9122,6 +9469,7 @@ def _execute_search(
             "dense_ms": dense_ms,
             "registry_ms": registry_ms,
             "lexical_ms": lexical_ms,
+            "lemma_fts_shadow_ms": int(lemma_fts_shadow.get("total_ms") or 0),
             **lexical_timings,
             "document_sibling_ms": document_sibling_ms,
             "fact_segment_ms": fact_segment_ms,
@@ -9149,6 +9497,7 @@ def search(payload: SearchIn, request: Request):
 def search_agent_documents(payload: AgentDocumentSearchIn, request: Request):
     exact_payload = SearchIn(
         query=payload.query,
+        query_language=None,
         top_k=payload.top_k,
         include=payload.include,
         retrievers=payload.retrievers,

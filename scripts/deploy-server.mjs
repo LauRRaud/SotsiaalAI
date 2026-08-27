@@ -6,6 +6,7 @@ const remote = process.env.DEPLOY_SSH_HOST || "sotsiaalai";
 const appDir = process.env.DEPLOY_APP_DIR || "/home/ubuntu/apps/sotsiaalai";
 const branch = process.env.DEPLOY_BRANCH || "main";
 const frontendEnv = process.env.DEPLOY_FRONTEND_ENV || "/etc/sotsiaalai/frontend.env";
+const ragVenv = process.env.DEPLOY_RAG_VENV || "/home/ubuntu/.venvs/sotsiaalai-rag";
 const buildTimeoutSeconds = Number.parseInt(String(process.env.DEPLOY_BUILD_TIMEOUT_SECONDS || "900"), 10) || 900;
 const artifactBackupKeep = Number.parseInt(String(process.env.DEPLOY_ARTIFACT_BACKUP_KEEP || "1"), 10) || 1;
 const buildLogKeep = Number.parseInt(String(process.env.DEPLOY_BUILD_LOG_KEEP || "1"), 10) || 1;
@@ -28,6 +29,7 @@ set -euo pipefail
 APP_DIR=${shellEscape(appDir)}
 BRANCH=${shellEscape(branch)}
 FRONTEND_ENV=${shellEscape(frontendEnv)}
+RAG_VENV=${shellEscape(ragVenv)}
 BUILD_TIMEOUT_SECONDS=${Math.max(60, buildTimeoutSeconds)}
 ARTIFACT_BACKUP_KEEP=${Math.max(1, artifactBackupKeep)}
 BUILD_LOG_KEEP=${Math.max(1, buildLogKeep)}
@@ -183,6 +185,34 @@ fi
 research_job_mode="$(printf '%s' "$research_job_mode" | tr '[:upper:]' '[:lower:]')"
 if [ "$research_job_mode" = "worker" ] && ! systemctl list-unit-files sotsiaalai-research-worker.service >/dev/null 2>&1; then
   echo "[deploy:server] WARNING: worker mode is selected but sotsiaalai-research-worker.service is missing; research jobs will remain queued." >&2
+fi
+
+rag_requirements="$APP_DIR/rag-service/requirements.txt"
+if [ -f "$rag_requirements" ]; then
+  if [ ! -x "$RAG_VENV/bin/python" ]; then
+    echo "[deploy:server] RAG Python is missing: $RAG_VENV/bin/python" >&2
+    exit 7
+  fi
+  requirements_hash="$(sha256sum "$rag_requirements" | awk '{print $1}')"
+  requirements_marker="$RAG_VENV/.sotsiaalai-requirements.sha256"
+  installed_requirements_hash=""
+  if [ -f "$requirements_marker" ]; then
+    installed_requirements_hash="$(tr -d '[:space:]' < "$requirements_marker")"
+  fi
+  if [ "$requirements_hash" != "$installed_requirements_hash" ]; then
+    if [ "$rag_was_active" = "1" ] && [ "$rag_stopped_for_build" != "1" ]; then
+      echo "[deploy:server] Stopping RAG service for Python dependency update"
+      sudo systemctl stop sotsiaalai-rag.service
+      rag_stopped_for_build="1"
+    fi
+    echo "[deploy:server] Installing locked RAG Python dependencies"
+    "$RAG_VENV/bin/python" -m pip install --disable-pip-version-check --requirement "$rag_requirements"
+    requirements_marker_tmp="$(mktemp "$RAG_VENV/.sotsiaalai-requirements.XXXXXX")"
+    printf '%s\n' "$requirements_hash" > "$requirements_marker_tmp"
+    mv -f -- "$requirements_marker_tmp" "$requirements_marker"
+  else
+    echo "[deploy:server] RAG Python dependencies match requirements hash"
+  fi
 fi
 
 echo "[deploy:server] Installing locked dependencies"
