@@ -1633,3 +1633,75 @@ palju ooteaega. Enne production-promotion'it tuleb võrrelda lemma unikaalsete k
 tõendiväärtust, muuta shadow kasutaja kriitilisest teest sõltumatuks või batch'ituks ning parandada
 eraldi tõendatud route-/slot-/identity veaklasse. Originaal-FTS-i ega embedding-mudelit selle
 tõendi põhjal välja ei vahetata.
+
+## 45. Viie runtime-veaklassi põhjusepõhine parandus — 27.08 release `3303466a`
+
+### 45.1 Põhjused ja lepingumuudatused
+
+Lähtehetkel kattusid kohalik dokumentatsiooni-HEAD ja `origin/main` SHA-l
+`ebcd0e7c8a09392d2f0e8d1141795e1e6066223d`, kuid serveris töötas varasem koodirelease
+`97f476730035f221a6216aabb7516e6f776038b5`. Esimene koodirelease `47f490b1` parandas KOV-i
+intentipiiri ja kinnitatud autoriankru promotion'i ning lisas temporal aastaridade lepingu. Selle
+autentitud järelmõõt tõendas J18, mõlemad töötajaküsimused ja päris kontaktiküsimuse, kuid
+paljastas samas vestluses veel kaks üldist põhjust: koordineeritud J08 rühm ei saanud kasutada
+sama tõendikeha varasema koordineeritud rühma ühismäärangut ning iseseisvad ajaloolised või
+mitmeaastased küsimused pärisid varasema vooru dokumendi-, aasta- ja KOV-konteksti.
+
+Lõplik koodirelease `3303466a8affc74fc3bdce45f4da34fca8928129` rakendas järgmised kitsad
+piirid:
+
+- alternatiivsed küsitud mõõdikud eraldatakse ühise proportsioonipea korral eri slot'ideks;
+  koordineeritud rühm võib kasutada varasemat sama subjekti ainult samas renderdatud
+  tõendikehas, õiges tekstijärjekorras ja kuni 640 märgi kaugusel;
+- explicit current-turn autor + retrieved metadata täpne kinnitus seob valiku ainult ühe
+  kinnitatud `document_id`-ga; ebakindlat pealkirja ega dokumendiliiki eraldi ei promot'ita;
+- töötaja või omavalitsuse mainimine ei ole kontaktipäring ilma praeguse kontakti, telefoni,
+  e-posti, nime, nimekirja, kohalolu või arvu selge soovita;
+- temporal evidence package kannab iga aastaväärtuse `year + value + source_id` rida ning
+  validaator nõuab vastuses sama aasta ja väärtuse samasse üksusse sidumist; ühe vastuseüksuse
+  eri allikate numbrisegu, puuduva aasta või lepingu ja renderdatud tõendi lahknevus jääb
+  fail-closed;
+- iseseisev vähemalt kahe explicit aastaga sisuline temporal-küsimus ning explicit current-turn
+  source-bounded uuringufakt ei kasuta vana retrieval-ajalugu. Päris „see/neid/sama allikas”
+  jätkuküsimused säilitavad ajaloo; olemasolevat singular/plural follow-up parserit kasutatakse
+  ühiselt.
+
+Muudetud koodifailid olid `lib/chat/questionPlanner.js`, `lib/chat/retrievalContextAssembler.js`,
+`lib/chat/retrievalOrchestrator.js`, `lib/chat/retrievalPlanning.js`, `lib/chat/factContract.js`,
+`lib/chat/evidencePackage.js`, `lib/chat/sourceAttribution.js` ja
+`lib/chat/mainResponseHandler.js`. Globaalseid top-k või fusion'i väärtusi, korpust, Chroma/
+FTS-indekseid, serveri env-i, embedding-mudelit ega lemma promotion'it ei muudetud.
+
+### 45.2 Deploy ja käsitsi autentitud tootmistõend
+
+Muutumatu lõppkoodi scoped ESLint, `node --check`, `git diff --check`, `i18n:check` ja Next
+16.2.10 tootmisbuild olid rohelised. Automaatteste ega test-, probe-, smoke-, benchmark- või
+E2E-faile ei loodud ega käivitatud. Täisdeploy fast-forward'is serveri release'ile `3303466a`,
+paigaldas lukustatud sõltuvused, tegi rohelise serveribuild'i ja kinnitas, et 201 migratsioonist
+ei olnud ükski ootel. Aktiivne frontend-artifakt oli
+`/home/ubuntu/apps/sotsiaalai-deploy-backups/frontend-current-20260827T194835Z-3303466a.tar.gz`.
+Frontend, RAG ja research-worker olid aktiivsed, `/vestlus` vastas 200 ning RAG health oli
+`ok=true`: 49 727 vektorit / 6089 registridokumenti; originaal-FTS ja lemma-FTS shadow olid
+`ready=true`, kumbki 49 727 lõigu / 6073 aktiivse registridokumendiga.
+
+Kõik järgnevad kontrollid tehti samas autentitud vestluses
+`d688c823-e383-4c5b-b394-6c64333683c5`, ilma „Uus vestlus” workaround'ita.
+
+| veaklass | runtime-tulemus ja trace | seis |
+|---|---|---|
+| J08 neli osakaalu | vastus `61 / 26 / 11 / 18`; `requested_metric_contract` oli `complete=true`, 4/4, kolmas ja neljas slot said `shared_subject_head_matched=true`; validator PASS `all_claims_in_one_rendered_source`; valitud ja kuvatud oli Vaike Vainu 2023 artikkel. Sõnumid `cmtby4obi000dkykmjzdta4x7` / `cmtby4qr8000gkykmbo53xtkm` | **PASS** |
+| J18 lühike Erle Eenmaa ankur | igas kolmes sihtrühmas 5, kokku 15; valitud ja kuvatud dokument oli `sotsiaaltoo-1-2022-psuuhiline-erivajadus-eestkoste-osalus-2022-1`. Sõnumid `cmtbwq0mo000vokkmq34ew0wx` / `cmtbwq1es000yokkmivk56j7v` | **PASS** |
+| kaks töötajate toe küsimust | mõlemad andsid sisulise RAG-vastuse ja allikanupu, mitte KOV-i täpsustuse. Sõnumipaarid `cmtbwtlzi001bokkmytzi7dr5` / `cmtbwtpwx001eokkmg8bdoxc5` ning `cmtbwu17s001rokkmcuaglh7p` / `cmtbwu6sc001uokkmu9xe3mv0` | **PASS** |
+| päris kontaktiregressioon | Rakvere sotsiaaltöötajate telefoniküsimus jäi kontaktirajale ning tagastas Airiin Apsi ja Eelika Nõmmeloo kontaktiread. Sõnumid `cmtbwufs60023okkmdpig9hwe` / `cmtbwuft90026okkm0u72ezsy` | **PASS** |
+| 2018/2019/2020 trend | temporal route kandis ainult breakdown-aastaid `[2018,2019,2020]`; varasem 2022/Rakvere kontekst puudus. Evidence contract leidis kõrvalallikatest 2018/2019 `year + value` kandidaate, mille seos küsitud mõõdikuga ei olnud tõendatud; valitud/renderdatud tõendis puudus 2020 kvalifitseeruv rida. Validator peatas vastuse top-level põhjusega `cross_source_numeric_mix`, binding-põhjusega `temporal_year_value_not_answered`, ning `displayed_sources=[]`. Sõnumid `cmtby5aey0012kykm7xo1yn0y` / `cmtby5cyp0015kykmanyhln4o` | **PARTIAL: vale seos suletud, aastatrend NOT_PROVEN** |
+| J03 2018 kriisiartikkel | vastus eristas 112 kiire ohu ja 1220 nõuanderaja; fact-validation PASS, document identity high ja attribution `identified_publication_primary_evidence`. Avatud paneel näitas „Külli Mäe, 2018. Kuidas anda vaimse tervise probleemide korral töökohal esmaabi?”. Sõnumid `cmtby5nup001lkykmp3130dk1` / `cmtby5q33001okykmjp76501q` | **PASS** |
+
+Mitmeaastase sentineli read-only algallikaaudit kinnitas, et 2022 artikkel esitab novembri 2018
+kuni aprilli 2020 kohta ühe koondperioodi (`678 / 273 / 21 600 / 12 / 43`), mitte eraldi
+2018., 2019. ja 2020. aasta võrreldavaid väärtusi. 2019 artikkel kirjeldab 22.10.2018–16.05.2019
+küsitlust, kuid ei anna samuti kolmeaastast aastarida. Seetõttu ei tohi release sellele täpsele
+küsimusele trendi konstrueerida. Selgem puuduvate aastaridade teade või kasutajalt koondperioodi
+soovi täpsustav küsimus on eraldi tooteleping; see ei tohi asendada retrieval-/evidence-viga.
+
+See on sihtveaklasside kontroll, mitte kogu 75 juhtumi kordus. `FINAL_SHA` ega 75/75 väidet ei
+anta; kõik mõõtmata juhtumid ja nimisõnaliste slotiloendite varasem piir jäävad `NOT_PROVEN`.
