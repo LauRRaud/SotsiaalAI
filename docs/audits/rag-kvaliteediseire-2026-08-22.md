@@ -2,7 +2,7 @@
 
 Kuupäev: 22.08.2026
 
-> **Jätkuseis:** see fail säilitab algse auditi ajaloolise lähtejoone ja lisab allpool iga deploy-järgse korduse. Brauseris kontrollitud sisulise RAG- ja vestlusloogika baasseis on `815f15f6`; 23.08 jõudlusparanduse runtime-release oli `5796178f`. Kontrollis olid frontend, RAG ja research-worker aktiivsed ning health näitas 49 727 vektorit / 6089 dokumenti. Süsteemikaart on failis [rag-susteem-2026-08-22.md](./rag-susteem-2026-08-22.md).
+> **Jätkuseis:** see fail säilitab algse auditi ajaloolise lähtejoone ja lisab allpool iga deploy-järgse korduse. Viimane käsitsi autentitud sihtrelease on `44c1e59b` (28.08): viis runtime-veaklassi, päris KOV-kontakt, off-domain piir ja üks täpsustusest sisemise RAG-vastuseni jätk on lõpp-SHA-l kinnitatud. Frontend, RAG ja research-worker olid aktiivsed; health näitas 49 727 vektorit / 6089 dokumenti ning mõlemad FTS-id olid valmis. See ei ole 75/75 tõend. Varasem sisulise RAG-i baasseis `815f15f6` ja 23.08 jõudlusrelease `5796178f` jäävad ajalooliseks lähtejooneks. Süsteemikaart on failis [rag-susteem-2026-08-22.md](./rag-susteem-2026-08-22.md).
 
 Mõõteaken: 04:52–06:20 Europe/Tallinn
 
@@ -885,3 +885,47 @@ Kandidaat asub ainult kohalikus commit'is `4cc4e65b`; push'i ega deploy'd ei ole
 tootmine kasutab endiselt `3303466a`. Seetõttu ei muudeta ühegi 75 põhijuhtumi tulemust ega anta
 uut `FINAL_SHA` väidet. Kogu uus vestluslik runtime-käitumine jääb kuni täieliku deploy ja
 käsitsi autentitud sama vestluse kontrollideni `NOT_PROVEN`.
+
+### 28.08 lõplik tootmisvärav — inimlik vestlus ja RAG-sihtparandused `44c1e59b`
+
+Eelmise alajaotuse kohalik kandidaat on ajalooline vahepunkt. Pärast täiendavaid fail-closed
+piiri parandusi oli lõplik muutumatu koodipuu
+`44c1e59b5986a7346f0f391f268d59a94da5b8be`. Sama SHA kinnitati kohalikus HEAD-is,
+`origin/main`-is, parandusharu remote'is, puhtas serveri checkout'is ja aktiivse frontend-
+artefakti nimes. Täielik deploy kasutas artefakti
+`frontend-current-20260828T133845Z-44c1e59b.tar.gz`; build-ID oli
+`b5sVWJsAm4TPi13MXWgpe`. Kolm teenust olid aktiivsed, loopback- ja avalik `/vestlus` vastasid
+200, RAG health oli `ok=true` 49 727 vektori / 6089 registrikirjega ning originaal- ja lemma-FTS
+olid `ready=true` 49 727 lõigu / 6073 aktiivse dokumendiga ja registriga samal põlvkonnal.
+
+Lõpliku koodi `i18n:check`, muudetud failide ESLint, `git diff --check` ja tootmisbuild olid
+rohelised. Automaatteste, probe-, smoke-, benchmark- ega E2E-radu ei loodud ega käivitatud.
+Top-k-d, fusion'it, korpust, indeksit, env-i, embeddingut ega lemma promotion'it ei muudetud.
+
+Kõik allolevad kontrollid tehti eraldi värsketes autentitud tootmisvestlustes, välja arvatud
+kirjavea täpsustus ja selle vastus, mis pidid lepingu tõendamiseks olema samas vestluses.
+
+| sentinel | nähtav tootmisvastus | andmebaasi trace / kuvatud allikas | seis |
+|---|---|---|---|
+| off-domain „Mis ilm homme Tallinnas on?” | täpselt „Vastan ainult sotsiaalvaldkonna küsimustele.” | `social_scope=unknown`, `domain_boundary`, mudelikõnesid 0, kuvatud allikaid 0; `cmtczzyvc000e0hkm70t7f51f` | **PASS** |
+| „Kuidas saada sotsiaalvaldkonnas koxrabi?” | „Mida sa sõna „koxrabi” all mõtled?” | `ask_clarification`, ühe vooru mudelikõnesid 1, lisakõnesid 0, kuvatud allikaid 0; `cmtd00r3u000r0hkm8eone85f` | **PASS** |
+| sama vestluse „Mõtlesin toimetulekutoetust.” | sisuline toimetulekutoetuse tingimuste ja KOV-i taotlemise vastus | 8 valitud / 1 kuvatud SHS-allikas; `cmtd01rtr00170hkmioikczgn` | **PASS** |
+| J08 Vaike Vainu | `61% / 26% / 11% / 18%` | requested metric 4/4 complete; validator PASS; üks kuvatud 2023 artikkel; `cmtd02xpx001p0hkmigxt72uz` | **PASS** |
+| J18 Erle Eenmaa | kolm sihtrühma × 5, kokku 15 | identity high ja täpne 2022 `document_id`; validator PASS; üks kuvatud artikkel; `cmtd060bi00270hkm3mm3h1ti` | **PASS** |
+| KOV-is töötavate sotsiaaltöötajate tugi | sisuline nõustamise, võrgustikutöö, koolituse ja juhtumiarutelu vastus | üks valitud ja kuvatud 2019 KOV-i nõustamisüksuse artikkel; `cmtd073rr002n0hkmgw8eu5s2` | **PASS** |
+| lastekaitsetöötaja toetamine | sisuline hindamisraamistiku, kaasamise, supervisiooni ja tegevuskava vastus | üks valitud ja kuvatud lapse heaolu hindamise käsiraamatu artikkel; `cmtd0891z00330hkm7if2ambz` | **PASS** |
+| päris Rakvere kontakt | Airiin Apsi ja Eelika Nõmmeloo telefoniread | 2 valitud / 2 kuvatud ametlikku kontaktallikat; `cmtd093u6003f0hkmdsdgp7pc` | **PASS** |
+| seltsilise teenus 2018/2019/2020 | koondperiood `678 / 273 / 21 600 / 12 / 43`; eraldi märkus, et aastapõhist arvutrendi ei saa kinnitada; „Sisuline areng” 2019 ja järgmine etapp 2022 | validator PASS `temporal_aggregate_period_single_source`; viis arvu seotud ühe koondperioodiga; kvalitatiivne companion `exact_qualitative_context_bound`; 8 valitud / 2 kuvatud allikat; `cmtd0akap00430hkmes5ald42` | **PASS koondile ja arengule; arvuline aastatrend NOT_PROVEN** |
+| J03 2018 kriisiartikkel | kriisitunnused ning 112 / 1220 | identity high; validator PASS; attribution `identified_publication_primary_evidence`; üks kuvatud 2018 allikas; `cmtd0biqc004l0hkm0fnkelql` | **PASS** |
+
+Mitmeaastase sentineli tulemus on teadlikult kaheosaline. Tõendatud koondperiood ja kvalitatiivne
+areng jõuavad nüüd kasutajani, kuid allikates puuduvat võrreldavat 2018., 2019. ja 2020. aasta
+arvurida ei konstrueerita. See sulgeb varasema robotliku kordusküsimuse ja vale
+`cross_source_numeric_mix` keeldumise, säilitades fail-closed aasta–väärtus–allikas seose.
+
+Lõpliku runtime'i suhtes on tõendatud ainult eespool nimetatud rajad. ET/EN/RU recovery-
+pariteet, tehniline RAG-rike, kriisirežiimi recovery-välistus, kõik sotsiaalse tänu variandid,
+paralleelne või aegunud recovery-jätk ning kogu 75 juhtumi kordus jäävad `NOT_PROVEN`.
+Ajalooline üldseis jääb **DONE 21/75 · NOT_PROVEN 54/75**; seda sihtväravat ei tohi esitada
+75/75 ega kogu RAG-i kvaliteediprotsendina. Dokumentatsiooni-only HEAD liigub runtime-koodi
+SHA-st edasi ilma uut koodideploy'd nõudmata.

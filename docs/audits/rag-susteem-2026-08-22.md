@@ -1,30 +1,29 @@
 # SotsiaalAI RAG-süsteemi tehniline kaart ja kvaliteediseire hetkeseis
 
 Loodud: 22.08.2026
-Viimati uuendatud: 27.08.2026
-Tööharu: `codex/rag-quality-75`
-Repo/docs HEAD runtime-mõõtmise ajal ja aktiivne mõõdetud RAG-koodirelease:
-`97f476730035f221a6216aabb7516e6f776038b5`.
+Viimati uuendatud: 28.08.2026
+Tööharu: `codex/rag-five-runtime-fixes`
+Aktiivne mõõdetud runtime-koodi release:
+`44c1e59b5986a7346f0f391f268d59a94da5b8be`.
 
 Viimases mõõtmises kattusid kohalik kood, `origin/main`, puhas serveri checkout ja aktiivne
-frontend-artifakt SHA-l `97f47673`; frontend, RAG ja research-worker olid aktiivsed ning
-`/vestlus` vastas HTTP 200. RAG health oli `ok=true` (49 727 vektorit / 6089 registrikirjet),
-püsiv originaalteksti FTS5 indeks oli `ready=true` (49 727 lõiku / 6073 aktiivset
-registridokumenti) ja uus eesti lemma-FTS shadow-indeks oli sama registripõlvkonnaga
-`ready=true` (49 727 / 6073; 360 472 576 baiti).
+frontend-artifakt SHA-l `44c1e59b`; artefakt oli
+`frontend-current-20260828T133845Z-44c1e59b.tar.gz`. Frontend, RAG ja research-worker olid
+aktiivsed, loopback- ja avalik `/vestlus` vastasid HTTP 200. RAG health oli `ok=true`
+(49 727 vektorit / 6089 registrikirjet), püsiv originaalteksti FTS5 ja eesti lemma-FTS shadow
+olid mõlemad `ready=true` (49 727 lõiku / 6073 aktiivset registridokumenti) ning nende
+`generation` kattus registri `expected_generation` väärtusega.
 
-Release `97f47673` on diagnostiline, mitte 75/75 sertifitseerimisrelease. Ta lisab EstNLTK/
-Vabamorfi 1.7.5 põhise eraldi lemmaindeksi ning mõõdab selle kandidaate tootmisotsust muutmata.
-12 käsitsi autentitud küsimuses käivitus shadow 10 korral; kaks sisu poolest töötajaküsimust
-suunati enne retrieval'it ekslikult KOV-kontaktirajale. Kümnes RAG-voorus tekkis 29 shadow-
-vaatlust: ühe vaatluse keskmine lemmaanalüüsi ja FTS-i koguaeg oli 755,9 ms ning kogu vooru
-shadow-aeg käivitunud voorudes keskmiselt 2192,2 ms (maksimum 8023 ms). Lemma leidis J07,
-J08 ning mõlema J18 sõnastuse puhul õige dokumendi, kuid J08 kaotas vastuses 26%, J18 lühike
-ankur ei jõudnud toetatud vastuseni ja multi-year rada suleti põhjusega `cross_source_numeric_mix`.
-See tõendab, et lemma aitab kandidaatide leidmist, kuid ei lahenda planner'i, identiteedi,
-generaatori, validaatori ega atribuutika vigu. Aktiivse release'i range vaade on
-**DONE 1/75 · PARTIAL 0/75 · NOT_PROVEN 74/75**; ajalooline kumulatiivne maatriks jääb
-**DONE 21/75 · NOT_PROVEN 54/75**. Release'ide ajalugu ja tõendipiirid on peatükkides 25–44.
+Release `44c1e59b` sulgeb viie mõõdetud runtime-veaklassi põhjused ja viib tootmisse inimliku
+vestluskihi. Toetatud küsimus saab otse sisemise korpuse põhise vastuse; ebaselge, kuid
+sotsiaalvaldkonda kuuluva küsimuse sama vooru ainus mudelikõne võib küsida ühe loomuliku
+täpsustuse. Väljaspool sotsiaalvaldkonda olev algküsimus lõpetatakse enne mudelikõnet täpse
+piirivastusega „Vastan ainult sotsiaalvaldkonna küsimustele.”. Veebi ega mudeli üldteadmist
+RAG-i tõendilünga täitmiseks ei kasutata. J08, J18, kaks töötajaküsimust, päris KOV-kontakt,
+mitmeaastane koondperiood koos kvalitatiivse arenguga ja J03 korrati käsitsi autentitud
+tootmisvestlustes §47 järgi. See on sihtveaklasside release, mitte 75/75 sertifitseerimisrelease;
+ajalooline kumulatiivne maatriks jääb **DONE 21/75 · NOT_PROVEN 54/75**. Käesoleva dokumendi
+docs-only commit liigub runtime-koodi SHA-st edasi, kuid ei muuda ega redeploy koodi.
 
 Seis: **PARTIAL — süsteemi ei ole tõendatud 10/10 ega 75/75 töökindlaks**
 
@@ -105,11 +104,11 @@ HTTP 200.
 
 | kontroll | tulemus |
 |---|---|
-| repo/docs HEAD runtime-mõõtmise ajal | `97f476730035f221a6216aabb7516e6f776038b5` |
-| aktiivne serveri RAG-koodirelease | `97f476730035f221a6216aabb7516e6f776038b5` |
+| koodi HEAD runtime-mõõtmise ajal | `44c1e59b5986a7346f0f391f268d59a94da5b8be`; järgnev docs-only commit ei muuda runtime'i |
+| aktiivne serveri RAG-koodirelease | `44c1e59b5986a7346f0f391f268d59a94da5b8be` |
 | serveri checkout | puhas |
 | teenused | frontend, RAG ja research-worker `active` |
-| avalik vestlusrada | `/vestlus` HTTP 200 |
+| vestlusrada | loopback- ja avalik `/vestlus` HTTP 200 |
 | RAG health | `ok=true`, 49 727 vektorit, 6089 registrikirjet |
 | püsiv leksikaalindeks | `ready=true`, FTS5 v2, 49 727 lõiku / 6073 aktiivset dokumenti |
 | eesti lemma-FTS shadow | `ready=true`, `lemma-fts-shadow-v1`, EstNLTK/Vabamorf 1.7.5, 49 727 / 6073 |
@@ -117,14 +116,12 @@ HTTP 200.
 | indeksi fail | 459 132 928 baiti ehk 437,9 MiB |
 | lemmaindeksi fail | 360 472 576 baiti ehk umbes 343,8 MiB |
 | lemmaindeksi esimene build | 629 552 ms; sellest analüüs 555 827 ms |
-| aktiivne frontend-artifakt | `frontend-current-20260827T170513Z-97f47673.tar.gz` |
-| kontaktikontrolli timer | `active` + `enabled`; viimane `Result=success`; järgmine käik 30.08.2026 |
-| aktiivse release'i sisuline värav | **DONE 1/75 · PARTIAL 0/75 · NOT_PROVEN 74/75** |
+| aktiivne frontend-artifakt | `frontend-current-20260828T133845Z-44c1e59b.tar.gz`; build-ID `b5sVWJsAm4TPi13MXWgpe` |
+| kontaktikontrolli timer | 28.08 sihtväravas eraldi ei korratud; viimane dokumenteeritud seis `active` + `enabled` |
+| aktiivse release'i sisuline värav | §47 sihtveaklassid PASS; kogu 75 juhtumi kordus **NOT_PROVEN** |
 | aktiivsed vektorlõigud | **49 727** |
 | registrikirjeid kokku | **6089** |
-| registris `ACTIVE` elutsükkel | **884** |
-| registris `DELETED` elutsükkel | **16** |
-| vana kirje ilma lifecycle-väljata | **5189** |
+| registri lifecycle'i detailjaotus | 28.08 sihtväravas eraldi ei korratud; ajalooline 27.08 snapshot allpool |
 
 `documents=6089` tähendab registrikirjete koguarvu, mitte aktiivsete failide arvu. Seda arvu ei tohi esitada kui „6089 aktiivset dokumenti”.
 
@@ -139,7 +136,10 @@ HTTP 200.
    filtrid, top-k ning kontekstivaliku plaani ja annavad `retrievalOrchestrator`-ile ühe või mitu
    piiratud päringut. Võimaluse korral kannab plaan edasi ka tüübistatud ajarolle, küsitud
    arvulisi faktislotte ja muid semantilisi lepinguvälju; shadow-väljad on diagnostilised ega
-   muuda tootmisotsust enne eraldi tõendatud promotion'it.
+   muuda tootmisotsust enne eraldi tõendatud promotion'it. Release'il `44c1e59b` kannab sama
+   plaan ka konservatiivset `social_scope` välja. Kui uuel algküsimusel puudub deterministlik
+   sotsiaalvaldkonna signaal, läheb see enne vastusemudelit piirivastusesse; serveris kinnitatud
+   recovery-jätk on erand ainult sama lõpetatud küsimuse ja assistendi täpsustuse ulatuses.
 4. Orchestrator kutsub serverisiseselt RAG-i `POST /search`. Python-teenus käivitab lubatud dense-,
    FTS5/BM25-, autori-, pealkirja-, täpse fraasi ja vajadusel registrifakti kanali, fuseerib ning
    hübriidjärjestab lõigukandidaadid. Iga kandidaat ei ole ainult tekst: temaga liigub kaasa
@@ -167,7 +167,10 @@ HTTP 200.
    kasutaja küsitud mõõdikutele, teine säilitab arvu, rolli ja üksuse seose. Täpse faktiküsimuse
    vastus puhverdatakse enne kasutajale näitamist. `factContract` ei käivitu iga vastuse puhul,
    vaid ainult tema rakendustingimustele vastaval täpse fakti rajal; seal kinnitab ta vastuse
-   renderdatud tõendi suhtes või blokeerib selle fail-closed põhimõttel.
+   renderdatud tõendi suhtes või blokeerib selle fail-closed põhimõttel. Kui sotsiaalvaldkonna
+   küsimus vajab tähenduse täpsustamist, tohib sama ainus mudelikõne anda vastuse asemel ühe
+   sanitiseeritud selgitusküsimuse; faktivalidaatori FAIL-i järel teist kõnet ei tehta ja
+   selgitusküsimuse allikaid ei kuvata.
 7. `sourceAttribution` eristab valitud kontekstiallikad (`selected`), vastust tegelikult toetavad
    allikad (`supporting`) ja kasutajale kuvatavad allikad (`displayed`). Ta seob kinnitatud vastuse
    toetavate source-ID-dega, rakendab muu hulgas ajaloolise/värske allika piiri ning moodustab
@@ -673,7 +676,10 @@ keha, kahekordistada baas-eelarvet ning tõsta konteksti dünaamilise lae kuni `
    moodustavad tavalise RAG-allikaloendi ning iga allika `evidenceText` on täpselt mudelile
    renderdatud blokk, mitte kärpimata originaaltekst. Trace talletab valitud/kasutatud ID-d, hash'id,
    mahud ja kärpimise.
-4. Vastusekoostaja saab renderdatud `RAG_CONTEXT`-i ja route'i lisajuhised.
+4. Vastusekoostaja saab renderdatud `RAG_CONTEXT`-i ja route'i lisajuhised. Tundmatu
+   `social_scope`-iga uus algküsimus peatub enne vastusemudelit deterministlikus domeenipiiris;
+   ebaselge in-scope küsimuse ainus mudelikõne võib anda ainult ühe suletud sõnastusvärava
+   läbinud täpsustuse. Serveris kinnitamata või aegunud recovery-jätk ei saa seda erandit kasutada.
 5. Kui küsimus käivitab täpse fakti lepingu, kontrollib `exact_numeric_fact_v5` vastust enne
    atribuutikat. See kontrollib muu hulgas dokumendi identiteeti, sama renderdatud allika numbreid,
    aasta rolle, protsendi-arvu ja kategooria seoseid ning KOV-kontakti struktuuri; streaming-vastus
@@ -1769,3 +1775,66 @@ deploy'tud. Aktiivne tootmisrelease jääb `3303466a`. Seetõttu on õigekirjavi
 vastus, tõendipuuduse küsimus, validaatori FAIL, tehniline rike, kriisirada, sotsiaalne vastus,
 ET/EN/RU pariteet, uus iseseisev teema ja aegunud paralleeljätk runtime'is kõik `NOT_PROVEN`.
 Kogu 75 juhtumi seisu ei muudeta.
+
+## 47. Inimliku vestluskihi ja viie RAG-veaklassi tootmisrelease — 28.08 `44c1e59b`
+
+### 47.1 Release ja operatiivne lõppvärav
+
+Lõplik runtime-kood `44c1e59b5986a7346f0f391f268d59a94da5b8be` push'iti omaniku
+selge loa alusel nii parandusharusse kui `origin/main`-i ning deploy'ti täieliku serveri-
+build'iga. Lõpliku muutumatu koodipuu `npm run i18n:check`, nelja viimati muudetud faili
+ESLint, `git diff --check` ja Next 16.2.10 tootmisbuild olid rohelised. Automaatteste, probe-,
+smoke-, benchmark- ega E2E-faile ei loodud ega käivitatud.
+
+Deploy-järgses mõõdus olid kohalik HEAD, `origin/main`, `origin/codex/rag-five-runtime-fixes`
+ja puhas serveri checkout kõik SHA-l `44c1e59b`. Aktiivse frontend'i build-ID oli
+`b5sVWJsAm4TPi13MXWgpe`; artefakt oli
+`frontend-current-20260828T133845Z-44c1e59b.tar.gz`. Frontend, RAG ja research-worker olid
+`active`; loopback- ja avalik `/vestlus` vastasid 200. RAG health oli `ok=true` 49 727 vektori
+ja 6089 registrikirjega. Originaal-FTS ja lemma-FTS olid `ready=true`, mõlemal 49 727 lõiku /
+6073 aktiivset registridokumenti ning `generation == expected_generation`.
+
+Top-k-d, fusion'it, korpust, indeksit, serveri env-i, embeddingut ega lemma promotion'it ei
+muudetud. Dokumentatsiooni commit liigub sellest runtime-koodi SHA-st edasi ainult kolme
+elava/auditifaili tõttu; uut koodideploy'd see ei vaja.
+
+### 47.2 Inimlik vestlusleping tootmises
+
+Vestluskiht on RAG-i keeleline vahendaja, mitte iga küsimusega käiv teine assistent. Toetatud
+küsimuse tavarada kasutab ühe vastusemudelikõne. Kui sotsiaalvaldkonna küsimus on ebaselge,
+võib selle sama vooru ainus kõne anda vastuse asemel ühe loomuliku täpsustuse. Täpsustuse jätk
+avatakse ainult serveris kinnitatud sama `USER → ASSISTANT` lõpetatud sõnumipaarile; kliendi
+workflow-lippu ei usaldata. Uus iseseisev küsimus ei päri vana täpsustust. Faktivalidaatori FAIL
+ei tee teist mudelikõnet ning selgitusküsimuse või valideerimata vastuse allikad jäävad tühjaks.
+
+Uue algküsimuse `question_plan.social_scope=unknown` sulgeb vooru enne vastusemudelit täpse
+eestikeelse vastusega „Vastan ainult sotsiaalvaldkonna küsimustele.”. See piir on teadlikult
+konservatiivne: töötaja, teenuse, toetuse, sotsiaaltöö, lastekaitse, eestkoste, hoolduse,
+vaimse tervise ja muu tegeliku sotsiaalvaldkonna signaal jätab küsimuse RAG-rajale. Assistent
+ei otsi veebist ega täida tõendilünka OpenAI või mudeli üldteadmisega.
+
+| käsitsi autentitud tootmisrada | nähtav tulemus | trace ja allikapiir | seis |
+|---|---|---|---|
+| sotsiaalvaldkonnast väljas: „Mis ilm homme Tallinnas on?” | täpselt „Vastan ainult sotsiaalvaldkonna küsimustele.” | `social_scope=unknown`; `action=domain_boundary`; `model_call_count=0`; 0 kuvatud allikat; vestlus `conv-c434b84b-bb24-45e3-88d8-2c850bc4faf8`, assistendisõnum `cmtczzyvc000e0hkm70t7f51f` | **PASS** |
+| kirjavigane: „Kuidas saada sotsiaalvaldkonnas koxrabi?” | „Mida sa sõna „koxrabi” all mõtled?” | `action=ask_clarification`; `reply_source=deterministic_sanitized_clarification`; ühe vooru mudelikõnesid 1, lisakõnesid 0; 0 kuvatud allikat; assistendisõnum `cmtd00r3u000r0hkm8eone85f` | **PASS** |
+| sama vestluse vastus: „Mõtlesin toimetulekutoetust.” | sisuline toimetulekutoetuse tingimuste ja KOV-i taotlemise vastus | tavapärane RAG, 8 valitud / 1 kuvatud allikas; `national-rt-130122025029|paragraph-131|Toimetulekutoetus`; vestlus `conv-ad47b649-1f19-44f7-b45d-913fae1c4d45`, assistendisõnum `cmtd01rtr00170hkmioikczgn` | **PASS** |
+
+### 47.3 Viis põhjusepõhist RAG-parandust ja lõpptõend
+
+| veaklass | juurpõhjus ja peamine koodipind | tootmise lõpptõend SHA-l `44c1e59b` | allesjäänud piir |
+|---|---|---|---|
+| J08 puuduva `26%` | `questionPlanner.js` ühendas ühise proportsioonipeaga alternatiivsed mõõdikud üheks slotiks; `retrievalContextAssembler.js`, `retrievalPlanning.js` ja `retrievalOrchestrator.js` viivad eraldatud slotid generation-/validation-lepingusse | vastus `61 / 26 / 11 / 18`; `requested_metric_contract complete=true`, 4/4; validator PASS `all_claims_in_one_rendered_source`; üks Vaike Vainu 2023 kuvatud allikas; assistendisõnum `cmtd02xpx001p0hkmigxt72uz` | tõendab selle koordineeritud proportsiooniklassi, mitte kõiki loend- ega arvuküsimusi |
+| J18 lühike Erle Eenmaa ankur | production identity ei tarbinud current-turn autori täpset retrieved-metadata kinnitust; `questionPlanner.js`, `retrievalContextAssembler.js`, `evidencePackage.js`, `factContract.js` ja `sourceAttribution.js` seovad promotion'i ainult sama kinnitatud `document_id`-ga ning current-turn ankur võidab ajaloo | kolm sihtrühma × 5, kokku 15; document identity `matched=true`, `confidence=high`, valitud dokument `sotsiaaltoo-1-2022-psuuhiline-erivajadus-eestkoste-osalus-2022-1`; validator PASS ja üks kuvatud allikas; assistendisõnum `cmtd060bi00270hkm3mm3h1ti` | promotion ei laienda ebakindlat title'i ega document_kind'i; muud autorikombinatsioonid jäävad maatriksis mõõtmata |
+| kaks KOV-i valerada | `retrievalContextAssembler.js` käsitles töötaja/KOV-i konteksti kontaktisoovina ilma selge telefoni, e-posti, nime või praeguse kontaktandme soovita | mõlemad küsimused said sisulise RAG-vastuse: KOV-i nõustamisüksuse tugi allikaga `sotsiaaltoo_omavalitsuste-noustamisuksus-2019` (`cmtd073rr002n0hkmgw8eu5s2`) ja lastekaitsetöötaja hindamistugi allikaga `sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017` (`cmtd0891z00330hkm7if2ambz`) | päris kontaktirada säilis: Rakvere küsimus tagastas kaks telefonikirjet ja kaks kuvatud ametlikku kontaktallikat (`cmtd093u6003f0hkmdsdgp7pc`) |
+| mitmeaastane `cross_source_numeric_mix` | tõendipaketi puuduva kvalitatiivse span'i lae `null` muutus `Number(null)=0` tõttu ühe märgi piiriks; lisaks tuli koondperioodi arvud hoida seotud ühe faktiallikaga ning muude aastate tekst lubada ainult kvalitatiivse supplement'ina. Muudatused on peamiselt `factContract.js`, `retrievalContextAssembler.js`, `retrievalPlanning.js`, `ragContext.js`, `evidencePackage.js`, `queryPlanner.js` ja `mainResponseHandler.js` | vastus esitas koondperioodi `678 / 273 / 21 600 / 12 / 43`; validator PASS `temporal_aggregate_period_single_source`; kõik viis arvu seoti sama 2018–2020 koondperioodi 2022 allikaga, kvalitatiivne 2019 companion aktsepteeriti `exact_qualitative_context_bound`; kuvatud allikaid 2; assistendisõnum `cmtd0akap00430hkmes5ald42` | tõendis puuduvad võrreldavad kolm aastarida, seega täpset arvulist 2018→2019→2020 trendi ei väideta; vastus eristab koondnäitaja, 2019 laienemise ja järgmise etapi |
+| J03 õige ajalooline allikas jäi peitu | `sourceAttribution.js`-i värskus-/riskipiir ei eristanud piisavalt explicit source-bounded ajaloolist publikatsioonifakti; `factContract.js` ja `mainResponseHandler.js` säilitavad FAIL-i korral tühja allikaloendi, kuid PASS-i korral saab identifitseeritud aktiivne ajalooline ajakirjaallikas kuvada | vastus tõi kriisitunnused ning `112 / 1220`; document identity high, validator PASS `all_claims_in_one_rendered_source`, attribution `identified_publication_primary_evidence`, required evidence strong; kuvatud allikas `sotsiaaltoo_vaimse-tervise-esmaabi-toole-2018`; assistendisõnum `cmtd0biqc004l0hkm0fnkelql` | riskipoliitikat ei lõdvendatud; validaatori FAIL jätab `displayed_sources=[]` |
+
+### 47.4 Range lõppseis
+
+Viis sihtveaklassi, päris kontaktiregressioon, üks off-domain piir ja üks täpsustusest vastuseni
+jätk on lõplikul runtime-SHA-l käsitsi autentitult kinnitatud. Need tulemused ei anna 75/75
+väidet. ET/EN/RU recovery-pariteet, tehniline RAG-rike, kriisirežiimi recovery-välistus,
+sotsiaalse tänu kõik variandid, paralleelne/aegunud jätk ja ülejäänud 54 ajaloolise maatriksi
+juhtumit jäävad `NOT_PROVEN`. Võrreldavate aastaridade puudumine ei ole enam roboti keeldumine
+ega vale arvusegu: süsteem annab tõendatud koondvastuse ja kvalitatiivse arengu, kuid ei mõtle
+arvulist trendi välja.
