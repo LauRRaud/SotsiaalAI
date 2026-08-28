@@ -36,6 +36,9 @@ def _utc_now() -> str:
 
 
 def _registry_generation(registry: Dict[str, Dict]) -> str:
+    cached_generation = getattr(registry, "generation", None)
+    if isinstance(cached_generation, str) and re.fullmatch(r"[a-f0-9]{64}", cached_generation):
+        return cached_generation
     encoded = json.dumps(
         registry or {},
         ensure_ascii=False,
@@ -59,7 +62,8 @@ def _normalized_tokens(value: str) -> List[str]:
     return [
         token
         for token in str(value or "").split()
-        if (len(token) >= 3 or token.isdigit()) and re.fullmatch(r"[a-z0-9]+", token)
+        if (len(token) >= 3 or token.isdigit())
+        and re.fullmatch(r"[^\W_]+", token, flags=re.UNICODE)
     ]
 
 
@@ -79,7 +83,7 @@ def _match_expression(query_tokens: Iterable[str]) -> str:
     seen = set()
     for raw_token in query_tokens:
         token = str(raw_token or "").strip().lower()
-        if not re.fullmatch(r"[a-z0-9]+", token) or token in seen:
+        if not re.fullmatch(r"[^\W_]+", token, flags=re.UNICODE) or token in seen:
             continue
         seen.add(token)
         variants = [f'"{token}"']

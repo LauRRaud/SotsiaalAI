@@ -3,8 +3,10 @@
 from __future__ import annotations
 
 import json
+import hashlib
 import os
 from pathlib import Path
+import threading
 from typing import Callable, Dict, Optional
 import uuid
 
@@ -35,12 +37,76 @@ def _validate_registry(value) -> Dict[str, Dict]:
     return value
 
 
+class _FrozenDict(dict):
+    def _immutable(self, *args, **kwargs):
+        raise TypeError("registry snapshot is immutable")
+
+    __setitem__ = _immutable
+    __delitem__ = _immutable
+    clear = _immutable
+    pop = _immutable
+    popitem = _immutable
+    setdefault = _immutable
+    update = _immutable
+    __ior__ = _immutable
+
+
+class _FrozenList(list):
+    def _immutable(self, *args, **kwargs):
+        raise TypeError("registry snapshot is immutable")
+
+    __setitem__ = _immutable
+    __delitem__ = _immutable
+    append = _immutable
+    clear = _immutable
+    extend = _immutable
+    insert = _immutable
+    pop = _immutable
+    remove = _immutable
+    reverse = _immutable
+    sort = _immutable
+    __iadd__ = _immutable
+    __imul__ = _immutable
+
+
+def _freeze_value(value):
+    if isinstance(value, dict):
+        frozen = _FrozenDict()
+        dict.update(frozen, {key: _freeze_value(item) for key, item in value.items()})
+        return frozen
+    if isinstance(value, list):
+        frozen = _FrozenList()
+        list.extend(frozen, (_freeze_value(item) for item in value))
+        return frozen
+    return value
+
+
+def _registry_generation(value: Dict[str, Dict]) -> str:
+    payload = json.dumps(
+        value or {},
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+        default=str,
+    ).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
+
+
+class RegistrySnapshot(_FrozenDict):
+    def __init__(self, value: Dict[str, Dict]):
+        dict.__init__(self, {key: _freeze_value(item) for key, item in value.items()})
+        self.generation = _registry_generation(self)
+
+
 class RegistryStore:
     def __init__(self, path: Path, lock_timeout: float = 30.0):
         self.path = Path(path)
         self.backup_path = self.path.with_suffix(f"{self.path.suffix}.last-good")
         self.lock_path = self.path.with_suffix(f"{self.path.suffix}.lock")
         self.lock_timeout = lock_timeout
+        self._cache_lock = threading.RLock()
+        self._snapshot: Optional[RegistrySnapshot] = None
+        self._snapshot_signature = None
 
     def _lock(self):
         self.path.parent.mkdir(parents=True, exist_ok=True)
@@ -58,6 +124,29 @@ class RegistryStore:
             if isinstance(error, OSError):
                 raise RegistryIoError("registry cannot be read") from error
             raise RegistryCorruptError("registry is not valid JSON") from error
+
+    def _file_signature(self):
+        try:
+            stat = self.path.stat()
+            return (True, stat.st_mtime_ns, stat.st_ctime_ns, stat.st_size)
+        except FileNotFoundError:
+            return (False, 0, 0, 0)
+        except OSError as error:
+            raise RegistryIoError("registry cannot be inspected") from error
+
+    def _cached_snapshot(self, signature):
+        with self._cache_lock:
+            if self._snapshot is not None and self._snapshot_signature == signature:
+                return self._snapshot
+        return None
+
+    def _install_snapshot(self, data: Dict[str, Dict], signature=None) -> RegistrySnapshot:
+        snapshot = RegistrySnapshot(_validate_registry(data))
+        resolved_signature = signature if signature is not None else self._file_signature()
+        with self._cache_lock:
+            self._snapshot = snapshot
+            self._snapshot_signature = resolved_signature
+        return snapshot
 
     def _fsync_parent(self):
         try:
@@ -95,6 +184,7 @@ class RegistryStore:
         self._write_atomic(self.path, updated)
         if not self.backup_path.exists():
             self._write_atomic(self.backup_path, updated)
+        self._install_snapshot(updated)
 
     def _under_lock(self, operation: Callable[[], object]):
         try:
@@ -104,7 +194,19 @@ class RegistryStore:
             raise RegistryIoError("registry lock timeout") from error
 
     def load(self) -> Dict[str, Dict]:
-        return self._under_lock(self._read_unlocked)
+        signature = self._file_signature()
+        cached = self._cached_snapshot(signature)
+        if cached is not None:
+            return cached
+
+        def operation():
+            locked_signature = self._file_signature()
+            locked_cached = self._cached_snapshot(locked_signature)
+            if locked_cached is not None:
+                return locked_cached
+            return self._install_snapshot(self._read_unlocked(), locked_signature)
+
+        return self._under_lock(operation)
 
     def replace(self, data: Dict[str, Dict]) -> None:
         def operation():
@@ -114,7 +216,8 @@ class RegistryStore:
 
     def upsert(self, doc_id: str, entry: Dict, *, updated_at: str) -> Dict:
         def operation():
-            registry = self._read_unlocked()
+            current = self._read_unlocked()
+            registry = dict(current)
             merged = dict(registry.get(doc_id) or {})
             if not merged.get("createdAt"):
                 merged["createdAt"] = updated_at
@@ -122,13 +225,14 @@ class RegistryStore:
             merged["docId"] = doc_id
             merged["updatedAt"] = updated_at
             registry[doc_id] = merged
-            self._commit_unlocked(self._read_unlocked(), registry)
+            self._commit_unlocked(current, registry)
             return dict(merged)
         return self._under_lock(operation)
 
     def patch(self, doc_id: str, updates: Dict, *, updated_at: str, clear_fields=None) -> Optional[Dict]:
         def operation():
-            registry = self._read_unlocked()
+            current = self._read_unlocked()
+            registry = dict(current)
             entry = registry.get(doc_id)
             if entry is None:
                 return None
@@ -139,16 +243,17 @@ class RegistryStore:
             updated["docId"] = doc_id
             updated["updatedAt"] = updated_at
             registry[doc_id] = updated
-            self._commit_unlocked(self._read_unlocked(), registry)
+            self._commit_unlocked(current, registry)
             return dict(updated)
         return self._under_lock(operation)
 
     def pop(self, doc_id: str) -> bool:
         def operation():
-            registry = self._read_unlocked()
+            current = self._read_unlocked()
+            registry = dict(current)
             if doc_id not in registry:
                 return False
             registry.pop(doc_id)
-            self._commit_unlocked(self._read_unlocked(), registry)
+            self._commit_unlocked(current, registry)
             return True
         return bool(self._under_lock(operation))

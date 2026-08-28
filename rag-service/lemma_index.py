@@ -24,12 +24,13 @@ from lexical_index import (
     _active_registry_document_count,
     _compile_filter,
     _match_expression,
+    _prefix_terms,
     _registry_generation,
 )
 
 
-LEMMA_INDEX_SCHEMA_VERSION = "lemma-fts-shadow-v1"
-LEMMA_ANALYZER_VERSION = "estnltk-vabamorf-1.7.5-v1"
+LEMMA_INDEX_SCHEMA_VERSION = "lemma-fts-shadow-v2"
+LEMMA_ANALYZER_VERSION = "estnltk-vabamorf-1.7.5-v2"
 _WORD_RE = re.compile(r"[^\W\d_]+|\d+", flags=re.UNICODE)
 _SAFE_LEMMA_TOKEN_RE = re.compile(r"[^\W_]+(?:-[^\W_]+)*", flags=re.UNICODE)
 
@@ -94,14 +95,20 @@ class EstonianLemmaAnalyzer:
             }
 
     def _tokenize(self, value: object) -> List[str]:
-        return _WORD_RE.findall(str(value or "").lower())[: self.max_tokens_per_text]
+        # Vabamorf uses casing when propername=True. Lowercasing before the
+        # analyzer made that option ineffective and damaged name analysis.
+        return _WORD_RE.findall(str(value or ""))[: self.max_tokens_per_text]
 
     @staticmethod
     def _word_lemma_tokens(word_result: object, original: str) -> List[str]:
         analyses = word_result.get("analysis") if isinstance(word_result, dict) else None
-        selected = analyses[0] if isinstance(analyses, list) and analyses else None
-        candidates: List[object] = []
-        if isinstance(selected, dict):
+        # The lemma channel supplements rather than replaces the user's or
+        # document's surface token. This keeps proper names and analyzer
+        # uncertainty searchable while bounded alternatives improve recall.
+        candidates: List[object] = [str(original or "").lower()]
+        for selected in (analyses[:8] if isinstance(analyses, list) else []):
+            if not isinstance(selected, dict):
+                continue
             candidates.append(selected.get("lemma"))
             root_tokens = selected.get("root_tokens")
             if isinstance(root_tokens, list):
@@ -115,7 +122,46 @@ class EstonianLemmaAnalyzer:
                 continue
             seen.add(token)
             output.append(token)
-        return output or [original]
+        return output or [str(original or "").lower()]
+
+    @staticmethod
+    def _estonian_language_hint(tokens: Sequence[Dict[str, object]]) -> Dict[str, object]:
+        function_lemmas = {
+            "kes", "mis", "milline", "mitu", "kuidas", "millal", "kus",
+            "miks", "kas", "ja", "ning", "või", "olema", "saama",
+        }
+        function_hits = 0
+        inflected_hits = 0
+        compound_hits = 0
+        diacritic_hits = 0
+        for token in tokens:
+            surface = str(token.get("surface") or "").strip().lower()
+            lemmas = [str(item or "").strip().lower() for item in token.get("lemmas") or []]
+            roots = [str(item or "").strip().lower() for item in token.get("root_tokens") or []]
+            if any(lemma in function_lemmas for lemma in lemmas):
+                function_hits += 1
+            if len(surface) >= 4 and any(lemma and lemma != surface for lemma in lemmas):
+                inflected_hits += 1
+            if len([root for root in roots if root]) >= 2:
+                compound_hits += 1
+            if any(character in surface for character in "äöõüšž"):
+                diacritic_hits += 1
+        confidence = 0.0
+        reason = "INSUFFICIENT_MORPHOLOGY_SIGNAL"
+        if function_hits >= 1 and (inflected_hits >= 1 or diacritic_hits >= 1):
+            confidence = 0.94
+            reason = "ESTONIAN_FUNCTION_AND_MORPHOLOGY"
+        elif inflected_hits >= 2:
+            confidence = 0.88
+            reason = "ESTONIAN_INFLECTION_PATTERN"
+        elif diacritic_hits >= 1 and (inflected_hits >= 1 or compound_hits >= 1):
+            confidence = 0.82
+            reason = "ESTONIAN_DIACRITIC_AND_MORPHOLOGY"
+        return {
+            "language_hint": "et" if confidence >= 0.8 else None,
+            "language_hint_confidence": confidence,
+            "language_hint_reason": reason,
+        }
 
     def lemmatize_texts(self, values: Sequence[object]) -> Dict[str, object]:
         token_lists = [self._tokenize(value) for value in values]
@@ -135,7 +181,11 @@ class EstonianLemmaAnalyzer:
                 with self._lock:
                     analyzed = analyzer.analyze(
                         pending_words,
-                        disambiguate=True,
+                        # A batch contains words from unrelated chunks. Context
+                        # disambiguation across that boundary creates false
+                        # cross-document context, so retrieval keeps bounded
+                        # alternatives instead.
+                        disambiguate=False,
                         guess=True,
                         propername=True,
                         compound=True,
@@ -162,13 +212,131 @@ class EstonianLemmaAnalyzer:
                     flush()
                 pending_words.append(token)
                 pending_assignments.append((text_index, word_index))
-        flush()
+            # Vabamorf disambiguation may use neighboring tokens. Never let
+            # the end of one document become linguistic context for the next.
+            flush()
 
         return {
             "texts": [" ".join(tokens) for tokens in output_lists],
             "input_token_count": sum(len(tokens) for tokens in token_lists),
             "lemma_token_count": sum(len(tokens) for tokens in output_lists),
             "analysis_ms": analysis_ms,
+        }
+
+    def analyze_query(self, value: object) -> Dict[str, object]:
+        """Analyze one user turn without replacing its surface form.
+
+        Query analysis deliberately keeps bounded alternatives. Vabamorf's
+        disambiguation needs sentence context that a batched list of unrelated
+        queries does not provide, so planner-facing analysis is always scoped
+        to one turn and uses ``disambiguate=False``.
+        """
+        text = str(value or "")
+        matches = list(_WORD_RE.finditer(text))[: self.max_tokens_per_text]
+        words = [match.group(0) for match in matches]
+        if not words:
+            return {
+                "tokens": [],
+                "proper_name_spans": [],
+                "input_token_count": 0,
+                "analysis_ms": 0,
+            }
+
+        analyzer = self._load()
+        started_at = time.perf_counter()
+        try:
+            with self._lock:
+                analyzed = analyzer.analyze(
+                    words,
+                    disambiguate=False,
+                    guess=True,
+                    propername=True,
+                    compound=True,
+                    phonetic=False,
+                    stem=False,
+                )
+        except Exception as error:
+            raise LemmaIndexError("LEMMA_ANALYSIS_FAILED") from error
+        analysis_ms = int((time.perf_counter() - started_at) * 1000)
+        if not isinstance(analyzed, list) or len(analyzed) != len(words):
+            raise LemmaIndexError("LEMMA_ANALYSIS_INVALID")
+
+        tokens: List[Dict[str, object]] = []
+        for match, surface, word_result in zip(matches, words, analyzed):
+            analyses = word_result.get("analysis") if isinstance(word_result, dict) else []
+            analyses = analyses if isinstance(analyses, list) else []
+            lemmas: List[str] = []
+            roots: List[str] = []
+            parts_of_speech: List[str] = []
+            forms: List[str] = []
+            for analysis in analyses[:8]:
+                if not isinstance(analysis, dict):
+                    continue
+                lemma = str(analysis.get("lemma") or "").strip().lower()
+                if lemma and _SAFE_LEMMA_TOKEN_RE.fullmatch(lemma) and lemma not in lemmas:
+                    lemmas.append(lemma)
+                for root in analysis.get("root_tokens") or []:
+                    root_text = str(root or "").strip().lower()
+                    if root_text and _SAFE_LEMMA_TOKEN_RE.fullmatch(root_text) and root_text not in roots:
+                        roots.append(root_text)
+                part_of_speech = str(analysis.get("partofspeech") or "").strip()[:8]
+                if part_of_speech and part_of_speech not in parts_of_speech:
+                    parts_of_speech.append(part_of_speech)
+                form = str(analysis.get("form") or "").strip()[:32]
+                if form and form not in forms:
+                    forms.append(form)
+            tokens.append({
+                "surface": surface,
+                "start": match.start(),
+                "end": match.end(),
+                "lemmas": lemmas[:8] or [surface.lower()],
+                "root_tokens": roots[:8],
+                "part_of_speech": parts_of_speech[:8],
+                "forms": forms[:8],
+                "proper_name_candidate": "H" in parts_of_speech or (
+                    len(surface) > 1 and surface[0].isupper() and surface[1:].islower()
+                ),
+            })
+
+        proper_name_spans: List[Dict[str, object]] = []
+        run: List[Dict[str, object]] = []
+
+        def flush_name_run() -> None:
+            nonlocal run
+            if len(run) >= 2:
+                for start_index in range(len(run)):
+                    bounded = run[start_index:start_index + 4]
+                    if len(bounded) < 2:
+                        continue
+                    start = int(bounded[0]["start"])
+                    end = int(bounded[-1]["end"])
+                    canonical_parts = []
+                    for token in bounded:
+                        token_lemmas = token.get("lemmas") or []
+                        lemma = str(token_lemmas[0] if token_lemmas else token["surface"]).strip()
+                        canonical_parts.append(lemma[:1].upper() + lemma[1:] if lemma else "")
+                    proper_name_spans.append({
+                        "text": text[start:end],
+                        "canonical_text": " ".join(part for part in canonical_parts if part),
+                        "start": start,
+                        "end": end,
+                    })
+                    break
+            run = []
+
+        for token in tokens:
+            if token["proper_name_candidate"]:
+                run.append(token)
+            else:
+                flush_name_run()
+        flush_name_run()
+
+        return {
+            "tokens": tokens,
+            "proper_name_spans": proper_name_spans[:12],
+            "input_token_count": len(tokens),
+            "analysis_ms": analysis_ms,
+            **self._estonian_language_hint(tokens),
         }
 
 
@@ -428,8 +596,14 @@ class PersistentLemmaIndex:
                             "INSERT INTO chunks_fts(rowid, title_lemmas, body_lemmas) VALUES (?, ?, ?)",
                             (
                                 cursor.lastrowid,
-                                normalize_search_text(lemma_texts[row_index * 2]),
-                                normalize_search_text(lemma_texts[row_index * 2 + 1]),
+                                " ".join(filter(None, [
+                                    normalize_search_text(lemma_texts[row_index * 2]),
+                                    _prefix_terms([normalize_search_text(lemma_texts[row_index * 2])]),
+                                ])),
+                                " ".join(filter(None, [
+                                    normalize_search_text(lemma_texts[row_index * 2 + 1]),
+                                    _prefix_terms([normalize_search_text(lemma_texts[row_index * 2 + 1])]),
+                                ])),
                             ),
                         )
                         indexed_documents.add(str(row["doc_id"]))

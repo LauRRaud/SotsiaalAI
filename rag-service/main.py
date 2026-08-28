@@ -251,6 +251,11 @@ _LEMMA_REFRESH_LOCK = threading.Lock()
 _LEMMA_REFRESH_THREAD: Optional[threading.Thread] = None
 _LEMMA_REFRESH_PENDING_REASON: Optional[str] = None
 _LEMMA_REFRESH_ACTIVE_REASON: Optional[str] = None
+_LEMMA_OBSERVATION_LOCK = threading.Lock()
+_LEMMA_OBSERVATION_THREAD: Optional[threading.Thread] = None
+_LEMMA_OBSERVATION_PENDING: Optional[Dict[str, object]] = None
+_LEMMA_OBSERVATION_CACHE: Dict[str, Dict[str, object]] = {}
+_LEMMA_OBSERVATION_CACHE_MAX_ENTRIES = 32
 RAG_REQUEST_SHARED_READ_CACHE_ENABLED = os.getenv(
     "RAG_REQUEST_SHARED_READ_CACHE_ENABLED",
     "1",
@@ -2246,6 +2251,12 @@ class SearchIn(BaseModel):
         return normalized if normalized in {"et", "en", "ru", "unknown"} else None
 
 
+class QueryAnalysisIn(BaseModel):
+    model_config = {"extra": "forbid"}
+
+    query: str = Field(min_length=1, max_length=MAX_QUERY_CHARS)
+
+
 class AgentDocumentSearchIn(BaseModel):
     model_config = {"extra": "forbid"}
 
@@ -3167,7 +3178,7 @@ def _lemma_fts_shadow_status(
     return status
 
 
-def _lemma_fts_shadow_observation(
+def _compute_lemma_fts_shadow_observation(
     *,
     query: str,
     query_language: Optional[str],
@@ -3269,6 +3280,196 @@ def _lemma_fts_shadow_observation(
         except Exception:
             observation["reason"] = "LEMMA_SHADOW_FAILED"
     observation["total_ms"] = int((time.perf_counter() - started_at) * 1000)
+    return observation
+
+
+def _lemma_observation_key(
+    *,
+    query: str,
+    query_language: Optional[str],
+    where: Optional[Dict[str, object]],
+    registry: Dict[str, Dict],
+    production_results: List[Dict],
+) -> str:
+    production_ids = sorted({
+        str(item.get("id") or item.get("chunk_id") or "").strip()
+        for item in production_results
+        if isinstance(item, dict)
+    })
+    production_document_ids = sorted({
+        str(item.get("doc_id") or item.get("docId") or "").strip()
+        for item in production_results
+        if isinstance(item, dict)
+    })
+    payload = json.dumps(
+        {
+            "query": str(query or ""),
+            "query_language": query_language,
+            "where": where,
+            "registry_generation": getattr(registry, "generation", None),
+            "production_ids": production_ids,
+            "production_document_ids": production_document_ids,
+        },
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+        default=str,
+    ).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
+
+
+def _lemma_fts_shadow_observation_worker() -> None:
+    global _LEMMA_OBSERVATION_THREAD
+    global _LEMMA_OBSERVATION_PENDING
+
+    while True:
+        with _LEMMA_OBSERVATION_LOCK:
+            pending = _LEMMA_OBSERVATION_PENDING
+            _LEMMA_OBSERVATION_PENDING = None
+        if not pending:
+            with _LEMMA_OBSERVATION_LOCK:
+                _LEMMA_OBSERVATION_THREAD = None
+            return
+        try:
+            result = _compute_lemma_fts_shadow_observation(
+                query=str(pending.get("query") or ""),
+                query_language=pending.get("query_language"),
+                where=pending.get("where") if isinstance(pending.get("where"), dict) else None,
+                registry=pending.get("registry") if isinstance(pending.get("registry"), dict) else {},
+                production_results=pending.get("production_results")
+                if isinstance(pending.get("production_results"), list)
+                else [],
+            )
+        except Exception:
+            result = {
+                "version": "lemma_fts_shadow_v1",
+                "enabled": RAG_LEMMA_FTS_SHADOW_ENABLED,
+                "index_ready": False,
+                "executed": False,
+                "reason": "LEMMA_SHADOW_FAILED",
+                "query_language": pending.get("query_language") or "unknown",
+                "query_input_form": "retrieval_query",
+                "analyzer_version": LEMMA_ANALYZER.version,
+                "query_token_count": 0,
+                "candidate_count": 0,
+                "production_result_count": len(pending.get("production_results") or []),
+                "chunk_overlap_count": 0,
+                "document_overlap_count": 0,
+                "top_candidates": [],
+                "analysis_ms": 0,
+                "query_ms": 0,
+                "total_ms": 0,
+            }
+        cache_key = str(pending.get("cache_key") or "")
+        with _LEMMA_OBSERVATION_LOCK:
+            if cache_key:
+                _LEMMA_OBSERVATION_CACHE[cache_key] = result
+                while len(_LEMMA_OBSERVATION_CACHE) > _LEMMA_OBSERVATION_CACHE_MAX_ENTRIES:
+                    _LEMMA_OBSERVATION_CACHE.pop(next(iter(_LEMMA_OBSERVATION_CACHE)))
+            should_exit = _LEMMA_OBSERVATION_PENDING is None
+            if should_exit:
+                _LEMMA_OBSERVATION_THREAD = None
+        stage_logger.info(
+            "rag.lemma_fts_shadow.observation %s",
+            json.dumps(
+                {
+                    "outcome": str(result.get("reason") or "UNKNOWN")[:80],
+                    "executed": result.get("executed") is True,
+                    "analysis_ms": int(result.get("analysis_ms") or 0),
+                    "query_ms": int(result.get("query_ms") or 0),
+                    "total_ms": int(result.get("total_ms") or 0),
+                    "candidate_count": int(result.get("candidate_count") or 0),
+                },
+                ensure_ascii=False,
+            ),
+        )
+        if should_exit:
+            return
+
+
+def _lemma_fts_shadow_observation(
+    *,
+    query: str,
+    query_language: Optional[str],
+    where: Optional[Dict[str, object]],
+    registry: Dict[str, Dict],
+    production_results: List[Dict],
+) -> Dict[str, object]:
+    global _LEMMA_OBSERVATION_THREAD
+    global _LEMMA_OBSERVATION_PENDING
+
+    observation: Dict[str, object] = {
+        "version": "lemma_fts_shadow_v1",
+        "enabled": RAG_LEMMA_FTS_SHADOW_ENABLED,
+        "index_ready": False,
+        "executed": False,
+        "scheduled": False,
+        "execution_mode": "async_shadow",
+        "reason": None,
+        "query_language": query_language if query_language in {"et", "en", "ru"} else "unknown",
+        "query_input_form": "retrieval_query",
+        "analyzer_version": LEMMA_ANALYZER.version,
+        "query_token_count": 0,
+        "candidate_count": 0,
+        "production_result_count": len(production_results),
+        "chunk_overlap_count": 0,
+        "document_overlap_count": 0,
+        "top_candidates": [],
+        "analysis_ms": 0,
+        "query_ms": 0,
+        "total_ms": 0,
+    }
+    if not RAG_LEMMA_FTS_SHADOW_ENABLED:
+        observation["reason"] = "LEMMA_FTS_SHADOW_DISABLED"
+        return observation
+    if query_language != "et":
+        observation["reason"] = "QUERY_LANGUAGE_NOT_ESTONIAN"
+        return observation
+
+    cache_key = _lemma_observation_key(
+        query=query,
+        query_language=query_language,
+        where=where,
+        registry=registry,
+        production_results=production_results,
+    )
+    production_reference = [
+        {
+            "id": str(item.get("id") or item.get("chunk_id") or "")[:240],
+            "doc_id": str(item.get("doc_id") or item.get("docId") or "")[:240],
+        }
+        for item in production_results
+        if isinstance(item, dict)
+    ]
+    start_thread: Optional[threading.Thread] = None
+    with _LEMMA_OBSERVATION_LOCK:
+        cached = _LEMMA_OBSERVATION_CACHE.get(cache_key)
+        if cached is not None:
+            delivered = dict(cached)
+            delivered["scheduled"] = False
+            delivered["execution_mode"] = "async_cached"
+            delivered["background_total_ms"] = int(cached.get("total_ms") or 0)
+            delivered["total_ms"] = 0
+            return delivered
+        _LEMMA_OBSERVATION_PENDING = {
+            "cache_key": cache_key,
+            "query": query,
+            "query_language": query_language,
+            "where": where,
+            "registry": registry,
+            "production_results": production_reference,
+        }
+        if _LEMMA_OBSERVATION_THREAD is None:
+            start_thread = threading.Thread(
+                target=_lemma_fts_shadow_observation_worker,
+                name="rag-lemma-fts-shadow-observation",
+                daemon=True,
+            )
+            _LEMMA_OBSERVATION_THREAD = start_thread
+        observation["scheduled"] = True
+        observation["reason"] = "ASYNC_SHADOW_SCHEDULED"
+    if start_thread is not None:
+        start_thread.start()
     return observation
 
 
@@ -3756,7 +3957,9 @@ def _normalize_search_text(value: object) -> str:
     )
     text = unicodedata.normalize("NFD", text)
     text = "".join(ch for ch in text if not unicodedata.combining(ch))
-    text = re.sub(r"[^a-z0-9]+", " ", text)
+    # Keep every Unicode letter and number. The previous ASCII-only boundary
+    # erased Cyrillic queries before the lexical channel saw them.
+    text = "".join(character if character.isalnum() else " " for character in text)
     return re.sub(r"\s+", " ", text).strip()
 
 def _extract_query_paragraph_refs(query: object) -> List[str]:
@@ -9485,6 +9688,29 @@ def _execute_search(
             "total_ms": total_ms,
             "outcome": final_outcome,
         },
+    }
+
+
+@app.post("/analyze-query", dependencies=[Depends(_require_key)])
+def analyze_query(payload: QueryAnalysisIn):
+    try:
+        result = LEMMA_ANALYZER.analyze_query(payload.query)
+    except LemmaIndexError as error:
+        return {
+            "ok": False,
+            "available": False,
+            "analyzer_version": LEMMA_ANALYZER.version,
+            "reason": error.code,
+            "tokens": [],
+            "proper_name_spans": [],
+            "analysis_ms": 0,
+        }
+    return {
+        "ok": True,
+        "available": True,
+        "analyzer_version": LEMMA_ANALYZER.version,
+        "reason": None,
+        **result,
     }
 
 
