@@ -12,6 +12,10 @@ import { logEvent } from "@/lib/chat/logger";
 import { enforceChatRateLimit, readChatRateLimit } from "@/lib/chat-api-rate-limit";
 import { assembleRetrievalContext } from "@/lib/chat/retrievalContextAssembler";
 import { shouldUseAnswerHistory } from "@/lib/chat/retrievalOrchestrator";
+import {
+  buildRecoveryBoundMessage,
+  isRagRecoveryContinuation
+} from "@/lib/chat/conversationalRecovery";
 import { buildReplayResponse, handleMainChatResponse } from "@/lib/chat/mainResponseHandler";
 import { langStrings } from "@/lib/chat/promptBuilder";
 import { readCompletedChatTurnReplay } from "@/lib/chat/turnRegistry";
@@ -130,6 +134,10 @@ export async function POST(req, deps = {}) {
     userId,
     normalizedRole,
     history,
+    trustedRagRecoveryState,
+    trustedRagRecoveryAssistantMessageId,
+    trustedRagRecoveryHistory,
+    trustedRagRecoveryModelHistory,
     helpWorkflowState,
     replyLang,
     languagePlan,
@@ -309,13 +317,28 @@ export async function POST(req, deps = {}) {
 
   let retrievalResult;
   const plannedRagReplyLang = languagePlan?.answerLanguage || replyLang;
+  const recoveryContinuation = isRagRecoveryContinuation(
+    effectiveMessage,
+    trustedRagRecoveryState
+  );
+  const retrievalHistory = recoveryContinuation
+    ? trustedRagRecoveryHistory
+    : rawHistory;
+  const recoveryBoundMessage = recoveryContinuation
+    ? buildRecoveryBoundMessage({
+        message: effectiveMessage,
+        recoveryState: trustedRagRecoveryState,
+        trustedHistory: trustedRagRecoveryHistory
+      })
+    : effectiveMessage;
   try {
     retrievalResult = await routeRuntime.assembleRetrievalContext({
       payloadAudience: payload?.audience,
       graphChannelTestOverride: payload?.graphChannelTest === true,
       normalizedRole,
-      rawHistory,
-      effectiveMessage,
+      rawHistory: retrievalHistory,
+      trustedRagRecoveryState,
+      effectiveMessage: recoveryBoundMessage,
       forceSources,
       forcedMode,
       hasHistory,
@@ -412,11 +435,11 @@ export async function POST(req, deps = {}) {
       : WORK_MODES.GENERAL_QUESTION;
   const mainOrchestrationPlan = chooseOrchestrationPlan({
     intent: genericIntent,
-    message: effectiveMessage,
+    message: recoveryBoundMessage,
     clarifyingTurns,
     requestedThoroughness,
     sourceCount: retrievalMeta.sourceCount,
-    hybridTask: genericIntent === WORK_MODES.SERVICE_GUIDANCE && hasDocumentTaskContext(rawHistory, normalizedRole)
+    hybridTask: genericIntent === WORK_MODES.SERVICE_GUIDANCE && hasDocumentTaskContext(retrievalHistory, normalizedRole)
   });
   logChatInfo("orchestration.plan", {
     mode: mainOrchestrationPlan.mode,
@@ -440,10 +463,14 @@ export async function POST(req, deps = {}) {
         }
       : {})
   };
-  const modelHistory = shouldUseAnswerHistory(effectiveMessage) ? history : [];
+  const modelHistory = recoveryContinuation
+    ? trustedRagRecoveryModelHistory
+    : shouldUseAnswerHistory(effectiveMessage) ? history : [];
   logChatInfo("answer.history_selection", {
     included: modelHistory.length > 0,
-    messageCount: modelHistory.length
+    messageCount: modelHistory.length,
+    recoveryContinuation,
+    trustedRecoveryAvailable: !!trustedRagRecoveryState
   });
   return routeRuntime.handleMainChatResponse({
     req,
@@ -453,6 +480,7 @@ export async function POST(req, deps = {}) {
     userId,
     normalizedRole,
     effectiveMessage,
+    ragContractMessage: recoveryBoundMessage,
     modelUserMessage: effectiveMessage.slice(0, MAX_USER_MESSAGE_CHARS),
     messageLength: effectiveMessage.length,
     history: modelHistory,
@@ -493,6 +521,9 @@ export async function POST(req, deps = {}) {
        pöörde terminalse kirjutusega ühte tehingusse. Ilma `tx`-ita käitub kumbki nagu varem. */
     clientTurnKey,
     sessionTurnLimit,
+    expectedRecoveryAssistantMessageId: recoveryContinuation
+      ? trustedRagRecoveryAssistantMessageId
+      : null,
     chatUsageReused: chatUsageHandle?.reused === true,
     onUsageCommit: (tx) => routeRuntime.commitUsageForRequest(chatUsageHandle, { tx: tx || undefined }),
     onUsageRelease: (reason, tx) => routeRuntime.releaseUsageForRequest(chatUsageHandle, {

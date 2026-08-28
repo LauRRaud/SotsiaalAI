@@ -1818,6 +1818,8 @@ export function useChatStream(config) {
                 const normalize = cfg.normalizeSources || defaultNormalizeSources;
                 sources = normalize(doneSources);
               }
+              const doneWorkflow = normalizeWorkflow(payload?.workflow);
+              if (doneWorkflow) workflow = doneWorkflow;
             } catch {}
             break;
           }

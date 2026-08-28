@@ -3152,10 +3152,10 @@
       "start_short": "Start"
     },
     "fallback": {
-      "no_context_client": "I could not find an exact answer in the materials right now. Please describe your situation in a bit more detail and include at least your municipality or city.",
-      "no_context_worker": "I could not find an exact answer in the materials right now. Please specify the topic, source type, or, if relevant, the municipality and service or situation type.",
-      "retrieval_failed_client": "The search over the materials did not finish this time, so I could not use any sources. This does not mean the answer is missing from the materials. Please send the same question again.",
-      "retrieval_failed_worker": "The search over the materials did not finish this time, so I answered without sources. Rephrasing will not help here — please send the same question again. If this repeats, let us know.",
+      "no_context_client": "Could you clarify which situation, topic, or time period you mean?",
+      "no_context_worker": "Could you clarify which topic, target group, time period, or document you mean?",
+      "retrieval_failed_client": "I could not finish processing your question this time. Could you send the same question once more?",
+      "retrieval_failed_worker": "I could not finish processing your question this time. Could you send the same question once more?",
       "crisis_no_context": "If you are in immediate danger or thinking about harming yourself, call 112 now. For concerns involving children or families, call the Child Helpline at 116 111 (free, 24/7). Victims of violence or crime can call Victim Support at 116 006. If you can, tell me your municipality or city — I will look for the nearest support contacts."
     },
     "empty_intro": "Hello! Briefly describe what you want to know or what guidance you need. For a help request, help offer, deep research, or document analysis, choose it from the + menu. Other tools are in the Workspace.",
