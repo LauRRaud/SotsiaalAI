@@ -524,6 +524,9 @@ export async function POST(req, deps = {}) {
     expectedRecoveryAssistantMessageId: recoveryContinuation
       ? trustedRagRecoveryAssistantMessageId
       : null,
+    recoveryRootUserMessageId: recoveryContinuation
+      ? trustedRagRecoveryState?.rootUserMessageId || null
+      : null,
     chatUsageReused: chatUsageHandle?.reused === true,
     onUsageCommit: (tx) => routeRuntime.commitUsageForRequest(chatUsageHandle, { tx: tx || undefined }),
     onUsageRelease: (reason, tx) => routeRuntime.releaseUsageForRequest(chatUsageHandle, {
