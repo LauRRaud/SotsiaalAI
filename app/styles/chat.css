@@ -1078,14 +1078,23 @@ button[aria-controls="chat-window-scroll"] {
 }
 
 /* ---------- Assistendi tegevusrida: vaiksed ikoon-orbid ----------
-   Kuula / kopeeri / allikad. Hover-seadmel on rida peidus ja ilmub
-   hoveril mulli ALLA (absoluutne — mull ise ei muuda mõõtu, tellija
-   16.07). Puuteseadmel alati nähtav mulli sees (hover-värav all). */
+   Kuula / kopeeri / allikad on alati nähtavad mulli all. Mull reserveerib
+   reale eraldi ruumi, et järgmine sõnum ei saaks tegevusi katta. */
+.panel-scrim[data-conversation="1"] [role="article"][data-role="ai"]:has(> div[aria-label]) {
+  margin-bottom: 3.25rem;
+}
 .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] > div[aria-label] {
+  position: absolute;
+  top: 100%;
+  left: 0.55rem;
   display: flex;
   align-items: center;
   gap: 0.15rem;
-  margin-top: 0.35rem;
+  margin-top: 0;
+  padding-top: 0.18rem;
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 1;
   transition: opacity var(--dur-fast) var(--ease-soft);
 }
 .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] > div[aria-label] > button {
@@ -1138,32 +1147,6 @@ button[aria-controls="chat-window-scroll"] {
 }
 .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] > div[aria-label] time {
   margin-left: 0.45rem;
-}
-@media (hover: hover) {
-  /* Rida hõljub mulli ALL absoluutselt (tellija 16.07): mull ise EI muuda
-     mõõtu. padding-top (mitte margin) hoiab hover-ahela katkematuna, kui
-     kursor liigub mullilt ikoonidele. */
-  .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] > div[aria-label] {
-    position: absolute;
-    top: 100%;
-    left: 0.55rem;
-    margin-top: 0;
-    padding-top: 0.18rem;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity var(--dur-fast) var(--ease-soft);
-  }
-  /* Hover / fookus: ikoonid ilmuvad mulli alla; mull tõuseb järgnevate
-     sõnumite kohale, et rida ei jääks nende alla peitu. */
-  .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"]:hover,
-  .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"]:focus-within {
-    z-index: 5;
-  }
-  .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"]:hover > div[aria-label],
-  .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"]:focus-within > div[aria-label] {
-    opacity: 1;
-    pointer-events: auto;
-  }
 }
 
 /* ---------- Mõtlemisolek: üks vaikne S, ilma nähtava sildi ja mullita ---------- */
