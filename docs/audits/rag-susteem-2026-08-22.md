@@ -1711,3 +1711,61 @@ mõlemad KOV-i sisuküsimused, päris kontaktiregressioon ja J03 kinnitatud. Sis
 trend jääb selle SHA suhtes `NOT_PROVEN`: fail-closed ohutus läbis, kuid võrreldav aastarida puudus.
 Kogu RAG-i `FINAL_SHA` ega 75/75 väidet ei anta; kõik mõõtmata juhtumid ja nimisõnaliste
 slotiloendite varasem piir jäävad `NOT_PROVEN`.
+
+## 46. Vestluslik RAG-taaste — 28.08 kohalik kandidaat `4cc4e65b`
+
+### 46.1 Eesmärk ja kululeping
+
+Vestluskiht ei asenda RAG-i ega lisa iga küsimuse ette või järele teist assistenti. RAG,
+evidence package ja fail-closed validaator jäävad taustal autoriteetseks. Kui olemasolev rada
+saab tõendatud vastuse koostada, tehakse sama üks mudelikõne nagu enne. Kui sisemine tõend ei
+võimalda vastust, kasutatakse selle vooru ainsat mudelikõnet ühe loomuliku täpsustuse jaoks.
+Faktivalidaatori FAIL-i järel teist kõnet ei tehta. Tehnilise RAG-rikke ja lihtsa sotsiaalse
+vastuse korral kasutatakse deterministlikku loomulikku teadet ning mudelikõnesid on null.
+
+| rada | mudelikõnesid voorus | kasutajale nähtav tulemus |
+|---|---:|---|
+| tõendatud tavaline vastus | 1 | vastus ja ainult toetavad allikad |
+| tõendit vajav täpsustus | 1 | üks loomulik selgitusküsimus, allikaid ei kuvata |
+| faktivalidaatori FAIL pärast vastusekatset | 1 | sama kõne turvaline küsimus või serveri kitsas täpsustus; teist kõnet ei tehta |
+| tehniline RAG-rike | 0 | palve küsimus uuesti saata, tehnilist RAG-olekut ei näidata |
+| sotsiaalne tänu või kinnitus ilma infopäringuta | 0 | lühike loomulik vastus |
+
+Assistent ei tohi kasutada veebi, OpenAI üldteadmisi ega muud korpusevälist infot vastuse
+täitmiseks. Mudel on keeleline vahendaja: ta võib parandada ainult kasutaja enda sõnadega
+piiratud tõlgendust või küsida puuduvat dokumenti, aastat, mõõdikut, kontakti või teemat.
+
+### 46.2 Usaldus- ja jätkupiir
+
+Uus `lib/chat/conversationalRecovery.js` määrab ET/EN/RU ühe küsimuse sihid, õigekirjahindi
+piirid, uue teema eristuse ja loomulikud fallback-sõnumid. Mudeli küsimus läbib enne kasutajale
+näitamist suletud sõnastus-, pikkus-, numbri-, URL-i, tehnilise termini ja saladusepiiri;
+kahtlane väljund asendatakse serveri enda küsimusega. Uusi arve, nimesid ega mõisteid ei tohi
+kasutaja küsimusse juurde mõelda.
+
+Recovery jätk ei põhine kliendi saadetud workflow'l. `requestBootstrap.js` loeb kasutajale
+kuuluva vestluse kaks viimast sõnumit ning nõuab täpset `USER → ASSISTANT` paari, mille sama
+`COMPLETED` ChatTurn seob `userMessageId` ja `assistantMessageId` kaudu. `turnRegistry.js` ja
+`persistence.js` kontrollivad eelmise assistendisõnumi snapshot'i sama vestluse advisory lock'i
+all ka retry-rajal. Uus iseseisev küsimus või korraldus ei jätka vana recovery't; lühike vastus
+seotakse serveri omandatud eelmise küsimuse, valideeritud parandushintide ja uue täpsustusega.
+
+`route.js`, `retrievalContextAssembler.js`, `retrievalOrchestrator.js` ja
+`mainResponseHandler.js` annavad selle taastatud, kuid bounded küsimuse plannerile, riskiotsusele,
+retrieval'ile ja faktivalidaatorile. Päriselt salvestatud kasutajasõnum jääb kasutaja praeguseks
+tekstiks. `useChatStream.js` võtab voogedastuse lõpus serveri workflow-seisu vastu, mistõttu jätk
+toimib ilma lehe uuesti laadimiseta. Selgitusküsimusel, sotsiaalsel vastusel ja validaatori FAIL-il
+on `displayed_sources=[]`; kriisirada jääb recovery'st välja ja säilitab olemasoleva ohutusvastuse.
+
+### 46.3 Kohalik värav ja aus piir
+
+Muudetud JavaScripti scoped ESLint, `npm run i18n:check`, `git diff --check` ja Next 16.2.10
+tootmisbuild olid rohelised. Sõltumatu staatiline järelülevaatus ei leidnud P1/P2 leide. Korpust,
+indeksit, top-k-d, fusion'it, embeddingut, lemma promotion'it ega serveri env-i ei muudetud.
+Automaatteste, test-, probe-, smoke-, benchmark- ega E2E-faile ei loodud ega käivitatud.
+
+Kandidaat on ainult kohalikul olemasoleval harul commit'is `4cc4e65b`; seda ei ole push'itud ega
+deploy'tud. Aktiivne tootmisrelease jääb `3303466a`. Seetõttu on õigekirjaviga → täpsustus →
+vastus, tõendipuuduse küsimus, validaatori FAIL, tehniline rike, kriisirada, sotsiaalne vastus,
+ET/EN/RU pariteet, uus iseseisev teema ja aegunud paralleeljätk runtime'is kõik `NOT_PROVEN`.
+Kogu 75 juhtumi seisu ei muudeta.

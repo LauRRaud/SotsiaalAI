@@ -853,3 +853,35 @@ ega käivitatud. Runtime'il `3303466a` on kinnitatud J08, J18, mõlemad KOV-i si
 kontaktiregressioon ja J03. Sisuline kolmeaastane trend jääb selle SHA suhtes `NOT_PROVEN`;
 kontrollitud keeldumine kinnitab ainult fail-closed ohutust. Seda sihtväravat ei kanta üle kogu
 75 juhtumi ringile: 75/75 ja kõik mõõtmata variandid jäävad `NOT_PROVEN`.
+
+### 28.08 vestlusliku taastamise lokaalne kvaliteedivärav — kood `4cc4e65b`
+
+Kohalik kandidaat muudab kasutajale nähtava tõendipuuduse üheks loomulikuks
+selgitusküsimuseks, kuid ei luba vastata välise või mudeli üldteadmisega. Tavalisel vastuserajal
+on jätkuvalt üks mudelikõne. Tõendipuuduse voor kasutab sama ainsat kõnet täpsustuseks;
+faktivalidaatori FAIL ei tee teist kõnet ning tehniline RAG-rike ja sotsiaalne tänu kasutavad
+null mudelikõnet. Selgitusküsimuse ja FAIL-i allikaloend jääb tühjaks.
+
+Staatiline kvaliteedivärav läbis muudetud failide ESLinti, ET/EN/RU sõnumikataloogide kontrolli,
+`git diff --check`-i ja Next 16.2.10 tootmisbuild'i. Sõltumatu järelülevaatus kontrollis serveri
+omandatud recovery-seisu, sõnumipaari ja lukustuse sidumist, uue teema piiri, õigekirjahindi
+sidumist, planneri/riski/validatori taastatud konteksti, ühe mudelikõne ülempiiri, FAIL-allikate
+peitmist, voogedastuse metadata ning ET/EN/RU sõnastust; P1/P2 leide ei jäänud. Need on koodi-
+ja ehitusväravad, mitte runtime-tõend. Automaatteste, probe'e, smoke-, benchmark- ega E2E-radu
+ei loodud ega käivitatud.
+
+| deploy-järgne käsitsi autentitud kontroll | praegune seis |
+|---|---|
+| kirjavigane küsimus → assistendi täpsustus → lühike „jah” või sihitud vastus → sisemine RAG-vastus | **NOT_PROVEN** |
+| puuduv dokument, aasta, mõõdik, kontakt või teema → üks asjakohane selgitusküsimus | **NOT_PROVEN** |
+| faktivalidaatori FAIL → fakti ei väljastata, teist mudelikõnet ega allikat ei lisata | **NOT_PROVEN** |
+| tehniline RAG-rike → loomulik korduspalve ilma tehnilise veatekstita | **NOT_PROVEN** |
+| kriisiküsimus → olemasolev kriisirada, recovery ei sekku | **NOT_PROVEN** |
+| sotsiaalne tänu/kinnitus → loomulik vastus ilma retrieval'i või mudelikõneta | **NOT_PROVEN** |
+| ET/EN/RU taastamine, sh õigekirjaviga ja uus iseseisev küsimus pärast täpsustust | **NOT_PROVEN** |
+| paralleelne või aegunud recovery-jätk → server lükkab vana snapshot'i tagasi | **NOT_PROVEN** |
+
+Kandidaat asub ainult kohalikus commit'is `4cc4e65b`; push'i ega deploy'd ei ole tehtud ja
+tootmine kasutab endiselt `3303466a`. Seetõttu ei muudeta ühegi 75 põhijuhtumi tulemust ega anta
+uut `FINAL_SHA` väidet. Kogu uus vestluslik runtime-käitumine jääb kuni täieliku deploy ja
+käsitsi autentitud sama vestluse kontrollideni `NOT_PROVEN`.
