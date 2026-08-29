@@ -8,7 +8,7 @@ jooksu tulemus ei jää ainult vestluse ajalukku.
 - Golden: eraldi regressioonikomplekt `37`, ei lähe 75 nimetajasse
 - Küsimuste esitaja: Luna
 - Soli küsimuste jooks: keelatud
-- Praegune staatus: `NOT_PROVEN`
+- Praegune staatus: `PARTIAL RUN — vana runtime bc6; uued parandused NOT_PROVEN`
 
 ## Faas 1 — varasemad FAIL/PARTIAL juhtumid, `isolated`
 
@@ -88,8 +88,13 @@ paus; kogu 75 küsimuse faasi ei alustata enne uut luba.
 
 ## Vahekokkuvõte
 
-- Faas 1 lõpetatud: `NOT_PROVEN`
-- Faas 2 lõpetatud: `NOT_PROVEN`
-- Paus pärast faasi 2: `REQUIRED`
+- Faas 1 lõpetatud: `34/34` (`12 PASS`, `3 PARTIAL`, `19 FAIL`)
+- Faas 2 lõpetatud: `25/34`; puudu `A08`, `A10`, `S08`, `M01`, `M02`, `M07`, `K01`, `K02`, `K05`
+- Paus pärast faasi 2: `REQUIRED — kehtib; enne uut jooksu lõpetatakse parandused`
 - 75 küsimuse värav: `NOT_STARTED`
 - Golden 37 värav: `NOT_STARTED`
+
+Käesoleva faili tulemused kuuluvad ainult runtime'ile `bc6dbacea4eef24e79e238c4dbdc66f28ca8f4ec`.
+Pärast seda tehtud üldine EstNLTK leksikaalne recall, autoriregistri inventar ja K05
+mitme-KOV-i täpsustus vajavad uuel muutumatul release'il uut Luna kordust; vana tulemusi ei
+kanta uuele SHA-le PASS-ina üle.

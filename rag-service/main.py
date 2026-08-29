@@ -2193,6 +2193,10 @@ def clean_include(include):
 
 class SearchIn(BaseModel):
     query: str = Field(min_length=1, max_length=MAX_QUERY_CHARS)
+    # Algne lause jääb dense-embeddingu ja fraasiseoste jaoks puutumata. Need
+    # EstNLTK kandidaadid laiendavad ainult sõnajärjest sõltumatut leksikaalset
+    # otsingut; ükski oletatud lemma ei asenda kasutaja kirjutatud sõna.
+    lexical_terms: Optional[List[str]] = None
     # Olemasoleva Next.js keeleplaani bounded tulemus. Seda kasutatakse ainult
     # eesti lemma-FTS shadow-kanali aktiveerimiseks, mitte retrieval'i otsuseks.
     query_language: Optional[str] = None
@@ -2242,6 +2246,19 @@ class SearchIn(BaseModel):
                 raise ValueError("batch query is too long")
             seen.add(query)
             cleaned.append(query)
+        return cleaned
+
+    @field_validator("lexical_terms")
+    @classmethod
+    def validate_lexical_terms(cls, value):
+        cleaned = []
+        seen = set()
+        for item in list(value or [])[:64]:
+            term = str(item or "").strip()
+            if not term or len(term) > 120 or term in seen:
+                continue
+            seen.add(term)
+            cleaned.append(term)
         return cleaned
 
     @field_validator("query_language", mode="before")
@@ -4247,11 +4264,19 @@ def _query_named_entity_tokens(query: str) -> set:
             tokens.add(normalized)
     return tokens
 
-def _prepare_lexical_query(query: str) -> Dict[str, object]:
+def _prepare_lexical_query(
+    query: str,
+    lexical_terms: Optional[List[str]] = None,
+) -> Dict[str, object]:
     phrases = _query_phrases(query)
+    surface_tokens = _search_tokens(query)
+    candidate_tokens = _search_tokens(
+        " ".join(str(value or "") for value in (lexical_terms or [])[:64]),
+        limit=128,
+    )
     return {
         "phrases": phrases,
-        "query_tokens": _search_tokens(query),
+        "query_tokens": list(dict.fromkeys([*surface_tokens, *candidate_tokens]))[:128],
         "named_entity_tokens": _query_named_entity_tokens(query),
         "paragraph_refs": _extract_query_paragraph_refs(query),
         "full_query": phrases[0] if phrases else _normalize_search_text(query),
@@ -5046,9 +5071,10 @@ def _score_lexical_rows(
     include_title: bool = True,
     min_score: float = 3.0,
     metrics: Optional[Dict[str, object]] = None,
+    lexical_terms: Optional[List[str]] = None,
 ) -> List[Dict[str, object]]:
     normalization_t0 = time.perf_counter()
-    prepared_query = _prepare_lexical_query(query)
+    prepared_query = _prepare_lexical_query(query, lexical_terms)
     prepared_rows: List[Dict[str, object]] = []
     row_values: List[Tuple[object, str, Dict[str, object], Dict[str, object]]] = []
     for i, item_id in enumerate(ids):
@@ -5496,17 +5522,26 @@ def _registry_author_matches_query(
     normalized_author = _normalize_search_text(author)
     if re.search(rf"(?:^|\s){re.escape(normalized_author)}(?:$|\s)", normalized_query):
         return True
-    # Estonian questions inflect names (for example Kütt -> Küti).
-    # Require the first name exactly and only allow a conservative
-    # one-stem difference in the final name token. This is a bounded
-    # registry identity check, not a global fuzzy person search.
-    first_name = _normalize_search_text(parts[0])
-    surname = _normalize_search_text(parts[-1])
-    for index, word in enumerate(query_words[:-1]):
-        if word != first_name:
+    # Resolve every registry name part as a token sequence. Multi-part and
+    # hyphenated surnames must not fail merely because the final part carries
+    # an Estonian case ending (Krais-Leosk -> Krais-Leoski). Intermediate
+    # parts stay exact and only the final token gets bounded stem tolerance.
+    author_words = _search_tokens(normalized_author, limit=10)
+    if len(author_words) < 2:
+        return False
+    for index, word in enumerate(query_words):
+        if word != author_words[0]:
             continue
-        query_surname = query_words[index + 1]
-        if len(query_surname) < 3:
+        candidate = query_words[index:index + len(author_words)]
+        if len(candidate) != len(author_words):
+            continue
+        if candidate[1:-1] != author_words[1:-1]:
+            continue
+        surname = author_words[-1]
+        query_surname = candidate[-1]
+        if query_surname == surname:
+            return True
+        if min(len(query_surname), len(surname)) < 3:
             continue
         common = 0
         for left, right in zip(surname, query_surname):
@@ -5849,6 +5884,7 @@ def _fetch_lexical_candidates(
     request_scope_key: Optional[str] = None,
     shared_read_metrics: Optional[Dict[str, int]] = None,
     author_shortlist_doc_ids: Optional[List[str]] = None,
+    lexical_terms: Optional[List[str]] = None,
 ) -> Dict[str, object]:
     lexical_started_at = time.perf_counter()
     metrics = _new_lexical_metrics()
@@ -5924,6 +5960,7 @@ def _fetch_lexical_candidates(
                 authored_metas,
                 body_only=True,
                 metrics=metrics,
+                lexical_terms=lexical_terms,
             )
             if author_shortlist_doc_ids is not None:
                 best_by_document: Dict[str, Dict[str, object]] = {}
@@ -6023,6 +6060,7 @@ def _fetch_lexical_candidates(
                 body_only=True,
                 min_score=0.2,
                 metrics=metrics,
+                lexical_terms=lexical_terms,
             )
             if fact_scored:
                 for candidate in fact_scored:
@@ -6048,6 +6086,9 @@ def _fetch_lexical_candidates(
         except Exception:
             logger.exception("registry fact description shortlist retrieval failed")
     lexical_query = _synthesis_focus_query(query)
+    lexical_candidate_tokens = list(
+        _prepare_lexical_query(lexical_query, lexical_terms).get("query_tokens") or []
+    )
     if lexical_query != str(query or "").strip():
         return finish({
             "candidates": [],
@@ -6077,6 +6118,7 @@ def _fetch_lexical_candidates(
                 anchored_metas,
                 body_only=True,
                 metrics=metrics,
+                lexical_terms=lexical_terms,
             )
             if anchored_scored:
                 anchored_limit = max(0, min(max(1, top_k), RAG_LEXICAL_TOP_K))
@@ -6164,6 +6206,7 @@ def _fetch_lexical_candidates(
                 shortlist_metas,
                 body_only=True,
                 metrics=metrics,
+                lexical_terms=lexical_terms,
             )
             shortlist_scored_candidates = shortlist_scored
             title_fact_cue = re.search(
@@ -6309,6 +6352,7 @@ def _fetch_lexical_candidates(
             shortlist_metas,
             body_only=True,
             metrics=metrics,
+            lexical_terms=lexical_terms,
         )
         shortlist_scored_candidates = shortlist_scored
         if _lexical_shortlist_is_conclusive(shortlist_scored):
@@ -6346,7 +6390,7 @@ def _fetch_lexical_candidates(
             _add_lexical_elapsed(metrics, "lexical_registry_shortlist_ms", registry_t0)
             index_t0 = time.perf_counter()
             indexed = LEXICAL_INDEX.search(
-                query_tokens=_search_tokens(lexical_query),
+                query_tokens=lexical_candidate_tokens,
                 where=chroma_where,
                 registry=index_registry,
                 limit=RAG_PERSISTENT_LEXICAL_INDEX_CANDIDATES,
@@ -6387,6 +6431,7 @@ def _fetch_lexical_candidates(
                 filtered_metadatas,
                 body_only=True,
                 metrics=metrics,
+                lexical_terms=lexical_terms,
             )
             scored_by_id: Dict[str, Dict[str, object]] = {}
             for candidate in [*shortlist_scored_candidates, *indexed_scored]:
@@ -6470,6 +6515,7 @@ def _fetch_lexical_candidates(
         all_metas,
         body_only=True,
         metrics=metrics,
+        lexical_terms=lexical_terms,
     )
     scored_by_id: Dict[str, Dict[str, object]] = {}
     for candidate in [*shortlist_scored_candidates, *scanned_scored]:
@@ -9323,6 +9369,7 @@ def _execute_search(
             request_scope_key=stage_request_id,
             shared_read_metrics=shared_read_metrics,
             author_shortlist_doc_ids=exact_author_document_ids,
+            lexical_terms=payload.lexical_terms,
         )
         if lexical_requested
         else {"candidates": [], "scanned": 0, "complete": True, "error": None}
