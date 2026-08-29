@@ -13,7 +13,7 @@ Märkus: see on uus jooks. Varasemaid `results.md` ja `results-codex-teine-mootm
 | Sisuline vastus | 41 |
 | Osaline vastus või täpsustust vajav vastus | 16 |
 | Puuduv, ebapiisav või vale vastus | 18 |
-| Allikapaneel avanes | 53 / 75 |
+| Allikapaneel avanes | 52 / 75 |
 
 Kategooriad on operatiivne hindamine selle jooksu põhjal: `PASS` tähendab, et vastus täitis küsimuse põhinõude ja allikapaneel oli olemas; `PARTIAL` tähendab, et vastus oli kasutatav, kuid jättis nõude täitmata, küsis tarbetut täpsustust või allika identiteet oli liiga üldine; `FAIL` tähendab ebapiisavat, puuduvat või sisuliselt valet vastust. See ei ole väide kõigi väidete faktikontrolli kohta.
 
@@ -99,7 +99,7 @@ Kategooriad on operatiivne hindamine selle jooksu põhjal: `PASS` tähendab, et 
 
 ## Olulised järeldused
 
-1. Allikate püsiv kuvamine töötab: allikapaneel avanes 53 korral ning seda ei peidetud enam üksnes riskisõnade heuristika tõttu.
+1. Allikate püsiv kuvamine töötab: allikapaneel avanes 52 korral ning seda ei peidetud enam üksnes riskisõnade heuristika tõttu.
 2. Seaduseallikate rada on selles jooksus tugev: N11–N15 ja K07–K10 vastasid koos vastava paragrahvi allikaga.
 3. Autoripäringute üldine rada on endiselt katki: A01–A08 ei toonud autorit usaldusväärselt välja; A09 on erand, mis näitab, et korpus sisaldab autorite teemade jaoks materjali.
 4. Dokumentide täpne identiteet vajab tööd: M01, M02 ja M07 ning K01/K02 allikapealkirjade üldisus näitavad retrieval- ja source-identity probleemi, mitte üksnes riskipoliitika probleemi.

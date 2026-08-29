@@ -62,7 +62,20 @@ export function formatSourceLabel(src) {
     ? normalizeSourceLabelPages(src.short_ref.trim())
     : "";
   const syntheticEvidenceRef = isSyntheticEvidenceRef(shortRef);
-  if (shortRef && shortRef.length > 8 && !syntheticEvidenceRef) return shortRef;
+  const municipalityName = String(src?.municipalityName || src?.municipality_name || "").trim();
+  const sourceType = String(src?.sourceType || src?.source_type || src?.type || "").trim().toLowerCase();
+  const municipalSource = ["kov_service", "kov_service_info", "municipality_service", "kov_regulation"].includes(sourceType);
+  if (shortRef && shortRef.length > 8 && !syntheticEvidenceRef) {
+    if (!municipalSource) return shortRef;
+    const kindLabel = sourceType === "kov_regulation" ? "kohalik õigusakt" : "teenuseinfo";
+    const status = String(src?.sourceStatus || src?.source_status || "").trim().toLowerCase();
+    const statusLabel = ["active", "current", "kehtiv"].includes(status) ? "kehtiv" : "";
+    return joinSourceSegments([
+      municipalityName && !shortRef.toLowerCase().includes(municipalityName.toLowerCase()) ? municipalityName : null,
+      shortRef,
+      [statusLabel, kindLabel].filter(Boolean).join(" ")
+    ]);
+  }
 
   const authors = asAuthorArray(src?.authors);
   const authorText = authors.length ? authors.join("; ") : null;

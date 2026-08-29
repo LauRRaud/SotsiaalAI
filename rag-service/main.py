@@ -5512,7 +5512,11 @@ def _registry_author_shortlist_doc_ids(
         ).items():
             if not registry_filter_metadata.get(key) and value:
                 registry_filter_metadata[key] = value
-        if not _metadata_matches_filter(registry_filter_metadata, chroma_where):
+        # Resolve the canonical author inventory before applying an exact
+        # surface-form author filter. Estonian case forms (Kütt/Küti) must not
+        # discard the correct registry row before bounded name matching runs.
+        author_scope_where = _without_author_token_filter_group(chroma_where)
+        if not _metadata_matches_filter(registry_filter_metadata, author_scope_where):
             continue
         author_tokens = []
         for index in range(MAX_AUTHOR_TOKEN_SLOTS):
@@ -9116,6 +9120,8 @@ def _execute_search(
             registry_ms += _ms_since(author_summary_t0)
             author_metadata_summary = {
                 "requested_author": requested_author_tokens[0],
+                "canonical_author_name": requested_author_tokens[0],
+                "canonical_author_key": _normalize_search_text(requested_author_tokens[0]),
                 "document_count": len(exact_author_document_ids),
                 "document_ids": exact_author_document_ids[:500],
                 "document_ids_complete": author_index_complete and len(exact_author_document_ids) <= 500,
