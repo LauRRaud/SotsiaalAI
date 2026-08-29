@@ -94,6 +94,19 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 **75 küsimuse analüüsist tulnud RAG-i semantikaparandus on selles release'is koondatud üheks läbivaks lepinguks.** `SemanticTurnContract` kannab nime-, teema-, aja-, allikajätku-, riski- ja faktiväljad plannerist otsingusse, vastuse valideerimisse ja trace'i; tundmatu küsimus liigub sotsiaalvaldkonda ainult tugeva otsingujärgse tõendi korral ning trace eristab `strong / weak / none` tulemust. EstNLTK/Vabamorf annab plannerile pindkuju, lemma, liitsõnaosad ja pärisnimespännid, kuid ei otsusta intenti; iga nimega küsimus sunnib sisekorpuse otsingu ning „Kes on …?” kasutab autori ja tema kirjutiste rada. RU/EN pöörded säilitavad algpäringu ja vastuse keele, kuid saavad autori-, KOV-, õigus-, juhendi- ja uuringufakti otsinguks kontrollitud eestikeelsed semantilised terminid koos algsete nimede, arvude, aastate ja paragrahvidega. KOV lahendatakse enne plannerit, SourcePackage jääb vastuse põhistruktuuriks, kuid kuvamisõigus liigub nüüd küsimuse sektsioonist tegelikult kasutatud sektsiooni ja selle `source_id`-deni; pelk samasse package'isse kuulumine allikat ei kuva. Uuringufakti rada tuvastab esmalt dokumendi ja teeb faktipäringu ainult valitud `doc_id` piires. Ühine `RequestedFactSlot` leping hõlmab proportion/count/amount/magnitude/duration välju ja J07-laadseid kategooriaslotte, seob iga nõutud välja ühe renderdatud allika väärtusega ning lükkab tagasi puuduva või kõrvalise arvuväite. Allikajälg eristab nüüd retrieved-, selected-context-, model-context-, validator-supported-, claim-supported- ja displayed-source ID-d; claim→source graafis on väite räsi ning toetavad allikad, `answer_source_ids` ei ole enam kuvatud allikate alias. Registri muutumatu snapshot, atomaarne põlvkonnavahetus, Unicode-leksikaalotsing ja piiratud taustal töötav lemma-FTS shadow eemaldavad varasemad jõudlus- ja järjepidevusvead tootmisjärjestust muutmata. Serveri toorjälg, DB-projektsioon, auditi normaliseering ja UI-tõend on eraldi kihid. Canonical manifestis on 75 unikaalset ID-d, `B03=S`, `B04=M+N`, `B05=K` ning parandatud J06/J12/J14/J18 ground truth; varasemad runtime'i tulemused ja trace'id jäid muutmata. Muudetud failide ESLint, Pythoni süntaks, `i18n:check`, `git diff --check` ja Next 16.2.10 tootmisbuild on rohelised. Automaatteste, probe-, smoke-, benchmark- ega E2E-radu ei loodud ega käivitatud; top-k-d, fusion'it, korpust, indeksit, embeddingut ega env-i ei timmitud. Parandatud 75 küsimuse kordus ja autentitud sisuline runtime jäävad kuni eraldi mõõtmiseni **NOT_PROVEN**; järgmine samm on sama 75 küsimuse kordus uuel release'il.
 
+**Sotsiaaltöö 2016–2026 artiklivõrdlusest sündinud tootekaart on 28.08 vestluse tööjäljest
+kohalikult taastatud; Git-ajaloos seda ei olnud.** Taastatud on 11 algset `ST10-*`
+arenduslepingut, 12 funktsiooni seoseid ja arendusjärjekorda kirjeldav kaart ning S4 elav
+12/12 register; STAR2 üleandmispaketi lepinguline kodu jääb olemasolevasse JTA lepingusse.
+Eetikakompassi varasemas arutelus faili ei loodud. Nüüd on S4 kirjeldusele lisatud eraldi
+[`Ametialase teejuhi`](./ametialane-teejuht-v1-arendusleping.md) ja
+[`Eetilise juhtumiarutelu ruumi`](./eetilise-juhtumiarutelu-ruum-v1-arendusleping.md)
+kanoonilised V1 lepingud ning Sotsiaaltöö arengukaardi leping täpsustab algallika,
+autorisünteesi ja tootetõlke piiri. Tegemist on dokumentatsioonitööga: rakenduskoodi ega
+RAG-i ei muudetud, runtime on `not_run` ning taastatud 24.08 seisuväited vajavad enne
+arenduse alustamist värsket koodi- ja aktiivse registri kontrolli. Commit'i, push'i ega
+deploy'd ei ole tehtud.
+
 **Hinnastuse kaartide tüpograafia on toodangus SHA-l `59041ca1` (27.08):** paketi „Vali …” nupp kasutab taas platvormi tavalist sisupõhist laiust, mitte 92% kaardilaiust, ning avatud funktsiooniridade kiri on 18 px (1,125 rem) / 0,025 em. Avalehe heli- ja „Jäta vahele” nupud paiknevad samal keskjoonel; hinnastuse päisest on eemaldatud registreerumise teade ning paketi täisvõrdlusest pealkiri „Kõik selle paketi võimalused”. Deploy' eel olid `i18n:check`, tootmisbuild ja `git diff --check` rohelised. Deploy' järel olid frontend, RAG ja research-worker aktiivsed ning kohalik ja avalik `/hinnastus` vastasid 200; päris tootmisvaates mõõdeti sisupõhine nupp desktopil 152 px ja 390 px mobiilivaates 152 px laiuseks, avatud loendi kiri oli 18 px / 0,45 px ning horisontaalset ülevoolu ei olnud.
 
 **RAG-i viie runtime-veaklassi lõplik põhjusepõhine koodirelease on `44c1e59b5986a7346f0f391f268d59a94da5b8be` (28.08) toodangus; kogu süsteem on endiselt PARTIAL.** Autentitud värsketes vestlustes andis J08 kõik neli küsitud osakaalu `61 / 26 / 11 / 18` ning trace kinnitas 4/4 requested-slot'i ja ühe kuvatud Vaike Vainu 2023 allika; lühike J18 vastas kolm korda 5 ja kokku 15, sidus current-turn Erle Eenmaa ankru täpselt 2022 artikliga ning kuvas selle allika. Mõlemad töötajate sisulise toe küsimused läksid RAG-i ja said allikapõhise vastuse, samal ajal kui päris Rakvere telefoniküsimus jäi kontaktiregistri rajale ning tagastas kaks kontrollitud kontakti. Mitmeaastane seltsiliste küsimus ei blokeerunud enam: vastus esitas tõendatud 2018–2020 koondnäitajad `678 / 273 / 21 600 / 12 / 43`, ütles selgelt, et eraldi aastarida ega arvuline aastatrend ei ole tõendis kinnitatud, ning lisas eraldi 2019. aasta laienemise ja 2022. aastal kirjeldatud järgmise etapi; faktivalidaator andis PASS-i `temporal_aggregate_period_single_source`, arvud seoti ühe koondperioodi allikaga ja kaks kvalitatiivse arengu allikat kuvati. J03 vastas kriisitunnuste ja `112 / 1220` kohta, document identity oli high, validaator PASS ning õige 2018 ajakirjaallikas jõudis kuvatud allikaks. Võrreldavat 2018/2019/2020 aastarida ei leiutata ning täpne arvuline aastatrend jääb selle korpusetõendi suhtes **NOT_PROVEN**.
@@ -2251,6 +2264,10 @@ Koostatud 03.08 läbiva korjega: `ideed.md` (29 peatükki), `SotsiaalAI.md` regi
 näinud neid."* Kui funktsioon ei ole siin, siis teda praktikas ei ole olemas: teda ei
 plaanita, ei prioriseerita ega mäletata.
 
+**Omaniku kinnitus 28.08.2026:** `ideed.md` võib säilitada kontseptsiooni ja tausta, kuid
+kõik päris tootefunktsiooni ideed peavad olema ka siin S4-s koos lähte, tegeliku seisu,
+piiride ja järgmise ühikuga. Ainult kõrvalfailis kirjeldatud idee ei kuulu arendusregistrisse.
+
 **Kaks liiki tööd, mida ei tohi ühte nimekirja panna (omanik 03.08).**
 
 | Liik | Mis see on | Mida vajab |
@@ -2569,6 +2586,242 @@ kovisiooni viimist** ja töötaja kinnitab selle.
 **Praktika arenguvaade** näitab töötajale tema enda kasutatud meetodeid, korduvaid küsimusi,
 toe vajadusi ja soovitatavaid õppimisteemasid. **Seda ei tohi kasutada töötajate edetabeli
 ega tulemuslikkuse hindamiseks** — see keeld peab olema arhitektuuris, mitte poliitikas.
+
+---
+
+#### Sotsiaaltöö 2016–2026 artiklitest tuletatud vajadused ja tootetõlked
+
+*Lähtematerjal: omaniku 24.08.2026 ülesanne võrrelda kümne aasta sotsiaaltöö artikleid
+SotsiaalAI tegelike funktsioonidega, leida olemasolevate radade täiendused ja uued
+funktsioonid ning siduda iga funktsioon arenduslepinguga. Aluseks olid ajakirja
+`Sotsiaaltöö` 2016–2025 täiskümnend, 2026. aasta kaks esimest numbrit ja kontrollitud
+kümnendisüntees. Algne dokumentatsioon jäi commit'imata ja kadus tööpuust; allolev register,
+11 lepingufaili ja eraldi arenduskaart taastati 28.08.2026 algse Codexi vestluse täielikest
+failimuudatustest.*
+
+**Tõenduspiir.** Aasta ja vajadus pärinevad artiklivõrdlusest. Funktsiooninimi ja digitaalne
+lahendus on SotsiaalAI tootetõlge, mitte väide, et allikas pakkus sama toodet. Taastatud
+leping kirjeldab arendust, kuid ei tõenda funktsiooni valmimist. Allolev teostusseis on
+konservatiivne taastamisseis; enne mis tahes ploki alustamist tuleb lepingus nimetatud doonorid
+värskest koodist ja RAG-i puhul aktiivsest registrist uuesti kontrollida (`runtime: not_run`).
+
+Detailne ristanalüüs, dubleerimispiirid ja soovitatud arendusjärjekord on taastatud failis
+[`sotsiaaltoo-2016-2026-funktsioonide-arenduskaart.md`](./sotsiaaltoo-2016-2026-funktsioonide-arenduskaart.md).
+
+| ID · aasta · funktsioon | Artiklitest tulnud vajadus ja kasutajalubadus | Kanooniline leping | Taastatud aus seis ja järgmine ühik |
+|---|---|---|---|
+| **ST10-01 · 2016 · Minu muutuse kompass** | Teenuse mahu kõrval peab nähtav olema inimese enda eesmärk, algseis, soovitud muutus ja parandatav vahehindamine. | [`minu-muutuse-kompass-v1-arendusleping.md`](./minu-muutuse-kompass-v1-arendusleping.md) | **PARTIAL / värskelt kontrollimata:** Teekond ja refleksiooni doonorid olid olemas; nimeline, inimese omandis versioonitud kompass ei olnud tervik. Järgmine ühik: Journey/Reflection/Teenuspäeviku lepitamine ja üks privaatne eesmärk–algseis–kontrollpunkt viil. |
+| **ST10-02 · 2017 · Ühine tegevusplaan ja üleandmisahel** | Valdkondadeülene abi vajab jagatud eesmärki, rolle, vastutajat, tähtaega, minimaalset andmevahetust ja vastuvõtukinnitust. | [`uhine-tegevusplaan-ja-uleandmisahel-v1-arendusleping.md`](./uhine-tegevusplaan-ja-uleandmisahel-v1-arendusleping.md) | **PARTIAL / värskelt kontrollimata:** JTA, jagamise, ruumide ja üleandmise doonorid olid osalised; üks eesmärk–tegevus–vastuvõtt–tulemus kandja puudus. Järgmine ühik: E0 doonorite kaart ja üks ühine plaanikandja. |
+| **ST10-03 · 2018 · Toetuspaketi koostaja** | Inimese eesmärk seotakse eluvaldkonna, teenusekomponendi, vastutaja, mahu/hinna, eelarveraami ja järelhindamisega. | [`toetuspaketi-koostaja-v1-arendusleping.md`](./toetuspaketi-koostaja-v1-arendusleping.md) | **TEGEMATA nimelise tööriistana:** AI ei otsusta teenust, mahtu ega raha. Järgmine ühik: üks eluvaldkond, inimese mustand, pilootpartner ning mahu/hinna/eelarve sõnastuse otsus. |
+| **ST10-04 · 2019 · Ühine abiplaan hooldaja paralleelvaatega** | Ühine plaan peab hoidma hooldatava eesmärgi ja hooldaja enda eesmärgi eri omanike ning eri nõusolekutega, kuid võimaldama kinnitatud ühist tegevust. | [`uhine-abiplaan-hooldaja-paralleelvaatega-v1-arendusleping.md`](./uhine-abiplaan-hooldaja-paralleelvaatega-v1-arendusleping.md) | **TEGEMATA nimelise vaatena:** kasutab ST10-02 kandjat, uut plaanimootorit ei loo. Järgmine ühik: kaks omanikku, kaks nõusolekut, üks kandja ja omastehooldaja piloot. |
+| **ST10-05 · 2020 · Kriisiteekond** | Kriisiinfo peab jõudma päris inimesele, vastuvõtt ja järelkontakt olema kinnitatud ning telefoni või abistatud kasutuse varutee olemas. | [`kriisiteekond-v1-arendusleping.md`](./kriisiteekond-v1-arendusleping.md) | **PARTIAL / partneri taga:** tehniline kiire abi alus oli osaline, kuid platvorm ei loo reageerijat. Järgmine ühik: serveripoolne capability/fail-closed värav, mehitatud partner, lugemisleping ja järeltoe omanik. |
+| **ST10-06 · 2021 · Vabatahtlik Märkamise ring** | Inimene valib ise check-in'i rütmi, nõustunud usaldusisiku ja inimliku järelteo; vastamata jätmine ei ole riskihinnang. | [`markamise-ring-v1-arendusleping.md`](./markamise-ring-v1-arendusleping.md) | **TEGEMATA:** ei passiivset seiret, riskiskoori ega automaatset triaaži. Järgmine ühik: eetika- ja õigusanalüüs, nõusolekumudel ning päris inimsaaja. |
+| **ST10-07 · 2022 · Abiteekonna pass** | Inimene koostab ühe eesmärgi jaoks lihtkeelse, minimaalse ja versioonitud väljavõtte koos päritolu, keele-, RFK-, hooldaja- ja ligipääsetavusvajaduse teadliku valikuga. | [`abiteekonna-pass-v1-arendusleping.md`](./abiteekonna-pass-v1-arendusleping.md) | **TEGEMATA nimelise passina:** see ei ole kogu Teekonna jagamine ega paralleelregister. Järgmine ühik: esimese passi eesmärk, serveri allowlist, kehtivus ja vastuvõtukinnitus. |
+| **ST10-08 · 2023 · Inimkontrolliga STAR2 üleandmispakett** | Spetsialist saab kopeerida ainult ametlikku registrisse kantava mustandi; kopeerimise ja tegeliku ülekande faktid jäävad eraldi. | olemasolev [`jta-v1-arendusleping.md`](./jta-v1-arendusleping.md), L5/L8/L9/L16 ja E5–E6 | **Ajalooliselt tehtud käsiraja ulatuses, praegu NOT_PROVEN:** „Kopeeri STAR2 jaoks” rada ei dubleerita. Ametlik SKA/TEHIK otseliides on eraldi tulevikufunktsioon ja vajab partnerit, payload'i, kviitungit ning veataastet. |
+| **ST10-09 · 2024 · „Üks kord kirjeldatud vajaduse” üleandmine** | Inimene kinnitab konkreetse eesmärgi ja saaja jaoks minimaalse paketi koos päritolu, tähtaja ja vastuvõtukinnitusega. | [`uks-kord-kirjeldatud-vajaduse-uleandmine-v1-arendusleping.md`](./uks-kord-kirjeldatud-vajaduse-uleandmine-v1-arendusleping.md) | **PARTIAL / värskelt kontrollimata:** kasutab ST10-02 kandjat ja ST10-07 projektsiooni. Järgmine ühik: üks partner, eesmärk, capability allowlist ja uus kinnitus igale saajale. |
+| **ST10-10 · 2025 · AI vastutusmärge** | Igal AI-väljundil peab nähtav olema allikas, ebakindlus, AI tehtu, inimese kinnitatud osa, tagasiside ja vaidlustamise tee. | [`ai-vastutusmarge-v1-arendusleping.md`](./ai-vastutusmarge-v1-arendusleping.md) | **PARTIAL / värskelt kontrollimata:** üksikud päritolu- ja allikakihid olid olemas, platvormiülene katvusmanifest puudus. Järgmine ühik: kõigi AI-pindade manifest ja ühine meta-/esitlusleping. |
+| **ST10-11 · 2026 osaline · Turvajuhtumi tervikvoog** | Töötaja turvalisus vajab eelriski, vastuvõttu, juhtimisvastutust, õigus- ja psühholoogilist järelabi ning privaatsusturvalist õppetsüklit. | [`turvajuhtumi-tervikvoog-v1-arendusleping.md`](./turvajuhtumi-tervikvoog-v1-arendusleping.md) | **PARTIAL / organisatsioonipiloodi taga:** individuaalse toe doonorid olid olemas, ametlik vastuvõtt ja järelabi tervik mitte. Järgmine ühik: capability, privaatse/ametiinfo piir, turvaroll ja järeltoe omanik. |
+| **ST10-12 · kümnendikiht · Sotsiaaltöö arengukaart** | Kasutaja peab saama eristada ideed, pilooti, rakendamist, mõõdetud tulemust, piirangut, vastuolu ja lahendamata küsimust ning avada algallika. | [`sotsiaaltoo-arengukaart-v1-arendusleping.md`](./sotsiaaltoo-arengukaart-v1-arendusleping.md) | **TEGEMATA tootena:** korpus ja aasta-meta ei tõenda kontrollitud arenguetappi ega ajajoont. Järgmine ühik: aktiivse registri ja päritolu audit, üks teema ning kahe sõnastusega käsitsi tõendatud vertikaal. |
+
+**Ühised arhitektuuripiirid.** ST10-02, ST10-04 ja ST10-09 kasutavad üht versioonitud
+tegevusplaani kandjat. ST10-07, ST10-08 ja ST10-09 on kolm eri projektsiooni/tegu ega ava
+kogu Teekonda. ST10-05 ja ST10-06 ei aktiveeru ilma päris nõustunud inimsaajata. ST10-10 on
+läbiv esitlus- ja vastutusleping, mitte uus sisuregister. Lepingu olemasolu ei tähenda
+funktsiooni valmimist.
+
+**Eetikakompass on sellest 12 funktsiooni artiklivõrdluse paketist eraldi idee.** Omanik
+arutas samas 24.08 vestluses privaatset otsustuge võimu, nõusoleku, õiguste, alternatiivide,
+proportsionaalsuse ja vähima võimaliku kahju läbimõtlemiseks ning andis aluseks
+eetikakoodeksi ja eetikapõhimõtete materjalid. Selles vanas voorus faili ega lepingut ei
+loodud. Idee tänane kanooniline kodu on allolev **Eetilise juhtumiarutelu ruum**, mis ei
+dubleeri ESTA arendatavat Eetikakompassi.
+
+---
+
+#### Ametialane teejuht ja Eetilise juhtumiarutelu ruum
+
+*Lähtematerjal: omaniku 28.08.2026 jagatud avalik arutelu sotsiaalvaldkonna ametite
+kvalifikatsiooninõuete, traumateadlikkuse, lähisuhtevägivalla, lapsega suhtlemise ja
+eetikakoodeksi rakendamise üle + `ideed.md` ptk 7 meetod 36 „Eetiline juhtumiarutelu",
+ptk 14 etapp 5 „Kovisiooni, Supervisiooni ja eetilise arutelu seos", ptk 25 ESTA
+eetilise nõustamise kanal ning ptk 26.5–26.6 ESTA liikmeala „Eetiline nõustamine" ja
+„eetilise pöördumise struktureeritud kanal". Ametialane teejuht on uus idee; Eetilise
+juhtumiarutelu ruum oli olemasolev, kuid elava faili S4 tööriistade loendist välja jäänud.*
+
+Kanoonilised tootelepingud on
+[`ametialane-teejuht-v1-arendusleping.md`](./ametialane-teejuht-v1-arendusleping.md) ja
+[`eetilise-juhtumiarutelu-ruum-v1-arendusleping.md`](./eetilise-juhtumiarutelu-ruum-v1-arendusleping.md).
+Need ei kuulu `ST10-*` artiklivõrdluse numbrijadasse, sest nende lähtekoht on eraldi
+eetika- ja ametialane arutelu.
+
+**Leitud olemasolev eetika funktsioon.** `ideed.md` kirjeldab eetilist juhtumiarutelu
+professionaalse töö meetodina olukordadeks, kus lähevad vastuollu kliendi enesemääramine ja
+turvalisus, lapse arvamus ja parim huvi, konfidentsiaalsus ja info jagamine, kliendi soov ja
+ametikohustus või napp ressurss ja suur vajadus. Sama kirjeldus seob selle Kovisiooni ja
+Supervisiooniga: ruumi viiakse deidentifitseeritud mustand, keskne professionaalne küsimus
+ja meetodi refleksioon; väljundi toob töötaja soovi korral tagasi oma privaatsesse
+refleksiooni. ESTA partnerlusmudelis pakub SotsiaalAI turvalise kanali ja ESTA annab
+professionaalse sisendi. **Terviklikku Eetilise juhtumiarutelu ruumi kasutajateed koodis ei
+ole; olemas on selle osad ja kõrvalrajad.**
+
+**Omaniku otsus 28.08.2026: avalikust vestlusest tulenevat olukorda lahendavad kaks
+kasutajafunktsiooni.**
+
+1. **Ametialane teejuht.** Vaade „Küsi ametist" laseb valida ameti või vaatenurga (nt
+   perelepitaja, kogemusnõustaja, sotsiaaltöötaja, ohvriabitöötaja, võlanõustaja, isiklik
+   abistaja, teenuse kasutaja või lähedane) ja teema (kvalifikatsioon, koolitus,
+   pädevuspiir, metoodika, eetika, trauma, laps, LSV, supervisioon, abi saamine). Vastus
+   jaguneb alati: *lühivastus · ametlik nõue · soovitus/hea tava · mida allikatest ei selgu
+   · kellelt saab siduva vastuse · allikad ja viimase kontrolli aeg*. Sama funktsiooni
+   kvalifikatsiooni- ja koolituskaart hoiab lahus õigusakti, kutsestandardi, ametliku
+   juhendi, õppekava ja teenuseosutaja enda praktika. Tundide arv, koolitaja või metoodika
+   kuvatakse ainult siis, kui kehtiv allikas seda päriselt ütleb. „Avalikust allikast ei
+   leidnud" on lubatud ja vajalik vastus; mudeli üldteadmine ei täida tõendilünka.
+2. **Eetilise juhtumiarutelu ruum.** Spetsialist alustab privaatsest ettevalmistusest:
+   faktid ja tõlgendused, osapoolte hääl, õigused ja kohustused, oma roll ja pädevuspiir,
+   nõusolek, võimusuhe, puuduv info, võimalik kasu ja kahju ning küsimus, millele ta vajab
+   professionaalset sisendit. Ta valib ise, kas jätab refleksiooni privaatseks, viib
+   deidentifitseeritud mustandi Kovisiooni või saadab eraldi kinnitatud eetilise pöördumise
+   kokkulepitud ESTA eksperdile/Eetika Nõukojale. Vastus on professionaalne sisend,
+   **mitte AI ega eksperdi automaatne otsus töötaja eest**. Ruumi liikmesus ei ava
+   juhtumit, Meetodipeeglit ega muud privaatset sisu.
+
+**ESTA Eetikakompassi ei dubleerita.** S1/osa II allikakaart ütleb, et ESTA arendab ETAG-i
+rahastusel oma digitaalset Eetikakompassi kui valikute vaagimise ja otsuste mõtestamise
+abivahendit. SotsiaalAI Eetilise juhtumiarutelu ruum on suhtlus-, privaatsus- ja
+töövookiht: ta võib partnerluse korral kasutada või avada ESTA kinnitatud töölehte või
+Eetikakompassi, kuid ei leiuta selle metoodikat konkureeriva „Eetikapeeglina" uuesti.
+
+**Olemasolev, mida ei ehitata uuesti.** RAG-vestlus ja kuvatavad allikad kannavad
+teadmisteed; `RagDocument.audience` eristab täna töötajat, pöördujat ja mõlemat;
+praktikakogul on `targetGroups`, teemad, riskitase ning eraldi `ETHICS`-ülevaatus;
+Meetodipeeglis on tulemused „vajab eetilist arutelu" ja toe suund `ETHICS`; kovisioonis on
+eetilise vastuolu väli; tööheaolu rollipiiride rada aitab sõnastada vastutuse nihkumist;
+materjalide esitamise ja ülevaatuse rada saab tuua uusi kontrollitud allikaid teadmuskogusse.
+Need on **tükid, mitte veel kasutaja läbitav Eetilise juhtumiarutelu ruum ega Ametialane
+teejuht**.
+
+**Ameteid ei tehta uuteks kontoõiguse rollideks.** Pöörduja, sotsiaaltöötaja ja
+teenuseosutaja jäävad ligipääsurollideks; ametid on mitme väärtusega profiili- ja
+allikamärgendid, sest sama inimene võib olla korraga näiteks sotsiaaltöötaja,
+kogemusnõustaja ja teenuseosutaja. Vajalik minimaalne meta on `professionTags`, `topicTags`,
+`authorityLevel` (õigusakt / kutsestandard / ametlik juhend / õppekava / praktikamaterjal),
+`publisher`, `version`, `validFrom`, `validUntil`, `verifiedAt`, `jurisdiction`, sihtrühm ja
+ülevaatuse seis. Märgend parandab leidmist ja selgitust, **mitte ligipääsuõigust**.
+
+**RAG-i täiendamine on V1 kohustuslik eeldus, mitte hilisem sisutöö.** Master-list või
+lokaalne fail ei tõenda, et dokument on aktiivses registris, õiges versioonis, leitav,
+vastuse valitud kontekstis ja kasutajale kuvatud allikana. Esimene read-only lünkade audit
+võrdleb aktiivset registrit ja originaale vähemalt järgmiste allikaperede kaupa:
+
+- sotsiaalvaldkonna töötaja eetikakoodeks ja rahvusvahelised eetikapõhimõtted;
+- ESTA Eetikakompassi või eetikaarutelu töölehe kasutatavus, versioon, õigused ja
+  partnerluspiir — enne kokkulepet ainult avaliku allika viide;
+- kehtivad kutsestandardid, kvalifikatsiooninõuded ja nende versioonid;
+- perelepitaja, kogemusnõustaja, sotsiaaltöötaja, ohvriabitöötaja, võlanõustaja ja isikliku
+  abistaja ametlikud väljaõppe- ning pädevusallikad;
+- traumateadliku töö, lähisuhtevägivalla, lapse osalemise ja lapsega professionaalse
+  suhtlemise juhised koos selgete rolli- ja edasisuunamispiiridega;
+- supervisiooni, kovisiooni, eetikakomitee ja abi saamise ametlikud kanalid;
+- aegunud või dubleerivate dokumentide kanooniline valik ja värskuse omanik.
+
+**Kõrge riskiga piir.** Lapse, trauma ja vägivalla küsimus ei tohi anda väljaõppeta kasutajale
+iseseisvat küsitlemis- või hindamisprotokolli. Vastus peab nimetama pädevuspiiri, puuduva
+kompetentsi, tegevuse peatamise või edasi suunamise koha ja vajadusel kiire abi kanali.
+Platvorm ei ehita eetikaotsust, kvalifikatsiooni automaatset tunnustamist, töötaja eetilisuse
+skoori, lapse või vägivalla riskiskoori ega tööandja individuaalset järelevalvevaadet.
+
+**V1 valmis-definitsioon.** Vähemalt kuue nimetatud ameti kanoonilised allikapaketid on
+aktiivses RAG-is ja värskuse omanikuga; sama küsimus annab ametliku nõude, soovituse ja
+teadmata osa õigesse kategooriasse; kasutaja näeb vastust toetavaid allikaid. Eetilise
+juhtumiarutelu ruum hoiab ettevalmistuse privaatsena, jagab ainult töötaja kinnitatud
+deidentifitseeritud versiooni, kannab eksperdi rolli ja vastutuse piiri ning toob vastuse
+tagasi ainult lubatud tööpinda. Omaniku jagatud arutelu küsimused moodustavad esimese
+käsitsi RAG-kvaliteedivärava vähemalt kahes sõnastuses: eraldi tõendatakse otsing, valitud
+kontekst, vastus, kuvatud allikad ja avatud allikas.
+
+**Dokumentatsiooniseis 28.08.2026:** mõlema funktsiooni V1 tooteleping on valmis; koodi,
+andmemudelit ega RAG-i ei ole muudetud ja `runtime: not_run`.
+
+**Järgmine ühik:** read-only aktiivse RAG-registri lünkade audit + ESTA
+Eetikakompassi/Eetika Nõukoja partnerlus-, õiguste ja nähtavuspiiri kinnitus. Alles pärast
+allikate, värskuse omanike, ruumi nähtavuslepingu ja kõrge riskiga vastusepiiri kaarti algab
+UI või uue andmemudeli ehitus.
+
+---
+
+#### Sotsiaaltöö arengukaar 2016–2026
+
+*Lähtematerjal: omaniku varasem ülesanne võrrelda kümne aasta sotsiaaltöö artikleid
+SotsiaalAI tegelike ja võimalike funktsioonidega + väljaspool repo asuv töökaust
+`C:\Users\rauds\sotsiaal.ai\Andmebaas\ajakiri_sotsiaaltoo\10-aastat`, kus on seitsmest
+teemaartiklist koosnev kümnendikogumik, laiendatud põhiartikkel ja temaatiline register.
+Taastatud kanooniline leping on
+[`sotsiaaltoo-arengukaart-v1-arendusleping.md`](./sotsiaaltoo-arengukaart-v1-arendusleping.md)
+ja funktsioonide seosekaart
+[`sotsiaaltoo-2016-2026-funktsioonide-arenduskaart.md`](./sotsiaaltoo-2016-2026-funktsioonide-arenduskaart.md).
+Allikapõhine artiklikogumik, leping ja arenduskaart on olemas; SotsiaalAI kasutajafunktsioon
+ei ole ehitatud ning runtime on `not_run`.*
+
+**See ei ole SotsiaalAI kümne aasta tulevikuvisioon.** Osa II „Horisont C" ja „Kümne aasta
+pilt" kirjeldavad, kuhu platvorm võiks jõuda. Siinne tööriist vaatab tagasi Eesti
+sotsiaaltöö arengule aastatel 2016–2026 ning aitab allikate põhjal eristada, mis muutus,
+mis rakendus, millise tulemuse kohta on tõend, milline piirang või vastuolu ilmnes ja mis
+jäi lahendamata.
+
+**Kaks omavahel seotud väljundit.**
+
+1. **Kasutaja arengukaart.** Teema valinud inimene näeb lühikest ajajoont, pöördepunkte ja
+   allikakaarte. Teemad hõlmavad vähemalt osalust ja enesemääramist, õigusi ja
+   eluolukordi, teenuste killustatust ja koostööd, juhtumitöö meetodeid, andmeid ja eetikat,
+   sotsiaaltöötaja elukutset ja tööheaolu, kriisivalmidust ning muutustes nähtamatuks
+   jäänud kogemusi. Kaart vastab küsimustele „mis oli lähtekoht?", „mida muudeti?",
+   „mida päriselt rakendati?", „mida tulemuste kohta teame?" ja „mis kordub endiselt?".
+2. **SotsiaalAI tõendipõhine arenduskaart.** Korduv valdkondlik vajadus seotakse olemasoleva
+   või kavandatud platvormivõimega ja selle ausa seisuga: `DONE`, `PARTIAL`, `NOT_PROVEN`
+   või `IDEE`. Seos ei ole turundusväide, et SotsiaalAI on probleemi lahendanud; see näitab,
+   millist vajadust funktsioon teenib, milline tõend seda toetab ja milline järgmine
+   arendusühik annaks inimesele päriselt väärtust. Nii saab kümnendi materjalidest
+   prioriseerimise alus, mitte lihtsalt eraldiseisev artiklikogumik.
+
+**Vestluses kasutatav ajaline teadmusrada.** RAG peab võimaldama küsida näiteks, kuidas
+muutus kümnendi jooksul inimeste osalus, kohalike teenuste korraldus, lähisuhtevägivalla
+käsitlus, dokumenteerimiskoormus või sotsiaaltöötaja professionaalne tugi. Vastus eristab
+algallikas öeldut, autoripoolset kümnendisünteesi ja SotsiaalAI-le tehtud järeldust; iga
+oluline väide avaneb aasta, pealkirja, autori ja algallikani. Kui allikad ei tõenda
+rakendamist, tulemust või põhjuslikku seost, ütleb vastus seda otse.
+
+**Tõendi- ja andmeleping.** Algupärased ajakirjaartiklid on faktilise väite esmased
+allikad. Seitsme teema artikkel ja laiendatud põhiartikkel on selgelt märgitud
+autoripoolseks sünteesiks, mitte uuteks sõltumatuteks tõenditeks; temaatiline register on
+kureerimiskiht. Sama algartikli korduv viitamine ega töökausta kontrollkoopia ei kasvata
+allikate arvu. Minimaalne meta on `sourceYear`, `periodStart`, `periodEnd`, `themeTags`,
+`evidenceType` (`development` / `implementation` / `result` / `limitation` /
+`contradiction` / `unresolved`), `originalSourceIds`, `synthesisVersion`, `verifiedAt` ja
+allika õiguste seis.
+
+**Mida ei ehitata.** Ei tehta sotsiaaltöö „arenguskoori", asutuste või töötajate edetabelit,
+lineaarset edulugu, allikata põhjuslikke järeldusi ega automaatset väidet, et mingi
+SotsiaalAI funktsioon lahendab valdkondliku probleemi. Samuti ei kanta töökausta
+vaheversioone RAG-i eraldi dokumentidena ega esitata sisemist temaatilist registrit
+kontrollitud algallikana.
+
+**V1 valmis-definitsioon.** Vähemalt seitse kümnendi põhiteemat on ajajoonel koos
+pöördepunktide, lahendamata küsimuste ja avatavate algallikatega; vähemalt ühe teema kohta
+on käsitsi tõendatud kaks eri sõnastusega ajalist küsimust ning eraldi otsing, valitud
+kontekst, vastus, kuvatud allikad ja avatud algallikas. Arenduskaardil on iga platvormiseose
+juures vajaduse tõend, tegelik funktsiooniseis ja järgmine ühik. Ükski süntees ei muuda
+kontrollimata rakendust või tulemust faktiks.
+
+**Dokumentatsiooniseis 28.08.2026:** V1 lepingu versioon 1.1 eristab kasutaja ajajoone ja
+SotsiaalAI sisemise arenduskaardi, algallika ja autorisünteesi ning viis RAG-i tõendiväravat;
+kood ja runtime on muutmata.
+
+**Järgmine ühik:** read-only päritolu- ja duplikaadiaudit kümnendikogumiku, selle
+algartiklite, sünteesifailide ja aktiivse RAG-registri vahel; seejärel esimene ühe teema
+kahe sõnastusega tõendatud vertikaal ja prioriseeritud vajadus → funktsioon → seis →
+järgmine ühik kaart. Alles selle tõendi järel otsustatakse, kas arengukaar saab oma vaate
+või avaneb esmalt vestluse ja Materjalide teemakoguna.
 
 ---
 

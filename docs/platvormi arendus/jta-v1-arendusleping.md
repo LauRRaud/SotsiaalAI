@@ -1,5 +1,12 @@
 # ÜLESANNE: `JTA-V1` — juhtumitöö assistent
 
+> **Kehtivuse märkus 28.08.2026.** Elavat teostusseisu kannab ainult
+> [`SotsiaalAI.md`](./SotsiaalAI.md) ning tulevane töö järgib `AGENTS.md` ja S11 praegust
+> tööpuu- ja kontrollikorda, mitte selle ajaloolise lepingu vanu testi-, probe- või otse-`main`
+> juhiseid. Artiklivõrdluse **ST10-08 Inimkontrolliga STAR2 üleandmispaketi** kanooniline
+> kodu on siin L5/L8/L9/L16 ning E5–E6. Ametlik SKA/TEHIK otseliides ei kuulu vaikimisi
+> sellesse lepingusse.
+
 **Olek:** **E1–E8 TEHTUD (08.08). Leping on täidetud ja ükski otsus ei ole enam lahti.** Tervik on
 koodis ja **peidus** (`CASEWORK_V1_ENABLED` vaikimisi väljas). Tõendatud päris andmebaasi ja
 **kahe päris sessiooni** vastu: `npm run jta:probe` **34/34**, sh brauseris läbi käidud

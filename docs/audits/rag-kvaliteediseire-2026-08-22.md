@@ -929,3 +929,45 @@ paralleelne või aegunud recovery-jätk ning kogu 75 juhtumi kordus jäävad `NO
 Ajalooline üldseis jääb **DONE 21/75 · NOT_PROVEN 54/75**; seda sihtväravat ei tohi esitada
 75/75 ega kogu RAG-i kvaliteediprotsendina. Dokumentatsiooni-only HEAD liigub runtime-koodi
 SHA-st edasi ilma uut koodideploy'd nõudmata.
+## 28.08 authenticated 75-case runtime audit — release 44c1e59b, seis PARTIAL
+
+75 unikaalset manifestiküsimust kontrolliti viies autentitud vestluses, ükshaaval küsimusena:
+B01 J01–J22 ja V01–V08, B02 A01–A10, B03 S01–S10, B04 M01–M10 ja N11–N15 ning
+B05 K01–K10. Kontrollitud serveri runtime oli 44c1e59b5986a7346f0f391f268d59a94da5b8be;
+serveri main oli puhas ja origin/main-iga samal tipul. Aktiivne frontend-artifakt oli
+frontend-current-20260828T133845Z-44c1e59b.tar.gz, SHA-256
+deea4226d62467aa2fa08f6364782360b5d87f875b5cfca7b8ad613083f5bfb7. Kõik kolm teenust olid
+active; health näitas ok=true, 49 727 vektorit, 6089 dokumenti ning valmis originaal- ja
+lemma-FTS-i sama generatsiooniga.
+
+| plokk | PASS | PARTIAL | FAIL | lühiseis |
+|---|---:|---:|---:|---|
+| B01 J01–J22 + V01–V08 | 6 | 1 | 23 | J-plokis 5/1/16; V-plokis 1/0/7 |
+| B02 A01–A10 | 0 | 0 | 10 | autoripäringud jäid route-kihi domeenipiirile |
+| B03 S01–S10 | 7 | 2 | 1 | S01 katvus jäi 2016–2018-le; S06 allikapaneel jäi tõendamata |
+| B04 M01–M10 + N11–N15 | 5 | 1 | 9 | enamik M-küsimusi route-keeldumisega; N14 UI PARTIAL |
+| B05 K01–K10 | 8 | 0 | 2 | K05 retrieval 0; K07 vale missing_requested_year validation |
+| **Kokku 75** | **26** | **4** | **45** | **seis: PARTIAL** |
+
+Kõige olulisemad korduvad vead olid selgete ajakirja-faktide ja autoripäringute
+outside_social_scope route-keeldumine, sõnastusvariantide vale domeenisuunamine,
+kontaktikirjete müra laiemas Luunja loendis, Tartu sotsiaaltranspordi kinnitatud konteksti
+puudumine ning § 15 küsimuse vale missing_requested_year fallback. Õigesti vastatud
+juhtumites kinnitas DB trace valitud/omistatud/kuvatud allikad ja käsitsi avatud paneel enamasti
+sama allika; B05 K04 on erandina kvaliteedimüraga, sest valitud 30 kirje hulgas oli seitse
+kontaktikirjet ja UI näitas 29 kaarti.
+
+Tõendipakett on
+docs/audits/evidence/rag-75-runtime-2026-08-28-44c1e59b/: külmutatud manifest,
+tulemused ja 75 sanitiseeritud trace-rida. Trace ei sisalda kasutaja- ega allikasisu võtmeid
+body_preview, bodyPreview, content, text ega snippet; kontroll andis
+rows=75, unique_case_ids=75, keelatud võtmete tabamusi 0. Kõigi 75 DB assistant-sõnumite
+olek oli COMPLETED. Automaatteste, probe'e, smoke- ega E2E-radu selle auditi jaoks ei loodud
+ega käivitatud; staatiline lõppvärav oli git diff --check.
+
+See on uue release'i otsene runtime-tõend, mitte varasema kvaliteedivärava ülekandmine.
+Koodirepo lokaalne main (16d83e81350c4fbfb171c2730973dd5e5a602ae1) ja värske
+origin/main (6e486d1bdef0f6131679a44d3c76b82a06a776d1) ei ole serveri
+44c1e59b-ga samal SHA-l; seetõttu ei nimetata seda auditit koodiharude
+integratsiooniväravaks. Üks B03 vestluse ekslik lisakäik (M01 enne õige B04 vestluse avamist)
+on tulemuste failis eraldi märgitud ja 75 põhijuhtumi hulka ei arvestatud.
