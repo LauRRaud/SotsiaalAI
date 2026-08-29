@@ -3053,6 +3053,7 @@ export default function ChatBody({
       onOpenHelpListings={openHelpPanelByKey}
       onStop={stop}
       onSend={handleSendMessage}
+      onAuthRequired={() => setLoginOpen(true)}
       onOpenVoiceMode={openVoiceMode}
       onActivateInfoMode={activateInfoMode}
       onActivateDeepResearchMode={activateDeepResearchMode}

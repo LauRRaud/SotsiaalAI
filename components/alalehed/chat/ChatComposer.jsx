@@ -158,6 +158,7 @@ export default function ChatComposer({
   roomAuthRequired,
   onStop,
   onSend,
+  onAuthRequired,
   onOpenVoiceMode,
   onActivateInfoMode,
   onActivateDeepResearchMode,
@@ -507,6 +508,14 @@ export default function ChatComposer({
         text,
         workflow
       });
+      // An unauthenticated visitor currently reaches the composer before the
+      // chat auth gate. Do not mislabel that expected 401 as a broken privacy
+      // service; let the parent open its normal login flow instead.
+      if (response.status === 401) {
+        setPrivacyPrompt(null);
+        onAuthRequired?.();
+        return null;
+      }
       if (response.status === 409 && payload?.needsPrivacyConfirmation) {
         setPrivacyPrompt({
           ...payload,
@@ -537,7 +546,7 @@ export default function ChatComposer({
       });
       return null;
     }
-  }, [activeModeKey, isRoomMode, t]);
+  }, [activeModeKey, isRoomMode, onAuthRequired, t]);
   const submitSend = useCallback(async (options = {}) => {
     if (submitInFlightRef.current) return false;
     const originalDraft = options.textOverride != null ? String(options.textOverride) : draft;
