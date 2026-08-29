@@ -31,7 +31,7 @@ from lexical_index import (
 
 LEMMA_INDEX_SCHEMA_VERSION = "lemma-fts-shadow-v2"
 LEMMA_ANALYZER_VERSION = "estnltk-vabamorf-1.7.5-v2"
-_WORD_RE = re.compile(r"[^\W\d_]+|\d+", flags=re.UNICODE)
+_WORD_RE = re.compile(r"[^\W\d_]+(?:-[^\W\d_]+)*|\d+", flags=re.UNICODE)
 _SAFE_LEMMA_TOKEN_RE = re.compile(r"[^\W_]+(?:-[^\W_]+)*", flags=re.UNICODE)
 
 
@@ -310,14 +310,18 @@ class EstonianLemmaAnalyzer:
                         continue
                     start = int(bounded[0]["start"])
                     end = int(bounded[-1]["end"])
-                    canonical_parts = []
-                    for token in bounded:
-                        token_lemmas = token.get("lemmas") or []
-                        lemma = str(token_lemmas[0] if token_lemmas else token["surface"]).strip()
-                        canonical_parts.append(lemma[:1].upper() + lemma[1:] if lemma else "")
+                    surface_text = text[start:end]
                     proper_name_spans.append({
-                        "text": text[start:end],
-                        "canonical_text": " ".join(part for part in canonical_parts if part),
+                        "text": surface_text,
+                        # Backwards-compatible field, deliberately kept as the
+                        # untouched span. The first Vabamorf analysis is only a
+                        # candidate and must not become person identity.
+                        "canonical_text": surface_text,
+                        "lemma_candidates": [
+                            list(token.get("lemmas") or [])[:8]
+                            for token in bounded
+                        ],
+                        "name_candidate": True,
                         "start": start,
                         "end": end,
                     })

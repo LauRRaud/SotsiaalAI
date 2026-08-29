@@ -5485,6 +5485,40 @@ def _registry_fact_description_shortlist_doc_ids(
     return [doc_id for _coverage, _overlap, _distinctive, _numeric, doc_id in matches[:max(1, limit)]]
 
 
+def _registry_author_matches_query(
+    author: str,
+    normalized_query: str,
+    query_words: List[str],
+) -> bool:
+    parts = [part for part in str(author or "").split() if part]
+    if len(parts) < 2:
+        return False
+    normalized_author = _normalize_search_text(author)
+    if re.search(rf"(?:^|\s){re.escape(normalized_author)}(?:$|\s)", normalized_query):
+        return True
+    # Estonian questions inflect names (for example Kütt -> Küti).
+    # Require the first name exactly and only allow a conservative
+    # one-stem difference in the final name token. This is a bounded
+    # registry identity check, not a global fuzzy person search.
+    first_name = _normalize_search_text(parts[0])
+    surname = _normalize_search_text(parts[-1])
+    for index, word in enumerate(query_words[:-1]):
+        if word != first_name:
+            continue
+        query_surname = query_words[index + 1]
+        if len(query_surname) < 3:
+            continue
+        common = 0
+        for left, right in zip(surname, query_surname):
+            if left != right:
+                break
+            common += 1
+        required = max(3, min(len(surname), len(query_surname)) - 1)
+        if common >= required and abs(len(surname) - len(query_surname)) <= 2:
+            return True
+    return False
+
+
 def _registry_author_shortlist_doc_ids(
     query: str,
     chroma_where: Optional[Dict[str, object]],
@@ -5525,35 +5559,10 @@ def _registry_author_shortlist_doc_ids(
                 author_tokens.append(token)
         if not author_tokens:
             author_tokens = normalize_author_tokens(metadata.get("authors") or metadata.get("authors_list"))
-        def author_matches(author: str) -> bool:
-            parts = [part for part in author.split() if part]
-            if len(parts) < 2:
-                return False
-            if re.search(rf"(?:^|\s){re.escape(author)}(?:$|\s)", normalized_query):
-                return True
-            # Estonian questions inflect names (for example Kütt -> Küti).
-            # Require the first name exactly and only allow a conservative
-            # one-stem difference in the final name token. This is a bounded
-            # registry identity check, not a global fuzzy person search.
-            first_name = parts[0]
-            surname = parts[-1]
-            for index, word in enumerate(query_words[:-1]):
-                if word != first_name:
-                    continue
-                query_surname = query_words[index + 1]
-                if len(query_surname) < 3:
-                    continue
-                common = 0
-                for left, right in zip(surname, query_surname):
-                    if left != right:
-                        break
-                    common += 1
-                required = max(3, min(len(surname), len(query_surname)) - 1)
-                if common >= required and abs(len(surname) - len(query_surname)) <= 2:
-                    return True
-            return False
-
-        exact = any(author_matches(author) for author in author_tokens)
+        exact = any(
+            _registry_author_matches_query(author, normalized_query, query_words)
+            for author in author_tokens
+        )
         if not exact:
             continue
         resolved_doc_id = str(metadata.get("doc_id") or metadata.get("docId") or doc_id).strip()
@@ -5562,6 +5571,46 @@ def _registry_author_shortlist_doc_ids(
         if len(matches) >= max(1, int(limit or 1)):
             break
     return matches
+
+
+def _registry_author_inventory(
+    query: str,
+    document_ids: List[str],
+    registry_snapshot: Dict[str, Dict],
+) -> Tuple[Optional[str], List[Dict[str, object]]]:
+    normalized_query = _normalize_search_text(query)
+    query_words = _search_tokens(normalized_query, limit=40)
+    allowed_ids = set(document_ids)
+    canonical_author: Optional[str] = None
+    documents: List[Dict[str, object]] = []
+    for registry_id, metadata in registry_snapshot.items():
+        if not isinstance(metadata, dict):
+            continue
+        resolved_doc_id = str(
+            metadata.get("doc_id") or metadata.get("docId") or registry_id
+        ).strip()
+        if resolved_doc_id not in allowed_ids:
+            continue
+        authors = normalize_authors(metadata.get("authors") or metadata.get("authors_list"))
+        matched_author = next((
+            str(author).strip()
+            for author in authors
+            if _registry_author_matches_query(author, normalized_query, query_words)
+        ), "")
+        if matched_author and canonical_author is None:
+            canonical_author = matched_author
+        documents.append({
+            "document_id": resolved_doc_id,
+            "title": str(metadata.get("title") or metadata.get("fileName") or "").strip() or None,
+            "year": metadata.get("year"),
+            "section": str(metadata.get("section") or "").strip() or None,
+        })
+    documents.sort(key=lambda item: (
+        str(item.get("year") or ""),
+        str(item.get("title") or ""),
+        str(item.get("document_id") or ""),
+    ))
+    return canonical_author, documents
 
 def _dense_article_anchor_doc_ids(
     query: str,
@@ -9117,14 +9166,27 @@ def _execute_search(
                     or len(indexed_author_document_ids) == len(registry_author_document_ids)
                 )
             exact_author_document_ids = indexed_author_document_ids
+            canonical_author_name, author_documents = _registry_author_inventory(
+                requested_author_tokens[0],
+                exact_author_document_ids,
+                version_registry,
+            )
             registry_ms += _ms_since(author_summary_t0)
             author_metadata_summary = {
                 "requested_author": requested_author_tokens[0],
-                "canonical_author_name": requested_author_tokens[0],
-                "canonical_author_key": _normalize_search_text(requested_author_tokens[0]),
+                "canonical_author_name": canonical_author_name or requested_author_tokens[0],
+                "canonical_author_key": _normalize_search_text(
+                    canonical_author_name or requested_author_tokens[0]
+                ),
                 "document_count": len(exact_author_document_ids),
                 "document_ids": exact_author_document_ids[:500],
                 "document_ids_complete": author_index_complete and len(exact_author_document_ids) <= 500,
+                "documents": author_documents[:500],
+                "documents_complete": (
+                    author_index_complete
+                    and len(author_documents) == len(exact_author_document_ids)
+                    and len(author_documents) <= 500
+                ),
                 "active_versions_only": True,
                 "complete": author_index_complete,
             }
