@@ -2,7 +2,7 @@
 
 Uuendatud: 30.08.2026
 Ulatus: autentitud vestlus, RAG-otsing, dokumendi ingest, indeksid, soojendus, tõendikontroll, allikad ja käitus
-Rakenduse RAG-loogika: `main`; viimane sisuline tõendilepingu muudatus `4bd34f335`
+Rakenduse RAG-loogika: `main`-haru arhitektuur
 
 ## 0. Dokumendi roll ja tõeallikad
 
@@ -249,6 +249,8 @@ EstNLTK-d kasutatakse kahes eri kohas, mida ei tohi segi ajada:
 
 Seega käändetaluvus ei sõltu praegu shadow-indeksi promotion'ist. Seda kannavad päringu morfoloogilised terminid, algvormi FTS, dense-embedding ja metadataankrud koos.
 
+Arvsõnade ja arvuliste kvalifikaatorite normaliseerimine toimub sellest hiljem, lõplikus piiratud faktilepingu kihis. See ei ole EstNLTK lemmaotsing ega lemmaindeksi promotion.
+
 ## 5. Küsimuse semantiline leping
 
 ### 5.1 `questionPlanner`
@@ -292,6 +294,10 @@ Slot sisaldab vajaduse järgi:
 - eitust või jaatust;
 - päritolu (`original` või `canonical_fallback`).
 
+Planner'i slot ei ole veel tõendatud vastuseväärtus. Numbriline slot muutub pöörde rangeks lepinguks alles siis, kui kõrge kindlusega dokumendiidentiteet on lukus ja kõik küsitud slotid saab üheselt siduda sama lõpliku renderdatud allikabloki tõendiga. Piiratud arvsõnaparser tunneb eesti keeles arve 0–10 ning inglise ja vene keeles arve 1–10 koos toetatud käändevormidega. Parser tuvastab esmalt arvsõna ja seob alles seejärel vahetult järgneva toetatud ühiku, et näiteks „Neist kuus” ei neelduks ekslikult kuu-ühikuks. Kui tõendi arvsõna on sama sloti küsimusepoolses relation-term'is (näiteks „neljal kohtumisel”), jääb see ulatuseks ega muutu küsitud vastuseväärtuseks. Kandidaadiskoor eelistab arvule vahetult järgnevat või eelnevat nähtusesilti sama fragmendi kaugemale relation-term'ile; liiga lähedased konkureerivad täissobitused jäävad endiselt mitmetähenduslikuna fail-closed. See on faktilepingu arvunormaliseerimine, mitte EstNLTK lemmaotsing.
+
+Kui küsimus palub selgitada küsimuses juba nimetatud arvude tähendusi, kannab iga arv eraldi `explicit_value_relation` slotti. Väärtus ei ole siis vastus iseeneses: sama lukustatud renderdatud tõend peab kinnitama ka selle kohaliku nähtuse või rühma, mida arv tähistab. Esmane provisional assignment lubab ainult täielikus explicit-slot'ide partiis iga sloti üht unikaalset sõnaselgelt küsitud arvuväärtust ega nõua, et küsimuse üldsõnad („näitaja”, „arv”) korduksid tõendilauses. Sama rada kasutatakse ka renderdatud tõendi coverage'is; mõlemad loevad ainult pealkirja- ja metapäiseta lõplikku `evidenceText`-i ning küsimuse ja tõendi arvujärjekord ei pea kattuma. Contract kasutab seejärel tõendist tuletatud arvulähedast descriptor-ankrut. Kui samas fragmendis kordub sama descriptor mitme arvu juures, lisatakse eristuseks kõrvalasuva faktirühma unikaalne descriptor; mitme tõendifragmendi korral kasutatakse eristavat sündmuseankrut. Segatud või korduvate requested-value slot'ide partii, sama väärtuse teine ankurdatud tõendikoht sõltumata skoorivahest, puuduv ankur või jätkuvalt eristamatu ankruskeem ei aktiveeri lepingut.
+
 ### 5.3 Jooksva pöörde dokumendiidentiteet
 
 Tugevad identiteedisignaalid on:
@@ -303,6 +309,8 @@ Tugevad identiteedisignaalid on:
 - olemasolev usaldatud `doc_id` jätkukontekstis.
 
 Jooksva pöörde selge pealkiri või autor võidab eelmise vestluse dokumendi. Nõrk teema- või sisusarnasus ei tohi tugevat identiteeti üle kirjutada.
+
+Täpselt nimetatud pealkiri on esmane. Kui kasutaja nimetab baaspealkirja, võib identiteedikiht arvestada ainult selle kanoonilisi `<pealkiri>[u] kokkuvõte` ja `<pealkiri>[u] lühikokkuvõte` õdesid, prioriteediga **täpne pealkiri > kokkuvõte > lühikokkuvõte**. Kui kasutaja nimetab kokkuvõtte või lühikokkuvõtte ise, on see eraldi dokument, mitte perepäring. Kaks sama prioriteediga eri `doc_id`-d jäävad mitmetähenduslikuks; vana usaldatud `doc_id` ei tohi jooksva pealkirja kõrgema prioriteediga vastet ületada.
 
 ### 5.4 `semanticTurnContract` ja sotsiaalvaldkonna scope
 
@@ -500,13 +508,15 @@ Node grupeerib chunk'id stabiilse artikli/dokumendiidentiteedi järgi, kasutades
 
 ### 9.2 Täpse dokumendi lukk
 
-Konkreetse uurimuse või artikli küsimuses lukustatakse dokument ainult siis, kui jooksva pöörde identiteeditõend on piisavalt tugev. Lukk võib tugineda exact pealkirjale, kõigile nimetatud autoritele, source-year'ile ja üheselt valitud aktiivsele `doc_id`-le.
+Konkreetse uurimuse või artikli küsimuses lukustatakse dokument ainult kõrge kindlusega jooksva pöörde identiteeditõendi korral. Lukk võib tugineda täpsele jooksva pöörde pealkirjale, otsustavale kitsale kokkuvõttepere vastele, usaldatud jooksva pöörde autori kinnitusele või kõigi nimetatud autorite ja allika-aasta ühisele kinnitusele ning üheselt valitud aktiivsele `doc_id`-le.
 
 Pärast lukku:
 
 - puuduvat faktislotti otsitakse sama `doc_id` seest;
 - naaberdokumendi sama number või sarnane sõnastus ei täida lepingut;
 - recovery-query säilitab kõik autorid ja pealkirja;
+- fact-search ja puuduva sloti recovery kasutavad sama `doc_id` filtrit ning hindavad iga lisatulemuse järel identiteedi uuesti;
+- muu dokumendi valik kaotab luku fail-closed;
 - identity mismatch annab täpsustuse või tõendipuuduse, mitte lähima dokumendi vastuse.
 
 ### 9.3 KOV-kontekst ja Service Map
@@ -540,6 +550,14 @@ Režiim võib kasutada spetsiifilisemat dokumendi- või grupieelarvet. Oluline p
 - ühe vale dokumendi paljud chunk'id ei täidaks kogu eelarvet;
 - valitud body span'id ja nende kärped oleksid trace'is nähtavad;
 - allika `evidenceText` oleks täpselt sama tekst, mida mudel nägi.
+
+#### Lõplik renderdatud tõendileping
+
+Numbriline faktileping ehitatakse valitud `budgeted.used` grupist ja sama indeksiga lõplikust `renderedBlocks[index]` tekstist; kvalitatiivne leping kasutab samast renderdatud tekstist koostatud `renderedEvidenceGroups` vaadet. Laiem grupi toorsisu ei tohi tõendada väärtust, mida mudelile tegelikult ei renderdatud.
+
+Leping aktiveerub ainult siis, kui planner'i slotiloend on täielik, dokumendiidentiteet on kõrge kindlusega ning kõik slotid seotakse üheselt ühe renderdatud `source_id`/`doc_id` tõendiga. Mitmetähenduslik, kärbitud või puudulik mapping jääb välja lülitatuks ja vastamine jätkub fail-closed piiriga.
+
+Iga seotud slot kannab vähemalt väärtusetüüpi ja tõendiväärtust ning vajaduse järgi ühikut, kvalifikaatorit, relation-term'e, ulatust, kardinaalsust ja minimaalset relation-term'ide kattuvust. Trace märgib aktiveeritud lepingu puhul `used_for_generation=true`, `used_for_validation=true` ning renderdatud tõendi räsi.
 
 ### 9.5 EvidencePackage ja SourcePackage
 
@@ -591,6 +609,10 @@ Tavalisel madala riskiga vastusel võib Responses API tekst voolata SSE delta'de
 
 - iga küsitud numbriline slot on olemas;
 - sloti väärtusetüüp on õige;
+- vastuse slotid seotakse globaalse üks-ühele sobitusega, mitte vastuse lausete või arvude järjekorra järgi;
+- tõendiväärtus, protsendiliik, kohalik relation, ulatus ja vajaduse korral kvalifikaator peavad kõik sama slotiga sobima;
+- `over`, `under`, `at_least`, `at_most` ja `about` säilivad; arvvahemikku ei teisendata üheks punktväärtuseks;
+- korduv sama väärtus ei saa pelga `expected_cardinality` arvu abil relation-kontrollist mööduda; kõik ootamatud lisaarvud jäävad keelatuks ning kategooriate arv kontrollitakse ainult siis, kui kategooriasildid on eraldi tõendatud;
 - protsent ja vastajate arv pole omavahel valesti tuletatud;
 - arv on seotud kohaliku kategooria/relation-term'iga;
 - küsimuses olev ulatusarv, näiteks vanus, ei muutu vastuse mõõdikuks;
@@ -603,6 +625,8 @@ Tavalisel madala riskiga vastusel võib Responses API tekst voolata SSE delta'de
 - väited tulevad lukustatud dokumendist;
 - temporal aggregate ei muutu leiutatud aastareaks;
 - allikakomplekti jätkuküsimus säilitab sama tõendatud komplekti.
+
+Null või mitu täielikku sloti-assignment'i, puuduv lõplik renderdatud tõend, ebapiisav dokumendilukk või ootamatu lisaarv annavad `FAIL`. Kui täielik renderdatud faktileping on olemas, ei eeldata mudelilt planner'i algset arvujärjekorda: otsustab üheselt tõendatud seos.
 
 ### 11.2 Vale vastuse korral
 
@@ -707,6 +731,7 @@ Kui durable püsistus ebaõnnestub, ei saadeta kliendile eksitavat `done` sündm
 - query-plan'i sanitiseeritud lepingut;
 - dokumendiidentiteedi kinnitust;
 - faktislot-, relation- ja validaatoritulemust;
+- faktilepingu kvalifikaatorit, eeldatud kardinaalsust, minimaalset seosekatet, fragmendi- ja mainimisindekseid ning `used_for_generation`/`used_for_validation` lippe;
 - partial/degraded state'i;
 - etapikestusi;
 - SourcePackage ja section-attribution kokkuvõtet.
@@ -1172,9 +1197,9 @@ Admini RAG-lehe käsitsi käivitatav enesetest kontrollib ühendust, otsingut ja
 | algvormi FTS stale | `persistent_fts5_unavailable` + refresh; teised kanalid võivad jätkata | trace ei esita stale indeksit valmis FTS-ina |
 | lemma-shadow stale | background rebuild | tootmisranking jätkub ilma shadow'ta |
 | KOV mitmetähenduslik | täpsustusküsimus | linna/valda ei oletata |
-| exact dokument ei kinnitu | täpsustus või tõendipuudus | naaberdokumendi fakte ei kasutata |
+| exact dokument või sama prioriteediga pealkirjapere õde ei kinnitu üheselt | täpsustus või tõendipuudus | naaberdokumendi fakte ei kasutata |
 | üks faktislot puudu | recovery/osavastus/puuduv info | mudel ei täida üldteadmisega |
-| arv leitud, relation vale | fact validation fail | vale number ei jõua ekraanile |
+| arv on olemas, kuid seos, ulatus, kvalifikaator või üksühene slotipaigutus ei kinnitu | fact validation fail | vale või mitmeti seostatav number ei jõua ekraanile |
 | tegevus õige objekti juures puudub | qualitative validation fail | semantiliselt vastupidist tegevust ei esitata |
 | RAG timeout | tehnilise töötluse veateade/retry | ei öelda „materjalides pole” |
 | allikas ei toeta lõppväidet | attribution filter | allikat ei kuvata |
@@ -1267,7 +1292,7 @@ Olulised koodi fallback'id on käesoleva dokumendi vastavates peatükkides. Runt
 | `lib/chat/semanticTurnContract.js` | pöörde semantika ja domeeniscope |
 | `lib/chat/queryPlanner.js` | query'd, filtrid ja valikustrateegia |
 | `lib/chat/retrievalOrchestrator.js` | RAG HTTP, parallelism, RRF, timings |
-| `lib/chat/retrievalContextAssembler.js` | KOV, identity lock, selection, evidence contracts |
+| `lib/chat/retrievalContextAssembler.js` | KOV, kanoonilise pealkirjapere lukk, selection, lõplik renderdatud tõend ja faktilepingud |
 | `lib/chat/ragContext.js` | grupp, MMR, span'id ja kontekstieelarve |
 | `lib/chat/evidencePackage.js` | pöörde tõendipakett |
 | `lib/chat/sourcePackages.js` | allikapaketi runtime-kuju |
@@ -1275,8 +1300,8 @@ Olulised koodi fallback'id on käesoleva dokumendi vastavates peatükkides. Runt
 | `lib/chat/sectionAttribution.js` | jaotise taseme väitepiir |
 | `lib/chat/promptBuilder.js` | Responses API sisend ja cache breakpoint |
 | `lib/chat/openaiRuntime.js` | Luna non-stream/stream kutse ja kasutuslogi |
-| `lib/chat/mainResponseHandler.js` | turn claim, generatsioon, validatsioon, SSE |
-| `lib/chat/factContract.js` | täppisfakti ja seose fail-closed leping |
+| `lib/chat/mainResponseHandler.js` | turn claim, generatsioon, valideeritud lepingutrace ja SSE |
+| `lib/chat/factContract.js` | arvsõnade normaliseerimine ning seose-, kvalifikaatori-, ulatuse- ja slot↔claim fail-closed valideerimine |
 | `lib/chat/qualitativeActionSemantics.js` | tegevus–objekt ja polaarsus |
 | `lib/chat/sourceAttribution.js` | claim-to-source ja displayed sources |
 | `lib/chat/persistence.js` | kasutaja/assistendi püsistus |
@@ -1368,12 +1393,12 @@ Enne kaardi muutmist kontrollitakse tegelikku koodi. Dünaamilisi korpusearve, l
 | morphology | küsimuse EstNLTK analüüs enne planner'it; algteksti rikastamine |
 | lemma-FTS shadow | mõõtev püsiv lemmaindeks, mis ei juhi veel tootmisrankingut |
 | query plan | struktureeritud päringud, filtrid, kanalid ja valikustrateegia |
-| fact slot | üks kasutaja küsitud numbriline või kvalitatiivne fakt koos seosega |
-| document lock | tõendatud `doc_id` piir, millest täppisfakti otsing ei välju |
+| fact slot | üks kasutaja küsitud numbriline või kvalitatiivne fakt koos seose, ulatuse, kvalifikaatori ja vajaduse korral eeldatud kardinaalsusega |
+| document lock | täpse pealkirja, kitsa kanoonilise pealkirjapere või muu tugeva identiteeditõendiga kinnitatud `doc_id` piir, millest täppisfakti otsing ei välju |
 | selected context | tekst, mis valiti mudelile renderdamiseks |
 | EvidencePackage | ühe pöörde tõendite ja riskinõuete pakett |
 | SourcePackage | canonical item'i jaotiste/allikate versioonitud pakett |
-| fact validation | lõppvastuse väärtuse, seose, objekti, aja ja identiteedi kontroll |
+| fact validation | lõppvastuse väärtuse, seose, objekti, aja, kvalifikaatori ja identiteedi kontroll koos globaalse üksühese slot↔claim sobitusega |
 | answer source | allikas, mis toetab kasutajale antud väidet |
 | displayed source | answer source'i alamhulk, mida UI näitab |
 | partial | konkreetse otsingulepingu osaline tulemus; mitte kvaliteedihinne |

@@ -431,3 +431,86 @@ artiklit, sequential vale Merle Variku artiklit. See on ainus mõõdetud history
 Kokkuleppe järgi on pärast isolated- ja sequential-faasi paus. Täielikku 75 küsimuse väravat
 ega 37 Golden-lisaväravat ei käivitatud. Runtime `1086090a` tulemus nende 11 regressiooni puhul
 on **0 PASS / 3 PARTIAL / 8 FAIL** mõlemas režiimis; paranduse eesmärk ei ole saavutatud.
+
+## Kolmanda parandusringi kordus — runtime `7c91fc9d`
+
+- deploy: `2026-08-30`, local/origin/server SHA `7c91fc9d9c60c88cb6c545d299c41eed7ae89432`
+- frontend, RAG ja research-worker: `active`
+- avalik ja loopback `/vestlus`: HTTP 200
+- RAG health: `ok=true`, vectors `49727`, documents `6089`
+- lexical FTS ja lemma-FTS: `ready=true`
+- EstNLTK `/analyze-query`: `available=true`, analyzer `estnltk-vabamorf-1.7.5-v2`
+- siht: runtime `1086090a` korduse 8 FAIL + 3 PARTIAL juhtumit
+- jooksud: esmalt isolated (iga küsimus uues vestluses), seejärel sequential (kõik 11 ühes uues vestluses)
+- tulemus kirjutatakse siia kohe pärast iga vastust
+
+### Külmutatud 11 juhtumit
+
+| case_id | eelmine staatus | oodatud põhiväited |
+|---|---|---|
+| J03 | FAIL | kriisitunnused; 112; 1220; 2018 ajalooline allikas |
+| J05 | FAIL | ligi 30 spetsialisti 12 riigist; neljal kohtumisel 60 inimest 19 riigist |
+| J08 | FAIL | 61% lisabi; 26% palju lisabi; 11% suur risk; 18% keskmine risk |
+| J11 | PARTIAL | 7 intervjuud; 6 individuaalset; üks kolme osalejaga rühm; kolmeetapiline temaatiline analüüs |
+| J13 | PARTIAL | 13–18-aastased; kattuvad probleemid; võimalik avaldumine juba 3–5-aastaselt |
+| J14 | FAIL | üle 5800 lapse; umbes 90%; 14 kohtujuhtumit; 3 kohtuvälist kokkulepet |
+| J18 | FAIL | 5 kohtunikku; 5 erihoolekande töötajat; 5 KOV-i sotsiaaltöötajat; kokku 15 |
+| V04 | FAIL | 10%=640; 6%=227; 2%=100 õigete rühmade juures |
+| V05 | FAIL | kuue kuu pärast; osaleja ja tööandja hinnangud |
+| V06 | FAIL | 169 otsust; otsused 2018. aastast |
+| M02 | PARTIAL | üks kontaktisik/juhtumikorraldaja; proaktiivne abi; lihtsam pääs ja kordushindamiste vältimine; toetatud otsustamine alternatiivina |
+
+### Faas 1 — isolated
+
+Iga küsimus saadetakse eraldi värskes vestluses. Rida kirjutatakse kohe pärast vastust.
+
+| case_id | status | answer_summary | displayed_sources | runtime | timestamp |
+|---|---|---|---|---|---|
+| J03 | PASS | Tõi välja kriisi tunnused ning mõlemad õiged numbrid 112 ja 1220. | `Vastuste allikad` nähtav; paneeli sisu ei avatud. | `7c91fc9d` | 2026-08-30 17:55 EEST |
+| J05 | PASS | Tõi õigesti ligi 30 spetsialisti 12 riigist ning neljal kohtumisel 60 inimest 19 riigist. | `Vastuste allikad` nähtav; paneeli sisu ei avatud. | `7c91fc9d` | 2026-08-30 17:55 EEST |
+| J08 | FAIL | Keeldus kõiki osi kinnitamast; oodatud 61%, 26%, 11% ja 18% puudusid täielikult. | Allikanuppu ei kuvatud. | `7c91fc9d` | 2026-08-30 17:56 EEST |
+| J11 | FAIL | Üldine tõendipuuduse vastus; puudusid 7 intervjuud, jaotus 6 individuaalset + üks kolme osalejaga rühm ning kolmeetapiline temaatiline analüüs. | Allikanuppu ei kuvatud. | `7c91fc9d` | 2026-08-30 17:56 EEST |
+| J13 | FAIL | Üldine tõendipuuduse vastus; puudusid vanuserühm 13–18, probleemide kattuvus ja 3–5-aastaselt avaldumise võimalus. | Allikanuppu ei kuvatud. | `7c91fc9d` | 2026-08-30 17:57 EEST |
+| J14 | FAIL | Üldine tõendipuuduse vastus; puudusid üle 5800 lapse, umbes 90%, 14 kohtujuhtumit ja 3 kohtuvälist kokkulepet. | Allikanuppu ei kuvatud. | `7c91fc9d` | 2026-08-30 17:57 EEST |
+| J18 | FAIL | Üldine tõendipuuduse vastus; puudusid 5 kohtunikku, 5 erihoolekande töötajat, 5 KOV-i sotsiaaltöötajat ja kokku 15 praktikut. | Allikanuppu ei kuvatud. | `7c91fc9d` | 2026-08-30 17:57 EEST |
+| V04 | PASS | Sidus õigesti 10%=640, 6%=227 ja 2%=100 vastavate vanuse- ja ohvrirühmadega; täpsustas, et allikas räägib ohvriabisse pöördunutest, mitte ainult helistajatest. | `Vastuste allikad` nähtav; paneeli sisu ei avatud. | `7c91fc9d` | 2026-08-30 17:58 EEST |
+| V05 | FAIL | Üldine tõendipuuduse vastus; puudusid kuue kuu järelmõju ning osaleja ja tööandja hinnangute võrdlus. | Allikanuppu ei kuvatud. | `7c91fc9d` | 2026-08-30 17:58 EEST |
+| V06 | FAIL | Värskes vestluses üldine tõendipuuduse vastus; puudusid 169 otsust ja otsuste aasta 2018. | Allikanuppu ei kuvatud. | `7c91fc9d` | 2026-08-30 17:59 EEST |
+| M02 | FAIL | Värskes vestluses üldine tõendipuuduse vastus; ükski neljast soovitusplokist ei jõudnud vastusesse. | Allikanuppu ei kuvatud. | `7c91fc9d` | 2026-08-30 18:02 EEST |
+
+Isolated koond: **3 PASS / 0 PARTIAL / 8 FAIL**.
+
+Operatiivne märkus: V06 järel tehtud esimene M02 sisestus sattus sama vestluse jätkuks, sest `Uus` ei lähtestanud parajasti uut salvestamata klientseanssi. Seda katset ei hinnatud; M02 korrati pärast salvestatud vestluse valimist ja uut lähtestust päriselt värskes vestluses.
+
+### Faas 2 — sequential
+
+Kõik 11 küsimust esitatakse allolevas järjekorras ühes värskes vestluses.
+
+| case_id | status | answer_summary | displayed_sources | runtime | timestamp |
+|---|---|---|---|---|---|
+| J03 | PASS | Tõi järjestikuse jooksu alguses õiged kriisitunnused ning numbrid 112 ja 1220. | `Vastuste allikad` nähtav; paneeli sisu ei avatud. | `7c91fc9d` | 2026-08-30 18:03 EEST |
+| J05 | FAIL | Kohe teise küsimusena andis üldise arvu/ulatuse/aasta tõendipuuduse vastuse; kõik neli oodatud arvu puudusid. Isolated-jooksus oli sama sõnastus PASS. | Allikanuppu ei kuvatud. | `7c91fc9d` | 2026-08-30 18:04 EEST |
+| J08 | FAIL | Sama üldine tõendipuuduse vastus nagu isolated-jooksus; 61%, 26%, 11% ja 18% puudusid. | Allikanuppu ei kuvatud. | `7c91fc9d` | 2026-08-30 18:04 EEST |
+| J11 | FAIL | Sama üldine tõendipuuduse vastus nagu isolated-jooksus; intervjuude arv, jaotus ja analüüs puudusid. | Allikanuppu ei kuvatud. | `7c91fc9d` | 2026-08-30 18:05 EEST |
+| J13 | FAIL | Sama üldine tõendipuuduse vastus nagu isolated-jooksus; vanuserühm, kattuvus ja varane avaldumine puudusid. | Allikanuppu ei kuvatud. | `7c91fc9d` | 2026-08-30 18:05 EEST |
+| J14 | FAIL | Sama üldine tõendipuuduse vastus nagu isolated-jooksus; kõik neli arvulist väidet puudusid. | Allikanuppu ei kuvatud. | `7c91fc9d` | 2026-08-30 18:05 EEST |
+| J18 | FAIL | Sama üldine tõendipuuduse vastus nagu isolated-jooksus; kolme rühma ja koguarv puudusid. | Allikanuppu ei kuvatud. | `7c91fc9d` | 2026-08-30 18:06 EEST |
+| V04 | PASS | Sidus ka seitsmenda küsimusena õigesti 10%=640, 6%=227 ja 2%=100 õigete rühmadega ning täpsustas pöördunute/helistajate erinevust. | `Vastuste allikad` nähtav; paneeli sisu ei avatud. | `7c91fc9d` | 2026-08-30 18:06 EEST |
+| V05 | FAIL | Sama üldine tõendipuuduse vastus nagu isolated-jooksus; kuus kuud ja võrreldud osapooled puudusid. | Allikanuppu ei kuvatud. | `7c91fc9d` | 2026-08-30 18:07 EEST |
+| V06 | FAIL | Sama üldine tõendipuuduse vastus nagu isolated-jooksus; 169 otsust ja aasta 2018 puudusid. | Allikanuppu ei kuvatud. | `7c91fc9d` | 2026-08-30 18:07 EEST |
+| M02 | FAIL | Sama üldine tõendipuuduse vastus nagu isolated-jooksus; ükski neljast soovitusplokist ei jõudnud vastusesse. | Allikanuppu ei kuvatud. | `7c91fc9d` | 2026-08-30 18:07 EEST |
+
+Sequential koond: **2 PASS / 0 PARTIAL / 9 FAIL**.
+
+### Kahe jooksu võrdlus
+
+- Mõlemas režiimis PASS: `J03`, `V04`.
+- Ainult isolated-režiimis PASS: `J05`; sequential-režiimis muutus see juba teise küsimusena FAIL-iks.
+- Mõlemas režiimis FAIL: `J08`, `J11`, `J13`, `J14`, `J18`, `V05`, `V06`, `M02`.
+- PARTIAL tulemusi selles runtime'is ei olnud: vastus kas kattis külmutatud põhiväited või langes üldiseks tõendipuuduse vastuseks.
+- Režiimivahe on seega mõõdetud: isolated `3/11 PASS`, sequential `2/11 PASS`; ainus staatusmuutus oli `J05 PASS → FAIL`.
+- See tõendab vähemalt `J05` puhul vestlusajaloo mõju. Ülejäänud kaheksa püsivat FAIL-i ei ole seletatavad ainult järjestikuse küsimisega.
+
+### Paus pärast teist faasi
+
+Kokkuleppe järgi siin peatutakse. Täielikku 75 küsimuse jooksu ega 37 Golden-küsimuse lisaväravat ei käivitatud.

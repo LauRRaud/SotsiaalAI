@@ -2,7 +2,7 @@
 
 Kuupäev: 22.08.2026
 
-> **Jätkuseis:** see fail säilitab algse auditi ajaloolise lähtejoone ja lisab allpool iga deploy-järgse korduse. Viimane käsitsi autentitud sihtrelease on `44c1e59b` (28.08): viis runtime-veaklassi, päris KOV-kontakt, off-domain piir ja üks täpsustusest sisemise RAG-vastuseni jätk on lõpp-SHA-l kinnitatud. Frontend, RAG ja research-worker olid aktiivsed; health näitas 49 727 vektorit / 6089 dokumenti ning mõlemad FTS-id olid valmis. See ei ole 75/75 tõend. Varasem sisulise RAG-i baasseis `815f15f6` ja 23.08 jõudlusrelease `5796178f` jäävad ajalooliseks lähtejooneks. Süsteemikaart on failis [rag-susteem-2026-08-22.md](./rag-susteem-2026-08-22.md).
+> **Jätkuseis:** see fail säilitab algse auditi ajaloolise lähtejoone ja lisab allpool iga deploy-järgse korduse. Viimane käsitsi autentitud sihtrelease on `44c1e59b` (28.08): viis runtime-veaklassi, päris KOV-kontakt, off-domain piir ja üks täpsustusest sisemise RAG-vastuseni jätk on lõpp-SHA-l kinnitatud. Frontend, RAG ja research-worker olid aktiivsed; health näitas 49 727 vektorit / 6089 dokumenti ning mõlemad FTS-id olid valmis. See ei ole 75/75 tõend. Varasem sisulise RAG-i baasseis `815f15f6` ja 23.08 jõudlusrelease `5796178f` jäävad ajalooliseks lähtejooneks. Süsteemikaart on failis [rag-susteem-master.md](./rag-susteem-master.md).
 
 Mõõteaken: 04:52–06:20 Europe/Tallinn
 

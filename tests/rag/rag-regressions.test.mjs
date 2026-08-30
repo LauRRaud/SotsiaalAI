@@ -14,6 +14,7 @@ import { buildQuestionPlan } from "../../lib/chat/questionPlanner.js";
 import { resolveMultiQueryTopK } from "../../lib/chat/retrievalOrchestrator.js";
 import {
   buildPercentCountSemanticsInstruction,
+  buildRequestedFactSlotContract,
   buildRequestedQualitativeSlotContract,
   buildRequestedFactSlotCoverage,
   prioritizeRequestedNumericEvidence,
@@ -441,6 +442,144 @@ describe("aasta roll otsingus", () => {
 
   test("selgelt nimetatud allika ilmumisaasta jääb filtriks", () => {
     assert.deepEqual(extractExplicitSourceYears("Mida ütles 2023. aasta aruanne?"), [2023]);
+  });
+});
+
+describe("renderdatud tõendi faktileping", () => {
+  function metricContract(message, bodies, docId = "rendered-doc") {
+    const questionPlan = buildQuestionPlan({ message });
+    return buildRequestedFactSlotContract({
+      questionPlan,
+      renderedGroups: [{ sourceId: `${docId}-source`, docId }],
+      renderedBlocks: [{ evidenceText: bodies.join("\n---\n") }],
+      specificResearchFactQuestion: true,
+      documentIdentityEvidence: {
+        matched: true,
+        confidence: "high",
+        selectedDocumentId: docId
+      }
+    });
+  }
+
+  test("seob J08 ja J14 eelnevad sildid ning säilitab arvukvalifikaatorid", () => {
+    const j08 = metricContract(
+      "Vaike Vainu 2023. aasta artiklis „Suure hoolduskoormusega inimesed vajavad täiendavat abi” kui suur osa vastanutest vajas lisabi, kui suur osa palju lisabi ning kui suur osa oli suure ja keskmise hoolduskoormuse riskiga?",
+      [
+        "Lisabi vajas 61% vastanutest. Palju lisabi vajas 26%.",
+        "Suure hoolduskoormuse riskiga oli 11%. Keskmise hoolduskoormuse riskiga oli 18%."
+      ],
+      "j08-doc"
+    );
+    assert.equal(j08.trace?.complete, true);
+    assert.deepEqual(j08.trace?.slots.map(slot => slot.evidence_value), ["61", "26", "11", "18"]);
+
+    const j14 = metricContract(
+      "Anne-Ly Sumre 2019. aasta artiklis „Lastekaitsjad jäävad tihti omavahel sõdivate vanemate vahele” kui palju oli Saue vallas alla 18-aastasi lapsi, kui suur osa hooldusõiguse jagamise juhtumitest jõudis kohtusse ning mitu kohtujuhtumit ja kohtuvälist kokkulepet oli ühe spetsialisti näites?",
+      [
+        "Saue vallas oli alla 18-aastasi lapsi üle 5800.",
+        "Hooldusõiguse jagamise juhtumitest jõudis kohtusse umbes 90%.",
+        "Ühe spetsialisti näites oli kohtujuhtumeid 14 ja kohtuväliseid kokkuleppeid 3."
+      ],
+      "j14-doc"
+    );
+    assert.equal(j14.trace?.complete, true);
+    assert.deepEqual(j14.trace?.slots.map(slot => slot.evidence_value), ["5800", "90", "14", "3"]);
+    assert.deepEqual(j14.trace?.slots.map(slot => slot.qualifier), ["over", "about", null, null]);
+  });
+
+  test("tõlgendab arvsõnu, kestust ja käändelist tõendiaastat enne faktivalideerimist", () => {
+    const j11 = metricContract(
+      "Artiklis „Sotsiaaltöötajate tööalase toetuse kogemused” mitu intervjuud tehti, kuidas jagunesid individuaal- ja rühmavestlused ning millist kolmeetapilist analüüsi kasutati?",
+      [
+        "Kokku tehti seitse intervjuud.",
+        "Neist kuus olid individuaalintervjuud.",
+        "Üks oli rühmaintervjuu, milles osales kolm inimest."
+      ],
+      "j11-doc"
+    );
+    assert.equal(j11.trace?.complete, true);
+    assert.deepEqual(j11.trace?.slots.map(slot => slot.evidence_value), ["7", "6", "1"]);
+
+    const v05 = metricContract(
+      "Marina Vaino artiklis „Uus e-kursus pakub tuge sotsiaalvaldkonna koolitajatele” kui pika aja pärast hinnati järelmõju ning kelle hinnanguid võrreldi?",
+      ["Järelmõju hinnati kuue kuu pärast."],
+      "v05-doc"
+    );
+    assert.equal(v05.trace?.complete, true);
+    assert.deepEqual(v05.trace?.slots.map(slot => slot.evidence_value), ["6"]);
+
+    const v06 = metricContract(
+      "Mitu laste eraldamise otsust analüüsiti 2022. aasta artiklis „Lapse perekonnast eraldamine vaimse tervise probleemiga vanemalt” ja mis aastast need otsused pärinesid?",
+      ["Analüüsiti 169 lapse perekonnast eraldamise otsust 2018. aastast."],
+      "v06-doc"
+    );
+    assert.equal(v06.trace?.complete, true);
+    assert.deepEqual(v06.trace?.slots.map(slot => slot.evidence_value), ["169", "2018"]);
+  });
+
+  test("seob J13 sisulised suhted ja sõnalise varase vanusevahemiku", () => {
+    const message = "2018. aasta artiklis „Käitumisprobleemidega lapsed peaksid abi saama enne, kui asjad väga hulluks lähevad” millist noorte vanuserühma käsitleti ning mida öeldi probleemide kattuvuse ja nende varase avaldumise kohta?";
+    const questionPlan = buildQuestionPlan({ message });
+    const result = buildRequestedQualitativeSlotContract({
+      questionPlan,
+      renderedGroups: [{
+        sourceId: "j13-source",
+        docId: "j13-doc",
+        bodies: [
+          "Uuring käsitles 13–18-aastaseid noori.",
+          "Käitumisprobleemid kattusid sageli teiste probleemidega.",
+          "Varane avaldumine oli võimalik juba kolme- kuni viieaastaselt."
+        ]
+      }],
+      specificResearchFactQuestion: true,
+      documentIdentityEvidence: {
+        matched: true,
+        confidence: "high",
+        selectedDocumentId: "j13-doc"
+      }
+    });
+    assert.equal(result.trace?.complete, true);
+    assert.deepEqual(result.trace?.slots[0]?.required_numeric_values, ["13", "18"]);
+    assert.deepEqual(result.trace?.slots[2]?.required_numeric_values, ["3", "5"]);
+  });
+});
+
+describe("uuringupealkirja kitsas kokkuvõttepere", () => {
+  const baseTitle = "Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuring";
+  const message = `EPIKoja aruandes „${baseTitle}” milline soovitus anti Tallinnale kontaktisiku või juhtumikorralduse kohta, milline ennetava abi kohta, milline teenustele pääsu ja korduvate hindamiste kohta ning milline toetatud otsustamise kohta?`;
+
+  test("baaspealkiri valib täiskokkuvõtte enne lühikokkuvõtet", () => {
+    const plan = buildQuestionPlan({ message });
+    const result = selectSpecificResearchFactGroups(message, [{
+      docId: "short",
+      title: `${baseTitle}u lühikokkuvõte`,
+      sourceType: "research_report",
+      retrievalChannels: ["title_match", "exact_phrase"],
+      bodies: ["Lühikokkuvõte."]
+    }, {
+      docId: "full",
+      title: `${baseTitle}u kokkuvõte`,
+      sourceType: "research_report",
+      retrievalChannels: ["title_match", "exact_phrase"],
+      bodies: ["Täiskokkuvõte."]
+    }], plan);
+    assert.equal(result.matched, true);
+    assert.equal(result.selectedDocumentId, "full");
+    assert.ok(result.reasons.includes("decisive_canonical_title_family_anchor"));
+  });
+
+  test("sama prioriteediga kaks eri dokumenti jäävad fail-closed mitmetähenduslikuks", () => {
+    const plan = buildQuestionPlan({ message });
+    const groups = ["a", "b"].map(docId => ({
+      docId,
+      title: `${baseTitle}u kokkuvõte`,
+      sourceType: "research_report",
+      retrievalChannels: ["title_match", "exact_phrase"],
+      bodies: ["Sama pealkirjapere."]
+    }));
+    const result = selectSpecificResearchFactGroups(message, groups, plan);
+    assert.equal(result.matched, false);
+    assert.equal(result.confidence, "ambiguous");
   });
 });
 
