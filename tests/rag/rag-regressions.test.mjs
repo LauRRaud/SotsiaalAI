@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { describe, test } from "node:test";
 
 import { formatSourceLabel, normalizeSourceLabelPages } from "../../components/chat/utils/sources.js";
-import { shouldValidateExactFactAnswer, validateExactFactAnswer } from "../../lib/chat/factContract.js";
+import { recoverSupportedReplyAfterNumericValidation, shouldValidateExactFactAnswer, validateExactFactAnswer } from "../../lib/chat/factContract.js";
 import { buildRagTraceFromAttribution } from "../../lib/chat/mainResponseHandler.js";
 import { resolveModelClarification } from "../../lib/chat/conversationalRecovery.js";
 import { normalizePageReferences } from "../../lib/chat/pageRanges.js";
@@ -1928,7 +1928,7 @@ describe("runtime-järelparanduse suhtepiirid", () => {
     const message = "Artiklis „Toetuse uuring” mitu intervjuud tehti, kuidas jagunesid individuaal- ja rühmavestlused ning millist kolmeetapilist analüüsi kasutati?";
     const questionPlan = buildQuestionPlan({ message });
     const body = "Tehti 10 intervjuud. Neist 8 olid individuaalintervjuud ja 2 rühmaintervjuud. Kasutati kolmeetapilist temaatilist analüüsi.";
-    const identity = { matched: true, confidence: "high", selectedDocumentId: "interview-study" };
+    const identity = { required: true, matched: true, confidence: "high", selectedDocumentId: "interview-study" };
     const args = { questionPlan, specificResearchFactQuestion: true, documentIdentityEvidence: identity,
       renderedGroups: [{ sourceId: "interview-source", docId: "interview-study", bodies: [body] }], renderedBlocks: [{ evidenceText: body }] };
     const contract = buildRequestedFactSlotContract(args).trace;
@@ -1938,7 +1938,27 @@ describe("runtime-järelparanduse suhtepiirid", () => {
     const sources = [{ source_id: "interview-source", document_id: "interview-study", evidenceText: `Toetuse uuring\n${body}` }];
     const reply = "Tehti 10 intervjuud: 8 individuaalintervjuud ja 2 rühmaintervjuud. Kasutati kolmeetapilist temaatilist analüüsi.";
     assert.equal(validateExactFactAnswer({ message, reply, sources, retrievalMeta }).passed, true);
+    for (const formatted of [
+      reply.replace("8 individuaalintervjuud ja 2 rühmaintervjuud", "8 **individuaalintervjuud** ja 2 **rühmaintervjuud**"),
+      reply.replace("8 individuaalintervjuud ja 2 rühmaintervjuud", "8 olid individuaalintervjuud ja 2 olid rühmaintervjuud"),
+      `1. ${reply}`, `    ${reply}`
+    ]) assert.equal(validateExactFactAnswer({ message, reply: formatted, sources, retrievalMeta }).passed, true, formatted);
     assert.equal(validateExactFactAnswer({ message, reply: reply.replace(/8 |2 /gu, value => value === "8 " ? "2 " : "8 "), sources, retrievalMeta }).passed, false);
+    const extraReply = `${reply} Lisataustas oli 99 osalejat.`;
+    const failed = validateExactFactAnswer({ message, reply: extraReply, sources, retrievalMeta });
+    assert.equal(failed.trace.reason, "requested_metric_unexpected_numeric_claim");
+    const recovered = recoverSupportedReplyAfterNumericValidation({ message, reply: extraReply, validation: failed, sources, retrievalMeta });
+    assert.equal(recovered.passed, true);
+    assert.equal(recovered.trace.requested_metric_recovery, true);
+    assert.equal(recovered.reply.includes("99"), false);
+    assert.match(recovered.reply, /temaatilist/u);
+    assert.equal(validateExactFactAnswer({ message, reply: recovered.reply, sources, retrievalMeta }).passed, true);
+    assert.equal(recoverSupportedReplyAfterNumericValidation({ message, reply: extraReply, validation: failed, sources: [], retrievalMeta }).passed, false);
+    assert.equal(recoverSupportedReplyAfterNumericValidation({ message, reply: extraReply, validation: failed, sources,
+      retrievalMeta: { ...retrievalMeta, documentIdentityEvidence: { ...identity, confidence: "low" } } }).passed, false);
+    const missingMethod = "Tehti 10 intervjuud: 8 individuaalintervjuud ja 2 rühmaintervjuud. Lisataustas oli 99 osalejat.";
+    const missingValidation = validateExactFactAnswer({ message, reply: missingMethod, sources, retrievalMeta });
+    assert.equal(recoverSupportedReplyAfterNumericValidation({ message, reply: missingMethod, validation: missingValidation, sources, retrievalMeta }).passed, false);
   });
 
   test("tsiteeritud sõna ei muuda sisuvastust täpsustusküsimuseks", () => {
@@ -1990,6 +2010,11 @@ describe("runtime-järelparanduse suhtepiirid", () => {
     const retrievalMeta = { requestedFactSlotContract: contract, documentIdentityEvidence: identity };
     const valid = "Lisabi vajas 70% vastanutest. Palju abi vajas 30% vastanutest. Suure hoolduskoormuse riskiga oli 12%. Keskmise hoolduskoormuse riskiga oli 20%.";
     assert.equal(validateExactFactAnswer({ message, reply: valid, sources, retrievalMeta }).passed, true);
+    for (const firstSentence of [
+      "Vastanutest vajas hooldustegevustes täiendavat abi 70%.",
+      "Vastanutest vajas täiendavat abi hooldustegevustes 70%.",
+      "Vastanutest vajas lisabi hoolduskoormusega toimetulekuks 70%."
+    ]) assert.equal(validateExactFactAnswer({ message, reply: valid.replace("Lisabi vajas 70% vastanutest.", firstSentence), sources, retrievalMeta }).passed, true, firstSentence);
     for (const reply of [
       valid.replace("Palju abi", "Abi"),
       valid.replace("Suure hoolduskoormuse", "Väikese hoolduskoormuse"),

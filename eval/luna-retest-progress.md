@@ -880,4 +880,35 @@ Ring 2 Golden-järelkontroll (eraldi nimetaja 3): **2 PASS / 0 PARTIAL / 1 FAIL*
 - Sünteesi järelkiht muutis tavapärase mitmelauselise vastuse „Ajakiri „Sotsiaaltöö” käsitleb…” mõiste täpsustuseks. Põhjus: quotedUserTerm fallback ei nõudnud üldse küsimusekuju. Sama struktuurivärav kehtib nüüd nii turvalise mudeliküsimuse kui ka jutumärgipõhise fallback'i ees; sisuvastus ja sisuvastus koos lõpu järelküsimusega säilivad.
 - J08 allesjääva vea uurimiseks on trace'is puuduva arvusloti piiratud indeks, sobivuskontrollide loendurid/tõeväärtused ja allikast lisatud variantide arv. Uusi tooreid relation-term'e, arve ega valideerimiseelset vastust ei lisata.
 
-Kolmanda puu kitsas kontroll: **14/14 PASS**, sh arvusildi liitsõna, vahetatud arvude negatiiv, päris täpsustuse säilimine, sisuvastuse säilimine ning diagnostika loenduripiir/privaatse canary puudumine. Avaliku J08 17/17 maatriks ja J11 täisteksti 7 positiivset/negatiivset kontrolli annavad oodatud tulemuse. Lõpule lisatud kasutajaküsimuse kordamise fallback-piiri sihttest läbib. ESLint, i18n, diff-check ja lõpliku muutumatu koodipuu `TZ=UTC` tootmisbuild PASS (34,5 s kompileerimine). Runtime pärast seda plokki on seni NOT_RUN.
+Kolmanda puu kitsas kontroll: **14/14 PASS**, sh arvusildi liitsõna, vahetatud arvude negatiiv, päris täpsustuse säilimine, sisuvastuse säilimine ning diagnostika loenduripiir/privaatse canary puudumine. Avaliku J08 17/17 maatriks ja J11 täisteksti 7 positiivset/negatiivset kontrolli annavad oodatud tulemuse. Lõpule lisatud kasutajaküsimuse kordamise fallback-piiri sihttest läbib. ESLint, i18n, diff-check ja lõpliku muutumatu koodipuu `TZ=UTC` tootmisbuild PASS (34,5 s kompileerimine). Commit/push `d2257318`; deploy käib. Runtime pärast seda plokki on seni NOT_RUN.
+
+### Ring 3 — in-app isolated ja sequential
+
+Iga küsimus saadetakse kasutajaliidese kaudu. Golden ja uued sõnastused ei suurenda 75-auditi nimetajat; allpool märgitakse nende kontrollid eraldi.
+
+| R3 juhtum | Hinnang | Täisvastus/allikapaneel | Märkus |
+|---|---|---|---|
+| r3-iso-J05 | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-d2257318/r3-iso-J05.md) | Umbes30 / 12 ja60 / 19; üks õige allikas. |
+| r3-iso-J08 | FAIL | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-d2257318/r3-iso-J08.md) | Slot1:3/3 sõna sobib, kuid unique_relation_bound=false; allikaid0. |
+| r3-iso-J11 | FAIL | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-d2257318/r3-iso-J11.md) | Slot2 sõna sobib, unique_relation_bound=false; meetod läbib. |
+| r3-iso-J18 | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-d2257318/r3-iso-J18.md) | Igas kolmes rühmas5, kokku15; õige allikas. |
+| r3-iso-V05 | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-d2257318/r3-iso-V05.md) | Kuus kuud, osaleja ja tööandja; õige allikas. |
+| r3-seq-J05 | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-d2257318/r3-seq-J05.md) | Umbes30/12 ja60/19; õige allikas. |
+| r3-seq-J08 | FAIL | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-d2257318/r3-seq-J08.md) | Slot1 sõnakate2/3 piisav, kuid unique_relation_bound=false. |
+| r3-seq-J11 | FAIL | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-d2257318/r3-seq-J11.md) | Numbriseos läbis, kuid requested_metric_unexpected_numeric_claim; küsitud meetod säilis. |
+| r3-seq-J18 | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-d2257318/r3-seq-J18.md) | 5 igas kolmes rühmas, kokku15; õige allikas. |
+| r3-seq-V05 | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-d2257318/r3-seq-V05.md) | Kuus kuud; osaleja ja tööandja; õige allikas. |
+
+R3 viie varem vigase 75-komplekti juhtumi tulemus: **isolated 3 PASS / 2 FAIL, sequential 3 PASS / 2 FAIL**. J05, J18 ja V05 läbivad mõlemad jooksud; J08 ja J11 mitte. Selle ringi põhjal järjekorra eelist ei ilmnenud.
+
+Golden eraldi järelkontroll: **integreeritud teenused PASS** — sisuline süntees ja kuus vastuses nimetatud allikat, ilma võltsi täpsustusküsimuseta. [Täisvastus ja avatud paneel](../docs/audits/evidence/rag-loop-2026-08-31-d2257318/r3-golden-integrated.md).
+
+### Ring 4 — arvuseose vormindus ja allikaga piiratud taastamine
+
+R3 deploy oli edukas: lokaalne/origin/server SHA d2257318, kolm teenust aktiivsed, avalik vestlus HTTP 200; 49 727 vektorit, 6089 registrikirjet ja 6073 aktiivset leksikaalset dokumenti. Mõlemad FTS-indeksid valmis. EstNLTK saadavus on kinnitatud enda UI päringu trace'iga; restart-järgne lazy-load olek ei tähenda teenuse viga.
+
+- J08 trace eristas esimese sloti vale sildikonkurentsi. Avalik täistekst ja tegelikud morfoloogiaslotid reprodutseerisid vea kolme õige „hooldustegevustes/hoolduskoormusega” sõnastusega. Konkureeriv slot peab nüüd ise täitma kohaliku seosesignatuuri ning tema kategooriamäärang on ühise põhisõna asemel esmane. Tegeliku puu sõltumatu maatriks: 24/24 oodatud, sealhulgas valed arvude vahetused ja puuduv „palju” jäävad blokeerituks.
+- J11 õige arvupaar ebaõnnestus rasvase kirja, koopula või nihutatud toorpositsioonide tõttu. Tokeniseerimine säilitab algsed positsioonid; kõrvalolev silt kuulub lähimale oma arvule ka vorminduse korral. Sõltumatu avaliku täisteksti kontroll: kuus õiget vormi läbib, kolm valet/puuduvat fakti blokeeritakse (9/9).
+- R3 sequential-J11 jõudis arvuseosest edasi, kuid blokeerus ootamatu kõrvalarvu tõttu. Varjatud mudelivastust ega tegelikku kõrvalarvu ei oletata. Lisatud kitsas taastamine kasutab ainult täielikku renderdatud faktilepingut, tugevat dokumendilukku, olemasolevaid allikaid ja juba valideeritud kvalitatiivseid üksusi; kogu vastus valideeritakse uuesti. Vale põhiarv, puuduv meetod, tühi allikakomplekt ja nõrk identiteet ei taastu.
+
+Neljanda ploki sihttestid: 14/14 PASS. ESLint, i18n ja diff-check PASS; lõpliku muutumatu koodipuu TZ=UTC tootmisbuild PASS (35,3 s kompileerimine). Käituskvaliteet jääb NOT_PROVEN kuni uue serverikorduseni.

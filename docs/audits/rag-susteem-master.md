@@ -659,7 +659,7 @@ Tavalisel madala riskiga vastusel võib Responses API tekst voolata SSE delta'de
 - temporal aggregate ei muutu leiutatud aastareaks;
 - allikakomplekti jätkuküsimus säilitab sama tõendatud komplekti.
 
-Null või mitu täielikku sloti-assignment'i, puuduv lõplik renderdatud tõend, ebapiisav dokumendilukk või ootamatu lisaarv annavad `FAIL`. Kui täielik renderdatud faktileping on olemas, ei eeldata mudelilt planner'i algset arvujärjekorda: otsustab üheselt tõendatud seos.
+Null või mitu täielikku sloti-assignment'i, puuduv lõplik renderdatud tõend, ebapiisav dokumendilukk või ootamatu lisaarv annavad esmalt `FAIL`. Ootamatu lisaarvu puhul võib rakenduda allpool kirjeldatud kitsas, täielikku kordusvalideerimist nõudev taastamine. Kui täielik renderdatud faktileping on olemas, ei eeldata mudelilt planner'i algset arvujärjekorda: otsustab üheselt tõendatud seos.
 
 Võrdsete rühmasuuruste ja sama valimi koguarvu jaoks on eraldi piiratud seosekontroll. See rakendub ainult kahele loendusslotile: rühma suurus koos oodatud rühmade arvuga ja koguarv. Allika sõnaselgest „igast rühmast viis, kokku viisteist” seosest võib tuletada rühmade arvu, kui jagatis on täisarv vahemikus 2–20; seda hoitakse eraldi allikas sõnaselgelt öeldud kardinaalsusest. Vastus peab kas ütlema üheselt, et igas nimetatud arvus rühmas oli sama palju osalejaid, või nimetama kõik eri tõendatud osalejarollid. Sama rolli käändeline kordamine ei täida uut rühma; kohtute, asutuste ja omavalitsuste arv ei ole osalejate arv. Koguarv peab esinema üks kord ning kõrvalarvud ei pääse sellest harust kontrollita läbi.
 
@@ -670,6 +670,8 @@ Sama nähtuse kategooriaid eristavad määrangud (`palju`, `suur`, `väike`, `ke
 Rühmade arvu jagatis tuletatakse ainult täpsetest operandidest: `vähemalt`, `kuni`, `üle`, `alla` ja `umbes` ei anna täpset kardinaalsust. Ka eraldi rühmakontrollis peab kvalifikaator säilima allika, slotilepingu ja iga vastusearvu vahel. Nimeline meetod võib olla ka predikaat või tegevuse objekt (`uurimismeetodiks oli vaatlus`, `andmekogumiseks kasutati osalusvaatlust`); see ei pea alati eelnema sõnale `analüüs`.
 
 Vastuses eraldatakse ka `ja`/`ning` abil algav uus silt–arv klausel, kui sidesõna järel ja enne arvu on uue küsitud mõõdiku seos. See takistab eelmise arvu sidumist järgmise kategooriasildiga. Pelk sidesõna ühikute vahel ei lõika seost automaatselt läbi. Konkureerivate siltide kaugus arvust mõõdetakse tokeni ja arvuspani servadest, mitte sõna keskpunktist: pikk liitsõna nagu `individuaalintervjuu` ei jää oma kõrval oleva arvu suhtes eelmise koguarvu lühisildist halvemasse seisu. Sama osalejarolli käändelised kordused deduplikeeritakse nii allika rühmade arvu tuletamisel kui ka vastuse täielikkuse kontrollimisel.
+
+Konkureeriv arvusilt peab täitma ka oma sloti kohaliku seosesignatuuri. Pelk ühine liitsõnaosa, näiteks hooldustegevuse mainimine hoolduskoormuse riskinäitaja kõrval, ei muuda teist sloti sobivaks konkurendiks. Konkurendi enda kategooriamäärang on eristamisel esmane ka siis, kui kontrollitaval üldisemal slotil määrang puudub. Vahetult arvu kõrval olev silt kuulub oma lähimale arvule: rasvane kiri, numeratsioon, taanded ega koopula „oli/olid” ei nihuta arvupositsioone või anna silti naaberarvule. Võrdse kauguse korral ei leiutata omanikku ning ülejäänud seoseväravad jäävad jõusse.
 
 ### 11.2 Vale vastuse korral
 
@@ -682,6 +684,8 @@ Validaatori läbikukkumine ei ole kasutajale nähtava vale teksti järel tehtav 
 - taastab usaldatud recovery-state'i, et kasutaja saaks jätkata.
 
 Tavapärane validator ei tee teist vabalt genereerivat paranduskutset. See piirab nii kulu kui ka võimalust, et „parandus” lisab uue tõendamata väite.
+
+`recoverSupportedReplyAfterNumericValidation` saab taastada täielikult vastatava täpse dokumendifakti, kui ainus arvuvärava tõrge on `requested_metric_unexpected_numeric_claim`. Nõutavad on täielik `final_rendered_evidence` leping, kohustuslik ja kõrge kindlusega sobiv dokumendiidentiteet ning olemasolevad allikad. Taastamine piirdub üksikute count/proportion-slottidega ilma ulatusarvude või mitmekordse kardinaalsuseta. Arvuread ehitatakse renderdatud tõendi väärtusest, seosesildist, protsendiliigist ja kvalifikaatorist; kvalitatiivsed vastuseüksused säilivad ainult juba läbitud slotiseose alusel. Kõik küsitud kvalitatiivsed slotid peavad olema kaetud. Uus tekst läbib uuesti kogu `validateExactFactAnswer` kontrolli samade allikate ja metaandmetega. Puuduv meetod, vale põhiarv, nõrk identiteet või kordusvalideerimise tõrge ei muutu edukaks vastuseks. Mudeli lisaarvu ei kinnitata, uut mudelikutset ei tehta.
 
 Mudeli vastust saab täpsustusküsimusena normaliseerida ainult siis, kui see on üks lühike küsimusekujuline lause: keelekohane küsimuse algus, üks lõpus olev küsimärk, puuduv eelnev sisulause ning olemasolev pikkuspiir. Sama kujundivärav ja kasutaja küsimuse pelga kordamise keeld eelnevad ka jutumärkides kasutajatermi turvalisele täpsustusele. Tsiteeritud ühe sõna või ajakirjanime esinemine sisuvastuses ei muuda vastust täpsustuseks.
 
@@ -796,6 +800,8 @@ Kui durable püsistus ebaõnnestub, ei saadeta kliendile eksitavat `done` sündm
 Trace'i ei lisata uusi tooreid kasutaja relation-term'e, tegevusfraase ega PII-laadseid debug-loendeid. Logides ja trace'is kasutatakse piiratud pikkusi, enum'e, ID-sid, räse ja kokkuvõtteid.
 
 Arvuseose tõrge kannab piiratud `requested_metric_missing_slot_index` välja ja kuni kuue arvukandidaadi diagnostilisi indekseid, sobivate/nõutud relation-term'ide loendureid ning kolme värava tõeväärtusi: minimaalne sõnakate, nõutud kategooriamäärang ja üheselt seotud silt. Lõpliku sloti trace näitab ka allikatõendist lisatud sõnavariantide arvu. Need väljad ei avalda valideerimiseelset mudelivastust, väärtuste toorloendit ega uusi sõnaankruid; puuduva või piirist väljuva sisendi korral kasutatakse puuduvat/null-välja.
+
+Edukas täieliku faktilepingu taastamine lisab ainult tõeväärtuse `requested_metric_recovery` ja piiratud põhjuse `recovery_original_reason=requested_metric_unexpected_numeric_claim`. Taastamiseelset vastust ja kõrvalarvu ei avaldata selle diagnostika kaudu.
 
 ### 13.4 SSE taastamine
 

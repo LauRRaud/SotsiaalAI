@@ -1,0 +1,1679 @@
+{
+  "meta": {
+    "isCrisis": false
+  },
+  "trace": {
+    "trace_contract": {
+      "version": "rag_trace_layers_v1",
+      "layer": "server_runtime_trace",
+      "source_layer": null,
+      "projection": "unprojected_runtime",
+      "downstream_layers": {
+        "database_projection": "assistant_message.metadata.rag_trace",
+        "audit_normalization": "derived_audit_artifact_must_declare_source_layer",
+        "ui_observation": "independent_visible_ui_evidence"
+      }
+    },
+    "retrieved_count": 8,
+    "selected_context_count": 1,
+    "rendered_context_hash": "48ffd7f5c3ecee9871d8792766c8a6a702787a06c3c1569e2da9e3beb3976eeb",
+    "rendered_context_chars": 12271,
+    "retrievers_used": [
+      "dense",
+      "author_match",
+      "title_match",
+      "bm25"
+    ],
+    "retrieved_source_ids": [
+      "sotsiaaltoo_uus-e-kursus-pakub-tuge-sotsiaalvaldkonna-koolitajatele-2026"
+    ],
+    "selected_context_source_ids": [
+      "sotsiaaltoo_uus-e-kursus-pakub-tuge-sotsiaalvaldkonna-koolitajatele-2026"
+    ],
+    "model_context_source_ids": [
+      "sotsiaaltoo_uus-e-kursus-pakub-tuge-sotsiaalvaldkonna-koolitajatele-2026"
+    ],
+    "validated_supporting_source_ids": [
+      "sotsiaaltoo_uus-e-kursus-pakub-tuge-sotsiaalvaldkonna-koolitajatele-2026"
+    ],
+    "claim_supported_source_ids": [
+      "sotsiaaltoo_uus-e-kursus-pakub-tuge-sotsiaalvaldkonna-koolitajatele-2026"
+    ],
+    "claim_support_graph": [
+      {
+        "claim_id": "claim_1",
+        "claim_hash": "53dc053a",
+        "supporting_source_ids": [
+          "sotsiaaltoo_uus-e-kursus-pakub-tuge-sotsiaalvaldkonna-koolitajatele-2026"
+        ]
+      },
+      {
+        "claim_id": "claim_2",
+        "claim_hash": "563b8dc0",
+        "supporting_source_ids": [
+          "sotsiaaltoo_uus-e-kursus-pakub-tuge-sotsiaalvaldkonna-koolitajatele-2026"
+        ]
+      }
+    ],
+    "selected_context_details": [
+      {
+        "source_id": "sotsiaaltoo_uus-e-kursus-pakub-tuge-sotsiaalvaldkonna-koolitajatele-2026",
+        "raw_source_id": "sotsiaaltoo_uus-e-kursus-pakub-tuge-sotsiaalvaldkonna-koolitajatele-2026",
+        "title": "Uus e-kursus pakub tuge sotsiaalvaldkonna koolitajatele",
+        "section": "Erialane haridus",
+        "body_preview": "Loodame, et e-kursusel õppijad nakatuvad meid kandnud heast tahtest ja entusiasmist ning leiavad enda jaoks palju kasulikku ja õppimisväärset.“ E-kursusel käsitletavad teemad - Mina kui õppija ja täiskasvanute koolitaja. See koolituse osa …",
+        "rendered_evidence_hash": "48ffd7f5c3ecee9871d8792766c8a6a702787a06c3c1569e2da9e3beb3976eeb",
+        "original_body_hash": "0599741a5c5e4a569eefb3ffa4a2f48e0be6dc8c2b007b3e60d5a37aa5af054f",
+        "rendered_body_hash": "3d82c3788afc7fb6a10508932ffc29db75c13b9acf9c9dbab6b7168e62911907",
+        "rendered_evidence_chars": 12271,
+        "rendered_evidence_truncated": true,
+        "rendered_body_count": 8,
+        "original_body_count": 8,
+        "rendered_body_spans": [
+          {
+            "original_body_index": 0,
+            "original_body_hash": "c1ee8682d4220086ebb26a397fa18d6a69ad71723252fad49614031ebcfa4474",
+            "rendered_body_hash": "9e7fb96a44786aebcdb8c185f2a2b92c651d0c20e55d0c7ba1c91bc65a5a4a51",
+            "original_body_chars": 1710,
+            "rendered_body_chars": 1611,
+            "start_offset": 0,
+            "end_offset": 1608,
+            "truncated": true
+          },
+          {
+            "original_body_index": 1,
+            "original_body_hash": "c72443be0ed305cf4000a91da38fbdc06576e4a4134048e4e0c36afc6217bd33",
+            "rendered_body_hash": "ffabcd0d96f688a6c724aaef2c5f00fc63696fa465c910a573068f311e986b1a",
+            "original_body_chars": 1817,
+            "rendered_body_chars": 1611,
+            "start_offset": 0,
+            "end_offset": 1608,
+            "truncated": true
+          },
+          {
+            "original_body_index": 2,
+            "original_body_hash": "e98a94f3ad3b4a24c4fa172df12b413357d3b16f849f8b6f0c0277ac3331e77c",
+            "rendered_body_hash": "e98a94f3ad3b4a24c4fa172df12b413357d3b16f849f8b6f0c0277ac3331e77c",
+            "original_body_chars": 1603,
+            "rendered_body_chars": 1603,
+            "start_offset": 0,
+            "end_offset": 1603,
+            "truncated": false
+          },
+          {
+            "original_body_index": 3,
+            "original_body_hash": "840a5f5c4edd24cccaf5889747b37fc9b0fe24b35162e18e2ae5907562724be5",
+            "rendered_body_hash": "efe2ca6c8acb3c97fc99b7cf659c28a784bf51c7b5762891d01a4fd49bc0dee2",
+            "original_body_chars": 1624,
+            "rendered_body_chars": 1611,
+            "start_offset": 0,
+            "end_offset": 1608,
+            "truncated": true
+          },
+          {
+            "original_body_index": 4,
+            "original_body_hash": "2e42022a9412aace64d7f82029b33128267cd5eb35baee8a09ef667ab9d41711",
+            "rendered_body_hash": "cb19dd02373025010f8203953482f71c747749ef0fddc92173a9f463a1eaa39f",
+            "original_body_chars": 1684,
+            "rendered_body_chars": 1610,
+            "start_offset": 0,
+            "end_offset": 1607,
+            "truncated": true
+          },
+          {
+            "original_body_index": 5,
+            "original_body_hash": "c9e6202ed2a022fab2c2298e0f37cb384273712219bd7d56ef999a73df943f08",
+            "rendered_body_hash": "356a49dd073ffbabdfb98d51227be374dc0e9d0f8669ed0e564b9b0add0ad568",
+            "original_body_chars": 1616,
+            "rendered_body_chars": 1610,
+            "start_offset": 0,
+            "end_offset": 1607,
+            "truncated": true
+          },
+          {
+            "original_body_index": 6,
+            "original_body_hash": "cd86972643a81e00ea2a1841a6f27369debd4eb01a6ea20d4b1ba7f105a01e86",
+            "rendered_body_hash": "2cdf328f8d9ab1b9338496576c05936b23a5651314674c0bf58b4354370fe230",
+            "original_body_chars": 1712,
+            "rendered_body_chars": 1610,
+            "start_offset": 0,
+            "end_offset": 1607,
+            "truncated": true
+          },
+          {
+            "original_body_index": 7,
+            "original_body_hash": "f09cd6bd9396d26ace576e6c14a7dcf9b6e60e592ba344c84371a7ecb6766019",
+            "rendered_body_hash": "f09cd6bd9396d26ace576e6c14a7dcf9b6e60e592ba344c84371a7ecb6766019",
+            "original_body_chars": 699,
+            "rendered_body_chars": 699,
+            "start_offset": 0,
+            "end_offset": 699,
+            "truncated": false
+          }
+        ],
+        "source_type": "journal_article",
+        "collection_id": "sotsiaaltoo_articles",
+        "source_status": "active",
+        "historical": true,
+        "retrieval_channels": [
+          "dense",
+          "author_match",
+          "title_match",
+          "bm25"
+        ],
+        "hybrid_score": 2.46025,
+        "dense_score": 0.681489,
+        "lexical_score": 39,
+        "lexical_score_normalized": 0.829787,
+        "bm25_score": 13.9889,
+        "bm25_coverage": 0.324324,
+        "bm25_matches": 12,
+        "bm25_query_tokens": 37,
+        "rrf_score": 0.07874,
+        "channel_boost": 0.28,
+        "hybrid_rank": 1,
+        "dense_rank": 1,
+        "lexical_rank": 1,
+        "rank_score": 4.2402,
+        "topic_boost": 1.08,
+        "quality_adjust": 0.7
+      }
+    ],
+    "source_packages": [],
+    "package_aware_answering_used": false,
+    "used_package_ids": [],
+    "missing_sections_used": [],
+    "package_candidate_source_ids": [],
+    "package_displayed_source_ids": [],
+    "package_requested_sections": [],
+    "package_answer_flags": [],
+    "package_selection_status": "no_packages",
+    "insufficient_precise_support": false,
+    "required_evidence_sections": [],
+    "package_attribution_checked": false,
+    "high_risk_attribution_checked": false,
+    "section_attribution": [],
+    "attribution_flags": [],
+    "answer_source_ids": [
+      "sotsiaaltoo_uus-e-kursus-pakub-tuge-sotsiaalvaldkonna-koolitajatele-2026"
+    ],
+    "answer_source_semantics": "claim_or_validator_support",
+    "displayed_source_ids": [
+      "sotsiaaltoo_uus-e-kursus-pakub-tuge-sotsiaalvaldkonna-koolitajatele-2026"
+    ],
+    "filtered_out_source_ids": [],
+    "filter_reasons": {},
+    "selected_source_count": 1,
+    "answer_source_count": 1,
+    "displayed_source_count": 1,
+    "model_context_source_count": 1,
+    "validated_supporting_source_count": 1,
+    "claim_supported_source_count": 1,
+    "filtered_out_source_count": 0,
+    "displayed_sources_subset_of_selected": true,
+    "displayed_sources_subset_of_answer": true,
+    "displayed_not_in_selected_source_ids": [],
+    "displayed_not_in_answer_source_ids": [],
+    "selected_but_not_displayed_source_ids": [],
+    "retrieved_but_not_displayed_source_ids": [],
+    "attribution_filtered_source_ids": [],
+    "attribution_filter_reasons": {},
+    "attribution_decisions": [
+      {
+        "source_id": "sotsiaaltoo_uus-e-kursus-pakub-tuge-sotsiaalvaldkonna-koolitajatele-2026",
+        "source_index": 0,
+        "decision": "display",
+        "reason": "fact_contract_validated",
+        "score": 27,
+        "source_type": "journal_article",
+        "source_layer_contract": "research_or_journal",
+        "source_status": "active",
+        "historical": true
+      }
+    ],
+    "rag_risk_level": "low",
+    "rag_required_evidence": "medium",
+    "rag_insufficient_evidence_mode": false,
+    "requested_metric_contract": {
+      "version": "requested_fact_slot_contract_v1",
+      "compatibility_contract": "requested_metric_contract_v2",
+      "slot_source": "requested_fact_slots",
+      "enabled": true,
+      "complete": true,
+      "reason": "all_requested_slots_mapped_in_one_rendered_source",
+      "source": "final_rendered_evidence",
+      "mapping_method": "bounded_rendered_sentence_peer_alignment_v8",
+      "requested_slot_count": 1,
+      "mapped_slot_count": 1,
+      "sanitizer_dropped_slot": false,
+      "used_for_generation": true,
+      "used_for_validation": true,
+      "rendered_evidence_hash": "3d82c3788afc7fb6a10508932ffc29db75c13b9acf9c9dbab6b7168e62911907",
+      "mapping_diagnostics": {
+        "evidence_candidate_count": 12,
+        "evidence_fragment_count": 88,
+        "evidence_candidates_truncated": false,
+        "ambiguous": false,
+        "candidate_scope": "lexical_pre_assignment",
+        "coordination_gate_evaluated": false,
+        "coordination_gate_passed": null,
+        "coordination_rejected_assignment_count": null,
+        "coordination_qualified_solution_count": null,
+        "slots": [
+          {
+            "slot_index": 1,
+            "matching_candidate_count": 2,
+            "top_candidates": [
+              {
+                "score": 10.81,
+                "fragment_index": 8,
+                "mention_index": 0,
+                "rendered_body_index": 0,
+                "relation_scope_index": 8,
+                "matched_term_count": 3,
+                "relation_term_count": 3,
+                "parenthesis_depth": 0,
+                "local_relation_head_matched": true
+              },
+              {
+                "score": 5.922,
+                "fragment_index": 7,
+                "mention_index": 10,
+                "rendered_body_index": 0,
+                "relation_scope_index": 7,
+                "matched_term_count": 2,
+                "relation_term_count": 3,
+                "parenthesis_depth": 0,
+                "local_relation_head_matched": true
+              }
+            ]
+          }
+        ]
+      },
+      "slots": [
+        {
+          "slot_index": 1,
+          "value_type": "duration",
+          "slot_source": "requested_fact_slots",
+          "unit": "kuud",
+          "qualifier": null,
+          "input_form": "original",
+          "fragment_index": 8,
+          "mention_index": 0,
+          "matched_term_count": 3,
+          "relation_term_count": 3,
+          "source_mapped_relation_variant_count": 0,
+          "minimum_relation_matches": 2,
+          "expected_cardinality": null,
+          "parenthesis_depth": 0,
+          "local_relation_head_matched": true
+        }
+      ]
+    },
+    "requested_fact_slot_contract": {
+      "version": "requested_fact_slot_contract_v1",
+      "compatibility_contract": "requested_metric_contract_v2",
+      "slot_source": "requested_fact_slots",
+      "enabled": true,
+      "complete": true,
+      "reason": "all_requested_slots_mapped_in_one_rendered_source",
+      "source": "final_rendered_evidence",
+      "mapping_method": "bounded_rendered_sentence_peer_alignment_v8",
+      "requested_slot_count": 1,
+      "mapped_slot_count": 1,
+      "sanitizer_dropped_slot": false,
+      "used_for_generation": true,
+      "used_for_validation": true,
+      "rendered_evidence_hash": "3d82c3788afc7fb6a10508932ffc29db75c13b9acf9c9dbab6b7168e62911907",
+      "mapping_diagnostics": {
+        "evidence_candidate_count": 12,
+        "evidence_fragment_count": 88,
+        "evidence_candidates_truncated": false,
+        "ambiguous": false,
+        "candidate_scope": "lexical_pre_assignment",
+        "coordination_gate_evaluated": false,
+        "coordination_gate_passed": null,
+        "coordination_rejected_assignment_count": null,
+        "coordination_qualified_solution_count": null,
+        "slots": [
+          {
+            "slot_index": 1,
+            "matching_candidate_count": 2,
+            "top_candidates": [
+              {
+                "score": 10.81,
+                "fragment_index": 8,
+                "mention_index": 0,
+                "rendered_body_index": 0,
+                "relation_scope_index": 8,
+                "matched_term_count": 3,
+                "relation_term_count": 3,
+                "parenthesis_depth": 0,
+                "local_relation_head_matched": true
+              },
+              {
+                "score": 5.922,
+                "fragment_index": 7,
+                "mention_index": 10,
+                "rendered_body_index": 0,
+                "relation_scope_index": 7,
+                "matched_term_count": 2,
+                "relation_term_count": 3,
+                "parenthesis_depth": 0,
+                "local_relation_head_matched": true
+              }
+            ]
+          }
+        ]
+      },
+      "slots": [
+        {
+          "slot_index": 1,
+          "value_type": "duration",
+          "slot_source": "requested_fact_slots",
+          "unit": "kuud",
+          "qualifier": null,
+          "input_form": "original",
+          "fragment_index": 8,
+          "mention_index": 0,
+          "matched_term_count": 3,
+          "relation_term_count": 3,
+          "source_mapped_relation_variant_count": 0,
+          "minimum_relation_matches": 2,
+          "expected_cardinality": null,
+          "parenthesis_depth": 0,
+          "local_relation_head_matched": true
+        }
+      ]
+    },
+    "requested_qualitative_slot_contract": {
+      "version": "requested_qualitative_slot_contract_v1",
+      "enabled": true,
+      "complete": true,
+      "reason": "all_qualitative_slots_bound_to_rendered_evidence",
+      "selected_document_id_present": true,
+      "reply_language": "et",
+      "requested_slot_count": 1,
+      "mapped_slot_count": 1,
+      "sanitizer_dropped_slot": false,
+      "used_for_generation": true,
+      "used_for_validation": true,
+      "missing_slot_indexes": [],
+      "slots": [
+        {
+          "slot_index": 2,
+          "value_type": "person_role",
+          "validation_language": "et",
+          "expected_cardinality": null,
+          "minimum_answer_items": 2,
+          "minimum_relation_matches": 1,
+          "minimum_evidence_anchor_count": 2,
+          "minimum_anchor_matches": 2,
+          "relation_term_count": 2,
+          "matched_relation_term_count": 1,
+          "evidence_anchor_term_count": 2,
+          "evidence_action_term_count": 0,
+          "evidence_action_categories": [],
+          "evidence_negated": false,
+          "minimum_action_matches": 0,
+          "required_numeric_value_count": 0,
+          "action_object_bindings": [],
+          "evidence_fragment_hash": "72c0febc8292bccb21834b114c912202378a0e33f693b0e2265a8197c35e7e8d",
+          "evidence_fragment_index": 8
+        }
+      ]
+    },
+    "answer_validation_contract_shadow": {
+      "version": "answer_validation_contract_shadow_v2",
+      "mode": "shadow",
+      "production_decision_source": "existing_production_paths",
+      "planner": {
+        "mode": "specific_research_fact",
+        "route_mode": "specific_research_fact",
+        "semantic_candidates_version": "question_semantic_candidates_v1",
+        "fields": {
+          "document_source_years": {
+            "value": [],
+            "available": true,
+            "state": "present",
+            "provenance": {
+              "layer": "question_planner",
+              "method": "specific_research_fact_source_years",
+              "span_start": null,
+              "span_end": null
+            },
+            "confidence": null,
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "period_role": {
+            "value": null,
+            "available": true,
+            "state": "present",
+            "provenance": {
+              "layer": "question_planner",
+              "method": "bounded_episode_metric_fact_shape",
+              "span_start": null,
+              "span_end": null
+            },
+            "confidence": null,
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "evidence_period_years": {
+            "value": [],
+            "available": true,
+            "state": "present",
+            "provenance": {
+              "layer": "question_planner",
+              "method": "bounded_episode_period_years",
+              "span_start": null,
+              "span_end": null
+            },
+            "confidence": null,
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "evidence_phase_ordinal": {
+            "value": null,
+            "available": true,
+            "state": "present",
+            "provenance": {
+              "layer": "question_planner",
+              "method": "bounded_episode_phase_ordinal",
+              "span_start": null,
+              "span_end": null
+            },
+            "confidence": null,
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "evidence_metric_terms": {
+            "value": [],
+            "available": true,
+            "state": "present",
+            "provenance": {
+              "layer": "question_planner",
+              "method": "bounded_episode_metric_terms",
+              "span_start": null,
+              "span_end": null
+            },
+            "confidence": null,
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "evidence_metric_slots": {
+            "value": [],
+            "available": true,
+            "state": "present",
+            "provenance": {
+              "layer": "question_planner",
+              "method": "bounded_episode_metric_slots",
+              "span_start": null,
+              "span_end": null
+            },
+            "confidence": null,
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "bounded_episode_metric_fact": {
+            "value": false,
+            "available": true,
+            "state": "present",
+            "provenance": {
+              "layer": "question_planner",
+              "method": "bounded_episode_metric_fact_shape",
+              "span_start": null,
+              "span_end": null
+            },
+            "confidence": null,
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "year_role_mentions": {
+            "value": [],
+            "available": true,
+            "state": "present",
+            "provenance": {
+              "layer": "question_planner",
+              "method": "semantic_year_role_mentions",
+              "span_start": null,
+              "span_end": null
+            },
+            "confidence": null,
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "requested_numeric_slots": {
+            "value": {
+              "complete": false,
+              "recognized_clause_count": 1,
+              "emitted_slot_count": 0,
+              "unresolved_clause_count": 0,
+              "truncated": false,
+              "slots": []
+            },
+            "available": true,
+            "state": "present",
+            "provenance": {
+              "layer": "question_planner",
+              "method": "requested_numeric_clause_slots",
+              "span_start": null,
+              "span_end": null
+            },
+            "confidence": null,
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "current_turn_document_identity": {
+            "value": {
+              "version": "current_turn_document_identity_v1",
+              "scope": "current_turn",
+              "history_fallback_policy": "fill_missing_only",
+              "author": {
+                "value": "Marina Vaino",
+                "provenance": "explicit_current_turn",
+                "confidence": "high",
+                "span_start": 0,
+                "span_end": 12,
+                "input_form": "original"
+              },
+              "document_kind": {
+                "value": "article",
+                "provenance": "explicit_current_turn"
+              },
+              "document_source_years": [],
+              "title_hint": {
+                "value": "Uus e-kursus pakub tuge sotsiaalvaldkonna koolitajatele",
+                "provenance": "explicit_current_turn"
+              },
+              "explicit_anchor_count": 3
+            },
+            "available": true,
+            "state": "present",
+            "provenance": {
+              "layer": "question_planner",
+              "method": "current_turn_document_identity_semantic_candidate",
+              "span_start": null,
+              "span_end": null
+            },
+            "confidence": null,
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          }
+        }
+      },
+      "current_turn_author_confirmation": {
+        "version": "current_turn_author_confirmation_v1",
+        "candidate_value": "Marina Vaino",
+        "candidate_provenance": "explicit_current_turn",
+        "candidate_confidence": "high",
+        "candidate_document_source_years": [],
+        "candidate_document_kind": "article",
+        "status": "confirmed_exact",
+        "matched_source_count": 1,
+        "matched_document_ids": [
+          "sotsiaaltoo-2-2026-uus-e-kursus-pakub-tuge-sotsiaalvaldkonna-koolitajatele-2026"
+        ],
+        "matched_author_values": [
+          "Marina Vaino"
+        ],
+        "promotion_eligible": true,
+        "confirmation_source": "retrieved_source_metadata"
+      },
+      "fact_validation": {
+        "production_path": "legacy",
+        "validation_applied": true,
+        "legacy_path_used": true,
+        "structured_path_used_for_decision": false,
+        "structured_observations": {
+          "planner_mode": "specific_research_fact",
+          "route_mode": "specific_research_fact",
+          "field_availability": {
+            "document_source_years": true,
+            "period_role": true,
+            "evidence_period_years": true,
+            "evidence_phase_ordinal": true,
+            "evidence_metric_terms": true,
+            "evidence_metric_slots": true,
+            "bounded_episode_metric_fact": true,
+            "year_role_mentions": true,
+            "requested_numeric_slots": true
+          },
+          "document_source_years": [],
+          "evidence_period_years": [],
+          "evidence_phase_ordinal": null,
+          "evidence_metric_term_count": 0,
+          "evidence_metric_slot_categories": [],
+          "bounded_episode_metric_fact": false,
+          "typed_document_source_years": [],
+          "typed_evidence_years": [],
+          "ambiguous_years": [],
+          "requested_numeric_slot_count": 0,
+          "requested_numeric_recognized_clause_count": 1,
+          "requested_numeric_emitted_slot_count": 0,
+          "requested_numeric_slot_types": [],
+          "requested_numeric_slots_complete": false,
+          "requested_numeric_slots_truncated": false,
+          "requested_numeric_unresolved_clause_count": 0
+        },
+        "legacy_observations": {
+          "asks_for_numeric_fact": false,
+          "asks_for_year": false,
+          "asks_for_publication_year": false,
+          "asks_for_whole_scope": false,
+          "asks_for_categorical_numeric_breakdown": false,
+          "contact_answer_intent_requested": false
+        },
+        "runtime_relation": "not_comparable"
+      },
+      "attribution": {
+        "production_path": "hybrid_existing",
+        "decision_source": "not_fully_attributed",
+        "legacy_path_used": null,
+        "structured_path_used_for_decision": null,
+        "shadow_contract_used_for_decision": false,
+        "structured_path_scope": "answer_validation_contract_shadow_v2",
+        "structured_observations": {
+          "planner_mode": "specific_research_fact",
+          "route_mode": "specific_research_fact",
+          "field_availability": {
+            "document_source_years": true,
+            "period_role": true,
+            "evidence_period_years": true
+          },
+          "document_source_years": [],
+          "evidence_period_years": [],
+          "document_identity_required": true,
+          "document_identity_matched": true,
+          "document_identity_confidence": "high"
+        },
+        "legacy_observations": {
+          "query_plan_available": true,
+          "current_status_observed": false,
+          "raw_anchor_observed": true,
+          "raw_anchor_match_observed": true,
+          "exact_anchor_match": true,
+          "exact_anchor_match_scope": "any_selected_source"
+        },
+        "runtime_relation": "not_comparable"
+      }
+    },
+    "fact_validation": {
+      "version": "exact_numeric_fact_v6",
+      "enabled": true,
+      "buffered": true,
+      "passed": true,
+      "reason": "all_claims_in_one_rendered_source",
+      "claim_count": 1,
+      "category_relation_checked": false,
+      "expected_per_group_value_present": false,
+      "observed_category_value_count": 0,
+      "mismatched_category_label_count": 0,
+      "expected_total_value_present": false,
+      "observed_total_value_present": false,
+      "unsupported_category_label_count": 0,
+      "unsupported_claim_count": 0,
+      "temporal_claim_bindings": [],
+      "temporal_missing_years": [],
+      "temporal_supplemental_source_ids": [],
+      "temporal_supplemental_bindings": [],
+      "contact_inventory_checked": false,
+      "contact_monitor_checked": false,
+      "contact_inventory_total_expected_count": 0,
+      "contact_inventory_total_seen_count": 0,
+      "contact_role_count_expected_count": 0,
+      "contact_role_count_seen_count": 0,
+      "missing_contact_name_count": 0,
+      "unexpected_contact_item_count": 0,
+      "unsupported_contact_role_relation_count": 0,
+      "contact_phone_relation_checked": false,
+      "unsupported_contact_phone_value_count": 0,
+      "unsupported_contact_phone_relation_count": 0,
+      "contact_email_relation_checked": false,
+      "unsupported_contact_email_value_count": 0,
+      "unsupported_contact_email_relation_count": 0,
+      "unsupported_contact_date_value_count": 0,
+      "expected_contact_check_cadence_present": false,
+      "contact_check_cadence_expected_present": false,
+      "contact_check_cadence_claim_count": 0,
+      "unsupported_contact_check_cadence_count": 0,
+      "contact_check_cadence_validated": false,
+      "supporting_source_ids": [],
+      "source_count": 1,
+      "supporting_source_id": "sotsiaaltoo_uus-e-kursus-pakub-tuge-sotsiaalvaldkonna-koolitajatele-2026",
+      "requested_metric_contract_checked": true,
+      "requested_metric_relation_diagnostics": [],
+      "requested_fact_slot_contract_checked": true,
+      "requested_qualitative_contract_checked": true,
+      "requested_metric_slot_count": 1,
+      "requested_qualitative_slot_count": 1,
+      "requested_fact_missing_slot_indexes": [],
+      "requested_fact_answer_missing_slot_indexes": [],
+      "requested_fact_answer_unit_count": 4,
+      "requested_fact_qualitative_slot_bindings": [
+        {
+          "slot_index": 2,
+          "unit_index": 3,
+          "matched_relation_term_count": 2,
+          "matched_evidence_anchor_count": 2,
+          "substantive_answer_token_count": 4,
+          "required_numeric_value_count": 0,
+          "action_object_binding_count": 0,
+          "action_object_bindings": []
+        }
+      ],
+      "requested_fact_metric_slot_bindings": [],
+      "requested_metric_slot_bindings": [
+        {
+          "slot_index": 1,
+          "value_type": "duration",
+          "claim_index": 0,
+          "matched_relation_term_count": 3
+        }
+      ],
+      "document_identity_required": true,
+      "document_identity_matched": true,
+      "document_identity_confidence": "high",
+      "selected_document_id": "sotsiaaltoo-2-2026-uus-e-kursus-pakub-tuge-sotsiaalvaldkonna-koolitajatele-2026",
+      "author_corpus_required": false,
+      "author_corpus_complete": false,
+      "author_corpus_document_count": 0,
+      "validation_duration_ms": 196,
+      "year_mode": "not_requested",
+      "whole_scope_checked": false,
+      "buffered_response_ms": 1701
+    },
+    "document_identity": {
+      "enabled": true,
+      "required": true,
+      "matched": true,
+      "confidence": "high",
+      "requested_author": "Marina Vaino",
+      "subject_terms": [
+        "kursus",
+        "pakub",
+        "tuge",
+        "sotsiaalvaldkonna",
+        "koolitajatele",
+        "pika",
+        "parast",
+        "hinnati",
+        "jarelmoju"
+      ],
+      "selected_document_id": "sotsiaaltoo-2-2026-uus-e-kursus-pakub-tuge-sotsiaalvaldkonna-koolitajatele-2026",
+      "selected_title": "Uus e-kursus pakub tuge sotsiaalvaldkonna koolitajatele",
+      "reasons": [
+        "author_match:Marina Vaino",
+        "exact_title_anchor",
+        "source:research_or_journal",
+        "subject:kursus",
+        "subject:pakub",
+        "subject:tuge",
+        "subject:sotsiaalvaldkonna",
+        "subject:koolitajatele",
+        "subject:pika",
+        "subject:parast",
+        "body_subject:kursus",
+        "body_subject:pakub",
+        "body_subject:tuge",
+        "body_subject:sotsiaalvaldkonna",
+        "body_subject:koolitajatele",
+        "body_subject:pika",
+        "body_subject:parast",
+        "document_anchor:vaino",
+        "channel:dense",
+        "channel:author_match"
+      ],
+      "duration_ms": 55,
+      "candidates": [
+        {
+          "document_id": "sotsiaaltoo-2-2026-uus-e-kursus-pakub-tuge-sotsiaalvaldkonna-koolitajatele-2026",
+          "title": "Uus e-kursus pakub tuge sotsiaalvaldkonna koolitajatele",
+          "score": 145,
+          "identity_matched": true,
+          "author_matched": true,
+          "source_compatible": true,
+          "research_or_journal": true,
+          "subject_terms": [
+            "kursus",
+            "pakub",
+            "tuge",
+            "sotsiaalvaldkonna",
+            "koolitajatele",
+            "pika",
+            "parast"
+          ],
+          "body_subject_terms": [
+            "kursus",
+            "pakub",
+            "tuge",
+            "sotsiaalvaldkonna",
+            "koolitajatele",
+            "pika",
+            "parast"
+          ]
+        }
+      ]
+    },
+    "lemma_fts_shadow": {
+      "version": "lemma_fts_shadow_trace_v1",
+      "decision_mode": "shadow_only",
+      "production_path_changed": false,
+      "observations": [
+        {
+          "version": "lemma_fts_shadow_v1",
+          "enabled": true,
+          "index_ready": false,
+          "executed": false,
+          "scheduled": false,
+          "reason": "ASYNC_SHADOW_SCHEDULED",
+          "query_language": "et",
+          "query_input_form": "retrieval_query",
+          "analyzer_version": "estnltk-vabamorf-1.7.5-v2",
+          "query_token_count": 0,
+          "candidate_count": 0,
+          "production_result_count": 8,
+          "chunk_overlap_count": 0,
+          "document_overlap_count": 0,
+          "top_candidates": [],
+          "analysis_ms": 0,
+          "query_ms": 0,
+          "total_ms": 0
+        },
+        {
+          "version": "lemma_fts_shadow_v1",
+          "enabled": true,
+          "index_ready": false,
+          "executed": false,
+          "scheduled": false,
+          "reason": "ASYNC_SHADOW_SCHEDULED",
+          "query_language": "et",
+          "query_input_form": "retrieval_query",
+          "analyzer_version": "estnltk-vabamorf-1.7.5-v2",
+          "query_token_count": 0,
+          "candidate_count": 0,
+          "production_result_count": 8,
+          "chunk_overlap_count": 0,
+          "document_overlap_count": 0,
+          "top_candidates": [],
+          "analysis_ms": 0,
+          "query_ms": 0,
+          "total_ms": 0
+        },
+        {
+          "version": "lemma_fts_shadow_v1",
+          "enabled": true,
+          "index_ready": false,
+          "executed": false,
+          "scheduled": false,
+          "reason": "ASYNC_SHADOW_SCHEDULED",
+          "query_language": "et",
+          "query_input_form": "retrieval_query",
+          "analyzer_version": "estnltk-vabamorf-1.7.5-v2",
+          "query_token_count": 0,
+          "candidate_count": 0,
+          "production_result_count": 8,
+          "chunk_overlap_count": 0,
+          "document_overlap_count": 0,
+          "top_candidates": [],
+          "analysis_ms": 0,
+          "query_ms": 0,
+          "total_ms": 0
+        }
+      ]
+    },
+    "performance_timings": {
+      "planner_ms": 20,
+      "query_planning_ms": 1,
+      "query_build_ms": 1,
+      "retrieval_wall_ms": 2914,
+      "multi_query_retrieval_ms": 4190,
+      "retrieval_parallel_sum_ms": 4190,
+      "retrieval_query_count": 3,
+      "embedding_sum_ms": 770,
+      "embedding_ms": 770,
+      "dense_sum_ms": 692,
+      "dense_ms": 692,
+      "registry_ms": 288,
+      "lexical_sum_ms": 206,
+      "lexical_ms": 206,
+      "lemma_fts_shadow_ms": 0,
+      "document_sibling_sum_ms": 286,
+      "service_fact_segment_sum_ms": 1349,
+      "shared_read_cache_hits": 2,
+      "shared_read_cache_waits": 2,
+      "shared_read_cache_misses": 6,
+      "shared_read_cache_bypasses": 0,
+      "shared_embedding_batch_hits": 0,
+      "shared_embedding_batch_waits": 0,
+      "shared_embedding_batch_misses": 1,
+      "shared_embedding_batch_bypasses": 2,
+      "lexical_scanned_sum": 24,
+      "lexical_corpus_scan_query_count": 0,
+      "lexical_exhaustive_query_count": 0,
+      "document_identity_ms": 55,
+      "fact_segment_search_ms": 1507,
+      "context_render_ms": 0,
+      "first_model_call_ms": 0,
+      "fact_validation_ms": 196,
+      "retrieval_context_total_ms": 3257,
+      "model_ms": 1505,
+      "retrieval_query_1_ms": 1400,
+      "retrieval_query_2_ms": 1295,
+      "retrieval_query_3_ms": 1495
+    },
+    "insufficient_precise_legal_source_support": false,
+    "insufficientPreciseLegalSourceSupport": false,
+    "query_plan": {
+      "planner_version": "v2",
+      "mode": "specific_research_fact",
+      "external_sources_needed": true,
+      "should_run_rag": true,
+      "previous_source_use_request": false,
+      "temporal_year_semantics": {
+        "preferred_source_years_source": "typed_year_role_mentions",
+        "typed_year_role_mentions_available": true,
+        "preferred_source_year_count": 0,
+        "source_filter_year_count": 0,
+        "source_filter_source": "typed_year_role_mentions",
+        "evidence_year_count": 0,
+        "breakdown_year_count": 0,
+        "ambiguous_year_count": 0
+      },
+      "answer_validation_contract_shadow": {
+        "version": "answer_validation_contract_shadow_v2",
+        "mode": "shadow",
+        "production_decision_source": "existing_production_paths",
+        "planner": {
+          "mode": "specific_research_fact",
+          "route_mode": "specific_research_fact",
+          "semantic_candidates_version": "question_semantic_candidates_v1",
+          "fields": {
+            "document_source_years": {
+              "value": [],
+              "available": true,
+              "state": "present",
+              "provenance": {
+                "layer": "question_planner",
+                "method": "specific_research_fact_source_years",
+                "span_start": null,
+                "span_end": null
+              },
+              "confidence": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "period_role": {
+              "value": null,
+              "available": true,
+              "state": "present",
+              "provenance": {
+                "layer": "question_planner",
+                "method": "bounded_episode_metric_fact_shape",
+                "span_start": null,
+                "span_end": null
+              },
+              "confidence": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "evidence_period_years": {
+              "value": [],
+              "available": true,
+              "state": "present",
+              "provenance": {
+                "layer": "question_planner",
+                "method": "bounded_episode_period_years",
+                "span_start": null,
+                "span_end": null
+              },
+              "confidence": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "evidence_phase_ordinal": {
+              "value": null,
+              "available": true,
+              "state": "present",
+              "provenance": {
+                "layer": "question_planner",
+                "method": "bounded_episode_phase_ordinal",
+                "span_start": null,
+                "span_end": null
+              },
+              "confidence": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "evidence_metric_terms": {
+              "value": [],
+              "available": true,
+              "state": "present",
+              "provenance": {
+                "layer": "question_planner",
+                "method": "bounded_episode_metric_terms",
+                "span_start": null,
+                "span_end": null
+              },
+              "confidence": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "evidence_metric_slots": {
+              "value": [],
+              "available": true,
+              "state": "present",
+              "provenance": {
+                "layer": "question_planner",
+                "method": "bounded_episode_metric_slots",
+                "span_start": null,
+                "span_end": null
+              },
+              "confidence": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "bounded_episode_metric_fact": {
+              "value": false,
+              "available": true,
+              "state": "present",
+              "provenance": {
+                "layer": "question_planner",
+                "method": "bounded_episode_metric_fact_shape",
+                "span_start": null,
+                "span_end": null
+              },
+              "confidence": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "year_role_mentions": {
+              "value": [],
+              "available": true,
+              "state": "present",
+              "provenance": {
+                "layer": "question_planner",
+                "method": "semantic_year_role_mentions",
+                "span_start": null,
+                "span_end": null
+              },
+              "confidence": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "requested_year_role": {
+              "value": null,
+              "available": false,
+              "state": "absent",
+              "provenance": null,
+              "confidence": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "requested_numeric_slots": {
+              "value": {
+                "complete": false,
+                "recognized_clause_count": 1,
+                "emitted_slot_count": 0,
+                "unresolved_clause_count": 0,
+                "truncated": false,
+                "slots": []
+              },
+              "available": true,
+              "state": "present",
+              "provenance": {
+                "layer": "question_planner",
+                "method": "requested_numeric_clause_slots",
+                "span_start": null,
+                "span_end": null
+              },
+              "confidence": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "current_turn_document_identity": {
+              "value": {
+                "version": "current_turn_document_identity_v1",
+                "scope": "current_turn",
+                "history_fallback_policy": "fill_missing_only",
+                "author": {
+                  "value": "Marina Vaino",
+                  "provenance": "explicit_current_turn",
+                  "confidence": "high",
+                  "span_start": 0,
+                  "span_end": 12,
+                  "input_form": "original"
+                },
+                "document_kind": {
+                  "value": "article",
+                  "provenance": "explicit_current_turn"
+                },
+                "document_source_years": [],
+                "title_hint": {
+                  "value": "Uus e-kursus pakub tuge sotsiaalvaldkonna koolitajatele",
+                  "provenance": "explicit_current_turn"
+                },
+                "explicit_anchor_count": 3
+              },
+              "available": true,
+              "state": "present",
+              "provenance": {
+                "layer": "question_planner",
+                "method": "current_turn_document_identity_semantic_candidate",
+                "span_start": null,
+                "span_end": null
+              },
+              "confidence": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            }
+          }
+        }
+      },
+      "retrieval_strategy": "document_identity_then_fact",
+      "retrieval_strategy_selection": {
+        "planner_version": "v2.3",
+        "mode": "specific_research_fact",
+        "retrieval_strategy": "document_identity_then_fact",
+        "selection_strategy": "specific_research_document_then_fact",
+        "query_order": "identity_first",
+        "needs_multiple_sources": false,
+        "preferred_source_count": null,
+        "source_layer_filter_mode": "prefer",
+        "answer_contract": "same_identified_document_fact_required",
+        "force_rag": true,
+        "route_override": false,
+        "reason": "planner_mode_specific_research_fact"
+      },
+      "query_count": 1,
+      "query_order": "document_identity_then_fact",
+      "has_per_query_filters": true,
+      "filter_keys": [
+        "$in",
+        "$ne",
+        "audience",
+        "authors",
+        "is_current_version"
+      ],
+      "municipality_names": [],
+      "municipality_ids": [],
+      "selection_strategy": "document_identity_then_fact",
+      "needs_multiple_sources": false,
+      "preferred_source_count": null,
+      "question_planner": {
+        "planner_version": "v2.6",
+        "mode": "specific_research_fact",
+        "role": "social_worker",
+        "input_role": "social_worker",
+        "role_confidence": 0.75,
+        "confidence": 0.92,
+        "needs_rag": true,
+        "needs_multiple_sources": false,
+        "preferred_source_count": null,
+        "topics": [],
+        "life_situation": null,
+        "method_guidance_focus": null,
+        "needs_location": false,
+        "municipality_ambiguous": false,
+        "municipality_candidates": [],
+        "municipality_hint": null,
+        "person_name": "Marina Vaino",
+        "entity_names": [],
+        "person_source_intent": null,
+        "person_source_scope": null,
+        "person_coauthor_count": 0,
+        "person_coauthor_requested": false,
+        "person_name_transliterated": false,
+        "document_subject_terms": [
+          "kursus",
+          "pakub",
+          "tuge",
+          "sotsiaalvaldkonna",
+          "koolitajatele",
+          "pika",
+          "parast",
+          "hinnati",
+          "jarelmoju"
+        ],
+        "document_fact_terms": [],
+        "document_source_kind": "artiklis",
+        "requested_year_role": "none",
+        "current_evidence_scope": "source_bounded",
+        "document_source_years": [],
+        "period_role": null,
+        "evidence_period_years": [],
+        "evidence_phase_ordinal": null,
+        "evidence_metric_terms": [],
+        "evidence_metric_slots": [],
+        "bounded_episode_metric_fact": false,
+        "risk_level": "low",
+        "source_layers": [
+          "journal_article",
+          "research_report",
+          "study",
+          "survey_report",
+          "evaluation_report",
+          "analysis"
+        ],
+        "avoid_source_layers": [],
+        "source_layer_filter_mode": "prefer",
+        "retrieval_strategy": "document_identity_then_fact",
+        "answer_contract": "same_identified_document_fact_required",
+        "social_scope": "in_scope",
+        "social_scope_reason": "strong_social_scope_term",
+        "planner_reason": "singular_research_source_and_fact_shape"
+      },
+      "temporal_query_contract": {
+        "version": "temporal_query_contract_v1",
+        "production_source": "question_planner",
+        "document_source_years": [],
+        "evidence_years": [],
+        "breakdown_years": [],
+        "coverage_years": [],
+        "period_years": [],
+        "ambiguous_years": [],
+        "comparison_requested": false,
+        "qualitative_synthesis_requested": false,
+        "topic_terms": [
+          "marina",
+          "vaino",
+          "artiklis",
+          "uus",
+          "kursus",
+          "pakub"
+        ],
+        "requested_year_role": "none",
+        "current_evidence_scope": "source_bounded",
+        "source_filter_applied_to_breakdown": false,
+        "source_filter_applied_to_breakdown_years": []
+      },
+      "context_group_target": 8,
+      "rag_top_k": 36,
+      "risk_level": "low",
+      "stakes": "informational",
+      "evidence_scope": "source_bounded",
+      "risk_decision_source": "structured_semantic_contract",
+      "required_evidence": "medium",
+      "source_layer_filter_mode": "prefer",
+      "legalLookupPlan": {
+        "enabled": false
+      },
+      "flags": {
+        "source_lookup": false,
+        "temporal": false,
+        "resource_discovery": false,
+        "overview_synthesis": false,
+        "comparison": false,
+        "specific_research_fact": true,
+        "thematic_synthesis": false,
+        "broad_multi_source": false,
+        "source_focused_followup": false,
+        "municipality_contacts": false,
+        "municipality_scoped": false,
+        "national_scope": false
+      },
+      "semantic_turn_contract": {
+        "version": "semantic_turn_contract_v2",
+        "language": "et",
+        "input_form": "original",
+        "domain_scope": {
+          "planned": "in_scope",
+          "effective": "in_scope",
+          "reason": "strong_social_scope_term",
+          "promoted_by_retrieval": false,
+          "post_retrieval_evidence": {
+            "strength": "strong",
+            "reason": "recognized_authoritative_or_research_source_and_semantic_anchor",
+            "source_ids": [
+              "sotsiaaltoo_uus-e-kursus-pakub-tuge-sotsiaalvaldkonna-koolitajatele-2026"
+            ],
+            "named_anchor_matches": 2,
+            "topic_anchor_matches": 74
+          }
+        },
+        "intent": "specific_research_fact",
+        "source_scope": "independent_or_unspecified",
+        "history_reference": {
+          "explicit_source_anaphora": false,
+          "carry_previous_source_filter": false
+        },
+        "persons": [
+          "Marina Vaino"
+        ],
+        "entities": [],
+        "document_identity": {
+          "author_surface": "Marina Vaino",
+          "author_key": null,
+          "organization": null,
+          "document_kind": "article",
+          "title_hint": "Uus e-kursus pakub tuge sotsiaalvaldkonna koolitajatele",
+          "title_tokens": [],
+          "source_years": [],
+          "acronyms": [],
+          "named_topics": [],
+          "confidence": "low",
+          "provenance": "none"
+        },
+        "temporal": {
+          "type": "none",
+          "requested_year_role": "none",
+          "document_source_years": [],
+          "evidence_years": []
+        },
+        "requested_facts": [
+          {
+            "index": 1,
+            "span_start": 22,
+            "value_type": "duration",
+            "relation_terms": [
+              "parast",
+              "hinnati",
+              "jarelmoju"
+            ],
+            "scope_values": [],
+            "expected_cardinality": null,
+            "derivation": "explicit_clause",
+            "coordination_group": null,
+            "value_type_source": "explicit_cue",
+            "input_form": "original",
+            "category": null,
+            "explicit_values": [],
+            "temporal_scope": "unspecified",
+            "modality": "estimated",
+            "relation_term_variants": [
+              {
+                "term": "parast",
+                "variants": [
+                  "para",
+                  "parane"
+                ]
+              },
+              {
+                "term": "hinnati",
+                "variants": [
+                  "hindama",
+                  "hinda"
+                ]
+              },
+              {
+                "term": "jarelmoju",
+                "variants": [
+                  "jarel",
+                  "moju"
+                ]
+              }
+            ]
+          },
+          {
+            "index": 2,
+            "span_start": 65,
+            "value_type": "person_role",
+            "relation_terms": [
+              "hinnanguid",
+              "vorreldi"
+            ],
+            "minimum_answer_items": 2,
+            "derivation": "qualitative_clause",
+            "coordination_group": null,
+            "value_type_source": "explicit_qualitative_cue",
+            "input_form": "original",
+            "expected_cardinality": null,
+            "category": null,
+            "explicit_values": [],
+            "temporal_scope": "unspecified",
+            "modality": "estimated",
+            "relation_term_variants": [
+              {
+                "term": "hinnanguid",
+                "variants": [
+                  "hinnang"
+                ]
+              },
+              {
+                "term": "vorreldi",
+                "variants": [
+                  "vordlema",
+                  "vordle"
+                ]
+              }
+            ]
+          }
+        ],
+        "requested_fact_contract": {
+          "version": "requested_fact_slots_v2",
+          "complete": true,
+          "expected_cardinality": 0
+        },
+        "risk_scope": "source_bounded_description",
+        "terms": {
+          "surface": [
+            "marina",
+            "vaino",
+            "artiklis",
+            "uus",
+            "e",
+            "kursus",
+            "pakub",
+            "tuge",
+            "sotsiaalvaldkonna",
+            "koolitajatele",
+            "kui",
+            "pika",
+            "aja",
+            "parast",
+            "hinnati",
+            "jarelmoju",
+            "ning",
+            "kelle",
+            "hinnanguid",
+            "vorreldi"
+          ],
+          "lemmas": [
+            "marina",
+            "mari",
+            "vaino",
+            "artikkel",
+            "uus",
+            "uu",
+            "e-kursus",
+            "pakkuma",
+            "tugema",
+            "tugi",
+            "sotsiaalvaldkond",
+            "koolitaja",
+            "kui",
+            "pikk",
+            "aeg",
+            "ajama",
+            "pära",
+            "pärane",
+            "pärast",
+            "hindama",
+            "järelmõju",
+            "ning",
+            "kes",
+            "hinnang",
+            "võrdlema"
+          ],
+          "compound_roots": [
+            "marina",
+            "mari",
+            "vaino",
+            "artikkel",
+            "uus",
+            "uu",
+            "e",
+            "kursus",
+            "pakku",
+            "tuge",
+            "tugi",
+            "sotsiaal",
+            "valdkond",
+            "koolitaja",
+            "kui",
+            "pikk",
+            "aeg",
+            "aja",
+            "pära",
+            "pärane",
+            "pärast",
+            "hinda",
+            "järel",
+            "mõju",
+            "ning",
+            "kes",
+            "hinnang",
+            "võrdle"
+          ],
+          "retrieval_et": []
+        },
+        "morphology": {
+          "available": true,
+          "analyzer_version": "estnltk-vabamorf-1.7.5-v2",
+          "reason": null,
+          "language_hint": "et",
+          "language_hint_confidence": 0.94,
+          "proper_name_spans": [
+            "Marina Vaino"
+          ]
+        }
+      },
+      "semantic_retrieval_terms_et": [],
+      "specific_research_fact_phases": {
+        "version": "specific_research_fact_phases_v1",
+        "strategy": "identity_then_document_scoped_fact",
+        "identity_query_count": 1,
+        "document_scoped_fact_query_count": 2,
+        "document_scoped_fact_search_state": "completed",
+        "document_scoped_fact_search_performed": true,
+        "selected_document_id": "sotsiaaltoo-2-2026-uus-e-kursus-pakub-tuge-sotsiaalvaldkonna-koolitajatele-2026",
+        "requested_fact_coverage_before_recovery": {
+          "version": "requested_fact_slot_coverage_v1",
+          "enabled": true,
+          "selected_document_id": "sotsiaaltoo-2-2026-uus-e-kursus-pakub-tuge-sotsiaalvaldkonna-koolitajatele-2026",
+          "requested_slot_count": 2,
+          "covered_slot_count": 2,
+          "covered_slot_indexes": [
+            0,
+            1
+          ],
+          "missing_slot_indexes": [],
+          "evidence_body_count": 8,
+          "complete": true
+        },
+        "requested_fact_recovery_query_count": 0,
+        "requested_fact_coverage_after_recovery": {
+          "version": "requested_fact_slot_coverage_v1",
+          "enabled": true,
+          "selected_document_id": "sotsiaaltoo-2-2026-uus-e-kursus-pakub-tuge-sotsiaalvaldkonna-koolitajatele-2026",
+          "requested_slot_count": 2,
+          "covered_slot_count": 2,
+          "covered_slot_indexes": [
+            0,
+            1
+          ],
+          "missing_slot_indexes": [],
+          "evidence_body_count": 8,
+          "complete": true
+        }
+      },
+      "language_plan": {
+        "version": "language-plan-v1",
+        "interface_language": "et",
+        "query_language": "et",
+        "query_language_confidence": 0.72,
+        "query_language_reason": "estonian_diacritic_hint",
+        "retrieval_language": "et",
+        "answer_language": "et",
+        "answer_language_reason": "query_language",
+        "recommended_answer_language": "et",
+        "recommended_answer_language_reason": "query_language",
+        "runtime_reply_language": "et",
+        "runtime_reply_language_reason": "matches_answer_plan",
+        "shadow_mode": "not_available",
+        "canonical_query_available": false,
+        "canonical_intent": null,
+        "preserved_entity_types": [],
+        "preserved_entity_count": 0,
+        "transliteration_used": false,
+        "controlled_topic_count": 0,
+        "retrieval_terms_et": [],
+        "coauthor_count": 0,
+        "coauthor_requested": false,
+        "shadow_planner_mode": null,
+        "shadow_planner_confidence": null,
+        "canonical_retrieval_active": false,
+        "canonical_supplemental_retrieval_active": false,
+        "active_planner_mode": null,
+        "shadow_planner_matches_intent": false
+      },
+      "social_scope": "in_scope",
+      "social_scope_reason": "strong_social_scope_term"
+    },
+    "hybrid_retrieval": {
+      "merge_strategy": {
+        "strategy": "weighted_hybrid_rrf",
+        "rrf_k": 60,
+        "requested_retrievers": [
+          "dense",
+          "author_match",
+          "title_match",
+          "exact_phrase",
+          "bm25"
+        ],
+        "channel_weights": {
+          "dense": 1,
+          "author_match": 1.5,
+          "title_match": 1.35,
+          "exact_phrase": 1.15,
+          "bm25": 1,
+          "registry_fact": 1.7
+        },
+        "channel_boosts": {
+          "author_match": 0.14,
+          "title_match": 0.09,
+          "exact_phrase": 0.06,
+          "bm25": 0.05,
+          "registry_fact": 0.32
+        },
+        "bm25_config": {
+          "min_coverage": 0.35,
+          "title_weight": 1.8,
+          "body_weight": 1,
+          "title_k": 0.8,
+          "body_k": 1.5
+        },
+        "score_formula": "dense_score*0.58 + lexical_score*0.34 + rrf_score*8.0 + channel_boost + bm25_coverage_boost"
+      },
+      "channel_counts": {
+        "dense": 8,
+        "author_match": 8,
+        "title_match": 8,
+        "bm25": 8
+      },
+      "top_channels": [
+        "dense",
+        "author_match",
+        "title_match",
+        "bm25"
+      ],
+      "dense_only_count": 0,
+      "lexical_only_count": 0,
+      "dense_and_lexical_count": 8,
+      "bm25": {
+        "result_count": 4,
+        "only_count": 0,
+        "average_score": 10.300825,
+        "top_score": 13.9889,
+        "average_coverage": 0.300935,
+        "min_coverage": 0.230769,
+        "low_coverage_count": 4
+      },
+      "scored_count": 8,
+      "top_hybrid_score": 2.46025,
+      "top_rrf_score": 0.07874
+    },
+    "retrieval_trace_level": "retrieved_candidates"
+  }
+}
