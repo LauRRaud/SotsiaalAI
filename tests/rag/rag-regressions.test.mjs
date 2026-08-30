@@ -24,6 +24,7 @@ import {
 } from "../../lib/chat/retrievalContextAssembler.js";
 import { extractExplicitSourceYears } from "../../lib/chat/retrievalPlanning.js";
 import { buildSourceAttribution } from "../../lib/chat/sourceAttribution.js";
+import { selectProfessionalMethodGuidanceGroups } from "../../lib/chat/ragContext.js";
 
 describe("allikaviite leheküljed", () => {
   test("sordib, eemaldab duplikaadid ja ühendab järjestikused leheküljed", () => {
@@ -1919,4 +1920,57 @@ test("validaatori toetatud kõrvalallikas ei murra lukustatud dokumendi allikaku
   );
   assert.deepEqual(attribution.displayed_source_ids, []);
   assert.equal(attribution.attribution_decisions[0].reason, "query_anchor_mismatch");
+});
+
+describe("runtime-järelparanduse suhtepiirid", () => {
+  test("allika palju abi alias ei kaota kohustuslikke alamrühma modifikaatoreid", () => {
+    const message = "Artiklis „Hooldajate uuring” kui suur osa vastanutest vajas lisabi, kui suur osa palju lisabi ning kui suur osa oli suure ja keskmise hoolduskoormuse riskiga?";
+    const questionPlan = buildQuestionPlan({ message });
+    const body = "Lisabi vajas 70% vastanutest, sealjuures 30% vajas palju abi. Suure hoolduskoormuse riskiga oli 12%. Keskmise hoolduskoormuse riskiga oli 20%.";
+    const identity = { matched: true, confidence: "high", selectedDocumentId: "care-study" };
+    const contract = buildRequestedFactSlotContract({
+      questionPlan, specificResearchFactQuestion: true, documentIdentityEvidence: identity,
+      renderedGroups: [{ sourceId: "care-source", docId: "care-study" }],
+      renderedBlocks: [{ evidenceText: body }]
+    }).trace;
+    assert.equal(contract.complete, true);
+    const sources = [{ source_id: "care-source", document_id: "care-study", evidenceText: `Hooldajate uuring\n${body}` }];
+    const retrievalMeta = { requestedFactSlotContract: contract, documentIdentityEvidence: identity };
+    const valid = "Lisabi vajas 70% vastanutest. Palju abi vajas 30% vastanutest. Suure hoolduskoormuse riskiga oli 12%. Keskmise hoolduskoormuse riskiga oli 20%.";
+    assert.equal(validateExactFactAnswer({ message, reply: valid, sources, retrievalMeta }).passed, true);
+    for (const reply of [
+      valid.replace("Palju abi", "Abi"),
+      valid.replace("Suure hoolduskoormuse", "Väikese hoolduskoormuse"),
+      valid.replace(/12%|20%/gu, value => value === "12%" ? "20%" : "12%")
+    ]) assert.equal(validateExactFactAnswer({ message, reply, sources, retrievalMeta }).passed, false, reply);
+  });
+
+  test("osapoolte hinnangut ei seota kursuse teemaloetelu ja-paaridega", () => {
+    const questionPlan = { semantic_candidates: { requested_fact_slots: {
+      complete: true, slots: [{ index: 1, value_type: "person_role", relation_terms: ["hinnanguid", "võrreldi"], minimum_answer_items: 2, input_form: "original" }]
+    } } };
+    const identity = { matched: true, confidence: "high", selectedDocumentId: "training-study" };
+    const body = "Koolitusel käsitletakse hindamist, märkamist ja abivõimalusi laste ja peredega. Järelhindamisse on kaasatud nii osaleja kui ka tema tööandja.";
+    const contract = buildRequestedQualitativeSlotContract({
+      questionPlan, specificResearchFactQuestion: true, documentIdentityEvidence: identity,
+      renderedGroups: [{ docId: "training-study", bodies: [body] }]
+    }).trace;
+    assert.equal(contract.complete, true);
+    assert.deepEqual(contract.slots[0].evidence_anchor_terms, ["osaleja", "tooandja"]);
+    const sources = [{ source_id: "training", document_id: "training-study", evidenceText: `Koolituse uuring\n${body}` }];
+    const retrievalMeta = { requestedQualitativeSlotContract: contract, documentIdentityEvidence: identity };
+    assert.equal(validateExactFactAnswer({ reply: "Võrreldi osaleja ja tööandja hinnanguid.", sources, retrievalMeta }).passed, true);
+    assert.equal(validateExactFactAnswer({ reply: "Võrreldi osaleja hinnangut.", sources, retrievalMeta }).passed, false);
+  });
+
+  test("meetodijuhise ühine hindamisteema ei ületa sõnaselget sihtrühmapiiri", () => {
+    const groups = [
+      { sourceId: "child", title: "Lapse heaolu hindamise käsiraamat", sourceType: "official_guideline", sourceStatus: "active", rankScore: 0.8, bodies: ["Lapse heaolu ja abivajaduse hindamine."] },
+      { sourceId: "adult", title: "Täiskasvanud inimeste abivajaduse hindamine", sourceType: "research_report", sourceStatus: "active", rankScore: 0.99, bodies: ["Lapse heaolu ja abivajaduse hindamise võrdlus."] }
+    ];
+    const selected = selectProfessionalMethodGuidanceGroups(groups, 4, undefined, {
+      question: "Kuidas hinnata lapse heaolu ja abivajadust?", topicHints: ["lapse heaolu", "abivajadus"], focus: "assessment"
+    }).selected;
+    assert.deepEqual(selected.map(group => group.sourceId), ["child"]);
+  });
 });

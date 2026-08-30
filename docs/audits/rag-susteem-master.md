@@ -289,7 +289,7 @@ Sõnaselge `ajakiri Sotsiaaltöö` määrab väljaande ulatuse ka siis, kui kasu
 
 Plaan kasutab `retrieval_strategy=authoritative_guidance_then_complementary_evidence`, `selection_strategy=professional_method_guidance` ja `query_order=authoritative_guidance_first`. Esmased päringud otsivad aktiivset mitteajaloolist juhendit, seejärel lisatakse täiendavate meetodite päring ning säilivad algsed ja filtreerimata fallback-päringud. Seega on juhend esmane eelistus, mitte garantii, et otsing tagastab ainult ametlikke juhendeid. Riskipoliitika märgib raja `medium` / `actionable` / `current_authoritative_guidance` ning eelistab tugevat juhenditõendit.
 
-`selectProfessionalMethodGuidanceGroups` valib kuni neli eri dokumendi kontekstigruppi. Ta jätab välja `inactive`, `archived` ja `stale` kandidaadid ning arvestab teemasobivust: vähemalt pool küsimuse teematerminitest ja vähemalt kaks terminit peavad sobima (ühe teematermini korral piisab ühest). Alles selle järel eelistatakse põhiallikaks aktiivset mitteajaloolist ametlikku juhendit või standardit, selle puudumisel aktiivset meetodi- või infomaterjali. Pelk ametlik päritolu ei tõsta teise teema juhendit esimeseks. Kui põhijuhendit ei kinnitata, võib säilida muu asjakohane tõend olekuga `primary_guidance_status=unconfirmed`; tühi valik on `missing`. Hindamisküsimus võib lisada pealkirja või tagide mudeli-/meetodisignaaliga täiendava allika, ülejäänud kohad täidab MMR. Konteksti mitmekesisus ei tähenda nelja kuvatava allika ega kõigi võimalike meetodite nõuet.
+`selectProfessionalMethodGuidanceGroups` valib kuni neli eri dokumendi kontekstigruppi. Ta jätab välja `inactive`, `archived` ja `stale` kandidaadid ning arvestab teemasobivust: vähemalt pool küsimuse teematerminitest ja vähemalt kaks terminit peavad sobima (ühe teematermini korral piisab ühest). Alles selle järel eelistatakse põhiallikaks aktiivset mitteajaloolist ametlikku juhendit või standardit, selle puudumisel aktiivset meetodi- või infomaterjali. Pelk ametlik päritolu ei tõsta teise teema juhendit esimeseks. Kui põhijuhendit ei kinnitata, võib säilida muu asjakohane tõend olekuga `primary_guidance_status=unconfirmed`; tühi valik on `missing`. Hindamisküsimus võib lisada pealkirja või tagide mudeli-/meetodisignaaliga täiendava allika, ülejäänud kohad täidab MMR. Konteksti mitmekesisus ei tähenda nelja kuvatava allika ega kõigi võimalike meetodite nõuet. Lisaks välistab küsimuses sõnaselgelt määratud lapse või täiskasvanu sihtrühm vastupidise ainsa sihtrühmaga allikapealkirja; ühine „abivajaduse hindamise” sõnavara ei kaalu seda vastuolu üles. Mõlemat sihtrühma käsitlev pealkiri jääb valitavaks. See on pealkirja konfliktikaitse, mitte kõigi tekstis leiduvate sihtrühmade ammendav klassifikaator.
 
 ### 5.2 Kõik faktislotid säilivad
 
@@ -566,7 +566,7 @@ Taotlusvormi ja pöördumiskoha küsimus (`mis vorme on vaja ja kelle poole pö�
 | `RAG_MMR_LAMBDA` | 0,5 |
 | `RAG_TIMEOUT_MS` | 30 000 ms |
 
-Režiim võib kasutada spetsiifilisemat dokumendi- või grupieelarvet. Oluline pole ainult üldmaht, vaid see, et:
+Režiim võib kasutada spetsiifilisemat dokumendi- või grupieelarvet. Valitud `specific_research_fact` ja `professional_method_guidance` rada välistavad üldise sünteesi toorsõna-heuristika: näiteks sõna „kogemused” nimetatud artikli pealkirjas ei tohi käivitada ülevaate väiksemat chunk'i- ega body-eelarvet. Oluline pole ainult üldmaht, vaid see, et:
 
 - kõik kohustuslikud faktislotid jõuaksid renderdatud blokki;
 - ühe vale dokumendi paljud chunk'id ei täidaks kogu eelarvet;
@@ -663,7 +663,9 @@ Null või mitu täielikku sloti-assignment'i, puuduv lõplik renderdatud tõend,
 
 Võrdsete rühmasuuruste ja sama valimi koguarvu jaoks on eraldi piiratud seosekontroll. See rakendub ainult kahele loendusslotile: rühma suurus koos oodatud rühmade arvuga ja koguarv. Allika sõnaselgest „igast rühmast viis, kokku viisteist” seosest võib tuletada rühmade arvu, kui jagatis on täisarv vahemikus 2–20; seda hoitakse eraldi allikas sõnaselgelt öeldud kardinaalsusest. Vastus peab kas ütlema üheselt, et igas nimetatud arvus rühmas oli sama palju osalejaid, või nimetama kõik eri tõendatud osalejarollid. Sama rolli käändeline kordamine ei täida uut rühma; kohtute, asutuste ja omavalitsuste arv ei ole osalejate arv. Koguarv peab esinema üks kord ning kõrvalarvud ei pääse sellest harust kontrollita läbi.
 
-Meetodisloti tõendiankruks valitakse analüüsi või meetodi sisuline täpsustus, näiteks `temaatiline`, mitte pelgalt `intervjuude analüüs` ega sulgudes viidatud autori nimi. Vastuse meetod peab selle ankruga sobima. Osaliste hinnangute küsimuses ei korva õige järelhindamise kestus puuduvat osapoolt: nii arvuline kui ka kvalitatiivne leping peavad läbima.
+Meetodisloti tõendiankruks valitakse analüüsi või meetodi sisuline täpsustus, näiteks `temaatiline`, mitte pelgalt `intervjuude analüüs` ega sulgudes viidatud autori nimi. Vastuse meetod peab selle ankruga sobima. Osaliste hinnangute küsimuses ei korva õige järelhindamise kestus puuduvat osapoolt: nii arvuline kui ka kvalitatiivne leping peavad läbima. Koordineeritud rollipaari tõendiankur vajab osalemise või hindamise klausi ning mõlemal poolel osalist tähistavat nimisõna; koolituse teemade „ja/ning” loend ei ole isikute loend ega täida osapoolte lepingut.
+
+Sama nähtuse kategooriaid eristavad määrangud (`palju`, `suur`, `väike`, `keskmine` jne) on nõutavad siis, kui kaas-slot jagab nähtuse põhisõna, kuid mitte määrangut. Üldised rahvastiku- või tegusõnad ei võistle kategooriamääranguga arvu kaugusseostamisel. Allika enda kohalik väljend „palju abi” võib anda vastava lisabi-alamkategooria ühele numbrilisele slotile `abi` variandi; see ei muuda `abi` ja `lisabi` üle süsteemi samatähenduslikuks. Määrangu puudumine, vale riskirühm või kategooriate arvude vahetamine jäävad blokeerituks.
 
 Rühmade arvu jagatis tuletatakse ainult täpsetest operandidest: `vähemalt`, `kuni`, `üle`, `alla` ja `umbes` ei anna täpset kardinaalsust. Ka eraldi rühmakontrollis peab kvalifikaator säilima allika, slotilepingu ja iga vastusearvu vahel. Nimeline meetod võib olla ka predikaat või tegevuse objekt (`uurimismeetodiks oli vaatlus`, `andmekogumiseks kasutati osalusvaatlust`); see ei pea alati eelnema sõnale `analüüs`.
 
@@ -721,7 +723,7 @@ Kuvada ei tohi allikat, mis:
 
 Puhas täpsustusküsimus, tõendipuuduse vastus või `factValidation.passed=false` tähendab null kuvatavat allikat.
 
-Väide selle kohta, et kasutatud allikad ei kinnita vastust või vajalikku infot ei leitud, on teadmise piiri kirjeldus, mitte allikaga toetatav sisufakt. See jäetakse claim-loendist välja. Kui vastus sisaldab ainult selliseid lauseid, on allikapaneel tühi; kui kõrval on iseseisvalt tõendatud sisuline vastuseosa, säilib selle allikatugi. Tavaline faktieitus (`teenus ei sisalda transporti`) ei ole iseenesest tõendipuuduse lause.
+Väide selle kohta, et kasutatud allikad ei kinnita vastust või vajalikku infot ei leitud, on teadmise piiri kirjeldus, mitte allikaga toetatav sisufakt. See jäetakse claim-loendist välja ka alusega algava sõnastuse („Saksamaa maksumust ei saa kinnitada”) või puuduva tulevase tõendi vajaduse korral. Kui vastus sisaldab ainult selliseid lauseid, on allikapaneel tühi; kui kõrval on iseseisvalt tõendatud sisuline vastuseosa, säilib selle allikatugi. Vastandav `kuid/aga` sisulise väite ees takistab terve lause käsitamist pelga tõendipuudusena. Tavaline faktieitus (`teenus ei sisalda transporti`) ei ole iseenesest tõendipuuduse lause.
 
 #### Default-haru claim-cover ja redundantse toe kärbe
 
@@ -729,7 +731,9 @@ Default-haru vähendab juba tõendi- ja claim-toe kontrolli läbinud kandidaatid
 
 See on score-järjestuses greedy redundantsuskärbe, mitte matemaatiliselt väikseima allikakomplekti otsing ega semantilise entailment'i lisatõend. Ta ei rakenda fikseeritud allikaarvu, ei muuda retrieval'it ega mudelile antud konteksti ning ei eemalda allikat, mille teadaolev claim-tugi lisab uue väite. `claim_supported_source_ids` võib endiselt sisaldada peidetud redundantseid kandidaate; kasutajale kuvatav hulk ja `answer_source_ids` kirjeldavad lõplikult alles jäetud allikaid.
 
-`professional_method_guidance` kasutab samuti seda generic claim-attribution haru: tema `needs_multiple_sources=true` lubab konteksti eri juhendeid või täiendavaid käsitlusmudeleid, kuid ei nõua kõigi kontekstiallikate kuvamist. Uus kärbe ei laiene edukalt faktivalideeritud vastusele, ajalisele rajale, täpsele õigusele, SourcePackage'ile, valideeritud kontaktidele, autorirajale, sünteesile, võrdlusele, kliendi eluolukorra juhendamisele, KOV-erirajale, muule tuvastatud mitmeallikaplaanile ega allikakomplekti loendamisele, sealhulgas seda küsivale jätkuküsimusele. Nende harude senised allikavaliku lepingud jäävad muutmata.
+`professional_method_guidance` kasutab samuti seda generic claim-attribution haru: tema `needs_multiple_sources=true` lubab konteksti eri juhendeid või täiendavaid käsitlusmudeleid, kuid ei nõua kõigi kontekstiallikate kuvamist. Sünteesi eriharu kasutab kitsast sama claim-cover'i varianti ainult siis, kui vastus nimetab vähemalt ühe toetatud allika täispealkirja: kõik nimetatud allikad säilivad, nimetamata kandidaat säilib uue väite lisamisel. See eemaldab üldise sissejuhatusega kattuva redundantse tausta, mitte sisulist allikaloendit. Nimeliste viideteta mitmeallikavastus säilitab senise valiku.
+
+Kärbe ei laiene edukalt faktivalideeritud vastusele, ajalisele rajale, täpsele õigusele, SourcePackage'ile, valideeritud kontaktidele, autorirajale, võrdlusele, kliendi eluolukorra juhendamisele, KOV-erirajale, allikate leidmisele ega allikakomplekti loendamisele, sealhulgas seda küsivale jätkuküsimusele. Nende harude senised allikavaliku lepingud jäävad muutmata.
 
 ### 12.3 Allikapaneel
 

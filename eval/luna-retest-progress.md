@@ -3,12 +3,12 @@
 See fail on jooksvalt täidetav logi. Iga lõpetatud küsimus lisatakse kohe; pooleli
 jooksu tulemus ei jää ainult vestluse ajalukku.
 
-- Kood-SHA: `c21821c23` (serveris deployitud 2026-08-29; frontend/RAG/research-worker aktiivsed, `/vestlus` 200)
+- Kood-SHA: `69aa09a36` (serveris deployitud 2026-08-30; frontend/RAG/research-worker aktiivsed, `/vestlus` 200)
 - 75 küsimust: põhinimetaja `75`
 - Golden: eraldi regressioonikomplekt `37`, ei lähe 75 nimetajasse
 - Küsimuste esitaja: Luna
 - Soli küsimuste jooks: keelatud
-- Praegune staatus: `FAASID 1–2 LÕPETATUD — runtime c21821c2; paus enne 75 küsimuse väravat`
+- Praegune staatus: `FAASID 1–2 LÕPETATUD — runtime 69aa09a3; isolated 2 PASS / 1 PARTIAL / 8 FAIL, sequential 2 PASS / 2 PARTIAL / 7 FAIL; Golden-37 33 PASS / 0 PARTIAL / 4 FAIL; paus enne 75 küsimuse väravat`
 
 ## Uus kordus — runtime `c21821c2`
 
@@ -514,3 +514,338 @@ Sequential koond: **2 PASS / 0 PARTIAL / 9 FAIL**.
 ### Paus pärast teist faasi
 
 Kokkuleppe järgi siin peatutakse. Täielikku 75 küsimuse jooksu ega 37 Golden-küsimuse lisaväravat ei käivitatud.
+
+## Neljas kordus — runtime `69aa09a3`
+
+- deploy: `2026-08-30`, local/origin/server SHA `69aa09a36a99ad7f30e0545c3c661a0ca34325c7`
+- frontend, RAG ja research-worker: `active`
+- avalik ja loopback `/vestlus`: HTTP 200
+- RAG health: `ok=true`, vectors `49727`, documents `6089`
+- siht: eelmise runtime `7c91fc9d` 8 FAIL + 3 PARTIAL juhtumit
+- jooksud: esmalt isolated (iga küsimus uues vestluses), seejärel sequential (kõik 11 ühes uues vestluses)
+- vastus lisatakse kohe pärast iga küsimust; pärast sequential-faasi tehakse paus
+
+### Faas 1 — isolated (lõpetatud)
+
+| case_id | status | answer_summary | displayed_sources | runtime | timestamp |
+|---|---|---|---|---|---|
+| J03 | FAIL | Vastus oli „Ma ei saa sellele praegu piisavalt kindlat vastust anda.”; kriisitunnuseid, 112 ega 1220 ei esitatud. | Allikanuppu ei kuvatud. | `69aa09a3` | 2026-08-30T21:06:47+03:00 |
+| J05 | FAIL | Vastus oli „Ma ei saa sellele praegu piisavalt kindlat vastust anda.”; 30/12 ja 60/19 taastava õiguse näitajate seoseid ei esitatud. | Allikanuppu ei kuvatud. | `69aa09a3` | 2026-08-30T21:07:00+03:00 |
+| J08 | FAIL | Vastus oli „Ma ei saa sellele praegu piisavalt kindlat vastust anda.”; 61%, 26%, 11% ja 18% osakaale ei esitatud. | Allikanuppu ei kuvatud. | `69aa09a3` | 2026-08-30T21:08:20+03:00 |
+| J11 | FAIL | Vastus oli „Ma ei saa sellele praegu piisavalt kindlat vastust anda.”; 7 intervjuud, jaotus 6 individuaalset + üks kolmeliikmeline rühm ning kolmeetapiline analüüs puudusid. | Allikanuppu ei kuvatud. | `69aa09a3` | 2026-08-30T21:08:45+03:00 |
+| J13 | PARTIAL | Vastus nimetas õige 13–18-aastaste vanuserühma, kuid ütles, et tavapärast probleemide arvu ei kinnitatud; oodatud 3–5 probleemi puudus. | `Vastuste allikad` nähtav; paneeli ei avatud. | `69aa09a3` | 2026-08-30T21:09:17+03:00 |
+| J14 | PASS | Vastus andis üle 5800 alla 18-aastase lapse, umbes 90% kohtusse pöördumise, 14 kohtuasja ja 3 kohtuvälist kokkulepet. | `Vastuste allikad` nähtav; paneeli ei avatud. | `69aa09a3` | 2026-08-30T21:09:47+03:00 |
+| J18 | FAIL | Vastus oli „Ma ei saa sellele praegu piisavalt kindlat vastust anda.”; kolme praktikurühma 5+5+5 ja koguarvu 15 ei esitatud. | Allikanuppu ei kuvatud. | `69aa09a3` | 2026-08-30T21:10:09+03:00 |
+| V04 | FAIL | Vastus andis 22%, 41% ja 13% ning sidus need kehalise väärkohtlemise, kelmuse ja vargusega; oodatud 10%=640, 6%=227 ja 2%=100 seoseid ei esitatud. | `Vastuste allikad` nähtav; paneeli ei avatud. | `69aa09a3` | 2026-08-30T21:10:32+03:00 |
+| V05 | FAIL | Vastus oli „Ma ei saa sellele praegu piisavalt kindlat vastust anda.”; kuue kuu järelmõju ning osaleja ja tööandja hinnangud puudusid. | Allikanuppu ei kuvatud. | `69aa09a3` | 2026-08-30T21:10:51+03:00 |
+| V06 | FAIL | Vastus oli „Ma ei saa sellele praegu piisavalt kindlat vastust anda.”; 169 otsust ja otsuste aasta 2018 puudusid. | Allikanuppu ei kuvatud. | `69aa09a3` | 2026-08-30T21:11:13+03:00 |
+| M02 | PASS | Vastus andis kõik neli suunda: üks kontaktisik/juhtumikorraldaja, proaktiivne ennetav abi, lihtsam teenustele pääs koos korduvhindamiste vältimisega ning toetatud otsustamise suund eestkoste asemel. | `Vastuste allikad` avatud; Kristi Rekand 2026 kokkuvõte, lk 10–11, 13–14, 18, 23, 25–26, 29, 32, 38, 48, 50–51, 53, 56, 62. | `69aa09a3` | 2026-08-30T21:11:57+03:00 |
+
+### Faas 2 — sequential (lõpetatud)
+
+Kõik 11 küsimust esitatakse allolevas järjekorras ühes värskes vestluses.
+
+| case_id | status | answer_summary | displayed_sources | runtime | timestamp |
+|---|---|---|---|---|---|
+| J03 | FAIL | Vastus oli „Ma ei saa sellele praegu piisavalt kindlat vastust anda.”; kriisitunnuseid, 112 ega 1220 ei esitatud. | Allikanuppu ei kuvatud. | `69aa09a3` | 2026-08-30T21:12:35+03:00 |
+| J05 | FAIL | Teise küsimusena oli vastus samuti „Ma ei saa sellele praegu piisavalt kindlat vastust anda.”; 30/12 ja 60/19 seoseid ei esitatud. | Allikanuppu ei kuvatud. | `69aa09a3` | 2026-08-30T21:13:02+03:00 |
+| J08 | FAIL | Kolmanda küsimusena oli vastus samuti üldine tõendipuuduse teade; 61%, 26%, 11% ja 18% osakaale ei esitatud. | Allikanuppu ei kuvatud. | `69aa09a3` | 2026-08-30T21:13:27+03:00 |
+| J11 | FAIL | Neljanda küsimusena oli vastus samuti üldine tõendipuuduse teade; 7 intervjuud, jaotus 6 individuaalset + üks kolmeliikmeline rühm ning kolmeetapiline analüüs puudusid. | Allikanuppu ei kuvatud. | `69aa09a3` | 2026-08-30T21:13:48+03:00 |
+| J13 | PARTIAL | Viienda küsimusena nimetas vastus õige 13–18-aastaste vanuserühma, kuid ütles, et tavapärast probleemide arvu ei kinnitatud; oodatud 3–5 probleemi puudus. | `Vastuste allikad` nähtav; paneeli ei avatud. | `69aa09a3` | 2026-08-30T21:14:16+03:00 |
+| J14 | PARTIAL | Kuuenda küsimusena andis vastus üle 5800 lapse ja umbes 90% kohtusse pöördumise, kuid 14 kohtuasja ja 3 kohtuvälist kokkulepet ei esitanud. Isolated-jooksus olid kõik neli väidet olemas. | `Vastuste allikad` nähtav; paneeli ei avatud. | `69aa09a3` | 2026-08-30T21:14:41+03:00 |
+| J18 | FAIL | Seitsmenda küsimusena oli vastus üldine tõendipuuduse teade; kolme praktikurühma 5+5+5 ja koguarvu 15 ei esitatud. | Allikanuppu ei kuvatud. | `69aa09a3` | 2026-08-30T21:15:02+03:00 |
+| V04 | FAIL | Kaheksanda küsimusena andis vastus 22%, 41% ja 13% ning sidus need kehalise väärkohtlemise, kelmuse ja vargusega; oodatud 10%=640, 6%=227 ja 2%=100 seoseid ei esitatud. | `Vastuste allikad` nähtav; paneeli ei avatud. | `69aa09a3` | 2026-08-30T21:15:23+03:00 |
+| V05 | FAIL | Üheksanda küsimusena oli vastus üldine tõendipuuduse teade; kuue kuu järelmõju ning osaleja ja tööandja hinnangud puudusid. | Allikanuppu ei kuvatud. | `69aa09a3` | 2026-08-30T21:15:42+03:00 |
+| V06 | FAIL | Kümnenda küsimusena oli vastus üldine tõendipuuduse teade; 169 otsust ja otsuste aasta 2018 puudusid. | Allikanuppu ei kuvatud. | `69aa09a3` | 2026-08-30T21:16:01+03:00 |
+| M02 | PASS | Viimase küsimusena andis vastus kõik neli suunda: üks kontaktisik/juhtumikorraldaja, proaktiivne ennetav abi, lihtsam teenustele pääs koos korduvhindamiste vältimisega ning toetatud otsustamise suund eestkoste asemel. | `Vastuste allikad` nähtav; paneeli ei avatud. | `69aa09a3` | 2026-08-30T21:16:32+03:00 |
+
+Sequential koond: **2 PASS / 2 PARTIAL / 7 FAIL**.
+
+### Kahe jooksu võrdlus
+
+- Isolated PASS: `J14`, `M02`; sequential PASS: `M02`.
+- Isolated `PARTIAL`: `J13`; sequential `PARTIAL`: `J13`, `J14`.
+- Mõlemas režiimis FAIL: `J03`, `J05`, `J08`, `J11`, `J18`, `V04`, `V05`, `V06`.
+- Mõõdetud režiimivahe: J14 halvenes isolated `PASS`-ist sequential `PARTIAL`-iks; M02 jäi mõlemas PASS-iks; ülejäänud juhtumitel staatus ei muutunud.
+
+### Paus pärast teist faasi
+
+Kokkuleppe järgi on pärast isolated- ja sequential-faasi paus. Täielikku 75 küsimuse jooksu ega 37 Golden-küsimuse lisaväravat ei käivitatud.
+
+## Runtime `69aa09a3` — manifesti täpse 11 küsimuse parandusjooks
+
+Eelmises sama runtime'i plokis kasutati ekslikult lühendatud küsimusi. See plokk kasutab
+`docs/audits/evidence/rag-75-runtime-2026-08-28-44c1e59b/manifest.md` küsimusi sõna-sõnalt.
+Järjekord: kõigepealt isolated, seejärel kõik 11 ühes sequential-vestluses; pärast teist faasi paus.
+
+### Faas 1 — isolated (lõpetatud)
+
+| case_id | status | question_exact | answer_summary | displayed_sources | runtime | timestamp |
+|---|---|---|---|---|---|---|
+| J03 | PASS | Millised on vaimse tervise kriisi tunnused ning millistele telefoninumbritele tuleb nende korral helistada Külli Mäe 2018. aasta artikli „Kuidas anda vaimse tervise probleemide korral töökohal esmaabi?” järgi? | Nimetas kriisi tunnused ning õiged telefoninumbrid 112 ja 1220. | `Vastuste allikad` nähtav; paneeli ei avatud. | `69aa09a3` | 2026-08-30T21:36:00+03:00 |
+| J05 | FAIL | Artiklis „Taastav õigus ja COVID-19” mitu spetsialisti ja riiki osales igakuisel kohtumisel ning mitu inimest ja riiki osales 2020. aasta aprillist juulini toimunud neljal kohtumisel? | Üldine arvu, ulatuse ja aasta tõendipuuduse vastus; 30/12 ja 60/19 seosed puudusid. | Allikanuppu ei kuvatud. | `69aa09a3` | 2026-08-30T21:37:00+03:00 |
+| J08 | FAIL | Vaike Vainu 2023. aasta artiklis „Suure hoolduskoormusega inimesed vajavad täiendavat abi” kui suur osa vastanutest vajas lisabi, kui suur osa palju lisabi ning kui suur osa oli suure ja keskmise hoolduskoormuse riskiga? | Vastus keeldus kõiki küsitud osi kinnitamast; 61%, 26%, 11% ja 18% puudusid. | Allikanuppu ei kuvatud. | `69aa09a3` | 2026-08-30T21:37:00+03:00 |
+| J11 | FAIL | Artiklis „Sotsiaaltöötajate tööalase toetuse kogemused” mitu intervjuud tehti, kuidas jagunesid individuaal- ja rühmavestlused ning millist kolmeetapilist analüüsi kasutati? | Vastus keeldus kõiki osi kinnitamast; 7 intervjuud, 6 individuaalset, üks kolmeliikmeline rühm ja kolmeetapiline analüüs puudusid. | Allikanuppu ei kuvatud. | `69aa09a3` | 2026-08-30T21:38:00+03:00 |
+| J13 | PASS | 2018. aasta artiklis „Käitumisprobleemidega lapsed peaksid abi saama enne, kui asjad väga hulluks lähevad” millist noorte vanuserühma käsitleti ning mida öeldi probleemide kattuvuse ja nende varase avaldumise kohta? | Andis 13–18-aastased, probleemide kattuvuse ja võimaliku avaldumise juba 3–5-aastaselt. | `Vastuste allikad` nähtav; paneeli ei avatud. | `69aa09a3` | 2026-08-30T21:38:00+03:00 |
+| J14 | PASS | Anne-Ly Sumre 2019. aasta artiklis „Lastekaitsjad jäävad tihti omavahel sõdivate vanemate vahele” kui palju oli Saue vallas alla 18-aastasi lapsi, kui suur osa hooldusõiguse jagamise juhtumitest jõudis kohtusse ning mitu kohtujuhtumit ja kohtuvälist kokkulepet oli ühe spetsialisti näites? | Andis kõik neli väidet: üle 5800, umbes 90%, 14 kohtujuhtumit ja 3 kohtuvälist kokkulepet. | `Vastuste allikad` nähtav; paneeli ei avatud. | `69aa09a3` | 2026-08-30T21:39:00+03:00 |
+| J18 | FAIL | Erle Eenmaa 2022. aasta artiklis „Psüühilise erivajadusega inimese osalus oma eestkostes” kui palju osalejaid oli igas kolmes praktikute rühmas ja kui palju kokku? | Vastus keeldus kõiki osi kinnitamast; 5 kohtunikku + 5 erihoolekande töötajat + 5 KOV-i sotsiaaltöötajat = 15 puudusid. | Allikanuppu ei kuvatud. | `69aa09a3` | 2026-08-30T21:39:00+03:00 |
+| V04 | PASS | Anu Lepsi ja Lenne Indovi 2025. aasta artiklis kui suur osakaal ja mitu inimest oli üle 60-aastaste registreeritud kuriteoohvrite seas, kui suur osakaal ja mitu inimest oli üle 60-aastaste ohvriabisse helistajate seas ning kui suur osakaal ja mitu inimest oli üle 75-aastaste kuriteo tõttu kannatanute seas? | Sidus õigesti 10%=640, 6%=227 ja 2%=100; täpsustas, et allikas kinnitab ohvriabisse pöördunuid, mitte eraldi telefoni teel pöördunuid. | `Vastuste allikad` nähtav; paneeli ei avatud. | `69aa09a3` | 2026-08-30T21:40:00+03:00 |
+| V05 | FAIL | Marina Vaino artiklis „Uus e-kursus pakub tuge sotsiaalvaldkonna koolitajatele” kui pika aja pärast hinnati järelmõju ning kelle hinnanguid võrreldi? | Vastus keeldus kõiki osi kinnitamast; kuus kuud ning osaleja ja tööandja hinnangud puudusid. | Allikanuppu ei kuvatud. | `69aa09a3` | 2026-08-30T21:40:00+03:00 |
+| V06 | PASS | Mitu laste eraldamise otsust analüüsiti 2022. aasta artiklis „Lapse perekonnast eraldamine vaimse tervise probleemiga vanemalt” ja mis aastast need otsused pärinesid? | Andis õigesti 169 lahendit ja 2018. aasta. | `Vastuste allikad` nähtav; paneeli ei avatud. | `69aa09a3` | 2026-08-30T21:41:00+03:00 |
+| M02 | PASS | EPIKoja aruandes „Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuring” milline soovitus anti Tallinnale kontaktisiku või juhtumikorralduse kohta, milline ennetava abi kohta, milline teenustele pääsu ja korduvate hindamiste kohta ning milline toetatud otsustamise kohta? | Andis kõik neli soovitussuunda: kindel kontaktisik/juhtumikorraldaja, proaktiivne abi, lihtsam teenustele pääs koos korduvhindamiste vältimisega ning toetatud otsustamine eestkoste piirava mõju alternatiivina. | `Vastuste allikad` nähtav; paneeli ei avatud. | `69aa09a3` | 2026-08-30T21:41:00+03:00 |
+
+Isolated koond: **6 PASS / 0 PARTIAL / 5 FAIL**.
+
+### Faas 2 — sequential (lõpetatud)
+
+Kõik 11 manifesti täpset küsimust esitatakse allolevas järjekorras ühes värskes vestluses.
+
+| case_id | status | question_exact | answer_summary | displayed_sources | runtime | timestamp |
+|---|---|---|---|---|---|---|
+| J03 | PASS | Millised on vaimse tervise kriisi tunnused ning millistele telefoninumbritele tuleb nende korral helistada Külli Mäe 2018. aasta artikli „Kuidas anda vaimse tervise probleemide korral töökohal esmaabi?” järgi? | Andis kriisi tunnused ning 112 ja 1220. | `Vastuste allikad` nähtav; paneeli ei avatud. | `69aa09a3` | 2026-08-30T21:42:00+03:00 |
+| J05 | PASS | Artiklis „Taastav õigus ja COVID-19” mitu spetsialisti ja riiki osales igakuisel kohtumisel ning mitu inimest ja riiki osales 2020. aasta aprillist juulini toimunud neljal kohtumisel? | Andis õigesti umbes 30 spetsialisti 12 riigist ning neljal kohtumisel 60 inimest 19 riigist. Isolated-jooksus sama täpne küsimus FAIL. | `Vastuste allikad` nähtav; paneeli ei avatud. | `69aa09a3` | 2026-08-30T21:43:00+03:00 |
+| J08 | FAIL | Vaike Vainu 2023. aasta artiklis „Suure hoolduskoormusega inimesed vajavad täiendavat abi” kui suur osa vastanutest vajas lisabi, kui suur osa palju lisabi ning kui suur osa oli suure ja keskmise hoolduskoormuse riskiga? | Vastus keeldus kõiki küsitud osi kinnitamast; 61%, 26%, 11% ja 18% puudusid. | Allikanuppu ei kuvatud. | `69aa09a3` | 2026-08-30T21:43:00+03:00 |
+| J11 | FAIL | Artiklis „Sotsiaaltöötajate tööalase toetuse kogemused” mitu intervjuud tehti, kuidas jagunesid individuaal- ja rühmavestlused ning millist kolmeetapilist analüüsi kasutati? | Vastus keeldus kõiki osi kinnitamast; 7 intervjuud, 6 individuaalset, üks kolmeliikmeline rühm ja kolmeetapiline analüüs puudusid. | Allikanuppu ei kuvatud. | `69aa09a3` | 2026-08-30T21:45:00+03:00 |
+| J13 | PASS | 2018. aasta artiklis „Käitumisprobleemidega lapsed peaksid abi saama enne, kui asjad väga hulluks lähevad” millist noorte vanuserühma käsitleti ning mida öeldi probleemide kattuvuse ja nende varase avaldumise kohta? | Andis 13–18-aastased, probleemide kattuvuse ning võimaliku avaldumise juba 3–5-aastaselt. | `Vastuste allikad` nähtav; paneeli ei avatud. | `69aa09a3` | 2026-08-30T21:45:00+03:00 |
+| J14 | PASS | Anne-Ly Sumre 2019. aasta artiklis „Lastekaitsjad jäävad tihti omavahel sõdivate vanemate vahele” kui palju oli Saue vallas alla 18-aastasi lapsi, kui suur osa hooldusõiguse jagamise juhtumitest jõudis kohtusse ning mitu kohtujuhtumit ja kohtuvälist kokkulepet oli ühe spetsialisti näites? | Andis kõik neli väidet: üle 5800, umbes 90%, 14 kohtujuhtumit ja 3 kohtuvälist kokkulepet. | `Vastuste allikad` nähtav; paneeli ei avatud. | `69aa09a3` | 2026-08-30T21:46:00+03:00 |
+| J18 | FAIL | Erle Eenmaa 2022. aasta artiklis „Psüühilise erivajadusega inimese osalus oma eestkostes” kui palju osalejaid oli igas kolmes praktikute rühmas ja kui palju kokku? | Vastus keeldus kõiki osi kinnitamast; 5 kohtunikku + 5 erihoolekande töötajat + 5 KOV-i sotsiaaltöötajat = 15 puudusid. | Allikanuppu ei kuvatud. | `69aa09a3` | 2026-08-30T21:47:00+03:00 |
+| V04 | PASS | Anu Lepsi ja Lenne Indovi 2025. aasta artiklis kui suur osakaal ja mitu inimest oli üle 60-aastaste registreeritud kuriteoohvrite seas, kui suur osakaal ja mitu inimest oli üle 60-aastaste ohvriabisse helistajate seas ning kui suur osakaal ja mitu inimest oli üle 75-aastaste kuriteo tõttu kannatanute seas? | Sidus õigesti 10%=640, 6%=227 ja 2%=100; täpsustas, et allikas kinnitab ohvriabisse pöördunuid, mitte eraldi telefoni teel pöördunuid. | `Vastuste allikad` nähtav; paneeli ei avatud. | `69aa09a3` | 2026-08-30T21:50:00+03:00 |
+| V05 | FAIL | Marina Vaino artiklis „Uus e-kursus pakub tuge sotsiaalvaldkonna koolitajatele” kui pika aja pärast hinnati järelmõju ning kelle hinnanguid võrreldi? | Vastus keeldus kõiki osi kinnitamast; kuus kuud ning osaleja ja tööandja hinnangud puudusid. | Allikanuppu ei kuvatud. | `69aa09a3` | 2026-08-30T21:50:00+03:00 |
+| V06 | PASS | Mitu laste eraldamise otsust analüüsiti 2022. aasta artiklis „Lapse perekonnast eraldamine vaimse tervise probleemiga vanemalt” ja mis aastast need otsused pärinesid? | Andis õigesti 169 lahendit ja 2018. aasta. | `Vastuste allikad` nähtav; paneeli ei avatud. | `69aa09a3` | 2026-08-30T21:51:00+03:00 |
+| M02 | PASS | EPIKoja aruandes „Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuring” milline soovitus anti Tallinnale kontaktisiku või juhtumikorralduse kohta, milline ennetava abi kohta, milline teenustele pääsu ja korduvate hindamiste kohta ning milline toetatud otsustamise kohta? | Andis kõik neli soovitussuunda: kindel kontaktisik/juhtumikorraldaja, proaktiivne abi, lihtsam teenustele pääs koos korduvhindamiste vältimisega ning toetatud otsustamine eestkoste piirava mõju alternatiivina. | `Vastuste allikad` nähtav; paneeli ei avatud. | `69aa09a3` | 2026-08-30T21:51:00+03:00 |
+
+Sequential koond: **7 PASS / 0 PARTIAL / 4 FAIL**.
+
+### Isolated vs sequential võrdlus
+
+- `J05`: isolated **FAIL**, sequential **PASS** — sama täpne küsimus sai värskes vestluses tõendipuuduse vastuse, kuid jooksu teise küsimusena kõik neli õiget arvu.
+- `J03`, `J13`, `J14`, `V04`, `V06` ja `M02`: mõlemas faasis **PASS**.
+- `J08`, `J11`, `J18` ja `V05`: mõlemas faasis **FAIL**; kõigil juhtudel tagastas assistent üldise kõigi osade kinnitamisest keeldumise ega kuvanud allikanuppu.
+- Staatuste põhjal ei tekkinud ühelgi juhul sequential-faasis halvenemist; üks juhtum paranes ja kümme jäid samaks.
+
+### Paus pärast teist faasi
+
+Kokkuleppe järgi peatuti pärast isolated- ja sequential-faasi. Täielikku 75 küsimuse jooksu selles tööjärgus ei käivitatud; Golden-küsimused käivitati hiljem omaniku eraldi korraldusel ja nende tulemused on allpool.
+
+## Golden-37 lisavärav — runtime `69aa09a3`
+
+- algus: `2026-08-30T22:10:16+03:00`
+- küsimustik: `eval/golden-rag-v1.json`, 37 juhtumit
+- küsimustiku SHA-256: `65284f5265606e4d182f0c8b2e54191abd65155097c68b69fac39baf5f60effc`
+- local / `origin/main` / server: `69aa09a36a99ad7f30e0545c3c661a0ca34325c7`
+- pind: autentitud production Codex in-app `/vestlus`
+- protokoll: iga juhtum värskes vestluses; `edge_followup_paragraph` kasutab Golden-failis määratud SHS § 23 eellugu
+- tulemus kirjutatakse siia kohe pärast iga vastust
+- täielikud küsimused ja vastused jäid in-app vestluste ajalukku; tabel säilitab hinnangu, sisukokkuvõtte ja kuvatud allikate tõendi
+
+| nr | case_id | status | answer_summary | displayed_sources | timestamp |
+|---:|---|---|---|---|---|
+| 1 | `kov_kuusalu_koduteenus` | PASS | Kirjeldas Kuusalu koduteenuse sihtrühma, eesmärki ja taotlemist; vastus sisaldas nõutud koduteenuse seost. | Avatud: `Kuusalu vald. Koduteenus · Teenused. kehtiv teenuseinfo`. | 2026-08-30T22:10+03:00 |
+| 2 | `kov_harku_sotsiaaltransport` | PASS | Andis Harku taotlemisviisi, abivajaduse hindamise, tähtajad ja hinnad; ei seganud teist KOV-i. | Avatud: `Harku vald. Sotsiaaltransporditeenus · Teenused. kehtiv teenuseinfo`. | 2026-08-30T22:12+03:00 |
+| 3 | `kov_kuusalu_vormid` | PASS | Nimetas üldise sotsiaalteenuse avalduse ning SPOKU/paberavalduse; vastus sisaldas nõutud vormiseost. | Avatud: `Kuusalu vald. Koduteenus · Teenused. kehtiv teenuseinfo`. | 2026-08-30T22:18+03:00 |
+| 4 | `kov_leakage_guard_narva` | PASS | Andis ainult Narva koduteenuse taotlemise ja abivajaduse hindamise; Kuusalu, Harku ega Anija ei lekkinud vastusesse või allikatesse. | Avatud: `Narva linn. Koduteenus · Teenused. kehtiv teenuseinfo`. | 2026-08-30T22:18+03:00 |
+| 5 | `legal_shs_42` | PASS | Selgitas SHS § 42 puudega isikule eluruumi tagamist. | Avatud: `Sotsiaalhoolekande seadus § 42 Puudega isikule eluruumi tagamine`. | 2026-08-30T22:19+03:00 |
+| 6 | `legal_shs_17` | PASS | Selgitas SHS § 17 koduteenuse eesmärki, sisu ja näidistoiminguid. | Avatud: `Sotsiaalhoolekande seadus § 17 Koduteenuse eesmärk ja sisu`. | 2026-08-30T22:19+03:00 |
+| 7 | `legal_inflected_paragraph` | PASS | Tuvastas käändelise „paragrahv 23” päringu ja selgitas tugiisikuteenuse eesmärki ning sisu. | Avatud: `Sotsiaalhoolekande seadus § 23 Tugiisikuteenuse eesmärk ja sisu`. | 2026-08-30T22:20+03:00 |
+| 8 | `ajakiri_overview_lastekaitse` | PASS | Koondas lastekaitse murekohad lapse kaasamisest, abi kiirusest, vägivallast, töökoormusest, usaldusest ja andmekaitsest. | Avatud 13 teemakohast Sotsiaaltöö allikat (nõue ≥3). | 2026-08-30T22:20+03:00 |
+| 9 | `ajakiri_overview_omastehooldus` | PASS | Koondas hooldajate füüsilise, vaimse, tööalase, majandusliku ja sotsiaalse koormuse ning leevendusvõimalused. | Avatud 7 omastehoolduse allikat (nõue ≥2). | 2026-08-30T22:21+03:00 |
+| 10 | `ajakiri_ai_eetika` | PASS | Käsitles eetikat, väärtusi, vastutust, läbipaistvust, andmekaitset ja inimlikku otsustamist. | Avatud: `Tehisintellekt sotsiaaltöös: praktika, kaalutlused ja väärtuspõhised piirid`. | 2026-08-30T22:21+03:00 |
+| 11 | `ajakiri_sloveenia_hooldus` | PASS | Kirjeldas Sloveenia asutusekeskset süsteemi, kodu- ja kogukonnateenuseid, kitsaskohti ning tulevikusuundi. | Avatud: `Pikaajaline hooldus Sloveenias: probleemid ja tulevikusuunad`. | 2026-08-30T22:21+03:00 |
+| 12 | `pdf_hea_tava_terviseprobleemiga_laps` | PASS | Andis pere emotsionaalse, praktilise, keskkonna-, osalus- ja võrgustikutoe sammud. | Avatud: `Terviseprobleemiga laste ja nende perede toetamise hea tava` + 3 toetavat allikat. | 2026-08-30T22:22+03:00 |
+| 13 | `pdf_eestkoste_uuring` | PASS | Kirjeldas asendatud otsustamist, vähest kaasamist, liigset kontrolli, toe ja teenuste koordineerimise puudusi. | Avatud 6 eestkoste teemaga allikat, sh uuringu kokkuvõte ja lühikokkuvõte. | 2026-08-30T22:22+03:00 |
+| 14 | `pdf_vaimne_tervis_koolis` | PASS | Loetles koolile suunatud vaimse tervise juhendid, õppematerjalid, uuringud ja taustakäsitlused. | Avatud 9 allikat, sh `Koolilaste ja noorte vaimne tervis` ja `Peaasi.ee Haridus`. | 2026-08-30T22:23+03:00 |
+| 15 | `pdf_tarkvanem_tooleht` | PASS | Leidis ja kirjeldas algkoolilapsega vestlemise abiküsimuste töölehte. | Avatud 6 allikat; esmane oli õige algkoolilapse tööleht, kuid 5 kõrvalallikat olid osalt ebaolulised. | 2026-08-30T22:23+03:00 |
+| 16 | `org_astangu` | PASS | Kirjeldas Astangu õppimise, töötamise, rehabilitatsiooni ja nõustamise võimalusi. | Avatud 8 allikat; esmane `Astangu Kutserehabilitatsiooni Keskus` sisaldas nõutud URL-i. | 2026-08-30T22:24+03:00 |
+| 17 | `org_puudega_inimese_abi` | PASS | Nimetas SKA, KOV-i, EPIKoja, organisatsioonid ja praktilised materjalid. | Avatud 10 allikat; vähemalt 2 nõue täidetud ja SHS-i allikat ei kuvatud. | 2026-08-30T22:24+03:00 |
+| 18 | `life_raha_uur_toit` | PASS | Suunas kohe KOV-i sotsiaalosakonda, nimetas vältimatu sotsiaalabi ja toimetulekutoetuse. | Avatud: SHS § 8 ja § 131. | 2026-08-30T22:25+03:00 |
+| 19 | `life_eakas_kodus` | PASS | Suunas ema elukohajärgse KOV-i sotsiaalosakonda abivajaduse hindamisele ja kirjeldas kodus osutatavat abi. | Avatud: `Kes aitab ja kuhu pöörduda, kui sul on tuvastatud puude raskusaste?`. | 2026-08-30T22:25+03:00 |
+| 20 | `comparison_kodu_tugiisik` | PASS | Eristas koduse praktilise abi tugiisiku juhendamisest ja motiveerimisest. | Avatud § 17 ja § 23 ning korraldusparagrahvid; keelatud § 44/§ 45 puudusid. | 2026-08-30T22:26+03:00 |
+| 21 | `comparison_kodu_isiklik_abistaja` | PASS | Eristas koduse toimetuleku abi isikliku abistaja füüsilisest kõrvalabist ja osalemistoest. | Avatud § 17 ja § 27 koos korraldusparagrahvidega. | 2026-08-30T22:27+03:00 |
+| 22 | `edge_inflected_tugiisikuteenusel` | PASS | Tuvastas käändelise tugiisikuteenuse, selgitas KOV-i rolli ja küsis täpsustuseks omavalitsust. | Avatud § 24 ja 3 kõrvalallikat. | 2026-08-30T22:27+03:00 |
+| 23 | `edge_crisis` | PASS | Andis vahetu ohuga sobiva juhise helistada 112, mitte jääda üksi ja eemaldada vigastusvahendid. | Allikapaneelis avanes üks sisuliselt ebaoluline Sotsiaaltöö intervjuu; Golden-kriteerium allikat ei nõudnud. | 2026-08-30T22:28+03:00 |
+| 24 | `pdf_abivajav_laps_andmekaitse` | PASS | Selgitas, et pädevale asutusele teatamine on lubatud ning vajalikku teavet ja teataja andmeid tuleb kaitsta. | Avatud: `Juhend: abivajavast lapsest teatamine ja andmekaitse` + 3 toetavat allikat. | 2026-08-30T22:28+03:00 |
+| 25 | `pdf_opilase_toetamine_koolis` | PASS | Loetles kooli tugisüsteemi, individuaalsuse, tugimeeskonna ja heade praktikate juhendid. | Avatud 10 allikat; õiged Harno koolimaterjalid olid olemas, kuid paneelis oli ka kõrvalisi juhendeid. | 2026-08-30T22:29+03:00 |
+| 26 | `pdf_marac_mudel` | PASS | Selgitas MARAC-i riskihindamist, võrgustikukohtumist, turvalisusplaani, rollijaotust ja järelhindamist. | Avatud: MARAC-i Sotsiaaltöö artikkel ja `MARAC-i juhendmaterjal`. | 2026-08-30T22:29+03:00 |
+| 27 | `pdf_vaesus_statistika` | PASS | Koondas vaesuse seosed töötuse, elukoha, leibkonna, soo, laste võimaluste ja kuhjuvate riskidega ning piiritles andmete ajakohasuse. | Avatud 4 statistika- ja võrdõiguslikkuse allikat. | 2026-08-30T22:29+03:00 |
+| 28 | `pdf_lapse_heaolu_hindamine` | PASS | Kirjeldas teabe kogumist, lapse kaasamist, heaoluvaldkondi, riske, tegevuskava ja vahehindamist. | Avatud: `Lapse heaolu hindamise käsiraamatust`. | 2026-08-30T22:30+03:00 |
+| 29 | `edge_followup_paragraph` | FAIL | Pärast samas vestluses edukat SHS § 23 vastust küsis assistent uuesti, millist paragrahvi mõeldakse; `tugiisik` puudus jätkuvastusest. | Jätkuvastusel allikanuppu ei olnud; avatud § 23 paneel kuulus eelmisele vastusele. | 2026-08-30T22:30+03:00 |
+| 30 | `edge_no_corpus_answer_v2` | FAIL | Keeldus Saksamaa täpset hinda kinnitamast ja jäi alla 60 sõna, kuid no-corpus allikapiir ebaõnnestus. | Avatud 3 Eesti hooldekodu-teemalist allikat, kuigi nõue oli `displayed_max=0`. | 2026-08-30T22:31+03:00 |
+| 31 | `pdf_inimkaubandus_ennetus` | PASS | Andis praktilised riskimärgid, turvalise töö/reisimise, usaldussuhte, abiotsimise ja võrgustikutöö sammud. | Avatud 4 allikat, sh kaks inimkaubanduse ennetusmaterjali. | 2026-08-30T22:31+03:00 |
+| 32 | `pdf_kubervagivald_ohver` | PASS | Andis turvalisuse hindamise, ohvri kuulamise, seadme- ja kontoturbe, tõendite kogumise ning abi kaasamise sammud. | Avatud 5 allikat; esmane oli `Juhendmaterjal kübervägivallast ohvritega töötavatele spetsialistidele`. | 2026-08-30T22:32+03:00 |
+| 33 | `pdf_hoolekande_kvaliteet` | PASS | Loetles ja selgitas hoolekandeteenuste kvaliteedi põhimõtted, sh isikukesksuse, võimestamise, vajaduspõhisuse, õiguste kaitse ja juhtimise. | Avatud 4 allikat; esmane oli `Hoolekandeteenuste kvaliteedi juhendmaterjal`. | 2026-08-30T22:33+03:00 |
+| 34 | `pdf_toovoime_reform` | PASS | Koondas töövõimereformi mõju tööhõivele, töösoovile, hoiakutele ja teadlikkusele ning piiritles põhjusliku mõju ebakindluse. | Avatud 4 uuringuallikat; kaks esimest käsitlesid otseselt töövõimereformi ja töövõime toetamise skeemi. | 2026-08-30T22:34+03:00 |
+| 35 | `graph_kov_vormid_kontaktid` | FAIL | Vastus piirdus väitega, et praeguseid kontaktandmeid ei saa kinnitada; nõutud avaldust/vormi/taotlust ega pöördumiskohta ei andnud. | Allikanuppu ei kuvatud, kuigi nõue oli vähemalt 1 allikas. | 2026-08-30T22:34+03:00 |
+| 36 | `ajakiri_integreeritud_teenused` | FAIL | Selge ajakirjapäringu asemel küsis assistent, mida kasutaja sõna „Sotsiaaltöö” all mõtleb; integreeritud teenuste vastus puudus. | Allikanuppu ei kuvatud, kuigi nõue oli vähemalt 1 allikas. | 2026-08-30T22:35+03:00 |
+| 37 | `ajakiri_kinnise_lasteasutuse_alternatiiv` | PASS | Kirjeldas tugevdatud toetust, väiksemaid üksusi, ravi- ja teraapiakodusid, rehabilitatsiooni ning jätkutuge KLAT-i vähem piiravate alternatiividena. | Avatud 6 allikat; nõutud 2019. aasta tugevdatud toetuse artikkel oli olemas, kuid paneelis oli ka üks teemaväline mälestusartikkel. | 2026-08-30T22:35+03:00 |
+
+### Golden-37 koond
+
+- tulemus: **33 PASS / 0 PARTIAL / 4 FAIL**
+- nimetaja: **37/37**, eraldi 75 küsimuse auditist
+- `edge_followup_paragraph`: samas vestluses ei sidunud „sellest paragrahvist” vahetult eelnenud SHS § 23 vastusega
+- `edge_no_corpus_answer_v2`: vastus tunnistas tõendipuudust, kuid kuvas kolm ebaolulist Eesti hooldekodu allikat
+- `graph_kov_vormid_kontaktid`: Kuusalu vormi ja kontakti asemel tagastas tõendipuuduse vastuse ning null allikat
+- `ajakiri_integreeritud_teenused`: tõlgendas selge ajakirja nime mitmetähenduslikuna ja küsis tarbetu täpsustusküsimuse
+- allikakvaliteedi kõrvalmärkus: mitu formaalselt PASS-juhtumit kuvas õige esmaallika kõrval osaliselt ebaolulisi lisaallikaid (`pdf_tarkvanem_tooleht`, `edge_crisis`, `pdf_opilase_toetamine_koolis`, `ajakiri_kinnise_lasteasutuse_alternatiiv`)
+
+## 31.08 paranduse–deploy–korduse tsükkel
+
+- Omaniku ajapiir: 31.08.2026 kell **02:15 Europe/Tallinn** või kasutuslimiidi täitumine, kumb saabub enne. Pärast limiidi taastumist ega hommikul automaatselt ei jätkata; ajastatud jätk on `PAUSED`.
+- Ring 1 runtime: `f8eaae5612130e0a5b65e7e51603077f1407c6e6`. Kohalik, GitHub `main` ja serveri SHA kattuvad, server puhas; 3 teenust aktiivsed ja `/vestlus` HTTP 200 (00:19 EEST).
+- Serveri RAG health: 49 727 vektorit, 6089 registridokumenti, aktiivne FTS ja lemma-FTS 6073 dokumenti; mõlema indeksipõlvkond õige. See ei tõenda küsimuste vastuse kvaliteeti.
+- Kohalik ning serveri tootmisbuild läbisid; migratsioone ootel ei olnud.
+- Protokoll: 75-auditi viimase exact-korduse viis lahtist juhtumit `J05,J08,J11,J18,V05` esmalt eraldi värsketes vestlustes, siis samas vestluses järjest. Golden-juhtumid ja uued regressioonid eraldi nimetajas.
+- Pind: autentitud **Codex in-app** vestlus, küsimusi ei saadeta otse API kaudu. Iga täielik vastus, avatud allikad ja hinnang salvestatakse siia kohe.
+- PASS eeldab kõiki küsitud osi, õigeid seoseid ja nimetatud artikli allikat; tõendipuudus ei ole faktipäringu PASS. Täpsustamine võib olla õige ainult päriselt ebaselge päringu puhul. Hinnet 10/10 ei eeldata ette.
+
+### Ring 1 — isolated
+
+#### J05 — PASS — 00:19 EEST
+
+Küsimus: Artiklis „Taastav õigus ja COVID-19” mitu spetsialisti ja riiki osales igakuisel kohtumisel ning mitu inimest ja riiki osales 2020. aasta aprillist juulini toimunud neljal kohtumisel?
+
+Täielik vastus:
+
+> - Spetsialisti osales igakuisel kohtumisel: umbes 30 spetsialisti.
+> - Riiki osales igakuisel kohtumisel: 12 riigist.
+> - Inimest osales 2020. aasta aprillist juulini toimunud neljal kohtumisel: 60 inimest.
+> - Riiki osales 2020. aasta aprillist juulini toimunud neljal kohtumisel: 19 riigist.
+
+Avatud allikapaneel: **Ian D. Marder, 2020. Taastav õigus ja COVID-19. Sotsiaaltöö 4/2020 · lk 1–7 · Taastav õigus** (1 allikas). Kõik neli arvu, sündmusseosed ja ligikaudsus õiged. Keelekuju on kohmakas, sisuhinnang PASS.
+
+#### J08 — FAIL — 00:20 EEST
+
+Küsimus: Vaike Vainu 2023. aasta artiklis „Suure hoolduskoormusega inimesed vajavad täiendavat abi” kui suur osa vastanutest vajas lisabi, kui suur osa palju lisabi ning kui suur osa oli suure ja keskmise hoolduskoormuse riskiga?
+
+Täielik vastus:
+
+> Ma ei saa küsitud arvu, ulatust ja aastat täpse vastuse jaoks piisavalt kindlalt kinnitada.
+
+Allikanuppu ei kuvata (0 allikat). Kõik neli küsitud protsenti puuduvad. Lokaalne faktilepingu parandus üksi ei tõendanud lõppraja toimimist; esimene lahknev kiht vajab runtime-diagnoosi.
+
+#### J11 — FAIL — 00:21 EEST
+
+Küsimus: Artiklis „Sotsiaaltöötajate tööalase toetuse kogemused” mitu intervjuud tehti, kuidas jagunesid individuaal- ja rühmavestlused ning millist kolmeetapilist analüüsi kasutati?
+
+Täielik vastus:
+
+> Ma ei saa kõiki küsitud osi valitud allika põhjal piisavalt kindlalt kinnitada.
+
+Allikanuppu ei kuvata (0 allikat). Arvud ja analüüsimeetod puuduvad, FAIL. J08 oma vestlustunnus: `conv-a96d50fe-a250-4f74-9356-28c3ea39a25e`; J05: `72c2fdfc-502d-43bc-a5f9-f92085b02353`.
+
+#### J18 — PASS — 00:21 EEST
+
+Küsimus: Erle Eenmaa 2022. aasta artiklis „Psüühilise erivajadusega inimese osalus oma eestkostes” kui palju osalejaid oli igas kolmes praktikute rühmas ja kui palju kokku?
+
+Täielik vastus:
+
+> - Osalejaid igas kolmes praktikute rühmas: 5
+> - Osalejaid kokku: 15
+
+Avatud allikapaneel: **Erle Eenmaa, 2022. Psüühilise erivajadusega inimese osalus oma eestkostes. Sotsiaaltöö 1/2022 · lk 1–9 · Õigus** (1 allikas). Küsitud jaotus ja koguarv õiged; rühmi nimeliselt ei loetleta, kuid küsimus küsis nende arvu, mitte rühmade nimetusi.
+
+#### V05 — FAIL — 00:21 EEST
+
+Küsimus: Marina Vaino artiklis „Uus e-kursus pakub tuge sotsiaalvaldkonna koolitajatele” kui pika aja pärast hinnati järelmõju ning kelle hinnanguid võrreldi?
+
+Täielik vastus:
+
+> Ma ei saa kõiki küsitud osi valitud allika põhjal piisavalt kindlalt kinnitada.
+
+Allikanuppu ei kuvata (0 allikat). Kuus kuud ja osaleja/tööandja seos puuduvad.
+
+Ring 1 isolated koond: **2 PASS / 0 PARTIAL / 3 FAIL**. J05 ja J18 PASS; J08, J11 ja V05 FAIL. Võrreldes eelneva sama viie juhtumi isolated-tulemusega (0/5 PASS) paranesid J05 ja J18. See pole kogu 75-korpuse kordustulemus.
+
+### Ring 1 — sequential
+
+Alustatud 00:23 EEST värskes vestluses; järjekord J05 → J08 → J11 → J18 → V05. Muutumatul `f8eaae56` versioonil. Diagnostikaks vaadeldakse ainult uute enda in-app testpäringute vastusevoogu, mitte teiste kasutajate sõnumeid või andmebaasi.
+
+#### J05 — PASS — 00:23 EEST
+
+Küsimus sama mis ring 1 isolated J05 (täpne sõnastus eespool).
+
+Täielik vastus:
+
+> - Spetsialisti osales igakuisel kohtumisel: umbes 30 spetsialisti.
+> - Riiki osales igakuisel kohtumisel: 12 riigist.
+> - Inimest osales aprillist juulini toimunud neljal kohtumisel: 60 inimest.
+> - Riiki osales aprillist juulini toimunud neljal kohtumisel: 19 riigist.
+
+Avatud allikapaneel: **Ian D. Marder, 2020. Taastav õigus ja COVID-19. Sotsiaaltöö 4/2020 · lk 1–7 · Taastav õigus** (1 allikas).
+
+#### J08 — FAIL — 00:24 EEST
+
+Küsimus sama mis ring 1 isolated J08.
+
+Täielik vastus:
+
+> Ma ei saa küsitud arvu, ulatust ja aastat täpse vastuse jaoks piisavalt kindlalt kinnitada.
+
+Uuel vastusel allikanuppu ei kuvata (0 allikat); J05 allikanupp ei ole J08 allikas.
+
+Oma SSE diagnostika: dokumendiidentiteet `high`, valitud õige `sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1`; lõppkonteksti faktileping **4/4 complete**, kasutatakse genereerimisel ja valideerimisel. Keeldumise põhjus **`requested_metric_relation_mismatch`**, 4 arvuväidet, toetamata arvude loendur 0. See juhtum ei ole „RAG ei leidnud artiklit”: lahknemine on lõppvastuse arvude-suhete valideerimise kihis. Jälg ei avalda valideerimiseelset vastust, seetõttu ei tõenda see üksinda, kas mudeli seos või validaator oli vale.
+
+#### J11 — FAIL — 00:25 EEST
+
+Küsimus sama mis ring 1 isolated J11.
+
+Täielik vastus:
+
+> Ma ei saa kõiki küsitud osi valitud allika põhjal piisavalt kindlalt kinnitada.
+
+Uue vastuse allikaid 0. Oma SSE: dokumendiidentiteet õige/high, arvuleping 3/3 complete; kogu küsimuse tõendikaetus 3/4, puudub nullpõhine slot 3 ehk analüüsimeetod. Kvalitatiivne leping `qualitative_evidence_mapping_incomplete`, mapped 0/1. Validaator peatab põhjusel `requested_fact_evidence_incomplete`.
+
+Selle ringi J08/J11 oma jooksude masinloetavad jäljed: `docs/audits/evidence/rag-loop-2026-08-31-f8eaae56/r1-seq-J08.trace.json` ja `r1-seq-J11.trace.json`.
+
+#### J18 — PASS — 00:25 EEST
+
+Küsimus sama mis ring 1 isolated J18.
+
+Täielik vastus:
+
+> - Osalejaid igas kolmes praktikute rühmas: 5
+> - Osalejaid kokku: 15
+
+SSE valideerimine: `uniform_requested_metric_slots_validated`; õige dokument, faktileping 2/2 complete. Avatud allikapaneel: **Erle Eenmaa, 2022. Psüühilise erivajadusega inimese osalus oma eestkostes. Sotsiaaltöö 1/2022 · lk 1–9 · Õigus** (1 allikas).
+
+#### V05 — FAIL — 00:26 EEST
+
+Küsimus sama mis ring 1 isolated V05.
+
+Täielik vastus:
+
+> Ma ei saa kõiki küsitud osi valitud allika põhjal piisavalt kindlalt kinnitada.
+
+Uue vastuse allikaid 0. Oma SSE: õige dokument/high, kestuse ja osapoolte lepingud complete, osapooltel `minimum_answer_items=2`, aga vastuse slot 2 ei läbinud kontrolli: **`requested_fact_answer_incomplete`**. See erineb J11 tõendikaetuse veast. Jälg: `docs/audits/evidence/rag-loop-2026-08-31-f8eaae56/r1-seq-V05.trace.json`.
+
+Ring 1 sequential koond: **2 PASS / 0 PARTIAL / 3 FAIL**. Kõigi viie staatus kattub isolated-ringiga; selles mõõtmises järjekorra mõju ei ilmnenud. Mõlemas J05/J18 PASS, J08/J11/V05 FAIL. Uus tsükkel peab parandama tõendatud kihivead, mitte lihtsalt sama küsimust eduka juhuni kordama.
+
+### Ring 1 — Golden-paranduste eraldi kontroll
+
+Nimetaja on 6 valitud Golden-juhtumit (4 varasemat FAIL-i + lapse hindamise ja kübervägivalla allikakvaliteet); SHS § 23 eelküsimus ei suurenda seda nimetajat.
+
+| Juhtum | Hinnang | Täielik vastus ja avatud allikapaneel | Põhjendus |
+|---|---|---|---|
+| edge_followup_paragraph | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-f8eaae56/r1-golden-edge_followup_paragraph.md) | Säilitab SHS § 23, selgitab tugiisikuteenust; 1 õige allikas. |
+| edge_no_corpus_answer_v2 | FAIL | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-f8eaae56/r1-golden-edge_no_corpus_answer_v2.md) | Vastus hinda ei väida, kuid avatud allikaid 1; nõue oli 0. |
+| graph_kov_vormid_kontaktid | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-f8eaae56/r1-golden-graph_kov_vormid_kontaktid.md) | Avaldus/SPOKU või paberil ning Kuusalu Vallavalitsus; õige teenuseallikas. Ei mõtle isikukontakti välja. |
+| ajakiri_integreeritud_teenused | PARTIAL | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-f8eaae56/r1-golden-ajakiri_integreeritud_teenused.md) | Golden teemavastus PASS; 10 allikat, sh 4 tekstis nimetamata kõrvalallikat. Allikaseose lisakriteerium vajab diagnoosi, mitte automaatset PASS-i. |
+| pdf_lapse_heaolu_hindamine | PARTIAL | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-f8eaae56/r1-golden-pdf_lapse_heaolu_hindamine.md) | Meetodijuhis paranes: eelhindamine, tervikhindamine, vahehindamine ja Turvalisuse märgid. 4 allika seas on täiskasvanute abivajaduse raport; sihtrühma/allikaseose viga. |
+| pdf_kubervagivald_ohver | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-f8eaae56/r1-golden-pdf_kubervagivald_ohver.md) | Praktiline turvaplaan, tõendite säilitamine ja ohutu suhtlus. Avatud 1 otsene kübervägivalla juhend (varem 5 allikat). |
+
+Golden valitud kuue remondikontroll: **3 PASS / 2 PARTIAL / 1 FAIL**. Algsete kitsaste Golden-kriteeriumide järgi 5/6 PASS, kuid lapse ja integreeritud teenuste allikakvaliteeti ei loeta praegu parandatuks.
+
+### Ring 2 — põhjuseparandus enne uut serverikordust
+
+Esimese ringi oma UI päringute SSE jälg on vaatlustõend, mitte serveri teiste kasutajate sisu. Küsimusi ei saadetud otse API kaudu. Esimene lahknev kiht määrab paranduse:
+
+| Juhtum | Kinnitatud põhjus | Parandus ja negatiivne piir |
+|---|---|---|
+| J08 | Õige dokument ja 4/4 faktileping, kuid lõppvastuse relation-mismatch. Avaliku täisteksti lokaalkontroll lükkas tagasi õige „palju abi” ning vana määrangukontroll lubas vale riskirühma. | Ainult allikas kinnitatud konkreetse sloti abi-variant; jagatud nähtuse kategooriamäärang peab säilima. 9 õiget sõnastust läbib, 8 vale/puuduv määrang või arvude vahetus blokeeritud. Valideerimiseelset mudelivastust SSE ei sisalda, seda ei rekonstrueerita oletusena. |
+| J11 | Recovery eel/järel 4/4 kaetus, lõpp-renderduses 3/4; meetod kadus. Valitud exact-fact režiimi kõrval aktiveerus pealkirja „kogemused” tõttu sünteesieelarve. | Valitud specific_research_fact rada välistab üldise sünteesi toorsõna-heuristika. Lõplik renderdatud tõendikontroll jääb rangeks. |
+| V05 | Kvalitatiivne ankur tuli kursuseteemade fragmendist, mitte osalistest: fragment-hash 76f3da2e…e4a35; ankrud markamine/abivoimalused/laste/peredega. | Koordineeritud osapoolte paar peab tulema osalemise/hindamise lausest ja osalist tähistavatest sõnadest. Täistekst annab nüüd õige fragmendi 72c0febc… ning osaleja/tooandja; puuduv tööandja ja teemaloend blokeeritud. |
+| Saksamaa hooldekodu hind | Puhta tõendipuuduse alusega algav sõnastus loeti sisuväiteks ja kuvas kõrvalallika. | Alusega algav piirang ja puuduva tõendi vajadus ei ole sisuväide; tõeline sisuline vastandus säilitab oma allika. |
+| Integreeritud teenused | 10 kuvatud allikast 4 nimetamata kõrvalartiklit toetasid üksnes teiste allikatega juba kaetud üldväiteid. | Nimetatud allikatega sünteesis säilivad kõik nimetatud allikad ja uut väidet lisavad allikad; redundantne nimetamata taust peidetakse. |
+| Lapse hindamine | Lapse küsimusele valiti üldise hindamissõnavara tõttu täiskasvanute abivajaduse raport. | Sõnaselge lapse/täiskasvanu küsimuse ja vastupidise ainsa sihtrühma pealkirja konflikt välistab kandidaadi. |
+
+Kitsad arenduskontrollid: 11 faktilepingu/renderduse/rolli/sihtrühma testi PASS; 9 allikaatributsiooni testi PASS; avaliku J08 täisteksti maatriks 17/17 oodatud; V05 kvalitatiivse sloti täistekst, õige vastus ning kaks negatiivi kontrollitud. ESLint, i18n ja `git diff --check` läbivad. Teise puu tootmisbuild PASS (`TZ=UTC`, exit 0, kompileerimine 34,6 s). Need ei ole runtime PASS-id. Deploy ja uus in-app kordus järgnevad.

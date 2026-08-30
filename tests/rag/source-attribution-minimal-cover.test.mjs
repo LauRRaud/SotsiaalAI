@@ -141,3 +141,37 @@ test("registry reference cannot subsume the only substantive answer source", () 
 
   assert.equal(result.displayed_source_ids.includes("substantive-guide"), true);
 });
+
+test("subject-first evidence limitation and a request for missing evidence show no sources", () => {
+  const reply = "Teenuse maksumust ei saa siinse teabe põhjal usaldusväärselt öelda. Vastamiseks on vaja ajakohast hinnakirja, sest väljavõtted käsitlevad teenuse reforme, kuid ei sisalda hinnasummasid.";
+  const result = buildSourceAttribution(reply, [
+    guideline("background", "Teenuse reformid", "Väljavõtted käsitlevad teenuse reforme ja teenuse maksumust.")
+  ]);
+  assert.deepEqual(result.displayed_source_ids, []);
+});
+
+test("partial and same-sentence limitations keep independently supported substance", () => {
+  for (const reply of [
+    "Hinda ei saa kinnitada. Koduteenus toetab inimese iseseisvat toimetulekut kodus.",
+    "Hinda ei saa kinnitada, kuid koduteenus toetab inimese iseseisvat toimetulekut kodus."
+  ]) {
+    const result = buildSourceAttribution(reply, [
+      guideline("service", "Koduteenus", "Koduteenus toetab inimese iseseisvat toimetulekut kodus.")
+    ]);
+    assert.deepEqual(result.displayed_source_ids, ["service"]);
+  }
+});
+
+test("narrated synthesis preserves cited sources but removes redundant unnamed background", () => {
+  const reply = "Turvalise suhtluse käsiraamat soovitab luua turvalise suhtluskanali. Digitaalsete tõendite käsiraamat soovitab tõendid säilitada. Ohvrit tuleb kuulata ja toetada.";
+  const result = buildSourceAttribution(reply, [
+    guideline("communication", "Turvalise suhtluse käsiraamat", reply),
+    guideline("evidence", "Digitaalsete tõendite käsiraamat", "Digitaalsed tõendid tuleb säilitada. Ohvrit tuleb kuulata ja toetada."),
+    guideline("background", "Üldine vestlemise juhis", "Ohvrit tuleb kuulata ja toetada.")
+  ], {
+    query: "Mida ütlevad juhendid ohvri toetamisest?",
+    queryPlan: { mode: "thematic_synthesis", needs_multiple_sources: true }
+  });
+  assert.deepEqual(new Set(result.displayed_source_ids), new Set(["communication", "evidence"]));
+  assert.equal(result.filter_reasons.background, "claim_support_subsumed");
+});
