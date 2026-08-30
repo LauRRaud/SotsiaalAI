@@ -368,3 +368,66 @@ lõikude algse järjekorra.
 Kohalik sihitud ESLint ja `git diff --check` läbisid. Automaatseid teste, build'i, commit'i,
 integratsiooni, push'i ega deploy'd ei tehtud. Seetõttu on paranduse runtime-tulemus kuni
 deploy ja samade 11 juhtumi isolated/sequential korduseni `NOT_PROVEN`.
+
+## Teise põhjuseparanduse kordus — runtime `1086090a`
+
+- deploy: `2026-08-30`, local/origin/server SHA `1086090a7b48a6c30d4e9361fb3406af97d6482a`
+- frontend, RAG ja research-worker: `active`
+- avalik `/vestlus`: HTTP 200
+- RAG health: `ok=true`, vectors `49727`, documents `6089`
+- lexical FTS ja lemma-FTS: `ready=true`
+- siht: eelmise `0e63f11b` korduse 9 FAIL + 2 PARTIAL juhtumit
+
+### Faas 1 — isolated
+
+Iga küsimus saadetakse eraldi värskes vestluses. Rida kirjutatakse kohe pärast vastust;
+trace'i ja allika ID jääb `NOT_PROVEN`, kui in-app vaade seda ei eksponeeri.
+
+| case_id | status | answer_summary | displayed_sources | trace | runtime | timestamp |
+|---|---|---|---|---|---|---|
+| J03 | FAIL | Valis õige Külli Mäe 2018 artikli, kuid ütles, et katkendis pole konkreetseid kriisitunnuseid ega telefoninumbreid; kriisitunnused, 112 ja 1220 jäid esitamata. | allikapaneel: Külli Mäe 2018 õige artikkel; lisaks Anna Toots 2020 „Kriisikaart...” ja Külli Mäe 2017 „Kliendist kodanikuks...”; ID-d UI-s `NOT_PROVEN` | `NOT_PROVEN` — trace'i UI-s ei eksponeeritud | production Codex IAB `/vestlus`, `1086090a` | 2026-08-30T13:09:00+03:00 |
+| J05 | FAIL | Fail-closed vastus: „Ma ei saa küsitud arvu, ulatust ja aastat täpse vastuse jaoks piisavalt kindlalt kinnitada.”; oodatud ligi 30 spetsialisti / 12 riiki ning 60 inimest / 19 riiki puudusid. | allikanuppu ei olnud | `NOT_PROVEN` — trace'i UI-s ei eksponeeritud | production Codex IAB `/vestlus`, `1086090a` | 2026-08-30T13:14:00+03:00 |
+| J08 | FAIL | Nimetas küsimuse artikli, kuid jättis kõik protsendid kinnitamata; 61%, 26%, 11% ja 18% puudusid. | allikapaneel näitas vale allikana Meeli Tuubel 2023 „Sotsiaalvaldkonna tööjõud, pädevus ja väärtustamine” | `NOT_PROVEN` — trace'i UI-s ei eksponeeritud | production Codex IAB `/vestlus`, `1086090a` | 2026-08-30T13:14:00+03:00 |
+| J11 | PARTIAL | 7 intervjuud, 6 individuaalintervjuud ja üks kolme osalejaga grupiintervjuu olid õiged; kolmeetapilise temaatilise analüüsi etapid jäid esitamata. | allikapaneel: õige Elin Kütt 2016 artikkel | `NOT_PROVEN` — trace'i UI-s ei eksponeeritud | production Codex IAB `/vestlus`, `1086090a` | 2026-08-30T13:15:00+03:00 |
+| J13 | PARTIAL | Vanuserühm 13–18 ja mitme probleemi samaaegne kattuvus olid õiged; vastus väitis, et avaldumise vanust pole katkendites täpsustatud, mistõttu oodatud 3–5 aasta piir puudus. | allikapaneel: õige Laur Raudsoo 2018 artikkel | `NOT_PROVEN` — trace'i UI-s ei eksponeeritud | production Codex IAB `/vestlus`, `1086090a` | 2026-08-30T13:16:00+03:00 |
+| J14 | FAIL | Fail-closed arvulise kindluse vastus; üle 5800 lapse, umbes 90%, 14 kohtujuhtumit ja 3 kohtuvälist kokkulepet jäid kõik esitamata. | allikanuppu ei olnud | `NOT_PROVEN` — trace'i UI-s ei eksponeeritud | production Codex IAB `/vestlus`, `1086090a` | 2026-08-30T13:18:00+03:00 |
+| J18 | FAIL | Õige artikkel nimetati, kuid kõigi kolme praktikurühma arvud ning koguarv jäid „kinnitamata”; oodatud 5 kohtunikku + 5 erihoolekande töötajat + 5 KOV sotsiaaltöötajat = 15 puudusid. | allikapaneel: õige Erle Eenmaa 2022 artikkel | `NOT_PROVEN` — trace'i UI-s ei eksponeeritud | production Codex IAB `/vestlus`, `1086090a` | 2026-08-30T13:18:00+03:00 |
+| V04 | FAIL | Fail-closed arvulise kindluse vastus; kõik kolm osakaalu-inimeste paari 10%=640, 6%=227 ja 2%=100 jäid esitamata. | allikanuppu ei olnud | `NOT_PROVEN` — trace'i UI-s ei eksponeeritud | production Codex IAB `/vestlus`, `1086090a` | 2026-08-30T13:20:00+03:00 |
+| V05 | FAIL | Nii järelmõju ajavahemik kui ka võrreldud hinnangute andjad jäid „kinnitamata”; oodatud 6 kuud ning osaleja ja tööandja hinnangud puudusid. | allikanuppu ei olnud | `NOT_PROVEN` — trace'i UI-s ei eksponeeritud | production Codex IAB `/vestlus`, `1086090a` | 2026-08-30T13:20:00+03:00 |
+| V06 | FAIL | Fail-closed arvulise kindluse vastus; analüüsitud 169 laste eraldamise otsust ja nende 2018. aasta päritolu jäid mõlemad esitamata. | allikanuppu ei olnud | `NOT_PROVEN` — trace'i UI-s ei eksponeeritud | production Codex IAB `/vestlus`, `1086090a` | 2026-08-30T13:21:00+03:00 |
+| M02 | PARTIAL | Üks kontaktisik/juhtumikorraldaja, proaktiivne ennetav abi ning teenustele pääsu lihtsustamine koos korduvhindamiste ja sama info küsimise vältimisega olid õiged; toetatud otsustamist eestkoste/asendatud otsustamise alternatiivina ei kinnitatud. | allikapaneel: Kristi Rekand 2026 EPIKoja uuringu kokkuvõte | `NOT_PROVEN` — trace'i UI-s ei eksponeeritud | production Codex IAB `/vestlus`, `1086090a` | 2026-08-30T13:21:00+03:00 |
+
+Isolated koond: **0 PASS / 3 PARTIAL / 8 FAIL**. Õige dokument oli nähtav neljal
+ebaõnnestunud juhtumil (J03, J11, J13, J18), J08 valis vale dokumendi ning kuuel juhul ei
+tekkinud vastuse juurde allikanuppu. Seega ei sulgenud runtime `1086090a` ühtegi sihtrühma
+juhtumit täielikult.
+
+### Faas 2 — sequential
+
+Kõik 11 küsimust saadetakse samas järjekorras ühte värskesse vestlusesse. Iga tulemus
+võrreldakse isolated-tulemusega ja kirjutatakse kohe pärast vastust.
+
+| case_id | status | isolated_status | history_effect | answer_summary | displayed_sources | trace | runtime | timestamp |
+|---|---|---|---|---|---|---|---|---|
+| J03 | FAIL | FAIL | esimene sequential-küsimus, varasem ajalugu puudus; tulemus sisuliselt sama | Õige Külli Mäe 2018 artikkel oli allikates, kuid kriisitunnuste loetelu, 112 ja 1220 jäid jälle esitamata. | sama õige artikkel ning Anna Toots 2020 ja Külli Mäe 2017 lisallikad | `NOT_PROVEN` — trace'i UI-s ei eksponeeritud | production Codex IAB `/vestlus`, `1086090a`, üks vestlus | 2026-08-30T13:25:00+03:00 |
+| J05 | FAIL | FAIL | J03 kriisikontekst ei mõjutanud tulemust; sama fail-closed vastus | 30/12 ja 60/19 seosed puudusid täielikult. | allikanuppu ei olnud | `NOT_PROVEN` — trace'i UI-s ei eksponeeritud | production Codex IAB `/vestlus`, `1086090a`, üks vestlus | 2026-08-30T13:26:00+03:00 |
+| J08 | FAIL | FAIL | eelnenud kaks küsimust tulemust ei muutnud; isolated-iga sama vale dokumendivalik | Kõik neli oodatud protsenti 61%, 26%, 11% ja 18% jäid kinnitamata. | vale Meeli Tuubel 2023 artikkel, nagu isolated-faasis | `NOT_PROVEN` — trace'i UI-s ei eksponeeritud | production Codex IAB `/vestlus`, `1086090a`, üks vestlus | 2026-08-30T13:27:00+03:00 |
+| J11 | PARTIAL | PARTIAL | eelnenud kontekst ei mõjutanud; isolated-iga sama osaline faktikate | 7, 6 individuaalset ja üks kolme osalejaga grupiintervjuu olid õiged; kolmeetapiline temaatiline analüüs jäi esitamata. | õige Elin Kütt 2016 artikkel | `NOT_PROVEN` — trace'i UI-s ei eksponeeritud | production Codex IAB `/vestlus`, `1086090a`, üks vestlus | 2026-08-30T13:28:00+03:00 |
+| J13 | PARTIAL | PARTIAL | eelnenud kontekst ei muutnud staatust; sõnastus oli üldisem, kuid sama fakt puudus | 13–18 ja mitme probleemi kattuvus olid õiged; „võimalikult varakult” ei kinnita oodatud 3–5 aasta avaldumist. | õige Laur Raudsoo 2018 artikkel | `NOT_PROVEN` — trace'i UI-s ei eksponeeritud | production Codex IAB `/vestlus`, `1086090a`, üks vestlus | 2026-08-30T13:29:00+03:00 |
+| J14 | FAIL | FAIL | eelnenud artikliküsimused ei aidanud; isolated-iga sama fail-closed arvuvastus | Üle 5800, umbes 90%, 14 ja 3 puudusid kõik. | allikanuppu ei olnud | `NOT_PROVEN` — trace'i UI-s ei eksponeeritud | production Codex IAB `/vestlus`, `1086090a`, üks vestlus | 2026-08-30T13:31:00+03:00 |
+| J18 | FAIL | FAIL | staatus sama, kuid ajalooga halvenes allikavalik: isolated leidis Erle Eenmaa, sequential näitas vale Merle Variku artiklit | Kolme rühma 5+5+5 ja koguarv 15 jäid kinnitamata. | vale Merle Varik 2022 „Dementsusega inimeste omastehooldajate võimestamine...” | `NOT_PROVEN` — trace'i UI-s ei eksponeeritud | production Codex IAB `/vestlus`, `1086090a`, üks vestlus | 2026-08-30T13:31:00+03:00 |
+| V04 | FAIL | FAIL | eelnenud kontekst ei muutnud fail-closed tulemust | 10%=640, 6%=227 ja 2%=100 puudusid kõik. | allikanuppu ei olnud | `NOT_PROVEN` — trace'i UI-s ei eksponeeritud | production Codex IAB `/vestlus`, `1086090a`, üks vestlus | 2026-08-30T13:32:00+03:00 |
+| V05 | FAIL | FAIL | eelnenud kontekst ei taastanud sama dokumendi puuduvaid ajavahemiku ja osapoolte fakte | 6 kuud ning osaleja ja tööandja hinnangute võrdlus jäid kinnitamata. | allikanuppu ei olnud | `NOT_PROVEN` — trace'i UI-s ei eksponeeritud | production Codex IAB `/vestlus`, `1086090a`, üks vestlus | 2026-08-30T13:33:00+03:00 |
+| V06 | FAIL | FAIL | eelnenud kontekst ei muutnud tulemust; sama fail-closed arvuvastus | 169 otsust ja 2018. aasta jäid mõlemad puudu. | allikanuppu ei olnud | `NOT_PROVEN` — trace'i UI-s ei eksponeeritud | production Codex IAB `/vestlus`, `1086090a`, üks vestlus | 2026-08-30T13:33:00+03:00 |
+| M02 | PARTIAL | PARTIAL | eelnenud kontekst ei muutnud tulemust; sama 3/4 soovituse kate | Kontaktisik, ennetav abi ning teenuste/korduvhindamiste soovitus olid õiged; toetatud otsustamine eestkoste alternatiivina jäi kinnitamata. | õige Kristi Rekand 2026 EPIKoja uuringu kokkuvõte | `NOT_PROVEN` — trace'i UI-s ei eksponeeritud | production Codex IAB `/vestlus`, `1086090a`, üks vestlus | 2026-08-30T13:34:00+03:00 |
+
+Sequential koond: **0 PASS / 3 PARTIAL / 8 FAIL** — staatuste jaotus on isolated-faasi
+jaotusega identne. Kümnel juhul üheteistkümnest ei muutnud vestlusajalugu staatust ega
+põhiviga. J18 jäi samuti FAIL-iks, kuid allikavalik halvenes: isolated näitas õiget Erle Eenmaa
+artiklit, sequential vale Merle Variku artiklit. See on ainus mõõdetud history-effect.
+
+### Paus pärast teist punkti
+
+Kokkuleppe järgi on pärast isolated- ja sequential-faasi paus. Täielikku 75 küsimuse väravat
+ega 37 Golden-lisaväravat ei käivitatud. Runtime `1086090a` tulemus nende 11 regressiooni puhul
+on **0 PASS / 3 PARTIAL / 8 FAIL** mõlemas režiimis; paranduse eesmärk ei ole saavutatud.
