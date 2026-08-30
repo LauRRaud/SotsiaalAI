@@ -4,6 +4,7 @@ import { describe, test } from "node:test";
 import { formatSourceLabel, normalizeSourceLabelPages } from "../../components/chat/utils/sources.js";
 import { shouldValidateExactFactAnswer, validateExactFactAnswer } from "../../lib/chat/factContract.js";
 import { buildRagTraceFromAttribution } from "../../lib/chat/mainResponseHandler.js";
+import { resolveModelClarification } from "../../lib/chat/conversationalRecovery.js";
 import { normalizePageReferences } from "../../lib/chat/pageRanges.js";
 import {
   buildDocumentScopedMissingFactQueries,
@@ -1923,6 +1924,57 @@ test("validaatori toetatud kõrvalallikas ei murra lukustatud dokumendi allikaku
 });
 
 describe("runtime-järelparanduse suhtepiirid", () => {
+  test("liitsõna pikkus ei seo selle arvu eelmise koguarvu lühisildiga", () => {
+    const message = "Artiklis „Toetuse uuring” mitu intervjuud tehti, kuidas jagunesid individuaal- ja rühmavestlused ning millist kolmeetapilist analüüsi kasutati?";
+    const questionPlan = buildQuestionPlan({ message });
+    const body = "Tehti 10 intervjuud. Neist 8 olid individuaalintervjuud ja 2 rühmaintervjuud. Kasutati kolmeetapilist temaatilist analüüsi.";
+    const identity = { matched: true, confidence: "high", selectedDocumentId: "interview-study" };
+    const args = { questionPlan, specificResearchFactQuestion: true, documentIdentityEvidence: identity,
+      renderedGroups: [{ sourceId: "interview-source", docId: "interview-study", bodies: [body] }], renderedBlocks: [{ evidenceText: body }] };
+    const contract = buildRequestedFactSlotContract(args).trace;
+    assert.equal(contract.complete, true);
+    const retrievalMeta = { requestedFactSlotContract: contract,
+      requestedQualitativeSlotContract: buildRequestedQualitativeSlotContract(args).trace, documentIdentityEvidence: identity };
+    const sources = [{ source_id: "interview-source", document_id: "interview-study", evidenceText: `Toetuse uuring\n${body}` }];
+    const reply = "Tehti 10 intervjuud: 8 individuaalintervjuud ja 2 rühmaintervjuud. Kasutati kolmeetapilist temaatilist analüüsi.";
+    assert.equal(validateExactFactAnswer({ message, reply, sources, retrievalMeta }).passed, true);
+    assert.equal(validateExactFactAnswer({ message, reply: reply.replace(/8 |2 /gu, value => value === "8 " ? "2 " : "8 "), sources, retrievalMeta }).passed, false);
+  });
+
+  test("tsiteeritud sõna ei muuda sisuvastust täpsustusküsimuseks", () => {
+    const userMessage = "Mida kirjutab ajakiri Sotsiaaltöö integreeritud teenustest?";
+    for (const reply of [
+      "Ajakiri „Sotsiaaltöö” käsitleb integreeritud teenuseid inimese vajadustest lähtuva koostööna. Tähtis on tervishoiu ja sotsiaalhoolekande sidumine.",
+      "Ajakiri „Sotsiaaltöö” rõhutab tervishoiu ja sotsiaalhoolekande koostööd. Millise piirkonna näidet soovid?"
+    ]) assert.equal(resolveModelClarification(reply, { userMessage }), null);
+    const echoedQuestion = "Mida kirjutab ajakiri „Sotsiaaltöö” integreeritud teenustest?";
+    assert.equal(resolveModelClarification(echoedQuestion, { userMessage: echoedQuestion }), null);
+    assert.equal(resolveModelClarification("Kas mõtled toimetulekutoetust?", { userMessage: "Kuidas saada toimetulkutoetust?" }).recovery.reply_source, "single_model_call");
+    assert.equal(resolveModelClarification("Mida tähendab sinu küsimuses „koxrabi”?", { userMessage: "Kuidas saada sotsiaalvaldkonnas koxrabi?" }).recovery.reply_source, "deterministic_sanitized_clarification");
+  });
+
+  test("arvuseose diagnostika avaldab ainult piiritletud indekseid ja loendureid", () => {
+    const trace = buildRagTraceFromAttribution([], {}, { factValidation: {
+      requested_metric_missing_slot_index: 2,
+      requested_metric_relation_diagnostics: [{ claim_index: 3, required_term_count: 4, matched_term_count: 2,
+        minimum_terms_matched: false, required_modifiers_matched: true, unique_relation_bound: false,
+        provider_reply: "PRIVATE_PROVIDER_REPLY", relation_terms: ["PRIVATE_TERM"] }],
+      provider_reply: "PRIVATE_PROVIDER_REPLY"
+    } });
+    assert.equal(trace.fact_validation.requested_metric_missing_slot_index, 2);
+    assert.equal(trace.fact_validation.requested_metric_relation_diagnostics[0].matched_term_count, 2);
+    assert.equal(JSON.stringify(trace.fact_validation).includes("PRIVATE_"), false);
+    const invalid = buildRagTraceFromAttribution([], {}, { factValidation: {
+      requested_metric_missing_slot_index: 99,
+      requested_metric_relation_diagnostics: Array.from({ length: 10 }, () => ({ claim_index: -1, required_term_count: 999, matched_term_count: "PRIVATE_TERM" }))
+    } }).fact_validation;
+    assert.equal(invalid.requested_metric_missing_slot_index, undefined);
+    assert.equal(invalid.requested_metric_relation_diagnostics.length, 6);
+    assert.equal(invalid.requested_metric_relation_diagnostics[0].claim_index, null);
+    assert.equal(invalid.requested_metric_relation_diagnostics[0].required_term_count, null);
+    assert.equal(JSON.stringify(invalid).includes("PRIVATE_"), false);
+  });
+
   test("allika palju abi alias ei kaota kohustuslikke alamrühma modifikaatoreid", () => {
     const message = "Artiklis „Hooldajate uuring” kui suur osa vastanutest vajas lisabi, kui suur osa palju lisabi ning kui suur osa oli suure ja keskmise hoolduskoormuse riskiga?";
     const questionPlan = buildQuestionPlan({ message });

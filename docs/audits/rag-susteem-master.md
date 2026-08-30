@@ -669,7 +669,7 @@ Sama nähtuse kategooriaid eristavad määrangud (`palju`, `suur`, `väike`, `ke
 
 Rühmade arvu jagatis tuletatakse ainult täpsetest operandidest: `vähemalt`, `kuni`, `üle`, `alla` ja `umbes` ei anna täpset kardinaalsust. Ka eraldi rühmakontrollis peab kvalifikaator säilima allika, slotilepingu ja iga vastusearvu vahel. Nimeline meetod võib olla ka predikaat või tegevuse objekt (`uurimismeetodiks oli vaatlus`, `andmekogumiseks kasutati osalusvaatlust`); see ei pea alati eelnema sõnale `analüüs`.
 
-Vastuses eraldatakse ka `ja`/`ning` abil algav uus silt–arv klausel, kui sidesõna järel ja enne arvu on uue küsitud mõõdiku seos. See takistab eelmise arvu sidumist järgmise kategooriasildiga. Pelk sidesõna ühikute vahel ei lõika seost automaatselt läbi. Sama osalejarolli käändelised kordused deduplikeeritakse nii allika rühmade arvu tuletamisel kui ka vastuse täielikkuse kontrollimisel.
+Vastuses eraldatakse ka `ja`/`ning` abil algav uus silt–arv klausel, kui sidesõna järel ja enne arvu on uue küsitud mõõdiku seos. See takistab eelmise arvu sidumist järgmise kategooriasildiga. Pelk sidesõna ühikute vahel ei lõika seost automaatselt läbi. Konkureerivate siltide kaugus arvust mõõdetakse tokeni ja arvuspani servadest, mitte sõna keskpunktist: pikk liitsõna nagu `individuaalintervjuu` ei jää oma kõrval oleva arvu suhtes eelmise koguarvu lühisildist halvemasse seisu. Sama osalejarolli käändelised kordused deduplikeeritakse nii allika rühmade arvu tuletamisel kui ka vastuse täielikkuse kontrollimisel.
 
 ### 11.2 Vale vastuse korral
 
@@ -682,6 +682,8 @@ Validaatori läbikukkumine ei ole kasutajale nähtava vale teksti järel tehtav 
 - taastab usaldatud recovery-state'i, et kasutaja saaks jätkata.
 
 Tavapärane validator ei tee teist vabalt genereerivat paranduskutset. See piirab nii kulu kui ka võimalust, et „parandus” lisab uue tõendamata väite.
+
+Mudeli vastust saab täpsustusküsimusena normaliseerida ainult siis, kui see on üks lühike küsimusekujuline lause: keelekohane küsimuse algus, üks lõpus olev küsimärk, puuduv eelnev sisulause ning olemasolev pikkuspiir. Sama kujundivärav ja kasutaja küsimuse pelga kordamise keeld eelnevad ka jutumärkides kasutajatermi turvalisele täpsustusele. Tsiteeritud ühe sõna või ajakirjanime esinemine sisuvastuses ei muuda vastust täpsustuseks.
 
 ### 11.3 Domeenipiir pärast generatsiooni
 
@@ -792,6 +794,8 @@ Kui durable püsistus ebaõnnestub, ei saadeta kliendile eksitavat `done` sündm
 - SourcePackage ja section-attribution kokkuvõtet.
 
 Trace'i ei lisata uusi tooreid kasutaja relation-term'e, tegevusfraase ega PII-laadseid debug-loendeid. Logides ja trace'is kasutatakse piiratud pikkusi, enum'e, ID-sid, räse ja kokkuvõtteid.
+
+Arvuseose tõrge kannab piiratud `requested_metric_missing_slot_index` välja ja kuni kuue arvukandidaadi diagnostilisi indekseid, sobivate/nõutud relation-term'ide loendureid ning kolme värava tõeväärtusi: minimaalne sõnakate, nõutud kategooriamäärang ja üheselt seotud silt. Lõpliku sloti trace näitab ka allikatõendist lisatud sõnavariantide arvu. Need väljad ei avalda valideerimiseelset mudelivastust, väärtuste toorloendit ega uusi sõnaankruid; puuduva või piirist väljuva sisendi korral kasutatakse puuduvat/null-välja.
 
 ### 13.4 SSE taastamine
 

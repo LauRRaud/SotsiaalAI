@@ -848,4 +848,36 @@ Esimese ringi oma UI päringute SSE jälg on vaatlustõend, mitte serveri teiste
 | Integreeritud teenused | 10 kuvatud allikast 4 nimetamata kõrvalartiklit toetasid üksnes teiste allikatega juba kaetud üldväiteid. | Nimetatud allikatega sünteesis säilivad kõik nimetatud allikad ja uut väidet lisavad allikad; redundantne nimetamata taust peidetakse. |
 | Lapse hindamine | Lapse küsimusele valiti üldise hindamissõnavara tõttu täiskasvanute abivajaduse raport. | Sõnaselge lapse/täiskasvanu küsimuse ja vastupidise ainsa sihtrühma pealkirja konflikt välistab kandidaadi. |
 
-Kitsad arenduskontrollid: 11 faktilepingu/renderduse/rolli/sihtrühma testi PASS; 9 allikaatributsiooni testi PASS; avaliku J08 täisteksti maatriks 17/17 oodatud; V05 kvalitatiivse sloti täistekst, õige vastus ning kaks negatiivi kontrollitud. ESLint, i18n ja `git diff --check` läbivad. Teise puu tootmisbuild PASS (`TZ=UTC`, exit 0, kompileerimine 34,6 s). Need ei ole runtime PASS-id. Deploy ja uus in-app kordus järgnevad.
+Kitsad arenduskontrollid: 11 faktilepingu/renderduse/rolli/sihtrühma testi PASS; 9 allikaatributsiooni testi PASS; avaliku J08 täisteksti maatriks 17/17 oodatud; V05 kvalitatiivse sloti täistekst, õige vastus ning kaks negatiivi kontrollitud. ESLint, i18n ja `git diff --check` läbivad. Teise puu tootmisbuild PASS (`TZ=UTC`, exit 0, kompileerimine 34,6 s). Need ei ole runtime PASS-id. Deploy `32765b01` (kood `4c658a48`) lõppes edukalt 00:49 EEST: serveri build PASS, pending migrations 0, teenused 3/3 aktiivsed. Deploy säilitas eelmise artefakti ja eemaldas ühe vana current-artefakti ning ühe vana build-logi; kasutajaandmeid ei kustutatud.
+
+### Ring 2 — in-app isolated ja sequential
+
+Release `32765b01`; iga küsimuse täielik vastus, avatud allikapaneel ja oma SSE jälg salvestatakse eraldi. Hinnang ei võrdu automaatselt validaatori tulemusega.
+
+| Juhtum | Hinnang | Vastus/allikad | Märkus |
+|---|---|---|---|
+| r2-iso-J05 | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-32765b01/r2-iso-J05.md) | Umbes 30 / 12; 60 / 19, üks õige allikas. |
+| r2-iso-J08 | FAIL | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-32765b01/r2-iso-J08.md) | Endiselt requested_metric_relation_mismatch; allikaid 0. |
+| r2-iso-J11 | FAIL | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-32765b01/r2-iso-J11.md) | Keeldumine muutus: requested_metric_relation_mismatch, allikaid 0. |
+| r2-iso-J18 | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-32765b01/r2-iso-J18.md) | Igas kolmes rühmas 5, kokku 15; üks õige allikas. |
+| r2-iso-V05 | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-32765b01/r2-iso-V05.md) | Kuus kuud ning osaleja ja tema tööandja; üks õige allikas. |
+| r2-seq-J05 | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-32765b01/r2-seq-J05.md) | Umbes 30 / 12; 60 / 19, üks õige allikas. |
+| r2-seq-J08 | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-32765b01/r2-seq-J08.md) | 61/26/11/18 õiges seoses; üks õige allikas. Erineb isolated FAIL-ist, põhjus vajab eristamist mudelihajuvusest. |
+| r2-seq-J11 | FAIL | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-32765b01/r2-seq-J11.md) | requested_metric_relation_mismatch; allikaid 0. |
+| r2-seq-J18 | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-32765b01/r2-seq-J18.md) | 5 igas kolmes rühmas, kokku15; õige allikas. SSE salvestus katkes, UI tõend säilis. |
+| r2-seq-V05 | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-32765b01/r2-seq-V05.md) | Kuus kuud, osaleja ja tööandja; õige allikas. |
+| r2-golden-edge_no_corpus_answer_v2 | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-32765b01/r2-golden-edge_no_corpus_answer_v2.md) | Hinda ei leiutata ja allikapaneel tühi. |
+| r2-golden-ajakiri_integreeritud_teenused | FAIL | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-32765b01/r2-golden-ajakiri_integreeritud_teenused.md) | Ekslik Sotsiaaltöö mõiste täpsustus; trace korrektne sünteesirada. quoted_user_term_only järelkiht vajab parandust. |
+| r2-golden-pdf_lapse_heaolu_hindamine | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-32765b01/r2-golden-pdf_lapse_heaolu_hindamine.md) | Terviklik hindamisprotsess ja täiendav Turvalisuse märkide mudel; 3 lapsekohast allikat, täiskasvanute raport puudub. |
+
+Ring 2 koond: isolated **3 PASS / 0 PARTIAL / 2 FAIL**, sequential **4 PASS / 0 PARTIAL / 1 FAIL**. J08 on isolated FAIL ja sequential PASS; ühe paari põhjal ei saa eristada ajaloo mõju mudeli sõnastushajuvusest. V05 paranes mõlemas. J11 lõppkontekst on nüüd 7/7 body, 12079 märki, kärpimata ja meetodisloti vastusekontroll läbib; alles jääb numbrilise seose kontrolli viga. Valideerimiseelne mudelivastus ei ole nähtav ning sanitizer eemaldab ka olemasoleva puuduva arvusloti indeksi — järgnev diagnostikaparandus peab selle lünga sulgema ilma vastuseteksti avaldamata.
+
+Ring 2 Golden-järelkontroll (eraldi nimetaja 3): **2 PASS / 0 PARTIAL / 1 FAIL**. Integreeritud teenuste allikakärpe tulemust ei saanud keeldumise tõttu sellel jooksul hinnata.
+
+### Ring 3 — kinnitatud põhjuste teine järelparandus
+
+- J11 avaliku meetodilõigu ja runtime'i morfoloogiaslottidega leping kordas viga: „Tehti 7 intervjuud: 6 individuaalintervjuud ja 1 rühmaintervjuu” ebaõnnestus slotis 2, kuigi eraldi lausetena läbis. Tokenikeskpunkti kaugus oli õige pika sildi jaoks 12, eelmise koguarvu lühisildil 7,5. Kaugus on nüüd arvuspani ja sõnaspani servade vahel. Runtime'i varjatud algvastust sellest ei järeldata.
+- Sünteesi järelkiht muutis tavapärase mitmelauselise vastuse „Ajakiri „Sotsiaaltöö” käsitleb…” mõiste täpsustuseks. Põhjus: quotedUserTerm fallback ei nõudnud üldse küsimusekuju. Sama struktuurivärav kehtib nüüd nii turvalise mudeliküsimuse kui ka jutumärgipõhise fallback'i ees; sisuvastus ja sisuvastus koos lõpu järelküsimusega säilivad.
+- J08 allesjääva vea uurimiseks on trace'is puuduva arvusloti piiratud indeks, sobivuskontrollide loendurid/tõeväärtused ja allikast lisatud variantide arv. Uusi tooreid relation-term'e, arve ega valideerimiseelset vastust ei lisata.
+
+Kolmanda puu kitsas kontroll: **14/14 PASS**, sh arvusildi liitsõna, vahetatud arvude negatiiv, päris täpsustuse säilimine, sisuvastuse säilimine ning diagnostika loenduripiir/privaatse canary puudumine. Avaliku J08 17/17 maatriks ja J11 täisteksti 7 positiivset/negatiivset kontrolli annavad oodatud tulemuse. Lõpule lisatud kasutajaküsimuse kordamise fallback-piiri sihttest läbib. ESLint, i18n, diff-check ja lõpliku muutumatu koodipuu `TZ=UTC` tootmisbuild PASS (34,5 s kompileerimine). Runtime pärast seda plokki on seni NOT_RUN.
