@@ -34,10 +34,11 @@ UI + eksport). Seoseta leide ühte plokki ei panda.
 1. **Kaart enne koodi, maksimaalselt üks lühike ring:** vastuvõtukriteerium → puudutatud failid
    → vajalik staatiline kontroll → kas käsitsi DB/brauseri kontroll on nõutud. Ära tee laia repo-
    ega dokumendiekskursiooni.
-2. **Automaatseid teste ei looda ega käivitata.** Repo ei kanna lähtekoodi-, lepingu-, käitumis-,
-   privaatsus-, DB-, runtime-, smoke- ega E2E-teste ega nende fikstuure/proove. Erand on
-   administraatori käsitsi käivitatav RAG-i enesetest: see on platvormi operatiivne
-   tervisekontroll ja peab admini RAG-lehel alles jääma.
+2. **Teste loo ja käivita ainult arenduseks vajalikus ulatuses.** Iga test peab tõendama praeguse
+   muudatuse konkreetset riski või regressiooni. Eelista olemasolevat või väikest sihttesti; laia
+   testisviiti, smoke-/E2E-rada ega korduvaid proove ei lisata ega käivitata, kui kitsam kontroll
+   annab vajaliku tõendi. Administraatori käsitsi käivitatav RAG-i enesetest on platvormi
+   operatiivne tervisekontroll ja peab admini RAG-lehel alles jääma.
 3. **Arenduse ajal kasuta väikseid staatilisi kontrolle.** Lint, teksti/tõlgete kontroll ja
    Prisma skeemi valideerimine käivad ainult siis, kui muudatus nende pinda puudutab.
 4. **Tõendid koonda ploki lõppu.** Kui vastuvõtukriteerium nõuab päris UI- või teenuserada,
@@ -77,6 +78,10 @@ tööpuu vahel.
 
 **Iga sidusa ploki järel:**
 
+Kui muudatus vajab käitumise või regressiooni tõendamiseks sihttesti, käivita ainult see test või
+kõige väiksem asjakohane testikomplekt. Dokumentatsiooni- ja muu mittekoodimuudatuse korral testi
+ei käivitata pelgalt formaalsuse pärast.
+
 ```
 npx eslint <muudetud koodifailid>
 git diff --check
@@ -98,22 +103,26 @@ build'i ei korrata commit'i mehaanilise jagamise, raporti Seis-lõigu, genereeri
 uuenduse pärast. Kohaliku vahecommit'i võib teha väikese värava järel; üleandmises märgi siis
 ausalt `build: pending chapter close`. Push'i ega deploy'd enne peatükilõpu väravat ei tehta.
 
-**Kõrgema riskiga muudatus ei taasta testikihti.** Skeemi/migratsiooni, autentimise,
-autoriseerimise, maksete, privaatsuse/säilituse või võistluse muutus vajab selget käsitsi
-kontrolliplaani. Kui päris keskkonda ei kontrollitud, märgi runtime ausalt `not_run` või
-`NOT_PROVEN`; lint, build ja skeemi valideerimine ei tõenda käitumist.
+**Kõrgema riskiga muudatus vajab proportsionaalset tõendamist.** Skeemi/migratsiooni,
+autentimise, autoriseerimise, maksete, privaatsuse/säilituse või võistluse muutuse korral lisa või
+käivita vajalik sihttest ning koosta selge käsitsi kontrolliplaan nendele omadustele, mida test ei
+tõenda. Kui päris keskkonda ei kontrollitud, märgi runtime ausalt `not_run` või `NOT_PROVEN`;
+test, lint, build ja skeemi valideerimine ei tõenda iseenesest päris keskkonna käitumist.
 
 `TZ=UTC` ei ole kosmeetika: arendusmasin on Europe/Tallinn, server UTC — kuupäevaviga on
 lokaalselt NÄHTAMATU ja läheb rohelisena toodangusse.
 
-## Tõendamine ilma testikihita
+## Tõendamine
 
 Staatilised kontrollid tõendavad ainult oma kitsast pinda: lint koodikuju, `i18n:check`
 sõnumikataloogide kooskõla, `prisma validate` skeemi kuju ja build kompileerumise.
-Need ei tõenda referentsiaalset käitumist, võistlusi, tehingu rollback'i, ligipääsupiire ega päris
+Sihitud test tõendab ainult testitud lepingut ja juhtumeid. Teste, probe'e, smoke- või E2E-kontrolle
+luuakse ja käivitatakse ainult siis, kui need on konkreetse arendusmuudatuse riski tõendamiseks
+vajalikud; vaikimisi eelista väikseimat piisavat kontrolli. Need ei tõenda automaatselt
+referentsiaalset käitumist, võistlusi, tehingu rollback'i, ligipääsupiire ega päris
 kasutajaliidest. Sellise nõude puhul kirjelda käsitsi kontrollitud rada ja tulemus; kontrollimata
-osa jääb `NOT_PROVEN`. Testi-, probe-, smoke- ega E2E-faile selleks reposse tagasi ei lisata.
-Admini RAG-i enesetest on kasutaja käivitatav tootefunktsioon, mitte arendussviit.
+osa jääb `NOT_PROVEN`. Admini RAG-i enesetest on kasutaja käivitatav tootefunktsioon, mitte
+arendussviit.
 
 ## Dev-server
 
