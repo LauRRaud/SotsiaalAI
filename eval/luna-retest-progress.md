@@ -211,3 +211,88 @@ Käesoleva faili tulemused kuuluvad ainult runtime'ile `bc6dbacea4eef24e79e238c4
 Pärast seda tehtud üldine EstNLTK leksikaalne recall, autoriregistri inventar ja K05
 mitme-KOV-i täpsustus vajavad uuel muutumatul release'il uut Luna kordust; vana tulemusi ei
 kanta uuele SHA-le PASS-ina üle.
+
+## Paranduste kordus — runtime `0e63f11b`
+
+- release: local = origin/main = server checkout `0e63f11ba18a6ad06056c07b6f93be309bca2ebf`
+- deploy: `2026-08-30`, frontend/RAG/research-worker `active`, `/vestlus` HTTP 200
+- RAG health: `ok=true`, vectors `49727`, documents `6089`
+- lemma FTS: `ready=true`, analyzer version `estnltk-vabamorf-1.7.5-v2`
+- siht: runtime `c21821c2` viimase isolated/sequential korduse FAIL/PARTIAL ühend
+- juhtumid: `J03`, `J05`, `J08`, `J09`, `J11`, `J12`, `J13`, `J14`, `J18`, `J22`, `V04`, `V05`, `V06`, `M01`, `M02`, `K01`
+- sõnastus ja ootus: parandatud 75-küsimuse manifest; vanu ekslikke ootusi ei kanta edasi
+- algus: `2026-08-30T11:45:56+03:00`
+
+### Faas 1 — isolated
+
+Iga küsimus saadetakse eraldi värskes vestluses. Vastus hinnatakse parandatud manifesti
+ootuse vastu ja rida kirjutatakse kohe pärast vastust.
+
+| case_id | status | answer_summary | displayed_sources | runtime | timestamp |
+|---|---|---|---|---|---|
+| J03 | FAIL | Valis vale Külli Mäe artikli („Kuidas anda vaimse tervise probleemide korral töökohal esmaabi?”) ning ütles, et kriisitunnuste loetelu ja telefoninumbrid puuduvad; nõutud tunnuseid, 112 ja 1220 ei esitanud. | allikanupp nähtav; ID-d UI-s `NOT_PROVEN` | production Codex IAB `/vestlus`, `0e63f11b` | 2026-08-30T11:47:00+03:00 |
+| J05 | FAIL | Üldine arvulise kindluse keeldumine; ligi 30 spetsialisti / 12 riiki ja nelja kohtumise 60 inimest / 19 riiki jäid esitamata. | allikanuppu ei olnud | production Codex IAB `/vestlus`, `0e63f11b` | 2026-08-30T11:48:00+03:00 |
+| J08 | FAIL | Leidis Vaike Vainu artikli, kuid väitis, et protsendid puuduvad; 61%, 26%, 11% ja 18% jäid kõik kinnitamata. | allikanupp nähtav; ID-d UI-s `NOT_PROVEN` | production Codex IAB `/vestlus`, `0e63f11b` | 2026-08-30T11:49:00+03:00 |
+| J09 | PASS | Esitas õiged seosed: koolikiusamine vähemalt korra 33% ja korduvalt 13%; küberkiusamine vähemalt korra 19% ja korduvalt 7%. | allikanupp nähtav; ID-d UI-s `NOT_PROVEN` | production Codex IAB `/vestlus`, `0e63f11b` | 2026-08-30T11:49:00+03:00 |
+| J11 | FAIL | Üldine arvulise kindluse keeldumine; 7 intervjuud, 6 individuaalset, üks kolme osalejaga rühmavestlus ja kolmeetapiline temaatiline analüüs puudusid. | allikanuppu ei olnud | production Codex IAB `/vestlus`, `0e63f11b` | 2026-08-30T11:49:00+03:00 |
+| J12 | PASS | Kinnitas õigesti, et 2017. aasta lepingu järgi pidi igas maakonnas toimuma viis rühmasupervisiooni kohtumist. | allikanupp nähtav; ID-d UI-s `NOT_PROVEN` | production Codex IAB `/vestlus`, `0e63f11b` | 2026-08-30T11:50:00+03:00 |
+| J13 | PARTIAL | Kirjeldas mitme probleemi kattuvust ja varase abi vajadust, kuid ei kinnitanud nõutud 13–18-aastaste rühma ega seda, et probleemid võivad avalduda juba 3–5-aastaselt. | allikanupp nähtav; ID-d UI-s `NOT_PROVEN` | production Codex IAB `/vestlus`, `0e63f11b` | 2026-08-30T11:50:00+03:00 |
+| J14 | FAIL | Üldine arvulise kindluse keeldumine; üle 5800 lapse, umbes 90%, 14 kohtujuhtumit ja 3 kohtuvälist kokkulepet jäid kõik esitamata. | allikanuppu ei olnud | production Codex IAB `/vestlus`, `0e63f11b` | 2026-08-30T11:52:00+03:00 |
+| J18 | FAIL | Leidis õige artikli nime, kuid ütles, et kõik rühmaarvud on kinnitamata; 5 kohtunikku + 5 erihoolekandetöötajat + 5 KOV-i sotsiaaltöötajat = 15 puudusid. | allikanupp nähtav; ID-d UI-s `NOT_PROVEN` | production Codex IAB `/vestlus`, `0e63f11b` | 2026-08-30T11:53:00+03:00 |
+| J22 | PASS | Kinnitas järelhindamise kuus kuud pärast koolitust ning võrdles osaleja ja tema tööandja vaadet. | allikanupp nähtav; ID-d UI-s `NOT_PROVEN` | production Codex IAB `/vestlus`, `0e63f11b` | 2026-08-30T11:54:00+03:00 |
+| V04 | FAIL | Üldine arvulise kindluse keeldumine; õiged paarid 10%=640, 6%=227 ja 2%=100 jäid esitamata. | allikanuppu ei olnud | production Codex IAB `/vestlus`, `0e63f11b` | 2026-08-30T11:54:00+03:00 |
+| V05 | FAIL | Nimetas nii järelmõju ajavahemiku kui võrreldud hinnangute pooled kinnitamata; kuus kuud ning osaleja/tööandja puudusid, kuigi sama dokumendi J22 oli PASS. | allikanuppu ei olnud | production Codex IAB `/vestlus`, `0e63f11b` | 2026-08-30T11:55:00+03:00 |
+| V06 | FAIL | Üldine arvulise kindluse keeldumine; 169 otsust ja otsuste 2018. aasta puudusid. | allikanuppu ei olnud | production Codex IAB `/vestlus`, `0e63f11b` | 2026-08-30T11:56:00+03:00 |
+| M01 | PASS | Kirjeldas poolstruktureeritud individuaal- ja grupiintervjuusid ning temaatilist sisuanalüüsi, ajavahemikku november 2025–märts 2026 ja 42 osalejat. | allikanupp nähtav; ID-d UI-s `NOT_PROVEN` | production Codex IAB `/vestlus`, `0e63f11b` | 2026-08-30T11:56:00+03:00 |
+| M02 | PARTIAL | Andis õigesti ühe kontaktisiku/juhtumikorraldaja, proaktiivse ennetava abi ning lihtsama teenustele pääsu ilma dubleerivate hindamisteta; toetatud otsustamise soovituse jättis kinnitamata. | allikanupp nähtav; ID-d UI-s `NOT_PROVEN` | production Codex IAB `/vestlus`, `0e63f11b` | 2026-08-30T11:58:00+03:00 |
+| K01 | PASS | Kirjeldas SPOKU- ja paberavalduse rada, abivajaduse hindamist ning § 6 eesmärki, toiminguid ja personaalset hoolduskava. | allikanupp nähtav; ID-d UI-s `NOT_PROVEN` | production Codex IAB `/vestlus`, `0e63f11b` | 2026-08-30T11:59:00+03:00 |
+
+**Faas 1 vahetulemus (runtime `0e63f11b`): 16/16 — 5 PASS, 2 PARTIAL, 9 FAIL.**
+
+- PASS: `J09`, `J12`, `J22`, `M01`, `K01`
+- PARTIAL: `J13`, `M02`
+- FAIL: `J03`, `J05`, `J08`, `J11`, `J14`, `J18`, `V04`, `V05`, `V06`
+
+### Faas 2 — sequential
+
+Sama 16 küsimuse parandatud sõnastused saadetakse samas järjekorras ühes värskes
+vestluses. `history_effect` võrdleb tulemust isolated-faasiga.
+
+| case_id | status | isolated_status | history_effect | answer_summary | displayed_sources | runtime | timestamp |
+|---|---|---|---|---|---|---|---|
+| J03 | FAIL | FAIL | esimene sequential-küsimus, ajalugu puudus | Valis taas teise/ebapiisava Külli Mäe katkendi ning jättis kriisitunnused, 112 ja 1220 esitamata. | allikanupp nähtav; ID-d UI-s `NOT_PROVEN` | production Codex IAB `/vestlus`, `0e63f11b`, üks vestlus | 2026-08-30T12:00:00+03:00 |
+| J05 | FAIL | FAIL | J03 kriisikontekst ei aidanud taastava õiguse dokumendivalikut | Üldine arvulise kindluse keeldumine; 30/12 ja 60/19 suhted puudusid. | praeguse vastuse allikanuppu ei olnud | production Codex IAB `/vestlus`, `0e63f11b`, üks vestlus | 2026-08-30T12:01:00+03:00 |
+| J08 | FAIL | FAIL | varasemad eri dokumentide arvuküsimused ei aidanud; vastus muutus isolated-i dokumendipõhisest keeldumisest üldiseks | 61%, 26%, 11% ja 18% puudusid täielikult. | praeguse vastuse allikanuppu ei olnud | production Codex IAB `/vestlus`, `0e63f11b`, üks vestlus | 2026-08-30T12:01:00+03:00 |
+| J09 | PASS | PASS | õige dokumendi ja nelja suhte seos säilis ka pärast kolme varasemat eri teemat | Koolikiusamine 33%/13% ja küberkiusamine 19%/7% olid õigesti seotud. | praeguse vastuse allikanupp nähtav; ID-d UI-s `NOT_PROVEN` | production Codex IAB `/vestlus`, `0e63f11b`, üks vestlus | 2026-08-30T12:01:00+03:00 |
+| J11 | FAIL | FAIL | varasem edukas nelja protsendi vastus ei aidanud järgmise dokumendi mitmeslotilist faktilepingut | Leidis õige 2016 artikli, kuid jättis 7, 6, ühe kolmeliikmelise rühma ja kolmeetapilise temaatilise analüüsi kõik kinnitamata. | praeguse vastuse allikanupp nähtav; ID-d UI-s `NOT_PROVEN` | production Codex IAB `/vestlus`, `0e63f11b`, üks vestlus | 2026-08-30T12:02:00+03:00 |
+| J12 | PASS | PASS | J11 supervisioonilaadne tööalase toe teema ei rikkunud täpset lepingulise mahu vastust | Kinnitas viis rühmasupervisiooni kohtumist igas maakonnas 2017. aastal. | praeguse vastuse allikanupp nähtav; ID-d UI-s `NOT_PROVEN` | production Codex IAB `/vestlus`, `0e63f11b`, üks vestlus | 2026-08-30T12:02:00+03:00 |
+| J13 | PARTIAL | PARTIAL | ajalugu ei muutnud tulemust | Kirjeldas kattuvaid probleeme ja varast sekkumist, kuid täpne 13–18 ning probleemide võimalik avaldumine 3–5-aastaselt jäid puudu. | praeguse vastuse allikanupp nähtav; ID-d UI-s `NOT_PROVEN` | production Codex IAB `/vestlus`, `0e63f11b`, üks vestlus | 2026-08-30T12:03:00+03:00 |
+| J14 | FAIL | FAIL | eelnev laste käitumisprobleemide teema ei aidanud järgmise nimega artikli faktivalikut | Üldine arvulise kindluse keeldumine; 5800+, 90%, 14 ja 3 puudusid. | praeguse vastuse allikanuppu ei olnud | production Codex IAB `/vestlus`, `0e63f11b`, üks vestlus | 2026-08-30T12:03:00+03:00 |
+| J18 | FAIL | FAIL | ajalugu ei muutnud tulemust | Leidis õige Erle Eenmaa artikli, kuid väitis, et rühmade suurused ja koguarv puuduvad; 5+5+5=15 jäi esitamata. | praeguse vastuse allikanupp nähtav; ID-d UI-s `NOT_PROVEN` | production Codex IAB `/vestlus`, `0e63f11b`, üks vestlus | 2026-08-30T12:04:00+03:00 |
+| J22 | PASS | PASS | ajalugu ei muutnud tulemust | Järelhindamine kuus kuud pärast koolitust; võrreldi osaleja ja tööandja vaadet. | praeguse vastuse allikanupp nähtav; ID-d UI-s `NOT_PROVEN` | production Codex IAB `/vestlus`, `0e63f11b`, üks vestlus | 2026-08-30T12:04:00+03:00 |
+| V04 | FAIL | FAIL | J22 ajafakti edukas vastus ei aidanud järgmise dokumendi kuut seost | Üldine arvulise kindluse keeldumine; 10%=640, 6%=227 ja 2%=100 puudusid. | praeguse vastuse allikanuppu ei olnud | production Codex IAB `/vestlus`, `0e63f11b`, üks vestlus | 2026-08-30T12:05:00+03:00 |
+| V05 | FAIL | FAIL | sama dokumendi J22 oli kaks pööret varem PASS, kuid otsene ajalugu ei kandunud sõnastusvarianti | Väitis, et järelmõju aeg ja hinnangute andjad pole esitatud; kuus kuud ning osaleja/tööandja puudusid. | praeguse vastuse allikanuppu ei olnud | production Codex IAB `/vestlus`, `0e63f11b`, üks vestlus | 2026-08-30T12:05:00+03:00 |
+| V06 | FAIL | FAIL | ajalugu ei muutnud tulemust | Üldine arvulise kindluse keeldumine; 169 otsust ja 2018 puudusid. | praeguse vastuse allikanuppu ei olnud | production Codex IAB `/vestlus`, `0e63f11b`, üks vestlus | 2026-08-30T12:06:00+03:00 |
+| M01 | PASS | PASS | pikk varasem ajakirjaajalugu ei rikkunud nimega aruande leidmist | Andis poolstruktureeritud intervjuud ja temaatilise sisuanalüüsi, november 2025–märts 2026 ning 42 osalejat. | praeguse vastuse allikanupp nähtav; ID-d UI-s `NOT_PROVEN` | production Codex IAB `/vestlus`, `0e63f11b`, üks vestlus | 2026-08-30T12:06:00+03:00 |
+| M02 | PARTIAL | PARTIAL | vahetult eelnenud sama aruande M01 hoidis õige dokumendi, kuid ei taastanud neljandat soovitust | Kontaktisik, proaktiivne abi ja lihtsam teenustele pääs ilma kordushindamisteta olid õiged; toetatud otsustamine jäi täpse soovitusena kinnitamata. | praeguse vastuse allikanupp nähtav; ID-d UI-s `NOT_PROVEN` | production Codex IAB `/vestlus`, `0e63f11b`, üks vestlus | 2026-08-30T12:07:00+03:00 |
+| K01 | PASS | PASS | pikk eri dokumentide ajalugu ei rikkunud KOV-i § 6 rada | SPOKU/paberavaldus, abivajaduse hindamine ning § 6 eesmärk, toimingud ja personaalne hoolduskava olid olemas. | praeguse vastuse allikanupp nähtav; ID-d UI-s `NOT_PROVEN` | production Codex IAB `/vestlus`, `0e63f11b`, üks vestlus | 2026-08-30T12:08:00+03:00 |
+
+**Faas 2 vahetulemus (runtime `0e63f11b`): 16/16 — 5 PASS, 2 PARTIAL, 9 FAIL.**
+
+- PASS: `J09`, `J12`, `J22`, `M01`, `K01`
+- PARTIAL: `J13`, `M02`
+- FAIL: `J03`, `J05`, `J08`, `J11`, `J14`, `J18`, `V04`, `V05`, `V06`
+
+### Isolated / sequential võrdlus
+
+- Hinde muutus: `0/16`; kõik juhtumid jäid samasse PASS/PARTIAL/FAIL klassi.
+- Kvalitatiivne ajalooefekt oli olemas, kuid tulemust ei parandanud. Näiteks J08 muutus
+  isolated-i õige artikli, kuid puuduva tõendi vastusest sequential-is üldiseks keeldumiseks.
+- Kõige selgem taaskasutuse rike oli V05: sama vestluse J22 vastas sama Marina Vaino
+  dokumendi kohta õigesti „kuus kuud, osaleja ja tööandja”, kuid kaks pööret hiljem V05
+  väitis, et sama aeg ja osapooled ei ole esitatud.
+- See targeted-jooks ei tõenda kõigi 75 küsimuse kvaliteeti; ainult need 16 juhtumit on
+  runtime'il `0e63f11b` mõõdetud.
+
+**PAUS.** 75-küsimuse täisvärav ja 37 Golden-küsimust on `NOT_STARTED` ning neid ei
+käivitata enne omaniku järgmist juhist.
