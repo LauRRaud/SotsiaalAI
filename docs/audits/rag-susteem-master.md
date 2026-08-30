@@ -1,6 +1,6 @@
 # SotsiaalAI RAG-süsteemi masterkaart
 
-Uuendatud: 30.08.2026
+Uuendatud: 31.08.2026
 Ulatus: autentitud vestlus, RAG-otsing, dokumendi ingest, indeksid, soojendus, tõendikontroll, allikad ja käitus
 Rakenduse RAG-loogika: `main`-haru arhitektuur
 
@@ -249,7 +249,7 @@ EstNLTK-d kasutatakse kahes eri kohas, mida ei tohi segi ajada:
 
 Seega käändetaluvus ei sõltu praegu shadow-indeksi promotion'ist. Seda kannavad päringu morfoloogilised terminid, algvormi FTS, dense-embedding ja metadataankrud koos.
 
-Arvsõnade ja arvuliste kvalifikaatorite normaliseerimine toimub sellest hiljem, lõplikus piiratud faktilepingu kihis. See ei ole EstNLTK lemmaotsing ega lemmaindeksi promotion.
+Arvsõnade ja arvuliste kvalifikaatorite normaliseerimine toimub sellest hiljem, lõplikus piiratud faktilepingu kihis. See ei ole EstNLTK lemmaotsing ega lemmaindeksi promotion. `lib/chat/factRelationSemantics.js` annab tõendi sidumisele, kaetuse kontrollile ja vastuse valideerimisele ühise piiratud suhtevõrdluse. Näiteks `rühmavestlus` ja `grupiintervjuu` võivad tähistada sama intervjuuliiki, kuid individuaal- ja rühmaintervjuu jäävad eri kategooriateks. Mitmesõnaline `täiendav abi` saab päris tekstivahemikuga mõistetokeni; pelk `abi` seda seost ei tõenda. See kiht ei kirjuta nimesid ümber ega võrdsusta suvalisi sarnase algusega sõnu tähenduse poolest.
 
 ## 5. Küsimuse semantiline leping
 
@@ -257,7 +257,9 @@ Arvsõnade ja arvuliste kvalifikaatorite normaliseerimine toimub sellest hiljem,
 
 `lib/chat/questionPlanner.js:buildQuestionPlan` teeb algsest küsimusest struktureeritud plaani. Plaan eristab vähemalt:
 
-- tavalist teadmus- või juhendamisküsimust;
+- tavalist teadmusküsimust;
+- professionaalset meetodijuhist (`professional_method_guidance`);
+- kliendi enda eluolukorra juhendamist (`life_situation_guidance`);
 - konkreetse dokumendi või uuringu küsimust;
 - autorit ja autori tööde inventari;
 - KOV-teenust, toetust, kontakti ja kohalikku õigusakti;
@@ -279,9 +281,21 @@ Planner ei säilita ainult märksõnu. Ta koostab semantilised kandidaadid:
 - autori või autorite nimekujud;
 - pealkirjavihje ja dokumendiliigi.
 
+Sõnaselge `ajakiri Sotsiaaltöö` määrab väljaande ulatuse ka siis, kui kasutaja ei lisa sõnu `eri artiklid` või `ülevaade`. Teemaküsimus läheb ajakirja sünteesirajale; puuduva teemakohase artiklitõendi korral öeldakse seda, mitte ei küsita uuesti juba määratud väljaande tähendust.
+
+#### Professionaalne meetodijuhis
+
+`professional_method_guidance` on üldine sotsiaalvaldkonna tööprotsessi rada: küsimus küsib, kuidas hinnata, aidata, toetada või sekkuda. Planner ühendab protsessiküsimuse, tegevuse ja sotsiaalvaldkonna objekti signaalid ning eristab fookuseid `assessment`, `victim_support` ja `practice`. Rada ei nõua sessioonis spetsialisti rolli; tuvastatud kliendi eluolukorra küsimus, allikaotsing või mitme allika ülevaade suunatakse oma kavatsuserajale. Nimetatud dokumendi, autori, täpse õiguse ning KOV-teenuse erilepingud lahendatakse oma reeglite järgi. Üldine sõna `juhend` ei ole veel konkreetse dokumendi identiteet: selleks on vaja pealkirja või selget viidet konkreetsele dokumendile. Juhendi leidmise küsimus jääb allikaotsinguks, mitte meetodijuhiseks.
+
+Plaan kasutab `retrieval_strategy=authoritative_guidance_then_complementary_evidence`, `selection_strategy=professional_method_guidance` ja `query_order=authoritative_guidance_first`. Esmased päringud otsivad aktiivset mitteajaloolist juhendit, seejärel lisatakse täiendavate meetodite päring ning säilivad algsed ja filtreerimata fallback-päringud. Seega on juhend esmane eelistus, mitte garantii, et otsing tagastab ainult ametlikke juhendeid. Riskipoliitika märgib raja `medium` / `actionable` / `current_authoritative_guidance` ning eelistab tugevat juhenditõendit.
+
+`selectProfessionalMethodGuidanceGroups` valib kuni neli eri dokumendi kontekstigruppi. Ta jätab välja `inactive`, `archived` ja `stale` kandidaadid ning arvestab teemasobivust: vähemalt pool küsimuse teematerminitest ja vähemalt kaks terminit peavad sobima (ühe teematermini korral piisab ühest). Alles selle järel eelistatakse põhiallikaks aktiivset mitteajaloolist ametlikku juhendit või standardit, selle puudumisel aktiivset meetodi- või infomaterjali. Pelk ametlik päritolu ei tõsta teise teema juhendit esimeseks. Kui põhijuhendit ei kinnitata, võib säilida muu asjakohane tõend olekuga `primary_guidance_status=unconfirmed`; tühi valik on `missing`. Hindamisküsimus võib lisada pealkirja või tagide mudeli-/meetodisignaaliga täiendava allika, ülejäänud kohad täidab MMR. Konteksti mitmekesisus ei tähenda nelja kuvatava allika ega kõigi võimalike meetodite nõuet.
+
 ### 5.2 Kõik faktislotid säilivad
 
 Mitmeosalise küsimuse iga küsitud osa peab jääma eraldi slotiks. Näiteks „millised neli osakaalu ja kui palju inimesi neile vastas?” ei ole üks üldine numbriküsimus, vaid viis seosega faktislot'i.
+
+Rinnastatud liitsõna ellips taastatakse kategooriana: `individuaal- ja rühmavestlused` annab eraldi individuaalvestluse ja rühmavestluse suhted. Üldsõnu ega asesõnu nagu `need` ei nõuta tõendis kohustusliku nähtusesildina.
 
 Slot sisaldab vajaduse järgi:
 
@@ -297,6 +311,10 @@ Slot sisaldab vajaduse järgi:
 Planner'i slot ei ole veel tõendatud vastuseväärtus. Numbriline slot muutub pöörde rangeks lepinguks alles siis, kui kõrge kindlusega dokumendiidentiteet on lukus ja kõik küsitud slotid saab üheselt siduda sama lõpliku renderdatud allikabloki tõendiga. Piiratud arvsõnaparser tunneb eesti keeles arve 0–10 ning inglise ja vene keeles arve 1–10 koos toetatud käändevormidega. Parser tuvastab esmalt arvsõna ja seob alles seejärel vahetult järgneva toetatud ühiku, et näiteks „Neist kuus” ei neelduks ekslikult kuu-ühikuks. Kui tõendi arvsõna on sama sloti küsimusepoolses relation-term'is (näiteks „neljal kohtumisel”), jääb see ulatuseks ega muutu küsitud vastuseväärtuseks. Kandidaadiskoor eelistab arvule vahetult järgnevat või eelnevat nähtusesilti sama fragmendi kaugemale relation-term'ile; liiga lähedased konkureerivad täissobitused jäävad endiselt mitmetähenduslikuna fail-closed. See on faktilepingu arvunormaliseerimine, mitte EstNLTK lemmaotsing.
 
 Kui küsimus palub selgitada küsimuses juba nimetatud arvude tähendusi, kannab iga arv eraldi `explicit_value_relation` slotti. Väärtus ei ole siis vastus iseeneses: sama lukustatud renderdatud tõend peab kinnitama ka selle kohaliku nähtuse või rühma, mida arv tähistab. Esmane provisional assignment lubab ainult täielikus explicit-slot'ide partiis iga sloti üht unikaalset sõnaselgelt küsitud arvuväärtust ega nõua, et küsimuse üldsõnad („näitaja”, „arv”) korduksid tõendilauses. Sama rada kasutatakse ka renderdatud tõendi coverage'is; mõlemad loevad ainult pealkirja- ja metapäiseta lõplikku `evidenceText`-i ning küsimuse ja tõendi arvujärjekord ei pea kattuma. Contract kasutab seejärel tõendist tuletatud arvulähedast descriptor-ankrut. Kui samas fragmendis kordub sama descriptor mitme arvu juures, lisatakse eristuseks kõrvalasuva faktirühma unikaalne descriptor; mitme tõendifragmendi korral kasutatakse eristavat sündmuseankrut. Segatud või korduvate requested-value slot'ide partii, sama väärtuse teine ankurdatud tõendikoht sõltumata skoorivahest, puuduv ankur või jätkuvalt eristamatu ankruskeem ei aktiveeri lepingut.
+
+Arvu ja kategooria sidumine arvestab ka kohalikku süntaktilist piiri. `Kord kuus` ei tähenda arvu kuus; `kolme osalejaga grupiintervjuu` osalejate arv ei asenda intervjuude arvu. Kirjavahemärgi külge liitunud joonealuse märkuse number ei muutu mõõdikuks, samas säilib järgarvulise aastakirjutuse `2018. aastal` seos. Rinnastatud kategooriate eristav termin peab olema sama kohaliku arvuakna ja sulutaseme sees; kõrvalise sulgudes oleva protsendi või teise kategooria ankrust ei piisa. Semantilise lisatokeni loomine ei vähenda arvsõna kõrval kontrollitavate päris sõnade arvu.
+
+PDF-i ühe reavahetusega katkenud lause võib siduda kategooria järgmise rea arvuga kuni 160 märgi ulatuses sama tõendiploki sees. Lõpetatud lause, tühi rida, teine plokk, vahepealne arv või teine sulutase seda kohalikku kategooriaseost üle ei kanna.
 
 ### 5.3 Jooksva pöörde dokumendiidentiteet
 
@@ -331,6 +349,8 @@ Usaldatud jätk võib kasutada:
 - sama vestluse lõpetatud pöörde replay'd.
 
 Kliendi saadetud vabatekstiline ajalugu ei ole iseseisvalt autoriteetne omandi, allika ega taastumise tõend.
+
+Lühike käsk nagu `Räägi sellest paragrahvist lähemalt` on jätkuküsimus: `räägi` ei ole asesõna kohalik sisuline eelkäija. Kui jooksvas küsimuses puudub oma `§`-viide, võib query-plan kasutada vahetult eelmise kasutajapöörde üht sõnaselget paragrahvi koos tuvastatud seadusega. Rohkem kui üks varasem paragrahv ei anna selle raja kaudu üheselt määratud viidet; jooksva küsimuse selge viide võidab alati. Kohalik sisuline eelkäija samas küsimuses ei anna automaatselt põhjust vestlusajalugu kaasata.
 
 ### 6.1 KOV-i mitmetähendus
 
@@ -530,6 +550,8 @@ Praegused KOV-kontaktid võivad tulla PostgreSQL-i Teenusekaardi registrist, mit
 
 Teenusekaart võib olla kontaktide autoriteetne kontekst, kuid ei tohi täita ajakirja või uuringu faktislotti.
 
+Taotlusvormi ja pöördumiskoha küsimus (`mis vorme on vaja ja kelle poole pöörduda`) on esmalt menetlusjuhis, kui kasutaja ei küsi nimelist, telefoni-, e-posti- või ajakohast kontakti. Puuduv kontrollitud isikukontakt ei tohi eemaldada ametliku teenuseallikaga tõendatud vormi- ja asutuseinfot. Kui vastus siiski sisaldab täpset isikukontakti, telefoninumbrit või e-posti, rakendub kontaktide range tõendikontroll; menetlusjuhise rada ei anna luba neid oletada.
+
 ### 9.4 Kontekstieelarve
 
 `lib/chat/ragContext.js` renderdab ainult valitud tõendiplokid. `lib/chat/settings.js` koodi fallback'id on:
@@ -586,6 +608,17 @@ Puuduv kohustuslik jaotis ei muutu mudeli üldteadmisega „täidetuks”.
 
 Kui allikakonteksti ei ole, ütleb material message seda otseselt. Mudelile ei anta luba täita korpuseauku üldteadmisega.
 
+#### Professionaalse meetodijuhise vastuseleping
+
+Raja vastuseleping on `answer_contract=evidence_backed_method_phases_and_complementary_models`. `lib/chat/retrievalContextAssembler.js:buildProfessionalMethodGuidanceInstruction` koostab `PROFESSIONAL_METHOD_GUIDANCE_MODE` juhise, mis lisatakse `extraSystemInstructions` kaudu samasse vastusemudelikutsesse. Vastus peab lähtuma valitud juhenditõendist ning selgitama praktilisi samme ja otsustuskohti, mitte piirduma esimese tuttava mudeliga:
+
+- hindamisfookuses eristatakse tõendi olemasolul kohest turvalisust või kiiret ohuhinnangut, eelhindamist, põhjalikku hindamist, tegevusplaani ja kordushindamist;
+- muus abistamisfookuses eristatakse tõendi olemasolul turvalisust, toetavat kontakti, praktilisi tegevusi ning abi juurde suunamist või järeltegevust.
+
+Need on prompti kaetuse kontrollpunktid, mitte automaatselt lisanduv tõend. Hindamisvaldkondi ei esitata eraldi meetoditena; valitud allikates olevad täiendavad mudelid ja nende roll selgitatakse eraldi. Ajaloolist praktikat ega täiendavat mudelit ei muudeta kohustuslikuks praeguseks menetluseks. Puuduvat sammu, mudelit, kohustust või kohalikku kättesaadavust ei leiutata ning olulise tõendamata etapi või meetodi piir nimetatakse lühidalt. `missing` või `unconfirmed` põhijuhendi korral lisatakse eraldi juhis mitte väita praegu ametlikult nõutavat menetlust ega ammendavat meetodiloendit.
+
+See on genereerimise tõendiga piiratud vastuseleping, mitte eraldi deterministlik täieliku meetodivastuse validaator. Olemasolevad identiteedi-, faktiväite-, riski- ja allikaatributsiooni piirid jäävad kehtima; uus rada ei lisa teist vabalt genereerivat mudelikõnet.
+
 ### 10.2 Mudel ja cache
 
 `lib/chat/settings.js` fallback'id:
@@ -628,6 +661,14 @@ Tavalisel madala riskiga vastusel võib Responses API tekst voolata SSE delta'de
 
 Null või mitu täielikku sloti-assignment'i, puuduv lõplik renderdatud tõend, ebapiisav dokumendilukk või ootamatu lisaarv annavad `FAIL`. Kui täielik renderdatud faktileping on olemas, ei eeldata mudelilt planner'i algset arvujärjekorda: otsustab üheselt tõendatud seos.
 
+Võrdsete rühmasuuruste ja sama valimi koguarvu jaoks on eraldi piiratud seosekontroll. See rakendub ainult kahele loendusslotile: rühma suurus koos oodatud rühmade arvuga ja koguarv. Allika sõnaselgest „igast rühmast viis, kokku viisteist” seosest võib tuletada rühmade arvu, kui jagatis on täisarv vahemikus 2–20; seda hoitakse eraldi allikas sõnaselgelt öeldud kardinaalsusest. Vastus peab kas ütlema üheselt, et igas nimetatud arvus rühmas oli sama palju osalejaid, või nimetama kõik eri tõendatud osalejarollid. Sama rolli käändeline kordamine ei täida uut rühma; kohtute, asutuste ja omavalitsuste arv ei ole osalejate arv. Koguarv peab esinema üks kord ning kõrvalarvud ei pääse sellest harust kontrollita läbi.
+
+Meetodisloti tõendiankruks valitakse analüüsi või meetodi sisuline täpsustus, näiteks `temaatiline`, mitte pelgalt `intervjuude analüüs` ega sulgudes viidatud autori nimi. Vastuse meetod peab selle ankruga sobima. Osaliste hinnangute küsimuses ei korva õige järelhindamise kestus puuduvat osapoolt: nii arvuline kui ka kvalitatiivne leping peavad läbima.
+
+Rühmade arvu jagatis tuletatakse ainult täpsetest operandidest: `vähemalt`, `kuni`, `üle`, `alla` ja `umbes` ei anna täpset kardinaalsust. Ka eraldi rühmakontrollis peab kvalifikaator säilima allika, slotilepingu ja iga vastusearvu vahel. Nimeline meetod võib olla ka predikaat või tegevuse objekt (`uurimismeetodiks oli vaatlus`, `andmekogumiseks kasutati osalusvaatlust`); see ei pea alati eelnema sõnale `analüüs`.
+
+Vastuses eraldatakse ka `ja`/`ning` abil algav uus silt–arv klausel, kui sidesõna järel ja enne arvu on uue küsitud mõõdiku seos. See takistab eelmise arvu sidumist järgmise kategooriasildiga. Pelk sidesõna ühikute vahel ei lõika seost automaatselt läbi. Sama osalejarolli käändelised kordused deduplikeeritakse nii allika rühmade arvu tuletamisel kui ka vastuse täielikkuse kontrollimisel.
+
 ### 11.2 Vale vastuse korral
 
 Validaatori läbikukkumine ei ole kasutajale nähtava vale teksti järel tehtav logimärge. Süsteem teeb fail-closed valiku:
@@ -655,13 +696,13 @@ Trace eristab vähemalt:
 3. `answer_source_ids` / claim support — toetab lõppvastuse väidet;
 4. `displayed_source_ids` — kuvatakse kasutajale.
 
-Need komplektid ei pea olema võrdsed. Praeguse source-attribution'i kindel konstruktsioonisuhe on:
+Need komplektid ei pea kogu torus olema võrdsed. Source-attribution'i universaalne konstruktsioonisuhe on:
 
 ```text
 answer_sources ⊆ displayed_sources
 ```
 
-`answer_source_ids` on kuvatavate kandidaatide alamhulk, millele claim- või validaatoritugi kinnitati. Ideaalne kvaliteedileping on, et ühtegi toeta kuvatavat allikat ei jääks; trace arvutab selle kontrolliks `displayed_not_in_answer_source_ids` ja `displayed_sources_subset_of_answer`. Samuti mõõdetakse `displayed_sources_subset_of_selected`, mitte ei eeldata seda tõendita.
+`answer_source_ids` on kuvatavate kandidaatide alamhulk, millele claim- või validaatoritugi kinnitati. Tavapärases claim-põhises default-harus pääseb kuvasse ainult toetatud kandidaat, mistõttu kehtib selles harus ka vastassuund ja `answer_sources = displayed_sources`. Spetsialiseeritud harude allikavaliku lepingud jäävad eraldi; nende puhul mõõdab trace endiselt `displayed_not_in_answer_source_ids` ja `displayed_sources_subset_of_answer`. Samuti mõõdetakse `displayed_sources_subset_of_selected`, mitte ei eeldata seda tõendita.
 
 `retrieved_source_ids` täielik toorkiht tuleb raw RAG retrieval metadata'st. `selected_context_source_ids` võib lisaks sisaldada kasutaja ajutise dokumendi konteksti, SourcePackage'i display-allikat või Service Map kontaktallikat, mis ei tulnud raw RAG `matches` hulgast. Seetõttu ei ole `selected_context_sources ⊆ retrieved_sources` universaalne seos. Exact validaatori eraldi toetav source ID võib vastuseallikasse siseneda ainult siis, kui see oli sama renderdatud konteksti osa.
 
@@ -679,6 +720,16 @@ Kuvada ei tohi allikat, mis:
 - kuulub validaatori järgi vigase vastuse juurde.
 
 Puhas täpsustusküsimus, tõendipuuduse vastus või `factValidation.passed=false` tähendab null kuvatavat allikat.
+
+Väide selle kohta, et kasutatud allikad ei kinnita vastust või vajalikku infot ei leitud, on teadmise piiri kirjeldus, mitte allikaga toetatav sisufakt. See jäetakse claim-loendist välja. Kui vastus sisaldab ainult selliseid lauseid, on allikapaneel tühi; kui kõrval on iseseisvalt tõendatud sisuline vastuseosa, säilib selle allikatugi. Tavaline faktieitus (`teenus ei sisalda transporti`) ei ole iseenesest tõendipuuduse lause.
+
+#### Default-haru claim-cover ja redundantse toe kärbe
+
+Default-haru vähendab juba tõendi- ja claim-toe kontrolli läbinud kandidaatide redundantsust. Allikad järjestatakse claim-support'i skoori järgi kahanevalt, võrdse skoori korral säilib sisendjärjekord. Ühe deterministliku läbimise käigus jääb allikas alles, kui ta lisab vähemalt ühe seni katmata claim-indeksi; hilisem kandidaat peidetakse põhjusega `claim_support_subsumed` ainult siis, kui tema täielik claim-indeksite hulk on varem hoitud allikate ühendiga juba kaetud. Puuduliku või 32-indeksi trace-piiri tõttu kärbitud support-info korral allikas säilib, sest tema üleliigsus ei ole tõendatud. Registriviide ei suurenda kaetud claim-indeksite hulka ega saa seetõttu sisulist tõendiallikat redundantseks muuta.
+
+See on score-järjestuses greedy redundantsuskärbe, mitte matemaatiliselt väikseima allikakomplekti otsing ega semantilise entailment'i lisatõend. Ta ei rakenda fikseeritud allikaarvu, ei muuda retrieval'it ega mudelile antud konteksti ning ei eemalda allikat, mille teadaolev claim-tugi lisab uue väite. `claim_supported_source_ids` võib endiselt sisaldada peidetud redundantseid kandidaate; kasutajale kuvatav hulk ja `answer_source_ids` kirjeldavad lõplikult alles jäetud allikaid.
+
+`professional_method_guidance` kasutab samuti seda generic claim-attribution haru: tema `needs_multiple_sources=true` lubab konteksti eri juhendeid või täiendavaid käsitlusmudeleid, kuid ei nõua kõigi kontekstiallikate kuvamist. Uus kärbe ei laiene edukalt faktivalideeritud vastusele, ajalisele rajale, täpsele õigusele, SourcePackage'ile, valideeritud kontaktidele, autorirajale, sünteesile, võrdlusele, kliendi eluolukorra juhendamisele, KOV-erirajale, muule tuvastatud mitmeallikaplaanile ega allikakomplekti loendamisele, sealhulgas seda küsivale jätkuküsimusele. Nende harude senised allikavaliku lepingud jäävad muutmata.
 
 ### 12.3 Allikapaneel
 
@@ -1302,6 +1353,7 @@ Olulised koodi fallback'id on käesoleva dokumendi vastavates peatükkides. Runt
 | `lib/chat/openaiRuntime.js` | Luna non-stream/stream kutse ja kasutuslogi |
 | `lib/chat/mainResponseHandler.js` | turn claim, generatsioon, valideeritud lepingutrace ja SSE |
 | `lib/chat/factContract.js` | arvsõnade normaliseerimine ning seose-, kvalifikaatori-, ulatuse- ja slot↔claim fail-closed valideerimine |
+| `lib/chat/factRelationSemantics.js` | tõendi ja vastuse ühised piiratud suhtevastavused ning tekstivahemikuga mõistetokenid |
 | `lib/chat/qualitativeActionSemantics.js` | tegevus–objekt ja polaarsus |
 | `lib/chat/sourceAttribution.js` | claim-to-source ja displayed sources |
 | `lib/chat/persistence.js` | kasutaja/assistendi püsistus |

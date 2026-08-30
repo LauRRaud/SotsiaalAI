@@ -1155,7 +1155,7 @@ describe("täpse faktivastuse värav", () => {
       retrievalMeta
     });
     assert.equal(partial.passed, false);
-    assert.equal(partial.trace.reason, "requested_fact_metric_slot_missing");
+    assert.equal(partial.trace.reason, "requested_metric_slot_missing");
 
     const complete = validateExactFactAnswer({
       message,
