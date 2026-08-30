@@ -726,6 +726,10 @@ Kaane/sisukorra tekst ei kinnita sisulist väidet ka siis, kui vastuses esineb a
 
 Autori teoste inventar on erand ainult bibliograafilisele väitele: täpne pealkiri, autor ja ilmumisandmed võivad toetuda registri metadatale ka siis, kui ainus leitud body oli sisukord. Selleks eemaldatakse sisukorra body ja nõutakse autori-teoste otsingu režiimi ning bibliograafilist lausekuju. Lisatud sisulist väidet see erand ei kinnita.
 
+Kirjastuse tellimisreklaami tuvastus nõuab ajakirjaallikat, body alguses ajakirja/e-uudiskirja tellimiskutset ning teist tellimise/kaastöö tunnust. Ainult rubriik „Reklaam” ei välista kasulikku teenuseinfot. Samad mitte-sisulise teksti piirid kehtivad enne konteksti ja allikaatributsioonis.
+
+Režiimides overview_synthesis, thematic_synthesis ja professional_method_guidance arvutatakse ajakirjaallika sisuväite sõna-/fraasitugi renderdatud body pealt, eemaldades nummerdatud metadata päise. Ajakirja nimi, autor, rubriik või pealkirjamainimine üksi sisuväidet ei kinnita. Täpse artiklipealkirjaga viite ilmumisaasta võib tulla sama allika year-metadatast, kuid ülejäänud sisuline tugi peab leiduma bodys. Bibliograafiline inventar säilitab oma erandi. See on kitsas leksikaalne tugi, mitte semantilise entailment'i tõestus. Kui teenuse reegli katkend ei nimeta teenuse liiki, nõuab sünteesijuhis reegli väljajätmist või selle ulatuse ebakindluse nimetamist; puuduvat antecedenti ei hangita selle juhisega automaatselt.
+
 `lib/chat/sourceAttribution.js:buildSourceAttribution` jagab lõppvastuse väideteks ja võrdleb neid iga allika täpse `evidenceText`-iga. `evidenceText` ei ole kogu algdokument ega kõik retrieve'itud chunk'id, vaid mudelile päriselt renderdatud blokk.
 
 Kuvada ei tohi allikat, mis:
@@ -1369,6 +1373,7 @@ Olulised koodi fallback'id on käesoleva dokumendi vastavates peatükkides. Runt
 | `lib/chat/retrievalOrchestrator.js` | RAG HTTP, parallelism, RRF, timings |
 | `lib/chat/retrievalContextAssembler.js` | KOV, kanoonilise pealkirjapere lukk, selection, lõplik renderdatud tõend ja faktilepingud |
 | `lib/chat/ragContext.js` | grupp, MMR, span'id ja kontekstieelarve |
+| `lib/chat/evidenceContent.js` | ajakirja kaane/sisukorra eristamine sisulisest artiklitõendist |
 | `lib/chat/evidencePackage.js` | pöörde tõendipakett |
 | `lib/chat/sourcePackages.js` | allikapaketi runtime-kuju |
 | `lib/chat/packageAwareContext.js` | package-aware kontekst |

@@ -943,3 +943,47 @@ Relation-mismatch'i puhul võib allikapõhine taastamine rakenduda vaid kõigi �
 Golden-i sisukorrakatke eemaldatakse ajakirjaallika ja kombineeritud kaane/sisukorra tunnuste alusel enne grupeerimist ning konteksti koostamist. Sama dokumendi päris sisulõigud säilivad. Allikaatributsioon ei luba sisukorral kinnitada väidet ka täpse pealkirja mainimisel. Sünteesijuhis säilitab teenuse/sihtrühma/aja ning seob iga näite oma allikaga. Registrit, ingest'i ja indeksit ei muudeta.
 
 Viienda ploki kitsad testid: 14 faktilepingu testi ja 10 allika-/sisukorratesti PASS. Read-only ülevaatus leidis autorite inventari kõrvalmõju; paranduses säilib metadata ning bibliograafiline väide, kuid lisatud sisuväide ei pääse sellest erandist läbi. Eraldi sihtkontroll kinnitas ka aastaga bibliograafilise kirje säilimise. ESLint/i18n/diff-check PASS ja lõpliku rakenduskoodipuu TZ=UTC tootmisbuild PASS (35,2s). Uus serveri UI-kordus järgneb.
+
+### Ring 5 — in-app isolated ja sequential
+
+Release34339acb. Deploy lõppes01:48 EEST, serveribuild PASS32,8s, migratsioone ootel0. Lokaalne/origin/server SHA ühtivad; pärast deploy lõppu teenused3/3 aktiivsed ja HTTP200. Hooldusvärava ajal vaadeldud ajutine HTTP502 lõppes teenuste käivitumisel. Eelmine artefakt säilib; koristas ainult ühe vana current-artefakti ja build-logi.
+
+| R5 juhtum | Hinnang | Täisvastus/allikapaneel | Märkus |
+|---|---|---|---|
+| r5-iso-J05 | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-34339acb/r5-iso-J05.md) | Umbes30/12 ja60/19; õige allikas. |
+| r5-iso-J08 | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-34339acb/r5-iso-J08.md) | 61/26/11/18 õiges seoses; õige allikas. |
+| r5-iso-J11 | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-34339acb/r5-iso-J11.md) | 7/6/1 ja kolmeetapiline temaatiline analüüs; taastatud ning uuesti valideeritud; õige allikas. |
+| r5-iso-J18 | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-34339acb/r5-iso-J18.md) | 5 igas kolmes rühmas, kokku15; õige allikas. |
+| r5-iso-V05 | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-34339acb/r5-iso-V05.md) | Kuus kuud; osaleja ja tööandja; õige allikas. |
+| r5-seq-J05 | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-34339acb/r5-seq-J05.md) | Umbes30/12 ja60/19; allikapõhiselt taastatud; õige allikas. |
+| r5-seq-J08 | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-34339acb/r5-seq-J08.md) | 61/26/11/18 õiges seoses; õige allikas. |
+| r5-seq-J11 | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-34339acb/r5-seq-J11.md) | 7/6/1 ja kolmeetapiline temaatiline analüüs; taastatud; õige allikas. |
+| r5-seq-J18 | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-34339acb/r5-seq-J18.md) | 5 igas kolmes rühmas, kokku15; õige allikas. |
+| r5-seq-V05 | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-34339acb/r5-seq-V05.md) | Kuus kuud; osaleja ja tööandja; õige allikas. |
+
+Ring5 viie algselt vigase 75-auditi juhtumi tulemus: **isolated 5 PASS / 0 PARTIAL / 0 FAIL; sequential 5 PASS / 0 PARTIAL / 0 FAIL**. Samad küsimused ja vastuvõtukriteeriumid. J11 allikapõhine taastamine läbis mõlemas; lõppvastuse sisu ja avatud paneel kontrollitud. Nende viie puhul selles paaris järjekorrast erinevust ei ilmnenud. See ei ole kogu75 ega Golden37 läbimise tõend.
+
+### Ring 5 — eraldi Golden-järelkontrollid ja regressioonid
+
+Järgnevad lisakontrollid ei muuda viie juhtumi ega 75 küsimuse nimetajat. Iga vastus salvestatakse enne järgmist küsimust.
+
+| R5 lisajuhtum | Hinnang | Tõend / põhjus |
+|---|---|---|
+| r5-golden-integrated | PARTIAL | [Vastus](../docs/audits/evidence/rag-loop-2026-08-31-34339acb/r5-golden-integrated.md). Sisuline süntees, kuid seitsmes allikas oli kirjastuse tellimisreklaam; teenusepakkuja valiku reegel jäi teenuse liigiga piiramata. R6 käsitleb neid põhjuseid. |
+| r5-golden-child | PARTIAL | [Vastus](../docs/audits/evidence/rag-loop-2026-08-31-34339acb/r5-golden-child.md). Sisuline vastus katab hindamise etapid ja lisamudeli. Nelja paneeliallika vajadus pole tõendatud: Pindi kaheksa aspekti dubleerub Lauri artiklis; vanemate allikate ainulaadne panus põhijuhendile NOT_PROVEN. |
+| r5-golden-cyber | PASS | [Vastus](../docs/audits/evidence/rag-loop-2026-08-31-34339acb/r5-golden-cyber.md). Sisuline ohutust arvestav juhis; üks vastust toetav ametlik allikas, kõrvalisi paneeliallikaid ei olnud. |
+| r5-reg-J09 | PASS | [Vastus](../docs/audits/evidence/rag-loop-2026-08-31-34339acb/r5-reg-J09.md). Koolikiusamine33/13 ja küberkiusamine19/7; õige vanus/scope/allikas. |
+| r5-reg-J14 | PARTIAL | [Vastus](../docs/audits/evidence/rag-loop-2026-08-31-34339acb/r5-reg-J14.md). Arvud üle5800,90%,14,3 õiged; vastus kordab küsimuse „alla18”, algallikas „kuni18”. Vanuserühma täpsuse reservatsioon. |
+| r5-reg-V04 | PASS | [Vastus](../docs/audits/evidence/rag-loop-2026-08-31-34339acb/r5-reg-V04.md). 10%=640,6%=227,2%=100; vastus parandab „helistajad” laiemaks allikapõhiseks pöördunute rühmaks. |
+| r5-reg-M01 | FAIL | [Vastus](../docs/audits/evidence/rag-loop-2026-08-31-34339acb/r5-reg-M01.md). requested_fact_answer_incomplete; vastuse asemel tõendipiir, allikaid0. Renderdatud arvulepingus osalejate arv mitmetähenduslik; kvalitatiivne lõppvastuse katvus puudub. |
+| r5-reg-M02 | PARTIAL | [Vastus](../docs/audits/evidence/rag-loop-2026-08-31-34339acb/r5-reg-M02.md). Kolm soovitust sisuliselt olemas; toetatud otsustamise konkreetne soovitus jääb üldiseks piirava eestkoste käsitluseks. |
+
+Uued sõnastused on eraldi lisakomplekt: [r5-new-J09](../docs/audits/evidence/rag-loop-2026-08-31-34339acb/r5-new-J09.md) PASS, [r5-new-M01](../docs/audits/evidence/rag-loop-2026-08-31-34339acb/r5-new-M01.md) PASS. M01 uus sõnastus ei tühista originaali FAIL-i.
+
+M01 read-only diagnoos: õige dokumendi identiteet high/matched; kontekst25→8 lõiku. Retrieval-coverage3/3 ei tõenda lõpplepingut. Osalejate arvuslotil19 kandidaati, kaks võrdse skooriga6.794 eri bodys, mapping0/1 ambiguous. Väärtused pole trace'is nähtavad: kordusfakti ja eri arvude konkurentsi ei saa eristada. Kvalitatiivne tõend2/2complete, aga lõppvastuse seoseid0 ja puuduvad slotid1/2. Ajasloti relation „tehti/tegema” ning sama vastuseüksuse source-anchor nõue on staatiline sõnastustundlikkuse kandidaat, mitte tõend taastamata mudelivastuse täpse sisu kohta.
+
+### Ring 6 — reklaam ja metadata ei ole sünteesi sisutõend
+
+R5 liigse allika juurpõhjus: omastehoolduse infopunkti metadataga katke oli kirjastuse tellimisreklaam. Sõna „koostöö” bodys ja „Sotsiaaltöö” ajakirjanimena andsid näiliselt ainulaadse toe lausele tervishoiu ja sotsiaaltöö koostööst. Kombineeritud publisher-tuvastus eemaldab selle katke; sünteesi/professionaalse meetodi ajakirjaallika claim-tugi kasutab bodyt, mitte metadata päist või pealkirjamainimist üksi. Päris infopunkti reklaamrubriigi sisu säilib. Puuduva teenuse-antecedendi jaoks lisati konservatiivne väljajätmise/ebakindluse juhis, mitte teenuseliigi oletamine.
+
+11 allika-sihttesti PASS; ESLint/diff-check/i18n PASS; lõpliku rakenduskoodipuu TZ=UTC tootmisbuild PASS35,2s. Sõltumatu read-only ülevaatus ei leidnud blokeerivat regressiooni. Runtime järgneb. M01/M02 ja allikate semantilise dubleerimise üldprobleem ei ole selle plokiga lahendatuks kuulutatud.

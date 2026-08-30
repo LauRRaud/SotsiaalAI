@@ -1,0 +1,2651 @@
+{
+  "meta": {
+    "isCrisis": false
+  },
+  "trace": {
+    "trace_contract": {
+      "version": "rag_trace_layers_v1",
+      "layer": "server_runtime_trace",
+      "source_layer": null,
+      "projection": "unprojected_runtime",
+      "downstream_layers": {
+        "database_projection": "assistant_message.metadata.rag_trace",
+        "audit_normalization": "derived_audit_artifact_must_declare_source_layer",
+        "ui_observation": "independent_visible_ui_evidence"
+      }
+    },
+    "retrieved_count": 15,
+    "selected_context_count": 1,
+    "rendered_context_hash": "49dacc64574da3cd3d01d47c622bf2e7c4acbc159f6f33d528357e3ce6c6f8cf",
+    "rendered_context_chars": 12274,
+    "retrievers_used": [
+      "dense",
+      "author_match",
+      "title_match",
+      "bm25"
+    ],
+    "retrieved_source_ids": [
+      "sotsiaaltoo_suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1"
+    ],
+    "selected_context_source_ids": [
+      "sotsiaaltoo_suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1"
+    ],
+    "model_context_source_ids": [
+      "sotsiaaltoo_suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1"
+    ],
+    "validated_supporting_source_ids": [
+      "sotsiaaltoo_suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1"
+    ],
+    "claim_supported_source_ids": [
+      "sotsiaaltoo_suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1"
+    ],
+    "claim_support_graph": [
+      {
+        "claim_id": "claim_1",
+        "claim_hash": "df61f43c",
+        "supporting_source_ids": [
+          "sotsiaaltoo_suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1"
+        ]
+      },
+      {
+        "claim_id": "claim_2",
+        "claim_hash": "553d8f65",
+        "supporting_source_ids": [
+          "sotsiaaltoo_suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1"
+        ]
+      },
+      {
+        "claim_id": "claim_3",
+        "claim_hash": "c2d0f03b",
+        "supporting_source_ids": [
+          "sotsiaaltoo_suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1"
+        ]
+      },
+      {
+        "claim_id": "claim_4",
+        "claim_hash": "51c526c8",
+        "supporting_source_ids": [
+          "sotsiaaltoo_suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1"
+        ]
+      }
+    ],
+    "selected_context_details": [
+      {
+        "source_id": "sotsiaaltoo_suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+        "raw_source_id": "sotsiaaltoo_suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+        "title": "Suure hoolduskoormusega inimesed vajavad täiendavat abi",
+        "section": "Analüüs",
+        "body_preview": "Töötavatest või õppivatest hooldajatest tunnetas 38% hoolduskohustuste negatiivset mõju oma tööelule või õpingutele: 13% on pidanud vähendama töökoormust ning 1% vähendama õppekoormust, 12% võtma tasustamata vabu päevi, 6% hoolduspuh -kust…",
+        "rendered_evidence_hash": "49dacc64574da3cd3d01d47c622bf2e7c4acbc159f6f33d528357e3ce6c6f8cf",
+        "original_body_hash": "2bcd00b26dde38bcfbdc278088f993ab38fa845eb029a4c8485c72516949e3d7",
+        "rendered_body_hash": "21dfbb5695d58d74d64a1927b8bdbaad6365d66f3e29d29dc11bae7277e70340",
+        "rendered_evidence_chars": 12274,
+        "rendered_evidence_truncated": true,
+        "rendered_body_count": 8,
+        "original_body_count": 15,
+        "rendered_body_spans": [
+          {
+            "original_body_index": 0,
+            "original_body_hash": "f96137521f4094268029ca4f6baf374b34ba5dab546e2f7de28924fde6c56ccd",
+            "rendered_body_hash": "7df85e080f03d6b579c0447732640aa97bdb5b232657d97c34429c4611779040",
+            "original_body_chars": 1680,
+            "rendered_body_chars": 1665,
+            "start_offset": 0,
+            "end_offset": 1662,
+            "truncated": true
+          },
+          {
+            "original_body_index": 1,
+            "original_body_hash": "66925a39b53eea7f6b942a17df5336215bbcd47aa1c068cc13bb2c8464dd5d5a",
+            "rendered_body_hash": "66925a39b53eea7f6b942a17df5336215bbcd47aa1c068cc13bb2c8464dd5d5a",
+            "original_body_chars": 1660,
+            "rendered_body_chars": 1660,
+            "start_offset": 0,
+            "end_offset": 1660,
+            "truncated": false
+          },
+          {
+            "original_body_index": 2,
+            "original_body_hash": "92f5817fbee176c4b87dc7b246bd4718135204dc501e1d62dd9d86e755e9356d",
+            "rendered_body_hash": "92f5817fbee176c4b87dc7b246bd4718135204dc501e1d62dd9d86e755e9356d",
+            "original_body_chars": 838,
+            "rendered_body_chars": 838,
+            "start_offset": 0,
+            "end_offset": 838,
+            "truncated": false
+          },
+          {
+            "original_body_index": 3,
+            "original_body_hash": "58c27d1a92dac566b2710dda5292bc58508851e59f3b22f2f7cf6051b896d8b0",
+            "rendered_body_hash": "58c27d1a92dac566b2710dda5292bc58508851e59f3b22f2f7cf6051b896d8b0",
+            "original_body_chars": 1143,
+            "rendered_body_chars": 1143,
+            "start_offset": 0,
+            "end_offset": 1143,
+            "truncated": false
+          },
+          {
+            "original_body_index": 4,
+            "original_body_hash": "f1e1187756ed77da5eceebce9ee48cd44412da2286ca9c307f2b16795875ed6d",
+            "rendered_body_hash": "bf03519c290d3590d38e05e3b399ade04000427cc5ec95baeb66e99204102582",
+            "original_body_chars": 1783,
+            "rendered_body_chars": 1665,
+            "start_offset": 0,
+            "end_offset": 1662,
+            "truncated": true
+          },
+          {
+            "original_body_index": 5,
+            "original_body_hash": "117066bf6f16e6b8a7795eb51abd05832058217c10542df3bc5e1fc2cfada118",
+            "rendered_body_hash": "eb10bbd953ce9dc3fe6e316cadb17b9bb8b5f562a4e514d744850ebd3f397ddc",
+            "original_body_chars": 1710,
+            "rendered_body_chars": 1665,
+            "start_offset": 0,
+            "end_offset": 1662,
+            "truncated": true
+          },
+          {
+            "original_body_index": 6,
+            "original_body_hash": "dd460bae9ffb60d91f5831f6212b5e0b37c804586201d0d26eb3ef6ea509aa47",
+            "rendered_body_hash": "d20eaa10ff2ee0e5806d51d3c55423c0bb6d0d987f5402b6a503e0573fef4b7c",
+            "original_body_chars": 1743,
+            "rendered_body_chars": 1665,
+            "start_offset": 0,
+            "end_offset": 1662,
+            "truncated": true
+          },
+          {
+            "original_body_index": 7,
+            "original_body_hash": "c3cf366b0fed45f656ab3c7e71b41e9c4d419f8c40b4cdfc04b319f8d226f9e0",
+            "rendered_body_hash": "cd152d482c9ac8baa915396521a3652946096d6876bb3232543254c1980c3061",
+            "original_body_chars": 1771,
+            "rendered_body_chars": 1664,
+            "start_offset": 0,
+            "end_offset": 1661,
+            "truncated": true
+          }
+        ],
+        "source_type": "journal_article",
+        "collection_id": "sotsiaaltoo_articles",
+        "source_status": "active",
+        "historical": true,
+        "retrieval_channels": [
+          "dense",
+          "author_match",
+          "title_match",
+          "bm25"
+        ],
+        "hybrid_score": 2.893208,
+        "dense_score": 0.662829,
+        "lexical_score": 39,
+        "lexical_score_normalized": 0.829787,
+        "bm25_score": 18.5368,
+        "bm25_coverage": 0.472222,
+        "bm25_matches": 17,
+        "bm25_query_tokens": 36,
+        "rrf_score": 0.079244,
+        "channel_boost": 0.28,
+        "hybrid_rank": 1,
+        "dense_rank": 1,
+        "lexical_rank": 1,
+        "rank_score": 4.6232,
+        "topic_boost": 1.08,
+        "quality_adjust": 0.65
+      }
+    ],
+    "source_packages": [],
+    "package_aware_answering_used": false,
+    "used_package_ids": [],
+    "missing_sections_used": [],
+    "package_candidate_source_ids": [],
+    "package_displayed_source_ids": [],
+    "package_requested_sections": [],
+    "package_answer_flags": [],
+    "package_selection_status": "no_packages",
+    "insufficient_precise_support": false,
+    "required_evidence_sections": [],
+    "package_attribution_checked": false,
+    "high_risk_attribution_checked": false,
+    "section_attribution": [],
+    "attribution_flags": [],
+    "answer_source_ids": [
+      "sotsiaaltoo_suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1"
+    ],
+    "answer_source_semantics": "claim_or_validator_support",
+    "displayed_source_ids": [
+      "sotsiaaltoo_suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1"
+    ],
+    "filtered_out_source_ids": [],
+    "filter_reasons": {},
+    "selected_source_count": 1,
+    "answer_source_count": 1,
+    "displayed_source_count": 1,
+    "model_context_source_count": 1,
+    "validated_supporting_source_count": 1,
+    "claim_supported_source_count": 1,
+    "filtered_out_source_count": 0,
+    "displayed_sources_subset_of_selected": true,
+    "displayed_sources_subset_of_answer": true,
+    "displayed_not_in_selected_source_ids": [],
+    "displayed_not_in_answer_source_ids": [],
+    "selected_but_not_displayed_source_ids": [],
+    "retrieved_but_not_displayed_source_ids": [],
+    "attribution_filtered_source_ids": [],
+    "attribution_filter_reasons": {},
+    "attribution_decisions": [
+      {
+        "source_id": "sotsiaaltoo_suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+        "source_index": 0,
+        "decision": "display",
+        "reason": "fact_contract_validated",
+        "score": 43.2,
+        "source_type": "journal_article",
+        "source_layer_contract": "research_or_journal",
+        "source_status": "active",
+        "historical": true
+      }
+    ],
+    "rag_risk_level": "low",
+    "rag_required_evidence": "medium",
+    "rag_insufficient_evidence_mode": false,
+    "requested_metric_contract": {
+      "version": "requested_fact_slot_contract_v1",
+      "compatibility_contract": "requested_metric_contract_v2",
+      "slot_source": "requested_fact_slots",
+      "enabled": true,
+      "complete": true,
+      "reason": "all_requested_slots_mapped_in_one_rendered_source",
+      "source": "final_rendered_evidence",
+      "mapping_method": "bounded_rendered_sentence_peer_alignment_v8",
+      "requested_slot_count": 4,
+      "mapped_slot_count": 4,
+      "sanitizer_dropped_slot": false,
+      "used_for_generation": true,
+      "used_for_validation": true,
+      "rendered_evidence_hash": "21dfbb5695d58d74d64a1927b8bdbaad6365d66f3e29d29dc11bae7277e70340",
+      "mapping_diagnostics": {
+        "evidence_candidate_count": 78,
+        "evidence_fragment_count": 64,
+        "evidence_candidates_truncated": false,
+        "ambiguous": false,
+        "candidate_scope": "lexical_pre_assignment",
+        "coordination_gate_evaluated": true,
+        "coordination_gate_passed": true,
+        "coordination_rejected_assignment_count": 0,
+        "coordination_qualified_solution_count": 3,
+        "slots": [
+          {
+            "slot_index": 1,
+            "matching_candidate_count": 2,
+            "top_candidates": [
+              {
+                "score": 7.732,
+                "fragment_index": 3,
+                "mention_index": 1,
+                "rendered_body_index": 0,
+                "relation_scope_index": 0,
+                "matched_term_count": 2,
+                "relation_term_count": 3,
+                "parenthesis_depth": 0,
+                "local_relation_head_matched": true
+              },
+              {
+                "score": 5.918,
+                "fragment_index": 3,
+                "mention_index": 0,
+                "rendered_body_index": 0,
+                "relation_scope_index": 0,
+                "matched_term_count": 2,
+                "relation_term_count": 3,
+                "parenthesis_depth": 0,
+                "local_relation_head_matched": true
+              }
+            ]
+          },
+          {
+            "slot_index": 2,
+            "matching_candidate_count": 7,
+            "top_candidates": [
+              {
+                "score": 6.638,
+                "fragment_index": 3,
+                "mention_index": 1,
+                "rendered_body_index": 0,
+                "relation_scope_index": 0,
+                "matched_term_count": 2,
+                "relation_term_count": 2,
+                "parenthesis_depth": 0,
+                "local_relation_head_matched": true
+              },
+              {
+                "score": 4.322,
+                "fragment_index": 42,
+                "mention_index": 0,
+                "rendered_body_index": 5,
+                "relation_scope_index": 0,
+                "matched_term_count": 1,
+                "relation_term_count": 2,
+                "parenthesis_depth": 1,
+                "local_relation_head_matched": true
+              },
+              {
+                "score": 3.574,
+                "fragment_index": 3,
+                "mention_index": 0,
+                "rendered_body_index": 0,
+                "relation_scope_index": 0,
+                "matched_term_count": 2,
+                "relation_term_count": 2,
+                "parenthesis_depth": 0,
+                "local_relation_head_matched": false
+              }
+            ]
+          },
+          {
+            "slot_index": 3,
+            "matching_candidate_count": 14,
+            "top_candidates": [
+              {
+                "score": 16.683,
+                "fragment_index": 14,
+                "mention_index": 0,
+                "rendered_body_index": 1,
+                "relation_scope_index": 4,
+                "matched_term_count": 3,
+                "relation_term_count": 3,
+                "parenthesis_depth": 0,
+                "local_relation_head_matched": true
+              },
+              {
+                "score": 15.278,
+                "fragment_index": 18,
+                "mention_index": 0,
+                "rendered_body_index": 2,
+                "relation_scope_index": 0,
+                "matched_term_count": 3,
+                "relation_term_count": 3,
+                "parenthesis_depth": 0,
+                "local_relation_head_matched": true
+              },
+              {
+                "score": 14.169,
+                "fragment_index": 11,
+                "mention_index": 1,
+                "rendered_body_index": 1,
+                "relation_scope_index": 1,
+                "matched_term_count": 2,
+                "relation_term_count": 3,
+                "parenthesis_depth": 0,
+                "local_relation_head_matched": true
+              }
+            ]
+          },
+          {
+            "slot_index": 4,
+            "matching_candidate_count": 6,
+            "top_candidates": [
+              {
+                "score": 17.895,
+                "fragment_index": 14,
+                "mention_index": 1,
+                "rendered_body_index": 1,
+                "relation_scope_index": 4,
+                "matched_term_count": 3,
+                "relation_term_count": 3,
+                "parenthesis_depth": 0,
+                "local_relation_head_matched": true
+              },
+              {
+                "score": 17.457,
+                "fragment_index": 23,
+                "mention_index": 0,
+                "rendered_body_index": 3,
+                "relation_scope_index": 0,
+                "matched_term_count": 3,
+                "relation_term_count": 3,
+                "parenthesis_depth": 0,
+                "local_relation_head_matched": true
+              },
+              {
+                "score": 15.278,
+                "fragment_index": 18,
+                "mention_index": 2,
+                "rendered_body_index": 2,
+                "relation_scope_index": 0,
+                "matched_term_count": 3,
+                "relation_term_count": 3,
+                "parenthesis_depth": 0,
+                "local_relation_head_matched": true
+              }
+            ]
+          }
+        ]
+      },
+      "slots": [
+        {
+          "slot_index": 1,
+          "value_type": "proportion",
+          "slot_source": "requested_fact_slots",
+          "unit": "percent",
+          "qualifier": null,
+          "input_form": "original",
+          "fragment_index": 3,
+          "mention_index": 0,
+          "matched_term_count": 2,
+          "relation_term_count": 3,
+          "source_mapped_relation_variant_count": 0,
+          "minimum_relation_matches": 2,
+          "expected_cardinality": null,
+          "parenthesis_depth": 0,
+          "local_relation_head_matched": true
+        },
+        {
+          "slot_index": 2,
+          "value_type": "proportion",
+          "slot_source": "requested_fact_slots",
+          "unit": "percent",
+          "qualifier": null,
+          "input_form": "original",
+          "fragment_index": 3,
+          "mention_index": 1,
+          "matched_term_count": 2,
+          "relation_term_count": 2,
+          "source_mapped_relation_variant_count": 1,
+          "minimum_relation_matches": 2,
+          "expected_cardinality": null,
+          "parenthesis_depth": 0,
+          "local_relation_head_matched": true
+        },
+        {
+          "slot_index": 3,
+          "value_type": "proportion",
+          "slot_source": "requested_fact_slots",
+          "unit": "percent",
+          "qualifier": null,
+          "input_form": "original",
+          "fragment_index": 5,
+          "mention_index": 0,
+          "matched_term_count": 3,
+          "relation_term_count": 3,
+          "source_mapped_relation_variant_count": 0,
+          "minimum_relation_matches": 2,
+          "expected_cardinality": null,
+          "parenthesis_depth": 0,
+          "local_relation_head_matched": true,
+          "shared_subject_head_matched": false
+        },
+        {
+          "slot_index": 4,
+          "value_type": "proportion",
+          "slot_source": "requested_fact_slots",
+          "unit": "percent",
+          "qualifier": null,
+          "input_form": "original",
+          "fragment_index": 5,
+          "mention_index": 2,
+          "matched_term_count": 3,
+          "relation_term_count": 3,
+          "source_mapped_relation_variant_count": 0,
+          "minimum_relation_matches": 2,
+          "expected_cardinality": null,
+          "parenthesis_depth": 0,
+          "local_relation_head_matched": true,
+          "shared_subject_head_matched": false
+        }
+      ]
+    },
+    "requested_fact_slot_contract": {
+      "version": "requested_fact_slot_contract_v1",
+      "compatibility_contract": "requested_metric_contract_v2",
+      "slot_source": "requested_fact_slots",
+      "enabled": true,
+      "complete": true,
+      "reason": "all_requested_slots_mapped_in_one_rendered_source",
+      "source": "final_rendered_evidence",
+      "mapping_method": "bounded_rendered_sentence_peer_alignment_v8",
+      "requested_slot_count": 4,
+      "mapped_slot_count": 4,
+      "sanitizer_dropped_slot": false,
+      "used_for_generation": true,
+      "used_for_validation": true,
+      "rendered_evidence_hash": "21dfbb5695d58d74d64a1927b8bdbaad6365d66f3e29d29dc11bae7277e70340",
+      "mapping_diagnostics": {
+        "evidence_candidate_count": 78,
+        "evidence_fragment_count": 64,
+        "evidence_candidates_truncated": false,
+        "ambiguous": false,
+        "candidate_scope": "lexical_pre_assignment",
+        "coordination_gate_evaluated": true,
+        "coordination_gate_passed": true,
+        "coordination_rejected_assignment_count": 0,
+        "coordination_qualified_solution_count": 3,
+        "slots": [
+          {
+            "slot_index": 1,
+            "matching_candidate_count": 2,
+            "top_candidates": [
+              {
+                "score": 7.732,
+                "fragment_index": 3,
+                "mention_index": 1,
+                "rendered_body_index": 0,
+                "relation_scope_index": 0,
+                "matched_term_count": 2,
+                "relation_term_count": 3,
+                "parenthesis_depth": 0,
+                "local_relation_head_matched": true
+              },
+              {
+                "score": 5.918,
+                "fragment_index": 3,
+                "mention_index": 0,
+                "rendered_body_index": 0,
+                "relation_scope_index": 0,
+                "matched_term_count": 2,
+                "relation_term_count": 3,
+                "parenthesis_depth": 0,
+                "local_relation_head_matched": true
+              }
+            ]
+          },
+          {
+            "slot_index": 2,
+            "matching_candidate_count": 7,
+            "top_candidates": [
+              {
+                "score": 6.638,
+                "fragment_index": 3,
+                "mention_index": 1,
+                "rendered_body_index": 0,
+                "relation_scope_index": 0,
+                "matched_term_count": 2,
+                "relation_term_count": 2,
+                "parenthesis_depth": 0,
+                "local_relation_head_matched": true
+              },
+              {
+                "score": 4.322,
+                "fragment_index": 42,
+                "mention_index": 0,
+                "rendered_body_index": 5,
+                "relation_scope_index": 0,
+                "matched_term_count": 1,
+                "relation_term_count": 2,
+                "parenthesis_depth": 1,
+                "local_relation_head_matched": true
+              },
+              {
+                "score": 3.574,
+                "fragment_index": 3,
+                "mention_index": 0,
+                "rendered_body_index": 0,
+                "relation_scope_index": 0,
+                "matched_term_count": 2,
+                "relation_term_count": 2,
+                "parenthesis_depth": 0,
+                "local_relation_head_matched": false
+              }
+            ]
+          },
+          {
+            "slot_index": 3,
+            "matching_candidate_count": 14,
+            "top_candidates": [
+              {
+                "score": 16.683,
+                "fragment_index": 14,
+                "mention_index": 0,
+                "rendered_body_index": 1,
+                "relation_scope_index": 4,
+                "matched_term_count": 3,
+                "relation_term_count": 3,
+                "parenthesis_depth": 0,
+                "local_relation_head_matched": true
+              },
+              {
+                "score": 15.278,
+                "fragment_index": 18,
+                "mention_index": 0,
+                "rendered_body_index": 2,
+                "relation_scope_index": 0,
+                "matched_term_count": 3,
+                "relation_term_count": 3,
+                "parenthesis_depth": 0,
+                "local_relation_head_matched": true
+              },
+              {
+                "score": 14.169,
+                "fragment_index": 11,
+                "mention_index": 1,
+                "rendered_body_index": 1,
+                "relation_scope_index": 1,
+                "matched_term_count": 2,
+                "relation_term_count": 3,
+                "parenthesis_depth": 0,
+                "local_relation_head_matched": true
+              }
+            ]
+          },
+          {
+            "slot_index": 4,
+            "matching_candidate_count": 6,
+            "top_candidates": [
+              {
+                "score": 17.895,
+                "fragment_index": 14,
+                "mention_index": 1,
+                "rendered_body_index": 1,
+                "relation_scope_index": 4,
+                "matched_term_count": 3,
+                "relation_term_count": 3,
+                "parenthesis_depth": 0,
+                "local_relation_head_matched": true
+              },
+              {
+                "score": 17.457,
+                "fragment_index": 23,
+                "mention_index": 0,
+                "rendered_body_index": 3,
+                "relation_scope_index": 0,
+                "matched_term_count": 3,
+                "relation_term_count": 3,
+                "parenthesis_depth": 0,
+                "local_relation_head_matched": true
+              },
+              {
+                "score": 15.278,
+                "fragment_index": 18,
+                "mention_index": 2,
+                "rendered_body_index": 2,
+                "relation_scope_index": 0,
+                "matched_term_count": 3,
+                "relation_term_count": 3,
+                "parenthesis_depth": 0,
+                "local_relation_head_matched": true
+              }
+            ]
+          }
+        ]
+      },
+      "slots": [
+        {
+          "slot_index": 1,
+          "value_type": "proportion",
+          "slot_source": "requested_fact_slots",
+          "unit": "percent",
+          "qualifier": null,
+          "input_form": "original",
+          "fragment_index": 3,
+          "mention_index": 0,
+          "matched_term_count": 2,
+          "relation_term_count": 3,
+          "source_mapped_relation_variant_count": 0,
+          "minimum_relation_matches": 2,
+          "expected_cardinality": null,
+          "parenthesis_depth": 0,
+          "local_relation_head_matched": true
+        },
+        {
+          "slot_index": 2,
+          "value_type": "proportion",
+          "slot_source": "requested_fact_slots",
+          "unit": "percent",
+          "qualifier": null,
+          "input_form": "original",
+          "fragment_index": 3,
+          "mention_index": 1,
+          "matched_term_count": 2,
+          "relation_term_count": 2,
+          "source_mapped_relation_variant_count": 1,
+          "minimum_relation_matches": 2,
+          "expected_cardinality": null,
+          "parenthesis_depth": 0,
+          "local_relation_head_matched": true
+        },
+        {
+          "slot_index": 3,
+          "value_type": "proportion",
+          "slot_source": "requested_fact_slots",
+          "unit": "percent",
+          "qualifier": null,
+          "input_form": "original",
+          "fragment_index": 5,
+          "mention_index": 0,
+          "matched_term_count": 3,
+          "relation_term_count": 3,
+          "source_mapped_relation_variant_count": 0,
+          "minimum_relation_matches": 2,
+          "expected_cardinality": null,
+          "parenthesis_depth": 0,
+          "local_relation_head_matched": true,
+          "shared_subject_head_matched": false
+        },
+        {
+          "slot_index": 4,
+          "value_type": "proportion",
+          "slot_source": "requested_fact_slots",
+          "unit": "percent",
+          "qualifier": null,
+          "input_form": "original",
+          "fragment_index": 5,
+          "mention_index": 2,
+          "matched_term_count": 3,
+          "relation_term_count": 3,
+          "source_mapped_relation_variant_count": 0,
+          "minimum_relation_matches": 2,
+          "expected_cardinality": null,
+          "parenthesis_depth": 0,
+          "local_relation_head_matched": true,
+          "shared_subject_head_matched": false
+        }
+      ]
+    },
+    "answer_validation_contract_shadow": {
+      "version": "answer_validation_contract_shadow_v2",
+      "mode": "shadow",
+      "production_decision_source": "existing_production_paths",
+      "planner": {
+        "mode": "specific_research_fact",
+        "route_mode": "specific_research_fact",
+        "semantic_candidates_version": "question_semantic_candidates_v1",
+        "fields": {
+          "document_source_years": {
+            "value": [
+              "2023"
+            ],
+            "available": true,
+            "state": "present",
+            "provenance": {
+              "layer": "question_planner",
+              "method": "specific_research_fact_source_years",
+              "span_start": null,
+              "span_end": null
+            },
+            "confidence": null,
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "period_role": {
+            "value": null,
+            "available": true,
+            "state": "present",
+            "provenance": {
+              "layer": "question_planner",
+              "method": "bounded_episode_metric_fact_shape",
+              "span_start": null,
+              "span_end": null
+            },
+            "confidence": null,
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "evidence_period_years": {
+            "value": [],
+            "available": true,
+            "state": "present",
+            "provenance": {
+              "layer": "question_planner",
+              "method": "bounded_episode_period_years",
+              "span_start": null,
+              "span_end": null
+            },
+            "confidence": null,
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "evidence_phase_ordinal": {
+            "value": null,
+            "available": true,
+            "state": "present",
+            "provenance": {
+              "layer": "question_planner",
+              "method": "bounded_episode_phase_ordinal",
+              "span_start": null,
+              "span_end": null
+            },
+            "confidence": null,
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "evidence_metric_terms": {
+            "value": [],
+            "available": true,
+            "state": "present",
+            "provenance": {
+              "layer": "question_planner",
+              "method": "bounded_episode_metric_terms",
+              "span_start": null,
+              "span_end": null
+            },
+            "confidence": null,
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "evidence_metric_slots": {
+            "value": [],
+            "available": true,
+            "state": "present",
+            "provenance": {
+              "layer": "question_planner",
+              "method": "bounded_episode_metric_slots",
+              "span_start": null,
+              "span_end": null
+            },
+            "confidence": null,
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "bounded_episode_metric_fact": {
+            "value": false,
+            "available": true,
+            "state": "present",
+            "provenance": {
+              "layer": "question_planner",
+              "method": "bounded_episode_metric_fact_shape",
+              "span_start": null,
+              "span_end": null
+            },
+            "confidence": null,
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "year_role_mentions": {
+            "value": [
+              {
+                "mention_index": 1,
+                "occurrence_index": 1,
+                "span_start": 12,
+                "span_end": 16,
+                "span_basis": "normalized_question",
+                "value": "2023",
+                "role": "document_source_year",
+                "cue_family": "article",
+                "method": "forward_explicit_year_cue",
+                "input_form": "original"
+              }
+            ],
+            "available": true,
+            "state": "present",
+            "provenance": {
+              "layer": "question_planner",
+              "method": "semantic_year_role_mentions",
+              "span_start": null,
+              "span_end": null
+            },
+            "confidence": null,
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "requested_numeric_slots": {
+            "value": {
+              "complete": true,
+              "recognized_clause_count": 3,
+              "emitted_slot_count": 4,
+              "unresolved_clause_count": 0,
+              "truncated": false,
+              "slots": [
+                {
+                  "index": 1,
+                  "value_type": "proportion",
+                  "relation_term_count": 3,
+                  "derivation": "explicit_clause",
+                  "coordination_group": null,
+                  "value_type_source": "explicit_cue",
+                  "input_form": "original"
+                },
+                {
+                  "index": 2,
+                  "value_type": "proportion",
+                  "relation_term_count": 2,
+                  "derivation": "explicit_clause",
+                  "coordination_group": null,
+                  "value_type_source": "explicit_cue",
+                  "input_form": "original"
+                },
+                {
+                  "index": 3,
+                  "value_type": "proportion",
+                  "relation_term_count": 3,
+                  "derivation": "coordinated_shared_head",
+                  "coordination_group": 1,
+                  "value_type_source": "explicit_cue",
+                  "input_form": "original"
+                },
+                {
+                  "index": 4,
+                  "value_type": "proportion",
+                  "relation_term_count": 3,
+                  "derivation": "coordinated_shared_head",
+                  "coordination_group": 1,
+                  "value_type_source": "explicit_cue",
+                  "input_form": "original"
+                }
+              ]
+            },
+            "available": true,
+            "state": "present",
+            "provenance": {
+              "layer": "question_planner",
+              "method": "requested_numeric_clause_slots",
+              "span_start": null,
+              "span_end": null
+            },
+            "confidence": null,
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "current_turn_document_identity": {
+            "value": {
+              "version": "current_turn_document_identity_v1",
+              "scope": "current_turn",
+              "history_fallback_policy": "fill_missing_only",
+              "author": {
+                "value": "Vaike Vainu",
+                "provenance": "explicit_current_turn",
+                "confidence": "high",
+                "span_start": 0,
+                "span_end": 11,
+                "input_form": "original"
+              },
+              "document_kind": {
+                "value": "article",
+                "provenance": "explicit_current_turn"
+              },
+              "document_source_years": [
+                {
+                  "value": "2023",
+                  "role": "document_source_year",
+                  "provenance": "explicit_current_turn"
+                }
+              ],
+              "title_hint": {
+                "value": "Suure hoolduskoormusega inimesed vajavad täiendavat abi",
+                "provenance": "explicit_current_turn"
+              },
+              "explicit_anchor_count": 4
+            },
+            "available": true,
+            "state": "present",
+            "provenance": {
+              "layer": "question_planner",
+              "method": "current_turn_document_identity_semantic_candidate",
+              "span_start": null,
+              "span_end": null
+            },
+            "confidence": null,
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          }
+        }
+      },
+      "current_turn_author_confirmation": {
+        "version": "current_turn_author_confirmation_v1",
+        "candidate_value": "Vaike Vainu",
+        "candidate_provenance": "explicit_current_turn",
+        "candidate_confidence": "high",
+        "candidate_document_source_years": [
+          "2023"
+        ],
+        "candidate_document_kind": "article",
+        "status": "confirmed_exact",
+        "matched_source_count": 1,
+        "matched_document_ids": [
+          "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1"
+        ],
+        "matched_author_values": [
+          "Vaike Vainu"
+        ],
+        "promotion_eligible": true,
+        "confirmation_source": "retrieved_source_metadata"
+      },
+      "fact_validation": {
+        "production_path": "legacy",
+        "validation_applied": true,
+        "legacy_path_used": true,
+        "structured_path_used_for_decision": false,
+        "structured_observations": {
+          "planner_mode": "specific_research_fact",
+          "route_mode": "specific_research_fact",
+          "field_availability": {
+            "document_source_years": true,
+            "period_role": true,
+            "evidence_period_years": true,
+            "evidence_phase_ordinal": true,
+            "evidence_metric_terms": true,
+            "evidence_metric_slots": true,
+            "bounded_episode_metric_fact": true,
+            "year_role_mentions": true,
+            "requested_numeric_slots": true
+          },
+          "document_source_years": [
+            "2023"
+          ],
+          "evidence_period_years": [],
+          "evidence_phase_ordinal": null,
+          "evidence_metric_term_count": 0,
+          "evidence_metric_slot_categories": [],
+          "bounded_episode_metric_fact": false,
+          "typed_document_source_years": [
+            "2023"
+          ],
+          "typed_evidence_years": [],
+          "ambiguous_years": [],
+          "requested_numeric_slot_count": 4,
+          "requested_numeric_recognized_clause_count": 3,
+          "requested_numeric_emitted_slot_count": 4,
+          "requested_numeric_slot_types": [
+            "proportion",
+            "proportion",
+            "proportion",
+            "proportion"
+          ],
+          "requested_numeric_slots_complete": true,
+          "requested_numeric_slots_truncated": false,
+          "requested_numeric_unresolved_clause_count": 0
+        },
+        "legacy_observations": {
+          "asks_for_numeric_fact": true,
+          "asks_for_year": false,
+          "asks_for_publication_year": false,
+          "asks_for_whole_scope": false,
+          "asks_for_categorical_numeric_breakdown": false,
+          "contact_answer_intent_requested": false
+        },
+        "runtime_relation": "not_comparable"
+      },
+      "attribution": {
+        "production_path": "hybrid_existing",
+        "decision_source": "not_fully_attributed",
+        "legacy_path_used": null,
+        "structured_path_used_for_decision": null,
+        "shadow_contract_used_for_decision": false,
+        "structured_path_scope": "answer_validation_contract_shadow_v2",
+        "structured_observations": {
+          "planner_mode": "specific_research_fact",
+          "route_mode": "specific_research_fact",
+          "field_availability": {
+            "document_source_years": true,
+            "period_role": true,
+            "evidence_period_years": true
+          },
+          "document_source_years": [
+            "2023"
+          ],
+          "evidence_period_years": [],
+          "document_identity_required": true,
+          "document_identity_matched": true,
+          "document_identity_confidence": "high"
+        },
+        "legacy_observations": {
+          "query_plan_available": true,
+          "current_status_observed": false,
+          "raw_anchor_observed": true,
+          "raw_anchor_match_observed": true,
+          "exact_anchor_match": true,
+          "exact_anchor_match_scope": "any_selected_source"
+        },
+        "runtime_relation": "not_comparable"
+      }
+    },
+    "fact_validation": {
+      "version": "exact_numeric_fact_v6",
+      "enabled": true,
+      "buffered": true,
+      "passed": true,
+      "reason": "all_claims_in_one_rendered_source",
+      "claim_count": 4,
+      "category_relation_checked": false,
+      "expected_per_group_value_present": false,
+      "observed_category_value_count": 0,
+      "mismatched_category_label_count": 0,
+      "expected_total_value_present": false,
+      "observed_total_value_present": false,
+      "unsupported_category_label_count": 0,
+      "unsupported_claim_count": 0,
+      "temporal_claim_bindings": [],
+      "temporal_missing_years": [],
+      "temporal_supplemental_source_ids": [],
+      "temporal_supplemental_bindings": [],
+      "contact_inventory_checked": false,
+      "contact_monitor_checked": false,
+      "contact_inventory_total_expected_count": 0,
+      "contact_inventory_total_seen_count": 0,
+      "contact_role_count_expected_count": 0,
+      "contact_role_count_seen_count": 0,
+      "missing_contact_name_count": 0,
+      "unexpected_contact_item_count": 0,
+      "unsupported_contact_role_relation_count": 0,
+      "contact_phone_relation_checked": false,
+      "unsupported_contact_phone_value_count": 0,
+      "unsupported_contact_phone_relation_count": 0,
+      "contact_email_relation_checked": false,
+      "unsupported_contact_email_value_count": 0,
+      "unsupported_contact_email_relation_count": 0,
+      "unsupported_contact_date_value_count": 0,
+      "expected_contact_check_cadence_present": false,
+      "contact_check_cadence_expected_present": false,
+      "contact_check_cadence_claim_count": 0,
+      "unsupported_contact_check_cadence_count": 0,
+      "contact_check_cadence_validated": false,
+      "supporting_source_ids": [],
+      "source_count": 1,
+      "supporting_source_id": "sotsiaaltoo_suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+      "requested_metric_contract_checked": true,
+      "requested_metric_recovery": false,
+      "requested_metric_relation_diagnostics": [],
+      "requested_fact_slot_contract_checked": true,
+      "requested_qualitative_contract_checked": false,
+      "requested_metric_slot_count": 4,
+      "requested_qualitative_slot_count": 0,
+      "requested_fact_missing_slot_indexes": [],
+      "requested_fact_answer_missing_slot_indexes": [],
+      "requested_fact_qualitative_slot_bindings": [],
+      "requested_fact_metric_slot_bindings": [],
+      "requested_metric_slot_bindings": [
+        {
+          "slot_index": 1,
+          "value_type": "proportion",
+          "claim_index": 0,
+          "matched_relation_term_count": 2
+        },
+        {
+          "slot_index": 2,
+          "value_type": "proportion",
+          "claim_index": 1,
+          "matched_relation_term_count": 2
+        },
+        {
+          "slot_index": 3,
+          "value_type": "proportion",
+          "claim_index": 2,
+          "matched_relation_term_count": 3
+        },
+        {
+          "slot_index": 4,
+          "value_type": "proportion",
+          "claim_index": 3,
+          "matched_relation_term_count": 3
+        }
+      ],
+      "document_identity_required": true,
+      "document_identity_matched": true,
+      "document_identity_confidence": "high",
+      "selected_document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+      "author_corpus_required": false,
+      "author_corpus_complete": false,
+      "author_corpus_document_count": 0,
+      "validation_duration_ms": 184,
+      "year_mode": "not_requested",
+      "whole_scope_checked": false,
+      "buffered_response_ms": 1531
+    },
+    "document_identity": {
+      "enabled": true,
+      "required": true,
+      "matched": true,
+      "confidence": "high",
+      "requested_author": "Vaike Vainu",
+      "subject_terms": [
+        "2023",
+        "vaike",
+        "vainu",
+        "suure",
+        "hoolduskoormusega",
+        "inimesed",
+        "vajavad",
+        "taiendavat",
+        "suur",
+        "vastanutest",
+        "vajas"
+      ],
+      "selected_document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+      "selected_title": "Suure hoolduskoormusega inimesed vajavad täiendavat abi",
+      "reasons": [
+        "author_match:Vaike Vainu",
+        "exact_title_anchor",
+        "source:research_or_journal",
+        "subject:2023",
+        "subject:vaike",
+        "subject:vainu",
+        "subject:suure",
+        "subject:hoolduskoormusega",
+        "subject:inimesed",
+        "subject:vajavad",
+        "subject:taiendavat",
+        "subject:suur",
+        "subject:vajas",
+        "body_subject:2023",
+        "body_subject:vaike",
+        "body_subject:vainu",
+        "body_subject:suure",
+        "body_subject:hoolduskoormusega",
+        "body_subject:inimesed",
+        "body_subject:vajavad"
+      ],
+      "duration_ms": 2171,
+      "candidates": [
+        {
+          "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+          "title": "Suure hoolduskoormusega inimesed vajavad täiendavat abi",
+          "score": 174,
+          "identity_matched": true,
+          "author_matched": true,
+          "source_compatible": true,
+          "research_or_journal": true,
+          "subject_terms": [
+            "2023",
+            "vaike",
+            "vainu",
+            "suure",
+            "hoolduskoormusega",
+            "inimesed",
+            "vajavad",
+            "taiendavat",
+            "suur",
+            "vajas"
+          ],
+          "body_subject_terms": [
+            "2023",
+            "vaike",
+            "vainu",
+            "suure",
+            "hoolduskoormusega",
+            "inimesed",
+            "vajavad",
+            "taiendavat",
+            "suur",
+            "vajas"
+          ]
+        }
+      ]
+    },
+    "lemma_fts_shadow": {
+      "version": "lemma_fts_shadow_trace_v1",
+      "decision_mode": "shadow_only",
+      "production_path_changed": false,
+      "observations": [
+        {
+          "version": "lemma_fts_shadow_v1",
+          "enabled": true,
+          "index_ready": true,
+          "executed": true,
+          "scheduled": false,
+          "reason": "SHADOW_ONLY",
+          "query_language": "et",
+          "query_input_form": "retrieval_query",
+          "analyzer_version": "estnltk-vabamorf-1.7.5-v2",
+          "query_token_count": 27,
+          "candidate_count": 24,
+          "production_result_count": 8,
+          "chunk_overlap_count": 8,
+          "document_overlap_count": 1,
+          "top_candidates": [
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:23:3a410a4a:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 1
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:1:9ca814e2:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 2
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:4:53dc1616:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 3
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:0:f84666f6:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 4
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:10:3b73f096:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 5
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:19:c0008012:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 6
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:18:ddcfd05a:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 7
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:21:d8e4304a:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 8
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:22:341d02dd:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 9
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:7:0b471ef0:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 10
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:13:9f815a40:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 11
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:12:75eee0df:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 12
+            }
+          ],
+          "analysis_ms": 2,
+          "query_ms": 1608,
+          "total_ms": 0
+        },
+        {
+          "version": "lemma_fts_shadow_v1",
+          "enabled": true,
+          "index_ready": true,
+          "executed": true,
+          "scheduled": false,
+          "reason": "SHADOW_ONLY",
+          "query_language": "et",
+          "query_input_form": "retrieval_query",
+          "analyzer_version": "estnltk-vabamorf-1.7.5-v2",
+          "query_token_count": 1,
+          "candidate_count": 11,
+          "production_result_count": 12,
+          "chunk_overlap_count": 7,
+          "document_overlap_count": 1,
+          "top_candidates": [
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:21:d8e4304a:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 1
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:23:3a410a4a:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 2
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:10:3b73f096:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 3
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:1:9ca814e2:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 4
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:4:53dc1616:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 5
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:7:0b471ef0:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 6
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:18:ddcfd05a:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 7
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:12:75eee0df:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 8
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:15:04c064e7:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 9
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:19:c0008012:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 10
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:20:9afebc5a:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 11
+            }
+          ],
+          "analysis_ms": 0,
+          "query_ms": 45,
+          "total_ms": 0
+        },
+        {
+          "version": "lemma_fts_shadow_v1",
+          "enabled": true,
+          "index_ready": true,
+          "executed": true,
+          "scheduled": false,
+          "reason": "SHADOW_ONLY",
+          "query_language": "et",
+          "query_input_form": "retrieval_query",
+          "analyzer_version": "estnltk-vabamorf-1.7.5-v2",
+          "query_token_count": 24,
+          "candidate_count": 24,
+          "production_result_count": 12,
+          "chunk_overlap_count": 12,
+          "document_overlap_count": 1,
+          "top_candidates": [
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:15:04c064e7:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 1
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:18:ddcfd05a:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 2
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:0:f84666f6:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 3
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:2:4effc08a:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 4
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:14:f03a406f:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 5
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:19:c0008012:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 6
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:22:341d02dd:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 7
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:23:3a410a4a:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 8
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:9:fb57d8aa:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 9
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:21:d8e4304a:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 10
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:1:9ca814e2:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 11
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:13:9f815a40:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 12
+            }
+          ],
+          "analysis_ms": 0,
+          "query_ms": 237,
+          "total_ms": 0
+        },
+        {
+          "version": "lemma_fts_shadow_v1",
+          "enabled": true,
+          "index_ready": true,
+          "executed": true,
+          "scheduled": false,
+          "reason": "SHADOW_ONLY",
+          "query_language": "et",
+          "query_input_form": "retrieval_query",
+          "analyzer_version": "estnltk-vabamorf-1.7.5-v2",
+          "query_token_count": 29,
+          "candidate_count": 24,
+          "production_result_count": 12,
+          "chunk_overlap_count": 12,
+          "document_overlap_count": 1,
+          "top_candidates": [
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:15:04c064e7:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 1
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:18:ddcfd05a:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 2
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:2:4effc08a:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 3
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:0:f84666f6:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 4
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:14:f03a406f:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 5
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:19:c0008012:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 6
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:9:fb57d8aa:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 7
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:22:341d02dd:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 8
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:13:9f815a40:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 9
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:21:d8e4304a:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 10
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:10:3b73f096:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 11
+            },
+            {
+              "chunk_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1:23:3a410a4a:version:16e72310a41141ca99cd4ca4d5b87983",
+              "document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+              "rank": 12
+            }
+          ],
+          "analysis_ms": 1,
+          "query_ms": 261,
+          "total_ms": 0
+        }
+      ]
+    },
+    "performance_timings": {
+      "planner_ms": 9,
+      "query_planning_ms": 0,
+      "query_build_ms": 0,
+      "retrieval_wall_ms": 3917,
+      "multi_query_retrieval_ms": 7719,
+      "retrieval_parallel_sum_ms": 7719,
+      "retrieval_query_count": 4,
+      "embedding_sum_ms": 1006,
+      "embedding_ms": 1006,
+      "dense_sum_ms": 1602,
+      "dense_ms": 1602,
+      "registry_ms": 247,
+      "lexical_sum_ms": 1343,
+      "lexical_ms": 1343,
+      "lemma_fts_shadow_ms": 0,
+      "document_sibling_sum_ms": 477,
+      "service_fact_segment_sum_ms": 2050,
+      "shared_read_cache_hits": 3,
+      "shared_read_cache_waits": 4,
+      "shared_read_cache_misses": 6,
+      "shared_read_cache_bypasses": 0,
+      "shared_embedding_batch_hits": 0,
+      "shared_embedding_batch_waits": 2,
+      "shared_embedding_batch_misses": 1,
+      "shared_embedding_batch_bypasses": 1,
+      "lexical_scanned_sum": 96,
+      "lexical_corpus_scan_query_count": 0,
+      "lexical_exhaustive_query_count": 0,
+      "document_identity_ms": 2171,
+      "fact_segment_search_ms": 2560,
+      "context_render_ms": 1,
+      "first_model_call_ms": 0,
+      "fact_validation_ms": 184,
+      "retrieval_context_total_ms": 7878,
+      "model_ms": 1347,
+      "retrieval_query_1_ms": 1350,
+      "retrieval_query_2_ms": 1861,
+      "retrieval_query_3_ms": 1963,
+      "retrieval_query_4_ms": 2545
+    },
+    "insufficient_precise_legal_source_support": false,
+    "insufficientPreciseLegalSourceSupport": false,
+    "query_plan": {
+      "planner_version": "v2",
+      "mode": "specific_research_fact",
+      "external_sources_needed": true,
+      "should_run_rag": true,
+      "previous_source_use_request": false,
+      "temporal_year_semantics": {
+        "preferred_source_years_source": "typed_year_role_mentions",
+        "typed_year_role_mentions_available": true,
+        "preferred_source_year_count": 1,
+        "source_filter_year_count": 1,
+        "source_filter_source": "typed_year_role_mentions",
+        "evidence_year_count": 0,
+        "breakdown_year_count": 0,
+        "ambiguous_year_count": 0
+      },
+      "answer_validation_contract_shadow": {
+        "version": "answer_validation_contract_shadow_v2",
+        "mode": "shadow",
+        "production_decision_source": "existing_production_paths",
+        "planner": {
+          "mode": "specific_research_fact",
+          "route_mode": "specific_research_fact",
+          "semantic_candidates_version": "question_semantic_candidates_v1",
+          "fields": {
+            "document_source_years": {
+              "value": [
+                "2023"
+              ],
+              "available": true,
+              "state": "present",
+              "provenance": {
+                "layer": "question_planner",
+                "method": "specific_research_fact_source_years",
+                "span_start": null,
+                "span_end": null
+              },
+              "confidence": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "period_role": {
+              "value": null,
+              "available": true,
+              "state": "present",
+              "provenance": {
+                "layer": "question_planner",
+                "method": "bounded_episode_metric_fact_shape",
+                "span_start": null,
+                "span_end": null
+              },
+              "confidence": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "evidence_period_years": {
+              "value": [],
+              "available": true,
+              "state": "present",
+              "provenance": {
+                "layer": "question_planner",
+                "method": "bounded_episode_period_years",
+                "span_start": null,
+                "span_end": null
+              },
+              "confidence": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "evidence_phase_ordinal": {
+              "value": null,
+              "available": true,
+              "state": "present",
+              "provenance": {
+                "layer": "question_planner",
+                "method": "bounded_episode_phase_ordinal",
+                "span_start": null,
+                "span_end": null
+              },
+              "confidence": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "evidence_metric_terms": {
+              "value": [],
+              "available": true,
+              "state": "present",
+              "provenance": {
+                "layer": "question_planner",
+                "method": "bounded_episode_metric_terms",
+                "span_start": null,
+                "span_end": null
+              },
+              "confidence": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "evidence_metric_slots": {
+              "value": [],
+              "available": true,
+              "state": "present",
+              "provenance": {
+                "layer": "question_planner",
+                "method": "bounded_episode_metric_slots",
+                "span_start": null,
+                "span_end": null
+              },
+              "confidence": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "bounded_episode_metric_fact": {
+              "value": false,
+              "available": true,
+              "state": "present",
+              "provenance": {
+                "layer": "question_planner",
+                "method": "bounded_episode_metric_fact_shape",
+                "span_start": null,
+                "span_end": null
+              },
+              "confidence": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "year_role_mentions": {
+              "value": [
+                {
+                  "mention_index": 1,
+                  "occurrence_index": 1,
+                  "span_start": 12,
+                  "span_end": 16,
+                  "span_basis": "normalized_question",
+                  "value": "2023",
+                  "role": "document_source_year",
+                  "cue_family": "article",
+                  "method": "forward_explicit_year_cue",
+                  "input_form": "original"
+                }
+              ],
+              "available": true,
+              "state": "present",
+              "provenance": {
+                "layer": "question_planner",
+                "method": "semantic_year_role_mentions",
+                "span_start": null,
+                "span_end": null
+              },
+              "confidence": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "requested_year_role": {
+              "value": null,
+              "available": false,
+              "state": "absent",
+              "provenance": null,
+              "confidence": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "requested_numeric_slots": {
+              "value": {
+                "complete": true,
+                "recognized_clause_count": 3,
+                "emitted_slot_count": 4,
+                "unresolved_clause_count": 0,
+                "truncated": false,
+                "slots": [
+                  {
+                    "index": 1,
+                    "value_type": "proportion",
+                    "relation_term_count": 3,
+                    "derivation": "explicit_clause",
+                    "coordination_group": null,
+                    "value_type_source": "explicit_cue",
+                    "input_form": "original"
+                  },
+                  {
+                    "index": 2,
+                    "value_type": "proportion",
+                    "relation_term_count": 2,
+                    "derivation": "explicit_clause",
+                    "coordination_group": null,
+                    "value_type_source": "explicit_cue",
+                    "input_form": "original"
+                  },
+                  {
+                    "index": 3,
+                    "value_type": "proportion",
+                    "relation_term_count": 3,
+                    "derivation": "coordinated_shared_head",
+                    "coordination_group": 1,
+                    "value_type_source": "explicit_cue",
+                    "input_form": "original"
+                  },
+                  {
+                    "index": 4,
+                    "value_type": "proportion",
+                    "relation_term_count": 3,
+                    "derivation": "coordinated_shared_head",
+                    "coordination_group": 1,
+                    "value_type_source": "explicit_cue",
+                    "input_form": "original"
+                  }
+                ]
+              },
+              "available": true,
+              "state": "present",
+              "provenance": {
+                "layer": "question_planner",
+                "method": "requested_numeric_clause_slots",
+                "span_start": null,
+                "span_end": null
+              },
+              "confidence": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "current_turn_document_identity": {
+              "value": {
+                "version": "current_turn_document_identity_v1",
+                "scope": "current_turn",
+                "history_fallback_policy": "fill_missing_only",
+                "author": {
+                  "value": "Vaike Vainu",
+                  "provenance": "explicit_current_turn",
+                  "confidence": "high",
+                  "span_start": 0,
+                  "span_end": 11,
+                  "input_form": "original"
+                },
+                "document_kind": {
+                  "value": "article",
+                  "provenance": "explicit_current_turn"
+                },
+                "document_source_years": [
+                  {
+                    "value": "2023",
+                    "role": "document_source_year",
+                    "provenance": "explicit_current_turn"
+                  }
+                ],
+                "title_hint": {
+                  "value": "Suure hoolduskoormusega inimesed vajavad täiendavat abi",
+                  "provenance": "explicit_current_turn"
+                },
+                "explicit_anchor_count": 4
+              },
+              "available": true,
+              "state": "present",
+              "provenance": {
+                "layer": "question_planner",
+                "method": "current_turn_document_identity_semantic_candidate",
+                "span_start": null,
+                "span_end": null
+              },
+              "confidence": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            }
+          }
+        }
+      },
+      "retrieval_strategy": "document_identity_then_fact",
+      "retrieval_strategy_selection": {
+        "planner_version": "v2.3",
+        "mode": "specific_research_fact",
+        "retrieval_strategy": "document_identity_then_fact",
+        "selection_strategy": "specific_research_document_then_fact",
+        "query_order": "identity_first",
+        "needs_multiple_sources": false,
+        "preferred_source_count": null,
+        "source_layer_filter_mode": "prefer",
+        "answer_contract": "same_identified_document_fact_required",
+        "force_rag": true,
+        "route_override": false,
+        "reason": "planner_mode_specific_research_fact"
+      },
+      "query_count": 1,
+      "query_order": "document_identity_then_fact",
+      "has_per_query_filters": true,
+      "filter_keys": [
+        "$in",
+        "$ne",
+        "audience",
+        "authors",
+        "is_current_version",
+        "year"
+      ],
+      "municipality_names": [],
+      "municipality_ids": [],
+      "selection_strategy": "document_identity_then_fact",
+      "needs_multiple_sources": false,
+      "preferred_source_count": null,
+      "question_planner": {
+        "planner_version": "v2.6",
+        "mode": "specific_research_fact",
+        "role": "social_worker",
+        "input_role": "social_worker",
+        "role_confidence": 0.75,
+        "confidence": 0.92,
+        "needs_rag": true,
+        "needs_multiple_sources": false,
+        "preferred_source_count": null,
+        "topics": [],
+        "life_situation": null,
+        "method_guidance_focus": null,
+        "needs_location": false,
+        "municipality_ambiguous": false,
+        "municipality_candidates": [],
+        "municipality_hint": null,
+        "person_name": "Vaike Vainu",
+        "entity_names": [],
+        "person_source_intent": null,
+        "person_source_scope": null,
+        "person_coauthor_count": 0,
+        "person_coauthor_requested": false,
+        "person_name_transliterated": false,
+        "document_subject_terms": [
+          "2023",
+          "vaike",
+          "vainu",
+          "suure",
+          "hoolduskoormusega",
+          "inimesed",
+          "vajavad",
+          "taiendavat",
+          "suur",
+          "vastanutest",
+          "vajas"
+        ],
+        "document_fact_terms": [
+          "aasta",
+          "2023"
+        ],
+        "document_source_kind": "artiklis",
+        "requested_year_role": "none",
+        "current_evidence_scope": "source_bounded",
+        "document_source_years": [
+          "2023"
+        ],
+        "period_role": null,
+        "evidence_period_years": [],
+        "evidence_phase_ordinal": null,
+        "evidence_metric_terms": [],
+        "evidence_metric_slots": [],
+        "bounded_episode_metric_fact": false,
+        "risk_level": "low",
+        "source_layers": [
+          "journal_article",
+          "research_report",
+          "study",
+          "survey_report",
+          "evaluation_report",
+          "analysis"
+        ],
+        "avoid_source_layers": [],
+        "source_layer_filter_mode": "prefer",
+        "retrieval_strategy": "document_identity_then_fact",
+        "answer_contract": "same_identified_document_fact_required",
+        "social_scope": "in_scope",
+        "social_scope_reason": "strong_social_scope_term",
+        "planner_reason": "singular_research_source_and_fact_shape"
+      },
+      "temporal_query_contract": {
+        "version": "temporal_query_contract_v1",
+        "production_source": "question_planner",
+        "document_source_years": [
+          2023
+        ],
+        "evidence_years": [],
+        "breakdown_years": [],
+        "coverage_years": [],
+        "period_years": [],
+        "ambiguous_years": [],
+        "comparison_requested": false,
+        "qualitative_synthesis_requested": false,
+        "topic_terms": [
+          "vaike",
+          "vainu",
+          "artiklis",
+          "suure",
+          "hoolduskoormusega",
+          "vajavad"
+        ],
+        "requested_year_role": "none",
+        "current_evidence_scope": "source_bounded",
+        "source_filter_applied_to_breakdown": false,
+        "source_filter_applied_to_breakdown_years": []
+      },
+      "context_group_target": 8,
+      "rag_top_k": 36,
+      "risk_level": "low",
+      "stakes": "informational",
+      "evidence_scope": "source_bounded",
+      "risk_decision_source": "structured_semantic_contract",
+      "required_evidence": "medium",
+      "source_layer_filter_mode": "prefer",
+      "legalLookupPlan": {
+        "enabled": false
+      },
+      "flags": {
+        "source_lookup": false,
+        "temporal": false,
+        "resource_discovery": false,
+        "overview_synthesis": false,
+        "comparison": false,
+        "specific_research_fact": true,
+        "thematic_synthesis": false,
+        "broad_multi_source": false,
+        "source_focused_followup": false,
+        "municipality_contacts": false,
+        "municipality_scoped": false,
+        "national_scope": false
+      },
+      "semantic_turn_contract": {
+        "version": "semantic_turn_contract_v2",
+        "language": "et",
+        "input_form": "original",
+        "domain_scope": {
+          "planned": "in_scope",
+          "effective": "in_scope",
+          "reason": "strong_social_scope_term",
+          "promoted_by_retrieval": false,
+          "post_retrieval_evidence": {
+            "strength": "strong",
+            "reason": "recognized_authoritative_or_research_source_and_semantic_anchor",
+            "source_ids": [
+              "sotsiaaltoo_suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1"
+            ],
+            "named_anchor_matches": 2,
+            "topic_anchor_matches": 88
+          }
+        },
+        "intent": "specific_research_fact",
+        "source_scope": "independent_or_unspecified",
+        "history_reference": {
+          "explicit_source_anaphora": false,
+          "carry_previous_source_filter": false
+        },
+        "persons": [
+          "Vaike Vainu"
+        ],
+        "entities": [],
+        "document_identity": {
+          "author_surface": "Vaike Vainu",
+          "author_key": null,
+          "organization": null,
+          "document_kind": "article",
+          "title_hint": "Suure hoolduskoormusega inimesed vajavad täiendavat abi",
+          "title_tokens": [],
+          "source_years": [
+            "2023"
+          ],
+          "acronyms": [],
+          "named_topics": [],
+          "confidence": "low",
+          "provenance": "none"
+        },
+        "temporal": {
+          "type": "none",
+          "requested_year_role": "none",
+          "document_source_years": [
+            "2023"
+          ],
+          "evidence_years": []
+        },
+        "requested_facts": [
+          {
+            "index": 1,
+            "span_start": 33,
+            "value_type": "proportion",
+            "relation_terms": [
+              "vastanutest",
+              "vajas",
+              "lisabi"
+            ],
+            "scope_values": [],
+            "expected_cardinality": null,
+            "derivation": "explicit_clause",
+            "coordination_group": null,
+            "value_type_source": "explicit_cue",
+            "input_form": "original",
+            "category": null,
+            "explicit_values": [],
+            "temporal_scope": "historical",
+            "modality": "unspecified",
+            "relation_term_variants": [
+              {
+                "term": "vastanutest",
+                "variants": [
+                  "vastanu"
+                ]
+              },
+              {
+                "term": "vajas",
+                "variants": [
+                  "vajama",
+                  "vaja"
+                ]
+              },
+              {
+                "term": "lisabi",
+                "variants": [
+                  "lisab"
+                ]
+              }
+            ]
+          },
+          {
+            "index": 2,
+            "span_start": 72,
+            "value_type": "proportion",
+            "relation_terms": [
+              "palju",
+              "lisabi"
+            ],
+            "scope_values": [],
+            "expected_cardinality": null,
+            "derivation": "explicit_clause",
+            "coordination_group": null,
+            "value_type_source": "explicit_cue",
+            "input_form": "original",
+            "category": null,
+            "explicit_values": [],
+            "temporal_scope": "historical",
+            "modality": "unspecified",
+            "relation_term_variants": [
+              {
+                "term": "lisabi",
+                "variants": [
+                  "lisab"
+                ]
+              }
+            ]
+          },
+          {
+            "index": 3,
+            "span_start": 103,
+            "value_type": "proportion",
+            "relation_terms": [
+              "suure",
+              "hoolduskoormuse",
+              "riskiga"
+            ],
+            "scope_values": [],
+            "expected_cardinality": null,
+            "derivation": "coordinated_shared_head",
+            "coordination_group": 1,
+            "value_type_source": "explicit_cue",
+            "input_form": "original",
+            "category": null,
+            "explicit_values": [],
+            "temporal_scope": "historical",
+            "modality": "unspecified",
+            "relation_term_variants": [
+              {
+                "term": "suure",
+                "variants": [
+                  "suur"
+                ]
+              },
+              {
+                "term": "hoolduskoormuse",
+                "variants": [
+                  "hoolduskoormus",
+                  "hooldus",
+                  "koormus"
+                ]
+              },
+              {
+                "term": "riskiga",
+                "variants": [
+                  "risk"
+                ]
+              }
+            ]
+          },
+          {
+            "index": 4,
+            "span_start": 103,
+            "value_type": "proportion",
+            "relation_terms": [
+              "keskmise",
+              "hoolduskoormuse",
+              "riskiga"
+            ],
+            "scope_values": [],
+            "expected_cardinality": null,
+            "derivation": "coordinated_shared_head",
+            "coordination_group": 1,
+            "value_type_source": "explicit_cue",
+            "input_form": "original",
+            "category": null,
+            "explicit_values": [],
+            "temporal_scope": "historical",
+            "modality": "unspecified",
+            "relation_term_variants": [
+              {
+                "term": "keskmise",
+                "variants": [
+                  "keskmine"
+                ]
+              },
+              {
+                "term": "hoolduskoormuse",
+                "variants": [
+                  "hoolduskoormus",
+                  "hooldus",
+                  "koormus"
+                ]
+              },
+              {
+                "term": "riskiga",
+                "variants": [
+                  "risk"
+                ]
+              }
+            ]
+          }
+        ],
+        "requested_fact_contract": {
+          "version": "requested_fact_slots_v2",
+          "complete": true,
+          "expected_cardinality": 0
+        },
+        "risk_scope": "source_bounded_description",
+        "terms": {
+          "surface": [
+            "vaike",
+            "vainu",
+            "2023",
+            "aasta",
+            "artiklis",
+            "suure",
+            "hoolduskoormusega",
+            "inimesed",
+            "vajavad",
+            "taiendavat",
+            "abi",
+            "kui",
+            "suur",
+            "osa",
+            "vastanutest",
+            "vajas",
+            "lisabi",
+            "palju",
+            "ning",
+            "oli",
+            "ja",
+            "keskmise",
+            "hoolduskoormuse",
+            "riskiga"
+          ],
+          "lemmas": [
+            "vaike",
+            "vaik",
+            "vainu",
+            "2023",
+            "aasta",
+            "artikkel",
+            "suur",
+            "suure",
+            "hoolduskoormus",
+            "inimene",
+            "vajama",
+            "vajav",
+            "täiendama",
+            "täiendav",
+            "abi",
+            "kui",
+            "osa",
+            "vastanu",
+            "lisab",
+            "lisabi",
+            "palju",
+            "ning",
+            "olema",
+            "ja",
+            "keskmine",
+            "risk"
+          ],
+          "compound_roots": [
+            "vaike",
+            "vaik",
+            "vainu",
+            "2023",
+            "aasta",
+            "artikkel",
+            "suur",
+            "suure",
+            "hooldus",
+            "koormus",
+            "inimene",
+            "vaja",
+            "vajav",
+            "täienda",
+            "täiendav",
+            "abi",
+            "kui",
+            "osa",
+            "vastanu",
+            "lisab",
+            "lisabi",
+            "palju",
+            "ning",
+            "ole",
+            "ja",
+            "keskmine",
+            "risk"
+          ],
+          "retrieval_et": []
+        },
+        "morphology": {
+          "available": true,
+          "analyzer_version": "estnltk-vabamorf-1.7.5-v2",
+          "reason": null,
+          "language_hint": "et",
+          "language_hint_confidence": 0.94,
+          "proper_name_spans": [
+            "Vaike Vainu"
+          ]
+        }
+      },
+      "semantic_retrieval_terms_et": [],
+      "specific_research_fact_phases": {
+        "version": "specific_research_fact_phases_v1",
+        "strategy": "identity_then_document_scoped_fact",
+        "identity_query_count": 1,
+        "document_scoped_fact_query_count": 3,
+        "document_scoped_fact_search_state": "completed",
+        "document_scoped_fact_search_performed": true,
+        "selected_document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+        "requested_fact_coverage_before_recovery": {
+          "version": "requested_fact_slot_coverage_v1",
+          "enabled": true,
+          "selected_document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+          "requested_slot_count": 4,
+          "covered_slot_count": 4,
+          "covered_slot_indexes": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "missing_slot_indexes": [],
+          "evidence_body_count": 15,
+          "complete": true
+        },
+        "requested_fact_recovery_query_count": 0,
+        "requested_fact_coverage_after_recovery": {
+          "version": "requested_fact_slot_coverage_v1",
+          "enabled": true,
+          "selected_document_id": "sotsiaaltoo-1-2023-suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+          "requested_slot_count": 4,
+          "covered_slot_count": 4,
+          "covered_slot_indexes": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "missing_slot_indexes": [],
+          "evidence_body_count": 15,
+          "complete": true
+        }
+      },
+      "language_plan": {
+        "version": "language-plan-v1",
+        "interface_language": "et",
+        "query_language": "et",
+        "query_language_confidence": 0.92,
+        "query_language_reason": "estonian_lexical_hint",
+        "retrieval_language": "et",
+        "answer_language": "et",
+        "answer_language_reason": "query_language",
+        "recommended_answer_language": "et",
+        "recommended_answer_language_reason": "query_language",
+        "runtime_reply_language": "et",
+        "runtime_reply_language_reason": "matches_answer_plan",
+        "shadow_mode": "not_available",
+        "canonical_query_available": false,
+        "canonical_intent": null,
+        "preserved_entity_types": [
+          "year"
+        ],
+        "preserved_entity_count": 1,
+        "transliteration_used": false,
+        "controlled_topic_count": 0,
+        "retrieval_terms_et": [],
+        "coauthor_count": 0,
+        "coauthor_requested": false,
+        "shadow_planner_mode": null,
+        "shadow_planner_confidence": null,
+        "canonical_retrieval_active": false,
+        "canonical_supplemental_retrieval_active": false,
+        "active_planner_mode": null,
+        "shadow_planner_matches_intent": false
+      },
+      "social_scope": "in_scope",
+      "social_scope_reason": "strong_social_scope_term"
+    },
+    "hybrid_retrieval": {
+      "merge_strategy": {
+        "strategy": "weighted_hybrid_rrf",
+        "rrf_k": 60,
+        "requested_retrievers": [
+          "dense",
+          "author_match",
+          "title_match",
+          "exact_phrase",
+          "bm25"
+        ],
+        "channel_weights": {
+          "dense": 1,
+          "author_match": 1.5,
+          "title_match": 1.35,
+          "exact_phrase": 1.15,
+          "bm25": 1,
+          "registry_fact": 1.7
+        },
+        "channel_boosts": {
+          "author_match": 0.14,
+          "title_match": 0.09,
+          "exact_phrase": 0.06,
+          "bm25": 0.05,
+          "registry_fact": 0.32
+        },
+        "bm25_config": {
+          "min_coverage": 0.35,
+          "title_weight": 1.8,
+          "body_weight": 1,
+          "title_k": 0.8,
+          "body_k": 1.5
+        },
+        "score_formula": "dense_score*0.58 + lexical_score*0.34 + rrf_score*8.0 + channel_boost + bm25_coverage_boost"
+      },
+      "channel_counts": {
+        "dense": 15,
+        "author_match": 8,
+        "title_match": 13,
+        "bm25": 14
+      },
+      "top_channels": [
+        "dense",
+        "author_match",
+        "title_match",
+        "bm25"
+      ],
+      "dense_only_count": 0,
+      "lexical_only_count": 0,
+      "dense_and_lexical_count": 8,
+      "bm25": {
+        "result_count": 8,
+        "only_count": 0,
+        "average_score": 7.034212,
+        "top_score": 18.5368,
+        "average_coverage": 0.37126,
+        "min_coverage": 0.153846,
+        "low_coverage_count": 2
+      },
+      "scored_count": 15,
+      "top_hybrid_score": 2.893208,
+      "top_rrf_score": 0.079244,
+      "multi_query_fusion": {
+        "strategy": "anchored_rrf_v1",
+        "candidate_count": 7,
+        "anchored_candidate_count": 6,
+        "max_query_hit_count": 3,
+        "top_candidates": [
+          {
+            "source_id": "sotsiaaltoo_suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+            "fusion_score": 2.834815,
+            "best_retrieval_score": 1.653569,
+            "query_hit_count": 3,
+            "query_ids": [
+              "q1",
+              "q2",
+              "q3"
+            ],
+            "query_ranks": {
+              "q1": 1,
+              "q2": 5,
+              "q3": 10
+            },
+            "primary_rank": 1,
+            "best_rank": 1,
+            "exact_anchor_hit": true,
+            "anchor_channels": [
+              "title_match"
+            ]
+          },
+          {
+            "source_id": "sotsiaaltoo_suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+            "fusion_score": 2.827628,
+            "best_retrieval_score": 1.566032,
+            "query_hit_count": 3,
+            "query_ids": [
+              "q1",
+              "q2",
+              "q3"
+            ],
+            "query_ranks": {
+              "q1": 9,
+              "q2": 6,
+              "q3": 1
+            },
+            "primary_rank": 9,
+            "best_rank": 1,
+            "exact_anchor_hit": true,
+            "anchor_channels": [
+              "title_match"
+            ]
+          },
+          {
+            "source_id": "sotsiaaltoo_suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+            "fusion_score": 2.746731,
+            "best_retrieval_score": 1.598471,
+            "query_hit_count": 3,
+            "query_ids": [
+              "q1",
+              "q2",
+              "q3"
+            ],
+            "query_ranks": {
+              "q1": 7,
+              "q2": 10,
+              "q3": 5
+            },
+            "primary_rank": 7,
+            "best_rank": 5,
+            "exact_anchor_hit": true,
+            "anchor_channels": [
+              "title_match"
+            ]
+          },
+          {
+            "source_id": "sotsiaaltoo_suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+            "fusion_score": 1.881312,
+            "best_retrieval_score": 1.616514,
+            "query_hit_count": 2,
+            "query_ids": [
+              "q1",
+              "q2"
+            ],
+            "query_ranks": {
+              "q1": 5,
+              "q2": 8
+            },
+            "primary_rank": 5,
+            "best_rank": 5,
+            "exact_anchor_hit": true,
+            "anchor_channels": [
+              "title_match"
+            ]
+          },
+          {
+            "source_id": "sotsiaaltoo_suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+            "fusion_score": 1.80517,
+            "best_retrieval_score": 1.596455,
+            "query_hit_count": 2,
+            "query_ids": [
+              "q1",
+              "q2"
+            ],
+            "query_ranks": {
+              "q1": 8,
+              "q2": 11
+            },
+            "primary_rank": 8,
+            "best_rank": 8,
+            "exact_anchor_hit": true,
+            "anchor_channels": [
+              "title_match"
+            ]
+          },
+          {
+            "source_id": "sotsiaaltoo_suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+            "fusion_score": 1.745,
+            "best_retrieval_score": 1.020839,
+            "query_hit_count": 2,
+            "query_ids": [
+              "q1",
+              "q2"
+            ],
+            "query_ranks": {
+              "q1": 12,
+              "q2": 12
+            },
+            "primary_rank": 12,
+            "best_rank": 12,
+            "exact_anchor_hit": true,
+            "anchor_channels": [
+              "title_match"
+            ]
+          },
+          {
+            "source_id": "sotsiaaltoo_suure-hoolduskoormusega-inimesed-vajavad-taiendavat-abi-2023-1",
+            "fusion_score": 1.343404,
+            "best_retrieval_score": 0.984773,
+            "query_hit_count": 2,
+            "query_ids": [
+              "q1",
+              "q3"
+            ],
+            "query_ranks": {
+              "q1": 11,
+              "q3": 12
+            },
+            "primary_rank": 11,
+            "best_rank": 11,
+            "exact_anchor_hit": false,
+            "anchor_channels": []
+          }
+        ]
+      }
+    },
+    "retrieval_trace_level": "retrieved_candidates"
+  }
+}

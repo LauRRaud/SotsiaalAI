@@ -52,6 +52,22 @@ test("journal cover headings cannot supply article evidence or claim support", (
     { query: "Millised artiklid kirjutas Marin Vaher?", queryPlan: authorPlan }).displayed_source_ids, []);
 });
 
+test("journal synthesis needs rendered body support, not publisher or title metadata", () => {
+  const plan = { mode: "overview_synthesis", needs_multiple_sources: true };
+  const claim = "See kirjeldab otsest koostööd tervishoiu ja sotsiaaltöö vahel.";
+  const promotion = "Telli e-uudiskiri, mis sisaldab ajakirja uudiseid. Telli ajakiri! Tellimuse saab vormistada veebilehel. Teeme koostööd! Kaastöid ja koostööettepanekuid ootame.";
+  const source = { source_id: "promo", source_type: "journal_article", title: "Uus omastehoolduse infopunkt", journalTitle: "Sotsiaaltöö", section: "Reklaam", evidenceText: promotion };
+  assert.equal(isJournalFrontMatter(promotion, source), true);
+  assert.equal(isJournalFrontMatter("Infopunkt nõustab omastehooldajaid ja pakub abi.", source), false);
+  assert.deepEqual(buildSourceAttribution(claim, [source], { queryPlan: plan }).displayed_source_ids, []);
+  const unrelated = { ...source, evidenceText: "(1) Sotsiaaltöö | koostöö tervishoius\nKirjutage toimetusele koostööettepanekutega." };
+  assert.deepEqual(buildSourceAttribution(claim, [unrelated], { queryPlan: plan }).claim_supported_source_ids, []);
+  const titleOnly = { ...source, title: "Koostöö tervishoius", evidenceText: "Infopunkt avati raamatukogus." };
+  assert.deepEqual(buildSourceAttribution("Artikkel „Koostöö tervishoius” tõendab, et teenuste ühine juhtimine vähendas katkestusi.", [titleOnly], { queryPlan: plan }).claim_supported_source_ids, []);
+  const substantive = { ...titleOnly, year: 2024, evidenceText: "Teenuste ühine juhtimine vähendas katkestusi ning toetas koostööd tervishoiu ja sotsiaaltöö vahel." };
+  assert.deepEqual(buildSourceAttribution("Artikkel „Koostöö tervishoius” (2024) kirjeldab, kuidas teenuste ühine juhtimine vähendas katkestusi.", [substantive], { queryPlan: plan }).displayed_source_ids, ["promo"]);
+});
+
 const twoClaimReply = [
   "Muuda ohustatud kontode paroolid kohe.",
   "Säilita sõnumid ja ekraanipildid tõenditena."
