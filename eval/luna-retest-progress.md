@@ -987,3 +987,52 @@ M01 read-only diagnoos: õige dokumendi identiteet high/matched; kontekst25→8 
 R5 liigse allika juurpõhjus: omastehoolduse infopunkti metadataga katke oli kirjastuse tellimisreklaam. Sõna „koostöö” bodys ja „Sotsiaaltöö” ajakirjanimena andsid näiliselt ainulaadse toe lausele tervishoiu ja sotsiaaltöö koostööst. Kombineeritud publisher-tuvastus eemaldab selle katke; sünteesi/professionaalse meetodi ajakirjaallika claim-tugi kasutab bodyt, mitte metadata päist või pealkirjamainimist üksi. Päris infopunkti reklaamrubriigi sisu säilib. Puuduva teenuse-antecedendi jaoks lisati konservatiivne väljajätmise/ebakindluse juhis, mitte teenuseliigi oletamine.
 
 11 allika-sihttesti PASS; ESLint/diff-check/i18n PASS; lõpliku rakenduskoodipuu TZ=UTC tootmisbuild PASS35,2s. Sõltumatu read-only ülevaatus ei leidnud blokeerivat regressiooni. Runtime järgneb. M01/M02 ja allikate semantilise dubleerimise üldprobleem ei ole selle plokiga lahendatuks kuulutatud.
+
+### Ring 6 — viimane in-app kordus ja ajapiiriga töö lõpp
+
+Runtime3b2ea8bb. Deploy02:04EEST: lokaalne/origin/server SHA kattusid, kolm teenust aktiivsed, HTTP200. Serveribuild PASS34,9s, ootel migratsioone0. Eelmine artefakt säilitati; eemaldati ainult üks aegunud current-artefakt ja üks vana build-logi. 02:10 tervisekontroll: RAG ok,49 727vektorit,6089registrikirjet,6073aktiivset dokumenti; mõlemad FTS-indeksid ready ja EstNLTK available. Indekseid ega korpust selle plokiga ei muudetud.
+
+| Viimane juhtum | Hinnang | Tõend / märkus |
+|---|---|---|
+| r6-iso-J05 | PASS | [Täisvastus ja paneel](../docs/audits/evidence/rag-loop-2026-08-31-3b2ea8bb/r6-iso-J05.md). Kõik küsitud faktid ja õige paneeliallikas. |
+| r6-iso-J08 | PASS | [Täisvastus ja paneel](../docs/audits/evidence/rag-loop-2026-08-31-3b2ea8bb/r6-iso-J08.md). Kõik küsitud faktid ja õige paneeliallikas. |
+| r6-iso-J11 | PASS | [Täisvastus ja paneel](../docs/audits/evidence/rag-loop-2026-08-31-3b2ea8bb/r6-iso-J11.md). Kõik küsitud faktid ja õige paneeliallikas. |
+| r6-iso-J18 | PASS | [Täisvastus ja paneel](../docs/audits/evidence/rag-loop-2026-08-31-3b2ea8bb/r6-iso-J18.md). Kõik küsitud faktid ja õige paneeliallikas. |
+| r6-iso-V05 | PASS | [Täisvastus ja paneel](../docs/audits/evidence/rag-loop-2026-08-31-3b2ea8bb/r6-iso-V05.md). Kõik küsitud faktid ja õige paneeliallikas. |
+| r6-seq-J05 | PASS | [Täisvastus ja paneel](../docs/audits/evidence/rag-loop-2026-08-31-3b2ea8bb/r6-seq-J05.md). Kõik küsitud faktid ja õige paneeliallikas. |
+| r6-seq-J08 | PASS | [Täisvastus ja paneel](../docs/audits/evidence/rag-loop-2026-08-31-3b2ea8bb/r6-seq-J08.md). Kõik küsitud faktid ja õige paneeliallikas. |
+| r6-seq-J11 | PASS | [Täisvastus ja paneel](../docs/audits/evidence/rag-loop-2026-08-31-3b2ea8bb/r6-seq-J11.md). Kõik küsitud faktid ja õige paneeliallikas. |
+| r6-seq-J18 | PASS | [Täisvastus ja paneel](../docs/audits/evidence/rag-loop-2026-08-31-3b2ea8bb/r6-seq-J18.md). Kõik küsitud faktid ja õige paneeliallikas. |
+| r6-seq-V05 | PASS | [Täisvastus ja paneel](../docs/audits/evidence/rag-loop-2026-08-31-3b2ea8bb/r6-seq-V05.md). Kõik küsitud faktid ja õige paneeliallikas. |
+| r6-golden-integrated | PARTIAL | [Täisvastus ja paneel](../docs/audits/evidence/rag-loop-2026-08-31-3b2ea8bb/r6-golden-integrated.md). Viis nimetatud allikat, reklaam puudub; rehabilitatsiooni reegel omistatud erihoolekandele. |
+| r6-golden-child | PARTIAL | [Täisvastus ja paneel](../docs/audits/evidence/rag-loop-2026-08-31-3b2ea8bb/r6-golden-child.md). Sisuline hindamisprotsess ja lisamudel; nelja allika ainulaadne vajadus NOT_PROVEN. |
+| r6-golden-cyber | PASS | [Täisvastus ja paneel](../docs/audits/evidence/rag-loop-2026-08-31-3b2ea8bb/r6-golden-cyber.md). Üks toetav ametlik allikas, ohutust arvestav turvaplaan. |
+| r6-extra-iso-M01 | FAIL | [Täisvastus ja paneel](../docs/audits/evidence/rag-loop-2026-08-31-3b2ea8bb/r6-extra-iso-M01.md). Algne M01 jääb tõendipiirangu vastuseks, allikaid0. |
+| r6-extra-seq-M01 | FAIL | [Täisvastus ja paneel](../docs/audits/evidence/rag-loop-2026-08-31-3b2ea8bb/r6-extra-seq-M01.md). Algne M01 jääb ka viie põhiküsimuse järel tõendipiiranguks, allikaid0. |
+| r6-extra-iso-M02 | PARTIAL | [Täisvastus ja paneel](../docs/audits/evidence/rag-loop-2026-08-31-3b2ea8bb/r6-extra-iso-M02.md). Kolm soovitust on sisulised; toetatud otsustamise soovitus asendub eestkoste probleemi ja puuduvate katkendite kirjeldusega. |
+| r6-extra-seq-M02 | PASS | [Täisvastus ja paneel](../docs/audits/evidence/rag-loop-2026-08-31-3b2ea8bb/r6-extra-seq-M02.md). Kõik neli küsitud soovitust on sisuliselt olemas, sealhulgas üleminek asendatud otsustamiselt toetatud otsustamisele. Täpse rakendusmudeli lisapiirang ei eemalda küsitud põhisoovitust. |
+
+Põhiviisik J05/J08/J11/J18/V05: **isolated5/5PASS, sequential5/5PASS**. Järjestikune põhiviisik küsiti ühes värskes vestluses; M01/M02 lisati selle järel samasse vestlusse ja seejärel küsiti kumbki eraldi värskes vestluses. Põhiviisiku nimetaja jääb5; aruande lisakomplekt2 ja Golden-lisakomplekt3 on eraldi.
+
+| Parandus-/deployring | Põhiviisik eraldi PASS | Põhiviisik järjest PASS |
+|---|---:|---:|
+| R1 | 2/5 | 2/5 |
+| R2 | 3/5 | 4/5 |
+| R3 | 3/5 | 3/5 |
+| R4 | 4/5 | 4/5 |
+| R5 | 5/5 | 5/5 |
+| R6 | 5/5 | 5/5 |
+
+**Järjekorravõrdlus:** põhiviisikul viimases kahes ringis erinevust ei olnud. M01 on viimases paaris FAIL mõlemas. M02 on eraldi PARTIAL, järjest PASS. Mõlema M02 renderdatud RAG-konteksti räsi on täpselt sama:4a16a4904dfe4ac8847951378c33e42e6af8ddccb9e1c29e2c4ec63256c51ce5. Seega erinevus ei tule selles paaris teistsugusest valitud RAG-tekstist. Ajaloo mõju ja genereerimise sõnastushajuvus ei ole ühe paari põhjal eristatud. Kvalitatiivne production-värav on mõlemal not_run; järjestikune PASS ei tähenda selle koodivea parandatust.
+
+**Lahtised juurpõhjused ja järgmise paranduse piirid (automaatselt ei jätkata):**
+
+1. M01: kindel arvulepingu mitmetähenduslikkus ja kvalitatiivse vastuse sidumise läbikukkumine. Vajab lõpplepingu konkureerivate kandidaatide väärtuse/seose eristust ja sisulist ajameetodi sidumist, mitte valideerimisest möödumist. Uus sama dokumendi sõnastus läbis, algne küsimus ei läbinud.
+2. M02: source-contract4/4complete ei ole vastuse valideerimise käivitustõend. Slot4 kasutab slot1-ga sama fragmendihashi/index4 ning relation1/2. Kahe termini korral lubatud üksik vaste võib jätta „otsustamise” pea tõendamata. shouldValidateExactFactAnswer käivitus ei toetu valmis kvalitatiivlepingule, vaid planneri kindlasse pessa jõudnud slottidele. Järgmine fix vajab nii eristavat recommendation-objekti kui ka kvalitatiivlepingu dispatch'i sihttesti. Täpset runtime'i vale ankrusõna ei avaldata trace'is, seda ei oletata tõeks.
+3. Integreeritud teenused: kirjastusreklaami väär allikatugi on kõrvaldatud, kuid teenuse antecedent ei säili. Algallikas18-2/155619664557_Sotsiaaltoo_nr2_2018_veebi_link_Part6.txt seob eelarve/valiku lause rehabilitatsiooniteenusega. R6 renderbody374→192märki algab span0-st, seega „taasta kärbitud algus” ei ole tõendatud fix. original_body_hash mõõdetakse pärast rankBodies/prioritizeBodyPassage tööd, mitte rawretrievali pealt. Vajalik on sama päris pre/post-prioritize body võrdlus; pimedat ingest'i või kontekstieelarve muutust ei tehtud.
+4. Lapse heaolu: põhisisu on lai ja mitmeetapiline; allikate semantilise dubleerimise vähendamine pole täielik. Pindi kaheksa aspekti on ka Lauri artiklis; mõlema vanema artikli ainulaadne panus põhijuhendile pole tõendatud. Leksikaalne claim-cover ei ole semantilise kasutuse garantii.
+5. J14: arvud õiged, aga küsimuse „alla18” jäi algallika „kuni18” asemel muutmata. See on eraldi ulatuse täpsuse reservatsioon.
+
+**Hinnang:** viimase17vastuse proovikomplektis12PASS/3PARTIAL/2FAIL. Läbipaistva lihtsustatud arvutusega PASS=1,PARTIAL=0,5,FAIL=0 annab see13,5/17 ehk umbes **8/10**. See on kordusvastuste proovikomplekti orientiir, mitte kogu75 benchmark ega kogu RAG-i usaldusväärsuse tõestatud skoor. 75täisväravat ja Golden37täiskomplekti selle kahe tunni sees ei korratud. 10/10 ja „kõik parandatud” oleksid valed väited. Arvulise taastamise keeleline kuju on kohati kohmakas, kuigi küsitud faktid on õiged.
+
+Kokkulepitud piir:31.08.2026kell02:15Europe/Tallinn või kasutuslimiit varem. Töö suletakse selle piiri sees; tulemused ja diagnoos säilivad. Ajastatud jätk on PAUSED, limiidi taastumisel ega hommikul automaatselt ei jätkata. Edasine parandusring vajab omaniku uut korraldust.
