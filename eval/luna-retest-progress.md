@@ -912,3 +912,34 @@ R3 deploy oli edukas: lokaalne/origin/server SHA d2257318, kolm teenust aktiivse
 - R3 sequential-J11 jõudis arvuseosest edasi, kuid blokeerus ootamatu kõrvalarvu tõttu. Varjatud mudelivastust ega tegelikku kõrvalarvu ei oletata. Lisatud kitsas taastamine kasutab ainult täielikku renderdatud faktilepingut, tugevat dokumendilukku, olemasolevaid allikaid ja juba valideeritud kvalitatiivseid üksusi; kogu vastus valideeritakse uuesti. Vale põhiarv, puuduv meetod, tühi allikakomplekt ja nõrk identiteet ei taastu.
 
 Neljanda ploki sihttestid: 14/14 PASS. ESLint, i18n ja diff-check PASS; lõpliku muutumatu koodipuu TZ=UTC tootmisbuild PASS (35,3 s kompileerimine). Käituskvaliteet jääb NOT_PROVEN kuni uue serverikorduseni.
+
+### Ring 4 — in-app isolated ja sequential
+
+Release e620c902. Deploy lõppes 01:30 EEST; lokaalne/origin/server SHA ühtivad, teenused3/3 aktiivsed, HTTP200. Serveribuild PASS (34,1s), migratsioone ootel0. Säilitati eelmise väljalaske artefakt; eemaldati üks aegunud current-artefakt ja üks vana build-logi, mitte kasutajaandmeid. Recovery sõltumatu read-only ülevaatus ei leidnud blokeerivat viga.
+
+| R4 juhtum | Hinnang | Täisvastus/allikapaneel | Märkus |
+|---|---|---|---|
+| r4-iso-J05 | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-e620c902/r4-iso-J05.md) | Umbes30/12 ja60/19; õige allikas. |
+| r4-iso-J08 | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-e620c902/r4-iso-J08.md) | 61/26/11/18 õiges seoses; õige allikas. |
+| r4-iso-J11 | FAIL | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-e620c902/r4-iso-J11.md) | requested_metric_relation_mismatch; allikaid0. |
+| r4-iso-J18 | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-e620c902/r4-iso-J18.md) | 5 igas kolmes rühmas, kokku15; õige allikas. |
+| r4-iso-V05 | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-e620c902/r4-iso-V05.md) | Kuus kuud; osaleja ja tööandja; õige allikas. |
+| r4-seq-J05 | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-e620c902/r4-seq-J05.md) | Umbes30/12 ja60/19; õige allikas. |
+| r4-seq-J08 | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-e620c902/r4-seq-J08.md) | 61/26/11/18 õiges seoses; õige allikas. |
+| r4-seq-J11 | FAIL | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-e620c902/r4-seq-J11.md) | unexpected_numeric_claim; taastamine ei läbinud. |
+| r4-seq-J18 | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-e620c902/r4-seq-J18.md) | 5 igas kolmes rühmas, kokku15; õige allikas. |
+| r4-seq-V05 | PASS | [täisvastus](../docs/audits/evidence/rag-loop-2026-08-31-e620c902/r4-seq-V05.md) | Kuus kuud; osaleja ja tööandja; õige allikas. |
+
+Ring4: isolated **4 PASS / 1 FAIL**, sequential **4 PASS / 1 FAIL**. J08 paranes mõlemas, J11 on endiselt FAIL; režiimide vahel sellel ringil erinevust ei ilmnenud. Ühe jooksupaari põhjal ei järeldata üldist järjekorrasõltumatust.
+
+R3 Golden-integreeritud teenuste algne PASS oli ainult vastuse säilimise/paneelis nimetatud allikate kontroll. Täisteksti ja renderdatud katke sõltumatu järelkontroll korrigeerib koondhinnangu **PARTIAL**-iks: psühhoosi näite inline-viide oli ebatäpne, rehabilitatsiooniteenuse väide üldistus teenusteks ning üks SÜTIKu allikakatke oli sisukord. Algne vastus on säilitatud; hinnangu muutmise alus on samas tõendifailis.
+
+### Ring 5 — validaatorite tööjaotus ja sisulise tõendi piir
+
+J11 taastamisprobleem on reprodutseeritud tegeliku avaliku täisteksti ning R4 morfoloogiaslottidega. 7/6/1 ja meetod on renderdatud lepingus täielikult seotud. Taastatud „Intervjuud tehti:7 / Individuaalvestlused:6 / Ruhmavestlused:1 / temaatiline analüüs” läbis tugevama slotilepingu, kuid vana sõnamustripõhine kategooriaparser andis unsupported_numeric_category_relation. Täieliku sama allika count/proportion-slotilepingu korral ei kontrollita sama kategooriat teise nõrgema parseriga uuesti; kõik arvude, kvalifikaatorite, aasta, üldkogumi ja allikakatte väravad jäävad kehtima. Sõltumatu päristäisteksti kontroll kinnitab nüüd sama rekonstrueeritud vastuse PASS-i. See pole veel UI tõend.
+
+Relation-mismatch'i puhul võib allikapõhine taastamine rakenduda vaid kõigi õigete küsitud väärtuste ja protsendiliikide olemasolul; mudeli vigast teksti ei aktsepteerita, vaid ehitatakse uus ja täielikult kontrollitav vastus. Piir jääb nähtavaks: kui üks kvalitatiivne vastuseüksus sisaldab ka kõiki kõrvalarve, võib kordusvalideerimine endiselt taastamise blokeerida; selle kuju üldist parandatust ei väideta.
+
+Golden-i sisukorrakatke eemaldatakse ajakirjaallika ja kombineeritud kaane/sisukorra tunnuste alusel enne grupeerimist ning konteksti koostamist. Sama dokumendi päris sisulõigud säilivad. Allikaatributsioon ei luba sisukorral kinnitada väidet ka täpse pealkirja mainimisel. Sünteesijuhis säilitab teenuse/sihtrühma/aja ning seob iga näite oma allikaga. Registrit, ingest'i ja indeksit ei muudeta.
+
+Viienda ploki kitsad testid: 14 faktilepingu testi ja 10 allika-/sisukorratesti PASS. Read-only ülevaatus leidis autorite inventari kõrvalmõju; paranduses säilib metadata ning bibliograafiline väide, kuid lisatud sisuväide ei pääse sellest erandist läbi. Eraldi sihtkontroll kinnitas ka aastaga bibliograafilise kirje säilimise. ESLint/i18n/diff-check PASS ja lõpliku rakenduskoodipuu TZ=UTC tootmisbuild PASS (35,2s). Uus serveri UI-kordus järgneb.

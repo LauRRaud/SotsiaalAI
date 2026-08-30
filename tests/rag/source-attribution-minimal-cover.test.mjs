@@ -1,5 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { isJournalFrontMatter } from "../../lib/chat/evidenceContent.js";
+import { buildContextWithBudget, groupMatches } from "../../lib/chat/ragContext.js";
 
 import {
   ALLOWED_ATTRIBUTION_DECISION_REASONS,
@@ -14,6 +16,41 @@ function guideline(sourceId, title, evidenceText) {
     evidenceText
   };
 }
+
+test("journal cover headings cannot supply article evidence or claim support", () => {
+  const cover = "NR 4/2023 ISSN 1406-8826 Kuidas pakkuda inimesele terviklikku tuge? Rehabilitatsiooniteenuse muudatused ja asutuste kogemused Sotsiaaltöötaja aitab raviteekonnal vastu pidada Millist tuge vajab õpilane koolis?";
+  const content = "Tugiisik saadab inimese arsti juurde ja aitab tal tervishoiuteenustele pääseda.";
+  const source = { source_id: "support-article", source_type: "journal_article", title: "Tugiisik toetab inimest", evidenceText: cover };
+  assert.equal(isJournalFrontMatter(cover, source), true);
+  assert.equal(isJournalFrontMatter(content + " ISSN 1406-8826", source), false);
+  assert.equal(isJournalFrontMatter("NR 4/2023 ISSN 1406-8826 " + content, source), false);
+  assert.equal(isJournalFrontMatter(cover, { source_type: "official_guideline" }), false);
+  assert.equal(isJournalFrontMatter(`${"Artikli metadata ".repeat(12)} Sisukord 12 Lastekaitse 23 Sotsiaaltöö 45 Hoolekanne`, source), true);
+  const attribution = buildSourceAttribution("Artikkel „Tugiisik toetab inimest” selgitab terviklikku tuge ja rehabilitatsiooniteenuse muudatusi.", [source],
+    { query: "Mida kirjutab ajakiri terviklikust toest?", queryPlan: { mode: "overview_synthesis", needs_multiple_sources: true } });
+  assert.deepEqual(attribution.claim_supported_source_ids, []);
+  assert.deepEqual(attribution.displayed_source_ids, []);
+  const matches = [cover, content].map(text => ({ id: "support-article", text,
+    metadata: { source_id: "support-article", source_type: "journal_article", title: source.title } }));
+  const groups = groupMatches(matches);
+  assert.equal(groups.length, 1);
+  assert.deepEqual(groups[0].bodies, [content]);
+  const rendered = buildContextWithBudget([{ ...groups[0], bodies: [cover, content] }]);
+  assert.equal(rendered.text.includes("ISSN"), false);
+  assert.equal(rendered.text.includes(content), true);
+  const metadataOnlyGroups = groupMatches([matches[0]]);
+  assert.equal(metadataOnlyGroups.length, 1);
+  assert.deepEqual(metadataOnlyGroups[0].bodies, []);
+  assert.equal(buildContextWithBudget(metadataOnlyGroups).text, "");
+  const authoredSource = { ...source, authors: ["Marin Vaher"], year: 2023, document_id: "public-article" };
+  const authorPlan = { mode: "person_source_lookup", person_name: "Marin Vaher", person_source_intent: "authored_works" };
+  assert.deepEqual(buildSourceAttribution("Marin Vaher kirjutas artikli „Tugiisik toetab inimest”.", [authoredSource],
+    { query: "Millised artiklid kirjutas Marin Vaher?", queryPlan: authorPlan }).displayed_source_ids, ["support-article"]);
+  assert.deepEqual(buildSourceAttribution("Marin Vaher, 2023. Tugiisik toetab inimest.", [authoredSource],
+    { query: "Millised artiklid kirjutas Marin Vaher?", queryPlan: authorPlan }).displayed_source_ids, ["support-article"]);
+  assert.deepEqual(buildSourceAttribution("Marin Vaher kirjutas artikli „Tugiisik toetab inimest”, mis tõendab rehabilitatsiooniteenuse muudatusi.", [authoredSource],
+    { query: "Millised artiklid kirjutas Marin Vaher?", queryPlan: authorPlan }).displayed_source_ids, []);
+});
 
 const twoClaimReply = [
   "Muuda ohustatud kontode paroolid kohe.",

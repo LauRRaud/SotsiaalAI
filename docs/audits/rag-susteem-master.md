@@ -517,6 +517,8 @@ RAG-teenus tagastab:
 
 ### 9.1 Grupeerimine
 
+Ajakirja kaant ja sisukorda ei käsitleta artikli sisulise tõendina pelgalt artikli metadata tõttu. Ühine `evidenceContent.isJournalFrontMatter` nõuab ajakirjaallikat ning mitut kooskõlalist kaane/sisukorra tunnust (väljaandenumber koos ISSN-iga ja küsimusekujuliste pealkirjade või toimetusandmetega; või sisukorramärgis koos loendstruktuuriga). Üksik ISSN sisulises tekstis ei välista lõiku. Mitte-sisulised lõigud eemaldatakse grupeerimisel body-loendist ja uuesti kontekstiehituse sisendist; sama dokumendi sisulised lõigud ning autoripealkirja metadata säilivad. Tühja sisuga metadata-kirje ei lähe sisulisse genereerimiskonteksti. See kontroll ei muuda registrit ega indeksit ning ei hangi vaikimisi naaberartiklit asemele.
+
 Node grupeerib chunk'id stabiilse artikli/dokumendiidentiteedi järgi, kasutades `articleId`, `doc_id` ja pealkirja. Ühe grupi sisse koondatakse:
 
 - body chunk'id;
@@ -675,6 +677,8 @@ Konkureeriv arvusilt peab täitma ka oma sloti kohaliku seosesignatuuri. Pelk ü
 
 ### 11.2 Vale vastuse korral
 
+Täielikult läbitud renderdatud count/proportion-leping on oma sama allika kategooriaseoste autoriteetne kontroll. Kui dokumendiidentiteet on kohustuslik, sobiv ja kõrge kindlusega, kõik slotid on üheselt seotud ning leping viitab sobivale renderdatud allikale, ei rakendata neile lisaks vana pelgalt sõnavastavusel põhinevat kategooriaparserit. Arvude allikakate, protsendi/arvu seosed, aasta, üldkogumi piir ja kõik varasemad typed-slot'i väravad jäävad kehtima. Täieliku lepingu puudumisel jääb üldine kategooriakontroll jõusse.
+
 Validaatori läbikukkumine ei ole kasutajale nähtava vale teksti järel tehtav logimärge. Süsteem teeb fail-closed valiku:
 
 - kasutab deterministlikult tõendatud vastuseosa;
@@ -686,6 +690,8 @@ Validaatori läbikukkumine ei ole kasutajale nähtava vale teksti järel tehtav 
 Tavapärane validator ei tee teist vabalt genereerivat paranduskutset. See piirab nii kulu kui ka võimalust, et „parandus” lisab uue tõendamata väite.
 
 `recoverSupportedReplyAfterNumericValidation` saab taastada täielikult vastatava täpse dokumendifakti, kui ainus arvuvärava tõrge on `requested_metric_unexpected_numeric_claim`. Nõutavad on täielik `final_rendered_evidence` leping, kohustuslik ja kõrge kindlusega sobiv dokumendiidentiteet ning olemasolevad allikad. Taastamine piirdub üksikute count/proportion-slottidega ilma ulatusarvude või mitmekordse kardinaalsuseta. Arvuread ehitatakse renderdatud tõendi väärtusest, seosesildist, protsendiliigist ja kvalifikaatorist; kvalitatiivsed vastuseüksused säilivad ainult juba läbitud slotiseose alusel. Kõik küsitud kvalitatiivsed slotid peavad olema kaetud. Uus tekst läbib uuesti kogu `validateExactFactAnswer` kontrolli samade allikate ja metaandmetega. Puuduv meetod, vale põhiarv, nõrk identiteet või kordusvalideerimise tõrge ei muutu edukaks vastuseks. Mudeli lisaarvu ei kinnitata, uut mudelikutset ei tehta.
+
+Sama allikapõhine rekonstruktsioon on lubatud ka `requested_metric_relation_mismatch` korral, kuid ainult siis, kui mudelitekstis on olemas iga küsitud sloti õige väärtus ja protsendiliik. Vigast mudeliteksti ei märgita edukaks: see asendatakse allikalepingu järgi ehitatud ja täielikult uuesti kontrollitud tekstiga. Kui mõni põhiarv puudub, tee jääb suletuks.
 
 Mudeli vastust saab täpsustusküsimusena normaliseerida ainult siis, kui see on üks lühike küsimusekujuline lause: keelekohane küsimuse algus, üks lõpus olev küsimärk, puuduv eelnev sisulause ning olemasolev pikkuspiir. Sama kujundivärav ja kasutaja küsimuse pelga kordamise keeld eelnevad ka jutumärkides kasutajatermi turvalisele täpsustusele. Tsiteeritud ühe sõna või ajakirjanime esinemine sisuvastuses ei muuda vastust täpsustuseks.
 
@@ -715,6 +721,10 @@ answer_sources ⊆ displayed_sources
 `retrieved_source_ids` täielik toorkiht tuleb raw RAG retrieval metadata'st. `selected_context_source_ids` võib lisaks sisaldada kasutaja ajutise dokumendi konteksti, SourcePackage'i display-allikat või Service Map kontaktallikat, mis ei tulnud raw RAG `matches` hulgast. Seetõttu ei ole `selected_context_sources ⊆ retrieved_sources` universaalne seos. Exact validaatori eraldi toetav source ID võib vastuseallikasse siseneda ainult siis, kui see oli sama renderdatud konteksti osa.
 
 ### 12.2 Claim → source
+
+Kaane/sisukorra tekst ei kinnita sisulist väidet ka siis, kui vastuses esineb artikli täpne pealkiri. Sünteesijuhis nõuab teenuse-, sihtrühma- ja ajapiiri säilitamist ning allikapealkirja paigutamist täpselt selle lause juurde, mida see toetab; eri allikate näiteid ei koondata ühe viite alla. See on genereerimisjuhis, mitte automaatne tõend iga vabatekstilise väite täieliku semantilise õigsuse kohta.
+
+Autori teoste inventar on erand ainult bibliograafilisele väitele: täpne pealkiri, autor ja ilmumisandmed võivad toetuda registri metadatale ka siis, kui ainus leitud body oli sisukord. Selleks eemaldatakse sisukorra body ja nõutakse autori-teoste otsingu režiimi ning bibliograafilist lausekuju. Lisatud sisulist väidet see erand ei kinnita.
 
 `lib/chat/sourceAttribution.js:buildSourceAttribution` jagab lõppvastuse väideteks ja võrdleb neid iga allika täpse `evidenceText`-iga. `evidenceText` ei ole kogu algdokument ega kõik retrieve'itud chunk'id, vaid mudelile päriselt renderdatud blokk.
 
@@ -801,7 +811,7 @@ Trace'i ei lisata uusi tooreid kasutaja relation-term'e, tegevusfraase ega PII-l
 
 Arvuseose tõrge kannab piiratud `requested_metric_missing_slot_index` välja ja kuni kuue arvukandidaadi diagnostilisi indekseid, sobivate/nõutud relation-term'ide loendureid ning kolme värava tõeväärtusi: minimaalne sõnakate, nõutud kategooriamäärang ja üheselt seotud silt. Lõpliku sloti trace näitab ka allikatõendist lisatud sõnavariantide arvu. Need väljad ei avalda valideerimiseelset mudelivastust, väärtuste toorloendit ega uusi sõnaankruid; puuduva või piirist väljuva sisendi korral kasutatakse puuduvat/null-välja.
 
-Edukas täieliku faktilepingu taastamine lisab ainult tõeväärtuse `requested_metric_recovery` ja piiratud põhjuse `recovery_original_reason=requested_metric_unexpected_numeric_claim`. Taastamiseelset vastust ja kõrvalarvu ei avaldata selle diagnostika kaudu.
+Edukas täieliku faktilepingu taastamine lisab ainult tõeväärtuse `requested_metric_recovery` ja piiratud põhjuse `recovery_original_reason` (`requested_metric_unexpected_numeric_claim` või `requested_metric_relation_mismatch`). Taastamiseelset vastust ja kõrvalarvu ei avaldata selle diagnostika kaudu.
 
 ### 13.4 SSE taastamine
 

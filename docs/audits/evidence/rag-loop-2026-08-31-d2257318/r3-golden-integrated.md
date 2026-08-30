@@ -2,7 +2,7 @@
 
 Release: d2257318
 Aeg: 2026-08-30T22:24:29.317Z
-Hinnang: PASS
+Hinnang: PARTIAL
 
 ## Küsimus
 
@@ -57,4 +57,4 @@ Kokkuvõttes näeb ajakiri integreeritud teenuseid mitte ühe uue teenusena, vai
 
 ## Hinnangu alus
 
-Sisuline vastus ei muutu enam sõna „Sotsiaaltöö” valeks täpsustusküsimuseks. Kõik kuus paneelis nähtavat allikat on vastuses pealkirjaga kasutatud. See on Golden-lisakontroll, mitte 75-küsimuse nimetaja osa.
+Esialgne pindkontroll oli PASS: sisuline vastus ei muutu enam sõna „Sotsiaaltöö” valeks täpsustusküsimuseks ja kõik kuus paneelis nähtavat allikat on vastuses pealkirjaga kasutatud. Pärast sõltumatut täistekstikontrolli on koondhinnang PARTIAL. Psühhoosi näide tuleb tegelikult 2018. aasta ministeeriumi artiklist, kuid lõigu ainus nimeline viide on SÜTIK 2023. Teenuseosutaja valiku väitest on kadunud rehabilitatsiooniteenuse ulatus. SÜTIKu genereerimiskontekst oli 288-märgine sisukord, mitte sisuline artiklikatke; algallikas küll toetab teenustega ühendamist. Seega paneeli kasutus paranes, kuid väite/allika täpsus ja renderdatud tõend pole tervikuna tõendatud. See on Golden-lisakontroll, mitte 75-küsimuse nimetaja osa.

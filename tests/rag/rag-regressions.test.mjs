@@ -1953,6 +1953,16 @@ describe("runtime-järelparanduse suhtepiirid", () => {
     assert.equal(recovered.reply.includes("99"), false);
     assert.match(recovered.reply, /temaatilist/u);
     assert.equal(validateExactFactAnswer({ message, reply: recovered.reply, sources, retrievalMeta }).passed, true);
+    const unboundReply = "Tehti 10 intervjuud. Esimese liigi vestlusi oli 8 ja teise liigi vestlusi 2. Kasutati kolmeetapilist temaatilist analüüsi.";
+    const unboundValidation = validateExactFactAnswer({ message, reply: unboundReply, sources, retrievalMeta });
+    assert.equal(unboundValidation.trace.reason, "requested_metric_relation_mismatch");
+    const rebuilt = recoverSupportedReplyAfterNumericValidation({ message, reply: unboundReply, validation: unboundValidation, sources, retrievalMeta });
+    assert.equal(rebuilt.passed, true);
+    assert.notEqual(rebuilt.reply, unboundReply);
+    assert.equal(validateExactFactAnswer({ message, reply: rebuilt.reply, sources, retrievalMeta }).passed, true);
+    const wrongPrimaryReply = unboundReply.replace("oli 8", "oli 9");
+    const wrongPrimaryValidation = validateExactFactAnswer({ message, reply: wrongPrimaryReply, sources, retrievalMeta });
+    assert.equal(recoverSupportedReplyAfterNumericValidation({ message, reply: wrongPrimaryReply, validation: wrongPrimaryValidation, sources, retrievalMeta }).passed, false);
     assert.equal(recoverSupportedReplyAfterNumericValidation({ message, reply: extraReply, validation: failed, sources: [], retrievalMeta }).passed, false);
     assert.equal(recoverSupportedReplyAfterNumericValidation({ message, reply: extraReply, validation: failed, sources,
       retrievalMeta: { ...retrievalMeta, documentIdentityEvidence: { ...identity, confidence: "low" } } }).passed, false);
