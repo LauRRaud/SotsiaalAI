@@ -296,3 +296,75 @@ vestluses. `history_effect` võrdleb tulemust isolated-faasiga.
 
 **PAUS.** 75-küsimuse täisvärav ja 37 Golden-küsimust on `NOT_STARTED` ning neid ei
 käivitata enne omaniku järgmist juhist.
+
+## `0e63f11b` FAIL/PARTIAL põhjuseanalüüs ja teine parandusring — 30.08
+
+### Tõendipiir
+
+Uue release'i korduses olid nähtavad vastus ja allikanupu olemasolu, kuid trace'i ID-d,
+valitud lõikude ID-d ja avatud allikapaneeli dokumendi-ID-d ei olnud UI-s eksponeeritud.
+Seetõttu on õige dokumendi nimega vastused tugev vastusetaseme tõend, kuid täpne esimene
+lahknev kiht on uuel runtime'il osaliselt `NOT_PROVEN`. Diagnoos ühendab selle jooksu tulemuse,
+varasemad samade juhtumite trace'id ja `0e63f11b` koodimuudatuse staatilise analüüsi.
+
+### Üldised juurpõhjused
+
+1. **Dokument leiti, aga kõik vajalikud tõendilõigud ei jõudnud vastusekonteksti.** J08, J11,
+   J18 ja M02 nimetasid õige dokumendi või andsid osa selle fakte, kuid väitsid ülejäänud
+   faktide kohta, et need puuduvad. Senine prioriseerija nõudis kõigi arvuliste slot'ide
+   leidmist ühest lõigust; eri lõikudesse jagunenud faktide korral sai iga lõik sisuliselt
+   nullprioriteedi. Kvalitatiivsetel slot'idel, nagu meetod, vanuserühm, järelhindamise aeg ja
+   soovitus, puudus samaväärne lõiguvalik üldse.
+2. **Küsimuse faktileping ei kandnud käändevorme tõendite sidumisse.** EstNLTK analüüs oli
+   juba enne retrieval'it ning lemma- ja tüvekujud läksid päris lexical/BM25 otsingusse;
+   eraldi `lemma_fts_shadow` ei olnud ainus lemmakasutus. Puuduv lüli oli retrieval'i järel:
+   pinnakujul faktisuhe pidi lõigu tekstiga kattuma ilma morfoloogiliste alternatiivideta.
+   Seega võis otsing õige dokumendi leida, kuid slot'i ja tõendi sidumine ebaõnnestus.
+3. **Arvu liik tuletati liiga kitsalt.** „Mitu” oli `count`, kuid „kui palju osalejaid/lapsi”
+   jäi üldiseks `amount`-iks. Koordineeritud jätk „ja kui palju kokku” võis kaotada eelmise
+   slot'i tüübi. See lõhkus eelkõige J05 ja J18 isikute/riikide/rühmade arvusid.
+4. **Dokumendiidentiteet kasutas ringtõendit.** Küsitud arvumustri täielikkus andis
+   dokumendikandidaadile lisapunkte, kuigi arvud on vastuse faktid, mitte allika identiteet.
+   Vale dokument võis seetõttu saada eelise lihtsalt sobiva kujuga arvude tõttu.
+5. **Täpne pealkiri ja faktifingerprint võistlesid omavahel.** Ka täpselt nimetatud artikli
+   puhul lisandus lai faktisuhete päring, mis võis tuua müraseid dokumente. Täpse pealkirja
+   korral peab identiteet tulema pealkirjast/autorist/aastast ning faktipäring peab töötama
+   alles valitud dokumendi sees.
+6. **J03 ootus sisaldas vale pealkirja.** Kordus nimetas „Kuidas anda vaimse tervise
+   probleemide korral töökohal esmaabi?”, mida logi hindas vale artiklina, sest manifestis oli
+   tehislik pealkiri „Vaimse tervise esmaabi tööle”. Artikli tegelik pealkiri oli vastuses
+   nimetatud kuju; sisuline vastus jäi siiski FAIL-iks, sest kriisitunnused ning 112/1220 ei
+   jõudnud vastusesse.
+7. **Vestlusajalugu ei olnud selle release'i põhipõhjus.** Isolated ja sequential andsid
+   mõlemad 5 PASS / 2 PARTIAL / 9 FAIL ning hinde muutus oli 0/16. V05 näitab pigem
+   sõnastusvariandi ja tõendilõigu taastamise riket: sama dokumendi J22 oli kaks vooru varem
+   PASS, kuid V05 ei leidnud samu tõendeid uuesti.
+
+### Juhtumite seos parandusega
+
+| Juhtum | Esimene nähtav lahknevus | Rakendatud üldparandus |
+|---|---|---|
+| J03 | tegelik artikkel nimetati, kuid kvalitatiivsed tunnused ja käändeline „millistele telefoninumbritele” ei saanud täielikku tõendikatet; manifesti pealkiri oli vale | parandatud pealkiri; kõik `millis-` käändevormid on kvalitatiivne küsimusecue; täpne pealkiri välistab laia fingerprint'i; sama dokumendi mitme lõigu slotikate |
+| J05 | neli arvuseost kahes sündmuseplokis jäid fail-closed | „kui palju” + loendatav nimisõna on `count`; koordineeritud kogus säilitab tüübi; eri lõikude tõendid tuuakse kokku |
+| J08 | õige Vaike Vainu artikkel leiti, kuid neli protsendisuhet ei jõudnud valideeritavasse konteksti | morfoloogilised suhtealternatiivid ja mitut lõiku kattev slotiprioriseerimine; arvukuju eemaldati identiteediskoorist |
+| J11 | sequential leidis õige 2016 artikli, kuid 7/6/3 ja analüüsimeetod jäid kõik kinnitamata | arvulised ja kvalitatiivne meetodislot valitakse sama dokumendi eri lõikudest üheks kontekstiks |
+| J13 | kattuvus leiti, kuid 13–18 ja 3–5 ajalised/vanuselised suhted jäid puudu | kvalitatiivsete, ajaliste ja arvuliste slot'ide ühine lõiguvalik, mitte ainult ühe lõigu arvutäielikkus |
+| J14 | sama faktikomplekt oli varasema lühema sõnastusega töötanud, kuid täpse nimega pikem küsimus jäi täielikult fail-closed | täpse pealkirja identiteet eraldati faktifingerprint'ist ja neli faktisuhet kaetakse valitud dokumendi eri lõikudega |
+| J18 | õige artikkel leiti, kuid kolm rühmaarvu ja kogusumma jäid puudu | osalejate/rühmade „kui palju” normaliseerub `count`-iks; jagatud päis ja „kokku” säilitavad tüübi; 5+5+5 ja summa võivad tulla eri lõikudest |
+| V04 | kuue protsendi/arvu seose täielikkus blokeeris vastuse | kõrge kindlusega current-turn autorit kasutatakse faktipäringu ankruna; väärtused ei tõenda dokumendi identiteeti; kuus seost võivad tulla mitmest lõigust |
+| V05 | sama Marina Vaino dokumendi J22 oli PASS, V05 sõnastusvariant FAIL | kvalitatiivsed aeg/roll/osapool slot'id saavad morfoloogilised alternatiivid ja dokumendisisese mitme lõigu prioriteedi; ajalugu ei ole ainus taasterada |
+| V06 | 169 otsust ja 2018 ei saanud koos tõendikatet | olemasolev allika-aasta/fakti-aasta eristus säilib, kuid arvu- ja ajaslot tuuakse sama valitud dokumendi eri lõikudest kokku |
+| M02 | õigest aruandest tuli 3/4 soovitust | nelja kvalitatiivse soovitussloti lõigud valitakse katvuse, mitte algse retrieval-järjekorra järgi |
+
+### Kohaliku paranduse ulatus
+
+Parandus ei sisalda ühegi oodatud vastuse numbrit, nime ega lauset. Nime pinnakuju säilib;
+EstNLTK lemma- ja tüvevariandid lisatakse ainult faktisuhete alternatiivideks. Dokumendi valik
+toetub pealkirjale, autorile, aastale ja teemale; küsitud faktide kuju ei anna enam
+identiteedipunkte. Pärast kõrge kindlusega dokumendivalikut valitakse selle dokumendi lõigud
+ahnelt nii, et need kataksid võimalikult palju veel katmata faktislotte, säilitades ülejäänud
+lõikude algse järjekorra.
+
+Kohalik sihitud ESLint ja `git diff --check` läbisid. Automaatseid teste, build'i, commit'i,
+integratsiooni, push'i ega deploy'd ei tehtud. Seetõttu on paranduse runtime-tulemus kuni
+deploy ja samade 11 juhtumi isolated/sequential korduseni `NOT_PROVEN`.

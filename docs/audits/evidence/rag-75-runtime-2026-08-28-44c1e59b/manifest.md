@@ -4,7 +4,7 @@ Selle manifesti esimene versioon külmutati enne esimese canonical-küsimuse saa
 `PROMPT_DERIVED_FROM_CORE` on neutraalne täislause algmaatriksi küsimuse tuuma põhjal;
 see ei ole allikasõnastuse ajalooline canonical-küsimus. `PROMPT_CORRECTED_FROM_AUDIT`
 tähistab sõnastusvarianti, mille vana lühivorm ei määranud üheselt mõõdikut või allikat.
-Hilisem algallikakontroll parandas J06, J08–J14, J18, J22, V03–V06, M01–M02 ja K05
+Hilisem algallikakontroll parandas J03, J06, J08–J14, J18, J22, V03–V06, M01–M02 ja K05
 eksitava või ebapiisavalt ankurdatud ground truth'i; varasema runtime'i tulemusi ega jälgi ei
 kirjutatud ümber ning parandatud küsimusi ei ole veel uuesti käivitatud.
 
@@ -61,7 +61,7 @@ Selle jooksu `traces.jsonl` on ajalooline normaliseeritud auditiartefakt, mitte 
 |---:|---|---|---|---|---|---|---|---|---|---:|
 | 1 | J01 | Ajakirja faktid | PROMPT_DERIVED_FROM_CORE | Kui tihti toimusid MAPPA kohtumised kolmes Virumaa linnas ja mitu kohtumist toimus Rakveres, Jõhvis ning Narvas? | MAPPA kohtumiste sagedus; Rakvere 5; Jõhvi 7; Narva 5 | exact_fact | single_document | MAPPA käsitlev Sotsiaaltöö artikkel | B01 | 1 |
 | 2 | J02 | Ajakirja faktid | PROMPT_DERIVED_FROM_CORE | Millised kolm protsenti kirjeldasid erihooldekodude kaardistuse tulemusi? | kolm erihooldekodude kaardistuse protsenti: 25%, 45%, 30% | numeric_relation | single_document | erihooldekodude kaardistuse artikkel | B01 | 2 |
-| 3 | J03 | Ajakirja faktid | PROMPT_DERIVED_FROM_CORE | Millised on vaimse tervise kriisi tunnused ning millistele telefoninumbritele tuleb nende korral helistada Külli Mäe 2018. aasta artikli „Vaimse tervise esmaabi tööle” järgi? | kriisitunnused; hädaabi 112; nõuandeliin 1220; ajalooline 2018 allikas | guidance_document | single_document | Külli Mäe 2018 „Vaimse tervise esmaabi tööle” | B01 | 3 |
+| 3 | J03 | Ajakirja faktid | PROMPT_CORRECTED_FROM_AUDIT | Millised on vaimse tervise kriisi tunnused ning millistele telefoninumbritele tuleb nende korral helistada Külli Mäe 2018. aasta artikli „Kuidas anda vaimse tervise probleemide korral töökohal esmaabi?” järgi? | kriisitunnused; hädaabi 112; nõuandeliin 1220; ajalooline 2018 allikas | guidance_document | single_document | Külli Mäe 2018 „Kuidas anda vaimse tervise probleemide korral töökohal esmaabi?” | B01 | 3 |
 | 4 | J04 | Ajakirja faktid | PROMPT_DERIVED_FROM_CORE | Millistes linnades tegutsesid Perepesad ja millised neli ülesannet neil olid? | Põltsamaa; Türi; Viljandi; neli artiklis kirjeldatud põhiülesannet | exact_fact | single_document | Perepesade 2019 artikkel | B01 | 4 |
 | 5 | J05 | Ajakirja faktid | PROMPT_DERIVED_FROM_CORE | Artiklis „Taastav õigus ja COVID-19” mitu spetsialisti ja riiki osales igakuisel kohtumisel ning mitu inimest ja riiki osales 2020. aasta aprillist juulini toimunud neljal kohtumisel? | igakuisel kohtumisel ligi 30 spetsialisti 12 riigist; neljal kohtumisel 60 inimest 19 riigist; suhted õigesti seotud | numeric_relation | single_document | 2020 „Taastav õigus ja COVID-19” | B01 | 5 |
 | 6 | J06 | Ajakirja faktid | PROMPT_DERIVED_FROM_CORE | Mida kirjeldati vanemaealiste teenusmaja korterite arvu ning omavalitsuste arengukavade ja avamisplaanide kohta? | teenusmajas kavandati 12–30 ühe- või kahetoalist ligipääsetavat korterit; 12 vastanud KOV-i arengukavas oli teenusmaja juba ette nähtud; kõik 16 vastanud KOV-i plaanisid selle lähiaastatel avada | exact_fact | single_document | Tarmo Kurves 2021 „Vanemaealiste teenusemaja kontseptsiooni lühitutvustus” | B01 | 6 |
