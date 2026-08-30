@@ -29,4 +29,3 @@ Mis vorme on koduteenuse taotlemiseks Kuusalu vallas vaja ja kelle poole pöörd
 ## Hinnang
 
 Avaldus/SPOKU või paberil ning Kuusalu Vallavalitsus; õige teenuseallikas. Ei mõtle isikukontakti välja.
-

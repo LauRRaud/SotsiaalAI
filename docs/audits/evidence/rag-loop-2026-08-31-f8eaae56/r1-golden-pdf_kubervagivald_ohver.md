@@ -69,4 +69,3 @@ Lepi kokku ohvri eesmärgid ja tegevused, millega neid võimalikult turvaliselt 
 Praktiline turvaplaan, tõendite säilitamine ja ohutu suhtlus. Avatud 1 otsene kübervägivalla juhend (varem 5 allikat).
 
 PASS hinnang käib selle juhtumi teemakohasuse ja kuvatud allikate kohta, mitte üldise digiturbe auditi kohta. Uus tundmatu küsimus ega kõik 37 küsimust pole sellega tõendatud.
-

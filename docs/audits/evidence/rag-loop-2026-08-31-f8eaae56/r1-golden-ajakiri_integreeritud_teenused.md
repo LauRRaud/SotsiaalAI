@@ -80,4 +80,3 @@ Kokkuvõttes kujutab ajakiri integreeritud teenuseid eelkõige töökorralduslik
 Golden teemavastus PASS; 10 allikat, sh 4 tekstis nimetamata kõrvalallikat. Allikaseose lisakriteerium vajab diagnoosi, mitte automaatset PASS-i.
 
 Vastuses on tuvastatavalt kasutatud kuut esimest käsitlust. Omastehoolduse infopunkti reklaami, võimaluste kohviku, erialaajakirja rolli uuringu ja kriisiaja artikli individuaalne panus ei ole vastusest nähtav. Pelk nime puudumine ei tõenda mittekasutamist; jälje claim_support_graph vajab sisulist kontrolli.
-

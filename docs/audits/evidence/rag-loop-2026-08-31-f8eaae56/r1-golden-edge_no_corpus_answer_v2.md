@@ -25,4 +25,3 @@ Saksamaa hooldekodu koha maksumust ei saa siinse teabe põhjal usaldusväärselt
 ## Hinnang
 
 Vastus 33 sõna ja hinda ei väida, kuid avatud allikaid 1; nõue oli 0.
-

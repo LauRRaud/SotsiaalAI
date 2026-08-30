@@ -112,4 +112,3 @@ Kui lapse abivajadus on vähenenud ja edasisi tegevusi pole vaja, võib juhtumim
 Meetodijuhis paranes: eelhindamine, tervikhindamine, vahehindamine ja Turvalisuse märgid. 4 allika seas on täiskasvanute abivajaduse raport; sihtrühma/allikaseose viga.
 
 Algse Goldeni miinimum on PASS (lapse heaolu allikas ja sisuline hindamisvastus). Käesoleva remondi allikakvaliteedi kriteerium pole täidetud. Täiskasvanute allikat ei tohi pelga ühise „abivajaduse hindamise” sõnastuse tõttu lapse juhisele toeks nimetada.
-

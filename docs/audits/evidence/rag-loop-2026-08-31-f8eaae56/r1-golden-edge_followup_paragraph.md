@@ -66,4 +66,3 @@ Kokkuvõttes on tugiisikuteenuse mõte pakkuda inimesele sihipärast kõrvalabi 
 ## Hinnang
 
 PASS: jätkab õiget SHS § 23 teemat ega küsi paragrahvi uuesti. Õige allikas avati. Küsimus saadeti in-app kasutajaliideses; vastusevoogu kasutati ainult oma testpöörde lugemiseks.
-
