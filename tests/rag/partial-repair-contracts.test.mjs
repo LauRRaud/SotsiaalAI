@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
+import { readFileSync } from "node:fs";
 import { shouldValidateExactFactAnswer, validateExactFactAnswer, smallCardinalNumberValue } from "../../lib/chat/factContract.js";
 import { buildRequestedFactSlotContract, buildRequestedQualitativeSlotContract, buildRequestedFactSlotCoverage,
   prioritizeRequestedFactSlotEvidence } from "../../lib/chat/retrievalContextAssembler.js";
@@ -8,6 +9,9 @@ import { buildContextWithBudget, renderOneContextBlock } from "../../lib/chat/ra
 import { qualitativeTimePayload, qualitativeTimePayloadMatches } from "../../lib/chat/qualitativeTimeSemantics.js";
 import { factRelationTermMatchQuality } from "../../lib/chat/factRelationSemantics.js";
 import { buildDocumentScopedMissingFactQueries } from "../../lib/chat/queryPlanner.js";
+import { qualitativeActionSignature, qualitativeActionClauses } from "../../lib/chat/qualitativeActionSemantics.js";
+
+const m02 = JSON.parse(readFileSync(new URL("./fixtures/m02-recommendation-fragments.json", import.meta.url), "utf8"));
 
 const identity = { required: true, matched: true, confidence: "high", selectedDocumentId: "study-doc" };
 const methodSlot = { index: 1, value_type: "method", relation_terms: ["meetodit", "kasutati"],
@@ -155,6 +159,100 @@ test("recommendation relative clauses retain an explicitly requested second obje
   const sources = [{ source_id: "study-source", document_id: "study-doc", evidenceText: `Teenuste uuring\n${evidence}` }];
   assert.equal(validateExactFactAnswer({ reply: "Teenustele pääsu tuleb lihtsustada.", sources, retrievalMeta }).passed, false);
   assert.equal(validateExactFactAnswer({ reply: "Teenustele pääsu tuleb lihtsustada ning korduvaid hindamisi vältida.", sources, retrievalMeta }).passed, true);
+});
+
+test("M02 real competing fragments keep missing decision-making evidence open for scoped recall", () => {
+  const bodies = m02.fragments.map(fragment => fragment.text);
+  const args = argsFor(m02.slots, bodies);
+  const contract = buildRequestedQualitativeSlotContract(args).trace;
+  assert.equal(contract.complete, false);
+  assert.deepEqual(contract.missing_slot_indexes, [4]);
+  const coverage = buildRequestedFactSlotCoverage(args.questionPlan, args.renderedGroups, args);
+  assert.equal(coverage.complete, false);
+  assert.deepEqual(coverage.missing_slot_indexes, [3]);
+  const queries = buildDocumentScopedMissingFactQueries(args.questionPlan, coverage.missing_slot_indexes);
+  assert.ok(queries.length > 0);
+  assert.match(queries.map(item => item.query).join(" "), /otsustami/u);
+  const repaired = argsFor(m02.slots, [...bodies, m02.correctRecommendation]);
+  const complete = buildRequestedQualitativeSlotContract(repaired).trace;
+  assert.equal(complete.complete, true);
+  assert.deepEqual(complete.slots.map(slot => slot.action_object_bindings.map(item => item.action_family)),
+    [["organize"], ["change"], ["simplify", "avoid"], ["improve"]]);
+  const reordered = prioritizeRequestedFactSlotEvidence(repaired.questionPlan, repaired.renderedGroups, repaired);
+  assert.ok(reordered[0].bodies.indexOf(m02.correctRecommendation) < reordered[0].bodies.indexOf(bodies[3]));
+  assert.deepEqual(buildRequestedQualitativeSlotContract({ ...repaired, renderedGroups: reordered }).trace.slots[3], complete.slots[3]);
+});
+
+test("recommendation morphology preserves the requested concept instead of derivational neighbors", () => {
+  const slot = m02.slots[3];
+  for (const text of ["Kontaktisik toetab inimest taotluste ja otsuste mõistmisel.",
+    "Pakkuda toetatud elamist ning aidata inimest otsustamise harjutamisel."]) {
+    assert.equal(buildRequestedQualitativeSlotContract(argsFor([slot], [text])).trace.complete, false, text);
+  }
+  for (const text of ["Arendada toetatud otsustamise lahendusi.", "Arendada toetatud otsustamist.",
+    "Arendada toetatud otsustamisega seotud lahendusi."]) {
+    assert.equal(buildRequestedQualitativeSlotContract(argsFor([slot], [text])).trace.complete, true, text);
+  }
+  assert.deepEqual(qualitativeActionSignature("toetamise pakkumine pakutavates võimalustes").families, []);
+  assert.deepEqual(qualitativeActionClauses("Lihtsustada abi andmise ja teenustele jõudmise protsessi ning vähendada bürokraatiat"),
+    ["Lihtsustada abi andmise ja teenustele jõudmise protsessi", "vähendada bürokraatiat"]);
+});
+
+test("M02 actual four-slot answer permits connected sentences but rejects objects, labels and polarity swaps", () => {
+  const bodies = [...m02.fragments.map(fragment => fragment.text), m02.correctRecommendation];
+  const contract = buildRequestedQualitativeSlotContract(argsFor(m02.slots, bodies)).trace;
+  const sources = [{ source_id: "study-source", document_id: "study-doc", evidenceText: bodies.join("\n") }];
+  const validate = reply => validateExactFactAnswer({ reply, sources, retrievalMeta: metaFor(m02.slots, contract) });
+  const replies = ["1. Kontaktisik või juhtumikorraldus: määrata inimesele üks kindel kontaktisik.",
+    "2. Ennetav abi: pakkuda ennetavat abi juba varajases etapis.",
+    "3. Teenustele pääsu tuleb lihtsustada ning korduvaid hindamisi vältida.",
+    "4. Toetatud otsustamine: arendada toetatud otsustamise süsteemi."];
+  assert.equal(validate(replies.join("\n")).passed, true);
+  const unnumbered = replies.map(reply => reply.replace(/^\d+\.\s*/u, ""));
+  assert.equal(validate(unnumbered.join(" ")).passed, true);
+  const plainTwoSentences = unnumbered.map((reply, index) => index === 2
+    ? "Teenustele pääsu tuleb lihtsustada. Korduvaid hindamisi tuleb vältida." : reply).join(" ");
+  assert.equal(validate(plainTwoSentences).passed, true);
+  assert.equal(validate(replies.map(reply => reply.replace(": ", ":\n\n  ")).join("\n")).passed, true);
+  for (const third of ["3. Teenustele pääsu tuleb lihtsustada. Korduvaid hindamisi tuleb vältida.",
+    "3. Teenustele pääsu tuleb lihtsustada.\n   Korduvaid hindamisi tuleb vältida."]) {
+    assert.equal(validate(replies.map((reply, index) => index === 2 ? third : reply).join("\n")).passed, true, third);
+  }
+  for (const [index, bad] of [
+    [0, "1. Kontaktisik: inimesele ei tule määrata kontaktisikut."],
+    [0, "1. Tallinna kontaktisik või juhtumikorraldus: korraldada inimese transporti."],
+    [0, "1. Tallinna kontaktisik või juhtumikorraldus: korraldada Tallinnas kindel transpordisüsteem."],
+    [1, "2. Ennetav abi: pakkuda abi alles pärast kriisi."],
+    [2, "3. Teenustele pääs ja korduvad hindamised: korduvaid hindamisi tuleb lihtsustada ning teenustele pääsu vältida."],
+    [2, "3. Teenustele pääsu tuleb lihtsustada. Korduvaid hindamisi ei tule vältida."],
+    [3, "4. Toetatud otsustamine: toetada inimest taotluste ja menetluste mõistmisel."],
+    [3, "4. Toetatud otsustamine: arendada taotluste ja menetluste mõistmist."],
+    [3, "4. Toetatud otsustamine: arendada lahendusi transpordile."],
+    [3, "4. Toetatud otsustamine: arendada eestkoste ulatust."],
+    [3, "4. Toetatud otsustamist ei tule arendada."]
+  ]) {
+    assert.equal(validate(replies.map((reply, position) => position === index ? bad : reply).join("\n")).passed, false, bad);
+  }
+  // A later numbered item cannot lend its predicate to the preceding slot.
+  const crossItem = [...replies];
+  crossItem[2] = "3. Teenustele pääsu tuleb lihtsustada.";
+  crossItem[3] += " Korduvaid hindamisi tuleb vältida.";
+  assert.equal(validate(crossItem.join("\n")).passed, false);
+  const contaminatedParagraph = unnumbered.slice();
+  contaminatedParagraph[2] = "Teenustele pääsu tuleb lihtsustada.";
+  contaminatedParagraph[3] = "Toetatud otsustamise süsteemi tuleb arendada ning korduvaid hindamisi vältida.";
+  assert.equal(validate(contaminatedParagraph.join(" ")).passed, false);
+});
+
+test("recommendation comma-separated object lists retain one predicate", () => {
+  const slot = { index: 1, value_type: "recommendation", relation_terms: ["teenustele", "toetustele"], minimum_answer_items: 1 };
+  const evidence = "Lihtsustada ligipääsu teenustele, toetustele ja nõustamisele.";
+  assert.deepEqual(qualitativeActionClauses(evidence), [evidence]);
+  const contract = buildRequestedQualitativeSlotContract(argsFor([slot], [evidence])).trace;
+  assert.equal(contract.complete, true);
+  const sources = [{ source_id: "study-source", document_id: "study-doc", evidenceText: evidence }];
+  assert.equal(validateExactFactAnswer({ reply: "Teenustele ja toetustele ligipääsu tuleb lihtsustada.", sources,
+    retrievalMeta: metaFor([slot], contract) }).passed, true);
 });
 
 test("synthesis does not give orphan service claims the preceding search hit's subject", () => {
