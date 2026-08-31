@@ -18,6 +18,7 @@ import {
   buildRequestedFactSlotContract,
   buildRequestedQualitativeSlotContract,
   buildRequestedFactSlotCoverage,
+  describeSpecificResearchDocumentLock,
   prioritizeRequestedNumericEvidence,
   prioritizeRequestedMetricSlotEvidence,
   selectSingleSourceNumericFactGroups,
@@ -435,6 +436,66 @@ describe("uuringudokumendi identiteet", () => {
 });
 
 describe("aasta roll otsingus", () => {
+  test("perioodiga küsimus lukustab õige ilmumisaastaga allika, kuid vale aasta jääb blokeerituks", () => {
+    const message = "Millises vahemikus oli Põhja-Pärnumaal mitme kuhjunud võlanõudega inimeste osakaal võlanõustamisele suunatutest aastatel 2019–2022, nagu kirjeldab Anneli Kaljuri 2023. aasta artikkel?";
+    const plan = buildQuestionPlan({ message });
+    const correct = {
+      docId: "debt-study-2023", title: "Põhja-Pärnumaa võlanõustamiskogemus",
+      authors: ["Anneli Kaljur"], year: 2023, sourceType: "journal_article",
+      retrievalChannels: ["author_match", "title_match"],
+      bodies: ["Aastatel 2019–2022 oli Põhja-Pärnumaal võlanõustamisele suunatud inimestest eri aastatel 40–60% hädas mitme kuhjunud võlanõudega."]
+    };
+    const wrongYear = { ...correct, docId: "debt-study-2022", year: 2022 };
+    const identity = selectSpecificResearchFactGroups(message, [wrongYear, correct], plan);
+    const decision = describeSpecificResearchDocumentLock(plan, identity);
+    assert.equal(identity.selectedDocumentId, correct.docId);
+    assert.equal(decision.eligible, true);
+    assert.deepEqual(decision.confirmed_source_years, ["2023"]);
+    assert.deepEqual(decision.unconfirmed_source_years, []);
+    assert.equal(describeSpecificResearchDocumentLock(plan, selectSpecificResearchFactGroups(message, [wrongYear], plan)).eligible, false);
+  });
+  const periodCases = [
+    ["Millises vahemikus oli Põhja-Pärnumaal mitme kuhjunud võlanõudega inimeste osakaal võlanõustamisele suunatutest aastatel 2019–2022, nagu kirjeldab Anneli Kaljuri 2023. aasta artikkel?", ["2023"], ["2019", "2022"]],
+    ["Anneli Kaljuri 2023. aasta artikli järgi: millises vahemikus oli võlanõustamisele suunatud inimestest mitme võlanõudega inimeste osakaal aastatel 2019–2022?", ["2023"], ["2019", "2022"]],
+    ["Kui suur oli töötute osakaal perioodil 2017 kuni 2020, nagu kirjeldab Mari Tamme 2024. aasta artikkel?", ["2024"], ["2017", "2020"]],
+    ["2023. aasta artikli järgi: kui suur oli osakaal aastate 2019—2022 andmetes?", ["2023"], ["2019", "2022"]],
+    ["Milline oli osakaal 2019. aastast 2022. aastani, nagu kirjeldab 2023. aasta artikkel?", ["2023"], ["2019", "2022"]]
+  ];
+  for (const [message, sourceYears, periodYears] of periodCases) {
+    test(`seob perioodi otspunktid enne kirjavahemärkide kaotamist: ${message}`, () => {
+      const plan = buildQuestionPlan({ message });
+      assert.deepEqual(plan.document_source_years, sourceYears);
+      assert.deepEqual(plan.evidence_period_years, periodYears);
+      assert.equal(plan.bounded_episode_metric_fact, false);
+      assert.deepEqual(plan.semantic_candidates.current_turn_document_identity.document_source_years.map(item => item.value), sourceYears);
+      const normalized = message.normalize("NFD").replace(/\p{Diacritic}+/gu, "").toLowerCase().replace(/[^\p{Letter}\p{Number}%]+/gu, " ").replace(/\s+/gu, " ").trim();
+      for (const mention of plan.semantic_candidates.year_role_mentions) {
+        assert.equal(normalized.slice(mention.span_start, mention.span_end), mention.value);
+        assert.equal(mention.role, periodYears.includes(mention.value) ? "evidence_year" : "document_source_year");
+      }
+    });
+  }
+  test("vahetu allikapea ja avaldamisverb säilitavad päris allikaaastavahemiku", () => {
+    for (const message of [
+      "Mida kirjeldavad 2019–2022. aasta artiklid?",
+      "Mida kirjeldavad aastatel 2019–2022 avaldatud artiklid?",
+      "Mida kirjeldavad avaldatud aastatel 2019–2022 artiklid?",
+      "Mitu võlanõustamise artiklit avaldati aastatel 2019–2022?",
+      "Millised sotsiaaltöö artiklid ilmusid aastatel 2019–2022?",
+      "Millised artiklid on avaldatud perioodil 2019–2022?",
+      "Mida kirjeldavad aastate 2019–2022 Sotsiaaltöö artiklid?",
+      "Mida kirjeldavad aastate 2019–2022 võlanõustamise artiklid?"
+    ]) {
+      const mentions = buildQuestionPlan({ message }).semantic_candidates.year_role_mentions;
+      assert.deepEqual(mentions.map(item => [item.value, item.role]), [["2019", "document_source_year"], ["2022", "document_source_year"]]);
+    }
+  });
+  test("ebaselge ankruta vahemik ja üksik otsuseaasta ei saa uut allikarolli", () => {
+    const ambiguous = buildQuestionPlan({ message: "Milline oli sotsiaaltöö 2019–2022?" });
+    assert.ok(ambiguous.semantic_candidates.year_role_mentions.every(item => item.role === "ambiguous"));
+    const decision = buildQuestionPlan({ message: "Mitu 2018. aasta otsust käsitleti 2022. aasta artiklis?" });
+    assert.deepEqual(decision.semantic_candidates.year_role_mentions.map(item => [item.value, item.role]), [["2018", "evidence_year"], ["2022", "document_source_year"]]);
+  });
   test("andmeaasta ei muutu allika ilmumisaasta filtriks", () => {
     assert.deepEqual(
       extractExplicitSourceYears("Kui palju üle 60-aastasi oli 2023. aastal kuriteoohvrite ja ohvriabisse pöördunute seas?"),

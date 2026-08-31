@@ -122,3 +122,13 @@ Sama F02 küsimus esitati samas testvestluses neljandana. **Sisuline vastus endi
 Automaataruandes on nüüd neli kirjet; värske MD allalaadimissündmus kinnitati. 762 × 699 in-app paneelis keritud põhjuseploki tekst ja väljad olid loetavad, kattumist ei nähtud; eraldi uut mobiilsuuruse kontrolli selles plokis ei tehtud. Algpõhjuse üldine automaatne garantii jääb `NOT_PROVEN` ja puuduvat vana tõendit ei kirjutata tagantjärele juurde.
 
 [Uue päringu täisvastus, nähtav selgitus ja v2 diagnostikatõend](../docs/audits/evidence/rag-uus75-2026-08-31-e9669a36/diagnostics-v2-F02-058ad4c3.json).
+
+## Aastarollide parandus pärast omaniku korraldust „paranda rag süsteem”
+
+F02 esimene lahknevus täpsustati: jagatud leksikaalne normaliseerimine eemaldab kriipsud ja kirjavahemärgid enne aastamainimiste sidumist. Vahemiku 2019–2022 otspunktid kaotavad ühise perioodiseose ning hilisem „artikkel” annab neile allikarolli. Kahe allikaaasta piir jätab seejärel 2023 välja. Piiri ega ranget dokumendilukku ei lõdvendatud.
+
+Üldparandus tuvastab selgesõnalise vahemiku rolli kirjavahemärke säilitavas vaates ja kannab selle mainimise järjekorranumbri abil tagasi olemasolevatele normaliseeritud tekstivahemikele. Andmeperiood säilib ka mitte-episoodilises faktiküsimuses; see ei muuda küsimust kunstlikult episoodiks. Vahetu avaldamisverb või allikapea säilitab tegeliku ilmumisperioodi; ebakindel „aastate …” üksi ei tühista varasemat rollitõlgendust. Diagnostika lubatud meetodiloendisse lisandus `explicit_year_range`, mitte uus vabatekstiväli. Korpust, registrit, indeksit ega faktivalidaatorit ei muudetud.
+
+Arenduse sihttõend: 10 UTC aastarolli testi (sh teise teema ja aastatega sõnastus, õigesse allikasse lukustumine ning vale aasta tagasilükkamine) ja 23 diagnostikatesti (sh parandatud rollide päris producer → canonical → projektsioon). Finite avaldamisverbide ning allikapeaga „aastate … artiklid” negatiivsed juhud lisati sõltumatu ülevaatuse leiu põhjal. Serveri järelkontroll: `NOT_PROVEN` kuni uue väljalaske autenditud küsimused on allpool salvestatud.
+
+F01 varasem `PARTIAL` jääb muutmata. Sama assistendisõnumi canonical trace'i värske kirjutuskaitstud DB-lugemine kinnitas õige allika, 8/8 kontekstitükki, ühe seotud kvalitatiivse nõude ja läbinud vastusekontrolli. Küsimus küsis menetluste eesmärki; vastus kirjeldas neid, kuid manifest nõudis lisaks kohtu kinnitatud kava kui mehhanismi. Üldine faktiplaneerija viga pole selle erinevusega tõendatud. Üht detaili ei kodeeritud kõigisse eesmärgiküsimustesse ega muudetud testmanifesti PASS-i saavutamiseks.

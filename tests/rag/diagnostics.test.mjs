@@ -242,7 +242,15 @@ test("recheck evidence belongs to the current candidate, not the previously lock
 test("producer to canonical trace to reports retains terminal decision beyond twenty reasons", () => {
   const decision = describeSpecificResearchDocumentLock(yearPlan, identityCandidate);
   const actualQuestionPlan = buildQuestionPlan({ message: "Millises vahemikus oli Põhja-Pärnumaal mitme kuhjunud võlanõudega inimeste osakaal võlanõustamisele suunatutest aastatel 2019–2022, nagu kirjeldab Anneli Kaljuri 2023. aasta artikkel?", role: "social_worker" });
-  const actualQueryPlan = buildRagQueryPlan({ baseRagQueryText: "Põhja-Pärnumaa", effectiveMessage: "Põhja-Pärnumaa", rawHistory: [], effectiveMunicipalities: [], questionPlan: actualQuestionPlan }).queryPlan;
+  const correctedQueryPlan = buildRagQueryPlan({ baseRagQueryText: "Põhja-Pärnumaa", effectiveMessage: "Põhja-Pärnumaa", rawHistory: [], effectiveMunicipalities: [], questionPlan: actualQuestionPlan }).queryPlan;
+  const correctedDiagnostics = buildRagDiagnostics({ trace: buildRagTraceFromAttribution([], {}, { queryPlan: correctedQueryPlan }) });
+  assert.deepEqual(correctedDiagnostics.evidence.plan.years.source_years, ["2023"]);
+  assert.deepEqual(correctedDiagnostics.evidence.plan.years.evidence_period_years, ["2019", "2022"]);
+  assert.deepEqual(correctedDiagnostics.evidence.plan.years.mentions.filter(mention => mention.method === "explicit_year_range").map(mention => [mention.value, mention.role]), [["2019", "evidence_year"], ["2022", "evidence_year"]]);
+  // Inject a legacy conflicting plan deliberately: this test protects trace
+  // transport, not the old parser bug (year-role regressions cover parsing).
+  const conflictingPlan = { ...actualQuestionPlan, document_source_years: yearPlan.document_source_years, evidence_period_years: [], semantic_candidates: { ...actualQuestionPlan.semantic_candidates, year_role_mentions: actualQuestionPlan.semantic_candidates.year_role_mentions.map(mention => ({ ...mention, role: "document_source_year" })) } };
+  const actualQueryPlan = buildRagQueryPlan({ baseRagQueryText: "Põhja-Pärnumaa", effectiveMessage: "Põhja-Pärnumaa", rawHistory: [], effectiveMunicipalities: [], questionPlan: conflictingPlan }).queryPlan;
   const canonical = buildRagTraceFromAttribution([], {}, {
     queryPlan: actualQueryPlan,
     documentIdentityEvidence: { ...identityCandidate, matched: false, selectedDocumentId: null, groups: [], decision, reasons: [...Array(25).fill("subject:PRIVATE"), "document_identity_not_lock_eligible"] },
