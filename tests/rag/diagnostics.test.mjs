@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { buildRagDiagnostics, projectRagDiagnosticEvidence, projectRagTraceForLog, selectDiagnosticReportRow } from "../../lib/chat/ragDiagnostics.js";
+import { buildRagDiagnostics, projectRagDiagnosticEvidence, projectRagTraceForLog, projectQualitativeGateChecks, selectDiagnosticReportRow } from "../../lib/chat/ragDiagnostics.js";
 import { buildDiagnosticReport, diagnosticReportMarkdown } from "../../lib/chat/ragDiagnosticReport.js";
 import { GET } from "../../app/api/chat/conversations/[id]/diagnostics/route.js";
 import { persistDone } from "../../lib/chat/persistence.js";
@@ -25,6 +25,51 @@ const trace = {
   attribution_decisions: [{ source_id: "doc-a", reason: "validation_failed", displayed: false }],
   fact_validation: { enabled: true, passed: false, reason: "requested_fact_answer_incomplete", requested_fact_answer_missing_slot_indexes: [2] }
 };
+
+test("qualitative first-reject gates survive producer and canonical projection without draft or source anchors", () => {
+  const identity = { required: true, matched: true, confidence: "high", selectedDocumentId: "qual-doc" };
+  const slot = { slot_index: 1, value_type: "text_relation", relation_terms: ["teenus"], matched_relation_terms: ["teenus"], minimum_relation_matches: 1, minimum_answer_items: 1, minimum_anchor_matches: 1, evidence_anchor_terms: ["kodukulastus"], required_numeric_values: [], evidence_fragment_hash: "c".repeat(64), evidence_fragment_index: 0 };
+  const contract = { version: "requested_qualitative_slot_contract_v1", enabled: true, complete: true, selected_document_id: "qual-doc", requested_slot_count: 1, mapped_slot_count: 1, reason: "all_qualitative_slots_bound_to_rendered_evidence", slots: [slot] };
+  const sources = [{ id: "qual-source", documentId: "qual-doc", evidenceText: "Teenus oli kodukülastus." }];
+  const meta = { documentIdentityEvidence: identity, queryPlan: { mode: "specific_research_fact" }, requestedFactEvidenceCoverage: { enabled: true, complete: true }, requestedQualitativeSlotContract: contract };
+  const evaluate = (reply, overrides = {}) => validateExactFactAnswer({ message: "Milline teenus oli artiklis?", reply, sources, retrievalMeta: { ...meta, requestedQualitativeSlotContract: { ...contract, slots: [{ ...slot, ...overrides }] } } });
+  const rejected = evaluate("Teenus oli nõustamine.");
+  assert.equal(rejected.passed, false);
+  assert.equal(rejected.trace.reason, "requested_fact_answer_incomplete");
+  assert.equal(rejected.trace.requested_fact_qualitative_gate_checks[0].rejection_counts.evidence_anchors_missing, 1);
+  assert.equal(rejected.trace.requested_fact_qualitative_gate_checks[0].candidate_unit_count, 0);
+  const accepted = evaluate("Teenus oli kodukülastus.");
+  assert.equal(accepted.passed, true);
+  assert.equal(accepted.trace.requested_fact_qualitative_gate_checks[0].assigned, true);
+  assert.deepEqual(accepted.trace.requested_fact_qualitative_gate_checks[0].rejection_counts, {});
+  for (const [reply, overrides, reason] of [
+    ["Muu tekst.", {}, "relation_terms_missing"],
+    ["Teenus oli kodukülastus.", { required_numeric_values: ["7"] }, "required_numbers_missing"],
+    ["Teenus oli kodukülastus.", { evidence_anchor_terms: [], minimum_anchor_matches: 0 }, "evidence_payload_missing"],
+    ["Teenus oli kodukülastus.", { minimum_answer_items: 20 }, "answer_items_missing"],
+    ["Teenus oli kodukülastus.", { temporal_binding: { kind: "calendar", points: [{ year: 2020, month: null, day: null, season: null }] } }, "temporal_payload_mismatch"]
+  ]) assert.equal(evaluate(reply, overrides).trace.requested_fact_qualitative_gate_checks[0].rejection_counts[reason], 1, reason);
+  const canonical = buildRagTraceFromAttribution(sources, {}, { ...meta, factValidation: rejected.trace });
+  const diagnostic = buildRagDiagnostics({ trace: canonical });
+  assert.equal(diagnostic.evidence.qualitative_contract.mapped_slot_count, 1);
+  assert.equal(diagnostic.evidence.qualitative_contract.slots[0].evidence_fragment_hash, "c".repeat(64));
+  assert.equal(diagnostic.evidence.validation.qualitative_gate_checks[0].rejection_counts.evidence_anchors_missing, 1);
+  assert.equal(diagnostic.root_cause_status, "NOT_PROVEN");
+  const rows = diagnosticExplanationRows(diagnostic, key => serverT("et", `chat.diagnostics.${key}`));
+  assert.match(rows.find(row => row.key === "qualitative_rejections").value, /sisutunnused/);
+  assert.doesNotMatch(JSON.stringify(diagnostic), /teenus|kodukulastus|nõustamine/i);
+  assert.equal(projectRagTraceForLog(canonical).requested_qualitative_slot_contract.complete, true);
+});
+
+test("qualitative gate projection rejects unknown reasons and unbounded values; old missing gates stay unknown", () => {
+  const projected = projectQualitativeGateChecks([{ slot_index: 1, evaluated_unit_count: 3, candidate_unit_count: 1, assigned: false, assignment_conflict: true, rejection_counts: { relation_terms_missing: 2, PRIVATE: 9, evidence_anchors_missing: -1 }, raw: "PRIVATE" }, { slot_index: 13, evaluated_unit_count: 10 }]);
+  assert.equal(projected.length, 1);
+  assert.deepEqual(projected[0].rejection_counts, { relation_terms_missing: 2 });
+  assert.equal(projected[0].assignment_conflict, true);
+  assert.doesNotMatch(JSON.stringify(projected), /PRIVATE/);
+  assert.equal(projectQualitativeGateChecks(undefined), null);
+  assert.equal(Object.hasOwn(buildRagDiagnostics({ trace }).evidence.validation, "qualitative_gate_checks"), false);
+});
 
 test("atomic range mapping and two bound endpoints survive canonical diagnostics without source text or values", () => {
   const message = "2024. aasta artiklis millises vahemikus oli töötute osakaal?";
@@ -217,6 +262,7 @@ function deps({ admin = true, owner = "owner01", archived = false } = {}) {
   return { requireUser: async () => ({ ok: true, isAdmin: admin, userId: "owner01" }), enforceChatRateLimit: () => null, prisma: {
     conversation: { findUnique: async () => ({ userId: owner, archivedAt: archived ? new Date() : null }) },
     chatTurn: { findMany: async () => [turn] },
+    ragAttempt: { findMany: async () => [] },
     conversationMessage: { findMany: async () => [question, answer] }
   } };
 }

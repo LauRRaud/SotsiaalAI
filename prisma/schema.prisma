@@ -146,6 +146,14 @@ enum ChatTurnStatus {
   ABORTED
 }
 
+enum RagAttemptStatus {
+  RUNNING
+  COMPLETED
+  FAILED
+  CANCELLED
+  ABANDONED
+}
+
 enum ConversationMessageRole {
   USER
   ASSISTANT
@@ -1552,10 +1560,37 @@ model ChatTurn {
 
   user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
   conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  ragAttempts  RagAttempt[]
 
   @@unique([userId, clientTurnKey])
   @@index([conversationId, startedAt])
   @@index([status, updatedAt])
+}
+
+/// One immutable execution of a chat intent. No raw prompt, draft or source body.
+/// Retention follows ChatTurn -> Conversation; deleting either cascades here.
+model RagAttempt {
+  id                 String           @id @default(cuid())
+  chatTurnId         String
+  attempt            Int
+  userMessageId      String?
+  assistantMessageId String?
+  status             RagAttemptStatus @default(RUNNING)
+  stage              String           @default("claimed")
+  sequence           Int              @default(0)
+  evidence           Json?
+  startedAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+  leaseExpiresAt     DateTime
+  endedAt            DateTime?
+
+  chatTurn         ChatTurn             @relation(fields: [chatTurnId], references: [id], onDelete: Cascade)
+  userMessage      ConversationMessage? @relation("RagAttemptQuestion", fields: [userMessageId], references: [id], onDelete: SetNull)
+  assistantMessage ConversationMessage? @relation("RagAttemptAnswer", fields: [assistantMessageId], references: [id], onDelete: SetNull)
+
+  @@unique([chatTurnId, attempt])
+  @@index([status, leaseExpiresAt])
+  @@index([startedAt])
 }
 
 model Journey {
@@ -1861,6 +1896,8 @@ model ConversationMessage {
 
   conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
   author       User?        @relation(fields: [authorId], references: [id], onDelete: SetNull)
+  ragQuestionAttempts RagAttempt[] @relation("RagAttemptQuestion")
+  ragAnswerAttempts   RagAttempt[] @relation("RagAttemptAnswer")
 
   @@index([conversationId, createdAt])
   @@index([authorId])

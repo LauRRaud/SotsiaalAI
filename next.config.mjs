@@ -1,3 +1,16 @@
+import { randomUUID } from "node:crypto";
+import { execFileSync } from "node:child_process";
+
+// Frozen into the compiled bundle: a running process must not read a later
+// checkout's HEAD and present it as the release that produced this answer.
+const ragBuildId = randomUUID();
+let ragBuildSha = "";
+try {
+  if (!execFileSync("git", ["status", "--porcelain", "--untracked-files=normal"], { encoding: "utf8", windowsHide: true }).trim()) {
+    ragBuildSha = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8", windowsHide: true }).trim();
+  }
+} catch { /* Non-Git builds explicitly retain an unknown release SHA. */ }
+
 const withBundleAnalyzer =
   process.env.ANALYZE === "true"
     ? (await import("@next/bundle-analyzer")).default({
@@ -7,6 +20,8 @@ const withBundleAnalyzer =
 
 /** @type {import('next').NextConfig} */
 const baseConfig = {
+  generateBuildId: async () => ragBuildId,
+  env: { RAG_BUILD_ID: ragBuildId, RAG_BUILD_SHA: ragBuildSha },
   reactStrictMode: true,
   poweredByHeader: false,
   productionBrowserSourceMaps: false,

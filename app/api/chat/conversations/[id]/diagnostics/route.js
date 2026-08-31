@@ -26,11 +26,13 @@ export async function GET(req, { params }, deps = {}) {
     const conversation = await db.conversation.findUnique({ where: { id }, select: { userId: true, archivedAt: true } });
     if (!conversation || conversation.archivedAt) return failure("api.chat.not_found", 404);
     if (conversation.userId !== auth.userId) return failure("api.common.forbidden", 403);
-    const [turnRows, messageRows] = await Promise.all([
+    const [turnRows, messageRows, attemptRows] = await Promise.all([
       db.chatTurn.findMany({ where: { conversationId: id, userId: auth.userId }, orderBy: [{ startedAt: "asc" }, { id: "asc" }], take: DIAGNOSTIC_TURN_LIMIT + 1, select: { id: true, userMessageId: true, assistantMessageId: true, status: true, startedAt: true, updatedAt: true, endedAt: true, attempt: true } }),
-      db.conversationMessage.findMany({ where: { conversationId: id }, orderBy: [{ createdAt: "asc" }, { id: "asc" }], take: DIAGNOSTIC_TURN_LIMIT * 2 + 1, select: { id: true, role: true, content: true, metadata: true, createdAt: true } })
+      db.conversationMessage.findMany({ where: { conversationId: id }, orderBy: [{ createdAt: "asc" }, { id: "asc" }], take: DIAGNOSTIC_TURN_LIMIT * 2 + 1, select: { id: true, role: true, content: true, metadata: true, createdAt: true } }),
+      db.ragAttempt.findMany({ where: { chatTurn: { conversationId: id, userId: auth.userId } }, orderBy: [{ startedAt: "asc" }, { id: "asc" }], take: DIAGNOSTIC_TURN_LIMIT + 1,
+        select: { id: true, chatTurnId: true, attempt: true, userMessageId: true, assistantMessageId: true, status: true, stage: true, evidence: true, startedAt: true, endedAt: true, leaseExpiresAt: true } })
     ]);
-    const report = buildDiagnosticReport({ conversationId: id, turns: turnRows.slice(0, DIAGNOSTIC_TURN_LIMIT), messages: messageRows.slice(0, DIAGNOSTIC_TURN_LIMIT * 2), hasMore: turnRows.length > DIAGNOSTIC_TURN_LIMIT || messageRows.length > DIAGNOSTIC_TURN_LIMIT * 2 });
+    const report = buildDiagnosticReport({ conversationId: id, turns: turnRows.slice(0, DIAGNOSTIC_TURN_LIMIT), messages: messageRows.slice(0, DIAGNOSTIC_TURN_LIMIT * 2), attempts: attemptRows.slice(0, DIAGNOSTIC_TURN_LIMIT), hasMore: turnRows.length > DIAGNOSTIC_TURN_LIMIT || messageRows.length > DIAGNOSTIC_TURN_LIMIT * 2 || attemptRows.length > DIAGNOSTIC_TURN_LIMIT });
     const url = new URL(req.url);
     if (url.searchParams.get("format") === "md") {
       return new Response(diagnosticReportMarkdown(report, url.searchParams.get("lang")), { headers: { ...CHAT_NO_STORE_HEADERS, "Content-Type": "text/markdown; charset=utf-8", "Content-Disposition": `attachment; filename="rag-diagnostics-${id}.md"`, "X-Content-Type-Options": "nosniff" } });

@@ -3,6 +3,7 @@ import { claimNextResearchJob, startResearchJobLeaseHeartbeat } from "../lib/res
 import { runDeepResearchJob } from "../lib/research/pipeline.js";
 import { prisma } from "../lib/prisma.js";
 import { safeError } from "../lib/privacy/safeError.js";
+import { reapStaleRagAttempts } from "../lib/chat/ragAttemptStore.js";
 
 function toInt(value, fallback, min = 1, max = Number.MAX_SAFE_INTEGER) {
   const parsed = Number(value);
@@ -55,12 +56,25 @@ async function runOnce() {
 
 async function main() {
   console.log(`[research-worker] started ${workerId}`);
+  let reaping = null;
+  const reapAttempts = () => {
+    if (reaping || stopping) return reaping;
+    reaping = reapStaleRagAttempts({ db: prisma })
+      .catch(error => { console.error("[rag-attempt-reaper] failed", safeError(error)); })
+      .finally(() => { reaping = null; });
+    return reaping;
+  };
+  const attemptReaper = setInterval(() => { void reapAttempts(); }, 60_000);
+  attemptReaper.unref?.();
+  await reapAttempts();
   while (!stopping) {
     const didWork = await runOnce();
     if (!didWork && !stopping) {
       await sleep(pollMs);
     }
   }
+  clearInterval(attemptReaper);
+  await reaping;
   await prisma.$disconnect();
   console.log(`[research-worker] stopped ${workerId}`);
 }

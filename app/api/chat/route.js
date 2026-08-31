@@ -18,7 +18,10 @@ import {
 } from "@/lib/chat/conversationalRecovery";
 import { buildReplayResponse, handleMainChatResponse } from "@/lib/chat/mainResponseHandler";
 import { langStrings } from "@/lib/chat/promptBuilder";
-import { readCompletedChatTurnReplay } from "@/lib/chat/turnRegistry";
+import { readCompletedChatTurnReplay, claimChatTurn, initializeClaimedChatTurn, CHAT_TURN_OUTCOME } from "@/lib/chat/turnRegistry";
+import { writeUserTurn } from "@/lib/chat/persistence";
+import { createRagAttemptController, failRagAttempt } from "@/lib/chat/ragAttemptStore";
+import { stableEvidenceHash } from "@/lib/chat/ragAttemptEvidence";
 import { buildImmediateChatResponse, finalizeAssistantReply } from "@/lib/chat/responseFinalizer";
 import { handleDocumentWorkflowBranch, handleHelpWorkflowBranch } from "@/lib/chat/workflowBranchHandlers";
 import { hasDocumentTaskContext } from "@/lib/chat/documentOrchestration";
@@ -96,6 +99,10 @@ export async function POST(req, deps = {}) {
     assembleRetrievalContext: deps.assembleRetrievalContext || assembleRetrievalContext,
     handleMainChatResponse: deps.handleMainChatResponse || handleMainChatResponse,
     readCompletedChatTurnReplay: deps.readCompletedChatTurnReplay || readCompletedChatTurnReplay,
+    claimChatTurn: deps.claimChatTurn || (input => claimChatTurn(input, { writeUserTurn })),
+    initializeClaimedChatTurn: deps.initializeClaimedChatTurn || ((fence, input) => initializeClaimedChatTurn(fence, input, { writeUserTurn })),
+    createRagAttemptController: deps.createRagAttemptController || createRagAttemptController,
+    failRagAttempt: deps.failRagAttempt || failRagAttempt,
     logEvent: deps.logEvent || logEvent
   };
 
@@ -295,6 +302,41 @@ export async function POST(req, deps = {}) {
 
   let chatUsageHandle = null;
   let ragUsageHandle = null;
+  let claimedTurn = null;
+  let attemptController = null;
+  const recoveryContinuation = isRagRecoveryContinuation(effectiveMessage, trustedRagRecoveryState);
+  if (persist && convId && userId && clientTurnKey && !roomId) {
+    try {
+      const claim = await routeRuntime.claimChatTurn({ userId, conversationId: convId, clientTurnKey,
+        role: normalizedRole, userMessage: effectiveMessage, sessionTurnLimit,
+        expectedPreviousAssistantMessageId: recoveryContinuation ? trustedRagRecoveryAssistantMessageId : null,
+        recordRagAttempt: true, deferUserMessage: true });
+      if (claim.outcome === CHAT_TURN_OUTCOME.REPLAYED) return buildReplayResponse({ wantStream, convId, replay: claim.replay, isCrisis });
+      if ([CHAT_TURN_OUTCOME.IN_FLIGHT, CHAT_TURN_OUTCOME.CONVERSATION_BUSY].includes(claim.outcome)) return makeChatError("chat.error.turn_in_flight", 409);
+      if (claim.outcome === CHAT_TURN_OUTCOME.SESSION_LIMIT) return makeChatError("api.common.rate_limited", 429, { scope: "chat_session_turns", limit: claim.limit, used: claim.used });
+      if (claim.outcome !== CHAT_TURN_OUTCOME.CLAIMED) return makeChatError("chat.error.conversation_unavailable", 409);
+      claimedTurn = claim.turn;
+      attemptController = routeRuntime.createRagAttemptController(claim.ragAttempt, { conversationId: convId, userId });
+      if (!attemptController) throw new Error("rag_attempt_not_created");
+    } catch {
+      return makeChatError("chat.error.not_saved", 503);
+    }
+  }
+  const failAttempt = async (stage, code, { settleChatUsage = null, cancelled = req.signal?.aborted === true } = {}) => {
+    if (!attemptController) return;
+    try {
+      await routeRuntime.failRagAttempt(attemptController.fence, { failure: { stage, code }, cancelled,
+        settleUsage: async tx => {
+          if (settleChatUsage) await settleChatUsage(tx);
+          else await routeRuntime.releaseUsageForRequest(chatUsageHandle, { reason: code, tx, skipCommitted: true });
+          await routeRuntime.releaseUsageForRequest(ragUsageHandle, { reason: code, tx, skipCommitted: true });
+        } });
+    } catch { /* An unavailable store or superseded attempt cannot release another owner's usage. Lease recovery retains this boundary. */ }
+    finally { attemptController.stop(); }
+  };
+  let streamOwnsHeartbeat = false;
+  try {
+  if (attemptController && !await attemptController.stage("usage")) throw new Error("rag_attempt_observation_failed");
   try {
     chatUsageHandle = await routeRuntime.reserveUsageForRequest({
       request: req,
@@ -308,6 +350,7 @@ export async function POST(req, deps = {}) {
       metadata: { convId, role: normalizedRole, stream: wantStream }
     });
   } catch (error) {
+    await failAttempt("usage", "usage_reservation_failed");
     if (error?.code === "USAGE_IDEMPOTENCY_CONFLICT") {
       const replayResponse = await completedTurnReplayResponse().catch(() => null);
       if (replayResponse) return replayResponse;
@@ -315,12 +358,18 @@ export async function POST(req, deps = {}) {
     return usageErrorResponse(error, "chat.reply");
   }
 
+  if (attemptController) {
+    try {
+      const initialized = await routeRuntime.initializeClaimedChatTurn(attemptController.fence, { role: normalizedRole, userMessage: effectiveMessage });
+      claimedTurn = { ...claimedTurn, userMessageId: initialized.userMessageId };
+    } catch {
+      await failAttempt("persistence", "persistence_failed");
+      return makeChatError("chat.error.not_saved", 503);
+    }
+  }
+
   let retrievalResult;
   const plannedRagReplyLang = languagePlan?.answerLanguage || replyLang;
-  const recoveryContinuation = isRagRecoveryContinuation(
-    effectiveMessage,
-    trustedRagRecoveryState
-  );
   const retrievalHistory = recoveryContinuation
     ? trustedRagRecoveryHistory
     : rawHistory;
@@ -332,6 +381,7 @@ export async function POST(req, deps = {}) {
       })
     : effectiveMessage;
   try {
+    if (attemptController && !await attemptController.stage("retrieval")) throw new Error("rag_attempt_observation_failed");
     retrievalResult = await routeRuntime.assembleRetrievalContext({
       payloadAudience: payload?.audience,
       graphChannelTestOverride: payload?.graphChannelTest === true,
@@ -339,6 +389,7 @@ export async function POST(req, deps = {}) {
       rawHistory: retrievalHistory,
       trustedRagRecoveryState,
       effectiveMessage: recoveryBoundMessage,
+      requirementOriginalMessage: effectiveMessage,
       forceSources,
       forcedMode,
       hasHistory,
@@ -366,6 +417,7 @@ export async function POST(req, deps = {}) {
         chunkCharsMax: CHAT_EPHEMERAL_CHUNK_CHARS_MAX
       },
       onBeforeRag: async () => {
+        if (attemptController) await attemptController.settle(async () => true);
         ragUsageHandle = await routeRuntime.reserveUsageForRequest({
           request: req,
           userId,
@@ -377,7 +429,8 @@ export async function POST(req, deps = {}) {
       }
     });
   } catch (error) {
-    await Promise.all([
+    if (attemptController) await failAttempt("retrieval", String(error?.code || "").startsWith("USAGE_") ? "usage_reservation_failed" : "retrieval_failed");
+    else await Promise.all([
       releaseUsageSafely(chatUsageHandle, "chat_retrieval_failed", routeRuntime.releaseUsageForRequest),
       releaseUsageSafely(ragUsageHandle, "rag_search_failed", routeRuntime.releaseUsageForRequest)
     ]);
@@ -401,6 +454,10 @@ export async function POST(req, deps = {}) {
     sources,
     retrievalMeta
   } = retrievalResult;
+  await attemptController?.stage("context", { runtime: {
+    query_plan_hash: stableEvidenceHash(retrievalMeta?.queryPlan || null),
+    ...(retrievalMeta?.renderedContextHash ? { rendered_context_hash: retrievalMeta.renderedContextHash } : {})
+  }, ...(retrievalMeta?.ragSearchFailed ? { failure: { stage: "retrieval", code: "retrieval_failed" } } : {}) });
   const responseReplyLang = retrievalMeta?.responseReplyLang || plannedRagReplyLang;
   const responseLanguageStrings = responseReplyLang === replyLang
     ? L
@@ -412,13 +469,14 @@ export async function POST(req, deps = {}) {
 
   if (ragUsageHandle) {
     try {
-      if (retrievalMeta.ragSearchFailed) {
-        await routeRuntime.releaseUsageForRequest(ragUsageHandle, { reason: "rag_search_failed" });
-      } else {
-        await routeRuntime.commitUsageForRequest(ragUsageHandle);
-      }
+      const settleRag = tx => retrievalMeta.ragSearchFailed
+        ? routeRuntime.releaseUsageForRequest(ragUsageHandle, { reason: "rag_search_failed", tx })
+        : routeRuntime.commitUsageForRequest(ragUsageHandle, { tx });
+      if (attemptController) await attemptController.settle(settleRag);
+      else await settleRag(undefined);
     } catch (error) {
-      await releaseUsageSafely(chatUsageHandle, "rag_usage_settlement_failed", routeRuntime.releaseUsageForRequest);
+      if (attemptController) await failAttempt("usage", "usage_reservation_failed");
+      else await releaseUsageSafely(chatUsageHandle, "rag_usage_settlement_failed", routeRuntime.releaseUsageForRequest);
       if (error?.code === "USAGE_IDEMPOTENCY_CONFLICT") {
         const replayResponse = await completedTurnReplayResponse().catch(() => null);
         if (replayResponse) return replayResponse;
@@ -482,7 +540,7 @@ export async function POST(req, deps = {}) {
     recoveryContinuation,
     trustedRecoveryAvailable: !!trustedRagRecoveryState
   });
-  return routeRuntime.handleMainChatResponse({
+  const response = await routeRuntime.handleMainChatResponse({
     req,
     wantStream,
     persist,
@@ -530,6 +588,9 @@ export async function POST(req, deps = {}) {
     /* SOL-CHAT-01/-02: mõlemad võtavad nüüd valikulise tehingukliendi, sest arveldus kuulub
        pöörde terminalse kirjutusega ühte tehingusse. Ilma `tx`-ita käitub kumbki nagu varem. */
     clientTurnKey,
+    claimedTurn,
+    ragAttemptController: attemptController,
+    onAttemptFailure: failAttempt,
     sessionTurnLimit,
     expectedRecoveryAssistantMessageId: recoveryContinuation
       ? trustedRagRecoveryAssistantMessageId
@@ -538,12 +599,21 @@ export async function POST(req, deps = {}) {
       ? trustedRagRecoveryState?.rootUserMessageId || null
       : null,
     chatUsageReused: chatUsageHandle?.reused === true,
-    onUsageCommit: (tx) => routeRuntime.commitUsageForRequest(chatUsageHandle, { tx: tx || undefined }),
-    onUsageRelease: (reason, tx) => routeRuntime.releaseUsageForRequest(chatUsageHandle, {
-      reason,
-      tx: tx || undefined
-    })
+    onUsageCommit: tx => attemptController
+      ? attemptController.settle(ownedTx => routeRuntime.commitUsageForRequest(chatUsageHandle, { tx: ownedTx }), tx)
+      : routeRuntime.commitUsageForRequest(chatUsageHandle, { tx: tx || undefined }),
+    onUsageRelease: (reason, tx) => attemptController
+      ? attemptController.settle(ownedTx => routeRuntime.releaseUsageForRequest(chatUsageHandle, { reason, tx: ownedTx }), tx)
+      : routeRuntime.releaseUsageForRequest(chatUsageHandle, { reason, tx: tx || undefined })
   });
+  streamOwnsHeartbeat = response?.ok === true && response.headers?.get("content-type")?.includes("text/event-stream");
+  return response;
+  } catch {
+    await failAttempt("context", "unhandled_failure");
+    return makeChatError("chat.error.service_unavailable", 503);
+  } finally {
+    if (!streamOwnsHeartbeat) attemptController?.stop();
+  }
 }
 export async function GET(req) {
   const limitResponse = enforceChatRateLimit(req, {
