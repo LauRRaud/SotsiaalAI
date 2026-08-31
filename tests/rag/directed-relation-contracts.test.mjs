@@ -440,6 +440,57 @@ test("a repeated relation fragment outside one exact span does not make its loca
   assert.equal(validation.passed, true, JSON.stringify(validation));
 });
 
+test("a repeated full passage binds the occurrence selected by source offsets", () => {
+  const separator = " Sama sõnastus kordub dokumendi teises osas. ";
+  const originalBody = `${passage}${separator}${passage}`;
+  const selectedStart = passage.length + separator.length;
+  const rawChunk = `Päis\n${originalBody}`;
+  const proof = {
+    document_id: "directed-doc",
+    source_id: "directed-source",
+    chunk_id: "repeated-passage-chunk",
+    document_version: "fixture-v1",
+    chunk_hash: sha(rawChunk),
+    chunk_char_count: rawChunk.length,
+    source_status: "active",
+    normalized_body_hash: sha(originalBody),
+    chunk_body_offset: rawChunk.indexOf(originalBody)
+  };
+  const entry = {
+    docId: "directed-doc",
+    sourceId: "directed-source",
+    sourceStatus: "active",
+    sourceType: "journal_article",
+    collectionId: "journal_articles",
+    title: "Trepist üles või alla",
+    bodies: [originalBody],
+    bodyEvidence: []
+  };
+  const pinned = buildPinnedDevelopmentContextUnit({
+    candidate: {
+      body: originalBody,
+      bodyEvidence: [proof],
+      developmentSpan: { text: passage, start: selectedStart, end: originalBody.length }
+    },
+    baseEntry: entry,
+    contextIndex: 0,
+    append: false
+  });
+  assert.equal(pinned.block.bodySpans[0].literal_original_start, selectedStart);
+  const plan = buildQuestionPlan({ message: question });
+  const built = buildRequestedQualitativeSlotContract({
+    questionPlan: plan,
+    renderedGroups: [pinned.entry],
+    renderedBlocks: [pinned.block],
+    replyLang: "et",
+    specificResearchFactQuestion: true,
+    documentIdentityEvidence: identity
+  });
+  assert.equal(built.trace.complete, true, JSON.stringify(built));
+  assert.equal(built.trace.slots[0].evidence_locators[0].chunk_start >=
+    proof.chunk_body_offset + selectedStart, true);
+});
+
 test("relative clause owns the earlier approach and simultaneity remains an explicit alternative", () => {
   const parsed = extractDirectedRelations(passage);
   assert.equal(parsed.status, "ADMITTED");
