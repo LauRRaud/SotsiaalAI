@@ -5,7 +5,8 @@ import { buildDiagnosticReport, diagnosticReportMarkdown } from "../../lib/chat/
 import { GET } from "../../app/api/chat/conversations/[id]/diagnostics/route.js";
 import { persistDone } from "../../lib/chat/persistence.js";
 import { finalizeAssistantReply, buildImmediateChatResponse } from "../../lib/chat/responseFinalizer.js";
-import { describeSpecificResearchDocumentLock, describeSpecificResearchDocumentRecheck } from "../../lib/chat/retrievalContextAssembler.js";
+import { buildRequestedFactSlotContract, describeSpecificResearchDocumentLock, describeSpecificResearchDocumentRecheck } from "../../lib/chat/retrievalContextAssembler.js";
+import { validateExactFactAnswer } from "../../lib/chat/factContract.js";
 import { buildRagTraceFromAttribution } from "../../lib/chat/mainResponseHandler.js";
 import { diagnosticExplanationRows } from "../../lib/chat/ragDiagnosticExplanation.js";
 import { serverT } from "../../lib/i18n/serverMessages.js";
@@ -24,6 +25,43 @@ const trace = {
   attribution_decisions: [{ source_id: "doc-a", reason: "validation_failed", displayed: false }],
   fact_validation: { enabled: true, passed: false, reason: "requested_fact_answer_incomplete", requested_fact_answer_missing_slot_indexes: [2] }
 };
+
+test("atomic range mapping and two bound endpoints survive canonical diagnostics without source text or values", () => {
+  const message = "2024. aasta artiklis millises vahemikus oli töötute osakaal?";
+  const questionPlan = buildQuestionPlan({ message });
+  const body = "Töötute osakaal oli 12,5–18,5%.";
+  const identity = { required: true, matched: true, confidence: "high", selectedDocumentId: "range-doc" };
+  const contract = buildRequestedFactSlotContract({ questionPlan, renderedGroups: [{ sourceId: "range-source", docId: "range-doc" }], renderedBlocks: [{ evidenceText: body }], specificResearchFactQuestion: true, documentIdentityEvidence: identity }).trace;
+  const sources = [{ id: "range-source", documentId: "range-doc", evidenceText: body }];
+  const retrievalMeta = { queryPlan: { mode: "specific_research_fact", question_planner: questionPlan }, requestedFactSlotContract: contract, documentIdentityEvidence: identity };
+  const result = validateExactFactAnswer({ message, reply: body, sources, retrievalMeta });
+  assert.equal(result.passed, true, JSON.stringify(result.trace));
+  const canonical = buildRagTraceFromAttribution(sources, {}, { ...retrievalMeta, factValidation: result.trace });
+  const d = buildRagDiagnostics({ trace: canonical });
+  assert.equal(d.evidence.metric_contract.complete, true);
+  assert.equal(d.evidence.metric_contract.slots[0].qualifier, "range");
+  assert.equal(d.evidence.metric_contract.slots[0].range_endpoint_count, 2);
+  assert.deepEqual(d.evidence.validation.metric_bindings[0].claim_indexes, [0, 1]);
+  const rows = diagnosticExplanationRows(d, key => serverT("et", `chat.diagnostics.${key}`));
+  assert.match(rows.find(row => row.key === "metric_mapping").value, /1 \/ 1/);
+  assert.equal(rows.find(row => row.key === "bound_range_claims").value, "1: 2");
+  assert.doesNotMatch(JSON.stringify(d), /12[.,]5|18[.,]5|Töötute/);
+  assert.equal(projectRagTraceForLog(canonical).requested_fact_slot_contract.complete, true);
+  const invalid = buildRagTraceFromAttribution([], {}, { ...retrievalMeta, requestedFactSlotContract: { ...contract, slots: [{ ...contract.slots[0], evidence_range_end: "PRIVATE" }] } });
+  assert.equal(invalid.requested_fact_slot_contract.sanitizer_dropped_slot, true);
+  assert.equal(invalid.requested_fact_slot_contract.complete, false);
+  assert.doesNotMatch(JSON.stringify(buildRagDiagnostics({ trace: invalid })), /PRIVATE/);
+});
+
+test("incomplete metric mapping explains zero candidates without inventing a root cause or old missing evidence", () => {
+  const d = buildRagDiagnostics({ trace: { ...trace, requested_fact_slot_contract: { enabled: false, complete: false, reason: "rendered_evidence_mapping_incomplete", requested_slot_count: 1, mapped_slot_count: 0, mapping_diagnostics: { evidence_candidate_count: 0, evidence_fragment_count: 15 }, slots: [], raw: "PRIVATE" } } });
+  const rows = diagnosticExplanationRows(d, key => serverT("et", `chat.diagnostics.${key}`));
+  assert.match(rows.find(row => row.key === "metric_mapping").value, /0 \/ 1/);
+  assert.equal(rows.find(row => row.key === "metric_candidates").value, "0");
+  assert.equal(d.root_cause_status, "NOT_PROVEN");
+  assert.doesNotMatch(JSON.stringify(d), /PRIVATE/);
+  assert.equal(buildRagDiagnostics({ trace }).evidence.metric_contract.observed, false);
+});
 
 test("a blocking validator is observed, not an invented root cause", () => {
   const result = buildRagDiagnostics({ trace, turnId: "turn12345" });

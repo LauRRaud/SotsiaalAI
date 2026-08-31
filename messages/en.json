@@ -2762,6 +2762,8 @@
       "decision_title": "Why did the system decide this?",
       "decision_boundary": "These are recorded decision inputs and conditions, not a guarantee of root cause. If source years conflict, compare the question's measurement period with the publication year. History counts describe this request's selection, not the entire conversation.",
       "evidence_unknown": "Not recorded / NOT_PROVEN",
+      "metric_mapping_complete": "requested numeric facts were bound to source evidence",
+      "metric_mapping_incomplete": "not all requested numeric facts could be bound to source evidence",
       "none_recorded": "None recorded",
       "yes": "Yes",
       "no": "No",
@@ -2781,7 +2783,12 @@
         "retrieval_reason": "Why retrieval history was excluded",
         "model_history": "Model history: available → selected",
         "model_reason": "Model history selection reason",
-        "history_unknown": "History selection evidence"
+        "history_unknown": "History selection evidence",
+        "metric_mapping": "Numeric facts bound to source evidence",
+        "metric_reason": "Fact mapping reason code",
+        "metric_candidates": "Numeric evidence candidates found",
+        "range_endpoints": "Required range endpoints (fact no.: count)",
+        "bound_range_claims": "Confirmed endpoints in answer (fact no.: count)"
       },
       "year_roles": {
         "document_source_year": "publication year",

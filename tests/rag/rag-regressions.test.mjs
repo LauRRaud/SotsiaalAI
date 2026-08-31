@@ -524,6 +524,49 @@ describe("renderdatud tõendi faktileping", () => {
     });
   }
 
+  test("protsendivahemik seob mõlemad piirid üheks faktiks ega luba üksikut otspunkti", () => {
+    const message = "Millises vahemikus oli Põhja-Pärnumaal mitme kuhjunud võlanõudega inimeste osakaal võlanõustamisele suunatutest aastatel 2019–2022, nagu kirjeldab Anneli Kaljuri 2023. aasta artikkel?";
+    const body = "Meie statistika kohaselt olid aastatel 2019–2022 võlanõustamisele suunatud inimestest eri aastatel 40–60% hädas kuhjunud võlgnevustega ehk mitme võlanõudega.";
+    const questionPlan = buildQuestionPlan({ message });
+    const result = metricContract(message, [body]);
+    assert.equal(result.trace.complete, true, JSON.stringify(result.trace));
+    assert.equal(result.trace.slots.length, 1);
+    assert.deepEqual([result.trace.slots[0].evidence_value, result.trace.slots[0].evidence_range_end, result.trace.slots[0].qualifier], ["40", "60", "range"]);
+    assert.match(result.instruction, /40–60%/u);
+    const sources = [{ id: "rendered-doc-source", documentId: "rendered-doc", evidenceText: body }];
+    const retrievalMeta = {
+      queryPlan: { mode: "specific_research_fact", question_planner: questionPlan },
+      requestedFactSlotContract: result.trace,
+      documentIdentityEvidence: { required: true, matched: true, confidence: "high", selectedDocumentId: "rendered-doc" }
+    };
+    for (const range of ["40–60%", "40%–60%", "40 kuni 60%"] ) {
+      const reply = `Põhja-Pärnumaal oli mitme kuhjunud võlanõudega inimeste osakaal võlanõustamisele suunatutest aastatel 2019–2022 eri aastatel ${range}.`;
+      const validation = validateExactFactAnswer({ message, reply, sources, retrievalMeta });
+      assert.equal(validation.passed, true, `${range}: ${JSON.stringify(validation.trace)}`);
+      assert.equal(validation.trace.requested_metric_slot_bindings[0].claim_indexes.length, 2);
+    }
+    for (const range of ["40%", "60%", "60–40%", "40–80%", "40% ja 60%", "40–60 inimest", "umbes 40–60%", ">40–60%", "20–40–60%", "40–60% või rohkem", "40–60% või vähem", "40–60% ja enam", "40–60% (ligikaudu)", "**40–60%** või rohkem", "**umbes** 40–60%", "40–60% kuni 80%", "40–60%–80%"] ) {
+      const reply = `Põhja-Pärnumaal oli mitme kuhjunud võlanõudega inimeste osakaal võlanõustamisele suunatutest ${range}.`;
+      assert.equal(validateExactFactAnswer({ message, reply, sources, retrievalMeta }).passed, false, range);
+    }
+  });
+
+  test("protsendivahemiku mapping ei liida eri väiteid ega vali vastuolulise ülemise piiriga vahemikku", () => {
+    const message = "2024. aasta artiklis millises vahemikus oli töötute osakaal?";
+    const correct = metricContract(message, ["Töötute osakaal oli 12,5–18,5%."]);
+    assert.equal(correct.trace.complete, true);
+    assert.deepEqual([correct.trace.slots[0].evidence_value, correct.trace.slots[0].evidence_range_end], ["12.5", "18.5"]);
+    for (const bodies of [
+      ["Töötute osakaal oli 2019–2022."], ["Töötuid oli 40–60 inimest."],
+      ["Töötute osakaal oli 40–160%."], ["Töötute osakaal oli 60–40%."],
+      ["Töötute osakaal oli 20–40–60%."], ["Töötute osakaal oli umbes 40–60%."],
+      ["Töötute osakaal oli 40–60% või rohkem."], ["Töötute osakaal oli 40–60% (ligikaudu)."],
+      ["Töötute osakaal oli 40–60% kuni 80%."], ["Töötute osakaal oli 20% kuni 40–60%."],
+      ["Töötute osakaal oli 40–", "60%."],
+      ["Töötute osakaal oli 40–60%.", "Töötute osakaal oli 40–80%."]
+    ]) assert.equal(metricContract(message, bodies).trace.complete, false, bodies.join(" | "));
+  });
+
   test("seob J08 ja J14 eelnevad sildid ning säilitab arvukvalifikaatorid", () => {
     const j08 = metricContract(
       "Vaike Vainu 2023. aasta artiklis „Suure hoolduskoormusega inimesed vajavad täiendavat abi” kui suur osa vastanutest vajas lisabi, kui suur osa palju lisabi ning kui suur osa oli suure ja keskmise hoolduskoormuse riskiga?",

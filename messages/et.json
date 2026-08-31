@@ -2762,6 +2762,8 @@
       "decision_title": "Miks süsteem nii otsustas?",
       "decision_boundary": "Need on salvestatud otsuse sisendid ja tingimused, mitte automaatne algpõhjuse garantii. Allikaaastate vastuolu korral võrdle küsimuse perioodi ja artikli ilmumisaastat. Ajaloo arvud kirjeldavad selle päringu valikut, mitte vestluse kogupikkust.",
       "evidence_unknown": "Pole salvestatud / NOT_PROVEN",
+      "metric_mapping_complete": "küsitud arvulised faktid seoti allikatõendiga",
+      "metric_mapping_incomplete": "kõiki küsitud arvulisi fakte ei õnnestunud allikatõendiga siduda",
       "none_recorded": "Ühtegi ei salvestatud",
       "yes": "Jah",
       "no": "Ei",
@@ -2781,7 +2783,12 @@
         "retrieval_reason": "Miks otsinguajalugu välja jäeti",
         "model_history": "Mudeliajalugu: saadaval → valitud",
         "model_reason": "Mudeliajaloo valiku põhjus",
-        "history_unknown": "Ajaloo valiku tõend"
+        "history_unknown": "Ajaloo valiku tõend",
+        "metric_mapping": "Allikatõendiga seotud arvulised faktid",
+        "metric_reason": "Faktide sidumise põhjuskood",
+        "metric_candidates": "Sidumiseks leitud arvulisi tõendeid",
+        "range_endpoints": "Vahemiku nõutud piiride arv (fakti nr: arv)",
+        "bound_range_claims": "Vastuses kinnitatud piiride arv (fakti nr: arv)"
       },
       "year_roles": {
         "document_source_year": "allika ilmumisaasta",
