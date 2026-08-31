@@ -91,19 +91,106 @@ test("long answers use complete internal claim coverage beyond the trace limit",
 });
 
 test("long method guidance keeps the named model source while suppressing late duplicates", () => {
-  const statements = Array.from({ length: 40 }, (_, index) =>
-    `Hindamisvaldkond ${index + 1}: hinnatakse lapse turvalisust ja toimetulekut.`);
   const modelClaim = "„Turvalisuse märkide“ mudelit on Eestis käsitletud täiendava juhtumikorralduse töövahendina.";
-  const result = buildSourceAttribution([...statements, modelClaim].join("\n"), [
-    guideline("primary", "Põhijuhend", statements.join("\n") +
-      " Eestis käsitletakse juhtumikorralduse töövahendina lapse heaolu kolmnurka."),
-    guideline("late-duplicate", "Täiendav käsitlus", statements.slice(32).join("\n")),
-    { source_id: "named-model", source_type: "journal_article", title: "Täiendav juhtumikorraldusmudel",
-      evidenceText: "„T urvalisuse märkide“ mudelit saab ühildada Eestis kasutatavate juhtumikorralduse töövahenditega." }
-  ], { queryPlan: { mode: "professional_method_guidance", needs_multiple_sources: true } });
-  assert.deepEqual(new Set(result.displayed_source_ids), new Set(["primary", "named-model"]));
-  assert.deepEqual(result.claim_support_graph.at(-1).supporting_source_ids, ["named-model"]);
-  assert.equal(result.filter_reasons["late-duplicate"], "claim_support_subsumed");
+  // Before and after the former 64-claim boundary, including the observed
+  // index 71 and a longer permitted answer: do not merely raise the cap.
+  for (const precedingClaims of [63, 64, 71, 128]) {
+    const statements = Array.from({ length: precedingClaims }, (_, index) =>
+      `Hindamisvaldkond ${index + 1}: hinnatakse lapse turvalisust ja toimetulekut.`);
+    const result = buildSourceAttribution([...statements, modelClaim].join("\n"), [
+      guideline("primary", "Põhijuhend", statements.join("\n") +
+        " Eestis käsitletakse juhtumikorralduse töövahendina lapse heaolu kolmnurka."),
+      guideline("late-duplicate", "Täiendav käsitlus", statements.slice(32).join("\n")),
+      { source_id: "named-model", source_type: "journal_article", title: "Täiendav juhtumikorraldusmudel",
+        evidenceText: "„T urvalisuse märkide“ mudelit saab ühildada Eestis kasutatavate juhtumikorralduse töövahenditega." }
+    ], { queryPlan: { mode: "professional_method_guidance", needs_multiple_sources: true } });
+    assert.deepEqual(new Set(result.displayed_source_ids), new Set(["primary", "named-model"]));
+    assert.equal(result.claim_support_graph.length, precedingClaims + 1);
+    assert.deepEqual(result.claim_support_graph.at(-1).supporting_source_ids, ["named-model"]);
+    assert.equal(result.filter_reasons["late-duplicate"], "claim_support_subsumed");
+    const primary = result.attribution_decisions.find(item => item.source_id === "primary");
+    assert.equal(primary.supported_claim_count, precedingClaims);
+    assert.equal(primary.supported_claim_indices.length, 32);
+  }
+});
+
+test("ordinal publication years stay bound to their claim, including at the start of a line", () => {
+  const queryPlan = { mode: "overview_synthesis", needs_multiple_sources: true };
+  // Exact rendered 31.08 Eessõna body, SHA-256 650f1fe2...: the publication
+  // year is metadata, while the integration/KOV content is in the body.
+  const evidenceText = "Sotsiaaltöö argipäeva ja arengu tutvustamisel toob ajakiri ühise laua taha praktikud, teoreetikud, õppurid ja huvilugejad. Eesti sotsiaaltöö assotsiatsioon (ESTA) esindab erialakogukonda, on sotsiaaltööd tegevate ja väärtustavate inimeste ühendaja ning seisab valdkonna töötajate huvide eest.\n---\nSelle numbri teemad on vaheldusrikkad, ulatudes kohaliku omavalitsuse tööst ja lastekaitsest ning noorte heaolust kuni rehabilitatsiooni, sotsiaal- ja tervishoiu lõimumise, eetika, töötajate turvalisuse, kriisivalmiduse ja mentorluseni....";
+  for (const year of [2018, 2026, 2031]) {
+    const sources = [
+      { source_id: "old-publication", source_type: "journal_article", title: "Varasem käsitlus", year: year - 1, evidenceText },
+      { source_id: "current-publication", source_type: "journal_article", title: "Eessõna", year, evidenceText },
+      { source_id: "metadata-only", source_type: "journal_article", title: "Lõimumine ja kohalik omavalitsus", year,
+        evidenceText: "Kaastöid oodatakse toimetuse e-posti aadressile." }
+    ];
+    for (const reply of [
+      `Uuemates, ${year}. aasta ajakirja teemakäsitlustes seostub see jätkuvalt sotsiaal- ja tervishoiu lõimumise ning kohaliku omavalitsuse tööga.`,
+      `${year}. aasta käsitluses seostub see sotsiaal- ja tervishoiu lõimumise ning kohaliku omavalitsuse tööga.`,
+      `1. ${year}. aasta artiklis seostub see sotsiaal- ja tervishoiu lõimumise ning kohaliku omavalitsuse tööga.`
+    ]) {
+      const result = buildSourceAttribution(reply, sources, { queryPlan });
+      assert.equal(result.claim_support_graph.length, 1, reply);
+      assert.deepEqual(result.claim_supported_source_ids, ["current-publication"], reply);
+      assert.deepEqual(result.displayed_source_ids, ["current-publication"], reply);
+    }
+  }
+});
+
+test("publication metadata cannot date service events, even beside an exact title or repeated year", () => {
+  const queryPlan = { mode: "thematic_synthesis", needs_multiple_sources: true };
+  const source = { source_id: "journal", source_type: "journal_article", title: "Teenuste lõimumine", year: 2031,
+    evidenceText: "Teenus alustas tegevust ning ühendas tervishoiu ja sotsiaalvaldkonna spetsialiste." };
+  for (const reply of [
+    "2031. aastal alustas teenus tegevust ja ühendas tervishoiu ning sotsiaalvaldkonna spetsialiste.",
+    "Artikkel „Teenuste lõimumine” kinnitab, et teenus alustas tegevust 2031. aastal.",
+    "2031. aasta artiklis „Teenuste lõimumine” kinnitatakse, et teenus alustas tegevust 2031. aastal.",
+    "Teenus alustas tegevust 2031. aastal ning ühendas spetsialiste („Teenuste lõimumine”, 2031)."
+  ]) {
+    const result = buildSourceAttribution(reply, [source], { queryPlan });
+    assert.deepEqual(result.claim_supported_source_ids, [], reply);
+    assert.deepEqual(result.displayed_source_ids, [], reply);
+  }
+  const evidencedEvent = "Teenus alustas tegevust 2031. aastal ja ühendas tervishoiu ning sotsiaalvaldkonna spetsialiste.";
+  assert.deepEqual(buildSourceAttribution(evidencedEvent, [{ ...source, evidenceText: evidencedEvent }], { queryPlan })
+    .displayed_source_ids, ["journal"]);
+  for (const citation of ["Artikkel „Teenuste lõimumine” (2031)", "Artikkel („Teenuste lõimumine”, 2031)"]) {
+    assert.deepEqual(buildSourceAttribution(`${citation} kirjeldab, kuidas teenus ühendas tervishoiu ja sotsiaalvaldkonna spetsialiste.`, [source], { queryPlan })
+      .displayed_source_ids, ["journal"]);
+  }
+});
+
+test("two scattered general words cannot manufacture a unique synthesis source", () => {
+  const queryPlan = { mode: "overview_synthesis", needs_multiple_sources: true };
+  // Exact isolated Hiiumaa body (675 chars, ef6c97a0...). Only "teenus"
+  // and "inimese" overlap with the claim, in different evidence sentences.
+  const evidenceText = "S OT S I A A LTÖ Ö Koduteenust osutavad Hiiumaa Sotsiaalkeskus, Hellamaa Perekeskus, Emmaste ja Käina osavald. Kokku abistavad 42 klienti kaheksa töötajat. Sotsiaaltranspordi tarvis on Hiiumaa vallas viis sõiduautot ja kaks 9kohalist bussi, millest üks on kohandatud invabussiks. Hajaasustusest ja puudulikust ühistranspordiühendusest tingituna osutab vald sotsiaaltransporditeenust igas kuus ligikaudu 400 inimesele. Peamiselt sõidavad teenuse kasutajad arsti juurde nii Hiiumaa piires kui ka mandrile. Varjupaigateenust osutab MT Ü Samaaria Eesti Misjoni Hiiumaa osakond. Võlanõustamist pakume koostöös töötukassa ja sotsiaalkindlustusametiga. Turvakodu Hiiumaal ei ole....";
+  const source = { source_id: "island-practice", source_type: "journal_article", year: 2018,
+    title: "Hiiumaa: meretagune ühinemine tõi sotsiaaltöötajad kokku", evidenceText };
+  const genericClaim = "Rõhk on sellel, et teenuseid ei korraldataks asutuste tööloogika, vaid inimese tegeliku vajaduse järgi.";
+  assert.deepEqual(buildSourceAttribution(genericClaim, [source], { queryPlan }).claim_supported_source_ids, []);
+  assert.deepEqual(buildSourceAttribution(genericClaim, [source], { queryPlan }).displayed_source_ids, []);
+  // The same source genuinely supplies this sequential answer's local example.
+  const localClaim = "Hiiumaa näide näitab, et teenuseid saab korraldada mitme kohaliku üksuse ja teenuseosutaja koostöös: koduteenust pakkusid Hiiumaa Sotsiaalkeskus, Hellamaa Perekeskus ning Emmaste ja Käina osavald; sotsiaaltransport toetas inimesi nii Hiiumaal kui ka mandrile arsti juurde sõitmisel („Hiiumaa: meretagune ühinemine tõi sotsiaaltöötajad kokku”, 2018).";
+  assert.deepEqual(buildSourceAttribution(localClaim, [{ ...source, evidenceText: evidenceText.slice(0, 503) + "..." }], { queryPlan })
+    .displayed_source_ids, ["island-practice"]);
+  const relevant = { ...source, source_id: "person-centred", title: "Teenuskorralduse põhimõtted", evidenceText: genericClaim };
+  assert.deepEqual(buildSourceAttribution(genericClaim, [source, relevant], { queryPlan }).displayed_source_ids, ["person-centred"]);
+});
+
+test("local paraphrases and stronger multi-sentence synthesis retain claim support", () => {
+  const queryPlan = { mode: "overview_synthesis", needs_multiple_sources: true };
+  for (const [reply, evidenceText] of [
+    ["Teenused lähtuvad inimese vajadustest.", "Lähtutakse inimese vajadustest ning kavandatakse teenused."],
+    ["Tervishoiu spetsialistid koordineerivad võrgustikutööd ja toetavad peresid.",
+      "Tervishoiu spetsialistid koordineerivad võrgustikutööd. Võrgustikud toetavad peresid."],
+    ["Kaardistatakse tugevusi ja hinnatakse abivajadust.", "Hinnatakse abivajadust ning kaardistatakse tugevusi."]
+  ]) {
+    const source = { source_id: "substantive", source_type: "journal_article", title: "Praktiline meetod", evidenceText };
+    assert.deepEqual(buildSourceAttribution(reply, [source], { queryPlan }).displayed_source_ids, ["substantive"], reply);
+  }
 });
 
 test("named objects require the complete ordered phrase in body evidence, not metadata", () => {
