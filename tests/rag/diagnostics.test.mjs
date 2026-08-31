@@ -173,7 +173,11 @@ test("actual producer metric, recovery and timing keys survive projection", () =
   const result = projectRagDiagnosticEvidence({ ...trace,
     fact_validation: { requested_metric_missing_slot_index: 2, requested_fact_requested_slot_count: 3, requested_fact_covered_slot_count: 1, requested_metric_relation_diagnostics: [{ claim_index: 1, required_term_count: 2, matched_term_count: 1, unique_relation_bound: false }] },
     performance_timings: { retrieval_wall_ms: 234, fact_validation_ms: 9 },
-    conversational_recovery: { active: true, action: "retry_same_question", trigger: "technical_retrieval_failure", question_asked: true, model_call_count: 1 }
+    conversational_recovery: { active: true, action: "retry_same_question", trigger: "technical_retrieval_failure", question_asked: true, model_call_count: 1 },
+    selected_context_details: [{ source_id: "doc-a", rendered_evidence_body_chars: 12000,
+      body_span_count: 8, body_span_origin_bound_count: 0, body_span_provenance_bound_count: 0,
+      rendered_body_span_covered_chars: 6392, rendered_body_external_gap_chars: 35,
+      rendered_body_uncovered_chars: 5573 }]
   });
   assert.equal(result.validation.requested_metric_missing_slot_index, 2);
   assert.equal(result.validation.requested_fact_covered_slot_count, 1);
@@ -181,6 +185,9 @@ test("actual producer metric, recovery and timing keys survive projection", () =
   assert.equal(result.timings.retrieval_wall_ms, 234);
   assert.equal(result.timings.fact_validation_ms, 9);
   assert.equal(result.recovery.trigger, "technical_retrieval_failure");
+  assert.equal(result.context[0].body_span_count, 8);
+  assert.equal(result.context[0].body_span_origin_bound_count, 0);
+  assert.equal(result.context[0].rendered_body_uncovered_chars, 5573);
 });
 
 test("a completed fallback still reports its recorded technical retrieval failure", () => {

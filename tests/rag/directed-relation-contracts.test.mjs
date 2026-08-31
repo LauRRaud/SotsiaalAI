@@ -167,6 +167,21 @@ test("multi-body offsets exclude clipping markers and include the separator gap"
   assert.equal(fixture.validate().passed, true, JSON.stringify(fixture.validate()));
 });
 
+test("a source-internal separator is not mistaken for a body boundary", () => {
+  const body = `${passage}\n---\nLisatud allikalõik ei muuda kirjeldatud järjekorda.`;
+  const fixture = setup({ bodies: [body] });
+  const block = fixture.rendered.renderedBlocks[0];
+  const span = block.bodySpans[0];
+  assert.equal(block.bodySpans.length, 1);
+  assert.equal(block.evidenceText, body);
+  assert.equal(span.literal_original_start, 0);
+  assert.equal(span.rendered_start_offset, 0);
+  assert.equal(span.rendered_end_offset, body.length);
+  assert.equal(span.rendered_body_hash, sha(body));
+  assert.equal(fixture.built.trace.complete, true, JSON.stringify(fixture.built));
+  assert.equal(fixture.validate().passed, true, JSON.stringify(fixture.validate()));
+});
+
 test("an unbound duplicate cannot veto the same relation set from exact evidence", () => {
   const fixture = setup();
   const block = structuredClone(fixture.rendered.renderedBlocks[0]);
@@ -861,21 +876,40 @@ test("trace projection keeps relation hashes and coordinates but drops source te
     query: question, queryPlan: fixture.meta.queryPlan, factValidation: validation.trace,
     documentIdentityEvidence: identity
   });
+  const block = fixture.rendered.renderedBlocks[0];
   const trace = buildRagTraceFromAttribution(fixture.sources, attribution, {
     ...fixture.meta,
     factValidation: validation.trace,
+    selectedContextDetails: [{
+      source_id: "directed-source",
+      rendered_evidence_body_chars: block.evidenceText.length,
+      body_span_count: block.bodySpans.length,
+      body_span_origin_bound_count: block.bodySpans.filter(span =>
+        Number.isSafeInteger(span.literal_original_start)
+      ).length,
+      body_span_provenance_bound_count: block.bodySpans.filter(span => span.provenance?.length).length,
+      rendered_body_span_covered_chars: block.bodySpans.reduce((sum, span) =>
+        sum + span.rendered_end_offset - span.rendered_start_offset, 0),
+      rendered_body_external_gap_chars: 0,
+      rendered_body_uncovered_chars: 0,
+      rendered_body_spans: block.bodySpans
+    }],
     requestedQualitativeSlotContract: {
       ...fixture.built.trace,
       unbound_candidate_count: 2,
       ignored_duplicate_candidate_count: 2
     }
   });
+  assert.equal(trace.selected_context_details[0].rendered_body_spans[0].literal_original_start, 0);
+  assert.equal(trace.selected_context_details[0].rendered_body_spans[0].provenance_count, 1);
   for (const projected of [projectRagDiagnosticEvidence(trace), projectRagDiagnosticEvidence(projectRagTraceForLog(trace))]) {
     assert.equal(projected.qualitative_contract.slots[0].payload_kind, "directed_event_relation_set");
     assert.equal(projected.qualitative_contract.unbound_candidate_count, 2);
     assert.equal(projected.qualitative_contract.ignored_duplicate_candidate_count, 2);
     assert.equal(projected.validation.response_decision.issuer, "directed_relation_contract_v1");
     assert.equal(projected.validation.directed_relation_evidence_locators.length, 2);
+    assert.equal(projected.context[0].body_span_origin_bound_count, 1);
+    assert.equal(projected.context[0].rendered_body_uncovered_chars, 0);
     assert.doesNotMatch(JSON.stringify(projected), /Eluasemepõhine|rehabilitatsioon|varem valitsenud/u);
   }
   assert.equal(projectResponseDecision({ ...validation.trace.response_decision, secret: "hidden" }).secret, undefined);
