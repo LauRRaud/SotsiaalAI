@@ -1,0 +1,2721 @@
+{
+  "case_id": "child",
+  "mode": "sequential",
+  "status": "PARTIAL",
+  "runtime_code": "42c52bf67904cafa10da4ebc02bec0ab5eb22162",
+  "server_head": "e790dca4cecac3206bd0d66668247a6def5c22cf",
+  "assessment": "Mitmeetapiline hindamisvastus ja Turvalisuse märkide lisamudel on olemas; mudeli õige artikkel on seekord paneelis. Kolmandaks jääb Kadi Lauri 2017. aasta taustaartikkel. Trace'i ainus sellele eraldi omistatud väide on claim_34: „millised riskid mõjutavad last praegu;” (hash a1963541), mis ei lisa eristuvat sisulist hindamisvõtet. Seetõttu allikapaneeli sisulise minimaalsuse värav ei läbi. Isolated-vastuses puudus mudeliallikas, sequential-vastuses lisandub üleliigne taust; mõlemad PARTIAL.",
+  "ui_source_panel": "Lapse heaolu hindamise käsiraamat; Kadi Lauri (2017), Lapse heaolu hindamise käsiraamatust; Helen Alton (2024), Juhtumikorraldusmudel „Turvalisuse märgid“ – uus tööriist Eesti lastekaitsetöös.",
+  "audit_omitted_fields": [
+    "body_preview",
+    "user/conversation identifiers"
+  ],
+  "trace": {
+    "query_plan": {
+      "mode": "professional_method_guidance",
+      "flags": {
+        "temporal": false,
+        "comparison": false,
+        "source_lookup": false,
+        "national_scope": false,
+        "broad_multi_source": false,
+        "overview_synthesis": false,
+        "resource_discovery": false,
+        "thematic_synthesis": false,
+        "municipality_scoped": false,
+        "municipality_contacts": false,
+        "specific_research_fact": false,
+        "source_focused_followup": false
+      },
+      "stakes": "actionable",
+      "rag_top_k": 36,
+      "risk_level": "medium",
+      "filter_keys": [
+        "$in",
+        "$ne",
+        "$or",
+        "audience",
+        "historical",
+        "is_current_version",
+        "source_status",
+        "source_type"
+      ],
+      "query_count": 4,
+      "query_order": "authoritative_guidance_first",
+      "social_scope": "in_scope",
+      "graph_channel": {
+        "hint_group_count": 0,
+        "matched_entities": [],
+        "added_query_count": 0
+      },
+      "language_plan": {
+        "version": "language-plan-v1",
+        "shadow_mode": "not_available",
+        "coauthor_count": 0,
+        "query_language": "et",
+        "answer_language": "et",
+        "canonical_intent": null,
+        "coauthor_requested": false,
+        "interface_language": "et",
+        "retrieval_language": "et",
+        "retrieval_terms_et": [],
+        "active_planner_mode": null,
+        "shadow_planner_mode": null,
+        "transliteration_used": false,
+        "query_language_reason": "estonian_lexical_hint",
+        "answer_language_reason": "query_language",
+        "controlled_topic_count": 0,
+        "preserved_entity_count": 0,
+        "preserved_entity_types": [],
+        "runtime_reply_language": "et",
+        "canonical_query_available": false,
+        "query_language_confidence": 0.92,
+        "shadow_planner_confidence": null,
+        "canonical_retrieval_active": false,
+        "recommended_answer_language": "et",
+        "runtime_reply_language_reason": "matches_answer_plan",
+        "shadow_planner_matches_intent": false,
+        "recommended_answer_language_reason": "query_language",
+        "canonical_supplemental_retrieval_active": false
+      },
+      "evidence_scope": "current_authoritative_guidance",
+      "should_run_rag": true,
+      "legalLookupPlan": {
+        "enabled": false
+      },
+      "planner_version": "v2",
+      "municipality_ids": [],
+      "question_planner": {
+        "mode": "professional_method_guidance",
+        "role": "social_worker",
+        "topics": [],
+        "needs_rag": true,
+        "confidence": 0.84,
+        "input_role": "social_worker",
+        "risk_level": "low",
+        "person_name": null,
+        "entity_names": [],
+        "social_scope": "in_scope",
+        "source_layers": [
+          "official_guideline",
+          "state_guide",
+          "methodology_guide",
+          "methodology_material",
+          "method_guidance",
+          "quality_guideline",
+          "service_standard",
+          "information_material",
+          "journal_article",
+          "research_report"
+        ],
+        "life_situation": null,
+        "needs_location": false,
+        "planner_reason": "professional_method_process_question",
+        "answer_contract": "evidence_backed_method_phases_and_complementary_models",
+        "planner_version": "v2.9",
+        "role_confidence": 0.75,
+        "municipality_hint": null,
+        "retrieval_strategy": "authoritative_guidance_then_complementary_evidence",
+        "avoid_source_layers": [],
+        "document_fact_terms": [],
+        "person_source_scope": null,
+        "requested_year_role": "none",
+        "social_scope_reason": "intrinsically_social_professional_method_guidance_route",
+        "document_source_kind": null,
+        "person_source_intent": null,
+        "method_guidance_focus": "assessment",
+        "person_coauthor_count": 0,
+        "current_evidence_scope": "current",
+        "document_subject_terms": [],
+        "municipality_ambiguous": false,
+        "needs_multiple_sources": true,
+        "preferred_source_count": {
+          "max": 4,
+          "min": 1
+        },
+        "municipality_candidates": [],
+        "source_layer_filter_mode": "prefer",
+        "person_coauthor_requested": false,
+        "person_name_transliterated": false
+      },
+      "required_evidence": "strong",
+      "municipality_names": [],
+      "retrieval_strategy": "authoritative_guidance_then_complementary_evidence",
+      "selection_strategy": "professional_method_guidance",
+      "social_scope_reason": "intrinsically_social_professional_method_guidance_route",
+      "context_group_target": 8,
+      "risk_decision_source": "structured_semantic_contract",
+      "has_per_query_filters": true,
+      "needs_multiple_sources": true,
+      "preferred_source_count": {
+        "max": 4,
+        "min": 1
+      },
+      "semantic_turn_contract": {
+        "terms": {
+          "lemmas": [
+            "kuidas",
+            "hind",
+            "hindama",
+            "laps",
+            "heaolu",
+            "ja",
+            "abivajadus"
+          ],
+          "surface": [
+            "kuidas",
+            "hinnata",
+            "lapse",
+            "heaolu",
+            "ja",
+            "abivajadust"
+          ],
+          "retrieval_et": [],
+          "compound_roots": [
+            "kuidas",
+            "hind",
+            "hinda",
+            "laps",
+            "hea",
+            "olu",
+            "ja",
+            "abi",
+            "vajadus"
+          ]
+        },
+        "intent": "professional_method_guidance",
+        "persons": [],
+        "version": "semantic_turn_contract_v2",
+        "entities": [],
+        "language": "et",
+        "temporal": {
+          "type": "none",
+          "evidence_years": [],
+          "requested_year_role": "none",
+          "document_source_years": []
+        },
+        "input_form": "original",
+        "morphology": {
+          "reason": null,
+          "available": true,
+          "language_hint": "et",
+          "analyzer_version": "estnltk-vabamorf-1.7.5-v2",
+          "proper_name_spans": [],
+          "language_hint_confidence": 0.94
+        },
+        "risk_scope": "current_status",
+        "domain_scope": {
+          "reason": "intrinsically_social_professional_method_guidance_route",
+          "planned": "in_scope",
+          "effective": "in_scope",
+          "promoted_by_retrieval": false,
+          "post_retrieval_evidence": {
+            "reason": "recognized_authoritative_or_research_source_and_semantic_anchor",
+            "strength": "strong",
+            "source_ids": [
+              "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+              "sotsiaaltoo_turvalisuse-margid-2024-4",
+              "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus",
+              "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+            ],
+            "named_anchor_matches": 0,
+            "topic_anchor_matches": 72
+          }
+        },
+        "source_scope": "independent_or_unspecified",
+        "requested_facts": [
+          {
+            "index": 1,
+            "category": null,
+            "modality": "unspecified",
+            "derivation": "qualitative_clause",
+            "input_form": "original",
+            "span_start": 0,
+            "value_type": "text_relation",
+            "relation_terms": [
+              "hinnata",
+              "lapse",
+              "heaolu",
+              "abivajadust"
+            ],
+            "temporal_scope": "unspecified",
+            "explicit_values": [],
+            "value_type_source": "explicit_qualitative_cue",
+            "coordination_group": null,
+            "expected_cardinality": null,
+            "minimum_answer_items": 1,
+            "relation_term_variants": [
+              {
+                "term": "hinnata",
+                "variants": [
+                  "hind",
+                  "hindama",
+                  "hinda"
+                ]
+              },
+              {
+                "term": "lapse",
+                "variants": [
+                  "laps"
+                ]
+              },
+              {
+                "term": "heaolu",
+                "variants": [
+                  "hea",
+                  "olu"
+                ]
+              },
+              {
+                "term": "abivajadust",
+                "variants": [
+                  "abivajadus",
+                  "abi",
+                  "vajadus"
+                ]
+              }
+            ]
+          }
+        ],
+        "document_identity": {
+          "acronyms": [],
+          "author_key": null,
+          "confidence": "low",
+          "provenance": "none",
+          "title_hint": null,
+          "named_topics": [],
+          "organization": null,
+          "source_years": [],
+          "title_tokens": [],
+          "document_kind": null,
+          "author_surface": null
+        },
+        "history_reference": {
+          "explicit_source_anaphora": false,
+          "carry_previous_source_filter": false
+        },
+        "requested_fact_contract": {
+          "version": "requested_fact_slots_v2",
+          "complete": true,
+          "expected_cardinality": 0
+        }
+      },
+      "external_sources_needed": true,
+      "temporal_query_contract": {
+        "version": "temporal_query_contract_v1",
+        "topic_terms": [
+          "hinnata",
+          "lapse",
+          "heaolu",
+          "abivajadust"
+        ],
+        "period_years": [],
+        "coverage_years": [],
+        "evidence_years": [],
+        "ambiguous_years": [],
+        "breakdown_years": [],
+        "production_source": "question_planner",
+        "requested_year_role": "none",
+        "comparison_requested": false,
+        "document_source_years": [],
+        "current_evidence_scope": "current",
+        "qualitative_synthesis_requested": false,
+        "source_filter_applied_to_breakdown": false,
+        "source_filter_applied_to_breakdown_years": []
+      },
+      "temporal_year_semantics": {
+        "evidence_year_count": 0,
+        "ambiguous_year_count": 0,
+        "breakdown_year_count": 0,
+        "source_filter_source": "typed_year_role_mentions",
+        "source_filter_year_count": 0,
+        "preferred_source_year_count": 0,
+        "preferred_source_years_source": "typed_year_role_mentions",
+        "typed_year_role_mentions_available": true
+      },
+      "source_layer_filter_mode": "prefer",
+      "method_guidance_selection": {
+        "primary_source_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+        "selection_strategy": "professional_method_guidance",
+        "primary_source_type": "official_guideline",
+        "primary_guidance_status": "current_official",
+        "selected_document_count": 4
+      },
+      "previous_source_use_request": false,
+      "semantic_retrieval_terms_et": [],
+      "retrieval_strategy_selection": {
+        "mode": "professional_method_guidance",
+        "reason": "planner_mode_professional_method_guidance",
+        "force_rag": true,
+        "query_order": "authoritative_guidance_first",
+        "route_override": false,
+        "answer_contract": "evidence_backed_method_phases_and_complementary_models",
+        "planner_version": "v2.3",
+        "retrieval_strategy": "authoritative_guidance_then_complementary_evidence",
+        "selection_strategy": "professional_method_guidance",
+        "needs_multiple_sources": true,
+        "preferred_source_count": {
+          "max": 4,
+          "min": 1
+        },
+        "source_layer_filter_mode": "prefer"
+      },
+      "answer_validation_contract_shadow": {
+        "mode": "shadow",
+        "planner": {
+          "mode": "professional_method_guidance",
+          "fields": {
+            "period_role": {
+              "state": "not_applicable",
+              "value": null,
+              "available": false,
+              "confidence": null,
+              "provenance": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "year_role_mentions": {
+              "state": "present",
+              "value": [],
+              "available": true,
+              "confidence": null,
+              "provenance": {
+                "layer": "question_planner",
+                "method": "semantic_year_role_mentions",
+                "span_end": null,
+                "span_start": null
+              },
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "requested_year_role": {
+              "state": "absent",
+              "value": null,
+              "available": false,
+              "confidence": null,
+              "provenance": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "document_source_years": {
+              "state": "not_applicable",
+              "value": null,
+              "available": false,
+              "confidence": null,
+              "provenance": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "evidence_metric_slots": {
+              "state": "not_applicable",
+              "value": null,
+              "available": false,
+              "confidence": null,
+              "provenance": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "evidence_metric_terms": {
+              "state": "not_applicable",
+              "value": null,
+              "available": false,
+              "confidence": null,
+              "provenance": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "evidence_period_years": {
+              "state": "not_applicable",
+              "value": null,
+              "available": false,
+              "confidence": null,
+              "provenance": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "evidence_phase_ordinal": {
+              "state": "not_applicable",
+              "value": null,
+              "available": false,
+              "confidence": null,
+              "provenance": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "requested_numeric_slots": {
+              "state": "present",
+              "value": {
+                "slots": [],
+                "complete": true,
+                "truncated": false,
+                "emitted_slot_count": 0,
+                "recognized_clause_count": 0,
+                "unresolved_clause_count": 0
+              },
+              "available": true,
+              "confidence": null,
+              "provenance": {
+                "layer": "question_planner",
+                "method": "requested_numeric_clause_slots",
+                "span_end": null,
+                "span_start": null
+              },
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "bounded_episode_metric_fact": {
+              "state": "not_applicable",
+              "value": null,
+              "available": false,
+              "confidence": null,
+              "provenance": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "current_turn_document_identity": {
+              "state": "present",
+              "value": {
+                "scope": "current_turn",
+                "author": {
+                  "value": null,
+                  "span_end": null,
+                  "confidence": null,
+                  "input_form": null,
+                  "provenance": null,
+                  "span_start": null
+                },
+                "version": "current_turn_document_identity_v1",
+                "title_hint": {
+                  "value": null,
+                  "provenance": null
+                },
+                "document_kind": {
+                  "value": null,
+                  "provenance": null
+                },
+                "document_source_years": [],
+                "explicit_anchor_count": 0,
+                "history_fallback_policy": "fill_missing_only"
+              },
+              "available": true,
+              "confidence": null,
+              "provenance": {
+                "layer": "question_planner",
+                "method": "current_turn_document_identity_semantic_candidate",
+                "span_end": null,
+                "span_start": null
+              },
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            }
+          },
+          "route_mode": "professional_method_guidance",
+          "semantic_candidates_version": "question_semantic_candidates_v1"
+        },
+        "version": "answer_validation_contract_shadow_v2",
+        "production_decision_source": "existing_production_paths"
+      }
+    },
+    "filter_reasons": {
+      "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus": "claim_support_subsumed"
+    },
+    "rag_risk_level": "medium",
+    "trace_contract": {
+      "layer": "database_message_projection",
+      "version": "rag_trace_layers_v1",
+      "projection": "assistant_message.metadata.rag_trace",
+      "source_layer": "server_runtime_trace",
+      "downstream_layers": {
+        "ui_observation": "independent_visible_ui_evidence",
+        "audit_normalization": "derived_audit_artifact_must_declare_source_layer",
+        "database_projection": "assistant_message.metadata.rag_trace"
+      }
+    },
+    "retrieved_count": 50,
+    "retrievers_used": [
+      "dense",
+      "title_match",
+      "bm25"
+    ],
+    "source_packages": [],
+    "hybrid_retrieval": {
+      "bm25": {
+        "top_score": 7.6521,
+        "only_count": 5,
+        "min_coverage": 0.307692,
+        "result_count": 20,
+        "average_score": 4.23983,
+        "average_coverage": 0.626923,
+        "low_coverage_count": 3
+      },
+      "scored_count": 50,
+      "top_channels": [
+        "dense",
+        "title_match",
+        "bm25"
+      ],
+      "top_rrf_score": 0.052848,
+      "channel_counts": {
+        "bm25": 33,
+        "dense": 39,
+        "title_match": 18
+      },
+      "merge_strategy": {
+        "rrf_k": 60,
+        "strategy": "weighted_hybrid_rrf",
+        "bm25_config": {
+          "body_k": 1.5,
+          "title_k": 0.8,
+          "body_weight": 1,
+          "min_coverage": 0.35,
+          "title_weight": 1.8
+        },
+        "score_formula": "dense_score*0.58 + lexical_score*0.34 + rrf_score*8.0 + channel_boost + bm25_coverage_boost",
+        "channel_boosts": {
+          "bm25": 0.05,
+          "title_match": 0.09,
+          "author_match": 0.14,
+          "exact_phrase": 0.06,
+          "registry_fact": 0.32
+        },
+        "channel_weights": {
+          "bm25": 1,
+          "dense": 1,
+          "title_match": 1.35,
+          "author_match": 1.5,
+          "exact_phrase": 1.15,
+          "registry_fact": 1.7
+        },
+        "requested_retrievers": [
+          "dense",
+          "author_match",
+          "title_match",
+          "exact_phrase",
+          "bm25"
+        ]
+      },
+      "dense_only_count": 16,
+      "top_hybrid_score": 2.578033,
+      "lexical_only_count": 9,
+      "multi_query_fusion": {
+        "strategy": "anchored_rrf_v1",
+        "top_candidates": [
+          {
+            "best_rank": 1,
+            "query_ids": [
+              "q1",
+              "q2",
+              "q4"
+            ],
+            "source_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+            "query_ranks": {
+              "q1": 1,
+              "q2": 1,
+              "q4": 6
+            },
+            "fusion_score": 2.578033,
+            "primary_rank": 1,
+            "anchor_channels": [
+              "title_match"
+            ],
+            "query_hit_count": 3,
+            "exact_anchor_hit": true,
+            "best_retrieval_score": 1.684387
+          },
+          {
+            "best_rank": 2,
+            "query_ids": [
+              "q1",
+              "q2",
+              "q3"
+            ],
+            "source_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+            "query_ranks": {
+              "q1": 3,
+              "q2": 2,
+              "q3": 9
+            },
+            "fusion_score": 2.509997,
+            "primary_rank": 3,
+            "anchor_channels": [
+              "title_match"
+            ],
+            "query_hit_count": 3,
+            "exact_anchor_hit": true,
+            "best_retrieval_score": 1.639115
+          },
+          {
+            "best_rank": 7,
+            "query_ids": [
+              "q1",
+              "q2",
+              "q3",
+              "q4"
+            ],
+            "source_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+            "query_ranks": {
+              "q1": 8,
+              "q2": 7,
+              "q3": 10,
+              "q4": 11
+            },
+            "fusion_score": 2.431108,
+            "primary_rank": 8,
+            "anchor_channels": [],
+            "query_hit_count": 4,
+            "exact_anchor_hit": false,
+            "best_retrieval_score": 1.005696
+          },
+          {
+            "best_rank": 1,
+            "query_ids": [
+              "q3",
+              "q4"
+            ],
+            "source_id": "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus",
+            "query_ranks": {
+              "q3": 3,
+              "q4": 1
+            },
+            "fusion_score": 1.959188,
+            "anchor_channels": [
+              "title_match"
+            ],
+            "query_hit_count": 2,
+            "exact_anchor_hit": true,
+            "best_retrieval_score": 1.719969
+          },
+          {
+            "best_rank": 4,
+            "query_ids": [
+              "q1",
+              "q2"
+            ],
+            "source_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+            "query_ranks": {
+              "q1": 4,
+              "q2": 4
+            },
+            "fusion_score": 1.948125,
+            "primary_rank": 4,
+            "anchor_channels": [
+              "title_match"
+            ],
+            "query_hit_count": 2,
+            "exact_anchor_hit": true,
+            "best_retrieval_score": 1.146618
+          },
+          {
+            "best_rank": 2,
+            "query_ids": [
+              "q3",
+              "q4"
+            ],
+            "source_id": "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017",
+            "query_ranks": {
+              "q3": 2,
+              "q4": 3
+            },
+            "fusion_score": 1.944117,
+            "anchor_channels": [
+              "title_match"
+            ],
+            "query_hit_count": 2,
+            "exact_anchor_hit": true,
+            "best_retrieval_score": 1.705517
+          },
+          {
+            "best_rank": 1,
+            "query_ids": [
+              "q3",
+              "q4"
+            ],
+            "source_id": "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017",
+            "query_ranks": {
+              "q3": 1,
+              "q4": 5
+            },
+            "fusion_score": 1.931349,
+            "anchor_channels": [
+              "title_match"
+            ],
+            "query_hit_count": 2,
+            "exact_anchor_hit": true,
+            "best_retrieval_score": 1.662881
+          },
+          {
+            "best_rank": 11,
+            "query_ids": [
+              "q1",
+              "q2"
+            ],
+            "source_id": "praxis_centar_taiskasvanud_erivajadusega_inimeste_abivajaduse_hindamine_ja",
+            "query_ranks": {
+              "q1": 19,
+              "q2": 11
+            },
+            "fusion_score": 1.682311,
+            "primary_rank": 19,
+            "anchor_channels": [
+              "title_match"
+            ],
+            "query_hit_count": 2,
+            "exact_anchor_hit": true,
+            "best_retrieval_score": 0.629744
+          },
+          {
+            "best_rank": 2,
+            "query_ids": [
+              "q1",
+              "q2"
+            ],
+            "source_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+            "query_ranks": {
+              "q1": 2,
+              "q2": 9
+            },
+            "fusion_score": 1.486003,
+            "primary_rank": 2,
+            "anchor_channels": [
+              "title_match"
+            ],
+            "query_hit_count": 2,
+            "exact_anchor_hit": true,
+            "best_retrieval_score": 1.635718
+          },
+          {
+            "best_rank": 5,
+            "query_ids": [
+              "q1",
+              "q3"
+            ],
+            "source_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+            "query_ranks": {
+              "q1": 5,
+              "q3": 6
+            },
+            "fusion_score": 1.463077,
+            "primary_rank": 5,
+            "anchor_channels": [
+              "title_match"
+            ],
+            "query_hit_count": 2,
+            "exact_anchor_hit": true,
+            "best_retrieval_score": 1.191722
+          },
+          {
+            "best_rank": 8,
+            "query_ids": [
+              "q1",
+              "q2"
+            ],
+            "source_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+            "query_ranks": {
+              "q1": 9,
+              "q2": 8
+            },
+            "fusion_score": 1.394859,
+            "primary_rank": 9,
+            "anchor_channels": [],
+            "query_hit_count": 2,
+            "exact_anchor_hit": false,
+            "best_retrieval_score": 0.994323
+          },
+          {
+            "best_rank": 10,
+            "query_ids": [
+              "q1",
+              "q2"
+            ],
+            "source_id": "praxis_centar_taiskasvanud_erivajadusega_inimeste_abivajaduse_hindamine_ja",
+            "query_ranks": {
+              "q1": 17,
+              "q2": 10
+            },
+            "fusion_score": 1.290649,
+            "primary_rank": 17,
+            "anchor_channels": [],
+            "query_hit_count": 2,
+            "exact_anchor_hit": false,
+            "best_retrieval_score": 0.806359
+          },
+          {
+            "best_rank": 3,
+            "query_ids": [
+              "q2",
+              "q4"
+            ],
+            "source_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+            "query_ranks": {
+              "q2": 3,
+              "q4": 8
+            },
+            "fusion_score": 1.049104,
+            "anchor_channels": [],
+            "query_hit_count": 2,
+            "exact_anchor_hit": false,
+            "best_retrieval_score": 1.288286
+          },
+          {
+            "best_rank": 8,
+            "query_ids": [
+              "q3",
+              "q4"
+            ],
+            "source_id": "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus",
+            "query_ranks": {
+              "q3": 8,
+              "q4": 9
+            },
+            "fusion_score": 1.003555,
+            "anchor_channels": [],
+            "query_hit_count": 2,
+            "exact_anchor_hit": false,
+            "best_retrieval_score": 0.991577
+          },
+          {
+            "best_rank": 2,
+            "query_ids": [
+              "q4"
+            ],
+            "source_id": "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus",
+            "query_ranks": {
+              "q4": 2
+            },
+            "fusion_score": 0.999355,
+            "anchor_channels": [
+              "title_match"
+            ],
+            "query_hit_count": 1,
+            "exact_anchor_hit": true,
+            "best_retrieval_score": 1.712066
+          },
+          {
+            "best_rank": 10,
+            "query_ids": [
+              "q3",
+              "q4"
+            ],
+            "source_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+            "query_ranks": {
+              "q3": 11,
+              "q4": 10
+            },
+            "fusion_score": 0.976217,
+            "anchor_channels": [],
+            "query_hit_count": 2,
+            "exact_anchor_hit": false,
+            "best_retrieval_score": 0.972457
+          },
+          {
+            "best_rank": 4,
+            "query_ids": [
+              "q3"
+            ],
+            "source_id": "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017",
+            "query_ranks": {
+              "q3": 4
+            },
+            "fusion_score": 0.970625,
+            "anchor_channels": [
+              "title_match"
+            ],
+            "query_hit_count": 1,
+            "exact_anchor_hit": true,
+            "best_retrieval_score": 1.414722
+          },
+          {
+            "best_rank": 4,
+            "query_ids": [
+              "q4"
+            ],
+            "source_id": "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus",
+            "query_ranks": {
+              "q4": 4
+            },
+            "fusion_score": 0.970625,
+            "anchor_channels": [
+              "title_match"
+            ],
+            "query_hit_count": 1,
+            "exact_anchor_hit": true,
+            "best_retrieval_score": 1.616858
+          },
+          {
+            "best_rank": 5,
+            "query_ids": [
+              "q2"
+            ],
+            "source_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+            "query_ranks": {
+              "q2": 5
+            },
+            "fusion_score": 0.956923,
+            "anchor_channels": [
+              "title_match"
+            ],
+            "query_hit_count": 1,
+            "exact_anchor_hit": true,
+            "best_retrieval_score": 1.052017
+          },
+          {
+            "best_rank": 6,
+            "query_ids": [
+              "q2"
+            ],
+            "source_id": "praxis_centar_taiskasvanud_erivajadusega_inimeste_abivajaduse_hindamine_ja",
+            "query_ranks": {
+              "q2": 6
+            },
+            "fusion_score": 0.943636,
+            "anchor_channels": [
+              "title_match"
+            ],
+            "query_hit_count": 1,
+            "exact_anchor_hit": true,
+            "best_retrieval_score": 1.025361
+          }
+        ],
+        "candidate_count": 50,
+        "max_query_hit_count": 4,
+        "anchored_candidate_count": 18
+      },
+      "dense_and_lexical_count": 11
+    },
+    "lemma_fts_shadow": {
+      "version": "lemma_fts_shadow_trace_v1",
+      "observations": [
+        {
+          "reason": "SHADOW_ONLY",
+          "enabled": true,
+          "version": "lemma_fts_shadow_v1",
+          "executed": true,
+          "query_ms": 733,
+          "total_ms": 0,
+          "scheduled": false,
+          "analysis_ms": 5,
+          "index_ready": true,
+          "query_language": "et",
+          "top_candidates": [
+            {
+              "rank": 1,
+              "chunk_id": "sotsiaaltoo-4-2024-turvalisuse-margid-2024-4:8:e5408e67:version:07ee9f74d406483a865d55635c7692fd",
+              "document_id": "sotsiaaltoo-4-2024-turvalisuse-margid-2024-4"
+            },
+            {
+              "rank": 2,
+              "chunk_id": "sotsiaaltoo-4-2024-turvalisuse-margid-2024-4:14:7d521db6:version:07ee9f74d406483a865d55635c7692fd",
+              "document_id": "sotsiaaltoo-4-2024-turvalisuse-margid-2024-4"
+            },
+            {
+              "rank": 3,
+              "chunk_id": "sotsiaaltoo-4-2017-lapse-heaolu-hindamise-kasiraamatust-2017:8:4205b0b4:version:7078b2dd594547c5bac973a22a8dcaf6",
+              "document_id": "sotsiaaltoo-4-2017-lapse-heaolu-hindamise-kasiraamatust-2017"
+            },
+            {
+              "rank": 4,
+              "chunk_id": "sotsiaaltoo-4-2017-lapse-heaolu-hindamise-kasiraamatust-2017:7:d3f3dda8:version:7078b2dd594547c5bac973a22a8dcaf6",
+              "document_id": "sotsiaaltoo-4-2017-lapse-heaolu-hindamise-kasiraamatust-2017"
+            },
+            {
+              "rank": 5,
+              "chunk_id": "sotsiaaltoo-2-2021-riskihindamine-tuleviku-prognoosimise-vahend-ja-juhtumikorralduse-alus-2021-2:3:e7813a2a:version:4163abddf77147d9adcf8065be9e2129",
+              "document_id": "sotsiaaltoo-2-2021-riskihindamine-tuleviku-prognoosimise-vahend-ja-juhtumikorralduse-alus-2021-2"
+            },
+            {
+              "rank": 6,
+              "chunk_id": "sotsiaaltoo-4-2024-turvalisuse-margid-2024-4:6:98293844:version:07ee9f74d406483a865d55635c7692fd",
+              "document_id": "sotsiaaltoo-4-2024-turvalisuse-margid-2024-4"
+            },
+            {
+              "rank": 7,
+              "chunk_id": "sotsiaaltoo-2-2021-riskihindamine-tuleviku-prognoosimise-vahend-ja-juhtumikorralduse-alus-2021-2:2:222f05a8:version:4163abddf77147d9adcf8065be9e2129",
+              "document_id": "sotsiaaltoo-2-2021-riskihindamine-tuleviku-prognoosimise-vahend-ja-juhtumikorralduse-alus-2021-2"
+            },
+            {
+              "rank": 8,
+              "chunk_id": "sotsiaaltoo-4-2024-turvalisuse-margid-2024-4:0:229ea60b:version:07ee9f74d406483a865d55635c7692fd",
+              "document_id": "sotsiaaltoo-4-2024-turvalisuse-margid-2024-4"
+            },
+            {
+              "rank": 9,
+              "chunk_id": "sotsiaaltoo-4-2024-turvalisuse-margid-2024-4:1:01f8e2a6:version:07ee9f74d406483a865d55635c7692fd",
+              "document_id": "sotsiaaltoo-4-2024-turvalisuse-margid-2024-4"
+            },
+            {
+              "rank": 10,
+              "chunk_id": "sotsiaaltoo-4-2024-turvalisuse-margid-2024-4:10:645927b7:version:07ee9f74d406483a865d55635c7692fd",
+              "document_id": "sotsiaaltoo-4-2024-turvalisuse-margid-2024-4"
+            },
+            {
+              "rank": 11,
+              "chunk_id": "sotsiaaltoo-4-2024-turvalisuse-margid-2024-4:5:a1333d88:version:07ee9f74d406483a865d55635c7692fd",
+              "document_id": "sotsiaaltoo-4-2024-turvalisuse-margid-2024-4"
+            },
+            {
+              "rank": 12,
+              "chunk_id": "sotsiaaltoo-4-2017-lapse-heaolu-hindamise-kasiraamatust-2017:4:7c2188ec:version:7078b2dd594547c5bac973a22a8dcaf6",
+              "document_id": "sotsiaaltoo-4-2017-lapse-heaolu-hindamise-kasiraamatust-2017"
+            }
+          ],
+          "candidate_count": 80,
+          "analyzer_version": "estnltk-vabamorf-1.7.5-v2",
+          "query_input_form": "retrieval_query",
+          "query_token_count": 36,
+          "chunk_overlap_count": 5,
+          "document_overlap_count": 5,
+          "production_result_count": 11
+        },
+        {
+          "reason": "ASYNC_SHADOW_SCHEDULED",
+          "enabled": true,
+          "version": "lemma_fts_shadow_v1",
+          "executed": false,
+          "query_ms": 0,
+          "total_ms": 0,
+          "scheduled": false,
+          "analysis_ms": 0,
+          "index_ready": false,
+          "query_language": "et",
+          "top_candidates": [],
+          "candidate_count": 0,
+          "analyzer_version": "estnltk-vabamorf-1.7.5-v2",
+          "query_input_form": "retrieval_query",
+          "query_token_count": 0,
+          "chunk_overlap_count": 0,
+          "document_overlap_count": 0,
+          "production_result_count": 11
+        },
+        {
+          "reason": "SHADOW_ONLY",
+          "enabled": true,
+          "version": "lemma_fts_shadow_v1",
+          "executed": true,
+          "query_ms": 494,
+          "total_ms": 0,
+          "scheduled": false,
+          "analysis_ms": 0,
+          "index_ready": true,
+          "query_language": "et",
+          "top_candidates": [
+            {
+              "rank": 1,
+              "chunk_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat:87:67f715a9",
+              "document_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+            },
+            {
+              "rank": 2,
+              "chunk_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat:116:98e9aece",
+              "document_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+            },
+            {
+              "rank": 3,
+              "chunk_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat:228:565bf635",
+              "document_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+            },
+            {
+              "rank": 4,
+              "chunk_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat:212:748549d1",
+              "document_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+            },
+            {
+              "rank": 5,
+              "chunk_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat:221:ca459175",
+              "document_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+            },
+            {
+              "rank": 6,
+              "chunk_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat:226:eccebb3f",
+              "document_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+            },
+            {
+              "rank": 7,
+              "chunk_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat:224:52087ac0",
+              "document_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+            },
+            {
+              "rank": 8,
+              "chunk_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat:112:47074465",
+              "document_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+            },
+            {
+              "rank": 9,
+              "chunk_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat:10:d8d90055",
+              "document_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+            },
+            {
+              "rank": 10,
+              "chunk_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat:56:6ae21f57",
+              "document_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+            },
+            {
+              "rank": 11,
+              "chunk_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat:95:f9c41006",
+              "document_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+            },
+            {
+              "rank": 12,
+              "chunk_id": "oiguskantsler_juhend_abivajavast_lapsest_teatamine_ja_andmekaitse:43:1791884b",
+              "document_id": "oiguskantsler_juhend_abivajavast_lapsest_teatamine_ja_andmekaitse"
+            }
+          ],
+          "candidate_count": 80,
+          "analyzer_version": "estnltk-vabamorf-1.7.5-v2",
+          "query_input_form": "retrieval_query",
+          "query_token_count": 13,
+          "chunk_overlap_count": 12,
+          "document_overlap_count": 4,
+          "production_result_count": 36
+        },
+        {
+          "reason": "SHADOW_ONLY",
+          "enabled": true,
+          "version": "lemma_fts_shadow_v1",
+          "executed": true,
+          "query_ms": 596,
+          "total_ms": 0,
+          "scheduled": false,
+          "analysis_ms": 1,
+          "index_ready": true,
+          "query_language": "et",
+          "top_candidates": [
+            {
+              "rank": 1,
+              "chunk_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat:114:4f297d2a",
+              "document_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+            },
+            {
+              "rank": 2,
+              "chunk_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat:87:67f715a9",
+              "document_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+            },
+            {
+              "rank": 3,
+              "chunk_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat:209:f0fd4b53",
+              "document_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+            },
+            {
+              "rank": 4,
+              "chunk_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat:112:47074465",
+              "document_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+            },
+            {
+              "rank": 5,
+              "chunk_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat:41:814ca6d9",
+              "document_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+            },
+            {
+              "rank": 6,
+              "chunk_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat:60:052be8aa",
+              "document_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+            },
+            {
+              "rank": 7,
+              "chunk_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat:5:6a55bec8",
+              "document_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+            },
+            {
+              "rank": 8,
+              "chunk_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat:35:6afac483",
+              "document_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+            },
+            {
+              "rank": 9,
+              "chunk_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat:61:fd6c9ad5",
+              "document_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+            },
+            {
+              "rank": 10,
+              "chunk_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat:202:bb4d864c",
+              "document_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+            },
+            {
+              "rank": 11,
+              "chunk_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat:201:36c2254b",
+              "document_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+            },
+            {
+              "rank": 12,
+              "chunk_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat:34:53e4effb",
+              "document_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+            }
+          ],
+          "candidate_count": 80,
+          "analyzer_version": "estnltk-vabamorf-1.7.5-v2",
+          "query_input_form": "retrieval_query",
+          "query_token_count": 36,
+          "chunk_overlap_count": 5,
+          "document_overlap_count": 2,
+          "production_result_count": 11
+        }
+      ],
+      "decision_mode": "shadow_only",
+      "production_path_changed": false
+    },
+    "used_package_ids": [],
+    "answer_source_ids": [
+      "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+      "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017",
+      "sotsiaaltoo_turvalisuse-margid-2024-4"
+    ],
+    "attribution_flags": [],
+    "document_identity": {
+      "enabled": false,
+      "matched": false,
+      "reasons": [],
+      "required": false,
+      "candidates": [],
+      "confidence": "not_required",
+      "duration_ms": 0,
+      "subject_terms": []
+    },
+    "answer_source_count": 3,
+    "claim_support_graph": [
+      {
+        "claim_id": "claim_1",
+        "claim_hash": "33adf4ef",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_turvalisuse-margid-2024-4",
+          "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus",
+          "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+        ]
+      },
+      {
+        "claim_id": "claim_2",
+        "claim_hash": "fff0cca7",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus",
+          "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+        ]
+      },
+      {
+        "claim_id": "claim_3",
+        "claim_hash": "dcdcb962",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+        ]
+      },
+      {
+        "claim_id": "claim_4",
+        "claim_hash": "8e69a163",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus"
+        ]
+      },
+      {
+        "claim_id": "claim_5",
+        "claim_hash": "a5f8d497",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_turvalisuse-margid-2024-4"
+        ]
+      },
+      {
+        "claim_id": "claim_6",
+        "claim_hash": "6703bbbd",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+        ]
+      },
+      {
+        "claim_id": "claim_7",
+        "claim_hash": "654360f6",
+        "supporting_source_ids": []
+      },
+      {
+        "claim_id": "claim_8",
+        "claim_hash": "b4f68b44",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus",
+          "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+        ]
+      },
+      {
+        "claim_id": "claim_9",
+        "claim_hash": "ef60f3d1",
+        "supporting_source_ids": []
+      },
+      {
+        "claim_id": "claim_10",
+        "claim_hash": "96e88a46",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus",
+          "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+        ]
+      },
+      {
+        "claim_id": "claim_11",
+        "claim_hash": "914f9969",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_turvalisuse-margid-2024-4",
+          "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus",
+          "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+        ]
+      },
+      {
+        "claim_id": "claim_12",
+        "claim_hash": "85a08381",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+        ]
+      },
+      {
+        "claim_id": "claim_13",
+        "claim_hash": "2929e44f",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+        ]
+      },
+      {
+        "claim_id": "claim_14",
+        "claim_hash": "e345bb06",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+        ]
+      },
+      {
+        "claim_id": "claim_15",
+        "claim_hash": "3ba0319d",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+        ]
+      },
+      {
+        "claim_id": "claim_16",
+        "claim_hash": "c25906e3",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+        ]
+      },
+      {
+        "claim_id": "claim_17",
+        "claim_hash": "8c6d10fe",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_turvalisuse-margid-2024-4",
+          "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus",
+          "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+        ]
+      },
+      {
+        "claim_id": "claim_18",
+        "claim_hash": "1fe3de8e",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_turvalisuse-margid-2024-4",
+          "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus",
+          "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+        ]
+      },
+      {
+        "claim_id": "claim_19",
+        "claim_hash": "29760fd0",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_turvalisuse-margid-2024-4",
+          "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus",
+          "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+        ]
+      },
+      {
+        "claim_id": "claim_20",
+        "claim_hash": "5f7f0129",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+        ]
+      },
+      {
+        "claim_id": "claim_21",
+        "claim_hash": "775e84cb",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus",
+          "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+        ]
+      },
+      {
+        "claim_id": "claim_22",
+        "claim_hash": "6895239c",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus"
+        ]
+      },
+      {
+        "claim_id": "claim_23",
+        "claim_hash": "c73bfd27",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+        ]
+      },
+      {
+        "claim_id": "claim_24",
+        "claim_hash": "16623034",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_turvalisuse-margid-2024-4",
+          "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus",
+          "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+        ]
+      },
+      {
+        "claim_id": "claim_25",
+        "claim_hash": "a0fc5a4b",
+        "supporting_source_ids": []
+      },
+      {
+        "claim_id": "claim_26",
+        "claim_hash": "ba4518a5",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+        ]
+      },
+      {
+        "claim_id": "claim_27",
+        "claim_hash": "b28067fe",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+        ]
+      },
+      {
+        "claim_id": "claim_28",
+        "claim_hash": "79eab18a",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+        ]
+      },
+      {
+        "claim_id": "claim_29",
+        "claim_hash": "90c2051e",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+        ]
+      },
+      {
+        "claim_id": "claim_30",
+        "claim_hash": "a1c8cff9",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+        ]
+      },
+      {
+        "claim_id": "claim_31",
+        "claim_hash": "05934baf",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus",
+          "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+        ]
+      },
+      {
+        "claim_id": "claim_32",
+        "claim_hash": "fc214a8a",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus",
+          "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+        ]
+      },
+      {
+        "claim_id": "claim_33",
+        "claim_hash": "168bd099",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus"
+        ]
+      },
+      {
+        "claim_id": "claim_34",
+        "claim_hash": "a1963541",
+        "supporting_source_ids": [
+          "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+        ]
+      },
+      {
+        "claim_id": "claim_35",
+        "claim_hash": "61b126c5",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+        ]
+      },
+      {
+        "claim_id": "claim_36",
+        "claim_hash": "773a469d",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+        ]
+      },
+      {
+        "claim_id": "claim_37",
+        "claim_hash": "de98ea59",
+        "supporting_source_ids": []
+      },
+      {
+        "claim_id": "claim_38",
+        "claim_hash": "83b92051",
+        "supporting_source_ids": []
+      },
+      {
+        "claim_id": "claim_39",
+        "claim_hash": "6545cf32",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+        ]
+      },
+      {
+        "claim_id": "claim_40",
+        "claim_hash": "284241a4",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+        ]
+      },
+      {
+        "claim_id": "claim_41",
+        "claim_hash": "e6621758",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus",
+          "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+        ]
+      },
+      {
+        "claim_id": "claim_42",
+        "claim_hash": "a4d744ba",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_turvalisuse-margid-2024-4",
+          "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus",
+          "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+        ]
+      },
+      {
+        "claim_id": "claim_43",
+        "claim_hash": "818cb3b3",
+        "supporting_source_ids": []
+      },
+      {
+        "claim_id": "claim_44",
+        "claim_hash": "5e65a010",
+        "supporting_source_ids": []
+      },
+      {
+        "claim_id": "claim_45",
+        "claim_hash": "6050f558",
+        "supporting_source_ids": []
+      },
+      {
+        "claim_id": "claim_46",
+        "claim_hash": "c39a76c1",
+        "supporting_source_ids": []
+      },
+      {
+        "claim_id": "claim_47",
+        "claim_hash": "41a43998",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_turvalisuse-margid-2024-4"
+        ]
+      },
+      {
+        "claim_id": "claim_48",
+        "claim_hash": "111db222",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_turvalisuse-margid-2024-4",
+          "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus",
+          "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+        ]
+      },
+      {
+        "claim_id": "claim_49",
+        "claim_hash": "ad4293b2",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+        ]
+      },
+      {
+        "claim_id": "claim_50",
+        "claim_hash": "41da8f7c",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_turvalisuse-margid-2024-4"
+        ]
+      },
+      {
+        "claim_id": "claim_51",
+        "claim_hash": "bc6d572f",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_turvalisuse-margid-2024-4",
+          "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus",
+          "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+        ]
+      },
+      {
+        "claim_id": "claim_52",
+        "claim_hash": "7810eb49",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+        ]
+      },
+      {
+        "claim_id": "claim_53",
+        "claim_hash": "312193fd",
+        "supporting_source_ids": []
+      },
+      {
+        "claim_id": "claim_54",
+        "claim_hash": "ec10d338",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+        ]
+      },
+      {
+        "claim_id": "claim_55",
+        "claim_hash": "b8fc0b00",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+        ]
+      },
+      {
+        "claim_id": "claim_56",
+        "claim_hash": "7a9a7007",
+        "supporting_source_ids": []
+      },
+      {
+        "claim_id": "claim_57",
+        "claim_hash": "09ac202f",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_turvalisuse-margid-2024-4",
+          "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+        ]
+      },
+      {
+        "claim_id": "claim_58",
+        "claim_hash": "e0075c32",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+        ]
+      },
+      {
+        "claim_id": "claim_59",
+        "claim_hash": "7a60a322",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+        ]
+      },
+      {
+        "claim_id": "claim_60",
+        "claim_hash": "f2f5f7e5",
+        "supporting_source_ids": [
+          "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+          "sotsiaaltoo_turvalisuse-margid-2024-4"
+        ]
+      },
+      {
+        "claim_id": "claim_61",
+        "claim_hash": "0ea1d3d8",
+        "supporting_source_ids": [
+          "sotsiaaltoo_turvalisuse-margid-2024-4"
+        ]
+      }
+    ],
+    "performance_timings": {
+      "dense_ms": 4155,
+      "model_ms": 11926,
+      "lexical_ms": 2956,
+      "planner_ms": 17,
+      "registry_ms": 0,
+      "dense_sum_ms": 4155,
+      "embedding_ms": 917,
+      "lexical_sum_ms": 2956,
+      "query_build_ms": 0,
+      "embedding_sum_ms": 917,
+      "context_render_ms": 3,
+      "query_planning_ms": 0,
+      "retrieval_wall_ms": 7751,
+      "first_model_call_ms": 1,
+      "lemma_fts_shadow_ms": 0,
+      "lexical_scanned_sum": 99504,
+      "retrieval_query_1_ms": 3542,
+      "retrieval_query_2_ms": 3033,
+      "retrieval_query_3_ms": 7493,
+      "retrieval_query_4_ms": 7736,
+      "retrieval_query_count": 4,
+      "shared_read_cache_hits": 0,
+      "document_sibling_sum_ms": 3676,
+      "shared_read_cache_waits": 0,
+      "multi_query_retrieval_ms": 21804,
+      "shared_read_cache_misses": 10,
+      "retrieval_parallel_sum_ms": 21804,
+      "retrieval_context_total_ms": 7889,
+      "shared_read_cache_bypasses": 0,
+      "service_fact_segment_sum_ms": 9327,
+      "shared_embedding_batch_hits": 1,
+      "shared_embedding_batch_waits": 2,
+      "shared_embedding_batch_misses": 1,
+      "lexical_exhaustive_query_count": 2,
+      "lexical_corpus_scan_query_count": 0,
+      "shared_embedding_batch_bypasses": 0
+    },
+    "section_attribution": [],
+    "displayed_source_ids": [
+      "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+      "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017",
+      "sotsiaaltoo_turvalisuse-margid-2024-4"
+    ],
+    "package_answer_flags": [],
+    "retrieved_source_ids": [
+      "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+      "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus",
+      "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017",
+      "praxis_centar_taiskasvanud_erivajadusega_inimeste_abivajaduse_hindamine_ja",
+      "statistikaamet_lapse_heaolu_mootmise_kasitlus",
+      "oiguskantsler_juhend_abivajavast_lapsest_teatamine_ja_andmekaitse",
+      "lastekaitse_liit_lapse_osalusoiguse_rakendamise_juhend",
+      "epikoda_teekond_erilise_lapse_korval",
+      "sm-terviseprobleemiga-laste-perede-hea-tava-2025",
+      "sotsiaalkindlustusamet_puue_ja_hoolekanne_ska_aastaraamatu_pdf_osa_2025",
+      "sotsiaaltoo_turvalisuse-margid-2024-4",
+      "lastekaitse_liit_uuring_lapse_heaolu_hindamine"
+    ],
+    "attribution_decisions": [
+      {
+        "score": 239.6,
+        "reason": "claim_support_validated",
+        "decision": "display",
+        "source_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+        "source_type": "official_guideline",
+        "source_index": 0,
+        "source_status": "active",
+        "evidence_reason": "active_official_method_guidance",
+        "evidence_strength": "strong",
+        "required_evidence": "strong",
+        "source_layer_contract": "guidance",
+        "supported_claim_count": 48,
+        "supported_claim_indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          34,
+          35
+        ]
+      },
+      {
+        "score": 49.3,
+        "reason": "claim_support_validated",
+        "decision": "display",
+        "source_id": "sotsiaaltoo_turvalisuse-margid-2024-4",
+        "historical": true,
+        "source_type": "journal_article",
+        "source_index": 1,
+        "source_status": "active",
+        "evidence_reason": "historical_background_source_type",
+        "evidence_strength": "medium",
+        "required_evidence": "strong",
+        "source_layer_contract": "research_or_journal",
+        "supported_claim_count": 15,
+        "supported_claim_indices": [
+          0,
+          4,
+          10,
+          16,
+          17,
+          18,
+          23,
+          41,
+          46,
+          47,
+          49,
+          50,
+          56,
+          59,
+          60
+        ]
+      },
+      {
+        "score": 54.7,
+        "reason": "claim_support_subsumed",
+        "decision": "hide",
+        "source_id": "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus",
+        "historical": true,
+        "source_type": "journal_article",
+        "source_index": 2,
+        "source_status": "active",
+        "evidence_reason": "historical_background_source_type",
+        "evidence_strength": "medium",
+        "required_evidence": "strong",
+        "source_layer_contract": "research_or_journal",
+        "supported_claim_count": 19,
+        "supported_claim_indices": [
+          0,
+          1,
+          3,
+          7,
+          9,
+          10,
+          16,
+          17,
+          18,
+          20,
+          21,
+          23,
+          30,
+          31,
+          32,
+          40,
+          41,
+          47,
+          50
+        ]
+      },
+      {
+        "score": 81.7,
+        "reason": "claim_support_validated",
+        "decision": "display",
+        "source_id": "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017",
+        "historical": true,
+        "source_type": "journal_article",
+        "source_index": 3,
+        "source_status": "active",
+        "evidence_reason": "historical_background_source_type",
+        "evidence_strength": "medium",
+        "required_evidence": "strong",
+        "source_layer_contract": "research_or_journal",
+        "supported_claim_count": 30,
+        "supported_claim_indices": [
+          0,
+          1,
+          5,
+          7,
+          9,
+          10,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          23,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          33,
+          34,
+          35,
+          40,
+          41,
+          47,
+          48,
+          50,
+          56,
+          58
+        ]
+      }
+    ],
+    "missing_sections_used": [],
+    "rag_required_evidence": "strong",
+    "rendered_context_hash": "b96c53cdcccfef09d8112804f909e044fe37c302551da5ac40f959c7db3921e3",
+    "retrieval_trace_level": "retrieved_candidates",
+    "selected_source_count": 4,
+    "displayed_source_count": 3,
+    "rendered_context_chars": 13394,
+    "selected_context_count": 4,
+    "answer_source_semantics": "claim_or_validator_support",
+    "filtered_out_source_ids": [
+      "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus"
+    ],
+    "model_context_source_ids": [
+      "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+      "sotsiaaltoo_turvalisuse-margid-2024-4",
+      "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus",
+      "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+    ],
+    "package_selection_status": "no_packages",
+    "selected_context_details": [
+      {
+        "title": "Lapse heaolu hindamise käsiraamat",
+        "rrf_score": 0.052413,
+        "source_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+        "bm25_score": 10.1593,
+        "dense_rank": 5,
+        "rank_score": 5.008,
+        "dense_score": 0.594879,
+        "hybrid_rank": 1,
+        "source_type": "official_guideline",
+        "topic_boost": 0.94,
+        "bm25_matches": 11,
+        "hybrid_score": 2.578033,
+        "lexical_rank": 1,
+        "bm25_coverage": 1,
+        "channel_boost": 0.14,
+        "collection_id": "national_guidelines",
+        "lexical_score": 11.5,
+        "raw_source_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+        "resource_type": "method_guidance",
+        "source_status": "active",
+        "quality_adjust": 1.49,
+        "bm25_query_tokens": 25,
+        "original_body_hash": "295a60cdcf20acc27f240a0bf7767743c8ca923cda4691523c7a8f39741ad1dd",
+        "rendered_body_hash": "dc006755b543e5044d076935fa5e311056d62ed7287d33c21a996755bc9131cf",
+        "retrieval_channels": [
+          "dense",
+          "title_match",
+          "bm25"
+        ],
+        "original_body_count": 11,
+        "rendered_body_count": 8,
+        "rendered_body_spans": [
+          {
+            "truncated": false,
+            "end_offset": 1060,
+            "start_offset": 0,
+            "original_body_hash": "4bbeeea6baac7c00b995e743f8de22bcd7548229373ad1d17292b21dc2a83f45",
+            "rendered_body_hash": "4bbeeea6baac7c00b995e743f8de22bcd7548229373ad1d17292b21dc2a83f45",
+            "original_body_chars": 1060,
+            "original_body_index": 0,
+            "rendered_body_chars": 1060
+          },
+          {
+            "truncated": false,
+            "end_offset": 1101,
+            "start_offset": 0,
+            "original_body_hash": "cce4cf1e81bfcaa624e997d864135da749df86cb2901a01d1b050497f701080e",
+            "rendered_body_hash": "cce4cf1e81bfcaa624e997d864135da749df86cb2901a01d1b050497f701080e",
+            "original_body_chars": 1101,
+            "original_body_index": 1,
+            "rendered_body_chars": 1101
+          },
+          {
+            "truncated": false,
+            "end_offset": 1155,
+            "start_offset": 0,
+            "original_body_hash": "6e48827cef68f2a2241e102fb155e3b5360a6adfcc5792e10819e1d6ee77476d",
+            "rendered_body_hash": "6e48827cef68f2a2241e102fb155e3b5360a6adfcc5792e10819e1d6ee77476d",
+            "original_body_chars": 1155,
+            "original_body_index": 2,
+            "rendered_body_chars": 1155
+          },
+          {
+            "truncated": false,
+            "end_offset": 1179,
+            "start_offset": 0,
+            "original_body_hash": "5501031d4386fe8f47c1db9c28f9f177628490f9eef9908695367cea85b46df4",
+            "rendered_body_hash": "5501031d4386fe8f47c1db9c28f9f177628490f9eef9908695367cea85b46df4",
+            "original_body_chars": 1179,
+            "original_body_index": 3,
+            "rendered_body_chars": 1179
+          },
+          {
+            "truncated": false,
+            "end_offset": 1167,
+            "start_offset": 0,
+            "original_body_hash": "6a794566c97f30caead0ca6ebc3f59489e5adfab58a97803a8d4d676a2474850",
+            "rendered_body_hash": "6a794566c97f30caead0ca6ebc3f59489e5adfab58a97803a8d4d676a2474850",
+            "original_body_chars": 1167,
+            "original_body_index": 4,
+            "rendered_body_chars": 1167
+          },
+          {
+            "truncated": false,
+            "end_offset": 1196,
+            "start_offset": 0,
+            "original_body_hash": "adf93d8fce3472630a084ccc7ebf3c0d2547a4ade008f4b349b2516cfc392c76",
+            "rendered_body_hash": "adf93d8fce3472630a084ccc7ebf3c0d2547a4ade008f4b349b2516cfc392c76",
+            "original_body_chars": 1196,
+            "original_body_index": 5,
+            "rendered_body_chars": 1196
+          },
+          {
+            "truncated": false,
+            "end_offset": 1085,
+            "start_offset": 0,
+            "original_body_hash": "66a93142c9c59ed856d3f0e9d3cfe3b324405141fef404ea792e13fdd53b4917",
+            "rendered_body_hash": "66a93142c9c59ed856d3f0e9d3cfe3b324405141fef404ea792e13fdd53b4917",
+            "original_body_chars": 1085,
+            "original_body_index": 6,
+            "rendered_body_chars": 1085
+          },
+          {
+            "truncated": false,
+            "end_offset": 1078,
+            "start_offset": 0,
+            "original_body_hash": "e9d1222696f5c4d4c41761ac6e3af278f76aa55a69d9ed7ae67ab6100ea0417b",
+            "rendered_body_hash": "e9d1222696f5c4d4c41761ac6e3af278f76aa55a69d9ed7ae67ab6100ea0417b",
+            "original_body_chars": 1078,
+            "original_body_index": 7,
+            "rendered_body_chars": 1078
+          }
+        ],
+        "rendered_evidence_hash": "2d9090be5637e71ff6a9f6e03ca0413d9aae2d0712d56ade90ccce8e976b7fcb",
+        "rendered_evidence_chars": 9279,
+        "lexical_score_normalized": 0.589744,
+        "rendered_evidence_truncated": true
+      },
+      {
+        "title": "Juhtumikorraldusmudel „Turvalisuse märgid“ – uus tööriist Eesti lastekaitsetöös",
+        "section": "Metoodika",
+        "rrf_score": 0.028177,
+        "source_id": "sotsiaaltoo_turvalisuse-margid-2024-4",
+        "dense_rank": 23,
+        "historical": true,
+        "rank_score": 1.3777,
+        "dense_score": 0.568305,
+        "hybrid_rank": 10,
+        "source_type": "journal_article",
+        "topic_boost": 0.9,
+        "bm25_matches": 0,
+        "hybrid_score": 0.507692,
+        "lexical_rank": 2,
+        "channel_boost": 0.05,
+        "collection_id": "sotsiaaltoo_articles",
+        "lexical_score": 6.4048,
+        "raw_source_id": "sotsiaaltoo_turvalisuse-margid-2024-4",
+        "source_status": "active",
+        "quality_adjust": -0.03,
+        "bm25_query_tokens": 0,
+        "original_body_hash": "2a7193c5ee2a2de2f6cd643fe66cb821bb4f989a4d6149c7323607000f898ec8",
+        "rendered_body_hash": "423619706ce07cbf951aa0ec47c54f62c388729010932904ff06f3157b552fe1",
+        "retrieval_channels": [
+          "dense",
+          "bm25"
+        ],
+        "original_body_count": 1,
+        "rendered_body_count": 1,
+        "rendered_body_spans": [
+          {
+            "truncated": true,
+            "end_offset": 1096,
+            "start_offset": 0,
+            "original_body_hash": "2a7193c5ee2a2de2f6cd643fe66cb821bb4f989a4d6149c7323607000f898ec8",
+            "rendered_body_hash": "423619706ce07cbf951aa0ec47c54f62c388729010932904ff06f3157b552fe1",
+            "original_body_chars": 1282,
+            "original_body_index": 0,
+            "rendered_body_chars": 1099
+          }
+        ],
+        "rendered_evidence_hash": "58bee5a13bd10d38268e3f0e19706c15cd0ba14c9225b527a792d6b5434b8e1e",
+        "rendered_evidence_chars": 1379,
+        "lexical_score_normalized": 0.44463,
+        "rendered_evidence_truncated": true
+      },
+      {
+        "title": "Lapse abivajaduse hindamisest lastekaitseseadus kontekstis Jõgevamaa näitel",
+        "section": "Uurimus",
+        "rrf_score": 0.052848,
+        "source_id": "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus",
+        "bm25_score": 9.8626,
+        "dense_rank": 2,
+        "historical": true,
+        "rank_score": 3.1592,
+        "dense_score": 0.586835,
+        "hybrid_rank": 1,
+        "source_type": "journal_article",
+        "topic_boost": 0.72,
+        "bm25_matches": 10,
+        "hybrid_score": 1.959188,
+        "lexical_rank": 4,
+        "bm25_coverage": 0.692308,
+        "channel_boost": 0.14,
+        "collection_id": "sotsiaaltoo_articles",
+        "lexical_score": 11.5,
+        "raw_source_id": "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus",
+        "source_status": "active",
+        "quality_adjust": 0.48,
+        "bm25_query_tokens": 21,
+        "original_body_hash": "afcd195d61648ddbd287981eaa39f2abada1413faf1b98330142b2554fb42e6b",
+        "rendered_body_hash": "610048d02dd88ed5f95010fb4d558398ac0e9f4bc829acb43c7dccba84c59534",
+        "retrieval_channels": [
+          "dense",
+          "title_match",
+          "bm25"
+        ],
+        "original_body_count": 4,
+        "rendered_body_count": 2,
+        "rendered_body_spans": [
+          {
+            "truncated": true,
+            "end_offset": 545,
+            "start_offset": 0,
+            "original_body_hash": "785a7f567a5b7655111c8b29d8f42b43bb92057fc013940d63b938bd311f5e48",
+            "rendered_body_hash": "7f65ebe32ac9fb132a2cb4998f7a5aeaf31fda2be8d85771d45eb2ad9bedd98d",
+            "original_body_chars": 1715,
+            "original_body_index": 0,
+            "rendered_body_chars": 548
+          },
+          {
+            "truncated": true,
+            "end_offset": 544,
+            "start_offset": 0,
+            "original_body_hash": "b9e68cbe7c58b01c3ebb23fb92d500491f0064e76727862cc823ee65f0df627e",
+            "rendered_body_hash": "66e65366033410397a9b20ee2e1155da0cc0f2eb2e579faeebbcd100dc54038e",
+            "original_body_chars": 1789,
+            "original_body_index": 1,
+            "rendered_body_chars": 547
+          }
+        ],
+        "rendered_evidence_hash": "3b43f6c35502955b6930464b3a6b8dfde271196826fe30b2650551e5f05bda51",
+        "rendered_evidence_chars": 1378,
+        "lexical_score_normalized": 0.589744,
+        "rendered_evidence_truncated": true
+      },
+      {
+        "title": "Lapse heaolu hindamise käsiraamatust",
+        "section": "Sotsiaaltöö meetodid",
+        "rrf_score": 0.052547,
+        "source_id": "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017",
+        "bm25_score": 9.9155,
+        "dense_rank": 1,
+        "historical": true,
+        "rank_score": 3.2141,
+        "dense_score": 0.606879,
+        "hybrid_rank": 1,
+        "source_type": "journal_article",
+        "topic_boost": 0.9,
+        "bm25_matches": 10,
+        "hybrid_score": 1.944117,
+        "lexical_rank": 1,
+        "bm25_coverage": 0.615385,
+        "channel_boost": 0.14,
+        "collection_id": "sotsiaaltoo_articles",
+        "lexical_score": 11.5,
+        "raw_source_id": "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017",
+        "source_status": "active",
+        "quality_adjust": 0.37,
+        "bm25_query_tokens": 21,
+        "original_body_hash": "e3d7e5e19f75e4b21322818be1e1a86f1fbfbf784d9954290e2dd2e7f12565d0",
+        "rendered_body_hash": "eaaa708de26cefa2e6139bdefbe1052931a3074777107e013e50860dea509a10",
+        "retrieval_channels": [
+          "dense",
+          "title_match",
+          "bm25"
+        ],
+        "original_body_count": 4,
+        "rendered_body_count": 2,
+        "rendered_body_spans": [
+          {
+            "truncated": true,
+            "end_offset": 545,
+            "start_offset": 0,
+            "original_body_hash": "7af1b607a9c535c1251b454f90cb5831b3b0fad2d968500fa80b9b95452ae4af",
+            "rendered_body_hash": "af1f9e57b2a5fa872daa8c95eb1318d7c444152b06ead0730c114ffc6053e8e5",
+            "original_body_chars": 1842,
+            "original_body_index": 0,
+            "rendered_body_chars": 548
+          },
+          {
+            "truncated": true,
+            "end_offset": 543,
+            "start_offset": 0,
+            "original_body_hash": "8e466c67b72c33fa0e4518d3818d42cb4aecaf268ea2515cfdb62227b47ff0c3",
+            "rendered_body_hash": "2fd8346d8bf064a3f0b6663a9287f928e8ab063a6c81663951478ac3248f5283",
+            "original_body_chars": 1867,
+            "original_body_index": 1,
+            "rendered_body_chars": 546
+          }
+        ],
+        "rendered_evidence_hash": "03d2c2f287d43a81e5674b710013a189fb10fe0ddfeadc100e18d5ec1c245dd0",
+        "rendered_evidence_chars": 1352,
+        "lexical_score_normalized": 0.589744,
+        "rendered_evidence_truncated": true
+      }
+    ],
+    "filtered_out_source_count": 1,
+    "attribution_filter_reasons": {
+      "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus": "claim_support_subsumed"
+    },
+    "claim_supported_source_ids": [
+      "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+      "sotsiaaltoo_turvalisuse-margid-2024-4",
+      "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus",
+      "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+    ],
+    "model_context_source_count": 4,
+    "package_requested_sections": [],
+    "required_evidence_sections": [],
+    "package_attribution_checked": false,
+    "selected_context_source_ids": [
+      "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+      "sotsiaaltoo_turvalisuse-margid-2024-4",
+      "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus",
+      "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+    ],
+    "claim_supported_source_count": 4,
+    "insufficient_precise_support": false,
+    "package_aware_answering_used": false,
+    "package_candidate_source_ids": [],
+    "package_displayed_source_ids": [],
+    "high_risk_attribution_checked": false,
+    "rag_insufficient_evidence_mode": true,
+    "attribution_filtered_source_ids": [
+      "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus"
+    ],
+    "validated_supporting_source_ids": [],
+    "answer_validation_contract_shadow": {
+      "mode": "shadow",
+      "planner": {
+        "mode": "professional_method_guidance",
+        "fields": {
+          "period_role": {
+            "state": "not_applicable",
+            "value": null,
+            "available": false,
+            "confidence": null,
+            "provenance": null,
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "year_role_mentions": {
+            "state": "present",
+            "value": [],
+            "available": true,
+            "confidence": null,
+            "provenance": {
+              "layer": "question_planner",
+              "method": "semantic_year_role_mentions",
+              "span_end": null,
+              "span_start": null
+            },
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "document_source_years": {
+            "state": "not_applicable",
+            "value": null,
+            "available": false,
+            "confidence": null,
+            "provenance": null,
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "evidence_metric_slots": {
+            "state": "not_applicable",
+            "value": null,
+            "available": false,
+            "confidence": null,
+            "provenance": null,
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "evidence_metric_terms": {
+            "state": "not_applicable",
+            "value": null,
+            "available": false,
+            "confidence": null,
+            "provenance": null,
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "evidence_period_years": {
+            "state": "not_applicable",
+            "value": null,
+            "available": false,
+            "confidence": null,
+            "provenance": null,
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "evidence_phase_ordinal": {
+            "state": "not_applicable",
+            "value": null,
+            "available": false,
+            "confidence": null,
+            "provenance": null,
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "requested_numeric_slots": {
+            "state": "present",
+            "value": {
+              "slots": [],
+              "complete": true,
+              "truncated": false,
+              "emitted_slot_count": 0,
+              "recognized_clause_count": 0,
+              "unresolved_clause_count": 0
+            },
+            "available": true,
+            "confidence": null,
+            "provenance": {
+              "layer": "question_planner",
+              "method": "requested_numeric_clause_slots",
+              "span_end": null,
+              "span_start": null
+            },
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "bounded_episode_metric_fact": {
+            "state": "not_applicable",
+            "value": null,
+            "available": false,
+            "confidence": null,
+            "provenance": null,
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "current_turn_document_identity": {
+            "state": "present",
+            "value": {
+              "scope": "current_turn",
+              "author": {
+                "value": null,
+                "span_end": null,
+                "confidence": null,
+                "input_form": null,
+                "provenance": null,
+                "span_start": null
+              },
+              "version": "current_turn_document_identity_v1",
+              "title_hint": {
+                "value": null,
+                "provenance": null
+              },
+              "document_kind": {
+                "value": null,
+                "provenance": null
+              },
+              "document_source_years": [],
+              "explicit_anchor_count": 0,
+              "history_fallback_policy": "fill_missing_only"
+            },
+            "available": true,
+            "confidence": null,
+            "provenance": {
+              "layer": "question_planner",
+              "method": "current_turn_document_identity_semantic_candidate",
+              "span_end": null,
+              "span_start": null
+            },
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          }
+        },
+        "route_mode": "professional_method_guidance",
+        "semantic_candidates_version": "question_semantic_candidates_v1"
+      },
+      "version": "answer_validation_contract_shadow_v2",
+      "attribution": {
+        "decision_source": "not_fully_attributed",
+        "production_path": "hybrid_existing",
+        "legacy_path_used": null,
+        "runtime_relation": "not_comparable",
+        "legacy_observations": {
+          "exact_anchor_match": null,
+          "raw_anchor_observed": false,
+          "query_plan_available": true,
+          "current_status_observed": false,
+          "exact_anchor_match_scope": "any_selected_source",
+          "raw_anchor_match_observed": null
+        },
+        "structured_path_scope": "answer_validation_contract_shadow_v2",
+        "structured_observations": {
+          "route_mode": "professional_method_guidance",
+          "planner_mode": "professional_method_guidance",
+          "field_availability": {
+            "period_role": false,
+            "document_source_years": false,
+            "evidence_period_years": false
+          },
+          "document_source_years": null,
+          "evidence_period_years": null,
+          "document_identity_matched": null,
+          "document_identity_required": false,
+          "document_identity_confidence": "not_required"
+        },
+        "shadow_contract_used_for_decision": false,
+        "structured_path_used_for_decision": null
+      },
+      "fact_validation": {
+        "production_path": "not_run",
+        "legacy_path_used": false,
+        "runtime_relation": "not_comparable",
+        "validation_applied": false,
+        "legacy_observations": {
+          "asks_for_year": false,
+          "asks_for_whole_scope": false,
+          "asks_for_numeric_fact": false,
+          "asks_for_publication_year": false,
+          "contact_answer_intent_requested": false,
+          "asks_for_categorical_numeric_breakdown": false
+        },
+        "structured_observations": {
+          "route_mode": "professional_method_guidance",
+          "planner_mode": "professional_method_guidance",
+          "ambiguous_years": [],
+          "field_availability": {
+            "period_role": false,
+            "year_role_mentions": true,
+            "document_source_years": false,
+            "evidence_metric_slots": false,
+            "evidence_metric_terms": false,
+            "evidence_period_years": false,
+            "evidence_phase_ordinal": false,
+            "requested_numeric_slots": true,
+            "bounded_episode_metric_fact": false
+          },
+          "typed_evidence_years": [],
+          "document_source_years": null,
+          "evidence_period_years": null,
+          "evidence_phase_ordinal": null,
+          "evidence_metric_term_count": null,
+          "bounded_episode_metric_fact": null,
+          "typed_document_source_years": [],
+          "requested_numeric_slot_count": 0,
+          "requested_numeric_slot_types": [],
+          "evidence_metric_slot_categories": null,
+          "requested_numeric_slots_complete": true,
+          "requested_numeric_slots_truncated": false,
+          "requested_numeric_emitted_slot_count": 0,
+          "requested_numeric_recognized_clause_count": 0,
+          "requested_numeric_unresolved_clause_count": 0
+        },
+        "structured_path_used_for_decision": false
+      },
+      "production_decision_source": "existing_production_paths",
+      "current_turn_author_confirmation": {
+        "status": "no_candidate",
+        "version": "current_turn_author_confirmation_v1",
+        "promotion_eligible": false,
+        "confirmation_source": "retrieved_source_metadata",
+        "candidate_confidence": null,
+        "candidate_provenance": null,
+        "matched_document_ids": [],
+        "matched_source_count": 0,
+        "matched_author_values": [],
+        "candidate_document_kind": null,
+        "candidate_document_source_years": []
+      }
+    },
+    "validated_supporting_source_count": 0,
+    "displayed_not_in_answer_source_ids": [],
+    "displayed_sources_subset_of_answer": true,
+    "requested_qualitative_slot_contract": {
+      "slots": [],
+      "reason": "document_identity_not_high",
+      "enabled": false,
+      "version": "requested_qualitative_slot_contract_v1",
+      "complete": false,
+      "reply_language": "et",
+      "mapped_slot_count": 0,
+      "used_for_generation": false,
+      "used_for_validation": false,
+      "missing_slot_indexes": [],
+      "requested_slot_count": 1,
+      "sanitizer_dropped_slot": false,
+      "selected_document_id_present": false
+    },
+    "displayed_not_in_selected_source_ids": [],
+    "displayed_sources_subset_of_selected": true,
+    "insufficientPreciseLegalSourceSupport": false,
+    "selected_but_not_displayed_source_ids": [
+      "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus"
+    ],
+    "retrieved_but_not_displayed_source_ids": [
+      "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus",
+      "praxis_centar_taiskasvanud_erivajadusega_inimeste_abivajaduse_hindamine_ja",
+      "statistikaamet_lapse_heaolu_mootmise_kasitlus",
+      "oiguskantsler_juhend_abivajavast_lapsest_teatamine_ja_andmekaitse",
+      "lastekaitse_liit_lapse_osalusoiguse_rakendamise_juhend",
+      "epikoda_teekond_erilise_lapse_korval",
+      "sm-terviseprobleemiga-laste-perede-hea-tava-2025",
+      "sotsiaalkindlustusamet_puue_ja_hoolekanne_ska_aastaraamatu_pdf_osa_2025",
+      "lastekaitse_liit_uuring_lapse_heaolu_hindamine"
+    ],
+    "insufficient_precise_legal_source_support": false
+  },
+  "answer": "Lapse heaolu ja abivajadust hinnatakse lapsekeskselt, terviklikult ja etapiviisiliselt. Keskmes on küsimus, millised lapse vajadused on rahuldamata, mis ohustab tema heaolu ning millised lapse, vanemate, pere ja keskkonna kaitsetegurid aitavad olukorda parandada.\n\n1. Kontrolli esmalt lapse turvalisust\n\nEnne põhjalikumat hindamist tuleb selgitada, kas laps on vahetus ohus või tema elu ja tervis on ohustatud. Turvalisust tuleb jälgida kogu hindamise vältel. Kui laps on hädaohus, on esmatähtis kiire sekkumine; tavapärane põhjalik hindamine ei tohi kiiret kaitset edasi lükata.\n\n2. Tee eelhindamine\n\nTeate saamisel hindab lastekaitsetöötaja esmalt, milles lapse abivajadus seisneb ja kui ulatuslikku sekkumist on vaja. Eelhindamisel selgitatakse muu hulgas:\n\n- milline on lapse olukord ja võimalik abivajadus;\n- kas lapse heaolu saab toetada ühe ühekordse meetmega;\n- kas laps ja pere võtavad abi vastu;\n- kas pere on valmis spetsialistidega koostööd tegema;\n- kas vaja on mitme asutuse või teenuse koordineeritud koostööd.\n\nKui piisab näiteks sotsiaalnõustamisest, toetuse või teabe andmisest, võib juhtumikorralduse algatamata jätta. Kui ühest meetmest ei piisa, abivajadus vajab põhjalikumat hindamist või tuleb koordineerida mitme organisatsiooni koostööd, algatatakse juhtumikorraldus ja juhtumimenetlus STARis.\n\n3. Hinda lapse heaolu terviklikult\n\nPõhjalik hindamine lähtub lapse heaolu kolmnurgast:\n\n- lapse arenguvajadused – näiteks füüsiline ja emotsionaalne heaolu, tervis, suhted, haridus ja areng;\n- vanemlus – vanemate suutlikkus rahuldada lapse vajadusi, pakkuda hoolitsust, juhendamist ja turvalisust;\n- pere ja keskkond – elutingimused, suhted, majanduslik olukord, tugivõrgustik ning muud lapse kasvukeskkonna tegurid.\n\nHindamine algab lapse arenguvajadustest. Seejärel vaadatakse, kuidas vanemlus ning pere ja keskkond neid vajadusi toetavad või takistavad. Hindamisvaldkonnad ei ole eraldi meetodid, vaid erinevad vaatenurgad lapse olukorra mõistmiseks.\n\n4. Kaasa laps ja pere\n\nLaps peab olema juhtumikorralduse keskmes ning tema arvamust tuleb välja selgitada võimalikult varakult ja ulatuslikult. Lapsega kontakti loomisel teavitatakse üldjuhul vanemat, kuid kui oht lapsele tuleneb vanema tegevusest või tegevusetusest, võib põhjendatud juhul vestelda lapsega esmalt ilma vanemat teavitamata. Sellisel juhul tuleb vanemat vestlusest kohe teavitada.\n\nKoostöös lapse ja vanemaga tuleb selgitada, kuidas nemad olukorda näevad, mida nad peavad probleemiks, millised lahendused on juba proovitud ning millist abi nad vajavad või on valmis vastu võtma.\n\n5. Kaardista kaitse- ja riskitegurid\n\nRiskitegurid on lapse, vanemate või keskkonnaga seotud asjaolud, mis mõjutavad lapse arengut negatiivselt või ohustavad heaolu. Kaitsetegurid toetavad lapse arengut ja aitavad soovitud muutust saavutada.\n\nOluline on hinnata:\n\n- millised riskid mõjutavad last praegu;\n- millised riskid võivad ohustada tema heaolu pikemas perspektiivis;\n- millised kaitsetegurid on juba olemas;\n- milliseid kaitsetegureid saab tugevdada;\n- kas tegurid on muudetavad või pigem püsivad.\n\nHindamine ei peaks piirduma probleemide loetlemisega, vaid peab näitama ka pere tugevusi ja olemasolevaid lahendusi.\n\n6. Koosta tegevuskava\n\nPärast abivajaduse hindamist seatakse prioriteedid: milline lapse vajadus vajab esimesena sekkumist. Seejärel sõnastatakse lapse heaoluga seotud eesmärgid ning lepitakse kokku:\n\n- milliseid tegevusi rakendatakse;\n- milliseid abimeetmeid või teenuseid kasutatakse;\n- kes mille eest vastutab;\n- kuidas ja millal muutust hinnatakse.\n\nEesmärk peab kirjeldama soovitud muutust lapse elus, mitte üksnes spetsialisti tegevust. Näiteks ei ole piisavalt täpne eesmärk „suunata laps teenusele“, vaid hinnata tuleb, millist muutust teenusega lapse heaolus taotletakse.\n\n7. Tee vahehindamine ja vajaduse korral jätka või lõpeta menetlus\n\nTegevuskava rakendamise ajal hinnatakse, kas meetmed toovad kaasa soovitud muutuse. Hindamisel võrreldakse lapse olukorda enne ja pärast sekkumist. Näiteks võib koolikohustuse täitmist hinnata puudumiste muutuse järgi.\n\nVahehindamise tulemusel võib selguda, et:\n\n- positiivne muutus on toimunud ja eesmärk on täidetud;\n- muutus on osaliselt positiivne, kuid eesmärk ei ole veel täidetud;\n- olukord on halvenenud ja vaja on uusi eesmärke või täiendavaid meetmeid;\n- lapse abivajadus on vähenenud ning edasine juhtumikorraldus ei ole vajalik.\n\nKui eesmärgid ei ole täidetud või olukord on halvenenud, jätkatakse juhtumimenetlusega ja kohandatakse tegevuskava. Kui lapse abivajadus on vähenenud ning edasisi tegevusi ei ole vaja, lõpetatakse juhtumimenetlus.\n\nTäiendava töövahendina on Eesti lastekaitsetöös kirjeldatud ka juhtumikorraldusmudelit „Turvalisuse märgid“. 2024. aasta käsitluse järgi saab seda ühildada lapse heaolu kolmnurga ja „Lapse heaolu hindamise käsiraamatuga“; see ei asenda nimetatud põhiraamistikku, vaid aitab tugevdada spetsialisti ja pere partnerlust ning keskenduda pere ja võrgustiku võimalustele.",
+  "ended_at": "2026-08-31T10:06:49.818",
+  "question": "Kuidas hinnata lapse heaolu ja abivajadust?",
+  "started_at": "2026-08-31T10:06:37.852",
+  "displayed_sources": [
+    {
+      "id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+      "url": "https://www.sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-11/k%C3%A4siraamat.pdf",
+      "year": 2025,
+      "pages": [
+        8,
+        16,
+        17,
+        19,
+        24,
+        25,
+        32,
+        63,
+        65,
+        67
+      ],
+      "title": "Lapse heaolu hindamise käsiraamat",
+      "audience": "BOTH",
+      "fileName": "käsiraamat.pdf",
+      "sourceId": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+      "pageRange": "8, 16–17, 19, 24–25, 32, 63, 65, 67",
+      "short_ref": "Lapse heaolu hindamise käsiraamat · lk 8, 16–17, 19, 24–25, 32, 63, 65, 67",
+      "source_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+      "documentId": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+      "sourceType": "official_guideline",
+      "document_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+      "source_type": "official_guideline",
+      "collectionId": "national_guidelines",
+      "last_checked": "2026-06-11",
+      "resourceType": "method_guidance",
+      "collection_id": "national_guidelines",
+      "resource_type": "method_guidance",
+      "source_status": "active",
+      "url_canonical": "https://www.sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-11/k%C3%A4siraamat.pdf",
+      "source_freshness": "fresh",
+      "retrievalChannels": [
+        "dense",
+        "title_match",
+        "bm25"
+      ],
+      "source_checked_at": "2026-06-11T00:00:00.000Z",
+      "source_trust_type": "official_guideline",
+      "retrieval_channels": [
+        "dense",
+        "title_match",
+        "bm25"
+      ]
+    },
+    {
+      "id": "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017",
+      "year": 2017,
+      "pages": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "title": "Lapse heaolu hindamise käsiraamatust",
+      "authors": [
+        "Kadi Lauri"
+      ],
+      "section": "Sotsiaaltöö meetodid",
+      "audience": "BOTH",
+      "fileName": "Lapse heaolu hindamise käsiraamatust.pdf",
+      "sourceId": "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017",
+      "authority": "editorial",
+      "pageRange": "1–3, 5",
+      "short_ref": "Kadi Lauri, 2017. Lapse heaolu hindamise käsiraamatust. Sotsiaaltöö 4/2017 · lk 1–3, 5 · Sotsiaaltöö meetodid",
+      "source_id": "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017",
+      "documentId": "sotsiaaltoo-4-2017-lapse-heaolu-hindamise-kasiraamatust-2017",
+      "historical": true,
+      "issueLabel": "4/2017",
+      "sourceType": "journal_article",
+      "document_id": "sotsiaaltoo-4-2017-lapse-heaolu-hindamise-kasiraamatust-2017",
+      "source_type": "journal_article",
+      "collectionId": "sotsiaaltoo_articles",
+      "journalTitle": "Sotsiaaltöö",
+      "last_checked": "2026-04-28",
+      "collection_id": "sotsiaaltoo_articles",
+      "source_status": "active",
+      "source_warning": "historical",
+      "source_freshness": "historical",
+      "retrievalChannels": [
+        "dense",
+        "title_match",
+        "bm25"
+      ],
+      "source_checked_at": "2026-04-28T00:00:00.000Z",
+      "source_trust_type": "journal_article",
+      "retrieval_channels": [
+        "dense",
+        "title_match",
+        "bm25"
+      ]
+    },
+    {
+      "id": "sotsiaaltoo_turvalisuse-margid-2024-4",
+      "year": 2024,
+      "pages": [
+        4
+      ],
+      "title": "Juhtumikorraldusmudel „Turvalisuse märgid“ – uus tööriist Eesti lastekaitsetöös",
+      "authors": [
+        "Helen Alton"
+      ],
+      "section": "Metoodika",
+      "audience": "BOTH",
+      "fileName": "sotsiaaltoo_4_2024_web_Part11.pdf",
+      "sourceId": "sotsiaaltoo_turvalisuse-margid-2024-4",
+      "authority": "editorial",
+      "pageRange": "4",
+      "short_ref": "Helen Alton, 2024. Juhtumikorraldusmudel „Turvalisuse märgid“ – uus tööriist Eesti lastekaitsetöös. Sotsiaaltöö 4/2024 · lk 4 · Metoodika",
+      "source_id": "sotsiaaltoo_turvalisuse-margid-2024-4",
+      "documentId": "sotsiaaltoo-4-2024-turvalisuse-margid-2024-4",
+      "historical": true,
+      "issueLabel": "4/2024",
+      "sourceType": "journal_article",
+      "document_id": "sotsiaaltoo-4-2024-turvalisuse-margid-2024-4",
+      "source_type": "journal_article",
+      "collectionId": "sotsiaaltoo_articles",
+      "journalTitle": "Sotsiaaltöö",
+      "last_checked": "2026-04-28",
+      "collection_id": "sotsiaaltoo_articles",
+      "source_status": "active",
+      "source_warning": "historical",
+      "source_freshness": "historical",
+      "retrievalChannels": [
+        "dense",
+        "bm25"
+      ],
+      "source_checked_at": "2026-04-28T00:00:00.000Z",
+      "source_trust_type": "journal_article",
+      "retrieval_channels": [
+        "dense",
+        "bm25"
+      ]
+    }
+  ],
+  "previous_user_turns": 3
+}

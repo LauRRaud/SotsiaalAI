@@ -1569,7 +1569,331 @@ Täpsed M01/M02/integreeritud teenuste/lapse heaolu küsimused jäävad samaks. 
 
 | Juhtum | Isolated | Sequential |
 |---|---|---|
-| M01 | NOT_STARTED | NOT_STARTED |
-| M02 | NOT_STARTED | NOT_STARTED |
-| Golden: integreeritud teenused | NOT_STARTED | NOT_STARTED |
-| Golden: lapse heaolu | NOT_STARTED | NOT_STARTED |
+| M01 | PASS | PASS |
+| M02 | PASS | PASS |
+| Golden: integreeritud teenused | PASS | PASS |
+| Golden: lapse heaolu | PARTIAL | PARTIAL |
+
+### I1 — M01 — PASS
+
+**Küsimus:** EPIKoja aruandes „Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuring” millist meetodit kasutati, millal uuring tehti ja kui palju inimesi osales?
+
+**Täpne vastus:**
+
+1. Meetodit kasutati: kvalitatiivset uurimismeetodit, andmeid koguti poolstruktureeritud individuaal- ja grupiintervjuude ning kirjaliku tagasiside kaudu.
+
+2. Uuring tehti: novembrist 2025 kuni märtsini 2026.
+
+3. Inimesi osales: kokku 42 inimest.
+
+**Hinnang:** Kõik kolm fakti on õiged: kvalitatiivne meetod, november 2025 – märts 2026 ja 42 osalejat. Õige EPIKoja allikas; varasemaid kasutajapöördeid 0.
+
+**Avatud allikapaneel:** Kristi Rekand, 2026. Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuringu kokkuvõte · lk 1–11, 14, 29, 33, 35, 37, 43.
+
+**Trace:** [Täisvastus ja paaristatud jälg](../docs/audits/evidence/rag-retest-2026-08-31-42c52bf6/isolated-M01.json). 2026-08-31T10:00:39.537 → 2026-08-31T10:00:41.653.
+
+### I2 — M02 — PASS
+
+**Küsimus:** EPIKoja aruandes „Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuring” milline soovitus anti Tallinnale kontaktisiku või juhtumikorralduse kohta, milline ennetava abi kohta, milline teenustele pääsu ja korduvate hindamiste kohta ning milline toetatud otsustamise kohta?
+
+**Täpne vastus:**
+
+1. Soovitus anti Tallinnale kontaktisiku või juhtumikorralduse kohta: luua süsteem, kus igal abivajajal on üks kindel kontaktisik ehk juhtumikorraldaja. Ta hindaks inimese abivajadust terviklikult, koordineeriks tervishoiu- ja sotsiaalteenuseid ning toetaks inimest kogu abi saamise teekonna vältel.
+
+2. Ennetava abi kohta: muuta abi pakkumine ka praktikas proaktiivseks ja ennetavaks, et jõuda inimesteni juba varajases etapis, näiteks võtta inimesega ühendust puude raskusastme tuvastamisel.
+
+3. Teenustele pääsu ja korduvate hindamiste kohta: lihtsustada abi andmise ja teenustele jõudmise protsessi, vähendada bürokraatiat, kasutada inimesele arusaadavat suhtlust ja paindlikke menetlusi ning vältida dubleerivaid hindamisi ja korduvat info küsimist.
+
+4. Toetatud otsustamise kohta: arendada toetatud otsustamise põhimõttel toimivaid lahendusi, mis vähendaksid eestkoste ulatust ja toetaksid inimese iseseisvat otsustusõigust. Aruandes märgitakse, et Tallinn saab luua toetatud otsustamise teenuse, määrates ise selle saamise tingimused, alused ja korra.
+
+**Hinnang:** Kõik neli tegelikku ettepanekut on vastuses: kindel kontaktisik, proaktiivne abi, lihtsam teenustele pääs koos dubleerivate hindamiste vältimisega ning toetatud otsustamise arendamine. Keeldumine puudub; tõendileping valib ettepanekud, mitte varasemad probleemilaused.
+
+**Avatud allikapaneel:** Kristi Rekand, 2026. Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuringu kokkuvõte · lk 10–11, 13–14, 18, 23, 26, 29, 32, 38, 48, 50–51, 53, 56, 61–62, 64.
+
+**Trace:** [Täisvastus ja paaristatud jälg](../docs/audits/evidence/rag-retest-2026-08-31-42c52bf6/isolated-M02.json). 2026-08-31T10:01:47.55 → 2026-08-31T10:01:50.668; varasemaid kasutajapöördeid 0.
+
+### I3 — integrated — PASS
+
+**Küsimus:** Mida kirjutab ajakiri Sotsiaaltöö integreeritud teenustest?
+
+**Täpne vastus:**
+
+Ajakiri Sotsiaaltöö käsitleb integreeritud teenuseid eelkõige inimesekeskse ja valdkondadeülese abina, kus inimene või pere ei pea vajaliku toe saamiseks eri asutuste vahel üksi liikuma. Rõhk on sotsiaal-, tervishoiu-, haridus- ja tööturuvaldkonna paremal koostööl ning teenuste koosmõju hindamisel.
+
+Peamised käsitletud teemad on järgmised:
+
+1. Erivajadusega lapsed ja nende pered
+
+Artiklis „Integreeritud teenused – kellele ja milleks?“ kirjeldatakse erivajadustega laste integreeritud teenuste mudeli väljatöötamist. Eesmärk on korraldada abi nii, et lapse ja pere vajadusi vaadataks tervikuna ning vajalikud teenused oleksid omavahel seotud.
+
+Sama teemat jätkab „Integreeritud tugiteenused lastele – esimene tagasiside pilootprojektile“. Seal kirjeldatakse Sotsiaalministeeriumi, Haridus- ja Teadusministeeriumi, SA Innove ning Sotsiaalkindlustusameti koostööd, mille eesmärk oli aidata erivajadusega lapsel ja tema perel vajalike teenusteni kiiremini ja mugavamalt jõuda.
+
+2. Võrgustikutöö lapse heaolu tagamisel
+
+Lapse pikaajalise abivajaduse korral peetakse oluliseks mitme asutuse koostööd. „Integreeritud teenused – kellele ja milleks?“ rõhutab, et lapse toetamine ei saa piirduda ühe spetsialisti või asutusega, vaid eeldab võrgustikutööd ja valdkondadevahelist koostööd.
+
+Praktikas tähendab see näiteks sotsiaaltöötaja, lastekaitsespetsialisti, haridusasutuse, tervishoiutöötaja ja teiste lapsega tegelevate spetsialistide ühise tegevuse kavandamist.
+
+3. Inimesekeskne teenusekorraldus
+
+„Teekond inimesekeskse teenusepakkumise suunas“ tõstatab küsimused, kuidas suunata olemasolevaid ressursse tõhusamalt, kasutada andmeid paremini, mõõta teenuste mõju ning luua motivatsioon integreeritud teenuste pakkumiseks. Keskmes on inimese vajadus, mitte asutuste tööjaotus.
+
+See tähendab, et teenuseosutajad peaksid püüdma kujundada abi inimese tegeliku olukorra järgi, mitte eeldama, et inimene sobitub automaatselt olemasolevasse teenusesüsteemi.
+
+4. Hoolduskoordinatsioon ja keerukama abivajadusega inimesed
+
+Sotsiaalministeeriumi kommentaaris „Kitsaskohad on meile teada, otsime aktiivselt toimivaid lahendusi“ kirjeldatakse 2018. aastal testitud hoolduskoordinatsiooni mudelit. Selle eesmärk oli pakkuda kõige suurema ja keerulisema hooldusvajadusega inimestele senisest paremat tuge kodu lähedal; omavalitsusse kavandati hoolduskoordinaatori roll.
+
+Samas käsitluses nimetatakse ka teisi integreeritud lähenemise katsetusi, näiteks esmase psühhoosiga haiglasse sattunud inimeste toetamisel, erihoolekandes ning tervise-, sotsiaal- ja töövaldkonna lähendamisel rehabilitatsiooniteenustes.
+
+5. Kohaliku tasandi koostöö
+
+Kohaliku omavalitsuse tasandil on integreeritud toe näitena kirjeldatud Hiiumaa korraldust artiklis „Hiiumaa: meretagune ühinemine tõi sotsiaaltöötajad kokku“. Seal osutasid koduteenust mitu kohalikku üksust ning sotsiaaltransporti korraldati hajaasustuse ja nõrga ühistranspordiühenduse tõttu ulatuslikult. Võlanõustamist pakuti koostöös Töötukassa ja Sotsiaalkindlustusametiga.
+
+Kokkuvõttes käsitleb ajakiri integreeritud teenuseid mitte ühe konkreetse teenusena, vaid töö- ja korraldusviisina: inimene või pere saab eri valdkondadest koordineeritud tuge, spetsialistid jagavad vastutust ning kohalik omavalitsus aitab siduda teenused inimese igapäevase elukohaga. Valitud käsitlused keskenduvad eriti erivajadusega lastele, keeruka hooldusvajadusega inimestele ning tervise-, sotsiaal-, haridus- ja töövaldkonna koostööle.
+
+**Hinnang:** Sisuline mitmeallikaline süntees: lapse/peretoetus, võrgustikutöö, inimesekesksus, hoolduskoordinatsioon ja konkreetne Hiiumaa näide. Paneeli kõik viis allikat on vastuses nimetatud ja kasutatud; Hiiumaa ei ole pelgalt üldsõnade tõttu kuvatud. Allikapaneeli regressiooni selles vastuses ei ilmnenud.
+
+**Avatud allikapaneel:** Alice Juurik (2019), Integreeritud teenused – kellele ja milleks?; Gerli Aavik (2018), Sotsiaalministeerium: kitsaskohad on meile teada, otsime aktiivselt toimivaid lahendusi; Eva Liina Kliiman (2020), Integreeritud tugiteenused lastele – esimene tagasiside pilootprojektile; Gerli Aavik-Märtmaa (2020), Teekond inimesekeskse teenusepakkumise suunas; Kairi Lõppe (2018), Hiiumaa: meretagune ühinemine tõi sotsiaaltöötajad kokku.
+
+**Trace:** [Täisvastus ja paaristatud jälg](../docs/audits/evidence/rag-retest-2026-08-31-42c52bf6/isolated-integrated.json). 2026-08-31T10:02:50.126 → 2026-08-31T10:02:58.26; varasemaid kasutajapöördeid 0.
+
+### I4 — child — PARTIAL
+
+**Küsimus:** Kuidas hinnata lapse heaolu ja abivajadust?
+
+**Täpne vastus:**
+
+Lapse heaolu ja abivajadust hinnatakse lapsekeskselt ning terviklikult: esmalt selgitatakse välja lapse turvalisus, seejärel tema arenguvajadused, vanemluse suutlikkus ning pere ja keskkonna mõju. Hindamise eesmärk on mõista, millist abi laps vajab, millised tegurid tema heaolu ohustavad või toetavad ning milline sekkumine võiks olukorda parandada.
+
+Praktiline hindamisjärjekord:
+
+1. Kontrolli lapse vahetut turvalisust
+
+Kõigepealt tuleb hinnata, kas laps on hädaohus või tema elu ja tervis on ohus. Sellisel juhul on vaja kiiret sekkumist. Lapse ohutust tuleb jälgida kogu hindamisprotsessi vältel, mitte ainult alguses.
+
+2. Tee eelhindamine
+
+Teate saamisel hindab lastekaitsetöötaja esmalt, milles lapse võimalik abivajadus seisneb ja kas seda saab lahendada ühekordse meetmega, näiteks nõustamise, toetuse või teabe andmisega.
+
+Kui ühekordsest abist ei piisa, abivajadus vajab põhjalikumat hindamist või tuleb koordineerida mitme organisatsiooni koostööd, algatatakse juhtumikorraldus ja juhtumimenetlus STARis.
+
+3. Kaasa laps ja pere
+
+Laps peab olema hindamise keskmes ning tema arvamust tuleb võimalikult suurel määral välja selgitada ja arvestada. Lapsega kontakti loomisel teavitatakse üldjuhul lapsevanemat, kuid kui lapsevanema tegevus või tegevusetus võib last ohustada, võib põhjendatud juhul vestelda lapsega esmalt ilma vanemat teavitamata. Vanemat tuleb sellisest vestlusest seejärel kohe teavitada.
+
+Hindamisel tuleb hinnata ka lapse ja pere valmisolekut abi vastu võtta ning koostööd teha.
+
+4. Hinda lapse heaolu kolmes omavahel seotud valdkonnas
+
+Lapse heaolu hindamise käsiraamat kasutab lapse heaolu kolmnurka:
+
+- lapse arenguvajadused – näiteks füüsiline ja emotsionaalne heaolu, tervis, haridus, suhted ja areng;
+- vanemlus – vanema suutlikkus lapse vajadusi märgata, rahuldada ja last turvaliselt kasvatada;
+- pere ja keskkond – elutingimused, pere suhted, majanduslik olukord, tugivõrgustik ja muud keskkonnategurid.
+
+Hindamine algab lapse arenguvajadustest, sest lapse olukorda tuleb vaadelda tema tegelikust heaolust ja vajadustest lähtudes, mitte üksnes vanema käitumise või pere probleemi kaudu.
+
+5. Kaardista kaitse- ja riskitegurid
+
+Riskitegurid võivad lapse heaolu kahjustada või abivajadust süvendada. Kaitsetegurid toetavad lapse arengut ja aitavad soovitud muutust saavutada. Mõlemad võivad olla:
+
+- dünaamilised ehk mõjutatavad ja muudetavad;
+- staatilised ehk sellised, mida muuta ei saa, kuid millega tuleb arvestada.
+
+Oluline ei ole ainult tegurite loetlemine, vaid nende mõju analüüsimine: kuidas need mõjutavad lapse praegust olukorda ja heaolu tulevikus.
+
+6. Koosta tegevuskava
+
+Pärast abivajaduse hindamist:
+
+- sea abivajaduse põhjal prioriteedid;
+- sõnasta lapse heaoluga seotud eesmärgid;
+- planeeri sobivad sekkumised ja abimeetmed;
+- määra, kuidas muutust jälgitakse.
+
+Tegevuskava peab lähtuma lapse tegelikest vajadustest, mitte üksnes olemasolevatest teenustest.
+
+7. Tee vahehindamine ja hinda tulemuslikkust
+
+Vahehindamisel vaadatakse üle, kas eesmärgid on täidetud ja kas lapse olukord on muutunud. Näiteks võib koolikohustuse täitmise puhul võrrelda puudumiste arvu enne ja pärast meetme rakendamist.
+
+Tulemuseks võib olla:
+
+- positiivne muutus ja eesmärgi täitmine;
+- mõningane paranemine, kuid eesmärk ei ole veel täidetud;
+- negatiivne muutus, mille korral tuleb seada täiendavaid eesmärke või rakendada uusi meetmeid.
+
+Kui lapse abivajadus on vähenenud ja edasine sekkumine pole vajalik, saab juhtumimenetluse lõpetada. Kui vajadused püsivad või olukord halveneb, tuleb juhtumikorraldusega jätkata.
+
+„Turvalisuse märkide“ mudelit on 2024. aastal kirjeldatud täiendava töövahendina, mida saab ühildada Eestis kasutatava lapse heaolu kolmnurga ja juhtumikorraldusega; seda ei käsitleta nimetatud juhendis senise raamistiku asendajana. Paindlikult tuleb kasutada neid töövõtteid, mis aitavad koos lapse ja perega sõnastada turvalisust suurendava muutuse.
+
+**Hinnang:** Hindamise põhisisu on mitmeetapiline ja sisaldab lisaks kolmnurgale Turvalisuse märkide mudelit. Allikapaneelis on aga ainult käsiraamat; vastuse lõpus nimetatud 2024. aasta mudeli artikkel puudub. Seega sisuvastus paranes, kuid allikaseose värav ei läbi.
+
+**Avatud allikapaneel:** Ainult Lapse heaolu hindamise käsiraamat · lk 8, 16–17, 19, 24–25, 32, 63, 65, 67. Turvalisuse märkide 2024. aasta artiklit paneelis ei ole.
+
+**Trace:** [Täisvastus ja paaristatud jälg](../docs/audits/evidence/rag-retest-2026-08-31-42c52bf6/isolated-child.json). 2026-08-31T10:03:37.084 → 2026-08-31T10:03:44.216; varasemaid kasutajapöördeid 0.
+
+### S1 — M01 — PASS
+
+**Küsimus:** EPIKoja aruandes „Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuring” millist meetodit kasutati, millal uuring tehti ja kui palju inimesi osales?
+
+**Täpne vastus:**
+
+1. Meetodit kasutati: kvalitatiivset uurimismeetodit, sealhulgas poolstruktureeritud individuaal- ja grupiintervjuusid ning kirjalikku tagasisidet.
+
+2. Uuring tehti: novembrist 2025 kuni märtsini 2026.
+
+3. Inimesi osales: kokku 42 inimest.
+
+**Hinnang:** Kõik kolm fakti ning andmekogumise viisid on õiged. Sequential-faasi esimene küsimus on uues vestluses (0 varasemat pööret); sama tulemus nagu isolated.
+
+**Avatud allikapaneel:** Kristi Rekand, 2026. Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuringu kokkuvõte · lk 1–11, 14, 29, 33, 35, 37, 43.
+
+**Trace:** [Täisvastus ja paaristatud jälg](../docs/audits/evidence/rag-retest-2026-08-31-42c52bf6/sequential-M01.json). 2026-08-31T10:04:29.106 → 2026-08-31T10:04:32.051; varasemaid kasutajapöördeid 0.
+
+### S2 — M02 — PASS
+
+**Küsimus:** EPIKoja aruandes „Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuring” milline soovitus anti Tallinnale kontaktisiku või juhtumikorralduse kohta, milline ennetava abi kohta, milline teenustele pääsu ja korduvate hindamiste kohta ning milline toetatud otsustamise kohta?
+
+**Täpne vastus:**
+
+1. Soovitus Tallinnale kontaktisiku või juhtumikorralduse kohta: luua süsteem, kus igal abivajajal on üks kindel kontaktisik ehk juhtumikorraldaja, kes hindab abivajadust terviklikult tervishoiu- ja sotsiaalvaldkonna üleselt, koordineerib teenuseid ning toetab inimest kogu teekonna vältel.
+
+2. Soovitus ennetava abi kohta: muuta abi pakkumine ka praktikas proaktiivseks ja ennetavaks ning jõuda inimesteni varajases etapis, näiteks võtta inimesega ühendust puude raskusastme tuvastamisel.
+
+3. Soovitus teenustele pääsu ja korduvate hindamiste kohta: lihtsustada abi andmise ja teenustele jõudmise protsessi, vähendada bürokraatiat, tagada arusaadav suhtlus ja paindlikud menetlused ning vältida dubleerivaid hindamisi ja korduvat info küsimist.
+
+4. Soovitus toetatud otsustamise kohta: arendada toetatud otsustamise põhimõttel toimivaid lahendusi, mis aitavad vähendada eestkoste ulatust ja toetada inimese iseseisvat otsustusõigust. Tallinn võiks luua toetatud otsustamise teenuse ning määrata selle saamise tingimused, alused ja korra.
+
+**Hinnang:** Kõik neli tegelikku ettepanekut on säilinud ka pärast M01 küsimust (1 varasem kasutajapööre). Kontaktisik, proaktiivne abi, teenustele pääs koos hindamiste vältimisega ja toetatud otsustamise arendamine on õigesti eristatud. Sama tulemus kui isolated; varasem kahekordne FAIL on selles paariskorduses PASS/PASS.
+
+**Avatud allikapaneel:** Kristi Rekand, 2026. Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuringu kokkuvõte · lk 10–11, 13–14, 18, 23, 26, 29, 32, 38, 48, 50–51, 53, 56, 61–62, 64.
+
+**Trace:** [Täisvastus ja paaristatud jälg](../docs/audits/evidence/rag-retest-2026-08-31-42c52bf6/sequential-M02.json). 2026-08-31T10:05:15.195 → 2026-08-31T10:05:18.599; varasemaid kasutajapöördeid 1.
+
+### S3 — integrated — PASS
+
+**Küsimus:** Mida kirjutab ajakiri Sotsiaaltöö integreeritud teenustest?
+
+**Täpne vastus:**
+
+Ajakiri „Sotsiaaltöö“ käsitleb integreeritud teenuseid eelkõige inimesekeskse koostööna, kus inimene või pere saab eri valdkondade abi koordineeritult ja võimalikult sujuvalt. Rõhk on sellel, et abi ei korraldata asutuste kaupa eraldi, vaid lähtutakse inimese vajadustest ning ühendatakse sotsiaal-, tervise-, haridus- ja vajaduse korral tööturuvaldkonna tugi.
+
+Peamised rõhuasetused on järgmised:
+
+- Erivajadusega lapse ja pere toetamine. 2020. aasta käsitlus kirjeldab pilootprojekti, milles Sotsiaalministeerium, Haridus- ja Teadusministeerium, SA Innove ning Sotsiaalkindlustusamet tegid koostööd, et laps ja pere jõuaksid vajalike teenusteni kiiremini ja mugavamalt („Integreeritud tugiteenused lastele – esimene tagasiside pilootprojektile“).
+
+- Võrgustikutöö lapse heaolu tagamisel. 2019. aasta artiklis rõhutatakse, et pikaajalist tuge vajava lapse puhul on vajalik mitme asutuse koostöö. Samuti tuuakse esile, et sotsiaalhoolekande seaduse § 9 ja lastekaitseseaduse § 8 toetavad vastavalt võrgustikutööd ja valdkondadevahelist koostööd („Integreeritud teenused – kellele ja milleks?“).
+
+- Inimesekesksus teenuste korraldamisel. 2020. aasta käsitlus tõstatab küsimused, kuidas suunata ressursse tõhusamalt, kasutada andmeid paremini, hinnata integreeritud teenuste mõju ning kujundada teenuseosutajatele motivatsiooni inimesekesksete lahenduste pakkumiseks („Teekond inimesekeskse teenusepakkumise suunas“).
+
+- Tervise-, sotsiaal- ja töövaldkonna ühendamine. Varasemates käsitlustes tuuakse näidetena esmase psühhoosiga inimeste toetamise integreeritud lähenemine, rehabilitatsiooniteenuste sidumine tervise-, sotsiaal- ja töövaldkonnaga ning hoolduskoordinatsiooni mudeli katsetamine kohalikes omavalitsustes („Sotsiaalministeerium: kitsaskohad on meile teada, otsime aktiivselt toimivaid lahendusi“).
+
+- Kohaliku tasandi praktiline korraldus. 2018. aasta Hiiumaa näide näitab, kuidas kohalikul tasandil võivad ühe inimese või pere toetamisel kokku puutuda koduteenus, sotsiaaltransport, võlanõustamine ning koostöö Töötukassa ja Sotsiaalkindlustusametiga („Hiiumaa: meretagune ühinemine tõi sotsiaaltöötajad kokku“).
+
+Kokkuvõttes kujutab ajakiri integreeritud teenuseid mitte ühe uue teenusena, vaid tööviisina: vajaduse märkamine, eri spetsialistide koostöö, teenuste koordineerimine ja inimese jaoks ühe arusaadava tugiteekonna kujundamine. Valitud käsitlused keskenduvad eriti erivajadusega lastele, keeruka hooldusvajadusega inimestele ning tervise-, sotsiaal- ja töötoe paremale ühendamisele.
+
+**Hinnang:** Vastus kasutab kõiki viit paneelis näidatud artiklit, sealhulgas konkreetset Hiiumaa näidet; ei too EPIKoja uuringut sünteesi allikaks. Sama sisuline tulemus kui isolated; tekst on lühem, kuid küsitud teemad ja allikaseosed säilivad.
+
+**Avatud allikapaneel:** Alice Juurik (2019), Integreeritud teenused – kellele ja milleks?; Gerli Aavik (2018), Sotsiaalministeerium: kitsaskohad on meile teada, otsime aktiivselt toimivaid lahendusi; Eva Liina Kliiman (2020), Integreeritud tugiteenused lastele – esimene tagasiside pilootprojektile; Gerli Aavik-Märtmaa (2020), Teekond inimesekeskse teenusepakkumise suunas; Kairi Lõppe (2018), Hiiumaa: meretagune ühinemine tõi sotsiaaltöötajad kokku.
+
+**Trace:** [Täisvastus ja paaristatud jälg](../docs/audits/evidence/rag-retest-2026-08-31-42c52bf6/sequential-integrated.json). 2026-08-31T10:05:53.415 → 2026-08-31T10:05:58.636; varasemaid kasutajapöördeid 2.
+
+### S4 — child — PARTIAL
+
+**Küsimus:** Kuidas hinnata lapse heaolu ja abivajadust?
+
+**Täpne vastus:**
+
+Lapse heaolu ja abivajadust hinnatakse lapsekeskselt, terviklikult ja etapiviisiliselt. Keskmes on küsimus, millised lapse vajadused on rahuldamata, mis ohustab tema heaolu ning millised lapse, vanemate, pere ja keskkonna kaitsetegurid aitavad olukorda parandada.
+
+1. Kontrolli esmalt lapse turvalisust
+
+Enne põhjalikumat hindamist tuleb selgitada, kas laps on vahetus ohus või tema elu ja tervis on ohustatud. Turvalisust tuleb jälgida kogu hindamise vältel. Kui laps on hädaohus, on esmatähtis kiire sekkumine; tavapärane põhjalik hindamine ei tohi kiiret kaitset edasi lükata.
+
+2. Tee eelhindamine
+
+Teate saamisel hindab lastekaitsetöötaja esmalt, milles lapse abivajadus seisneb ja kui ulatuslikku sekkumist on vaja. Eelhindamisel selgitatakse muu hulgas:
+
+- milline on lapse olukord ja võimalik abivajadus;
+- kas lapse heaolu saab toetada ühe ühekordse meetmega;
+- kas laps ja pere võtavad abi vastu;
+- kas pere on valmis spetsialistidega koostööd tegema;
+- kas vaja on mitme asutuse või teenuse koordineeritud koostööd.
+
+Kui piisab näiteks sotsiaalnõustamisest, toetuse või teabe andmisest, võib juhtumikorralduse algatamata jätta. Kui ühest meetmest ei piisa, abivajadus vajab põhjalikumat hindamist või tuleb koordineerida mitme organisatsiooni koostööd, algatatakse juhtumikorraldus ja juhtumimenetlus STARis.
+
+3. Hinda lapse heaolu terviklikult
+
+Põhjalik hindamine lähtub lapse heaolu kolmnurgast:
+
+- lapse arenguvajadused – näiteks füüsiline ja emotsionaalne heaolu, tervis, suhted, haridus ja areng;
+- vanemlus – vanemate suutlikkus rahuldada lapse vajadusi, pakkuda hoolitsust, juhendamist ja turvalisust;
+- pere ja keskkond – elutingimused, suhted, majanduslik olukord, tugivõrgustik ning muud lapse kasvukeskkonna tegurid.
+
+Hindamine algab lapse arenguvajadustest. Seejärel vaadatakse, kuidas vanemlus ning pere ja keskkond neid vajadusi toetavad või takistavad. Hindamisvaldkonnad ei ole eraldi meetodid, vaid erinevad vaatenurgad lapse olukorra mõistmiseks.
+
+4. Kaasa laps ja pere
+
+Laps peab olema juhtumikorralduse keskmes ning tema arvamust tuleb välja selgitada võimalikult varakult ja ulatuslikult. Lapsega kontakti loomisel teavitatakse üldjuhul vanemat, kuid kui oht lapsele tuleneb vanema tegevusest või tegevusetusest, võib põhjendatud juhul vestelda lapsega esmalt ilma vanemat teavitamata. Sellisel juhul tuleb vanemat vestlusest kohe teavitada.
+
+Koostöös lapse ja vanemaga tuleb selgitada, kuidas nemad olukorda näevad, mida nad peavad probleemiks, millised lahendused on juba proovitud ning millist abi nad vajavad või on valmis vastu võtma.
+
+5. Kaardista kaitse- ja riskitegurid
+
+Riskitegurid on lapse, vanemate või keskkonnaga seotud asjaolud, mis mõjutavad lapse arengut negatiivselt või ohustavad heaolu. Kaitsetegurid toetavad lapse arengut ja aitavad soovitud muutust saavutada.
+
+Oluline on hinnata:
+
+- millised riskid mõjutavad last praegu;
+- millised riskid võivad ohustada tema heaolu pikemas perspektiivis;
+- millised kaitsetegurid on juba olemas;
+- milliseid kaitsetegureid saab tugevdada;
+- kas tegurid on muudetavad või pigem püsivad.
+
+Hindamine ei peaks piirduma probleemide loetlemisega, vaid peab näitama ka pere tugevusi ja olemasolevaid lahendusi.
+
+6. Koosta tegevuskava
+
+Pärast abivajaduse hindamist seatakse prioriteedid: milline lapse vajadus vajab esimesena sekkumist. Seejärel sõnastatakse lapse heaoluga seotud eesmärgid ning lepitakse kokku:
+
+- milliseid tegevusi rakendatakse;
+- milliseid abimeetmeid või teenuseid kasutatakse;
+- kes mille eest vastutab;
+- kuidas ja millal muutust hinnatakse.
+
+Eesmärk peab kirjeldama soovitud muutust lapse elus, mitte üksnes spetsialisti tegevust. Näiteks ei ole piisavalt täpne eesmärk „suunata laps teenusele“, vaid hinnata tuleb, millist muutust teenusega lapse heaolus taotletakse.
+
+7. Tee vahehindamine ja vajaduse korral jätka või lõpeta menetlus
+
+Tegevuskava rakendamise ajal hinnatakse, kas meetmed toovad kaasa soovitud muutuse. Hindamisel võrreldakse lapse olukorda enne ja pärast sekkumist. Näiteks võib koolikohustuse täitmist hinnata puudumiste muutuse järgi.
+
+Vahehindamise tulemusel võib selguda, et:
+
+- positiivne muutus on toimunud ja eesmärk on täidetud;
+- muutus on osaliselt positiivne, kuid eesmärk ei ole veel täidetud;
+- olukord on halvenenud ja vaja on uusi eesmärke või täiendavaid meetmeid;
+- lapse abivajadus on vähenenud ning edasine juhtumikorraldus ei ole vajalik.
+
+Kui eesmärgid ei ole täidetud või olukord on halvenenud, jätkatakse juhtumimenetlusega ja kohandatakse tegevuskava. Kui lapse abivajadus on vähenenud ning edasisi tegevusi ei ole vaja, lõpetatakse juhtumimenetlus.
+
+Täiendava töövahendina on Eesti lastekaitsetöös kirjeldatud ka juhtumikorraldusmudelit „Turvalisuse märgid“. 2024. aasta käsitluse järgi saab seda ühildada lapse heaolu kolmnurga ja „Lapse heaolu hindamise käsiraamatuga“; see ei asenda nimetatud põhiraamistikku, vaid aitab tugevdada spetsialisti ja pere partnerlust ning keskenduda pere ja võrgustiku võimalustele.
+
+**Hinnang:** Mitmeetapiline hindamisvastus ja Turvalisuse märkide lisamudel on olemas; mudeli õige artikkel on seekord paneelis. Kolmandaks jääb Kadi Lauri 2017. aasta taustaartikkel. Trace'i ainus sellele eraldi omistatud väide on claim_34: „millised riskid mõjutavad last praegu;” (hash a1963541), mis ei lisa eristuvat sisulist hindamisvõtet. Seetõttu allikapaneeli sisulise minimaalsuse värav ei läbi. Isolated-vastuses puudus mudeliallikas, sequential-vastuses lisandub üleliigne taust; mõlemad PARTIAL.
+
+**Avatud allikapaneel:** Lapse heaolu hindamise käsiraamat; Kadi Lauri (2017), Lapse heaolu hindamise käsiraamatust; Helen Alton (2024), Juhtumikorraldusmudel „Turvalisuse märgid“ – uus tööriist Eesti lastekaitsetöös.
+
+**Trace:** [Täisvastus ja paaristatud jälg](../docs/audits/evidence/rag-retest-2026-08-31-42c52bf6/sequential-child.json). 2026-08-31T10:06:37.852 → 2026-08-31T10:06:49.818; varasemaid kasutajapöördeid 3.
+
+### Korduse koond — paus pärast teist faasi
+
+**Tulemus: 6 PASS / 2 PARTIAL / 0 FAIL (8 vastust).** M01, M02 ja integreeritud teenused: PASS nii eraldi kui järjest. Lapse heaolu: PARTIAL mõlemas, kuid eri allikapaneeli puudusega. 75 ja Golden-37 nimetajaid selle valimiga ei asendata.
+
+[Võrdluse JSON ja allesjäänud leiud](../docs/audits/evidence/rag-retest-2026-08-31-42c52bf6/comparison.json). Kõigi nelja paari lõplik RAG-kontekst oli hash-täpselt sama. Sellest saab järeldada, et selle jooksu paneelide erinevus ei tekkinud erineva dokumendivaliku tõttu; ühe paariskorduse põhjal ei saa eristada genereerimise juhuslikkust vestlusajaloo mõjust.
+
+- M02 mõlemas: õige kontaktisiku, ennetava abi ja hindamiste ettepanek; toetatud otsustamise arendamine säilib. Elavas jooksus eraldi taastamispäringut ei tehtud (0), sest vajalik ettepanek oli juba 26 retrieved-keha hulgas ning uus valik tõi selle lõppkonteksti. Taastamispäringu avanemist puuduva ettepaneku korral tõendab sihttest, mitte see runtime.
+- Lapse isolated: mudeliartikkel peideti otsusega `claim_support_subsumed`; mudeliväidet `claim_44` (hash `bfd3a7fc`) krediteeriti nii käsiraamatule kui ka artiklile. Täpne valesamastamise alavärav vajab veel eraldi kordusarvutust.
+- Lapse sequential: mudeliartikkel säilis. Kadi Lauri lisallika ainus eksklusiivne väide on `claim_34`, hash `a1963541`: „millised riskid mõjutavad last praegu;”. See on üldine hindamisküsimus, mitte eristuv sisuline lisameetod. Paneeli allikate arv üksi ei ole hinnangu alus.
+- Server testide ajal: HEAD `e790dca4`, kood `42c52bf6`, build `_hK4MJH07QkJewp5oq-TS`; käivitus 12:59:27 EEST. Teenused aktiivsed, HTTP 200, mõlemad FTS-id ready, 49 727 vektorit / 6089 registrikirjet / 6073 aktiivset dokumenti. [Deploy-tõend](../docs/audits/evidence/rag-retest-2026-08-31-42c52bf6/deployment.json).
+- Sama muutumatu koodiga tehti täpselt kaheksa küsimust. Pärast teist faasi küsimine lõppes; uut parandust/serveriuuenduse tsüklit ega ajastatud jätkamist ei käivitatud. Järgmine töö on allesjäänud allikaatributsiooni piir, mitte M02 soovitusevaliku uuesti ümbertegemine.
