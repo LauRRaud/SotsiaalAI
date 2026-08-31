@@ -1087,3 +1087,35 @@ Masinloetav enne/pärast tõend: [r6-golden-child-source-cover-replay.json](../d
 **Kontrollid:** lõpliku täienduse allikakatte sihttestid 16/16 PASS; kaks muudetud JS/MJS faili ESLint PASS; `TZ=UTC`. Testid katavad pika vastuse hilise dubleerimise, erimeetodi säilimise, PDF-i lahutatud algustähe, vale mudelinime, hajutatud sõnad, ainult metadata/päise vaste, arvulise tõendi ja puhta autori-bibliograafia säilimise. Uue lõpliku koodipuu üks tootmisbuild PASS (Next.js 16.2.10, kompileerimine 32,7 s, 70/70 staatilist lehte); `i18n:check` PASS. Kohaliku e-posti transpordi hoiatused ei takistanud buildi; kirju ei saadetud. Varasema paranduse teisi juba rohelisi sihtteste ega 75/37 tervikkomplekti ei korratud.
 
 **Üleandmispiir:** muudatused on parandustööpuus, commit/main-integratsioon/push/deploy tegemata. Mõlema Golden-juhtumi runtime-hinnang jääb PARTIAL kuni uue autentitud in-app vastuse ja allikapaneeli kontrollini. Ajastatud jätk on endiselt PAUSED.
+
+## 31.08.2026 — väljalase 95104077 ja omaniku tellitud kordus
+
+Eelmise jaotise üleandmispiir kirjeldab parandamise lõpuhetke. Omaniku järgnev „jah” andis commit/main/GitHub/serveri loa; pärast seda tellis omanik ka kõigi selle väljalaske paranduste läbiküsimise.
+
+**Väljalase:** `951040777d9272e0660cbc319aabc83dd872cfad` — 13 nimeliselt stage'itud faili, neist seitse vestluse RAG-runtime'i faili. Parandusharu integreeriti fast-forward'iga `main`-i, push õnnestus ning sama SHA mõõdeti serveris. Kasutaja `eval/parandused.md` ja `eval/RAG parandused.docx` jäid lokaalselt untracked ja puutumata. Sõltuvus-, skeemi-, migratsiooni-, Python-RAG-, ingest- ega indekseerimismuudatust selles koodiplokis ei ole.
+
+**Serveri värav:** olemasolev deploy-loogika käivitati ajutise systemd-teenusena, et SSH katkemine protsessi ei katkestaks. Linuxi tootmisbuild läbis (kompileerimine 30,8 s; 70/70 lehte), `i18n:check` läbis ja migratsiooni-eelkontrolli `pending=[]`; migratsioone ei rakendatud. Frontend käivitus 31.08 kell 10:53:09 EEST uue buildiga `Nw987pQTQN9JvZXpZbLrt`. Frontend, RAG ja research-worker olid aktiivsed; kohalik ja avalik `/vestlus` tagastasid 200. Käivitusjärgses kontrollitud aknas nende kolme teenuse error-tasemel journal oli tühi. Deploy uuendas olemasoleva standardkorra järgi ka frontend'i materials-storage drop-in'i; ajastajaid ei aktiveeritud.
+
+**RAG tervis:** `ok=true`, 49 727 vektorit, 6089 registridokumenti; algvormi- ja lemma-FTS mõlemad `ready=true`, 6073 aktiivset dokumenti ning 49 727 lõiku, oodatud ja tegelik indeksipõlvkond kattusid. Lemmaindeksi analüsaatoriversioon on `estnltk-vabamorf-1.7.5-v2`; eraldi analüsaatori laisk laadimine oli veel `load_attempted=false`, mistõttu tervisearuanne ei tõenda uut päringupõhist morfoanalüüsi.
+
+**Deploy tehniline reservatsioon:** ajutise käivituse Bash-massiivipikkuse kontrollid andsid kolm `integer expression expected` hoiatust. Serveri untracked-seis oli enne käivitust eraldi puhtaks mõõdetud ning lõpus jäi tööpuu puhtaks. Vana arhiivi/logi kärpimine ei käivitunud; kontrollimisel säilisid uus ja eelmine current-artifact, deploy-eelne rollback-artifact ning kaks build-logi. Täiendavat kustutamist ei tehtud. Deploy protsess lõpetas edukalt ja uut teenuseversiooni kontrolliti eraldi; hoiatus ei ole varjatud üldise PASS-väite taha.
+
+### Kordusplaan — 0/8, NOT_STARTED
+
+Järjekord on mõlemas ringis sama. `isolated`: iga küsimus uues tühjas vestluses. `sequential`: kõik neli samas uues vestluses. Pärast kaheksat vastust paus; kogu 75 ega 37 küsimuse täisjooksu automaatselt ei alustata. Kui sisuline läbikukkumine kordub, salvestatakse tulemus ja põhjus; hinnet ei muudeta ootuspäraseks ega tehta varjatud lisakatseid.
+
+| Juhtum | Isolated | Sequential | Vastuvõtukriteerium |
+|---|---|---|---|
+| M01 | NOT_STARTED | NOT_STARTED | Õige EPIKoja dokument; uurimismeetod, tegelik uuringuperiood ja 42 osalejat on kõik tõendiga seotud. |
+| M02 | NOT_STARTED | NOT_STARTED | Kõik neli küsitud soovitussuhet on kaetud; toetatud otsustamine ei asendu probleemi või puuduva tõendi kirjeldusega. |
+| Golden: integreeritud teenused | NOT_STARTED | NOT_STARTED | Sisuline süntees ilma teenuseliikide reeglite segamiseta; iga nimetatud allikas toetab vastavat väidet. |
+| Golden: lapse heaolu | NOT_STARTED | NOT_STARTED | Mitmeetapiline hindamine ja asjakohased täiendavad mudelid; allikapaneel säilitab eristuva toe, kuid mitte pelgalt dubleerivat tausta. Allikate arv pole ette määratud. |
+
+Täpsed kordusküsimused:
+
+1. M01: EPIKoja aruandes „Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuring” millist meetodit kasutati, millal uuring tehti ja kui palju inimesi osales?
+2. M02: EPIKoja aruandes „Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuring” milline soovitus anti Tallinnale kontaktisiku või juhtumikorralduse kohta, milline ennetava abi kohta, milline teenustele pääsu ja korduvate hindamiste kohta ning milline toetatud otsustamise kohta?
+3. Golden: Mida kirjutab ajakiri Sotsiaaltöö integreeritud teenustest?
+4. Golden: Kuidas hinnata lapse heaolu ja abivajadust?
+
+Iga vastuse järel salvestatakse küsimus, täisvastus, avatud allikapaneel, runtime-release, trace'i olemasolu ja hinnangu põhjendus; koond täieneb samal ajal. Praegune blokeerija on in-app brauseritööriista käivitumisel saadud Windowsi `CryptUnprotectData failed: 2148073483`. Brauseri juhtimine ei käivitunud, autentimist ega vestlusvaate UI-d ei kontrollitud ja sõnumeid ei saadetud. Välist brauserit ega API-küsimusi ei kasutatud piirangust möödumiseks. Värske testitulemuse nimetaja on seni 0; vanu 75/37 hindeid ei kirjutatud ümber. Ligipääsu taastumise järel jätkub omaniku tellitud kordus sellest tabelist, mitte vana PAUSED automaatsükli kaudu.
