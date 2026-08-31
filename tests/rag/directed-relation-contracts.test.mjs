@@ -367,6 +367,79 @@ test("an already rendered relation rebuilds a malformed span from candidate proo
   }), null);
 });
 
+test("a repeated relation fragment outside one exact span does not make its locator ambiguous", () => {
+  const firstRelation = extractDirectedRelations(passage).candidates[0];
+  const repeatedFragment = passage.slice(firstRelation.start, firstRelation.end);
+  const prefix = `${repeatedFragment} See on eraldi taustalause. `;
+  const originalBody = `${prefix}${passage}`;
+  const rawChunk = `Päis\n${originalBody}`;
+  const proof = {
+    document_id: "directed-doc",
+    source_id: "directed-source",
+    chunk_id: "repeated-fragment-chunk",
+    document_version: "fixture-v1",
+    chunk_hash: sha(rawChunk),
+    chunk_char_count: rawChunk.length,
+    source_status: "active",
+    normalized_body_hash: sha(originalBody),
+    chunk_body_offset: rawChunk.indexOf(originalBody)
+  };
+  const entry = {
+    docId: "directed-doc",
+    sourceId: "directed-source",
+    sourceStatus: "active",
+    sourceType: "journal_article",
+    collectionId: "journal_articles",
+    title: "Trepist üles või alla",
+    bodies: [originalBody],
+    bodyEvidence: []
+  };
+  const pinned = buildPinnedDevelopmentContextUnit({
+    candidate: {
+      body: originalBody,
+      bodyEvidence: [proof],
+      developmentSpan: { text: passage, start: prefix.length, end: originalBody.length }
+    },
+    baseEntry: entry,
+    contextIndex: 0,
+    append: false
+  });
+  const plan = buildQuestionPlan({ message: question });
+  const built = buildRequestedQualitativeSlotContract({
+    questionPlan: plan,
+    renderedGroups: [pinned.entry],
+    renderedBlocks: [pinned.block],
+    replyLang: "et",
+    specificResearchFactQuestion: true,
+    documentIdentityEvidence: identity
+  });
+  assert.equal(built.trace.complete, true, JSON.stringify(built));
+  const validation = validateDirectedRelationReply({
+    retrievalMeta: {
+      documentIdentityEvidence: identity,
+      requestedQualitativeSlotContract: built.trace,
+      queryPlan: {
+        mode: "specific_research_fact",
+        semantic_turn_contract: buildSemanticTurnContract({ questionPlan: plan })
+      }
+    },
+    sources: [{
+      document_id: pinned.entry.docId,
+      source_id: pinned.entry.sourceId,
+      source_status: pinned.entry.sourceStatus,
+      source_type: pinned.entry.sourceType,
+      collection_id: pinned.entry.collectionId,
+      title: pinned.entry.title,
+      evidenceText: pinned.block.text,
+      rendered_body_hash: pinned.block.renderedBodyHash,
+      rendered_body_spans: pinned.block.bodySpans,
+      rendered_block_index: 0
+    }],
+    replyLang: "et"
+  });
+  assert.equal(validation.passed, true, JSON.stringify(validation));
+});
+
 test("relative clause owns the earlier approach and simultaneity remains an explicit alternative", () => {
   const parsed = extractDirectedRelations(passage);
   assert.equal(parsed.status, "ADMITTED");
