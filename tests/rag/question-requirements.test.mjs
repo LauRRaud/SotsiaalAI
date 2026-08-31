@@ -26,6 +26,26 @@ test("source-relative modifier is not an independent shadow question; coordinate
   assert.equal(buildQuestionRequirementsShadow({ originalMessage: `${prefix} ja mida artiklis võrreldakse?` }).requirements.length, 2);
 });
 
+test("production planner excludes the bibliographic modifier but keeps a real second question", () => {
+  const modifier = buildQuestionPlan({
+    message: "Milline on eluaseme ja rehabilitatsiooni järjekord kahes lähenemises, mida võrreldakse 2017. aasta artiklis „Näide”?"
+  });
+  assert.equal(modifier.semantic_candidates.requested_fact_slots.slots.length, 1);
+  assert.equal(modifier.semantic_candidates.requested_fact_slots.slots[0].payload_kind, "directed_event_relation_set");
+  const explicit = buildQuestionPlan({
+    message: "Milline on eluaseme ja rehabilitatsiooni järjekord kahes lähenemises ja mida artiklis võrreldakse?"
+  });
+  assert.equal(explicit.semantic_candidates.requested_fact_slots.slots.length, 2);
+  assert.equal(explicit.semantic_candidates.requested_fact_slots.slots[1].payload_kind, undefined);
+  const realSubordinate = buildQuestionPlan({
+    message: "Palun selgita, mida võrreldakse 2017. aasta artiklis ja milline oli põhitulemus?"
+  });
+  assert.equal(realSubordinate.semantic_candidates.requested_fact_slots.slots.length, 2);
+  assert.equal(buildQuestionRequirementsShadow({
+    originalMessage: "Palun selgita, mida võrreldakse 2017. aasta artiklis ja milline oli põhitulemus?"
+  }).requirements.length, 2);
+});
+
 test("original UTF-16 offsets survive emoji, decomposed accents, whitespace and repeated years", () => {
   const text = "🙂  Mida ta\u0308hendab 36%?\n\tMis ajast pärineb uuring: 2024 või 2024?";
   const shadow = buildQuestionRequirementsShadow({ originalMessage: text });
