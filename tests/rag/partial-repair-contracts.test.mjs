@@ -214,6 +214,10 @@ test("M02 actual four-slot answer permits connected sentences but rejects object
     ? "Teenustele pääsu tuleb lihtsustada. Korduvaid hindamisi tuleb vältida." : reply).join(" ");
   assert.equal(validate(plainTwoSentences).passed, true);
   assert.equal(validate(replies.map(reply => reply.replace(": ", ":\n\n  ")).join("\n")).passed, true);
+  for (const fourth of ["4. Toetatud otsustamine: seda tuleb arendada.",
+    "4. Toetatud otsustamine: arendada seda.", "4. Toetatud otsustamine: seda peab arendama."]) {
+    assert.equal(validate(replies.map((reply, index) => index === 3 ? fourth : reply).join("\n")).passed, true, fourth);
+  }
   for (const third of ["3. Teenustele pääsu tuleb lihtsustada. Korduvaid hindamisi tuleb vältida.",
     "3. Teenustele pääsu tuleb lihtsustada.\n   Korduvaid hindamisi tuleb vältida."]) {
     assert.equal(validate(replies.map((reply, index) => index === 2 ? third : reply).join("\n")).passed, true, third);
@@ -222,6 +226,8 @@ test("M02 actual four-slot answer permits connected sentences but rejects object
     [0, "1. Kontaktisik: inimesele ei tule määrata kontaktisikut."],
     [0, "1. Tallinna kontaktisik või juhtumikorraldus: korraldada inimese transporti."],
     [0, "1. Tallinna kontaktisik või juhtumikorraldus: korraldada Tallinnas kindel transpordisüsteem."],
+    [0, "1. Kontaktisik või juhtumikorraldus: korraldada selle transpordisüsteemi toimimist."],
+    [0, "1. Kontaktisik või juhtumikorraldus: korraldada seda transpordisüsteemi."],
     [1, "2. Ennetav abi: pakkuda abi alles pärast kriisi."],
     [2, "3. Teenustele pääs ja korduvad hindamised: korduvaid hindamisi tuleb lihtsustada ning teenustele pääsu vältida."],
     [2, "3. Teenustele pääsu tuleb lihtsustada. Korduvaid hindamisi ei tule vältida."],
@@ -229,6 +235,10 @@ test("M02 actual four-slot answer permits connected sentences but rejects object
     [3, "4. Toetatud otsustamine: arendada taotluste ja menetluste mõistmist."],
     [3, "4. Toetatud otsustamine: arendada lahendusi transpordile."],
     [3, "4. Toetatud otsustamine: arendada eestkoste ulatust."],
+    [3, "4. Toetatud otsustamine: arendada selle transpordisüsteemi kasutust."],
+    [3, "4. Toetatud otsustamine: arendada seda transpordisüsteemi."],
+    [3, "4. Toetatud otsustamine: seda transpordisüsteemi tuleb arendada."],
+    [3, "4. Toetatud otsustamine: arendada seda uut transpordisüsteemi."],
     [3, "4. Toetatud otsustamist ei tule arendada."]
   ]) {
     assert.equal(validate(replies.map((reply, position) => position === index ? bad : reply).join("\n")).passed, false, bad);
