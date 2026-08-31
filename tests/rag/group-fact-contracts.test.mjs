@@ -13,6 +13,7 @@ import { resolveValidationRecovery } from "../../lib/chat/conversationalRecovery
 import { buildSourceAttribution } from "../../lib/chat/sourceAttribution.js";
 import { buildRagTraceFromAttribution, handleMainChatResponse } from "../../lib/chat/mainResponseHandler.js";
 import { buildRagDiagnostics, projectRagTraceForLog, projectRagDiagnosticEvidence } from "../../lib/chat/ragDiagnostics.js";
+import { createSourceSelection, bindSourceSelection } from "../../lib/chat/sourceSelection.js";
 
 // Public Toobal 2016 source paragraph; synthetic IDs below are fixture-only.
 const passage = "Pilootprojektis osalevad kuus omavalitsust. Kolm nendest – Kuressaare ja Põltsamaa linn ning Põlva vald – viivad ellu spetsiaalse sekkumiskava, ülejäänud kolmes (kontrollomavalitsusi ei avalikustata) sekkumistegevusi ei toimu.";
@@ -29,9 +30,10 @@ function setup({ message = question, bodies = [passage], metadata = {}, budget =
     collection_id: "journal_articles", title: "Alkoholipoliitika kohalikul tasandil", ...metadata
   } }));
   const rendered = buildContextWithBudget(groupMatches(matches), budget);
+  const localIdentity = { ...identity, selectedDocumentId: metadata.doc_id || identity.selectedDocumentId };
   const built = buildRequestedQualitativeSlotContract({ questionPlan: plan, renderedGroups: rendered.used,
-    renderedBlocks: rendered.renderedBlocks, replyLang: "et", specificResearchFactQuestion: true, documentIdentityEvidence: identity });
-  const meta = { documentIdentityEvidence: identity, requestedQualitativeSlotContract: built.trace,
+    renderedBlocks: rendered.renderedBlocks, replyLang: "et", specificResearchFactQuestion: true, documentIdentityEvidence: localIdentity });
+  const meta = { documentIdentityEvidence: localIdentity, requestedQualitativeSlotContract: built.trace,
     queryPlan: { mode: "specific_research_fact", semantic_turn_contract: buildSemanticTurnContract({ questionPlan: plan }) } };
   const sources = rendered.used.map((group, index) => ({ document_id: group.docId, source_id: group.sourceId,
     source_status: group.sourceStatus, source_type: group.sourceType, collection_id: group.collectionId,
@@ -331,4 +333,37 @@ test("stored trace and log round-trip preserve partial decision and evidence loc
   assert.equal(diagnostics.root_cause_status, "NOT_PROVEN");
   assert.equal(projectResponseDecision({ ...result.trace.response_decision, secret: "hidden" }).secret, undefined);
   assert.equal(projectGroupEvidenceLocators([{ ...result.trace.group_evidence_locators[0], raw: passage }])[0].raw, undefined);
+});
+
+test("selected both runs the real single-document handler twice and preserves distinct distribution evidence", async () => {
+  const other = passage.replace("kuus", "seitse").replace("Kolm", "Kaks")
+    .replace("Kuressaare ja Põltsamaa linn ning Põlva vald", "Aru vald ja Laane linn").replace("kolmes", "viies");
+  const fixtures = [setup(), setup({ bodies: [other], metadata: { doc_id: "other-doc", source_id: "other-source" } })];
+  const options = fixtures.map((fixture, index) => ({ documentId: fixture.meta.documentIdentityEvidence.selectedDocumentId,
+    sourceId: fixture.sources[0].source_id, documentVersion: "fixture-v1", title: `Fixture ${index + 1}`, year: "2016" }));
+  const offer = createSourceSelection(options, "root-user");
+  let finalized;
+  for (const wantStream of [false, true]) {
+    let writes = 0;
+    const response = await handleMainChatResponse({
+      req: new Request("http://localhost/api/chat"), wantStream, persist: true, convId: "fixture-conv", userId: "fixture-user",
+      normalizedRole: "SOCIAL_WORKER", effectiveMessage: "mõlemad", replyLang: "et", includeSources: true,
+      claimedTurn: { id: "fixture-turn" }, ragAttemptController: { fence: { attempt: 1 }, stage: async () => true, stop: () => {} },
+      sourceSelectionTurn: { kind: "selected", rootUserMessageId: "root-user", options, recheck: async () => true,
+        context: { offer, rootMessage: question, binding: bindSourceSelection("mõlemad", offer, "issuer-message") },
+        partitions: fixtures.map((fixture, index) => ({ option: options[index], retrieval: { sources: fixture.sources,
+          retrievalMeta: fixture.meta, effectiveContext: fixture.rendered.text, extraSystemInstructions: [] } })) },
+      makeError: (message, status) => new Response(message, { status })
+    }, { callOpenAI: async () => { throw new Error("Unexpected model call"); },
+      finalizeAssistantReply: async publication => { writes++; finalized = publication; return { attachments: [], persisted: { durable: true } }; } });
+    assert.equal(response.status, 200);
+    assert.equal(writes, 1);
+    assert.match(finalized.reply.split("### Fixture 2")[0], /6 omavalitsuse.*rühmas 3.*kontrollrühmas 3/u);
+    assert.match(finalized.reply.split("### Fixture 2")[1], /7 omavalitsuse.*rühmas 2.*kontrollrühmas 5/u);
+    assert.deepEqual(finalized.sources.map(source => source.source_id), ["group-source", "other-source"]);
+    assert.ok(finalized.ragTrace.source_selection.parts.every(part => part.fact_validation_passed));
+    const wire = wantStream ? await response.text() : await response.json();
+    if (wantStream) assert.equal(JSON.parse(wire.match(/event: delta\ndata: ([^\n]+)/u)[1]).t, finalized.reply);
+    else assert.equal(wire.reply, finalized.reply);
+  }
 });

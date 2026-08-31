@@ -11,6 +11,8 @@ import {
 import { logEvent } from "@/lib/chat/logger";
 import { enforceChatRateLimit, readChatRateLimit } from "@/lib/chat-api-rate-limit";
 import { assembleRetrievalContext } from "@/lib/chat/retrievalContextAssembler";
+import { readSourceSelectionContext } from "@/lib/chat/sourceSelectionStore";
+import { assembleSourceSelection } from "@/lib/chat/sourceSelectionRetrieval";
 import { shouldUseAnswerHistory } from "@/lib/chat/retrievalOrchestrator";
 import {
   buildRecoveryBoundMessage,
@@ -97,6 +99,7 @@ export async function POST(req, deps = {}) {
     commitUsageForRequest: deps.commitUsageForRequest || commitUsageForRequest,
     releaseUsageForRequest: deps.releaseUsageForRequest || releaseUsageForRequest,
     assembleRetrievalContext: deps.assembleRetrievalContext || assembleRetrievalContext,
+    readSourceSelectionContext: deps.readSourceSelectionContext || (input => readSourceSelectionContext(prisma, input)),
     handleMainChatResponse: deps.handleMainChatResponse || handleMainChatResponse,
     readCompletedChatTurnReplay: deps.readCompletedChatTurnReplay || readCompletedChatTurnReplay,
     claimChatTurn: deps.claimChatTurn || (input => claimChatTurn(input, { writeUserTurn })),
@@ -302,14 +305,24 @@ export async function POST(req, deps = {}) {
 
   let chatUsageHandle = null;
   let ragUsageHandle = null;
+  let ragReservationPromise = null;
   let claimedTurn = null;
   let attemptController = null;
-  const recoveryContinuation = isRagRecoveryContinuation(effectiveMessage, trustedRagRecoveryState);
+  let sourceSelectionContext = null;
+  if (persist && convId && userId && clientTurnKey && !roomId && !isCrisis && !wantsDocumentDownload) {
+    try {
+      sourceSelectionContext = await routeRuntime.readSourceSelectionContext({ conversationId: convId, userId, clientTurnKey, message: effectiveMessage });
+      if (sourceSelectionContext?.stale) return makeChatError("chat.error.turn_in_flight", 409);
+    } catch { return makeChatError("chat.error.service_unavailable", 503); }
+  }
+  const recoveryContinuation = !!sourceSelectionContext || (trustedRagRecoveryState?.target !== "source_selection" &&
+    isRagRecoveryContinuation(effectiveMessage, trustedRagRecoveryState));
   if (persist && convId && userId && clientTurnKey && !roomId) {
     try {
       const claim = await routeRuntime.claimChatTurn({ userId, conversationId: convId, clientTurnKey,
         role: normalizedRole, userMessage: effectiveMessage, sessionTurnLimit,
-        expectedPreviousAssistantMessageId: recoveryContinuation ? trustedRagRecoveryAssistantMessageId : null,
+        expectedPreviousAssistantMessageId: sourceSelectionContext?.expectedLatestMessageId || (recoveryContinuation ? trustedRagRecoveryAssistantMessageId : null),
+        sourceSelectionBinding: sourceSelectionContext?.binding || null,
         recordRagAttempt: true, deferUserMessage: true });
       if (claim.outcome === CHAT_TURN_OUTCOME.REPLAYED) return buildReplayResponse({ wantStream, convId, replay: claim.replay, isCrisis });
       if ([CHAT_TURN_OUTCOME.IN_FLIGHT, CHAT_TURN_OUTCOME.CONVERSATION_BUSY].includes(claim.outcome)) return makeChatError("chat.error.turn_in_flight", 409);
@@ -360,7 +373,8 @@ export async function POST(req, deps = {}) {
 
   if (attemptController) {
     try {
-      const initialized = await routeRuntime.initializeClaimedChatTurn(attemptController.fence, { role: normalizedRole, userMessage: effectiveMessage });
+      const initialized = await routeRuntime.initializeClaimedChatTurn(attemptController.fence, { role: normalizedRole, userMessage: effectiveMessage,
+        expectedPreviousAssistantMessageId: sourceSelectionContext?.expectedLatestMessageId || null });
       claimedTurn = { ...claimedTurn, userMessageId: initialized.userMessageId };
     } catch {
       await failAttempt("persistence", "persistence_failed");
@@ -370,31 +384,31 @@ export async function POST(req, deps = {}) {
 
   let retrievalResult;
   const plannedRagReplyLang = languagePlan?.answerLanguage || replyLang;
-  const retrievalHistory = recoveryContinuation
+  const retrievalHistory = sourceSelectionContext?.history || (recoveryContinuation
     ? trustedRagRecoveryHistory
-    : rawHistory;
-  const recoveryBoundMessage = recoveryContinuation
+    : rawHistory);
+  const recoveryBoundMessage = sourceSelectionContext?.rootMessage || (recoveryContinuation
     ? buildRecoveryBoundMessage({
         message: effectiveMessage,
         recoveryState: trustedRagRecoveryState,
         trustedHistory: trustedRagRecoveryHistory
       })
-    : effectiveMessage;
+    : effectiveMessage);
   try {
     if (attemptController && !await attemptController.stage("retrieval")) throw new Error("rag_attempt_observation_failed");
-    retrievalResult = await routeRuntime.assembleRetrievalContext({
+    const retrievalArgs = {
       payloadAudience: payload?.audience,
       graphChannelTestOverride: payload?.graphChannelTest === true,
       normalizedRole,
       rawHistory: retrievalHistory,
       trustedRagRecoveryState,
       effectiveMessage: recoveryBoundMessage,
-      requirementOriginalMessage: effectiveMessage,
+      requirementOriginalMessage: sourceSelectionContext ? recoveryBoundMessage : effectiveMessage,
       forceSources,
       forcedMode,
       hasHistory,
       replyLang: plannedRagReplyLang,
-      languagePlan,
+      languagePlan: sourceSelectionContext ? { answerLanguage: plannedRagReplyLang, queryLanguage: "unknown" } : languagePlan,
       ephemeralChunks,
       ephemeralSource,
       combineSources,
@@ -417,6 +431,8 @@ export async function POST(req, deps = {}) {
         chunkCharsMax: CHAT_EPHEMERAL_CHUNK_CHARS_MAX
       },
       onBeforeRag: async () => {
+        if (ragReservationPromise) return ragReservationPromise;
+        ragReservationPromise = (async () => {
         if (attemptController) await attemptController.settle(async () => true);
         ragUsageHandle = await routeRuntime.reserveUsageForRequest({
           request: req,
@@ -426,8 +442,15 @@ export async function POST(req, deps = {}) {
           idempotencyKey: clientTurnKey || payload?.idempotencyKey,
           metadata: { convId, role: normalizedRole }
         });
+        })();
+        return ragReservationPromise;
       }
-    });
+    };
+    retrievalResult = persist && claimedTurn?.userMessageId && !roomId && !isCrisis && !wantsDocumentDownload
+      ? await assembleSourceSelection({ context: sourceSelectionContext,
+          rootUserMessageId: sourceSelectionContext?.rootUserMessageId || claimedTurn.userMessageId,
+          args: retrievalArgs, assemble: routeRuntime.assembleRetrievalContext, check: deps.checkSourceSelectionDocument })
+      : await routeRuntime.assembleRetrievalContext(retrievalArgs);
   } catch (error) {
     if (attemptController) await failAttempt("retrieval", String(error?.code || "").startsWith("USAGE_") ? "usage_reservation_failed" : "retrieval_failed");
     else await Promise.all([
@@ -522,7 +545,7 @@ export async function POST(req, deps = {}) {
       : {})
   };
   const useAnswerHistory = shouldUseAnswerHistory(effectiveMessage);
-  const modelHistory = recoveryContinuation
+  const modelHistory = sourceSelectionContext ? [] : recoveryContinuation
     ? trustedRagRecoveryModelHistory
     : useAnswerHistory ? history : [];
   retrievalMeta.diagnosticHistory = {
@@ -530,7 +553,7 @@ export async function POST(req, deps = {}) {
     request_raw_count: rawHistory.length,
     normalized_client_count: history.length,
     retrieval_input_origin: recoveryContinuation ? "trusted_recovery" : "client_payload",
-    model_available_count: recoveryContinuation ? trustedRagRecoveryModelHistory.length : history.length,
+    model_available_count: sourceSelectionContext ? 0 : recoveryContinuation ? trustedRagRecoveryModelHistory.length : history.length,
     model_selected_count: modelHistory.length,
     model_selection_reason: recoveryContinuation ? "trusted_recovery" : useAnswerHistory ? "context_dependent" : "self_contained"
   };
@@ -541,6 +564,7 @@ export async function POST(req, deps = {}) {
     trustedRecoveryAvailable: !!trustedRagRecoveryState
   });
   const response = await routeRuntime.handleMainChatResponse({
+    sourceSelectionTurn: retrievalResult.sourceSelectionTurn || null,
     req,
     wantStream,
     persist,

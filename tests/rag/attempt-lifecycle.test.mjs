@@ -9,6 +9,8 @@ import { modelRequestEvidence } from "../../lib/chat/openaiRuntime.js";
 import { claimChatTurn } from "../../lib/chat/turnRegistry.js";
 import { createUsageService } from "../../lib/usage/service.js";
 import { projectRagDiagnosticEvidence } from "../../lib/chat/ragDiagnostics.js";
+import { createSourceSelection, sourceSelectionRecovery } from "../../lib/chat/sourceSelection.js";
+import { recoveryWorkflow } from "../../lib/chat/conversationalRecovery.js";
 
 const start = new Date("2026-08-31T12:00:00Z");
 const fence = { id: "attempt-1", chatTurnId: "turn-1", attempt: 1, conversationId: "conversation-1", userId: "synthetic-owner" };
@@ -28,6 +30,7 @@ function routeHarness({ outcome = "claimed", usageError = null, retrievalError =
     handleDocumentWorkflowBranch: async () => null,
     handleHelpWorkflowBranch: async () => null,
     readCompletedChatTurnReplay: async () => null,
+    readSourceSelectionContext: async () => null,
     claimChatTurn: async input => { calls.push(["claim", input]); return { outcome, turn: { id: fence.chatTurnId, attempt: 1 }, ragAttempt: row(), replay: { content: "Salvestatud vastus", metadata: {} } }; },
     createRagAttemptController: () => controller,
     initializeClaimedChatTurn: async () => { calls.push("user_written"); return { userMessageId: "question-1" }; },
@@ -55,6 +58,18 @@ test("claim and immutable attempt precede quota and retrieval; accepted question
   const answer = calls.find(item => item[0] === "answer")[1];
   assert.equal(answer.claimedTurn.userMessageId, "question-1");
   assert.equal(answer.ragAttemptController.fence.attempt, 1);
+});
+
+test("bindingless retry cannot consume a new source offer through generic recovery", async () => {
+  const { calls, deps } = routeHarness();
+  const bootstrap = deps.bootstrapChatRequest;
+  const offer = createSourceSelection([{ documentId: "doc", sourceId: "source", documentVersion: "v1", title: "New work" }], "new-root");
+  deps.bootstrapChatRequest = async () => { const result = await bootstrap();
+    Object.assign(result.data, { effectiveMessage: "teine", trustedRagRecoveryState: recoveryWorkflow(sourceSelectionRecovery(offer, "new-root")).ragRecovery,
+      trustedRagRecoveryHistory: [{ role: "user", text: "Different newer question" }], trustedRagRecoveryModelHistory: [] }); return result; };
+  deps.assembleRetrievalContext = async args => { assert.equal(args.effectiveMessage, "teine"); return { sources: [], retrievalMeta: {}, effectiveContext: "" }; };
+  assert.equal((await POST(new Request("http://localhost/api/chat", { method: "POST" }), deps)).status, 200);
+  assert.equal(calls.find(item => item[0] === "claim")[1].sourceSelectionBinding, null);
 });
 
 test("replay, in-flight and competing turn never reserve quota or search", async () => {
