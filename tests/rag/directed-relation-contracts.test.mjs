@@ -4,7 +4,10 @@ import { createHash } from "node:crypto";
 import { buildQuestionPlan } from "../../lib/chat/questionPlanner.js";
 import { buildSemanticTurnContract } from "../../lib/chat/semanticTurnContract.js";
 import { groupMatches, buildContextWithBudget } from "../../lib/chat/ragContext.js";
-import { buildRequestedQualitativeSlotContract } from "../../lib/chat/retrievalContextAssembler.js";
+import {
+  buildPinnedDevelopmentContextUnit,
+  buildRequestedQualitativeSlotContract
+} from "../../lib/chat/retrievalContextAssembler.js";
 import {
   directedRelationPayloadMatches,
   directedRelationSetMatches,
@@ -88,6 +91,280 @@ test("simple help questions for a client, social worker or service specialist ne
     const plan = buildQuestionPlan(input);
     assert.equal(plan.semantic_candidates.requested_fact_slots.slots.some(isDirectedRelationSlot), false);
   }
+});
+
+test("a pinned qualitative development span retains exact origin and versioned provenance", () => {
+  const prefix = "Sissejuhatav taust. ";
+  const suffix = " Järgnev taust ei ole küsitud seos.";
+  const originalBody = `${prefix}${passage}${suffix}`;
+  const rawChunk = `Lehekülje päis\n${originalBody}`;
+  const originalBodyHash = sha(originalBody);
+  const proof = {
+    document_id: "directed-doc",
+    source_id: "directed-source",
+    chunk_id: "directed-chunk-pinned",
+    document_version: "fixture-v1",
+    chunk_hash: sha(rawChunk),
+    chunk_char_count: rawChunk.length,
+    source_status: "active",
+    normalized_body_hash: originalBodyHash,
+    chunk_body_offset: rawChunk.indexOf(originalBody)
+  };
+  const baseEntry = {
+    docId: "directed-doc",
+    sourceId: "directed-source",
+    sourceStatus: "active",
+    sourceType: "journal_article",
+    collectionId: "journal_articles",
+    title: "Trepist üles või alla",
+    bodies: [originalBody],
+    bodyEvidence: []
+  };
+  const pinned = buildPinnedDevelopmentContextUnit({
+    candidate: {
+      body: originalBody,
+      bodyEvidence: [proof],
+      developmentSpan: { text: passage, start: prefix.length, end: prefix.length + passage.length }
+    },
+    baseEntry,
+    contextIndex: 0,
+    append: false
+  });
+  const span = pinned.block.bodySpans[0];
+  assert.equal(span.literal_original_start, prefix.length);
+  assert.equal(span.rendered_start_offset, 0);
+  assert.equal(span.rendered_end_offset, passage.length);
+  assert.equal(span.provenance.length, 1);
+  assert.equal(span.provenance[0].document_version, "fixture-v1");
+  assert.equal(pinned.entry.bodyEvidence.length, 1);
+  assert.equal(pinned.entry.bodyEvidence[0].chunk_id, proof.chunk_id);
+
+  const plan = buildQuestionPlan({ message: question });
+  const identityForPinned = {
+    required: true,
+    matched: true,
+    confidence: "high",
+    selectedDocumentId: "directed-doc"
+  };
+  const built = buildRequestedQualitativeSlotContract({
+    questionPlan: plan,
+    renderedGroups: [pinned.entry],
+    renderedBlocks: [pinned.block],
+    replyLang: "et",
+    specificResearchFactQuestion: true,
+    documentIdentityEvidence: identityForPinned
+  });
+  assert.equal(built.trace.complete, true, JSON.stringify(built));
+  const validation = validateDirectedRelationReply({
+    retrievalMeta: {
+      documentIdentityEvidence: identityForPinned,
+      requestedQualitativeSlotContract: built.trace,
+      queryPlan: {
+        mode: "specific_research_fact",
+        semantic_turn_contract: buildSemanticTurnContract({ questionPlan: plan })
+      }
+    },
+    sources: [{
+      document_id: pinned.entry.docId,
+      source_id: pinned.entry.sourceId,
+      source_status: pinned.entry.sourceStatus,
+      source_type: pinned.entry.sourceType,
+      collection_id: pinned.entry.collectionId,
+      title: pinned.entry.title,
+      evidenceText: pinned.block.text,
+      rendered_body_hash: pinned.block.renderedBodyHash,
+      rendered_body_spans: pinned.block.bodySpans,
+      rendered_block_index: 0
+    }],
+    replyLang: "et"
+  });
+  assert.equal(validation.passed, true, JSON.stringify(validation));
+
+  const withoutOrigin = structuredClone(pinned.block);
+  withoutOrigin.bodySpans[0].literal_original_start = null;
+  const originFailure = buildRequestedQualitativeSlotContract({
+    questionPlan: plan,
+    renderedGroups: [pinned.entry],
+    renderedBlocks: [withoutOrigin],
+    replyLang: "et",
+    specificResearchFactQuestion: true,
+    documentIdentityEvidence: identityForPinned
+  });
+  assert.equal(originFailure.trace.reason, "directed_relation_span_origin_missing");
+
+  const withoutProvenance = structuredClone(pinned.block);
+  withoutProvenance.bodySpans[0].provenance = [];
+  const provenanceFailure = buildRequestedQualitativeSlotContract({
+    questionPlan: plan,
+    renderedGroups: [pinned.entry],
+    renderedBlocks: [withoutProvenance],
+    replyLang: "et",
+    specificResearchFactQuestion: true,
+    documentIdentityEvidence: identityForPinned
+  });
+  assert.equal(provenanceFailure.trace.reason, "directed_relation_provenance_missing");
+
+  const withoutCoordinates = structuredClone(pinned.block);
+  withoutCoordinates.bodySpans[0].rendered_start_offset = undefined;
+  const coordinateFailure = buildRequestedQualitativeSlotContract({
+    questionPlan: plan,
+    renderedGroups: [pinned.entry],
+    renderedBlocks: [withoutCoordinates],
+    replyLang: "et",
+    specificResearchFactQuestion: true,
+    documentIdentityEvidence: identityForPinned
+  });
+  assert.equal(coordinateFailure.trace.reason, "directed_relation_span_coordinates_invalid");
+});
+
+test("an appended pinned span keeps old coordinates and binds candidate-only provenance", () => {
+  const baseBody = "Uuringu valim ja üldine taust on esitatud artikli eelmises osas.";
+  const prefix = "Meetodite võrdlus. ";
+  const originalBody = `${prefix}${passage}`;
+  const baseChunk = `Päis\n${baseBody}`;
+  const relationChunk = `Päis\n${originalBody}`;
+  const shared = {
+    docId: "directed-doc",
+    sourceId: "directed-source",
+    sourceStatus: "active",
+    sourceType: "journal_article",
+    collectionId: "journal_articles",
+    title: "Trepist üles või alla"
+  };
+  const baseProof = {
+    document_id: shared.docId,
+    source_id: shared.sourceId,
+    chunk_id: "base-chunk",
+    document_version: "fixture-v1",
+    chunk_hash: sha(baseChunk),
+    chunk_char_count: baseChunk.length,
+    source_status: "active",
+    normalized_body_hash: sha(baseBody),
+    chunk_body_offset: baseChunk.indexOf(baseBody)
+  };
+  const relationProof = {
+    document_id: shared.docId,
+    source_id: shared.sourceId,
+    chunk_id: "relation-chunk",
+    document_version: "fixture-v1",
+    chunk_hash: sha(relationChunk),
+    chunk_char_count: relationChunk.length,
+    source_status: "active",
+    normalized_body_hash: sha(originalBody),
+    chunk_body_offset: relationChunk.indexOf(originalBody)
+  };
+  const baseEntry = { ...shared, bodies: [baseBody], bodyEvidence: [baseProof] };
+  const budget = buildContextWithBudget([baseEntry], { maxGroups: 1, maxBodies: 1 });
+  const oldSpans = structuredClone(budget.renderedBlocks[0].bodySpans);
+  const pinned = buildPinnedDevelopmentContextUnit({
+    candidate: {
+      body: originalBody,
+      bodyEvidence: [relationProof],
+      developmentSpan: { text: passage, start: prefix.length, end: originalBody.length }
+    },
+    baseEntry: budget.used[0],
+    baseBlock: budget.renderedBlocks[0],
+    contextIndex: 0,
+    append: true
+  });
+  assert.deepEqual(pinned.block.bodySpans.slice(0, oldSpans.length), oldSpans);
+  const appendedSpan = pinned.block.bodySpans.at(-1);
+  const expectedStart = budget.renderedBlocks[0].evidenceText.length + "\n---\n".length;
+  assert.equal(appendedSpan.rendered_start_offset, expectedStart);
+  assert.equal(appendedSpan.rendered_end_offset, expectedStart + passage.length);
+  assert.equal(pinned.entry.bodyEvidence.some(item => item.chunk_id === relationProof.chunk_id), true);
+  assert.equal(appendedSpan.provenance.some(item => item.chunk_id === relationProof.chunk_id), true);
+
+  const plan = buildQuestionPlan({ message: question });
+  const built = buildRequestedQualitativeSlotContract({
+    questionPlan: plan,
+    renderedGroups: [pinned.entry],
+    renderedBlocks: [pinned.block],
+    replyLang: "et",
+    specificResearchFactQuestion: true,
+    documentIdentityEvidence: identity
+  });
+  assert.equal(built.trace.complete, true, JSON.stringify(built));
+  const validation = validateDirectedRelationReply({
+    retrievalMeta: {
+      documentIdentityEvidence: identity,
+      requestedQualitativeSlotContract: built.trace,
+      queryPlan: {
+        mode: "specific_research_fact",
+        semantic_turn_contract: buildSemanticTurnContract({ questionPlan: plan })
+      }
+    },
+    sources: [{
+      document_id: pinned.entry.docId,
+      source_id: pinned.entry.sourceId,
+      source_status: pinned.entry.sourceStatus,
+      source_type: pinned.entry.sourceType,
+      collection_id: pinned.entry.collectionId,
+      title: pinned.entry.title,
+      evidenceText: pinned.block.text,
+      rendered_body_hash: pinned.block.renderedBodyHash,
+      rendered_body_spans: pinned.block.bodySpans,
+      rendered_block_index: 0
+    }],
+    replyLang: "et"
+  });
+  assert.equal(validation.passed, true, JSON.stringify(validation));
+});
+
+test("an already rendered relation rebuilds a malformed span from candidate proof", () => {
+  const fixture = setup();
+  const malformedBlock = structuredClone(fixture.rendered.renderedBlocks[0]);
+  malformedBlock.bodySpans[0].literal_original_start = null;
+  malformedBlock.bodySpans[0].provenance = [];
+  const pinned = buildPinnedDevelopmentContextUnit({
+    candidate: {
+      body: passage,
+      bodyEvidence: fixture.rendered.used[0].bodyEvidence,
+      developmentSpan: { text: passage, start: 0, end: passage.length }
+    },
+    baseEntry: fixture.rendered.used[0],
+    baseBlock: malformedBlock,
+    contextIndex: 0,
+    append: true
+  });
+  assert.ok(pinned);
+  assert.equal(pinned.block.evidenceText, malformedBlock.evidenceText);
+  assert.equal(pinned.block.bodySpans.length, 1);
+  assert.equal(pinned.block.bodySpans[0].literal_original_start, 0);
+  assert.equal(pinned.block.bodySpans[0].provenance.length, 1);
+  const built = buildRequestedQualitativeSlotContract({
+    questionPlan: fixture.plan,
+    renderedGroups: [pinned.entry],
+    renderedBlocks: [pinned.block],
+    replyLang: "et",
+    specificResearchFactQuestion: true,
+    documentIdentityEvidence: identity
+  });
+  const validation = validateDirectedRelationReply({
+    retrievalMeta: {
+      ...fixture.meta,
+      requestedQualitativeSlotContract: built.trace
+    },
+    sources: [{
+      ...fixture.sources[0],
+      evidenceText: pinned.block.text,
+      rendered_body_hash: pinned.block.renderedBodyHash,
+      rendered_body_spans: pinned.block.bodySpans
+    }],
+    replyLang: "et"
+  });
+  assert.equal(validation.passed, true, JSON.stringify(validation));
+  assert.equal(buildPinnedDevelopmentContextUnit({
+    candidate: {
+      body: passage,
+      bodyEvidence: fixture.rendered.used[0].bodyEvidence,
+      developmentSpan: { text: passage, start: -1, end: passage.length }
+    },
+    baseEntry: fixture.rendered.used[0],
+    baseBlock: malformedBlock,
+    contextIndex: 0,
+    append: true
+  }), null);
 });
 
 test("relative clause owns the earlier approach and simultaneity remains an explicit alternative", () => {
@@ -235,6 +512,12 @@ test("body, hash, coordinates and version mutations cannot authorize publication
   const changedVersion = structuredClone(fixture.meta);
   changedVersion.requestedQualitativeSlotContract.slots[0].evidence_locators[0].document_version = "fixture-v2";
   mutations.push({ sources: fixture.sources, meta: changedVersion });
+  const changedProofSource = structuredClone(fixture.sources);
+  changedProofSource[0].rendered_body_spans[0].provenance[0].source_id = "other-source";
+  mutations.push({ sources: changedProofSource, meta: fixture.meta });
+  const changedSpanCoordinates = structuredClone(fixture.sources);
+  changedSpanCoordinates[0].rendered_body_spans[0].rendered_end_offset = undefined;
+  mutations.push({ sources: changedSpanCoordinates, meta: fixture.meta });
   for (const mutation of mutations) {
     const result = validateDirectedRelationReply({ retrievalMeta: mutation.meta, sources: mutation.sources, replyLang: "et" });
     assert.equal(result.passed, false);
