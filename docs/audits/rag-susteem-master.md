@@ -965,6 +965,20 @@ Kohalik sihttõend: 110 Node'i testi UTC-s (21 valik, 19 katse elutsükkel, 22 F
 
 **Järgmine värav:** pärast lubatud integratsiooni ja olemasoleva katsete migratsiooni kontrolli tuleb päris keskkonnas proovida sama autori kaht sõnastust, valikuid „teine” / täpne pealkiri / „mõlemad”, katkestatud päringu kordust, kahte vahekaarti, aegunud või vahetunud allikat ning sama vastuse allikapaneeli ja MD-aruannet. F07 eraldi leibkondade/inimeste loendusühikud ja F08 järjekorraseosed on jätkuvalt järgmised arendusplokid. Versiooni/ACL-i kontroll on värske kontroll enne kasutamist ja avaldamist, mitte kogu RAG-teenusega ühine atomaarne tehing. Kõigi autori parafraaside ja nimekäänete mõistmine, latentsus ning terve korpuse täielikkus on endiselt `NOT_PROVEN`.
 
+### 13.11 Suunatud sündmuseseosed — F08 kohalik vertikaal
+
+F08 ei otsi enam vastusest lihtsalt samu märksõnu. `questionClauseRoles.js` eristab päris küsimuse allikat kirjeldavast kõrvallausest ainult siis, kui sisuline küsimus on enne kõrvallauset juba olemas. Tootmisplanner loob ühe tüübitud nõude `directed_event_relation_set`: kaks kasutaja küsitud sündmusevõtit, kaks lähenemist ning iga lähenemise suund, polaarsus ja kvalifikaatorid. Iseseisev „mida artiklis võrreldakse?” säilib küsimusena. Tavakeelne abi-, suunamis- või järgmise sammu küsimus, millel see struktuur puudub, ei lähe F08 range faktilepingu taha; seda kontrolliti abivajaja, sotsiaaltöötaja ja teenuseosutaja näidetega.
+
+`directedRelationSemantics.js` tuletab allikast lähenemise, sündmused ja `BEFORE` / `AFTER` / `OVERLAPS` seosed. Kasutaja küsimus annab ainult küsitud sündmuspaari, mitte oodatud vastuse. Sama sündmuspaari `A BEFORE B` ja `B AFTER A` on võrdsed, kuid sündmuste ümberpööramine, vale lähenemise omistus, eitus, tingimus või puuduva samaaegsuse täpsustus ei ole. Relatiivlause „mille kohaselt” kuulub varem valitsenud käsitlusele; teise klausli sündmust ega kõrvalist „samal ajal” lauset ei laenata sellele seosele. Kui dokumendis on mitu paari, peab valitud paar kattuma küsimuse sündmusevõtmetega sõltumata chunk'ide või lausete järjekorrast.
+
+`directedRelationContract.js` seob mõlemad lubatud seoseaatomid täpse dokumendi, allika, aktiivse versiooni, chunk'i räsi ning UTF-16 rendered/chunk-vahemiku ja fragmendiräsiga. Avaldamisel loetakse samad vahemikud allikast uuesti, võrreldakse payload'i ja vastust ning nõutakse `COMPLETE` otsust, õiget vastuseräsi ja mõlema aatomi kehtivat locator'it. JSON ja SSE kasutavad sama deterministlikult renderdatud teksti; mudel ei saa selle piiratud vertikaali õiget suunda hiljem muuta. Jälg säilitab tüübid, põhjused, ID-d, räsid ja koordinaadid, kuid mitte lähenemiste, sündmuste või allikakatkendi toorteksti.
+
+Algse F08 allikakatkendi kohalik originaal on `17-1/2017_1_Part12.txt`, UTF-16 [781,1080), faili SHA-256 `8518a34071b8bd116c0de2b029665f4c6749c8f1b0d88bf09ac61d7e7e4410d3` ja toorvahemiku SHA-256 `3b11f030e201515fc175b28eeff93784ea3b4d326c7fcab2af719fab4292d8a5`. Seotud registridokument on `sotsiaaltoo-1-2017-kodutuse-poliitika-2017-1`, aktiivversioon `7404f868120641e892cc44bfa4958d10`; selle ploki tõend pärineb kohalikust originaalist ja varem külmutatud aktiivse chunk'i andmetest, mitte uuest serveri GET-ist.
+
+Ühendatud F07/F08 puul läbisid **234 sihitud regressioonijuhtu**: F08/F06/F05/diagnostika/nõuete 106, F07 valik 21, katsete elutsükkel 19, Python-projektsioon 1 ja laiendatud RAG-regressioon 87. Esimene F07 import ilma `--conditions=react-server` tingimuseta katkestati ootuspäraselt `server-only` kaitsel; õige käsuga läbis fail 21/21. F08 muudetud failide ESLint, i18n, diff-check ja tootmisbuild PASS; kompileerimine 51 s, build-ID `e0da166b-e312-4edb-bc00-752b26b17cac`. Prisma skeemi ega migratsioone F07/F08 koodiplokk ei muutnud.
+
+**Piirid / väljalaske värav:** parser on teadlikult piiratud eestikeelse konstruktsioonipere tugi, mitte üldine sündmusgraaf ega kogu dokumendi konfliktide täielik kontroll. Ingliskeelne tüübitud F08 küsimus ei jaga veel eestikeelse allikaga kanoonilist sündmusesõnastikku ja venekeelset intent'i ei aktiveerita; need juhtumid ebaõnnestuvad suletult, mitte ei avalda oletatud seost. F07 loendusühikud on eraldi lahtine plokk. Autenditud F07 valikud, kaks F08 sõnastust eraldi/järjest, nähtav vastus, avatud allikas, värske diagnostika ja serveri SHA on enne produktsiooniväidet `runtime: not_run` / `NOT_PROVEN`; ajaloolist 1 PASS / 9 FAIL tulemust kohalikud testid ümber ei kirjuta.
+
 ## 14. Dokumendi ja artikli ingest
 
 ### 14.1 Ingesti sisenemispunktid
@@ -1960,13 +1974,15 @@ R5 allikaaudit ning R6 kitsad mõõtmised võivad toimuda teiste plokkidega para
 
 #### R3c / F08 — suunatud ja samaaegsed seosed
 
-**Pind:** tootmisplanneri klauslipiirid, assembler, `factContract.js` ning R3a renderer. Võimalik uus moodul `directedRelationSemantics.js`.
+**Kohalik teostus:** §13.11 katab planneri klauslirolli, kasutaja küsitud sündmuspaari, allikast tuletatud kahe lähenemise suuna/kvalifikaatorid, täpsed locator'id, uuesti kontrollitud avaldamise ning privaatsust hoidva jälje. Main/serveri pärisrada ja eestikeelsest piiratud grammatikast laiemad keeled jäävad allpool kirjeldatud väravaks.
+
+**Pind:** tootmisplanneri klauslipiirid, assembler, `factContract.js`, `directedRelationSemantics.js`, `directedRelationContract.js` ning R3a renderer.
 
 **Teha:** tõendada `{approach, eventA, relation, eventB, polarity, qualifiers, locators}`. `BEFORE`, `AFTER` ja `OVERLAPS` ei ole vahetatavad; „enne või samaaegselt” jääb lubatud alternatiivideks, mitte ainult „enne”. Eristada allikat kirjeldavat „…, mida võrreldakse … artiklis” päriselt küsitud „ja mida artiklis võrreldakse?” nõudest.
 
 **Vastuvõtt:** varasema käsitluse rehabilitatsioon → eluase ning eluasemepõhise lähenemise eluase → rehabilitatsioon säilitavad allika samaaegsuse täpsustused. Töötab pööratud küsimisjärjekord, parafraas ja teine sõltumatu suunatud võrdlus. Samaväärsed `A BEFORE B` ja `B AFTER A` peavad mõlemad läbima: keelatud on sündmuste vahetamine ilma vastava pöördsuhteta, mitte õige pöördesitus. Ei läbi lähenemise vale omistus, tegeliku suuna ümberpööramine, eituse/tingimuse kadumine ega samaaegsuse kustutamine. Naaberklausli rehabilitatsioon-esmalt seost ei omistata ekslikult lause alguses nimetatud eluasemepõhisele lähenemisele.
 
-**Pärisrada ja fallback:** kaks sõnastust eraldi ja jätkuna; hinnatakse nähtavat võrdlust, mitte ainult märksõnu. Sama retrieval-kontekstiga eraldi/järjest erinev tulemus nõuab downstream-kihi kontrolli; seda ei nimetata ilma tõendita vestlusmälu veaks.
+**Pärisrada ja fallback:** kaks sõnastust eraldi ja jätkuna; hinnatakse nähtavat võrdlust, mitte ainult märksõnu. Sama retrieval-kontekstiga eraldi/järjest erinev tulemus nõuab downstream-kihi kontrolli; seda ei nimetata ilma tõendita vestlusmälu veaks. Tundmatu grammatika või keelerada jääb kontrollimatuks ja suletud avaldamisväravaks, mitte märksõnade põhjal oletatud vastuseks.
 
 #### R4 — olukorrateadliku abistamise piiratud kasutuselevõtt
 
