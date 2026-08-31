@@ -93,6 +93,81 @@ test("simple help questions for a client, social worker or service specialist ne
   }
 });
 
+test("an unbound duplicate cannot veto the same relation set from exact evidence", () => {
+  const fixture = setup();
+  const block = structuredClone(fixture.rendered.renderedBlocks[0]);
+  const malformedDuplicate = structuredClone(block.bodySpans[0]);
+  malformedDuplicate.literal_original_start = null;
+  block.bodySpans.unshift(malformedDuplicate);
+  const built = buildRequestedQualitativeSlotContract({
+    questionPlan: fixture.plan,
+    renderedGroups: fixture.rendered.used,
+    renderedBlocks: [block],
+    replyLang: "et",
+    specificResearchFactQuestion: true,
+    documentIdentityEvidence: identity
+  });
+  assert.equal(built.trace.complete, true, JSON.stringify(built));
+  assert.equal(built.trace.reason, "directed_relations_bound");
+  assert.equal(built.trace.unbound_candidate_count, 2);
+  assert.equal(built.trace.ignored_duplicate_candidate_count, 2);
+
+  const validation = validateDirectedRelationReply({
+    retrievalMeta: {
+      documentIdentityEvidence: identity,
+      requestedQualitativeSlotContract: built.trace,
+      queryPlan: {
+        mode: "specific_research_fact",
+        semantic_turn_contract: buildSemanticTurnContract({ questionPlan: fixture.plan })
+      }
+    },
+    sources: [{
+      ...fixture.sources[0],
+      rendered_body_spans: block.bodySpans
+    }],
+    replyLang: "et"
+  });
+  assert.equal(validation.passed, true, JSON.stringify(validation));
+});
+
+test("an unbound unrelated event pair does not diagnose or block the requested pair", () => {
+  const unrelated = "Tavamenetluses tehakse esmalt hindamine ja alles seejärel otsus. Kiirmenetluses tehakse otsus enne hindamist, tegelikult hindamisega kattudes.";
+  const fixture = setup({ bodies: [unrelated, passage] });
+  const block = structuredClone(fixture.rendered.renderedBlocks[0]);
+  block.bodySpans[0].literal_original_start = null;
+  const built = buildRequestedQualitativeSlotContract({
+    questionPlan: fixture.plan,
+    renderedGroups: fixture.rendered.used,
+    renderedBlocks: [block],
+    replyLang: "et",
+    specificResearchFactQuestion: true,
+    documentIdentityEvidence: identity
+  });
+  assert.equal(built.trace.complete, true, JSON.stringify(built));
+  assert.equal(built.trace.reason, "directed_relations_bound");
+  assert.equal(built.trace.unbound_candidate_count, 0);
+});
+
+test("an unbound relation that disagrees with exact evidence still fails closed", () => {
+  const reversed = "Eluasemepõhine lähenemine lähtub põhimõttest: kõigepealt rehabilitatsioon ja alles seejärel eluase.";
+  const fixture = setup({ bodies: [reversed, passage] });
+  const block = structuredClone(fixture.rendered.renderedBlocks[0]);
+  assert.equal(block.bodySpans.length, 2);
+  block.bodySpans[0].literal_original_start = null;
+  const built = buildRequestedQualitativeSlotContract({
+    questionPlan: fixture.plan,
+    renderedGroups: fixture.rendered.used,
+    renderedBlocks: [block],
+    replyLang: "et",
+    specificResearchFactQuestion: true,
+    documentIdentityEvidence: identity
+  });
+  assert.equal(built.trace.complete, false, JSON.stringify(built));
+  assert.equal(built.trace.reason, "directed_relation_evidence_conflict");
+  assert.equal(built.trace.unbound_candidate_count, 1);
+  assert.equal(built.trace.conflicting_unbound_candidate_count, 1);
+});
+
 test("a pinned qualitative development span retains exact origin and versioned provenance", () => {
   const prefix = "Sissejuhatav taust. ";
   const suffix = " Järgnev taust ei ole küsitud seos.";
@@ -713,10 +788,18 @@ test("trace projection keeps relation hashes and coordinates but drops source te
     documentIdentityEvidence: identity
   });
   const trace = buildRagTraceFromAttribution(fixture.sources, attribution, {
-    ...fixture.meta, factValidation: validation.trace, requestedQualitativeSlotContract: fixture.built.trace
+    ...fixture.meta,
+    factValidation: validation.trace,
+    requestedQualitativeSlotContract: {
+      ...fixture.built.trace,
+      unbound_candidate_count: 2,
+      ignored_duplicate_candidate_count: 2
+    }
   });
   for (const projected of [projectRagDiagnosticEvidence(trace), projectRagDiagnosticEvidence(projectRagTraceForLog(trace))]) {
     assert.equal(projected.qualitative_contract.slots[0].payload_kind, "directed_event_relation_set");
+    assert.equal(projected.qualitative_contract.unbound_candidate_count, 2);
+    assert.equal(projected.qualitative_contract.ignored_duplicate_candidate_count, 2);
     assert.equal(projected.validation.response_decision.issuer, "directed_relation_contract_v1");
     assert.equal(projected.validation.directed_relation_evidence_locators.length, 2);
     assert.doesNotMatch(JSON.stringify(projected), /Eluasemepõhine|rehabilitatsioon|varem valitsenud/u);
