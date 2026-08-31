@@ -2,6 +2,10 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { createHash } from "node:crypto";
 import { buildQuestionPlan } from "../../lib/chat/questionPlanner.js";
+import {
+  extractTopicHints,
+  prioritizeRequestedRelationTopicHints
+} from "../../lib/chat/retrievalPlanning.js";
 import { buildSemanticTurnContract } from "../../lib/chat/semanticTurnContract.js";
 import { groupMatches, buildContextWithBudget, rankGroupsWithTopicHints } from "../../lib/chat/ragContext.js";
 import {
@@ -197,7 +201,12 @@ test("topic ranking keeps immutable source bodies and their provenance intact", 
     document_version: "fixture-v1", source_status: "active", source_type: "journal_article",
     collection_id: "journal_articles", title: "Trepist üles või alla"
   } }));
-  const topicHints = ["eluase", "rehabilitatsioon", "järjekord"];
+  const alternatePlan = buildQuestionPlan({ message: alternate });
+  const topicHints = prioritizeRequestedRelationTopicHints(
+    alternatePlan,
+    extractTopicHints(alternate)
+  );
+  assert.deepEqual(topicHints.slice(0, 3), ["eluase", "rehabilitatsioon", "jarjekorras"]);
   const ranked = rankGroupsWithTopicHints(groupMatches(matches), topicHints);
   assert.equal(ranked[0].bodies[0], relationBody);
   assert.equal(ranked[0].bodies[0].includes("\n---\n"), false);
@@ -224,7 +233,7 @@ test("topic ranking keeps immutable source bodies and their provenance intact", 
   assert.equal(noiseSpan?.provenance?.[0]?.chunk_id, "ranked-chunk-1");
   assert.notEqual(relationSpan?.provenance?.[0]?.chunk_hash, noiseSpan?.provenance?.[0]?.chunk_hash);
   const built = buildRequestedQualitativeSlotContract({
-    questionPlan: buildQuestionPlan({ message: question }),
+    questionPlan: alternatePlan,
     renderedGroups: rendered.used,
     renderedBlocks: rendered.renderedBlocks,
     replyLang: "et",
