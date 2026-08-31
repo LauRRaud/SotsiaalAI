@@ -1459,3 +1459,26 @@ Kui lapse abivajadus on vähenenud ja edasiste tegevuste vajadus puudub, saab ju
 - **Ajalooefekt:** iseseisev süntees lisab eelmise EPIKoja allika järgi tühja otsingu. Sellest hoolimata muutub skooriskaala ning lõppkontekst 8 → 9 allikaks. M02 ja lapse heaolu kontekst jäi režiimide vahel identseks; nende erinevused asuvad hilisemas genereerimise/kontrolli kihis.
 
 Kõigis kaheksas päringus töötas EstNLTK morfoanalüüs enne planeerimist. Eraldi lemma-FTS kanal on endiselt shadow-only; integreeritud teenuste süntees kasutab ainult dense-kanalit. Nende konkreetsete rikete põhjuseks küsimuse vale käänet ei tuvastatud. Kood, ingest, indeksid ja server jäid muutmata; commit/push/deploy ja uus runtime-kordus jäid tegemata. Aktiivne seis jääb SotsiaalAI.md S1.0-sse; parandamine ootab omaniku korraldust.
+
+
+## 31.08.2026 — diagnoosi viis põhjusparandust, kood `f9ee2691`
+
+Omanik kinnitas parandamise, commit/push/deploy ja sama nelja küsimuse kahefaasilise korduse. See jaotis ei muuda eelmise runtime'i tulemusi.
+
+- M02: tuletise ja fraasi seos ei luba kontaktisikukatkendil tõendada toetatud otsustamist. Puuduv slot lubab olemasolevat dokumendisisest taastamisotsingut. Seotakse ainult küsitud tegevusobjektid; kõrvaltegevusi ei lisata. Ühe soovituse sama punkti mitut lauset saab kasutada koos, kuid lausevahemikud ei kattu teiste slotidega. Küsimusesilt, üldine kirjeldussõna või määratlev „selle transpordisüsteemi” ei asenda tegelikku objekti.
+- Lapse allikakate: sisemine väitegraaf katab kogu vastuse; trace'i piir ei kärbi sisulist katet.
+- Sünteesi allikad: nõrk kahe sõna kattuvus vajab lokaalset tekstitoetust; tõeline Hiiumaa näide säilib. Järgarvuline aasta ei tükelda väidet; metadata ilmumisaasta ei tõenda sündmusaega.
+- Ajalugu ja skoorid: sõltumatu lai küsimus ei päranda eelnevaid dokumendifiltreid. „Nende artiklite” ning „sama artikli” järelpäringud jäävad allikapiiri sisse. Ainult üks mittetühi tulemus säilitab oma algse skoori ja metaandmed; päris mitme tulemuse korral jääb fusion.
+- Kontrollid: M02 kitsas fail 15/15 + olemasolev M02 sihtregressioon 1/1; allikakate 20/20 + olemasolevad allika-ID/lukustatud allika kaks regressiooni 2/2; uus ajaloo/fusion'i komplekt 6/6. Muudetud failide ESLint ja diff-kontroll läbisid. Lõplik integreeritud tootmisbuild läbis (31,6 s kompileerimine, 70/70 lehte); i18n:check läbis. Kohalik build teatas seadistamata e-posti transpordist; e-kirjade saatmine ei kuulu selle RAG-muudatuse tõendisse. Serveri migratsioonieelkontroll `pending=[]`.
+- Sõltuvusi, skeemi, ingest'i ja indekseid ei muudetud. Kasutaja `eval/parandused.md` ning DOCX jäävad puutumata. `rag-susteem-master.md` on uuendatud.
+
+### Uue korduse protokoll
+
+Samad täpsed küsimused ja vastuvõtukriteeriumid nagu eelmise release'i jaotises: M01, M02, integreeritud teenused, lapse heaolu. Isolated tähendab nelja uut tühja vestlust; sequential üht uut vestlust samas järjekorras. Iga vastuse järel salvestatakse täistekst, avatud allikapaneeli vaatlus ja sama ChatTurn'i serverijälg. Kordus algab alles pärast serveri koodiversiooni kontrolli; pärast kaheksandat vastust paus. Hinnet ei parandata varjatud lisakatsetega.
+
+| Juhtum | Isolated | Sequential |
+|---|---|---|
+| M01 | NOT_STARTED | NOT_STARTED |
+| M02 | NOT_STARTED | NOT_STARTED |
+| Golden: integreeritud teenused | NOT_STARTED | NOT_STARTED |
+| Golden: lapse heaolu | NOT_STARTED | NOT_STARTED |
