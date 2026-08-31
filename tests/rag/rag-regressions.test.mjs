@@ -409,6 +409,62 @@ describe("uuringudokumendi identiteet", () => {
     assert.equal(result.selectedDocumentId, "new-doc");
   });
 
+  test("jutumärkides piisavalt pikk ellipsiga pealkirja algus lukustab ühe, kuid mitte mitu sobivat dokumenti", () => {
+    const message = "2017. aasta artikli „Trepist üles või alla…” järgi: kummas järjekorras käivad eluase ja rehabilitatsioon kahes lähenemises?";
+    const plan = buildQuestionPlan({ message });
+    const correct = {
+      docId: "kodutus-2017",
+      title: "Trepist üles või alla. Eesti vajab tulemuslikumat kodutuse poliitikat",
+      year: 2017,
+      sourceType: "journal_article",
+      retrievalChannels: ["title_match", "exact_phrase"],
+      bodies: ["Varem rehabilitatsioon ja siis eluase; eluasemepõhises lähenemises esmalt eluase."]
+    };
+    const unrelated = {
+      docId: "muu-2017",
+      title: "Eluaseme ja rehabilitatsiooni teenused",
+      year: 2017,
+      sourceType: "journal_article",
+      retrievalChannels: ["dense"],
+      bodies: ["Üldine ülevaade."]
+    };
+    assert.equal(
+      plan.semantic_candidates.current_turn_document_identity.title_hint.value,
+      "Trepist üles või alla…"
+    );
+    const result = selectSpecificResearchFactGroups(message, [unrelated, correct], plan);
+    assert.equal(result.matched, true);
+    assert.equal(result.selectedDocumentId, "kodutus-2017");
+    assert.ok(result.reasons.includes("decisive_canonical_title_family_anchor"));
+    const decision = describeSpecificResearchDocumentLock(plan, result);
+    assert.equal(decision.eligible, true);
+    assert.equal(decision.checks.canonical_title_confirmed, true);
+
+    const competing = {
+      ...correct,
+      docId: "kodutus-teine-2017",
+      title: "Trepist üles või alla. Teine sama algusega artikkel"
+    };
+    const ambiguous = selectSpecificResearchFactGroups(message, [correct, competing], plan);
+    assert.equal(ambiguous.matched, false);
+    assert.equal(ambiguous.confidence, "ambiguous");
+  });
+
+  test("liiga lühike ellipsiga pealkirjakatke ei muutu dokumendilukuks", () => {
+    const message = "2017. aasta artikli „Uus…” järgi: mida soovitati?";
+    const plan = buildQuestionPlan({ message });
+    const result = selectSpecificResearchFactGroups(message, [{
+      docId: "uus-uuring-2017",
+      title: "Uus uuring sotsiaaltööst",
+      year: 2017,
+      sourceType: "journal_article",
+      retrievalChannels: ["title_match", "exact_phrase"],
+      bodies: ["Soovitus."]
+    }], plan);
+    assert.equal(result.matched, false);
+    assert.equal(describeSpecificResearchDocumentLock(plan, result).eligible, false);
+  });
+
   test("jutumärkides Title Case pealkiri ei muutu dokumendi autoriks", () => {
     for (const [message, title] of [[
       "Artiklis „Social Work Practice Today” mitu intervjuud tehti?",
