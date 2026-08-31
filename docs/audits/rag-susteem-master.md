@@ -4,6 +4,8 @@ Uuendatud: 31.08.2026
 Ulatus: autentitud vestlus, RAG-otsing, dokumendi ingest, indeksid, soojendus, tõendikontroll, allikad ja käitus
 Rakenduse RAG-loogika: käesoleva koodiversiooni arhitektuur
 
+§27 sisaldab omaniku analüüside märkmeid; §28 koondab neist produktsiooniks arendamise tervikplaani. Mõlemad on ettepanekud ja teostusnõuded, mitte juba valmis arhitektuuri või produktsioonikõlblikkuse tõend.
+
 ## 0. Dokumendi roll ja tõeallikad
 
 See on SotsiaalAI RAG-süsteemi üks tehniline põhikaart. Siin kirjeldatakse tervikut, mitte ühe auditi või ühe küsimuse parandust:
@@ -809,7 +811,7 @@ UI ei rekonstrueeri allikaid toorest retrieval-trace'ist.
 - teist aktiivset konkureerivat pööret;
 - sessiooni pöördelimiiti.
 
-Samas etapis kirjutatakse püsiv kasutajasõnum. Uut providerikutset ei tehta replay, in-flight, busy, session-limit, owner/archive ega `conversation_unavailable` tulemuse korral.
+Püsivas `clientTurnKey`-ga eravestluses luuakse samas tehingus `RagAttempt` **enne kasutuse reserveerimist ja allikaotsingut**. Kasutajasõnum kirjutatakse eraldi omandikontrolliga tehingus pärast edukat kasutuse reserveerimist: kvoodikeeld ei tarbi USER-sõnumi sessioonikohta. Ka kordus peab välistama teise aktiivse pöörde; varem kvoodikeelu saanud ja küsimuseta kordus kontrollib sessioonipiiri uuesti. Replay, in-flight, busy, session-limit, owner/archive ega `conversation_unavailable` korral uut otsingut või providerikutset ei tehta. Võtmeta, mittepüsivad ja eraldi töövooharud ei saa sellest automaatselt uut katsekirjet.
 
 ### 13.2 Assistendisõnum
 
@@ -823,6 +825,8 @@ Samas etapis kirjutatakse püsiv kasutajasõnum. Uut providerikutset ei tehta re
 - workflow-, kriisi-, faili- ja orchestration-metadata;
 - pöörde completion status'e;
 - kasutusühiku lõpliku seisu.
+
+Uue katsemudeliga rajal kuuluvad sellesse tehingusse ka `RagAttempt` lõppseis ja muutumatu katse seos. Enne sõnumit, kokkuvõtet ja arveldamist kontrollitakse katse ID-d, `ChatTurn.id`/katse numbrit, kasutajat/vestlust, RUNNING-seisu ning kehtivat lease'i. Vana katse ei või kirjutada uuema katse eest. Salvestamise ebaõnnestumise varurada lõpetab omanikukatse ja arveldab samas tehingus; nähtava osalise katkestuse senine tasupoliitika säilib. Juba arveldatud RAG-otsingut ei vabastata hilisema mudeli- või salvestustõrke tõttu.
 
 Kui durable püsistus ebaõnnestub, ei saadeta kliendile eksitavat `done` sündmust.
 
@@ -861,9 +865,9 @@ Administraatori enda eravestluses avab vastuse kõrval olev „Vaata vastuse dia
 
 `ConversationMessage.metadata.rag_diagnostics` salvestatakse lõpptehingus koos vastuse, lõpetamisoleku ja kasutusega. See sisaldab piiratud tõendiprojektsiooni, vaatlusastmeid ning pöörde, katse ja kasutajasõnumi seost. UI viide on `message:<assistantMessageId>`, mitte kohalik sõnumi järjekorranumber ega korduskatsel taaskasutatav `ChatTurn.id`. Katse varasem vastus säilib oma message-ID all; tema küsimus seotakse ainult salvestatud seosetõendi abil. Vanade paaristamata sõnumite puhul ei oletata seost ajalise läheduse järgi. Puuduv üksikvastuse viide ei ava viimase vastuse diagnostikat.
 
-`GET /api/chat/conversations/[id]/diagnostics` nõuab korraga administraatoriõigust, vestluse omandit ja mittearhiveeritud vestlust. Vastus on `no-store` ja päringupiiranguga. Koond tuletatakse `ChatTurn` + `ConversationMessage` kirjetest; `?format=md&lang=et` annab automaatselt koostatava Markdowni dokumendi. Iga kirje sisaldab salvestatud küsimust ja vastust, katset, tehnilist olekut, esimest täheldatud tõrget, allikakihtide ID-sid ning piiratud kontrollitõendeid. Fail on allalaadimishetke koopia, mitte taustal muudetav Wordi fail. Raport järgib vestluse olemasolevat säilitust; eraldi andmekoopiat, DB-skeemi ega ajastatud tööd ei lisata. Ühe väljavõtte piir on 1000 pööret / 2000 sõnumit; piiri korral on tulemus nähtavalt **osalise aruandena** märgitud.
+`GET /api/chat/conversations/[id]/diagnostics` nõuab korraga administraatoriõigust, vestluse omandit ja mittearhiveeritud vestlust. Vastus on `no-store` ja päringupiiranguga. Koond tuletatakse `RagAttempt` + `ChatTurn` + `ConversationMessage` kirjetest; `?format=md&lang=et` annab automaatselt koostatava Markdowni dokumendi. Iga kirje sisaldab salvestatud küsimust ja vastust, katset, tehnilist olekut, esimest täheldatud tõrget, allikakihtide ID-sid ning piiratud kontrollitõendeid. Vastuseta katse viide on `attempt:<id>`; vana katset ei asendata uusima `ChatTurn` andmetega. Kvoodist tagasi saadetud katse küsimusetekst võib puududa, sest USER-sõnumit ei kirjutatud. Fail on allalaadimishetke koopia, mitte taustal muudetav Wordi fail. Katsekirje järgib vestluse kustutust `ChatTurn` kaskaadi kaudu. Ühe väljavõtte piir on 1000 katset / 1000 pööret / 2000 sõnumit; piiri korral on tulemus nähtavalt **osalise aruandena** märgitud. Uus katsetabel nõuab §13.6 migratsiooni; vana serveriversiooni aruandel seda tabelit pole.
 
-Diagnoos eristab planeerimist, otsingut, dokumendiidentiteeti, mudelikonteksti, faktivalideerimist, allikate kuvamist ja salvestamist. `BLOCKED` näitab salvestatud blokeerinud kontrolli, **mitte tõendatud algpõhjust**. `NO_FAILURE_OBSERVED` ei ole vastuse sisulise õigsuse PASS. Sisuline õigsus ja algpõhjus jäävad automaatselt `NOT_PROVEN`; neid tuleb kontrollida originaalallika ja vajadusel teise sõnastuse või eraldi/järjestikuse kordusega. Null otsingutulemust ei tõesta allika puudumist korpusest. Aegunud `RUNNING` kasutab sama lease-tuletust nagu `/api/chat/run`; raport säilitab nii algse kui tuletatud oleku.
+Diagnoos eristab planeerimist, otsingut, dokumendiidentiteeti, mudelikonteksti, faktivalideerimist, allikate kuvamist ja salvestamist. `BLOCKED` näitab salvestatud blokeerinud kontrolli, **mitte tõendatud algpõhjust**. `NO_FAILURE_OBSERVED` ei ole vastuse sisulise õigsuse PASS. Sisuline õigsus jääb automaatselt `NOT_PROVEN`; uue katse algpõhjus on `UNKNOWN` ja inimhinnang `NOT_REVIEWED` (vanal diagnostikal algpõhjus `NOT_PROVEN`). Null otsingutulemust ei tõesta allika puudumist korpusest. `RagAttempt` aegumine tuletatakse tema `leaseExpiresAt` järgi, legacy-pööre kasutab endist `/api/chat/run` tuletust; raport säilitab nii algse kui tuletatud oleku. Need ei ole sama aegumistaimer.
 
 `lib/chat/ragDiagnostics.js` kasutab võtmete lubatud loendit: ID-d, räsid, enum-id, tõeväärtused, loendurid ja päriselt toodetud ajastused. Uusi prompt'e, body preview'sid, valideerimiseelset mudelimustandit ega vabatekstilisi planneri ankruloendeid projektsiooni ei lisata. Kärped, puuduvad sektsioonid ja puuduva versioonitõendi väljad on märgitud; `BOUNDED` ei tähenda täielikku toorjälge. Üldine `ChatLog` saab eraldi `rag_diagnostic_log_v1` projektsiooni, et vana 30 võtme piir ei kaotaks validaatorit ja kuvatud allikaid. Kriisifilter kasutab endiselt säilitatud `isCrisis` lippu; üldise privaatsusredaktori piiranguid ei lõdvendata.
 
@@ -877,11 +881,55 @@ Sama parandusahel hoiab selgesõnalise mõõtmisperioodi lahus artikli ilmumisaa
 
 Serverisse mitte jõudnud küsimusel ega salvestuse täielikul ebaõnnestumisel ei pruugi koondis kirjet olla. Need piirid ja puuduv jälg peavad jääma nähtavaks, mitte muutuma automaatselt edukaks tulemuseks.
 
+31.08 F04–F08 järelploki kohalik täiendus lisab `qualitative_contract` projektsiooni: seotud/küsitud nõuded, piiratud põhjuskoodid ning valitud avaliku tõendifragmendi SHA256. `validation.qualitative_gate_checks` salvestab iga nõude kontrollitud vastuseüksuste/kandidaatide arvu, omistamise ja konflikti ning esimese keeldumisvärava loendurid. Need on järjestikuse kontrolli esimesed tagasilükkamised, mitte hilisemate kontrollide sõltumatud tulemused. UI ja MD kuvavad samu loendureid; puuduv vana jälg on teadmata. Mustandit, ankrusõnu ega tooreid väärtusi ei lisata. Seotud 2/2 tähendab ainult seostatud fragmente, mitte automaatset semantilist õigsust: F06/F08 tõid esile eksliku üldise tekstikatkendi sidumise ja järjekorra kontrolli puuduse.
+
+Sama ploki arvuline parandus kannab selgesõnalise nimega võrdlusrühmade seose planeerimisest vastuse kontrollini. Ainult selle kitsalt tuvastatud pere sees võib allika arvude järjekord erineda küsimusest; iga arv peab endiselt siduma oma nime. Vaatluse selge punkt-aasta eristatakse allika ilmumisaastast. Decimal-komad ja aastaarvu järgarvupunkt ei ole arvuseose lausepiirid. Korpus, indeks, dokumendilukk ja üldised lävendid ei muutu. Serveritõend lisatakse [olemasolevasse aruandesse](../../eval/rag-uus75-kontroll-2026-08-31.md); F05–F08 muud diagnoositud puudused ei ole selle muudatusega lahendatud.
+
 31.08.2026 arenduse sihttõend: `TZ=UTC` diagnostika 18 sihttesti, muudetud JS-failide ESLint, `i18n:check`, `git diff --check` ja lõpliku koodipuu build läbisid. Kohalik sünteetilise admini käsitsi brauserirada tõendas ühe päriselt salvestatud küsimuse püsiviite, `technical_retrieval_failure` õige etapi, Markdowni allalaadimise ning 1440 × 1000 / 390 × 844 paigutuse ja Escape-sulgemise. See ei ole edukate RAG-vastuste kvaliteedimaatriks ega omaniku serverisessiooni kontroll.
 
 V1 omaniku autenditud in-app serverikontroll `e9669a36`: kolm põhiküsimust eraldi ja järjest, kokku 3 PASS / 1 PARTIAL / 2 FAIL; automaatne koond näitas kolme kirjet, vana vastuse püsiviide säilis ja MD allalaadimissündmus kinnitati. [Täisvastused ja uuritud põhjused](../../eval/rag-uus75-kontroll-2026-08-31.md). F02 tõrge paljastas puuduva aastarolli/lõppvärava tõendi ja F01 PARTIAL tehnilise läbimise piirangu. Omaniku seejärel nõutud v2 on koodirelease'il `058ad4c3` serveris. Läbisid 23 UTC sihttesti, scoped ESLint, tõlkekontroll, diff-check ning Windowsi ja Linuxi tootmisbuild. Autenditud in-app F02 järelküsimus tõendas otse aruandest allikaaasta 2023 vastuolu nõutud 2019/2022-ga, välja jäänud 2023, autorikinnituse, `source_years_unconfirmed` lõpppõhjuse ning päringuajaloo 6 → otsing0 / mudel0 koos valikupõhjustega. MD allalaadimissündmus kinnitati; 762 × 699 paneelis keritud põhjuseplokk oli loetav. RAG-vastus ise jääb FAIL-iks, sest aastarollide valikureeglit ega korpust selles plokis ei parandatud. Muude tuvastamata algpõhjuste automaatne selgitamine jääb `NOT_PROVEN`.
 
 31.08 järgnenud RAG-parandus jõudis serverisse koodirelease'il `dba8e06d8cb82f23d9d9aaf100469c88eaea915d` (build `kDAqeRc59ock3wOuMJUDt`). Aastarollide paranduse järel paljastunud järgmine tõrge oli renderdatud protsendivahemiku kõrvalejätmine: täielik küsimuseplaan, kuid tõendiga seotud 0/1 fakti. Atomaarse vahemiku paranduse järel läbis F02 kaks sõnastust nii eraldi kui samas vestluses: **4/4 käsitsi hinnatud vastust PASS**, igaühel õige 40–60% / võlanõustamisele suunatute nimetaja / 2019–2022 periood, avatud õige 2023 allikas ning täielik 1/1 sidumine ja kaks kinnitatud piiri. Kahekirjeline koond, esimese vastuse püsiviide, MD allalaadimissündmus ja uute ridade loetavus 762 × 699 in-app vaates kontrolliti. Läbisid 25 diagnostika- ja 52 seotud RAG-sihttesti ning mõlema keskkonna build. [Lõppkontroll ja piirid](../../eval/rag-uus75-kontroll-2026-08-31.md#lõppväljalase-dba8e06d-f02-kaks-sõnastust-eraldi-ja-järjest--44-pass). F01 varasem PARTIAL ja kogu maatriksi NOT_PROVEN ei muutu; samuti jäävad trace'i enda puuduva versioonitõendi väljad nähtavaks. Selle kontrolliringi release/build/index seos on eraldi keskkonnatõend, mitte üldine iga pöörde täielik versioonijälg.
+
+### 13.6 Katsete elutsükkel ja nõuete shadow — kohalik arendus, serveris veel puudub
+
+31.08.2026 kohalik teostus lisab `RagAttemptStatus` ja `RagAttempt` mudeli migratsiooniga `20260831203000_rag_attempt_lifecycle`. Migratsioon on lisav, ajaloolisi katseid sõnumite põhjal ei oletata. Enne seda rakendusversiooni käivitamist peab migratsioon olema rakendatud ja Prisma klient genereeritud. Selle lõigu kontrollhetkes pole migratsiooni üheski DB-s käivitatud ega uut koodi serverisse viidud.
+
+`lib/chat/ragAttemptStore.js` hoiab `(chatTurnId, attempt)` unikaalsust, sequence-CAS-i ja päringupõhist südamelööki. Lease vaikimisi 15 minutit (`CHAT_TURN_LEASE_MS`); südamelöök 30 sekundi järel. Olemasolev `research-worker` kontrollib aegunud katseid käivitumisel ja seejärel 60 sekundi järel, loeb expiry sama vestlusluku all uuesti ning ei sulge uuemat katset. `finally` peatab töötaimeri, kuid ei ole protsessi tapmise järel püsistuse garantii. Aegumise koristaja ei vabasta vana hetkepildi järgi kasutusreservatsioone; nende säilitus jääb kasutusarvestuse teenusele. Arveldusvõti on endiselt `scope + clientTurnKey`, mitte katse ID.
+
+`ragAttemptEvidence.js` salvestab ainult lubatud etappe/põhjuseid, ajastusi, ID-sid, loendureid ja räse. Kuni 12 eraldi mudelikutsest säilib tegelikult saadetud sisendi ja sätete räsi, seadistatud mudel ning vastusest saadud tegelik mudel; puuduv vastus ei saa oletatud mudelinime. Etappide ja kutsete kärped on loendatud. Build-ID külmutatakse Nexti kompileeritud koodi sisse ja kattub `BUILD_ID`-ga; Git SHA salvestatakse ainult puhta Git-puu build'il. Määrdunud või Gitita build'i SHA jääb teadmata. Indeksi/registri põlvkonna väljade tootja pole selle plokiga lisatud: puuduvat versiooni ei täideta viimase health-päringu oletusega. Uut mudelikutsumust ega prompt'i/sätete muutust see jälg ei lisa.
+
+`questionRequirements.js` lisab eraldi `question_requirements_shadow_v1` vaatleja. Ta loeb algset kasutajaküsimust (taastamisrajal mitte sünteetiliselt laiendatud päringut), säilitab UTF-16 poolavatud algtekstivahemikud ja eristab piiratud reeglitega etteantud protsendi tõlgendust, aja-, arvulist ja järjekorranõuet. Sõnaselgelt artikli pealkirjaks märgitud tsitaat ning kitsas allikat kirjeldav „…, mida võrreldakse … artiklis” ei tekita uusi shadow-nõudeid. Iseseisev „ja mida artiklis võrreldakse?” säilib. Vaade on `BOUNDED_HEURISTIC`, mitte täieliku keeleanalüüsi garantii. Toorobjekt ei lähe püsijälge; sinna jõuavad ainult räsi, liigid, vahemikud ja loendurid. Olemasolev `semantic_turn_contract.requested_facts` jääb ainsaks tootmise nõuete autoriteediks; kõik uue vaatleja `used_for_*` lipud on `false`. Shadow ei lahenda veel F05/F08 tootmisplanneri ega semantilise validaatori puudusi.
+
+Kohalik tõend: 194 asjakohast RAG-sihttesti läbisid UTC-s; kahe viimase lisakontrolliga katsete/nõuete/diagnostika 49 testi läbisid uuesti (kokku 196 eri testi). Muudetud failide ESLint, tõlgete kooskõla, Prisma validate/generate ja lõpliku koodipuu tootmisbuild läbisid (kompileerimine 33,8 s). Testides kasutati süstitud sünteetilisi sõltuvusi, mitte päris DB-tehinguid ega providerit. DB-migratsioon, protsessi tapmine/reaper, päris konkureerivad tehingud, katkestatud SSE, autenditud aruande uus katserada ja F04 serverivastus on `NOT_PROVEN`. F05–F08 sisuline parandus, täielik kanooniline nõuete mudel, kandidaatide valikuobjekt ja kontrollitud replay-snapshot jäävad järgnevateks plokkideks.
+
+### 13.7 Teadaoleva protsendi tähendus ja viidatud uuringuperiood — kohalik F05 parandus
+
+31.08 jätkuplokk muudab tootmise olemasolevat `requested_fact_slots` → `semantic_turn_contract.requested_facts` lepingut, mitte §13.6 shadow autoriteeti. „Mida tähendab N%?” annab `text_relation` + `payload_kind: known_value_interpretation` ja küsimusest pärit `known_anchor`. Uuringu ajaküsimus annab eraldi `timepoint` + `referenced_study_period`; protsent ei kandu selle `explicit_values` hulka. Klauslisisene arvude sidumine väldib ka kahe eri tähendusküsimuse ankrute segamist. Selgelt kinnitatud autori algtekstispann maskeeritakse sisutermidest, kuid säilib dokumendiidentiteedis. Plannerisse ei lisata allika vastusearve, sugu, vanust, sagedust ega uuringu õiget perioodi.
+
+`knownValueSemantics.js` on piiratud ühine tõendi- ja vastuseparser. See lubab kontrollitud otsese nimetaja või sõnaselge „… seas: selles rühmas …” konstruktsiooni, ühe vanuse/ühiku, sihtrühma, küsitletute tingimuse, tuntud nähtuse ja sageduse. Tundmatud grammatikaosad, teine nimetaja/predikaat ja ebamäärased kvalifikaatorid ei saa pelga märksõnakatte alusel kinnitust. Toetatud keel/konstruktsioonid on piiratud; see ei ole üldine semantilise tõlgenduse garantii. Ühes lauses olevad sõltumatud tähendus- ja ajaväited saab enne vastusega sidumist eraldada aatomväideteks.
+
+Viidatud uuringuperiood seotakse sama body sees esmalt kinnitatud tähenduspropositsiooniga, mitte üksnes sama protsendinumbriga. Klauslite/lausepiiri ületamisel on nõutud kummagi poole üks ja sama bibliograafiline viitevõti. Viite aastaarv ei saa uuringu ajaväärtuseks; mitme uuringu või viitega määramatu seos jääb lubamata. Aega võib küsida enne tähendust: sõltuvus tuvastatakse nõude indeksi, mitte töötlemisjärjekorra järgi. Vastus võib kasutada küsimusega seotud „uuring / viidatud uuring” viidet, kuid teine võistlev uuring või vastuoluline lisaväide ei tohi ühe õige lause taha peituda.
+
+Kinnitatud payload läheb samal kujul generation-juhisesse ja validaatorisse (`exact_numeric_fact_v7`). Tõendi puudumine ja vastuolu on erinevad tulemused; vastuolulist body't ei kustutata sobiva body kõrval `null`-filtriga. Vastuolu kandub `qualitative_evidence_conflict` põhjuse ja nõuete indeksitena kanoonilisse jälge. Vastuse kontroll eristab kontrollimatut tähendust, valet populatsiooni/vanust, nähtust, sagedust, uuringuperioodi ja vastuolulist lisaväidet. Püsijälge lähevad liigid, sõltuvusindeks, loendurid ja fragmendiräsi, mitte payload'i toorsisu ega allikatekst.
+
+F05 aktiivne originaal kontrolliti serveri GET-lugemisega; chunk-räsi kattus külmutatud manifestiga. 160 seotud UTC-sihttesti (sh 17 uut tüübitud lepingu testi), scoped ESLint, i18n, diff-check ja lõplik tootmisbuild läbisid (kompileerimine 34,1 s; build `bdf431eb-7541-4bad-96a8-6a284e437e26`). Uusi pärisvestluse küsimusi, commit'i, push'i, deploy'd ega migratsiooni ei tehtud. F05 serverivastus on endiselt `NOT_PROVEN`; ajalooline 1 PASS / 9 FAIL ei muutu. F06 jaotuse/loetelu, F07 sõltumatu autoriteema valiku ja loenduste ning F08 suunatud järjekorra parandus on eraldi järgmised plokid.
+
+### 13.8 Jaotus, liikmeloetelu ja toetatud osavastus — kohalik F06 plokk
+
+Teostus arendati `C:/Users/rauds/Desktop/SotsiaalAI-repair-a` harus `codex/repair-a` ning integreeriti omaniku käsul „vii maini ja testi” kohalikku main'i. P0/F04/F05 muutmata 33-faililine sõltuvusbaas on commit'is `d4b31e9a1`, 15-faililine F06 delta commit'is `32e25ad2b`; baaside võrdsus ja F06 rebase'i-eelse/järgse Git-puu samasus kontrolliti. Kõrvalisi tõendikaustu ega omaniku analüüsifaile koodipaketti ei lisatud. Serveripaigaldust ega migratsiooni ei tehtud; järgnev ei ole kogu RAG-i ega autenditud runtime'i DONE.
+
+`questionPlanner` eristab nüüd „kuidas jaotati / jagunesid” puhul `group_distribution` ning küsitud sekkumis-/kontrollrühma täieliku liikmesuse puhul `group_membership` nõuet. Küsimusest kanduvad nõude indeks, rühmaroll ja olemasolul projekti ulatus; arvud ega kohanimed ei tule küsimuse vastusevõtmest. Eitav või toetamata nõue ei muutu jaatavaks liikmesusnõudeks. `groupFactSemantics.js` seob piiratud eestikeelses konstruktsioonis koguarvu, vahetult järgneva „nendest / ülejäänud” jaotuse, tegevuse polaarsuse ja täieliku nimehulga. Ühine järelosa säilib: „Kuressaare ja Põltsamaa linn ning Põlva vald” tähendab kahte linna ja ühte valda nende ajalooliste nimedega. Näited ega loetelu osad ei tõenda täielikkust; vale summa, duplikaat, vastuolu, teine projekt või kontrollimata väiteraam ei anna selle parseri kaudu kinnitust.
+
+`ragContext` kannab iga teksti päritolu edasi eraldi body-provenance'ina. Sama 120 märgi algus ei ole enam deduplitseerimise alus: hiljem erinev tekst, erinev versioon või staatus peab kontrollini jõudma. `groupFactContract.js` nõuab kõrge kindlusega dokumendiidentiteeti, aktiivseks märgitud uurimis-/ajakirjaallikat, lubatud küsimuse ulatust ning täpset seost renderdatud ja algse chunk'i vahel. Locator sisaldab dokumendi/allika/chunk'i ID-d, tagastatud `document_version`-it, chunk'i ja fragmendi räsisid ning mõlema UTF-16 koordinaadialuse vahemikke. Validaator kontrollib nõude indeksit/rolli/ulatust, täpset viidatud fragmenti, tervikliku body vastuolusid ja renderdaja sõltumatut algteksti positsiooniseost. Kärpimine ei või kaotada algse väite tingimuslikkust. Kui URL-i kuvateisendus ei luba täpset algtekstiseost tõendada, ei leiutata chunk'i offset'i.
+
+Lubatud F06 vastus koostatakse kinnitatud payload'ist deterministlikult ET/EN/RU-s; vabalt genereeritud mustandit ei lubata pelga arvude või nimede kattumisega. `responsePolicy.js` eristab täielikku nõuete katet ja tegeliku teksti avaldamisluba. Ohutu osavastuse puhul jääb `passed=false`, `semantic_outcome=PARTIAL`, kuid räsiga seotud kontrollitud vastus säilib koos toetava allikaga. Puuduv nõue on indeksina kirjas ja tekst ütleb, et täielik loetelu jäi kinnitamata. Recovery, allikavalik, JSON/SSE ning salvestamise sisend kasutavad sama vastust; hilisem keeld või vastuseteksti muutus tühistab loa. Seda luba ei rakendata teistele üldistele RAG-radadele.
+
+Olemasolev diagnostika ja Markdown-eksport säilitavad avaldamisotsuse, puuduvad nõuded ning piiratud locator'id, mitte liikmenimesid ega uut toorallikateksti. Osavastuse kontrollietapp on `PARTIAL`, mitte võltsitud `PASSED`; allikatoe ID-d säilivad ka koondjäljes. Sisuline õigsus ja algpõhjuse tõendatus jäävad automaatraportis `NOT_PROVEN`. Kontroll: 76 kitsast UTC-sihttesti (21 F06, 17 F05, 8 F04, 27 diagnostika ning 3 konteksti/kaaneteksti kaitset), scoped ESLint, i18n, diff-check ja tootmisbuild PASS; build-ID `a034e3d5-a9fb-48e3-ae23-9dec195128b9`, kompileerimine 46 s. Handleri testis oli salvestaja asendatud sünteetilise sõltuvusega; see ei tõenda DB-d ega autentitud UI-d.
+
+**Piirid ja väljalaske värav:** parser on piiratud konstruktsioonide tugi, mitte kõigi loendite, keelte, eituste või projektilugude üldine mõistmine. Ta ei tõenda kogu dokumendi/korpuse konfliktivabadust; tundmatu konstruktsioon võib endiselt vajada recovery't. Locator tõendab tagastatud dokumendiversiooni, mitte sõltumatut registri aktiivversiooni uuesti kontrolli avaldamishetkel. Uut ACL-/aktiivversiooni fence'i, üldist olukorramälu ega kõigi RAG-radade osavastusepoliitikat siin ei lisatud. F06 kaks sõnastust eraldi ja samas pärisvestluses, allikapaneeli avamine ning diagnostika/MD kooskõla on `runtime: not_run`. Katsete varasem migratsioon ja selle käsitsiväravad jäävad enne väljalaset nõutuks. Commit, main-integratsioon, push ja deploy on tegemata; järgmised sisulised plokid on F07 ja F08. Tagasipöördumine tähendab selle nimelise F06 koodiploki eemaldamist, mitte varasema P0/F04/F05 töö ega tõendiandmete kustutamist.
+
+**Main-integratsiooni järelkontroll:** 98 olemasolevat sihttesti PASS UTC-s: 73 F04/F05/F06/diagnostika, 4 nõuete shadow, 18 katsete elutsükli ja 3 konteksti/kaaneteksti testi. Route'i importiv elutsüklitest käivitub Node'i `--conditions=react-server` tingimusega; esimene ilma selleta käivitatud laadimine katkestati `server-only` kaitsega, rakenduskoodi selle pärast ei muudetud. Prisma validate, i18n ja diff-check PASS. Sama muutumatu koodipuu varasemat edukat build'i ei korratud commit'ide mehaanilise eraldamise ega dokumentatsiooni pärast. Kohaliku PostgreSQL-i read-only kataloogipäring kinnitas, et `RagAttempt` tabel puudub; päris chat-rada ei nimetata läbituks. F07 arendus jätkub puhtas main'iga sünkroonitud repair-a tööpuus.
 
 ## 14. Dokumendi ja artikli ingest
 
@@ -1335,7 +1383,7 @@ Admini RAG-lehe käsitsi käivitatav enesetest kontrollib ühendust, otsingut ja
 | lemma-shadow stale | background rebuild | tootmisranking jätkub ilma shadow'ta |
 | KOV mitmetähenduslik | täpsustusküsimus | linna/valda ei oletata |
 | exact dokument või sama prioriteediga pealkirjapere õde ei kinnitu üheselt | täpsustus või tõendipuudus | naaberdokumendi fakte ei kasutata |
-| üks faktislot puudu | recovery/osavastus/puuduv info | mudel ei täida üldteadmisega |
+| üks faktislot puudu | rajapõhine recovery; range all-slot faktikontroll võib anda kogu vastuse keeldumise | garanteeritud ohutu osavastuse säilitamine ei ole veel üldine omadus; vt §27 |
 | arv on olemas, kuid seos, ulatus, kvalifikaator või üksühene slotipaigutus ei kinnitu | fact validation fail | vale või mitmeti seostatav number ei jõua ekraanile |
 | tegevus õige objekti juures puudub | qualitative validation fail | semantiliselt vastupidist tegevust ei esitata |
 | RAG timeout | tehnilise töötluse veateade/retry | ei öelda „materjalides pole” |
@@ -1543,3 +1591,520 @@ Enne kaardi muutmist kontrollitakse tegelikku koodi. Dünaamilisi korpusearve, l
 | partial | konkreetse otsingulepingu osaline tulemus; mitte kvaliteedihinne |
 | degraded | vähemalt üks oluline retrieval-kanal oli rikkis või fallback'is |
 | NOT_PROVEN | käitumist ei ole nõutud runtime-rajal tõendatud; ei tähenda automaatselt FAIL-i |
+
+## 27. Omaniku kolme arhitektuurianalüüsi märkmed — ettepanekud, mitte teostus
+
+### 27.1 Ulatus ja hinnangu piir
+
+31.08.2026 analüüsiti kolme omaniku edastatud teksti: [A — sihtarhitektuur ilma GraphRAG-ita](C:/Users/rauds/.codex/attachments/e1cfc394-ac4a-4efa-a052-59a92927a15b/pasted-text.txt), [B — mõõdetav „10/10” standard](C:/Users/rauds/.codex/attachments/eb76ef20-60bc-42a3-9dd5-1d86640bed53/pasted-text.txt), [C — range kontroll ilma põhjendamatu keeldumiseta](C:/Users/rauds/.codex/attachments/557b5a6a-6061-4d01-bbb3-e1d0fa2acdd5/pasted-text.txt). Need täiendavad üksteist: A põhjendab arhitektuuri, B kirjeldab kvaliteediväravaid, C lisab osavastuse ja piiratud paranduse põhimõtte. Kõige vajalikum uus rõhuasetus on C; üksikute rangete parserite lisamisest ei piisa, kui lõppotsus kustutab endiselt kogu vastuse.
+
+Samal päeval lisandus omaniku täiendus tavakeelse mure mõistmisest enne küsimuselepingu koostamist; selle eraldi nõuded ja piirangud on §27.7-s. See laiendab sisendikihi sihti, mitte ei märgi uut kihti teostatuks.
+
+Hinded „8,5–9/10”, „ideaali lähedane” ja „10/10 saavutatav” on hinnangud, mitte mõõtmistulemused. Külmutatud F04–F08 valimi 1 PASS / 9 FAIL on konkreetse vana versiooni kümne vastuse tulemus, mitte kogu RAG-i 10% täpsus ega kohaliku uue koodi hinnang. Selles dokumentatsiooniringis mõõdeti kohalik HEAD, värske `origin/main` remote-ref ja serveri HEAD: `5074b5e03f9fa7708b6ad3db9f8bb9ca243c8d08`; kohalikud commit'imata F04/F05/P0/P1 muudatused on kirjeldatud §13.6–13.7. See ei ole uus teenuse-, vestluse- ega kvaliteedikatse.
+
+### 27.2 Võrdlus kontrollitud kohaliku teostusega
+
+| Ettepanek | Mis on koodis olemas | Mis sellest veel ei järeldu |
+|---|---|---|
+| Üks kanooniline küsimuseleping | `semanticTurnContract.js` edastab `requested_facts`; `questionRequirements.js` on eraldi shadow; F05 eristab known-anchor'i ja uuringuaega. | Täielik kõigi küsimuseliikide/keelte `AnswerRequirementContract` pole sellega valmis. Uut konkureerivat nõuete autoriteeti ei tule luua. |
+| Kandidaat enne admission'it | `knownValueSemantics.js` kontrollib piiratud konstruktsioone ja tagastab ADMITTED/AMBIGUOUS/UNCHECKABLE; assembler säilitab tuvastatud konfliktid. | Sama parseri kasutamine allikas ja vastuses ei ole sõltumatu semantiline kontroll. Ühine viga võib mõlemast läbi minna; §13.7 ei tõenda üldist proposition-verifier'it. |
+| Kõik ohutud osaväited kasutajani | Valideerimine säilitab trace'is seotud ja puuduvate nõuete indeksid. | `factContract.js:validateExactFactAnswer` tagastab puuduliku tõendikatte või kvalitatiivse seose korral `requestedFactCoverageFailureReply`; `buildRequestedQualitativeSlotContract` lubab juhise alles täielikul kattel. Üldine väitepõhine PARTIAL-poliitika ei ole veel tagatud. |
+| Katsete täielik jälgitavus | Kohalik RagAttempt, immutable fence, lease/reaper ja piiratud versiooni/räsiprojektsioon (§13.6). | Migratsioon/runtime on kontrollimata; indeksi/registri põlvkonna tootja ja kontrollitud replay-snapshot pole valmis. Võtmeta/eriharud pole automaatselt kaetud. |
+| Deterministlik lõppvastus ja allikavalik | Olemas on kitsad deterministlikud taastamisrajad ja allikapiirangud. | Kõigi admitted väidete üldine mallipõhine renderer ning analüüsides kirjeldatud kanooniline `SourceSelectionState` ei ole nende olemasoluga tõendatud. |
+
+Kolm täpsustust väldivad praeguse süsteemi liigset lihtsustamist. Dokumendilukk kasutab juba alternatiive (pealkiri / kanooniline pealkiri / usaldatud autorikinnitus / autor+aasta), mitte kõigi tunnuste korraga nõudmist; F07 küsimus on sõltumatult tõendatud autor+teema alternatiivis. `recoverSupportedReplyAfterNumericValidation` eemaldab kitsas rajaklassis tõendamata numbrilise lisaväite; see pole sama mis puuduva nõude ohutu osavastus. `conversationalRecovery.js` tunneb juba `technical_retrieval_failure` seisundit ja retry-rada; vaja on nende kooskõlalist kasutamist, mitte kõiki olekuid nullist luua.
+
+F05 parandus sulgeb mõõdetud väärseosed, kuid lisab ka konservatiivseid `UNCHECKABLE` piire. Kas põhjendamatuid keeldumisi päris kasutuses vähenes, vajab eraldi vastusekatet ja parafraase mõõtvat kontrolli; rangem kontroll üksi seda ei garanteeri.
+
+### 27.3 Vajalikud täpsustused enne teostamist
+
+1. **Keskne vastuseotsus, mitte validaatorite eemaldamine.** Nõude-, dokumendi-, otsingu-, tõlgenduse- ja valideerimiskihid tagastavad struktureeritud tulemuse. Üks `ResponsePolicy` koostab kasutajavastuse ja otsustab täielikkuse/täpsustuse. Sisu tulemus ja tehniline tööseis peavad jääma eraldi telgedeks: näiteks `PARTIAL + DEGRADED` või `FULL + DEGRADED` võib olla õige, kui toimivast kanalist saadi piisav kontrollitud tõend. Tehnilist katkestust ei nimetata tõendipuuduseks.
+
+2. **Luku ulatus peab järgima sõltuvusi.** Väitepõhine arvukontroll ei õigusta kõikide lukkude kohalikuks muutmist. Sessiooni, omandi, privaatsuse, avaldamisõiguse ja vigase juhtimisoleku piir võib peatada kogu päringu; ACL/publikufilter peab piirama juba otsingut, mitte ainult avaldatavat väidet. Kasutaja valitud konkreetne dokument piirab kõiki sellest sõltuvaid väiteid. „Lai discovery” tähendab lubatud korpuse sees kandidaatide leidmist, mitte teise teose faktiga exact-source küsimuse täitmist. Graaf ega dokumenditekst ei anna süsteemijuhiste või tööriistade juhtimisõigust.
+
+3. **Osavastus on sõltuvuste suhtes terviklik alamhulk.** Säilitada saab kasuliku, lubatud ja iseseisvalt mõistetava väite koos kohustusliku subjekti, nimetaja, ühiku, aja ja tingimustega. Näiteks F05 protsenti ei avaldata ilma selle sihtrühmata; F06 koguarvu/jaotuse võib säilitada, kui nimeloend puudub ja jaotus on eraldi tõendatud. Puuduv osa ja piirang tuleb nimetada. Uus allikakonflikt, versioonivahetus või õiguse muutus võib varem kinnitatud väite kehtetuks teha: `VALIDATED_CLAIM_PRESERVATION` ei tähenda tingimusteta ega igavest säilitamist. Ka lõpp-renderdus ja kuvatavad allikad peavad vastama tegelikult avaldatud alamhulgale.
+
+   See on mitmekihiline muutus: `mainResponseHandler.js:resolveDisplayedSources` eemaldab praegu `passed:false` korral kõik allikad ning `factBufferEnabled` hoiab faktiraja teksti puhvris. Ainult keeldumisteksti asendamisest ei piisa; osavastuse otsus, lõppteksti uus valideerimine, attribution, SSE, püsistus ja taastamine peavad kasutama sama kinnitatud väitehulka. Seda ei tohi lahendada globaalse `passed:true` sildi andmisega osaliselt kontrollitud vastusele.
+
+4. **Dokumendi mitmetähenduslikkus ei võrdu otsingukeeluga.** Lubatud kandidaatide sisust võib otsida eristavaid tunnuseid juba enne lõplikku valikut. Kui ühesust ei saavutata, näidatakse teosevalikut. Autor + kõrge retrieval-skoor või konkurendi vasturääkivuse puudumine ei ole piisav lukutõend: vaja on sõltumatut autori/teema kooskõla enne trusted-ID tugevdamist. Puuduv pealkiri võib olla advisory ainult siis, kui seda ei nõuta identiteedi kinnitamiseks; puuduv ligipääsu- või aktiivversiooni tõend ei ole lihtsalt advisory.
+
+5. **Parandusvajadus vajab eelarvet ja lõpetamise põhjust.** `StateDeficit` võiks kanda nõude/alamnõude ID-d, puuduva omaduse tüüpi, lubatud järgmisi samme, juba proovitud samme ja tõendiviiteid. Ühine päringueelarve piirab aega, token'e, kulu ja kordusi; no-progress tähendab uut samasisulist tõendit või sama lahendamata puudust, mitte pelgalt madalat skoori. Õigustatud retry arvestab eraldi ajutist teenusetõrget. FTS → naaberlõik → vector → verifier on näide, mitte kõigi päringute kohustuslik jada. Piiri saavutamine annab põhjusega PARTIAL/täpsustuse/keeldumise, mitte lõputu ringi.
+
+6. **Tõendi viit ja tõlgenduse kontroll jäävad eri asjadeks.** Üldistatav `EvidenceLocator` vajab vähemalt dokumendi/versiooni/chunk'i identiteeti, täpset teksti- või tabelivahemikku, offset'i alust ja räsi. Tabelirea veerupäis, joonealune märkus ning trüki- ja faililehekülg vajavad eraldi päritolu. Fragment-räsi üksi ei ole taasesitatav locator. Deterministlik kontroll sobib tõendatud piiratud grammatika jaoks; keerulisele seosele vajalik lisakontroll peab dokumenteerima sõltumatuse ja ühise vea riski. Kahe sama mudeli nõusolek ei ole iseenesest sõltumatuse tõend. ADMITTED tähendab toetust konkreetsele allikaväitele, mitte allika absoluutset tõde või kehtivust.
+
+7. **Kiire rada peab säilitama faktid ka renderdamisel.** Malli või constrained renderer'i võib valida alles admitted väidetest koos piisava tõendikattega. See peab säilitama nimetaja, polaarsuse, kvalifikaatorid, ajarolli, osavastuse piirangu ja claim–citation seose kõigis toetatud keeltes. Enne renderduskontrolli ei väljastata exact-fact mustandit SSE-na. Kiirust mõõdetakse, mitte ei eeldata; tundmatu grammatika korral jäetakse nõue kontrollimatuks või kasutatakse eelarvestatud kontrolli, mitte ei laiendata lubamist vaikimisi.
+
+8. **Allikavalik on serveripoolne revision'iga olek.** „2”, „mõlemad” ja pealkirjaga jätk peavad seostuma sama vestluse, küsimuse operatsiooni, valiku väljastanud sõnumi ja kehtiva revisjoniga. Vaja on aegumist, tarbimise/idempotentsuse ja uue valikuga asendumise reegleid; kliendi ordinal ega vana sõnumi JSON ei ole autoriteet. Valiku parandamine ei tohi muuta dokumendi leidmist fakti tõendiks. See vajab eraldi andmemudeli ja kasutajavoo teostusplokki.
+
+9. **Mõõdetav jälg, mitte piiramatu salvestamine.** Säilitada eraldi esimene täheldatud tõrge, blokeeriv kontroll ja juurpõhjuse tõendatus. Release/build/model/prompt/index/validator seose puudumine tuleb nähtavaks jätta. Räsid ei taasta toorsisendit; taasesitus eeldab volitatud, versioonitud snapshot'i ja selget säilitusaega. Pärisliikluse shadow-kogumine, diagnostika laiendatud sisu ning administraatori õigused vajavad eraldi kokkulepitud ligipääsu/TTL/auditi lahendust. Need analüüsid ei ole luba tootmiskasutajate sisu kogumiseks.
+
+10. **GraphRAG on valikuline kandidaatide pakkuja.** Graaf võib aidata leida dokumente ja seoseid, kuid edge peab jõudma sama source/version/span ja admission-lepinguni. Juba olemasolevat graph-lite'i ei võrdsustata tekstides mainitud uue GraphRAG/IC-2 teostusega. Vajadus, täpsus ja kulu tuleb tõendada oma korpusel; seda ei saa tuletada teise valdkonna benchmark'ist.
+
+### 27.4 Kvaliteedikriteeriumid ja otsust vajavad valikud
+
+Põhjendamatu keeldumine peab olema eraldi vealiik, kuid mõõtmine ei tohi innustada tõendamata vastamist. Vajalik on koos näidata:
+
+- **FalseRefusalRate:** üldise keeldumise saanud, sõltumatult vastatavaks hinnatud küsimused / kõik selliselt vastatavaks hinnatud küsimused. Teadmata vastatavus ei lähe vaikimisi nimetajasse; „allikas on korpuses” üksi ei kinnita kõigi nõuete vastatavust.
+- **Vastusekate ja faktitäpsus koos:** kui palju nõutud iseseisvaid väiteid jõudis kasutajani ja kui palju avaldatud väiteid on õigesti toetatud. Ainult vastatud juhtumite accuracy või ainult vähene keeldumine on eksitav.
+- **Ohutu osavastuse taastamise ja täpsustuse lahendamise määr:** eelnevalt määratletud sobivate juhtumite suhtes, mitte kõigi päringute segatud protsendina. `AvoidableAbstention` ja `FalseRefusal` tuleb kas eristada või üheks mõõdikuks koondada, mitte topelt lugeda.
+- **LockInducedFailureRate:** ainult tuvastatud põhjusliku lukuveaga juhtumid; blokeeriva värava logi üksi ei tõenda juurpõhjust. **TimeToFirstValidatedClaim** ei ole mudeli esimese token'i aeg. Lisaks kogu vastuse p50/p95, kulu ja katkestuste määr küsimuseliigi, riski ning ET/EN/RU lõikes.
+
+Release'i väitel peavad olema külmutatud juhtumid ja korpuse/prompt'i/mudeli/validaatori versioonid, valimi suurus, hindamisrubriik ning eraldi seni parandusteks kasutamata kontrolljuhtumid. Null viga määratletud kriitilises komplektis on vastuvõtutingimus, mitte universaalne eksimatuse garantii. U75/Golden37/põhiküsimuste tulemusi ei summeerita uueks tervikhindeks ilma kattuvuse ja hindamisaluse kontrollita; mõõtmata juhtumid jäävad `NOT_PROVEN`.
+
+Analüüsi B nõuet käivitada igal release'il kõik smoke/U75/Golden37/turva/täiskorpuse/shadow kontrollid ei võeta automaatselt töökorraks: see läheks vastuollu `AGENTS.md` riskipõhise sihttestimise ja käsitsi runtime-kontrolli reegliga. Arendusplokis kontrollitakse muutuse riski; laiema release-kvaliteedivärava ulatus lepitakse eraldi kokku. Dokumentatsiooniring ise ei vaja uusi teste ega build'i.
+
+Enne järgmisi vastavaid teostusplokke vajavad kinnitamist eelkõige osavastuse lubatud riskiklassid, ajakulu/tokeni/kulu eelarved, kvaliteedikünnised ja valimid, kontrollitud snapshot'i TTL ning allikavaliku oleku elutsükkel. Need märkmed ei muuda aktiivset tööjärjekorda ega anna commit'i/push'i/deploy/migratsiooni luba. GraphRAG ei ole nende baaslepingute arendamise eeltingimus.
+
+### 27.5 Viidatud uurimuste kontroll
+
+Kuus linki kontrolliti 31.08.2026 algallikatest. Need toetavad alljärgnevaid piiratud suundi, mitte SotsiaalAI hinnet või käitumisgarantiid:
+
+- [PAVE](https://arxiv.org/abs/2603.20673) toetab küsimusepõhiste aatomfaktide eraldamist ja vastuse toetuse kontrolli/parandamist. Autorid kirjeldavad tulemust proof-of-concept'ina; sellest ei saa järeldada üldist veatut proposition-extraction'it.
+- [ReClaim](https://aclanthology.org/2025.findings-naacl.55/) toetab peenemat viite–väite sidumist. Abstract'i 90% on viitetäpsus, mitte kõigi vastuste õigsus ega SotsiaalAI tulemus.
+- [ERA](https://arxiv.org/abs/2604.20854) eristab ebakindlust ning mudeli siseteadmise ja leitud konteksti konflikti. See ei tõenda meie tehniliste ja semantiliste tõrgete täielikku diagnoosi.
+- [Uplift-RAG](https://aclanthology.org/2025.findings-emnlp.511/) eristab relevantsust kasulikkusest mudeli siseteadmise suhtes. See kasulikkus ei võrdu exact-source nõude tõendikatte või avaldamisõigusega.
+- [MIRAGE](https://aclanthology.org/2025.findings-naacl.157/) toetab retrieval'i ja generation'i eraldi hindamist, sh müra ja väärinterpretatsiooni mõõtmist. Eesti keele ja meie korpuse toimivust tuleb mõõta eraldi.
+- [Polümeeride GraphRAG/VectorRAG võrdlus](https://arxiv.org/abs/2602.16650) kirjeldab precision/recall kompromissi oma PHA-artiklite korpusel. Sellest ei tulene sama paremusjärjestust või GraphRAG-i vajadust SotsiaalAI-s.
+
+Analüüsis A mainitud **RAC** ei ole eraldi identifitseeritava viitega seotud; viidatud PAVE ei ole piisav alus selle nimetatud töö omistamiseks. See märge tähendab kontrollimata viidet, mitte väidet, et RAC-nimelist uurimistööd ei eksisteeri. Samuti ei ole nende allikatega tõendatud üldistused „parandab peaaegu kõiki RAG-i põhipuudusi” või „enamik RAG-e piirdub lihtlogidega”.
+
+### 27.6 Järgmiste paranduste ulatus: F06 → F07 → F08
+
+Omaniku 31.08 täpsustusel on järgmised kolm parandusteemat siin eraldi välja toodud. Aktiivset järjekorda ja teostusseisu kannab endiselt [SotsiaalAI.md S1.0](../platvormi%20arendus/SotsiaalAI.md#s10-aktiivne-tööots--loe-uues-aknas-seda-mitte-kogu-s1); allpool on tööde tehniline ulatus, mitte valmis paranduste loend.
+
+1. **F06 — jaotus ja loetelud.** Siduda rollid, arvud, jaotus ning täielik liikmeloetelu tegeliku tõendisisuga. Pealkiri, autoririda ega teine samateemaline arv ei tohi asendada küsitud jaotust või nimesid. Kontrollitud koguarvu/jaotuse ohutu osavastus ja puuduva nimeloetelu piirang tuleb hoida eristatavana.
+2. **F07 — autorivalik ja loendused.** Kinnitada autor koos sõltumatu sisuteksti teemakattuvusega enne dokumendi usaldatud ID tugevdamist. Mitme sobiva teose korral pakkuda kasutajale valikut ja siduda täpsustus valitud teosega, mitte nõuda tingimata pealkirja või ilmumisaasta etteteadmist. Leibkondade ja inimeste loendused tuleb siduda eraldi õigete subjektidega; dokumendi leidmine üksi ei tõenda arve.
+3. **F08 — järjekorraseosed.** Siduda võrreldavate lähenemiste õiged subjektid ning suunatud ja samaaegne järjekord: „enne”, „pärast” ja „samal ajal” ei ole vahetatavad. Samade märksõnade olemasolu ei tohi lubada ümberpööratud seost. Allikat kirjeldav kõrvallause ei tohi muutuda kasutaja lisaküsimuseks.
+
+Aluseks on [F04–F08 kontrolli leiud ja F05-järgne lahtine töö](../../eval/rag-uus75-kontroll-2026-08-31.md). Need on eraldi sidusad parandusplokid; nende kirjapanek ei tähenda teostust, uut testitulemust ega väljalaset.
+
+### 27.7 Tavakeelne mure enne küsimuselepingut — sisendikihi täiendus
+
+Alus: [omaniku 31.08 täiendus](C:/Users/rauds/.codex/attachments/2ad72648-9a2d-43fc-89d5-178032c25b26/pasted-text.txt). **Inimene ei pea teadma teenuse ametlikku nimetust, et abi küsida.** Elulise mure, väite, lühifraasi ja jätkuküsimuse mõistmine on esmane tootenõue, mitte täppisotsingu kõrvalfunktsioon. See on kavandatav kvaliteedinõue; siin ei mõõdetud kasutusjaotust ega tõendatud üldist tavakeele mõistmist.
+
+**P1 kavandatav jaotus:** `P1A UserMeaningFrame → P1B InterpretationCandidates → P1C AnswerRequirementContract`. See on loogiline vastutusjaotus, mitte nõue lisada igale küsimusele kolm järjestikust mudelikutset. Tulemuseks peab jääma üks kanooniline küsimuseleping. Täpne allikaküsimus, valikuvastus ja lihtne jätk ei pea läbima elulise olukorra oletamist.
+
+Praegune alus ei ole tühi: päringu morfoloogia ning algteksti ja nimeankrute säilitamine on kirjeldatud §4–6-s. `questionPlanner.js:detectLifeSituation` sisaldab juba rahapuuduse, eaka lähedase hooldusmure ja puudega lapse pere kolme piiratud reegliperekonda, mis ei nõua küsimärki. Planner pakub nende alusel `life_situation_guidance` rada; fikseeritud skoor ja üks `life_situation` koos teemadega ei ole siiski üldine tähendushüpoteeside mudel. See on koodivaatlus, mitte uute näidete runtime-katse.
+
+`semanticTurnContract v2` võtab sisendiks juba koostatud plaani: `intent` tuleb selle režiimist ning `input_form` eristab algset ja kanoonilist päringut, mitte küsimust/väidet/fragmenti. Kohalik `questionRequirements.js` alustab nõudeid küsimussõnade järgi, mistõttu küsimussõnata „Mul pole süüa” ei anna seal nõuet; see ei tähenda automaatselt, et kogu planner sama sisendit ei mõista. Vaatleja on `BOUNDED_HEURISTIC` ning tema `used_for_retrieval/generation/validation` lipud on `false` (§13.6). Uus P1-jaotus on ettepanek neid vastutusi täiendada, mitte luba asendada töötav leping varirežiimi väljundiga.
+
+Vajalikud lepingud ja täpsustused:
+
+1. **Algtekst, kasutaja fakt ja süsteemi oletus jäävad eraldi.** `UserMeaningFrame` võiks kanda sõnumi/revisjoni viidet, algteksti vahemikke, lausungi vormi, võimalikku eesmärki, teadaolevaid ankruid ja vastust mõjutavaid ebaselgusi. Eristada tuleb kasutaja sõnaselget väidet, usaldatud vestlusviidet, kinnitatud täpsustust, tõlgenduskandidaati ja teadmata välja. Kõneleja ning inimene, kelle abivajadusest räägitakse, on eri rollid. „Ema ei saa kodus hakkama” ei tõenda diagnoosi, kindlat teenusevajadust, õigust toetusele ega seda, et abi vajab kõneleja ise. Ka abisaamise eesmärk võib algul olla kandidaat, mitte kasutaja antud korraldus.
+
+2. **Normaliseerimine ei tohi muuta tähendust.** Algne väljend säilib koos mõistekandidaatide ja otsinguterminitega; lemmad, embeddingud ja valdkonnaseosed toetavad leidmist, mitte ei kinnita üksinda tõlgendust. Säilitada tuleb eitus, tingimuslikkus, subjekt, ajaroll, arv/piirväärtus, tsitaat ja allikavalik. Kirja- või häältuvastusvea parandamisel ei kirjutata vaikselt ümber nime, arvu ega eitust. Viide algsele sisendile peab säilima ka normaliseeritud variandis.
+
+3. **Tõlgendusi võib olla mitu; täpsustatakse mõju, mitte iga tühja välja.** Järjestusskoor ei ole tõenäosus ega lubamislävend. Piiratud kandidaatide hulk võib otsida eri sõnastustega lubatud korpusest. Kui nende ühisosa annab kasuliku ja ohutu vastuse, saab sellele vastata; kui erinevus muudab soovitust või väidet oluliselt, küsitakse üks inimese keeles täpsustus. Asukohta küsitakse siis, kui sellest sõltub kohalik järgmine samm, mitte automaatselt iga mure juures. Leitud artikkel võib toetada mõistet või valdkonnascope'i, kuid ei tõenda tagantjärele kasutaja olukorda ega kavatsust. Kasutaja parandus peab asendama vale hüpoteesi, mitte jääma vana tõlgenduse kõrvale kehtetuks märkuseks.
+
+4. **Eluline abisoov ei tohi muutuda vaikimisi konkreetse artikli faktiküsimuseks.** Eristada tuleb üldise järgmise sammu leidmist, võimaluste selgitamist ja valitud allika täpset väidet. Ajalooline artikkel ei tõenda automaatselt teenuse praegust kättesaadavust ega õigust seda saada. Valik või asesõnaline jätk vajab sama vestluse usaldatud eelkäijat; uus sõnaselge eesmärk või allikapiir võidab vana oletuse. Täpsustus ei tohi kasutajalt nõuda teenusenimetust või erialateadmisi.
+
+5. **Ohutus ja ligipääs ei sõltu tähenduskihi õnnestumisest.** Kriisisignaali kontroll peab arvestama algset sisendit, ka küsimärgita väidet, ning jääma retrieval'ist ja uue tõlgenduskihi saadavusest sõltumatuks. `urgency: unknown` ei tähenda ohutuks tunnistamist. Varirežiimi tõrge ei tohi uut tootmiskäitumist põhjustada; võimalik tulevane tootmisrada vajab eelarvestatud fallback'i. Lihtne sõnastus ei lõdvenda tõendikontrolli, ACL-i ega §27.3 ohutu osavastuse sõltuvusi.
+
+6. **Register muudab esitust, mitte fakti.** Sama eesmärgi, teadmise, allikapiiri ja ligipääsu korral peavad jagatud põhiväited säilitama sama tõendi, eeldused ja piirangud. Tavakeelne vastus võib olla lühem, spetsialisti vastus detailsem; kõigi `AnswerClaims` objektide sõnasõnaline võrdsus pole seetõttu õige nõue. Iga lisanduv detail vajab siiski tuge ning oluline erand ei tohi lihtsustamisel kaduda. Spetsialisti keelekasutus ei anna uut rolli ega ligipääsu. Avaldatud tekst ja selle viited valideeritakse ka pärast lihtsustamist.
+
+7. **Tähenduse jälg ei ole luba tundliku toorsisu dubleerimiseks.** Ettepaneku „salvesta iga küsimuse algne sõnastus” automaatne ülevõtmine laiendaks praegust piiratud diagnostikat. Töötluse ajal vajalik `supporting_text` ja püsiv jälg on eri asjad. Vaikimisi kavandada lubatud sõnumi/revisjoni viide, versioonid, piiratud tüübid, vahemikud, valiku/põhjuse koodid ja puudumise märgid; ka tuletatud elulise olukorra sildid võivad olla tundlikud. Laiem sisutekstiga tõend vajab eraldi eesmärki, ligipääsu, säilitusaega ja kustutusreegleid (§27.3 punkt 9). Logida struktureeritud otsusekirje, mitte mudeli vabatekstilist mõttekäiku. Piiratud jälje korral võib põhjuse tõendatus jääda `UNKNOWN`.
+
+**EverydayLanguageParity mõõtmine.** Võrrelda tuleb sama tähendusega paarisküsimusi samal korpuse- ja süsteemiversioonil ning sama vestluskonteksti, asukoha/aja ja ligipääsuga. Nõuete kooskõla tähendab semantilist samaväärsust, mitte identseid JSON-väljade järjekordi või räsi. Teksti enda näited „üle 65-aastased”, „65+” ja lihtsalt „eakad” ei ole ilma lisakontekstita rangelt samaväärsed: esimesed erinevad piirväärtuse kaasamise poolest ning viimane ei määra vanusepiiri. Sellist erinevust peab süsteem säilitama või täpsustama, mitte mõõdiku nimel kaotama.
+
+- `EverydayQuerySuccessRate` ja `ProfessionalQuerySuccessRate` tuleb näidata koos paarisküsimuste arvu, sõltumatu vastatavushinnangu ja hindamisreegliga. `JargonDependencyGap = professional − everyday` on sama paarisvalimi protsendipunktide vahe; väike vahe pole edu, kui mõlemad määrad on madalad.
+- `ParaphraseContractConsistency` peab mõõtma nõuete ja ankrute säilimist koos vastuse õigsusega. `FalseRefusalByLanguageRegister` kasutab vastatavate juhtumite nimetajat. `ClarificationBurdenRate` juures eristada vajalikku täpsustust välditavast ning mõõta ka probleemi lahenemist, et null küsimust ei muutuks omaette eesmärgiks.
+- Fragmentide, kirjavigade, asesõnaliste jätkude, häältuvastuse ja ET/EN/RU variantide hindamine peab eristama tõesti samatähenduslikke variante tähendust muutnud sisenditest. Hääles eristada transkriptsiooni viga RAG-i tõlgendusveast. Kõigi variantide läbimine ega mitmekeelsus ei ole praegu selle märkmega tõendatud.
+
+Teostamisel valida ploki riskile vastavad sihtjuhtumid; kõigi põhiküsimuste kõigi variantide automaatset käivitamist ei määrata selle dokumendiga uueks töökorraks (§27.4). P1A–P1C täiendus tuleb siduda F06 loetelude, F07 kasutaja allikavaliku ja F08 järjekorra nõuetega, kuid **aktiivne F06 → F07 → F08 järjekord ei muutu**. Selles ringis lisati dokumentatsioon, mitte uus sisendikiht ega runtime-tõend.
+
+## 28. Produktsiooniks arendamise tervikplaan
+
+Koostatud 31.08.2026 omaniku tellimusel. Alus on §27 analüüsidel ning omaniku kahel jätkutekstil: [olukorrapõhise abistamise ettepanek](C:/Users/rauds/.codex/attachments/0b9f4be7-71fd-4c6b-9822-e420b97ec8fd/pasted-text.txt) ja [selle kriitiline täpsustus](C:/Users/rauds/.codex/attachments/6d0615ee-f8a7-46d2-be4b-e54e684b565b/pasted-text.txt). See peatükk on **koondatud teostusplaan**, mitte järjekordne alternatiivne arhitektuur. Varasemate ettepanekute erinevuste korral kasutatakse kavandamisel siinseid täpsustusi; olemasoleva koodi ja varasemate kontrollide kirjeldusi ei nimetata tagantjärele uueks teostuseks.
+
+### 28.1 Eesmärk, ulatus ja aus lähtepunkt
+
+Arendada **olukorrateadlik, tõendipõhine abistav vestlus**, milles RAG annab vajalikule väitele kontrollitava toe. Inimene ei pea oskama esitada korralikku küsimust, teadma teenusenimetust ega igas sõnumis oma lugu kordama. Assistent peab mõistma ka mure kirjeldust, parandust, valikuvastust ja poolelijäänud lauset; hoidma järge, mida inimene juba proovis ja mis sellest tuli; ning aitama järgmise sobiva sammuni.
+
+See **ei ole uue „Teekonna” lehe, eluaegse kasutajaprofiili ega autonoomse juhtumikorraldaja tellimus**. Esimene siht on olemasoleva vestluse kvaliteet. Välisele asutusele kirjutamine, avalduse esitamine, aja broneerimine või otsuse tegemine jääb eraldi volitatud toiminguks; vestluses antud soovitus ei tähenda, et toiming tehti.
+
+31.08 kell 22:02 Europe/Tallinn tehtud kitsas read-only kontroll:
+
+| Piir | Kontrollitud lähtepunkt | Mida see ei tõenda |
+| --- | --- | --- |
+| Git | Kohalik HEAD, värskelt küsitud `origin/main` ja serveri checkout osutasid commit'ile `5074b5e03f9fa7708b6ad3db9f8bb9ca243c8d08`; serveri tööpuu oli puhas. | Kohaliku määrdunud tööpuu parandused ei kuulu seetõttu automaatselt serverisse. |
+| Käitus | Serveri `.next/BUILD_ID` oli `kDAqeRc59ock3wOuMJUDt`; frontend, RAG ja research-worker olid `active`. | Teenuse aktiivsus ja checkout'i SHA ei tõenda laaditud artefakti lähtekoodi, vastuse kvaliteeti ega DB migratsiooni rakendumist. |
+| Kohalik arendus | §13.6–13.7 ja senine kontrolliaruanne kirjeldavad katse elutsüklit/shadow't ning F04/F05 parandusi koos kohalike sihtkontrollidega. | Selles dokumentatsiooniringis neid teste uuesti ei käivitatud, migratsiooni ei rakendatud ega uut autentitud vastust küsitud. Nende muudatuste serveri/runtime-tõend jääb lahtiseks. |
+| Kvaliteedibaas | F04–F08 ajalooline kontroll hõlmas viit põhiküsimust kahe sõnastusega: 1 PASS / 9 FAIL. | See ei ole kogu süsteemi „10% täpsus”, kogu75 tulemus ega uue kohaliku koodi hinne. |
+
+Plaan ei anna universaalset eksimatuse lubadust. Produktsiooniks lubatakse **nimeliselt määratletud kasutusulatus** siis, kui selle kvaliteedi-, privaatsus- ja käitusväravad on tõendatud. Ülejäänu on piiratud, ohutult suunatav või selgelt veel toetamata. Projekti aktiivset seisu ja järgmist tööd kannab ainult `SotsiaalAI.md` S1.0; siia ei teki konkureerivat jooksva töö logi.
+
+### 28.2 Sihtarhitektuur: kolm koos töötavat tasandit
+
+| Tasand | Vastutus | Piir, mida ei tohi ületada |
+| --- | --- | --- |
+| Vestluse ja olukorra tasand | Mõistab lausungit, seob selle õige inimese ja teemaga, arvestab parandusi ning valib sobiva abistamisviisi. | Oletus ei muutu kasutaja faktiks; vana eesmärk ei kirjuta uut soovi üle. |
+| Teadmiste ja tõendite tasand | Valib lubatud allikad, leiab nõutud tõendid, kontrollib väiteid, vastuolusid, ajakohasust ja viiteid. | Leidmine või kõrge skoor ei ole tõend vastuse õigsusest ega praegusest teenuseõigusest. |
+| Ohutuse ja käituse tasand | Tagab ligipääsu, privaatsuse, katse/revisjoni kehtivuse, piiratud kulu, jälje ja kontrollitud avaldamise. | Ükski vestlus- või kiirtee ei möödu nendest piiridest. |
+
+Ühe pöördumise loogiline rada on: **volitatud sisend → kehtiv olukorraseis → TurnPlan → vajaduse korral tõendiotsing → väidete lubamine → vastuseotsus → kontrollitud tekst ja viited → püsiv lõpptulemus**. See ei tähenda ühe mudelikutsungi lisamist iga noole kohta. Sõltumatuid otsinguid võib teha paralleelselt ühise eelarve sees; lihtsa toetava vastuse jaoks võib otsing üldse puududa.
+
+Tootekäitumise põhilepingud:
+
+- **Abistamine ei sõltu küsimärgist.** „Ma ei saa enam hakkama” võib vajada esmalt peegeldust, kiireloomulisuse selgitamist või üht täpsustust, mitte artiklikokkuvõtet. Sama lause üksi ei tõenda diagnoosi ega konkreetset kriisi.
+- **Vastuse vorm sõltub vajadusest.** Mõnikord piisab kahest lausest; mõnikord on vaja valikut, selgitust, kontrollitud tegevusjuhist või allikavõrdlust. Kõigile vastustele ei sunnita seitset alapealkirja ega kohustuslikku tegevusplaani.
+- **Toetav kõne ja välise maailma faktiväide on eri asjad.** Empaatia, kasutaja öeldu peegeldus ja täpsustus võivad olla tõendinõueteta. Teenuse olemasolu, kontakt, tingimus, tähtaeg, maksumus, õigus või konkreetne menetlussamm vajab sobivat tõendit ka siis, kui see on kirjutatud soovitusena.
+- **Puuduv tõend ei kustuta kogu kasulikku vastust.** Lubada võib sõltumatult toetatud osa ja selgelt nimetada puudujäägi. Osa ei avaldata, kui puuduva eelduse või erandi tõttu muutuks see eksitavaks.
+- **Ligipääsu- ja ohutuspiirid kehtivad tervikule; teadmise ebakindlus tavaliselt sõltuvale väitele.** Ühest dokumendist leitud pahatahtlik juhis ei pea sulgema kogu vestlust: mõjutatud allikas eraldatakse. Laiem katkestus on vajalik siis, kui usalduspiiri või ohutut jätkamist ei saa tagada.
+- **Mitmetähenduslikkus on lahendatav vestlusolukord.** Sama autori mitu sobivat teost võib kasutajale valikuna näidata. Pealkirja või aastat ei nõuta, kui sõltumatud tunnused juba võimaldavad vastata; puuduva ligipääsu või allikaversiooni puhul seda erandit ei ole.
+
+### 28.3 Üks kanooniline leping igale vastutusele
+
+Järgmised nimed tähistavad kavandatavaid või täiendatavaid lepinguid, mitte väidet, et kõik need juba koodis olemas on. Olemasolev planner, `semanticTurnContract` ja shadow ei tohi jääda kolmeks konkureerivaks tootmisotsustajaks. Igal väljal määratakse tootja, tarbijad, skeemiversioon ja vigase/puuduva väärtuse käitumine.
+
+| Leping | Vajalik sisu | Põhitarbijad |
+| --- | --- | --- |
+| `ConversationSituationState / SupportContext` | Vestluse omanik ja kontekst, epoch/revisjon, inimesed ja rollid, väidete päritolu, kasutaja eesmärk, proovitud tegevused/tulemused, piirangud, avatud küsimused, aktiivsed ja peatatud teemad. | Tähenduse tõlgendus, plaan, kasutajale nähtav olukorra kokkuvõte. |
+| `UserMeaningFrame` | Viide volitatud sõnumile, algteksti ankrud, lausungi vorm, subjekt, eitus/tingimus/aeg, otseselt öeldu ja piiratud tõlgenduskandidaadid. | `TurnPlan`; shadow ajal ainult lubatud võrdlus. |
+| `OutcomeContract` | Mida kasutaja sõnaselgelt soovib; millised eesmärgid on alles oletused; milline tulemus selles voorus oleks kasulik ja kuidas seda ära tunda. | Plaan ja vastuseotsus. Järjestusskoor ei ole kalibreeritud tõenäosus. |
+| `TurnPlan` | `ConversationalActs`, `SupportActions`, `EvidenceRequirements` ja `ResponseConstraints`; viited olukorra revisjonile ja kasutaja sõnumile. | Otsing, tõendikontroll, vastuse koostamine. `EvidenceRequirements=[]` on lubatud. |
+| `SourceScopePolicy` | Lubatud korpus/omanik, täpne dokument või kandidaatide hulk, geograafia, ajavaade, allikaliik, värskusenõue ja kasutaja sõnaselged piirangud. | Kõik otsingu-, paranduse-, cache- ja allika avamise rajad. |
+| `EvidenceRequirement / EvidenceLocator` | Nõutud subjekt, omadus, ühik, aeg, kvalifikaatorid, sõltuvused; dokumendi/versiooni/chunk'i ja teksti/tabelivahemiku taasesitatav viide koos offset'i aluse ning räsiga. | Tõendipakett ja väidete kontroll. |
+| `AnswerClaim / ClaimAdmission` | Üks kontrollitav väide, sõltuvused ja kvalifikaatorid; toetavad või vastu rääkivad locator'id; otsus, põhjusekood ja kontrolliversioon. | Vastuseotsus, renderer ja viited. `ADMITTED` tähendab piiratud allikatuge, mitte absoluutset tõde. |
+| `ResponseDecision` | Avaldatavad claim-ID-d, katmata nõuded, piirangud/täpsustus, lubatud kõneaktid, semantiline tulemus ja sellest eraldi tehniline seis. | Tekst, SSE, salvestus, replay, allikapaneel ja diagnostikaaruanne. |
+| `SourceSelectionState` | Vestlus/operatsioon, valiku väljastanud sõnum, kandidaatide stabiilsed ID-d ja versioonid, revisjon, aegumine, tarbimine ja idempotentsus. | „2”, „mõlemad”, pealkirja või autori täpsustusega jätk. |
+| `AttemptIdentity / AttemptEvent / AttemptSnapshot` | Muutumatu katse identiteet, järjestatud sündmused ja eraldi uuendatav hetkeseis; release/model/prompt/indeksi/validaatori seosed ning lõpetamise põhjus. | Tõrkeotsing, võistluste tõkestamine ja kontrollitav aruanne. |
+
+`ResponseDecision` ei tohi taandada kõike ühele `passed` bitile. Näiteks võib tulemus olla semantiliselt kasulik `PARTIAL`, sest üks loetelu jäi tõendamata, samal ajal kui tehniline täitmine on `OK`; või toetav vastus võib olla `NOT_APPLICABLE` faktikattele, kuigi retrieval-teenus on `DEGRADED`. Mõlemad teljed ja avaldatud väited peavad jääma nähtavaks.
+
+Keskse lepingu kasutuselevõtul kaardistada iga senise kontrolli tootja ja tarbija, teha ajutine versioonitud adapter ning eemaldada dubleeriv otsustusõigus alles võrdlustõendi järel. Üks vanasse handler'isse jäänud üldblokeering ei tohi kustutada uue kontrolli lubatud osavastust.
+
+### 28.4 Olukorraseis, parandused ja privaatsus
+
+**Andmemudel.** Vaikimisi ühe vestluse, mitte kogu konto elulugu. Eraldi ja minimaalne serveripoolne olek; täpne Prisma mudel valmib teostusplokis. Igal asjaolul on vähemalt oma ID, inimene/teema, päritoluviide, ajakohasus ning revisjon:
+
+- `origin`: `USER_STATED`, `EXTERNALLY_VERIFIED` või `ASSISTANT_INFERRED`. Kasutaja öeldu on tema väide; välise tõendi toetus ei kinnita automaatselt selle rakendumist konkreetsele inimesele.
+- `confirmation`: näiteks `UNCONFIRMED` või kasutaja sõnaselgelt kinnitatud; mudeli korduv oletus ei saa iseenesest kinnituseks.
+- `lifecycle`: `ACTIVE`, `UNCERTAIN`, `DISPUTED`, `SUPERSEDED`, `EXPIRED`. Vajaduse korral eristada vastuolu epistemilist seisundit aktiivsusest eraldi väljana; üks olekulipp ei tohi kaotada päritolu ega paranduse ajalugu.
+- `source_turn / source_revision`, `valid_from / valid_until`, asendatud väite ID ja vajaduse korral välise tõendi locator. Teadmata väärtus jääb teadmata, mitte vaikimisi `false` või „korras”.
+
+Inimesed, lähedussuhted, ettepanekud, tehtud tegevused ja tulemused on eri objektid. „Sa võiksid helistada” ei ole `ACTION_COMPLETED`; „Helistasin, nad ei saanud aidata” on kasutaja teade tegevusest ja tulemusest, mitte sõltumatult kinnitatud asutuse keeldumine. „Mitte ema, vaid tädi” parandab õige seose ja sellega seotud tõlgendused; ei kirjuta teise inimese kõiki omadusi pimesi ümber. Ebaselge paranduse mõju täpsustatakse.
+
+**Usaldatud ajalugu.** Praegu saab bootstrap üldajaloo kliendi `payload.history` väljast; usaldatud serveritaaste on kitsam. `Conversation.summary` on kärbitud sõnumitekst, mitte semantiline olukorramälu. Uue püsiva oleku alus peab olema omanikuõigusega kontrollitud ja privaatsustöötluse läbinud serverisõnum/revisjon. Kliendi ajalugu või vana kokkuvõte ei tohi lisada süsteemi kinnitatud fakte, võõra vestluse sisu ega aegunud allikavalikut.
+
+**Kirjutamise hetk ja võistlused.**
+
+1. Kasutaja faktide kandidaatpatch seotakse püsivalt salvestatud, volitatud kasutajasõnumiga. Selle rakendamine nõuab õiget vestluse epoch'i, `baseRevision`-it ja idempotentsusvõtit. Korrektselt rakendatud kasutajaparandus säilib ka järgneva retrieval'i või assistendivastuse nurjumisel; retry ei rakenda sama sõnumi muudatust uuesti. Kui olukorrauuendus ise ei õnnestu, jääb see nähtavalt ootele/veaks ning vana snapshot'i ei käsitata järgmises voorus ajakohase seisuna.
+2. Konflikti korral loetakse uus seis ja arvutatakse patch uuesti; vana snapshot'i koguobjekti ülekirjutamine on keelatud. Katkenud või asendatud katse ei tohi taastada parandatud ega kustutatud asjaolu.
+3. Assistendi soovitus lisandub olukorraseisu alles valideeritud, püsivalt salvestatud ja serveri avaldamispiiri läbinud vastuse alusel. Eristada serverist väljastatud, DB-s salvestatud ja vajaduse korral kliendi kinnitatud kättesaamist: SSE-kirjutus ega kliendi ACK ei tõenda, et inimene vastust luges. Väljastuse ja salvestuse lahknemine saab oma oleku ning taastamisreegli; seda ei tõlgendata kindla teadmisena kasutaja nähtud soovitusest. Mudeli varjatud mustand ei muutu antud soovituseks.
+4. LLM-i või HTTP-otsingu ajal ei hoita DB tehingut avatuna. Lühikesed tehingud seovad lubatud sündmuse, CAS-revisjoni ja salvestuse; võrgutöö toimub nende vahel.
+5. Vana katse hiline tulemus ei tohi muuta uut vastust, arvestada sama loogilist tulemust uuesti ega kirjutada uut olukorraseisu üle. Pakkuja tegelik korduskulu peab siiski jäljes nähtav olema.
+
+**Nähtavus ja kustutamine.** Olemasolevasse vestlusse lisada väike kasutajale arusaadav vaade „Mida ma sinu olukorrast praegu arvestan”; sealt saab parandada, eemaldada ja olukorrakonteksti lähtestada. See ei ole tehnilise JSON-i ega oletatud tundlike siltide täielik väljatrükk. Kasutaja näeb enda öeldu ja assistendi ebakindla tõlgenduse erinevust.
+
+- Vaikimisi ei kanta olukorda teise vestlusse. Selgesõnaline jätkamine või hilisem opt-in on eraldi nähtav toiming ning nõuab uut eesmärgi, ligipääsu ja säilituse otsust.
+- Arhiveerimine või kasutamise keelu märkimine lõpetab oleku kasutamise kohe; füüsiline kustutus järgib kinnitatud säilitusreeglit. Lähtestamine muudab epoch'i ning tühistab pooleliolevad patch'id, allikavalikud ja asjakohased cache'id.
+- „Unusta” peab hõlmama tuletatud olekut, kokkuvõtteid, vahemälusid ja diagnostikasnapshote. Vana sõnumiajalugu ei tohi eemaldatud fakti järgmisel voorul uuesti mäluks teha ega otse mudelile või otsingusse anda: vaja on serveripoolset asjaolu/ajalõigu välistust või uut kontekstipiiri kõigil ajaloo-, prompt'i-, päringulaienduse ja recovery-radadel. See ei sõltu kliendi saadetud ajaloo koostööst. Eristada ajaloolise vestlussõnumi nähtavust/kustutamist ja selle edaspidise kontekstikasutuse lõpetamist.
+- Konto/vestluse kustutus katab uued tabelid ja seosed; in-flight katse ei tohi neid pärast kustutust uuesti luua. Jagatud ruum ja `persist=false` ei saa vaikimisi isiklikku püsivat olukorramälu.
+- `Conversation.metadata` ja sõnumi `metadata` liiguvad praegu mõnel omaniku API-rajal üldobjektina välja. Sisemist olekut ei lisata sinna enne serveripoolset allowlist-projektsiooni kõikides lugemis-, ekspordi- ja replay-piirides. Õige omanikukontroll ei tähenda, et iga sisemine väli peaks kasutajaliidesesse või eksporti minema.
+
+Olukorraseisu ja selle shadow-tulemuse säilitusaeg ei tohi vaikimisi ületada lähtevestluse oma. Täiendavat toorsisukoopiat ei looda. Täpne lühem TTL, administraatori nähtavus, kasutajateavitused ja erandliku diagnostikasnapshot'i reeglid kinnitatakse enne pärisliikluse kogumist, mitte pärast juurutust.
+
+### 28.5 Tõendiahel ja kontrollitud vastus
+
+**Nõudest allikani.** Nõuded tuletatakse kasutaja tegelikust eesmärgist ja kehtivast olukorrast; täpne artiklifakt säilitab täpse allikapiiri. Otsing võib kasutada algvormi, parafraasi, nimeankruid, morfoloogiat, vektorit, tabelit või naaberlõiku. Ükski neist ei tohi muuta eitust, subjekti, ajapiiri ega kasutaja antud scope'i. Kogu retrieval ja parandusrada kasutab sama ACL-i ning aktiivversiooni poliitikat.
+
+**Tõendist väiteni.** Hoida body tekst, pealkiri, autoririda, tabelipäis, joonealune märkus ja allikale viitav bibliograafia eraldi rollidega. Tõendipaketi kokkupanek ei tohi neid taandada üheks päritoluta stringiks. Täpne arv, jaotus, nimeloetelu või suunatud seos saab oma tüübistatud payload'i; võõrast grammatikat ei lubata lihtsalt märksõnade kattumise alusel.
+
+**Väiteluba on tingimuslik.** Admission seotakse nõude, claim'i, allikaversiooni/räsi, kontrolli aja, olukorra revisjoni, riskipoliitika ja validaatoriversiooniga. Indeksi, dokumendi ligipääsu, kehtivuse või kasutaja olulise paranduse muutus võib muuta loa kehtetuks. Vahetult enne avaldamist ja hiljem allika avamisel kontrollitakse asjakohaseid piire uuesti.
+
+**Osavastus ei ole globaalse kontrolli möödapääs.** Koostada sõltuvusgraaf: milline väide vajab millist eeldust, kvalifikaatorit või teist väidet. Puuduv kohustuslik nimetaja, oluline erand või vajalik ajakohasustõend blokeerib sõltuva väite; pelk hoiatus ei tee seda avaldamiskõlblikuks. Avaldada saab teised iseseisvalt toetatud komponendid koos katmata nõude ja piirangu kirjeldusega. `PARTIAL` ei muudeta sisemiselt `passed=true`-ks ega tühjendata selle tõttu kõiki allikaid.
+
+**Parandusring on piiratud tööriistavalik, mitte kohustuslik jada.** Puudujäägi tüüp määrab lubatud operaatorid: naaberlõigu/tabeli lisamine, täpsem otsing samas scope'is, kandidaatide eristamine, vastuolu kontroll või täpsustus. Tulemused eristatakse: `RESOLVED`, `PARTIAL_PROGRESS`, `CONFLICT_DISCOVERED`, `SCOPE_REFRAMED`, `NO_PROGRESS`, `TECHNICAL_FAILURE`. Uue vastuolu avastamine võib parandada arusaama ka siis, kui vastus lüheneb; iga sammu „monotoonselt rohkem admitted väiteid” nõuet ei kehtestata. Scope'i ümbermõtestamine ei tühista kasutaja sõnaselget allikapiiri; selle laiendamiseks küsitakse vajaduse korral luba.
+
+Ühine päringueelarve piirab koguaega, token'e, tegelikku kulu, mudelikutseid, tööriistapäringuid ja parandusi ka paralleelsetes harudes. Korduv samasisuline tõend ei nulli eelarvet. Ajutise teenusetõrke retry on eraldi põhjusega, piiratud ja tühistatav; eelarve lõpp annab ohutu osavastuse/täpsustuse või läbipaistva tehnilise piirangu.
+
+**Avaldamine.** Deterministlik või piiratud renderer sobib ainult toetatud väidete jaoks. Vaba sõnastamise järel kontrollida uuesti tegeliku teksti väiteid ja viiteid, sealhulgas lisatud soovituste faktilisi eeldusi. `EvidenceRequirements=[]` ei ole pääse märkamatult lisandunud teenuse- või õiguseväitele. Polaarsus, ühik, nimetaja, suund, erand, ajaroll ja viite seos peavad säilima ET/EN/RU esituses.
+
+Kontrollimata faktimustandit ei saadeta pöördumatult SSE kaudu kasutajale. Ohutu olekuteade või puhtalt toetav tekst võib ilmuda varem; faktiosa väljastatakse valideeritud üksustena või pärast vastuse lõppkontrolli. Allikapaneel, salvestatud sõnum ja retry/replay peavad kajastama sama avaldatud väidete hulka, mitte teist, varasemat mustandit.
+
+### 28.6 Tehniline jälg ja automaatne küsimusearuanne
+
+Eesmärk pole lubada „alati teame juurpõhjust”, vaid tagada, et **iga volitatud pöördumise ja katse tulemus, piirang ning põhjuse tõendatus on jälgitav**. Sobiv täpsustusküsimus, lubatud osavastus ja tõesti puuduv teadmine ei ole automaatselt süsteemi viga.
+
+1. **Varajane korrelatsioon.** Loo minimaalne päringu ID enne pikka tööd; püsiv kasutajaga seotud katse alles pärast vajalikku autentimis-/omanikukontrolli. Sisendiviga või ligipääsukeeld saab eraldi turvalise sündmuse ilma keelatud sisu salvestamiseta.
+2. **Kolm eri objekti.** Olemasoleval `RagAttempt` real on uuendatav seis; see ei ole append-only logi. Lisa vajaduspõhine muutumatu identiteet, järjestatud sündmusvoog ja taastatav hetkeseis. „Append-only” tähendab sündmuste muutumatust lubatud säilitusaja sees, mitte keeldu isikuandmeid kustutada.
+3. **Tegelik päritolu.** Kirjesta release/build, teenuse versioon, prompt'i skeem/räsi, mudeli tegelik ID, parser/chunking/embedding/reranker, registri/index-generation, validaator ja olukorra revisjon. Väärtuse annab selle tootnud teenus; admini health-vastusest hiljem oletatud versioon ei ole katse versioon. Puuduv väli on `UNKNOWN`.
+4. **Etapipõhine põhjus.** Erista vähemalt sisendi/tähenduse viga, vale olukorraseis, vale allikapiir, leidmata kandidaat, valel põhjusel lukustatud dokument, kaotatud kontekst, tõendi puudumine, vastuolu, vale claim, renderduse/viite viga, avaldamis-/salvestusviga, ajalimiit ja vana katse tõkestamine.
+5. **Tõendatus.** Aruanne näitab eraldi esimest täheldatud kõrvalekallet, blokeerinud väravat ning juurpõhjust tasemel `CONFIRMED / PROBABLE / UNKNOWN`. Värava käivitumine üksi ei tõenda, et viga asub väravas. Kinnitatud põhjus vajab reprodutseeritavat sisend–väljundseost või kontrollitud võrdlust.
+6. **Täpselt kordumise piir.** Katsete kordus ja sündmuste uuesti saabumine on idempotentsed. Hilinenud worker, katkestus, serveri restart ja aegunud lease ei tohi kinnitada vana vastust. Mittetäielik katse lõpeb nähtava tehnilise põhjusega, mitte vaikimisi semantilise `FAIL`-iga.
+
+Automaatne aruanne täiendab olemasolevaid `ragDiagnostics`/`ragDiagnosticReport` radu; uut konkureerivat „tõefaili” ei looda. Ühel voorul on koondkirje ning selle all kõik katse-ID-d. Volitatud kasutaja/administraator saab vajaduse korral genereerida küsimuse kirje või kogu vestluse aruande olemasoleva diagnostikavaate kaudu.
+
+Iga kirje minimaalne sisu: sõnumi/vooru/katse ID; kasutaja jaoks antud tulemus; küsitud ja kaetud nõuded; kasutatud olukorraseisu revisjon; leitud/valitud/avaldatud allikate eristus; tõrke etapp ja põhjusekood; põhjuse tõendatuse aste; tõendiviited; proovitud parandused ja lõpetamise põhjus; ajakulu/kulu; versioonid; järgmine võimalik diagnostikasamm. Kriitiline puuduv jälg ise märgitakse `OBSERVABILITY_GAP`-ina.
+
+Vaikimisi ei salvestata aruandesse täielikku prompt'i, kogu retrieval-konteksti, eluloo koopiat, autentimisandmeid ega mudeli vabatekstilist mõttekäiku. Ka tuletatud olukorrasildid on võimalikud tundlikud andmed. Detailne sisusnapshot eeldab eraldi eesmärki, ligipääsu, lühikest TTL-i, kasutuslogi ja kustutuste levikut. Räsi võimaldab võrrelda, mitte sisu taastada; kui lubatud tõend ei võimalda täpset taasesitust, ütleb aruanne seda otse.
+
+### 28.7 Arendusjärjekord ja sõltuvused
+
+Allolevad **R0–R9 on selle plaani etapiviited**, mitte uued auditileidude koodid ega olemasolevate P0/P1/F06 nimetuste ümbernimetamine. Iga etapp jagatakse 2–8 omavahel seotud leiu või ühe vertikaalse käitumisraja plokkideks. Sama skeemi/helper'it/handler'it muudab korraga üks kirjutaja; sõltumatut read-only analüüsi saab teha paralleelselt.
+
+| Etapp | Tulemus | Sõltuvus ja lubamise piir |
+| --- | --- | --- |
+| R0 | Külmutatud kasutusulatus, lähteversioonid ja tõendiplaan. | Enne uut laiemat käitumist; ei peata juba põhjendatud F06 paranduse kaardistamist. |
+| R1 | Jälje/elutsükli lõpetamine, usaldatud sisend ja privaatsed olekupiirid. | Enne olukorraseisu shadow-kogumist või tootmiskasutust. |
+| R2 | Olukorra, tähenduse ja TurnPlan'i varivõrdlus. | R1; ei juhi päris vastust, otsingut ega tootmisolekut. |
+| R3 | F06 → F07 → F08 vertikaalsed parandused, keskne claim/response leping. | R1 vajalikud piirid; faktiparandused ei pea ootama kogu üldise olukorramudeli valmimist. |
+| R4 | Kontrollitud olukorrateadlik abistamine olemasolevas vestluses. | R2 võrdlus ja R3 jagatud vastuse-/tõendipiirid; kasutajapoolsed kontrollid valmis. |
+| R5 | Allikate kvaliteet, ajakohasus ja versioonide elutsükkel. | Täpne allika-/locator-leping R1/R3-st; ajakohast teenusejuhist ei lubata enne selle väravat. |
+| R6 | Keele-, kiiruse-, kulu- ja töökindluse koondkontroll. | Mõõtmine algab R1-st; siin suletakse R3–R5 ühised riskid. |
+| R7 | Külmutatud release candidate ja ulatusepõhine GO/NO-GO. | R1–R6 vastava avaldatava funktsiooni kohta. |
+| R8 | Omaniku loaga piiratud käivitus, produktsioon ja käitusraamat. | R7, ühilduv migratsioon, taastamiskontroll ja nimetatud käitaja. |
+| R9 | Vajaduse korral GraphRAG või muud täiendavad leidjad. | Ei blokeeri R7/R8; lisatakse ainult mõõdetud vajaduse ja sama tõendilepingu alusel. |
+
+R5 allikaaudit ning R6 kitsad mõõtmised võivad toimuda teiste plokkidega paralleelselt. Tabel ei sunni esmalt kõiki horisontaalseid kihte valmis ehitama: iga R3 alamplokk peab läbima tee sisendist nähtava vastuse ja viiteni. R4 laiem juhtimisõigus ei lülitu sisse lihtsalt seetõttu, et olukorra JSON on olemas.
+
+### 28.8 Etappide teostusplokid ja vastuvõtt
+
+#### R0 — kasutusulatus ja lähtealus
+
+**Teha:** külmutada esimese väljalaske vajaduste, keelte, allikaliikide ja riskiklasside maatriks. Eristada artiklifakti, allikavõrdlust, üldist olukorra selgitamist ja praegu kehtivat teenuse-/õiguseinfot. Märkida iga profiili lubatud allikad, vajalikud sõltumatud kontrollid ning ohutu vastusevorm puuduliku tõendi korral. Valida olemasolevatest kontrollidest asjakohane lähtevalim ja eraldi seni parandamiseks kasutamata juhtumid.
+
+**Pind:** olemasolev master, S1.0, `eval/rag-uus75-kontroll-2026-08-31.md` ja seotud manifestid. Ei looda uut elavat projektiseisu. Nimetus „75” või „Golden37” ei asenda failis tegelikult olevate unikaalsete juhtumite loendamist, kattuvuse eemaldamist ega tõendi kontrolli.
+
+**Vastuvõtt:** iga lubatav kasutusprofiil on seotud allikabaasi, hindamisrubriigi, vastutaja ja GO/NO-GO tingimusega. Varasemad tulemused on muutmata ajalooline baas; uue versiooni mõõtmata lahtrid on `NOT_PROVEN`. Lahendamata tooteotsus blokeerib ainult sellest sõltuva aktiveerimise, mitte sõltumatut dokumentatsiooni või ohutut sihtparandust.
+
+#### R1 — olemasoleva elutsükli lõpetamine ja usalduspiirid
+
+**Olemas:** `ChatTurn`, kohalik `RagAttempt`, `clientTurnKey`, lease/fence-kontrollid, piiratud diagnostika ja migratsioon `20260831203000_rag_attempt_lifecycle`. **Lisandub või vajab tõendamist:** üldajaloo serveripoolne autoriteet, olukorra revisjonipiir, vajalik sündmusvoog ning tegelikud versioonitootjad.
+
+**Pind:** `requestBootstrap.js`, `turnRegistry.js`, `ragAttemptStore.js`, `ragAttemptEvidence.js`, `persistence.js`, `responseFinalizer.js`, vestluse/sõnumite/diagnostika API-d, Prisma, retention ja kasutaja kustutamise rajad. Indeksi identiteedi jaoks vastav `rag-service` tootja. Täpsed failipiirid lukustatakse enne igat sidusat alamplokki.
+
+**Teha:**
+
+1. Sulgeda olemasoleva P0 migratsiooni, varajase katse loomise, katkestuse, aegumise ja replay tõendilüngad; mitte kirjutada sama elutsüklit uue nime all uuesti.
+2. Muuta uue olukorrakonteksti sisend serveris autoriseerituks; määrata ohutu ühilduvus vanade ilma `clientTurnKey`-ta klientidega. Puuduv võti ei tohi lubada uut püsivat olukorrakirjutust kaitsmata rajal.
+3. Lisada vajalikud sündmused, põhjusekoodid ja tootjapoolsed versioonid; ühe sisulise juhtumi diagnostika peab eristama retrieval'i, konteksti, validaatori ja lõppväljundi.
+4. Kavandada eraldi minimaalne olukorrahoidla, epoch/revisjon ja väljundprojektsioonid; tõendada omaniku/ruumi piir ning arhiveerimise, TTL-i ja kustutamise mõju enne sisulise oleku kasutamist.
+
+**Vastuvõtt:** sihttestid tõendavad idempotentsust, vana katse tõkestamist ja lubatud projektsiooni; käsitsi DB/API rajal on kontrollitud kahe konkureeriva katse, katkestuse, taaskäivituse ja kustutamise tulemus. Migratsioon töötab ülemineku ajal lubatud rakendusversioonidega. Rea `status=OK` ei muutu faktitäpsuse kinnituseks. Puuduv versioon ei asendata oletusega.
+
+**Väljalülitus:** uue jälje detailsus ja olukorrakirjutus eraldi lippudega; ohutus- ja omanikukontrolle ei saa lipuga maha võtta. Migratsiooni tagasipööramine ei ole vaikimisi tabelite kustutamine. Tõendita DB/runtime omadus jääb lahtiseks ka rohelise build'i korral.
+
+#### R2 — olukorra ja tähenduse varirežiim
+
+**Pind:** bootstrap/planner/`semanticTurnContract` liidesed ning R1 olukorrahoidla. Uued `supportContext`, `userMeaningFrame` ja `turnPlan` moodulid on võimalikud teostuspiirid, mitte juba olemasolevate failide väide.
+
+**Teha:** sünteetiliste tervikvestluste põhjal arvutada kehtivast serveriajaloost olukorramuutuse kandidaat, lausungi tähendus, eesmärgikandidaadid ning TurnPlan. Võrrelda neid olemasoleva plaaniga. Piiratud shadow-olek on eraldi namespace'is; seda ei loeta kinnitatud tootmisolukorraks.
+
+**Vastuvõtt:** variväljund ei muuda tootmise prompt'i, päringut, filtrit, cache-võtit, vastust, allikavalikut ega kinnitatud olukorraseisu/revisjoni, ka retry ja recovery korral. Iga erinevus on klassifitseeritud: kasulik täpsustus, liigne oletus, kaotatud piirang, vale subjekt või tehniline viga. Parandus, teemavahetus ja ebaõnnestunud tegevus säilivad mitme vooru jooksul. Shadow'l on oma lubatud säilituspiir, väljalülitus ja piiratud lisaeelarve; selle tõrge või eelarve lõpp ei blokeeri toimivat põhivastust ning koormuse korral võib võrdlus vahele jääda.
+
+**Aktiveerimise piir:** pärisliikluse shadow algab ainult kinnitatud andmetöötluse, rollide ja TTL-iga. Sünteetiline edu ei anna automaatset luba pärisvestluste uueks kogumiseks. Shadow mõõdab, kuid ei ole kasutajale antud abi kvaliteedi tõend.
+
+#### R3a / F06 — jaotus ja loetelud koos ohutu osavastusega
+
+**Pind:** `questionPlanner.js`, `semanticTurnContract.js`, `retrievalContextAssembler.js`, `factContract.js`, `mainResponseHandler.js`, `sourceAttribution.js` ja seotud diagnostika. Võimalikud uued eraldatud moodulid on `distributionSemantics.js`, `responsePolicy.js` ja `validatedReplyRenderer.js`.
+
+**Teha:**
+
+- Esitada eraldi jaotus `{population, unit, total, groups:[{role,count}], exhaustive, disjoint, conditions}` ning küsitud rühma loetelu `{groupRole, members, completeness, declaredCount}`; kõik väärtused vajavad locator'it.
+- Hoida jaotus ning konkreetse rolliga liikmesus seotud; kaks nime või arvude summa üksi ei tõenda täielikkust. Planeerija peab mõistma ka „jaotati”, mitte sõltuma ühest küsimusõnast.
+- Säilitada tõendi päritolu enne kontekstikoostajas sisu stringiks taandamist. Nimekirja ei saa võtta autorirealt, arvusid samateemalisest kõrvalnäitest ega täielikkust testi vastusevõtmest.
+- Lisada minimaalne ühine `ResponseDecision` ja renderer'i tee: tõendatud sõltumatu jaotus säilib ka puuduva nimeloetelu korral; allikad, SSE ja püsistus kasutavad sama lubatud väitehulka.
+
+**Vastuvõtt:** F06 allikas toetab 6 omavalitsuse jaotust 3 + 3 ning küsitud kolme sekkumisomavalitsuse nimesid. Kontrollrühma avaldamata nimesid ei mõelda juurde ega nõuta vaikimisi kõigi kuue nime. Läbivad teine sõnastus, lausejärje muutus, arvud sõnadega ja teine sõltumatu sama struktuuriga allikanäide. Ei läbi rühmarollide vahetus, vale summa, puuduv/liigne/korduv liige, võõra rolli nimi ega vastuoluline tõend. Osalist loetelu ei nimetata täielikuks.
+
+**Pärisrada ja fallback:** kaks sihtsõnastust eraldi ning samas vestluses; nähtav vastus, avatud allikas ja claim–locator seos. Kui tuvastatud grammatika ei kata nõuet, jääb see kontrollimatuks või eelarvestatud lisakontrolli, mitte lubatuks. Probleemi korral saab uue renderdusraja peatada, säilitades tõendita väite avaldamise keelu.
+
+#### R3b / F07 — autorivalik, seejärel õiged loendusühikud
+
+**Pind:** kontekstikoostaja autori/teema kinnituse ja trusted-ID tugevdamise piir, `conversationalRecovery.js`, serveri allikavaliku hoidla/API, olemasolev vestluse allikapaneel ning R3a ühine väiteväljund.
+
+**Teha:** kinnitada autor ja sõltumatu body-teema enne usaldatud dokumendiidentiteedi tugevdamist. Üks sobiv teos võib laheneda pealkirja teadmata; mitu sobivat teost annavad kasutajale mõistetava valiku. Pelgalt dokumendiluku pealkirja/aasta tingimuse lõdvendamine ei ole lahendus. Avaldamis-, vaatlus- ja uuringuaasta jäävad eraldi.
+
+Üldine valikuolek peab toetama „teine”, „mõlemad” ja nimega jätku sama vestluse, operatsiooni, väljastanud sõnumi ja kehtiva revisjoni piires. Valikul kontrollitakse uuesti allika aktiivversiooni ja ligipääsu; teise vestluse ordinal või vana kliendi JSON ei määra allikat. Kahe teose kasutamisel jäävad nende väited ja viited eraldi.
+
+**Vastuvõtt:** sama autor/vale teema ja ainult kõrge otsinguskoor ei kinnita dokumenti. Mitmetähenduslik valik laheneb; aegunud, asendatud, korratud ja võõra vestluse valik käitub määratud viisil. Eraldi tõendatakse leibkondade ning inimeste loendused koos subjekti, ühiku, aja ja tingimusega. Vahetatud ühikud ning oletatud keskmisest tuletatud puuduv arv ei läbi. Dokumendi valik ei märgi automaatselt ühtegi arvu tõendatuks.
+
+**Pärisrada ja fallback:** autor+teema küsimus ilma pealkirjata, mitme teose valik ja samas vestluses „mõlemad”; avatud allikad vastavad valikule. Kui valik aegub, pakutakse uut valikut, mitte ei seota vastust juhuslikult vana teosega.
+
+#### R3c / F08 — suunatud ja samaaegsed seosed
+
+**Pind:** tootmisplanneri klauslipiirid, assembler, `factContract.js` ning R3a renderer. Võimalik uus moodul `directedRelationSemantics.js`.
+
+**Teha:** tõendada `{approach, eventA, relation, eventB, polarity, qualifiers, locators}`. `BEFORE`, `AFTER` ja `OVERLAPS` ei ole vahetatavad; „enne või samaaegselt” jääb lubatud alternatiivideks, mitte ainult „enne”. Eristada allikat kirjeldavat „…, mida võrreldakse … artiklis” päriselt küsitud „ja mida artiklis võrreldakse?” nõudest.
+
+**Vastuvõtt:** varasema käsitluse rehabilitatsioon → eluase ning eluasemepõhise lähenemise eluase → rehabilitatsioon säilitavad allika samaaegsuse täpsustused. Töötab pööratud küsimisjärjekord, parafraas ja teine sõltumatu suunatud võrdlus. Samaväärsed `A BEFORE B` ja `B AFTER A` peavad mõlemad läbima: keelatud on sündmuste vahetamine ilma vastava pöördsuhteta, mitte õige pöördesitus. Ei läbi lähenemise vale omistus, tegeliku suuna ümberpööramine, eituse/tingimuse kadumine ega samaaegsuse kustutamine. Naaberklausli rehabilitatsioon-esmalt seost ei omistata ekslikult lause alguses nimetatud eluasemepõhisele lähenemisele.
+
+**Pärisrada ja fallback:** kaks sõnastust eraldi ja jätkuna; hinnatakse nähtavat võrdlust, mitte ainult märksõnu. Sama retrieval-kontekstiga eraldi/järjest erinev tulemus nõuab downstream-kihi kontrolli; seda ei nimetata ilma tõendita vestlusmälu veaks.
+
+#### R4 — olukorrateadliku abistamise piiratud kasutuselevõtt
+
+**Pind:** R2 moodulid, `requestBootstrap.js`, planner, `mainResponseHandler.js`, persistence, olemasolev `ChatBody` ja vestluse hook'id; privaatsed projektsioonid kõigil uutel API-piiridel.
+
+**Teha vertikaalselt, mitte korraga kogu mälu:** esmalt ühe kasutaja kinnitatud asjaolu arvestamine; seejärel paranduse ülimuslikkus; siis proovitud tegevus/tulemus ja teema juurde naasmine. Alles seejärel keerukamad mitme inimese ja mitme paralleelse mure lood. Kasutaja vaatamise/parandamise/eemaldamise/lähtestamise võimalused peavad valmima enne püsiva olukorra aktiivset juhtimisõigust.
+
+TurnPlan valib toetava repliigi, täpsustuse, valiku, faktilise selgituse või põhjendatud järgmise sammu. Täpsustatakse ainult vastust oluliselt mõjutavat ebaselgust; asukohta, vanust ja diagnoosi ei küsita automaatselt ega täideta oletusega. Uus sõnaselge soov võidab vana oletatud eesmärgi. Kriisisignaali kontroll arvestab algsisendit ega sõltu R2/RAG teenuse õnnestumisest.
+
+**Vastuvõtt:** §28.9 olukorrastsenaariumid läbivad; faktivaba rada on kasulik ka retrieval'i puudumisel; ootamatult lisandunud väline fakt ei pääse avaldamisest mööda. Ebaõnnestunud sammu ei soovitata uuesti ilma uue põhjuse või muutunud tingimuseta. Kui kasutaja parandab asjaolu vastuse koostamise ajal, kontrollitakse sõltuvaid väiteid enne avaldamist uuesti.
+
+**Väljalülitus:** olukorra lugemine, kirjutamine ja uus vestlusjuhtimine on eraldi lülitatavad. Ohutu varurada kasutab volitatud käesolevat sõnumit, lubatud ajalugu ja kontrollitud fakte; ei taasta eemaldatud olukorraseisu ega hakka mälu puudumisel isiklikke fakte välja mõtlema.
+
+#### R5 — korpus, ajakohasus ja allikate elutsükkel
+
+**Pind:** `rag-service/main.py`, `document_versions.py`, `registry_store.py`, `parser_worker.py`, `lexical_index.py`, `lemma_index.py`, `search_security.py`; rakenduse `sourceFreshness.js`, `sourceQualityMetrics.js`, `sourceMetadata.js` ja source-package snapshot'id. Olemasolevat kvaliteedi-/värskusauditit kasutatakse enne uue tööriista loomist.
+
+**Teha:**
+
+1. Määrata dokumentide identiteet, originaal/tuletis, autorid, allikaliik ja kuupäevarollid: `published_at`, `updated_at`, väljaandeaasta, mõõtmisperiood, õiguslik kehtivusaeg ja `retrieved_at` ei ole üks kuupäev.
+2. Näiteks tekstis 09.12.2024 ja registris 2025 on **kontrollitav vastuolu**, mitte automaatselt ühe välja viga: kontrollida originaali, väljaande- ja uuendusaastat, nimetada õige roll ning säilitada paranduse päritolu. Vastuolu ei „lahendata” suvalise uuema aasta valimisega.
+3. Säilitada tabeli veerud/päised, jalused, leheküljeseosed, loetelude ulatus ja chunk'ide naabrus. OCR-/parsinguveaga sisu märgitakse piiranguga; puuduvat tabelit ei hinnata lihtsalt retrieval-veaks.
+4. Anda ingest'i/registri/indeksi tootjast päris generation-ID ja skeemiversioon. Uuendus avaldatakse kooskõlalise versioonina; otsing, claim'i kinnitus ja allika avamine ei tohi märkamatult kasutada eri dokumendiversioone. Kustutus/ACL-muutus jõuab dense-, lexical-, lemma-, cache- ja snapshot-kihti.
+5. Eristada ajaloolist/uurimuslikku allikatuge praegusest kohalikust teenuseinfost. Hetkel kehtiv õigus, kontakt, tähtaeg ja kättesaadavus nõuavad selleks sobivat autoriteetset ajakohast allikat. Artikli olemasolu ei tõenda, et teenus on praegu igas omavalitsuses olemas.
+6. Piiritleda vastuolude käsitlus ja allikate eelistus eesmärgi kaupa. Vastuolulisi arve ei keskmistata vaikimisi; valiku põhjus ja lahtine erinevus jäävad vastusesse. Korpuse lünk saab puudusekirje, mitte mudeli vabalt täidetud fakti.
+
+**Vastuvõtt:** sama dokumendi uuendus, eemaldamine, duplikaat, vale kuupäevaroll ja ACL-muutus kontrollitakse vajalikes indeksites ning avatud allikavaates; uus allikaversioon tühistab mõjutatud claim-cache'i. Täppisväitel on algallikani avanev locator; privaatse allika allalaadimine kontrollib õigust uuesti.
+
+**Aktiveerimise piir:** ajaloolise artikli küsimine võib valmida enne kõigi kohalike teenuste katmist. Praegust teenuse-/õigusnõu lubatakse ainult kontrollitud piirkonna, allikaliigi ja värskusreegli piires. Väljaspool seda saab kasutaja ausa selgituse ja kontrollimist vajava järgmise sammu, mitte põhjendamatu kindluse. Uus välisotsingu pakkuja vajab eraldi andmeedastuse ja kulude otsust.
+
+#### R6 — kiirus, kulu, keeled ja töökindlus
+
+**Teha:** kasutada R1 mõõtmist iga vertikaali juures; ploki lõpus koondada p50/p95, esimese kontrollitud sisu aeg, katkestused, mudeli-/otsingukulu ning cache'i mõju keele ja riskiprofiili kaupa. Alles mõõtmise põhjal valida fast path, rerank või verifier; iga uus kiirendus peab säilitama sama avaldamispiiri.
+
+Cache-võti sisaldab asjakohast allikaversiooni, õiguste ulatust, poliitikat ning olukorra revisjoni/epoch'i. Eri kasutajate isiklik kontekst ei satu ühisesse cache'i. Eri teenuste ajalimiidid mahuvad ühisesse voorueelarvesse; retry ei käivitu lõputult ning katkestus levib pooleliolevatele töödele.
+
+**Vastuvõtt:** ET/EN/RU lubatud profiilides säilivad tähendus ja väiteviited; lihtsustatud sõnastus ei kaota erandit. Klaviatuuri ja ekraanilugeja jaoks on mõistetavad allikavalik, olukorra parandamine ning tehnilise tõrke teade. Külm/soe teenus, aeglane retrieval, mudeli katkestus ja salvestuspiiri tõrge annavad määratud tulemuse. Administraatori käsitsi käivitatav RAG-i enesetest jääb olemasolevaks tootefunktsiooniks.
+
+**Väljalülitus:** kallis või vigane valikuline haru peatub eraldi; üldise tõendikontrolli väljalülitamist ei kasutata kiirendusena. Ohutu toetav vastus ja kontrollitud osavastus võivad jääda kättesaadavaks ka degraded-režiimis.
+
+#### R7 — release candidate ja tõendatud lubamisotsus
+
+**Teha:** külmutada koodipuu, skeemi-/korpuse-/indeksi-/prompt'i-/mudeli-/validaatori versioonid ning tegelik lubamismaatriks. Käivitada ainult release'i muudetud ja kriitiliste omaduste jaoks põhjendatud sihtkontrollid; teha olemasolevas autenditud keskkonnas vajalik käsitsi tervikraja kontroll. Uut laia automatiseeritud smoke/E2E-sondi ei tehta selle plaani pärast.
+
+**Vastuvõtt:** §28.10 künnised ja §28.11 kriitilised väravad on hinnatud määratud valimil; runtime-tõend on seotud sama kandidaatversiooniga. Kriitiline `NOT_PROVEN` tähendab NO-GO vastavale funktsioonile. Kogu platvormi auth-, privaatsus-, makse- või muud lahtised release-blokeerijad vaadatakse eraldi üle; RAG-i läbimine ei ole kogu platvormi turvalisuse või õigusnõuetele vastavuse tõend.
+
+Tulemused lähevad olemasolevasse kontrolliaruandesse koos versioonide, juhtumite, tõendite ja piiridega; master kirjeldab lepingut ning S1.0 kannab lühikest aktiivset seisu. Kui parandus muudab kandidaatversiooni, korratakse mõjutatud väravat, mitte ei liideta eri versioonide parimaid tulemusi üheks läbimiseks.
+
+#### R8 — piiratud käivitus ja produktsiooni üleandmine
+
+**Teha:** järgida §28.11 lubamis- ja taastamiskorda. Esmalt volitatud kontrollkasutajad ja määratud vajadusprofiilid; seejärel laiendada ainult mõõdetud piirides. Shadow, olukorraseisu kirjutus/lugemine, uus response-policy ja valikulised otsinguharud vajavad eristatavaid lüliteid ning ohutuid vaikeseadeid. Konkreetsete env-võtmete nimed määratakse teostamisel; siin ei väideta nende olemasolu.
+
+**Vastuvõtt:** nimetatud käitaja oskab ühe küsimuse aruandest tuvastada etapi, põhjuse tõendatuse ja järgmise kontrolli; tal on tegevusjuhis aegunud katse, katkise indeksi, puuduva versiooni, kustutustõrke ja halvenenud kvaliteedi jaoks. Juurdepääs diagnostikale on kontrollitud ning rollback on proovitud ilma kasutaja paranduste või uute andmete kaota.
+
+**Pärast käivitust:** jälgida kinnitatud koondmõõdikuid ja piiratud veakirjeid, mitte vaikimisi kõiki toorvestlusi. Omanik määrab reageerija, häirelävendid ja ülevaatuse sageduse. See dokument ei loo uut ajastatud automaatikat ega luba iseseisvat tulevast deploy'd.
+
+#### R9 — valikuline GraphRAG ja hilisem laiendamine
+
+Võtta uus graafipakkuja kasutusse ainult siis, kui allesjäänud juhtumites on tõendatud vajadus dokumentidevahelise või mitmehüppelise leidmise järele ning võrdlus parandab kvaliteeti vastuvõetava kulu juures. Graafi serv vajab sama dokumendi/versiooni/span'i päritolu ja ligipääsu nagu muu tõend; kandidaat ei möödu claim-admission'ist. Hilisemad uued vajadused, keeled ja kanalid läbivad sama piiratud aktiveerimise korra. GraphRAG, eluaegne profiil ja eraldi teekonnatoode ei ole esimese produktsioonivalmiduse eeltingimused.
+
+### 28.9 Kontrollistsenaariumid: eraldi küsimused ja tervikvestlused
+
+Kontrolliühik on kasutaja jaoks nähtav tulemus, mitte üksiku helper'i roheline tulemus. Iga juhtumi puhul eristada **kas leiti õige allikas → kas vajalik tõend jõudis konteksti → kas lubati õiged väited → kas vastus ja kuvatud allikad olid õiged → kas järgmine voor kasutas õiget olukorraseisu**. Allikapaneeli olemasolu ei tõenda viite sisu; vajalik allikas avatakse.
+
+| Juhtumiperekond | Sisendjada või vastunäide | Nõutav tulemus |
+| --- | --- | --- |
+| Küsimärgita mure | Fragment → täpsustav asjaolu → kasutaja tegelik eesmärk. | Kasulik kohane repliik; ei nõuta erialaterminit ega oletata õigust/diagnoosi. |
+| Isiku parandus | „Ema…” → „Mõtlesin tädi” → asesõnaline jätk. | Õige inimene ja päritolu; vana seos asendatud, teiste asjaolud säilivad. |
+| Proovitud tegevus | Soovitus → „Helistasin” → „Sellest polnud abi” → järgmine pöördumine. | Antud, tehtud ja ebaõnnestunud samm on eri seisud; sammu ei korrata põhjenduseta. |
+| Teemavahetus | Hooldusmure → rahamure → „Tuleme eelmise juurde tagasi”. | Õige peatatud teema ja lahendamata eesmärk taastuvad; kõrvalteema fakt ei saastu. |
+| Aja muutus | Varasem olukord → „Nüüd on see muutunud” → uus sama teema küsimus. | Aegunud asjaolu ei juhi uut nõu; uus sõnaselge info võidab vana oletuse. |
+| F06 jaotus/loetelu | Koguarv, rühmad, nimed; puuduv või vale rühmaliige. | Rolli- ja täielikkuse kontroll; põhjendatud osavastus eraldi puuduvast osast. |
+| F07 teosevalik | Autor+teema → mitu teost → „teine”/„mõlemad” → loendused. | Kehtiv serverivalik, eraldi allikad ja ühikud; pealkirja etteteadmist ei nõuta. |
+| F08 järjekord | Kaks lähenemist, pööratud küsimisjärg ja „enne või samal ajal”. | Õige subjekt, suund, eitus ja samaaegsuse kvalifikaator. |
+| Keele/register | Sama tähendus tavakeeles ja erialakeeles, ET/EN/RU lubatud profiilides. | Sama põhifakt ja piirang; erialakeel ei anna lisaõigusi. |
+| Piirväärtus/ASR | „Üle 65” vs „65+”; nime/arvu/eituse transkriptsiooniviga. | Tähenduslikku erinevust ei normaliseerita ära; vajaduse korral täpsustus. |
+| Eemaldamine ja võistlus | „Unusta”/reset/arhiveeri, samal ajal pooleliolev vana katse ja retry. | Kohe kasutusest väljas; puudub taassünd, topeltkirjutus ja vale replay. |
+| Ligipääs ja allika muutus | Teine omanik/ruum; allika ACL-i või aktiivversiooni muutus. | Pole konteksti, viite ega cache'i leket; vana admission ei anna uut õigust. |
+| Teenusetõrge ja shadow | Otsing/mudel/DB aeglane või maas; shadow failib. | Määratud ohutu tulemus, lõppev katse, aus põhjus ja eelarve; shadow ei juhi vastust. |
+| Tõendi või korpuse lünk | Asjakohane allikas puudub või kaks allikat räägivad vastu. | Ei hallutsineerita; piirang, ohutu abi ja vajalik täpsustus säilivad. |
+
+Arenduses kasutada esmalt juhtumi kahte tähendust säilitavat sõnastust ja konkreetseid vastunäiteid; ühe päringu hardcode pole vastuvõetav. Mitme vooru kontroll tuleb igasse olukorda või recovery't muutvasse plokki, mitte alles arenduse lõppu. F06–F08 läbimine on vajalik tuntud vea sulgemiseks, kuid ei tõenda iseenesest üldist olukorrateadlikkust.
+
+Hindamisvõti sisaldab lubatud väiteid, vajalikke piiranguid, allikaid ja seda, millal täpsustus või osavastus on õige. Võti ei tohi sattuda runtime-prompt'i ega tootmisreeglisse. Hoida arendus- ja kontrollvalim lahus vähemalt allika/loostruktuuri tasemel; sama küsimuse parafraasi nimetamine sõltumatuks holdout'iks pole piisav. Hindaja kontrollib allikat, mitte ainult mudeli enesehinnangut; olulise erimeelsuse lahendab teine sõltumatu ülevaatus.
+
+### 28.10 Mõõdikud ja pakutavad vastuvõtukünnised
+
+Allpool on **kinnitamiseks pakutud sihid**, mitte olemasolevad mõõtmistulemused ega kokkulepitud SLA. R0-s fikseerida täpsed arvud, valim, keeled ja vajadusprofiilid enne tulemuste nägemist. Künniseid ei langetata tagantjärele selleks, et release läbi saaks.
+
+| Mõõdik | Nimetaja ja hindamine | Esmane pakutav siht |
+| --- | --- | --- |
+| Kriitilised ohutus-/ligipääsu-/kustutus-/revisjonivead | Kõik nimetatud kriitilised sihtjuhtumid ja vaadeldud piloodijuhtumid. | 0 lubamatut juhtumit; üks leid peatab mõjutatud raja laiendamise. |
+| Avaldatud väliste väidete toetus | Õigesti toetatud avaldatud välised aatomväited / kõik avaldatud välised aatomväited hinnatud vastustes, sh soovituse sisse peidetud faktid. | 100% õigesti seotud toe, oluliste kvalifikaatorite ja avatava lubatud allikaga; puuduva tõendi puhul väidet ei avaldata. Null avaldatud väite korral on määr N/A, mitte 100%. |
+| Known-failure regressioonid | F06–F08 ning varasemate paranduste mõjutatud vastunäited. | Kõik riskile vastavad valitud kriitilised juhud läbivad; varasemat parandust ei tohi tagasi rikkuda. |
+| Kasuliku vastuse määr | Sõltumatult hinnatud sobiva vastusevõimalusega pöördumised, sh toetav vastus/täpsustus vastavalt rubriigile. | Vähemalt 90%; `NOT_PROVEN` ei ole PASS. |
+| Põhjendamatu üldkeeldumine | Põhjendamatud üldkeeldumised nimetajasse kuuluvates juhtumites / kõik sõltumatult vastatavaks hinnatud juhtumid (§27.4). | Kuni 5%; tõendita vastamise suurenemine ei ole lubatud viis selle saavutamiseks. |
+| Ohutu osavastuse taastamine | Õigesti antud ohutud osavastused / juhtumid, kus täielik vastus pole toetatud, kuid hindaja kinnitab kasuliku sõltumatu toetatud osa olemasolu. | Vähemalt 95%; puuduva osa oluline piirang säilib. Täisvastatav juhtum ei kuulu siia nimetajasse. |
+| Olukorra ja eesmärgi korrektsus | Rubriigiga hinnatud asjaolud ja üleminekud, koos päritolu ning õige inimese/teemaga. | Vähemalt 95%; kriitilised paranduse, eemaldamise ja isikute segiajamise juhtumid 100%. |
+| Vestluse järjepidevus | Eesmärgi triiv, vajalik info uuesti küsimine, proovitud sammu põhjendamatu kordamine, tegevuse/tulemuse vale mäletamine. | Kriitilistes lugudes 0; mujal eraldi veamäärad ja lahendamise tulemus, mitte ainult koondhinne. |
+| Tavakeele võrdsus | Sama tähendusega paaride edu samas kontekstis ja versioonis. | Mõlemad registrid vähemalt 90%; erialakeele eelis kuni 5 protsendipunkti. |
+| Jälje täielikkus | Kõik lubatud voorud ning nende katsed vastavas kontrollis, sh vead/katkestused. | 100% korrelatsioon, lõppseis või põhjendatud aegumine, nõutud versioonid ja põhjuse tõendatuse märge. Juurpõhjuse 100% teadmist ei lubata. |
+
+Lisaks näidata täieliku vastuse katet, täpsustuse koormust ja lahendamise määra, allikavaliku õnnestumist, toetuseta isiklike oletuste arvu, eesmärgitriivi ning kasutaja hinnatud kasulikkust. Kõik mõõdikud vajavad lugejat/nimetajat, juhtumiarvu, versiooni ja hindamisreeglit. Vastatavus on eraldi hinnang; „dokumendid olemas” ei tähenda, et küsimus on täielikult vastatav.
+
+**Valim ettepanekuna:** enne üldisema protsendiväite kasutamist vähemalt 30 sobivat juhtumit vastava avaldatava keele/vajadusprofiili kohta ning vähemalt 20 tervikvestluse lugu üle käivitusulatuse. Kriitilised §28.9 üleminekud peavad esinema igas neid toetavas keeles, mitte ainult koondvalimis. Väiksem sihttest võib sulgeda konkreetse vea, kuid ei anna selle keele/profiili üldist kvaliteeditõendit. Näidata ka ebakindlust või vähemalt ausalt väikese valimi piirangut; need miinimumid ei ole statistiline veatuse garantii.
+
+**Jõudluse esmane eelarveettepanek:** retrieval'ita lihtne toetav vastus p95 ≤ 5 s; lihtne allikafakt p95 ≤ 12 s; keerukam mitme allika/sammu vastus p95 ≤ 30 s. Vooru vaikimisi kõva tööeelarve võiks olla 45 s, kuni 2 sisulist parandusringi ja kuni 4 mudelikutsungit kõigi harude peale kokku. Need on valideerimist vajavad lähtepiirid, mitte lubadus praeguse mudeli või riistvara kohta; voogedastuse algus ei asenda esimese **kontrollitud** sisu ega kogu vastuse aja mõõtmist.
+
+Tokeni- ja rahalise ülempiiri arvud fikseerida R0/R6-s mõõdetud kasutusprofiili ning omaniku eelarve põhjal, eraldi shadow lisakulust. Ilma kinnitatud ülempiirita uut mitme mudeliga parandusharu pärisliikluses ei aktiveerita. Mõõta külma/sooja rada, samaaegsete kasutajate mõju, tühistamist ja tegelikku pakkujakulu; keskmine aeg ei peida p95 ega timeout'e.
+
+### 28.11 Produktsiooni lubamise, paigalduse ja tagasipööramise värav
+
+**GO ainult avaldatava ulatuse kohta, kui kõik järgmised tingimused on tõendatud:**
+
+- Kasutusulatus, toetatud keeled, allikapiirid, andmetöötlus ja riskiklassid on kinnitatud; kriitilised tooteotsused pole lahtised.
+- F06–F08 ja muud muudetud kriitilised rajad läbivad sihtkontrolli ning vajalikku autentitud käsitsirada. Sama versiooni vastus, allikapaneel, olukorraseis ja diagnostika on omavahel kooskõlas.
+- Kasutajaparandus, reset/arhiveerimine/kustutus, õiguste piir, paralleelne katse ja hiline kirjutus on kontrollitud tegelikul teenuse-/DB-rajal; mitte ainult mock'iga.
+- Allika ajakohasuse ja versiooni nõue on täidetud lubatud teenuse-/õigusväidete jaoks. Puuduv alus ei lähe genereerimise „üldteadmise” varuteele.
+- Lülitite OFF/SHADOW/aktiivse piiratud profiili seisud on üheselt eristatavad; vale kombinatsioon ei aktiveeri variväljundit. Turva- ja tõendiväravaid lülititega maha ei võeta.
+- Mõõdikud, proovitud restore/rollback ning nimetatud käitaja tegevusjuhis on olemas. Kriitilise omaduse `NOT_PROVEN` ei ole vabastuse alus.
+
+**Paigaldusahel pärast omaniku eraldi luba:**
+
+1. Väikese plokivärava järel stage'ida/commit'ida failid nimeliselt ning omaniku loal integreerida ühe kirjutajaga `main`-i. Seejärel külmutada puhas kandidaat ja selle täpne SHA; integratsioon ei tohi muuta kontrollimata koodi märkamatult lõplikuks kandidaadiks.
+2. Lõpetada selle muutumatu koodipuu peatükilõpu värav `AGENTS.md` järgi: asjakohane lint/i18n, skeemimuudatuse korral Prisma kontroll ja tootmisbuild. Seostada artefakt sama kandidaadi identiteediga. Sama puu juba läbinud build'i ei korrata pelgalt commit'i mehaanika või dokumentatsiooni pärast; koodimuutus nõuab uut mõjutatud kontrolli.
+3. Kontrollida migratsiooni expand/contract-ühilduvust, varukoopiat ning taastatavust eraldatud kontrollkeskkonnas. Tõendada lubatud vana/uue frontendi, RAG-teenuse ja research-worker'i kombinatsioonides nii lugemine kui kirjutamine, sealhulgas katse lõppseis, epoch, parandus ja valikuolek. DB varukoopia olemasolu ei tõenda taastamise õnnestumist.
+4. Kinnitada hooldusaken või muu tõendatud üleminekuviis ja in-flight katsete drain/katkestusreegel. Olemasolev `scripts/deploy-server.mjs` peatab build'i ajaks teenuseid: see ei ole nullkatkestusega blue-green väljalase.
+5. Push/deploy teha ainult selge loaga ja pärast kandidaadi väravaid. Kasutada olemasolevat `npm run deploy:server` rada; uus skeem või lipp ei ole luba kasutada kontrollimata käsitsi otseteed. Serveris ehitatud artefakt seotakse sama lähte-SHA ja kinnitatud seadistusega.
+6. Pärast paigaldust mõõta värskelt kohalik/origin/server SHA, tegelik build/release manifest, migratsiooniseis, teenused ja HTTP. Seejärel vajalik autenditud küsimus, jätk, allika avamine, olukorraparandus ning kontrollitav trace. Git SHA + `active` üksi ei lõpeta väljalaset.
+7. Avada ainult tõendatud kasutusprofiil ja kokkulepitud kontrollkasutajad. Laiendada pärast ette määratud kvaliteedi/latentsuse/veavaatlust; kogu kasutajabaasi automaatset ülelülitamist või sisulogimist ei eeldata.
+
+**Peatamissignaalid:** ligipääsu-/privaatsusleke, eemaldatud asjaolu taastumine, vale isiku/epoch'i kirjutus, topeltlõpptulemus, tõendita kõrge mõjuga väide, korduv oluline allikaversiooni viga või kriitilise jälje puudumine. Peatatakse mõjutatud võimekus ning hinnatakse ulatust; eraldi jälgitavad töökindluse/kulu lävendid võivad samuti piiratud režiimi käivitada. Ükski keskmine kvaliteediskoor ei tühista neid signaale.
+
+**Tagasipööramine:**
+
+- Esmalt lülitada välja vigane uus juhtimis-/kirjutamisrada. Säilitada kasutaja parandused, kustutuspiirid ja tõendikontroll; varurada ei tohi taasavada teadaolevalt ebaturvalist vana käitumist.
+- Säilitada enne väljalaset vähemalt üks teadaolevalt sobiv artefakt koos release-manifesti ja ühilduvusinfoga kuni kandidaadi vastuvõtuni. Praeguse deploy-skripti automaatne artefaktitaaste on piiratud juhuga, kus skeem pole muutunud; migratsioonijärgset vana koodi automaatset sobivust ei eeldata.
+- Uut skeemi eelistatakse üleminekul tagasiühilduvaks teha. Vana rakenduse ja worker'i käivitamine on lubatud ainult selle skeemi/andmete lugemis- ja kirjutamisühilduvuse tõendi järel: vana kirjutaja ei tohi kaotada parandusi ega mööduda epoch'i või katse fence'ist. Uusi tabeleid ei drop'ita ega taastata DB varukoopiat automaatselt, kui see kustutaks vahepealsed kasutajaandmed.
+- Varukoopiate säilitamine ei anna luba kustutatud kasutajaandmeid aktiivsesse süsteemi tagasi tuua: taastamisel rakendada kustutus-/epoch-piirid enne teenuse taasavamist. Varukoopia eraldi säilitusaeg ja ligipääs peavad olema määratud.
+- Dokumenteerida, milline artefakt ja skeem töötavad pärast taastamist, mis jäi väljalülitatuks ja milline kontroll läbis. „Rollback tehtud” ilma autenditud mõjutatud raja kontrollita pole valmidustõend.
+
+RAG-i käitusraamat peab kirjeldama vähemalt: aegunud katse lahendamine, retrieval-/mudelikatkestus, indeksi/registri vastuolu, kuupäevakonflikt, allika eemaldamine, kustutustõrge, kulupiiri ületus ja `UNKNOWN` põhjusega kriitiline juhtum. Kasutajate pärisvestluste kontrollimine eeldab selleks õigust; üldine administraatoristaatus ei ole sisule automaatne ligipääsuluba.
+
+### 28.12 Omaniku otsused ja ohutud vaikimisi valikud
+
+| Otsus enne sõltuva võimekuse avamist | Kavandamise ohutu lähtekoht | Mille aktiveerimise puuduv otsus peatab |
+| --- | --- | --- |
+| Käivitusvajadused, ET/EN/RU profiilid ja kõrge mõjuga teemad | Olemasolevaid keeli ei eemaldata vaikimisi; uut kvaliteedilubadust ei anta kontrollimata profiilile. | Vastava uue profiili avalik lubamine. |
+| Olukorraseisu eesmärk, välise mudeli sisend ja säilitamine | Minimaalne sama vestluse privaatsustöödeldud olek; ei dubleerita toorsisu ega laiendata lähteandmete säilitust. | Pärisandmetega uus püsistus ja shadow. |
+| Vestlusteülene jätkamine | OFF; ainult kasutaja nähtav eraldi valik koos määratud ulatusega. | Kontode/vestlusteülene olukorramälu. |
+| Diagnostika sisu, TTL, rollid ja audit | ID-d, piiratud põhjused, versioonid ja locator'id; sisusnapshot erandlik. | Sisuliste vestlussnapshot'ide kogumine ja admin-ülevaatus. |
+| Osavastuse riskipiir ja ajakohase info standard | Ainult sõltumatult toetatud osa; kohalik teenuse-/õigusväide vajab sobivat värsket autoriteetset allikat. | Uus kõrge mõjuga juhendamisprofiil. |
+| Kvaliteedikünnised, valim, kiirus ja rahaline eelarve | §28.10 on kinnitatav ettepanek; teadmata kulu ei ole piiramatu luba. | Laiem piloot ja lisamudeliga/parandusringiga tootmisrada. |
+| Inimese juurde suunamise roll | Vajaduse korral kontrollitud kontakt/soovitus; ei lubata inimese vastust ega saadeta sõnumeid automaatselt. | Aktiivne väline üleandmine või toiming. |
+| Piloot, reageerija ja hooldus-/taastamisaken | Piiratud volitatud kontrollkasutajad, nimetatud operaator ning enne laiendust hinnatud tulemus. | Produktsiooni paigaldus ja laiendamine. |
+
+Need on konkreetsete käivituste eeltingimused, mitte põhjus jätta kogu plaan teostamata. Omaniku kinnitust mitte vajav koodikaardistus ja kitsad, juba tellitud veaparandused saavad jätkuda. See dokument ise on plaan: **see ei käivita migratsiooni, ei muuda env'i, ei salvesta pärisvestluste uut andmeliiki ega anna push/deploy luba**.
+
+### 28.13 Järgmine konkreetne arendusplokk ja lõpetamise reegel
+
+Järgmine sisuline faktiparandus jääb **F06 → F07 → F08**. F06 ploki alguses võtta üks lühike kaardistusring: nõuete eristamine → provenance'iga jaotuse/loetelu tõend → väiteotsus → ohutu osavastuse tekst/allikad → vajalik runtime-tõend. Sulgeda ainult selle raja jaoks vajalikud R1 lüngad; üldise olukorramudeli lõputu ettevalmistus ei tohi F06 parandust asendada.
+
+Seejärel F07 serveripoolne teosevalik ja loendusühikud, F08 suunatud seosed. R1/R2 olukorra vundament ja sünteetiline varivõrdlus ette valmistada piiritletud plokkidena, jagatud faile paralleelsetele kirjutajatele andmata. R4 juhtimisõigus ning R5 ajakohase nõu profiilid avada ainult oma väravate järel.
+
+Iga ploki lõpetamise minimaalne kirje: **mida inimene nüüd paremini teha saab; mis leping muutus; millised sihtjuhtumid ja tegelik UI/teenuserada seda tõendasid; mis jäi NOT_PROVEN; mis versioon on integreeritud; mis on järgmine seotud plokk ja väljalülituse võimalus**. SOL-leiu parandamisel uuendatakse vastava raporti Seis-lõik, genereeritud koond ja S1.0 projekti reeglite järgi; mujal kasutatakse olemasolevat RAG-kontrolliaruannet. Laiemat testisviiti ei käivitata pelgalt formaalsuse pärast.
+
+Dokumentatsiooni valmimine tähendab **arendusplaan valmis**, mitte **RAG produktsiooniks valmis**. Viimane väide on lubatud alles R7/R8 tõendite ja omaniku otsuse põhjal, alati koos tegelikult lubatud kasutusulatusega.
+
+### 28.14 Uurimisalus ja selle piirid
+
+Lisaks §27.5 kontrollitud allikatele kontrolliti viimase teksti järgmisi algallikaid:
+
+- [TopiOCQA](https://aclanthology.org/2022.tacl-1.27/) toetab teemavahetuse ja mitmevoorulise infootsingu eraldi hindamist. See pole sotsiaalabi olukorramälu ega meie teenuse kvaliteeditõend.
+- [mtRAG](https://aclanthology.org/2025.tacl-1.36/) rõhutab realistlike mitmevooruliste retrieval-vestluste hindamist, sealhulgas hilisemaid ja eraldi mittetõlgendatavaid pöördumisi. Benchmark'i tulemust ei kanta SotsiaalAI-le üle.
+- [RHELM](https://arxiv.org/abs/2605.31086) annab täiendavaid ideid muutuva pikaajalise mälu hindamiseks. See on uurimuslik benchmark, mitte põhjendus vaikimisi eluaegse tundliku kasutajaprofiili kogumiseks.
+
+Praktiline järeldus neist on piiratud: **hinnata tuleb tervet vestlust ja ajas muutuvat konteksti, mitte ainult esimest küsimust**. Tootearhitektuuri, privaatsuse ja produktsioonivalmiduse otsused vajavad meie oma andmemudeli, allikate ja lubatud kasutusjuhtude tõendeid.
