@@ -26,7 +26,7 @@ import {
 } from "../../lib/chat/retrievalContextAssembler.js";
 import { extractExplicitSourceYears } from "../../lib/chat/retrievalPlanning.js";
 import { buildSourceAttribution } from "../../lib/chat/sourceAttribution.js";
-import { selectProfessionalMethodGuidanceGroups } from "../../lib/chat/ragContext.js";
+import { groupMatches, selectProfessionalMethodGuidanceGroups } from "../../lib/chat/ragContext.js";
 
 describe("allikaviite leheküljed", () => {
   test("sordib, eemaldab duplikaadid ja ühendab järjestikused leheküljed", () => {
@@ -208,17 +208,16 @@ describe("faktiküsimuse planner", () => {
 
 describe("uuringudokumendi identiteet", () => {
   const plan = buildQuestionPlan({
-    message: "Kui paljude intervjuude põhjal tehti Elin Küti kirjeldatud töötamise toetamise uuring?"
+    message: "Elin Kütt kirjeldab töötamise toetamise uuringut. Kui paljude intervjuude põhjal see tehti?"
   });
+  const authorTopicGroup = docId => groupMatches([{ text: "Töötamise toetamise uuringus kirjeldati intervjuude tulemusi.",
+    metadata: { doc_id: docId, source_id: `${docId}-source`, chunk_id: `${docId}-chunk`, document_version: "fixture-v1",
+      source_status: "active", source_type: "journal_article", collection_id: "journal_articles",
+      authors: ["Elin Kütt"], title: "Sotsiaaltöötajate tööalase toetuse kogemused" }
+  }])[0];
 
   test("õigusallikas ei saa uuringuidentiteediks", () => {
-    const correct = {
-      docId: "elin-2016",
-      title: "Sotsiaaltöötajate tööalase toetuse kogemused",
-      authors: ["Elin Kütt"],
-      sourceType: "journal_article",
-      retrievalChannels: ["author_match", "title_match"]
-    };
+    const correct = authorTopicGroup("elin-2016");
     const law = {
       docId: "shs",
       title: "Sotsiaalhoolekande seadus: töötamise toetamise uuring ja intervjuud",
@@ -233,13 +232,7 @@ describe("uuringudokumendi identiteet", () => {
   });
 
   test("kahe sisuliselt võrdse uuringukandidaadi korral keeldub valimast", () => {
-    const groups = ["a", "b"].map(docId => ({
-      docId,
-      title: "Sotsiaaltöötajate tööalase toetuse kogemused",
-      authors: ["Elin Kütt"],
-      sourceType: "journal_article",
-      retrievalChannels: ["author_match", "title_match"]
-    }));
+    const groups = ["a", "b"].map(authorTopicGroup);
     const result = selectSpecificResearchFactGroups("", groups, plan);
     assert.equal(result.matched, false);
     assert.equal(result.confidence, "ambiguous");
