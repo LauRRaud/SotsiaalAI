@@ -106,3 +106,19 @@ Autenditud serveri in-app vaates tekkis aruandesse 3 kirjet. Pärast kõiki kolm
 Automaatne aruanne koondab ühe vestluse salvestatud pöörded. Siinne käsitsi koond seob nelja vestluse kuus vastust testmanifesti nõuetega ja lisab uuritud põhjuse. F02 puhul näitab automaatne aruanne blokeerivat identiteediväravat; aastarollide algviga selgus alles canonical trace'i ja koodi lugedes. F01 PARTIAL näitab, et roheline tehniline valideerimine ei taga kõigi nõutud detailide olemasolu. Seega ei ole tõendatud lubadus „iga küsimuse täpne algpõhjus alati automaatselt teada”.
 
 Järgmise parandusploki kandidaadid: (1) mõõtmisperioodi ja allika ilmumisaasta lahushoidmine; (2) lõpliku lukutõrke põhjuse ning aastarollide piiratud struktureeritud tõendi säilitamine diagnostikas; (3) faktitoe kontrolli eristamine vastuse täielikkuse kontrollist. Need on leiud, mitte selles testiplokis tehtud parandused.
+
+## Omaniku nõutud jäljetäiendus ja järelkontroll
+
+Pärast esimest testiplokki andis omanik uue korralduse: kui tõrke põhjus pole mõistetav, tuleb arendada parem tehniline jälg. Punkt (2) teostati eraldi plokina; RAG-i aastarollide valikut ega vastamise loogikat ei muudetud. Koodirelease `058ad4c39e090ef9652a936383eb48e086dd6ead`, serveribuild `iA_8a6OG9TZwOkJ3JQ0Hv`. 23 UTC sihttesti, scoped ESLint, i18n, diff-check ning Windowsi ja Linuxi build läbisid. Serveri kolm teenust active; vestlus HTTP200, anonüümne diagnostika401; RAG ok, mõlemad indeksid ready ja sama põlvkond. Taastatava artefakti BUILD_ID kattus töötava buildiga. Väljalaske säilitus eemaldas ühe vana current-artefakti ja ühe vana buildilogi; alles kolm.
+
+Sama F02 küsimus esitati samas testvestluses neljandana. **Sisuline vastus endiselt FAIL:** „Ma ei saa sellele praegu piisavalt kindlat vastust anda.” **Jälje loetavus PASS:** uuest „Miks süsteem nii otsustas?” plokist sai koodi lugemata tuvastada:
+
+- planner nõudis allikaaastaid 2019 ja 2022, mõõtmisperioodi aastad jäid tühjaks;
+- 2023 märgiti küll allikaaastaks, kuid jäeti lõppvalikust välja;
+- õige kandidaadi allikaaasta on 2023 ja nõutud autor kinnitati;
+- lõplik põhjus `source_years_unconfirmed`: autor sobis, kuid nõutud aastad ei kinnitunud ja alternatiivne lukutingimus ei lubanud allikat kasutada;
+- päringuga saabus 6 ajaloosõnumit; otsingusse valiti 0 ja mudelisse 0. Mõlemal on nähtav teadliku väljajätmise põhjus, mitte oletus puuduva ajaloo kohta.
+
+Automaataruandes on nüüd neli kirjet; värske MD allalaadimissündmus kinnitati. 762 × 699 in-app paneelis keritud põhjuseploki tekst ja väljad olid loetavad, kattumist ei nähtud; eraldi uut mobiilsuuruse kontrolli selles plokis ei tehtud. Algpõhjuse üldine automaatne garantii jääb `NOT_PROVEN` ja puuduvat vana tõendit ei kirjutata tagantjärele juurde.
+
+[Uue päringu täisvastus, nähtav selgitus ja v2 diagnostikatõend](../docs/audits/evidence/rag-uus75-2026-08-31-e9669a36/diagnostics-v2-F02-058ad4c3.json).

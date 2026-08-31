@@ -1,0 +1,385 @@
+{
+  "release": "058ad4c39e090ef9652a936383eb48e086dd6ead",
+  "buildId": "iA_8a6OG9TZwOkJ3JQ0Hv",
+  "question": "Millises vahemikus oli Põhja-Pärnumaal mitme kuhjunud võlanõudega inimeste osakaal võlanõustamisele suunatutest aastatel 2019–2022, nagu kirjeldab Anneli Kaljuri 2023. aasta artikkel?",
+  "startedAt": "2026-08-31T13:35:27.972Z",
+  "previousVisibleTestTurns": 3,
+  "answerObservedAt": "2026-08-31T13:36:10.735Z",
+  "visibleAnswer": "Assistent:\n\nMa ei saa sellele praegu piisavalt kindlat vastust anda.\n\n16:35",
+  "visibleExplanation": "Miks süsteem nii otsustas?\n\nNeed on salvestatud otsuse sisendid ja tingimused, mitte automaatne algpõhjuse garantii. Allikaaastate vastuolu korral võrdle küsimuse perioodi ja artikli ilmumisaastat. Ajaloo arvud kirjeldavad selle päringu valikut, mitte vestluse kogupikkust.\n\nPlanneri valitud allikaaastad\n2019, 2022\nPlanneri valitud mõõtmisperioodi aastad\nÜhtegi ei salvestatud\nKuidas aastamainimisi tõlgendati\n2019: allika ilmumisaasta; 2022: allika ilmumisaasta; 2023: allika ilmumisaasta\nAllikaaastaks märgitud, kuid lõppvalikust välja jäetud\n2023\nOtsustava värava põhjus\nAutor sobis, kuid kandidaat ei kinnitanud kõiki nõutud allikaaastaid. Ükski alternatiivne lukutingimus ei lubanud allikat kasutada; kontekst jäi sellel väraval välja.\nKandidaat enne lõppväravat\nsotsiaaltoo-3-2023-pohja-parnumaa-volanoustamiskogemus-2023-3\nKandidaadi allikaaasta\n2023\nLukustamiseks nõutud aastad\n2019, 2022\nKandidaadil kinnitatud nõutud aastad\nÜhtegi ei salvestatud\nKõik nõutud autorid kinnitatud\nJah\nPäringuga saabunud ajaloosõnumeid\n6\nOtsinguajalugu: sisend → valitud\n6 → 0\nMiks otsinguajalugu välja jäeti\nKüsimus nimetab konkreetse dokumendi; varasemate allikate mõju jäeti välja.; Iseseisev ajaperioodi küsimus ei kasuta varasemat otsinguajalugu.\nMudeliajalugu: saadaval → valitud\n6 → 0\nMudeliajaloo valiku põhjus\nKüsimus hinnati iseseisvaks; mudelile varasemat ajalugu ei lisatud.",
+  "reference": "message:cmtha79si000qmtkmf9jk4pzx",
+  "reportUrl": "/api/chat/conversations/conv-edb41cf1-2719-4924-9beb-401b5007bbc5/diagnostics?format=md&lang=et",
+  "diagnostics": {
+    "schema_version": "rag_diagnostics_v2",
+    "trace_id": "turn:cmtha79eq000nmtkmmomnxsd2:attempt:1",
+    "pairing_evidence": {
+      "turn_id": "cmtha79eq000nmtkmmomnxsd2",
+      "user_message_id": "cmtha79en000mmtkm3aioyefw",
+      "attempt": 1
+    },
+    "technical_status": "BLOCKED",
+    "answer_correctness": "NOT_PROVEN",
+    "root_cause_status": "NOT_PROVEN",
+    "first_observed_failure": {
+      "id": "identity",
+      "status": "BLOCKED",
+      "code": "document_identity_mismatch",
+      "evidence_paths": [
+        "document_identity"
+      ]
+    },
+    "limitations": [
+      "automatic_checks_are_not_answer_correctness",
+      "blocking_gate_is_not_necessarily_root_cause",
+      "model_draft_not_logged"
+    ],
+    "runtime_missing_fields": [
+      "build_id",
+      "release_sha",
+      "prompt_hash",
+      "index_generation"
+    ],
+    "runtime": {
+      "configured_model": "gpt-5.6-luna",
+      "history_message_count": 0
+    },
+    "stages": [
+      {
+        "id": "planning",
+        "status": "OBSERVED",
+        "code": "plan_recorded",
+        "evidence_paths": [
+          "query_plan"
+        ]
+      },
+      {
+        "id": "retrieval",
+        "status": "OBSERVED",
+        "code": "retrieval_recorded",
+        "evidence_paths": [
+          "retrieved_count",
+          "retrieved_source_ids",
+          "conversational_recovery"
+        ]
+      },
+      {
+        "id": "identity",
+        "status": "BLOCKED",
+        "code": "document_identity_mismatch",
+        "evidence_paths": [
+          "document_identity"
+        ]
+      },
+      {
+        "id": "context",
+        "status": "NOT_PROVEN",
+        "code": "rendered_context_not_identified",
+        "evidence_paths": [
+          "rendered_context_hash",
+          "model_context_source_ids"
+        ]
+      },
+      {
+        "id": "validation",
+        "status": "NOT_PROVEN",
+        "code": "validation_result_not_recorded",
+        "evidence_paths": [
+          "fact_validation"
+        ]
+      },
+      {
+        "id": "attribution",
+        "status": "OBSERVED",
+        "code": "source_attribution",
+        "evidence_paths": [
+          "attribution_decisions",
+          "displayed_source_ids"
+        ]
+      },
+      {
+        "id": "persistence",
+        "status": "OBSERVED",
+        "code": "completed",
+        "evidence_paths": [
+          "ChatTurn.status"
+        ]
+      }
+    ],
+    "evidence": {
+      "source": "assistant_message.metadata.rag_trace",
+      "present": true,
+      "trace_level": "retrieved_candidates",
+      "counts": {
+        "retrieved_count": 25,
+        "selected_context_count": 0,
+        "rendered_context_chars": 0,
+        "selected_source_count": 0,
+        "answer_source_count": 0,
+        "displayed_source_count": 0
+      },
+      "context_hash": null,
+      "sources": {
+        "retrieved_source_ids": [
+          "sotsiaaltoo_pohja-parnumaa-volanoustamiskogemus-2023-3",
+          "sotsiaaltoo_volanoustamisteenus-aastatel-2018-2023-2025-1",
+          "sotsiaaltoo_volanoustamisteenuse-arendamisest-2022-3",
+          "sotsiaaltoo_poliitika-suuna-muutumine-eesti-sotsiaalhoolekandes-2018",
+          "sotsiaaltoo_sotsiaalkaitse-uue-aasta-valjakutsed-ja-tulevik-valimiste-valguses-2019",
+          "sotsiaaltoo_sotsiaaltranspordi-uhise-korraldusmudeli-katsetamine-parnumaal-2022-3",
+          "riigiteataja:130122025029:paragraph-160-lg-1:546",
+          "sotsiaaltoo_eesti-inimeste-toetamine-majandusliku-olukorra-muutumisel-2021-1",
+          "sotsiaalministeerium_sotsiaalhoolekande_programm_2024_2027",
+          "sotsiaaltoo_sotsiaaltoo-on-aastal-2050-rohkem-nahtav-ja-toetab-uhiskonna-sidusust-2025-4",
+          "sotsiaaltoo_esta-on-eesti-sotsiaaltootaja-nagu-2018"
+        ],
+        "selected_context_source_ids": [],
+        "model_context_source_ids": [],
+        "validated_supporting_source_ids": [],
+        "claim_supported_source_ids": [],
+        "answer_source_ids": [],
+        "displayed_source_ids": []
+      },
+      "omissions": [
+        {
+          "path": "document_identity.reasons",
+          "reason": "redacted_or_invalid",
+          "omitted": 20
+        },
+        {
+          "path": "document_identity.reasons",
+          "reason": "upstream_item_limit",
+          "omitted": 12
+        }
+      ],
+      "plan": {
+        "observed": true,
+        "mode": "specific_research_fact",
+        "selection_strategy": "document_identity_then_fact",
+        "history_reference": {
+          "explicit_source_anaphora": false,
+          "carry_previous_source_filter": false
+        },
+        "years": {
+          "observed": true,
+          "source_years": [
+            "2019",
+            "2022"
+          ],
+          "evidence_period_years": [],
+          "mentions_observed": true,
+          "mentions": [
+            {
+              "value": "2019",
+              "role": "document_source_year",
+              "method": "nearest_explicit_year_cue"
+            },
+            {
+              "value": "2022",
+              "role": "document_source_year",
+              "method": "nearest_explicit_year_cue"
+            },
+            {
+              "value": "2023",
+              "role": "document_source_year",
+              "method": "forward_explicit_year_cue"
+            }
+          ],
+          "unselected_source_years": [
+            "2023"
+          ]
+        }
+      },
+      "history": {
+        "observed": true,
+        "request_raw_count": 6,
+        "normalized_client_count": 6,
+        "retrieval_input_count": 6,
+        "retrieval_selected_count": 0,
+        "model_available_count": 6,
+        "model_selected_count": 0,
+        "retrieval_input_origin": "client_payload",
+        "model_selection_reason": "self_contained",
+        "retrieval_exclusion_reasons": [
+          "explicit_current_document",
+          "self_contained_temporal"
+        ]
+      },
+      "identity": {
+        "observed": true,
+        "confidence": "low",
+        "matched": false,
+        "required": true,
+        "enabled": true,
+        "reasons": [],
+        "reason_count": 32,
+        "reasons_omitted": 12,
+        "decision": {
+          "stage": "initial_lock",
+          "reason": "source_years_unconfirmed",
+          "candidate_document_id": "sotsiaaltoo-3-2023-pohja-parnumaa-volanoustamiskogemus-2023-3",
+          "candidate_confidence": "high",
+          "eligible": false,
+          "candidate_matched": true,
+          "selected_source_year": "2023",
+          "required_source_years": [
+            "2019",
+            "2022"
+          ],
+          "confirmed_source_years": [],
+          "unconfirmed_source_years": [
+            "2019",
+            "2022"
+          ],
+          "checks": {
+            "exact_title_confirmed": false,
+            "canonical_title_confirmed": false,
+            "all_authors_confirmed": true,
+            "all_source_years_confirmed": false,
+            "author_confirmation_trusted": false
+          }
+        },
+        "candidates": [
+          {
+            "document_id": "sotsiaaltoo-3-2023-pohja-parnumaa-volanoustamiskogemus-2023-3",
+            "score": 74,
+            "subject_match_count": 9,
+            "body_subject_match_count": 9,
+            "identity_matched": true,
+            "author_matched": true,
+            "source_compatible": true,
+            "source_year_compatible": true,
+            "resolved_source_year": "2023",
+            "source_year_matches": []
+          },
+          {
+            "document_id": "sotsiaaltoo-3-2022-sotsiaaltranspordi-uhise-korraldusmudeli-katsetamine-parnumaal-2022-3",
+            "score": 26,
+            "subject_match_count": 2,
+            "body_subject_match_count": 0,
+            "identity_matched": false,
+            "author_matched": false,
+            "source_compatible": true,
+            "source_year_compatible": true,
+            "resolved_source_year": "2022",
+            "source_year_matches": [
+              "2022"
+            ]
+          },
+          {
+            "document_id": "sotsiaaltoo-1-2019-sotsiaalkaitse-uue-aasta-valjakutsed-ja-tulevik-valimiste-valguses-2019",
+            "score": 33,
+            "subject_match_count": 5,
+            "body_subject_match_count": 0,
+            "identity_matched": false,
+            "author_matched": false,
+            "source_compatible": true,
+            "source_year_compatible": true,
+            "resolved_source_year": "2019",
+            "source_year_matches": [
+              "2019"
+            ]
+          },
+          {
+            "document_id": "sotsiaaltoo-3-2022-volanoustamisteenuse-arendamisest-2022-3",
+            "score": 20,
+            "subject_match_count": 3,
+            "body_subject_match_count": 0,
+            "identity_matched": false,
+            "author_matched": false,
+            "source_compatible": true,
+            "source_year_compatible": true,
+            "resolved_source_year": "2022",
+            "source_year_matches": [
+              "2022"
+            ]
+          },
+          {
+            "document_id": "sotsiaaltoo-1-2021-eesti-inimeste-toetamine-majandusliku-olukorra-muutumisel-2021-1",
+            "score": 19,
+            "subject_match_count": 5,
+            "body_subject_match_count": 0,
+            "identity_matched": false,
+            "author_matched": false,
+            "source_compatible": true,
+            "source_year_compatible": true,
+            "resolved_source_year": "2021",
+            "source_year_matches": []
+          }
+        ]
+      },
+      "validation": {
+        "observed": false,
+        "bindings": [],
+        "relation_diagnostics": []
+      },
+      "claims": [
+        {
+          "claim_id": "claim_1",
+          "claim_hash": "30730126",
+          "supporting_source_ids": []
+        }
+      ],
+      "recovery": {
+        "observed": true,
+        "reason": "clarification_model_failed",
+        "action": "state_evidence_limit",
+        "trigger": "no_confirmed_context",
+        "target": "none",
+        "reply_source": "deterministic_fallback",
+        "clarification_guard": "closed_lexicon_or_typo_correction",
+        "active": false,
+        "question_asked": false,
+        "external_knowledge_allowed": false,
+        "technical_status_allowed": false,
+        "model_call_count": 1,
+        "additional_model_call_count": 0,
+        "correction_hint_count": 0,
+        "missing_fields": []
+      },
+      "attribution": {
+        "observed": true,
+        "displayed_sources_subset_of_selected": true,
+        "displayed_sources_subset_of_answer": true,
+        "decisions": []
+      },
+      "context": [],
+      "timings": {
+        "planner_ms": 1708,
+        "query_planning_ms": 4,
+        "query_build_ms": 4,
+        "retrieval_wall_ms": 26073,
+        "multi_query_retrieval_ms": 99135,
+        "retrieval_parallel_sum_ms": 99135,
+        "embedding_sum_ms": 8398,
+        "embedding_ms": 8398,
+        "dense_sum_ms": 27426,
+        "dense_ms": 27426,
+        "registry_ms": 130,
+        "lexical_sum_ms": 59031,
+        "lexical_ms": 59031,
+        "lemma_fts_shadow_ms": 0,
+        "document_sibling_sum_ms": 2895,
+        "service_fact_segment_sum_ms": 0,
+        "document_identity_ms": 126,
+        "context_render_ms": 0,
+        "model_ms": 430,
+        "first_model_call_ms": 430,
+        "retrieval_context_total_ms": 28100
+      },
+      "projection_excludes": [
+        "raw_prompt_and_question",
+        "source_body_previews",
+        "model_draft",
+        "free_text_planner_terms",
+        "full_unbounded_runtime_trace"
+      ],
+      "insufficient_evidence": false,
+      "missing_sections": [],
+      "coverage": "LIMITED"
+    }
+  },
+  "traceReadability": "PASS",
+  "answerQuality": "FAIL",
+  "reason": "Täpsed planneriaastad, välja jäetud2023, kandidaadi aasta ja otsustav source_years_unconfirmed on loetavad UI-st; history6→0 mõlemal rajal põhjendatud. RAG-vastamise aastaviga on muutmata.",
+  "downloadEventObserved": true
+}
