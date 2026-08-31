@@ -2186,3 +2186,13 @@ Mõlema lapse heaolu vastuse kontekst oli `b96c53cdcccfef09d8112804f909e044fe37c
 2. **Nimelise mudeli ankur sõltub veel sõnajärjest ja käändevormist.** Järjest vastuse mudeliväide `claim_58` (`5b564470`) algab „„Turvalisuse märgid“ on 2024. aastal kirjeldatud täiendav juhtumikorraldusmudel…”. Vahetut tüübisõna nime kõrval ei ole, mistõttu nimeankur jääb tühjaks ning kirjeldamisaasta erand ei rakendu. Tüübisõna lisamine kohe nime järele üksi ei aita: `märgid` ja tõendi `märkide` ei ühti prefiksivõrdluses. Kui kohalikus diagnostilises koopias on nii vahetu tüübisõna kui ka tõendi käändevorm, läbib allikatugi kontrolli. Ühtegi neist ümberkirjutustest ei küsitud rakenduses ega kirjutatud tegeliku vastuse asemele. [Kolme variandi diagnostika](../docs/audits/evidence/rag-retest-2026-08-31-e1f653a7/sequential-model-diagnostic.json).
 
 Järgmine parandus peab säilitama vastuse struktuurse rolli enne väideteks jagamist ning siduma nimelise mudeli sama allika identiteediga sõnajärjest ja käändest sõltumatult. Küsimuse EstNLTK analüüsi asukoht ega indeksi puudumine ei ole selle paari põhjus. Selleks uut muudatus-/serveriringi praeguse serveri- ja testikorralduse sees ei alustatud. Kogu75/37 ja 10/10 on endiselt tõendamata.
+
+## 31.08.2026 — 707bbeb1 pealkirjade ja nimevormide parandus ning paariskordus
+
+Omaniku uus korraldus: lõpeta parandus, avalda serveris, kontrolli tulemust ning ava uus ülesanne 75 uue küsimuse koostamiseks. Kood `707bbeb1a118a2b54a3985da832d59db4178c280` lisab lõppvastuse allikaseosele ühe piiratud EstNLTK-päringu nimede ja võimalike jaotisepealkirjade kohta. Nimisõnaline jaotisesilt ei ole iseseisev claim. Terve järjestikune nimi võib sobituda lemmaühisosa kaudu; tüübisõna võib paikneda sama osalause kirjeldavas osas. Renderdatud body-, arvu- ja sündmuseaasta piirid jäävad kehtima. Tõendi teksti, indekseid ega benchmark'i vastuseid ei kirjutata ümber.
+
+Kohalik kontroll: 29/29 sihttesti (sealhulgas kaks viimast täisvastust ja päris EstNLTK analüüsi snapshot), muudetud failide ESLint, i18n, tootmisbuild ja diff-check PASS. EstNLTK read-only fraasianalüüs võttis 5 ms / 2 ms; see ei ole kasutaja vastuse runtime-latentsus. Arhitektuurikaart §12.2 on uuendatud. Eelmine 0 PASS / 2 PARTIAL jääb ajalooliselt kehtima.
+
+Uue runtime'i protokoll: in-app, uus tühi vestlus → lapse heaolu küsimus; teine uus tühi vestlus → M01, M02, integreeritud teenused, lapse heaolu. Enne saatmist kontrollitakse tühja vestluse UI-d; URL-i muutust ei loeta konteksti lähtestamiseks. Sihtküsimusi on kaks, eelküsimusi kolm; 75/37 nimetajasse neid ei liideta. Iga täisvastus, paneel ja hinnang salvestatakse kohe. Küsimisringi ajal koodi ei muudeta.
+
+<!-- child-707bbeb1-runtime-results -->
