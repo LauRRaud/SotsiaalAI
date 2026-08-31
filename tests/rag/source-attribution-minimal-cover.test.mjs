@@ -4,6 +4,7 @@ import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { isJournalFrontMatter } from "../../lib/chat/evidenceContent.js";
 import { buildContextWithBudget, groupMatches } from "../../lib/chat/ragContext.js";
+import { attributionHeadingCandidates, prepareSourceAttributionLanguage } from "../../lib/chat/sourceAttributionLanguage.js";
 
 import {
   ALLOWED_ATTRIBUTION_DECISION_REASONS,
@@ -22,6 +23,84 @@ function guideline(sourceId, title, evidenceText) {
 const childGuidanceFixture = JSON.parse(readFileSync(new URL(
   "./fixtures/child-guidance-attribution-2026-08-31.json", import.meta.url
 ), "utf8"));
+
+const childLanguageFixture = JSON.parse(readFileSync(new URL(
+  "./fixtures/child-guidance-language-2026-08-31.json", import.meta.url
+), "utf8"));
+
+for (const row of childLanguageFixture.cases) {
+  test(`captured e1f653a7 ${row.mode}: structural labels and EstNLTK named identity`, async () => {
+    const sources = childGuidanceFixture.sources.map(source => ({ ...source,
+      evidenceText: source.rendered_spans.map(span => span.text).join("\n---\n") }));
+    const attributionLanguage = await prepareSourceAttributionLanguage(row.answer, sources, childGuidanceFixture.queryPlan,
+      async query => { assert.equal(query, row.query); return row.analysis; });
+    const result = buildSourceAttribution(row.answer, sources, { queryPlan: childGuidanceFixture.queryPlan, attributionLanguage });
+    assert.deepEqual(new Set(result.displayed_source_ids), new Set(row.expected_source_ids));
+    assert.ok(attributionLanguage.headings.some(line => line.includes("Vahehindamine")));
+    assert.ok(!result.claim_support_graph.some(claim => ["36ab97cb", "64d1ac01"].includes(claim.claim_hash)));
+    if (row.mode === "sequential") assert.deepEqual(result.claim_support_graph.find(claim => claim.claim_hash === "5b564470")
+      ?.supporting_source_ids, [row.expected_source_ids[1]]);
+  });
+}
+
+test("structural analysis preserves facts, imperatives and unavailable or incomplete morphology", async () => {
+  const plan = { mode: "professional_method_guidance" };
+  for (const reply of [
+    "1. Teenus maksab 25 eurot\n\nKulu kannab klient.",
+    "1. Kaitse last kohe.\n\nSelleks kasuta turvaplaani.",
+    "1. Esimene soovitus\n2. Teine soovitus",
+    "Hindamisvaldkond 1: hinnatakse lapse turvalisust."
+  ]) assert.deepEqual(attributionHeadingCandidates(reply), []);
+  const reply = "1. Kaitse last\n\nSelleks kasuta turvaplaani.";
+  const analysis = { available: true, tokens: [
+    { surface: "Kaitse", start: 0, end: 6, lemmas: ["kaitse", "kaitsma"], part_of_speech: ["S", "V"] },
+    { surface: "last", start: 7, end: 11, lemmas: ["laps"], part_of_speech: ["S"] }
+  ] };
+  assert.deepEqual((await prepareSourceAttributionLanguage(reply, [], plan, async () => analysis)).headings, []);
+  for (const unavailable of [null, { available: false }, { ...analysis, tokens: analysis.tokens.slice(0, 1) }]) {
+    assert.deepEqual((await prepareSourceAttributionLanguage(reply, [], plan, async () => unavailable)).headings, []);
+  }
+  assert.deepEqual(await prepareSourceAttributionLanguage(reply, [], plan, async () => { throw Error("timeout"); }),
+    { headings: [], lemmas: {} });
+  let calls = 0;
+  await prepareSourceAttributionLanguage(reply, [], { mode: "person_source_lookup" }, async () => { calls++; });
+  assert.equal(calls, 0);
+});
+
+test("inflected named identity keeps order, rendered body and numeric restrictions", () => {
+  const options = { queryPlan: { mode: "professional_method_guidance" }, attributionLanguage: {
+    lemmas: { margid: ["mark", "markima"], markide: ["mark"] }
+  } };
+  const claim = "„Turvalisuse märgid“ on 2024. aastal kirjeldatud täiendav juhtumikorraldusmudel, mis toetab spetsialistide ja pere partnerlust.";
+  const source = { source_id: "model", source_type: "journal_article", year: 2024, title: "Täiendav töövahend",
+    evidenceText: "„T urvalisuse märkide“ mudel toetab spetsialistide ja pere partnerlust." };
+  assert.deepEqual(buildSourceAttribution(claim, [source], options).displayed_source_ids, ["model"]);
+  for (const evidenceText of [
+    "„Märkide turvalisuse“ mudel toetab spetsialistide ja pere partnerlust.",
+    "„Turvalisuse käikide“ mudel toetab spetsialistide ja pere partnerlust.",
+    "Turvalisuse hindamine toetab partnerlust. Märkide mudel toetab spetsialistide ja pere partnerlust.",
+    "(1) Turvalisuse märkide mudel\nMudel toetab spetsialistide ja pere partnerlust."
+  ]) assert.deepEqual(buildSourceAttribution(claim, [{ ...source, title: "Turvalisuse märgid", evidenceText }], options)
+    .displayed_source_ids, []);
+  for (const unsupported of [claim.replace("2024", "2023"), claim.replace("kirjeldatud", "rakendatud"),
+    claim.replace("partnerlust.", "partnerlust 47 peres.")]) {
+    assert.deepEqual(buildSourceAttribution(unsupported, [source], options).displayed_source_ids, []);
+  }
+});
+
+test("attribution morphology uses one bounded request and never sends title-only names", async () => {
+  let calls = 0;
+  const reply = Array.from({ length: 100 }, (_, i) => `„Meetodi nimi ${i}“ mudel toetab peret.`).join("\n");
+  await prepareSourceAttributionLanguage(reply, [{ title: "AINULT_METADATA", evidenceText: "Sisu" }],
+    { mode: "professional_method_guidance" }, async input => {
+      calls++;
+      assert.ok((input.match(/[\p{Letter}\p{Number}]+/gu) || []).length <= 120);
+      assert.ok(input.length <= 6000);
+      assert.ok(!input.includes("AINULT_METADATA"));
+      return null;
+    });
+  assert.equal(calls, 1);
+});
 
 for (const row of childGuidanceFixture.cases) {
   test(`captured child guidance ${row.mode}: retain the model article without redundant background`, () => {

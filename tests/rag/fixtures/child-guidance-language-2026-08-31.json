@@ -1,0 +1,1461 @@
+{
+  "provenance": "Public benchmark answers on e1f653a7; rendered evidence is shared with child-guidance-attribution-2026-08-31.json. Analyzer snapshots below are read-only EstNLTK results for comparison phrases.",
+  "cases": [
+    {
+      "mode": "isolated",
+      "question": "Kuidas hinnata lapse heaolu ja abivajadust?",
+      "answer": "Lapse heaolu ja abivajadust hinnatakse lapsekeskselt ning terviklikult: esmalt hinnatakse lapse turvalisust ja arenguvajadusi, seejärel vanemluse ning pere ja keskkonna tegureid. Eesmärk on mõista, millised lapse vajadused on rahuldamata, millised tegurid tema heaolu ohustavad või toetavad ning millist abi on vaja.\n\nPraktiline hindamisjärjestus:\n\n1. Kohese turvalisuse hindamine\n\nKõigepealt tuleb selgitada, kas lapse elu või tervis on ohus või kas ta viibib teda otseselt ohustavates tingimustes. Hädaohu korral on esmatähtis kiire sekkumine ja turvalisuse tagamine. Lapse ohutust tuleb jälgida kogu hindamisprotsessi vältel.\n\n2. Eelhindamine\n\nAbivajavast lapsest teate saamisel teeb lastekaitsetöötaja eelhindamise. Selle käigus selgitatakse muu hulgas:\n\n- milles lapse võimalik abivajadus seisneb;\n- kas abi saab anda ühe meetmega või on vaja koordineeritud sekkumist;\n- kas laps ja pere võtavad pakutava abi vastu;\n- kas pere on valmis tegema koostööd;\n- millised spetsialistid või võrgustiku liikmed võivad olla vajalikud.\n\nKui lapse abivajadust saab rahuldada ühe meetmega, näiteks sotsiaalnõustamise, toetuse või teabe andmisega, ei pruugi juhtumikorralduse algatamine olla vajalik. Kui vaja on mitut abimeedet, põhjalikumat hindamist või mitme organisatsiooni koostööd, tuleb algatada juhtumikorraldus ja juhtumimenetlus STARis.\n\n3. Lapsega kontakti loomine ja tema kaasamine\n\nLaps peab olema hindamise keskmes ning tema arvamust tuleb välja selgitada võimalikult varakult ja arvestada lapse vanuse, arengutaseme ja arusaamisvõimega. Lapsega esmase kontakti võtmisel teavitatakse üldjuhul lapsevanemat, kuid kui põhjendatult võib eeldada, et vanema tegevus või tegevusetus ohustab last, võib lapsega esmalt vestelda ilma vanemat teavitamata ja tema nõusolekuta. Sellisel juhul tuleb vanemat vestlusest teavitada kohe pärast vestlust.\n\n4. Põhjalik abivajaduse hindamine\n\nPärast hindamise kavandamist kogutakse ainult sellist teavet, mis aitab püstitatud hindamise eesmärki täita. Hindamine toimub lapse heaolu kolmnurga abil kolmes omavahel seotud valdkonnas:\n\n- lapse arenguvajadused;\n- vanemlus;\n- pere ja keskkonna tegurid.\n\nLapse arenguvajaduste juures vaadeldakse lapse füüsilist, tervislikku, psühholoogilist, emotsionaalset, sotsiaalset, kognitiivset, hariduslikku ja majanduslikku heaolu. Hindamisel ei vaadata neid valdkondi eraldi, vaid analüüsitakse, kuidas need mõjutavad üksteist ja lapse heaolu tervikuna.\n\nIgas valdkonnas tuleb eristada:\n\n- kaitsetegureid – lapse, vanemate või keskkonna positiivseid asjaolusid, mis toetavad lapse arengut ja millele saab muutuse kavandamisel toetuda;\n- riskitegureid – asjaolusid, mis kahjustavad või ohustavad lapse arengut ja võivad suurendada abivajadust.\n\nKaitse- ja riskitegurid võivad olla dünaamilised ehk mõjutatavad või staatilised ehk muutumatud. Oluline ei ole üksnes tegurite loetlemine, vaid nende mõju analüüsimine lapse praegusele olukorrale ja heaolule tulevikus.\n\n5. Võrgustiku kaardistamine\n\nHindamise ettevalmistamisel tuleb kaardistada lapse ja pere võrgustik ning teha vajaduse korral võrgustikutööd. See aitab mõista, milline tugi on perel juba olemas, milliseid ressursse saab kasutada ning milliste spetsialistide või asutuste koostöö on vajalik.\n\n6. Tegevuskava koostamine\n\nPärast abivajaduse hindamist:\n\n- seatakse lapse vajadustest lähtuvad prioriteedid;\n- sõnastatakse lapse heaoluga seotud eesmärgid;\n- valitakse sobivad sekkumised ja abimeetmed;\n- määratakse tegevuste rakendamine ja jälgimine.\n\nEesmärgid peavad olema seotud soovitud muutusega lapse arengus, turvalisuses, vanemluses või pere ja keskkonna toimimises, mitte piirduma üksnes tegevuste loetlemisega.\n\n7. Vahehindamine ja juhtumi lõpetamine\n\nTegevuskava rakendamise ajal tehakse vahehindamisi, mille käigus hinnatakse, kas meetmed on toonud soovitud muutuse. Vajaduse korral täiendatakse abivajaduse hinnangut ja muudetakse tegevuskava.\n\nNäiteks võib koolikohustuse täitmise puhul võrrelda puudumiste arvu enne ja pärast abimeetme rakendamist. Hindamise tulemus võib olla:\n\n- eesmärk on täidetud ja positiivne muutus on toimunud;\n- muutus on osaliselt positiivne, kuid eesmärk ei ole veel täidetud;\n- olukord on halvenenud ning vaja on uusi eesmärke või täiendavaid abimeetmeid.\n\nKui lapse abivajadus on vähenenud ja edasised tegevused ei ole vajalikud, lõpetatakse juhtumimenetlus. Kui eesmärgid ei ole täidetud või olukord on halvenenud, jätkatakse juhtumikorraldusega.\n\n„Turvalisuse märkide“ mudelit on Eesti lastekaitsetöös käsitletud täiendava töövahendina, mida saab ühildada lapse heaolu kolmnurga ja „Lapse heaolu hindamise käsiraamatuga“; seda ei käsitleta nende raamistike asendusena ega ainsa hindamismeetodina. (Sotsiaaltöö 4/2024)",
+      "expected_source_ids": [
+        "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+        "sotsiaaltoo_turvalisuse-margid-2024-4"
+      ],
+      "query": "Turvalisuse märkide\nLapse heaolu hindamise käsiraamatuga\nLapse heaolu hindamise käsiraamatust\nLapse heaolu kolmnurkade\nKohese turvalisuse hindamine\nEelhindamine\nLapsega kontakti loomine ja tema kaasamine\nPõhjalik abivajaduse hindamine\nVõrgustiku kaardistamine\nTegevuskava koostamine\nVahehindamine ja juhtumi lõpetamine\n",
+      "analysis": {
+        "ok": true,
+        "available": true,
+        "analyzer_version": "estnltk-vabamorf-1.7.5-v2",
+        "reason": null,
+        "tokens": [
+          {
+            "surface": "Turvalisuse",
+            "start": 0,
+            "end": 11,
+            "lemmas": [
+              "turvalisus"
+            ],
+            "root_tokens": [
+              "turvalisus"
+            ],
+            "part_of_speech": [
+              "H",
+              "S"
+            ],
+            "forms": [
+              "sg g"
+            ],
+            "proper_name_candidate": true
+          },
+          {
+            "surface": "märkide",
+            "start": 12,
+            "end": 19,
+            "lemmas": [
+              "märk"
+            ],
+            "root_tokens": [
+              "märk"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "pl g"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "Lapse",
+            "start": 20,
+            "end": 25,
+            "lemmas": [
+              "laps",
+              "lapse"
+            ],
+            "root_tokens": [
+              "laps",
+              "lapse"
+            ],
+            "part_of_speech": [
+              "H",
+              "S"
+            ],
+            "forms": [
+              "sg g",
+              "sg n"
+            ],
+            "proper_name_candidate": true
+          },
+          {
+            "surface": "heaolu",
+            "start": 26,
+            "end": 32,
+            "lemmas": [
+              "heaolu"
+            ],
+            "root_tokens": [
+              "hea",
+              "olu"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "sg g",
+              "sg n",
+              "sg p"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "hindamise",
+            "start": 33,
+            "end": 42,
+            "lemmas": [
+              "hindamine"
+            ],
+            "root_tokens": [
+              "hindamine"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "sg g"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "käsiraamatuga",
+            "start": 43,
+            "end": 56,
+            "lemmas": [
+              "käsiraamat"
+            ],
+            "root_tokens": [
+              "käsi",
+              "raamat"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "sg kom"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "Lapse",
+            "start": 57,
+            "end": 62,
+            "lemmas": [
+              "laps",
+              "lapse"
+            ],
+            "root_tokens": [
+              "laps",
+              "lapse"
+            ],
+            "part_of_speech": [
+              "H",
+              "S"
+            ],
+            "forms": [
+              "sg g",
+              "sg n"
+            ],
+            "proper_name_candidate": true
+          },
+          {
+            "surface": "heaolu",
+            "start": 63,
+            "end": 69,
+            "lemmas": [
+              "heaolu"
+            ],
+            "root_tokens": [
+              "hea",
+              "olu"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "sg g",
+              "sg n",
+              "sg p"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "hindamise",
+            "start": 70,
+            "end": 79,
+            "lemmas": [
+              "hindamine"
+            ],
+            "root_tokens": [
+              "hindamine"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "sg g"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "käsiraamatust",
+            "start": 80,
+            "end": 93,
+            "lemmas": [
+              "käsiraamat"
+            ],
+            "root_tokens": [
+              "käsi",
+              "raamat"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "sg el"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "Lapse",
+            "start": 94,
+            "end": 99,
+            "lemmas": [
+              "laps",
+              "lapse"
+            ],
+            "root_tokens": [
+              "laps",
+              "lapse"
+            ],
+            "part_of_speech": [
+              "H",
+              "S"
+            ],
+            "forms": [
+              "sg g",
+              "sg n"
+            ],
+            "proper_name_candidate": true
+          },
+          {
+            "surface": "heaolu",
+            "start": 100,
+            "end": 106,
+            "lemmas": [
+              "heaolu"
+            ],
+            "root_tokens": [
+              "hea",
+              "olu"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "sg g",
+              "sg n",
+              "sg p"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "kolmnurkade",
+            "start": 107,
+            "end": 118,
+            "lemmas": [
+              "kolmnurk"
+            ],
+            "root_tokens": [
+              "kolm",
+              "nurk"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "pl g"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "Kohese",
+            "start": 119,
+            "end": 125,
+            "lemmas": [
+              "kohene",
+              "kohes"
+            ],
+            "root_tokens": [
+              "kohene",
+              "kohes"
+            ],
+            "part_of_speech": [
+              "H",
+              "A"
+            ],
+            "forms": [
+              "sg g"
+            ],
+            "proper_name_candidate": true
+          },
+          {
+            "surface": "turvalisuse",
+            "start": 126,
+            "end": 137,
+            "lemmas": [
+              "turvalisus"
+            ],
+            "root_tokens": [
+              "turvalisus"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "sg g"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "hindamine",
+            "start": 138,
+            "end": 147,
+            "lemmas": [
+              "hindamine"
+            ],
+            "root_tokens": [
+              "hindamine"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "sg n"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "Eelhindamine",
+            "start": 148,
+            "end": 160,
+            "lemmas": [
+              "eelhindamine"
+            ],
+            "root_tokens": [
+              "eel",
+              "hindamine"
+            ],
+            "part_of_speech": [
+              "H",
+              "S"
+            ],
+            "forms": [
+              "sg n"
+            ],
+            "proper_name_candidate": true
+          },
+          {
+            "surface": "Lapsega",
+            "start": 161,
+            "end": 168,
+            "lemmas": [
+              "laps",
+              "lapse"
+            ],
+            "root_tokens": [
+              "laps",
+              "lapse"
+            ],
+            "part_of_speech": [
+              "H",
+              "S"
+            ],
+            "forms": [
+              "sg kom"
+            ],
+            "proper_name_candidate": true
+          },
+          {
+            "surface": "kontakti",
+            "start": 169,
+            "end": 177,
+            "lemmas": [
+              "kontakt",
+              "kontaktima"
+            ],
+            "root_tokens": [
+              "kontakt",
+              "kontakti"
+            ],
+            "part_of_speech": [
+              "S",
+              "V"
+            ],
+            "forms": [
+              "adt",
+              "sg g",
+              "o",
+              "sg p"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "loomine",
+            "start": 178,
+            "end": 185,
+            "lemmas": [
+              "loomine"
+            ],
+            "root_tokens": [
+              "loomine"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "sg n"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "ja",
+            "start": 186,
+            "end": 188,
+            "lemmas": [
+              "ja"
+            ],
+            "root_tokens": [
+              "ja"
+            ],
+            "part_of_speech": [
+              "J"
+            ],
+            "forms": [],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "tema",
+            "start": 189,
+            "end": 193,
+            "lemmas": [
+              "tema"
+            ],
+            "root_tokens": [
+              "tema"
+            ],
+            "part_of_speech": [
+              "P"
+            ],
+            "forms": [
+              "sg g",
+              "sg n"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "kaasamine",
+            "start": 194,
+            "end": 203,
+            "lemmas": [
+              "kaasamine"
+            ],
+            "root_tokens": [
+              "kaasamine"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "sg n"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "Põhjalik",
+            "start": 204,
+            "end": 212,
+            "lemmas": [
+              "põhjalik"
+            ],
+            "root_tokens": [
+              "põhjalik"
+            ],
+            "part_of_speech": [
+              "H",
+              "A"
+            ],
+            "forms": [
+              "sg n"
+            ],
+            "proper_name_candidate": true
+          },
+          {
+            "surface": "abivajaduse",
+            "start": 213,
+            "end": 224,
+            "lemmas": [
+              "abivajadus"
+            ],
+            "root_tokens": [
+              "abi",
+              "vajadus"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "sg g"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "hindamine",
+            "start": 225,
+            "end": 234,
+            "lemmas": [
+              "hindamine"
+            ],
+            "root_tokens": [
+              "hindamine"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "sg n"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "Võrgustiku",
+            "start": 235,
+            "end": 245,
+            "lemmas": [
+              "võrgustik",
+              "võrgustiku"
+            ],
+            "root_tokens": [
+              "võrgustik",
+              "võrgustiku"
+            ],
+            "part_of_speech": [
+              "H",
+              "S"
+            ],
+            "forms": [
+              "sg g",
+              "sg n"
+            ],
+            "proper_name_candidate": true
+          },
+          {
+            "surface": "kaardistamine",
+            "start": 246,
+            "end": 259,
+            "lemmas": [
+              "kaardistamine"
+            ],
+            "root_tokens": [
+              "kaardistamine"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "sg n"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "Tegevuskava",
+            "start": 260,
+            "end": 271,
+            "lemmas": [
+              "tegevuskava"
+            ],
+            "root_tokens": [
+              "tegevus",
+              "kava",
+              "tegevuskava"
+            ],
+            "part_of_speech": [
+              "H",
+              "S"
+            ],
+            "forms": [
+              "sg g",
+              "sg n",
+              "sg p"
+            ],
+            "proper_name_candidate": true
+          },
+          {
+            "surface": "koostamine",
+            "start": 272,
+            "end": 282,
+            "lemmas": [
+              "koostamine"
+            ],
+            "root_tokens": [
+              "koostamine"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "sg n"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "Vahehindamine",
+            "start": 283,
+            "end": 296,
+            "lemmas": [
+              "vahehindamine"
+            ],
+            "root_tokens": [
+              "vahe",
+              "hindamine"
+            ],
+            "part_of_speech": [
+              "H",
+              "S"
+            ],
+            "forms": [
+              "sg n"
+            ],
+            "proper_name_candidate": true
+          },
+          {
+            "surface": "ja",
+            "start": 297,
+            "end": 299,
+            "lemmas": [
+              "ja"
+            ],
+            "root_tokens": [
+              "ja"
+            ],
+            "part_of_speech": [
+              "J"
+            ],
+            "forms": [],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "juhtumi",
+            "start": 300,
+            "end": 307,
+            "lemmas": [
+              "juhtum"
+            ],
+            "root_tokens": [
+              "juhtum"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "sg g"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "lõpetamine",
+            "start": 308,
+            "end": 318,
+            "lemmas": [
+              "lõpetamine"
+            ],
+            "root_tokens": [
+              "lõpetamine"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "sg n"
+            ],
+            "proper_name_candidate": false
+          }
+        ],
+        "proper_name_spans": [
+          {
+            "text": "Eelhindamine\nLapsega",
+            "canonical_text": "Eelhindamine\nLapsega",
+            "lemma_candidates": [
+              [
+                "eelhindamine"
+              ],
+              [
+                "laps",
+                "lapse"
+              ]
+            ],
+            "name_candidate": true,
+            "start": 148,
+            "end": 168
+          }
+        ],
+        "input_token_count": 34,
+        "analysis_ms": 5,
+        "language_hint": "et",
+        "language_hint_confidence": 0.94,
+        "language_hint_reason": "ESTONIAN_FUNCTION_AND_MORPHOLOGY"
+      }
+    },
+    {
+      "mode": "sequential",
+      "question": "Kuidas hinnata lapse heaolu ja abivajadust?",
+      "answer": "Lapse heaolu ja abivajadust hinnatakse lapsekeskse, tervikliku ja koostööpõhise protsessina. Esmalt tuleb kindlaks teha lapse vahetu turvalisus, seejärel hinnata tema arenguvajadusi, vanemluse toimivust ning pere ja keskkonna mõju lapsele.\n\nPraktiline hindamisjärjekord:\n\n1. Vahetu ohutuse kontroll\n\nHindamise alguses tuleb selgitada, kas lapse elu või tervis on ohus või viibib ta teda vahetult ohustavates tingimustes. Kui laps on hädaohus, on esmatähtis kiire sekkumine; lapse ohutust tuleb jälgida kogu hindamisprotsessi vältel.\n\n2. Eelhindamine\n\nTeate saamisel viib lastekaitsetöötaja läbi eelhindamise. Selle käigus selgitatakse muu hulgas:\n\n- mis on lapse heaolu ohustav olukord;\n- millised on lapse ja pere peamised vajadused;\n- kas laps ja pere võtavad pakutavat abi vastu;\n- kas nad on valmis spetsialistidega koostööd tegema;\n- kas olukorda saab lahendada ühe ühekordse meetmega või on vaja koordineeritud sekkumist.\n\nKui piisab näiteks sotsiaalnõustamisest, toetuse või teabe andmisest, võib juhtumikorralduse algatamata jätta. Kui lapse abivajadust ei saa ühe meetmega rahuldada, vajab põhjalikumat hindamist või tuleb koordineerida mitme organisatsiooni koostööd, tuleb algatada juhtumikorraldus ja juhtumimenetlus STARis.\n\n3. Lapse arenguvajaduste hindamine\n\nPõhjalik hindamine algab lapse arenguvajadustest. Tähelepanu tuleb pöörata sellele, kas lapse füsioloogilised, materiaalsed, vaimsed ja emotsionaalsed vajadused on rahuldatud ning kuidas olukord mõjutab tema arengut ja heaolu.\n\nLapse heaolu hinnatakse terviklikult, kasutades kolme omavahel seotud vaadet:\n\n- lapse arenguvajadused;\n- vanemlus ehk vanemate suutlikkus lapse vajadustele vastata;\n- pere ja keskkonna tegurid, sealhulgas suhted, elamistingimused ja lapse ümbrus.\n\n4. Kaitse- ja riskitegurite analüüs\n\nIgas heaoluvaldkonnas tuleb eristada:\n\n- kaitsetegureid – lapse, vanemate või keskkonna positiivseid tegureid, millele saab soovitud muutuse üles ehitada;\n- riskitegureid – asjaolusid, mis mõjutavad lapse arengut negatiivselt, süvendavad abivajadust või ohustavad lapse heaolu.\n\nSamuti tuleb hinnata, kas tegurid on mõjutatavad ehk dünaamilised või muutumatud ehk staatilised. Oluline ei ole üksnes tegurite loetlemine, vaid nende omavahelise mõju analüüs: kuidas need mõjutavad lapse praegust olukorda ja heaolu tulevikus.\n\n5. Lapse ja pere kaasamine\n\nJuhtumikorralduse keskmes on laps. Lapsega tuleb kontakt luua võimalikult varakult ning tema arvamust tuleb arvestada vastavalt tema arengutasemele ja olukorrale.\n\nÜldjuhul teavitatakse lapsega esmase kontakti võtmisest vanemat. Kui on põhjendatud kahtlus, et oht lapsele tuleneb vanema tegevusest või tegevusetusest ja vanema teavitamine võib lapse huve kahjustada, võib lapsega esmalt vestelda ilma vanemat teavitamata ja nõusolekuta. Sellisel juhul tuleb vanemat vestlusest teavitada kohe pärast vestlust.\n\n6. Hindamise kavandamine ja teabe kogumine\n\nEnne põhjalikku hindamist tuleb sõnastada:\n\n- hindamise fookus;\n- hindamise eesmärgid;\n- millist teavet on eesmärkide saavutamiseks vaja;\n- millised inimesed ja asutused kuuluvad lapse võrgustikku.\n\nTeavet tuleb koguda eesmärgipäraselt ning hinnata lapse olukorda eri allikatest saadud info põhjal. Vajaduse korral tehakse võrgustikutööd, sest lapse ja pere iseseisva toimetuleku toetamiseks võib olla vaja mitme organisatsiooni koordineeritud abi.\n\n7. Tegevuskava koostamine\n\nPärast abivajaduse hindamist koostatakse lapse vajadustest lähtuv tegevuskava. Selleks:\n\n- seatakse abivajaduse põhjal prioriteedid;\n- sõnastatakse lapse heaoluga seotud eesmärgid;\n- valitakse sobivad sekkumised ja abimeetmed;\n- määratakse tegevuste rakendamine ja jälgimine.\n\nEesmärk peab kirjeldama soovitud muutust lapse heaolus, mitte üksnes spetsialisti või teenuse tegevust.\n\n8. Vahehindamine ja juhtumi lõpetamine\n\nTegevuskava täitmist tuleb vahehindamiste kaudu üle vaadata. Hinnatakse, kas:\n\n- toimunud on positiivne muutus ja eesmärk on täidetud;\n- muutus on osaline ning eesmärk vajab jätkamist või täpsustamist;\n- olukord on halvenenud ja vaja on uusi eesmärke või abimeetmeid.\n\nMuutust võib hinnata ka konkreetsete näitajate abil. Näiteks saab koolikohustuse täitmist hinnates võrrelda puudumiste arvu enne ja pärast abimeetme rakendamist. Kui lapse abivajadus on vähenenud ja edasiste tegevuste vajadus puudub, lõpetatakse juhtumimenetlus; eesmärkide täitmata jäämisel või olukorra halvenemisel jätkatakse juhtumikorraldust.\n\n„Turvalisuse märgid“ on 2024. aastal kirjeldatud täiendav juhtumikorraldusmudel, mille keskmes on spetsialistide, pereliikmete ja võrgustiku partnerlus. Seda saab ühildada lapse heaolu kolmnurga ja lapse heaolu hindamise käsiraamatu põhimõtetega, kuid käsiraamatu põhiraamistik jääb lapse arenguvajaduste, vanemluse ning pere ja keskkonna terviklikuks hindamiseks.",
+      "expected_source_ids": [
+        "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+        "sotsiaaltoo_turvalisuse-margid-2024-4"
+      ],
+      "query": "Turvalisuse märgid\nTurvalisuse märkide\nLapse heaolu hindamise käsiraamatust\nLapse heaolu kolmnurkade\nVahetu ohutuse kontroll\nEelhindamine\nLapse arenguvajaduste hindamine\nKaitse- ja riskitegurite analüüs\nLapse ja pere kaasamine\nHindamise kavandamine ja teabe kogumine\nTegevuskava koostamine\nVahehindamine ja juhtumi lõpetamine\n",
+      "analysis": {
+        "ok": true,
+        "available": true,
+        "analyzer_version": "estnltk-vabamorf-1.7.5-v2",
+        "reason": null,
+        "tokens": [
+          {
+            "surface": "Turvalisuse",
+            "start": 0,
+            "end": 11,
+            "lemmas": [
+              "turvalisus"
+            ],
+            "root_tokens": [
+              "turvalisus"
+            ],
+            "part_of_speech": [
+              "H",
+              "S"
+            ],
+            "forms": [
+              "sg g"
+            ],
+            "proper_name_candidate": true
+          },
+          {
+            "surface": "märgid",
+            "start": 12,
+            "end": 18,
+            "lemmas": [
+              "märk",
+              "märkima"
+            ],
+            "root_tokens": [
+              "märk",
+              "märki"
+            ],
+            "part_of_speech": [
+              "S",
+              "V"
+            ],
+            "forms": [
+              "pl n",
+              "d"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "Turvalisuse",
+            "start": 19,
+            "end": 30,
+            "lemmas": [
+              "turvalisus"
+            ],
+            "root_tokens": [
+              "turvalisus"
+            ],
+            "part_of_speech": [
+              "H",
+              "S"
+            ],
+            "forms": [
+              "sg g"
+            ],
+            "proper_name_candidate": true
+          },
+          {
+            "surface": "märkide",
+            "start": 31,
+            "end": 38,
+            "lemmas": [
+              "märk"
+            ],
+            "root_tokens": [
+              "märk"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "pl g"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "Lapse",
+            "start": 39,
+            "end": 44,
+            "lemmas": [
+              "laps",
+              "lapse"
+            ],
+            "root_tokens": [
+              "laps",
+              "lapse"
+            ],
+            "part_of_speech": [
+              "H",
+              "S"
+            ],
+            "forms": [
+              "sg g",
+              "sg n"
+            ],
+            "proper_name_candidate": true
+          },
+          {
+            "surface": "heaolu",
+            "start": 45,
+            "end": 51,
+            "lemmas": [
+              "heaolu"
+            ],
+            "root_tokens": [
+              "hea",
+              "olu"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "sg g",
+              "sg n",
+              "sg p"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "hindamise",
+            "start": 52,
+            "end": 61,
+            "lemmas": [
+              "hindamine"
+            ],
+            "root_tokens": [
+              "hindamine"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "sg g"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "käsiraamatust",
+            "start": 62,
+            "end": 75,
+            "lemmas": [
+              "käsiraamat"
+            ],
+            "root_tokens": [
+              "käsi",
+              "raamat"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "sg el"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "Lapse",
+            "start": 76,
+            "end": 81,
+            "lemmas": [
+              "laps",
+              "lapse"
+            ],
+            "root_tokens": [
+              "laps",
+              "lapse"
+            ],
+            "part_of_speech": [
+              "H",
+              "S"
+            ],
+            "forms": [
+              "sg g",
+              "sg n"
+            ],
+            "proper_name_candidate": true
+          },
+          {
+            "surface": "heaolu",
+            "start": 82,
+            "end": 88,
+            "lemmas": [
+              "heaolu"
+            ],
+            "root_tokens": [
+              "hea",
+              "olu"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "sg g",
+              "sg n",
+              "sg p"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "kolmnurkade",
+            "start": 89,
+            "end": 100,
+            "lemmas": [
+              "kolmnurk"
+            ],
+            "root_tokens": [
+              "kolm",
+              "nurk"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "pl g"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "Vahetu",
+            "start": 101,
+            "end": 107,
+            "lemmas": [
+              "vahetu",
+              "vahetuma"
+            ],
+            "root_tokens": [
+              "vahetu"
+            ],
+            "part_of_speech": [
+              "H",
+              "A",
+              "V"
+            ],
+            "forms": [
+              "sg g",
+              "o",
+              "sg n"
+            ],
+            "proper_name_candidate": true
+          },
+          {
+            "surface": "ohutuse",
+            "start": 108,
+            "end": 115,
+            "lemmas": [
+              "ohutus"
+            ],
+            "root_tokens": [
+              "ohutus"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "sg g"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "kontroll",
+            "start": 116,
+            "end": 124,
+            "lemmas": [
+              "kontroll"
+            ],
+            "root_tokens": [
+              "kontroll"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "sg n"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "Eelhindamine",
+            "start": 125,
+            "end": 137,
+            "lemmas": [
+              "eelhindamine"
+            ],
+            "root_tokens": [
+              "eel",
+              "hindamine"
+            ],
+            "part_of_speech": [
+              "H",
+              "S"
+            ],
+            "forms": [
+              "sg n"
+            ],
+            "proper_name_candidate": true
+          },
+          {
+            "surface": "Lapse",
+            "start": 138,
+            "end": 143,
+            "lemmas": [
+              "laps",
+              "lapse"
+            ],
+            "root_tokens": [
+              "laps",
+              "lapse"
+            ],
+            "part_of_speech": [
+              "H",
+              "S"
+            ],
+            "forms": [
+              "sg g",
+              "sg n"
+            ],
+            "proper_name_candidate": true
+          },
+          {
+            "surface": "arenguvajaduste",
+            "start": 144,
+            "end": 159,
+            "lemmas": [
+              "arenguvajadus"
+            ],
+            "root_tokens": [
+              "arengu",
+              "vajadus"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "pl g"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "hindamine",
+            "start": 160,
+            "end": 169,
+            "lemmas": [
+              "hindamine"
+            ],
+            "root_tokens": [
+              "hindamine"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "sg n"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "Kaitse",
+            "start": 170,
+            "end": 176,
+            "lemmas": [
+              "kaitse",
+              "kaitsma",
+              "kaitsema"
+            ],
+            "root_tokens": [
+              "kaitse",
+              "kaits"
+            ],
+            "part_of_speech": [
+              "H",
+              "V",
+              "S"
+            ],
+            "forms": [
+              "sg g",
+              "sg n",
+              "o"
+            ],
+            "proper_name_candidate": true
+          },
+          {
+            "surface": "ja",
+            "start": 178,
+            "end": 180,
+            "lemmas": [
+              "ja"
+            ],
+            "root_tokens": [
+              "ja"
+            ],
+            "part_of_speech": [
+              "J"
+            ],
+            "forms": [],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "riskitegurite",
+            "start": 181,
+            "end": 194,
+            "lemmas": [
+              "riskitegur"
+            ],
+            "root_tokens": [
+              "riski",
+              "tegur"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "pl g"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "analüüs",
+            "start": 195,
+            "end": 202,
+            "lemmas": [
+              "analüüs"
+            ],
+            "root_tokens": [
+              "analüüs"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "sg n"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "Lapse",
+            "start": 203,
+            "end": 208,
+            "lemmas": [
+              "laps",
+              "lapse"
+            ],
+            "root_tokens": [
+              "laps",
+              "lapse"
+            ],
+            "part_of_speech": [
+              "H",
+              "S"
+            ],
+            "forms": [
+              "sg g",
+              "sg n"
+            ],
+            "proper_name_candidate": true
+          },
+          {
+            "surface": "ja",
+            "start": 209,
+            "end": 211,
+            "lemmas": [
+              "ja"
+            ],
+            "root_tokens": [
+              "ja"
+            ],
+            "part_of_speech": [
+              "J"
+            ],
+            "forms": [],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "pere",
+            "start": 212,
+            "end": 216,
+            "lemmas": [
+              "pere"
+            ],
+            "root_tokens": [
+              "pere"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "sg g",
+              "sg n"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "kaasamine",
+            "start": 217,
+            "end": 226,
+            "lemmas": [
+              "kaasamine"
+            ],
+            "root_tokens": [
+              "kaasamine"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "sg n"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "Hindamise",
+            "start": 227,
+            "end": 236,
+            "lemmas": [
+              "hindamine"
+            ],
+            "root_tokens": [
+              "hindamine"
+            ],
+            "part_of_speech": [
+              "H",
+              "S"
+            ],
+            "forms": [
+              "sg g"
+            ],
+            "proper_name_candidate": true
+          },
+          {
+            "surface": "kavandamine",
+            "start": 237,
+            "end": 248,
+            "lemmas": [
+              "kavandamine"
+            ],
+            "root_tokens": [
+              "kavandamine"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "sg n"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "ja",
+            "start": 249,
+            "end": 251,
+            "lemmas": [
+              "ja"
+            ],
+            "root_tokens": [
+              "ja"
+            ],
+            "part_of_speech": [
+              "J"
+            ],
+            "forms": [],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "teabe",
+            "start": 252,
+            "end": 257,
+            "lemmas": [
+              "teave"
+            ],
+            "root_tokens": [
+              "teave"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "sg g"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "kogumine",
+            "start": 258,
+            "end": 266,
+            "lemmas": [
+              "kogumine"
+            ],
+            "root_tokens": [
+              "kogumine"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "sg n"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "Tegevuskava",
+            "start": 267,
+            "end": 278,
+            "lemmas": [
+              "tegevuskava"
+            ],
+            "root_tokens": [
+              "tegevus",
+              "kava",
+              "tegevuskava"
+            ],
+            "part_of_speech": [
+              "H",
+              "S"
+            ],
+            "forms": [
+              "sg g",
+              "sg n",
+              "sg p"
+            ],
+            "proper_name_candidate": true
+          },
+          {
+            "surface": "koostamine",
+            "start": 279,
+            "end": 289,
+            "lemmas": [
+              "koostamine"
+            ],
+            "root_tokens": [
+              "koostamine"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "sg n"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "Vahehindamine",
+            "start": 290,
+            "end": 303,
+            "lemmas": [
+              "vahehindamine"
+            ],
+            "root_tokens": [
+              "vahe",
+              "hindamine"
+            ],
+            "part_of_speech": [
+              "H",
+              "S"
+            ],
+            "forms": [
+              "sg n"
+            ],
+            "proper_name_candidate": true
+          },
+          {
+            "surface": "ja",
+            "start": 304,
+            "end": 306,
+            "lemmas": [
+              "ja"
+            ],
+            "root_tokens": [
+              "ja"
+            ],
+            "part_of_speech": [
+              "J"
+            ],
+            "forms": [],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "juhtumi",
+            "start": 307,
+            "end": 314,
+            "lemmas": [
+              "juhtum"
+            ],
+            "root_tokens": [
+              "juhtum"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "sg g"
+            ],
+            "proper_name_candidate": false
+          },
+          {
+            "surface": "lõpetamine",
+            "start": 315,
+            "end": 325,
+            "lemmas": [
+              "lõpetamine"
+            ],
+            "root_tokens": [
+              "lõpetamine"
+            ],
+            "part_of_speech": [
+              "S"
+            ],
+            "forms": [
+              "sg n"
+            ],
+            "proper_name_candidate": false
+          }
+        ],
+        "proper_name_spans": [
+          {
+            "text": "Eelhindamine\nLapse",
+            "canonical_text": "Eelhindamine\nLapse",
+            "lemma_candidates": [
+              [
+                "eelhindamine"
+              ],
+              [
+                "laps",
+                "lapse"
+              ]
+            ],
+            "name_candidate": true,
+            "start": 125,
+            "end": 143
+          }
+        ],
+        "input_token_count": 37,
+        "analysis_ms": 2,
+        "language_hint": "et",
+        "language_hint_confidence": 0.94,
+        "language_hint_reason": "ESTONIAN_FUNCTION_AND_MORPHOLOGY"
+      }
+    }
+  ]
+}
