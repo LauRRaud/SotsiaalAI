@@ -156,6 +156,14 @@ test("publication metadata cannot date service events, even beside an exact titl
   const evidencedEvent = "Teenus alustas tegevust 2031. aastal ja ühendas tervishoiu ning sotsiaalvaldkonna spetsialiste.";
   assert.deepEqual(buildSourceAttribution(evidencedEvent, [{ ...source, evidenceText: evidencedEvent }], { queryPlan })
     .displayed_source_ids, ["journal"]);
+  const participantsBody = "Uuringus osalenud inimesed alustasid teenuse kasutamist.";
+  const participantEvent = "2031. aastal uuringus osalenud inimesed alustasid teenuse kasutamist.";
+  assert.deepEqual(buildSourceAttribution(participantEvent, [{ ...source, evidenceText: participantsBody }], { queryPlan })
+    .displayed_source_ids, []);
+  assert.deepEqual(buildSourceAttribution(participantEvent, [{ ...source, evidenceText: participantEvent }], { queryPlan })
+    .displayed_source_ids, ["journal"]);
+  assert.deepEqual(buildSourceAttribution("2031. aastal avaldatud uuringus osalenud inimesed alustasid teenuse kasutamist.",
+    [{ ...source, evidenceText: participantsBody }], { queryPlan }).displayed_source_ids, ["journal"]);
   for (const citation of ["Artikkel „Teenuste lõimumine” (2031)", "Artikkel („Teenuste lõimumine”, 2031)"]) {
     assert.deepEqual(buildSourceAttribution(`${citation} kirjeldab, kuidas teenus ühendas tervishoiu ja sotsiaalvaldkonna spetsialiste.`, [source], { queryPlan })
       .displayed_source_ids, ["journal"]);
