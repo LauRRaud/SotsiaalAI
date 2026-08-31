@@ -758,6 +758,8 @@ Nendes kolmes sünteesi-/meetodirežiimis peab jutumärkides nimelise mudeli, me
 
 `lib/chat/sourceAttribution.js:buildSourceAttribution` jagab kogu lõppvastuse väideteks ja võrdleb neid iga allika täpse `evidenceText`-iga. `evidenceText` ei ole kogu algdokument ega kõik retrieve'itud chunk'id, vaid mudelile päriselt renderdatud blokk. Järgarvuline aastaväljend nagu „2026. aasta” jääb sama väite osaks; rea alguses olevat neljakohalist aastaarvu ei eemaldata loendinumbri pähe. Nii ei kao allikaseosest väite ajaline määrang.
 
+Segmentimise teadaolev piir: nummerdatud jaotisepealkirja ei eristata veel iseseisvast sisuväitest. Pärast loendinumbri eemaldamist võib näiteks pelk tegevusvaldkonna pealkiri saada oma claim-indeksi ning hoida taustaallikat alles, kuigi selle allika ülejäänud väited on põhiallikaga juba kaetud. Ka nimeankru reegel on lokaalne: kui mudeli tüübisõna paikneb alles lause lõpus, mitte jutumärkidega nime kõrval, jääb ankur tuvastamata; prefiksivõrdlus ei lahenda astmevaheldust nagu „märgid/märkide”. Seetõttu ei taga korrektne retrieval ega küsimuse EstNLTK lemmaanalüüs veel iga genereeritud sõnastuse korrektset allikaseost.
+
 Kuvada ei tohi allikat, mis:
 
 - oli ainult retrieval-kandidaat;

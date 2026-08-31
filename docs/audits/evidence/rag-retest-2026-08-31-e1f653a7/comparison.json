@@ -1,0 +1,115 @@
+{
+  "runtime_code": "e1f653a7250168d5df12bec5c127100c425908d5",
+  "server_head_during_tests": "039bef23f19b14d08204210d2786b07f771fc429",
+  "started_at": "2026-08-31T10:38:04.817Z",
+  "finished_at": "2026-08-31T10:48:11.382Z",
+  "scope": "Two child-guidance target turns: one isolated, one after M01/M02/integrated in a confirmed new conversation. Six UI messages total including one transparently excluded protocol-deviation M01. No repeated target questions or full 75/37.",
+  "target_counts": {
+    "PASS": 0,
+    "PARTIAL": 2,
+    "FAIL": 0,
+    "total": 2
+  },
+  "context_counts": {
+    "PASS": 3,
+    "PARTIAL": 0,
+    "FAIL": 0,
+    "total": 3
+  },
+  "protocol_excluded_count": 1,
+  "total_ui_questions": 6,
+  "results": [
+    {
+      "id": "child",
+      "mode": "isolated",
+      "status": "PARTIAL",
+      "role": "target"
+    },
+    {
+      "id": "M01",
+      "mode": "protocol-deviation",
+      "status": "NOT_SCORED",
+      "role": "protocol_deviation"
+    },
+    {
+      "id": "M01",
+      "mode": "sequential",
+      "status": "PASS",
+      "role": "context"
+    },
+    {
+      "id": "M02",
+      "mode": "sequential",
+      "status": "PASS",
+      "role": "context"
+    },
+    {
+      "id": "integrated",
+      "mode": "sequential",
+      "status": "PASS",
+      "role": "context"
+    },
+    {
+      "id": "child",
+      "mode": "sequential",
+      "status": "PARTIAL",
+      "role": "target"
+    }
+  ],
+  "protocol_deviations": [
+    {
+      "case_id": "M01",
+      "mode": "protocol-deviation",
+      "reason": "Changing eval_run URL did not reset the live conversation; an extra M01 was sent after isolated child, preserved and excluded. Sequential conversation then created explicitly via Vestlused > Uus."
+    }
+  ],
+  "comparisons": {
+    "case_id": "child",
+    "question": "Kuidas hinnata lapse heaolu ja abivajadust?",
+    "isolated": {
+      "status": "PARTIAL",
+      "previous_user_turns": 0,
+      "displayed_source_ids": [
+        "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+        "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017",
+        "sotsiaaltoo_turvalisuse-margid-2024-4"
+      ],
+      "rendered_context_hash": "b96c53cdcccfef09d8112804f909e044fe37c302551da5ac40f959c7db3921e3"
+    },
+    "sequential": {
+      "status": "PARTIAL",
+      "previous_user_turns": 3,
+      "displayed_source_ids": [
+        "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+        "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+      ],
+      "rendered_context_hash": "b96c53cdcccfef09d8112804f909e044fe37c302551da5ac40f959c7db3921e3"
+    },
+    "same_rendered_context": true,
+    "same_context_as_previous_release": true,
+    "interpretation": "Both target responses remain PARTIAL with different source-panel failures. Equal retrieval context excludes a missing retrieved document as the cause in this pair; a single pair cannot isolate sampling from history effects."
+  },
+  "remaining_findings": [
+    {
+      "id": "structural-heading-treated-as-unique-claim",
+      "source_id": "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017",
+      "isolated_claim_hashes": [
+        "64d1ac01"
+      ],
+      "sequential_claim_hashes": [
+        "36ab97cb",
+        "64d1ac01"
+      ],
+      "evidence": "isolated-heading-diagnostic.json",
+      "observation": "Removing only the isolated section heading in a read-only local replay removes the redundant background article without removing the model source."
+    },
+    {
+      "id": "named-model-word-order-and-inflection",
+      "source_id": "sotsiaaltoo_turvalisuse-margid-2024-4",
+      "claim_hash": "5b564470",
+      "evidence": "sequential-model-diagnostic.json",
+      "observation": "Actual wording has no adjacent model-type anchor, so the named-description-year exception does not apply. Adding an adjacent type still fails the märgid/märkide comparison; matching the source's case form passes. These are diagnostic rewrites only, not additional live attempts."
+    }
+  ],
+  "next_step": "Separate owner-approved repair: preserve structural sentence roles and source-bound named-model identity across word order/inflection. No new code or automatic retries during this release verification."
+}

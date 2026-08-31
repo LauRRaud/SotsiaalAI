@@ -1,0 +1,2280 @@
+{
+  "case_id": "M02",
+  "mode": "sequential",
+  "status": "PASS",
+  "role": "context",
+  "runtime_code": "e1f653a7250168d5df12bec5c127100c425908d5",
+  "server_head": "039bef23f19b14d08204210d2786b07f771fc429",
+  "assessment": "Õige uuringu põhjal on olemas kõik neli soovitust: kindel kontaktisik/juhtumikorraldaja, proaktiivne ennetav abi, teenustele pääsu lihtsustamine koos korduvhindamiste vältimisega ning toetatud otsustamise lahenduste/teenuse arendamine. Tõendamata keeldumist ega puuduvaid soovitusslotte pole.",
+  "ui_source_panel": "Kristi Rekand, 2026. Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuringu kokkuvõte · lk 10–11, 13–14, 18, 23, 26, 29, 32, 38, 48, 50–51, 53, 56, 61–62, 64.",
+  "ui_answer": "Neli soovitust loetud in-app-vaatest; paneel avatud.",
+  "audit_omitted_fields": [
+    "body_preview",
+    "user_id",
+    "conversation_id",
+    "account_id"
+  ],
+  "trace": {
+    "query_plan": {
+      "mode": "specific_research_fact",
+      "flags": {
+        "temporal": false,
+        "comparison": false,
+        "source_lookup": false,
+        "national_scope": false,
+        "broad_multi_source": false,
+        "overview_synthesis": false,
+        "resource_discovery": false,
+        "thematic_synthesis": false,
+        "municipality_scoped": false,
+        "municipality_contacts": false,
+        "specific_research_fact": true,
+        "source_focused_followup": false
+      },
+      "stakes": "informational",
+      "rag_top_k": 36,
+      "risk_level": "low",
+      "filter_keys": [
+        "$in",
+        "$ne",
+        "audience",
+        "is_current_version"
+      ],
+      "query_count": 1,
+      "query_order": "document_identity_then_fact",
+      "social_scope": "in_scope",
+      "language_plan": {
+        "version": "language-plan-v1",
+        "shadow_mode": "not_available",
+        "coauthor_count": 0,
+        "query_language": "et",
+        "answer_language": "et",
+        "canonical_intent": null,
+        "coauthor_requested": false,
+        "interface_language": "et",
+        "retrieval_language": "et",
+        "retrieval_terms_et": [],
+        "active_planner_mode": null,
+        "shadow_planner_mode": null,
+        "transliteration_used": false,
+        "query_language_reason": "estonian_lexical_hint",
+        "answer_language_reason": "query_language",
+        "controlled_topic_count": 0,
+        "preserved_entity_count": 0,
+        "preserved_entity_types": [],
+        "runtime_reply_language": "et",
+        "canonical_query_available": false,
+        "query_language_confidence": 0.92,
+        "shadow_planner_confidence": null,
+        "canonical_retrieval_active": false,
+        "recommended_answer_language": "et",
+        "runtime_reply_language_reason": "matches_answer_plan",
+        "shadow_planner_matches_intent": false,
+        "recommended_answer_language_reason": "query_language",
+        "canonical_supplemental_retrieval_active": false
+      },
+      "evidence_scope": "source_bounded",
+      "should_run_rag": true,
+      "legalLookupPlan": {
+        "enabled": false
+      },
+      "planner_version": "v2",
+      "municipality_ids": [],
+      "question_planner": {
+        "mode": "specific_research_fact",
+        "role": "social_worker",
+        "topics": [],
+        "needs_rag": true,
+        "confidence": 0.82,
+        "input_role": "social_worker",
+        "risk_level": "low",
+        "period_role": null,
+        "person_name": null,
+        "entity_names": [],
+        "social_scope": "in_scope",
+        "source_layers": [
+          "journal_article",
+          "research_report",
+          "study",
+          "survey_report",
+          "evaluation_report",
+          "analysis"
+        ],
+        "life_situation": null,
+        "needs_location": false,
+        "planner_reason": "singular_research_source_and_fact_shape",
+        "answer_contract": "same_identified_document_fact_required",
+        "planner_version": "v2.6",
+        "role_confidence": 0.75,
+        "municipality_hint": null,
+        "retrieval_strategy": "document_identity_then_fact",
+        "avoid_source_layers": [],
+        "document_fact_terms": [],
+        "person_source_scope": null,
+        "requested_year_role": "none",
+        "social_scope_reason": "strong_social_scope_term",
+        "document_source_kind": "aruandes",
+        "person_source_intent": null,
+        "document_source_years": [],
+        "evidence_metric_slots": [],
+        "evidence_metric_terms": [],
+        "evidence_period_years": [],
+        "method_guidance_focus": null,
+        "person_coauthor_count": 0,
+        "current_evidence_scope": "source_bounded",
+        "document_subject_terms": [
+          "epikoja",
+          "taisealiste",
+          "psuuhikahairega",
+          "inimeste",
+          "eestkostetavate",
+          "soovitus",
+          "anti",
+          "tallinnale",
+          "kontaktisiku",
+          "juhtumikorralduse"
+        ],
+        "evidence_phase_ordinal": null,
+        "municipality_ambiguous": false,
+        "needs_multiple_sources": false,
+        "preferred_source_count": null,
+        "municipality_candidates": [],
+        "source_layer_filter_mode": "prefer",
+        "person_coauthor_requested": false,
+        "person_name_transliterated": false,
+        "bounded_episode_metric_fact": false
+      },
+      "required_evidence": "medium",
+      "municipality_names": [],
+      "retrieval_strategy": "document_identity_then_fact",
+      "selection_strategy": "document_identity_then_fact",
+      "social_scope_reason": "strong_social_scope_term",
+      "context_group_target": 8,
+      "risk_decision_source": "structured_semantic_contract",
+      "has_per_query_filters": false,
+      "needs_multiple_sources": false,
+      "preferred_source_count": null,
+      "semantic_turn_contract": {
+        "terms": {
+          "lemmas": [
+            "epikoja",
+            "aruanne",
+            "täisealine",
+            "psüühikahäire",
+            "inimene",
+            "sh",
+            "eestkostetav",
+            "uuring",
+            "milline",
+            "soovitu",
+            "soovitud",
+            "soovitus",
+            "andma",
+            "tallinn",
+            "kontaktisik",
+            "kontaktisikk",
+            "või",
+            "võima",
+            "juhtumikorraldus",
+            "koht",
+            "kohta",
+            "kohtama",
+            "ennetav",
+            "abi",
+            "teenus",
+            "pääs",
+            "pääsu",
+            "ja",
+            "korduv",
+            "hindamine",
+            "ning",
+            "toetama",
+            "toetatu",
+            "toetatud",
+            "otsustamine"
+          ],
+          "surface": [
+            "epikoja",
+            "aruandes",
+            "taisealiste",
+            "psuuhikahairega",
+            "inimeste",
+            "sh",
+            "eestkostetavate",
+            "uuring",
+            "milline",
+            "soovitus",
+            "anti",
+            "tallinnale",
+            "kontaktisiku",
+            "voi",
+            "juhtumikorralduse",
+            "kohta",
+            "ennetava",
+            "abi",
+            "teenustele",
+            "paasu",
+            "ja",
+            "korduvate",
+            "hindamiste",
+            "ning",
+            "toetatud",
+            "otsustamise"
+          ],
+          "retrieval_et": [],
+          "compound_roots": [
+            "epikoja",
+            "aru",
+            "anne",
+            "täis",
+            "ealine",
+            "psüühika",
+            "häire",
+            "inimene",
+            "sh",
+            "eest",
+            "kostetav",
+            "uuring",
+            "milline",
+            "soovitu",
+            "soovitud",
+            "soovitus",
+            "and",
+            "tallinn",
+            "kontakt",
+            "isik",
+            "kontakti",
+            "sikk",
+            "või",
+            "juhtumi",
+            "korraldus",
+            "koht",
+            "kohta",
+            "ennetav",
+            "abi",
+            "teenus",
+            "pääs",
+            "pääsu",
+            "ja",
+            "korduv",
+            "hindamine",
+            "ning",
+            "toeta",
+            "toetatu",
+            "toetatud",
+            "otsustamine"
+          ]
+        },
+        "intent": "specific_research_fact",
+        "persons": [],
+        "version": "semantic_turn_contract_v2",
+        "entities": [],
+        "language": "et",
+        "temporal": {
+          "type": "none",
+          "evidence_years": [],
+          "requested_year_role": "none",
+          "document_source_years": []
+        },
+        "input_form": "original",
+        "morphology": {
+          "reason": null,
+          "available": true,
+          "language_hint": "et",
+          "analyzer_version": "estnltk-vabamorf-1.7.5-v2",
+          "proper_name_spans": [],
+          "language_hint_confidence": 0.94
+        },
+        "risk_scope": "source_bounded_description",
+        "domain_scope": {
+          "reason": "strong_social_scope_term",
+          "planned": "in_scope",
+          "effective": "in_scope",
+          "promoted_by_retrieval": false,
+          "post_retrieval_evidence": {
+            "reason": "recognized_authoritative_or_research_source_and_semantic_anchor",
+            "strength": "strong",
+            "source_ids": [
+              "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026"
+            ],
+            "named_anchor_matches": 0,
+            "topic_anchor_matches": 122
+          }
+        },
+        "source_scope": "independent_or_unspecified",
+        "requested_facts": [
+          {
+            "index": 1,
+            "category": null,
+            "modality": "unspecified",
+            "derivation": "qualitative_clause",
+            "input_form": "original",
+            "span_start": 17,
+            "value_type": "recommendation",
+            "relation_terms": [
+              "soovitus",
+              "anti",
+              "tallinnale",
+              "kontaktisiku",
+              "juhtumikorralduse"
+            ],
+            "temporal_scope": "unspecified",
+            "explicit_values": [],
+            "value_type_source": "explicit_qualitative_cue",
+            "coordination_group": null,
+            "expected_cardinality": null,
+            "minimum_answer_items": 1,
+            "relation_term_variants": [
+              {
+                "term": "soovitus",
+                "variants": [
+                  "soovitu",
+                  "soovitud"
+                ]
+              },
+              {
+                "term": "anti",
+                "variants": [
+                  "andma"
+                ]
+              },
+              {
+                "term": "tallinnale",
+                "variants": [
+                  "tallinn"
+                ]
+              },
+              {
+                "term": "kontaktisiku",
+                "variants": [
+                  "kontaktisik",
+                  "kontaktisikk",
+                  "kontakt",
+                  "isik",
+                  "kontakti",
+                  "sikk"
+                ]
+              },
+              {
+                "term": "juhtumikorralduse",
+                "variants": [
+                  "juhtumikorraldus",
+                  "juhtumi",
+                  "korraldus"
+                ]
+              }
+            ]
+          },
+          {
+            "index": 2,
+            "category": null,
+            "modality": "unspecified",
+            "derivation": "qualitative_clause",
+            "input_form": "original",
+            "span_start": 92,
+            "value_type": "recommendation",
+            "relation_terms": [
+              "ennetava",
+              "abi"
+            ],
+            "temporal_scope": "unspecified",
+            "explicit_values": [],
+            "value_type_source": "parallel_qualitative_inheritance",
+            "coordination_group": null,
+            "expected_cardinality": null,
+            "minimum_answer_items": 1,
+            "relation_term_variants": [
+              {
+                "term": "ennetava",
+                "variants": [
+                  "ennetav"
+                ]
+              }
+            ]
+          },
+          {
+            "index": 3,
+            "category": null,
+            "modality": "unspecified",
+            "derivation": "qualitative_clause",
+            "input_form": "original",
+            "span_start": 120,
+            "value_type": "recommendation",
+            "relation_terms": [
+              "teenustele",
+              "paasu",
+              "korduvate",
+              "hindamiste"
+            ],
+            "temporal_scope": "unspecified",
+            "explicit_values": [],
+            "value_type_source": "parallel_qualitative_inheritance",
+            "coordination_group": null,
+            "expected_cardinality": null,
+            "minimum_answer_items": 1,
+            "relation_term_variants": [
+              {
+                "term": "teenustele",
+                "variants": [
+                  "teenus"
+                ]
+              },
+              {
+                "term": "paasu",
+                "variants": [
+                  "paas"
+                ]
+              },
+              {
+                "term": "korduvate",
+                "variants": [
+                  "korduv"
+                ]
+              },
+              {
+                "term": "hindamiste",
+                "variants": [
+                  "hindamine"
+                ]
+              }
+            ]
+          },
+          {
+            "index": 4,
+            "category": null,
+            "modality": "unspecified",
+            "derivation": "qualitative_clause",
+            "input_form": "original",
+            "span_start": 180,
+            "value_type": "recommendation",
+            "relation_terms": [
+              "toetatud",
+              "otsustamise"
+            ],
+            "temporal_scope": "unspecified",
+            "explicit_values": [],
+            "value_type_source": "parallel_qualitative_inheritance",
+            "coordination_group": null,
+            "expected_cardinality": null,
+            "minimum_answer_items": 1,
+            "relation_term_variants": [
+              {
+                "term": "toetatud",
+                "variants": [
+                  "toetama",
+                  "toetatu",
+                  "toeta"
+                ]
+              },
+              {
+                "term": "otsustamise",
+                "variants": [
+                  "otsustamine"
+                ]
+              }
+            ]
+          }
+        ],
+        "document_identity": {
+          "acronyms": [],
+          "author_key": null,
+          "confidence": "low",
+          "provenance": "none",
+          "title_hint": "Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuring",
+          "named_topics": [],
+          "organization": null,
+          "source_years": [],
+          "title_tokens": [],
+          "document_kind": "report",
+          "author_surface": null
+        },
+        "history_reference": {
+          "explicit_source_anaphora": false,
+          "carry_previous_source_filter": false
+        },
+        "requested_fact_contract": {
+          "version": "requested_fact_slots_v2",
+          "complete": true,
+          "expected_cardinality": 0
+        }
+      },
+      "external_sources_needed": true,
+      "temporal_query_contract": {
+        "version": "temporal_query_contract_v1",
+        "topic_terms": [
+          "epikoja",
+          "aruandes",
+          "taisealiste",
+          "psuuhikahairega",
+          "inimeste",
+          "eestkostetavate"
+        ],
+        "period_years": [],
+        "coverage_years": [],
+        "evidence_years": [],
+        "ambiguous_years": [],
+        "breakdown_years": [],
+        "production_source": "question_planner",
+        "requested_year_role": "none",
+        "comparison_requested": false,
+        "document_source_years": [],
+        "current_evidence_scope": "source_bounded",
+        "qualitative_synthesis_requested": false,
+        "source_filter_applied_to_breakdown": false,
+        "source_filter_applied_to_breakdown_years": []
+      },
+      "temporal_year_semantics": {
+        "evidence_year_count": 0,
+        "ambiguous_year_count": 0,
+        "breakdown_year_count": 0,
+        "source_filter_source": "typed_year_role_mentions",
+        "source_filter_year_count": 0,
+        "preferred_source_year_count": 0,
+        "preferred_source_years_source": "typed_year_role_mentions",
+        "typed_year_role_mentions_available": true
+      },
+      "source_layer_filter_mode": "prefer",
+      "previous_source_use_request": false,
+      "semantic_retrieval_terms_et": [],
+      "retrieval_strategy_selection": {
+        "mode": "specific_research_fact",
+        "reason": "planner_mode_specific_research_fact",
+        "force_rag": true,
+        "query_order": "identity_first",
+        "route_override": false,
+        "answer_contract": "same_identified_document_fact_required",
+        "planner_version": "v2.3",
+        "retrieval_strategy": "document_identity_then_fact",
+        "selection_strategy": "specific_research_document_then_fact",
+        "needs_multiple_sources": false,
+        "preferred_source_count": null,
+        "source_layer_filter_mode": "prefer"
+      },
+      "specific_research_fact_phases": {
+        "version": "specific_research_fact_phases_v1",
+        "strategy": "identity_then_document_scoped_fact",
+        "identity_query_count": 1,
+        "selected_document_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026",
+        "document_scoped_fact_query_count": 2,
+        "document_scoped_fact_search_state": "completed",
+        "requested_fact_recovery_query_count": 0,
+        "document_scoped_fact_search_performed": true,
+        "requested_fact_coverage_after_recovery": {
+          "enabled": true,
+          "version": "requested_fact_slot_coverage_v1",
+          "complete": true,
+          "covered_slot_count": 4,
+          "evidence_body_count": 26,
+          "covered_slot_indexes": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "missing_slot_indexes": [],
+          "requested_slot_count": 4,
+          "selected_document_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026"
+        },
+        "requested_fact_coverage_before_recovery": {
+          "enabled": true,
+          "version": "requested_fact_slot_coverage_v1",
+          "complete": true,
+          "covered_slot_count": 4,
+          "evidence_body_count": 26,
+          "covered_slot_indexes": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "missing_slot_indexes": [],
+          "requested_slot_count": 4,
+          "selected_document_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026"
+        }
+      },
+      "answer_validation_contract_shadow": {
+        "mode": "shadow",
+        "planner": {
+          "mode": "specific_research_fact",
+          "fields": {
+            "period_role": {
+              "state": "present",
+              "value": null,
+              "available": true,
+              "confidence": null,
+              "provenance": {
+                "layer": "question_planner",
+                "method": "bounded_episode_metric_fact_shape",
+                "span_end": null,
+                "span_start": null
+              },
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "year_role_mentions": {
+              "state": "present",
+              "value": [],
+              "available": true,
+              "confidence": null,
+              "provenance": {
+                "layer": "question_planner",
+                "method": "semantic_year_role_mentions",
+                "span_end": null,
+                "span_start": null
+              },
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "requested_year_role": {
+              "state": "absent",
+              "value": null,
+              "available": false,
+              "confidence": null,
+              "provenance": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "document_source_years": {
+              "state": "present",
+              "value": [],
+              "available": true,
+              "confidence": null,
+              "provenance": {
+                "layer": "question_planner",
+                "method": "specific_research_fact_source_years",
+                "span_end": null,
+                "span_start": null
+              },
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "evidence_metric_slots": {
+              "state": "present",
+              "value": [],
+              "available": true,
+              "confidence": null,
+              "provenance": {
+                "layer": "question_planner",
+                "method": "bounded_episode_metric_slots",
+                "span_end": null,
+                "span_start": null
+              },
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "evidence_metric_terms": {
+              "state": "present",
+              "value": [],
+              "available": true,
+              "confidence": null,
+              "provenance": {
+                "layer": "question_planner",
+                "method": "bounded_episode_metric_terms",
+                "span_end": null,
+                "span_start": null
+              },
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "evidence_period_years": {
+              "state": "present",
+              "value": [],
+              "available": true,
+              "confidence": null,
+              "provenance": {
+                "layer": "question_planner",
+                "method": "bounded_episode_period_years",
+                "span_end": null,
+                "span_start": null
+              },
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "evidence_phase_ordinal": {
+              "state": "present",
+              "value": null,
+              "available": true,
+              "confidence": null,
+              "provenance": {
+                "layer": "question_planner",
+                "method": "bounded_episode_phase_ordinal",
+                "span_end": null,
+                "span_start": null
+              },
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "requested_numeric_slots": {
+              "state": "present",
+              "value": {
+                "slots": [],
+                "complete": true,
+                "truncated": false,
+                "emitted_slot_count": 0,
+                "recognized_clause_count": 0,
+                "unresolved_clause_count": 0
+              },
+              "available": true,
+              "confidence": null,
+              "provenance": {
+                "layer": "question_planner",
+                "method": "requested_numeric_clause_slots",
+                "span_end": null,
+                "span_start": null
+              },
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "bounded_episode_metric_fact": {
+              "state": "present",
+              "value": false,
+              "available": true,
+              "confidence": null,
+              "provenance": {
+                "layer": "question_planner",
+                "method": "bounded_episode_metric_fact_shape",
+                "span_end": null,
+                "span_start": null
+              },
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "current_turn_document_identity": {
+              "state": "present",
+              "value": {
+                "scope": "current_turn",
+                "author": {
+                  "value": null,
+                  "span_end": null,
+                  "confidence": null,
+                  "input_form": null,
+                  "provenance": null,
+                  "span_start": null
+                },
+                "version": "current_turn_document_identity_v1",
+                "title_hint": {
+                  "value": "Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuring",
+                  "provenance": "explicit_current_turn"
+                },
+                "document_kind": {
+                  "value": "report",
+                  "provenance": "explicit_current_turn"
+                },
+                "document_source_years": [],
+                "explicit_anchor_count": 2,
+                "history_fallback_policy": "fill_missing_only"
+              },
+              "available": true,
+              "confidence": null,
+              "provenance": {
+                "layer": "question_planner",
+                "method": "current_turn_document_identity_semantic_candidate",
+                "span_end": null,
+                "span_start": null
+              },
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            }
+          },
+          "route_mode": "specific_research_fact",
+          "semantic_candidates_version": "question_semantic_candidates_v1"
+        },
+        "version": "answer_validation_contract_shadow_v2",
+        "production_decision_source": "existing_production_paths"
+      }
+    },
+    "filter_reasons": {},
+    "rag_risk_level": "low",
+    "trace_contract": {
+      "layer": "database_message_projection",
+      "version": "rag_trace_layers_v1",
+      "projection": "assistant_message.metadata.rag_trace",
+      "source_layer": "server_runtime_trace",
+      "downstream_layers": {
+        "ui_observation": "independent_visible_ui_evidence",
+        "audit_normalization": "derived_audit_artifact_must_declare_source_layer",
+        "database_projection": "assistant_message.metadata.rag_trace"
+      }
+    },
+    "fact_validation": {
+      "passed": true,
+      "reason": "requested_qualitative_slots_validated",
+      "enabled": true,
+      "version": "exact_numeric_fact_v6",
+      "buffered": true,
+      "claim_count": 0,
+      "source_count": 1,
+      "whole_scope_checked": false,
+      "buffered_response_ms": 3029,
+      "selected_document_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026",
+      "supporting_source_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026",
+      "supporting_source_ids": [],
+      "author_corpus_complete": false,
+      "author_corpus_required": false,
+      "temporal_missing_years": [],
+      "validation_duration_ms": 114,
+      "contact_monitor_checked": false,
+      "temporal_claim_bindings": [],
+      "unsupported_claim_count": 0,
+      "category_relation_checked": false,
+      "contact_inventory_checked": false,
+      "document_identity_matched": true,
+      "requested_metric_recovery": false,
+      "document_identity_required": true,
+      "missing_contact_name_count": 0,
+      "requested_metric_slot_count": 0,
+      "author_corpus_document_count": 0,
+      "document_identity_confidence": "high",
+      "expected_total_value_present": false,
+      "observed_total_value_present": false,
+      "contact_role_count_seen_count": 0,
+      "observed_category_value_count": 0,
+      "unexpected_contact_item_count": 0,
+      "contact_email_relation_checked": false,
+      "contact_phone_relation_checked": false,
+      "requested_metric_slot_bindings": [],
+      "temporal_supplemental_bindings": [],
+      "contact_check_cadence_validated": false,
+      "mismatched_category_label_count": 0,
+      "expected_per_group_value_present": false,
+      "requested_fact_answer_unit_count": 4,
+      "requested_qualitative_slot_count": 4,
+      "temporal_supplemental_source_ids": [],
+      "unsupported_category_label_count": 0,
+      "contact_check_cadence_claim_count": 0,
+      "contact_role_count_expected_count": 0,
+      "requested_metric_contract_checked": false,
+      "contact_inventory_total_seen_count": 0,
+      "requested_fact_metric_slot_bindings": [],
+      "requested_fact_missing_slot_indexes": [],
+      "requested_fact_slot_contract_checked": false,
+      "unsupported_contact_date_value_count": 0,
+      "requested_metric_relation_diagnostics": [],
+      "unsupported_contact_email_value_count": 0,
+      "unsupported_contact_phone_value_count": 0,
+      "contact_check_cadence_expected_present": false,
+      "contact_inventory_total_expected_count": 0,
+      "expected_contact_check_cadence_present": false,
+      "requested_qualitative_contract_checked": true,
+      "unsupported_contact_check_cadence_count": 0,
+      "unsupported_contact_role_relation_count": 0,
+      "requested_fact_qualitative_slot_bindings": [
+        {
+          "slot_index": 1,
+          "unit_index": 0,
+          "action_object_bindings": [
+            {
+              "clause_index": 0,
+              "binding_index": 1,
+              "answer_negated": false,
+              "action_category": "enable",
+              "answer_action_family": "create",
+              "matched_object_count": 2,
+              "required_object_count": 1,
+              "expected_action_family": "create"
+            }
+          ],
+          "action_object_binding_count": 1,
+          "matched_relation_term_count": 5,
+          "required_numeric_value_count": 0,
+          "matched_evidence_anchor_count": 0,
+          "substantive_answer_token_count": 12
+        },
+        {
+          "slot_index": 2,
+          "unit_index": 1,
+          "action_object_bindings": [],
+          "action_object_binding_count": 1,
+          "matched_relation_term_count": 2,
+          "required_numeric_value_count": 0,
+          "matched_evidence_anchor_count": 0,
+          "substantive_answer_token_count": 12
+        },
+        {
+          "slot_index": 3,
+          "unit_index": 2,
+          "action_object_bindings": [
+            {
+              "clause_index": 0,
+              "binding_index": 1,
+              "answer_negated": false,
+              "action_category": "enable",
+              "answer_action_family": "simplify",
+              "matched_object_count": 1,
+              "required_object_count": 1,
+              "expected_action_family": "simplify"
+            },
+            {
+              "clause_index": 3,
+              "binding_index": 2,
+              "answer_negated": false,
+              "action_category": "avoid",
+              "answer_action_family": "avoid",
+              "matched_object_count": 2,
+              "required_object_count": 1,
+              "expected_action_family": "avoid"
+            }
+          ],
+          "action_object_binding_count": 2,
+          "matched_relation_term_count": 4,
+          "required_numeric_value_count": 0,
+          "matched_evidence_anchor_count": 0,
+          "substantive_answer_token_count": 12
+        },
+        {
+          "slot_index": 4,
+          "unit_index": 3,
+          "action_object_bindings": [
+            {
+              "clause_index": 0,
+              "binding_index": 1,
+              "answer_negated": false,
+              "action_category": "enable",
+              "answer_action_family": "improve",
+              "matched_object_count": 2,
+              "required_object_count": 2,
+              "expected_action_family": "improve"
+            }
+          ],
+          "action_object_binding_count": 1,
+          "matched_relation_term_count": 2,
+          "required_numeric_value_count": 0,
+          "matched_evidence_anchor_count": 0,
+          "substantive_answer_token_count": 12
+        }
+      ],
+      "unsupported_contact_email_relation_count": 0,
+      "unsupported_contact_phone_relation_count": 0,
+      "requested_fact_answer_missing_slot_indexes": []
+    },
+    "retrieved_count": 49,
+    "retrievers_used": [
+      "dense",
+      "title_match",
+      "bm25"
+    ],
+    "source_packages": [],
+    "hybrid_retrieval": {
+      "bm25": {
+        "top_score": 18.8381,
+        "only_count": 6,
+        "min_coverage": 0.150943,
+        "result_count": 30,
+        "average_score": 8.387573,
+        "average_coverage": 0.329717,
+        "low_coverage_count": 21
+      },
+      "scored_count": 49,
+      "top_channels": [
+        "dense",
+        "title_match",
+        "bm25"
+      ],
+      "top_rrf_score": 0.053431,
+      "channel_counts": {
+        "bm25": 33,
+        "dense": 33,
+        "title_match": 19
+      },
+      "merge_strategy": {
+        "rrf_k": 60,
+        "strategy": "weighted_hybrid_rrf",
+        "bm25_config": {
+          "body_k": 1.5,
+          "title_k": 0.8,
+          "body_weight": 1,
+          "min_coverage": 0.35,
+          "title_weight": 1.8
+        },
+        "score_formula": "dense_score*0.58 + lexical_score*0.34 + rrf_score*8.0 + channel_boost + bm25_coverage_boost",
+        "channel_boosts": {
+          "bm25": 0.05,
+          "title_match": 0.09,
+          "author_match": 0.14,
+          "exact_phrase": 0.06,
+          "registry_fact": 0.32
+        },
+        "channel_weights": {
+          "bm25": 1,
+          "dense": 1,
+          "title_match": 1.35,
+          "author_match": 1.5,
+          "exact_phrase": 1.15,
+          "registry_fact": 1.7
+        },
+        "requested_retrievers": [
+          "dense",
+          "author_match",
+          "title_match",
+          "exact_phrase",
+          "bm25"
+        ]
+      },
+      "dense_only_count": 6,
+      "top_hybrid_score": 1.992504,
+      "lexical_only_count": 18,
+      "multi_query_fusion": {
+        "strategy": "anchored_rrf_v1",
+        "top_candidates": [
+          {
+            "best_rank": 1,
+            "query_ids": [
+              "q1",
+              "q2"
+            ],
+            "source_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026",
+            "query_ranks": {
+              "q1": 4,
+              "q2": 1
+            },
+            "fusion_score": 1.991926,
+            "primary_rank": 4,
+            "anchor_channels": [
+              "title_match"
+            ],
+            "query_hit_count": 2,
+            "exact_anchor_hit": true,
+            "best_retrieval_score": 1.487489
+          },
+          {
+            "best_rank": 2,
+            "query_ids": [
+              "q2"
+            ],
+            "source_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026",
+            "query_ranks": {
+              "q2": 2
+            },
+            "fusion_score": 0.999355,
+            "anchor_channels": [
+              "title_match"
+            ],
+            "query_hit_count": 1,
+            "exact_anchor_hit": true,
+            "best_retrieval_score": 1.384827
+          },
+          {
+            "best_rank": 1,
+            "query_ids": [
+              "q1"
+            ],
+            "source_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026",
+            "query_ranks": {
+              "q1": 1
+            },
+            "fusion_score": 0.983607,
+            "primary_rank": 1,
+            "anchor_channels": [],
+            "query_hit_count": 1,
+            "exact_anchor_hit": false,
+            "best_retrieval_score": 1.460937
+          },
+          {
+            "best_rank": 3,
+            "query_ids": [
+              "q1"
+            ],
+            "source_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026",
+            "query_ranks": {
+              "q1": 3
+            },
+            "fusion_score": 0.952381,
+            "primary_rank": 3,
+            "anchor_channels": [],
+            "query_hit_count": 1,
+            "exact_anchor_hit": false,
+            "best_retrieval_score": 1.204431
+          },
+          {
+            "best_rank": 5,
+            "query_ids": [
+              "q1"
+            ],
+            "source_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026",
+            "query_ranks": {
+              "q1": 5
+            },
+            "fusion_score": 0.923077,
+            "primary_rank": 5,
+            "anchor_channels": [],
+            "query_hit_count": 1,
+            "exact_anchor_hit": false,
+            "best_retrieval_score": 0.887028
+          },
+          {
+            "best_rank": 6,
+            "query_ids": [
+              "q1"
+            ],
+            "source_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026",
+            "query_ranks": {
+              "q1": 6
+            },
+            "fusion_score": 0.909091,
+            "primary_rank": 6,
+            "anchor_channels": [],
+            "query_hit_count": 1,
+            "exact_anchor_hit": false,
+            "best_retrieval_score": 0.872711
+          },
+          {
+            "best_rank": 7,
+            "query_ids": [
+              "q1"
+            ],
+            "source_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026",
+            "query_ranks": {
+              "q1": 7
+            },
+            "fusion_score": 0.895522,
+            "primary_rank": 7,
+            "anchor_channels": [],
+            "query_hit_count": 1,
+            "exact_anchor_hit": false,
+            "best_retrieval_score": 0.866133
+          },
+          {
+            "best_rank": 8,
+            "query_ids": [
+              "q1"
+            ],
+            "source_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026",
+            "query_ranks": {
+              "q1": 8
+            },
+            "fusion_score": 0.882353,
+            "primary_rank": 8,
+            "anchor_channels": [],
+            "query_hit_count": 1,
+            "exact_anchor_hit": false,
+            "best_retrieval_score": 0.829356
+          },
+          {
+            "best_rank": 12,
+            "query_ids": [
+              "q2"
+            ],
+            "source_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026",
+            "query_ranks": {
+              "q2": 12
+            },
+            "fusion_score": 0.871667,
+            "anchor_channels": [
+              "title_match"
+            ],
+            "query_hit_count": 1,
+            "exact_anchor_hit": true,
+            "best_retrieval_score": 0.643739
+          },
+          {
+            "best_rank": 9,
+            "query_ids": [
+              "q1"
+            ],
+            "source_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026",
+            "query_ranks": {
+              "q1": 9
+            },
+            "fusion_score": 0.869565,
+            "primary_rank": 9,
+            "anchor_channels": [],
+            "query_hit_count": 1,
+            "exact_anchor_hit": false,
+            "best_retrieval_score": 0.815959
+          },
+          {
+            "best_rank": 10,
+            "query_ids": [
+              "q1"
+            ],
+            "source_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026",
+            "query_ranks": {
+              "q1": 10
+            },
+            "fusion_score": 0.857143,
+            "primary_rank": 10,
+            "anchor_channels": [],
+            "query_hit_count": 1,
+            "exact_anchor_hit": false,
+            "best_retrieval_score": 0.776967
+          },
+          {
+            "best_rank": 11,
+            "query_ids": [
+              "q1"
+            ],
+            "source_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026",
+            "query_ranks": {
+              "q1": 11
+            },
+            "fusion_score": 0.84507,
+            "primary_rank": 11,
+            "anchor_channels": [],
+            "query_hit_count": 1,
+            "exact_anchor_hit": false,
+            "best_retrieval_score": 0.752057
+          },
+          {
+            "best_rank": 12,
+            "query_ids": [
+              "q1"
+            ],
+            "source_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026",
+            "query_ranks": {
+              "q1": 12
+            },
+            "fusion_score": 0.833333,
+            "primary_rank": 12,
+            "anchor_channels": [],
+            "query_hit_count": 1,
+            "exact_anchor_hit": false,
+            "best_retrieval_score": 0.713175
+          },
+          {
+            "best_rank": 4,
+            "query_ids": [
+              "q2"
+            ],
+            "source_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026",
+            "query_ranks": {
+              "q2": 4
+            },
+            "fusion_score": 0.515625,
+            "anchor_channels": [],
+            "query_hit_count": 1,
+            "exact_anchor_hit": false,
+            "best_retrieval_score": 1.066679
+          },
+          {
+            "best_rank": 6,
+            "query_ids": [
+              "q2"
+            ],
+            "source_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026",
+            "query_ranks": {
+              "q2": 6
+            },
+            "fusion_score": 0.5,
+            "anchor_channels": [],
+            "query_hit_count": 1,
+            "exact_anchor_hit": false,
+            "best_retrieval_score": 0.824487
+          },
+          {
+            "best_rank": 7,
+            "query_ids": [
+              "q2"
+            ],
+            "source_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026",
+            "query_ranks": {
+              "q2": 7
+            },
+            "fusion_score": 0.492537,
+            "anchor_channels": [],
+            "query_hit_count": 1,
+            "exact_anchor_hit": false,
+            "best_retrieval_score": 0.801964
+          },
+          {
+            "best_rank": 8,
+            "query_ids": [
+              "q2"
+            ],
+            "source_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026",
+            "query_ranks": {
+              "q2": 8
+            },
+            "fusion_score": 0.485294,
+            "anchor_channels": [],
+            "query_hit_count": 1,
+            "exact_anchor_hit": false,
+            "best_retrieval_score": 0.80058
+          },
+          {
+            "best_rank": 9,
+            "query_ids": [
+              "q2"
+            ],
+            "source_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026",
+            "query_ranks": {
+              "q2": 9
+            },
+            "fusion_score": 0.478261,
+            "anchor_channels": [],
+            "query_hit_count": 1,
+            "exact_anchor_hit": false,
+            "best_retrieval_score": 0.793142
+          }
+        ],
+        "candidate_count": 18,
+        "max_query_hit_count": 2,
+        "anchored_candidate_count": 3
+      },
+      "dense_and_lexical_count": 12
+    },
+    "lemma_fts_shadow": {
+      "version": "lemma_fts_shadow_trace_v1",
+      "observations": [
+        {
+          "reason": "ASYNC_SHADOW_SCHEDULED",
+          "enabled": true,
+          "version": "lemma_fts_shadow_v1",
+          "executed": false,
+          "query_ms": 0,
+          "total_ms": 0,
+          "scheduled": false,
+          "analysis_ms": 0,
+          "index_ready": false,
+          "query_language": "et",
+          "top_candidates": [],
+          "candidate_count": 0,
+          "analyzer_version": "estnltk-vabamorf-1.7.5-v2",
+          "query_input_form": "retrieval_query",
+          "query_token_count": 0,
+          "chunk_overlap_count": 0,
+          "document_overlap_count": 0,
+          "production_result_count": 36
+        },
+        {
+          "reason": "ASYNC_SHADOW_SCHEDULED",
+          "enabled": true,
+          "version": "lemma_fts_shadow_v1",
+          "executed": false,
+          "query_ms": 0,
+          "total_ms": 0,
+          "scheduled": false,
+          "analysis_ms": 0,
+          "index_ready": false,
+          "query_language": "et",
+          "top_candidates": [],
+          "candidate_count": 0,
+          "analyzer_version": "estnltk-vabamorf-1.7.5-v2",
+          "query_input_form": "retrieval_query",
+          "query_token_count": 0,
+          "chunk_overlap_count": 0,
+          "document_overlap_count": 0,
+          "production_result_count": 12
+        },
+        {
+          "reason": "ASYNC_SHADOW_SCHEDULED",
+          "enabled": true,
+          "version": "lemma_fts_shadow_v1",
+          "executed": false,
+          "query_ms": 0,
+          "total_ms": 0,
+          "scheduled": false,
+          "analysis_ms": 0,
+          "index_ready": false,
+          "query_language": "et",
+          "top_candidates": [],
+          "candidate_count": 0,
+          "analyzer_version": "estnltk-vabamorf-1.7.5-v2",
+          "query_input_form": "retrieval_query",
+          "query_token_count": 0,
+          "chunk_overlap_count": 0,
+          "document_overlap_count": 0,
+          "production_result_count": 12
+        }
+      ],
+      "decision_mode": "shadow_only",
+      "production_path_changed": false
+    },
+    "used_package_ids": [],
+    "answer_source_ids": [
+      "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026"
+    ],
+    "attribution_flags": [],
+    "document_identity": {
+      "enabled": true,
+      "matched": true,
+      "reasons": [
+        "canonical_title_family_anchor:summary",
+        "source:research_or_journal",
+        "subject:epikoja",
+        "subject:taisealiste",
+        "subject:psuuhikahairega",
+        "subject:inimeste",
+        "subject:eestkostetavate",
+        "subject:tallinnale",
+        "subject:kontaktisiku",
+        "subject:juhtumikorralduse",
+        "document_anchor:taisealiste",
+        "document_anchor:tallinnale",
+        "channel:dense",
+        "channel:bm25",
+        "channel:title_match",
+        "current_turn_document_identity",
+        "decisive_canonical_title_family_anchor",
+        "decisive_ranked_title_lead"
+      ],
+      "required": true,
+      "candidates": [
+        {
+          "score": 129,
+          "title": "Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuringu kokkuvõte",
+          "document_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026",
+          "subject_terms": [
+            "epikoja",
+            "taisealiste",
+            "psuuhikahairega",
+            "inimeste",
+            "eestkostetavate",
+            "tallinnale",
+            "kontaktisiku",
+            "juhtumikorralduse"
+          ],
+          "author_matched": false,
+          "identity_matched": true,
+          "source_compatible": true,
+          "body_subject_terms": [],
+          "research_or_journal": true
+        },
+        {
+          "score": 117,
+          "title": "Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuringu lühikokkuvõte",
+          "document_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-luhikokkuvote-2026",
+          "subject_terms": [
+            "epikoja",
+            "taisealiste",
+            "psuuhikahairega",
+            "inimeste",
+            "eestkostetavate",
+            "tallinnale",
+            "kontaktisiku",
+            "juhtumikorralduse"
+          ],
+          "author_matched": false,
+          "identity_matched": true,
+          "source_compatible": true,
+          "body_subject_terms": [],
+          "research_or_journal": true
+        },
+        {
+          "score": 31,
+          "title": "Psüühikahäirega inimeste toetus- ja eestkostesüsteem vajab põhjalikku ümbermõtestamist",
+          "document_id": "sotsiaaltoo-2-2026-psuuhikahairega-inimeste-toetus-ja-eestkostesusteem-vajab-pohjalikku-u-2026",
+          "subject_terms": [
+            "taisealiste",
+            "psuuhikahairega",
+            "inimeste",
+            "eestkostetavate",
+            "tallinnale",
+            "juhtumikorralduse"
+          ],
+          "author_matched": false,
+          "identity_matched": true,
+          "source_compatible": true,
+          "body_subject_terms": [],
+          "research_or_journal": true
+        },
+        {
+          "score": 15,
+          "title": "Täiskasvanud erivajadusega inimeste abivajaduse hindamine ja teenuste osutamine",
+          "document_id": "praxis_centar_taiskasvanud_erivajadusega_inimeste_abivajaduse_hindamine_ja",
+          "subject_terms": [
+            "inimeste",
+            "soovitus",
+            "juhtumikorralduse"
+          ],
+          "author_matched": false,
+          "identity_matched": true,
+          "source_compatible": true,
+          "body_subject_terms": [],
+          "research_or_journal": true
+        },
+        {
+          "score": 12,
+          "title": "Täiskasvanud erivajadusega inimeste abivajaduse hindamine ja teenuste osutamine – lühikokkuvõte",
+          "document_id": "praxis_centar_taiskasvanud_erivajadusega_inimeste_abivajaduse_hindamine_ja_2",
+          "subject_terms": [
+            "inimeste",
+            "soovitus"
+          ],
+          "author_matched": false,
+          "identity_matched": true,
+          "source_compatible": true,
+          "body_subject_terms": [],
+          "research_or_journal": true
+        }
+      ],
+      "confidence": "high",
+      "duration_ms": 26,
+      "subject_terms": [
+        "epikoja",
+        "taisealiste",
+        "psuuhikahairega",
+        "inimeste",
+        "eestkostetavate",
+        "soovitus",
+        "anti",
+        "tallinnale",
+        "kontaktisiku",
+        "juhtumikorralduse"
+      ],
+      "selected_title": "Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuringu kokkuvõte",
+      "selected_document_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026"
+    },
+    "answer_source_count": 1,
+    "claim_support_graph": [
+      {
+        "claim_id": "claim_1",
+        "claim_hash": "14fb12d5",
+        "supporting_source_ids": [
+          "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026"
+        ]
+      },
+      {
+        "claim_id": "claim_2",
+        "claim_hash": "5a55efc8",
+        "supporting_source_ids": [
+          "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026"
+        ]
+      },
+      {
+        "claim_id": "claim_3",
+        "claim_hash": "9bf52b16",
+        "supporting_source_ids": [
+          "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026"
+        ]
+      },
+      {
+        "claim_id": "claim_4",
+        "claim_hash": "5ecfe0af",
+        "supporting_source_ids": [
+          "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026"
+        ]
+      }
+    ],
+    "performance_timings": {
+      "dense_ms": 630,
+      "model_ms": 2915,
+      "lexical_ms": 6984,
+      "planner_ms": 16,
+      "registry_ms": 0,
+      "dense_sum_ms": 630,
+      "embedding_ms": 852,
+      "lexical_sum_ms": 6984,
+      "query_build_ms": 0,
+      "embedding_sum_ms": 852,
+      "context_render_ms": 0,
+      "query_planning_ms": 0,
+      "retrieval_wall_ms": 9926,
+      "fact_validation_ms": 114,
+      "first_model_call_ms": 0,
+      "lemma_fts_shadow_ms": 0,
+      "lexical_scanned_sum": 51551,
+      "document_identity_ms": 26,
+      "retrieval_query_1_ms": 6278,
+      "retrieval_query_2_ms": 2468,
+      "retrieval_query_3_ms": 3608,
+      "retrieval_query_count": 3,
+      "fact_segment_search_ms": 3623,
+      "shared_read_cache_hits": 2,
+      "document_sibling_sum_ms": 565,
+      "shared_read_cache_waits": 0,
+      "multi_query_retrieval_ms": 12354,
+      "shared_read_cache_misses": 20,
+      "retrieval_parallel_sum_ms": 12354,
+      "retrieval_context_total_ms": 10612,
+      "shared_read_cache_bypasses": 0,
+      "service_fact_segment_sum_ms": 2892,
+      "shared_embedding_batch_hits": 0,
+      "shared_embedding_batch_waits": 0,
+      "shared_embedding_batch_misses": 1,
+      "lexical_exhaustive_query_count": 1,
+      "lexical_corpus_scan_query_count": 0,
+      "shared_embedding_batch_bypasses": 2
+    },
+    "section_attribution": [],
+    "displayed_source_ids": [
+      "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026"
+    ],
+    "package_answer_flags": [],
+    "retrieved_source_ids": [
+      "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-luhikokkuvote-2026",
+      "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026",
+      "sotsiaaltoo_psuuhikahairega-inimeste-toetus-ja-eestkostesusteem-vajab-pohjalikku-u-2026",
+      "riigiteataja:130122025029:paragraph-101-lg-2:304",
+      "riigiteataja:130122025029:paragraph-101-lg-2",
+      "riigiteataja:130122025029:paragraph-9",
+      "riigiteataja:130122025029:paragraph-95",
+      "riigiteataja:130122025029:paragraph-96",
+      "praxis_centar_taiskasvanud_erivajadusega_inimeste_abivajaduse_hindamine_ja",
+      "praxis_centar_taiskasvanud_erivajadusega_inimeste_abivajaduse_hindamine_ja_2"
+    ],
+    "attribution_decisions": [
+      {
+        "score": 212.1,
+        "reason": "fact_contract_validated",
+        "decision": "display",
+        "source_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026",
+        "source_type": "research_report",
+        "source_index": 0,
+        "source_status": "active",
+        "source_layer_contract": "research_or_journal"
+      }
+    ],
+    "missing_sections_used": [],
+    "rag_required_evidence": "medium",
+    "rendered_context_hash": "1c14f94d5f2cb6225398bfc1b799a4abf6b94d584a6bf29e8eda3f7fb8aa4252",
+    "retrieval_trace_level": "retrieved_candidates",
+    "selected_source_count": 1,
+    "displayed_source_count": 1,
+    "rendered_context_chars": 8924,
+    "selected_context_count": 1,
+    "answer_source_semantics": "claim_or_validator_support",
+    "filtered_out_source_ids": [],
+    "model_context_source_ids": [
+      "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026"
+    ],
+    "package_selection_status": "no_packages",
+    "selected_context_details": [
+      {
+        "title": "Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuringu kokkuvõte",
+        "rrf_score": 0.053431,
+        "source_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026",
+        "bm25_score": 16.6892,
+        "dense_rank": 1,
+        "rank_score": 3.6325,
+        "dense_score": 0.614529,
+        "hybrid_rank": 1,
+        "source_type": "research_report",
+        "topic_boost": 0.9,
+        "bm25_matches": 21,
+        "hybrid_score": 1.992504,
+        "lexical_rank": 1,
+        "bm25_coverage": 0.75,
+        "channel_boost": 0.14,
+        "collection_id": "research_reports",
+        "lexical_score": 11.5,
+        "raw_source_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026",
+        "resource_type": "research_evidence",
+        "source_status": "active",
+        "quality_adjust": 0.74,
+        "bm25_query_tokens": 53,
+        "original_body_hash": "06e352a308d57e7868c1ba1aecae9571fc3b4a3aaf17eabbdd8f4a57b575b563",
+        "rendered_body_hash": "f6dcf701010889722d0c4e6cf3ff2f6c87be9fdd91c0788c3d66f893b60edee3",
+        "retrieval_channels": [
+          "dense",
+          "bm25",
+          "title_match"
+        ],
+        "original_body_count": 26,
+        "rendered_body_count": 8,
+        "rendered_body_spans": [
+          {
+            "truncated": false,
+            "end_offset": 1198,
+            "start_offset": 0,
+            "original_body_hash": "b85765dd99502ae525967af0dee4ad889e91b59ec378de2b9ea3f5748585e018",
+            "rendered_body_hash": "b85765dd99502ae525967af0dee4ad889e91b59ec378de2b9ea3f5748585e018",
+            "original_body_chars": 1198,
+            "original_body_index": 0,
+            "rendered_body_chars": 1198
+          },
+          {
+            "truncated": false,
+            "end_offset": 507,
+            "start_offset": 0,
+            "original_body_hash": "7a8171cf33ae1d115b199517a99b31aa5d2169cd4b8d82bb5c99e9612cb1f715",
+            "rendered_body_hash": "7a8171cf33ae1d115b199517a99b31aa5d2169cd4b8d82bb5c99e9612cb1f715",
+            "original_body_chars": 507,
+            "original_body_index": 1,
+            "rendered_body_chars": 507
+          },
+          {
+            "truncated": false,
+            "end_offset": 1190,
+            "start_offset": 0,
+            "original_body_hash": "b69902f05900837210320643e7f1e7f29ce9ee106e79b87418412664be4794da",
+            "rendered_body_hash": "b69902f05900837210320643e7f1e7f29ce9ee106e79b87418412664be4794da",
+            "original_body_chars": 1190,
+            "original_body_index": 2,
+            "rendered_body_chars": 1190
+          },
+          {
+            "truncated": false,
+            "end_offset": 1135,
+            "start_offset": 0,
+            "original_body_hash": "f7130126ed0ffcdbe2b1e7aed5f256ed10726a1ed8167d28c30c5b94e56f175d",
+            "rendered_body_hash": "f7130126ed0ffcdbe2b1e7aed5f256ed10726a1ed8167d28c30c5b94e56f175d",
+            "original_body_chars": 1135,
+            "original_body_index": 3,
+            "rendered_body_chars": 1135
+          },
+          {
+            "truncated": false,
+            "end_offset": 1190,
+            "start_offset": 0,
+            "original_body_hash": "96cf707a9c1369fcf51e7a3215a55998ccaff00a027113c19f8b073b3d030520",
+            "rendered_body_hash": "96cf707a9c1369fcf51e7a3215a55998ccaff00a027113c19f8b073b3d030520",
+            "original_body_chars": 1190,
+            "original_body_index": 4,
+            "rendered_body_chars": 1190
+          },
+          {
+            "truncated": false,
+            "end_offset": 1125,
+            "start_offset": 0,
+            "original_body_hash": "187c328e5110e0157ddf90dc69908aa952b0e31519b07ba098b29a1132708f5b",
+            "rendered_body_hash": "187c328e5110e0157ddf90dc69908aa952b0e31519b07ba098b29a1132708f5b",
+            "original_body_chars": 1125,
+            "original_body_index": 5,
+            "rendered_body_chars": 1125
+          },
+          {
+            "truncated": false,
+            "end_offset": 1181,
+            "start_offset": 0,
+            "original_body_hash": "d82dfd35ce262fe746aaee979acb62b952462b4e60351ed62694866aefb370db",
+            "rendered_body_hash": "d82dfd35ce262fe746aaee979acb62b952462b4e60351ed62694866aefb370db",
+            "original_body_chars": 1181,
+            "original_body_index": 6,
+            "rendered_body_chars": 1181
+          },
+          {
+            "truncated": false,
+            "end_offset": 1074,
+            "start_offset": 0,
+            "original_body_hash": "8df2b2bf0eb56047de8a4319c4ba9be187da9c102ca104146aa2818227722d4e",
+            "rendered_body_hash": "8df2b2bf0eb56047de8a4319c4ba9be187da9c102ca104146aa2818227722d4e",
+            "original_body_chars": 1074,
+            "original_body_index": 7,
+            "rendered_body_chars": 1074
+          }
+        ],
+        "rendered_evidence_hash": "1c14f94d5f2cb6225398bfc1b799a4abf6b94d584a6bf29e8eda3f7fb8aa4252",
+        "rendered_evidence_chars": 8924,
+        "lexical_score_normalized": 0.589744,
+        "rendered_evidence_truncated": true
+      }
+    ],
+    "filtered_out_source_count": 0,
+    "attribution_filter_reasons": {},
+    "claim_supported_source_ids": [
+      "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026"
+    ],
+    "model_context_source_count": 1,
+    "package_requested_sections": [],
+    "required_evidence_sections": [],
+    "package_attribution_checked": false,
+    "selected_context_source_ids": [
+      "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026"
+    ],
+    "claim_supported_source_count": 1,
+    "insufficient_precise_support": false,
+    "package_aware_answering_used": false,
+    "package_candidate_source_ids": [],
+    "package_displayed_source_ids": [],
+    "high_risk_attribution_checked": false,
+    "rag_insufficient_evidence_mode": false,
+    "attribution_filtered_source_ids": [],
+    "validated_supporting_source_ids": [
+      "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026"
+    ],
+    "answer_validation_contract_shadow": {
+      "mode": "shadow",
+      "planner": {
+        "mode": "specific_research_fact",
+        "fields": {
+          "period_role": {
+            "state": "present",
+            "value": null,
+            "available": true,
+            "confidence": null,
+            "provenance": {
+              "layer": "question_planner",
+              "method": "bounded_episode_metric_fact_shape",
+              "span_end": null,
+              "span_start": null
+            },
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "year_role_mentions": {
+            "state": "present",
+            "value": [],
+            "available": true,
+            "confidence": null,
+            "provenance": {
+              "layer": "question_planner",
+              "method": "semantic_year_role_mentions",
+              "span_end": null,
+              "span_start": null
+            },
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "document_source_years": {
+            "state": "present",
+            "value": [],
+            "available": true,
+            "confidence": null,
+            "provenance": {
+              "layer": "question_planner",
+              "method": "specific_research_fact_source_years",
+              "span_end": null,
+              "span_start": null
+            },
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "evidence_metric_slots": {
+            "state": "present",
+            "value": [],
+            "available": true,
+            "confidence": null,
+            "provenance": {
+              "layer": "question_planner",
+              "method": "bounded_episode_metric_slots",
+              "span_end": null,
+              "span_start": null
+            },
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "evidence_metric_terms": {
+            "state": "present",
+            "value": [],
+            "available": true,
+            "confidence": null,
+            "provenance": {
+              "layer": "question_planner",
+              "method": "bounded_episode_metric_terms",
+              "span_end": null,
+              "span_start": null
+            },
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "evidence_period_years": {
+            "state": "present",
+            "value": [],
+            "available": true,
+            "confidence": null,
+            "provenance": {
+              "layer": "question_planner",
+              "method": "bounded_episode_period_years",
+              "span_end": null,
+              "span_start": null
+            },
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "evidence_phase_ordinal": {
+            "state": "present",
+            "value": null,
+            "available": true,
+            "confidence": null,
+            "provenance": {
+              "layer": "question_planner",
+              "method": "bounded_episode_phase_ordinal",
+              "span_end": null,
+              "span_start": null
+            },
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "requested_numeric_slots": {
+            "state": "present",
+            "value": {
+              "slots": [],
+              "complete": true,
+              "truncated": false,
+              "emitted_slot_count": 0,
+              "recognized_clause_count": 0,
+              "unresolved_clause_count": 0
+            },
+            "available": true,
+            "confidence": null,
+            "provenance": {
+              "layer": "question_planner",
+              "method": "requested_numeric_clause_slots",
+              "span_end": null,
+              "span_start": null
+            },
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "bounded_episode_metric_fact": {
+            "state": "present",
+            "value": false,
+            "available": true,
+            "confidence": null,
+            "provenance": {
+              "layer": "question_planner",
+              "method": "bounded_episode_metric_fact_shape",
+              "span_end": null,
+              "span_start": null
+            },
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "current_turn_document_identity": {
+            "state": "present",
+            "value": {
+              "scope": "current_turn",
+              "author": {
+                "value": null,
+                "span_end": null,
+                "confidence": null,
+                "input_form": null,
+                "provenance": null,
+                "span_start": null
+              },
+              "version": "current_turn_document_identity_v1",
+              "title_hint": {
+                "value": "Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuring",
+                "provenance": "explicit_current_turn"
+              },
+              "document_kind": {
+                "value": "report",
+                "provenance": "explicit_current_turn"
+              },
+              "document_source_years": [],
+              "explicit_anchor_count": 2,
+              "history_fallback_policy": "fill_missing_only"
+            },
+            "available": true,
+            "confidence": null,
+            "provenance": {
+              "layer": "question_planner",
+              "method": "current_turn_document_identity_semantic_candidate",
+              "span_end": null,
+              "span_start": null
+            },
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          }
+        },
+        "route_mode": "specific_research_fact",
+        "semantic_candidates_version": "question_semantic_candidates_v1"
+      },
+      "version": "answer_validation_contract_shadow_v2",
+      "attribution": {
+        "decision_source": "not_fully_attributed",
+        "production_path": "hybrid_existing",
+        "legacy_path_used": null,
+        "runtime_relation": "not_comparable",
+        "legacy_observations": {
+          "exact_anchor_match": true,
+          "raw_anchor_observed": true,
+          "query_plan_available": true,
+          "current_status_observed": false,
+          "exact_anchor_match_scope": "any_selected_source",
+          "raw_anchor_match_observed": true
+        },
+        "structured_path_scope": "answer_validation_contract_shadow_v2",
+        "structured_observations": {
+          "route_mode": "specific_research_fact",
+          "planner_mode": "specific_research_fact",
+          "field_availability": {
+            "period_role": true,
+            "document_source_years": true,
+            "evidence_period_years": true
+          },
+          "document_source_years": [],
+          "evidence_period_years": [],
+          "document_identity_matched": true,
+          "document_identity_required": true,
+          "document_identity_confidence": "high"
+        },
+        "shadow_contract_used_for_decision": false,
+        "structured_path_used_for_decision": null
+      },
+      "fact_validation": {
+        "production_path": "legacy",
+        "legacy_path_used": true,
+        "runtime_relation": "not_comparable",
+        "validation_applied": true,
+        "legacy_observations": {
+          "asks_for_year": false,
+          "asks_for_whole_scope": false,
+          "asks_for_numeric_fact": false,
+          "asks_for_publication_year": false,
+          "contact_answer_intent_requested": false,
+          "asks_for_categorical_numeric_breakdown": false
+        },
+        "structured_observations": {
+          "route_mode": "specific_research_fact",
+          "planner_mode": "specific_research_fact",
+          "ambiguous_years": [],
+          "field_availability": {
+            "period_role": true,
+            "year_role_mentions": true,
+            "document_source_years": true,
+            "evidence_metric_slots": true,
+            "evidence_metric_terms": true,
+            "evidence_period_years": true,
+            "evidence_phase_ordinal": true,
+            "requested_numeric_slots": true,
+            "bounded_episode_metric_fact": true
+          },
+          "typed_evidence_years": [],
+          "document_source_years": [],
+          "evidence_period_years": [],
+          "evidence_phase_ordinal": null,
+          "evidence_metric_term_count": 0,
+          "bounded_episode_metric_fact": false,
+          "typed_document_source_years": [],
+          "requested_numeric_slot_count": 0,
+          "requested_numeric_slot_types": [],
+          "evidence_metric_slot_categories": [],
+          "requested_numeric_slots_complete": true,
+          "requested_numeric_slots_truncated": false,
+          "requested_numeric_emitted_slot_count": 0,
+          "requested_numeric_recognized_clause_count": 0,
+          "requested_numeric_unresolved_clause_count": 0
+        },
+        "structured_path_used_for_decision": false
+      },
+      "production_decision_source": "existing_production_paths",
+      "current_turn_author_confirmation": {
+        "status": "no_candidate",
+        "version": "current_turn_author_confirmation_v1",
+        "promotion_eligible": false,
+        "confirmation_source": "retrieved_source_metadata",
+        "candidate_confidence": null,
+        "candidate_provenance": null,
+        "matched_document_ids": [],
+        "matched_source_count": 0,
+        "matched_author_values": [],
+        "candidate_document_kind": "report",
+        "candidate_document_source_years": []
+      }
+    },
+    "validated_supporting_source_count": 1,
+    "displayed_not_in_answer_source_ids": [],
+    "displayed_sources_subset_of_answer": true,
+    "requested_qualitative_slot_contract": {
+      "slots": [
+        {
+          "slot_index": 1,
+          "value_type": "recommendation",
+          "evidence_negated": false,
+          "relation_term_count": 5,
+          "validation_language": "et",
+          "expected_cardinality": null,
+          "minimum_answer_items": 1,
+          "action_object_bindings": [
+            {
+              "action_family": "create",
+              "binding_index": 1,
+              "action_category": "enable",
+              "evidence_negated": false,
+              "object_anchor_count": 2,
+              "minimum_object_matches": 1,
+              "evidence_action_term_count": 1
+            }
+          ],
+          "evidence_fragment_hash": "28b1703b6b8d9c1527dd0f465b3eff6f4de1d5e3b844a13dd15aebe2d06a98f7",
+          "minimum_action_matches": 1,
+          "minimum_anchor_matches": 0,
+          "evidence_fragment_index": 0,
+          "minimum_relation_matches": 2,
+          "evidence_action_categories": [
+            "enable"
+          ],
+          "evidence_action_term_count": 2,
+          "evidence_anchor_term_count": 0,
+          "matched_relation_term_count": 3,
+          "required_numeric_value_count": 0,
+          "minimum_evidence_anchor_count": 0
+        },
+        {
+          "slot_index": 2,
+          "value_type": "recommendation",
+          "evidence_negated": false,
+          "relation_term_count": 2,
+          "validation_language": "et",
+          "expected_cardinality": null,
+          "minimum_answer_items": 1,
+          "action_object_bindings": [],
+          "evidence_fragment_hash": "3426f277ccc7894ec114e8c8dd8e3fc4cd85ae7009121993e4b2609e8eb4e989",
+          "minimum_action_matches": 1,
+          "minimum_anchor_matches": 0,
+          "evidence_fragment_index": 1,
+          "minimum_relation_matches": 2,
+          "evidence_action_categories": [
+            "enable"
+          ],
+          "evidence_action_term_count": 1,
+          "evidence_anchor_term_count": 0,
+          "matched_relation_term_count": 2,
+          "required_numeric_value_count": 0,
+          "minimum_evidence_anchor_count": 0
+        },
+        {
+          "slot_index": 3,
+          "value_type": "recommendation",
+          "evidence_negated": false,
+          "relation_term_count": 4,
+          "validation_language": "et",
+          "expected_cardinality": null,
+          "minimum_answer_items": 1,
+          "action_object_bindings": [
+            {
+              "action_family": "simplify",
+              "binding_index": 1,
+              "action_category": "enable",
+              "evidence_negated": false,
+              "object_anchor_count": 1,
+              "minimum_object_matches": 1,
+              "evidence_action_term_count": 1
+            },
+            {
+              "action_family": "avoid",
+              "binding_index": 2,
+              "action_category": "avoid",
+              "evidence_negated": false,
+              "object_anchor_count": 2,
+              "minimum_object_matches": 1,
+              "evidence_action_term_count": 1
+            }
+          ],
+          "evidence_fragment_hash": "fe73bc677e22bd42927b628fe4062861da84c041edf702e0897c9d50e22a2196",
+          "minimum_action_matches": 1,
+          "minimum_anchor_matches": 0,
+          "evidence_fragment_index": 5,
+          "minimum_relation_matches": 2,
+          "evidence_action_categories": [
+            "enable",
+            "avoid"
+          ],
+          "evidence_action_term_count": 4,
+          "evidence_anchor_term_count": 0,
+          "matched_relation_term_count": 3,
+          "required_numeric_value_count": 0,
+          "minimum_evidence_anchor_count": 0
+        },
+        {
+          "slot_index": 4,
+          "value_type": "recommendation",
+          "evidence_negated": false,
+          "relation_term_count": 2,
+          "validation_language": "et",
+          "expected_cardinality": null,
+          "minimum_answer_items": 1,
+          "action_object_bindings": [
+            {
+              "action_family": "improve",
+              "binding_index": 1,
+              "action_category": "enable",
+              "evidence_negated": false,
+              "object_anchor_count": 2,
+              "minimum_object_matches": 2,
+              "evidence_action_term_count": 1
+            }
+          ],
+          "evidence_fragment_hash": "31e06fc89bf499d4f735cea477bf68bab0c75bec0d56e830a6db64e7bec592dd",
+          "minimum_action_matches": 1,
+          "minimum_anchor_matches": 0,
+          "evidence_fragment_index": 0,
+          "minimum_relation_matches": 2,
+          "evidence_action_categories": [
+            "enable"
+          ],
+          "evidence_action_term_count": 1,
+          "evidence_anchor_term_count": 0,
+          "matched_relation_term_count": 2,
+          "required_numeric_value_count": 0,
+          "minimum_evidence_anchor_count": 0
+        }
+      ],
+      "reason": "all_qualitative_slots_bound_to_rendered_evidence",
+      "enabled": true,
+      "version": "requested_qualitative_slot_contract_v1",
+      "complete": true,
+      "reply_language": "et",
+      "mapped_slot_count": 4,
+      "used_for_generation": true,
+      "used_for_validation": true,
+      "missing_slot_indexes": [],
+      "requested_slot_count": 4,
+      "sanitizer_dropped_slot": false,
+      "selected_document_id_present": true
+    },
+    "displayed_not_in_selected_source_ids": [],
+    "displayed_sources_subset_of_selected": true,
+    "insufficientPreciseLegalSourceSupport": false,
+    "selected_but_not_displayed_source_ids": [],
+    "retrieved_but_not_displayed_source_ids": [
+      "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-luhikokkuvote-2026",
+      "sotsiaaltoo_psuuhikahairega-inimeste-toetus-ja-eestkostesusteem-vajab-pohjalikku-u-2026",
+      "riigiteataja:130122025029:paragraph-101-lg-2:304",
+      "riigiteataja:130122025029:paragraph-101-lg-2",
+      "riigiteataja:130122025029:paragraph-9",
+      "riigiteataja:130122025029:paragraph-95",
+      "riigiteataja:130122025029:paragraph-96",
+      "praxis_centar_taiskasvanud_erivajadusega_inimeste_abivajaduse_hindamine_ja",
+      "praxis_centar_taiskasvanud_erivajadusega_inimeste_abivajaduse_hindamine_ja_2"
+    ],
+    "insufficient_precise_legal_source_support": false
+  },
+  "answer": "1. Soovitus anti Tallinnale kontaktisiku või juhtumikorralduse kohta: luua süsteem, kus igal abivajajal on üks kindel kontaktisik ehk juhtumikorraldaja, kes hindab abivajadust terviklikult, koordineerib teenuseid ja toetab inimest kogu teekonna vältel.\n\n2. Ennetava abi kohta: muuta abi pakkumine ka praktikas proaktiivseks ja ennetavaks ning jõuda inimesteni juba varajases etapis, näiteks võtta inimesega ühendust puude raskusastme tuvastamisel.\n\n3. Teenustele pääsu ja korduvate hindamiste kohta: lihtsustada abi andmise ja teenustele jõudmise protsessi, vähendada bürokraatiat, tagada arusaadav suhtlus ja paindlikud menetlused ning vältida dubleerivaid ja korduvaid hindamisi ning sama info uuesti küsimist.\n\n4. Toetatud otsustamise kohta: arendada toetatud otsustamise põhimõttel toimivaid lahendusi, mis vähendavad vajadust ulatusliku eestkoste järele ja toetavad inimese iseseisvat otsustusõigust; Tallinn võiks luua selleks toetatud otsustamise teenuse ning määrata selle tingimused, alused ja korra.",
+  "ended_at": "2026-08-31T10:43:22.571",
+  "question": "EPIKoja aruandes „Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuring” milline soovitus anti Tallinnale kontaktisiku või juhtumikorralduse kohta, milline ennetava abi kohta, milline teenustele pääsu ja korduvate hindamiste kohta ning milline toetatud otsustamise kohta?",
+  "started_at": "2026-08-31T10:43:19.519",
+  "displayed_sources": [
+    {
+      "id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026",
+      "year": 2026,
+      "pages": [
+        10,
+        11,
+        13,
+        14,
+        18,
+        23,
+        26,
+        29,
+        32,
+        38,
+        48,
+        50,
+        51,
+        53,
+        56,
+        61,
+        62,
+        64
+      ],
+      "title": "Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuringu kokkuvõte",
+      "authors": [
+        "Kristi Rekand",
+        "Kristi Kähär",
+        "Tauno Asuja"
+      ],
+      "audience": "BOTH",
+      "fileName": "Taisealiste-psuuhikahairega-inimeste-sh-eestkostetavate-uuringu-kokkuvote-2026.pdf",
+      "sourceId": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026",
+      "pageRange": "10–11, 13–14, 18, 23, 26, 29, 32, 38, 48, 50–51, 53, 56, 61–62, 64",
+      "short_ref": "Kristi Rekand, 2026. Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuringu kokkuvõte · lk 10–11, 13–14, 18, 23, 26, 29, 32, 38, 48, 50–51, 53, 56, 61–62, 64",
+      "source_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026",
+      "documentId": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026",
+      "sourceType": "research_report",
+      "document_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026",
+      "source_type": "research_report",
+      "collectionId": "research_reports",
+      "last_checked": "2026-06-11",
+      "resourceType": "research_evidence",
+      "collection_id": "research_reports",
+      "resource_type": "research_evidence",
+      "source_status": "active",
+      "source_freshness": "fresh",
+      "retrievalChannels": [
+        "dense",
+        "bm25",
+        "title_match"
+      ],
+      "source_checked_at": "2026-06-11T00:00:00.000Z",
+      "source_trust_type": "research_report",
+      "retrieval_channels": [
+        "dense",
+        "bm25",
+        "title_match"
+      ]
+    }
+  ],
+  "previous_user_turns": 1
+}

@@ -1,0 +1,14 @@
+{
+  "mode": "read_only_local_counterfactual_not_new_runtime",
+  "unmodified_displayed": [
+    "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+    "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017",
+    "sotsiaaltoo_turvalisuse-margid-2024-4"
+  ],
+  "heading_removed_displayed": [
+    "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+    "sotsiaaltoo_turvalisuse-margid-2024-4"
+  ],
+  "removed_text": "7. Vahehindamine ja juhtumi lõpetamine",
+  "claim_hash": "64d1ac01"
+}
