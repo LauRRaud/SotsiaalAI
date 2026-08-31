@@ -1,0 +1,73 @@
+{
+  "runtime_code": "707bbeb1a118a2b54a3985da832d59db4178c280",
+  "server_head": "6695f31e1aacb3859525bb657bdf6cbc841296d1",
+  "verified_at": "2026-08-31T11:08:49.986Z",
+  "build_id": "_n-jL6-kZ3voex5jFXLVe",
+  "server_clean": true,
+  "services": {
+    "frontend": "active",
+    "rag": "active",
+    "research_worker": "active"
+  },
+  "http": {
+    "route": "https://sotsiaal.ai/vestlus",
+    "status": 200
+  },
+  "health": {
+    "ok": true,
+    "status": "ok",
+    "vectors": 49727,
+    "documents": 6089,
+    "lexical_index": {
+      "ready": true,
+      "reason": null,
+      "schema_version": "fts5-v2",
+      "generation": "9eacd751e8bed4fca4bd35518009ed417b3fe444367712834aa19e0b2647e97c",
+      "expected_generation": "9eacd751e8bed4fca4bd35518009ed417b3fe444367712834aa19e0b2647e97c",
+      "chunk_count": 49727,
+      "document_count": 6073,
+      "active_registry_document_count": 6073,
+      "size_bytes": 459132928,
+      "built_at": "2026-08-23T13:48:56.745627+00:00",
+      "refresh": {
+        "scheduled": false,
+        "running": false,
+        "active_reason": null,
+        "pending_reason": null
+      }
+    },
+    "lemma_fts_shadow": {
+      "ready": true,
+      "reason": null,
+      "schema_version": "lemma-fts-shadow-v2",
+      "analyzer_version": "estnltk-vabamorf-1.7.5-v2",
+      "generation": "9eacd751e8bed4fca4bd35518009ed417b3fe444367712834aa19e0b2647e97c",
+      "expected_generation": "9eacd751e8bed4fca4bd35518009ed417b3fe444367712834aa19e0b2647e97c",
+      "chunk_count": 49727,
+      "document_count": 6073,
+      "active_registry_document_count": 6073,
+      "size_bytes": 530575360,
+      "built_at": "2026-08-28T21:01:08.486309+00:00",
+      "analyzer": {
+        "version": "estnltk-vabamorf-1.7.5-v2",
+        "load_attempted": false,
+        "available": false,
+        "reason": null
+      },
+      "refresh": {
+        "scheduled": false,
+        "running": false,
+        "active_reason": null,
+        "pending_reason": null
+      }
+    }
+  },
+  "local_gates": {
+    "target_tests": "29/29 PASS",
+    "eslint": "PASS",
+    "i18n": "PASS",
+    "build": "PASS",
+    "diff_check": "PASS"
+  },
+  "cleanup": "Removed one stale artifact and one old build log; newest three of each retained; current and previous releases recoverable from retained artifacts."
+}

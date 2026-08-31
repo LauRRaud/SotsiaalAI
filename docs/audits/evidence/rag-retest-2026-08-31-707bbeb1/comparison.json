@@ -1,0 +1,105 @@
+{
+  "runtimeCode": "707bbeb1a118a2b54a3985da832d59db4178c280",
+  "serverHead": "6695f31e1aacb3859525bb657bdf6cbc841296d1",
+  "directory": "docs/audits/evidence/rag-retest-2026-08-31-707bbeb1",
+  "results": [
+    {
+      "id": "child",
+      "mode": "isolated",
+      "status": "PASS",
+      "role": "target"
+    },
+    {
+      "id": "M01",
+      "mode": "sequential",
+      "status": "PASS",
+      "role": "context"
+    },
+    {
+      "id": "M02",
+      "mode": "sequential",
+      "status": "PASS",
+      "role": "context"
+    },
+    {
+      "id": "integrated",
+      "mode": "sequential",
+      "status": "PASS",
+      "role": "context"
+    },
+    {
+      "id": "child",
+      "mode": "sequential",
+      "status": "PASS",
+      "role": "target"
+    }
+  ],
+  "scope": "child-guidance isolated and sequential with M01/M02/integrated context; five UI turns",
+  "startedAt": "2026-08-31T11:06:13.803Z",
+  "finishedAt": "2026-08-31T11:15:20.975Z",
+  "counts": {
+    "targets": {
+      "PASS": 2,
+      "PARTIAL": 0,
+      "FAIL": 0
+    },
+    "context": {
+      "PASS": 3,
+      "PARTIAL": 0,
+      "FAIL": 0
+    },
+    "ui_turns": 5,
+    "protocol_deviations": 0
+  },
+  "before": {
+    "runtime_code": "e1f653a7250168d5df12bec5c127100c425908d5",
+    "targets": {
+      "PASS": 0,
+      "PARTIAL": 2,
+      "FAIL": 0
+    }
+  },
+  "pairs": [
+    {
+      "mode": "isolated",
+      "status": "PASS",
+      "previous_user_turns": 0,
+      "started_at": "2026-08-31T11:09:22.061",
+      "ended_at": "2026-08-31T11:09:33.029",
+      "server_duration_ms": 10968,
+      "rendered_context_hash": "b96c53cdcccfef09d8112804f909e044fe37c302551da5ac40f959c7db3921e3",
+      "displayed_source_ids": [
+        "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+        "sotsiaaltoo_turvalisuse-margid-2024-4"
+      ],
+      "filter_reasons": {
+        "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017": "claim_support_subsumed",
+        "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus": "claim_support_subsumed"
+      },
+      "evidence": "isolated-child.json"
+    },
+    {
+      "mode": "sequential",
+      "status": "PASS",
+      "previous_user_turns": 3,
+      "started_at": "2026-08-31T11:13:46.825",
+      "ended_at": "2026-08-31T11:13:54.51",
+      "server_duration_ms": 7685,
+      "rendered_context_hash": "b96c53cdcccfef09d8112804f909e044fe37c302551da5ac40f959c7db3921e3",
+      "displayed_source_ids": [
+        "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+        "sotsiaaltoo_turvalisuse-margid-2024-4"
+      ],
+      "filter_reasons": {
+        "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017": "claim_support_subsumed",
+        "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus": "claim_support_subsumed"
+      },
+      "evidence": "sequential-child.json"
+    }
+  ],
+  "limitations": [
+    "Only this two-case paired target and three context questions were run, not the full75 or Golden37.",
+    "PASS is the benchmark content/source-panel assessment, not semantic entailment proof for arbitrary answers or a system score of 10/10.",
+    "Integrated context answer contains a minor typo (terviku.Getteratud); logged separately without changing its substantive score."
+  ]
+}

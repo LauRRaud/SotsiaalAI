@@ -1,0 +1,18 @@
+{
+  "purpose": "Read-only verification of the sequential context answer's 2020 pilot wording; not a new chat turn.",
+  "verified_at": "2026-08-31T11:13:51.320Z",
+  "document_id": "sotsiaaltoo-3-2020-integreeritud-tugiteenused-lastele-esimene-tagasiside-pilootprojektile-2020-3",
+  "source_year": 2020,
+  "read_path": "GET /documents/{doc_id}/chunks?limit=30",
+  "chunks": [
+    {
+      "id": "sotsiaaltoo-3-2020-integreeritud-tugiteenused-lastele-esimene-tagasiside-pilootprojektile-2020-3:0:0339bdcf:version:0efed48bd54240bbb02a7028492e728d",
+      "text": "Integreeritud tugiteenused lastele – esimene tagasiside pilootprojektile Sotsiaalministeerium, haridus- ja teadusministeerium, SA Innove ning sotsiaalkindlustusamet alustasid mullu koostööd, et erivajadusega laps ja tema pere jõuaksid vajalike teenusteni kiiresti ja mugavalt. Nüüd saame anda pilootprojektist esimese ülevaate."
+    },
+    {
+      "id": "sotsiaaltoo-3-2020-integreeritud-tugiteenused-lastele-esimene-tagasiside-pilootprojektile-2020-3:1:df8d3919:version:0efed48bd54240bbb02a7028492e728d",
+      "text": "2019� aasta juunist selle aasta novembri lõpuni testitakse kaheksas omavalitsuses – Kambja, Kuusalu, Rakvere, Saaremaa, Väike-Maarja ja Võru vallas ning Tartu ja Haapsalu linnas – uut integreeritud teenuste korraldusmudelit � Projektis kasutatakse mitme valdkonna tugiteenuseid vajavate laste puhul juhtumikorralduse mudelit, kus KOVi lastekaitsetöötaja, kes on ka juhtumikorraldaja, teeb esimese hindamise ja kaasab vajalikud spetsialistid, seejärel teevad mitme valdkonna asjatundjad koos kindlaks lapse ja pere toetusvajaduse� Erinevate valdkondade asutused ja spetsialistid teevad koostööd, teenust rahastatakse aga seniste põhi -mõtete alusel � Projekti rahastab Euroopa Sotsiaalfond � Kuigi praegugi tegeldakse mõnel pool juhtumitega sellisel viisil, ei ole seda järjekindlalt juurutatud ja regu -latsioonis on puudujääke, mis ei soodusta valdkondadeülest lähenemist ja juhtumi -korraldusliku mudeli rakendamist� Projektis rakendatud mudel Kui selgub, et lapsel oleks vaja toetust mitmes eri valdkonnas, suunab spetsialist, kes lapsega esimesena kokku puutub (kohaliku omavalitsuse lastekaitsetöötaja, rehabilitatsioonimeeskonna liige, haridusasutuse või Rajaleidja keskuse esindaja, perearst), ta kohaliku omavalitsuse juhtumikorraldaja juurde� Juhtumikorraldaja teeb lapse, pere ja võrgustikuga suheldes kõigepealt selgeks, kas laps vajab valdkondadeülest lähenemist, ja kui see nii on, siis milliste spetsialistide abi laps vajab � Koos mudeliga testitakse ka töövahendit, mis peaks aitama juhtu -mikorraldajal välja selgitada probleemsed valdkonnad, ja spetsialistid, kelle tuge laps vajab � Seejärel kutsutakse last hindama Eva Liina Kliiman sotsiaalkindlustusamet alice Juurik sotsiaalministeerium Marge hindriks sotsiaalministeerium 53TEE nUSTE in TEGR aTS ioon SotSiaaltöö3/2020"
+    }
+  ],
+  "assessment": "The article says collaboration began last year and the test ran June 2019 to November of the current (2020) year. The answer calls it a 2020 pilot, not a pilot begun in 2020. More explicit publication-year wording would improve clarity."
+}
