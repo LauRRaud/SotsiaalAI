@@ -1,5 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { isJournalFrontMatter } from "../../lib/chat/evidenceContent.js";
 import { buildContextWithBudget, groupMatches } from "../../lib/chat/ragContext.js";
 
@@ -16,6 +18,80 @@ function guideline(sourceId, title, evidenceText) {
     evidenceText
   };
 }
+
+const childGuidanceFixture = JSON.parse(readFileSync(new URL(
+  "./fixtures/child-guidance-attribution-2026-08-31.json", import.meta.url
+), "utf8"));
+
+for (const row of childGuidanceFixture.cases) {
+  test(`captured child guidance ${row.mode}: retain the model article without redundant background`, () => {
+    const sources = childGuidanceFixture.sources.map(source => {
+      for (const span of source.rendered_spans) {
+        assert.equal(createHash("sha256").update(span.text).digest("hex"), span.rendered_body_hash);
+      }
+      const evidenceText = source.rendered_spans.map(span => span.text).join("\n---\n");
+      assert.equal(createHash("sha256").update(evidenceText).digest("hex"), source.rendered_body_hash);
+      return { ...source, evidenceText };
+    });
+    const result = buildSourceAttribution(row.answer, sources, {
+      query: row.question, queryPlan: childGuidanceFixture.queryPlan
+    });
+    assert.equal(result.claim_support_graph.length, row.claim_count);
+    assert.deepEqual(new Set(result.displayed_source_ids), new Set(row.expected_source_ids));
+    const { named_model: namedModel, generic_prompt: genericPrompt } = childGuidanceFixture.failure_claims;
+    if (row.mode === "isolated") {
+      assert.deepEqual(result.claim_support_graph.find(claim => claim.claim_hash === namedModel)?.supporting_source_ids,
+        [row.expected_source_ids[1]]);
+    } else {
+      assert.deepEqual(result.claim_support_graph.find(claim => claim.claim_hash === genericPrompt)?.supporting_source_ids, []);
+    }
+  });
+}
+
+test("a rendered named-method description can cite its publication year without the full title", () => {
+  for (const [name, type] of [["Avatud dialoog", "meetodit"], ["Koostöö ring", "mudelit"]]) {
+    for (const year of [2018, 2031]) {
+      const evidenceText = `„${name}“ toetab koostööd ning aitab tugevdada spetsialisti ja pere partnerlust.`;
+      const source = { source_id: "description", source_type: "journal_article", title: "Täiendavad töövahendid", year, evidenceText };
+      const options = { queryPlan: { mode: "professional_method_guidance", needs_multiple_sources: true } };
+      for (const verb of ["kirjeldatud", "kirjeldati", "käsitletud", "käsitleti"]) {
+        const auxiliary = verb.endsWith("tud") ? " on" : "";
+        const claim = `„${name}“ ${type}${auxiliary} ${year}. aastal ${verb} koostööd ja pere partnerlust toetava töövahendina.`;
+        assert.deepEqual(buildSourceAttribution(claim, [source], options).displayed_source_ids, ["description"]);
+        assert.deepEqual(buildSourceAttribution(claim, [{ ...source, year: year - 1 }], options).displayed_source_ids, []);
+        assert.deepEqual(buildSourceAttribution(claim, [{ ...source, title: `„${name}“`,
+          evidenceText: "Koostöö toetab spetsialisti ja pere partnerlust." }], options).displayed_source_ids, []);
+      }
+      for (const claim of [
+        `„${name}“ ${type} on ${year}. aastal rakendatud koostöö ja pere partnerluse toetamiseks.`,
+        `„${name}“ ${type} on ${year}. aastal kirjeldatud koostöö toetajana ning ${year}. aastal rakendati seda pere partnerluse tugevdamiseks.`,
+        `„${name}“ ${type} on ${year}. aastal kirjeldatud koostöö toetajana, mis tugevdas partnerlust 47 peres.`
+      ]) assert.deepEqual(buildSourceAttribution(claim, [source], options).displayed_source_ids, [], claim);
+      const datedEvent = `„${name}“ ${type} on ${year}. aastal rakendatud koostöö ja pere partnerluse toetamiseks.`;
+      assert.deepEqual(buildSourceAttribution(datedEvent, [{ ...source, evidenceText: datedEvent }], options).displayed_source_ids,
+        ["description"]);
+    }
+  }
+});
+
+test("question determiners cannot provide distinctive support but substantive questions retain sources", () => {
+  const options = { queryPlan: { mode: "professional_method_guidance", needs_multiple_sources: true } };
+  for (const determiner of ["Milline", "Millised", "Millist", "Milliseid", "Millisel", "Millistel", "Millisega", "Millistest"]) {
+    const generic = { source_id: "background", source_type: "journal_article", title: "Üldine taust",
+      evidenceText: `${determiner} olukorrad mõjutavad keskkonda, vajab selgitamist.` };
+    const prompt = `${determiner} riskid mõjutavad last praegu?`;
+    assert.deepEqual(buildSourceAttribution(prompt, [generic], options).displayed_source_ids, []);
+    assert.deepEqual(buildSourceAttribution(prompt, [{ ...generic, evidenceText: "Riskid mõjutavad last praegu." }], options)
+      .displayed_source_ids, ["background"]);
+  }
+  const sources = [
+    guideline("passwords", "Kontokaitse", "Vaheta ohustatud konto paroolid."),
+    guideline("evidence", "Tõendikaitse", "Salvesta ähvardavad sõnumid tõenditena."),
+    guideline("distinct-question", "Erimeetod", "Võrgukaart kirjeldab kogukondlikke turvasidemeid.")
+  ];
+  const answer = "Vaheta ohustatud konto paroolid. Salvesta ähvardavad sõnumid tõenditena.\nMilliseid kogukondlikke turvasidemeid kirjeldab võrgukaart?";
+  assert.deepEqual(new Set(buildSourceAttribution(answer, sources, options).displayed_source_ids), new Set(sources.map(s => s.source_id)));
+});
 
 test("journal cover headings cannot supply article evidence or claim support", () => {
   const cover = "NR 4/2023 ISSN 1406-8826 Kuidas pakkuda inimesele terviklikku tuge? Rehabilitatsiooniteenuse muudatused ja asutuste kogemused Sotsiaaltöötaja aitab raviteekonnal vastu pidada Millist tuge vajab õpilane koolis?";

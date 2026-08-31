@@ -1,0 +1,213 @@
+{
+  "description": "Public child-guidance paired answers and hash-verified selected body spans, runtime code 42c52bf6, 2026-08-31. No user or conversation identifiers.",
+  "queryPlan": {
+    "mode": "professional_method_guidance",
+    "needs_multiple_sources": true
+  },
+  "sources": [
+    {
+      "source_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+      "title": "Lapse heaolu hindamise käsiraamat",
+      "source_type": "official_guideline",
+      "collection_id": "national_guidelines",
+      "source_status": "active",
+      "page": 32,
+      "doc_id": "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+      "year": 2025,
+      "authors": [],
+      "rendered_body_hash": "dc006755b543e5044d076935fa5e311056d62ed7287d33c21a996755bc9131cf",
+      "rendered_spans": [
+        {
+          "original_body_hash": "4bbeeea6baac7c00b995e743f8de22bcd7548229373ad1d17292b21dc2a83f45",
+          "rendered_body_hash": "4bbeeea6baac7c00b995e743f8de22bcd7548229373ad1d17292b21dc2a83f45",
+          "start_offset": 0,
+          "end_offset": 1060,
+          "truncated": false,
+          "text": "vajadusi, kuid ka jälgida nende vajaduste muutust. Lapse heaolu hindamise keskmes on laps ja tema heaolu. Kolmnurga abil hinnatakse lapse heaolu lapse arenguvajaduste, vanemluse ja pere ja keskkonna tegurite kaudu. Oluline on meeles pidada, et lapse heaolu hindamine algab hinnangu andmisest lapse arenguvajadustele. Lapse heaolu käsitletavates valdkondades vastanduvad kaitse- ja riskitegurid, mis tuuakse iga valdkonna juures eraldi välja. Kaitsetegurid on lapsest, tema vanematest ja neist ümbritsevast keskkonnast tulenevad positiivsed tegurid, mis soodustavad ja toetavad lapse heaolu ning arengut. Kaitseteguritele toetudes on võimalik üles ehitada soovitud muutus. Riskitegurid on lapsest, tema vanematest ja peret ümbritsevast keskkonnast tulenevad lapse arengut negatiivselt mõjutavad või ohustavad tegurid. Riskitegurid süvendavad lapse abivajadust hetkeolukorras ja seavad ohtu lapse heaolu pikemas perspektiivis. Kaitse- ja riskitegurid võivad olla dünaamilised, mis tähendab, et antud tegureid on võimalik mõjutada, või staatilised ehk muutumatud."
+        },
+        {
+          "original_body_hash": "cce4cf1e81bfcaa624e997d864135da749df86cb2901a01d1b050497f701080e",
+          "rendered_body_hash": "cce4cf1e81bfcaa624e997d864135da749df86cb2901a01d1b050497f701080e",
+          "start_offset": 0,
+          "end_offset": 1101,
+          "truncated": false,
+          "text": "Lapse heaolu hindamise käsiraamat 4. Ettevalmistus abivajaduse hindamiseks Lastekaitsetöötaja viib abivajavast lapsest teate saamisel läbi eelhindamise. Kui selle tulemusel selgub, et laps vajab heaolu ja turvalisuse tagamiseks enam kui ühe abimeetme rakendamist juhtumikorraldusliku põhimõtte alusel, siis tuleb teha otsus juhtumikorralduse algatamiseks ning juhtumimenetluse alustamiseks STARis. Lastekaitsetöötaja alustab abivajava lapse juhtumiplaani täitmist, mis koosneb abivajaduse hindamisest ja tegevuskava koostamisest. Enne abivajavale lapsele sobiva meetme kohaldamist tuleb hinnata lapse abivajadust kõigis teda puudutavates heaolu valdkondades. Selle juures on äärmiselt oluline abivajaduse hindamise ettevalmistuse etapid, koostöösuhe lapse ja lapsevanemaga ning võrgustiku kaardistamine ja võrgustikutöö. 4.1. Abivajaduse hindamise ettevalmistuse etapid Hindamine on analüüsiprotsess, mille vältel püütakse mõista juhtumi tähendust ning koondada üksikasjad, sündmused ja muud asjaolud loogiliseks tervikuks. Eesmärgiga jõuda sobivate abivajadusest lähtuvate sekkumismeetodite valikuni."
+        },
+        {
+          "original_body_hash": "6e48827cef68f2a2241e102fb155e3b5360a6adfcc5792e10819e1d6ee77476d",
+          "rendered_body_hash": "6e48827cef68f2a2241e102fb155e3b5360a6adfcc5792e10819e1d6ee77476d",
+          "start_offset": 0,
+          "end_offset": 1155,
+          "truncated": false,
+          "text": "Lapse heaolu hindamise käsiraamat 11. Juhtumikorralduses ja lapse heaolu hindamises kasutatavad mõisted Abivajadus – normaalseks elutegevuseks ja arenguks vajalike tingimuste puudumine mittepiisavuse tajumine. Inimese füsioloogilised, materiaalsed, vaimsed või emotsionaalsed vajadused on rahuldamata. Abivajav laps – laps, kelle heaolu on ohustatud, kelle käitumine ohustab tema enda ja teiste isikute heaolu või kelle puhul on tekkinud kahtlus tema väärkohtlemise, hooletusse jätmise või muu lapse õigusi rikkuva olukorra suhtes. Antisotsiaalne käitumine – teiste suhtes vaenulik või agressiivne käitumine ning seaduse ja ühiskonna normide vastane käitumine. Asendushooldus – sünniperest eraldatud lapse lühi- või pikaajaline hoolitsemine väljaspool tema sünniperekonda. Asendushooldus võib olla perepõhine (lapsendamine, eestkoste, hoolduspere) ja asutusepõhine (perekodu, asenduskodu). Aspekt – vaatekoht, seisukoht, millest lähtudes midagi hinnatakse Auga seotud vägivald – perekonnas, suguvõsas või kogukondades toimuv vägivald, mis on ajendatud vajadusest taastada pere väärikus, kui see on pere hinnangul ohustatud vägivalla ohvri käitumise tõttu."
+        },
+        {
+          "original_body_hash": "5501031d4386fe8f47c1db9c28f9f177628490f9eef9908695367cea85b46df4",
+          "rendered_body_hash": "5501031d4386fe8f47c1db9c28f9f177628490f9eef9908695367cea85b46df4",
+          "start_offset": 0,
+          "end_offset": 1179,
+          "truncated": false,
+          "text": "Lapse heaolu hindamise käsiraamat Võimalus on hinnata meetmete tulemuslikkust väga lihtsate vaatluste abil. Näiteks, kui on vajalik hinnata lapse koolikohustuse täitmist, siis on võimalik vaadata lapse puudumiste arvu enne ja pärast abimeetme rakendamist. Laps on enne abimeetme rakendamist puudunud koolist iganädalaselt 4 päeval, siis abimeetme tulemusena puudub laps koolist ainult 1 päeva nädalas. Seega, saab öelda, et rakendatud abimeede on olnud tulemuslik ja toonud kaasa muutuse. Lähtuvalt vahehindamise tulemustest on lastekaitsetöötajal võimalik koostada hinnang: Kas toimunud on positiivne muutus ning püsitatud eesmärk on täidetud? Kas toimunud on mõningane positiivne muutus, kuid püsitatud eesmärk ei ole täidetud? Kas toimunud on negatiivne muutus ja vajadus on täiendavateks eesmärkideks ja abimeetmete rakendamiseks? Kui vahehindamise tulemusena selgub, et püsitatud eesmärke ei ole täidetud või on leidnud aset negatiivne muutus, on vajadus jätkata juhtumimenetlusega. Juhul, kui vahehindamise tulemusena selgub, et lapse abivajadused on vähenenud ning puudub vajadus edaspidisteks tegevusteks ja abimeetmete rakendamiseks, on vajalik lõpetada juhtumimenetlus."
+        },
+        {
+          "original_body_hash": "6a794566c97f30caead0ca6ebc3f59489e5adfab58a97803a8d4d676a2474850",
+          "rendered_body_hash": "6a794566c97f30caead0ca6ebc3f59489e5adfab58a97803a8d4d676a2474850",
+          "start_offset": 0,
+          "end_offset": 1167,
+          "truncated": false,
+          "text": "Lapse heaolu hindamise käsiraamat 9. Tegevuskava koostamine - sekkumiste kavandamine ning rakendamine Abivajaduse hinnangu koostamise järgselt peab lastekaitsetöötaja koostama tegevuskava, mis lähtub lapse abivajaduse ulatusest ja esil olevatest probleemidest. Tegevuskava koostamiseks on vajalik seada prioriteedid ehk milline lapse abivajaduse valdkond vajab esmajärjekorras sekkumist ning mis toetaks kogu probleemolukorra lahendamist. Prioriteetide seadmise järgselt on vajalik sõnastada eesmärgid ehk mida soovitakse sekkumisega saavutada. Seejärel liigutakse tegevuskavas sekkumiste ja abimeetmete planeerimise etappi ning sellele järgnevasse rakendamise etappi. Tegevuskava puhul on äärmisel oluline vahehindamiste läbiviimine, mille raames hinnatakse meetmete rakendamise tulemuslikkust. Sellega seonduvalt vaadatakse üle ja täiendatakse ka abivajaduse hinnangut. 9.1. Prioriteetide seadmine ja eesmärkide sõnastamine Lapse abivajaduse hindamise järgselt on vajalik selgitada välja, millised aspektid lapse abivajadusest on kõige prioriteesemad ehk mille osas on vajalik esmalt rakendada toetada täiendavat abimeedet ning mis on abimeetme rakendamise eesmärk."
+        },
+        {
+          "original_body_hash": "adf93d8fce3472630a084ccc7ebf3c0d2547a4ade008f4b349b2516cfc392c76",
+          "rendered_body_hash": "adf93d8fce3472630a084ccc7ebf3c0d2547a4ade008f4b349b2516cfc392c76",
+          "start_offset": 0,
+          "end_offset": 1196,
+          "truncated": false,
+          "text": "Otsus juhtumikorralduse algatamata jätmise kohta on põhjendatud, kui eelhindamise tulemusel selgub, et lapse abivajadust on võimalik rahuldada ühekordse meetmega ning lastekaitsetöötajal ei ole vajalik lapse heaolu tagamiseks suuremal määral sekkuda. Ühekordseks meetmeks võib olla näiteks sotsiaalnõustamine, -toetuse või informatsiooni jagamine.\n---\nLapse heaolu hindamise käsiraamat 4. Kas laps ja pere võtavad vastu pakutavat abi? 5. Kas laps ja pere on valmis tegema koostööd spetsialistidega ja on valmisolek murega tegelemiseks? Juhul, kui eelhindamise tulemusel on näha, et lapse abivajadust ei saa rahuldada ühekordse meetmega ja on vajadus lastekaitsetöötaja täiendavaks sekkumiseks või kui abivajadus vajab põhjalikumat hindamist, peab algatama juhtumikorralduse. Juhtumikorralduse põhimõtet tuleb rakendada ka juhul, kui lapse ja tema pere iseseisva toimetuleku parandamiseks tuleb abi andmisel koordineerida mitme organisatsiooni koostööd. Vajadus lastekaitsetöötaja täiendavaks sekkumiseks võib tuleneda lapsevanemate vähesest võimekusest, vanemlike oskuste vähesusest, perekondlikest teguritest, suhetest, lapse tervislikust seisundist, arengutasemest või lapse elamistingimustest."
+        },
+        {
+          "original_body_hash": "66a93142c9c59ed856d3f0e9d3cfe3b324405141fef404ea792e13fdd53b4917",
+          "rendered_body_hash": "66a93142c9c59ed856d3f0e9d3cfe3b324405141fef404ea792e13fdd53b4917",
+          "start_offset": 0,
+          "end_offset": 1085,
+          "truncated": false,
+          "text": "Lapse heaolu hindamise käsiraamat Joonis 3. Informatsiooni kogumine lapse abivajaduse eelhindamise käigus 3.2. Esmase kontakti loomine lapsega Last käsitleva juhtumikorralduse keskmes on alati laps, kes vajab õiguste, huvide ja turvalisuse tagamiseks täiendavat abi. Juhtumikorralduse prosessi peab lapsi alati olema aktiivselt kaasatud ja võetud kuulda lapse arvamust võimalikult suurel määral. Niisamuti peab lapse abivajaduse eelhindamine lähtuma lapsest ja tema olukorrast. Lapsega esmase kontakti võtmisel tuleb teavitada sellest lapsevanemat. Teatud juhtudel (kui oht lapsele tuleneb lapsevanema tegevusest või tegevusetusest) võib lapsevanema teavitamine olla lapse huve kahjustav. Juhul, kui selleks on põhjendatud kahtlus või teadmine, võib lapsega vestelda esmalt ilma lapsevanemat teavitamata ja nõusolekuta. Oluline on, et sel juhul peale lapsega vestlusest teavitatakse lapsevanemat koheselt. Lapsega kontakti loomine ja arvamuse välja selgitamine võimalikult varajases etapis on oluline, kuna see annab lapsele võimaluse väljendada enda seisukohti ja nägemust olukorrast."
+        },
+        {
+          "original_body_hash": "e9d1222696f5c4d4c41761ac6e3af278f76aa55a69d9ed7ae67ab6100ea0417b",
+          "rendered_body_hash": "e9d1222696f5c4d4c41761ac6e3af278f76aa55a69d9ed7ae67ab6100ea0417b",
+          "start_offset": 0,
+          "end_offset": 1078,
+          "truncated": false,
+          "text": "loogiliseks tervikuks. Eesmärgiga jõuda sobivate abivajadusest lähtuvate sekkumismeetodite valikuni. Enne põhjaliku abivajaduse hindamise teostamist on vajalik hindamise kavandamine, mille keskmes on lähtumine lapse vajadustest ja huvist. Abivajaduse hindamise kavandamisel on oluline esmajooneks kindlaks teha, kas abivajaduse hindamise alguses on lapsele tagatud piisav turvalisus või tegemist on hädaohus oleva lapsega, kes on oma elu ja tervist ohustavas olukorras ja vajab kiiret sekkumist. Oluline on meeles pidada, et lapse ohutust tuleb silmas pidada kogu abivajaduse hindamise protsessi vältel. Juhul, kui on kindlaks tehtud, et abivajaduse hindamise alguse hetkel ei ole lapse elu ja tervis ohus ning ta ei viibi teda ohustavates tingimuses, on vaja paika panna hindamise fookus ja sõnastada hindamise eesmärgid. Abivajaduse hindamise keskmes on alati laps ning hindamise eesmärgid peavad olema seotud lapse heaoluga: tema arengu, tema vanemate suutlikkuse ning pere ja keskkonnaga. Abivajaduse hindamise raames kogutav informatsioon peab lähtuma hindamise eesmärgist."
+        }
+      ]
+    },
+    {
+      "source_id": "sotsiaaltoo_turvalisuse-margid-2024-4",
+      "title": "Juhtumikorraldusmudel „Turvalisuse märgid“ – uus tööriist Eesti lastekaitsetöös",
+      "source_type": "journal_article",
+      "collection_id": "sotsiaaltoo_articles",
+      "year": 2024,
+      "page": 4,
+      "doc_id": "sotsiaaltoo-4-2024-turvalisuse-margid-2024-4",
+      "source_status": "active",
+      "authors": [
+        "Helen Alton"
+      ],
+      "pages": "4",
+      "section": "Metoodika",
+      "rendered_body_hash": "423619706ce07cbf951aa0ec47c54f62c388729010932904ff06f3157b552fe1",
+      "rendered_spans": [
+        {
+          "original_body_hash": "2a7193c5ee2a2de2f6cd643fe66cb821bb4f989a4d6149c7323607000f898ec8",
+          "rendered_body_hash": "423619706ce07cbf951aa0ec47c54f62c388729010932904ff06f3157b552fe1",
+          "start_offset": 0,
+          "end_offset": 1096,
+          "truncated": true,
+          "text": "on mudel(id) ainult eesmärgi saavutamise vahendid� Laste turvalisuse parandamisel peaks esiplaanile jõudma spetsialistide ja pereliikmete partnerlus, et hakataks rohkem kasutama pereliikmete ja võrgustiku võimalusi� Midagi muutub, kui muutuvad nii juhtide kui ka spetsialistide hoiakud, hinnatakse ümber oma roll ja võetakse omaks uued, senisest erinevad töövõtted� Lastekaitsetöötajate laual on praegu erinevaid töövahendeid niigi rohkelt, seega on ettevaatlikkus uute mudelite rakendamisel arusaadav� Sobivus lastekaitse seniste töövahenditega Lastekaitsetöötajad on uurinud, kas „T urvalisuse märkide“ mudeli rakendamisel ei lähtuta enam praegu kasutatavast lapse heaolu kolmnurgast ja „Lapse heaolu hindamise käsiraamatust“� Nii see ei ole: mudeli saab edukalt ühildada Eestis kasutatavate juhtumikorralduse mudelitega � Erinevate töövahendite ühildamine praktikas ja aru -saamine, kuidas need üksteist täiendavad, võib aga võtta aega � Ka lastekaitse aren -dajatel ja koolitajatel tuleb veel kõrvutada „T urvalisuse märkide“ ning „Lapse heaolu kolmnurkade“ mudeleid ja analüüsida, kuidas uue..."
+        }
+      ]
+    },
+    {
+      "source_id": "sotsiaaltoo_sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus",
+      "title": "Lapse abivajaduse hindamisest lastekaitseseadus kontekstis Jõgevamaa näitel",
+      "source_type": "journal_article",
+      "collection_id": "sotsiaaltoo_articles",
+      "source_status": "active",
+      "year": 2016,
+      "section": "Uurimus",
+      "authors": [
+        "Sirje Pint"
+      ],
+      "doc_id": "sotsiaaltoo-4-2016-sotsiaaltoo-4-2016-artikkel-10-lapse-abivajaduse-hindamisest-lastekaitseseadus",
+      "rendered_body_hash": "610048d02dd88ed5f95010fb4d558398ac0e9f4bc829acb43c7dccba84c59534",
+      "rendered_spans": [
+        {
+          "original_body_hash": "785a7f567a5b7655111c8b29d8f42b43bb92057fc013940d63b938bd311f5e48",
+          "rendered_body_hash": "7f65ebe32ac9fb132a2cb4998f7a5aeaf31fda2be8d85771d45eb2ad9bedd98d",
+          "start_offset": 0,
+          "end_offset": 545,
+          "truncated": true,
+          "text": "Antud uurimuse tulemuste põhjal tähendas lapsekesksus lapsele oluliste asjade nägemist lastekaitsetöötaja vaatevinklist: mis on lapse Lastekaitseseaduse (2014) § 28 lg 2 p 1 kohaselt peab lastekaitsetöötaja andma hinnangu lapse individuaalse heaolu kaheksale aspektile (füüsiline, tervislik, psühholoogiline, emotsionaalne, sotsiaalne, kognitiivne, hariduslik, majanduslik) ehk teisisõnu, hinnata tuleb lapse heaolu aspekte, lähtudes lapse heaolu terviklikust käsitlusest. Kuna lapse loomuliku arengu- ja kasvukeskkonnana nähakse perekonda, on v..."
+        },
+        {
+          "original_body_hash": "b9e68cbe7c58b01c3ebb23fb92d500491f0064e76727862cc823ee65f0df627e",
+          "rendered_body_hash": "66e65366033410397a9b20ee2e1155da0cc0f2eb2e579faeebbcd100dc54038e",
+          "start_offset": 0,
+          "end_offset": 544,
+          "truncated": true,
+          "text": "Hindamisprotsessi lõppeesmärgiks võib pidada seisundit, kus lapse erinevad vajadused on rahuldatud ehk teisisõnu, tema heaolu on tagatud. Seetõttu on hindamisel võimaliku parima tulemuse saavutamiseks oluline arvestada kaasaegsete lapse heaolu käsitlustega. Nende käsitluste normatiivse raamistiku moodustavad Ben-Arieh (2008, 2010) järgi esiteks lapse arengu ökoloogilised teooriad, mille alusel on lapse heaolu seotud nii tema enda, teda ümbritsevate inimeste kui keskkonnaga, ning teiseks uus lapsepõlve sotsioloogia, kus lapsi nähakse subje..."
+        }
+      ]
+    },
+    {
+      "source_id": "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017",
+      "title": "Lapse heaolu hindamise käsiraamatust",
+      "source_type": "journal_article",
+      "collection_id": "sotsiaaltoo_articles",
+      "authors": [
+        "Kadi Lauri"
+      ],
+      "pages": "5",
+      "year": 2017,
+      "page": 5,
+      "doc_id": "sotsiaaltoo-4-2017-lapse-heaolu-hindamise-kasiraamatust-2017",
+      "source_status": "active",
+      "section": "Sotsiaaltöö meetodid",
+      "rendered_body_hash": "eaaa708de26cefa2e6139bdefbe1052931a3074777107e013e50860dea509a10",
+      "rendered_spans": [
+        {
+          "original_body_hash": "7af1b607a9c535c1251b454f90cb5831b3b0fad2d968500fa80b9b95452ae4af",
+          "rendered_body_hash": "af1f9e57b2a5fa872daa8c95eb1318d7c444152b06ead0730c114ffc6053e8e5",
+          "start_offset": 0,
+          "end_offset": 545,
+          "truncated": true,
+          "text": "t tulenevad lapse arengut pärssivad või ohustavad tegurid, mis süvendavad lapse abivajadust . Pärast informatsiooni kogumist ning kaitse- ja riskitegurite väljaselgitamist on oluline kogutud teavet analüüsida .\n---\ntulenevad positiivsed, lapse arengut soodustavad ja toetavad tegurid; riskitegurid aga lapsest, tema vanematest ja neid ümbritsevast keskkonnas Selleks tuleb läbi mõelda, millised kaitse- ja riskitegurid valdkondades esinevad, kuidas mõjutavad eri valdkondade tegurid lapse hetkeolukorda ja tema heaolu tulevikus ning kuidas mõjut..."
+        },
+        {
+          "original_body_hash": "8e466c67b72c33fa0e4518d3818d42cb4aecaf268ea2515cfdb62227b47ff0c3",
+          "rendered_body_hash": "2fd8346d8bf064a3f0b6663a9287f928e8ab063a6c81663951478ac3248f5283",
+          "start_offset": 0,
+          "end_offset": 543,
+          "truncated": true,
+          "text": "Käsiraamatus kirjeldatakse kogu lastekaitse juhtumikorralduse protsessi: menetluse algatamine, abivajaduse hindamine, meet -mete planeerimine, tegevuste teostamine ja juhtumikorralduse lõpetamine . Läbivalt rõhutatakse lapse ja perekonna kaasamise, võrgustikutöö ning kogutud informatsiooni ja lapse olukorra põhjaliku analüüsimise tähtsust .\n---\nLapse heaolu hindamise käsiraamatust Kadi Lauri lastekaitse osakonna arengutalituse nõunik, Sotsiaalkindlustusamet Käsiraamat toetab lastekaitsetöötajaid lapse heaolu eri valdkondade hindamisel ja..."
+        }
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "mode": "isolated",
+      "question": "Kuidas hinnata lapse heaolu ja abivajadust?",
+      "answer": "Lapse heaolu ja abivajadust hinnatakse lapsekeskselt ning terviklikult: esmalt selgitatakse välja lapse turvalisus, seejärel tema arenguvajadused, vanemluse suutlikkus ning pere ja keskkonna mõju. Hindamise eesmärk on mõista, millist abi laps vajab, millised tegurid tema heaolu ohustavad või toetavad ning milline sekkumine võiks olukorda parandada.\n\nPraktiline hindamisjärjekord:\n\n1. Kontrolli lapse vahetut turvalisust\n\nKõigepealt tuleb hinnata, kas laps on hädaohus või tema elu ja tervis on ohus. Sellisel juhul on vaja kiiret sekkumist. Lapse ohutust tuleb jälgida kogu hindamisprotsessi vältel, mitte ainult alguses.\n\n2. Tee eelhindamine\n\nTeate saamisel hindab lastekaitsetöötaja esmalt, milles lapse võimalik abivajadus seisneb ja kas seda saab lahendada ühekordse meetmega, näiteks nõustamise, toetuse või teabe andmisega.\n\nKui ühekordsest abist ei piisa, abivajadus vajab põhjalikumat hindamist või tuleb koordineerida mitme organisatsiooni koostööd, algatatakse juhtumikorraldus ja juhtumimenetlus STARis.\n\n3. Kaasa laps ja pere\n\nLaps peab olema hindamise keskmes ning tema arvamust tuleb võimalikult suurel määral välja selgitada ja arvestada. Lapsega kontakti loomisel teavitatakse üldjuhul lapsevanemat, kuid kui lapsevanema tegevus või tegevusetus võib last ohustada, võib põhjendatud juhul vestelda lapsega esmalt ilma vanemat teavitamata. Vanemat tuleb sellisest vestlusest seejärel kohe teavitada.\n\nHindamisel tuleb hinnata ka lapse ja pere valmisolekut abi vastu võtta ning koostööd teha.\n\n4. Hinda lapse heaolu kolmes omavahel seotud valdkonnas\n\nLapse heaolu hindamise käsiraamat kasutab lapse heaolu kolmnurka:\n\n- lapse arenguvajadused – näiteks füüsiline ja emotsionaalne heaolu, tervis, haridus, suhted ja areng;\n- vanemlus – vanema suutlikkus lapse vajadusi märgata, rahuldada ja last turvaliselt kasvatada;\n- pere ja keskkond – elutingimused, pere suhted, majanduslik olukord, tugivõrgustik ja muud keskkonnategurid.\n\nHindamine algab lapse arenguvajadustest, sest lapse olukorda tuleb vaadelda tema tegelikust heaolust ja vajadustest lähtudes, mitte üksnes vanema käitumise või pere probleemi kaudu.\n\n5. Kaardista kaitse- ja riskitegurid\n\nRiskitegurid võivad lapse heaolu kahjustada või abivajadust süvendada. Kaitsetegurid toetavad lapse arengut ja aitavad soovitud muutust saavutada. Mõlemad võivad olla:\n\n- dünaamilised ehk mõjutatavad ja muudetavad;\n- staatilised ehk sellised, mida muuta ei saa, kuid millega tuleb arvestada.\n\nOluline ei ole ainult tegurite loetlemine, vaid nende mõju analüüsimine: kuidas need mõjutavad lapse praegust olukorda ja heaolu tulevikus.\n\n6. Koosta tegevuskava\n\nPärast abivajaduse hindamist:\n\n- sea abivajaduse põhjal prioriteedid;\n- sõnasta lapse heaoluga seotud eesmärgid;\n- planeeri sobivad sekkumised ja abimeetmed;\n- määra, kuidas muutust jälgitakse.\n\nTegevuskava peab lähtuma lapse tegelikest vajadustest, mitte üksnes olemasolevatest teenustest.\n\n7. Tee vahehindamine ja hinda tulemuslikkust\n\nVahehindamisel vaadatakse üle, kas eesmärgid on täidetud ja kas lapse olukord on muutunud. Näiteks võib koolikohustuse täitmise puhul võrrelda puudumiste arvu enne ja pärast meetme rakendamist.\n\nTulemuseks võib olla:\n\n- positiivne muutus ja eesmärgi täitmine;\n- mõningane paranemine, kuid eesmärk ei ole veel täidetud;\n- negatiivne muutus, mille korral tuleb seada täiendavaid eesmärke või rakendada uusi meetmeid.\n\nKui lapse abivajadus on vähenenud ja edasine sekkumine pole vajalik, saab juhtumimenetluse lõpetada. Kui vajadused püsivad või olukord halveneb, tuleb juhtumikorraldusega jätkata.\n\n„Turvalisuse märkide“ mudelit on 2024. aastal kirjeldatud täiendava töövahendina, mida saab ühildada Eestis kasutatava lapse heaolu kolmnurga ja juhtumikorraldusega; seda ei käsitleta nimetatud juhendis senise raamistiku asendajana. Paindlikult tuleb kasutada neid töövõtteid, mis aitavad koos lapse ja perega sõnastada turvalisust suurendava muutuse.",
+      "original_displayed_source_ids": [
+        "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat"
+      ],
+      "expected_source_ids": [
+        "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+        "sotsiaaltoo_turvalisuse-margid-2024-4"
+      ],
+      "claim_count": 46
+    },
+    {
+      "mode": "sequential",
+      "question": "Kuidas hinnata lapse heaolu ja abivajadust?",
+      "answer": "Lapse heaolu ja abivajadust hinnatakse lapsekeskselt, terviklikult ja etapiviisiliselt. Keskmes on küsimus, millised lapse vajadused on rahuldamata, mis ohustab tema heaolu ning millised lapse, vanemate, pere ja keskkonna kaitsetegurid aitavad olukorda parandada.\n\n1. Kontrolli esmalt lapse turvalisust\n\nEnne põhjalikumat hindamist tuleb selgitada, kas laps on vahetus ohus või tema elu ja tervis on ohustatud. Turvalisust tuleb jälgida kogu hindamise vältel. Kui laps on hädaohus, on esmatähtis kiire sekkumine; tavapärane põhjalik hindamine ei tohi kiiret kaitset edasi lükata.\n\n2. Tee eelhindamine\n\nTeate saamisel hindab lastekaitsetöötaja esmalt, milles lapse abivajadus seisneb ja kui ulatuslikku sekkumist on vaja. Eelhindamisel selgitatakse muu hulgas:\n\n- milline on lapse olukord ja võimalik abivajadus;\n- kas lapse heaolu saab toetada ühe ühekordse meetmega;\n- kas laps ja pere võtavad abi vastu;\n- kas pere on valmis spetsialistidega koostööd tegema;\n- kas vaja on mitme asutuse või teenuse koordineeritud koostööd.\n\nKui piisab näiteks sotsiaalnõustamisest, toetuse või teabe andmisest, võib juhtumikorralduse algatamata jätta. Kui ühest meetmest ei piisa, abivajadus vajab põhjalikumat hindamist või tuleb koordineerida mitme organisatsiooni koostööd, algatatakse juhtumikorraldus ja juhtumimenetlus STARis.\n\n3. Hinda lapse heaolu terviklikult\n\nPõhjalik hindamine lähtub lapse heaolu kolmnurgast:\n\n- lapse arenguvajadused – näiteks füüsiline ja emotsionaalne heaolu, tervis, suhted, haridus ja areng;\n- vanemlus – vanemate suutlikkus rahuldada lapse vajadusi, pakkuda hoolitsust, juhendamist ja turvalisust;\n- pere ja keskkond – elutingimused, suhted, majanduslik olukord, tugivõrgustik ning muud lapse kasvukeskkonna tegurid.\n\nHindamine algab lapse arenguvajadustest. Seejärel vaadatakse, kuidas vanemlus ning pere ja keskkond neid vajadusi toetavad või takistavad. Hindamisvaldkonnad ei ole eraldi meetodid, vaid erinevad vaatenurgad lapse olukorra mõistmiseks.\n\n4. Kaasa laps ja pere\n\nLaps peab olema juhtumikorralduse keskmes ning tema arvamust tuleb välja selgitada võimalikult varakult ja ulatuslikult. Lapsega kontakti loomisel teavitatakse üldjuhul vanemat, kuid kui oht lapsele tuleneb vanema tegevusest või tegevusetusest, võib põhjendatud juhul vestelda lapsega esmalt ilma vanemat teavitamata. Sellisel juhul tuleb vanemat vestlusest kohe teavitada.\n\nKoostöös lapse ja vanemaga tuleb selgitada, kuidas nemad olukorda näevad, mida nad peavad probleemiks, millised lahendused on juba proovitud ning millist abi nad vajavad või on valmis vastu võtma.\n\n5. Kaardista kaitse- ja riskitegurid\n\nRiskitegurid on lapse, vanemate või keskkonnaga seotud asjaolud, mis mõjutavad lapse arengut negatiivselt või ohustavad heaolu. Kaitsetegurid toetavad lapse arengut ja aitavad soovitud muutust saavutada.\n\nOluline on hinnata:\n\n- millised riskid mõjutavad last praegu;\n- millised riskid võivad ohustada tema heaolu pikemas perspektiivis;\n- millised kaitsetegurid on juba olemas;\n- milliseid kaitsetegureid saab tugevdada;\n- kas tegurid on muudetavad või pigem püsivad.\n\nHindamine ei peaks piirduma probleemide loetlemisega, vaid peab näitama ka pere tugevusi ja olemasolevaid lahendusi.\n\n6. Koosta tegevuskava\n\nPärast abivajaduse hindamist seatakse prioriteedid: milline lapse vajadus vajab esimesena sekkumist. Seejärel sõnastatakse lapse heaoluga seotud eesmärgid ning lepitakse kokku:\n\n- milliseid tegevusi rakendatakse;\n- milliseid abimeetmeid või teenuseid kasutatakse;\n- kes mille eest vastutab;\n- kuidas ja millal muutust hinnatakse.\n\nEesmärk peab kirjeldama soovitud muutust lapse elus, mitte üksnes spetsialisti tegevust. Näiteks ei ole piisavalt täpne eesmärk „suunata laps teenusele“, vaid hinnata tuleb, millist muutust teenusega lapse heaolus taotletakse.\n\n7. Tee vahehindamine ja vajaduse korral jätka või lõpeta menetlus\n\nTegevuskava rakendamise ajal hinnatakse, kas meetmed toovad kaasa soovitud muutuse. Hindamisel võrreldakse lapse olukorda enne ja pärast sekkumist. Näiteks võib koolikohustuse täitmist hinnata puudumiste muutuse järgi.\n\nVahehindamise tulemusel võib selguda, et:\n\n- positiivne muutus on toimunud ja eesmärk on täidetud;\n- muutus on osaliselt positiivne, kuid eesmärk ei ole veel täidetud;\n- olukord on halvenenud ja vaja on uusi eesmärke või täiendavaid meetmeid;\n- lapse abivajadus on vähenenud ning edasine juhtumikorraldus ei ole vajalik.\n\nKui eesmärgid ei ole täidetud või olukord on halvenenud, jätkatakse juhtumimenetlusega ja kohandatakse tegevuskava. Kui lapse abivajadus on vähenenud ning edasisi tegevusi ei ole vaja, lõpetatakse juhtumimenetlus.\n\nTäiendava töövahendina on Eesti lastekaitsetöös kirjeldatud ka juhtumikorraldusmudelit „Turvalisuse märgid“. 2024. aasta käsitluse järgi saab seda ühildada lapse heaolu kolmnurga ja „Lapse heaolu hindamise käsiraamatuga“; see ei asenda nimetatud põhiraamistikku, vaid aitab tugevdada spetsialisti ja pere partnerlust ning keskenduda pere ja võrgustiku võimalustele.",
+      "original_displayed_source_ids": [
+        "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+        "sotsiaaltoo_turvalisuse-margid-2024-4",
+        "sotsiaaltoo_lapse-heaolu-hindamise-kasiraamatust-2017"
+      ],
+      "expected_source_ids": [
+        "sotsiaalkindlustusamet_lapse_heaolu_hindamise_kasiraamat",
+        "sotsiaaltoo_turvalisuse-margid-2024-4"
+      ],
+      "claim_count": 61
+    }
+  ],
+  "failure_claims": {
+    "named_model": "cd1c7a69",
+    "generic_prompt": "a1963541"
+  }
+}

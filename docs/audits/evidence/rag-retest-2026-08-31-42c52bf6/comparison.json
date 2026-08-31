@@ -66,9 +66,10 @@
       "status": "PARTIAL",
       "source_id": "sotsiaaltoo_turvalisuse-margid-2024-4",
       "decision": "claim_support_subsumed",
-      "claim_id": "claim_44",
-      "claim_hash": "bfd3a7fc",
-      "observation": "Named 2024 model in final answer, only handbook displayed. Trace credits same claim to handbook and model article; exact cause of this false equivalence not fully replayed."
+      "claim_id": "claim_45",
+      "claim_hash": "cd1c7a69",
+      "observation": "Named 2024 model in final answer, only handbook displayed. Exact replay confirms the model name matches rendered article evidence, but the locative description-year phrase is rejected by the publication-year gate. Its claim has no supporting source; the article's other generic claims are subsumed.",
+      "diagnostic_correction": "31.08 exact replay corrects the initial claim_44/bfd3a7fc mapping: that hash is the preceding case-management continuation sentence, not the model claim. Runtime answers, trace and grades are unchanged."
     },
     {
       "id": "child-sequential-redundant-source",
@@ -77,7 +78,7 @@
       "claim_id": "claim_34",
       "claim_hash": "a1963541",
       "claim_text": "millised riskid mõjutavad last praegu;",
-      "observation": "Only exclusive claim assigned to extra background article is a generic assessment question, not a distinct assessment method."
+      "observation": "Only exclusive claim assigned to extra background article is a generic assessment question, not a distinct assessment method. Exact replay finds only the question determiner 'millised' and generic verb 'mojutavad' supplying its lexical support."
     }
   ],
   "m02": {
