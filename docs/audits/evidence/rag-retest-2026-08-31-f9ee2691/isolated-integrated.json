@@ -1,0 +1,2153 @@
+{
+  "audit_schema": "paired-public-question-v1",
+  "source_layer": "ChatTurn-paired ConversationMessage",
+  "runtime_code_release": "f9ee2691f99ac372a317f4a7fc47da81540531a8",
+  "server_head": "9acf80968d9e683fe682de540dfb9a8a92296ccb",
+  "case": "integrated",
+  "mode": "isolated",
+  "trace": {
+    "query_plan": {
+      "mode": "overview_synthesis",
+      "flags": {
+        "temporal": false,
+        "comparison": false,
+        "source_lookup": false,
+        "national_scope": false,
+        "broad_multi_source": true,
+        "overview_synthesis": true,
+        "resource_discovery": false,
+        "thematic_synthesis": true,
+        "municipality_scoped": false,
+        "municipality_contacts": false,
+        "specific_research_fact": false,
+        "source_focused_followup": false
+      },
+      "stakes": "informational",
+      "rag_top_k": 36,
+      "risk_level": "low",
+      "filter_keys": [
+        "$in",
+        "$ne",
+        "$or",
+        "audience",
+        "is_current_version"
+      ],
+      "query_count": 1,
+      "query_order": "broad_first",
+      "social_scope": "in_scope",
+      "language_plan": {
+        "version": "language-plan-v1",
+        "shadow_mode": "not_available",
+        "coauthor_count": 0,
+        "query_language": "et",
+        "answer_language": "et",
+        "canonical_intent": null,
+        "coauthor_requested": false,
+        "interface_language": "et",
+        "retrieval_language": "et",
+        "retrieval_terms_et": [],
+        "active_planner_mode": null,
+        "shadow_planner_mode": null,
+        "transliteration_used": false,
+        "query_language_reason": "estonian_lexical_hint",
+        "answer_language_reason": "query_language",
+        "controlled_topic_count": 0,
+        "preserved_entity_count": 0,
+        "preserved_entity_types": [],
+        "runtime_reply_language": "et",
+        "canonical_query_available": false,
+        "query_language_confidence": 0.92,
+        "shadow_planner_confidence": null,
+        "canonical_retrieval_active": false,
+        "recommended_answer_language": "et",
+        "runtime_reply_language_reason": "matches_answer_plan",
+        "shadow_planner_matches_intent": false,
+        "recommended_answer_language_reason": "query_language",
+        "canonical_supplemental_retrieval_active": false
+      },
+      "evidence_scope": "general_background",
+      "should_run_rag": true,
+      "legalLookupPlan": {
+        "enabled": false
+      },
+      "planner_version": "v2",
+      "municipality_ids": [],
+      "question_planner": {
+        "mode": "overview_synthesis",
+        "role": "social_worker",
+        "topics": [],
+        "needs_rag": true,
+        "confidence": 0.78,
+        "input_role": "social_worker",
+        "risk_level": "low",
+        "person_name": null,
+        "entity_names": [],
+        "social_scope": "in_scope",
+        "source_layers": [],
+        "life_situation": null,
+        "needs_location": false,
+        "planner_reason": "broad_issue_or_overview_question",
+        "answer_contract": "multi_source_overview_synthesis",
+        "planner_version": "v2.2",
+        "role_confidence": 0.9,
+        "municipality_hint": null,
+        "retrieval_strategy": "overview_diversity_then_depth",
+        "avoid_source_layers": [],
+        "document_fact_terms": [],
+        "person_source_scope": null,
+        "requested_year_role": "none",
+        "social_scope_reason": "strong_social_scope_term",
+        "document_source_kind": null,
+        "person_source_intent": null,
+        "method_guidance_focus": null,
+        "person_coauthor_count": 0,
+        "current_evidence_scope": null,
+        "document_subject_terms": [],
+        "municipality_ambiguous": false,
+        "needs_multiple_sources": true,
+        "preferred_source_count": {
+          "max": 8,
+          "min": 5
+        },
+        "municipality_candidates": [],
+        "source_layer_filter_mode": null,
+        "person_coauthor_requested": false,
+        "person_name_transliterated": false
+      },
+      "required_evidence": "medium",
+      "municipality_names": [],
+      "retrieval_strategy": "overview_diversity_then_depth",
+      "selection_strategy": "overview_diversity_then_depth",
+      "social_scope_reason": "strong_social_scope_term",
+      "context_group_target": 14,
+      "risk_decision_source": "structured_semantic_contract",
+      "has_per_query_filters": false,
+      "needs_multiple_sources": true,
+      "preferred_source_count": {
+        "max": 8,
+        "min": 5
+      },
+      "semantic_turn_contract": {
+        "terms": {
+          "lemmas": [
+            "mis",
+            "kirjutama",
+            "ajakiri",
+            "sotsiaaltöö",
+            "integreerima",
+            "integreeritu",
+            "integreeritud",
+            "teenus"
+          ],
+          "surface": [
+            "mida",
+            "kirjutab",
+            "ajakiri",
+            "sotsiaaltoo",
+            "integreeritud",
+            "teenustest"
+          ],
+          "retrieval_et": [],
+          "compound_roots": [
+            "mis",
+            "kirjuta",
+            "aja",
+            "kiri",
+            "sotsiaal",
+            "töö",
+            "sotsiaaltöö",
+            "integreeri",
+            "integreeritu",
+            "integreeritud",
+            "teenus"
+          ]
+        },
+        "intent": "overview_synthesis",
+        "persons": [],
+        "version": "semantic_turn_contract_v2",
+        "entities": [],
+        "language": "et",
+        "temporal": {
+          "type": "none",
+          "evidence_years": [],
+          "requested_year_role": "none",
+          "document_source_years": []
+        },
+        "input_form": "original",
+        "morphology": {
+          "reason": null,
+          "available": true,
+          "language_hint": "et",
+          "analyzer_version": "estnltk-vabamorf-1.7.5-v2",
+          "proper_name_spans": [],
+          "language_hint_confidence": 0.94
+        },
+        "risk_scope": "general",
+        "domain_scope": {
+          "reason": "strong_social_scope_term",
+          "planned": "in_scope",
+          "effective": "in_scope",
+          "promoted_by_retrieval": false,
+          "post_retrieval_evidence": {
+            "reason": "recognized_authoritative_or_research_source_and_semantic_anchor",
+            "strength": "strong",
+            "source_ids": [
+              "sotsiaaltoo_integreeritud-teenused-kellele-ja-milleks-2019",
+              "sotsiaaltoo_teekond-inimesekeskse-teenusepakkumise-suunas-2020-3",
+              "sotsiaaltoo_integreeritud-tugiteenused-lastele-esimene-tagasiside-pilootprojektile-2020-3",
+              "sotsiaaltoo_voimaluste-kohvik-voimalikuks-2017",
+              "sotsiaaltoo_sotsiaalministeerium-kitsaskohad-on-meile-teada-2018",
+              "sotsiaaltoo_kriisiaeg-on-pannud-otsima-uusi-lahendusi-2020-2",
+              "sotsiaaltoo_maasotsiaaltootajad-ametiidentiteet-2018",
+              "sotsiaaltoo_hiiumaa-uhinemine-2018"
+            ],
+            "named_anchor_matches": 0,
+            "topic_anchor_matches": 142
+          }
+        },
+        "source_scope": "independent_or_unspecified",
+        "requested_facts": [
+          {
+            "index": 1,
+            "category": null,
+            "modality": "unspecified",
+            "derivation": "qualitative_clause",
+            "input_form": "original",
+            "span_start": 0,
+            "value_type": "text_relation",
+            "relation_terms": [
+              "kirjutab",
+              "ajakiri",
+              "sotsiaaltoo",
+              "integreeritud",
+              "teenustest"
+            ],
+            "temporal_scope": "unspecified",
+            "explicit_values": [],
+            "value_type_source": "explicit_qualitative_cue",
+            "coordination_group": null,
+            "expected_cardinality": null,
+            "minimum_answer_items": 1,
+            "relation_term_variants": [
+              {
+                "term": "kirjutab",
+                "variants": [
+                  "kirjutama",
+                  "kirjuta"
+                ]
+              },
+              {
+                "term": "ajakiri",
+                "variants": [
+                  "aja",
+                  "kiri"
+                ]
+              },
+              {
+                "term": "sotsiaaltoo",
+                "variants": [
+                  "sotsiaal",
+                  "too"
+                ]
+              },
+              {
+                "term": "integreeritud",
+                "variants": [
+                  "integreerima",
+                  "integreeritu",
+                  "integreeri"
+                ]
+              },
+              {
+                "term": "teenustest",
+                "variants": [
+                  "teenus"
+                ]
+              }
+            ]
+          }
+        ],
+        "document_identity": {
+          "acronyms": [],
+          "author_key": null,
+          "confidence": "low",
+          "provenance": "none",
+          "title_hint": null,
+          "named_topics": [],
+          "organization": null,
+          "source_years": [],
+          "title_tokens": [],
+          "document_kind": null,
+          "author_surface": null
+        },
+        "history_reference": {
+          "explicit_source_anaphora": false,
+          "carry_previous_source_filter": false
+        },
+        "requested_fact_contract": {
+          "version": "requested_fact_slots_v2",
+          "complete": true,
+          "expected_cardinality": 0
+        }
+      },
+      "external_sources_needed": true,
+      "temporal_query_contract": {
+        "version": "temporal_query_contract_v1",
+        "topic_terms": [
+          "kirjutab",
+          "ajakiri",
+          "integreeritud"
+        ],
+        "period_years": [],
+        "coverage_years": [],
+        "evidence_years": [],
+        "ambiguous_years": [],
+        "breakdown_years": [],
+        "production_source": "question_planner",
+        "requested_year_role": "none",
+        "comparison_requested": false,
+        "document_source_years": [],
+        "current_evidence_scope": "current",
+        "qualitative_synthesis_requested": false,
+        "source_filter_applied_to_breakdown": false,
+        "source_filter_applied_to_breakdown_years": []
+      },
+      "temporal_year_semantics": {
+        "evidence_year_count": 0,
+        "ambiguous_year_count": 0,
+        "breakdown_year_count": 0,
+        "source_filter_source": "typed_year_role_mentions",
+        "source_filter_year_count": 0,
+        "preferred_source_year_count": 0,
+        "preferred_source_years_source": "typed_year_role_mentions",
+        "typed_year_role_mentions_available": true
+      },
+      "previous_source_use_request": false,
+      "semantic_retrieval_terms_et": [],
+      "retrieval_strategy_selection": {
+        "mode": "overview_synthesis",
+        "reason": "planner_mode_overview_synthesis",
+        "force_rag": true,
+        "query_order": "broad_first",
+        "route_override": false,
+        "answer_contract": "multi_source_overview_synthesis",
+        "planner_version": "v2.3",
+        "retrieval_strategy": "overview_diversity_then_depth",
+        "selection_strategy": "overview_diversity_then_depth",
+        "needs_multiple_sources": true,
+        "preferred_source_count": {
+          "max": 8,
+          "min": 5
+        },
+        "source_layer_filter_mode": null
+      },
+      "answer_validation_contract_shadow": {
+        "mode": "shadow",
+        "planner": {
+          "mode": "overview_synthesis",
+          "fields": {
+            "period_role": {
+              "state": "not_applicable",
+              "value": null,
+              "available": false,
+              "confidence": null,
+              "provenance": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "year_role_mentions": {
+              "state": "present",
+              "value": [],
+              "available": true,
+              "confidence": null,
+              "provenance": {
+                "layer": "question_planner",
+                "method": "semantic_year_role_mentions",
+                "span_end": null,
+                "span_start": null
+              },
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "requested_year_role": {
+              "state": "absent",
+              "value": null,
+              "available": false,
+              "confidence": null,
+              "provenance": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "document_source_years": {
+              "state": "not_applicable",
+              "value": null,
+              "available": false,
+              "confidence": null,
+              "provenance": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "evidence_metric_slots": {
+              "state": "not_applicable",
+              "value": null,
+              "available": false,
+              "confidence": null,
+              "provenance": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "evidence_metric_terms": {
+              "state": "not_applicable",
+              "value": null,
+              "available": false,
+              "confidence": null,
+              "provenance": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "evidence_period_years": {
+              "state": "not_applicable",
+              "value": null,
+              "available": false,
+              "confidence": null,
+              "provenance": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "evidence_phase_ordinal": {
+              "state": "not_applicable",
+              "value": null,
+              "available": false,
+              "confidence": null,
+              "provenance": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "requested_numeric_slots": {
+              "state": "present",
+              "value": {
+                "slots": [],
+                "complete": true,
+                "truncated": false,
+                "emitted_slot_count": 0,
+                "recognized_clause_count": 0,
+                "unresolved_clause_count": 0
+              },
+              "available": true,
+              "confidence": null,
+              "provenance": {
+                "layer": "question_planner",
+                "method": "requested_numeric_clause_slots",
+                "span_end": null,
+                "span_start": null
+              },
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "bounded_episode_metric_fact": {
+              "state": "not_applicable",
+              "value": null,
+              "available": false,
+              "confidence": null,
+              "provenance": null,
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            },
+            "current_turn_document_identity": {
+              "state": "present",
+              "value": {
+                "scope": "current_turn",
+                "author": {
+                  "value": null,
+                  "span_end": null,
+                  "confidence": null,
+                  "input_form": null,
+                  "provenance": null,
+                  "span_start": null
+                },
+                "version": "current_turn_document_identity_v1",
+                "title_hint": {
+                  "value": null,
+                  "provenance": null
+                },
+                "document_kind": {
+                  "value": null,
+                  "provenance": null
+                },
+                "document_source_years": [],
+                "explicit_anchor_count": 0,
+                "history_fallback_policy": "fill_missing_only"
+              },
+              "available": true,
+              "confidence": null,
+              "provenance": {
+                "layer": "question_planner",
+                "method": "current_turn_document_identity_semantic_candidate",
+                "span_end": null,
+                "span_start": null
+              },
+              "confidence_source": "not_available_per_field",
+              "used_for_production_decision": false
+            }
+          },
+          "route_mode": "overview_synthesis",
+          "semantic_candidates_version": "question_semantic_candidates_v1"
+        },
+        "version": "answer_validation_contract_shadow_v2",
+        "production_decision_source": "existing_production_paths"
+      }
+    },
+    "filter_reasons": {
+      "sotsiaaltoo_hiiumaa-uhinemine-2018": "no_supported_answer_claim",
+      "sotsiaaltoo_voimaluste-kohvik-voimalikuks-2017": "claim_support_subsumed",
+      "sotsiaaltoo_maasotsiaaltootajad-ametiidentiteet-2018": "no_supported_answer_claim",
+      "sotsiaaltoo_kriisiaeg-on-pannud-otsima-uusi-lahendusi-2020-2": "claim_support_subsumed"
+    },
+    "rag_risk_level": "low",
+    "trace_contract": {
+      "layer": "database_message_projection",
+      "version": "rag_trace_layers_v1",
+      "projection": "assistant_message.metadata.rag_trace",
+      "source_layer": "server_runtime_trace",
+      "downstream_layers": {
+        "ui_observation": "independent_visible_ui_evidence",
+        "audit_normalization": "derived_audit_artifact_must_declare_source_layer",
+        "database_projection": "assistant_message.metadata.rag_trace"
+      }
+    },
+    "retrieved_count": 36,
+    "retrievers_used": [
+      "dense"
+    ],
+    "source_packages": [],
+    "evidence_package": {
+      "mode": "overview_synthesis",
+      "version": "v2.5",
+      "limitations": [],
+      "trace_summary": {
+        "mode": "overview_synthesis",
+        "topics": [],
+        "year_range": "2017-2020",
+        "warning_count": 0,
+        "retrieval_strategy": "overview_diversity_then_depth",
+        "selection_strategy": "overview_diversity_then_depth",
+        "source_layer_count": 1,
+        "distinct_year_count": 4,
+        "temporal_span_years": 3,
+        "selected_source_count": 8,
+        "selected_document_count": 8
+      },
+      "answer_guidance": [
+        "Synthesize across selected documents instead of summarizing one document.",
+        "Do not add meta-commentary about source-base width. If a requested fact is unsupported, name only that specific missing fact briefly.",
+        "Do not generalize one document's claim to the whole field unless other selected sources support it.",
+        "When selected sources span 2017-2020, distinguish earlier and newer selected materials where that helps the answer.",
+        "Do not infer a trend or current change from publication years alone; say 'earlier selected sources noted...' and 'newer selected sources add/emphasize...' only when the selected evidence supports it."
+      ],
+      "missing_coverage": [],
+      "selected_sources": [
+        {
+          "id": "sotsiaaltoo_integreeritud-teenused-kellele-ja-milleks-2019",
+          "title": "Integreeritud teenused – kellele ja milleks?",
+          "section": "Tugi ja teenused",
+          "source_type": "journal_article",
+          "source_year": 2019,
+          "url_present": false,
+          "source_layer": "research_or_journal",
+          "collection_id": "sotsiaaltoo_articles"
+        },
+        {
+          "id": "sotsiaaltoo_teekond-inimesekeskse-teenusepakkumise-suunas-2020-3",
+          "title": "Teekond inimesekeskse teenusepakkumise suunas",
+          "section": "Sotsiaalpoliitika",
+          "source_type": "journal_article",
+          "source_year": 2020,
+          "url_present": false,
+          "source_layer": "research_or_journal",
+          "collection_id": "sotsiaaltoo_articles"
+        },
+        {
+          "id": "sotsiaaltoo_integreeritud-tugiteenused-lastele-esimene-tagasiside-pilootprojektile-2020-3",
+          "title": "Integreeritud tugiteenused lastele – esimene tagasiside pilootprojektile",
+          "section": "Teenuste integratsioon",
+          "source_type": "journal_article",
+          "source_year": 2020,
+          "url_present": false,
+          "source_layer": "research_or_journal",
+          "collection_id": "sotsiaaltoo_articles"
+        },
+        {
+          "id": "sotsiaaltoo_voimaluste-kohvik-voimalikuks-2017",
+          "title": "Võimaluste kohvik võimalikuks",
+          "section": "Uus lahendus sotsiaaltöös",
+          "source_type": "journal_article",
+          "source_year": 2017,
+          "url_present": false,
+          "source_layer": "research_or_journal",
+          "collection_id": "sotsiaaltoo_articles"
+        },
+        {
+          "id": "sotsiaaltoo_sotsiaalministeerium-kitsaskohad-on-meile-teada-2018",
+          "title": "Sotsiaalministeerium: kitsaskohad on meile teada, otsime aktiivselt toimivaid lahendusi",
+          "section": "Kommentaar",
+          "source_type": "journal_article",
+          "source_year": 2018,
+          "url_present": false,
+          "source_layer": "research_or_journal",
+          "collection_id": "sotsiaaltoo_articles"
+        },
+        {
+          "id": "sotsiaaltoo_kriisiaeg-on-pannud-otsima-uusi-lahendusi-2020-2",
+          "title": "Kriisiaeg on pannud otsima uusi lahendusi",
+          "section": "Uus lahendus sotsiaaltöös",
+          "source_type": "journal_article",
+          "source_year": 2020,
+          "url_present": false,
+          "source_layer": "research_or_journal",
+          "collection_id": "sotsiaaltoo_articles"
+        },
+        {
+          "id": "sotsiaaltoo_maasotsiaaltootajad-ametiidentiteet-2018",
+          "title": "Maasotsiaaltöötajad räägivad oma tööst ja endast selle töö tegijana",
+          "section": "Uurimus",
+          "source_type": "journal_article",
+          "source_year": 2018,
+          "url_present": false,
+          "source_layer": "research_or_journal",
+          "collection_id": "sotsiaaltoo_articles"
+        },
+        {
+          "id": "sotsiaaltoo_hiiumaa-uhinemine-2018",
+          "title": "Hiiumaa: meretagune ühinemine tõi sotsiaaltöötajad kokku",
+          "section": "Kohalik omavalitsus",
+          "source_type": "journal_article",
+          "source_year": 2018,
+          "url_present": false,
+          "source_layer": "research_or_journal",
+          "collection_id": "sotsiaaltoo_articles"
+        }
+      ],
+      "source_layer_mix": {
+        "by_layer": {
+          "research_or_journal": 8
+        },
+        "by_source_type": {
+          "journal_article": 8
+        },
+        "by_collection_id": {
+          "sotsiaaltoo_articles": 8
+        },
+        "by_resource_type": {}
+      },
+      "coverage_warnings": [],
+      "evidence_strength": {
+        "overall": "multi_source",
+        "risk_level": "low",
+        "required_evidence": "medium",
+        "selected_source_count": 8,
+        "selected_document_count": 8,
+        "insufficient_evidence_mode": false
+      },
+      "temporal_coverage": {
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "by_year": {
+          "2017": 1,
+          "2018": 3,
+          "2019": 1,
+          "2020": 3
+        },
+        "max_year": 2020,
+        "min_year": 2017,
+        "span_years": 3,
+        "year_range": "2017-2020",
+        "has_multi_year_range": true,
+        "source_count_with_year": 8,
+        "document_count_with_year": 8
+      },
+      "selected_documents": [
+        {
+          "title": "Integreeritud teenused – kellele ja milleks?",
+          "source_ids": [
+            "sotsiaaltoo_integreeritud-teenused-kellele-ja-milleks-2019"
+          ],
+          "chunk_count": 1,
+          "document_id": "sotsiaaltoo-3-2019-integreeritud-teenused-kellele-ja-milleks-2019",
+          "source_type": "journal_article",
+          "source_year": 2019,
+          "collection_id": "sotsiaaltoo_articles"
+        },
+        {
+          "title": "Teekond inimesekeskse teenusepakkumise suunas",
+          "source_ids": [
+            "sotsiaaltoo_teekond-inimesekeskse-teenusepakkumise-suunas-2020-3"
+          ],
+          "chunk_count": 1,
+          "document_id": "sotsiaaltoo-3-2020-teekond-inimesekeskse-teenusepakkumise-suunas-2020-3",
+          "source_type": "journal_article",
+          "source_year": 2020,
+          "collection_id": "sotsiaaltoo_articles"
+        },
+        {
+          "title": "Integreeritud tugiteenused lastele – esimene tagasiside pilootprojektile",
+          "source_ids": [
+            "sotsiaaltoo_integreeritud-tugiteenused-lastele-esimene-tagasiside-pilootprojektile-2020-3"
+          ],
+          "chunk_count": 1,
+          "document_id": "sotsiaaltoo-3-2020-integreeritud-tugiteenused-lastele-esimene-tagasiside-pilootprojektile-2020-3",
+          "source_type": "journal_article",
+          "source_year": 2020,
+          "collection_id": "sotsiaaltoo_articles"
+        },
+        {
+          "title": "Võimaluste kohvik võimalikuks",
+          "source_ids": [
+            "sotsiaaltoo_voimaluste-kohvik-voimalikuks-2017"
+          ],
+          "chunk_count": 1,
+          "document_id": "sotsiaaltoo-4-2017-voimaluste-kohvik-voimalikuks-2017",
+          "source_type": "journal_article",
+          "source_year": 2017,
+          "collection_id": "sotsiaaltoo_articles"
+        },
+        {
+          "title": "Sotsiaalministeerium: kitsaskohad on meile teada, otsime aktiivselt toimivaid lahendusi",
+          "source_ids": [
+            "sotsiaaltoo_sotsiaalministeerium-kitsaskohad-on-meile-teada-2018"
+          ],
+          "chunk_count": 1,
+          "document_id": "sotsiaaltoo-2-2018-sotsiaalministeerium-kitsaskohad-on-meile-teada-2018",
+          "source_type": "journal_article",
+          "source_year": 2018,
+          "collection_id": "sotsiaaltoo_articles"
+        },
+        {
+          "title": "Kriisiaeg on pannud otsima uusi lahendusi",
+          "source_ids": [
+            "sotsiaaltoo_kriisiaeg-on-pannud-otsima-uusi-lahendusi-2020-2"
+          ],
+          "chunk_count": 1,
+          "document_id": "sotsiaaltoo-2-2020-kriisiaeg-on-pannud-otsima-uusi-lahendusi-2020-2",
+          "source_type": "journal_article",
+          "source_year": 2020,
+          "collection_id": "sotsiaaltoo_articles"
+        },
+        {
+          "title": "Maasotsiaaltöötajad räägivad oma tööst ja endast selle töö tegijana",
+          "source_ids": [
+            "sotsiaaltoo_maasotsiaaltootajad-ametiidentiteet-2018"
+          ],
+          "chunk_count": 1,
+          "document_id": "sotsiaaltoo-3-2018-maasotsiaaltootajad-ametiidentiteet-2018",
+          "source_type": "journal_article",
+          "source_year": 2018,
+          "collection_id": "sotsiaaltoo_articles"
+        },
+        {
+          "title": "Hiiumaa: meretagune ühinemine tõi sotsiaaltöötajad kokku",
+          "source_ids": [
+            "sotsiaaltoo_hiiumaa-uhinemine-2018"
+          ],
+          "chunk_count": 1,
+          "document_id": "sotsiaaltoo-3-2018-hiiumaa-uhinemine-2018",
+          "source_type": "journal_article",
+          "source_year": 2018,
+          "collection_id": "sotsiaaltoo_articles"
+        }
+      ]
+    },
+    "hybrid_retrieval": {
+      "bm25": {
+        "top_score": null,
+        "only_count": 0,
+        "min_coverage": null,
+        "result_count": 0,
+        "average_score": null,
+        "average_coverage": null,
+        "low_coverage_count": 0
+      },
+      "scored_count": 36,
+      "top_channels": [
+        "dense"
+      ],
+      "top_rrf_score": 0.016393,
+      "channel_counts": {
+        "dense": 36
+      },
+      "merge_strategy": {
+        "rrf_k": 60,
+        "strategy": "weighted_hybrid_rrf",
+        "bm25_config": {
+          "body_k": 1.5,
+          "title_k": 0.8,
+          "body_weight": 1,
+          "min_coverage": 0.35,
+          "title_weight": 1.8
+        },
+        "score_formula": "dense_score*0.58 + lexical_score*0.34 + rrf_score*8.0 + channel_boost + bm25_coverage_boost",
+        "channel_boosts": {
+          "bm25": 0.05,
+          "title_match": 0.09,
+          "author_match": 0.14,
+          "exact_phrase": 0.06,
+          "registry_fact": 0.32
+        },
+        "channel_weights": {
+          "bm25": 1,
+          "dense": 1,
+          "title_match": 1.35,
+          "author_match": 1.5,
+          "exact_phrase": 1.15,
+          "registry_fact": 1.7
+        },
+        "requested_retrievers": [
+          "dense"
+        ]
+      },
+      "dense_only_count": 36,
+      "top_hybrid_score": 0.480807,
+      "lexical_only_count": 0,
+      "dense_and_lexical_count": 0
+    },
+    "lemma_fts_shadow": {
+      "version": "lemma_fts_shadow_trace_v1",
+      "observations": [
+        {
+          "reason": "ASYNC_SHADOW_SCHEDULED",
+          "enabled": true,
+          "version": "lemma_fts_shadow_v1",
+          "executed": false,
+          "query_ms": 0,
+          "total_ms": 0,
+          "scheduled": false,
+          "analysis_ms": 0,
+          "index_ready": false,
+          "query_language": "et",
+          "top_candidates": [],
+          "candidate_count": 0,
+          "analyzer_version": "estnltk-vabamorf-1.7.5-v2",
+          "query_input_form": "retrieval_query",
+          "query_token_count": 0,
+          "chunk_overlap_count": 0,
+          "document_overlap_count": 0,
+          "production_result_count": 36
+        }
+      ],
+      "decision_mode": "shadow_only",
+      "production_path_changed": false
+    },
+    "used_package_ids": [],
+    "answer_source_ids": [
+      "sotsiaaltoo_integreeritud-teenused-kellele-ja-milleks-2019",
+      "sotsiaaltoo_sotsiaalministeerium-kitsaskohad-on-meile-teada-2018",
+      "sotsiaaltoo_integreeritud-tugiteenused-lastele-esimene-tagasiside-pilootprojektile-2020-3",
+      "sotsiaaltoo_teekond-inimesekeskse-teenusepakkumise-suunas-2020-3"
+    ],
+    "attribution_flags": [],
+    "document_identity": {
+      "enabled": false,
+      "matched": false,
+      "reasons": [],
+      "required": false,
+      "candidates": [],
+      "confidence": "not_required",
+      "duration_ms": 0,
+      "subject_terms": []
+    },
+    "overview_synthesis": {
+      "mode": "overview_synthesis",
+      "selection_strategy": "overview_diversity_then_depth",
+      "chunks_per_document": {
+        "sotsiaaltoo-3-2018-hiiumaa-uhinemine-2018": 1,
+        "sotsiaaltoo-4-2017-voimaluste-kohvik-voimalikuks-2017": 1,
+        "sotsiaaltoo-3-2018-maasotsiaaltootajad-ametiidentiteet-2018": 1,
+        "sotsiaaltoo-2-2021-integreeritud-tugiteenused-lastele-2021-2": 1,
+        "sotsiaaltoo-1-2023-erialaajakirja-roll-eesti-sotsiaaltoos-2023-1": 1,
+        "sotsiaaltoo-3-2019-integreeritud-teenused-kellele-ja-milleks-2019": 1,
+        "sotsiaaltoo-2-2020-kriisiaeg-on-pannud-otsima-uusi-lahendusi-2020-2": 1,
+        "sotsiaaltoo-2-2018-sotsiaalministeerium-kitsaskohad-on-meile-teada-2018": 1,
+        "sotsiaaltoo-3-2020-teekond-inimesekeskse-teenusepakkumise-suunas-2020-3": 1,
+        "sotsiaaltoo-4-2023-perearst-diana-ingerainen-integratsioon-on-usu-kusimus-2023-4": 1,
+        "sotsiaaltoo-3-2020-integreeritud-tugiteenused-lastele-esimene-tagasiside-pilootprojektile-2020-3": 1
+      },
+      "dominant_document_id": "sotsiaaltoo-3-2019-integreeritud-teenused-kellele-ja-milleks-2019",
+      "selected_document_ids": [
+        "sotsiaaltoo-3-2019-integreeritud-teenused-kellele-ja-milleks-2019",
+        "sotsiaaltoo-3-2020-teekond-inimesekeskse-teenusepakkumise-suunas-2020-3",
+        "sotsiaaltoo-1-2023-erialaajakirja-roll-eesti-sotsiaaltoos-2023-1",
+        "sotsiaaltoo-2-2021-integreeritud-tugiteenused-lastele-2021-2",
+        "sotsiaaltoo-3-2020-integreeritud-tugiteenused-lastele-esimene-tagasiside-pilootprojektile-2020-3",
+        "sotsiaaltoo-4-2023-perearst-diana-ingerainen-integratsioon-on-usu-kusimus-2023-4",
+        "sotsiaaltoo-4-2017-voimaluste-kohvik-voimalikuks-2017",
+        "sotsiaaltoo-2-2018-sotsiaalministeerium-kitsaskohad-on-meile-teada-2018",
+        "sotsiaaltoo-2-2020-kriisiaeg-on-pannud-otsima-uusi-lahendusi-2020-2",
+        "sotsiaaltoo-3-2018-maasotsiaaltootajad-ametiidentiteet-2018",
+        "sotsiaaltoo-3-2018-hiiumaa-uhinemine-2018"
+      ],
+      "depth_pass_added_chunks": 0,
+      "dominant_document_share": 0.091,
+      "overview_synthesis_used": true,
+      "source_diversity_reason": null,
+      "dominant_document_reason": "within_limit",
+      "source_diversity_limited": false,
+      "dominant_document_allowed": true,
+      "document_identity_fields_used": {
+        "doc_id": 18
+      },
+      "distinct_selected_document_count": 11,
+      "distinct_candidate_document_count": 18,
+      "initial_diversity_pass_document_count": 6,
+      "distinct_relevant_candidate_document_count": 11
+    },
+    "answer_source_count": 4,
+    "claim_support_graph": [
+      {
+        "claim_id": "claim_1",
+        "claim_hash": "44ab254d",
+        "supporting_source_ids": [
+          "sotsiaaltoo_integreeritud-teenused-kellele-ja-milleks-2019",
+          "sotsiaaltoo_teekond-inimesekeskse-teenusepakkumise-suunas-2020-3",
+          "sotsiaaltoo_integreeritud-tugiteenused-lastele-esimene-tagasiside-pilootprojektile-2020-3",
+          "sotsiaaltoo_voimaluste-kohvik-voimalikuks-2017",
+          "sotsiaaltoo_kriisiaeg-on-pannud-otsima-uusi-lahendusi-2020-2"
+        ]
+      },
+      {
+        "claim_id": "claim_2",
+        "claim_hash": "07856bb7",
+        "supporting_source_ids": [
+          "sotsiaaltoo_integreeritud-tugiteenused-lastele-esimene-tagasiside-pilootprojektile-2020-3",
+          "sotsiaaltoo_voimaluste-kohvik-voimalikuks-2017",
+          "sotsiaaltoo_sotsiaalministeerium-kitsaskohad-on-meile-teada-2018"
+        ]
+      },
+      {
+        "claim_id": "claim_3",
+        "claim_hash": "9237ffb8",
+        "supporting_source_ids": []
+      },
+      {
+        "claim_id": "claim_4",
+        "claim_hash": "3ed656de",
+        "supporting_source_ids": []
+      },
+      {
+        "claim_id": "claim_5",
+        "claim_hash": "1747bc89",
+        "supporting_source_ids": [
+          "sotsiaaltoo_integreeritud-teenused-kellele-ja-milleks-2019",
+          "sotsiaaltoo_integreeritud-tugiteenused-lastele-esimene-tagasiside-pilootprojektile-2020-3"
+        ]
+      },
+      {
+        "claim_id": "claim_6",
+        "claim_hash": "e8d46965",
+        "supporting_source_ids": [
+          "sotsiaaltoo_integreeritud-tugiteenused-lastele-esimene-tagasiside-pilootprojektile-2020-3"
+        ]
+      },
+      {
+        "claim_id": "claim_7",
+        "claim_hash": "14cf5490",
+        "supporting_source_ids": [
+          "sotsiaaltoo_integreeritud-teenused-kellele-ja-milleks-2019",
+          "sotsiaaltoo_voimaluste-kohvik-voimalikuks-2017"
+        ]
+      },
+      {
+        "claim_id": "claim_8",
+        "claim_hash": "56a7a932",
+        "supporting_source_ids": [
+          "sotsiaaltoo_integreeritud-teenused-kellele-ja-milleks-2019"
+        ]
+      },
+      {
+        "claim_id": "claim_9",
+        "claim_hash": "f8159c38",
+        "supporting_source_ids": []
+      },
+      {
+        "claim_id": "claim_10",
+        "claim_hash": "dd02bf77",
+        "supporting_source_ids": []
+      },
+      {
+        "claim_id": "claim_11",
+        "claim_hash": "f3e816dd",
+        "supporting_source_ids": [
+          "sotsiaaltoo_integreeritud-teenused-kellele-ja-milleks-2019",
+          "sotsiaaltoo_teekond-inimesekeskse-teenusepakkumise-suunas-2020-3"
+        ]
+      },
+      {
+        "claim_id": "claim_12",
+        "claim_hash": "7e24c842",
+        "supporting_source_ids": [
+          "sotsiaaltoo_voimaluste-kohvik-voimalikuks-2017",
+          "sotsiaaltoo_sotsiaalministeerium-kitsaskohad-on-meile-teada-2018",
+          "sotsiaaltoo_kriisiaeg-on-pannud-otsima-uusi-lahendusi-2020-2"
+        ]
+      },
+      {
+        "claim_id": "claim_13",
+        "claim_hash": "6e686e4b",
+        "supporting_source_ids": [
+          "sotsiaaltoo_sotsiaalministeerium-kitsaskohad-on-meile-teada-2018"
+        ]
+      },
+      {
+        "claim_id": "claim_14",
+        "claim_hash": "c6b81bf5",
+        "supporting_source_ids": [
+          "sotsiaaltoo_sotsiaalministeerium-kitsaskohad-on-meile-teada-2018"
+        ]
+      },
+      {
+        "claim_id": "claim_15",
+        "claim_hash": "bedc460e",
+        "supporting_source_ids": [
+          "sotsiaaltoo_integreeritud-teenused-kellele-ja-milleks-2019"
+        ]
+      },
+      {
+        "claim_id": "claim_16",
+        "claim_hash": "8ac39d67",
+        "supporting_source_ids": [
+          "sotsiaaltoo_integreeritud-teenused-kellele-ja-milleks-2019"
+        ]
+      }
+    ],
+    "performance_timings": {
+      "dense_ms": 779,
+      "model_ms": 5630,
+      "lexical_ms": 0,
+      "planner_ms": 16,
+      "registry_ms": 0,
+      "dense_sum_ms": 779,
+      "embedding_ms": 188,
+      "lexical_sum_ms": 0,
+      "query_build_ms": 1,
+      "embedding_sum_ms": 188,
+      "context_render_ms": 9,
+      "query_planning_ms": 1,
+      "retrieval_wall_ms": 1016,
+      "first_model_call_ms": 1,
+      "lemma_fts_shadow_ms": 0,
+      "lexical_scanned_sum": 0,
+      "retrieval_query_1_ms": 997,
+      "retrieval_query_count": 1,
+      "shared_read_cache_hits": 0,
+      "document_sibling_sum_ms": 0,
+      "shared_read_cache_waits": 0,
+      "multi_query_retrieval_ms": 997,
+      "shared_read_cache_misses": 0,
+      "retrieval_parallel_sum_ms": 997,
+      "retrieval_context_total_ms": 1126,
+      "shared_read_cache_bypasses": 0,
+      "service_fact_segment_sum_ms": 0,
+      "shared_embedding_batch_hits": 0,
+      "shared_embedding_batch_waits": 0,
+      "shared_embedding_batch_misses": 0,
+      "lexical_exhaustive_query_count": 0,
+      "lexical_corpus_scan_query_count": 1,
+      "shared_embedding_batch_bypasses": 1
+    },
+    "section_attribution": [],
+    "displayed_source_ids": [
+      "sotsiaaltoo_integreeritud-teenused-kellele-ja-milleks-2019",
+      "sotsiaaltoo_sotsiaalministeerium-kitsaskohad-on-meile-teada-2018",
+      "sotsiaaltoo_integreeritud-tugiteenused-lastele-esimene-tagasiside-pilootprojektile-2020-3",
+      "sotsiaaltoo_teekond-inimesekeskse-teenusepakkumise-suunas-2020-3"
+    ],
+    "package_answer_flags": [],
+    "retrieved_source_ids": [
+      "sotsiaaltoo_integreeritud-teenused-kellele-ja-milleks-2019",
+      "sotsiaaltoo_teekond-inimesekeskse-teenusepakkumise-suunas-2020-3",
+      "sotsiaaltoo_perearst-diana-ingerainen-integratsioon-on-usu-kusimus-2023-4",
+      "sotsiaaltoo_erialaajakirja-roll-eesti-sotsiaaltoos-2023-1",
+      "sotsiaaltoo_integreeritud-tugiteenused-lastele-2021-2",
+      "sotsiaaltoo_voimaluste-kohvik-voimalikuks-2017",
+      "sotsiaaltoo_integreeritud-tugiteenused-lastele-esimene-tagasiside-pilootprojektile-2020-3",
+      "sotsiaaltoo_sotsiaalministeerium-kitsaskohad-on-meile-teada-2018",
+      "sotsiaaltoo_eessona-tervishoiu-ja-sotsiaalsusteemi-loimimisest-2023-4",
+      "sotsiaaltoo_loimitud-ja-mitmekulgne-sotsiaaltoo-viljandis-2021-4",
+      "sotsiaaltoo_eessona-2026-2",
+      "sotsiaaltoo_eessona-2025-2",
+      "sotsiaaltoo_maasotsiaaltootajad-ametiidentiteet-2018",
+      "sotsiaaltoo_sutik-tugiisik-uimasteid-tarvitava-inimese-toetamine-2023-4",
+      "sotsiaaltoo_omastehoolduse-infopunkt-2024-3",
+      "sotsiaaltoo_kohila-valla-kogemus-isikukeskse-erihoolekande-mudeli-rakendamisel-2022-3",
+      "sotsiaaltoo_kriisiaeg-on-pannud-otsima-uusi-lahendusi-2020-2",
+      "sotsiaaltoo_hiiumaa-uhinemine-2018"
+    ],
+    "attribution_decisions": [
+      {
+        "score": 35.6,
+        "reason": "claim_support_validated",
+        "decision": "display",
+        "source_id": "sotsiaaltoo_integreeritud-teenused-kellele-ja-milleks-2019",
+        "historical": true,
+        "source_type": "journal_article",
+        "source_index": 0,
+        "source_status": "active",
+        "evidence_reason": "historical_background_source_type",
+        "evidence_strength": "medium",
+        "required_evidence": "medium",
+        "source_layer_contract": "research_or_journal",
+        "supported_claim_count": 7,
+        "supported_claim_indices": [
+          0,
+          4,
+          6,
+          7,
+          10,
+          14,
+          15
+        ]
+      },
+      {
+        "score": 9.8,
+        "reason": "claim_support_validated",
+        "decision": "display",
+        "source_id": "sotsiaaltoo_teekond-inimesekeskse-teenusepakkumise-suunas-2020-3",
+        "historical": true,
+        "source_type": "journal_article",
+        "source_index": 1,
+        "source_status": "active",
+        "evidence_reason": "historical_background_source_type",
+        "evidence_strength": "medium",
+        "required_evidence": "medium",
+        "source_layer_contract": "research_or_journal",
+        "supported_claim_count": 2,
+        "supported_claim_indices": [
+          0,
+          10
+        ]
+      },
+      {
+        "score": 20.5,
+        "reason": "claim_support_validated",
+        "decision": "display",
+        "source_id": "sotsiaaltoo_integreeritud-tugiteenused-lastele-esimene-tagasiside-pilootprojektile-2020-3",
+        "historical": true,
+        "source_type": "journal_article",
+        "source_index": 2,
+        "source_status": "active",
+        "evidence_reason": "historical_background_source_type",
+        "evidence_strength": "medium",
+        "required_evidence": "medium",
+        "source_layer_contract": "research_or_journal",
+        "supported_claim_count": 4,
+        "supported_claim_indices": [
+          0,
+          1,
+          4,
+          5
+        ]
+      },
+      {
+        "score": 10.4,
+        "reason": "claim_support_subsumed",
+        "decision": "hide",
+        "source_id": "sotsiaaltoo_voimaluste-kohvik-voimalikuks-2017",
+        "historical": true,
+        "source_type": "journal_article",
+        "source_index": 3,
+        "source_status": "active",
+        "evidence_reason": "historical_background_source_type",
+        "evidence_strength": "medium",
+        "required_evidence": "medium",
+        "source_layer_contract": "research_or_journal",
+        "supported_claim_count": 4,
+        "supported_claim_indices": [
+          0,
+          1,
+          6,
+          11
+        ]
+      },
+      {
+        "score": 24.3,
+        "reason": "claim_support_validated",
+        "decision": "display",
+        "source_id": "sotsiaaltoo_sotsiaalministeerium-kitsaskohad-on-meile-teada-2018",
+        "historical": true,
+        "source_type": "journal_article",
+        "source_index": 4,
+        "source_status": "active",
+        "evidence_reason": "historical_background_source_type",
+        "evidence_strength": "medium",
+        "required_evidence": "medium",
+        "source_layer_contract": "research_or_journal",
+        "supported_claim_count": 4,
+        "supported_claim_indices": [
+          1,
+          11,
+          12,
+          13
+        ]
+      },
+      {
+        "score": 5.2,
+        "reason": "claim_support_subsumed",
+        "decision": "hide",
+        "source_id": "sotsiaaltoo_kriisiaeg-on-pannud-otsima-uusi-lahendusi-2020-2",
+        "historical": true,
+        "source_type": "journal_article",
+        "source_index": 5,
+        "source_status": "active",
+        "evidence_reason": "historical_background_source_type",
+        "evidence_strength": "medium",
+        "required_evidence": "medium",
+        "source_layer_contract": "research_or_journal",
+        "supported_claim_count": 2,
+        "supported_claim_indices": [
+          0,
+          11
+        ]
+      },
+      {
+        "score": 0,
+        "reason": "no_supported_answer_claim",
+        "decision": "hide",
+        "source_id": "sotsiaaltoo_maasotsiaaltootajad-ametiidentiteet-2018",
+        "historical": true,
+        "source_type": "journal_article",
+        "source_index": 6,
+        "source_status": "active",
+        "source_layer_contract": "research_or_journal",
+        "supported_claim_count": 0,
+        "supported_claim_indices": []
+      },
+      {
+        "score": 0,
+        "reason": "no_supported_answer_claim",
+        "decision": "hide",
+        "source_id": "sotsiaaltoo_hiiumaa-uhinemine-2018",
+        "historical": true,
+        "source_type": "journal_article",
+        "source_index": 7,
+        "source_status": "active",
+        "source_layer_contract": "research_or_journal",
+        "supported_claim_count": 0,
+        "supported_claim_indices": []
+      }
+    ],
+    "missing_sections_used": [],
+    "rag_required_evidence": "medium",
+    "rendered_context_hash": "d457c923e7aa29b4f63c157703658676425d5b06e2d6fb623cd056c1403b576e",
+    "retrieval_trace_level": "retrieved_candidates",
+    "selected_source_count": 8,
+    "displayed_source_count": 4,
+    "rendered_context_chars": 6320,
+    "selected_context_count": 8,
+    "answer_source_semantics": "claim_or_validator_support",
+    "filtered_out_source_ids": [
+      "sotsiaaltoo_voimaluste-kohvik-voimalikuks-2017",
+      "sotsiaaltoo_kriisiaeg-on-pannud-otsima-uusi-lahendusi-2020-2",
+      "sotsiaaltoo_maasotsiaaltootajad-ametiidentiteet-2018",
+      "sotsiaaltoo_hiiumaa-uhinemine-2018"
+    ],
+    "model_context_source_ids": [
+      "sotsiaaltoo_integreeritud-teenused-kellele-ja-milleks-2019",
+      "sotsiaaltoo_teekond-inimesekeskse-teenusepakkumise-suunas-2020-3",
+      "sotsiaaltoo_integreeritud-tugiteenused-lastele-esimene-tagasiside-pilootprojektile-2020-3",
+      "sotsiaaltoo_voimaluste-kohvik-voimalikuks-2017",
+      "sotsiaaltoo_sotsiaalministeerium-kitsaskohad-on-meile-teada-2018",
+      "sotsiaaltoo_kriisiaeg-on-pannud-otsima-uusi-lahendusi-2020-2",
+      "sotsiaaltoo_maasotsiaaltootajad-ametiidentiteet-2018",
+      "sotsiaaltoo_hiiumaa-uhinemine-2018"
+    ],
+    "package_selection_status": "no_packages",
+    "selected_context_details": [
+      {
+        "title": "Integreeritud teenused – kellele ja milleks?",
+        "section": "Tugi ja teenused",
+        "rrf_score": 0.016393,
+        "source_id": "sotsiaaltoo_integreeritud-teenused-kellele-ja-milleks-2019",
+        "dense_rank": 1,
+        "historical": true,
+        "rank_score": 0.9108,
+        "dense_score": 0.602861,
+        "hybrid_rank": 1,
+        "source_type": "journal_article",
+        "topic_boost": 0.36,
+        "hybrid_score": 0.480807,
+        "channel_boost": 0,
+        "collection_id": "sotsiaaltoo_articles",
+        "raw_source_id": "sotsiaaltoo_integreeritud-teenused-kellele-ja-milleks-2019",
+        "source_status": "active",
+        "quality_adjust": 0.07,
+        "original_body_hash": "9490b4490b3286e3ea069d446d6fd49081403e0bfd942fa8a1eb4ed4504a8786",
+        "rendered_body_hash": "fbf3fa31fde74dce51ea467bb6b8313d81a255a22fc9a5d0b67db22031d88339",
+        "retrieval_channels": [
+          "dense"
+        ],
+        "original_body_count": 3,
+        "rendered_body_count": 2,
+        "rendered_body_spans": [
+          {
+            "truncated": true,
+            "end_offset": 270,
+            "start_offset": 0,
+            "original_body_hash": "0ebc048f2560f471c65a01d1266ab1531a7cd0aa73fd25638775f50b138faba2",
+            "rendered_body_hash": "3b3856c0cea42d6a2f1adc2732a9a6e0feabc2a77ad07f68e2ac1f033442ce46",
+            "original_body_chars": 1393,
+            "original_body_index": 0,
+            "rendered_body_chars": 273
+          },
+          {
+            "truncated": true,
+            "end_offset": 313,
+            "start_offset": 0,
+            "original_body_hash": "22dd785094252d67676118f41d2e427c7c811c1c5b568a31a901c39bde8d8d87",
+            "rendered_body_hash": "9ff7c97cee81d0e21dfd7bca66b83f0e76156c09af79bc35a284a61824d519aa",
+            "original_body_chars": 1550,
+            "original_body_index": 1,
+            "rendered_body_chars": 316
+          }
+        ],
+        "rendered_evidence_hash": "282401a4302ecca952086cc422e506f670e171f89134aa6847c6628a3a984995",
+        "rendered_evidence_chars": 851,
+        "rendered_evidence_truncated": true
+      },
+      {
+        "title": "Teekond inimesekeskse teenusepakkumise suunas",
+        "section": "Sotsiaalpoliitika",
+        "rrf_score": 0.016129,
+        "source_id": "sotsiaaltoo_teekond-inimesekeskse-teenusepakkumise-suunas-2020-3",
+        "dense_rank": 2,
+        "historical": true,
+        "rank_score": 0.9059,
+        "dense_score": 0.598101,
+        "hybrid_rank": 2,
+        "source_type": "journal_article",
+        "topic_boost": 0.36,
+        "hybrid_score": 0.475931,
+        "channel_boost": 0,
+        "collection_id": "sotsiaaltoo_articles",
+        "raw_source_id": "sotsiaaltoo_teekond-inimesekeskse-teenusepakkumise-suunas-2020-3",
+        "source_status": "active",
+        "quality_adjust": 0.07,
+        "original_body_hash": "4b0289906a25f5947ee6f86d589154ec285522e608fd2dbaf6257e6158d4269f",
+        "rendered_body_hash": "339fa2976b84e56eefbebf64012960c2ea99dd77c228d7646a7781e344e9a1c9",
+        "retrieval_channels": [
+          "dense"
+        ],
+        "original_body_count": 3,
+        "rendered_body_count": 2,
+        "rendered_body_spans": [
+          {
+            "truncated": true,
+            "end_offset": 279,
+            "start_offset": 0,
+            "original_body_hash": "69b6cfa0535eea94d4bce18cd9efb0054c8549240e5c27238f1367fbdb24bfcd",
+            "rendered_body_hash": "7208738aa0c58fae2504e274115644f322746e02199278d5ebb75e2285bdacb3",
+            "original_body_chars": 743,
+            "original_body_index": 0,
+            "rendered_body_chars": 282
+          },
+          {
+            "truncated": true,
+            "end_offset": 0,
+            "start_offset": 0,
+            "original_body_hash": "146589296b6c6c4fddc38f872727310444da7fbf5efdf27cc5f8f17b08f5a4c6",
+            "rendered_body_hash": "ab5df625bc76dbd4e163bed2dd888df828f90159bb93556525c31821b6541d46",
+            "original_body_chars": 1581,
+            "original_body_index": 1,
+            "rendered_body_chars": 3
+          }
+        ],
+        "rendered_evidence_hash": "94068a59b60e8e73d13a4984709f96c70300f0519e064feea4988f0c4cf6b29c",
+        "rendered_evidence_chars": 546,
+        "rendered_evidence_truncated": true
+      },
+      {
+        "title": "Integreeritud tugiteenused lastele – esimene tagasiside pilootprojektile",
+        "section": "Teenuste integratsioon",
+        "rrf_score": 0.012821,
+        "source_id": "sotsiaaltoo_integreeritud-tugiteenused-lastele-esimene-tagasiside-pilootprojektile-2020-3",
+        "dense_rank": 18,
+        "historical": true,
+        "rank_score": 0.8692,
+        "dense_score": 0.580363,
+        "hybrid_rank": 18,
+        "source_type": "journal_article",
+        "topic_boost": 0.36,
+        "hybrid_score": 0.439175,
+        "channel_boost": 0,
+        "collection_id": "sotsiaaltoo_articles",
+        "raw_source_id": "sotsiaaltoo_integreeritud-tugiteenused-lastele-esimene-tagasiside-pilootprojektile-2020-3",
+        "source_status": "active",
+        "quality_adjust": 0.07,
+        "original_body_hash": "dc3c61d9780fdc33516df4b3bbb93e8c96cbeb835256a12a84c868584f95c5de",
+        "rendered_body_hash": "0da8e45cab8b4fc16e98fd194cc49d6052fb260966963a7bb2616cbfedeff1ba",
+        "retrieval_channels": [
+          "dense"
+        ],
+        "original_body_count": 3,
+        "rendered_body_count": 2,
+        "rendered_body_spans": [
+          {
+            "truncated": true,
+            "end_offset": 0,
+            "start_offset": 0,
+            "original_body_hash": "dadaaab68e15d25a8ef7159b38e6e62d0973365760e4f673a8a3e6565f752eff",
+            "rendered_body_hash": "ab5df625bc76dbd4e163bed2dd888df828f90159bb93556525c31821b6541d46",
+            "original_body_chars": 1792,
+            "original_body_index": 0,
+            "rendered_body_chars": 3
+          },
+          {
+            "truncated": false,
+            "end_offset": 327,
+            "start_offset": 0,
+            "original_body_hash": "c7d530172ce6ce1cc9ce1f7a3f4d0484b30d5bd59202e6aba9ee7ce73f55774d",
+            "rendered_body_hash": "c7d530172ce6ce1cc9ce1f7a3f4d0484b30d5bd59202e6aba9ee7ce73f55774d",
+            "original_body_chars": 327,
+            "original_body_index": 1,
+            "rendered_body_chars": 327
+          }
+        ],
+        "rendered_evidence_hash": "66d6dad8afb6dcdf113f5fde60f403f8836957c3b71e14bc3243a4aa67cd2ad2",
+        "rendered_evidence_chars": 623,
+        "rendered_evidence_truncated": true
+      },
+      {
+        "title": "Võimaluste kohvik võimalikuks",
+        "section": "Uus lahendus sotsiaaltöös",
+        "rrf_score": 0.013333,
+        "source_id": "sotsiaaltoo_voimaluste-kohvik-voimalikuks-2017",
+        "dense_rank": 15,
+        "historical": true,
+        "rank_score": 0.6955,
+        "dense_score": 0.584214,
+        "hybrid_rank": 15,
+        "source_type": "journal_article",
+        "topic_boost": 0.18,
+        "hybrid_score": 0.445511,
+        "channel_boost": 0,
+        "collection_id": "sotsiaaltoo_articles",
+        "raw_source_id": "sotsiaaltoo_voimaluste-kohvik-voimalikuks-2017",
+        "source_status": "active",
+        "quality_adjust": 0.07,
+        "original_body_hash": "418b0f87d5a3200b90e7913a740954de2819780089bc4cdddeacd3f749dbb99d",
+        "rendered_body_hash": "9c66f5dd85e2da08b19e3d85b5599cfa91f700773ae8be328d24bd2dccb1f702",
+        "retrieval_channels": [
+          "dense"
+        ],
+        "original_body_count": 2,
+        "rendered_body_count": 2,
+        "rendered_body_spans": [
+          {
+            "truncated": true,
+            "end_offset": 201,
+            "start_offset": 0,
+            "original_body_hash": "5474bb98870ee0cc0c71de52818d5950572a50b20af229924a66adf34a2ca202",
+            "rendered_body_hash": "44e5989f90db0d227076b10238a64cefd1682f23e094c948b1b554f7f667c00e",
+            "original_body_chars": 1677,
+            "original_body_index": 0,
+            "rendered_body_chars": 204
+          },
+          {
+            "truncated": true,
+            "end_offset": 327,
+            "start_offset": 0,
+            "original_body_hash": "3213268d02a1bec85e9f6ded0d3d2418941ef6eae5f52c152acf7142fd8dc5c3",
+            "rendered_body_hash": "8765e5cf27b0ac6887aa60e032ec512ed4f6e2189dd8fe51f54de54244d60467",
+            "original_body_chars": 1731,
+            "original_body_index": 1,
+            "rendered_body_chars": 330
+          }
+        ],
+        "rendered_evidence_hash": "a97fc602def5db157ceb3ebd4f6f4453baa09a9ab23ad6e537e44c971bcb3491",
+        "rendered_evidence_chars": 787,
+        "rendered_evidence_truncated": true
+      },
+      {
+        "title": "Sotsiaalministeerium: kitsaskohad on meile teada, otsime aktiivselt toimivaid lahendusi",
+        "section": "Kommentaar",
+        "rrf_score": 0.011236,
+        "source_id": "sotsiaaltoo_sotsiaalministeerium-kitsaskohad-on-meile-teada-2018",
+        "dense_rank": 29,
+        "historical": true,
+        "rank_score": 0.6722,
+        "dense_score": 0.573027,
+        "hybrid_rank": 29,
+        "source_type": "journal_article",
+        "topic_boost": 0.18,
+        "hybrid_score": 0.422243,
+        "channel_boost": 0,
+        "collection_id": "sotsiaaltoo_articles",
+        "raw_source_id": "sotsiaaltoo_sotsiaalministeerium-kitsaskohad-on-meile-teada-2018",
+        "source_status": "active",
+        "quality_adjust": 0.07,
+        "original_body_hash": "d6add75770bac38b3895cf154a788e5c3d046cc92de92385f78ceee252ef5616",
+        "rendered_body_hash": "7be79f926bf095d5e9645dfd20fe7deee397a351bc941c9880c84e72aca6d18b",
+        "retrieval_channels": [
+          "dense"
+        ],
+        "original_body_count": 1,
+        "rendered_body_count": 1,
+        "rendered_body_spans": [
+          {
+            "truncated": true,
+            "end_offset": 602,
+            "start_offset": 0,
+            "original_body_hash": "d6add75770bac38b3895cf154a788e5c3d046cc92de92385f78ceee252ef5616",
+            "rendered_body_hash": "7be79f926bf095d5e9645dfd20fe7deee397a351bc941c9880c84e72aca6d18b",
+            "original_body_chars": 1724,
+            "original_body_index": 0,
+            "rendered_body_chars": 605
+          }
+        ],
+        "rendered_evidence_hash": "7c5c131080b0b9208984c97dd7754c6673edd0975e9c2b4309d1065ec042adfc",
+        "rendered_evidence_chars": 896,
+        "rendered_evidence_truncated": true
+      },
+      {
+        "title": "Kriisiaeg on pannud otsima uusi lahendusi",
+        "section": "Uus lahendus sotsiaaltöös",
+        "rrf_score": 0.008696,
+        "source_id": "sotsiaaltoo_kriisiaeg-on-pannud-otsima-uusi-lahendusi-2020-2",
+        "dense_rank": 55,
+        "historical": true,
+        "rank_score": 0.6375,
+        "dense_score": 0.56537,
+        "hybrid_rank": 55,
+        "source_type": "journal_article",
+        "topic_boost": 0.18,
+        "hybrid_score": 0.39748,
+        "channel_boost": 0,
+        "collection_id": "sotsiaaltoo_articles",
+        "raw_source_id": "sotsiaaltoo_kriisiaeg-on-pannud-otsima-uusi-lahendusi-2020-2",
+        "source_status": "active",
+        "quality_adjust": 0.06,
+        "original_body_hash": "e3fd59caf5c11f2da7396d6a40afdd1d8be1cfe5ea71b1b698de7595da931565",
+        "rendered_body_hash": "063b42f8af5fa5a1b4bb0ed771e0085d166249d72b8bf2e06fe3b12ced560138",
+        "retrieval_channels": [
+          "dense"
+        ],
+        "original_body_count": 1,
+        "rendered_body_count": 1,
+        "rendered_body_spans": [
+          {
+            "truncated": true,
+            "end_offset": 579,
+            "start_offset": 0,
+            "original_body_hash": "e3fd59caf5c11f2da7396d6a40afdd1d8be1cfe5ea71b1b698de7595da931565",
+            "rendered_body_hash": "063b42f8af5fa5a1b4bb0ed771e0085d166249d72b8bf2e06fe3b12ced560138",
+            "original_body_chars": 1680,
+            "original_body_index": 0,
+            "rendered_body_chars": 582
+          }
+        ],
+        "rendered_evidence_hash": "ab97a8c038d9e05d2f292589b1cdf95f7384f0d621019894cb263cbc514df4de",
+        "rendered_evidence_chars": 840,
+        "rendered_evidence_truncated": true
+      },
+      {
+        "title": "Maasotsiaaltöötajad räägivad oma tööst ja endast selle töö tegijana",
+        "section": "Uurimus",
+        "rrf_score": 0.010526,
+        "source_id": "sotsiaaltoo_maasotsiaaltootajad-ametiidentiteet-2018",
+        "dense_rank": 35,
+        "historical": true,
+        "rank_score": 0.5952,
+        "dense_score": 0.570636,
+        "hybrid_rank": 35,
+        "source_type": "journal_article",
+        "topic_boost": 0,
+        "hybrid_score": 0.41518,
+        "channel_boost": 0,
+        "collection_id": "sotsiaaltoo_articles",
+        "raw_source_id": "sotsiaaltoo_maasotsiaaltootajad-ametiidentiteet-2018",
+        "source_status": "active",
+        "quality_adjust": 0.18,
+        "original_body_hash": "53c48ce27b1f3f9174542fb07ee0ac7e72b0e45c2b59c1ad74dad59e78625b8f",
+        "rendered_body_hash": "86173ba7b1438005dd08a9c5cba98cac251388dc624c3a999f5768ca2e2a02f6",
+        "retrieval_channels": [
+          "dense"
+        ],
+        "original_body_count": 1,
+        "rendered_body_count": 1,
+        "rendered_body_spans": [
+          {
+            "truncated": true,
+            "end_offset": 544,
+            "start_offset": 0,
+            "original_body_hash": "53c48ce27b1f3f9174542fb07ee0ac7e72b0e45c2b59c1ad74dad59e78625b8f",
+            "rendered_body_hash": "86173ba7b1438005dd08a9c5cba98cac251388dc624c3a999f5768ca2e2a02f6",
+            "original_body_chars": 1687,
+            "original_body_index": 0,
+            "rendered_body_chars": 547
+          }
+        ],
+        "rendered_evidence_hash": "416d314146b387e8f8c7fe08949c248e3460262230e58e4c7c904423f0e5887a",
+        "rendered_evidence_chars": 817,
+        "rendered_evidence_truncated": true
+      },
+      {
+        "title": "Hiiumaa: meretagune ühinemine tõi sotsiaaltöötajad kokku",
+        "section": "Kohalik omavalitsus",
+        "rrf_score": 0.008621,
+        "source_id": "sotsiaaltoo_hiiumaa-uhinemine-2018",
+        "dense_rank": 56,
+        "historical": true,
+        "rank_score": 0.5768,
+        "dense_score": 0.56524,
+        "hybrid_rank": 56,
+        "source_type": "journal_article",
+        "topic_boost": 0,
+        "hybrid_score": 0.396805,
+        "channel_boost": 0,
+        "collection_id": "sotsiaaltoo_articles",
+        "raw_source_id": "sotsiaaltoo_hiiumaa-uhinemine-2018",
+        "source_status": "active",
+        "quality_adjust": 0.18,
+        "original_body_hash": "9f5e3537408ba94cc33f40e0f49028cfaf562d8914633b38989b3dcaa82d07d0",
+        "rendered_body_hash": "ef6c97a0480b075cbaf77e473d20fe77a5ed5daf3cc2c826e6552ee115e9ce72",
+        "retrieval_channels": [
+          "dense"
+        ],
+        "original_body_count": 1,
+        "rendered_body_count": 1,
+        "rendered_body_spans": [
+          {
+            "truncated": true,
+            "end_offset": 672,
+            "start_offset": 0,
+            "original_body_hash": "9f5e3537408ba94cc33f40e0f49028cfaf562d8914633b38989b3dcaa82d07d0",
+            "rendered_body_hash": "ef6c97a0480b075cbaf77e473d20fe77a5ed5daf3cc2c826e6552ee115e9ce72",
+            "original_body_chars": 1521,
+            "original_body_index": 0,
+            "rendered_body_chars": 675
+          }
+        ],
+        "rendered_evidence_hash": "e6828ca9769cfd75220639328a540b86a2bef481bb4f0b6e1daeb68c4ff26b72",
+        "rendered_evidence_chars": 946,
+        "rendered_evidence_truncated": true
+      }
+    ],
+    "filtered_out_source_count": 4,
+    "attribution_filter_reasons": {
+      "sotsiaaltoo_hiiumaa-uhinemine-2018": "no_supported_answer_claim",
+      "sotsiaaltoo_voimaluste-kohvik-voimalikuks-2017": "claim_support_subsumed",
+      "sotsiaaltoo_maasotsiaaltootajad-ametiidentiteet-2018": "no_supported_answer_claim",
+      "sotsiaaltoo_kriisiaeg-on-pannud-otsima-uusi-lahendusi-2020-2": "claim_support_subsumed"
+    },
+    "claim_supported_source_ids": [
+      "sotsiaaltoo_integreeritud-teenused-kellele-ja-milleks-2019",
+      "sotsiaaltoo_teekond-inimesekeskse-teenusepakkumise-suunas-2020-3",
+      "sotsiaaltoo_integreeritud-tugiteenused-lastele-esimene-tagasiside-pilootprojektile-2020-3",
+      "sotsiaaltoo_voimaluste-kohvik-voimalikuks-2017",
+      "sotsiaaltoo_sotsiaalministeerium-kitsaskohad-on-meile-teada-2018",
+      "sotsiaaltoo_kriisiaeg-on-pannud-otsima-uusi-lahendusi-2020-2"
+    ],
+    "model_context_source_count": 8,
+    "package_requested_sections": [],
+    "required_evidence_sections": [],
+    "package_attribution_checked": false,
+    "selected_context_source_ids": [
+      "sotsiaaltoo_integreeritud-teenused-kellele-ja-milleks-2019",
+      "sotsiaaltoo_teekond-inimesekeskse-teenusepakkumise-suunas-2020-3",
+      "sotsiaaltoo_integreeritud-tugiteenused-lastele-esimene-tagasiside-pilootprojektile-2020-3",
+      "sotsiaaltoo_voimaluste-kohvik-voimalikuks-2017",
+      "sotsiaaltoo_sotsiaalministeerium-kitsaskohad-on-meile-teada-2018",
+      "sotsiaaltoo_kriisiaeg-on-pannud-otsima-uusi-lahendusi-2020-2",
+      "sotsiaaltoo_maasotsiaaltootajad-ametiidentiteet-2018",
+      "sotsiaaltoo_hiiumaa-uhinemine-2018"
+    ],
+    "claim_supported_source_count": 6,
+    "insufficient_precise_support": false,
+    "package_aware_answering_used": false,
+    "package_candidate_source_ids": [],
+    "package_displayed_source_ids": [],
+    "high_risk_attribution_checked": false,
+    "rag_insufficient_evidence_mode": false,
+    "attribution_filtered_source_ids": [
+      "sotsiaaltoo_voimaluste-kohvik-voimalikuks-2017",
+      "sotsiaaltoo_kriisiaeg-on-pannud-otsima-uusi-lahendusi-2020-2",
+      "sotsiaaltoo_maasotsiaaltootajad-ametiidentiteet-2018",
+      "sotsiaaltoo_hiiumaa-uhinemine-2018"
+    ],
+    "validated_supporting_source_ids": [],
+    "answer_validation_contract_shadow": {
+      "mode": "shadow",
+      "planner": {
+        "mode": "overview_synthesis",
+        "fields": {
+          "period_role": {
+            "state": "not_applicable",
+            "value": null,
+            "available": false,
+            "confidence": null,
+            "provenance": null,
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "year_role_mentions": {
+            "state": "present",
+            "value": [],
+            "available": true,
+            "confidence": null,
+            "provenance": {
+              "layer": "question_planner",
+              "method": "semantic_year_role_mentions",
+              "span_end": null,
+              "span_start": null
+            },
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "document_source_years": {
+            "state": "not_applicable",
+            "value": null,
+            "available": false,
+            "confidence": null,
+            "provenance": null,
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "evidence_metric_slots": {
+            "state": "not_applicable",
+            "value": null,
+            "available": false,
+            "confidence": null,
+            "provenance": null,
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "evidence_metric_terms": {
+            "state": "not_applicable",
+            "value": null,
+            "available": false,
+            "confidence": null,
+            "provenance": null,
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "evidence_period_years": {
+            "state": "not_applicable",
+            "value": null,
+            "available": false,
+            "confidence": null,
+            "provenance": null,
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "evidence_phase_ordinal": {
+            "state": "not_applicable",
+            "value": null,
+            "available": false,
+            "confidence": null,
+            "provenance": null,
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "requested_numeric_slots": {
+            "state": "present",
+            "value": {
+              "slots": [],
+              "complete": true,
+              "truncated": false,
+              "emitted_slot_count": 0,
+              "recognized_clause_count": 0,
+              "unresolved_clause_count": 0
+            },
+            "available": true,
+            "confidence": null,
+            "provenance": {
+              "layer": "question_planner",
+              "method": "requested_numeric_clause_slots",
+              "span_end": null,
+              "span_start": null
+            },
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "bounded_episode_metric_fact": {
+            "state": "not_applicable",
+            "value": null,
+            "available": false,
+            "confidence": null,
+            "provenance": null,
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          },
+          "current_turn_document_identity": {
+            "state": "present",
+            "value": {
+              "scope": "current_turn",
+              "author": {
+                "value": null,
+                "span_end": null,
+                "confidence": null,
+                "input_form": null,
+                "provenance": null,
+                "span_start": null
+              },
+              "version": "current_turn_document_identity_v1",
+              "title_hint": {
+                "value": null,
+                "provenance": null
+              },
+              "document_kind": {
+                "value": null,
+                "provenance": null
+              },
+              "document_source_years": [],
+              "explicit_anchor_count": 0,
+              "history_fallback_policy": "fill_missing_only"
+            },
+            "available": true,
+            "confidence": null,
+            "provenance": {
+              "layer": "question_planner",
+              "method": "current_turn_document_identity_semantic_candidate",
+              "span_end": null,
+              "span_start": null
+            },
+            "confidence_source": "not_available_per_field",
+            "used_for_production_decision": false
+          }
+        },
+        "route_mode": "overview_synthesis",
+        "semantic_candidates_version": "question_semantic_candidates_v1"
+      },
+      "version": "answer_validation_contract_shadow_v2",
+      "attribution": {
+        "decision_source": "not_fully_attributed",
+        "production_path": "hybrid_existing",
+        "legacy_path_used": null,
+        "runtime_relation": "not_comparable",
+        "legacy_observations": {
+          "exact_anchor_match": true,
+          "raw_anchor_observed": true,
+          "query_plan_available": true,
+          "current_status_observed": false,
+          "exact_anchor_match_scope": "any_selected_source",
+          "raw_anchor_match_observed": true
+        },
+        "structured_path_scope": "answer_validation_contract_shadow_v2",
+        "structured_observations": {
+          "route_mode": "overview_synthesis",
+          "planner_mode": "overview_synthesis",
+          "field_availability": {
+            "period_role": false,
+            "document_source_years": false,
+            "evidence_period_years": false
+          },
+          "document_source_years": null,
+          "evidence_period_years": null,
+          "document_identity_matched": null,
+          "document_identity_required": false,
+          "document_identity_confidence": "not_required"
+        },
+        "shadow_contract_used_for_decision": false,
+        "structured_path_used_for_decision": null
+      },
+      "fact_validation": {
+        "production_path": "not_run",
+        "legacy_path_used": false,
+        "runtime_relation": "not_comparable",
+        "validation_applied": false,
+        "legacy_observations": {
+          "asks_for_year": false,
+          "asks_for_whole_scope": false,
+          "asks_for_numeric_fact": false,
+          "asks_for_publication_year": false,
+          "contact_answer_intent_requested": false,
+          "asks_for_categorical_numeric_breakdown": false
+        },
+        "structured_observations": {
+          "route_mode": "overview_synthesis",
+          "planner_mode": "overview_synthesis",
+          "ambiguous_years": [],
+          "field_availability": {
+            "period_role": false,
+            "year_role_mentions": true,
+            "document_source_years": false,
+            "evidence_metric_slots": false,
+            "evidence_metric_terms": false,
+            "evidence_period_years": false,
+            "evidence_phase_ordinal": false,
+            "requested_numeric_slots": true,
+            "bounded_episode_metric_fact": false
+          },
+          "typed_evidence_years": [],
+          "document_source_years": null,
+          "evidence_period_years": null,
+          "evidence_phase_ordinal": null,
+          "evidence_metric_term_count": null,
+          "bounded_episode_metric_fact": null,
+          "typed_document_source_years": [],
+          "requested_numeric_slot_count": 0,
+          "requested_numeric_slot_types": [],
+          "evidence_metric_slot_categories": null,
+          "requested_numeric_slots_complete": true,
+          "requested_numeric_slots_truncated": false,
+          "requested_numeric_emitted_slot_count": 0,
+          "requested_numeric_recognized_clause_count": 0,
+          "requested_numeric_unresolved_clause_count": 0
+        },
+        "structured_path_used_for_decision": false
+      },
+      "production_decision_source": "existing_production_paths",
+      "current_turn_author_confirmation": {
+        "status": "no_candidate",
+        "version": "current_turn_author_confirmation_v1",
+        "promotion_eligible": false,
+        "confirmation_source": "retrieved_source_metadata",
+        "candidate_confidence": null,
+        "candidate_provenance": null,
+        "matched_document_ids": [],
+        "matched_source_count": 0,
+        "matched_author_values": [],
+        "candidate_document_kind": null,
+        "candidate_document_source_years": []
+      }
+    },
+    "validated_supporting_source_count": 0,
+    "displayed_not_in_answer_source_ids": [],
+    "displayed_sources_subset_of_answer": true,
+    "requested_qualitative_slot_contract": {
+      "slots": [],
+      "reason": "document_identity_not_high",
+      "enabled": false,
+      "version": "requested_qualitative_slot_contract_v1",
+      "complete": false,
+      "reply_language": "et",
+      "mapped_slot_count": 0,
+      "used_for_generation": false,
+      "used_for_validation": false,
+      "missing_slot_indexes": [],
+      "requested_slot_count": 1,
+      "sanitizer_dropped_slot": false,
+      "selected_document_id_present": false
+    },
+    "displayed_not_in_selected_source_ids": [],
+    "displayed_sources_subset_of_selected": true,
+    "insufficientPreciseLegalSourceSupport": false,
+    "selected_but_not_displayed_source_ids": [
+      "sotsiaaltoo_voimaluste-kohvik-voimalikuks-2017",
+      "sotsiaaltoo_kriisiaeg-on-pannud-otsima-uusi-lahendusi-2020-2",
+      "sotsiaaltoo_maasotsiaaltootajad-ametiidentiteet-2018",
+      "sotsiaaltoo_hiiumaa-uhinemine-2018"
+    ],
+    "retrieved_but_not_displayed_source_ids": [
+      "sotsiaaltoo_perearst-diana-ingerainen-integratsioon-on-usu-kusimus-2023-4",
+      "sotsiaaltoo_erialaajakirja-roll-eesti-sotsiaaltoos-2023-1",
+      "sotsiaaltoo_integreeritud-tugiteenused-lastele-2021-2",
+      "sotsiaaltoo_voimaluste-kohvik-voimalikuks-2017",
+      "sotsiaaltoo_eessona-tervishoiu-ja-sotsiaalsusteemi-loimimisest-2023-4",
+      "sotsiaaltoo_loimitud-ja-mitmekulgne-sotsiaaltoo-viljandis-2021-4",
+      "sotsiaaltoo_eessona-2026-2",
+      "sotsiaaltoo_eessona-2025-2",
+      "sotsiaaltoo_maasotsiaaltootajad-ametiidentiteet-2018",
+      "sotsiaaltoo_sutik-tugiisik-uimasteid-tarvitava-inimese-toetamine-2023-4",
+      "sotsiaaltoo_omastehoolduse-infopunkt-2024-3",
+      "sotsiaaltoo_kohila-valla-kogemus-isikukeskse-erihoolekande-mudeli-rakendamisel-2022-3",
+      "sotsiaaltoo_kriisiaeg-on-pannud-otsima-uusi-lahendusi-2020-2",
+      "sotsiaaltoo_hiiumaa-uhinemine-2018"
+    ],
+    "insufficient_precise_legal_source_support": false
+  },
+  "answer": "Ajakiri Sotsiaaltöö käsitleb integreeritud teenuseid eelkõige inimesekeskse ja eri valdkondi ühendava korraldusena. Rõhk on sellel, et inimene või pere jõuaks vajaliku abini võimalikult sujuvalt ning tervise-, sotsiaal-, haridus- ja tööturuvaldkond ei tegutseks eraldi.\n\nPeamised rõhuasetused on järgmised:\n\n- Erivajadusega lapsed ja nende pered. 2020. aasta artiklis „Integreeritud tugiteenused lastele – esimene tagasiside pilootprojektile“ kirjeldatakse Sotsiaalministeeriumi, Haridus- ja Teadusministeeriumi, SA Innove ning Sotsiaalkindlustusameti koostööd. Piloodi eesmärk oli aidata erivajadusega lapsel ja tema perel jõuda vajalike teenusteni kiiresti ja mugavalt.\n\n- Võrgustikutöö lapse heaolu tagamisel. 2019. aasta käsitluses „Integreeritud teenused – kellele ja milleks?“ rõhutatakse, et pikaajalist tuge vajava lapse puhul on vaja mitme asutuse koostööd. Artiklis seostatakse seda nii sotsiaalhoolekande- kui ka lastekaitseseadusest tuleneva valdkondadevahelise koostööga.\n\n- Inimesekesksus ja teenuste mõju. Artiklis „Teekond inimesekeskse teenusepakkumise suunas“ tõstatatakse küsimused, kuidas suunata ressursse tõhusamalt, kasutada andmeid paremini, hinnata integreeritud teenuste mõju ning kujundada teenuseosutajatele motivatsiooni sellist lähenemist rakendada.\n\n- Tervise-, sotsiaal- ja töövaldkonna ühendamine. 2018. aasta kommentaaris kirjeldatakse lahendusi, millega püüti lähendada rehabilitatsiooni-, tervise-, sotsiaal- ja tööteenuseid. Samuti käsitletakse hoolduskoordinatsiooni mudeli katsetamist kuue omavalitsusega: suure ja keerulise hooldusvajadusega inimestele sooviti pakkuda senisest paremini korraldatud tuge nende kodu lähedal ning omavalitsusse kavandati hoolduskoordinaatori roll.\n\nKokkuvõttes näeb ajakiri integreeritud teenuseid mitte ühe uue teenusena, vaid koostööviisina: riiklikul tasandil kujundatakse mudeleid ja katsetusi, omavalitsus koordineerib kohalikku tuge ning praktikas peavad erinevad teenuseosutajad jagama vastutust inimese või pere tervikvajaduse eest. Valitud käsitlused ei anna täielikku ülevaadet kõigist integreeritud teenuste rakendustest Eestis ega kinnita kirjeldatud pilootide praegust jätkumist.",
+  "ended_at": "2026-08-31T09:32:36.798",
+  "question": "Mida kirjutab ajakiri Sotsiaaltöö integreeritud teenustest?",
+  "started_at": "2026-08-31T09:32:31.144",
+  "displayed_sources": [
+    {
+      "id": "sotsiaaltoo_integreeritud-teenused-kellele-ja-milleks-2019",
+      "year": 2019,
+      "pages": [
+        1,
+        3,
+        4
+      ],
+      "title": "Integreeritud teenused – kellele ja milleks?",
+      "authors": [
+        "Alice Juurik",
+        "Gabriela Rooso",
+        "Nele Labi",
+        "Piret Liba"
+      ],
+      "section": "Tugi ja teenused",
+      "audience": "BOTH",
+      "fileName": "ST3_2019_veeb_link_Part17.pdf",
+      "sourceId": "sotsiaaltoo_integreeritud-teenused-kellele-ja-milleks-2019",
+      "authority": "editorial",
+      "pageRange": "1, 3–4",
+      "short_ref": "Alice Juurik, 2019. Integreeritud teenused – kellele ja milleks?. Sotsiaaltöö 3/2019 · lk 1, 3–4 · Tugi ja teenused",
+      "source_id": "sotsiaaltoo_integreeritud-teenused-kellele-ja-milleks-2019",
+      "documentId": "sotsiaaltoo-3-2019-integreeritud-teenused-kellele-ja-milleks-2019",
+      "historical": true,
+      "issueLabel": "3/2019",
+      "sourceType": "journal_article",
+      "document_id": "sotsiaaltoo-3-2019-integreeritud-teenused-kellele-ja-milleks-2019",
+      "source_type": "journal_article",
+      "collectionId": "sotsiaaltoo_articles",
+      "journalTitle": "Sotsiaaltöö",
+      "last_checked": "2026-04-28",
+      "collection_id": "sotsiaaltoo_articles",
+      "source_status": "active",
+      "source_warning": "historical",
+      "source_freshness": "historical",
+      "retrievalChannels": [
+        "dense"
+      ],
+      "source_checked_at": "2026-04-28T00:00:00.000Z",
+      "source_trust_type": "journal_article",
+      "retrieval_channels": [
+        "dense"
+      ]
+    },
+    {
+      "id": "sotsiaaltoo_sotsiaalministeerium-kitsaskohad-on-meile-teada-2018",
+      "year": 2018,
+      "pages": [
+        1,
+        2
+      ],
+      "title": "Sotsiaalministeerium: kitsaskohad on meile teada, otsime aktiivselt toimivaid lahendusi",
+      "authors": [
+        "Gerli Aavik",
+        "Raimo Saadi",
+        "Signe Riisalo",
+        "Käthlin Sander"
+      ],
+      "section": "Kommentaar",
+      "audience": "BOTH",
+      "fileName": "155619664557_Sotsiaaltoo_nr2_2018_veebi_link_Part6.pdf",
+      "sourceId": "sotsiaaltoo_sotsiaalministeerium-kitsaskohad-on-meile-teada-2018",
+      "authority": "editorial",
+      "pageRange": "1–2",
+      "short_ref": "Gerli Aavik, 2018. Sotsiaalministeerium: kitsaskohad on meile teada, otsime aktiivselt toimivaid lahendusi. Sotsiaaltöö 2/2018 · lk 1–2 · Kommentaar",
+      "source_id": "sotsiaaltoo_sotsiaalministeerium-kitsaskohad-on-meile-teada-2018",
+      "documentId": "sotsiaaltoo-2-2018-sotsiaalministeerium-kitsaskohad-on-meile-teada-2018",
+      "historical": true,
+      "issueLabel": "2/2018",
+      "sourceType": "journal_article",
+      "document_id": "sotsiaaltoo-2-2018-sotsiaalministeerium-kitsaskohad-on-meile-teada-2018",
+      "source_type": "journal_article",
+      "collectionId": "sotsiaaltoo_articles",
+      "journalTitle": "Sotsiaaltöö",
+      "last_checked": "2026-04-28",
+      "collection_id": "sotsiaaltoo_articles",
+      "source_status": "active",
+      "source_warning": "historical",
+      "source_freshness": "historical",
+      "retrievalChannels": [
+        "dense"
+      ],
+      "source_checked_at": "2026-04-28T00:00:00.000Z",
+      "source_trust_type": "journal_article",
+      "retrieval_channels": [
+        "dense"
+      ]
+    },
+    {
+      "id": "sotsiaaltoo_integreeritud-tugiteenused-lastele-esimene-tagasiside-pilootprojektile-2020-3",
+      "year": 2020,
+      "pages": [
+        1,
+        2
+      ],
+      "title": "Integreeritud tugiteenused lastele – esimene tagasiside pilootprojektile",
+      "authors": [
+        "Eva Liina Kliiman",
+        "Alice Juurik",
+        "Marge Hindriks"
+      ],
+      "section": "Teenuste integratsioon",
+      "audience": "BOTH",
+      "fileName": "Sotsiaaltoo_3_2020_web_link_Part12.pdf",
+      "sourceId": "sotsiaaltoo_integreeritud-tugiteenused-lastele-esimene-tagasiside-pilootprojektile-2020-3",
+      "authority": "editorial",
+      "pageRange": "1–2",
+      "short_ref": "Eva Liina Kliiman, 2020. Integreeritud tugiteenused lastele – esimene tagasiside pilootprojektile. Sotsiaaltöö 3/2020 · lk 1–2 · Teenuste integratsioon",
+      "source_id": "sotsiaaltoo_integreeritud-tugiteenused-lastele-esimene-tagasiside-pilootprojektile-2020-3",
+      "documentId": "sotsiaaltoo-3-2020-integreeritud-tugiteenused-lastele-esimene-tagasiside-pilootprojektile-2020-3",
+      "historical": true,
+      "issueLabel": "3/2020",
+      "sourceType": "journal_article",
+      "document_id": "sotsiaaltoo-3-2020-integreeritud-tugiteenused-lastele-esimene-tagasiside-pilootprojektile-2020-3",
+      "source_type": "journal_article",
+      "collectionId": "sotsiaaltoo_articles",
+      "journalTitle": "Sotsiaaltöö",
+      "last_checked": "2026-08-15",
+      "collection_id": "sotsiaaltoo_articles",
+      "source_status": "active",
+      "source_warning": "historical",
+      "source_freshness": "historical",
+      "retrievalChannels": [
+        "dense"
+      ],
+      "source_checked_at": "2026-08-15T00:00:00.000Z",
+      "source_trust_type": "journal_article",
+      "retrieval_channels": [
+        "dense"
+      ]
+    },
+    {
+      "id": "sotsiaaltoo_teekond-inimesekeskse-teenusepakkumise-suunas-2020-3",
+      "year": 2020,
+      "pages": [
+        1,
+        2
+      ],
+      "title": "Teekond inimesekeskse teenusepakkumise suunas",
+      "authors": [
+        "Gerli Aavik-Märtmaa"
+      ],
+      "section": "Sotsiaalpoliitika",
+      "audience": "SOCIAL_WORKER",
+      "fileName": "Sotsiaaltoo_3_2020_web_link_Part6.pdf",
+      "sourceId": "sotsiaaltoo_teekond-inimesekeskse-teenusepakkumise-suunas-2020-3",
+      "authority": "editorial",
+      "pageRange": "1–2",
+      "short_ref": "Gerli Aavik-Märtmaa, 2020. Teekond inimesekeskse teenusepakkumise suunas. Sotsiaaltöö 3/2020 · lk 1–2 · Sotsiaalpoliitika",
+      "source_id": "sotsiaaltoo_teekond-inimesekeskse-teenusepakkumise-suunas-2020-3",
+      "documentId": "sotsiaaltoo-3-2020-teekond-inimesekeskse-teenusepakkumise-suunas-2020-3",
+      "historical": true,
+      "issueLabel": "3/2020",
+      "sourceType": "journal_article",
+      "document_id": "sotsiaaltoo-3-2020-teekond-inimesekeskse-teenusepakkumise-suunas-2020-3",
+      "source_type": "journal_article",
+      "collectionId": "sotsiaaltoo_articles",
+      "journalTitle": "Sotsiaaltöö",
+      "last_checked": "2026-04-28",
+      "collection_id": "sotsiaaltoo_articles",
+      "source_status": "active",
+      "source_warning": "historical",
+      "source_freshness": "historical",
+      "retrievalChannels": [
+        "dense"
+      ],
+      "source_checked_at": "2026-04-28T00:00:00.000Z",
+      "source_trust_type": "journal_article",
+      "retrieval_channels": [
+        "dense"
+      ]
+    }
+  ],
+  "previous_user_turns": 0,
+  "status": "PASS",
+  "assessment": "Vastus eristab lapse/peretoetuse, võrgustikutöö, inimesekesksuse ja hoolduskoordinatsiooni käsitlusi. Avatud paneel näitab nelja sisuliselt kasutatud allikat; kõrvaline Hiiumaa allikas puudub. Hinnang käib selle konkreetse vastuse kohta, mitte kogu Golden-komplekti kohta.",
+  "ui_source_panel": "Avatud: Alice Juurik (2019), Integreeritud teenused – kellele ja milleks?; Gerli Aavik (2018), Sotsiaalministeerium: kitsaskohad on meile teada, otsime aktiivselt toimivaid lahendusi; Eva Liina Kliiman (2020), Integreeritud tugiteenused lastele – esimene tagasiside pilootprojektile; Gerli Aavik-Märtmaa (2020), Teekond inimesekeskse teenusepakkumise suunas.",
+  "audit_omitted_fields": [
+    ".trace.selected_context_details.0.body_preview",
+    ".trace.selected_context_details.1.body_preview",
+    ".trace.selected_context_details.2.body_preview",
+    ".trace.selected_context_details.3.body_preview",
+    ".trace.selected_context_details.4.body_preview",
+    ".trace.selected_context_details.5.body_preview",
+    ".trace.selected_context_details.6.body_preview",
+    ".trace.selected_context_details.7.body_preview"
+  ]
+}

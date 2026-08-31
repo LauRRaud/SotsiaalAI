@@ -1,0 +1,235 @@
+{
+  "runtime_code_release": "f9ee2691f99ac372a317f4a7fc47da81540531a8",
+  "server_head": "9acf80968d9e683fe682de540dfb9a8a92296ccb",
+  "case": "M02",
+  "mode": "isolated",
+  "paired_answer_file": "isolated-M02.json",
+  "confirmed": {
+    "document_identity": {
+      "enabled": true,
+      "matched": true,
+      "reasons": [
+        "canonical_title_family_anchor:summary",
+        "source:research_or_journal",
+        "subject:epikoja",
+        "subject:taisealiste",
+        "subject:psuuhikahairega",
+        "subject:inimeste",
+        "subject:eestkostetavate",
+        "subject:tallinnale",
+        "subject:kontaktisiku",
+        "subject:juhtumikorralduse",
+        "document_anchor:taisealiste",
+        "document_anchor:tallinnale",
+        "channel:dense",
+        "channel:bm25",
+        "channel:title_match",
+        "current_turn_document_identity",
+        "decisive_canonical_title_family_anchor",
+        "decisive_ranked_title_lead"
+      ],
+      "required": true,
+      "candidates": [
+        {
+          "score": 129,
+          "title": "Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuringu kokkuvõte",
+          "document_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026",
+          "subject_terms": [
+            "epikoja",
+            "taisealiste",
+            "psuuhikahairega",
+            "inimeste",
+            "eestkostetavate",
+            "tallinnale",
+            "kontaktisiku",
+            "juhtumikorralduse"
+          ],
+          "author_matched": false,
+          "identity_matched": true,
+          "source_compatible": true,
+          "body_subject_terms": [],
+          "research_or_journal": true
+        },
+        {
+          "score": 117,
+          "title": "Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuringu lühikokkuvõte",
+          "document_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-luhikokkuvote-2026",
+          "subject_terms": [
+            "epikoja",
+            "taisealiste",
+            "psuuhikahairega",
+            "inimeste",
+            "eestkostetavate",
+            "tallinnale",
+            "kontaktisiku",
+            "juhtumikorralduse"
+          ],
+          "author_matched": false,
+          "identity_matched": true,
+          "source_compatible": true,
+          "body_subject_terms": [],
+          "research_or_journal": true
+        },
+        {
+          "score": 31,
+          "title": "Psüühikahäirega inimeste toetus- ja eestkostesüsteem vajab põhjalikku ümbermõtestamist",
+          "document_id": "sotsiaaltoo-2-2026-psuuhikahairega-inimeste-toetus-ja-eestkostesusteem-vajab-pohjalikku-u-2026",
+          "subject_terms": [
+            "taisealiste",
+            "psuuhikahairega",
+            "inimeste",
+            "eestkostetavate",
+            "tallinnale",
+            "juhtumikorralduse"
+          ],
+          "author_matched": false,
+          "identity_matched": true,
+          "source_compatible": true,
+          "body_subject_terms": [],
+          "research_or_journal": true
+        },
+        {
+          "score": 15,
+          "title": "Täiskasvanud erivajadusega inimeste abivajaduse hindamine ja teenuste osutamine",
+          "document_id": "praxis_centar_taiskasvanud_erivajadusega_inimeste_abivajaduse_hindamine_ja",
+          "subject_terms": [
+            "inimeste",
+            "soovitus",
+            "juhtumikorralduse"
+          ],
+          "author_matched": false,
+          "identity_matched": true,
+          "source_compatible": true,
+          "body_subject_terms": [],
+          "research_or_journal": true
+        },
+        {
+          "score": 12,
+          "title": "Täiskasvanud erivajadusega inimeste abivajaduse hindamine ja teenuste osutamine – lühikokkuvõte",
+          "document_id": "praxis_centar_taiskasvanud_erivajadusega_inimeste_abivajaduse_hindamine_ja_2",
+          "subject_terms": [
+            "inimeste",
+            "soovitus"
+          ],
+          "author_matched": false,
+          "identity_matched": true,
+          "source_compatible": true,
+          "body_subject_terms": [],
+          "research_or_journal": true
+        }
+      ],
+      "confidence": "high",
+      "duration_ms": 29,
+      "subject_terms": [
+        "epikoja",
+        "taisealiste",
+        "psuuhikahairega",
+        "inimeste",
+        "eestkostetavate",
+        "soovitus",
+        "anti",
+        "tallinnale",
+        "kontaktisiku",
+        "juhtumikorralduse"
+      ],
+      "selected_title": "Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuringu kokkuvõte",
+      "selected_document_id": "epikoda-taisealiste-psuuhikahairega-eestkostetavate-uuring-2026"
+    },
+    "morphology_available": true,
+    "requested_fact_recovery_query_count": 0,
+    "contract_complete": true,
+    "accepted_slot_indexes": [
+      1,
+      3,
+      4
+    ],
+    "missing_slot_indexes": [
+      2
+    ],
+    "validator_reason": "requested_fact_answer_incomplete"
+  },
+  "exact_runtime_fragment_replay": [
+    {
+      "slot": 2,
+      "text": "Abi osutamine on pigem tagajärgedega tegelemine kui ennetav märkamine ja abistamine.",
+      "hash": "f4172b7d5200deedc0a76ff8150062868da41a57884d72d90692c883cbb854cc",
+      "hash_matches": true,
+      "signature": {
+        "entries": [
+          {
+            "term": "tagajargedega",
+            "family": "provide",
+            "category": "enable"
+          }
+        ],
+        "terms": [
+          "tagajargedega"
+        ],
+        "families": [
+          "provide"
+        ],
+        "categories": [
+          "enable"
+        ],
+        "negated": false
+      }
+    },
+    {
+      "slot": 3,
+      "text": "Teenuste vahel puudub piisav koostöö, korduvad hindamised ja informatsiooni dubleerimine suurendavad koormust ning tekitavad ebakindlust ja stressi.",
+      "hash": "e4a490715780a0e17c433940ad1269c6f19552fce22b733fa310a8116bdc0a77",
+      "hash_matches": true,
+      "signature": {
+        "entries": [
+          {
+            "term": "suurendavad",
+            "family": "improve",
+            "category": "enable"
+          }
+        ],
+        "terms": [
+          "suurendavad"
+        ],
+        "families": [
+          "improve"
+        ],
+        "categories": [
+          "enable"
+        ],
+        "negated": false
+      }
+    },
+    {
+      "slot": 4,
+      "text": "Toetatud otsustamise teenus võib olla vajalik, kuid eestkoste seadmise võimalus peab alles jääma.",
+      "hash": "5acc2a5fde183754223613d003f61b810a9d3f5e6bffb9f2eed0547369924e3c",
+      "hash_matches": true,
+      "signature": {
+        "entries": [
+          {
+            "term": "positive_state",
+            "family": "positive_state",
+            "category": "enable"
+          }
+        ],
+        "terms": [
+          "positive_state"
+        ],
+        "families": [
+          "positive_state"
+        ],
+        "categories": [
+          "enable"
+        ],
+        "negated": false
+      }
+    }
+  ],
+  "limitations": [
+    "No new model request was made for diagnosis.",
+    "Rejected provider draft is not in the persisted answer; exact rejected wording and specific slot2 sub-gate remain NOT_PROVEN.",
+    "Passing a slot binding does not establish semantic correctness of the chosen recommendation.",
+    "Source bodies were inspected via GET of the existing public report, not via a new search."
+  ],
+  "replay_code": "import { createHash } from 'node:crypto';\nimport { qualitativeActionSignature } from './lib/chat/qualitativeActionSemantics.js';\nconst cases = [{\"slot\":2,\"text\":\"Abi osutamine on pigem tagajärgedega tegelemine kui ennetav märkamine ja abistamine.\",\"hash\":\"f4172b7d5200deedc0a76ff8150062868da41a57884d72d90692c883cbb854cc\"},{\"slot\":3,\"text\":\"Teenuste vahel puudub piisav koostöö, korduvad hindamised ja informatsiooni dubleerimine suurendavad koormust ning tekitavad ebakindlust ja stressi.\",\"hash\":\"e4a490715780a0e17c433940ad1269c6f19552fce22b733fa310a8116bdc0a77\"},{\"slot\":4,\"text\":\"Toetatud otsustamise teenus võib olla vajalik, kuid eestkoste seadmise võimalus peab alles jääma.\",\"hash\":\"5acc2a5fde183754223613d003f61b810a9d3f5e6bffb9f2eed0547369924e3c\"}];\nconsole.log(JSON.stringify(cases.map(c => ({...c, hash_matches: createHash('sha256').update(c.text).digest('hex') === c.hash, signature: qualitativeActionSignature(c.text)})), null, 2));"
+}

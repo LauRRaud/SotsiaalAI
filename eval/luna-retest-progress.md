@@ -3,12 +3,14 @@
 See fail on jooksvalt täidetav logi. Iga lõpetatud küsimus lisatakse kohe; pooleli
 jooksu tulemus ei jää ainult vestluse ajalukku.
 
-- Kood-SHA: `69aa09a36` (serveris deployitud 2026-08-30; frontend/RAG/research-worker aktiivsed, `/vestlus` 200)
+**Viimane jooks:** [31.08 soovituse rolli `42c52bf6` kordus](#31082026--soovituse-roll-ja-päris-tekstikonkurents-kood-42c52bf6). Allpool säilivad varasemate jooksude ajaloolised tulemused; projekti aktiivne seis on SotsiaalAI.md S1.0-s.
+
+- Algse logijooksu kood-SHA: `69aa09a36` (serveris deployitud 2026-08-30; frontend/RAG/research-worker aktiivsed, `/vestlus` 200)
 - 75 küsimust: põhinimetaja `75`
 - Golden: eraldi regressioonikomplekt `37`, ei lähe 75 nimetajasse
 - Küsimuste esitaja: Luna
 - Soli küsimuste jooks: keelatud
-- Praegune staatus: `FAASID 1–2 LÕPETATUD — runtime 69aa09a3; isolated 2 PASS / 1 PARTIAL / 8 FAIL, sequential 2 PASS / 2 PARTIAL / 7 FAIL; Golden-37 33 PASS / 0 PARTIAL / 4 FAIL; paus enne 75 küsimuse väravat`
+- Algse logijooksu staatus: `FAASID 1–2 LÕPETATUD — runtime 69aa09a3; isolated 2 PASS / 1 PARTIAL / 8 FAIL, sequential 2 PASS / 2 PARTIAL / 7 FAIL; Golden-37 33 PASS / 0 PARTIAL / 4 FAIL; paus enne 75 küsimuse väravat`
 
 ## Uus kordus — runtime `c21821c2`
 
@@ -1475,6 +1477,95 @@ Omanik kinnitas parandamise, commit/push/deploy ja sama nelja küsimuse kahefaas
 ### Uue korduse protokoll
 
 Samad täpsed küsimused ja vastuvõtukriteeriumid nagu eelmise release'i jaotises: M01, M02, integreeritud teenused, lapse heaolu. Isolated tähendab nelja uut tühja vestlust; sequential üht uut vestlust samas järjekorras. Iga vastuse järel salvestatakse täistekst, avatud allikapaneeli vaatlus ja sama ChatTurn'i serverijälg. Kordus algab alles pärast serveri koodiversiooni kontrolli; pärast kaheksandat vastust paus. Hinnet ei parandata varjatud lisakatsetega.
+
+| Juhtum | Isolated | Sequential |
+|---|---|---|
+| M01 | PASS | NOT_STARTED |
+| M02 | FAIL | NOT_STARTED |
+| Golden: integreeritud teenused | PASS | NOT_STARTED |
+| Golden: lapse heaolu | NOT_STARTED | NOT_STARTED |
+
+**Server kontrollitud:** GitHub/main ja server HEAD `9acf8096`, rakenduskood `f9ee2691`. Linuxi build läbis (30,4 s; 70/70); ootel migratsioone ei olnud. Frontend käivitus 12:28:25 EEST buildiga `QUKTsNcmz-Ip0UxrjKtJ_`. Kolm teenust aktiivsed, kohalik ja avalik `/vestlus` 200. RAG health `ok=true`, 49 727 vektorit, 6089 registrikirjet / 6073 aktiivset dokumenti; mõlemad FTS-indeksid ready. [Deploy tõend](../docs/audits/evidence/rag-retest-2026-08-31-f9ee2691/deployment.json). Ajastajaid ei aktiveeritud; standardne deploy puhastas taasloodavad cache'id ja ajutised rollback-arhiivid, säilitades kolm current-artifact varukoopiat.
+
+### I1 — M01 — PASS
+
+**Küsimus:** EPIKoja aruandes „Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuring” millist meetodit kasutati, millal uuring tehti ja kui palju inimesi osales?
+
+**Täpne vastus:**
+
+1. Meetodit kasutati: kvalitatiivset uurimismeetodit, andmeid koguti poolstruktureeritud individuaal- ja grupiintervjuude ning kirjaliku tagasiside kaudu.
+
+2. Uuring tehti: novembrist 2025 kuni märtsini 2026.
+
+3. Inimesi osales: kokku 42 inimest.
+
+**Hinnang:** Kõik kolm küsitud fakti ja õige EPIKoja allikas; M01 regressiooni ei ilmnenud.
+
+**Allikapaneel:** Avatud: Kristi Rekand, 2026. Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuringu kokkuvõte · lk 1–11, 14, 29, 33, 35, 37, 43
+
+**Runtime:** 2026-08-31T09:30:34.182 → 2026-08-31T09:30:36.985; varasemaid kasutajapöördeid 0. [Täisvastus ja paaristatud trace](../docs/audits/evidence/rag-retest-2026-08-31-f9ee2691/isolated-M01.json).
+
+### I2 — M02 — FAIL
+
+**Küsimus:** EPIKoja aruandes „Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuring” milline soovitus anti Tallinnale kontaktisiku või juhtumikorralduse kohta, milline ennetava abi kohta, milline teenustele pääsu ja korduvate hindamiste kohta ning milline toetatud otsustamise kohta?
+
+**Täpne vastus:**
+
+Ma ei saa kõiki küsitud osi valitud allika põhjal piisavalt kindlalt kinnitada.
+
+**Hinnang:** Kõik neli soovitust jäävad vastusest välja: üldine tõendipuuduse vastus püsib. Staatiliste paranduste läbimine ei tõendanud M02 runtime-paranemist.
+
+**Allikapaneel:** Allikanupp puudub; nähtud vastuse juures allikaid ei kuvata.
+
+**Runtime:** 2026-08-31T09:31:34.316 → 2026-08-31T09:31:38.12; varasemaid kasutajapöördeid 0. [Täisvastus ja paaristatud trace](../docs/audits/evidence/rag-retest-2026-08-31-f9ee2691/isolated-M02.json).
+
+### I3 — Golden: integreeritud teenused — PASS
+
+See küsimus oli saadetud enne omaniku korraldust peatuda ja M02 kohe uurida. Vastus säilitati; uusi küsimusi pärast korraldust ei esitatud.
+
+**Küsimus:** Mida kirjutab ajakiri Sotsiaaltöö integreeritud teenustest?
+
+**Täpne vastus:**
+
+Ajakiri Sotsiaaltöö käsitleb integreeritud teenuseid eelkõige inimesekeskse ja eri valdkondi ühendava korraldusena. Rõhk on sellel, et inimene või pere jõuaks vajaliku abini võimalikult sujuvalt ning tervise-, sotsiaal-, haridus- ja tööturuvaldkond ei tegutseks eraldi.
+
+Peamised rõhuasetused on järgmised:
+
+- Erivajadusega lapsed ja nende pered. 2020. aasta artiklis „Integreeritud tugiteenused lastele – esimene tagasiside pilootprojektile“ kirjeldatakse Sotsiaalministeeriumi, Haridus- ja Teadusministeeriumi, SA Innove ning Sotsiaalkindlustusameti koostööd. Piloodi eesmärk oli aidata erivajadusega lapsel ja tema perel jõuda vajalike teenusteni kiiresti ja mugavalt.
+
+- Võrgustikutöö lapse heaolu tagamisel. 2019. aasta käsitluses „Integreeritud teenused – kellele ja milleks?“ rõhutatakse, et pikaajalist tuge vajava lapse puhul on vaja mitme asutuse koostööd. Artiklis seostatakse seda nii sotsiaalhoolekande- kui ka lastekaitseseadusest tuleneva valdkondadevahelise koostööga.
+
+- Inimesekesksus ja teenuste mõju. Artiklis „Teekond inimesekeskse teenusepakkumise suunas“ tõstatatakse küsimused, kuidas suunata ressursse tõhusamalt, kasutada andmeid paremini, hinnata integreeritud teenuste mõju ning kujundada teenuseosutajatele motivatsiooni sellist lähenemist rakendada.
+
+- Tervise-, sotsiaal- ja töövaldkonna ühendamine. 2018. aasta kommentaaris kirjeldatakse lahendusi, millega püüti lähendada rehabilitatsiooni-, tervise-, sotsiaal- ja tööteenuseid. Samuti käsitletakse hoolduskoordinatsiooni mudeli katsetamist kuue omavalitsusega: suure ja keerulise hooldusvajadusega inimestele sooviti pakkuda senisest paremini korraldatud tuge nende kodu lähedal ning omavalitsusse kavandati hoolduskoordinaatori roll.
+
+Kokkuvõttes näeb ajakiri integreeritud teenuseid mitte ühe uue teenusena, vaid koostööviisina: riiklikul tasandil kujundatakse mudeleid ja katsetusi, omavalitsus koordineerib kohalikku tuge ning praktikas peavad erinevad teenuseosutajad jagama vastutust inimese või pere tervikvajaduse eest. Valitud käsitlused ei anna täielikku ülevaadet kõigist integreeritud teenuste rakendustest Eestis ega kinnita kirjeldatud pilootide praegust jätkumist.
+
+**Hinnang:** Vastus eristab lapse/peretoetuse, võrgustikutöö, inimesekesksuse ja hoolduskoordinatsiooni käsitlusi. Avatud paneel näitab nelja sisuliselt kasutatud allikat; kõrvaline Hiiumaa allikas puudub. Hinnang käib selle konkreetse vastuse kohta, mitte kogu Golden-komplekti kohta.
+
+**Allikapaneel:** Avatud: Alice Juurik (2019), Integreeritud teenused – kellele ja milleks?; Gerli Aavik (2018), Sotsiaalministeerium: kitsaskohad on meile teada, otsime aktiivselt toimivaid lahendusi; Eva Liina Kliiman (2020), Integreeritud tugiteenused lastele – esimene tagasiside pilootprojektile; Gerli Aavik-Märtmaa (2020), Teekond inimesekeskse teenusepakkumise suunas.
+
+**Runtime:** 2026-08-31T09:32:31.144 → 2026-08-31T09:32:36.798; varasemaid kasutajapöördeid 0. [Täisvastus ja paaristatud trace](../docs/audits/evidence/rag-retest-2026-08-31-f9ee2691/isolated-integrated.json).
+
+**Kordus pausil omaniku korraldusel:** tehtud 3/8 (2 PASS / 1 FAIL); lapse küsimus ja sequential-faas alustamata. Edasi uuritakse uut M02 põhjust, mitte ei jätkata küsimist.
+
+### M02 — kohese diagnoosi tulemus
+
+[Põhjalik diagnoos](../docs/audits/evidence/rag-retest-2026-08-31-f9ee2691/m02-diagnosis.md) ja [8 keha / 4 fragmendi iseseisev kordusarvutus](../docs/audits/evidence/rag-retest-2026-08-31-f9ee2691/m02-diagnostic-replay.json) on salvestatud. Hashid kattuvad runtime'iga. Ennetava abi leping loeb sõna `tagajärgedega` tegevuseks `provide`; teenuste osa loeb koormuse suurenemise tegevuseks `improve`; toetatud otsustamise osa võtab tingimusliku vajalikkuse arutelu konkreetse ettepaneku asemel. Lühema fragmendi eelistus valib võrdse skooriga valed kirjeldused. See on parandusse jäänud tõendifragmendi valiku ja tegevusetuvastuse rike.
+
+Viis piiratud abifunktsiooni kordusarvutust tõendavad nii korrektse soovituse tagasilükkamist kui puuduliku/väära väite läbimist. Need ei ole uued vestlusküsimused ega viis uut kvaliteedihinnet. Päris peidetud drafti sõnastus ja slot2 täpne alavärav jäävad NOT_PROVEN; vale tõendileping ning kogu vastuse keeldumisega asendamine on tõendatud. Diagnostika järel koodi ega serverit ei muudetud; failid on hetkel kohalikult salvestatud, uut commit/push'i diagnoosi ajal ei tehtud.
+
+## 31.08.2026 — soovituse roll ja päris tekstikonkurents, kood `42c52bf6`
+
+Omaniku uus korraldus: parandus, serveriuuendus ja samade nelja küsimuse kordus eraldi ning järjest (8 vastust), seejärel paus. Varasemat pooleli jäänud `f9ee2691` jooksu ei kirjutata ümber ega liideta uue nimetajaga.
+
+**Parandus:** soovituse tõend nõuab direktiivi/ettepanekut, mitte probleemikirjeldust või tingimuslikku vajalikkust. `tagajärgedega` ei vasta tegusõnale `tagama`. Sama filter mõjutab katvust, dokumendipiiriga taastamisotsingut ja lõplikku kvalitatiivlepingut. Validaatorit ei eemaldatud ega selle eitus-/objektipiire leevendatud; üldine kvalitatiivse osavastuse taastamine ja uus mustandi logimine ei kuulu sellesse parandusse.
+
+**Kontrollid:** olemasolev kitsas fail 17/17 ja olemasolev M02 neljaslotiline regressioon 1/1. Uus regressioon sisaldab kõiki kaheksat runtime'i tekstikeha ning õiget puuduvat ettepanekut; tulemus peab säilima ka vastupidises tekstijärjekorras. Korrektne neljaosaline vastus läbib, probleemilause, puuduva vältimisega vastus ja tingimuslik otsustamisteenuse vajadus ei läbi. ESLint ning diff-kontroll läbisid; lõplik integreeritud tootmisbuild läbis (33,5 s kompileerimine; 70/70 lehte), i18n:check läbis. Kohalik e-posti transpordi hoiatus ei kuulu selle RAG-tõendi ulatusse. Serveri migratsioonieelkontrollis pending=[]; serveriuuendus järgneb. Skeemi, ingest'i ja indekseid ei muudeta.
+
+### Korduse protokoll ja tabel
+
+Täpsed M01/M02/integreeritud teenuste/lapse heaolu küsimused jäävad samaks. Isoleeritud faasis neli uut tühja vestlust; järjestikfaasis üks uus vestlus samas järjekorras. Iga vastus salvestatakse kohe täisteksti, UI-allikavaatluse ja selle pöörde serverijäljega. Ei tehta peidetud lisakatseid ega nimetata seda 75/37 täisväravaks.
 
 | Juhtum | Isolated | Sequential |
 |---|---|---|
