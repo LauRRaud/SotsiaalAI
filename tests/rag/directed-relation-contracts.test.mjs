@@ -93,6 +93,14 @@ test("simple help questions for a client, social worker or service specialist ne
   }
 });
 
+test("siiski is not the sequence cue siis and cannot veto exact relation evidence", () => {
+  const lexicalNoise = "Eluasemepõhine lähenemine on pälvinud suurt tähelepanu, kuid vastav praktika on siiski veel napp.";
+  assert.equal(extractDirectedRelations(lexicalNoise).status, "NO_MATCH");
+  const fixture = setup({ bodies: [lexicalNoise, passage] });
+  assert.equal(fixture.built.trace.complete, true, JSON.stringify(fixture.built));
+  assert.equal(fixture.validate().passed, true, JSON.stringify(fixture.validate()));
+});
+
 test("an unbound duplicate cannot veto the same relation set from exact evidence", () => {
   const fixture = setup();
   const block = structuredClone(fixture.rendered.renderedBlocks[0]);
