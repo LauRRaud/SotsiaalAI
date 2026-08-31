@@ -3,7 +3,7 @@ import { test } from "node:test";
 import { createHash } from "node:crypto";
 import { buildQuestionPlan } from "../../lib/chat/questionPlanner.js";
 import { buildSemanticTurnContract } from "../../lib/chat/semanticTurnContract.js";
-import { groupMatches, buildContextWithBudget } from "../../lib/chat/ragContext.js";
+import { groupMatches, buildContextWithBudget, rankGroupsWithTopicHints } from "../../lib/chat/ragContext.js";
 import {
   buildPinnedDevelopmentContextUnit,
   buildRequestedQualitativeSlotContract
@@ -111,6 +111,7 @@ test("synthetic clipping markers stay visible but outside the exact evidence spa
   assert.equal(span.literal_original_start, 0);
   assert.equal(span.rendered_start_offset, 0);
   assert.equal(span.rendered_end_offset, block.evidenceText.length - 3);
+  assert.equal(span.synthetic_marker_chars, 3);
   assert.equal(block.evidenceText.slice(span.rendered_start_offset, span.rendered_end_offset),
     longBody.slice(span.start_offset, span.end_offset));
   assert.equal(fixture.built.trace.complete, true, JSON.stringify(fixture.built));
@@ -139,6 +140,7 @@ test("leading and trailing clipping markers preserve the bounded original span",
   assert.equal(span.literal_original_start, prefix.length);
   assert.equal(span.rendered_start_offset, 3);
   assert.equal(span.rendered_end_offset, block.evidenceText.length - 3);
+  assert.equal(span.synthetic_marker_chars, 6);
   assert.equal(span.rendered_body_hash, sha(renderedLiteral));
   assert.equal(block.evidenceText.slice(span.rendered_start_offset, span.rendered_end_offset), renderedLiteral);
   assert.equal(originalBody.slice(span.start_offset, span.end_offset), renderedLiteral);
@@ -157,6 +159,9 @@ test("multi-body offsets exclude clipping markers and include the separator gap"
   assert.equal(firstSpan.rendered_end_offset, separatorAt - 3);
   assert.equal(secondSpan.rendered_start_offset, separatorAt + 5);
   assert.equal(secondSpan.rendered_end_offset, block.evidenceText.length);
+  assert.equal(firstSpan.synthetic_marker_chars, 3);
+  assert.equal(secondSpan.synthetic_marker_chars, 0);
+  assert.equal(block.syntheticSeparatorChars, 5);
   const firstLiteral = block.evidenceText.slice(firstSpan.rendered_start_offset, firstSpan.rendered_end_offset);
   const secondLiteral = block.evidenceText.slice(secondSpan.rendered_start_offset, secondSpan.rendered_end_offset);
   assert.equal(firstLiteral, firstBody.slice(firstSpan.start_offset, firstSpan.end_offset));
@@ -180,6 +185,52 @@ test("a source-internal separator is not mistaken for a body boundary", () => {
   assert.equal(span.rendered_body_hash, sha(body));
   assert.equal(fixture.built.trace.complete, true, JSON.stringify(fixture.built));
   assert.equal(fixture.validate().passed, true, JSON.stringify(fixture.validate()));
+});
+
+test("topic ranking keeps immutable source bodies and their provenance intact", () => {
+  const prefix = "Üldine taust kirjeldab kodutuse poliitika kujunemist. ".repeat(40);
+  const relationBody = `${prefix}${passage}`;
+  const noiseBody = "Artikli muu osa käsitleb kohalike teenuste korraldust ja koostööd.";
+  const matches = [relationBody, noiseBody].map((text, index) => ({ text, metadata: {
+    doc_id: "directed-doc", source_id: "directed-source", chunk_id: `ranked-chunk-${index}`,
+    document_version: "fixture-v1", source_status: "active", source_type: "journal_article",
+    collection_id: "journal_articles", title: "Trepist üles või alla"
+  } }));
+  const ranked = rankGroupsWithTopicHints(groupMatches(matches), ["eluase", "rehabilitatsioon"]);
+  assert.equal(ranked[0].bodies[0], relationBody);
+  assert.equal(ranked[0].bodies[0].includes("\n---\n"), false);
+  const rendered = buildContextWithBudget(ranked, {
+    maxGroups: 1,
+    bodyMaxChars: 1100,
+    preferredTopicTerms: ["eluase", "rehabilitatsioon"]
+  });
+  const block = rendered.renderedBlocks[0];
+  const relationSpan = block.bodySpans.find(span =>
+    block.evidenceText.slice(span.rendered_start_offset, span.rendered_end_offset).includes("Eluasemepõhine")
+  );
+  assert.equal(relationSpan?.provenance?.length, 1);
+  assert.equal(relationSpan?.provenance?.[0]?.chunk_id, "ranked-chunk-0");
+  assert.equal(relationSpan?.literal_original_start > 0, true);
+  assert.equal(block.evidenceText.startsWith("..."), true);
+  const noiseSpan = block.bodySpans.find(span => span !== relationSpan);
+  assert.equal(noiseSpan?.provenance?.[0]?.chunk_id, "ranked-chunk-1");
+  assert.notEqual(relationSpan?.provenance?.[0]?.chunk_hash, noiseSpan?.provenance?.[0]?.chunk_hash);
+  const built = buildRequestedQualitativeSlotContract({
+    questionPlan: buildQuestionPlan({ message: question }),
+    renderedGroups: rendered.used,
+    renderedBlocks: rendered.renderedBlocks,
+    replyLang: "et",
+    specificResearchFactQuestion: true,
+    documentIdentityEvidence: identity
+  });
+  assert.equal(built.trace.complete, true, JSON.stringify(built));
+  assert.equal(built.trace.reason, "directed_relations_bound");
+  assert.equal(built.trace.mapped_slot_count, 1);
+  const locators = built.trace.slots[0].evidence_locators;
+  assert.equal(locators.length, 2);
+  assert.equal(locators.every(locator => locator.chunk_id === "ranked-chunk-0"), true);
+  assert.equal(locators.every(locator => locator.chunk_hash === relationSpan.provenance[0].chunk_hash), true);
+  assert.equal(locators.every(locator => locator.chunk_start >= relationSpan.start_offset), true);
 });
 
 test("an unbound duplicate cannot veto the same relation set from exact evidence", () => {
@@ -891,6 +942,7 @@ test("trace projection keeps relation hashes and coordinates but drops source te
       rendered_body_span_covered_chars: block.bodySpans.reduce((sum, span) =>
         sum + span.rendered_end_offset - span.rendered_start_offset, 0),
       rendered_body_external_gap_chars: 0,
+      rendered_body_synthetic_marker_chars: 0,
       rendered_body_uncovered_chars: 0,
       rendered_body_spans: block.bodySpans
     }],
@@ -909,6 +961,7 @@ test("trace projection keeps relation hashes and coordinates but drops source te
     assert.equal(projected.validation.response_decision.issuer, "directed_relation_contract_v1");
     assert.equal(projected.validation.directed_relation_evidence_locators.length, 2);
     assert.equal(projected.context[0].body_span_origin_bound_count, 1);
+    assert.equal(projected.context[0].rendered_body_synthetic_marker_chars, 0);
     assert.equal(projected.context[0].rendered_body_uncovered_chars, 0);
     assert.doesNotMatch(JSON.stringify(projected), /Eluasemepõhine|rehabilitatsioon|varem valitsenud/u);
   }

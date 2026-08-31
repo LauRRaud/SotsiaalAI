@@ -175,9 +175,9 @@ test("actual producer metric, recovery and timing keys survive projection", () =
     performance_timings: { retrieval_wall_ms: 234, fact_validation_ms: 9 },
     conversational_recovery: { active: true, action: "retry_same_question", trigger: "technical_retrieval_failure", question_asked: true, model_call_count: 1 },
     selected_context_details: [{ source_id: "doc-a", rendered_evidence_body_chars: 12000,
-      body_span_count: 8, body_span_origin_bound_count: 0, body_span_provenance_bound_count: 0,
-      rendered_body_span_covered_chars: 6392, rendered_body_external_gap_chars: 35,
-      rendered_body_uncovered_chars: 5573 }]
+      body_span_count: 8, body_span_origin_bound_count: 8, body_span_provenance_bound_count: 8,
+      rendered_body_span_covered_chars: 11947, rendered_body_external_gap_chars: 35,
+      rendered_body_synthetic_marker_chars: 18, rendered_body_uncovered_chars: 0 }]
   });
   assert.equal(result.validation.requested_metric_missing_slot_index, 2);
   assert.equal(result.validation.requested_fact_covered_slot_count, 1);
@@ -186,8 +186,9 @@ test("actual producer metric, recovery and timing keys survive projection", () =
   assert.equal(result.timings.fact_validation_ms, 9);
   assert.equal(result.recovery.trigger, "technical_retrieval_failure");
   assert.equal(result.context[0].body_span_count, 8);
-  assert.equal(result.context[0].body_span_origin_bound_count, 0);
-  assert.equal(result.context[0].rendered_body_uncovered_chars, 5573);
+  assert.equal(result.context[0].body_span_origin_bound_count, 8);
+  assert.equal(result.context[0].rendered_body_synthetic_marker_chars, 18);
+  assert.equal(result.context[0].rendered_body_uncovered_chars, 0);
 });
 
 test("a completed fallback still reports its recorded technical retrieval failure", () => {
