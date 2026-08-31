@@ -188,7 +188,8 @@ test("a source-internal separator is not mistaken for a body boundary", () => {
 });
 
 test("topic ranking keeps immutable source bodies and their provenance intact", () => {
-  const prefix = "Üldine taust kirjeldab kodutuse poliitika kujunemist. ".repeat(40);
+  const prefix = "Eluaseme korralduse üldkirjeldus mainib rehabilitatsiooni ainult taustana. " +
+    "Üldine taust kirjeldab kodutuse poliitika kujunemist. ".repeat(40);
   const relationBody = `${prefix}${passage}`;
   const noiseBody = "Artikli muu osa käsitleb kohalike teenuste korraldust ja koostööd.";
   const matches = [relationBody, noiseBody].map((text, index) => ({ text, metadata: {
@@ -196,13 +197,14 @@ test("topic ranking keeps immutable source bodies and their provenance intact", 
     document_version: "fixture-v1", source_status: "active", source_type: "journal_article",
     collection_id: "journal_articles", title: "Trepist üles või alla"
   } }));
-  const ranked = rankGroupsWithTopicHints(groupMatches(matches), ["eluase", "rehabilitatsioon"]);
+  const topicHints = ["eluase", "rehabilitatsioon", "järjekord"];
+  const ranked = rankGroupsWithTopicHints(groupMatches(matches), topicHints);
   assert.equal(ranked[0].bodies[0], relationBody);
   assert.equal(ranked[0].bodies[0].includes("\n---\n"), false);
   const rendered = buildContextWithBudget(ranked, {
     maxGroups: 1,
     bodyMaxChars: 1100,
-    preferredTopicTerms: ["eluase", "rehabilitatsioon"]
+    preferredTopicTerms: topicHints
   });
   const block = rendered.renderedBlocks[0];
   const relationSpan = block.bodySpans.find(span =>
@@ -212,6 +214,12 @@ test("topic ranking keeps immutable source bodies and their provenance intact", 
   assert.equal(relationSpan?.provenance?.[0]?.chunk_id, "ranked-chunk-0");
   assert.equal(relationSpan?.literal_original_start > 0, true);
   assert.equal(block.evidenceText.startsWith("..."), true);
+  const relationLiteral = block.evidenceText.slice(
+    relationSpan.rendered_start_offset,
+    relationSpan.rendered_end_offset
+  );
+  assert.match(relationLiteral, /kõigepealt rehabilitatsiooni/iu);
+  assert.match(relationLiteral, /enne eluase ja siis/iu);
   const noiseSpan = block.bodySpans.find(span => span !== relationSpan);
   assert.equal(noiseSpan?.provenance?.[0]?.chunk_id, "ranked-chunk-1");
   assert.notEqual(relationSpan?.provenance?.[0]?.chunk_hash, noiseSpan?.provenance?.[0]?.chunk_hash);
