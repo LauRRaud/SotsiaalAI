@@ -227,6 +227,16 @@ test("URL display rewriting never invents an original chunk coordinate", () => {
   assert.equal(result.trace.reason, "group_locator_missing");
 });
 
+test("URL display rewriting cannot relocate a clipped span to a later lookalike", () => {
+  const rawPrefix = `Viide https://xn--e1afmkfd.xn--p1ai/path.\n${passage} ${"Täiendav taust. ".repeat(120)}`;
+  const displayedPart = setup({ bodies: [rawPrefix] }).rendered.renderedBlocks[0].evidenceText;
+  const fixture = setup({ bodies: [`${rawPrefix}\n${displayedPart}`] });
+  const block = fixture.rendered.renderedBlocks[0];
+  assert.equal(block.evidenceText, displayedPart);
+  assert.equal(block.bodySpans[0].literal_original_start, null);
+  assert.equal(fixture.validate().trace.reason, "group_locator_missing");
+});
+
 test("duplicate bodies cannot conceal a missing/inactive/different-version provenance record", () => {
   const fixture = setup();
   for (const metadata of [{ source_status: "inactive" }, { document_version: "fixture-v2" }, { document_version: null }]) {

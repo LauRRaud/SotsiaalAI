@@ -101,6 +101,72 @@ test("siiski is not the sequence cue siis and cannot veto exact relation evidenc
   assert.equal(fixture.validate().passed, true, JSON.stringify(fixture.validate()));
 });
 
+test("synthetic clipping markers stay visible but outside the exact evidence span", () => {
+  const longBody = `${passage} ${"Täiendav taust ei muuda kirjeldatud sündmuste järjekorda. ".repeat(30)}`;
+  const fixture = setup({ bodies: [longBody] });
+  const block = fixture.rendered.renderedBlocks[0];
+  const span = block.bodySpans[0];
+  assert.equal(block.truncated, true);
+  assert.equal(block.evidenceText.endsWith("..."), true);
+  assert.equal(span.literal_original_start, 0);
+  assert.equal(span.rendered_start_offset, 0);
+  assert.equal(span.rendered_end_offset, block.evidenceText.length - 3);
+  assert.equal(block.evidenceText.slice(span.rendered_start_offset, span.rendered_end_offset),
+    longBody.slice(span.start_offset, span.end_offset));
+  assert.equal(fixture.built.trace.complete, true, JSON.stringify(fixture.built));
+  assert.equal(fixture.validate().passed, true, JSON.stringify(fixture.validate()));
+});
+
+test("leading and trailing clipping markers preserve the bounded original span", () => {
+  const prefix = "Varasem taust ei kirjelda küsitud arengut. ".repeat(20);
+  const target = "Praeguseks on teenuse süsteemne arendamine laienenud mitmesse piirkonda.";
+  const suffix = " Hilisem taust ei muuda kirjeldatud arengut.".repeat(20);
+  const originalBody = `${prefix}${target}${suffix}`;
+  const rendered = buildContextWithBudget(groupMatches([{ text: originalBody, metadata: {
+    doc_id: "development-doc", source_id: "development-source", chunk_id: "development-chunk",
+    document_version: "fixture-v1", source_status: "active", source_type: "journal_article",
+    collection_id: "journal_articles", title: "Teenuse areng"
+  } }]), {
+    maxGroups: 1,
+    preferredTopicTerms: ["areng"],
+    preferTemporalDevelopment: true
+  });
+  const block = rendered.renderedBlocks[0];
+  const span = block.bodySpans[0];
+  const renderedLiteral = block.evidenceText.slice(3, -3);
+  assert.equal(block.evidenceText.startsWith(`...${target}`), true);
+  assert.equal(block.evidenceText.endsWith("..."), true);
+  assert.equal(span.literal_original_start, prefix.length);
+  assert.equal(span.rendered_start_offset, 3);
+  assert.equal(span.rendered_end_offset, block.evidenceText.length - 3);
+  assert.equal(span.rendered_body_hash, sha(renderedLiteral));
+  assert.equal(block.evidenceText.slice(span.rendered_start_offset, span.rendered_end_offset), renderedLiteral);
+  assert.equal(originalBody.slice(span.start_offset, span.end_offset), renderedLiteral);
+});
+
+test("multi-body offsets exclude clipping markers and include the separator gap", () => {
+  const firstBody = "Esimese lõigu taust. ".repeat(100);
+  const fixture = setup({ bodies: [firstBody, passage] });
+  const block = fixture.rendered.renderedBlocks[0];
+  const [firstSpan, secondSpan] = block.bodySpans;
+  const separatorAt = block.evidenceText.indexOf("\n---\n");
+  assert.equal(block.bodySpans.length, 2);
+  assert.equal(separatorAt > 0, true);
+  assert.equal(block.evidenceText.slice(0, separatorAt).endsWith("..."), true);
+  assert.equal(firstSpan.rendered_start_offset, 0);
+  assert.equal(firstSpan.rendered_end_offset, separatorAt - 3);
+  assert.equal(secondSpan.rendered_start_offset, separatorAt + 5);
+  assert.equal(secondSpan.rendered_end_offset, block.evidenceText.length);
+  const firstLiteral = block.evidenceText.slice(firstSpan.rendered_start_offset, firstSpan.rendered_end_offset);
+  const secondLiteral = block.evidenceText.slice(secondSpan.rendered_start_offset, secondSpan.rendered_end_offset);
+  assert.equal(firstLiteral, firstBody.slice(firstSpan.start_offset, firstSpan.end_offset));
+  assert.equal(secondLiteral, passage);
+  assert.equal(firstSpan.rendered_body_hash, sha(firstLiteral));
+  assert.equal(secondSpan.rendered_body_hash, sha(secondLiteral));
+  assert.equal(fixture.built.trace.complete, true, JSON.stringify(fixture.built));
+  assert.equal(fixture.validate().passed, true, JSON.stringify(fixture.validate()));
+});
+
 test("an unbound duplicate cannot veto the same relation set from exact evidence", () => {
   const fixture = setup();
   const block = structuredClone(fixture.rendered.renderedBlocks[0]);
