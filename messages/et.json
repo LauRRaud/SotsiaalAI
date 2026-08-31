@@ -2759,6 +2759,53 @@
   },
   "chat": {
     "diagnostics": {
+      "decision_title": "Miks süsteem nii otsustas?",
+      "decision_boundary": "Need on salvestatud otsuse sisendid ja tingimused, mitte automaatne algpõhjuse garantii. Allikaaastate vastuolu korral võrdle küsimuse perioodi ja artikli ilmumisaastat. Ajaloo arvud kirjeldavad selle päringu valikut, mitte vestluse kogupikkust.",
+      "evidence_unknown": "Pole salvestatud / NOT_PROVEN",
+      "none_recorded": "Ühtegi ei salvestatud",
+      "yes": "Jah",
+      "no": "Ei",
+      "decision_fields": {
+        "source_years": "Planneri valitud allikaaastad",
+        "evidence_period_years": "Planneri valitud mõõtmisperioodi aastad",
+        "year_roles": "Kuidas aastamainimisi tõlgendati",
+        "unselected_source_years": "Allikaaastaks märgitud, kuid lõppvalikust välja jäetud",
+        "gate": "Otsustava värava põhjus",
+        "candidate": "Kandidaat enne lõppväravat",
+        "selected_source_year": "Kandidaadi allikaaasta",
+        "required_source_years": "Lukustamiseks nõutud aastad",
+        "confirmed_source_years": "Kandidaadil kinnitatud nõutud aastad",
+        "authors_confirmed": "Kõik nõutud autorid kinnitatud",
+        "request_history": "Päringuga saabunud ajaloosõnumeid",
+        "retrieval_history": "Otsinguajalugu: sisend → valitud",
+        "retrieval_reason": "Miks otsinguajalugu välja jäeti",
+        "model_history": "Mudeliajalugu: saadaval → valitud",
+        "model_reason": "Mudeliajaloo valiku põhjus",
+        "history_unknown": "Ajaloo valiku tõend"
+      },
+      "year_roles": {
+        "document_source_year": "allika ilmumisaasta",
+        "evidence_year": "tõendi või mõõtmisperioodi aasta",
+        "ambiguous": "ebaselge roll"
+      },
+      "decisions": {
+        "candidate_not_confirmed": "Kandidaat ei olnud lukustamiseks piisavalt kinnitatud.",
+        "previous_source_exact_filter": "Kinnitati varem viidatud täpselt sama allikas.",
+        "document_lock_confirmed": "Dokumendilukk kinnitati; selle värava tõrget ei esinenud.",
+        "source_years_unconfirmed": "Autor sobis, kuid kandidaat ei kinnitanud kõiki nõutud allikaaastaid. Ükski alternatiivne lukutingimus ei lubanud allikat kasutada; kontekst jäi sellel väraval välja.",
+        "document_anchor_not_confirmed": "Ükski nõutud dokumendiluku tingimuste kombinatsioon ei leidnud kinnitust.",
+        "trusted_document_id_mismatch": "Valitud kandidaat erines enne otsingut lukustatud dokumendist.",
+        "current_turn_document_lock_mismatch": "Dokumendipõhise lisaotsingu järel ei kinnitunud enam lukustatud dokument.",
+        "current_turn_document_lock_mismatch_after_recovery": "Taastava lisaotsingu järel ei kinnitunud enam lukustatud dokument."
+      },
+      "history_reasons": {
+        "canonical_retrieval": "Otsing kasutab küsimuse normaliseeritud eraldi otsinguplaani.",
+        "explicit_current_document": "Küsimus nimetab konkreetse dokumendi; varasemate allikate mõju jäeti välja.",
+        "self_contained_temporal": "Iseseisev ajaperioodi küsimus ei kasuta varasemat otsinguajalugu.",
+        "trusted_recovery": "Kasutati serveris kinnitatud taastamisajalugu.",
+        "context_dependent": "Küsimus sõltub eelnevast vestluskontekstist.",
+        "self_contained": "Küsimus hinnati iseseisvaks; mudelile varasemat ajalugu ei lisatud."
+      },
       "lease_expired": "Päringu südamelöök aegus. Serveri salvestatud olek oli RUNNING, kuid olemasoleva ajalimiidi järgi on päring ERROR; täpne katkestuse põhjus ei ole tõendatud.",
       "open": "Vaata vastuse diagnostikat",
       "report": "Diagnostikaaruanne",

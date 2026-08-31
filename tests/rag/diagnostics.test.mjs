@@ -5,6 +5,12 @@ import { buildDiagnosticReport, diagnosticReportMarkdown } from "../../lib/chat/
 import { GET } from "../../app/api/chat/conversations/[id]/diagnostics/route.js";
 import { persistDone } from "../../lib/chat/persistence.js";
 import { finalizeAssistantReply, buildImmediateChatResponse } from "../../lib/chat/responseFinalizer.js";
+import { describeSpecificResearchDocumentLock, describeSpecificResearchDocumentRecheck } from "../../lib/chat/retrievalContextAssembler.js";
+import { buildRagTraceFromAttribution } from "../../lib/chat/mainResponseHandler.js";
+import { diagnosticExplanationRows } from "../../lib/chat/ragDiagnosticExplanation.js";
+import { serverT } from "../../lib/i18n/serverMessages.js";
+import { buildQuestionPlan } from "../../lib/chat/questionPlanner.js";
+import { buildRagQueryPlan } from "../../lib/chat/queryPlanner.js";
 
 const trace = {
   query_plan: { mode: "exact", semantic_turn_contract: { history_reference: { explicit_source_anaphora: false, carry_previous_source_filter: false } } },
@@ -194,4 +200,98 @@ test("diagnostic API serves the same paired evidence as no-store JSON and Markdo
   const markdown = await GET(new Request(req().url + "?format=md&lang=et"), params, deps());
   assert.match(markdown.headers.get("content-disposition"), /attachment/);
   assert.match(await markdown.text(), /Question\?/);
+});
+
+const yearPlan = {
+  document_author_names: ["Example Author"],
+  document_source_years: ["2019", "2022"],
+  evidence_period_years: [],
+  semantic_candidates: { year_role_mentions: ["2019", "2022", "2023"].map(value => ({ value, role: "document_source_year", raw: "PRIVATE" })) }
+};
+const identityCandidate = {
+  enabled: true, required: true, matched: true, confidence: "high", selectedDocumentId: "doc-year-2023",
+  groups: [{ year: 2023 }], reasons: ["author_match:Example Author"],
+  candidates: [{ documentId: "doc-year-2023", identityMatched: true, authorMatched: true, resolvedSourceYear: 2023, sourceYearMatches: [], subjectMatches: ["PRIVATE"] }]
+};
+
+test("the actual lock decision records an author match and rejected year requirements without changing eligibility", () => {
+  const decision = describeSpecificResearchDocumentLock(yearPlan, identityCandidate);
+  assert.equal(decision.eligible, false);
+  assert.equal(decision.reason, "source_years_unconfirmed");
+  assert.equal(decision.checks.all_authors_confirmed, true);
+  assert.deepEqual(decision.unconfirmed_source_years, ["2019", "2022"]);
+  assert.equal(decision.selected_source_year, 2023);
+  const titlePlan = { ...yearPlan, semantic_candidates: { current_turn_document_identity: { title_hint: { provenance: "explicit_current_turn", value: "Exact title" } } } };
+  const titleDecision = describeSpecificResearchDocumentLock(titlePlan, { ...identityCandidate, reasons: [...identityCandidate.reasons, "exact_title_anchor"] });
+  assert.equal(titleDecision.eligible, true, "exact title remains an alternative to the year condition");
+  assert.equal(titleDecision.reason, "document_lock_confirmed");
+});
+
+test("recheck evidence belongs to the current candidate, not the previously locked source", () => {
+  const changed = { ...identityCandidate, selectedDocumentId: "other-doc", groups: [{ year: 2024 }] };
+  const recheck = describeSpecificResearchDocumentRecheck(changed, "doc-year-2023", "recovery_recheck");
+  assert.equal(recheck.candidate_document_id, "other-doc");
+  assert.equal(recheck.selected_source_year, 2024);
+  assert.equal(recheck.locked_document_id, "doc-year-2023");
+  assert.equal(recheck.checks.candidate_matches_locked_document, false);
+  assert.equal(recheck.eligible, false);
+  assert.equal(recheck.reason, "current_turn_document_lock_mismatch_after_recovery");
+  assert.equal(describeSpecificResearchDocumentRecheck(identityCandidate, "doc-year-2023", "scoped_search_recheck").eligible, true);
+});
+
+test("producer to canonical trace to reports retains terminal decision beyond twenty reasons", () => {
+  const decision = describeSpecificResearchDocumentLock(yearPlan, identityCandidate);
+  const actualQuestionPlan = buildQuestionPlan({ message: "Millises vahemikus oli Põhja-Pärnumaal mitme kuhjunud võlanõudega inimeste osakaal võlanõustamisele suunatutest aastatel 2019–2022, nagu kirjeldab Anneli Kaljuri 2023. aasta artikkel?", role: "social_worker" });
+  const actualQueryPlan = buildRagQueryPlan({ baseRagQueryText: "Põhja-Pärnumaa", effectiveMessage: "Põhja-Pärnumaa", rawHistory: [], effectiveMunicipalities: [], questionPlan: actualQuestionPlan }).queryPlan;
+  const canonical = buildRagTraceFromAttribution([], {}, {
+    queryPlan: actualQueryPlan,
+    documentIdentityEvidence: { ...identityCandidate, matched: false, selectedDocumentId: null, groups: [], decision, reasons: [...Array(25).fill("subject:PRIVATE"), "document_identity_not_lock_eligible"] },
+    diagnosticHistory: { request_raw_count: 4, normalized_client_count: 4, retrieval_input_count: 4, retrieval_selected_count: 0, model_available_count: 4, model_selected_count: 4, model_selection_reason: "context_dependent", retrieval_exclusion_reasons: ["explicit_current_document"], raw: "PRIVATE" }
+  });
+  assert.equal(canonical.document_identity.reasons_omitted, 6);
+  const d = buildRagDiagnostics({ trace: canonical });
+  assert.equal(d.first_observed_failure.id, "identity");
+  assert.equal(d.evidence.identity.decision.reason, "source_years_unconfirmed");
+  assert.deepEqual(d.evidence.plan.years.source_years, ["2019", "2022"]);
+  assert.deepEqual(d.evidence.plan.years.unselected_source_years, ["2023"]);
+  assert.deepEqual(d.evidence.plan.years.evidence_period_years, []);
+  assert.equal(d.evidence.identity.candidates[0].resolved_source_year, "2023");
+  assert.equal(d.evidence.history.retrieval_selected_count, 0);
+  assert.equal(d.evidence.history.model_selected_count, 4);
+  assert.equal(d.root_cause_status, "NOT_PROVEN");
+  assert.doesNotMatch(JSON.stringify(d), /PRIVATE|Example Author/);
+  const log = projectRagTraceForLog(canonical);
+  assert.equal(log.document_identity.decision.reason, "source_years_unconfirmed");
+  assert.equal(log.history_selection.model_selected_count, 4);
+  assert.doesNotMatch(JSON.stringify(log), /PRIVATE|Example Author/);
+  const md = diagnosticReportMarkdown(buildDiagnosticReport({ conversationId: "conversation01", turns: [turn], messages: [question, { ...answer, metadata: { rag_trace: canonical } }] }));
+  assert.match(md, /Autor sobis, kuid kandidaat ei kinnitanud/);
+  assert.match(md, /2019, 2022/);
+  assert.match(md, /Kandidaadi allikaaasta: 2023/);
+  assert.doesNotMatch(md, /PRIVATE|Example Author/);
+});
+
+test("missing old decision and history are explicitly unknown, never fabricated zeros", () => {
+  const d = buildRagDiagnostics({ trace: { ...trace, document_identity: { required: true, candidates: [{ document_id: "legacy" }] } } });
+  assert.equal(d.evidence.identity.decision, null);
+  assert.equal(d.evidence.history.observed, false);
+  assert.equal(Object.hasOwn(d.evidence.history, "request_raw_count"), false);
+  assert.equal(Object.hasOwn(d.evidence.identity.candidates[0], "source_year_matches"), false);
+  const rows = diagnosticExplanationRows(d, key => serverT("et", `chat.diagnostics.${key}`));
+  assert.match(rows.find(row => row.key === "gate").value, /NOT_PROVEN/);
+  assert.match(rows.find(row => row.key === "history_unknown").value, /NOT_PROVEN/);
+});
+
+test("new decision evidence rejects free-text enums, private anchor words and invalid years", () => {
+  const d = projectRagDiagnosticEvidence({
+    query_plan: { question_planner: { document_source_years: ["2023", "PRIVATE"] } },
+    answer_validation_contract_shadow: { planner: { fields: { year_role_mentions: { available: true, value: [{ value: "2023", role: "PRIVATE" }, { value: "secret", role: "document_source_year" }] } } } },
+    document_identity: { reasons: ["subject:PRIVATE", "body_subject:PRIVATE", "author_match:PRIVATE", "source_year:2023"], decision: { reason: "PRIVATE", selected_source_year: "sk-secret", candidate_confidence: "PRIVATE", author: "PRIVATE", checks: { raw: "PRIVATE" } } },
+    history_selection: { request_raw_count: -1, model_selection_reason: "PRIVATE", retrieval_exclusion_reasons: ["PRIVATE"] }
+  });
+  assert.doesNotMatch(JSON.stringify(d), /PRIVATE|sk-secret/);
+  assert.deepEqual(d.plan.years.source_years, ["2023"]);
+  assert.equal(d.plan.years.evidence_period_years, null);
+  assert.deepEqual(d.identity.reasons, ["source_year:2023"]);
+  assert.equal(Object.hasOwn(d.history, "request_raw_count"), false);
 });

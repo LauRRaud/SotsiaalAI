@@ -5,6 +5,7 @@ import Modal from "@/components/ui/Modal";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import styles from "./ChatDiagnosticsModal.module.css";
 import { selectDiagnosticReportRow } from "@/lib/chat/ragDiagnostics";
+import { diagnosticExplanationRows } from "@/lib/chat/ragDiagnosticExplanation";
 
 export default function ChatDiagnosticsModal({ conversationId, diagnosticRef = null, refreshKey, onClose }) {
   const { t, locale } = useI18n();
@@ -37,6 +38,7 @@ export default function ChatDiagnosticsModal({ conversationId, diagnosticRef = n
   const rows = report?.rows || [];
   const selected = selectDiagnosticReportRow(rows, selection);
   const diagnostic = selected?.diagnostics;
+  const decisionRows = diagnosticExplanationRows(diagnostic, label);
   const missingSlots = diagnostic?.evidence.validation.requested_fact_answer_missing_slot_indexes || [];
   const reason = diagnostic?.first_observed_failure?.code;
   const explanationKey = `chat.diagnostics.reasons.${reason}`;
@@ -73,6 +75,11 @@ export default function ChatDiagnosticsModal({ conversationId, diagnosticRef = n
           {missingSlots.length ? <p>{label("missing_slots")}: {missingSlots.join(", ")}. {label("slot_boundary")}</p> : null}
         </div>
         <section><h3>{label("question")}</h3><p className={styles.text}>{selected.question ?? label("unpaired")}</p></section>
+        <section aria-label={label("decision_title")}>
+          <h3>{label("decision_title")}</h3>
+          <p className={styles.text}>{label("decision_boundary")}</p>
+          <dl className={styles.sources}>{decisionRows.map(row => <div key={row.key}><dt>{row.label}</dt><dd className={styles.text}>{row.value}</dd></div>)}</dl>
+        </section>
         <ol className={styles.stages}>
           {diagnostic.stages.map((stage, index) => <li key={stage.id} data-status={stage.status}>
             <span className={styles.stageNumber}>{String(index + 1).padStart(2, "0")}</span>

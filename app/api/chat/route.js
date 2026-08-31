@@ -463,9 +463,19 @@ export async function POST(req, deps = {}) {
         }
       : {})
   };
+  const useAnswerHistory = shouldUseAnswerHistory(effectiveMessage);
   const modelHistory = recoveryContinuation
     ? trustedRagRecoveryModelHistory
-    : shouldUseAnswerHistory(effectiveMessage) ? history : [];
+    : useAnswerHistory ? history : [];
+  retrievalMeta.diagnosticHistory = {
+    ...(retrievalMeta.diagnosticHistory || {}),
+    request_raw_count: rawHistory.length,
+    normalized_client_count: history.length,
+    retrieval_input_origin: recoveryContinuation ? "trusted_recovery" : "client_payload",
+    model_available_count: recoveryContinuation ? trustedRagRecoveryModelHistory.length : history.length,
+    model_selected_count: modelHistory.length,
+    model_selection_reason: recoveryContinuation ? "trusted_recovery" : useAnswerHistory ? "context_dependent" : "self_contained"
+  };
   logChatInfo("answer.history_selection", {
     included: modelHistory.length > 0,
     messageCount: modelHistory.length,

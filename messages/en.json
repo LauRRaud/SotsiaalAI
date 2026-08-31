@@ -2759,6 +2759,53 @@
   },
   "chat": {
     "diagnostics": {
+      "decision_title": "Why did the system decide this?",
+      "decision_boundary": "These are recorded decision inputs and conditions, not a guarantee of root cause. If source years conflict, compare the question's measurement period with the publication year. History counts describe this request's selection, not the entire conversation.",
+      "evidence_unknown": "Not recorded / NOT_PROVEN",
+      "none_recorded": "None recorded",
+      "yes": "Yes",
+      "no": "No",
+      "decision_fields": {
+        "source_years": "Planner-selected source years",
+        "evidence_period_years": "Planner-selected measurement years",
+        "year_roles": "Interpretation of year mentions",
+        "unselected_source_years": "Marked as source years but omitted from final selection",
+        "gate": "Decisive gate reason",
+        "candidate": "Candidate before final gate",
+        "selected_source_year": "Candidate source year",
+        "required_source_years": "Years required for the lock",
+        "confirmed_source_years": "Required years confirmed by the candidate",
+        "authors_confirmed": "All requested authors confirmed",
+        "request_history": "History messages received with the request",
+        "retrieval_history": "Retrieval history: input → selected",
+        "retrieval_reason": "Why retrieval history was excluded",
+        "model_history": "Model history: available → selected",
+        "model_reason": "Model history selection reason",
+        "history_unknown": "History selection evidence"
+      },
+      "year_roles": {
+        "document_source_year": "publication year",
+        "evidence_year": "evidence or measurement year",
+        "ambiguous": "ambiguous role"
+      },
+      "decisions": {
+        "candidate_not_confirmed": "The candidate was not sufficiently confirmed for a lock.",
+        "previous_source_exact_filter": "The exact previously referenced source was confirmed.",
+        "document_lock_confirmed": "The document lock was confirmed; this gate did not fail.",
+        "source_years_unconfirmed": "The author matched, but the candidate did not confirm all required source years. No alternative lock condition allowed the source; it was excluded from context at this gate.",
+        "document_anchor_not_confirmed": "None of the required document-lock condition combinations was confirmed.",
+        "trusted_document_id_mismatch": "The selected candidate differed from the document locked before retrieval.",
+        "current_turn_document_lock_mismatch": "The locked document was not confirmed after document-scoped retrieval.",
+        "current_turn_document_lock_mismatch_after_recovery": "The locked document was not confirmed after recovery retrieval."
+      },
+      "history_reasons": {
+        "canonical_retrieval": "Retrieval uses the question's separate normalized plan.",
+        "explicit_current_document": "The question identifies a document; prior-source influence was excluded.",
+        "self_contained_temporal": "The self-contained period question does not use prior retrieval history.",
+        "trusted_recovery": "Server-confirmed recovery history was used.",
+        "context_dependent": "The question depends on preceding conversation context.",
+        "self_contained": "The question was considered self-contained; prior history was not added to the model."
+      },
       "lease_expired": "The request heartbeat expired. Its stored status was RUNNING, but the existing lease timeout resolves it to ERROR; the exact cause of interruption is not proven.",
       "open": "View answer diagnostics",
       "report": "Diagnostic report",
