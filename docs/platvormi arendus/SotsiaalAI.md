@@ -92,6 +92,8 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**31.08 omaniku tellitud põhjuseparandused; viimane fookus on kaks Golden-juhtumit.** M01/M02 ja Golden-parandused on harus `codex/repair-a`. Integreeritud teenuste tegelikul päringurajal välistatakse teenuseliigita reeglikatkend. Lapse heaolu täpne vana vastuse allikakatte kordusarvutus jätab neljast allikast alles käsiraamatu ja eraldi mudeli käsitluse; dubleeriv taust eemaldatakse ilma nimelist mudelit üldjuhendi alla peitmata. Detailid ja kontrollid on [Luna vahelogi viimases jaotises](../../eval/luna-retest-progress.md). Uusi serveri/in-app vastuseid pole: varasemad hinded säilivad, runtime on `NOT_PROVEN`. Järgmine samm vajab integratsiooni- ja deploy-luba ning seejärel kordusküsimusi eraldi ja järjest, mille järel paus. Vana ajapiiriga automaatjätku ei taasaktiveerita; viimase 17 vastuse loendus ei tõenda kogu RAG-i ega 75 küsimuse skoori.
+
 **31.08 ajapiiriga RAG-parandustsükkel on lõpetatud; kogu kvaliteet PARTIAL.** Tehti kuus parandus-/serveriuuenduse ringi. J05/J08/J11/J18/V05 läbisid viimases kahes ringis nii eraldi kui järjest5/5. Laiem kontroll: M01FAIL mõlemas, M02eraldiPARTIAL/järjestPASS sama RAG-kontekstiga; sünteesis püsib teenuseliigi segunemine ja lapse heaolu paneeli dubleerimine. Reklaami/sisukorra väär tõenditugi kõrvaldati. Viimase17vastuse lihtsustatud valimihinne on umbes8/10, mitte kogu75 ega Golden37 tulemus. Täisvastused, trace'id ja lahtiste põhjuste kaart on [Luna vahelogis](../../eval/luna-retest-progress.md); tegelik arhitektuur [RAG-masteris](../audits/rag-susteem-master.md). **Ajapiir31.08.2026kell02:15Europe/Tallinn või kasutuslimiit; automaatne jätk on PAUSED ja pärast limiidi taastumist ega hommikul ei jätkata.** Edasine töö ainult omaniku uue korraldusega; kõiki puudusi ega10/10ei kuulutata tõendatuks.
 
 **`0e63f11b` korduse 9 FAIL / 2 PARTIAL juhtumi teine põhjuseparandus on 30.08 toodangus release'il `1086090a`, kuid korduse tulemus on endiselt `PARTIAL`.** Local/origin/server SHA kattus, kolm teenust olid aktiivsed, `/vestlus` vastas 200 ning RAG health oli `ok=true` 49 727 vektori / 6089 dokumendiga; lexical- ja EstNLTK lemma-FTS olid `ready=true`. Samad 11 juhtumit andsid nii isolated- kui sequential-režiimis **0 PASS / 3 PARTIAL / 8 FAIL**: PARTIAL J11, J13 ja M02; FAIL J03, J05, J08, J14, J18, V04, V05 ja V06. Kümnel juhul vestlusajalugu staatust ei muutnud; J18 jäi FAIL-iks, kuid sequential-valik halvenes õigest Erle Eenmaa artiklist vale Merle Variku artiklini. Täpsed vastused ja nähtud allikad on [Luna vahelogis](../../eval/luna-retest-progress.md). Kokkuleppe järgi on nüüd paus; kogu 75 ja 37 Golden-küsimust on `NOT_STARTED`. Järgmine põhjuseparandus peab alustama toodangu trace'ist, sest õige dokumendi puhul jäävad mitme lõigu faktislotid endiselt vastusekontekstist või validaatori kattest välja ning J08/J18 näitavad jätkuvat vale dokumendi valikut.
@@ -3322,15 +3324,15 @@ Töökaust: `C:\Users\rauds\Desktop\SotsiaalAI`.
    kirjutaja ja üks failipiiridega sidus teema. Enne uut teemat peab haru olema puhas ning
    integreeritud `main`-iga samal lähte-SHA-l; ametlik DONE tekib alles integreeritud ja
    kontrollitud `main`-is. Täpne integratsiooni- ja konfliktikord on `AGENTS.md`-s.
-2. **Automaatseid teste ei looda ega käivitata.** Repo ei kanna lähtekoodi-, lepingu-, käitumis-,
-   privaatsus-, DB-, runtime-, smoke- ega E2E-teste ega nende fikstuure/proove. Ploki järel
-   kasutatakse ainult asjakohast eslinti ja `git diff --check` kontrolli; `i18n:check` lisandub
-   sõnumikataloogi või tõlkevõtmete ning `prisma validate` skeemi või migratsiooni muutusel.
-   Peatüki lõpus ja enne push'i/deploy'd tehakse üks tootmisbuild muutumatu koodipuu kohta.
-   Käitumine tõendatakse vajadusel käsitsi olemasolevas keskkonnas ning kontrollimata osa jääb
-   `NOT_PROVEN`. Admini RAG-lehe kasutaja käivitatav enesetest jääb operatiivse
-   tootefunktsioonina alles.
-3. **Push ja deploy ainult omaniku selgel loal.** Sama kehtib päris e-kirjade, päris maksete ja päris partnerini jõudmise kohta. *(Parandatud 06.08: siin seisis „merge ja deploy". Reegel 1 järgi käib töö otse `main`-is, seega merge'imist ei toimu ja väravaks on **push** — vana sõnastus jättis lokaalse commit'i ja `origin`-i vahelise sammu nimetamata.)*
+2. **Teste luuakse ja käivitatakse ainult arenduseks vajalikus ulatuses**, vastavalt `AGENTS.md`-le.
+   Iga sihttest tõendab konkreetse muudatuse riski või regressiooni; laia sviiti ega korduvaid
+   smoke-/E2E-proove ei tehta, kui kitsam kontroll piisab. Ploki järel kasutatakse asjakohast
+   eslinti ja `git diff --check` kontrolli; `i18n:check` lisandub tõlgete ning `prisma validate`
+   skeemi või migratsiooni muutusel. Peatüki lõpus ja enne push'i/deploy'd tehakse üks
+   tootmisbuild muutumatu koodipuu kohta. Vajalik pärisrada kontrollitakse olemasolevas
+   keskkonnas; kontrollimata runtime jääb `NOT_PROVEN`. Admini RAG-lehe kasutaja käivitatav
+   enesetest jääb operatiivse tootefunktsioonina alles.
+3. **Push, merge ja deploy ainult omaniku selgel loal**, vastavalt `AGENTS.md`-le. Sama kehtib päris e-kirjade, päris maksete ja päris partnerini jõudmise kohta. Parandustööpuu integratsioon `main`-i ei ole automaatne deploy-luba.
 4. **Ära loe tootmiskasutajate sisu** ega kasuta päris kasutajaid testimiseks.
 5. **Ära käivita `OPS-FINAL-A0`** — see on release candidate'i lõppvärav.
 6. **Ära korda teostaja staatilisi kontrolle, build'i ega auditeid**, kui sama muutumatu puu

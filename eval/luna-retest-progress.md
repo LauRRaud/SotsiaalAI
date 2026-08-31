@@ -1036,3 +1036,54 @@ Põhiviisik J05/J08/J11/J18/V05: **isolated5/5PASS, sequential5/5PASS**. Järjes
 **Hinnang:** viimase17vastuse proovikomplektis12PASS/3PARTIAL/2FAIL. Läbipaistva lihtsustatud arvutusega PASS=1,PARTIAL=0,5,FAIL=0 annab see13,5/17 ehk umbes **8/10**. See on kordusvastuste proovikomplekti orientiir, mitte kogu75 benchmark ega kogu RAG-i usaldusväärsuse tõestatud skoor. 75täisväravat ja Golden37täiskomplekti selle kahe tunni sees ei korratud. 10/10 ja „kõik parandatud” oleksid valed väited. Arvulise taastamise keeleline kuju on kohati kohmakas, kuigi küsitud faktid on õiged.
 
 Kokkulepitud piir:31.08.2026kell02:15Europe/Tallinn või kasutuslimiit varem. Töö suletakse selle piiri sees; tulemused ja diagnoos säilivad. Ajastatud jätk on PAUSED, limiidi taastumisel ega hommikul automaatselt ei jätkata. Edasine parandusring vajab omaniku uut korraldust.
+
+## 31.08.2026 — omaniku uus korraldus: 3 PARTIAL ja 2 FAIL põhjuseparandus
+
+See on uus käsitsi tellitud töö, mitte öise ajapiiriga tsükli automaatne jätk. Tööpuu `SotsiaalAI-repair-a`, haru `codex/repair-a`, lähte-SHA `e250d3b83360d4d66d4d64d067f8e0277a57b264`. Paranduskood ja allolevad kontrollid ei kirjuta vanu vastuseid ega hindeid ümber. Viis mitte-PASS tulemust on neli eri küsimust: M01 oli FAIL mõlemas režiimis.
+
+| Juhtum | Enne | Tõendatud põhjus ja parandus | Tõendamise piir |
+|---|---|---|---|
+| M01 | isolated FAIL; sequential FAIL | Lõppjutumärk ei lõpetanud tõendifragmenti; metafoorne „üks number süsteemis” laenas järgmise lause osalemisseose ja konkureeris 42 inimesega. Jutumärgipiir on parandatud ilma kandidaadiskoori või ambiguity-läve muutmiseta. Meetodi üldsõna/eelmise lause sõna ja kuupäevata järeldus enam kvalitatiivset slotti ei täida. | Vana lõppkonteksti ja päris avalike chunk'ide puhas rekonstruktsioon; uut UI-vastust pole. |
+| M02 | isolated PARTIAL; sequential PASS | Validaator luges kadunud ajutist plannerivälja, mitte kanoonilist semantilist lepingut. Nüüd käivitab ka valmis kvalitatiivleping kontrolli. „Toetatud otsustamine” nõuab mõlema seosesõna tõendit. Põhisoovitus eristub tulemuskõrvallausest, kuid küsitud teine objekt ja päris tegevus säilivad. | Täpse avaliku lk 53 soovitusega õige vastus läbib; keelav, eitav ja puuduva tegevusega vastus ei läbi. Uus production-dispatch on runtime'is kontrollimata. |
+| Golden: integreeritud teenused | PARTIAL | Õige artikkel leiti, kuid eraldi valitud chunk algas juba üldviitega „Teenuse eelarvet…”; rehabilitatsiooni referent jäi teise chunk'i. Lisaks lõigati järgmise lõigu teenusenimi pooleks. Süntees ei kasuta enam lahendamata üldviitega katkendit ega pooleks lõigatud lauset; eelarve ei kasva. | See välistab konkreetse toetamata seose, mitte ei taasta puudunud eelarveväite naaber-chunk'i. Uus vastusesüntees on NOT_PROVEN. |
+| Golden: lapse heaolu allikapaneel | PARTIAL | Põhijuhendi 55 toetatud väitest säilitati sisemiselt ainult esimesed 32; hilisemaid samu väiteid toetavad lisakirjed näisid seetõttu vajalikena. Sisemine kattegraaf kasutab kogu kuni 64 väite hulka; ainult otsuse diagnostika on 32 indeksiga piiratud. | Pikavastuse test tõendab hilise dubleeriva allika eemaldamist ja päriselt erineva meetodiallika säilimist; uue UI-paneeli täpne valik on NOT_PROVEN. |
+
+### Täpse rekonstruktsiooni täiendused
+
+- Aluseks jäid muutmata failid `docs/audits/evidence/rag-loop-2026-08-31-3b2ea8bb/r6-extra-iso-M01.json`, `r6-extra-seq-M01.json`, `r6-extra-iso-M02.json`, `r6-extra-seq-M02.json`, `r6-golden-integrated.json` ja `r6-golden-child.json` ning sama nimega vastuse-MD-d.
+- Avaliku EPIKoja dokumendi kaheksa serverichunk'i hashid kattusid M01 lõppkontekstiga. Algne rekonstruktsioon andis 31 arvukandidaati / 47 fragmenti / 19 sobivat kandidaati ja ambiguity: 42 skooriga 6,794 versus metafoorne 1 skooriga 6,506. Ainult jutumärgipiiri parandus eraldas järgmise lause ning 42 muutus üheselt seotuks; tegemist ei olnud tõendatud 42-versus-32 vastuoluga.
+- Sama vana M01 kontekst ei kinnita enam ekslikult meetodit ja aega: katvus on 1/3, puuduvad nullpõhised slotiindeksid `[0,1]`. Need jõuavad olemasoleva lukustatud `doc_id` taastamisotsingu sisendisse. Puuduva aja päring saab tüübiankrud `läbiviimine/aeg/periood`; meetod `uurimismeetod/andmekogumine/andmeanalüüs`.
+- Kui sama avaliku dokumendi tegelikud meetodi-/uuringuperioodi chunk'id lisada puhta abifunktsiooni sisendisse, tõstab kõigi slotide prioriseerija lk 6 tõendi ette ning seob kvalitatiivse uurimismeetodi, november 2025 – märts 2026 ja 42 inimese lepingud. Kõiki kolme osa sisaldav kontrollvastus läbib. See EI tõenda veel taastamisotsingu tegelikku serverileidmust ega mudeli uut vastust.
+- Integreeritud teenuste artikli valitud raw-chunk'ide räsid `d6add75770bac38b3895cf154a788e5c3d046cc92de92385f78ceee252ef5616` ja `20f75c3b3f610baf937dc0a64c99b775201a3d0d8782b44b5cce8fd7751863c3` kattusid trace'i original-body-räsidega. `rankGroupsWithTopicHints` / `prioritizeBodyPassage` neid ei muutnud. Uus filter ja sama 389-märgine cap jätsid alles 352 märki kahe terviklausega; referendita eelarveväide ja poolik `Rehabilitatsioonit...` kadusid.
+
+### Arenduskontrollid ja seis
+
+- 32 sihttesti PASS: uus nelja veajuhtumi komplekt 11/11, allikakatte komplekt 12/12, kitsalt valitud olemasolevad M02/kuupäeva/runtime-seose regressioonid 9/9. Kontrollid sisaldavad ka valesid vastuseid: poolik/ümberpööratud ajavahemik, teine kuupäev, puuduv soovitusobjekt, tegevuse eitus ja inversioon.
+- Muudetud JS/MJS failide ESLint: PASS. `TZ=UTC` oli sihttestidel määratud. Lai testisviit, 75 küsimust ega Golden37 tervikkomplekt ei käivitunud.
+- Tootmisbuild: PASS (Next.js 16.2.10, kompileerimine 45 s, 70/70 staatilist lehte); `i18n:check` PASS. Kasutati sama projekti olemasolevat konfiguratsiooni ainult build-protsessis, keskkonnafaile ei kopeeritud. Build hoiatas kohaliku e-posti transpordi puudumisest; päris kirju ei saadetud. `git diff --check`: PASS pärast dokumentatsiooni uuendust.
+- Arhitektuurikaart `docs/audits/rag-susteem-master.md` ja ainus elav seis `docs/platvormi arendus/SotsiaalAI.md` on samas parandustööpuus uuendatud. S11 vananenud automaattestikeeld ühtlustati kehtiva AGENTS.md vajalike sihttestide reegliga.
+- Commit, integratsioon `main`-i, push, deploy ja uued in-app küsimused: selles ülesandes tegemata. Varasemad FAIL/PARTIAL hinded säilivad kuni sama küsimuse ja režiimi uue vastuseni. Järgmine värav pärast omaniku luba: neli juhtumit esmalt isolated, seejärel sequential ja paus.
+- Vana ajastatud jätk jääb PAUSED. Uut automaatset tsüklit ega limiidijärgset jätkamist ei seatud. 12/3/2 on varasema 17 vastuse loendus, mitte kogu RAG-i või 75 küsimuse kvaliteediskoor.
+
+### 31.08 — kahe Golden-juhtumi täpne lisakontroll ja lõppparandus
+
+Omaniku uus fookus: integreeritud teenused ning lapse heaolu hindamine/allikapaneel. Uusi küsimusi ei saadetud; vana vastus ja hinnang jäid muutmata. Serverist loeti ainult nelja nimetatud avaliku allika katkeid; serveri koodi, korpust ega indekseid ei muudetud.
+
+**Integreeritud teenused.** Täpse küsimuse „Mida kirjutab ajakiri Sotsiaaltöö integreeritud teenustest?” ja R6 trace'i kontroll kinnitas `overview_synthesis=true`, `thematic_synthesis=true`, `specific_research_fact=false`, seega päris RCA-rada annab `requireSelfContainedPassages=true`. Selle juhtumi pakett- ega ajaline järelvalik tulemust üle ei kirjuta. Eelmises jaotises räsiga kinnitatud üldviiteline eelarvekatke eemaldatakse ning eraldi erihoolekande/rehabilitatsiooni koostöö kirjeldus säilib. Guardi aktiveerimiseks uut koodi polnud vaja. See ei ole veel uus mudelivastus.
+
+**Lapse heaolu.** Taastati kõik 13 R6 renderdatud body-katket neljast avalikust dokumendist: iga katke SHA-256 ja nelja allika ühendatud body-räsi kattusid vana trace'iga. Üheksa algkatket sobis pärast tavalist puhastamist, neli pärast sama küsimuse teemavihjetega `rankGroupsWithTopicHints` tööd. Vana vastuse 57 väite arvutus lähtekoodi `e250d3b8` all taastas täpselt 55/18/19/23 toetatud väite loendused, skoorid, nähtavad indeksid ja neli allikat.
+
+Ainult sisemise 32-indeksi piiri eemaldamine jättis ekslikult alles üksnes põhijuhendi: üldine leksikaalne kattuvus luges ka nimelise „Turvalisuse märkide” mudeli väite käsiraamatuga kaetuks. Seetõttu lisati sünteesi-/meetodirežiimidesse eraldi täieliku nimelise fraasi body-ankur. Nime olemasolu ei või tulla metadata ega renderdatud päise pealt; PDF-i `„T urvalisuse märkide“` algustäheviga parandatakse ainult võrdlemiseks. Üldist hägust nimede võrdsustamist, küsimusepõhist erandit ega EstNLTK ümbertõstmist ei lisatud. Bibliograafia, default- ja õigusvastuse rajad säilitavad senise lepingu.
+
+| Allikas | Vana arvutus | Lõplik parandatud arvutus samale vastusele |
+|---|---|---|
+| Lapse heaolu hindamise käsiraamat | 55 väidet; kuvatud | 54 väidet; kuvatud |
+| Helen Altoni „Turvalisuse märgid”, 2024 | 18 väidet; kuvatud | 18 väidet; kuvatud, nimelise mudeli eristuv tugi säilib |
+| Sirje Pindi artikkel, 2016 | 19 väidet; kuvatud | 19 väidet; peidetud `claim_support_subsumed` |
+| Kadi Lauri artikkel, 2017 | 23 väidet; kuvatud | 23 väidet; peidetud `claim_support_subsumed` |
+
+Masinloetav enne/pärast tõend: [r6-golden-child-source-cover-replay.json](../docs/audits/evidence/rag-loop-2026-08-31-3b2ea8bb/r6-golden-child-source-cover-replay.json). See on täpselt sama vana vastuse allikakatte puhas kordusarvutus, mitte uus genereeritud vastus ega allikapaneeli UI-test. Kaks allesjäänud allikat on selle konkreetse tõendi tulemus, mitte koodi sisse kirjutatud allikate arv. Üldine semantiline entailment, jutumärkideta mudelinimed ning kõik eesti käände-/astmevaheldusvormid ei ole selle kitsendusega tõendatud.
+
+**Kontrollid:** lõpliku täienduse allikakatte sihttestid 16/16 PASS; kaks muudetud JS/MJS faili ESLint PASS; `TZ=UTC`. Testid katavad pika vastuse hilise dubleerimise, erimeetodi säilimise, PDF-i lahutatud algustähe, vale mudelinime, hajutatud sõnad, ainult metadata/päise vaste, arvulise tõendi ja puhta autori-bibliograafia säilimise. Uue lõpliku koodipuu üks tootmisbuild PASS (Next.js 16.2.10, kompileerimine 32,7 s, 70/70 staatilist lehte); `i18n:check` PASS. Kohaliku e-posti transpordi hoiatused ei takistanud buildi; kirju ei saadetud. Varasema paranduse teisi juba rohelisi sihtteste ega 75/37 tervikkomplekti ei korratud.
+
+**Üleandmispiir:** muudatused on parandustööpuus, commit/main-integratsioon/push/deploy tegemata. Mõlema Golden-juhtumi runtime-hinnang jääb PARTIAL kuni uue autentitud in-app vastuse ja allikapaneeli kontrollini. Ajastatud jätk on endiselt PAUSED.

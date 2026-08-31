@@ -2,7 +2,7 @@
 
 Uuendatud: 31.08.2026
 Ulatus: autentitud vestlus, RAG-otsing, dokumendi ingest, indeksid, soojendus, tõendikontroll, allikad ja käitus
-Rakenduse RAG-loogika: `main`-haru arhitektuur
+Rakenduse RAG-loogika: käesoleva koodiversiooni arhitektuur
 
 ## 0. Dokumendi roll ja tõeallikad
 
@@ -577,11 +577,15 @@ Režiim võib kasutada spetsiifilisemat dokumendi- või grupieelarvet. Valitud `
 
 #### Lõplik renderdatud tõendileping
 
+Temaatilise ja ülevaatesünteesi kontekst nõuab iseseisvalt mõistetavaid katkendeid (`requireSelfContainedPassages`). Ajakirjakatkend, mis algab lahendamata üldviitega nagu „Teenuse eelarve…”, ei või võtta teenusenime teisest, otsingujärjestuses kõrval olevast katkendist. Selline body jäetakse enne eelarve jagamist kõrvale. Üks konkreetset liitsõnalist referenti nimetav kitsas allikapealkiri võib üldviite lahendada; mitu teenust nimetav pealkiri ei lahenda. Sama body sees oleva eelneva lause seos säilib. See piiratud leksikaalne kaitse ei ole üldine asesõnade lahendaja ega puuduva naaber-chunk'i automaatne taastamine.
+
+Samas sünteesirežiimis lõpeb kärbitud body viimase eelarvesse mahtuva terviklause juures. Aastaarvu järgarvupunkt (`2018. aastal`, ka `2018. ja 2019. aastal`) ei ole lauselõpp. Kui ühtegi terviklauset ei mahu, jäetakse sisutühi plokk lõppvalikust välja; `used`, `renderedBlocks` ja viitenumeratsioon jäävad vastavusse. Üldist märgieelarvet ei suurendata ning täpse uurimisfakti rada seda sünteesifiltrit ei kasuta.
+
 Numbriline faktileping ehitatakse valitud `budgeted.used` grupist ja sama indeksiga lõplikust `renderedBlocks[index]` tekstist; kvalitatiivne leping kasutab samast renderdatud tekstist koostatud `renderedEvidenceGroups` vaadet. Laiem grupi toorsisu ei tohi tõendada väärtust, mida mudelile tegelikult ei renderdatud.
 
 Leping aktiveerub ainult siis, kui planner'i slotiloend on täielik, dokumendiidentiteet on kõrge kindlusega ning kõik slotid seotakse üheselt ühe renderdatud `source_id`/`doc_id` tõendiga. Mitmetähenduslik, kärbitud või puudulik mapping jääb välja lülitatuks ja vastamine jätkub fail-closed piiriga.
 
-Iga seotud slot kannab vähemalt väärtusetüüpi ja tõendiväärtust ning vajaduse järgi ühikut, kvalifikaatorit, relation-term'e, ulatust, kardinaalsust ja minimaalset relation-term'ide kattuvust. Trace märgib aktiveeritud lepingu puhul `used_for_generation=true`, `used_for_validation=true` ning renderdatud tõendi räsi.
+Iga seotud slot kannab vähemalt väärtusetüüpi ja tõendiväärtust ning vajaduse järgi ühikut, kvalifikaatorit, relation-term'e, ulatust, kardinaalsust ja minimaalset relation-term'ide kattuvust. Builder märgib aktiveeritud lepingu puhul `used_for_generation=true`, kuid jätab `used_for_validation=false`. Viimane muutub vastuse töötlejas alles kontrollitud lepingu valideerimistulemuse põhjal; lepingu olemasolu üksi ei ole käivitustõend. Renderdatud tõendi räsi seob lepingu tegeliku kontekstiga.
 
 ### 9.5 EvidencePackage ja SourcePackage
 
@@ -677,6 +681,12 @@ Konkureeriv arvusilt peab täitma ka oma sloti kohaliku seosesignatuuri. Pelk ü
 
 ### 11.2 Vale vastuse korral
 
+Meetodi tõendis tuntakse ka liitsõnu `uurimismeetod` ja `sisuanalüüs`. Täpsustav ankur peab kuuluma samasse fraasi, mitte eelmisse lausesse; pealkirja „uuringu metoodika” üldsõna ega lauselõpu „näiteid” ei ole meetodinimetus. Tõendifragmentide ja vastuseüksuste lausepiir arvestab lõppjutumärki: tsitaadi arv ei või laenata järgmisest lausest osalemise või muu tegevuse seost. Järgarvulised aastad ja kuupäevad jäävad tervikuks.
+
+`qualitativeTimeSemantics` nõuab aja-slotilt tegelikku kalendripunkti/-vahemikku või toetatud suhtelist aega. Eesti kuunimed, kuupäevad ja aastad seotakse oma ajapunktiga; sama aastaarvu tokenit ei omistata uuesti järgmise kuu ette. Vastus säilitab vahemiku mõlemad otspunktid, suhtelise aja puhul kestuse, suuna ja võrdlussündmuse. Üldise „millal tehti” seob leping tegeliku uuringu läbiviimise predikaadiga, mitte sõnaga „tegemist” või alamrühma intervjuuperioodiga. Parser on piiratud ega taga kõigi keelte ja ajaväljendite katet. Sisuta ajaankur jätab sloti puuduvaks; olemasolev dokumendi-ID-ga lukustatud taastamisotsing kasutab puuduva sloti seosesõnu koos väärtusetüübi ankrutega (`uurimismeetod/andmekogumine/andmeanalüüs`, `läbiviimine/aeg/periood`).
+
+Kahe seosesõnaga soovituse tõend peab kinnitama mõlemad, näiteks nii toetamise kui ka otsustamise mõiste. Soovituse põhitegevust eristatakse lõpus olevast selgitavast relatiivlausest ainult siis, kui kõik lausega sobinud küsitud objektid säilivad põhilauses. Selgituse modaalne „mis võimaldab” ei ole iseseisev soovitus, kuid sõnaselgelt küsitud teine tegevus–objekt, näiteks korduvate hindamiste vältimine, jääb kohustuslikuks. Tegevuse vahetamine keelamiseks või eitamine ei läbi kontrolli.
+
 Täielikult läbitud renderdatud count/proportion-leping on oma sama allika kategooriaseoste autoriteetne kontroll. Kui dokumendiidentiteet on kohustuslik, sobiv ja kõrge kindlusega, kõik slotid on üheselt seotud ning leping viitab sobivale renderdatud allikale, ei rakendata neile lisaks vana pelgalt sõnavastavusel põhinevat kategooriaparserit. Arvude allikakate, protsendi/arvu seosed, aasta, üldkogumi piir ja kõik varasemad typed-slot'i väravad jäävad kehtima. Täieliku lepingu puudumisel jääb üldine kategooriakontroll jõusse.
 
 Validaatori läbikukkumine ei ole kasutajale nähtava vale teksti järel tehtav logimärge. Süsteem teeb fail-closed valiku:
@@ -689,7 +699,7 @@ Validaatori läbikukkumine ei ole kasutajale nähtava vale teksti järel tehtav 
 
 Tavapärane validator ei tee teist vabalt genereerivat paranduskutset. See piirab nii kulu kui ka võimalust, et „parandus” lisab uue tõendamata väite.
 
-Lepingu ehitus ja vastusevärava käivitamine on eri sammud. shouldValidateExactFactAnswer ei käivitu pelgalt enabled/complete requestedQualitativeSlotContract olemasolust: specific_research_fact haru loeb requestedFactSlotsFromRetrievalMeta kaudu planneri semantic_candidates.requested_fact_slots kuju. Kui see kuju puudub, võib kvalitatiivleping olla complete, kuid production validation jääda not_run. Tegelikku käivitust tuleb kontrollida validation_applied/production_path järgi, mitte builderi used_for_validation lipust. See on olemasolev dispatch'i piirang, mitte soovitud garantii.
+Lepingu ehitus ja vastusevärava käivitamine on eri sammud. `shouldValidateExactFactAnswer` loeb lõplikust `queryPlan.semantic_turn_contract` väljad `requested_facts` ja `requested_fact_contract`; vana `semantic_candidates.requested_fact_slots` on ainult tagasiühilduv fallback. Puudulikku kanoonilist plaani ei asendata vana täieliku plaaniga. Valmis `requestedQualitativeSlotContract` käivitab samuti vastuse kontrolli, ka siis, kui ajutine planneri pesa enam query-plan'is puudub. Pelk sünteesiplaani `text_relation` ilma täppisfakti režiimi või seotud kvalitatiivlepinguta ei käivita universaalset arvukontrolli. Tegelikku käivitust ja tulemust näitavad `validation_applied`, `production_path` ning faktivalideerimise trace.
 
 `recoverSupportedReplyAfterNumericValidation` saab taastada täielikult vastatava täpse dokumendifakti, kui ainus arvuvärava tõrge on `requested_metric_unexpected_numeric_claim`. Nõutavad on täielik `final_rendered_evidence` leping, kohustuslik ja kõrge kindlusega sobiv dokumendiidentiteet ning olemasolevad allikad. Taastamine piirdub üksikute count/proportion-slottidega ilma ulatusarvude või mitmekordse kardinaalsuseta. Arvuread ehitatakse renderdatud tõendi väärtusest, seosesildist, protsendiliigist ja kvalifikaatorist; kvalitatiivsed vastuseüksused säilivad ainult juba läbitud slotiseose alusel. Kõik küsitud kvalitatiivsed slotid peavad olema kaetud. Uus tekst läbib uuesti kogu `validateExactFactAnswer` kontrolli samade allikate ja metaandmetega. Puuduv meetod, vale põhiarv, nõrk identiteet või kordusvalideerimise tõrge ei muutu edukaks vastuseks. Mudeli lisaarvu ei kinnitata, uut mudelikutset ei tehta.
 
@@ -732,6 +742,8 @@ Kirjastuse tellimisreklaami tuvastus nõuab ajakirjaallikat, body alguses ajakir
 
 Režiimides overview_synthesis, thematic_synthesis ja professional_method_guidance arvutatakse ajakirjaallika sisuväite sõna-/fraasitugi renderdatud body pealt, eemaldades nummerdatud metadata päise. Ajakirja nimi, autor, rubriik või pealkirjamainimine üksi sisuväidet ei kinnita. Täpse artiklipealkirjaga viite ilmumisaasta võib tulla sama allika year-metadatast, kuid ülejäänud sisuline tugi peab leiduma bodys. Bibliograafiline inventar säilitab oma erandi. See on kitsas leksikaalne tugi, mitte semantilise entailment'i tõestus. Kui teenuse reegli katkend ei nimeta teenuse liiki, nõuab sünteesijuhis reegli väljajätmist või selle ulatuse ebakindluse nimetamist; puuduvat antecedenti ei hangita selle juhisega automaatselt.
 
+Nendes kolmes sünteesi-/meetodirežiimis peab jutumärkides nimelise mudeli, meetodi, raamistiku, tööriista, programmi või teenuse otsene väide sisaldama ka vastava nime ankrut renderdatud sisutekstis. Nimi tuvastatakse vahetult jutumärkidele eelneva või järgneva tüübisõna järgi. Kogu nime tokenid peavad sobima samas järjestikuses tekstiaknas; üks üldine ühissõna, eri lausetes paiknevad sõnad, metadata pealkiri ega renderdatud nummerdatud päis ei piisa. PDF-ist tulnud jutumärgisisene lahutatud algustäht liidetakse ainult võrdluskoopias; algne tõend, räsi ja kasutajale renderdatud tekst ei muutu. Olemasolev tokeni prefiksivõrdlus säilib, kuid see piiratud kontroll ei tõenda kõigi käände- ega astmevaheldusvormide sobitamist. Nimeankur on lisatingimus, mitte iseseisev väitetugi: sõna-/fraasi- ja arvukontrollid jäävad kehtima. Autori puhta bibliograafia, default- ja õigusvastuse rajale seda uut tingimust ei lisata.
+
 `lib/chat/sourceAttribution.js:buildSourceAttribution` jagab lõppvastuse väideteks ja võrdleb neid iga allika täpse `evidenceText`-iga. `evidenceText` ei ole kogu algdokument ega kõik retrieve'itud chunk'id, vaid mudelile päriselt renderdatud blokk.
 
 Kuvada ei tohi allikat, mis:
@@ -749,7 +761,7 @@ Väide selle kohta, et kasutatud allikad ei kinnita vastust või vajalikku infot
 
 #### Default-haru claim-cover ja redundantse toe kärbe
 
-Default-haru vähendab juba tõendi- ja claim-toe kontrolli läbinud kandidaatide redundantsust. Allikad järjestatakse claim-support'i skoori järgi kahanevalt, võrdse skoori korral säilib sisendjärjekord. Ühe deterministliku läbimise käigus jääb allikas alles, kui ta lisab vähemalt ühe seni katmata claim-indeksi; hilisem kandidaat peidetakse põhjusega `claim_support_subsumed` ainult siis, kui tema täielik claim-indeksite hulk on varem hoitud allikate ühendiga juba kaetud. Puuduliku või 32-indeksi trace-piiri tõttu kärbitud support-info korral allikas säilib, sest tema üleliigsus ei ole tõendatud. Registriviide ei suurenda kaetud claim-indeksite hulka ega saa seetõttu sisulist tõendiallikat redundantseks muuta.
+Default-haru vähendab juba tõendi- ja claim-toe kontrolli läbinud kandidaatide redundantsust. Allikad järjestatakse claim-support'i skoori järgi kahanevalt, võrdse skoori korral säilib sisendjärjekord. Ühe deterministliku läbimise käigus jääb allikas alles, kui ta lisab vähemalt ühe seni katmata claim-indeksi; hilisem kandidaat peidetakse põhjusega `claim_support_subsumed` ainult siis, kui tema täielik claim-indeksite hulk on varem hoitud allikate ühendiga juba kaetud. Sisemine võrdlus ja claim-support graph kasutavad kogu piiritletud väitehulka (kuni 64 väidet). 32-indeksi piir rakendub ainult serialiseeritud otsuse diagnostikale, mitte tõendikatte arvutusele. Välise puuduliku support-info korral allikas säilib, sest tema üleliigsus pole tõendatud. Registriviide ei suurenda kaetud claim-indeksite hulka ega saa seetõttu sisulist tõendiallikat redundantseks muuta.
 
 See on score-järjestuses greedy redundantsuskärbe, mitte matemaatiliselt väikseima allikakomplekti otsing ega semantilise entailment'i lisatõend. Ta ei rakenda fikseeritud allikaarvu, ei muuda retrieval'it ega mudelile antud konteksti ning ei eemalda allikat, mille teadaolev claim-tugi lisab uue väite. `claim_supported_source_ids` võib endiselt sisaldada peidetud redundantseid kandidaate; kasutajale kuvatav hulk ja `answer_source_ids` kirjeldavad lõplikult alles jäetud allikaid.
 

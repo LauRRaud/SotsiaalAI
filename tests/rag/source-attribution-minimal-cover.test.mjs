@@ -73,6 +73,90 @@ const twoClaimReply = [
   "Säilita sõnumid ja ekraanipildid tõenditena."
 ].join(" ");
 
+test("long answers use complete internal claim coverage beyond the trace limit", () => {
+  const statements = Array.from({ length: 40 }, (_, index) =>
+    `Hindamisvaldkond ${index + 1}: hinnatakse lapse turvalisust ja toimetulekut.`);
+  const method = "Erimeetod kasutab turvavõrgustiku genogrammi ning kokkuleppelist skaalaankrut.";
+  const result = buildSourceAttribution([...statements, method].join("\n"), [
+    guideline("primary", "Põhijuhend", statements.join("\n")),
+    guideline("late-duplicate", "Täiendav käsitlus", statements.slice(32).join("\n")),
+    guideline("distinct-method", "Eraldi mudel", method)
+  ], { queryPlan: { mode: "professional_method_guidance", needs_multiple_sources: true } });
+  assert.deepEqual(new Set(result.displayed_source_ids), new Set(["primary", "distinct-method"]));
+  assert.equal(result.filter_reasons["late-duplicate"], "claim_support_subsumed");
+  const primary = result.attribution_decisions.find(item => item.source_id === "primary");
+  assert.equal(primary.supported_claim_count, 40);
+  assert.equal(primary.supported_claim_indices.length, 32);
+  assert.equal(result.claim_support_graph[39].supporting_source_ids.includes("primary"), true);
+});
+
+test("long method guidance keeps the named model source while suppressing late duplicates", () => {
+  const statements = Array.from({ length: 40 }, (_, index) =>
+    `Hindamisvaldkond ${index + 1}: hinnatakse lapse turvalisust ja toimetulekut.`);
+  const modelClaim = "„Turvalisuse märkide“ mudelit on Eestis käsitletud täiendava juhtumikorralduse töövahendina.";
+  const result = buildSourceAttribution([...statements, modelClaim].join("\n"), [
+    guideline("primary", "Põhijuhend", statements.join("\n") +
+      " Eestis käsitletakse juhtumikorralduse töövahendina lapse heaolu kolmnurka."),
+    guideline("late-duplicate", "Täiendav käsitlus", statements.slice(32).join("\n")),
+    { source_id: "named-model", source_type: "journal_article", title: "Täiendav juhtumikorraldusmudel",
+      evidenceText: "„T urvalisuse märkide“ mudelit saab ühildada Eestis kasutatavate juhtumikorralduse töövahenditega." }
+  ], { queryPlan: { mode: "professional_method_guidance", needs_multiple_sources: true } });
+  assert.deepEqual(new Set(result.displayed_source_ids), new Set(["primary", "named-model"]));
+  assert.deepEqual(result.claim_support_graph.at(-1).supporting_source_ids, ["named-model"]);
+  assert.equal(result.filter_reasons["late-duplicate"], "claim_support_subsumed");
+});
+
+test("named objects require the complete ordered phrase in body evidence, not metadata", () => {
+  const claim = "„Turvalisuse märkide“ mudel toetab lapse hindamist ja pere kaasamist.";
+  for (const sourceType of ["journal_article", "official_guideline"]) {
+    const sources = [
+      { source_id: "actual", source_type: sourceType, title: "Täiendav mudel", evidenceText: claim },
+      { source_id: "title-only", source_type: sourceType, title: "Turvalisuse märkide mudel",
+        evidenceText: "Mudel toetab lapse hindamist ja pere kaasamist." },
+      { source_id: "header-only", source_type: sourceType, title: "Turvalisuse märkide mudel",
+        evidenceText: "(1) Turvalisuse märkide mudel\nMudel toetab lapse hindamist ja pere kaasamist." },
+      { source_id: "different-name", source_type: sourceType, title: "Teine mudel",
+        evidenceText: "„Turvalisuse käikide“ mudel toetab lapse hindamist ja pere kaasamist." },
+      { source_id: "scattered", source_type: sourceType, title: "Hindamisjuhend",
+        evidenceText: "Turvalisuse hindamisel on tähtis pere kaasamine. Märkide mudel toetab lapse hindamist." }
+    ];
+    const result = buildSourceAttribution(claim, sources,
+      { queryPlan: { mode: "professional_method_guidance", needs_multiple_sources: true } });
+    assert.deepEqual(result.claim_supported_source_ids, ["actual"]);
+    assert.deepEqual(result.displayed_source_ids, ["actual"]);
+  }
+});
+
+test("named service and method anchors retain suffix matching and numeric evidence checks", () => {
+  for (const [claim, evidence] of [
+    ["Meetod „Toetatud otsustamise“ parandas osalemist 3 rühmas.",
+      "Toetatud otsustamisest lähtuv meetod parandas osalemist 3 rühmas."],
+    ["Teenuse «Kogukonna toetus» kaudu jõudis abini 3 peret.",
+      "Kogukonna toetus jõudis 3 pereni ning teenuse kaudu pakuti abi."],
+    ['The "Shared decisions" method improved participation in 3 groups.',
+      'The Shared decisions method improved participation in 3 groups.']
+  ]) {
+    const result = buildSourceAttribution(claim, [
+      guideline("actual", "Juhend", evidence),
+      guideline("name-without-number", "Meetodinimi", evidence.replace(/3/gu, "9"))
+    ], { queryPlan: { mode: "professional_method_guidance", needs_multiple_sources: true } });
+    assert.deepEqual(result.claim_supported_source_ids, ["actual"]);
+  }
+});
+
+test("named-object body guards do not change pure authored-work bibliography", () => {
+  const source = { source_id: "authored-model", source_type: "journal_article",
+    title: "„Turvalisuse märkide“ mudel", authors: ["Marin Vaher"],
+    evidenceText: "NR 4/2023 ISSN 1406-8826 Kuidas pakkuda inimesele terviklikku tuge? Rehabilitatsiooniteenuse muudatused ja asutuste kogemused Sotsiaaltöötaja aitab raviteekonnal vastu pidada Millist tuge vajab õpilane koolis?" };
+  const options = { query: "Millised artiklid kirjutas Marin Vaher?",
+    queryPlan: { mode: "person_source_lookup", person_name: "Marin Vaher", person_source_intent: "authored_works" } };
+  assert.equal(isJournalFrontMatter(source.evidenceText, source), true);
+  assert.deepEqual(buildSourceAttribution("Marin Vaher — „Turvalisuse märkide“ mudel.", [source], options)
+    .displayed_source_ids, ["authored-model"]);
+  assert.deepEqual(buildSourceAttribution("Marin Vaher kirjutas artikli „Turvalisuse märkide“ mudel, mis tõendab rehabilitatsiooniteenuse muudatusi.", [source], options)
+    .displayed_source_ids, []);
+});
+
 test("default single-topic attribution suppresses lower-ranked subsumed claim support", () => {
   const result = buildSourceAttribution(twoClaimReply, [
     guideline(
