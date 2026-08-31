@@ -855,6 +855,22 @@ SSE sündmused on `meta`, `delta`, `done` ja `error`; ühenduse elushoidmiseks s
 
 Stop/abort salvestab ainult tegelikult kasutajale emititud teksti `ABORTED` olekus. Range validaatori taga puhverdatud, kuid kuvamata provideritekst visatakse ära.
 
+### 13.5 Vastuse diagnostika ja automaatne vestlusaruanne
+
+Administraatori enda eravestluses avab vastuse kõrval olev „Vaata vastuse diagnostikat” selle **püsiva assistendisõnumi** kirje. „Diagnostikaaruanne” avab kogu vestluse koondi. Vaade laaditakse ainult avamisel ning värskendatakse avatud vaates uue pöörde lõppedes; käsitsi värskendus on samuti olemas. Ruumi- ja teiste kasutajate vestlustele uut ligipääsu ei lisata.
+
+`ConversationMessage.metadata.rag_diagnostics` salvestatakse lõpptehingus koos vastuse, lõpetamisoleku ja kasutusega. See sisaldab piiratud tõendiprojektsiooni, vaatlusastmeid ning pöörde, katse ja kasutajasõnumi seost. UI viide on `message:<assistantMessageId>`, mitte kohalik sõnumi järjekorranumber ega korduskatsel taaskasutatav `ChatTurn.id`. Katse varasem vastus säilib oma message-ID all; tema küsimus seotakse ainult salvestatud seosetõendi abil. Vanade paaristamata sõnumite puhul ei oletata seost ajalise läheduse järgi. Puuduv üksikvastuse viide ei ava viimase vastuse diagnostikat.
+
+`GET /api/chat/conversations/[id]/diagnostics` nõuab korraga administraatoriõigust, vestluse omandit ja mittearhiveeritud vestlust. Vastus on `no-store` ja päringupiiranguga. Koond tuletatakse `ChatTurn` + `ConversationMessage` kirjetest; `?format=md&lang=et` annab automaatselt koostatava Markdowni dokumendi. Iga kirje sisaldab salvestatud küsimust ja vastust, katset, tehnilist olekut, esimest täheldatud tõrget, allikakihtide ID-sid ning piiratud kontrollitõendeid. Fail on allalaadimishetke koopia, mitte taustal muudetav Wordi fail. Raport järgib vestluse olemasolevat säilitust; eraldi andmekoopiat, DB-skeemi ega ajastatud tööd ei lisata. Ühe väljavõtte piir on 1000 pööret / 2000 sõnumit; piiri korral on tulemus nähtavalt **osalise aruandena** märgitud.
+
+Diagnoos eristab planeerimist, otsingut, dokumendiidentiteeti, mudelikonteksti, faktivalideerimist, allikate kuvamist ja salvestamist. `BLOCKED` näitab salvestatud blokeerinud kontrolli, **mitte tõendatud algpõhjust**. `NO_FAILURE_OBSERVED` ei ole vastuse sisulise õigsuse PASS. Sisuline õigsus ja algpõhjus jäävad automaatselt `NOT_PROVEN`; neid tuleb kontrollida originaalallika ja vajadusel teise sõnastuse või eraldi/järjestikuse kordusega. Null otsingutulemust ei tõesta allika puudumist korpusest. Aegunud `RUNNING` kasutab sama lease-tuletust nagu `/api/chat/run`; raport säilitab nii algse kui tuletatud oleku.
+
+`lib/chat/ragDiagnostics.js` kasutab võtmete lubatud loendit: ID-d, räsid, enum-id, tõeväärtused, loendurid ja päriselt toodetud ajastused. Uusi prompt'e, body preview'sid, valideerimiseelset mudelimustandit ega vabatekstilisi planneri ankruloendeid projektsiooni ei lisata. Kärped, puuduvad sektsioonid ja puuduva versioonitõendi väljad on märgitud; `BOUNDED` ei tähenda täielikku toorjälge. Üldine `ChatLog` saab eraldi `rag_diagnostic_log_v1` projektsiooni, et vana 30 võtme piir ei kaotaks validaatorit ja kuvatud allikaid. Kriisifilter kasutab endiselt säilitatud `isCrisis` lippu; üldise privaatsusredaktori piiranguid ei lõdvendata.
+
+Serverisse mitte jõudnud küsimusel ega salvestuse täielikul ebaõnnestumisel ei pruugi koondis kirjet olla. Need piirid ja puuduv jälg peavad jääma nähtavaks, mitte muutuma automaatselt edukaks tulemuseks.
+
+31.08.2026 arenduse sihttõend: `TZ=UTC` diagnostika 18 sihttesti, muudetud JS-failide ESLint, `i18n:check`, `git diff --check` ja lõpliku koodipuu build läbisid. Kohalik sünteetilise admini käsitsi brauserirada tõendas ühe päriselt salvestatud küsimuse püsiviite, `technical_retrieval_failure` õige etapi, Markdowni allalaadimise ning 1440 × 1000 / 390 × 844 paigutuse ja Escape-sulgemise. See ei ole edukate RAG-vastuste kvaliteedimaatriks ega omaniku serverisessiooni kontroll.
+
 ## 14. Dokumendi ja artikli ingest
 
 ### 14.1 Ingesti sisenemispunktid

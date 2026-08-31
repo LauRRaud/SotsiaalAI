@@ -683,6 +683,7 @@ async function readPersistedConversationResult({
   const normalize = normalizeSources || defaultNormalizeSources;
   return {
     text: String(payload.text || "").trim(),
+    diagnosticRef: typeof payload.diagnosticRef === "string" ? payload.diagnosticRef : null,
     sources: normalize(
       Array.isArray(payload.displayed_sources)
         ? payload.displayed_sources
@@ -978,6 +979,7 @@ export function useChatStream(config) {
       cfg.mutateMessage?.(streamingMessageId, message => ({
         ...message,
         text: persisted.text,
+        diagnosticRef: persisted.diagnosticRef,
         sources: persisted.sources,
         attachments: persisted.attachments,
         cards: persisted.cards,
@@ -1730,6 +1732,7 @@ export function useChatStream(config) {
           cfg.mutateMessage?.(streamingMessageId, msg => ({
             ...msg,
             text: replyText,
+            diagnosticRef: typeof data?.diagnosticRef === "string" ? data.diagnosticRef : null,
             sources: normSources,
             attachments,
             cards,
@@ -1807,6 +1810,9 @@ export function useChatStream(config) {
             streamCompleted = true;
             try {
               const payload = ev?.data ? JSON.parse(ev.data) : {};
+              if (typeof payload?.diagnosticRef === "string") {
+                cfg.mutateMessage?.(streamingMessageId, msg => ({ ...msg, diagnosticRef: payload.diagnosticRef }));
+              }
               attachments = normalizeAttachments(payload?.attachments);
               cards = normalizeCards(payload?.cards);
               const doneSources = Array.isArray(payload?.displayed_sources)
@@ -1843,6 +1849,7 @@ export function useChatStream(config) {
             throw createLocalizedError("chat.error.stream_incomplete");
           }
           visibleText = confirmed.text || visibleText;
+          if (confirmed.diagnosticRef) cfg.mutateMessage?.(streamingMessageId, msg => ({ ...msg, diagnosticRef: confirmed.diagnosticRef }));
           sources = confirmed.sources?.length ? confirmed.sources : sources;
           attachments = confirmed.attachments?.length ? confirmed.attachments : attachments;
           cards = confirmed.cards?.length ? confirmed.cards : cards;

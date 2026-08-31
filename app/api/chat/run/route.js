@@ -178,6 +178,7 @@ export async function GET(req) {
         },
         orderBy: { createdAt: "desc" },
         select: {
+          id: true,
           role: true,
           content: true,
           metadata: true,
@@ -194,6 +195,7 @@ export async function GET(req) {
         orderBy: { createdAt: "desc" },
         take: messageLimit + 1,
         select: {
+          id: true,
           role: true,
           content: true,
           metadata: true,
@@ -221,6 +223,7 @@ export async function GET(req) {
             return {
               role: normalizedRole,
               text: msg.content || "",
+              diagnosticRef: normalizedRole === "ai" && msg.id ? `message:${msg.id}` : null,
               sources: normalizedRole === "ai" ? readDisplayedSources(msg.metadata) : [],
               attachments: normalizedRole === "ai" ? normalizeAttachments(msg.metadata?.attachments) : [],
               cards: normalizedRole === "ai" ? normalizeCards(msg.metadata?.cards) : [],
@@ -259,6 +262,7 @@ export async function GET(req) {
       completionStatus: status,
       role: conversation.role,
       text,
+      diagnosticRef: currentAssistant?.id ? `message:${currentAssistant.id}` : null,
       sources: readDisplayedSources(currentAssistant?.metadata),
       displayed_sources: readDisplayedSources(currentAssistant?.metadata),
       attachments: normalizeAttachments(currentAssistant?.metadata?.attachments),

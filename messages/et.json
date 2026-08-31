@@ -2758,6 +2758,78 @@
     "human_confirmed": "Inimese kinnitatud"
   },
   "chat": {
+    "diagnostics": {
+      "lease_expired": "Päringu südamelöök aegus. Serveri salvestatud olek oli RUNNING, kuid olemasoleva ajalimiidi järgi on päring ERROR; täpne katkestuse põhjus ei ole tõendatud.",
+      "open": "Vaata vastuse diagnostikat",
+      "report": "Diagnostikaaruanne",
+      "eyebrow": "Vestluse tehniline jälg",
+      "title": "Kus vastus takerdus?",
+      "boundary": "See on tehniline diagnoos, mitte automaatne õigsuse hinne. Blokeerinud kontroll on tõendatud sündmus; selle algpõhjus võib vajada allika ja vastuse võrdlemist.",
+      "refresh": "Värskenda",
+      "download": "Laadi aruanne alla (.md)",
+      "loading": "Loen salvestatud pöördeid…",
+      "records": "kirjet",
+      "error": "Aruannet ei õnnestunud lugeda. Kontrolli ühendust ja ligipääsu ning proovi uuesti.",
+      "partial_report": "Aruanne on mahupiiri tõttu osaline. Kõiki küsimusi ei kuvata.",
+      "select_question": "Vali küsimus",
+      "unpaired": "Küsimuse ja vastuse seos pole tõendatud",
+      "empty": "Selles vestluses ei ole veel salvestatud küsimusi.",
+      "missing_reference": "Selle vastuse jälge ei leitud. Vali kirje aruandest; vastuseid ei paaristata oletuse järgi.",
+      "technical_status": "Automaatkontrolli tulemus",
+      "reason_unknown": "Kontroll tagastas alloleva põhjuskoodi. Täpsemat algpõhjust see jälg üksinda ei tõenda.",
+      "no_failure": "Salvestatud kontrollides ei pruugi olla tõrget. See ei tõenda vastuse sisulist õigsust; vaata etappide puuduvaid tõendeid.",
+      "missing_slots": "Kontrollis puuduvad faktiindeksid",
+      "slot_boundary": "Indeks näitab kontrolli puuduvat pesa, mitte automaatselt vigast allikateksti. Täpne alavärav võib olla salvestamata.",
+      "question": "Küsimus",
+      "answer": "Salvestatud vastus",
+      "sources": "Allikate liikumine",
+      "raw_evidence": "Diagnostikatõend ja piirangud",
+      "report_note": "Aruanne uueneb salvestatud pöörete järgi. Allalaaditud fail on ajahetke koopia. Serverisse mitte jõudnud päringut ega salvestamata mustandit siin taastada ei saa.",
+      "status": {
+        "BLOCKED": "Tõrge või blokeeriv kontroll",
+        "ERROR": "Pööre lõppes veaga",
+        "ABORTED": "Vastus katkestati",
+        "RUNNING": "Pööre on pooleli",
+        "NO_FAILURE_OBSERVED": "Tõrget pole selles jäljes kinnitatud",
+        "NOT_PROVEN": "Tõend puudub"
+      },
+      "stage_status": {
+        "NOT_APPLICABLE": "Kontroll ei rakendunud",
+        "OBSERVED": "Etapi tulemus salvestatud",
+        "PASSED": "See kontroll läbis",
+        "BLOCKED": "Kontroll blokeeris",
+        "NOT_PROVEN": "Tulemus pole tõendatud",
+        "RUNNING": "Pooleli"
+      },
+      "stages": {
+        "identity": "Dokumendi identiteet",
+        "planning": "Küsimuse tõlgendus",
+        "retrieval": "Allikate leidmine",
+        "context": "Mudelile antud tõend",
+        "validation": "Vastuse kontroll",
+        "attribution": "Väidete ja allikate seos",
+        "persistence": "Pöörde salvestus"
+      },
+      "source_layers": {
+        "retrieved_source_ids": "Otsingus leitud",
+        "selected_context_source_ids": "Konteksti valitud",
+        "model_context_source_ids": "Mudeli kontekstis",
+        "validated_supporting_source_ids": "Validaatori tõendatud",
+        "claim_supported_source_ids": "Väiteid toetavad",
+        "answer_source_ids": "Vastuse allikad",
+        "displayed_source_ids": "Kuvamiseks salvestatud"
+      },
+      "reasons": {
+        "technical_retrieval_failure": "Allikaotsing ebaõnnestus tehniliselt. Jälg kinnitab otsingu tõrget, mitte seda, et materjal puuduks korpusest. Ühenduse või teenuse täpne algpõhjus vajab eraldi kontrolli.",
+        "document_identity_mismatch": "Nõutud dokumendi identiteeti ei kinnitatud. Vaata valitud dokumendi ID-d ja identiteedikontrolli põhjuseid.",
+        "requested_fact_answer_incomplete": "Validaator ei leidnud vastusest kõiki nõutud fakte või seoseid. Allpool on puuduva pesa indeks; kas puudus oli vastuses või kontrollilepingus, vajab eraldi tõendit.",
+        "requested_metric_relation_mismatch": "Arv ja küsitud tähendus ei läbinud seosekontrolli. See võib olla vale arvuseos või validaatori liiga kitsas sobitus.",
+        "requested_metric_unexpected_numeric_claim": "Validaator leidis arvulise väite, mille tuge ta lubatud tõendist ei kinnitanud.",
+        "source_attribution": "Kuvamiseks valitud allikad ei vasta jäljes salvestatud allikaseose piirangule.",
+        "error": "Pööre lõppes tehnilise veaga. Puuduvate etappide põhjal ei saa täpset algpõhjust välja mõelda.",
+        "aborted": "Vastus katkestati; lõpetatud vastuse kvaliteeti ei hinnata."
+      }
+    },
     "title": "SotsiaalAI",
     "crisis": {
       "notice": "Vahetu ohu korral helista 112. Laste ja peredega seotud mure korral saab ööpäevaringselt tasuta abi telefonil 116 111. Vägivalla või kuriteo korral saab nõu ohvriabi kriisitelefonilt 116 006."

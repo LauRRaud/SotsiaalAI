@@ -2758,6 +2758,78 @@
     "human_confirmed": "Human confirmed"
   },
   "chat": {
+    "diagnostics": {
+      "lease_expired": "The request heartbeat expired. Its stored status was RUNNING, but the existing lease timeout resolves it to ERROR; the exact cause of interruption is not proven.",
+      "open": "View answer diagnostics",
+      "report": "Diagnostic report",
+      "eyebrow": "Conversation trace",
+      "title": "Where did the answer fail?",
+      "boundary": "This is a technical diagnosis, not an automatic correctness grade. A blocking check is an observed event; its root cause may require comparing the source and answer.",
+      "refresh": "Refresh",
+      "download": "Download report (.md)",
+      "loading": "Reading saved turns…",
+      "records": "records",
+      "error": "The report could not be loaded. Check your connection and access, then retry.",
+      "partial_report": "This report is partial because its size limit was reached. Some questions are not shown.",
+      "select_question": "Select a question",
+      "unpaired": "Question–answer pairing is not proven",
+      "empty": "This conversation has no saved questions yet.",
+      "missing_reference": "This answer's trace was not found. Select a report entry; answers are never paired by guesswork.",
+      "technical_status": "Automated check result",
+      "reason_unknown": "The check returned the reason code below. This trace alone does not prove a more specific root cause.",
+      "no_failure": "The saved checks may contain no failure. This does not establish answer correctness; inspect the stages with missing evidence.",
+      "missing_slots": "Missing fact-slot indexes",
+      "slot_boundary": "An index identifies a missing validation slot, not automatically incorrect source text. The precise sub-check may not have been recorded.",
+      "question": "Question",
+      "answer": "Saved answer",
+      "sources": "Source progression",
+      "raw_evidence": "Diagnostic evidence and limitations",
+      "report_note": "The report follows saved turns. Downloads are point-in-time copies. Requests that never reached the server and unsaved drafts cannot be reconstructed here.",
+      "status": {
+        "BLOCKED": "Answer check blocked",
+        "ERROR": "Turn ended with an error",
+        "ABORTED": "Answer interrupted",
+        "RUNNING": "Turn in progress",
+        "NO_FAILURE_OBSERVED": "No failure established in this trace",
+        "NOT_PROVEN": "Evidence missing"
+      },
+      "stage_status": {
+        "NOT_APPLICABLE": "Check not applied",
+        "OBSERVED": "Stage result recorded",
+        "PASSED": "This check passed",
+        "BLOCKED": "Check blocked",
+        "NOT_PROVEN": "Result not proven",
+        "RUNNING": "In progress"
+      },
+      "stages": {
+        "identity": "Document identity",
+        "planning": "Question interpretation",
+        "retrieval": "Source retrieval",
+        "context": "Evidence given to model",
+        "validation": "Answer validation",
+        "attribution": "Claim–source attribution",
+        "persistence": "Turn persistence"
+      },
+      "source_layers": {
+        "retrieved_source_ids": "Retrieved",
+        "selected_context_source_ids": "Selected for context",
+        "model_context_source_ids": "In model context",
+        "validated_supporting_source_ids": "Validator-supported",
+        "claim_supported_source_ids": "Claim-supported",
+        "answer_source_ids": "Answer sources",
+        "displayed_source_ids": "Saved for display"
+      },
+      "reasons": {
+        "technical_retrieval_failure": "Source retrieval failed technically. The trace confirms a retrieval failure, not that the material is absent from the corpus. The precise connection or service root cause needs a separate check.",
+        "document_identity_mismatch": "The required document identity was not confirmed. Inspect the selected document ID and identity-check reasons.",
+        "requested_fact_answer_incomplete": "The validator did not identify every required fact or relation. Missing slot indexes are shown below; a faulty answer and a faulty validation contract require separate evidence.",
+        "requested_metric_relation_mismatch": "A number and its requested meaning did not pass the relation check. The relation may be wrong, or the validator may match too narrowly.",
+        "requested_metric_unexpected_numeric_claim": "The validator found a numeric claim whose support it could not establish in the allowed evidence.",
+        "source_attribution": "Sources selected for display violate a recorded source-attribution constraint.",
+        "error": "The turn ended with a technical error. Missing stages do not justify inventing a precise root cause.",
+        "aborted": "The answer was interrupted; completed-answer quality is not graded."
+      }
+    },
     "title": "SotsiaalAI",
     "crisis": {
       "notice": "If you are in immediate danger, call 112. For concerns related to children and families, free 24/7 help is available on 116 111. For violence or crime-related support in Estonia, call Victim Support on 116 006."

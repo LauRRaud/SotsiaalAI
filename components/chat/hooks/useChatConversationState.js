@@ -480,6 +480,7 @@ export function useChatConversationState({
             const rawCreatedAt = msg?.createdAt ? new Date(msg.createdAt).getTime() : NaN;
             return {
               id: nextId++,
+              diagnosticRef: typeof msg.diagnosticRef === "string" ? msg.diagnosticRef : null,
               role: normalizedRole,
               text: typeof msg.text === "string" ? msg.text : "",
               sources:

@@ -113,6 +113,8 @@ const ChatMessageItem = memo(function ChatMessageItem({
   onSpeak,
   messageSources = [],
   onShowSources,
+  onShowDiagnostics,
+  diagnosticRef = null,
   isStreaming = false,
   completionStatus = null,
   onRetry,
@@ -120,6 +122,13 @@ const ChatMessageItem = memo(function ChatMessageItem({
   entranceIndex = 0
 }) {
   const isAssistant = role === "ai";
+  const diagnosticButton = isAssistant && !isStreaming && onShowDiagnostics ? (
+    <button type="button" aria-label={t("chat.diagnostics.open")} title={t("chat.diagnostics.open")} onClick={() => onShowDiagnostics(diagnosticRef || "missing")}>
+      <svg aria-hidden="true" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M4 5h16M4 12h16M4 19h16" /><circle cx="8" cy="5" r="2" /><circle cx="16" cy="12" r="2" /><circle cx="10" cy="19" r="2" />
+      </svg>
+    </button>
+  ) : null;
   const isOwn = role === "user";
   /* Pöördindeks (0 = uusim) juhib sisenemis-kaskaadi viidet chat.css-is;
      CSS piirab efekti min()-iga, seega suur indeks on ohutu. */
@@ -374,11 +383,13 @@ const ChatMessageItem = memo(function ChatMessageItem({
       {canRetry && !String(text || "").trim() ? (
         <div aria-label={actionsLabel}>
           {retryButton}
+          {diagnosticButton}
         </div>
       ) : null}
       {isAssistant && String(text || "").trim() ? (
         <div aria-label={actionsLabel}>
           {retryButton}
+          {diagnosticButton}
           <button
             type="button"
             aria-label={listenLabel}

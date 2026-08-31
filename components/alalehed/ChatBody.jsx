@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useLayoutEffect, useMemo, useCallback } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
+import dynamic from "next/dynamic";
 import { writeActiveConversationId } from "@/lib/chat/activeConversationKey";
 import LoginModal from "@/components/LoginModal";
 import { useAccessibility } from "@/components/accessibility/AccessibilityProvider";
@@ -52,6 +53,7 @@ import {
 import { requestPrivacyCheck } from "@/lib/privacy/privacyCheckClient";
 const useIsomorphicLayoutEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect;
+const ChatDiagnosticsModal = dynamic(() => import("@/components/chat/ChatDiagnosticsModal"), { ssr: false });
 const MOBILE_KEYBOARD_OPEN_THRESHOLD = 88;
 const MOBILE_KEYBOARD_CLOSE_THRESHOLD = 56;
 const MOBILE_KEYBOARD_BLUR_SETTLE_MS = 220;
@@ -486,6 +488,9 @@ export default function ChatBody({
   const journeyDraftReadyScopeRef = useRef("");
   const [isJourneyGenerating, setIsJourneyGenerating] = useState(false);
   const [showSourcesPanel, setShowSourcesPanel] = useState(false);
+  const [diagnosticSelection, setDiagnosticSelection] = useState(null);
+  const openDiagnostics = useCallback((ref = null) => setDiagnosticSelection({ ref }), []);
+  const closeDiagnostics = useCallback(() => setDiagnosticSelection(null), []);
   const [scopedSources, setScopedSources] = useState(null);
   const [loginOpen, setLoginOpen] = useState(false);
   const autoLoginHandledRef = useRef(false);
@@ -2578,13 +2583,17 @@ export default function ChatBody({
     retryLast(renderedMessages);
   }, [retryLast, renderedMessages]);
   const messageItems = useMemo(() => {
-    return renderedMessages.map((msg, msgIndex, allMessages) => {
+    const items = renderedMessages.map((msg, msgIndex, allMessages) => {
       const messageSources = msg.role === "ai"
         ? collectMessageSources(msg, analysis.uploadPreview)
         : [];
-      return <ChatMessageItem key={msg.id} messageId={msg.id} entranceIndex={allMessages.length - 1 - msgIndex} role={msg.role} text={msg.text} attachments={msg.attachments} cards={msg.cards} createdAt={msg.createdAt} aiVisible={!!msg.aiVisible} typingEffect={!!msg.typingEffect} onTypingComplete={msg.onTypingComplete === "emptyIntro" ? handleEmptyIntroTyped : undefined} authorName={msg.authorName} authorRole={msg.authorRole} isRoomMode={isRoomMode} t={t} locale={locale} isLightTheme={isLightTheme} voiceEnabled={voiceEnabled} canSpeak={Boolean(voiceEnabled && speechReady && String(msg.text || "").trim())} isSpeaking={isSpeaking} onSpeak={speakText} messageSources={messageSources} onShowSources={openMessageSources} isStreaming={!!msg.isStreaming} completionStatus={msg.completionStatus} onRetry={msg.role === "ai" && !isRoomMode ? handleRetry : undefined} retryPending={isChatGenerating} />;
+      return <ChatMessageItem key={msg.id} messageId={msg.id} entranceIndex={allMessages.length - 1 - msgIndex} role={msg.role} text={msg.text} attachments={msg.attachments} cards={msg.cards} createdAt={msg.createdAt} aiVisible={!!msg.aiVisible} typingEffect={!!msg.typingEffect} onTypingComplete={msg.onTypingComplete === "emptyIntro" ? handleEmptyIntroTyped : undefined} authorName={msg.authorName} authorRole={msg.authorRole} isRoomMode={isRoomMode} t={t} locale={locale} isLightTheme={isLightTheme} voiceEnabled={voiceEnabled} canSpeak={Boolean(voiceEnabled && speechReady && String(msg.text || "").trim())} isSpeaking={isSpeaking} onSpeak={speakText} messageSources={messageSources} onShowSources={openMessageSources} onShowDiagnostics={userIsAdmin && !isRoomMode && convId ? openDiagnostics : undefined} diagnosticRef={msg.diagnosticRef} isStreaming={!!msg.isStreaming} completionStatus={msg.completionStatus} onRetry={msg.role === "ai" && !isRoomMode ? handleRetry : undefined} retryPending={isChatGenerating} />;
     });
-  }, [analysis.uploadPreview, handleEmptyIntroTyped, handleRetry, isChatGenerating, isLightTheme, isRoomMode, isSpeaking, locale, openMessageSources, renderedMessages, speakText, speechReady, t, voiceEnabled]);
+    if (userIsAdmin && !isRoomMode && convId && renderedMessages.some(msg => msg.role === "user" || msg.diagnosticRef)) items.unshift(
+      <button key="diagnostic-report" type="button" onClick={() => openDiagnostics()} style={{ display: "block", margin: "0 0 12px auto", padding: "7px 12px", border: "1px solid currentColor", borderRadius: 20, background: "transparent", color: "inherit", font: "inherit", fontSize: ".78rem" }}>{t("chat.diagnostics.report")}</button>
+    );
+    return items;
+  }, [analysis.uploadPreview, convId, handleEmptyIntroTyped, handleRetry, isChatGenerating, isLightTheme, isRoomMode, isSpeaking, locale, openDiagnostics, openMessageSources, renderedMessages, speakText, speechReady, t, userIsAdmin, voiceEnabled]);
   const activeModeLabel = useMemo(() => {
     return getWorkflowModeLabel(t, activeWorkflow);
   }, [activeWorkflow, t]);
@@ -3081,6 +3090,7 @@ export default function ChatBody({
       closeSourcesPanel={closeSourcesPanel}
       analysisPanelWidth={analysisPanelWidth}
     />
+    {diagnosticSelection && userIsAdmin && !isRoomMode && convId ? <ChatDiagnosticsModal key={convId} conversationId={convId} diagnosticRef={diagnosticSelection.ref} refreshKey={`${renderedMessages.length}:${isGenerating}`} onClose={closeDiagnostics} /> : null}
     {deleteListingConfirmNode}
     <LoginModal
       open={loginOpen}
