@@ -1,0 +1,225 @@
+{
+  "provenance": "Public EPIKoja report; exact eight rendered bodies from isolated M02 on runtime f9ee2691, 2026-08-31. No user identifiers or provider draft.",
+  "slots": [
+    {
+      "index": 1,
+      "value_type": "recommendation",
+      "relation_terms": [
+        "soovitus",
+        "anti",
+        "tallinnale",
+        "kontaktisiku",
+        "juhtumikorralduse"
+      ],
+      "relation_term_variants": [
+        {
+          "term": "soovitus",
+          "variants": [
+            "soovitu",
+            "soovitud"
+          ]
+        },
+        {
+          "term": "anti",
+          "variants": [
+            "andma"
+          ]
+        },
+        {
+          "term": "tallinnale",
+          "variants": [
+            "tallinn"
+          ]
+        },
+        {
+          "term": "kontaktisiku",
+          "variants": [
+            "kontaktisik",
+            "kontaktisikk",
+            "kontakt",
+            "isik",
+            "kontakti",
+            "sikk"
+          ]
+        },
+        {
+          "term": "juhtumikorralduse",
+          "variants": [
+            "juhtumikorraldus",
+            "juhtumi",
+            "korraldus"
+          ]
+        }
+      ],
+      "minimum_answer_items": 1
+    },
+    {
+      "index": 2,
+      "value_type": "recommendation",
+      "relation_terms": [
+        "ennetava",
+        "abi"
+      ],
+      "relation_term_variants": [
+        {
+          "term": "ennetava",
+          "variants": [
+            "ennetav"
+          ]
+        }
+      ],
+      "minimum_answer_items": 1
+    },
+    {
+      "index": 3,
+      "value_type": "recommendation",
+      "relation_terms": [
+        "teenustele",
+        "paasu",
+        "korduvate",
+        "hindamiste"
+      ],
+      "relation_term_variants": [
+        {
+          "term": "teenustele",
+          "variants": [
+            "teenus"
+          ]
+        },
+        {
+          "term": "paasu",
+          "variants": [
+            "paas"
+          ]
+        },
+        {
+          "term": "korduvate",
+          "variants": [
+            "korduv"
+          ]
+        },
+        {
+          "term": "hindamiste",
+          "variants": [
+            "hindamine"
+          ]
+        }
+      ],
+      "minimum_answer_items": 1
+    },
+    {
+      "index": 4,
+      "value_type": "recommendation",
+      "relation_terms": [
+        "toetatud",
+        "otsustamise"
+      ],
+      "relation_term_variants": [
+        {
+          "term": "toetatud",
+          "variants": [
+            "toetama",
+            "toetatu",
+            "toeta"
+          ]
+        },
+        {
+          "term": "otsustamise",
+          "variants": [
+            "otsustamine"
+          ]
+        }
+      ],
+      "minimum_answer_items": 1
+    }
+  ],
+  "bodies": [
+    {
+      "index": 156,
+      "page": 56,
+      "hash": "b85765dd99502ae525967af0dee4ad889e91b59ec378de2b9ea3f5748585e018",
+      "text": "Lähtudes uuringu tulemustest on EPIKoja peamised ettepanekud Tallinna linnale: ■ Luua süsteem, kus igal abivajajal on üks kindel kontaktisik (juhtumikorraldaja), kes hindab abivajadust terviklikult (nii tervishoiu- kui ka sotsiaalvaldkonna üleselt), koordineerib teenuseid ning toetab inimest kogu teekonna vältel. ■ Muuta abi pakkumine ka praktikas proaktiivseks ja ennetavaks, sh jõuda inimesteni varajases etapis (nt puude raskusastme tuvastamisel inimesega kontakti võtmine).\n---\n56 Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuringu kokkuvõte nende soovide ja vajadustega. ■ psühholoogiliste ja psühhiaatriliste teenuste kättesaadavus on piiratud, ooteajad pikad ning abi ei ole alati järjepidev. ■ puudub piisav seotus tervishoiu- ja sotsiaalteenuste vahel. ■ eestkoste süsteem on pigem piirav ning tugineb asendatud otsustamise mudelile. ■ inimeste teadlikkus eestkoste sisust on madal ning praktikas piiratakse sageli inimese teovõimet ulatuslikumalt kui vajalik. ■ Lihtsustada abi andmise ja teenustele jõudmise protsessi ning vähendada bürokraatiat, tagades inimesele arusaadava suhtluse, paindlikud menetlused ning vältides dubleerivaid hindamisi ja korduvat info küsimist."
+    },
+    {
+      "index": 136,
+      "page": 48,
+      "hash": "d7d546abe220a68e83eb921289231fbbe90ee284b96879deb365d4dc07c633cf",
+      "text": "töötajaid ei ole piisavalt. Abi osutamine on pigem tagajärgedega tegelemine kui ennetav märkamine ja abistamine. Kõige keerukamaks sihtgrupiks peetakse neid inimesi, kes enda abivajadust ei tunnista ning abi vastu võtta ei soovi. Toetatud otsustamise teenus võib olla vajalik, kuid eestkoste seadmise võimalus peab alles jääma. Eestkoste süsteemi võiks muuta selliselt, et eestkostet seatakse vaid rahaliste tehingute ning asjaajamistega seoses. 7.6Analüüsi järeldused ja tulemused Tallinna linnas on psüühikahäirega inimeste abistamiseks olemas erinevaid riigi ja kohaliku omavalitsuse meetmeid. Õiguslik raamistik on tugev ning hõlmab mitmeid seadusi ja määruseid, mis sätestavad inimkeskse, kaasava ja tervikliku abi põhimõtted. Praktikas on aga süsteem keeruline ja killustunud: abivajaja peab oskama orienteeruda eri asutuste kodulehtedel ning tundma erinevaid õigusakte, et leida vajalik teenus. See lisab koormust juba haavatavas olukorras inimestele ning vähendab abi tegelikku kättesaadavust. Uuringust selgub, et kuigi teenuseid on palju, ei ole need piisavalt koordineeritud."
+    },
+    {
+      "index": 66,
+      "page": 26,
+      "hash": "b69902f05900837210320643e7f1e7f29ce9ee106e79b87418412664be4794da",
+      "text": "26 Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuringu kokkuvõte 13. varjupaigateenus; 14. sotsiaal- ja majutusteenus; 15. eluruumi tagamise teenus; 16. koduteenus; 17. sotsiaalvalveteenus; 18. omastehooldaja asendamise teenus; 19. mäluhäiretega inimeste päevahoiuteenus; 20. väljaspool kodu osutatav ööpäevane üldhooldusteenus; 21. võlanõustamisteenus. Sama paragrahvi juures on välja toodud, et põhjendatud vajaduse korral korraldatakse abi vajavale inimesele eespool kirjeldamata muud teenust, mis toetab inimese ja tema perekonna arengut ja toimetulekut. Teenuse täpsem sisu ja selle osutamise tingimused tulenevad hinnatud abivajadusest ja lepitakse kokku juhtumipõhiselt. Seostades seda sotsiaalhoolekandeseadusega - kui isik vajab iseseisva toimetuleku parandamiseks pikaajalist ja mitmekülgset abi, nagu erivajadusega inimesed tihtipeale vajavad, kasutatakse juhtumikorralduse põhimõtet ning neile on võimalus pakkuda lisaks eelpool toodud teenuste loetelust muud abi. Tallinna linna pakutav või koordineeritav abi on leitav kodulehelt 37 11 erineva vahelehe pealt, sh abinumbrid, eakale, erivajadusega inimesele, toimetulekuraskustes inimesele, arstiabi ja tervishoid."
+    },
+    {
+      "index": 42,
+      "page": 18,
+      "hash": "f7130126ed0ffcdbe2b1e7aed5f256ed10726a1ed8167d28c30c5b94e56f175d",
+      "text": "18 Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuringu kokkuvõte Heaolu arengukava 2023-2030 18 toob välja, et Eesti hoolekande korraldus on keeruline ja vajab ajakohastamist. Põhiline juhtumikorraldaja roll on abi vajavatel inimestel või nende lähedastel, kes peavad abi saamiseks pöörduma erinevatesse ametkondadesse. Turvavõrk on auklik nii valdkonna sees kui ka üleminekul näiteks tervishoiust hoolekandesse või hoolekandest tööturuvaldkonda. Abivajaduse hindamine ja abi osutamine on eri valdkondade (sh haridus, tervis, sotsiaal- ja töövaldkond) ja haldustasandite (riik ja kohalik omavalitsus) vahel killustunud, abi andmise korraldus jätab osapoolte rollid ebaselgeks ja seetõttu ei osutata abi terviklikult. Eeltoodu tulemusena ei tea abivajav inimene, kuhu oma murega pöörduda ja ka erinevad abi osutajad ei oska alati keerulises süsteemis inimest õigesse kohta suunata. Murekohaks on eri valdkondade ja tasandite vahel info liikumise takistused. Infosüsteemid on üles ehitatud ühe valdkonna keskselt ega arvesta terviklikult inimese vajadusi. Hoolekande suund on toetada inimeste võimalikult kaua kodus elamist."
+    },
+    {
+      "index": 82,
+      "page": 32,
+      "hash": "96cf707a9c1369fcf51e7a3215a55998ccaff00a027113c19f8b073b3d030520",
+      "text": "32 Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuringu kokkuvõte 7.2 Sotsiaalhoolekanne ja juhtumitöö Abi leidmine ja süsteemi killustatus Sotsiaalhoolekande seadus § 9 kohustab korraldama abi andmist juhtumikorralduse põhimõttel ehk kui isik vajab mitmekülgset abi, peaks kohalik omavalitsus algatama juhtumimenetluse ning hindama inimese olukorda terviklikult. Uuringus osalejad kirjeldavad abi leidmist keerulise ja koormavana. Teenused ei jõua inimeseni proaktiivselt, inimene ise või tema lähedased peavad ise selles killustunud süsteemis orienteeruma, infot otsima ja taotlusi esitama, vajadusel korduvalt ja uuesti pöörduma. Ka sama asutuse sees ei ole erinevad teenistujad või osakonnad alati teadlikud üksteise tegevusest, nt üks spetsialist tuleb hindama vaid konkreetse teenuse vajadust, kuid terviklikult inimese ja pere abivajadust ei hinnata. Selle tulemusel peab inimene ise koordineerima eri teenuseid ja suhtlema mitme asutuse või inimesega korraga ning korduvalt, mis on psüühikahäire korral sageli üle jõu käiv. Uuringus osalenud intellekti- ja psüühikahäirega inimeste kogemuste põhjal võib järeldada, et juhtumikorralduse rakendamine nende vaates ei toimi."
+    },
+    {
+      "index": 103,
+      "page": 38,
+      "hash": "187c328e5110e0157ddf90dc69908aa952b0e31519b07ba098b29a1132708f5b",
+      "text": "38 Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuringu kokkuvõte Uuring näitab, et psüühikahäirega inimestele suunatud sotsiaalhoolekande teenused on killustunud, bürokraatlikud ja sageli inimestele raskesti kättesaadavad. Kuigi seadus sätestab juhtumikorralduse põhimõtte ja kohaliku omavalitsuse kohustuse hinnata abivajadust terviklikult, tuleb abi tavaliselt alles siis, kui abivajadus on juba sügav, ning inimene peab sageli ise pöörduma, infot otsima ja teenuseid koordineerima. Teenuste vahel puudub piisav koostöö, korduvad hindamised ja informatsiooni dubleerimine suurendavad koormust ning tekitavad ebakindlust ja stressi. Uuringus osalejad rõhutasid vajadust ühe kindla kontaktisiku või koordinaatori järele, kes tunneks nende tausta, aitaks orienteeruda sotsiaal- ja tervishoiuteenustes ning tagaks järjepideva ja turvalise toe. Samuti tuuakse välja teenuste killustatus eri valdkondade vahel, info keerulisus ja mitteselgus, mis raskendab abi leidmist ja kasutamist. Kuigi olemas on kohustuslikud ja täiendavad teenused, ei kata need alati individuaalseid vajadusi ega toeta inimkeskset lähenemist."
+    },
+    {
+      "index": 140,
+      "page": 50,
+      "hash": "d82dfd35ce262fe746aaee979acb62b952462b4e60351ed62694866aefb370db",
+      "text": "50 Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuringu kokkuvõte 8. Ettepanekud ja järeldused Uuringus osalenute kogemused, olemasolevad arengukavad ja mitmed uuringud viitavad, et psüühikahäirega inimeste toetamise süsteem ei ole terviklik. Peamine probleem ei seisne üksnes teenuste puudumises, vaid abi killustatuses, väheses koordineerimises, ebaühtlases inimkeskse lähenemise rakendamises ning selles, et abi saamine sõltub liiga suurel määral inimese enda võimest süsteemis orienteeruda. Lähtudes käesoleva uuringu tulemustest, teeb EPIKoda järgmised ettepanekud: 1. Korraldada Tallinna linnas inimese toetamise süsteem selliselt, et inimesel oleks üks kindel kontaktisik (juhtumikorraldaja) Uuringu põhjal on üks kesksemaid vajadusi usaldusväärne inimene, kes tunneks inimese olukorda, aitaks orienteeruda nii hoolekande kui ka sotsiaalteenustes ja pakutavates toevõimalustes ning toetaks suhtlemisel erinevate asutustega. Kuigi riiklikul tasandil püütakse olukorda parandada läbi terviseteekonna juhi rolli loomise, on kavandatav TERVIK-te süsteem mõeldud ainult mitme kroonilise haigusega inimesele 54, kes vajab abi nii meditsiini- kui ka sotsiaalsüsteemist."
+    },
+    {
+      "index": 30,
+      "page": 14,
+      "hash": "8df2b2bf0eb56047de8a4319c4ba9be187da9c102ca104146aa2818227722d4e",
+      "text": "14 Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuringu kokkuvõte 1) isiku personaalse tegevusvõimega seonduvaid asjaolusid; 2) isiku füüsilise ja sotsiaalse elukeskkonnaga seonduvaid asjaolusid. Kui abi saamiseks pöördub isik, kellel on tuvastatud kroonilisest haigusest, erivajadusest või muust pikaajalisest terviseprobleemist põhjustatud hooldusvajadus, selgitab kohaliku omavalitsuse üksus välja isiku, kes hooldab abivajavat isikut väljaspool oma kutse- või ametlikku tööd. Kohaliku omavalitsuse üksus selgitab välja ka abivajavat isikut hooldava isiku toetusvajaduse, võttes arvesse tema tegelikku hoolduskoormust, toimetulekut ja ühiskonnaelus osalemist mõjutavaid asjaolusid. SHS § 15 2 toob välja erisused puuetega inimeste abivajaduse hindamisel. Nimelt isiku rahvastikuregistrisse kantud elukohajärgse kohaliku omavalitsuse üksus peab omal algatusel välja selgitama sellise täisealise isiku abivajaduse, kellel on puuetega inimeste sotsiaaltoetuste seaduse alusel tuvastatud sügav puue ning keskmise või raske puudega isiku puhul on tal see võimalus."
+    }
+  ],
+  "incorrectFragments": [
+    {
+      "slot": 2,
+      "text": "Abi osutamine on pigem tagajärgedega tegelemine kui ennetav märkamine ja abistamine.",
+      "hash": "f4172b7d5200deedc0a76ff8150062868da41a57884d72d90692c883cbb854cc"
+    },
+    {
+      "slot": 3,
+      "text": "Teenuste vahel puudub piisav koostöö, korduvad hindamised ja informatsiooni dubleerimine suurendavad koormust ning tekitavad ebakindlust ja stressi.",
+      "hash": "e4a490715780a0e17c433940ad1269c6f19552fce22b733fa310a8116bdc0a77"
+    },
+    {
+      "slot": 4,
+      "text": "Toetatud otsustamise teenus võib olla vajalik, kuid eestkoste seadmise võimalus peab alles jääma.",
+      "hash": "5acc2a5fde183754223613d003f61b810a9d3f5e6bffb9f2eed0547369924e3c"
+    }
+  ],
+  "correctFragments": [
+    {
+      "slot": 1,
+      "text": "Korraldada Tallinna linnas inimese toetamise süsteem selliselt, et inimesel oleks üks kindel kontaktisik (juhtumikorraldaja) Uuringu põhjal on üks kesksemaid vajadusi usaldusväärne inimene, kes tunneks inimese olukorda, aitaks orienteeruda nii hoolekande kui ka sotsiaalteenustes ja pakutavates toevõimalustes ning toetaks suhtlemisel erinevate asutustega.",
+      "hash": "b9ad01892fae08252f9d64e0f7a90227a899d5c838c76a60290c2417606b562b"
+    },
+    {
+      "slot": 2,
+      "text": "■ Muuta abi pakkumine ka praktikas proaktiivseks ja ennetavaks, sh jõuda inimesteni varajases etapis (nt puude raskusastme tuvastamisel inimesega kontakti võtmine).",
+      "hash": "3426f277ccc7894ec114e8c8dd8e3fc4cd85ae7009121993e4b2609e8eb4e989"
+    },
+    {
+      "slot": 3,
+      "text": "■ Lihtsustada abi andmise ja teenustele jõudmise protsessi ning vähendada bürokraatiat, tagades inimesele arusaadava suhtluse, paindlikud menetlused ning vältides dubleerivaid hindamisi ja korduvat info küsimist.",
+      "hash": "fe73bc677e22bd42927b628fe4062861da84c041edf702e0897c9d50e22a2196"
+    },
+    {
+      "slot": 4,
+      "text": "Sellest tulenevalt teeme ettepaneku arendada toetatud otsustamise põhimõttel toimivaid lahendusi, mis võimaldavad vähendada eestkoste ulatust ja toetada inimese iseseisvat otsustusõigust.",
+      "hash": "ff6420c5efdf0e35545e9ee62973dbf993f3adbc2c14e6dd29abc201abb5add7"
+    }
+  ]
+}

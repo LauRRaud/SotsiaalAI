@@ -9,9 +9,10 @@ import { buildContextWithBudget, renderOneContextBlock } from "../../lib/chat/ra
 import { qualitativeTimePayload, qualitativeTimePayloadMatches } from "../../lib/chat/qualitativeTimeSemantics.js";
 import { factRelationTermMatchQuality } from "../../lib/chat/factRelationSemantics.js";
 import { buildDocumentScopedMissingFactQueries } from "../../lib/chat/queryPlanner.js";
-import { qualitativeActionSignature, qualitativeActionClauses } from "../../lib/chat/qualitativeActionSemantics.js";
+import { qualitativeActionSignature, qualitativeActionClauses, hasQualitativeRecommendationIntent } from "../../lib/chat/qualitativeActionSemantics.js";
 
 const m02 = JSON.parse(readFileSync(new URL("./fixtures/m02-recommendation-fragments.json", import.meta.url), "utf8"));
+const m02Competition = JSON.parse(readFileSync(new URL("./fixtures/m02-rendered-competition.json", import.meta.url), "utf8"));
 
 const identity = { required: true, matched: true, confidence: "high", selectedDocumentId: "study-doc" };
 const methodSlot = { index: 1, value_type: "method", relation_terms: ["meetodit", "kasutati"],
@@ -129,6 +130,68 @@ test("M02 supported decision-making cannot bind to generic personal support", ()
   const sources = [{ source_id: "study-source", document_id: "study-doc", evidenceText: `Teenuste uuring\n${unrelated}\n${evidence}` }];
   assert.equal(validateExactFactAnswer({ reply: "Toetatud otsustamine: kasutada alternatiivina eestkostele.", sources, retrievalMeta }).passed, true);
   assert.equal(validateExactFactAnswer({ reply: "Toetatud abi: kasutada kontaktisikut alternatiivina.", sources, retrievalMeta }).passed, false);
+});
+
+test("recommendation evidence distinguishes directives from descriptions and contingent need", () => {
+  for (const text of ["Tagajärgedega tegelemine.", "Tagasisidet kogutakse.", "Tagatised ja tagantjärele abi."]) {
+    assert.equal(qualitativeActionSignature(text).families.includes("provide"), false, text);
+  }
+  for (const verb of ["tagada", "tagama", "tagades", "tagab", "tagatakse", "taga"]) {
+    assert.equal(qualitativeActionSignature(verb).families.includes("provide"), true, verb);
+  }
+  for (const text of m02Competition.incorrectFragments.map(item => item.text)) {
+    assert.equal(hasQualitativeRecommendationIntent(text), false, text);
+  }
+  for (const text of m02Competition.correctFragments.map(item => item.text)) {
+    assert.equal(hasQualitativeRecommendationIntent(text), true, text);
+  }
+  for (const text of ["Andmete korduv küsimine suurendab koormust.", "Transporditeenus võib olla vajalik."]) {
+    assert.equal(hasQualitativeRecommendationIntent(text), false, text);
+  }
+  for (const text of ["Vähendada andmete korduvat küsimist.", "Transporditeenust tuleb arendada.",
+    "Tagada teenuste kättesaadavus.", "Teenused peavad olema kättesaadavad."]) {
+    assert.equal(hasQualitativeRecommendationIntent(text), true, text);
+  }
+});
+
+test("M02 all eight runtime bodies select actual proposals and recover missing decision-making", () => {
+  const slots = m02Competition.slots;
+  const bodies = m02Competition.bodies.map(item => item.text);
+  for (const ordered of [bodies, [...bodies].reverse()]) {
+    const args = argsFor(slots, ordered);
+    const contract = buildRequestedQualitativeSlotContract(args).trace;
+    assert.deepEqual(contract.missing_slot_indexes, [4]);
+    assert.deepEqual(contract.slots.slice(1).map(slot => slot.evidence_fragment_hash),
+      m02Competition.correctFragments.slice(1, 3).map(item => item.hash));
+    const coverage = buildRequestedFactSlotCoverage(args.questionPlan, args.renderedGroups, args);
+    assert.equal(coverage.complete, false);
+    assert.deepEqual(coverage.missing_slot_indexes, [3]);
+    assert.match(buildDocumentScopedMissingFactQueries(args.questionPlan, coverage.missing_slot_indexes)
+      .map(item => item.query).join(" "), /otsustami/u);
+    const repaired = argsFor(slots, [...ordered, m02Competition.correctFragments[3].text]);
+    const complete = buildRequestedQualitativeSlotContract(repaired).trace;
+    assert.equal(complete.complete, true);
+    assert.deepEqual(complete.slots.map(slot => slot.action_object_bindings.map(binding => binding.action_family)),
+      [["create"], ["change"], ["simplify", "avoid"], ["improve"]]);
+    const retrievalMeta = metaFor(slots, complete);
+    const sources = [{ source_id: "study-source", document_id: "study-doc", evidenceText: repaired.renderedBlocks[0].evidenceText }];
+    const lines = ["1. Kontaktisik või juhtumikorraldus: määrata inimesele üks kindel kontaktisik.",
+      "2. Ennetav abi: muuta abi pakkumine proaktiivseks ja ennetavaks.",
+      "3. Teenustele pääsu tuleb lihtsustada ning korduvaid hindamisi vältida.",
+      "4. Toetatud otsustamine: arendada toetatud otsustamise lahendusi."];
+    const validResult = validateExactFactAnswer({ reply: lines.join("\n"), sources, retrievalMeta });
+    assert.equal(validResult.passed, true, JSON.stringify({ result: validResult, slots: complete.slots }));
+    const paragraphResult = validateExactFactAnswer({ reply: lines.map(line => line.replace(/^\d+\.\s*/u, "")).join(" "), sources, retrievalMeta });
+    assert.equal(paragraphResult.passed, true, JSON.stringify({ result: paragraphResult, slots: complete.slots }));
+    for (const [index, wrong] of [
+      [1, "2. Ennetav abi: tagajärgedega tegelemine on ennetav abi."],
+      [2, "3. Teenustele pääs ja korduvad hindamised: teenustele pääsu tuleb lihtsustada."],
+      [3, "4. Toetatud otsustamise teenus võib olla vajalik."]
+    ]) {
+      const reply = lines.map((line, position) => position === index ? wrong : line).join("\n");
+      assert.equal(validateExactFactAnswer({ reply, sources, retrievalMeta }).passed, false, wrong);
+    }
+  }
 });
 
 test("M02 recommendation requires its primary action, not every consequence in a relative clause", () => {
