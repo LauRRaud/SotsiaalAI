@@ -2876,6 +2876,7 @@
         "NOT_APPLICABLE": "Kontroll ei rakendunud",
         "OBSERVED": "Etapi tulemus salvestatud",
         "PASSED": "See kontroll läbis",
+        "PARTIAL": "Tõendatud osavastus, osa küsimusest jäi vastamata",
         "BLOCKED": "Kontroll blokeeris",
         "NOT_PROVEN": "Tulemus pole tõendatud",
         "RUNNING": "Pooleli"

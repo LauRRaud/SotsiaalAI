@@ -2876,6 +2876,7 @@
         "NOT_APPLICABLE": "Check not applied",
         "OBSERVED": "Stage result recorded",
         "PASSED": "This check passed",
+        "PARTIAL": "Supported partial answer; part of the question remains unanswered",
         "BLOCKED": "Check blocked",
         "NOT_PROVEN": "Result not proven",
         "RUNNING": "In progress"
