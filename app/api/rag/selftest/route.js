@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 
 import { authConfig } from "@/auth";
 import { assertAdmin } from "@/lib/authz";
-import { DEFAULT_MODEL } from "@/lib/chat/settings";
+import { DEFAULT_MODEL, OPENAI_REASONING_EFFORT } from "@/lib/chat/settings";
 import { logOpenAIUsage } from "@/lib/openaiUsage";
 import { normalizeServerLocale, serverT } from "@/lib/i18n/serverMessages";
 import { RAG_SERVICE_KEY } from "@/lib/server/ragAuth";
@@ -200,7 +200,7 @@ export async function POST(req) {
         verbosity: "low"
       },
       reasoning: {
-        effort: "low"
+        effort: OPENAI_REASONING_EFFORT
       },
       input: serverT(locale, "api.rag.selftest.openai_prompt", undefined, "Reply briefly: OK")
     });

@@ -176,6 +176,43 @@ test("same final publication in JSON/SSE, one parent persist, isolated children 
   }
 });
 
+test("a selected-source model failure is recorded on the parent attempt at the model stage", async () => {
+  const stages = [];
+  const input = {
+    persist: true,
+    claimedTurn: { id: "turn" },
+    replyLang: "et",
+    effectiveMessage: "esimene",
+    ragAttemptController: {
+      fence: { id: "attempt", attempt: 1 },
+      stage: async (stage, payload) => { stages.push({ stage, payload }); return true; },
+      stop: () => {}
+    },
+    sourceSelectionTurn: {
+      kind: "selected",
+      rootUserMessageId: "root-user",
+      options: [options[0]],
+      context: context("esimene"),
+      partitions: [{ option: options[0], retrieval: retrieval(options[0]) }]
+    }
+  };
+  const providerError = Object.assign(
+    new Error("400 Unsupported value: 'minimal' is not supported with the selected model."),
+    { status: 400 }
+  );
+
+  await assert.rejects(
+    () => handleSourceSelectionResponse(input, {
+      callOpenAI: async () => { throw providerError; }
+    }, async (_child, deps) => deps.callOpenAI({ reasoningEffort: "minimal" })),
+    providerError
+  );
+  assert.deepEqual(
+    stages.find(item => item.payload?.failure)?.payload.failure,
+    { stage: "model", code: "model_reasoning_effort_unsupported" }
+  );
+});
+
 test("binding-free old intent cannot acquire a newer offer on retry", async () => {
   const db = dbFixture();
   db.chatTurn.findUnique = async () => ({ id: "retry", attempt: 2, status: "ERROR", conversationId: "conv" });

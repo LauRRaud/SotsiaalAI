@@ -224,12 +224,14 @@ test("attempt report preserves failed retries and their own question links", () 
 
 test("model request observation hashes actual payload without retaining user content or settings text", () => {
   const observed = modelRequestEvidence({ model: "test-model", input: [{ content: "PRIVATE user content" }], reasoning: { effort: "low" } });
+  assert.equal(observed.reasoning_effort, "low");
   assert.match(observed.prompt_hash, /^[a-f0-9]{64}$/);
   assert.notEqual(observed.prompt_hash, modelRequestEvidence({ model: "test-model", input: [{ content: "different" }] }).prompt_hash);
   assert.equal(stableEvidenceHash({ b: 2, a: 1 }), stableEvidenceHash({ a: 1, b: 2 }));
   const safe = projectAttemptEvidence({ runtime: { ...observed, raw: "PRIVATE", actual_model: "test-model" }, error: "PRIVATE", root_cause_status: "PROVEN",
     first_observed_failure: { stage: "model", code: "PRIVATE" } });
   assert.doesNotMatch(JSON.stringify(safe), /PRIVATE|user content|PROVEN/);
+  assert.equal(safe.runtime.reasoning_effort, "low");
   assert.equal(safe.root_cause_status, "UNKNOWN");
   assert.deepEqual(projectAttemptEvidence(safe), safe);
 });

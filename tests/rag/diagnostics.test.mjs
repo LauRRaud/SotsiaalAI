@@ -26,6 +26,27 @@ const trace = {
   fact_validation: { enabled: true, passed: false, reason: "requested_fact_answer_incomplete", requested_fact_answer_missing_slot_indexes: [2] }
 };
 
+test("model configuration diagnostics expose the safe request settings and declare a missing effort", () => {
+  const runtime = {
+    configured_model: "gpt-5.6-luna",
+    reasoning_effort: "low",
+    build_id: "build-1",
+    release_sha: "a".repeat(40),
+    prompt_hash: "b".repeat(64),
+    index_generation: "index-1"
+  };
+  const diagnostic = buildRagDiagnostics({ trace: {}, runtime });
+  assert.equal(diagnostic.runtime.configured_model, "gpt-5.6-luna");
+  assert.equal(diagnostic.runtime.reasoning_effort, "low");
+  const rows = diagnosticExplanationRows(diagnostic, key => serverT("et", `chat.diagnostics.${key}`));
+  assert.equal(rows.find(row => row.key === "configured_model")?.value, "gpt-5.6-luna");
+  assert.equal(rows.find(row => row.key === "reasoning_effort")?.value, "low");
+  assert.match(rows.find(row => row.key === "reasoning_effort")?.label || "", /reasoning-tase/u);
+
+  const withoutEffort = buildRagDiagnostics({ trace: {}, runtime: { ...runtime, reasoning_effort: null } });
+  assert.ok(withoutEffort.runtime_missing_fields.includes("reasoning_effort"));
+});
+
 test("qualitative first-reject gates survive producer and canonical projection without draft or source anchors", () => {
   const identity = { required: true, matched: true, confidence: "high", selectedDocumentId: "qual-doc" };
   const slot = { slot_index: 1, value_type: "text_relation", relation_terms: ["teenus"], matched_relation_terms: ["teenus"], minimum_relation_matches: 1, minimum_answer_items: 1, minimum_anchor_matches: 1, evidence_anchor_terms: ["kodukulastus"], required_numeric_values: [], evidence_fragment_hash: "c".repeat(64), evidence_fragment_index: 0 };

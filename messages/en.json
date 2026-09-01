@@ -2788,6 +2788,8 @@
       "yes": "Yes",
       "no": "No",
       "decision_fields": {
+        "configured_model": "Model configured for the request",
+        "reasoning_effort": "Reasoning effort used for the request",
         "source_years": "Planner-selected source years",
         "evidence_period_years": "Planner-selected measurement years",
         "year_roles": "Interpretation of year mentions",
@@ -2903,6 +2905,7 @@
         "usage_reservation_failed": "Usage reservation or settlement failed. This does not establish a source or answer-content error.",
         "retrieval_failed": "Source retrieval failed technically. Missing corpus material has not been established.",
         "model_failed": "The model call failed. This label does not establish its precise root cause.",
+        "model_reasoning_effort_unsupported": "The model request used a reasoning effort that the configured model does not support. Check the recorded model and reasoning effort below.",
         "persistence_failed": "The answer or attempt could not be saved. Visible text may not have been persisted.",
         "request_cancelled": "The request was cancelled; this is not a verdict on answer correctness.",
         "lease_expired": "The attempt heartbeat expired and the work was marked interrupted. The process failure cause requires investigation.",

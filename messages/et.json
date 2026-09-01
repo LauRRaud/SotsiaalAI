@@ -2788,6 +2788,8 @@
       "yes": "Jah",
       "no": "Ei",
       "decision_fields": {
+        "configured_model": "Mudelikutses seadistatud mudel",
+        "reasoning_effort": "Mudelikutses kasutatud reasoning-tase",
         "source_years": "Planneri valitud allikaaastad",
         "evidence_period_years": "Planneri valitud mõõtmisperioodi aastad",
         "year_roles": "Kuidas aastamainimisi tõlgendati",
@@ -2903,6 +2905,7 @@
         "usage_reservation_failed": "Kasutusmahu reserveerimine või arveldamine ebaõnnestus. See ei tõenda viga allikates ega vastuse sisus.",
         "retrieval_failed": "Allikaotsing ebaõnnestus tehniliselt. Materjali puudumine ei ole tõendatud.",
         "model_failed": "Mudelikutses tekkis tõrge. Täpne algpõhjus ei ole selle tähisega veel tõendatud.",
+        "model_reasoning_effort_unsupported": "Mudelikutses kasutati valitud mudelile sobimatut reasoning-taset. Kontrolli allpool salvestatud mudelit ja reasoning-taset.",
         "persistence_failed": "Vastuse või katse salvestamine ebaõnnestus. Kasutajale nähtav tekst ei pruugi olla püsivalt salvestatud.",
         "request_cancelled": "Päring katkestati; see ei ole hinnang vastuse sisulisele õigsusele.",
         "lease_expired": "Katse südamelöök aegus ja töö märgiti katkenuks. Protsessi katkemise algpõhjus vajab eraldi kontrolli.",
