@@ -332,6 +332,11 @@ export default async function RootLayout({
           content="telephone=no, email=no, address=no, date=no"
         />
         <script
+          type="module"
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon={'{"token":"86bf2928d0f44110b9f188ce8d0c28a9"}'}
+        />
+        <script
           id="app-layout-init"
           dangerouslySetInnerHTML={{ __html: LAYOUT_INIT_SCRIPT }}
         />
