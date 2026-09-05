@@ -183,6 +183,8 @@ Serveri käitus kasutab sama koodi GitHubist. Kohalikud algmaterjalid ja privaat
 
 [ADR-004](adr-004-multi-source-evaluation.md) kirjeldab hindaja ja vektorite taaskasutuse piiri. Valitud korpus, küsimused, arendus-/kontrolljaotus ning ankrurühmad on `tests/evaluation/multi-source/` all; alg-PDF-e sinna ei kopeerita. Korpuse JSON ei anna väljasaatmisluba.
 
+05.09 kohaliku ettevalmistuse tegelikud arvud, parserileid ja privaatsed artefaktid on [mitme allika ettevalmistuse auditis](../audits/rag-v2-multi-source-preparation-2026-09-05.md).
+
 Iga kuivjooks kasutab uut privaatset väljundkausta. `--reuse` viitab varasema lõpetatud piloodi ledger'i kaustale, mille manifest, kirjed ja vektorifailid kontrollitakse enne taaskasutuse arvestamist.
 
 ```powershell
