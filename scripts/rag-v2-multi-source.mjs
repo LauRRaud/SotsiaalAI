@@ -58,6 +58,20 @@ function usageSummary(run, plan, price) {
     new_external_usage_cost_usd: formatUsd(costNanos(actualTokens, price)), reusable_inputs: plan.reusable_input_count,
     reusable_tokens: plan.reusable_input_tokens, generation_calls: 0 };
 }
+async function cleanupMechanicsTenant(postgresCatalog, qdrant, tenant) {
+  const generations = (await postgresCatalog.pool.query('SELECT * FROM rag_v2_generation WHERE tenant=$1', [tenant])).rows;
+  for (const generation of generations) await qdrant.request(qdrant.route(generation), 'DELETE').catch(error => {
+    if (error.status !== 404) throw error;
+  });
+  await postgresCatalog.transaction(async client => {
+    await client.query('DELETE FROM rag_v2_head WHERE tenant=$1', [tenant]);
+    for (const table of ['rag_v2_unit', 'rag_v2_generation_document', 'rag_v2_generation', 'rag_v2_vector_cache']) {
+      await client.query(`DELETE FROM ${table} WHERE tenant=$1`, [tenant]);
+    }
+    await client.query("DELETE FROM rag_v2_object WHERE tenant=$1 AND kind='relation'", [tenant]);
+    for (const table of ['rag_v2_object', 'rag_v2_version', 'rag_v2_document']) await client.query(`DELETE FROM ${table} WHERE tenant=$1`, [tenant]);
+  });
+}
 
 let postgres;
 try {
@@ -133,7 +147,7 @@ try {
     egress_manifest_sha256: prepared.manifest_sha256, external_calls_this_run: 0, generation_calls: 0,
     matches_baseline: prepared.matches_baseline, differences: prepared.differences };
   if (values.mechanics) {
-    const mechanicsTenant = `${corpus.tenant}-mock-${hash(stable(corpus.documents)).slice(0, 12)}`;
+    const mechanicsTenant = `${corpus.tenant}-mock-${hash(output).slice(0, 12)}`;
     const mechanicsStoreRoot = path.join(output, 'mechanics-store'), mechanicsIngested = [];
     for (const selected of corpus.documents) {
       mechanicsIngested.push(await ingest({ tenant: mechanicsTenant, inputRoot, metadataFile: selected.metadata_file,
@@ -162,8 +176,9 @@ try {
       await writeNew(path.join(output, `${set.name}-mechanics-results.json`), { ...results, provenance });
       await writeNew(path.join(output, `${set.name}-mechanics-report.html`), pilotReport(results, usage, provenance));
     }
+    await cleanupMechanicsTenant(postgres, qdrant, mechanicsTenant);
     summary.mechanics = { state: technicalErrors ? 'failed' : 'complete', tenant: mechanicsTenant,
-      embedding_mode: 'mock', technical_errors: technicalErrors, index };
+      embedding_mode: 'mock', technical_errors: technicalErrors, cleaned_up: true, index };
     if (technicalErrors) process.exitCode = 1;
   }
   if (values.execute) {
