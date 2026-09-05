@@ -1,0 +1,81 @@
+{
+  "schema_version": "rag-v2/multi-source-corpus-selection-1",
+  "tenant": "sotsiaalai-development",
+  "purpose": "Bounded local retrieval evaluation across competing real owner-provided workspace sources; no external egress is authorized by this file.",
+  "same_issue_second_article": {
+    "state": "unavailable_in_selected_material_root",
+    "note": "No second Sotsiaaltöö 2/2025 article PDF was present. A Sotsiaaltöö 2/2026 article is included to exercise journal/article identity without claiming same-issue coverage."
+  },
+  "documents": [
+    {
+      "metadata_file": "tests/evaluation/multi-source/metadata/sotsiaaltoo-ai-2025.json",
+      "expected_pdf_sha256": "a41995721ca13aa78898116ccef466aedf3576e26bb30fce3c145f4d8b87828b",
+      "expected_size_bytes": 325212,
+      "material_role": "baseline_target_and_close_topic_source",
+      "duplicate_of": null,
+      "layout_review": "Previously reviewed M2.2 article extraction; single article asset with source-page anchors."
+    },
+    {
+      "metadata_file": "tests/evaluation/multi-source/metadata/ai-osalejapakett-2026.json",
+      "expected_pdf_sha256": "1bee150c6c65e2a1a69a2324af16f3aa00b45bcab36cc0d9a11e527dd686834c",
+      "expected_size_bytes": 95111,
+      "material_role": "close_topic_target_and_distractor",
+      "duplicate_of": null,
+      "layout_review": "Single-column training material; checkbox glyphs decode imperfectly but anchored prose is readable."
+    },
+    {
+      "metadata_file": "tests/evaluation/multi-source/metadata/esta-andmekaitse-2026.json",
+      "expected_pdf_sha256": "9bc020d12902f958b9084882af5bd224a3c38f14c1ff3be45c92115385c124de",
+      "expected_size_bytes": 856208,
+      "material_role": "privacy_ethics_target_and_close_distractor",
+      "duplicate_of": null,
+      "layout_review": "Web-print article; page 2–3 footer and split-link noise is present and must not be treated as content evidence."
+    },
+    {
+      "metadata_file": "tests/evaluation/multi-source/metadata/tootajate-turvalisus-2026.json",
+      "expected_pdf_sha256": "e27d064511e8a005826c1819dcb264b7ddc21227e1c799105a3957c73e8daf09",
+      "expected_size_bytes": 232179,
+      "material_role": "journal_target_and_workplace_wellbeing_distractor",
+      "duplicate_of": null,
+      "layout_review": "Article text layer is readable; embedded commentary and publication footer are distinct content regions in the same asset."
+    },
+    {
+      "metadata_file": "tests/evaluation/multi-source/metadata/hooldustootajate-eetika-2026.json",
+      "expected_pdf_sha256": "785d3e26329f5faca3b795e4e0387f98b0a45fe973cafdd79d12a8da81ee34a2",
+      "expected_size_bytes": 249036,
+      "material_role": "ethics_self_care_target_and_close_distractor",
+      "duplicate_of": null,
+      "layout_review": "Web-print article; footer and split social-link noise is present on page 2."
+    },
+    {
+      "metadata_file": "tests/evaluation/multi-source/metadata/tehnopol-heaolutehnoloogia-2026.json",
+      "expected_pdf_sha256": "2db90ecc6509a7c5118c4868b904efd254b3b6a62d004c6baab5e5b7d12aa182",
+      "expected_size_bytes": 802188,
+      "material_role": "competing_program_source_with_financing_terms",
+      "duplicate_of": null,
+      "layout_review": "Web-print page mixes sidebar labels into reading order. Anchors are limited to individually readable prose lines."
+    },
+    {
+      "metadata_file": "tests/evaluation/multi-source/metadata/eka-heaolutehnoloogia-2026.json",
+      "expected_pdf_sha256": "d2f96860f073b4875111cd93696d2dc3673547ddbd268f87ea4a51e69bd5d927",
+      "expected_size_bytes": 1218623,
+      "material_role": "competing_program_source_with_eka_role",
+      "duplicate_of": null,
+      "layout_review": "Web-print page has repeated unrelated sidebar/footer text across pages; those spans are known noise and are not evaluation anchors."
+    },
+    {
+      "metadata_file": "tests/evaluation/multi-source/metadata/haigla-sotsiaaltoo-2026.json",
+      "expected_pdf_sha256": "42a0891809df1cc35ab0c19cd42abce78ff6e19e4186f772860bd6443acdad8c",
+      "expected_size_bytes": 216956,
+      "material_role": "adjacent_social_work_target",
+      "duplicate_of": null,
+      "layout_review": "Web-print article; page 2 footer and split social-link noise is present."
+    }
+  ],
+  "use_limits": {
+    "access": "local_private",
+    "usage": "development_only",
+    "external_embedding_egress": "requires_new_exact_manifest_and_owner_approval",
+    "generation_calls": 0
+  }
+}

@@ -247,6 +247,17 @@ test('Audit: decoded item cardinality is bounded independently of text length', 
   const across=fixture('A');across.pages.push({...structuredClone(across.pages[0]),pdf_page:2,parser_page_index:1},{...structuredClone(across.pages[0]),pdf_page:3,parser_page_index:2},{...structuredClone(across.pages[0]),pdf_page:4,parser_page_index:3});
   assert.throws(()=>structure(across,{tenant_id:'synthetic',document_version_id:'v'},config),/item_limit/);
 });
+test('M1 persistence: PDF NUL glyphs are visible replacements and raw parser items are not stored', async () => {
+  const parsed=fixture('\u0000 Check before use');
+  const structured=structure(parsed,{tenant_id:'synthetic',document_version_id:'v'},configuration());
+  assert.equal(structured.nulReplacements,1);assert.ok(structured.spans[0].source_text.includes('\uFFFD'));
+  assert.equal(structured.spans[0].transformation,'pdf_nul_to_replacement_character_then_whitespace');
+  assert.ok(structured.pages.every(page=>!Object.hasOwn(page,'items')));assert.ok(!JSON.stringify(structured).includes('\u0000'));
+  const result=await ingest(await synthetic('nul-safe'),{parsePdf:async()=>parsed});
+  assert.ok(result.bundle.report.warnings.some(warning=>warning.code==='pdf_nul_replaced'));
+  assert.ok(!JSON.stringify(result.bundle).includes('\u0000'));
+  assert.throws(()=>validateMetadata({document_id:'d',title:'bad\u0000title',source_path:'x.pdf',source_type:'guide',language:'et'}),/invalid_metadata_title/);
+});
 test('Audit: metadata fields and arrays are bounded before expansion', () => {
   const base={document_id:'d',title:'t',source_path:'x.pdf',source_type:'guide',language:'et'};
   assert.throws(()=>validateMetadata({...base,title:'x'.repeat(501)}),/metadata_title_too_long/);

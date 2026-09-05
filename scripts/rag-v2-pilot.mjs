@@ -17,6 +17,7 @@ import { QdrantIndex } from '../lib/rag-v2/search/qdrant.js';
 import { indexSnapshot } from '../lib/rag-v2/search/indexing.js';
 import { evaluateRetrieval, resolveAnchorGroups } from '../lib/rag-v2/search/evaluator.js';
 import { pilotReport } from '../lib/rag-v2/search/pilot-report.js';
+import { artifactProvenance, gitProvenance } from '../lib/rag-v2/search/artifact-provenance.js';
 dotenv.config({ path: '.env.local', quiet: true });
 
 let postgres;
@@ -28,6 +29,7 @@ try {
     'baseline-audit': { type: 'string', default: 'tmp/rag-v2-query/evidence.json' },
     questions: { type: 'string', default: 'tests/evaluation/rag-v2-queries.json' }, groups: { type: 'string', default: 'tests/evaluation/rag-v2-anchor-groups.json' },
     approval: { type: 'string' }, price: { type: 'string' }, execute: { type: 'boolean', default: false },
+    'verification-output': { type: 'string' },
   } });
   const root = path.resolve('tmp/rag-v2-m2-2'); await fs.mkdir(root, { recursive: true, mode: 0o700 });
   const context = { tenant: values.tenant, subject: values.subject, usage: 'development_only' }, policy = new FilePolicy(values.policy);
@@ -81,6 +83,22 @@ try {
     try { await fs.writeFile(resultPath,JSON.stringify(results,null,2),{flag:'wx',mode:0o600});
       await fs.writeFile(path.join(root,'pilot-report.html'),pilotReport(results,summary.usage),{flag:'wx',mode:0o600}); }
     catch(e){if(e.code!=='EEXIST')throw e; console.log(JSON.stringify({event:'first_pilot_result_preserved'}));}
+    if (values['verification-output']) {
+      const output = path.resolve(values['verification-output']);
+      if (!output.startsWith(root + path.sep)) throw new Error('private_verification_output_required');
+      await fs.mkdir(output, { recursive: true, mode: 0o700 });
+      const createdAt = new Date().toISOString();
+      const provenance = artifactProvenance({ runKind: 'm2-2-post-fix-verification', createdAt,
+        git: await gitProvenance(['lib/rag-v2', 'scripts/rag-v2-pilot.mjs', 'tests/rag-v2-pilot.test.mjs']), snapshot,
+        index: indexed, results, evaluationSets: [{ name: 'm2-2-original', questions, groups }],
+        vectorSources: [{ manifest_sha256: run.ledger.manifest_sha256, ledger_sha256: summary.usage.ledger_sha256,
+          transport: run.ledger.transport }], apiAttemptsThisRun: run.api_attempts_this_run });
+      await fs.writeFile(path.join(output, 'provenance.json'), JSON.stringify(provenance, null, 2), { flag: 'wx', mode: 0o600 });
+      await fs.writeFile(path.join(output, 'pilot-results.json'), JSON.stringify({ ...results, provenance }, null, 2), { flag: 'wx', mode: 0o600 });
+      await fs.writeFile(path.join(output, 'pilot-report.html'), pilotReport(results, summary.usage, provenance), { flag: 'wx', mode: 0o600 });
+      summary.verification = { output, run_id: provenance.run_id, code_sha: provenance.code.git_head_sha,
+        tracked_worktree_dirty: provenance.code.tracked_worktree_dirty, rag_v2_scope_dirty: provenance.code.rag_v2_scope_dirty };
+    }
     summary.rows=results.rows.length;summary.case_failures=results.failures;
   }
   console.log(JSON.stringify(summary,null,2));

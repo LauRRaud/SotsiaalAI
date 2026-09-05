@@ -178,3 +178,32 @@ Serveris tehtud kinnitatud piloot kasutas 16 muutmata tekstiosa ja 9 küsimust. 
 Kuue ET/EN/RU sisuküsimuse nõutud allikakohad olid hübriidraja lõppkontekstis 6/6 ja top-1-s 6/6, pärisvektorraja lõppkontekstis 6/6 ning leksikaalses rajas 4/6. Struktuurne laiendus käivitus 9/9, kuid selle eraldi kvaliteedilisa ei ole selle valimiga tõendatud. Lõplik M0–M2.2 komplekt koos turvaparandustega läbis kohalikult ja serveris 57 testi, 0 vea ning 0 skip'iga. Täielik ulatus, turvaauditi leiud ja piirid on [M0–M2.2 auditis](../audits/rag-v2-m2-2-audit-2026-09-05.md).
 
 Serveri käitus kasutab sama koodi GitHubist. Kohalikud algmaterjalid ja privaatsed loakirjed/väljundid viiakse serveri privaatsesse `tmp/` hoidlasse eraldi; neid ei avaldata Git-repositooriumis. Serveri `OPENAI_API_KEY` jääb `/etc/sotsiaalai/frontend.env` seadistusse. Uued konteinerid on seotud ainult loopback-portidega; olemasolev platvormi andmebaas jäi eraldi. Vana RAG-i/research-worker'i teenused on `inactive/disabled` ning frontendi unit ei sõltu neist enam. Rakenduse chat ja käsitsi enesetest jäävad M4 ühenduseni ausalt `retired` olekusse.
+
+## M2 mitme allika järelkatse
+
+[ADR-004](adr-004-multi-source-evaluation.md) kirjeldab hindaja ja vektorite taaskasutuse piiri. Valitud korpus, küsimused, arendus-/kontrolljaotus ning ankrurühmad on `tests/evaluation/multi-source/` all; alg-PDF-e sinna ei kopeerita. Korpuse JSON ei anna väljasaatmisluba.
+
+Iga kuivjooks kasutab uut privaatset väljundkausta. `--reuse` viitab varasema lõpetatud piloodi ledger'i kaustale, mille manifest, kirjed ja vektorifailid kontrollitakse enne taaskasutuse arvestamist.
+
+```powershell
+node scripts/rag-v2-multi-source.mjs `
+  --output tmp/rag-v2-multi-source/preparation-1 `
+  --reuse <verified-ledger-directory> `
+  --price <current-verified-price.json>
+```
+
+`--mechanics` indekseerib samad pärisallikad deterministlike testvektoritega päris kohalikku PostgreSQL-i/Qdranti ja genereerib kõik neli raportirada. See kontroll ei tõenda semantilist kvaliteeti ega tee väliskutseid. PDF-i tekstikihi NUL-glüüf asendatakse enne püsistamist nähtava `U+FFFD` märgiga, algne parseri item-kiht jäetakse bundle'ist välja ning raport saab `pdf_nul_replaced` hoiatuse.
+
+Pärisjooks vajab kuivjooksu muutumatut `evaluation-plan.json` faili, täpselt selle egress-manifesti kinnitavat `rag-v2/pilot-approval-1` loakirjet ja käivituse hetkel kehtivat hinnakirjet:
+
+```powershell
+node scripts/rag-v2-multi-source.mjs `
+  --output tmp/rag-v2-multi-source/run-1 `
+  --reuse <verified-ledger-directory> `
+  --price <current-verified-price.json> `
+  --baseline <evaluation-plan.json> `
+  --approval <approved-manifest.json> `
+  --execute
+```
+
+Kui üks räsi, allikaversioon, küsimus, taaskasutuskviitung, mudel või limiit muutub, lükkab käivitus baseline'i tagasi enne saatmist. Ankrud ja vastatavuse sildid ei kuulu egress-manifesti ega päringu filtritesse.

@@ -1,0 +1,205 @@
+{
+  "schema_version": "rag-v2/retrieval-evaluation-2",
+  "purpose": "M2 multi-source retrieval evaluation. Expected sources and support labels are evaluator-only data and must never become query filters or embedding input.",
+  "comparisons": ["lexical", "real_vector", "hybrid", "hybrid_with_structure"],
+  "top_k": [1, 3, 5],
+  "context_tokens": 6000,
+  "cases": [
+    {
+      "id": "decision-boundary-et",
+      "family": "decision-boundary",
+      "split": "development",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Milliste inimese kohta tehtavate otsuste soovitamist peaks üldine generatiivne AI sotsiaaltöös vältima ja miks ei piisa sellest, et lõpliku otsuse teeb inimene?"
+    },
+    {
+      "id": "decision-boundary-en",
+      "family": "decision-boundary",
+      "split": "development",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "en",
+      "query": "Which decisions about a person should general generative AI avoid recommending in social work, and why is it insufficient to say that a human makes the final decision?"
+    },
+    {
+      "id": "decision-boundary-ru",
+      "family": "decision-boundary",
+      "split": "development",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "ru",
+      "query": "Какие решения о человеке не должен рекомендовать общий генеративный ИИ в социальной работе и почему недостаточно сказать, что окончательное решение принимает человек?"
+    },
+    {
+      "id": "data-minimization-egress-et",
+      "family": "data-minimization-egress",
+      "split": "development",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Mida peab sotsiaaltöötaja kontrollima detailide vajalikkuse ja dokumendi välisele AI-teenusele saatmise õiguse kohta?"
+    },
+    {
+      "id": "incident-response-et",
+      "family": "incident-response",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Mida tuleb teha esimesena, kui tundlik tööinfo sattus valesse AI-tööriista, kellele teatada ja mis tuleb minimaalselt kirja panna?"
+    },
+    {
+      "id": "human-relationship-support-et",
+      "family": "human-relationship-support",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Millise piiri seab artikkel tehisintellektile inimsuhetes ja millistel arendustingimustel saab AI sotsiaaltööd toetada?"
+    },
+    {
+      "id": "privacy-processing-basics-et",
+      "family": "privacy-processing-basics",
+      "split": "development",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Mida rõhutas ESTA andmekaitse teemapäev tundlike isikuandmete töötlemise puhul läbi mõtlema?"
+    },
+    {
+      "id": "ethics-peer-discussion-et",
+      "family": "ethics-peer-discussion",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Miks julgustati sotsiaalvaldkonna töötajaid eetilisi küsimusi kolleegidega avatult arutama?"
+    },
+    {
+      "id": "worker-violence-rate-et",
+      "family": "worker-violence-rate",
+      "split": "development",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Kui suur osa küsitletud kohalike omavalitsuste sotsiaal- ja lastekaitsetöötajatest oli kokku puutunud kliendist lähtuva vägivallaga?"
+    },
+    {
+      "id": "worker-violence-rate-en",
+      "family": "worker-violence-rate",
+      "split": "development",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "en",
+      "query": "What proportion of surveyed local-government social and child-protection workers had encountered client-initiated violence?"
+    },
+    {
+      "id": "worker-violence-rate-ru",
+      "family": "worker-violence-rate",
+      "split": "development",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "ru",
+      "query": "Какая доля опрошенных муниципальных социальных работников и специалистов по защите детей сталкивалась с насилием со стороны клиентов?"
+    },
+    {
+      "id": "employer-worker-safety-et",
+      "family": "employer-worker-safety",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Millist vastutust kirjeldab artikkel tööandjale sotsiaalvaldkonna töötaja riskide ja vägivallajuhtumijärgse toe puhul?"
+    },
+    {
+      "id": "care-ethics-selfcare-et",
+      "family": "care-ethics-selfcare",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Milliseid eetika ja enesehoiu teemasid käsitleti hooldustöötajate koolitustel?"
+    },
+    {
+      "id": "wellbeing-funding-et",
+      "family": "wellbeing-funding",
+      "split": "development",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Millised olid heaolutehnoloogiate programmi esimese ja teise rahastusetapi toetussummad ning omafinantseeringu tingimused Tehnopoli info järgi?"
+    },
+    {
+      "id": "wellbeing-funding-en",
+      "family": "wellbeing-funding",
+      "split": "development",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "en",
+      "query": "According to Tehnopol, what were the grant amounts and co-financing conditions for the first and second stages of the welfare-technology programme?"
+    },
+    {
+      "id": "wellbeing-funding-ru",
+      "family": "wellbeing-funding",
+      "split": "development",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "ru",
+      "query": "Каковы были суммы поддержки и условия собственного финансирования на первом и втором этапах программы технологий благополучия по данным Tehnopol?"
+    },
+    {
+      "id": "wellbeing-two-source-roles-et",
+      "family": "wellbeing-two-source-roles",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Kes viivad Tehnopoli kirjelduse järgi heaolutehnoloogiate programmi ellu ja millist rolli kirjeldab EKA enda materjal?"
+    },
+    {
+      "id": "hospital-discharge-continuity-et",
+      "family": "hospital-discharge-continuity",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Mida näitas insuldijärgse raviteekonna piloot tervishoiu- ja sotsiaalvaldkonna koostöö ning haiglast lahkuva inimese toe kohta?"
+    },
+    {
+      "id": "worker-safety-author-et",
+      "family": "worker-safety-author",
+      "split": "development",
+      "kind": "bibliography",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Kes kirjutas artikli „Kas oleme valmis päriselt rääkima töötajate turvalisusest sotsiaaltöös?”",
+      "expected_metadata": {
+        "pdf_sha256": "e27d064511e8a005826c1819dcb264b7ddc21227e1c799105a3957c73e8daf09",
+        "field": "authors",
+        "value": ["Aljona Kõpp"]
+      }
+    },
+    {
+      "id": "wellbeing-project-state-et",
+      "family": "wellbeing-project-state",
+      "split": "control",
+      "kind": "partially_answerable_in_selected_corpus",
+      "expected_support": "partial",
+      "language": "et",
+      "query": "Mitu heaolutehnoloogia projekti rahastati, milliste murekohtadega need tegelesid ja milliseid mõõdetud tulemusi on need juba saavutanud?",
+      "note": "The selected snapshot gives counts and problem categories but no measured project outcomes."
+    },
+    {
+      "id": "current-home-service-cost-et",
+      "family": "current-home-service-cost",
+      "split": "control",
+      "kind": "unanswerable_in_selected_corpus",
+      "expected_support": "absent",
+      "language": "et",
+      "query": "Kui suur on minu vallas 2026. aastal koduteenuse omaosalus ja kui kiiresti teenus määratakse?",
+      "note": "The corpus has a fictional training fact sheet but no current municipality-specific rule or price."
+    }
+  ]
+}

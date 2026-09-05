@@ -7,13 +7,16 @@ import net from 'node:net';
 import { hash, id, stable } from '../lib/rag-v2/contracts.js';
 import { tokenCount } from '../lib/rag-v2/search/embedding.js';
 import { realEmbeddingConfig, validateApproval, nanoUsd, formatUsd, costNanos } from '../lib/rag-v2/search/pilot-manifest.js';
-import { runPilot, StoredEmbedding } from '../lib/rag-v2/search/pilot-runner.js';
+import { reusableEmbeddingCatalog, runPilot, StoredEmbedding } from '../lib/rag-v2/search/pilot-runner.js';
 import { openAITransport } from '../lib/rag-v2/search/openai-embedding.js';
 import { modelProjection, resolveModelReference } from '../lib/rag-v2/search/model-context.js';
 import { structuralRole } from '../lib/rag-v2/search/structural-role.js';
 import { LocalPolicy } from '../lib/rag-v2/search/policy.js';
-import { anchorCoverage } from '../lib/rag-v2/search/evaluator.js';
+import { anchorCoverage, resolveAnchorGroups, validateEvaluationQuestions } from '../lib/rag-v2/search/evaluator.js';
 import { QdrantIndex } from '../lib/rag-v2/search/qdrant.js';
+import { artifactProvenance } from '../lib/rag-v2/search/artifact-provenance.js';
+import { pilotReport } from '../lib/rag-v2/search/pilot-report.js';
+import { buildMultiSourcePlan } from '../lib/rag-v2/search/multi-source-plan.js';
 
 let root, attempts = 0;
 const savedFetch = globalThis.fetch, savedConnect = net.Socket.prototype.connect;
@@ -65,6 +68,12 @@ test('E-04/13: successful vectors persist; restart does not reset counters or re
   const second=await runPilot(opts);assert.equal(second.api_attempts_this_run,0);assert.equal(calls,2);assert.equal(second.ledger.reserved_attempts,2);
   const saved=await StoredEmbedding.load(first.directory,context.tenant);assert.equal(saved.provenance,'test_transport');
   await saved.embed('hello world');await saved.embed('hello world');assert.equal(calls,2);
+  const reusable=await reusableEmbeddingCatalog([first.directory],context.tenant);assert.equal(reusable.receipts.size,2);
+  assert.equal(reusable.embedding.provenance,'test_transport');await reusable.embedding.embed('hello world');assert.equal(calls,2);
+  const ledgerFile=path.join(first.directory,'ledger.json'),ledger=JSON.parse(await fs.readFile(ledgerFile,'utf8'));
+  ledger.transport='openai_https';await fs.writeFile(ledgerFile,JSON.stringify(ledger));
+  const credentialFreeReuse=await runPilot({...opts,transport:undefined,apiKey:undefined});
+  assert.equal(credentialFreeReuse.api_attempts_this_run,0);assert.equal(calls,2);
   await assert.rejects(saved.embed('not saved'),/stored_embedding_missing/);
   await assert.rejects(StoredEmbedding.load(first.directory,'other'),/complete_real_pilot_required/);
 });
@@ -141,6 +150,57 @@ test('E-12: an ID or page without supporting text does not cover an anchor group
   assert.equal(anchorCoverage([wrong],required)[0].covered,false);
   assert.equal(anchorCoverage([{...wrong,source_text:'piirang'}],required)[0].covered,true);
   assert.equal(anchorCoverage([{...wrong,source_text:'erand',pdf_pages:[4],span_ids:['s2']}],required)[0].covered,true);
+});
+test('M2 multi-source: evaluator resolves anchors across assets and keeps translation families in one split',()=>{
+  const a='a'.repeat(64),b='b'.repeat(64),snapshot={bundles:[
+    {version:{id:'va',pdf_hash:a},document:{id:'da'},spans:[{id:'sa',pdf_page:1,source_text:'alpha evidence'}]},
+    {version:{id:'vb',pdf_hash:b},document:{id:'db'},spans:[{id:'sb',pdf_page:2,source_text:'beta evidence'}]},
+  ]};
+  const groups={families:{cross:[{id:'a',alternatives:[{pdf_sha256:a,pdf_page:1,contains:'alpha'}]},
+    {id:'b',alternatives:[{pdf_sha256:b,pdf_page:2,contains:'beta'}]}]}};
+  const resolved=resolveAnchorGroups(snapshot,groups);assert.equal(resolved.cross[0].alternatives[0].document_id,'da');
+  assert.equal(resolved.cross[1].alternatives[0].document_id,'db');
+  const questions={cases:[{id:'et',family:'cross',split:'control',language:'et',query:'küsimus'},
+    {id:'en',family:'cross',split:'control',language:'en',query:'question'}]};
+  assert.equal(validateEvaluationQuestions(questions).get('cross'),'control');
+  assert.throws(()=>validateEvaluationQuestions({cases:[...questions.cases,{id:'ru',family:'cross',split:'development',language:'ru',query:'вопрос'}]}),/evaluation_family_split_leakage/);
+  assert.throws(()=>resolveAnchorGroups(snapshot,{families:{cross:[{id:'x',alternatives:[{pdf_sha256:b,pdf_page:2,contains:'missing'}]}]}}),/anchor_source_missing/);
+});
+test('M2 artifact provenance binds code, corpus, evaluation hashes and renders without mutating old reports',()=>{
+  const results={schema_version:'rag-v2/retrieval-pilot-results-1',config:{embedding_mode:'real'},embedding_mode:'real',
+    semantic_claim:'single_article_case_results_only',corpus_document_count:1,question_family_count:1,rows:[],limitations:[]};
+  const provenance=artifactProvenance({runKind:'verification',createdAt:'2026-09-05T16:00:00.000Z',
+    git:{head:'a'.repeat(40),tracked_dirty:true,scoped_dirty:false,status_sha256:'b'.repeat(64)},
+    snapshot:{tenant:'t',source_generation:'g',snapshot_hash:'s',bundles:[{}]},index:{generation_id:'i'},results,
+    evaluationSets:[{name:'set',questions:{cases:[]},groups:{families:{}}}],apiAttemptsThisRun:0});
+  assert.match(provenance.run_id,/^evaluation_run_/);assert.equal(provenance.code.tracked_worktree_dirty,true);
+  assert.equal(provenance.corpus.document_count,1);assert.equal(provenance.external_api_attempts_this_run,0);
+  const html=pilotReport(results,{},provenance);assert.ok(html.includes('Artefakti päritolu'));assert.ok(html.includes(provenance.run_id));
+});
+test('M2 multi-source: exact egress plan reuses verified hashes and never serializes source or anchor text',()=>{
+  const tenant='multi',documentId='d',versionId='v',source='hello source',retrieval='Title\n\nhello source';
+  const document={id:documentId,tenant_id:tenant,rights:{access:'local_private',usage:'development_only'},search_aids:{},
+    fields:{title:{value:'Title',provenance:[{kind:'metadata'}]},authors:{value:[],provenance:[{kind:'metadata'}]}}};
+  const bundle={schema_version:'rag-v2/1',tenant_id:tenant,document,
+    version:{id:versionId,tenant_id:tenant,document_id:documentId,pdf_hash:'a'.repeat(64),metadata_hash:'b'.repeat(64)},assets:[],
+    pages:[{raw_text:source}],spans:[{id:'s',tenant_id:tenant,document_version_id:versionId,pdf_page:1,parser_page_index:0,start:0,end:source.length,source_text:source,block_id:'b'}],
+    sections:[{id:'section',tenant_id:tenant,document_version_id:versionId}],
+    blocks:[{id:'b',tenant_id:tenant,document_version_id:versionId,kind:'paragraph',span_ids:['s']}],
+    chunks:[{id:'c',tenant_id:tenant,document_version_id:versionId,ordinal:0,parent_section_id:'section',span_ids:['s'],pdf_pages:[1],
+      source_text:source,retrieval_text:retrieval,previous_id:null,next_id:null}],relations:[]};
+  const documents={[documentId]:{version_id:versionId,pdf_hash:bundle.version.pdf_hash}},snapshot={tenant,source_generation:'g',documents,bundles:[bundle],snapshot_hash:hash(stable(documents))};
+  const config=realEmbeddingConfig(),documentHash=hash(retrieval),documentTokens=tokenCount(retrieval);
+  const reuseCatalog={config,receipts:new Map([[documentHash,{input_hash:documentHash,input_id:'old',tokens:documentTokens,
+    source_manifest_sha256:'c'.repeat(64),source_ledger_sha256:'d'.repeat(64),vector_record_hash:'e'.repeat(64),transport:'openai_https'}]])};
+  const questions={cases:[{id:'q',family:'f',split:'control',language:'et',query:'new question',expected_support:'full'}]};
+  const first=buildMultiSourcePlan({snapshot,questionSets:[{name:'set',questions}],reuseCatalog});
+  assert.equal(first.plan.all_input_count,2);assert.equal(first.plan.reusable_input_count,1);assert.equal(first.plan.external_input_count,1);
+  assert.equal(first.manifest.inputs.length,1);assert.equal(first.manifest.reused_inputs.length,1);
+  assert.ok(!JSON.stringify(first.manifest).includes(source));assert.ok(!JSON.stringify(first.manifest).includes('expected_support'));
+  assert.doesNotThrow(()=>validateApproval(first,approval(first),price));
+  const same=buildMultiSourcePlan({snapshot,questionSets:[{name:'set',questions}],reuseCatalog,baseline:first.plan});assert.equal(same.matches_baseline,true);
+  const changed=buildMultiSourcePlan({snapshot,questionSets:[{name:'set',questions:{cases:[{...questions.cases[0],query:'changed'}]}}],reuseCatalog,baseline:first.plan});
+  assert.equal(changed.matches_baseline,false);assert.deepEqual(changed.differences,['egress_manifest']);
 });
 test('Audit: Qdrant timeout remains a service failure eligible for explicit lexical degradation',async()=>{
   const previous=globalThis.fetch;

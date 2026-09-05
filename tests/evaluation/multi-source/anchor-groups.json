@@ -1,0 +1,309 @@
+{
+  "schema_version": "rag-v2/anchor-groups-2",
+  "basis": "Evaluator-only source spans selected from the immutable PDFs before retrieval. Alternatives allow equivalent source locations; they are never query filters.",
+  "families": {
+    "decision-boundary": [
+      {
+        "id": "decision-scope",
+        "alternatives": [
+          {
+            "pdf_sha256": "1bee150c6c65e2a1a69a2324af16f3aa00b45bcab36cc0d9a11e527dd686834c",
+            "pdf_page": 9,
+            "contains": "üldine generatiivne AI ei soovita konkreetse inimese abivajaduse, toetuse"
+          }
+        ]
+      },
+      {
+        "id": "human-final-is-insufficient",
+        "alternatives": [
+          {
+            "pdf_sha256": "1bee150c6c65e2a1a69a2324af16f3aa00b45bcab36cc0d9a11e527dd686834c",
+            "pdf_page": 9,
+            "contains": "ei piisa lausest „lõpliku otsuse teeb inimene”"
+          }
+        ]
+      }
+    ],
+    "data-minimization-egress": [
+      {
+        "id": "detail-necessity",
+        "alternatives": [
+          {
+            "pdf_sha256": "1bee150c6c65e2a1a69a2324af16f3aa00b45bcab36cc0d9a11e527dd686834c",
+            "pdf_page": 7,
+            "contains": "Kas iga detail on selle ülesande jaoks vajalik?"
+          }
+        ]
+      },
+      {
+        "id": "external-transfer-right",
+        "alternatives": [
+          {
+            "pdf_sha256": "1bee150c6c65e2a1a69a2324af16f3aa00b45bcab36cc0d9a11e527dd686834c",
+            "pdf_page": 7,
+            "contains": "Kas mul on õigus dokumenti või selle sisu välisele teenusele edastada"
+          }
+        ]
+      }
+    ],
+    "incident-response": [
+      {
+        "id": "stop",
+        "alternatives": [
+          {
+            "pdf_sha256": "1bee150c6c65e2a1a69a2324af16f3aa00b45bcab36cc0d9a11e527dd686834c",
+            "pdf_page": 11,
+            "contains": "Peata tegevus. Ära sisesta uusi andmeid"
+          }
+        ]
+      },
+      {
+        "id": "report",
+        "alternatives": [
+          {
+            "pdf_sha256": "1bee150c6c65e2a1a69a2324af16f3aa00b45bcab36cc0d9a11e527dd686834c",
+            "pdf_page": 11,
+            "contains": "Teata viivitamata asutuse kokkulepitud kanalisse"
+          }
+        ]
+      },
+      {
+        "id": "minimum-record",
+        "alternatives": [
+          {
+            "pdf_sha256": "1bee150c6c65e2a1a69a2324af16f3aa00b45bcab36cc0d9a11e527dd686834c",
+            "pdf_page": 11,
+            "contains": "Pane kirja minimaalne vajalik"
+          }
+        ]
+      }
+    ],
+    "human-relationship-support": [
+      {
+        "id": "relationship-boundary",
+        "alternatives": [
+          {
+            "pdf_sha256": "a41995721ca13aa78898116ccef466aedf3576e26bb30fce3c145f4d8b87828b",
+            "pdf_page": 8,
+            "contains": "tohiks asendada inimsuhteid, vaid peaks pakkuma täiendavat tuge"
+          }
+        ]
+      },
+      {
+        "id": "development-conditions",
+        "alternatives": [
+          {
+            "pdf_sha256": "a41995721ca13aa78898116ccef466aedf3576e26bb30fce3c145f4d8b87828b",
+            "pdf_page": 12,
+            "contains": "arendusprotsess on läbipaistev, väärtuspõhine ja kaasav"
+          }
+        ]
+      }
+    ],
+    "privacy-processing-basics": [
+      {
+        "id": "sensitive-data-scale",
+        "alternatives": [
+          {
+            "pdf_sha256": "9bc020d12902f958b9084882af5bd224a3c38f14c1ff3be45c92115385c124de",
+            "pdf_page": 1,
+            "contains": "suures ulatuses tundlike isikuandmete töötlemisega"
+          }
+        ]
+      },
+      {
+        "id": "why-how-what",
+        "alternatives": [
+          {
+            "pdf_sha256": "9bc020d12902f958b9084882af5bd224a3c38f14c1ff3be45c92115385c124de",
+            "pdf_page": 1,
+            "contains": "oluline läbi mõelda miks, kuidas ja"
+          }
+        ]
+      }
+    ],
+    "ethics-peer-discussion": [
+      {
+        "id": "open-colleague-discussion",
+        "alternatives": [
+          {
+            "pdf_sha256": "9bc020d12902f958b9084882af5bd224a3c38f14c1ff3be45c92115385c124de",
+            "pdf_page": 1,
+            "contains": "kolleegidega avatult ettetulevate"
+          }
+        ]
+      },
+      {
+        "id": "not-alone",
+        "alternatives": [
+          {
+            "pdf_sha256": "9bc020d12902f958b9084882af5bd224a3c38f14c1ff3be45c92115385c124de",
+            "pdf_page": 1,
+            "contains": "ükski spetsialist ei tohiks"
+          }
+        ]
+      }
+    ],
+    "worker-violence-rate": [
+      {
+        "id": "survey-rate",
+        "alternatives": [
+          {
+            "pdf_sha256": "e27d064511e8a005826c1819dcb264b7ddc21227e1c799105a3957c73e8daf09",
+            "pdf_page": 2,
+            "contains": "92,6% küsitluses osalenud töötajatest"
+          }
+        ]
+      }
+    ],
+    "employer-worker-safety": [
+      {
+        "id": "risk-management",
+        "alternatives": [
+          {
+            "pdf_sha256": "e27d064511e8a005826c1819dcb264b7ddc21227e1c799105a3957c73e8daf09",
+            "pdf_page": 5,
+            "contains": "Tööandja peab hindama, ennetama ja maandama tööga seotud riske"
+          }
+        ]
+      },
+      {
+        "id": "post-incident-support",
+        "alternatives": [
+          {
+            "pdf_sha256": "e27d064511e8a005826c1819dcb264b7ddc21227e1c799105a3957c73e8daf09",
+            "pdf_page": 5,
+            "contains": "vägivallajuhtumite korral ei jääks nad üksi"
+          }
+        ]
+      }
+    ],
+    "care-ethics-selfcare": [
+      {
+        "id": "ethics-and-self-care",
+        "alternatives": [
+          {
+            "pdf_sha256": "785d3e26329f5faca3b795e4e0387f98b0a45fe973cafdd79d12a8da81ee34a2",
+            "pdf_page": 1,
+            "contains": "väga olulisele teemale, eetikale ja"
+          }
+        ]
+      },
+      {
+        "id": "burnout-prevention",
+        "alternatives": [
+          {
+            "pdf_sha256": "785d3e26329f5faca3b795e4e0387f98b0a45fe973cafdd79d12a8da81ee34a2",
+            "pdf_page": 1,
+            "contains": "läbipõlemise ennetamisele ning praktilistele enesehoiu"
+          }
+        ]
+      },
+      {
+        "id": "self-determination",
+        "alternatives": [
+          {
+            "pdf_sha256": "785d3e26329f5faca3b795e4e0387f98b0a45fe973cafdd79d12a8da81ee34a2",
+            "pdf_page": 1,
+            "contains": "enesemääramisõigust ja lugupidavat kohtlemist"
+          }
+        ]
+      }
+    ],
+    "wellbeing-funding": [
+      {
+        "id": "first-stage",
+        "alternatives": [
+          {
+            "pdf_sha256": "2db90ecc6509a7c5118c4868b904efd254b3b6a62d004c6baab5e5b7d12aa182",
+            "pdf_page": 2,
+            "contains": "30 000 eurot, oma fi nantseeringut ei nõuta"
+          }
+        ]
+      },
+      {
+        "id": "second-stage",
+        "alternatives": [
+          {
+            "pdf_sha256": "2db90ecc6509a7c5118c4868b904efd254b3b6a62d004c6baab5e5b7d12aa182",
+            "pdf_page": 2,
+            "contains": "000 eurost, oma fi nantseering minimaalselt 12%"
+          }
+        ]
+      }
+    ],
+    "wellbeing-two-source-roles": [
+      {
+        "id": "implementers",
+        "alternatives": [
+          {
+            "pdf_sha256": "2db90ecc6509a7c5118c4868b904efd254b3b6a62d004c6baab5e5b7d12aa182",
+            "pdf_page": 1,
+            "contains": "Tehnopol, Civitta ja Eesti Kunstiakadeemia"
+          }
+        ]
+      },
+      {
+        "id": "eka-role",
+        "alternatives": [
+          {
+            "pdf_sha256": "d2f96860f073b4875111cd93696d2dc3673547ddbd268f87ea4a51e69bd5d927",
+            "pdf_page": 3,
+            "contains": "kasutajavaate rolli, aitab"
+          },
+          {
+            "pdf_sha256": "d2f96860f073b4875111cd93696d2dc3673547ddbd268f87ea4a51e69bd5d927",
+            "pdf_page": 8,
+            "contains": "EKA kannab teenusedisaini ja kasutajavaate"
+          }
+        ]
+      }
+    ],
+    "hospital-discharge-continuity": [
+      {
+        "id": "patient-centred-path",
+        "alternatives": [
+          {
+            "pdf_sha256": "42a0891809df1cc35ab0c19cd42abce78ff6e19e4186f772860bd6443acdad8c",
+            "pdf_page": 1,
+            "contains": "patsiendi vajadustest lähtuv terviklik"
+          }
+        ]
+      },
+      {
+        "id": "continuity-after-discharge",
+        "alternatives": [
+          {
+            "pdf_sha256": "42a0891809df1cc35ab0c19cd42abce78ff6e19e4186f772860bd6443acdad8c",
+            "pdf_page": 1,
+            "contains": "et inimene ei jääks pärast haiglaravi vajaliku toe ja teenusteta"
+          }
+        ]
+      }
+    ],
+    "worker-safety-author": [],
+    "wellbeing-project-state": [
+      {
+        "id": "funded-count",
+        "alternatives": [
+          {
+            "pdf_sha256": "d2f96860f073b4875111cd93696d2dc3673547ddbd268f87ea4a51e69bd5d927",
+            "pdf_page": 5,
+            "contains": "Toetust saanud 20"
+          }
+        ]
+      },
+      {
+        "id": "problem-categories",
+        "alternatives": [
+          {
+            "pdf_sha256": "d2f96860f073b4875111cd93696d2dc3673547ddbd268f87ea4a51e69bd5d927",
+            "pdf_page": 6,
+            "contains": "üksilduse vähendamisele"
+          }
+        ]
+      }
+    ],
+    "current-home-service-cost": []
+  }
+}

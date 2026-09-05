@@ -1,0 +1,18 @@
+{
+  "document_id": "m2multi-sotsiaaltoo-2-2025-ai",
+  "docId": "sotsiaaltoo-2-2025",
+  "articleId": "tehisintellekt-sotsiaaltoos-praktika-kaalutlused-ja-vaartuspohised-piirid-2025-2",
+  "title": "Tehisintellekt sotsiaaltöös: praktika, kaalutlused ja väärtuspõhised piirid",
+  "authors": ["Laur Raudsoo"],
+  "source_path": "docs/CODEX_RAG_GRAPH_v0_1/rag-spec-v0.1/inputs/Tehisintellekt sotsiaaltöös_2_2025.pdf",
+  "source_type": "journal_article",
+  "language": "et",
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2025",
+  "section": "Eetika",
+  "authority": "editorial",
+  "source_status": "active",
+  "historical": true,
+  "collection_id": "m2_multi_source_evaluation"
+}
