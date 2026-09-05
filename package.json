@@ -97,8 +97,7 @@
     "knowledge:upgrade": "node scripts/upgrade-knowledge-doc-metadata.mjs",
     "knowledge:source-master:download-pdfs": "node scripts/download-source-master-pdfs.mjs",
     "organization:validate": "node scripts/validate-organization-metadata.mjs",
-    "organization:audit-metadata": "node scripts/audit-organization-metadata.mjs",
-    "test:rag-retirement": "node --experimental-test-module-mocks --import ./scripts/register-node-source-loader.mjs --test tests/rag-retirement.test.mjs tests/rag-retirement-routes.test.mjs"
+    "organization:audit-metadata": "node scripts/audit-organization-metadata.mjs"
   },
   "dependencies": {
     "@google-cloud/text-to-speech": "^6.4.0",
