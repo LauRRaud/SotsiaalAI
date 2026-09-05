@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**05.09 uue RAG/Graph-süsteemi M0 + M1 on kohalikult teostatud `codex/repair-b` tööpuus; `main`-i integreerimine ja serverisse paigaldamine on tegemata.** Omaniku viidatud lähtepaketi PDF/JSON-i saab nüüd [kohaliku CLI-ga](../rag-v2/README.md) sisse võtta, säilitades algfailid, metaandmete päritolu, täpsed PDF-allikakohad, lõigud/peatükid, tekstiosad, struktuursed seosed ning katkestusest taastatavad versioonid. Näidis annab 13 PDF-lehte ja 16 tekstiosa; 22 sihttesti, lint, tõlkekontroll ja tootmisbuild läbisid, välismudelikutseid oli 0. Kirjelduse ülevaatusvajadus ja PDF-is nähtamatu bibliograafia jäävad nähtavaks. Tehnilised piirid ja kontrollide leping on [M0 auditis](../rag-v2/repository-audit.md) ning [ADR-is](../rag-v2/adr-001-local-ingestion.md); [RAG master](../audits/rag-susteem-master.md) jääb kasutajafunktsioonide ja ühenduskohtade kaardiks. Järgmine plokk on M1 ülevaatuse järel M2: PostgreSQL/Qdranti adapterid ja hübriidotsing, enne päris-API kulu eraldi luba ning eelarve. Teadmuspõhine vestlus, analüüs ja AI-dokumendiloome jäävad peatatud; Luna mudeli-ID vajab kinnitamist, otsing ning autenditud admini-, privaatsus- ja andmerajad on `NOT_PROVEN`. Vana RAG-i eemaldamine on varasemalt `main`-i integreeritud, selle ajalooline alus säilib sildil `before-rag-rebuild`.
+**05.09 uue RAG/Graph-süsteemi M0 + M1 on omaniku loal põhikausta `main`-harusse integreeritud (`6b2db9b94`); serverisse paigaldamine on tegemata. Edasine töö toimub omaniku juhisel otse `main`-is.** Omaniku viidatud lähtepaketi PDF/JSON-i saab nüüd [kohaliku CLI-ga](../rag-v2/README.md) sisse võtta, säilitades algfailid, metaandmete päritolu, täpsed PDF-allikakohad, lõigud/peatükid, tekstiosad, struktuursed seosed ning katkestusest taastatavad versioonid. Näidis annab 13 PDF-lehte ja 16 tekstiosa; 22 sihttesti, lint, tõlkekontroll ja tootmisbuild läbisid, välismudelikutseid oli 0. Kirjelduse ülevaatusvajadus ja PDF-is nähtamatu bibliograafia jäävad nähtavaks. Tehnilised piirid ja kontrollide leping on [M0 auditis](../rag-v2/repository-audit.md) ning [ADR-is](../rag-v2/adr-001-local-ingestion.md); [RAG master](../audits/rag-susteem-master.md) jääb kasutajafunktsioonide ja ühenduskohtade kaardiks. Järgmine plokk on M1 ülevaatuse järel M2: PostgreSQL/Qdranti adapterid ja hübriidotsing, enne päris-API kulu eraldi luba ning eelarve. Teadmuspõhine vestlus, analüüs ja AI-dokumendiloome jäävad peatatud; Luna mudeli-ID vajab kinnitamist, otsing ning autenditud admini-, privaatsus- ja andmerajad on `NOT_PROVEN`. Vana RAG-i eemaldamine on varasemalt `main`-i integreeritud, selle ajalooline alus säilib sildil `before-rag-rebuild`.
 
 **Sotsiaaltöö 2016–2026 artiklivõrdlusest sündinud tootekaart on 28.08 vestluse tööjäljest
 kohalikult taastatud; Git-ajaloos seda ei olnud.** Taastatud on 11 algset `ST10-*`
@@ -3232,11 +3232,11 @@ Töökaust: `C:\Users\rauds\Desktop\SotsiaalAI`.
 
 ### Reeglid
 
-1. **`main` on integratsioonipuu; parandused käivad kolmes püsivas tööpuus.**
-   `SotsiaalAI-repair-a/b/c` kasutavad harusid `codex/repair-a/b/c`. Ühes tööpuus on korraga üks
-   kirjutaja ja üks failipiiridega sidus teema. Enne uut teemat peab haru olema puhas ning
-   integreeritud `main`-iga samal lähte-SHA-l; ametlik DONE tekib alles integreeritud ja
-   kontrollitud `main`-is. Täpne integratsiooni- ja konfliktikord on `AGENTS.md`-s.
+1. **Töö toimub omaniku 05.09.2026 juhisel otse põhikausta `main`-harus.**
+   Eraldi parandustööpuu pole nõutud. Ühes tööpuus on korraga üks kirjutaja ja üks
+   failipiiridega sidus teema; omaniku ja teiste sessioonide pooleliolevad failid säilivad.
+   Eraldi haru kasutatakse kokkuleppel. Ametlik DONE eeldab kontrollitud tulemust `main`-is;
+   täpne töökord on `AGENTS.md`-s.
 2. **Teste luuakse ja käivitatakse ainult arenduseks vajalikus ulatuses**, vastavalt `AGENTS.md`-le.
    Iga sihttest tõendab konkreetse muudatuse riski või regressiooni; laia sviiti ega korduvaid
    smoke-/E2E-proove ei tehta, kui kitsam kontroll piisab. Ploki järel kasutatakse asjakohast

@@ -4,10 +4,10 @@ See CLI võtab ühe haldaja PDF-i ja JSON-metaandmed vastu ilma väliste mudelik
 
 ## Käivitamine
 
-Node 24 ja `npm ci` repositooriumi lukufaili põhjal. Järgmine PowerShelli käsk on käivitatud `SotsiaalAI-repair-b` juurest; põhikaustas kohanda `--input-root` enda lähtepaketi asukohale. Sisendeid ei pea koodi kõrvale kopeerima.
+Node 24 ja `npm ci` repositooriumi lukufaili põhjal. Järgmine PowerShelli käsk on põhikausta `SotsiaalAI` jaoks. Sama CLI läbis näidise sissevõtu parandustööpuus enne koodi muutmata integreerimist `main`-i. Sisendeid ei pea teise tööpuusse kopeerima.
 
 ```powershell
-node scripts/rag-v2-ingest.mjs --input-root '../SotsiaalAI/docs/CODEX_RAG_GRAPH_v0_1/rag-spec-v0.1/inputs' --metadata sotsiaaltoo-2-2025-artikkel-12-tehisintellekt-sotsiaaltoos.json --tenant sotsiaalai-development --store tmp/rag-v2-sample --development-only
+node scripts/rag-v2-ingest.mjs --input-root 'docs/CODEX_RAG_GRAPH_v0_1/rag-spec-v0.1/inputs' --metadata sotsiaaltoo-2-2025-artikkel-12-tehisintellekt-sotsiaaltoos.json --tenant sotsiaalai-development --store tmp/rag-v2-sample --development-only
 ```
 
 `--input-root`, `--metadata`, `--tenant`, `--store` ja `--development-only` on kohustuslikud. `source_path` metaandmetes lahendatakse ainult lubatud sisendjuure sees; absoluutne tee, `..` ja juurest väljuv sümbollink/junction lükatakse tagasi. UTF-8 failinimed on toetatud. Väljavõtete HTML ja JSON võivad sisaldada kogu algteksti: hoia `--store` privaatses, Gitist ignoreeritud kataloogis (siin `tmp/`), mitte `public/` all.

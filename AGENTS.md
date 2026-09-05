@@ -48,26 +48,22 @@ UI + eksport). Seoseta leide ühte plokki ei panda.
    `git diff --check`; peatüki lõpus ja enne push'i/deploy'd ka tootmisbuild.
 
 Read-only kaardistused ja sõltumatud lõpuväravad võib käivitada paralleelselt. Sama tööpuu
-failide muutmist paralleelsetele kirjutajatele ei jagata. Paralleelseks SOL-paranduseks on kolm
-püsivat tööpuud: `SotsiaalAI-repair-a`, `SotsiaalAI-repair-b` ja `SotsiaalAI-repair-c`.
-Ühel tööpuul on korraga üks kirjutaja ja üks nimeliselt määratud sidus teema; kattuvaid
-skeemi-, migratsiooni-, shared-helperi, privaatsus- ega auditiraporti faile ei jagata kahe
-tööpuu vahel.
+failide muutmist paralleelsetele kirjutajatele ei jagata. Vaikimisi töö toimub põhikausta
+`main`-harus ühe kirjutajaga. Eraldi parandustööpuid kasutatakse ainult eraldi kokkuleppel;
+kattuvaid skeemi-, migratsiooni-, shared-helperi, privaatsus- ega auditiraporti faile ei
+jagata kahe kirjutaja vahel.
 
 ## Git
 
-- **`main` on integratsioonipuu.** Parandustöö käib kolmes püsivas harus/tööpuus:
-  `codex/repair-a` → `C:\Users\rauds\Desktop\SotsiaalAI-repair-a`,
-  `codex/repair-b` → `C:\Users\rauds\Desktop\SotsiaalAI-repair-b` ja
-  `codex/repair-c` → `C:\Users\rauds\Desktop\SotsiaalAI-repair-c`.
-- Enne uue teema määramist peab tööpuu olema puhas ja tema haru integreeritud `main`-iga
-  samal lähte-SHA-l. Ühele tööpuule määratakse korraga üks sidus, failipiiridega teema.
-- Valmis haru integreerib üks kirjutaja: kõigepealt värske `main`, siis konfliktikontroll,
-  vajadusel puhta parandusharu rebase ning `main`-i fast-forward. Pärast integratsiooni
-  sünkroonitakse vabanenud parandusharu uuesti `main`-iga enne järgmist teemat.
-- Auditiraportite Seis-lõigud, genereeritud `parandusaudit.md` ja S1.0 on integratsioonifailid:
-  parandusharu võib tuua täpse raportimuudatuse, kuid lõpliku koondi ja ristkonfliktid lahendab
-  integraator `main`-is. Ametlik DONE tekib alles integreeritud ja kontrollitud `main`-is.
+- **Töö toimub vaikimisi otse põhikausta `main`-harus**
+  (`C:\Users\rauds\Desktop\SotsiaalAI`). Omaniku juhis 05.09.2026: kogu töö võib teha
+  `main`-is, et vältida hilisemat keerulist integreerimist. Eraldi parandusharu pole nõutud.
+- Enne teemat kontrolli `git status` ja piira puudutatavad failid. Omaniku või teise
+  sessiooni pooleliolev töö säilib; kogu tööpuu puhtust ei saavutata võõraid faile muutes.
+- Kui eraldi kokkuleppel kasutatakse parandusharu, kontrolli enne integreerimist värsket
+  `main`-i ja failikonflikte; eelista sobiva ajaloo korral fast-forward'i.
+- Auditiraportite Seis-lõigud, genereeritud `parandusaudit.md` ja S1.0 uuendab sama
+  kirjutaja `main`-is. Ametlik DONE eeldab kontrollitud tulemust `main`-is.
 - **`git add -A` ja `git add .` on KEELATUD.** Samas tööpuus võib olla teise sessiooni
   pooleliolev töö — 03.08 läks võõra sessiooni RAG-töö nii ühte commit'i ja sealt toodangusse.
   Stage'i failid **nimeliselt**.
