@@ -18,7 +18,7 @@ export interface Evidence {
   evidence_id: Id; document_id: Id; document_version_id: Id; unit_id: Id; chunk_id: Id;
   span_ids: SourceSpan['id'][]; pdf_pages: number[]; source_text: string;
   bibliography: { title: string; authors: string[] | null; publication_date: string | null };
-  source_metadata: Record<string, unknown>;
+  source_metadata: Record<string, { value: unknown; provenance: unknown[]; review_state: string }>;
   search_aids: { heading_prefix: string; legacy_description: unknown; role: 'not_source_quote' };
   selection: { reason: string | { type: 'structural_expansion'; seed_evidence_id: Id; via: string; edge_ids: Id[] };
     ranks: Record<string, number>; rrf_contributions: Record<string, number>; rrf_score: number | null };

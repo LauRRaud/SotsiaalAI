@@ -21,6 +21,7 @@ import { buildPilotManifest } from '../lib/rag-v2/search/pilot-manifest.js';
 import { runPilot, StoredEmbedding } from '../lib/rag-v2/search/pilot-runner.js';
 import { evaluateRetrieval } from '../lib/rag-v2/search/evaluator.js';
 import { indexUnit } from '../lib/rag-v2/search/embedding.js';
+import { modelProjection, resolveModelReference } from '../lib/rag-v2/search/model-context.js';
 
 // Intentional real-service suite: missing connections/services/source data fail; nothing is skipped.
 const connections = await readJson('tmp/rag-v2-services/connections.json');
@@ -249,6 +250,18 @@ test('M2.1-02/05/13: corrupted source and cross-version relational endpoints fai
   await postgres.pool.query("UPDATE rag_v2_generation SET snapshot=jsonb_set(snapshot,'{snapshot_hash}','\"invalid\"') WHERE tenant=$1 AND id=$2", [tenantB, gen.id]);
   assert.equal((await query(tenantB)).error, 'search_generation_integrity_failed');
   await postgres.pool.query('UPDATE rag_v2_generation SET snapshot=$3 WHERE tenant=$1 AND id=$2', [tenantB, gen.id, gen.snapshot]);
+});
+
+test('Audit: compact reference resolution reloads its canonical generation, unit, chunk and spans', async () => {
+  const generation=await postgres.active(tenantB),answer=await query(tenantB,'seedlings');
+  const reference='S1',expected=answer.reference_map[reference];assert.ok(expected);
+  const sourceResolver=ref=>postgres.canonicalReference(ref);
+  assert.deepEqual(await resolveModelReference({packet:answer,reference,queryId:answer.query_id,context:context(tenantB),policy,sourceResolver}),expected);
+  const forged=structuredClone(answer);forged.evidence[0].span_ids=['forged'];forged.reference_map=modelProjection(forged.evidence,forged).references;
+  await assert.rejects(resolveModelReference({packet:forged,reference,queryId:forged.query_id,context:context(tenantB),policy,sourceResolver}),/canonical_reference_mismatch/);
+  const wrongGeneration=structuredClone(answer);wrongGeneration.generation_id='search_generation_'+ '0'.repeat(64);wrongGeneration.reference_map=modelProjection(wrongGeneration.evidence,wrongGeneration).references;
+  await assert.rejects(resolveModelReference({packet:wrongGeneration,reference,queryId:wrongGeneration.query_id,context:context(tenantB),policy,sourceResolver}),/canonical_generation_missing/);
+  assert.equal(generation.id,expected.generation_id);
 });
 
 test('E-01/07/11/13: four local routes use the same stored 3072-dimensional fixture vectors, no provider calls', async () => {

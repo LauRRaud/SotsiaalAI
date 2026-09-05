@@ -9,7 +9,7 @@ import { FilePolicy } from '../lib/rag-v2/search/policy.js';
 import { loadSnapshot } from '../lib/rag-v2/search/snapshot.js';
 import { buildPilotManifest, costNanos, formatUsd } from '../lib/rag-v2/search/pilot-manifest.js';
 import { runPilot, StoredEmbedding } from '../lib/rag-v2/search/pilot-runner.js';
-import { modelProjection } from '../lib/rag-v2/search/model-context.js';
+import { modelProjection, modelSourceMetadata } from '../lib/rag-v2/search/model-context.js';
 import { structuralRole } from '../lib/rag-v2/search/structural-role.js';
 import { tokenCount } from '../lib/rag-v2/search/embedding.js';
 import { PostgresCatalog } from '../lib/rag-v2/search/postgres.js';
@@ -41,8 +41,7 @@ try {
     const b = snapshot.bundles.find(b => b.document.id === entry.document_id && b.version.id === entry.document_version_id);
     const c = b?.chunks.find(c => c.id === entry.chunk_id);
     if (!c || c.source_text !== entry.source_text || stable(c.span_ids) !== stable(entry.span_ids)) throw new Error('baseline_source_mismatch');
-    return { ...entry, source_metadata: Object.fromEntries(['source_type','authority','language','historical','source_status','valid_from','valid_to']
-      .map(k=>[k,b.document.fields[k]?.value ?? null])) };
+    return { ...entry, source_metadata: modelSourceMetadata(b) };
   });
   const roles = snapshot.bundles.flatMap(b=>b.chunks.map(c=>({ chunk_id:c.id, ...structuralRole(c,b) })));
   const same = modelProjection(enriched, audit), selected = enriched.filter(e=>roles.find(r=>r.chunk_id===e.chunk_id).evidence_eligible);

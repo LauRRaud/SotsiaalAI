@@ -108,17 +108,25 @@ test('E-14: real transport has one POST, fixed endpoint, float encoding and redi
 });
 test('E-08/09: compact context preserves source text and conditions with scoped resolvable short references',async()=>{
   const entry={evidence_id:'e',document_id:'doc',document_version_id:'v',unit_id:'u',chunk_id:'c',span_ids:['long-span-id'],pdf_pages:[3],source_text:'Keeld. 😀',
-    bibliography:{title:'Title',authors:['Author'],publication_date:'2025-06-06'},source_metadata:{source_type:'journal_article',authority:'editorial',valid_from:null,valid_to:null},
+    bibliography:{title:'Title',authors:['Author'],publication_date:'2025-06-06'},source_metadata:{
+      source_type:{value:'journal_article',provenance:[{kind:'metadata',path:'/source_type'}],review_state:'imported_not_verified'},
+      authority:{value:'editorial',provenance:[{kind:'metadata',path:'/authority'}],review_state:'imported_not_verified'},
+      valid_from:{value:null,provenance:[{kind:'normalization_policy'}],review_state:'imported_not_verified'},
+      valid_to:{value:null,provenance:[{kind:'normalization_policy'}],review_state:'imported_not_verified'}},
     search_aids:{legacy_description:{value:'Unverified long description'}},limitations:[{code:'reference_list_not_visible',span_ids:['long-span-id']},{code:'description_not_verified',detail:'Unverified long description'}]};
   const packet={tenant:context.tenant,query_id:'query-one',generation_id:'g',evidence:[entry,{...entry,evidence_id:'e2',unit_id:'u2',chunk_id:'c2',source_text:'Helista 112.'}]};
   const p=modelProjection(packet.evidence,packet);packet.reference_map=p.references;
   assert.equal(p.context.evidence[0].text,entry.source_text);assert.equal(Object.keys(p.context.sources).length,1);
   assert.ok(!JSON.stringify(p.context).includes('long-span-id'));assert.ok(!JSON.stringify(p.context).includes('Unverified long description'));
-  assert.equal(p.context.sources.D1.source_type,'journal_article');assert.equal(p.context.sources.D1.valid_to,null);
+  assert.equal(p.context.sources.D1.source_type.value,'journal_article');assert.equal(p.context.sources.D1.source_type.review_state,'imported_not_verified');
+  assert.equal(p.context.sources.D1.valid_to.value,null);
   assert.equal(p.context.sources.D1.limitations[0].code,'reference_list_not_visible');
-  assert.equal((await resolveModelReference({packet,reference:'S1',queryId:packet.query_id,context,policy})).span_ids[0],'long-span-id');
+  const sourceResolver=async expected=>expected;
+  assert.equal((await resolveModelReference({packet,reference:'S1',queryId:packet.query_id,context,policy,sourceResolver})).span_ids[0],'long-span-id');
   await assert.rejects(resolveModelReference({packet,reference:'S1',queryId:'other',context,policy}),/reference_scope_mismatch/);
-  const denied=new LocalPolicy({tenants:{[context.tenant]:{owner:[]}}});await assert.rejects(resolveModelReference({packet,reference:'S1',queryId:packet.query_id,context,policy:denied}),/reference_access_denied/);
+  const denied=new LocalPolicy({tenants:{[context.tenant]:{owner:[]}}});await assert.rejects(resolveModelReference({packet,reference:'S1',queryId:packet.query_id,context,policy:denied,sourceResolver}),/reference_access_denied/);
+  await assert.rejects(resolveModelReference({packet,reference:'S1',queryId:packet.query_id,context,policy}),/canonical_source_resolver_required/);
+  await assert.rejects(resolveModelReference({packet,reference:'S1',queryId:packet.query_id,context,policy,sourceResolver:async expected=>({...expected,span_ids:['forged']})}),/canonical_reference_mismatch/);
   assert.equal(modelProjection([],packet).measurements.model_context_tokens,0);
 });
 test('E-10: publication role is structural; short phone, deadline and prohibition remain evidence',()=>{

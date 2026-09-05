@@ -6,7 +6,9 @@ Alus: M2.2 v0.3 lähtepakett ja omaniku selles vestluses antud luba. Töötame o
 
 Täielik `EvidenceBundle` jääb privaatseks auditiks. `modelProjection()` koostab sama muutmata algteksti põhjal `ModelContext`-i: bibliograafia, allikaliik, autoriteediroll, ajad/kehtivus, asjakohased piirangud ning lühiviited `S1`, `S2` jne. Sama dokumendiversiooni bibliograafia on ühises allikatabelis ühe korra. `legacy_description`, pikad span-loendid, räsid ja järjestusskoorid mudelikonteksti ei kuulu. Imporditud kontrollimismärge on eristatav tegelikust kontrollist.
 
-`reference_map` seob lühiviite päringu, tenant'i, põlvkonna, dokumendiversiooni ja täpsete SourceSpan ID-dega. Päring saab juhusliku unikaalse ID; sama millisekundi samasõnalised päringud ei jaga lühiviidete nimeruumi. Viite lahendamine nõuab sama päringu/tenant'i kontrolli ja praegust poliitikat. See ei ava HTTP-allikavaadet ega asenda M4 autentimise tööd.
+`reference_map` seob lühiviite päringu, tenant'i, põlvkonna, dokumendiversiooni ja täpsete SourceSpan ID-dega. Päring saab juhusliku unikaalse ID; sama millisekundi samasõnalised päringud ei jaga lühiviidete nimeruumi. Viite lahendamine nõuab sama päringu/tenant'i kontrolli, praegust poliitikat ja PostgreSQL-ist uuesti loetud kanoonilist põlvkonna-, üksuse-, tekstiosa- ning allikakoha vastet. Sama paketi enda kooskõla ei ole autentimise tõend. See ei ava HTTP-allikavaadet ega asenda M4 autentimise tööd.
+
+Mudelikonteksti allikatunnused, nagu allikaliik, autoriteediroll, aktiivsus ja ajaloolisus, kannavad nüüd väärtuse kõrval oma päritolu ning `review_state` seisundit. Metaandmefailist imporditud tunnust ei esitata mudelile vaikimisi kontrollitud välisfaktina.
 
 `audit` eelarverada jääb võrdluseks alles; M2.2 valik kasutab `compact` rada. Versioonitud JSON-serialiseerija tokenid arvutatakse tervikuna. Eraldi mõõdetakse auditi, kompaktse konteksti, algteksti ja päiste/viidete mahtusid; osade summat ei esitata tokeniseerimise piiriefektide tõttu terviku asendusena. Tühi kontekst on `null` ja seda mudelile ei saadeta. Need on kohaliku `cl100k_base` tokeniseerija mõõdikud; Luna prompt'i täpne arvestus kuulub M4-sse.
 
@@ -15,6 +17,8 @@ Täielik `EvidenceBundle` jääb privaatseks auditiks. `modelProjection()` koost
 `bibliographic-pretitle-label-v1` tuvastab deklareeritud väljaandenime, mis asub algallikas enne põhipealkirja ja kuulub juursektsiooni. See on dokumendi leidmise abiväli. Reegel ei sõltu sõnast „Sotsiaaltöö”, PDF-räsist ega teksti miinimumpikkusest; telefon, tähtaeg või lühike sisuline keeld jääb tõendiks. Registri ja 16 embedding-sisendi baite ei muudeta.
 
 M2.2 rakendab sama rollifiltrit mõlemas kanalis enne kandidaatide piiramist ja ka struktuursel laiendamisel. Toorjärjestuse top-1/3/5 on lõppvalikust eraldi. Võrdluse lõppmaht on kuni viis üksust ja 6000 kompaktse konteksti tokenit: hybrid-off valib kuni viis seemet, hybrid-on kuni kolm seemet ja kaks struktuurset lisandit; dokumendipiir on viis. Toote varasem kolme üksuse vaikepiir säilib eraldi katseseadistusest.
+
+Turvaauditi järel piirab parser lisaks failile, lehtedele ja tekstimahule eraldi PDF.js-i dekodeeritud tekstielementide arvu lehel ja dokumendis. Vanemprotsessi reagrupitus on sortimise järel lineaarne, mitte iga elemendi jaoks kogu senist ridade loendit läbiv. Metaandmete pealkiri, kirjeldus, autorid, sildid ja identifikaatorid on väljalimiitidega; normaliseeritud ning indeksi laiendatud esitusel on oma kogumahupiir. Need piirid muudavad töötluskonfiguratsiooni versiooni ega kirjuta vanu M1 versioone üle.
 
 Väljalangemise jälg eristab päiserolli, dokumendipiiri, tokenieelarvet, seemnete/lõpparvu piiri ja duplikaati. Graafi audit näitab servakandidaate, algset vaba ruumi, tokenieelarvet ja põhjuseid. Kui sobivat laiendust ei tehtud, on tulemus `not_exercised`; sellest ei järeldata semantilise graafi edu või ebaedu.
 

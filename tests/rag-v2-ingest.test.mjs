@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 import net from 'node:net';
 import { ingest } from '../lib/rag-v2/ingestion.js';
 import { readJson, readActive, readInput, loadVersion, openCatalog } from '../lib/rag-v2/catalog.js';
-import { hash, id, validateBundle, configuration } from '../lib/rag-v2/contracts.js';
+import { hash, id, validateBundle, validateMetadata, configuration } from '../lib/rag-v2/contracts.js';
 import { parsePdf, structure } from '../lib/rag-v2/parser.js';
 
 const inputRoot = process.env.RAG_V2_INPUT_ROOT;
@@ -237,5 +237,24 @@ test('M1 file boundary: a directory symlink outside the approved root is rejecte
 test('M1 real parser enforces page and wall-time limits', provided, async () => {
   const bytes = await fs.readFile(path.join(inputRoot, original.source_path));
   await assert.rejects(parsePdf(bytes, configuration({ maxPages: 1 })), /page_limit/);
+  await assert.rejects(parsePdf(bytes, configuration({ maxPdfItemsPerPage: 1, maxPdfItems: 1 })), /item_limit/);
   await assert.rejects(parsePdf(bytes, configuration({ timeoutMs: 1 })), /parser_timeout/);
+});
+test('Audit: decoded item cardinality is bounded independently of text length', () => {
+  const config=configuration({maxPdfItemsPerPage:2,maxPdfItems:3});
+  const tooMany=fixture('A');tooMany.pages[0].items.push({...tooMany.pages[0].items[0],text:'B',item_index:1},{...tooMany.pages[0].items[0],text:'C',item_index:2});
+  assert.throws(()=>structure(tooMany,{tenant_id:'synthetic',document_version_id:'v'},config),/item_limit/);
+  const across=fixture('A');across.pages.push({...structuredClone(across.pages[0]),pdf_page:2,parser_page_index:1},{...structuredClone(across.pages[0]),pdf_page:3,parser_page_index:2},{...structuredClone(across.pages[0]),pdf_page:4,parser_page_index:3});
+  assert.throws(()=>structure(across,{tenant_id:'synthetic',document_version_id:'v'},config),/item_limit/);
+});
+test('Audit: metadata fields and arrays are bounded before expansion', () => {
+  const base={document_id:'d',title:'t',source_path:'x.pdf',source_type:'guide',language:'et'};
+  assert.throws(()=>validateMetadata({...base,title:'x'.repeat(501)}),/metadata_title_too_long/);
+  assert.throws(()=>validateMetadata({...base,description:'x'.repeat(20001)}),/metadata_description_too_long/);
+  assert.throws(()=>validateMetadata({...base,authors:Array.from({length:33},()=> 'A')}),/metadata_authors_too_large/);
+  assert.throws(()=>validateMetadata({...base,tags:['x'.repeat(201)]}),/metadata_tags_too_large/);
+});
+test('Audit: normalized output has an independent expanded-representation budget', async () => {
+  const opts=await synthetic('expanded-budget');opts.config={maxExpandedChars:100};
+  await assert.rejects(ingest(opts,{parsePdf:async()=>fixture('A sufficiently long synthetic body that exceeds the deliberately tiny expanded representation budget.')}),/expanded_representation_too_large/);
 });
