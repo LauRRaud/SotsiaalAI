@@ -211,3 +211,5 @@ node scripts/rag-v2-multi-source.mjs `
 ```
 
 Kui üks räsi, allikaversioon, küsimus, taaskasutuskviitung, mudel või limiit muutub, lükkab käivitus baseline'i tagasi enne saatmist. Ankrud ja vastatavuse sildid ei kuulu egress-manifesti ega päringu filtritesse.
+
+05.09 pärisjooks lõpetas 73/73 uut embedding-katset 23 554 tokeni ja 0,003062020 USD arvestusliku kuluga. Pärisvektori rada sai vajaliku täieliku sisutoe 15/18, hübriid 13/18, struktuurirada 11/18 ja leksikaalne 7/18 juhtumis. Fikseeritud püsilegeri järelkordus tegi 0 API-kutset. Juhtumid, regressioon ja järgmise paranduse piir on [mitme allika auditis](../audits/rag-v2-multi-source-preparation-2026-09-05.md).
