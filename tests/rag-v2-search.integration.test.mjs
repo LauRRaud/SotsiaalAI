@@ -16,6 +16,11 @@ import { LocalPolicy } from '../lib/rag-v2/search/policy.js';
 import { loadSnapshot } from '../lib/rag-v2/search/snapshot.js';
 import { indexSnapshot } from '../lib/rag-v2/search/indexing.js';
 import { retrieve } from '../lib/rag-v2/search/retrieval.js';
+import { evaluationPlan } from '../lib/rag-v2/search/evaluation-plan.js';
+import { buildPilotManifest } from '../lib/rag-v2/search/pilot-manifest.js';
+import { runPilot, StoredEmbedding } from '../lib/rag-v2/search/pilot-runner.js';
+import { evaluateRetrieval } from '../lib/rag-v2/search/evaluator.js';
+import { indexUnit } from '../lib/rag-v2/search/embedding.js';
 
 // Intentional real-service suite: missing connections/services/source data fail; nothing is skipped.
 const connections = await readJson('tmp/rag-v2-services/connections.json');
@@ -244,4 +249,45 @@ test('M2.1-02/05/13: corrupted source and cross-version relational endpoints fai
   await postgres.pool.query("UPDATE rag_v2_generation SET snapshot=jsonb_set(snapshot,'{snapshot_hash}','\"invalid\"') WHERE tenant=$1 AND id=$2", [tenantB, gen.id]);
   assert.equal((await query(tenantB)).error, 'search_generation_integrity_failed');
   await postgres.pool.query('UPDATE rag_v2_generation SET snapshot=$3 WHERE tenant=$1 AND id=$2', [tenantB, gen.id, gen.snapshot]);
+});
+
+test('E-01/07/11/13: four local routes use the same stored 3072-dimensional fixture vectors, no provider calls', async () => {
+  const questions = await readJson('tests/evaluation/rag-v2-queries.json'), groups = await readJson('tests/evaluation/rag-v2-anchor-groups.json');
+  const baseline = evaluationPlan(sample, questions), prepared = buildPilotManifest(sample, questions, baseline);
+  assert.equal(prepared.matches_baseline, true); assert.equal(prepared.manifest.total_input_tokens, 12420);
+  const now = new Date().toISOString();
+  const price = { input_per_million:'0.13',currency:'USD',version:'synthetic-local-price',source:'https://developers.openai.com/api/docs/models/text-embedding-3-large',checked_at:now };
+  const approval = {schema_version:'rag-v2/pilot-approval-1',state:'approved',material_egress_approved:true,spend_cap_approved:true,
+    approved_by:'synthetic-test-owner',approved_at:now,approval_basis:'Synthetic transport fixture only',source_plan_id:prepared.manifest.source_plan_id,
+    egress_manifest_sha256:prepared.manifest_sha256,tenant:sample.tenant,config:prepared.manifest.config,files:prepared.manifest.files,
+    max_api_attempts:25,max_total_input_tokens:12420,retries:0,generation_calls:0,currency:'USD',approved_spend_cap:'0.05'};
+  let transportCalls = 0;
+  const run = await runPilot({prepared,approval,price,policy,context:context(sample.tenant),root:path.join(tmp,'synthetic-pilot'),execute:true,
+    transport:async({text,config})=>{transportCalls++;return {body:{model:config.model,data:[{object:'embedding',index:0,embedding:Array.from({length:3072},(_,i)=>i===0?1:0)}],
+      usage:{prompt_tokens:tokenCount(text),total_tokens:tokenCount(text)}},request_id:'synthetic-provider-response'};} });
+  assert.equal(run.state,'complete');assert.equal(transportCalls,25);
+  const saved = await StoredEmbedding.load(run.directory,sample.tenant);
+  const previous = await postgres.active(sample.tenant);
+  await indexSnapshot({snapshot:sample,postgres,qdrant,embedding:saved});
+  const generation = await postgres.active(sample.tenant);assert.notEqual(previous.collection,generation.collection);assert.ok(generation.collection.startsWith('ragv2_real_'));
+  assert.ok(previous.collection.startsWith('ragv2_mock_'));await qdrant.request(qdrant.route(previous));
+  const result = await evaluateRetrieval({snapshot:sample,questions,groups,postgres,qdrant,embedding:saved,policy,context:context(sample.tenant)});
+  assert.equal(result.rows.length,36);assert.equal(transportCalls,25);assert.equal(result.semantic_claim,'NOT_PROVEN_test_mechanics_only');
+  for(const row of result.rows) {
+    assert.notEqual(row.state,'error');assert.ok(row.final_count<=5);assert.ok(row.measurements.model_context_tokens<=6000);
+    assert.ok(row.packet.evidence.every(e=>e.source_text!=='Sotsiaaltöö'));
+    const rawCount=row.packet.raw_rankings[row.method==='hybrid_structure'?'hybrid':row.method].length;
+    assert.equal(row.top_k[5].actual_count,Math.min(5,rawCount));
+    if(row.method!=='lexical')assert.ok(rawCount>=5);
+    if(row.method==='lexical')assert.equal(row.vector_reads,0);
+    if(row.method==='hybrid_structure')assert.ok(row.packet.graph_audit.free_final_slots_at_start>=2);
+  }
+  const off=result.rows.find(r=>r.method==='hybrid'),on=result.rows.find(r=>r.method==='hybrid_structure');
+  assert.equal(off.packet.selection_config.limits.contextTokens,on.packet.selection_config.limits.contextTokens);
+  const units = sample.bundles.flatMap(b=>b.chunks.map(c=>indexUnit(c,b,saved.config)));
+  const vectors=await Promise.all(units.map(u=>saved.embed(u.input_text)));
+  await qdrant.request(`${qdrant.route(generation)}/points?wait=true`,'PUT',{points:[{id:pointId(units[0].id),vector:Array.from({length:3072},(_,i)=>i===1?1:0),payload:{
+    tenant:sample.tenant,generation_id:generation.id,document_id:units[0].document_id,version_id:units[0].version_id,unit_id:units[0].id,input_hash:units[0].input_hash,config_id:generation.config.id,embedding_mode:'real'}}]});
+  await assert.rejects(qdrant.verify(generation,units,vectors),/qdrant_vector_content_mismatch/);
+  await qdrant.upsert(generation,units,vectors);await qdrant.verify(generation,units,vectors);
 });

@@ -133,3 +133,42 @@ node scripts/rag-v2-evaluation-plan.mjs --store tmp/rag-v2-sample --tenant sotsi
 `tests/evaluation/rag-v2-queries.json` sisaldab seitset pärisartikli küsimust (sh OTT-i ja dokumenteerimise ET/EN/RU perekonnad) ning kaht praeguses korpuses vastuseta küsimust. Oodatud allikakohti määravad artikli PDF-räsi, leht ja algteksti fraas, mitte praeguse järjestaja tulemused. Plaan lahendab need konkreetseteks SourceSpan ID-deks. Sünteetiliste õiguste-/mehaanikatestide tähendus ei kandu pärisartikli kvaliteedihinnanguks.
 
 Plaan arvestab `text-embedding-3-large`, 3072 mõõdet, iga sisendi tegelikke tokeneid, külma vahemälu ja ühte katset sisendi kohta, ilma korduskatseteta. Genereerivaid kutseid on 0. Valikuline `--prices FILE.json` võtab `input_per_million`, `currency` ja `version` väljad; hinnata on rahaline kulu **teadmata**, mitte null. Hinnang ei ole omaniku kinnitatud kulupiir. Enne päris M2.2 käivitust peab omanik kinnitama nii plaanis nimetatud materjalide saatmise välisele teenusele kui ka konkreetse kulupiiri. Selle plaani generaatoris pole välist mudeliadapterit ega käivituskäsku.
+
+## M2.2 ehitus, audit ja piiratud piloot
+
+[ADR-003](adr-003-approved-embedding-pilot.md) määrab täieliku auditi, kompaktse mudelikonteksti, struktuurse rolli ning loa-/kulupäeviku lepingu. Varasem ettevalmistusgeneraator jääb alles; päriskatse eraldi käsk on `scripts/rag-v2-pilot.mjs`.
+
+Vaikimisi tehakse **ainult kuivjooks**:
+
+```powershell
+node scripts/rag-v2-pilot.mjs
+```
+
+Vaikesisendid on M1 näidishoidla, `sample-policy.json`, vana `m2-2-plan.json`, `evidence.json` ning muutmata üheksa küsimusega fail. Kuivjooks võrdleb kõiki sisendiräsisid ja tokeniarve algse plaaniga ning kirjutab privaatsesse `tmp/rag-v2-m2-2/` kausta väljasaatmismanifesti, ankrurühmad, säilitatud vana auditi, konteksti enne/pärast võrdluse ja kompaktse näidise. API-võtit ei nõuta ja väliskutseid ei tehta.
+
+Päriskatse vajab omaniku tegeliku kinnituse alusel koostatud `rag-v2/pilot-approval-1` loakirjet ja värskelt kontrollitud hinnakirjet. Need on privaatsed käitusfailid, mitte Gitti lisatavad mallid. Võtit ei kirjutata loakirjesse ega käsureale; see loetakse `OPENAI_API_KEY` keskkonnamuutujast (või kohalikust `.env.local` failist).
+
+```powershell
+node scripts/rag-v2-pilot.mjs --execute --approval tmp/rag-v2-m2-2/approval.json --price tmp/rag-v2-m2-2/price.json
+```
+
+Omanik kinnitas 05.09 vestluses olemasoleva 16 tekstiosa + 9 küsimuse plaani, kuni 25 katset, kuni 12 420 sisendtokenit ja kuni 0,05 USD, automaatsete korduste ning Luna kutseteta. Sama vestlus lubas GitHubi kaudu serveri uuendamise ja katse serveris. See tekst dokumenteerib antud loa ulatust; käivitus kontrollib lisaks konkreetse manifesti räsi, tegelikku loakirjet, praegust poliitikat ja hinda. Uus tekst, mudel või ulatus ei päri seda luba.
+
+`usage/pilot_<hash>/ledger.json` säilitab sama manifesti katsete, tokenite ja nanodollarite reserveeringud ka protsessi taaskäivitamisel. `unknown` või alles `reserved` kirje järel automaatset uut katset ei tehta. Edukad vektorifailid kontrollitakse räsiga üle. Päevikut, vektorifaile ega `pilot.lock` lukku ei kustutata limiidi lähtestamiseks; mahajäänud luku puhul kontrollitakse enne ainult selle töö PID-d. Materjali õiguse muutus kontrollitakse enne iga väliskutset.
+
+Pärast kõigi 25 sisendi edukat salvestamist indekseeritakse vektorid PostgreSQL-i/Qdranti eraldi `real` põlvkonda. Nelja meetodi 36 võrdlusrida kasutavad samu salvestatud päringuvektoreid. Leksikaalne rada ei loe päringuvektorit. `pilot-results.json` ja `pilot-report.html` esimene tulemus säilib; kordus ei kirjuta seda üle ega tee uusi embedding-kutseid. Halb tulemus raporteeritakse juhtumina, kuldmärgendeid ei muudeta selle varjamiseks.
+
+Kontrollid:
+
+```powershell
+$env:TZ = 'UTC'
+$env:RAG_V2_INPUT_ROOT = 'C:/Users/rauds/Desktop/SotsiaalAI/docs/CODEX_RAG_GRAPH_v0_1/rag-spec-v0.1/inputs'
+node --test tests/rag-v2-ingest.test.mjs tests/rag-v2-search.test.mjs tests/rag-v2-search.integration.test.mjs tests/rag-v2-pilot.test.mjs
+npx eslint lib/rag-v2/search/*.js scripts/rag-v2-pilot.mjs tests/rag-v2-pilot.test.mjs tests/rag-v2-search.integration.test.mjs
+git diff --check
+npm run build
+```
+
+Tavalised testid kasutavad välise transpordi asendust, kuid PostgreSQL/Qdrant integratsioon on päris. API-kulu arvestatakse ainult eraldi lubatud käivitusel. M2.2 lisas olemasolevale integratsioonitestile 3072-mõõtmelise transpordifikstuuri, nelja raja võrdluse ja tegeliku Qdranti vektorisisu rikkumise kontrolli. Testtranspordiga tulemus ei saa semantilise kvaliteedi kinnitust.
+
+Serveri käitus kasutab sama koodi GitHubist. Kohalikud algmaterjalid ja privaatsed loakirjed/väljundid viiakse serveri privaatsesse `tmp/` hoidlasse eraldi; neid ei avaldata Git-repositooriumis. Serveri `OPENAI_API_KEY` jääb `/etc/sotsiaalai/frontend.env` seadistusse. Uued konteinerid seotakse ainult loopback-portidega; olemasolev platvormi andmebaas jääb eraldi. Vana RAG-i/research-worker'i teenused peatab olemasolev juurutusskript. Rakenduse chat ja käsitsi enesetest jäävad M4 ühenduseni ausalt `retired` olekusse.

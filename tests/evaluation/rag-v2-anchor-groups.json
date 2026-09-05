@@ -1,0 +1,22 @@
+{
+  "schema_version":"rag-v2/anchor-groups-1",
+  "source_pdf_sha256":"a41995721ca13aa78898116ccef466aedf3576e26bb30fce3c145f4d8b87828b",
+  "basis":"Required supporting phrases checked in supplied PDF page 3 and immutable M1 spans before real retrieval; not a current-world fact check",
+  "families":{
+    "ott-limitations":[
+      {"id":"system","alternatives":[{"pdf_page":3,"contains":"OTT-süsteem"}]},
+      {"id":"motivation","alternatives":[{"pdf_page":3,"contains":"tööotsijate motivatsiooni"}]},
+      {"id":"health","alternatives":[{"pdf_page":3,"contains":"tervise hindamisega"}]},
+      {"id":"transparency","alternatives":[{"pdf_page":3,"contains":"läbipaistmatus"}]},
+      {"id":"burden","alternatives":[{"pdf_page":3,"contains":"koormav tagasisidestamine"}]}
+    ],
+    "documentation-framing":[
+      {"id":"system","alternatives":[{"pdf_page":3,"contains":"Magic Notes"}]},
+      {"id":"framing","alternatives":[{"pdf_page":3,"contains":"raami, mida ja kuidas dokumenteeritakse"}]},
+      {"id":"judgment","alternatives":[{"pdf_page":3,"contains":"kujundab professionaalset hinnangut"}]}
+    ],
+    "bibliography":[{"id":"author-text","alternatives":[{"pdf_page":2,"contains":"Laur Raudsoo"}]}],
+    "missing-local-rule":[],
+    "missing-historical-corpus":[]
+  }
+}
