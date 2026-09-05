@@ -6,7 +6,7 @@ Kontrollipäev: 05.09.2026. Aktiivset tööd juhib [SotsiaalAI.md S1.0](../platv
 
 Mitme allika järelkatse tehniline ettevalmistus on kohalikult valmis, pärisembedding'u jooks on **käivitamata**. Uute sisendite väljasaatmiseks puudub selle ploki täpset manifesti ja kulupiiri kinnitav omaniku luba. Kuivjooks, päris-PDF-ide ingest, ankrute lahendamine ja mock-mehaanika tegid 0 välis- ning 0 genereerivat kutset.
 
-Käituskood on kohaliku `main`-i commit'idel `51921fe98`, `8c3227ffc` ja `63fa0b731`. GitHubi `origin/main` ning server jäid varasema lõpetatud M2.2 commit'i `86bb0d1e7` peale; push'i ega deploy'd selles plokis ei tehtud.
+Käituskood valmis commit'idel `51921fe98`, `8c3227ffc` ja `63fa0b731` ning jõudis GitHubi ja serverisse dokumentatsioonitipuga `86517b2ab`. Serveri kuivjooks andis kohaliku plaaniga sama egress-manifesti räsi. Pärisembedding'u käivitust ei tehtud.
 
 ## Korpus
 
@@ -43,7 +43,7 @@ Praegusest koodist genereeritud [versiooniline piloodiraport](../../tmp/rag-v2-m
 
 Esimene päris teenustega mock-jooks leidis enne hindamist PostgreSQL-i vea `22P05`: osalejapaketi märkeruudu glüüf sisaldas PDF-i tekstikihis NUL-koodipunkti. Parser asendab nüüd NUL-i enne püsistamist nähtava `U+FFFD` märgiga, märgib span'i transformatsiooni ja `pdf_nul_replaced` hoiatuse ning ei säilita kasutamata tooreid parseri item'e bundle'is. Metadata stringides on NUL keelatud.
 
-Paranduse järel indekseeriti kaheksa dokumenti 69 üksusena. [Lõplik mock-mehaanikaraport](../../tmp/rag-v2-multi-source/final-63fa0b731/multi-source-v1-mechanics-report.html) sisaldab uue kogumi 84 meetodirida ja regressiooniraport 36 rida: kokku 120 rida, tehnilisi vigu 0. `semantic_claim=NOT_PROVEN_test_mechanics_only`; mock-ridade sisulisi tabamusi ei kasutata pärisotsingu kvaliteediväitena. Jooksupõhine mock-tenant ja tema Qdranti kollektsioon eemaldati pärast raportit, põhitenant jäi pärisvektori aktiivsele põlvkonnale.
+Paranduse järel indekseeriti kaheksa dokumenti 69 üksusena. [Lõplik kohalik mock-mehaanikaraport](../../tmp/rag-v2-multi-source/final-63fa0b731/multi-source-v1-mechanics-report.html) sisaldab uue kogumi 84 meetodirida ja regressiooniraport 36 rida: kokku 120 rida, tehnilisi vigu 0. Sama 120-realine mehaanika läbis serveris commit'il `86517b2ab` samuti 0 tehnilise veaga ning andis sama manifesti räsi. `semantic_claim=NOT_PROVEN_test_mechanics_only`; mock-ridade sisulisi tabamusi ei kasutata pärisotsingu kvaliteediväitena. Mõlema jooksu mock-tenant ja Qdranti kollektsioon eemaldati pärast raportit, põhitenant jäi pärisvektori aktiivsele põlvkonnale.
 
 ## Täpne uus väljasaatmisplaan
 
@@ -67,6 +67,6 @@ Muutumatu egress-manifesti SHA-256 on `9526a80539a84e497226e48575ef1828f979c24dd
 
 - RAG-i lõplik sihtkomplekt: 61 testi läbitud, 0 ebaõnnestunud, 0 skip'i.
 - Muudetud koodi lint, `git diff --check`, i18n-kontroll ja lõpliku muutumatu koodipuu tootmisbuild läbisid.
-- Päris PostgreSQL/Qdrant mehaanika: 120 meetodirida, 0 tehnilist viga, 0 väliskutset; testseis eemaldati.
+- Päris PostgreSQL/Qdrant mehaanika kohalikult ja serveris: kummaski 120 meetodirida, 0 tehnilist viga, 0 väliskutset; testseis eemaldati.
 
-Järgmine tegevus on ainult kinnitatud manifesti pärisembedding'u jooks ja juhtumipõhine tulemuste audit. Enne tulemust ei muudeta järjestajat ega kontrollosa. Luna, M3 runtime, HTTP-autentimine, avalik API, push ja deploy ei kuulu sellesse plokki.
+Järgmine tegevus on ainult kinnitatud manifesti pärisembedding'u jooks ja juhtumipõhine tulemuste audit. Enne tulemust ei muudeta järjestajat ega kontrollosa. Luna, M3 runtime, HTTP-autentimine ja avalik API ei kuulu sellesse plokki.
