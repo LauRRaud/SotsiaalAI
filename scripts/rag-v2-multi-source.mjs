@@ -133,24 +133,37 @@ try {
     egress_manifest_sha256: prepared.manifest_sha256, external_calls_this_run: 0, generation_calls: 0,
     matches_baseline: prepared.matches_baseline, differences: prepared.differences };
   if (values.mechanics) {
+    const mechanicsTenant = `${corpus.tenant}-mock-${hash(stable(corpus.documents)).slice(0, 12)}`;
+    const mechanicsStoreRoot = path.join(output, 'mechanics-store'), mechanicsIngested = [];
+    for (const selected of corpus.documents) {
+      mechanicsIngested.push(await ingest({ tenant: mechanicsTenant, inputRoot, metadataFile: selected.metadata_file,
+        storeRoot: mechanicsStoreRoot, profile, rights: { access: corpus.use_limits.access, usage: corpus.use_limits.usage } }));
+    }
+    const mechanicsDocuments = mechanicsIngested.map(item => item.bundle.document.id);
+    const mechanicsPolicy = new LocalPolicy({ tenants: { [mechanicsTenant]: { operator: mechanicsDocuments } } });
+    const mechanicsContext = { tenant: mechanicsTenant, subject: 'operator', usage: 'development_only' };
+    const mechanicsSnapshot = await loadSnapshot(mechanicsStoreRoot, mechanicsTenant, mechanicsDocuments);
     const connections = await readJson(values.connections), embedding = new MockEmbedding();
     postgres = new PostgresCatalog(connections.postgresUrl); const qdrant = new QdrantIndex(connections.qdrantUrl, connections.qdrantKey);
-    const index = await indexSnapshot({ snapshot, postgres, qdrant, embedding });
+    const index = await indexSnapshot({ snapshot: mechanicsSnapshot, postgres, qdrant, embedding });
     const usage = { transport: 'deterministic_mock', external_api_attempts_this_run: 0, generation_calls: 0,
       semantic_quality: 'NOT_PROVEN_test_mechanics_only' };
     const git = await gitProvenance(['lib/rag-v2', 'scripts/rag-v2-multi-source.mjs', 'tests/evaluation/multi-source', 'tests/rag-v2-pilot.test.mjs']);
     let technicalErrors = 0;
     for (const set of [{ name: 'multi-source-v1', questions, groups }, { name: 'm2-2-regression', questions: regressionQuestions, groups: regressionGroups }]) {
-      const results = await evaluateRetrieval({ snapshot, questions: set.questions, groups: set.groups, postgres, qdrant, embedding, policy, context });
+      const results = await evaluateRetrieval({ snapshot: mechanicsSnapshot, questions: set.questions, groups: set.groups,
+        postgres, qdrant, embedding, policy: mechanicsPolicy, context: mechanicsContext });
       results.index = index; results.usage = usage;
       technicalErrors += results.rows.filter(row => row.outcome === 'technical_error').length;
-      const provenance = artifactProvenance({ runKind: `${set.name}-mock-mechanics`, createdAt: new Date().toISOString(), git, snapshot, index, results,
+      const provenance = artifactProvenance({ runKind: `${set.name}-mock-mechanics`, createdAt: new Date().toISOString(), git,
+        snapshot: mechanicsSnapshot, index, results,
         evaluationSets: [set], vectorSources: [], apiAttemptsThisRun: 0 });
       await writeNew(path.join(output, `${set.name}-mechanics-provenance.json`), provenance);
       await writeNew(path.join(output, `${set.name}-mechanics-results.json`), { ...results, provenance });
       await writeNew(path.join(output, `${set.name}-mechanics-report.html`), pilotReport(results, usage, provenance));
     }
-    summary.mechanics = { state: technicalErrors ? 'failed' : 'complete', embedding_mode: 'mock', technical_errors: technicalErrors, index };
+    summary.mechanics = { state: technicalErrors ? 'failed' : 'complete', tenant: mechanicsTenant,
+      embedding_mode: 'mock', technical_errors: technicalErrors, index };
     if (technicalErrors) process.exitCode = 1;
   }
   if (values.execute) {
