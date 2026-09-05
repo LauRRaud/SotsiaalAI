@@ -9,7 +9,7 @@ import { ingest } from '../lib/rag-v2/ingestion.js';
 import { loadSnapshot } from '../lib/rag-v2/search/snapshot.js';
 import { LocalPolicy } from '../lib/rag-v2/search/policy.js';
 import { resolveAnchorGroups, evaluateRetrieval, validateEvaluationQuestions } from '../lib/rag-v2/search/evaluator.js';
-import { buildMultiSourcePlan } from '../lib/rag-v2/search/multi-source-plan.js';
+import { buildMultiSourcePlan, multiSourceLedgerRoot } from '../lib/rag-v2/search/multi-source-plan.js';
 import { reusableEmbeddingCatalog, runPilot } from '../lib/rag-v2/search/pilot-runner.js';
 import { PostgresCatalog } from '../lib/rag-v2/search/postgres.js';
 import { QdrantIndex } from '../lib/rag-v2/search/qdrant.js';
@@ -184,7 +184,7 @@ try {
   if (values.execute) {
     if (!baseline || !prepared.matches_baseline || !values.approval || !price) fail('approved_unchanged_baseline_required');
     const approval = await readJson(values.approval);
-    const run = await runPilot({ prepared, approval, price, policy, context, root: path.join(output, 'usage'), execute: true,
+    const run = await runPilot({ prepared, approval, price, policy, context, root: multiSourceLedgerRoot(tmpRoot), execute: true,
       apiKey: process.env.OPENAI_API_KEY, onProgress: progress => console.log(JSON.stringify({ event: 'embedding_progress', ...progress })) });
     summary.state = run.state; summary.external_calls_this_run = run.api_attempts_this_run;
     if (run.state === 'complete') {

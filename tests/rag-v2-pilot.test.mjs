@@ -16,7 +16,7 @@ import { anchorCoverage, resolveAnchorGroups, validateEvaluationQuestions } from
 import { QdrantIndex } from '../lib/rag-v2/search/qdrant.js';
 import { artifactProvenance } from '../lib/rag-v2/search/artifact-provenance.js';
 import { pilotReport } from '../lib/rag-v2/search/pilot-report.js';
-import { buildMultiSourcePlan } from '../lib/rag-v2/search/multi-source-plan.js';
+import { buildMultiSourcePlan, multiSourceLedgerRoot } from '../lib/rag-v2/search/multi-source-plan.js';
 
 let root, attempts = 0;
 const savedFetch = globalThis.fetch, savedConnect = net.Socket.prototype.connect;
@@ -201,6 +201,7 @@ test('M2 multi-source: exact egress plan reuses verified hashes and never serial
   const same=buildMultiSourcePlan({snapshot,questionSets:[{name:'set',questions}],reuseCatalog,baseline:first.plan});assert.equal(same.matches_baseline,true);
   const changed=buildMultiSourcePlan({snapshot,questionSets:[{name:'set',questions:{cases:[{...questions.cases[0],query:'changed'}]}}],reuseCatalog,baseline:first.plan});
   assert.equal(changed.matches_baseline,false);assert.deepEqual(changed.differences,['egress_manifest']);
+  assert.equal(multiSourceLedgerRoot(path.join(root,'private')),path.resolve(root,'private','rag-v2-multi-source','usage'));
 });
 test('Audit: Qdrant timeout remains a service failure eligible for explicit lexical degradation',async()=>{
   const previous=globalThis.fetch;

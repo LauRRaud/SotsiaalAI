@@ -196,6 +196,8 @@ node scripts/rag-v2-multi-source.mjs `
 
 `--mechanics` indekseerib samad pärisallikad deterministlike testvektoritega päris kohalikku PostgreSQL-i/Qdranti ja genereerib kõik neli raportirada. See kontroll ei tõenda semantilist kvaliteeti ega tee väliskutseid. PDF-i tekstikihi NUL-glüüf asendatakse enne püsistamist nähtava `U+FFFD` märgiga, algne parseri item-kiht jäetakse bundle'ist välja ning raport saab `pdf_nul_replaced` hoiatuse.
 
+Pärisjooksu kululegeri juur on alati `tmp/rag-v2-multi-source/usage`; `--output` muudab ainult immutable raportikausta. Sama manifesti uus raportikaust ei lähtesta katsete, tokenite ega kulu arvestust.
+
 Pärisjooks vajab kuivjooksu muutumatut `evaluation-plan.json` faili, täpselt selle egress-manifesti kinnitavat `rag-v2/pilot-approval-1` loakirjet ja käivituse hetkel kehtivat hinnakirjet:
 
 ```powershell
