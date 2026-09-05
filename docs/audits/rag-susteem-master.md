@@ -1,10 +1,12 @@
 # SotsiaalAI RAG-süsteemi masterkaart
 
-Uuendatud: 31.08.2026
+Uuendatud: 05.09.2026
 Ulatus: autentitud vestlus, RAG-otsing, dokumendi ingest, indeksid, soojendus, tõendikontroll, allikad ja käitus
-Rakenduse RAG-loogika: käesoleva koodiversiooni arhitektuur
+Rakenduse RAG-loogika: §0–26 on taastamissildi `before-rag-rebuild` vana arhitektuuri kirjeldus; §29 kirjeldab kohaliku eemaldamisharu muudatust.
 
 §27 sisaldab omaniku analüüside märkmeid; §28 koondab neist produktsiooniks arendamise tervikplaani. Mõlemad on ettepanekud ja teostusnõuded, mitte juba valmis arhitektuuri või produktsioonikõlblikkuse tõend.
+
+> **05.09 eemaldamisharu:** vana käivitatav RAG-teostus on `codex/repair-b` harus eemaldatud. Varasemad peatükid jäävad taastamise ja uue süsteemi kavandamise võrdlusaluseks, mitte selle haru töötavate võimaluste lubaduseks. §27–28 on varasemad ettepanekud; uut süsteemi selles muudatuses ei ehitatud.
 
 ## 0. Dokumendi roll ja tõeallikad
 
@@ -2160,3 +2162,211 @@ Lisaks §27.5 kontrollitud allikatele kontrolliti viimase teksti järgmisi algal
 - [RHELM](https://arxiv.org/abs/2605.31086) annab täiendavaid ideid muutuva pikaajalise mälu hindamiseks. See on uurimuslik benchmark, mitte põhjendus vaikimisi eluaegse tundliku kasutajaprofiili kogumiseks.
 
 Praktiline järeldus neist on piiratud: **hinnata tuleb tervet vestlust ja ajas muutuvat konteksti, mitte ainult esimest küsimust**. Tootearhitektuuri, privaatsuse ja produktsioonivalmiduse otsused vajavad meie oma andmemudeli, allikate ja lubatud kasutusjuhtude tõendeid.
+
+
+## 29. Vana RAG-i eemaldamine — 05.09.2026
+
+### 29.1 Ulatus ja taastamine
+
+Omanik lubas vana RAG-i ja ingestimise eemaldada: platvorm pole avalik ning RAG ei pea uue süsteemi arendamise ajal töötama. Lähtecommit on `ff32bec48c4769aa71a7a8a18302b69d22db3972`; GitHubis kontrollitud annotatsiooniga taastamissilt on `before-rag-rebuild`. Kohalik `SotsiaalAI-2` on varasem projektikausta koopia. Need ei tõenda PostgreSQL-i ega serveri RAG-hoidla varukoopia olemasolu.
+
+Eemaldamine tehti tööpuus `C:/Users/rauds/Desktop/SotsiaalAI-repair-b`, harus `codex/repair-b`. Üks kirjutaja, kogu eemaldamise failipiir; lähtepuu oli puhas ja kohalik `main` sama SHA-ga. Põhikausta commit’imata muudatusi ega varukoopiat ei muudetud. Push, integratsioon, deploy ja DB-migratsioon ei kuulu teostatud tegevusse.
+
+### 29.2 Uus ajutine käitumine
+
+- Vana Python-teenus, otsingu juhtimine, küsimuse planeerimine, konteksti koostamine, faktivalideerimine, jooksva RAG-vastuse püsistus ja ingestimisskriptid eemaldati. Nende vanade teostuste sihttestid eemaldati; kontrollküsimused, eval-tõendid ja testide JSON-algvalimid säilitati.
+- `/api/chat` POST, failianalüüs, AI-dokumendiloome ja täiendamine, uue uurimistöö ning teenuspäeviku AI-mustandi loomine tagastavad peatatud teenuse vastuse enne mudelit ja kvoodi broneerimist. Käsitsi sisuga dokumendimustandi loomine, olemasoleva sisu lugemine/muutmine/eksport ning transkripti kokkuvõtte eraldi rada säilivad.
+- Vestlusvaade peidab tavalise vestluse sisestuse ja näitab ET/EN/RU peatamisteadet. Ruumide inimestevahelist sisestust ei eemaldata; assistendile edastamine jõuab peatatud API-ni.
+- Admini enesetest jääb käsitsi käivitatavaks ja tagastab ausa `retired` seisundi ilma RAG- või OpenAI-kutseta. Vanad ingestimise, indeksidokumentide ja allikapakettide lehed suunavad admini avalehele. Kontaktiregister, KOV-/organisatsiooni algfailide haldus ja ajalooline allikatagasiside säilivad.
+- `lib/rag/retired.js` on ajutine elutsüklipiir. `lib/documents/ragService.js` ei sisalda hosti, võtit ega võrgupäringut; kutsed annavad `503 / RAG_RETIRED`. Kustutus ei tagasta edu. RAG-i välisviidad, ajaloolised mudelid ja õiguste/säilituse andmed säilivad. Üldine kustutuste kordus ja materjali RAG-kustutuse kordus ei kuluta peatatud teenuse katsete eelarvet; teavituste RAG-taastamine ei hõiva töid.
+- Paigaldusskript ei nõua vana Pythoni keskkonda ega oota RAG-health’i. Tulevase selgelt lubatud deploy käigus peatab ja keelab ta olemasolevad vana RAG-i, uurimistöötaja ja master-source-seire üksused, säilitades andmed. Skripti ei käivitatud serveri vastu.
+
+### 29.3 Kontrollitõendid ja piirid
+
+- `TZ=UTC npm run test:rag-retirement`: **6 PASS**. Tõendatud on vana võrguühenduse puudumine, puuduliku/peatatud kustutuse aus tulemus, salvestatud allika-ID-de stabiilsus, RAG-töö viida ja katsete säilimine, teavituste taastamistöö vahelejätmine ning peatatud POST-i autentimise/päringupiirangu/no-store leping ilma sõnumi lugemiseta.
+- Muudetud JS/JSX/MJS ESLint: PASS. `npm run i18n:check`: PASS. Importide staatiline kaart ei leidnud katkisi kohalikke imporditeid. Deploy genereeritud shelli `bash -n`: PASS. Lõplik `npm run build`: PASS (Next.js 16.2.10). Prisma skeemi ei muudetud; olemasolevast skeemist genereeriti kohaliku build’i klient. Build hoiatas, et kohaliku e-posti transport pole saadaval.
+- Käsitsi kohaliku brauseri `/vestlus`: leht avanes, ET peatamisteade oli nähtav ja tavalist sisestuskasti ei olnud. Admini aadress ei avanud olemasoleva sessiooniga halduspinda; autentitud admini enesetest ja ET/EN/RU täisrada jäävad `NOT_PROVEN`.
+- Kontrollimata: päris DB-s varasema ajaloo ja failide read/download/delete, õiguste maatriks, olemasolevate RAG-kustutusvõlgade lõplik kõrvaldamine ning serveri teenuste peatamine. Staatilised kontrollid ei tõenda neid. Käsitsi järelkontroll: kohalike ai-testkontodega avada vana vestlus ja selle allikad, laadida alla olemasolev fail, kontrollida keelatud võõra faili ligipääsu, käivitada admini enesetest ning võrrelda poolelioleva kustutustöö välisviita ja katsete arvu enne/pärast peatatud kordust. Uut automaatset E2E- või DB-probe’i ei loodud.
+
+### 29.4 Eemaldatud lähtefailid
+
+Allolev loend on eemaldamisharu diff’ist genereeritud tehniline ulatus, mitte eraldi projekti seisufail. Säilitatud mudelid ja andmehoidlad ei kuulu sellesse loendisse.
+
+- `app/api/admin/rag/master-sources/route.js`
+- `app/api/admin/rag/source-packages/[id]/review/route.js`
+- `app/api/admin/rag/source-packages/[id]/route.js`
+- `app/api/admin/rag/source-packages/route.js`
+- `app/api/internal/rag-cost-usage/route.js`
+- `app/api/rag/[...path]/route.js`
+- `components/admin/rag/RagAdminDetailModal.jsx`
+- `components/admin/rag/RagAdminDocumentsScreen.jsx`
+- `components/admin/rag/RagAdminDocumentsView.jsx`
+- `components/admin/rag/RagAdminIngestScreen.jsx`
+- `components/admin/rag/RagAdminIngestView.jsx`
+- `components/admin/rag/RagAdminKovSourceMonitorPanel.jsx`
+- `components/admin/rag/RagAdminMasterSourcesPanel.jsx`
+- `components/admin/rag/RagAdminRemediationContext.jsx`
+- `components/admin/rag/RagAdminRtRegistryPanel.jsx`
+- `components/admin/rag/RagAdminSourcePackagesScreen.jsx`
+- `components/admin/rag/useRagAdminController.jsx`
+- `lib/admin/rag/kov/resetGate.js`
+- `lib/admin/rag/kov/resetState.js`
+- `lib/admin/rag/masterSources/service.js`
+- `lib/admin/rag/sourcePackages/gapReport.js`
+- `lib/admin/rag/sourcePackages/service.js`
+- `lib/chat/authorIdentity.js`
+- `lib/chat/contactRoleSemantics.js`
+- `lib/chat/conversationalRecovery.js`
+- `lib/chat/currentStatusEvidence.js`
+- `lib/chat/directedRelationContract.js`
+- `lib/chat/directedRelationSemantics.js`
+- `lib/chat/documentOrchestration.js`
+- `lib/chat/documentWorkflowText.js`
+- `lib/chat/entityExtraction.js`
+- `lib/chat/evidenceContent.js`
+- `lib/chat/evidencePackage.js`
+- `lib/chat/factContract.js`
+- `lib/chat/factRelationSemantics.js`
+- `lib/chat/groupFactContract.js`
+- `lib/chat/groupFactSemantics.js`
+- `lib/chat/guardrails.js`
+- `lib/chat/knownValueSemantics.js`
+- `lib/chat/languagePlan.js`
+- `lib/chat/legalLookup.js`
+- `lib/chat/mainResponseHandler.js`
+- `lib/chat/mainRouteRuntime.js`
+- `lib/chat/modeSelection.js`
+- `lib/chat/modelFailure.js`
+- `lib/chat/namedMetricScope.js`
+- `lib/chat/openaiRuntime.js`
+- `lib/chat/orchestrationPolicy.js`
+- `lib/chat/packageAwareContext.js`
+- `lib/chat/percentageRange.js`
+- `lib/chat/persistence.js`
+- `lib/chat/promptBuilder.js`
+- `lib/chat/promptTokenAudit.js`
+- `lib/chat/qualitativeActionSemantics.js`
+- `lib/chat/qualitativeTimeSemantics.js`
+- `lib/chat/queryAnchors.js`
+- `lib/chat/queryPlanner.js`
+- `lib/chat/questionPlanner.js`
+- `lib/chat/ragAttemptStore.js`
+- `lib/chat/ragContext.js`
+- `lib/chat/requestBootstrap.js`
+- `lib/chat/requestContext.js`
+- `lib/chat/responseFinalizer.js`
+- `lib/chat/retrievalContextAssembler.js`
+- `lib/chat/retrievalOrchestrator.js`
+- `lib/chat/retrievalPlanning.js`
+- `lib/chat/retrievalStrategySelector.js`
+- `lib/chat/sectionAttribution.js`
+- `lib/chat/semanticTurnContract.js`
+- `lib/chat/sourceAttributionLanguage.js`
+- `lib/chat/sourceNeed.js`
+- `lib/chat/sourcePackages.js`
+- `lib/chat/sourceSelectionEvidence.js`
+- `lib/chat/sourceSelectionResponse.js`
+- `lib/chat/sourceSelectionRetrieval.js`
+- `lib/chat/sourceSelectionStore.js`
+- `lib/chat/subscriptionGate.js`
+- `lib/chat/systemPrompts/common.js`
+- `lib/chat/systemPrompts/en.js`
+- `lib/chat/systemPrompts/et.js`
+- `lib/chat/systemPrompts/index.js`
+- `lib/chat/systemPrompts/ru.js`
+- `lib/chat/turnRegistry.js`
+- `lib/chat/workflowBranchHandlers.js`
+- `lib/chat/workflowModeRouting.js`
+- `lib/rag/adminProxyExecution.js`
+- `lib/rag/adminProxyPolicy.js`
+- `lib/rag/graph/graphRetrieval.js`
+- `lib/rag/graph/graphSchema.js`
+- `lib/rag/graph/kovGraphBuilder.js`
+- `lib/rag/legacyAjakiriCleanup.js`
+- `lib/rag/masterSourceLifecycle.js`
+- `lib/rag/masterSourceRagClient.js`
+- `lib/rag/metadataBackfillPlan.js`
+- `lib/rag/proxyBodyLimit.js`
+- `lib/rag/riskPolicy.js`
+- `lib/rag/sourcePackageSnapshots.js`
+- `lib/research/pipeline.js`
+- `lib/server/ragAuth.js`
+- `lib/serviceMap/ragServiceMapSync.js`
+- `ops/b0-idle-rag-measurement.env`
+- `ops/systemd/README-rag-master-source-check.md`
+- `ops/systemd/sotsiaalai-b0-idle-rag-measure-stop.service`
+- `ops/systemd/sotsiaalai-b0-idle-rag-measure.service`
+- `ops/systemd/sotsiaalai-rag-master-source-check.service`
+- `ops/systemd/sotsiaalai-rag-master-source-check.timer`
+- `ops/systemd/sotsiaalai-research-worker.service`
+- `rag-service/REGISTRY_RECOVERY.md`
+- `rag-service/auth_config.py`
+- `rag-service/document_versions.py`
+- `rag-service/lemma_index.py`
+- `rag-service/lexical_index.py`
+- `rag-service/main.py`
+- `rag-service/parser_worker.py`
+- `rag-service/pinned_fetch.py`
+- `rag-service/registry_store.py`
+- `rag-service/request_limits.py`
+- `rag-service/requirements.txt`
+- `rag-service/search_security.py`
+- `rag-service/storage_paths.py`
+- `rag-service/upload_limits.py`
+- `scripts/apply-rag-graph.mjs`
+- `scripts/audit-rag-source-freshness.mjs`
+- `scripts/backfill-rag-metadata.mjs`
+- `scripts/build-rag-gap-report.mjs`
+- `scripts/build-rag-graph.mjs`
+- `scripts/check-master-sources.mjs`
+- `scripts/check-v24a-live-trace.mjs`
+- `scripts/cleanup-kov-rag-state.mjs`
+- `scripts/cleanup-legacy-ajakiri-rag-docs.mjs`
+- `scripts/compare-rag-server-local.mjs`
+- `scripts/delete-ajakiri-rag-docs.mjs`
+- `scripts/ingest-ajakiri-sotsiaaltoo.mjs`
+- `scripts/ingest-knowledge-doc-folder.mjs`
+- `scripts/ingest-kov-rag.mjs`
+- `scripts/ingest-kov-rt-batch.mjs`
+- `scripts/ingest-kov-web-batch.mjs`
+- `scripts/ingest-national-rt-xml.mjs`
+- `scripts/ingest-organization-rag-folder.mjs`
+- `scripts/ingest-source-master-pdfs.mjs`
+- `scripts/inventory-kov-rag-state.mjs`
+- `scripts/inventory-master-sources.mjs`
+- `scripts/lib/master-source-html-adapter.mjs`
+- `scripts/lib/master-source-runtime-state.mjs`
+- `scripts/lib/master-sources-inventory.mjs`
+- `scripts/lib/rag-quality-baseline.mjs`
+- `scripts/list-rag-documents.mjs`
+- `scripts/ops/b0-idle-rag-measure.mjs`
+- `scripts/plan-rag-metadata-backfill.mjs`
+- `scripts/rag-journal-fact-quality-gate.mjs`
+- `scripts/rag-material-fact-quality-gate.mjs`
+- `scripts/rag-quality-baseline.mjs`
+- `scripts/rag-reingest-readiness.mjs`
+- `scripts/reindex-rag-documents.mjs`
+- `scripts/report-jogeva-sourcepackage-gaps.mjs`
+- `scripts/report-sourcepackage-gaps.mjs`
+- `scripts/research-worker.mjs`
+- `scripts/run-golden-eval.mjs`
+- `scripts/service-profile-rag-worker.mjs`
+- `scripts/sync-service-map-from-rag.mjs`
+- `scripts/validate-kov-rag.mjs`
+- `tests/rag/attempt-lifecycle.test.mjs`
+- `tests/rag/author-body-topic.test.mjs`
+- `tests/rag/diagnostics.test.mjs`
+- `tests/rag/directed-relation-contracts.test.mjs`
+- `tests/rag/group-fact-contracts.test.mjs`
+- `tests/rag/known-value-contracts.test.mjs`
+- `tests/rag/named-scope-contracts.test.mjs`
+- `tests/rag/no-context-recovery.test.mjs`
+- `tests/rag/partial-repair-contracts.test.mjs`
+- `tests/rag/process-start-contracts.test.mjs`
+- `tests/rag/qualitative-relation-terms.test.mjs`
+- `tests/rag/question-requirements.test.mjs`
+- `tests/rag/rag-regressions.test.mjs`
+- `tests/rag/retrieval-history-fusion.test.mjs`
+- `tests/rag/source-attribution-minimal-cover.test.mjs`
+- `tests/rag/source-selection.test.mjs`
+- `tests/rag/source_selection_projection_test.py`

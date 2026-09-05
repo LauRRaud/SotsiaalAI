@@ -2764,7 +2764,11 @@
       "evidence_unknown": "Не записано / NOT_PROVEN",
       "metric_mapping_complete": "запрошенные числовые факты связаны с источником",
       "qualitative_mapping_boundary": "выбранные связи с доказательствами, а не гарантия смысловой правильности",
-      "named_scope_parts": {"named_scope_bound":"название","age_scope_bound":"возрастная граница","observation_year_bound":"год наблюдения"},
+      "named_scope_parts": {
+        "named_scope_bound": "название",
+        "age_scope_bound": "возрастная граница",
+        "observation_year_bound": "год наблюдения"
+      },
       "qualitative_rejections": {
         "empty_unit": "пустая единица ответа",
         "relation_terms_missing": "запрошенная связь не подтверждена",
@@ -5996,7 +6000,8 @@
         "openai_empty_response": "OpenAI не вернул ответ.",
         "backend_error": "Сервис RAG вернул ошибку.",
         "unknown_error": "Неизвестная ошибка."
-      }
+      },
+      "retired": "Ответы на основе базы знаний и анализ документов приостановлены на время разработки новой системы. Предыдущие беседы и файлы сохранены."
     }
   },
   "admin": {
@@ -8059,7 +8064,9 @@
       "follow_up": "Последующее наблюдение",
       "closed": "Закрыто"
     },
-    "filters": { "all": "Все" },
+    "filters": {
+      "all": "Все"
+    },
     "meta": {
       "draft": "Приватный черновик",
       "waiting": "Подтверждено для очереди",

@@ -2764,7 +2764,11 @@
       "evidence_unknown": "Not recorded / NOT_PROVEN",
       "metric_mapping_complete": "requested numeric facts were bound to source evidence",
       "qualitative_mapping_boundary": "selected evidence bindings, not a guarantee of semantic correctness",
-      "named_scope_parts": {"named_scope_bound":"name","age_scope_bound":"age boundary","observation_year_bound":"observation year"},
+      "named_scope_parts": {
+        "named_scope_bound": "name",
+        "age_scope_bound": "age boundary",
+        "observation_year_bound": "observation year"
+      },
       "qualitative_rejections": {
         "empty_unit": "empty answer unit",
         "relation_terms_missing": "requested relation terms not confirmed",
@@ -5996,7 +6000,8 @@
         "openai_empty_response": "OpenAI did not return a response.",
         "backend_error": "RAG service returned an error.",
         "unknown_error": "Unknown error."
-      }
+      },
+      "retired": "Knowledge-based replies and document analysis are paused while the new system is built. Previous conversations and files remain available."
     }
   },
   "admin": {
@@ -8059,7 +8064,9 @@
       "follow_up": "Follow-up",
       "closed": "Closed"
     },
-    "filters": { "all": "All" },
+    "filters": {
+      "all": "All"
+    },
     "meta": {
       "draft": "Private draft",
       "waiting": "Confirmed for the queue",

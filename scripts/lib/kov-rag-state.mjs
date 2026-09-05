@@ -1,3 +1,4 @@
+import { createRagRetiredError } from "../../lib/rag/retired.js";
 import fs from "node:fs/promises";
 import path from "node:path";
 
@@ -587,95 +588,18 @@ export async function readRegistry(registryPath = DEFAULT_REGISTRY_PATH) {
   };
 }
 
-function parseDocumentsPayload(payload) {
-  if (Array.isArray(payload)) return payload;
-  for (const key of ["documents", "items", "data", "results"]) {
-    if (Array.isArray(payload?.[key])) return payload[key];
-  }
-  return [];
+
+
+export async function fetchDocumentsPage() {
+  throw createRagRetiredError();
 }
 
-export async function fetchDocumentsPage(baseUrl, apiKey, limit, offset) {
-  if (!apiKey) {
-    return { ok: false, status: 0, error: "RAG_SERVICE_API_KEY missing", items: [] };
-  }
-  const url = new URL("/documents", `${normalizeBaseFromHost(baseUrl)}/`);
-  url.searchParams.set("limit", String(limit));
-  url.searchParams.set("offset", String(offset));
-  try {
-    const response = await fetch(url, {
-      headers: {
-        "X-API-Key": apiKey
-      }
-    });
-    const raw = await response.text();
-    const payload = raw ? JSON.parse(raw) : [];
-    if (!response.ok) {
-      return { ok: false, status: response.status, error: raw.slice(0, 300), items: [] };
-    }
-    return { ok: true, status: response.status, error: null, items: parseDocumentsPayload(payload) };
-  } catch (error) {
-    return { ok: false, status: 0, error: error?.message || String(error), items: [] };
-  }
+export async function collectRagDocuments() {
+  throw createRagRetiredError();
 }
 
-export async function collectRagDocuments(options = {}) {
-  const baseUrl = normalizeBaseFromHost(options.baseUrl || DEFAULT_RAG_BASE_URL);
-  const apiKey = clean(options.apiKey || process.env.RAG_SERVICE_API_KEY);
-  const pageSize = Math.max(1, Math.min(200, Number.parseInt(String(options.pageSize || 100), 10) || 100));
-  const maxDocs = Math.max(1, Number.parseInt(String(options.maxDocs || 5000), 10) || 5000);
-  const out = [];
-  const errors = [];
-
-  for (let offset = 0; out.length < maxDocs; offset += pageSize) {
-    const limit = Math.min(pageSize, maxDocs - out.length);
-    const page = await fetchDocumentsPage(baseUrl, apiKey, limit, offset);
-    if (!page.ok) {
-      errors.push(page.error || `HTTP ${page.status}`);
-      break;
-    }
-    out.push(...page.items.map(item => mergeDocumentMetadata(item)));
-    if (page.items.length < limit) break;
-  }
-
-  return {
-    available: errors.length === 0,
-    baseUrl,
-    records: out,
-    errors
-  };
-}
-
-export async function deleteRagDocument(baseUrl, apiKey, docId) {
-  const normalizedDocId = clean(docId);
-  if (!normalizedDocId) return { ok: false, skipped: true, reason: "missing_doc_id" };
-  const response = await fetch(`${normalizeBaseFromHost(baseUrl)}/documents/${encodeURIComponent(normalizedDocId)}`, {
-    method: "DELETE",
-    headers: {
-      "X-API-Key": apiKey,
-      "X-Observability-Route": "script/cleanup-kov-rag-state",
-      "X-Observability-Stage": "kov_cleanup"
-    }
-  });
-  const raw = await response.text().catch(() => "");
-  let payload = {};
-  try {
-    payload = raw ? JSON.parse(raw) : {};
-  } catch {
-    payload = { detail: raw.slice(0, 300) };
-  }
-  if (response.status === 404) {
-    return { ok: true, notFound: true, status: 404, payload };
-  }
-  if (!response.ok || payload?.ok === false) {
-    return {
-      ok: false,
-      status: response.status,
-      error: payload?.detail || payload?.message || raw.slice(0, 300) || `HTTP ${response.status}`,
-      payload
-    };
-  }
-  return { ok: true, status: response.status, payload };
+export async function deleteRagDocument() {
+  throw createRagRetiredError();
 }
 
 export function countDuplicateNormalizedCanonicalIds(rows = []) {

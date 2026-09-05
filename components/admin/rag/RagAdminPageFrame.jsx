@@ -5,9 +5,9 @@ import Link from "next/link";
 import { localizePath } from "@/lib/localizePath";
 
 import { getRagAdminCopy } from "./ragAdminCopy";
-import RagAdminRemediationContext from "./RagAdminRemediationContext";
 
-const NAV_ORDER = ["home", "documents", "ingest", "kov", "organizations", "sourcePackages", "sourceFeedback"];
+
+const NAV_ORDER = ["home", "kov", "organizations", "sourceFeedback"];
 
 const NAV_PATHS = {
   home: "/admin/rag",
@@ -60,7 +60,7 @@ export default function RagAdminPageFrame({
         </nav>
       </header>
 
-      <RagAdminRemediationContext locale={locale} />
+
 
       {children}
     </section>

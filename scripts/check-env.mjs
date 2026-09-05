@@ -65,13 +65,6 @@ function isHttpsRequiredUrl(key) {
   return ["NEXT_PUBLIC_SITE_URL", "APP_URL", "NEXTAUTH_URL"].includes(key);
 }
 
-function parseCsv(value) {
-  return String(value || "")
-    .split(",")
-    .map(part => part.trim().toLowerCase())
-    .filter(Boolean);
-}
-
 function toNumber(value, fallback = NaN) {
   const n = Number(value);
   return Number.isFinite(n) ? n : fallback;
@@ -93,9 +86,6 @@ function main() {
     "NEXTAUTH_SECRET",
     "DATABASE_URL",
     "OPENAI_API_KEY",
-    "RAG_SERVICE_API_KEY",
-    "RAG_INTERNAL_HOST",
-    "RAG_API_BASE",
     "EMAIL_FROM"
   ];
 
@@ -111,7 +101,7 @@ function main() {
     }
   }
 
-  for (const key of ["NEXT_PUBLIC_SITE_URL", "APP_URL", "NEXTAUTH_URL", "RAG_API_BASE"]) {
+  for (const key of ["NEXT_PUBLIC_SITE_URL", "APP_URL", "NEXTAUTH_URL"]) {
     const value = String(env[key] || "").trim();
     if (!value) continue;
     let url;
@@ -171,45 +161,6 @@ function main() {
     }
   }
 
-  const chunkModeRaw = String(env.RAG_CHUNK_MODE || "").trim().toLowerCase();
-  const chunkMode = chunkModeRaw || "tokens";
-  const hasTokenChunk = isNonEmpty(env.RAG_CHUNK_TOKENS) || isNonEmpty(env.RAG_CHUNK_TOKENS_OVERLAP);
-  const hasCharChunk = isNonEmpty(env.RAG_CHUNK_SIZE) || isNonEmpty(env.RAG_CHUNK_OVERLAP);
-
-  if (chunkModeRaw && !["tokens", "chars"].includes(chunkMode)) {
-    errors.push(`Invalid RAG_CHUNK_MODE: ${chunkMode}`);
-  } else if (chunkModeRaw) {
-    if (chunkMode === "tokens") {
-      if (!hasTokenChunk) errors.push("RAG_CHUNK_MODE=tokens requires RAG_CHUNK_TOKENS and RAG_CHUNK_TOKENS_OVERLAP");
-      if (hasCharChunk) errors.push("RAG_CHUNK_MODE=tokens should not set RAG_CHUNK_SIZE/RAG_CHUNK_OVERLAP");
-    } else if (chunkMode === "chars") {
-      if (!hasCharChunk) errors.push("RAG_CHUNK_MODE=chars requires RAG_CHUNK_SIZE and RAG_CHUNK_OVERLAP");
-      if (hasTokenChunk) errors.push("RAG_CHUNK_MODE=chars should not set RAG_CHUNK_TOKENS/RAG_CHUNK_TOKENS_OVERLAP");
-    }
-  } else if (hasTokenChunk && hasCharChunk) {
-    errors.push("Set only one chunking style: token-based or char-based");
-  }
-
-  const allowedMime = parseCsv(env.RAG_ALLOWED_MIME || env.NEXT_PUBLIC_RAG_ALLOWED_MIME);
-  if (allowedMime.includes("text/html")) {
-    errors.push("RAG_ALLOWED_MIME should not include text/html in production hardening profile");
-  }
-  if (allowedMime.includes("application/msword")) {
-    errors.push("RAG_ALLOWED_MIME should not include application/msword in production hardening profile");
-  }
-
-  const serverMaxMb = toNumber(
-    env.RAG_SERVER_MAX_MB || env.RAG_MAX_UPLOAD_MB || env.NEXT_PUBLIC_RAG_MAX_UPLOAD_MB,
-    25
-  );
-  if (serverMaxMb > 25) {
-    errors.push(`Upload limit is too high for hardened profile (${serverMaxMb}MB > 25MB)`);
-  }
-  const publicMaxMb = toNumber(env.NEXT_PUBLIC_RAG_MAX_UPLOAD_MB, serverMaxMb);
-  if (serverMaxMb !== publicMaxMb) {
-    warnings.push(`RAG server/public max upload mismatch (${serverMaxMb}MB vs ${publicMaxMb}MB)`);
-  }
-
   const smtpSecure = boolTrue.has(String(env.SMTP_SECURE || "").trim().toLowerCase());
   const smtpRequireTls = boolTrue.has(String(env.SMTP_REQUIRE_TLS || "").trim().toLowerCase());
   if (!smtpSecure && !smtpRequireTls) {
@@ -248,10 +199,6 @@ function main() {
     }
   }
 
-  const researchJobMode = String(env.RESEARCH_JOB_MODE || env.RESEARCH_RUNNER_MODE || "inline").trim().toLowerCase();
-  if (researchJobMode === "worker") {
-    warnings.push("Research worker mode requires sotsiaalai-research-worker.service to exist and be active in production");
-  }
 
   if (isNonEmpty(env.BACKUP_RETENTION_DAYS)) {
     warnings.push("BACKUP_RETENTION_DAYS is documentation/ops policy only; the app does not enforce backup deletion");

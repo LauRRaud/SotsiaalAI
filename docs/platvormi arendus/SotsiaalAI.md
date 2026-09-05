@@ -92,6 +92,8 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**05.09 vana RAG-i eemaldamine on kohalikus `codex/repair-b` harus teostatud ja staatiliselt kontrollitud; `main`-i ega serverisse pole seda integreeritud.** Teadmuspõhine vestlus, analüüs ja AI-dokumendiloome on ümberehituse ajaks peatatud; vana otsingu-/ingestimise teostus on eemaldatud, algmaterjalid, vestlusajalugu, kontaktid ja failihaldus säilivad. [Ulatus ja kontrollipiirid](../audits/rag-susteem-master.md#29-vana-rag-i-eemaldamine--05092026). Järgmine samm on omaniku otsus selle haru integreerimiseks ning uue RAG-i arhitektuuri määramine; vana paranduste järjekord on asendatud. Autenditud admini-, privaatsus- ja andmerajad jäävad `NOT_PROVEN`.
+
 **P0/F04/F05/F06 ning F07 autor+teema/teosevalik ja F08 suunatud järjekorraseosed on kohalikku `main`-i integreerimiseks valmis.** F07 valik seotakse serveris algse katse, vestluse ja kehtiva revisjoniga; „teine”, täpne pealkiri ja „mõlemad” ei usalda kliendi allika-ID-d. F08 seob kasutaja küsitud sündmuspaari allikast tuletatud lähenemise, suuna, samaaegsuse ja täpsete locator'idega ning tavakeelne abiküsimus ei lähe selle range lepingu taha. [F07/F08 lepingud ja piirid](../audits/rag-susteem-master.md#1310-vestlusega-seotud-teosevalik--f07-teine-kohalik-plokk), [kontrollitõendid](../../eval/rag-uus75-kontroll-2026-08-31.md). Ühendatud puul on 234 sihttesti, scoped lint, i18n, diff-check ja build PASS. Järgmine operatiivne samm on lubatud main-integratsioon, push/deploy, katsete migratsiooni kontroll ning uuema küsimustiku autenditud vastuse/allikapaneeli/diagnostika rada; enne seda jääb server `NOT_PROVEN`. F07 leibkondade/inimeste loendusühikud ning inglise/vene F08 kanooniline sündmusesõnastik on lahtised.
 
 **31.08 omaniku analüüsidest on koostatud [RAG-i produktsiooniks arendamise tervikplaan, masteri §28](../audits/rag-susteem-master.md#28-produktsiooniks-arendamise-tervikplaan).** Plaan seob tavakeelse mure ja muutuva vestlusolukorra mõistmise, tõendatud väited/ohutu osavastuse ning jälgitava ja privaatsust hoidva käituse; etappidel on failipiirid, vastuvõtt ja produktsiooni/tagasipööramise väravad. Järgmine faktiparanduste järjekord jääb **F06 jaotus/loetelud → F07 autorivalik/loendused → F08 järjekorraseosed**; olukorra uus juhtimisõigus tuleb alles usaldatud oleku ja varivõrdluse järel. Varasemate analüüside märkmed jäävad §27-sse. Selles ringis muudeti ainult dokumentatsiooni: plaan on valmis, uus arhitektuur ega produktsioonivalmidus ei ole sellega tõendatud; koodi, DB-d ja serverit ei muudetud.
@@ -1889,6 +1891,9 @@ sisselülitamisele" reegli puhas rakendus. Vt „Lüliti" S2-s ja „Mis avab" S
 ### Tehtud
 
 **Vestlus ja teadmusbaas.**
+
+**05.09 ümberehitus:** alljärgnev kirjeldab taastamissildi `before-rag-rebuild` vana süsteemi. Harus `codex/repair-b` on uute vastuste, failianalüüsi, uurimistöö ja AI-mustandite loomine peatatud; olemasoleva sisu lugemise ning käsitsi halduse liidesed säilivad. Seda haru ei ole veel `main`-i integreeritud.
+
 SotsiaalAI vestlusaken vastab sotsiaalvaldkonna küsimustele eesti, inglise ja vene keeles
 ööpäev läbi. Vastus ei tule mudeli mälust, vaid platvormi teadmusbaasist: seadustest,
 riigi juhenditest, KOV-ide teenuskirjeldustest ja ajakirja Sotsiaaltöö materjalidest — ja

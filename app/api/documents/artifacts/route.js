@@ -198,6 +198,9 @@ export async function POST(request) {
   const title = normalizeArtifactTitle(body?.title)
   const templateId = String(body?.templateId || "").trim() || null
   const hasProvidedContent = body?.content !== undefined
+  // Manual drafts remain available; no-content requests would generate with
+  // the retired evidence pipeline and must stop before quota or document writes.
+  if (!hasProvidedContent) return errorJson("api.rag.retired", 503, locale)
   let instruction = ""
   let audience = "worker"
   let tone = "professional"

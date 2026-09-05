@@ -6,7 +6,6 @@ const remote = process.env.DEPLOY_SSH_HOST || "sotsiaalai";
 const appDir = process.env.DEPLOY_APP_DIR || "/home/ubuntu/apps/sotsiaalai";
 const branch = process.env.DEPLOY_BRANCH || "main";
 const frontendEnv = process.env.DEPLOY_FRONTEND_ENV || "/etc/sotsiaalai/frontend.env";
-const ragVenv = process.env.DEPLOY_RAG_VENV || "/home/ubuntu/.venvs/sotsiaalai-rag";
 const buildTimeoutSeconds = Number.parseInt(String(process.env.DEPLOY_BUILD_TIMEOUT_SECONDS || "900"), 10) || 900;
 const artifactBackupKeep = Number.parseInt(String(process.env.DEPLOY_ARTIFACT_BACKUP_KEEP || "1"), 10) || 1;
 const buildLogKeep = Number.parseInt(String(process.env.DEPLOY_BUILD_LOG_KEEP || "1"), 10) || 1;
@@ -29,7 +28,6 @@ set -euo pipefail
 APP_DIR=${shellEscape(appDir)}
 BRANCH=${shellEscape(branch)}
 FRONTEND_ENV=${shellEscape(frontendEnv)}
-RAG_VENV=${shellEscape(ragVenv)}
 BUILD_TIMEOUT_SECONDS=${Math.max(60, buildTimeoutSeconds)}
 ARTIFACT_BACKUP_KEEP=${Math.max(1, artifactBackupKeep)}
 BUILD_LOG_KEEP=${Math.max(1, buildLogKeep)}
@@ -42,10 +40,6 @@ BACKUP_DIR="$(dirname "$APP_DIR")/sotsiaalai-deploy-backups"
 frontend_was_active="0"
 frontend_stopped_for_build="0"
 frontend_masked_for_build="0"
-rag_was_active="0"
-rag_stopped_for_build="0"
-research_worker_was_active="0"
-research_worker_stopped_for_build="0"
 schema_migrated="0"
 migration_started="0"
 migration_state_file=""
@@ -77,14 +71,6 @@ restore_frontend_on_failure() {
     if [ "$frontend_masked_for_build" = "1" ]; then
       sudo systemctl unmask --runtime sotsiaalai-frontend.service || true
       frontend_masked_for_build="0"
-    fi
-    if [ "$rag_was_active" = "1" ] && [ "$rag_stopped_for_build" = "1" ]; then
-      echo "[deploy:server] Deploy interrupted/failed; restarting RAG service" >&2
-      sudo systemctl start sotsiaalai-rag.service || true
-    fi
-    if [ "$research_worker_was_active" = "1" ] && [ "$research_worker_stopped_for_build" = "1" ]; then
-      echo "[deploy:server] Deploy interrupted/failed; restarting research worker" >&2
-      sudo systemctl start sotsiaalai-research-worker.service || true
     fi
     if [ "$frontend_was_active" = "1" ] && [ "$frontend_stopped_for_build" = "1" ]; then
       echo "[deploy:server] Deploy interrupted/failed; restarting frontend" >&2
@@ -165,54 +151,11 @@ fi
 if systemctl is-active --quiet sotsiaalai-frontend.service; then
   frontend_was_active="1"
 fi
-if systemctl list-unit-files sotsiaalai-rag.service >/dev/null 2>&1 && systemctl is-active --quiet sotsiaalai-rag.service; then
-  rag_was_active="1"
-fi
-if systemctl list-unit-files sotsiaalai-research-worker.service >/dev/null 2>&1 && systemctl is-active --quiet sotsiaalai-research-worker.service; then
-  research_worker_was_active="1"
-fi
 
 if [ -f "$FRONTEND_ENV" ]; then
   set -a
   . "$FRONTEND_ENV"
   set +a
-fi
-
-research_job_mode="\${RESEARCH_JOB_MODE:-}"
-if [ -z "$research_job_mode" ]; then
-  research_job_mode="\${RESEARCH_RUNNER_MODE:-inline}"
-fi
-research_job_mode="$(printf '%s' "$research_job_mode" | tr '[:upper:]' '[:lower:]')"
-if [ "$research_job_mode" = "worker" ] && ! systemctl list-unit-files sotsiaalai-research-worker.service >/dev/null 2>&1; then
-  echo "[deploy:server] WARNING: worker mode is selected but sotsiaalai-research-worker.service is missing; research jobs will remain queued." >&2
-fi
-
-rag_requirements="$APP_DIR/rag-service/requirements.txt"
-if [ -f "$rag_requirements" ]; then
-  if [ ! -x "$RAG_VENV/bin/python" ]; then
-    echo "[deploy:server] RAG Python is missing: $RAG_VENV/bin/python" >&2
-    exit 7
-  fi
-  requirements_hash="$(sha256sum "$rag_requirements" | awk '{print $1}')"
-  requirements_marker="$RAG_VENV/.sotsiaalai-requirements.sha256"
-  installed_requirements_hash=""
-  if [ -f "$requirements_marker" ]; then
-    installed_requirements_hash="$(tr -d '[:space:]' < "$requirements_marker")"
-  fi
-  if [ "$requirements_hash" != "$installed_requirements_hash" ]; then
-    if [ "$rag_was_active" = "1" ] && [ "$rag_stopped_for_build" != "1" ]; then
-      echo "[deploy:server] Stopping RAG service for Python dependency update"
-      sudo systemctl stop sotsiaalai-rag.service
-      rag_stopped_for_build="1"
-    fi
-    echo "[deploy:server] Installing locked RAG Python dependencies"
-    "$RAG_VENV/bin/python" -m pip install --disable-pip-version-check --requirement "$rag_requirements"
-    requirements_marker_tmp="$(mktemp "$RAG_VENV/.sotsiaalai-requirements.XXXXXX")"
-    printf '%s\n' "$requirements_hash" > "$requirements_marker_tmp"
-    mv -f -- "$requirements_marker_tmp" "$requirements_marker"
-  else
-    echo "[deploy:server] RAG Python dependencies match requirements hash"
-  fi
 fi
 
 echo "[deploy:server] Installing locked dependencies"
@@ -248,14 +191,6 @@ if [ "$SKIP_BUILD" != "1" ]; then
     frontend_masked_for_build="1"
     sudo systemctl stop sotsiaalai-frontend.service
     frontend_stopped_for_build="1"
-  fi
-  if [ "$research_worker_was_active" = "1" ]; then
-    sudo systemctl stop sotsiaalai-research-worker.service
-    research_worker_stopped_for_build="1"
-  fi
-  if [ "$rag_was_active" = "1" ]; then
-    sudo systemctl stop sotsiaalai-rag.service
-    rag_stopped_for_build="1"
   fi
 
   mkdir -p "$APP_DIR/deploy-build-logs"
@@ -329,39 +264,21 @@ if [ -d "$APP_DIR/deploy/systemd" ]; then
   fi
 fi
 
-if systemctl list-unit-files sotsiaalai-rag.service >/dev/null 2>&1; then
-  sudo systemctl restart sotsiaalai-rag.service
-  rag_ready="0"
-  for attempt in $(seq 1 90); do
-    if curl --fail --silent --max-time 2 http://127.0.0.1:8000/health >/dev/null; then
-      rag_ready="1"
-      break
-    fi
-    sleep 1
-  done
-  if [ "$rag_ready" != "1" ]; then
-    echo "[deploy:server] RAG service did not become ready within 90 seconds" >&2
-    exit 5
-  fi
-  rag_stopped_for_build="0"
-fi
-if systemctl list-unit-files sotsiaalai-research-worker.service >/dev/null 2>&1; then
-  sudo systemctl restart sotsiaalai-research-worker.service
-  research_worker_stopped_for_build="0"
-fi
 if [ "$frontend_masked_for_build" = "1" ]; then
   sudo systemctl unmask --runtime sotsiaalai-frontend.service
   frontend_masked_for_build="0"
 fi
+# This release retires the old engines. Keep their data for explicit recovery.
+for retired_unit in sotsiaalai-rag-master-source-check.timer sotsiaalai-rag-master-source-check.service sotsiaalai-research-worker.service sotsiaalai-rag.service; do
+  if systemctl cat "$retired_unit" >/dev/null 2>&1; then
+    sudo systemctl stop "$retired_unit"
+    sudo systemctl disable "$retired_unit"
+  fi
+done
+
 sudo systemctl restart sotsiaalai-frontend.service
 frontend_stopped_for_build="0"
 
-if systemctl list-unit-files sotsiaalai-rag.service >/dev/null 2>&1; then
-  systemctl is-active sotsiaalai-rag.service
-fi
-if systemctl list-unit-files sotsiaalai-research-worker.service >/dev/null 2>&1; then
-  systemctl is-active sotsiaalai-research-worker.service
-fi
 systemctl is-active sotsiaalai-frontend.service
 
 if [ -d "$BACKUP_DIR" ]; then

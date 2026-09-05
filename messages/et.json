@@ -2764,7 +2764,11 @@
       "evidence_unknown": "Pole salvestatud / NOT_PROVEN",
       "metric_mapping_complete": "küsitud arvulised faktid seoti allikatõendiga",
       "qualitative_mapping_boundary": "valitud tõendiseosed, mitte sisulise õigsuse garantii",
-      "named_scope_parts": {"named_scope_bound":"nimi","age_scope_bound":"vanusepiir","observation_year_bound":"vaatlusaasta"},
+      "named_scope_parts": {
+        "named_scope_bound": "nimi",
+        "age_scope_bound": "vanusepiir",
+        "observation_year_bound": "vaatlusaasta"
+      },
       "qualitative_rejections": {
         "empty_unit": "tühi vastuseüksus",
         "relation_terms_missing": "küsitud seose sõnad ei kinnitunud",
@@ -5996,7 +6000,8 @@
         "openai_empty_response": "OpenAI ei tagastanud vastust.",
         "backend_error": "RAG teenus tagastas vea.",
         "unknown_error": "Tundmatu viga."
-      }
+      },
+      "retired": "Teadmuspõhine vastamine ja dokumentide analüüs on uue süsteemi arendamise ajaks peatatud. Varasemad vestlused ja failid on alles."
     }
   },
   "admin": {
