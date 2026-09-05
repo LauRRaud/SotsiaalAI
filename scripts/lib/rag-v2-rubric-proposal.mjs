@@ -11,7 +11,7 @@ const training = 'Koolitusmaterjali ettevaatlik ametialane piir; mitte väide ko
 const article = 'Valitud artikli käsitlus; mitte tänase olukorra sõltumatu faktikontroll.';
 
 export function rubricProposal() {
-  return { schema_version: 'rag-v2/semantic-rubric-proposal-2', version: '2.0-proposal-1',
+  return { schema_version: 'rag-v2/semantic-rubric-proposal-2', version: '2.0-proposal-2',
     proposed_by: { name: 'Codex', role: 'assistant' },
     sources: {
       training: '1bee150c6c65e2a1a69a2324af16f3aa00b45bcab36cc0d9a11e527dd686834c',
@@ -51,10 +51,10 @@ export function rubricProposal() {
           set('record-fields', 'full', 'V1 pealkiri üksi ei tõenda küsimuses küsitud välju; vaja on kogu loendit.',
             passage('training', 11, '4. Pane kirja minimaalne vajalik:', 'mida tegid pärast avastamist.'))])),
       'human-relationship-support': family(article, 'Robotite nimed ja kultuurilised näited on valikulised.',
-        requirement('human-relationship', 'AI pakub täiendavat tuge ja säilitab inimsuhted.', article, [
+        requirement('human-relationship', 'Artikli järgi ei tohiks TI asendada inimsuhteid, vaid peaks pakkuma täiendavat tuge ja hoidma inimkeskset hoolduskeskkonda.', article, [
           set('relationship-limit', 'full', 'Piirang ja täiendava toe roll on ühes väites.',
             passage('ai', 8, 'võimaldades kohandatavat suhtlust', 'aitab säilitada inimkeskse ja eetilise hoolduskeskkonna.'))]),
-        requirement('general-development', 'Üldine arendusprotsess peab olema läbipaistev, väärtuspõhine ja kaasav, andes spetsialistidele ning kasutajatele sisulise osaluse arendusotsustes.', article, [
+        requirement('general-development', 'Artikli kohaselt saab TI sotsiaaltööd toetada, kui arendusprotsess on läbipaistev, väärtuspõhine ja kaasav ning spetsialistid ja teenusekasutajad osalevad sisuliselt ka arendusotsustes.', article, [
           set('general-conclusion', 'full', 'Üldised põhimõtted JA konkreetsed kaasatavad/osaluse tase.',
             passage('ai', 12, 'toetada, kui selle arendusprotsess on läbipaistev', 'kaasatud – mitte ainult kasutajaandmete kaudu, vaid ka arendusotsustes.')),
           set('care-specific-participation', 'partial', 'Hooldusnäite osalus, teavitamine ja kultuuriline sobivus toetavad osa üldisest tingimusest.',
@@ -81,13 +81,17 @@ export function rubricProposal() {
             passage('safety', 5, 'koormuse ja eraelu puutumatuse rikkumise eest.', 'vajaliku toe.')),
           set('page4-risk-and-subject', 'partial', 'Situatsiooniline riskihindamine koos tööandja vastutuse kontekstiga; kõigi riskikohustuste täielik samaväärsus vajab otsust.',
             passage('safety', 4, 'ebasobiv keskkond või töötaja ebapiisav ettevalmistus.', 'töötaja satuvad silmitsi ohuga ilma piisava toetuse'),
-            passage('safety', 4, 'Kui töötajat on ähvardatud', 'tööruumi. Tuleb läbi rääkida'))]),
+            passage('safety', 4, 'Kui töötajat on ähvardatud', 'tööruumi. Tuleb läbi rääkida')),
+          set('page3-organizational-risk', 'partial', 'Omavalitsustele suunatud soovitus seob riskihindamise juhtkonna toe ja tegevusjuhistega. See toetab riskide korralduslikku käsitlust, kuid ei kinnita üksinda tööandja kõigi üldiste ennetus- ja maandamiskohustuste ulatust.',
+            passage('safety', 3, 'Omavalitsustes võiks rohkem tähelepanu pöörata riskihindamisele', 'agressiooni, ähvardustega või survega.'))]),
         requirement('employer-aftercare', 'Pärast vägivalda ei jäeta töötajat üksi: tööandja korraldab vajalikud tegevussammud ja toe.', 'Tegevused peavad olema seotud tööandja või organisatsiooni rolliga, mitte töötaja isikliku kohustusega.', [
           set('page5-role-and-support', 'full', 'Tööandja vastutus JA organisatsiooni/süsteemi järeltoe väide.',
             passage('safety', 5, 'koormuse ja eraelu puutumatuse rikkumise eest.', 'vajaliku toe.'),
             passage('safety', 5, 'olukordades, kus kõiki osalisi', 'ähvarduste, surve või vägivallajuhtumite korral')),
           set('page4-subject-and-aftercare', 'full', 'Alternatiiv sisaldab vastutajat, vajaduste väljaselgitamist, kontakte, dokumenteerimist ning õigus-/kriisiabi.',
-            passage('safety', 4, 'Kui töötajat on ähvardatud', 'Kättesaadav peab olema õigusabi'))])),
+            passage('safety', 4, 'Kui töötajat on ähvardatud', 'Kättesaadav peab olema õigusabi')),
+          set('page3-institutional-support', 'partial', 'Omavalitsuste ja juhtkonna kontekstis kirjeldatud mitteüksi jätmine ning juriidilise/psühholoogilise toe kättesaadavus on sisuline osatugi. See ei kirjelda täielikult konkreetse tööandja sündmusejärgset tegevuskorraldust.',
+            passage('safety', 3, 'Omavalitsustes võiks rohkem tähelepanu pöörata riskihindamisele', 'juriidiline kui ka psühholoogiline tugi.'))])),
       'care-ethics-selfcare': family('Hooldustöötajate koolituste kajastus.', 'Koolituslinnad, toetaja ja kuupäev on valikulised.',
         requirement('ethical-care', 'Käsitleti väärtusi, eetilisi dilemmasid, väärikust ja enesemääramist toetavat suhtlust.', 'Koolituse teemad, mitte tõend osalejate oskuste muutusest.', [
           set('values-dilemmas-dignity', 'full', 'Loendi osad koos annavad eetilise sisu.',
@@ -109,24 +113,26 @@ export function rubricProposal() {
         requirement('eka-role', 'EKA kirjeldab enda teenusedisaini ja kasutajavaate rolli.', 'Nõutud allikas: EKA; kaks alternatiivi säilivad.', [
           set('eka-page3', 'full', 'Subjekt, teenusedisain ja kasutajavaade koos.',
             passage('eka', 3, 'kannab EKA', 'kasutajavaate rolli, aitab')),
-          set('eka-page8', 'full', 'EKA enda teise tekstikoha samaväärsuse ettepanek.',
+          set('eka-page8', 'full', 'related_content_excerpt: EKA lehe „Loe lisaks” ala seotud loo „Heaoluteenuste digipööre algab koostööst: Tartus kohtusid osapooled” eelvaade. Toetab kitsast EKA teenusedisaini ja kasutajavaate rolli väidet; ei tõenda põhiartikli autorlust, sündmuse ajastust ega sõltumatut lisaallikat.',
             passage('eka', 8, 'arendusprogramm, milles EKA kannab teenusedisaini ja kasutajavaate', 'rolli, aitab headel ideedel'))])),
       'hospital-discharge-continuity': family('Insuldijärgse raviteekonna piloodi kajastus.', 'Kõigi haiglaosakondade loetelu pole nõutud.',
         requirement('whole-patient-path', 'Patsiendi vajadustest lähtuv terviklik raviteekond.', 'Insuldijärgse piloodi kontekst.', [
           set('stroke-and-path', 'full', 'Piloodi identiteet JA raviteekonna eesmärk.',
             passage('hospital', 1, 'Lääne-Tallinna Keskhaigla õendusjuht', 'raviteekond. Projekti kogemus'))]),
-        requirement('cooperation-continuity', 'Tervishoiu ja sotsiaalvaldkonna koostöö ning juhtumikorraldus väldivad toe katkemist haiglast lahkudes.', 'Piloodi õppetund, mitte individuaalse teenuse lubadus.', [
-          set('cooperation-and-consequence', 'full', 'Koostöö JA selle tagajärg on mõlemad vajalikud.',
+        requirement('cooperation-continuity', 'Piloodikajastus rõhutab tervishoiu- ja sotsiaalvaldkonna tiheda koostöö ning juhtumikorralduse olulisust, et inimene ei jääks pärast haiglaravi vajaliku toe ja teenusteta.', 'Kajastatud õppetund ja eesmärk, mitte mõõdetud kausaalne mõju ega individuaalse teenuse lubadus.', [
+          set('cooperation-and-consequence', 'full', 'Koostöö ja juhtumikorralduse olulisus JA eesmärk hoida toe järjepidevust; mitte tõend saavutatud või garanteeritud tulemusest.',
             passage('hospital', 1, 'raviteekond. Projekti kogemus', 'ja juhtumikorraldus, et inimene'))])),
       'worker-safety-author': family('Täpselt pealkirjas nimetatud artikkel.', 'Kommentaaride kaasautorid pole põhiartikli autor.',
         requirement('article-author', 'Põhiartikli autor on Aljona Kõpp.', 'Õige artikli kontrollitud bibliograafia või selle autori tekstikoht.', [
           set('metadata-author', 'full', 'Kontekstis kuvatud autoriandmed seotakse kanoonilise artikliga.',
             { kind: 'metadata', source: 'safety', field: 'authors', value: ['Aljona Kõpp'] }),
           set('page1-author', 'full', 'Algartikli autori tekstikoht.', passage('safety', 1, 'Aljona Kõpp'))])),
-      'wellbeing-project-state': family('Valitud EKA programmi kajastus: rahastatud projektid, teemad ja tegelikud mõõdetud tulemused.', 'Iga projekti nimi ega kõik näited pole nõutud.',
-        requirement('funded-count', 'Rahastati 20 projekti, eristades neid 52 esitatud taotlusest.', 'Rahastatud ja esitatud projektid pole sama arv.', [
-          set('funded-not-applied', 'full', 'Taotluste arv JA rahastamisotsus.', passage('eka', 5, 'Programmi esimesse', 'kahtekümmet.'))]),
-        requirement('problem-groups', 'Teemad hõlmavad eakate võimekust/taastumist, kroonilise haiguse jälgimist/ravimeid, andmepõhist kaughooldust ning üksildust.', 'Teemade kokkuvõte; ainuüksi üksilduse mainimine ei kata loendit.', [
+      'wellbeing-project-state': family('Valitud EKA programmi kajastus: rahastatud projektid, teemad ja tegelikud mõõdetud tulemused.', 'Iga projekti nimi, kõik näited ja 52 esitatud taotluse eraldi nimetamine pole nõutud.',
+        requirement('funded-count', 'Programmi esimeses voorus otsustati rahastada 20 projekti / toetuse saanud projektide arv on 20.', 'Taotluste ja toetatud projektide arvu ei segata; 52 taotluse nimetamine pole kohustuslik. Rahastamisotsus ei kinnita väljamakse teostamist ega mõju.', [
+          set('funded-not-applied', 'full', 'Pikem tõend sisaldab taotluste arvu ja rahastamisotsust; taotluste arv on lisakontekst.', passage('eka', 5, 'Programmi esimesse', 'kahtekümmet.')),
+          set('funded-total-only', 'full', 'Toetust saanud projektide koguarv 20 on eksplitsiitne ka ilma taotluste arvuta. Seitse kirjeldab sama lause alamrühma, mitte toetatud projektide koguarvu.',
+            passage('eka', 5, 'Toetust saanud 20', 'taastumisele. Nende'))]),
+        requirement('problem-groups', 'Teemarühmad hõlmavad eakate funktsionaalse võimekuse säilitamist ja taastumist, kroonilise haigusega inimeste kodust kaugmonitooringut ja ravimivõtmise tuge, andmepõhist kaughooldust ja varajast sekkumist ning üksilduse vähendamist.', 'Teemad ja eesmärgid ei tõenda mõõdetud mõju; ainuüksi üksilduse mainimine ei kata loendit.', [
           set('four-groups', 'full', 'Kahe lehe kombinatsioon, mitte kummagi lehe üksik märksõna.',
             passage('eka', 5, 'Toetust saanud 20', 'taastumisele. Nende'),
             passage('eka', 6, 'Ülejäänud projektid on', 'ja kogukonnaga sidumist.')),

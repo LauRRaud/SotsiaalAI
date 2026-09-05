@@ -9,6 +9,9 @@ import { fileURLToPath } from 'node:url';
 import { prepareRubric, verifyRubric, hasAtom, digest, canonicalContext, contextId,
   makeReviewPacket, regrade, verifyInputs } from '../lib/rag-v2/evaluation/rubric-v2.js';
 import { tokenCount } from '../lib/rag-v2/search/embedding.js';
+import { readJson } from '../lib/rag-v2/catalog.js';
+import { loadSnapshot } from '../lib/rag-v2/search/snapshot.js';
+import { rubricProposal } from '../scripts/lib/rag-v2-rubric-proposal.mjs';
 
 let calls = 0;
 const savedFetch = globalThis.fetch, savedConnect = net.Socket.prototype.connect;
@@ -120,6 +123,36 @@ test('rubric: altered source atom, v1 payload and context cannot pass identity v
   results.rows[0].packet.evidence[0].source_text = 'forged';
   assert.throws(() => verifyInputs(results, f.questions, f.snapshot, groups), /v1_payload_mismatch/);
 });
+test('rubric review revisions: independent count evidence, scoped partial support and related excerpt survive resolution', async () => {
+  const base = 'tmp/rag-v2-multi-source/server-real-9526a805-1';
+  const cm = await readJson(`${base}/corpus-manifest.json`);
+  const snapshot = await loadSnapshot('tmp/rag-v2-multi-source/store', cm.tenant, cm.documents.map(d => d.document_id));
+  const rubric = prepareRubric(rubricProposal(), snapshot, { corpus_snapshot_sha256: snapshot.snapshot_hash });
+  assert.equal(rubric.version, '2.0-proposal-2');
+  verifyRubric(rubric, snapshot, rubric.bindings);
+  const count = rubric.families['wellbeing-project-state'].requirements.find(r => r.id === 'funded-count');
+  const alternative = count.evidence_sets.find(s => s.id === 'funded-total-only');
+  const entries = alternative.all.map(a => ({ document_id: a.document_id, document_version_id: a.version_id,
+    pdf_pages: [a.pdf_page], span_ids: a.spans.map(s => s.id), source_text: a.text }));
+  assert.ok(alternative.all.every(a => hasAtom(entries, a)));
+  assert.ok(!entries.some(e => e.source_text.includes('52')));
+  assert.ok(!count.evidence_sets.find(s => s.id === 'funded-not-applied').all.every(a => hasAtom(entries, a)));
+  assert.equal(rubric.families['wellbeing-project-state'].requirements.find(r => r.id === 'measured-results').mandatory, true);
+  const results = await readJson(`${base}/multi-source-v1-results.json`);
+  for (const method of ['lexical', 'hybrid_structure']) {
+    const context = results.rows.find(r => r.question_id === 'employer-worker-safety-et' && r.method === method).packet.evidence;
+    for (const [requirementId, setId] of [['employer-risk-role', 'page3-organizational-risk'], ['employer-aftercare', 'page3-institutional-support']]) {
+      const set = rubric.families['employer-worker-safety'].requirements.find(r => r.id === requirementId).evidence_sets.find(s => s.id === setId);
+      assert.equal(set.support, 'partial'); assert.equal(set.reviewed_by, null);
+      assert.ok(set.all.every(a => hasAtom(context, a)), `${method}/${setId}`);
+    }
+  }
+  const eka = rubric.families['wellbeing-two-source-roles'].requirements.find(r => r.id === 'eka-role');
+  assert.match(eka.evidence_sets.find(s => s.id === 'eka-page8').rationale, /related_content_excerpt/);
+  assert.equal(eka.evidence_sets.length, 2);
+  const tehnopol = rubric.families['wellbeing-two-source-roles'].requirements.find(r => r.id === 'tehnopol-implementers');
+  assert.ok(tehnopol.evidence_sets.every(s => s.all.every(a => a.pdf_sha256 === rubric.sources.tehnopol)));
+});
 test('rubric: offline CLI covers all 84 saved rows, keeps v1 bytes and rejects overwriting output', async () => {
   const cwd = fileURLToPath(new URL('../', import.meta.url)), base = path.join(cwd, 'tmp/rag-v2-m2-3');
   await fs.mkdir(base, { recursive: true });
@@ -130,6 +163,7 @@ test('rubric: offline CLI covers all 84 saved rows, keeps v1 bytes and rejects o
     const receipt = JSON.parse(run.stdout); assert.equal(receipt.network_attempts, 0); assert.equal(receipt.retrieval_calls, 0);
     assert.equal(receipt.source_files_unchanged, true); assert.equal(receipt.summary.rows, 84); assert.equal(receipt.summary.needs_review, 84);
     assert.equal(receipt.summary.quality_percentage, null);
+    assert.match(await fs.readFile(path.join(out, 'review.html'), 'utf8'), /related_content_excerpt/);
     const output = JSON.parse(await fs.readFile(path.join(out, 'regrade-results.json'), 'utf8'));
     const original = JSON.parse(await fs.readFile(path.join(cwd, 'tmp/rag-v2-multi-source/server-real-9526a805-1/multi-source-v1-results.json'), 'utf8'));
     assert.deepEqual(output.rows.map(r => r.v1), original.rows);
