@@ -1,0 +1,14 @@
+{
+  "id": "sotsiaalai", "version": "1",
+  "months": ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"],
+  "categoryLabels": ["Uurimus/analüüs"],
+  "assetReviews": {
+    "a41995721ca13aa78898116ccef466aedf3576e26bb30fce3c145f4d8b87828b": {
+      "basis": "rag-spec-v0.1/NAIDISFAILIDE_AUDIT.md, sections 5 and 6; supplied PDF visually checked 2026-09-05",
+      "reference_list_state": "not_visible_in_supplied_asset",
+      "reference_heading": "Viidatud allikad",
+      "reference_page": 13,
+      "description_review": "The supplied audit did not identify a clear source passage for enesejuhitud õppe toetamist. Review needed; this is not a semantic verdict on the article."
+    }
+  }
+}
