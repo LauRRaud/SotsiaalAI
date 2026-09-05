@@ -257,10 +257,10 @@ if [ -d "$APP_DIR/deploy/systemd" ]; then
     sudo install -m 0644 "$APP_DIR/deploy/systemd/sotsiaalai-frontend.service.d/20-materials-storage.conf" /etc/systemd/system/sotsiaalai-frontend.service.d/20-materials-storage.conf
     installed_units="$installed_units sotsiaalai-frontend.service.d/20-materials-storage.conf"
   fi
-  if [ -f "$APP_DIR/deploy/systemd/sotsiaalai-frontend.service.d/10-retired-rag-dependency.conf" ]; then
-    sudo install -d -m 0755 /etc/systemd/system/sotsiaalai-frontend.service.d
-    sudo install -m 0644 "$APP_DIR/deploy/systemd/sotsiaalai-frontend.service.d/10-retired-rag-dependency.conf" /etc/systemd/system/sotsiaalai-frontend.service.d/10-retired-rag-dependency.conf
-    installed_units="$installed_units sotsiaalai-frontend.service.d/10-retired-rag-dependency.conf"
+  if [ -f "$APP_DIR/deploy/systemd/sotsiaalai-frontend.service" ]; then
+    # Remove the short-lived drop-in from the first retirement attempt. Unit
+    # dependency lists from the legacy base unit were not reset by that drop-in.
+    sudo rm -f -- /etc/systemd/system/sotsiaalai-frontend.service.d/10-retired-rag-dependency.conf
   fi
   if [ -n "$installed_units" ]; then
     sudo systemctl daemon-reload

@@ -1,0 +1,14 @@
+[Unit]
+Description=SotsiaalAI frontend
+After=network.target postgresql.service
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/apps/sotsiaalai
+EnvironmentFile=/etc/sotsiaalai/frontend.env
+ExecStart=/usr/bin/npm run start
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
