@@ -1,0 +1,88 @@
+datasource db {
+  provider = "postgresql"
+}
+
+// M2.1 local database. SQL-only invariants/tsvector live in the checked-in Prisma migration.
+model RagV2Document {
+  tenant String
+  id String
+  external_ids Json
+  @@id([tenant, id])
+  @@map("rag_v2_document")
+}
+model RagV2Version {
+  tenant String
+  id String
+  document_id String
+  bundle Json
+  bundle_hash String
+  assets Json
+  @@id([tenant, id])
+  @@unique([tenant, document_id, id])
+  @@map("rag_v2_version")
+}
+model RagV2Object {
+  tenant String
+  version_id String
+  id String
+  kind String
+  data Json
+  from_id String?
+  to_id String?
+  @@id([tenant, version_id, id])
+  @@map("rag_v2_object")
+}
+model RagV2Generation {
+  tenant String
+  id String
+  sequence BigInt @default(autoincrement())
+  snapshot Json
+  config Json
+  collection String
+  state String @default("staged")
+  expected_count Int
+  @@id([tenant, id])
+  @@unique([sequence])
+  @@map("rag_v2_generation")
+}
+model RagV2Head {
+  tenant String @id
+  active_id String?
+  requested_sequence BigInt
+  @@map("rag_v2_head")
+}
+model RagV2GenerationDocument {
+  tenant String
+  generation_id String
+  document_id String
+  version_id String
+  @@id([tenant, generation_id, document_id])
+  @@unique([tenant, generation_id, document_id, version_id])
+  @@map("rag_v2_generation_document")
+}
+model RagV2Unit {
+  tenant String
+  generation_id String
+  id String
+  document_id String
+  version_id String
+  chunk_id String
+  ordinal Int
+  data Json
+  title String
+  authors String
+  body String
+  search_aids String
+  search_vector Unsupported("tsvector")?
+  @@id([tenant, generation_id, id])
+  @@map("rag_v2_unit")
+}
+model RagV2VectorCache {
+  tenant String
+  key String
+  config_id String
+  input_hash String
+  vector Json
+  @@id([tenant, key])
+  @@map("rag_v2_vector_cache")
+}

@@ -1,0 +1,25 @@
+name: sotsiaalai-rag-v2
+services:
+  postgres:
+    image: postgres:16.13-alpine@sha256:4e6e670bb069649261c9c18031f0aded7bb249a5b6664ddec29c013a89310d50
+    ports: ["127.0.0.1:55432:5432"]
+    environment:
+      POSTGRES_USER: rag_v2_dev
+      POSTGRES_DB: rag_v2_dev
+      POSTGRES_PASSWORD: ${RAG_V2_PG_PASSWORD:?Run the local setup CLI}
+    volumes: ["pg-data:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rag_v2_dev -d rag_v2_dev"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
+  qdrant:
+    image: qdrant/qdrant:v1.15.5@sha256:0fb8897412abc81d1c0430a899b9a81eb8328aa634e7242d1bc804c1fe8fe863
+    ports: ["127.0.0.1:56333:6333"]
+    environment:
+      QDRANT__SERVICE__API_KEY: ${RAG_V2_QDRANT_KEY:?Run the local setup CLI}
+      QDRANT__TELEMETRY_DISABLED: "true"
+    volumes: ["qdrant-data:/qdrant/storage"]
+volumes:
+  pg-data:
+  qdrant-data:

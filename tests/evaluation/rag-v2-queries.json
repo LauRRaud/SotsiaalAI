@@ -1,0 +1,21 @@
+{
+  "schema_version": "rag-v2/retrieval-evaluation-1",
+  "purpose": "M2.2 preparation only; these anchors come from the supplied article/audit, not the mock ranker",
+  "source_pdf_sha256": "a41995721ca13aa78898116ccef466aedf3576e26bb30fce3c145f4d8b87828b",
+  "comparisons": ["lexical", "real_vector", "hybrid", "hybrid_with_structure"],
+  "top_k": [1, 3, 5],
+  "context_tokens": 6000,
+  "cases": [
+    {"id":"ott-et","family":"ott-limitations","kind":"provided_article","language":"et","query":"Milliseid OTT-süsteemi piiranguid artikkel nimetab?","expected_anchors":[{"pdf_page":3,"contains":"OTT-süsteem"},{"pdf_page":3,"contains":"läbipaistmatus"}]},
+    {"id":"ott-en","family":"ott-limitations","kind":"provided_article","language":"en","query":"What limitations of the OTT system does the article describe?","expected_anchors":[{"pdf_page":3,"contains":"OTT-süsteem"},{"pdf_page":3,"contains":"läbipaistmatus"}]},
+    {"id":"ott-ru","family":"ott-limitations","kind":"provided_article","language":"ru","query":"Какие ограничения системы OTT описаны в статье?","expected_anchors":[{"pdf_page":3,"contains":"OTT-süsteem"},{"pdf_page":3,"contains":"läbipaistmatus"}]},
+    {"id":"notes-et","family":"documentation-framing","kind":"provided_article","language":"et","query":"Miks võib vestlusest automaatselt koostatud juhtumiaruanne mõjutada sotsiaaltöötaja hinnangut?","expected_anchors":[{"pdf_page":3,"contains":"Magic Notes"},{"pdf_page":3,"contains":"raami"}]},
+    {"id":"notes-en","family":"documentation-framing","kind":"provided_article","language":"en","query":"Why can an automatically generated case report influence a social worker's judgment?","expected_anchors":[{"pdf_page":3,"contains":"Magic Notes"},{"pdf_page":3,"contains":"raami"}]},
+    {"id":"notes-ru","family":"documentation-framing","kind":"provided_article","language":"ru","query":"Почему автоматически составленный отчёт о случае может повлиять на оценку социального работника?","expected_anchors":[{"pdf_page":3,"contains":"Magic Notes"},{"pdf_page":3,"contains":"raami"}]},
+    {"id":"author-et","family":"bibliography","kind":"provided_article","language":"et","query":"Kes on selle tehisintellekti ja sotsiaaltöö artikli autor?","expected_anchors":[{"pdf_page":2,"contains":"Laur Raudsoo"}]},
+    {"id":"eligibility-et","family":"missing-local-rule","kind":"unanswerable_in_supplied_corpus","language":"et","query":"Kas mul on praegu oma vallas õigus tasuta koduteenusele?","expected_anchors":[],"note":"Candidate vectors need not be empty; the required current local eligibility evidence is absent."},
+    {"id":"history-et","family":"missing-historical-corpus","kind":"unanswerable_in_supplied_corpus","language":"et","query":"Kuidas muutus Eesti sotsiaaltöö praktika igal aastal 2016–2025?","expected_anchors":[],"note":"One article is not annual corpus coverage."}
+  ],
+  "synthetic_mechanics": {"location":"tests/rag-v2-search.integration.test.mjs","domain":"gardening","includes_distractor":true,"semantic_quality_claim":false},
+  "real_embedding_execution": "NOT_RUN_REQUIRES_MATERIAL_AND_BUDGET_APPROVAL"
+}
