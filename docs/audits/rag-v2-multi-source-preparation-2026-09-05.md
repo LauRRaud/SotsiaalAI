@@ -123,4 +123,93 @@ Commit `7d1e1fd5d` fikseeris pärisjooksu ledger'i juure `tmp/rag-v2-multi-sourc
 - Päris PostgreSQL/Qdrant mehaanika kohalikult ja serveris: kummaski 120 meetodirida, 0 tehnilist viga, 0 väliskutset; testseis eemaldati.
 - Pärisembedding'u jooks: 73/73 uut katset, 0 teadmata/ebaõnnestunud, 23 554 tegelikku tokenit, 0,003062020 USD; kordus pärast ledger'i parandust 0 kutset.
 
-Järgmine soovitatud plokk on piiratud M2.3 järjestuse ja kontekstivaliku parandus: hoia v1 kontrolltulemus muutumatuna, kasuta seadistamiseks ainult arendusosa, võrdle puhast vektorit muudetud fusiooni/dokumendidiversiteediga ning loo tulemuse kinnitamiseks uus puutumatu kontrollosa. Struktuurirada jääb vaikimisi välja, kuni ta näitab uuel kontrollil netokasu. Luna, M3 runtime, HTTP-autentimine ja avalik API jäävad suletuks.
+Järgmise valikumuudatuse eeltingimus on allolev kitsas M2.3 diagnoos. V1 kontrolltulemus säilib muutumatuna; selle ankrumõõdikut ei tõlgendata üldise semantilise kvaliteedina. Luna, M3 runtime, HTTP-autentimine ja avalik API jäävad suletuks.
+
+## M2.3 kitsas diagnoos pärast koodiülevaatust
+
+Kontrollitud lähte-SHA: `aa2b120721f066233c4d77770dcd49fd9a0713a0`. Aluseks olid esimese pärisjooksu salvestatud tulemused, täpsed küsimused, ankrud ja manifestiga kontrollitud kohaliku korpuse versioonid. Tulemuse payload-räsi vastas provenance'ile; kõik 84 RRF-järjestust arvutati salvestatud kanalitest uuesti ja kattusid; kõik 405 valitud tõendi teksti, span-loendit ja lehekülge kattusid kanoonilise chunk'iga. PDF-e selles diagnoosis uuesti visuaalselt ei kontrollitud. Uusi otsingu- ega mudelikutseid, järjestuse häälestamist või v1 märgendite muutmist ei tehtud.
+
+### Tegelikud kanalijärgud
+
+Tabel nimetab nõutud ankrut sisaldava üksuse koha. Kriips tähendab puudumist vastava kanali tagastatud kandidaatides. Kõik siin nimetatud ankrud olid hübriidi toorkandidaatides olemas.
+
+| Juhtum ja vajalik lõik | Leksikaalne | Vektor | Hübriid | Kinnitatud mehhanism |
+| --- | ---: | ---: | ---: | --- |
+| Andmeminimeerimine, osalejapakett lk 7 | 19 | 7 | 7 | Üksus jääb mõlemas kanalis top-5-st välja; pelk vektorile üleminek ei lahenda seda juhtumit. |
+| Intsidendijärgne tegevus, osalejapakett lk 11 | 32 | 1 | 5 | Fusioon langetab vajaliku vektoriesikoha viiendaks; struktuurirada jätab selle `seed_limit` tõttu välja. |
+| Arendustingimused, AI-artikkel lk 12–13 | 22 | 4 | 10 | Mõlemas kanalis esineva üksuse nõrk leksikaalne järk langetab vajaliku vektorileiu top-5-st välja. |
+| Kolleegidega eetika arutelu, ESTA lk 1–2 | 1 | 17 | 7 | Siin langetab fusioon leksikaalse esikoha; tugevam vektorikaal ei ole üldine lahendus. |
+| Tööandja vastutuse v1 ankrud, artikkel lk 5 | 20 | 9 | 8 | Ankrud jäävad välja, aga sama artikli lk 4 sisuline alternatiiv on hübriidkontekstis olemas; vt allpool. |
+| Rahastustingimused EN, Tehnopol lk 2 | 8 | 1 | 5 | Fusioon langetab vektoriesikoha viiendaks, seejärel jätab struktuur selle välja. |
+| Rahastustingimused RU, Tehnopol lk 2 | — | 1 | 5 | Neli mõlemas kanalis esinevat kandidaati edestavad vektorirada üksi esindavat õiget üksust. |
+| Kahe allika küsimuse Tehnopoli elluviijad, lk 1 | 36 | 3 | 14 | Vajalik Tehnopoli allikas kaob top-5-st; EKA materjal üksi ei täida küsimuse eksplitsiitset kahe allika nõuet. |
+
+RRF-i omadus „mõlema kanali 40. koht edestab ühe kanali esikohta” on selle seadistuse juures õige. See konkreetne mehhanism ilmneb RU rahastusküsimuses. Enamikus teistes siin vaadatud juhtumites oli ka vajalik üksus mõlemas kanalis olemas: nende puhul tuleb analüüsida kanalijärkude tasakaalu, mitte seletada kõiki kaotusi ainult kanalite kattuvusega.
+
+### Ankrumõõdik ja sisuline tugi
+
+**Tööandja vastutus:** küsimus küsib artiklis kirjeldatud vastutust riskide ja vägivallajuhtumijärgse toe puhul ega nõua 5. lehte või ministeeriumi kommentaari. Hübriidkonteksti 4. lehe chunk `chunk_eb39b390683c652190a69f1c5ff056d6bd2e1c980300e43a041c445c7c45c6a1` käsitleb situatsioonilist riskihindamist, kohtumise eel ohu hindamist, abilise kättesaadavust, juhtunu dokumenteerimist, õigusabi, kriisinõustamist, töökorralduse muutmist ja töötaja mitte üksi jätmist. Need on otsesed sisulised vastuseosad. V1 hindaja annab siiski mõlemale rühmale `covered=false`, sest alternatiivid on piiratud kahe teise fraasiga 5. lehel. Järeldus „v1 ankrud puuduvad” kehtib; järeldus „vastuseks vajalik tugi puudub” on selle hübriidrea puhul liiga tugev. Uues rubriigis tuleb see 4. lehe lõik hinnata samaväärse toe kandidaadina. V1 skoori ei muudeta ja uut semantilist täpsusprotsenti selle ühe tähelepaneku alusel ei arvutata. Struktuuriraja kontekst ei sisaldanud sedasama lõiku, seega ei tohi hübriidi sisulist vastendust talle automaatselt üle kanda.
+
+**Inimsuhete piir ja arendustingimused:** valitud lk 7–8 kirjeldab lisaks inimsuhete säilitamisele läbipaistvat teavitamist, teadlikku osalust, kultuuritausta ja kasutajate osalust arendusprotsessis. See on osaline ja asjakohane tugi. See ei tõenda iseenesest sama täielikku üldist arendusrubriiki kui lk 12 läbipaistva, väärtuspõhise ja kaasava arenduse kokkuvõte. Enne alternatiivankru vastuvõttu tuleb nõutud mõtted eraldi määrata. Praeguse koodi viga sellest ei järeldu.
+
+**Andmeminimeerimine:** hübriidi lk 8 sisaldab andmeliikide vajalikkuse, õigusliku aluse ning lepingulise katvuse küsimusi. See toetab teemat osaliselt. V1 lk 7 nõue iga detaili vajalikkuse ja konkreetse dokumendi välisele teenusele edastamise õiguse kohta on täpsem; täielikku samaväärsust ei kinnitatud. Seega pole ka siin `observed_support=absent` üldine tähendusliku sisu puudumise hinnang.
+
+**Kahe allika küsimus:** täpne sõnastus nõuab Tehnopoli kirjeldust ja EKA enda materjali. Ankrufail lubab EKA rollile kahte alternatiivi, kuid Tehnopoli allikanõue on põhjendatud. Seda juhtumit ei märgita ainult EKA sisu põhjal õigeks.
+
+### Struktuurivaliku tegelik piir
+
+Intsidendiküsimuse õige viies üksus sai struktuurirajas jälje `seed_limit`; sama juhtus EN/RU rahastusküsimuse õige viienda üksusega. See polnud tokenieelarve täitumine: hübriidi kontekstid olid vastavalt 3107 ja 4468 tokenit, struktuuri kontekstid 2970 ja 3447 tokenit, ühine piir 6000. Katse valis kolm seemet ja kaks naabrit viie seemne asemel. Andmeid indeksist ei kadunud. Tõend puudutab seda konkreetset valikupoliitikat, mitte M3 semantiliste sõltuvuste kasulikkust.
+
+### Edasise paranduse piir
+
+Kõigepealt tuleb täiendada sisulist hindamisrubriiki tööandja vastutuse alternatiivse toe ning osalise toe eristusega, säilitades ajaloolise v1 ankrumõõdiku. Seejärel saab arendusosal katsetada üht valikumuudatust korraga. Kanalite esikohtade säilitamine ja naabri võrdlemine järgmise seemnega on mõõdetavad hüpoteesid; uus kaal ega dokumendikvoot pole veel kinnitatud lahendus. V1 kontrollosa on nüüd diagnoosiks avatud ning ei kvalifitseeru tulevase häälestuse puutumatuks kontrolliks. Suure korpuse päringu töömaht ja M4 eksplitsiitne profiil on eraldi tööd.
+
+## M2.3 rubriik v2 ja võrguta kordushindamine
+
+05.09 kohalik teostus valmis `aa2b12072` lähtepuu peale. Eelmine kitsas diagnoos säilis. Otsingutuuma, v1 küsimusi/ankruid, algmaterjali, indekseid ja teenuseid ei muudetud. Eraldi moodul `lib/rag-v2/evaluation/rubric-v2.js` ning käsk `scripts/rag-v2-regrade.mjs` loevad ainult salvestatud tulemusi ja manifestiga kontrollitud kohalikke versioone. Need ei impordi `retrieve()` ega PostgreSQL-i/Qdranti adaptereid; käsus on väljamineva võrgu tõke.
+
+Rubriigi ettepanek sisaldab **15 perekonda, 29 kohustuslikku sisulist nõuet ja 34 põhjendatud tõenduskomplekti**. Valikulised näited on perekonna juures. Iga komplekt määrab toe ulatuse, põhjenduse ja täpse päritolu: PDF-räsi, dokumendi/versiooni identiteedi, lehe ning algtekstiga spanid. Komplekti liikmete vahel on JA, alternatiivide vahel VÕI. Fraas on allikakoha leidmise vahend; subjekti, summa, piirangu või mõtte toetuseks peab vajalik terviktekst kontekstis leiduma.
+
+Nõuded ja vastendused on **Codexi ettepanekud**, mitte omaniku ega sõltumatu inimese kinnitatud märgendid. Otsusefaili 139 kirjet on ootel: 15 definitsiooni, 34 vastendust, 15 korpuse katvuse otsust ja 75 unikaalset perekonna/konteksti ülevaatust. Sama tegelik tekstikogum samas perekonnas kasutab sama otsust sõltumata meetodi nimest või otsingujärjekorrast.
+
+### Kohalik ülevaatuspakett
+
+- [Rubriigi v2 ettepanek](../../tmp/rag-v2-m2-3/rubric-v2-final/rubric-v2.json).
+- [Meetodi ja skoorita sisulise ülevaatuse vaade](../../tmp/rag-v2-m2-3/rubric-v2-final/review.html) ja [masinloetav pakett](../../tmp/rag-v2-m2-3/rubric-v2-final/review-packet.json). Allikapäritolu säilib, tekstid on kanoonilises allikajärjekorras. Varasem kokkupuude tulemustega tähendab, et ülevaatus on retrospektiivne.
+- [Ülevaatusotsused](../../tmp/rag-v2-m2-3/rubric-v2-final/review-decisions.json): kõik `pending`, `reviewed_by=null`. Kinnitus nõuab tegelikku inimest, aega, põhjendust ja otsuse alust. Fail on usaldatud kohaliku ülevaatuse kirje, mitte autentimis- ega digitaalallkirjasüsteem.
+- [V1 → v2 raport](../../tmp/rag-v2-m2-3/rubric-v2-final/report.html), [täielik tulemus](../../tmp/rag-v2-m2-3/rubric-v2-final/regrade-results.json), [kontrollide kirje](../../tmp/rag-v2-m2-3/rubric-v2-final/run.json) ja [ülevaatamise juhis](../../tmp/rag-v2-m2-3/rubric-v2-final/README.md).
+
+Käsk uue paketi loomiseks repositooriumi juurkaustast:
+
+```powershell
+node scripts/rag-v2-regrade.mjs --output tmp/rag-v2-m2-3/uus-pakett
+```
+
+Pärast tegelike ülevaatusotsuste lisamist kasutatakse sama salvestatud tulemust ja uut väljundkausta:
+
+```powershell
+node scripts/rag-v2-regrade.mjs --rubric tmp/rag-v2-m2-3/rubric-v2-final/rubric-v2.json --decisions tmp/rag-v2-m2-3/rubric-v2-final/review-decisions.json --output tmp/rag-v2-m2-3/parast-ulevaatust
+```
+
+Rubriigi või tõendi muutmine tühistab vana otsuse räsiseose; räsi käsitsi ülekirjutamine ei ole uus kinnitus. `absent` eeldab konteksti sisulist ülevaatust ja kinnitust, et nõudele puudub muu tugi; ainult vastendamata tekst jääb `needs_review`. Vastuolu on eraldi väljal ja takistab lõpliku `full` kinnitamist. Korpuse osatoe leidmine ning terve küsimuse katvus on eraldi: projektide arv ja teemad ei täida mõõdetud tulemuste nõuet.
+
+### Esialgne tulemus ja lahtised otsused
+
+Kõik **84 rida**, sealhulgas v1 õnnestumised, said sama v2 kontrolli. Iga v1 rida säilis täies mahus, sealhulgas valitud tekst, järjekord ja tokeniarv. Payload, küsimuste/ankrute räsid ning korpuse identiteet kattusid; failide enne/pärast räsid olid samad. Võrgu- ja otsingukutseid oli 0. Inimkinnituse puudumisel on `needs_review=84` ja kinnitatud `full/partial/absent=0`; see ei tähenda 84 ebaõnnestunud otsingut. Uut kvaliteediprotsenti ei esitata.
+
+| Perekond | Ettepaneku järgi kontekstis leiduv tugi | Lahendamata või säiliv piir |
+| --- | --- | --- |
+| Tööandja vastutus | Vektor ja hübriid sisaldavad lk 4 järeltoe täieliku alternatiivi kandidaati ning riskivastutuse osalist kandidaati. | Kõigi tööandja riskikohustuste samaväärsus pole kinnitatud. Struktuuris sama komplekti pole. |
+| Inimsuhted/arendustingimused | Hübriidis ja struktuuris on inimsuhete piir ning hooldusnäite osaline arendustugi; vektoris ka lk 12 üldine kokkuvõte. | Näitepõhine teavitamine/osalus ei täida automaatselt üldist arendusnõuet. |
+| Andmeminimeerimine/väljasaatmine | Leksikaalses, vektoris ja hübriidis on üldiste andmeliigi/aluse/lepingutingimuste osalised kandidaadid; struktuuris lisaks lk 7 konkreetsed nõuded. | Osaline tugi ei kinnita iga detaili minimaalsust ega konkreetse dokumendi edastamisõigust. |
+| Tehnopoli/EKA rollid | Mõlema nõutud allika komplekt leidub vektoris. | Teiste radade Tehnopoli nõue jääb täitmata. |
+| Projektide arv, teemad ja mõõdetud tulemused | Vektor, hübriid ja struktuur sisaldavad arvu ning nelja teemarühma komplekti. | Mõõdetud tulemustele pole kinnitatud komplekti; kogu küsimuse täielikkust sellest ei järeldu. |
+| Intsidenditegevus ja rahastamine | Kontroll hõlmab ka adressaate, kirjepunkte, terveid summasid ja etapipiire ning rakendus v1 võitudele. | Struktuuriraja varem tuvastatud viienda üksuse kaotus ei kao rubriigi täpsustamisega. |
+
+Need on ettepanekute **tekstilise leidumise** tulemused, mitte kinnitatud semantilised märgendid. Otsingut ei muudetud; hilisem v1 → v2 erinevus tuleneb hindamisrubriigi või kinnitatud vastenduste muutusest.
+
+### Kontrollid ja peatumiskoht
+
+`node --test tests/rag-v2-rubric.test.mjs`: **9 pass, 0 fail, 0 skip**. Testid tõendavad alternatiivide nõudepõhisust, mitme lõigu JA-d, vale allika/lehe/teksti tõrjumist, partial/absent/needs_review eristust, osavastuse piiri, meetodi sõltumatust, otsuse päritolu/räsiseost, vastuolu ning kõigi 84 v1 rea säilimist. Võrguta CLI läbis ka eksplitsiitse rubriigi ja otsusefailiga korduse. Lint ja tootmisbuild koos i18n-ga läbisid; varasemat laia RAG-sviiti ega päristeenusekatset ei korratud.
+
+Omaniku järgneval käsul saadeti teostus ja dokumentatsioon GitHubi; privaatsed raportid, algtekstid ning ülevaatusotsuste failid jäid kohalikku `tmp/` hoidlasse. Deploy'd ega tootmistoiminguid ei tehtud. Järgmine vajalik samm on sisuline ülevaatus; alles selle järel valitakse üks allesjäänud otsinguprobleem. V1 kontrollosa ei muutu kordushindamise tõttu puutumatuks.
