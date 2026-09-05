@@ -2,7 +2,7 @@
 
 ## RAG-i seis 05.09.2026
 
-**Uue RAG-i failide sissevõtt ja kohalik otsingutaristu töötavad. Platvormi kasutajale allikapõhiselt vastav RAG ei ole veel taastatud.** PostgreSQL-i leksikaalne otsing töötab päris tekstiga; Qdranti ühendus on kontrollitud deterministlike testvektoritega (`embedding_mode=mock`). Päris embedding-mudeli tähendusliku otsingu kvaliteeti ega Luna vastuseid pole veel kontrollitud.
+**Uue RAG-i M0–M2.2 tehniline rada töötab kohalikult ja serveris ning piiratud pärisembedding'u piloot on läbitud. Platvormi kasutajale allikapõhiselt vastav RAG ei ole veel taastatud.** Haldaja üks päris PDF/JSON näidis liigub eraldatud PostgreSQL-i ja Qdranti kaudu `text-embedding-3-large` vektoritega hübriidotsingusse ning kompaktseks, kanooniliselt lahendatavaks tõendusmaterjaliks. Luna vastamist, platvormi HTTP-autentimist, tootmise nõusoleku-/kustutusrada ja kogu korpuse kvaliteeti pole veel teostatud ega tõendatud.
 
 See on omaniku soovil lisatud kuupäevastatud koond. Aktiivne tööots ja järgmise töö juhtimine jäävad [SotsiaalAI.md S1.0-sse](../platvormi%20arendus/SotsiaalAI.md). Allpool säilib kasutajafunktsioonide ja ühenduskohtade kaart; vana RAG-i arhitektuuri ei taastata.
 
@@ -11,10 +11,10 @@ See on omaniku soovil lisatud kuupäevastatud koond. Aktiivne tööots ja järgm
 | Etapp | Seis | Mis on olemas / mis puudub |
 | --- | --- | --- |
 | M0 — lähtepuu ja arhitektuur | Teostatud | Repositooriumi, autentimise, vestluse, allikavaate ja säilinud ühenduskohtade kaart; eraldatav Node/JavaScript tuum. |
-| M1 — PDF/JSON-i sissevõtt | Teostatud ja lokaalselt kontrollitud | Muutmatud algfailid, püsiv artikli identiteet, versioonid, `legacy_metadata`, väljade päritolu, täpsed allikakohad, lõigud/peatükid, tekstiosad ja struktuursed seosed. Näidis: 13 PDF-lehte, 16 tekstiosa. Kordusimport ja katkestusest taastumine töötavad. |
-| M2.1 — kohalik otsingutaristu | Teostatud ja päristeenustega kontrollitud | PostgreSQL `simple` + Qdranti **testvektorid** + RRF; lubatud dokumentide filtrid, tokenipiir, põlvkonna fikseerimine, õiguse tühistamise järelkontroll ja piiratud struktuurne laiendus. CLI tagastab tõenduspaketi. |
-| M2.2 — päris embedding ja otsingukvaliteet | Ette valmistatud, käivitamata | Artiklipõhised ET/EN/RU küsimused, allikakohtade ootused ja tokenipõhine prooviplaan on olemas. Päris mudelikutseks puuduvad kinnitatud materjalide väljasaatmise luba ning kulupiir. |
-| M2 tervikuna | Veel vastu võtmata | Taristu töötab, aga päris mudeliga semantiline ja mitmekeelne kvaliteet on `NOT_PROVEN`. |
+| M1 — PDF/JSON-i sissevõtt | Teostatud ja lokaalselt ning serveris kontrollitud | Muutmatud algfailid, püsiv artikli identiteet, versioonid, `legacy_metadata`, väljade päritolu, täpsed allikakohad, lõigud/peatükid, tekstiosad ja struktuursed seosed. Näidis: 13 PDF-lehte, 16 tekstiosa ja 485 seost. Kordusimport, ressursipiirid ja katkestusest taastumine töötavad. |
+| M2.1 — kohalik otsingutaristu | Teostatud ja päristeenustega kontrollitud | PostgreSQL `simple` + Qdranti vektorid + RRF; lubatud dokumentide filtrid, tokenipiir, põlvkonna fikseerimine, õiguse tühistamise järelkontroll, Qdranti sisu kontroll ja piiratud struktuurne laiendus. CLI tagastab täieliku auditi või kompaktse vastamiskonteksti. |
+| M2.2 — päris embedding ja otsingukvaliteet | Teostatud; piiratud piloot läbitud | Kinnitatud 16 tekstiosa ja 9 küsimust saadeti ühe katsega sisendi kohta mudelile `text-embedding-3-large`. Kõik 25 katset õnnestusid; 12 420 sisendtokeni arvestuslik kulu oli 0,001614600 USD. Kuue ET/EN/RU sisuküsimuse vajalik tugi oli hübriidraja lõppkontekstis 6/6. |
+| M2 tervikuna | Tehniline rada vastu võetud piiratud ulatuses | Ühe artikli piloot tõendab pärisvektori, mitmekeelse hübriidotsingu ja tõendipaketi tervikrada. See ei ole üldine täpsusprotsent ega tõenda mitme dokumendi eristamist, kogu korpust või lõppvastuse kvaliteeti. |
 | M3 — semantilised sõltuvused | Teostamata | `REQUIRES`, `EXCEPTION_TO` ja tingimusliku konteksti kaasamine. Praegune naabrus/peatükigraaf ei ole semantiline põhjendusgraaf. |
 | M4 — Luna ja platvormi ühendus | Teostamata | Päris vastamisadapter, kinnitatud mudeli-ID, vestluse voog, viidete kasutajavaade ning uue otsingu sidumine platvormi autentimisega. |
 | M5 — ajaline ja kogu korpuse rada | Teostamata | Kümne aasta ülevaateks vajalik korpus, katvuse arvestus ja allikapõhine süntees. Üks artikkel ei ole ajalooline korpus. |
@@ -22,30 +22,40 @@ See on omaniku soovil lisatud kuupäevastatud koond. Aktiivne tööots ja järgm
 
 ### Mis praegu päriselt töötab
 
-Haldaja PDF/JSON → M1 aktiivne versioonipilt → PostgreSQL-i põhiregister ja leksikaalne indeks → Qdranti testvektorite indeks → kohaliku operaatori CLI-päring → algteksti, PDF-lehtede, allikakohtade ja valiku põhjusega tõenduspakett.
+Haldaja PDF/JSON → M1 aktiivne versioonipilt → PostgreSQL-i põhiregister ja leksikaalne indeks → Qdranti pärisvektorite indeks → operaatori CLI-päring → algteksti, PDF-lehtede, allikakohtade, päritolu ja valiku põhjusega audit → piiratud kompaktne vastamiskontekst.
 
 - Algallika, metaandmete ning töötlemiskonfiguratsiooni identiteedid säilivad. Otsinguks lisatud pealkiri ja vana kirjeldus on algteksti tsitaadist eraldi.
 - Uus indeks aktiveeritakse alles pärast PostgreSQL-i ja Qdranti andmete kontrolli. Katkestus säilitab vana aktiivse põlvkonna; vanem töö ei saa uuemat aktiivset seisu üle kirjutada.
 - Päring kasutab mõlemas kanalis sama põlvkonda ning tenant'i/lubatud dokumentide ulatust. Enne tulemuse tagastamist kontrollitakse kehtivat kohalikku poliitikat uuesti.
-- Tühi leid, teenuse tõrge ja leksikaalne varurada on eristatavad. Faili või allika sisu ei käivita käske.
+- Qdranti punkti identiteedi, mõõtmete ja normaliseeritud vektorisisu kõrvalekalle katkestab aktiveerimise. Tühi leid, teenuse tõrge ja leksikaalne varurada on eristatavad.
+- Mudelikontekst ei usalda viitepaketi enesekooskõla: lühiviide lahendatakse sama valmis põlvkonna kanoonilise PostgreSQL-i üksuse, tekstiosa ja spanide vastu. Allikatunnused kannavad väärtust, päritolu ja ülevaatuse seisundit.
+- Faili või allika sisu ei käivita käske. PDF-i dekodeeritud elementidel, metaandmetel, esitusel ja indeksil on eraldi ressursipiirid.
 
 Kohaliku poliitika kontroll ei tõenda veel platvormi HTTP-autentimist, organisatsiooni/omandi/nõusoleku tervikrada ega tootmiskasutaja ligipääsu. Need ühendused tuleb enne kasutajatele avamist eraldi teostada ja kontrollida.
 
+### Pärisembedding'u piloot
+
+| Näitaja | Tegelik tulemus |
+| --- | ---: |
+| Mudel / mõõtmed | `text-embedding-3-large` / 3072 |
+| Dokumenditekstid / küsimused | 16 / 9 |
+| API-katsed; õnnestunud / teadmata / ebaõnnestunud | 25; 25 / 0 / 0 |
+| Lokaalne / API raporteeritud sisendtokenite arv | 12 420 / 12 420 |
+| Arvestuslik kulu hinnaga 0,13 USD / miljon tokenit | 0,001614600 USD |
+| Genereerivad ja Luna kutsed | 0 |
+| Võrdlusread | 36 (9 küsimust × 4 meetodit) |
+
+Kuue sisuküsimuse puhul sai PostgreSQL `simple` kogu vajaliku toe lõppkonteksti 4/6, pärisvektor 6/6 ja hübriid RRF 6/6 korral. Hübriidi vajalik tugi oli kõigis kuues juhtumis juba top-1-s. Struktuurne laiendus käivitus kõigi üheksa küsimuse puhul, kuid ei lisanud selles valimis vajalikku tõendit, mida hübriidseeme juba ei sisaldanud. Autoriküsimus lahendas päritoluga autoriandme; kaks korpuses vastuseta küsimust jäid ausalt märgituks kui `required_evidence_absent_by_dataset`.
+
+Täieliku varasema tõendipaketi 5614 tokenist sai päritolu ja `review_state` järel 1788-tokenine kompaktne esitus ehk 68% vähendus. Esitus säilitab muutmata algteksti, bibliograafia, ajad/piirangud ja lokaalselt lahendatavad lühiviited; tehnilised räsid, pikad span-loendid, järjestusskoorid ja kontrollimata vana kirjeldus jäävad auditisse.
+
 ### Koodi, teenuste ja kontrollide alus
 
-Kontrollitud kood on kohalikus põhikausta `main`-harus: M0/M1 commit `6b2db9b94`, M2.1 commit **`2577100af`**. Selle kokkuvõtte koostamisel andis `git ls-remote origin refs/heads/main` kaugusharu SHA-ks `ef184d4a410ba42b3153b15a2afa8c561a047e38`; uusi RAG-i commit'e pole sinna saadetud. Uut süsteemi pole nende töövoorudega tootmisse paigaldatud. Serveri praegust teenuseseisu selles dokumendiuuenduses ei kontrollitud.
+M0–M2.2 teostus, serveri parseriparandus ja vana RAG-i teenusesõltuvuse eemaldus jõudsid `main`-i commit'ides `6df73027f`, `b0703d526` ja `75e38d190`. Codex Security Standard Scan leidis auditeeritud `lib/rag-v2` pinnalt kaks keskmise ja ühe madala raskusega probleemi: PDF-elementide ressursipiiri, metaandmete võimenduse ja enesekooskõla usaldava viitepaketi. Kõik kolm parandati commit'is **`682d2a6e4`**. Skanni lähte-SHA, otsused ja paranduste tõendid on [M0–M2.2 auditis](rag-v2-m2-2-audit-2026-09-05.md).
 
-05.09 Docker-kontrollis töötasid eraldatud kohalikud **PostgreSQL 16.13** (`127.0.0.1:55432`) ja **Qdrant 1.15.5** (`127.0.0.1:56333`). Need on uue RAG-i arendusteenused; platvormi olemasolevat andmebaasi nende seadistamisega ei muudetud.
+Lõplik M0–M2.2 sihtkomplekt läbis kohalikult ja serveris **57 testi, 0 ebaõnnestumist, 0 skip'i**. Muudetud failide lint, `git diff --check`, eraldatud Prisma skeemi valideerimine/migratsioon, i18n-kontroll ja üks lõplik tootmisbuild läbisid. Pärast turvaparandusi andis päris näidis uuesti 13 lehte, 16 tekstiosa ja 485 seost; kõik 16 embedding-teksti olid byte-for-byte võrdsed piloodi sisenditega ning pärisvektoreid ei tellitud uuesti.
 
-| Kontroll | Läbitud | Ebaõnnestunud | Vahele jäetud |
-| --- | ---: | ---: | ---: |
-| M1 regressioonid päris näidis-PDF-iga | 22 | 0 | 0 |
-| M2.1 ühiktestid | 7 | 0 | 0 |
-| M2.1 päris PostgreSQL-i/Qdranti integratsioonitestid | 11 | 0 | 0 |
-
-Viimase koodiploki lint, eraldatud kohaliku Prisma migratsioon ja skeemi valideerimine, tõlkekontroll ning tootmisbuild läbisid. M1 korduskontrollis avastatud Windowsi parserikrahh parandati PDF-parseri eraldi lapsprotsessi viimisega. **Väliseid embedding-kutseid ja genereerivaid mudelikutseid oli 0.** Dokumentatsiooni uuendamiseks samu teste ega build'i uuesti ei käivitatud.
-
-Salvestatud tegelik „OTT” päring sai oleku `ok`, leidis leksikaalses kanalis ühe õige tekstiosa PDF-lehelt 3 ning tagastas hübriidpaketis kolm katkendit. Kestus oli ligikaudu **237 ms**, kontekst 5614 tokenit (Windows x64, Node 24.18.0). See on üks kohalik mõõtmine, mitte p95 või semantilise kvaliteedi tõend; teised testvektoritega valitud katkendid ei tõenda küsimusele kasulikku tuge.
+Serveris töötavad uus PostgreSQL ja Qdrant eraldatud Docker-köidetel ning ainult loopback-portidel `55432` ja `56333`; Qdrant kasutab teenusevõtit. `sotsiaalai-frontend.service` on aktiivne. Vana `sotsiaalai-rag.service` ja `sotsiaalai-research-worker.service` on `inactive/disabled` ning frontend ei sõltu neist. Avaleht vastab HTTPS 200 ja `/api/chat` GET annab `generationAvailable=false`, mis on õige kuni M4 ühenduseni.
 
 Privaatsed arendusväljundid põhikaustas (ignoreeritud `tmp/` all, ei kuulu commit'i):
 
@@ -53,6 +63,7 @@ Privaatsed arendusväljundid põhikaustas (ignoreeritud `tmp/` all, ei kuulu com
 - [Tegeliku päringu HTML-vaade](../../tmp/rag-v2-query/evidence.html) ja [masinloetav tõenduspakett](../../tmp/rag-v2-query/evidence.json).
 - [Kontrollide kirje](../../tmp/rag-v2-query/verification.json) ja [ET/EN/RU tokenizer'i näited](../../tmp/rag-v2-query/tokenizer-examples.json).
 - [M2.2 prooviplaan](../../tmp/rag-v2-query/m2-2-plan.json).
+- [M2.2 piloodi HTML-raport](../../tmp/rag-v2-m2-2/server/pilot-report.html) ja [masinloetav tulemus](../../tmp/rag-v2-m2-2/server/pilot-results.json).
 
 ### Mida platvormi kasutaja praegu kasutada saab
 
@@ -62,9 +73,9 @@ Säilinud failihaldus, ajalugu, inimeste koostöö, kontaktiregister ja käsitsi
 
 ### Järgmine samm
 
-M2.2 kontrollib tegeliku `text-embedding-3-large` mudeliga leksikaalset, vektori- ja hübriidotsingut ning struktuurse laienduse mõju. Praegune ettevalmistatud plaan kasutab 3072 mõõdet, näidise 16 tekstiosa ja üheksat küsimust: kuni **12 420 sisendtokenit ja 25 API-katset**, üks katse sisendi kohta, automaatsete korduskatseteta. Rahaline hind on seadistamata ja hinnanguline kulu teadmata. Materjalide välisele teenusele saatmise luba ning konkreetne kulupiir tuleb omanikul enne käivitust kinnitada.
+Järgmine sidus plokk laiendab M2 kvaliteedikatset mitmele eraldi lubatud pärisartiklile, lisab sarnase sõnastusega eksitavad allikad ja katab artiklite teised peatükid. Selle järel saab M4-s ühendada serverisessioonist tuletatud tenant'i ja õigused, kanoonilise viitelahenduse, allikavaate ning ühe eraldi kinnitatud Luna vastamiskatse. Iga uus välissaatmise sisu, mudel või kulupiir vajab oma manifesti ja luba; esimese piloodi luba ei laiene automaatselt.
 
-Teostuse ja käivitamise detailid: [README](../rag-v2/README.md), [M0 repositooriumi audit](../rag-v2/repository-audit.md), [ADR-001: sissevõtt](../rag-v2/adr-001-local-ingestion.md), [ADR-002: hübriidotsing](../rag-v2/adr-002-local-hybrid-search.md). Leheteed allpool on keeleprefiksita; ligipääs sõltub rollist ja õigustest.
+Teostuse ja käivitamise detailid: [M0–M2.2 audit](rag-v2-m2-2-audit-2026-09-05.md), [README](../rag-v2/README.md), [M0 repositooriumi audit](../rag-v2/repository-audit.md), [ADR-001: sissevõtt](../rag-v2/adr-001-local-ingestion.md), [ADR-002: hübriidotsing](../rag-v2/adr-002-local-hybrid-search.md) ja [ADR-003: kinnitatud embedding'u piloot](../rag-v2/adr-003-approved-embedding-pilot.md). Leheteed allpool on keeleprefiksita; ligipääs sõltub rollist ja õigustest.
 
 ## Kasutajale nähtavad seosed
 
