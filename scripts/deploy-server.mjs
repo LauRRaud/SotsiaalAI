@@ -257,6 +257,11 @@ if [ -d "$APP_DIR/deploy/systemd" ]; then
     sudo install -m 0644 "$APP_DIR/deploy/systemd/sotsiaalai-frontend.service.d/20-materials-storage.conf" /etc/systemd/system/sotsiaalai-frontend.service.d/20-materials-storage.conf
     installed_units="$installed_units sotsiaalai-frontend.service.d/20-materials-storage.conf"
   fi
+  if [ -f "$APP_DIR/deploy/systemd/sotsiaalai-frontend.service.d/10-retired-rag-dependency.conf" ]; then
+    sudo install -d -m 0755 /etc/systemd/system/sotsiaalai-frontend.service.d
+    sudo install -m 0644 "$APP_DIR/deploy/systemd/sotsiaalai-frontend.service.d/10-retired-rag-dependency.conf" /etc/systemd/system/sotsiaalai-frontend.service.d/10-retired-rag-dependency.conf
+    installed_units="$installed_units sotsiaalai-frontend.service.d/10-retired-rag-dependency.conf"
+  fi
   if [ -n "$installed_units" ]; then
     sudo systemctl daemon-reload
     echo "[deploy:server] Systemd units updated:$installed_units"
@@ -271,8 +276,7 @@ fi
 # This release retires the old engines. Keep their data for explicit recovery.
 for retired_unit in sotsiaalai-rag-master-source-check.timer sotsiaalai-rag-master-source-check.service sotsiaalai-research-worker.service sotsiaalai-rag.service; do
   if systemctl cat "$retired_unit" >/dev/null 2>&1; then
-    sudo systemctl stop "$retired_unit"
-    sudo systemctl disable "$retired_unit"
+    sudo systemctl disable --now "$retired_unit"
   fi
 done
 
