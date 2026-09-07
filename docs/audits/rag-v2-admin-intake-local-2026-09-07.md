@@ -82,6 +82,8 @@ Push ja deploy vajavad omaniku selget luba vastavalt [AGENTS.md](../../AGENTS.md
 
 ### Serverikatse algus 07.09
 
+Alljärgnev algusseis on ajalooline; lõpptulemus on faili lõpus.
+
 Omanik andis ülal kirjeldatud push'i/deploy, privaatse piloodiseadistuse kontrolli ja kuni 0,05 USD katse loa. `a8fc91ec7` jõudis serverisse; tootmisbuild läbis ja 204 migratsiooni hulgas polnud rakendamata migratsioone. Serveris kontrollitud korpus sisaldas kaheksat dokumenti ja 69 indeksiüksust; 68 erinevat dokumendisisendit olid olemasolevate päris vektoritega kaetud ning uusi embedding'u kutseid polnud vaja.
 
 Eelkontroll leidis uues adapteris ühendusvea: `reusableEmbeddingCatalog` annab päritolu väljal `embedding.provenance`, kuid adapter luges seda kataloogi juurest. Vale lugemine oleks tõkestanud päris vektorite korduskasutuse. Parandus kasutab teenuse tegelikku andmekuju ning sihttesti sisestatud transpordipäritolu paikneb nüüd samas väljas. Selle paranduse järel läbisid 10 sihttesti, sihitud eslint ja uus tootmisbuild. Katse pole selles etapis mudelikutseni jõudnud.
@@ -89,3 +91,20 @@ Eelkontroll leidis uues adapteris ühendusvea: `reusableEmbeddingCatalog` annab 
 Parandus `5e1d133c4538f82aada2e2482543250ecb6cc2ae` on serveris: serveri tootmisbuild läbis, frontend on aktiivne ja avalik `/vestlus` vastab HTTP 200. Päris vektorikataloog tagastas `embedding.provenance=openai_https` ja `embedding.source=persisted_vectors`. Piiratud adminivoog on avatud ainult senisele testijale, kelle ADMIN-roll, adminitunnus ja peatamata olek kontrolliti DB-st. Seadistuse dokumendikutsete, tokenite ja raha piir on null ning luba aegub 08.09 kell 00:00 UTC.
 
 **Katse jätkamiseks on vaja kasutaja sisselogimist.** Avatud Chrome'i profiilis polnud serveri sessiooni; kasutajale avati tavaline `https://sotsiaal.ai/` sisselogimisvaade. Serveris pole selle katse PDF-ingest'i, indeksi avaldamist ega küsimuse/vastuse kutset veel tehtud. Uue piiratud M4 plaani ettevalmistus nõuab enne üht avaldatud UI-vastuvõtu kviitungit ning kontrollib sama uue versiooni aktiivses indeksis; plaani pole praegu teenuses lubatud. Senine piloodiseadistus säilis muutmata ja keskkonnafaili taastamiseks on privaatne varukoopia. Järgmine samm on pärast sisselogimist jätkata ülal kirjeldatud sama loa ja kulupiiriga katset.
+
+
+### Serverikatse lõpptulemus 07.09 — tehniline rada PASS, vastuse sisu PARTIAL
+
+Katse jätkus rakendusesiseses brauseris olemasoleva sessiooniga. Tegelikus adminivormis lisati sama PDF ja metadata: 5 lehekülge, 6 tekstiosa, 1 hoiatus. Metadata/päritolu ülevaatus avanes ning „Avalda otsingus” kinnitas indeksi avaldamist. Plaan hõlmas 8 dokumenti, 68 korduskasutatavat embedding-sisendit ja 0 uut dokumendikutset; ülejäänud 7 dokumendi versioonid säilisid.
+
+Aktiivne põlvkond: `search_generation_f9b136c78c607b643503a5732294dd62ffab215f7ee26d9723052b89639a7566`, 8 dokumenti ja 69 üksust. Uus Tehnopoli versioon: `version_75a3c703c9324d4591d8da9f45df6fcf6a5d8f1828c90a8eb44468034236c2bf`. Avaldatud kviitungi, aktiivse PostgreSQL põlvkonna ja Qdranti eelkontroll läbis enne piiratud M4 plaani aktiveerimist.
+
+Üks lukustatud küsimus saadeti nähtavas vestluses. Piloot `m4-intake-acceptance-20260907-1`, käik `7e92cd62-0f97-416e-8cd2-ef0497a13b13`. Päris otsing andis S1–S5 kahest dokumendist; S1–S3 viitasid uuele versioonile. Tegeliku päringukeha räsi kontroll läbis (`2b7b13ae7c5f27c79c566298292e95400a96aa68dcaf4bd0740ab13e86ff7070`); teenusepakkuja sisendi evidence ja otsingupaketi model_context normaliseeritud räsid kattusid. Sisendis oli üks kasutajasõnum küsimuse/allikatega, mitte vestlusajalugu; juhis `m4-grounded-answer-4`, leping `m4-text-refs-4`, mudel `gpt-5.6-luna`, reasoning `low`, `store=false`. Struktuurivalidaator läbis; see ei tõenda rahastusväite õigsust.
+
+Vastuses oli kolm viidatud lõiku ja kaks piirangut. Allikate paneel avas viis viidet; S1 avanes PDF lehekülgedega 3, 4, 5 ja uue dokumendiversiooniga. Allika sulgemine taastas vestluse; eraldi lehe värskendamise järel oli sama vastus alles. Allikavaate kohalik tõend: `output/playwright/intake-server/source.png` ja `source.txt`.
+
+**Sisuline vastuvõtt PARTIAL:** eesmärk ja salvestatud allika eristamine tänasest taotlusvõimalusest olid toetatud. Rahastuslõik ütles ekslikult, et projekte rahastatakse mõlema nimetatud meetme vahenditest. S1 eristab projektide kaasrahastamist meetmest „Heaolutehnoloogiate kasutuselevõtu toetamine tervise- ja hoolekande valdkonnas” ning arendusprogrammi kaasrahastamist meetmest „Pikaajalise hoolduse kättesaadavuse ja kvaliteedi parandamine”. Õige allikas oli päringus ja viites olemas; viga tekkis vastuse koostamisel. Järgmine plokk peab säilitama rahastuse objekti ja meetme seose. Vastuse üldine piirang rahastajate institutsionaalse jaotuse kohta seda ekslikku seost ei paranda. T1/T5 ja varasemad semantilised lahtised otsad säilivad; päris rolli tagasivõtmise/võistluse kontroll on endiselt NOT_PROVEN.
+
+Kulu: 1 värske küsimuse embedding ja 1 vastusekutse, korduskatseid 0, kokku 25 168 tokenit. Püsiv kuluregister arvestas 8 230 760 nano-USD ehk **0,008230760 USD**, alla 0,05 USD piiri; see on konservatiivne piloodiarvestus, mitte teenusepakkuja arve. Dokumendi lisamine/avaldamine ei teinud mudelikutseid.
+
+Katse lõpus taastati algne serveri keskkonnafail; selle ja privaatse varukoopia SHA-256 kattus (`a50c105cb5eab9a6fe78fd787574f551efcf059649276c4cf1c0aea2145a0dcf`). Frontend taaskäivitati ja on aktiivne. Ajutine admini/M4 konfiguratsioon pole enam teenuses valitud; avaldatud indeks jäi alles. Brauseri värskendamise tõend saadi enne katsekonfiguratsiooni sulgemist. Dokumentatsiooni uuendus ei muuda koodi; sama koodipuu rohelist tootmisbuildi ei korratud.
