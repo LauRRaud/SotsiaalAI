@@ -58,3 +58,11 @@ Sisulise hinnangu annab omanik või nimetatud hindaja pakettide ja varjatud vari
 ## Lõppvärav 07.09
 
 Lõplik muudetud failide eslint, i18n:check, git diff --check ja tootmisbuild läbisid. 07.09 build kompileerus 29,3 sekundiga ja lõppes koodiga 0. Katkestusele eelnenud build'i protsessivastus ei olnud enam kättesaadav, seetõttu korrati ainult tõendamata build'i lõppväravat; 56 testi ei korratud formaalselt. Prisma skeem ja migratsioonid ei muutunud. V3 contracts.js, presentation.js ja otsinguprofiili fail vastasid commit'i sisule. Teise akna muudatusi ei stage'itud ega saadetud serverisse.
+
+## Omaniku tähtajamuudatus ja pärisvõrdluse ettevalmistus 07.09
+
+Omanik tühistas senise piloodi loa ja katseandmete tähtajapiiri ning palus alustada 7+7 pärisvõrdlust. Kohalik commit `4c7560f3ca47efa028ed577075966ce37401c534` lisab selgesõnalise `expiresAt=null` ja `retentionHours=null` toe ning M4 piloodikirje nullable aegumise migratsiooni. Üldine passiivsuskoristus ei kustuta tähtajata M4 kirjega vestlust; konto-, arhiivi-, kustutamis- ja katsepiirid säilivad. Vana tähtaeg ei ole enam omaniku kehtiv nõue. Olemasolevate serverikirjete tähtajad on seni tehniliselt muutmata, sest paigaldus jäi õiguste kontrolli taha.
+
+Fikseeritud pakettide rada kontrollib kinnitatud manifestiräsi ja küsimuse identiteeti ning jätab embedding'u ja uue otsingu vahele. Kohalikud sihtkontrollid läbisid: 25 DB testi ning 8 loa/kandidaadi testi, eslint, Prisma skeemikontroll ja tootmisbuild (19,1 s kompileerimine, exit 0). [Baasvariandi ettevalmistatud plaan](../../tmp/rag-v2-m4-comparison-real/baseline-prepared.json) ja [kandidaadi plaan](../../tmp/rag-v2-m4-comparison-real/candidate-prepared.json) fikseerivad kummalegi 7 katset ja 0,135 USD, kokku 14 katset / 0,27 USD, uusi embedding'uid 0, tähtaegu pole. Küsimused ja paketid on sama varem külmutatud võrdluse omad.
+
+Automaatne õiguste kontroll keeldus `origin/main` push'ist põhjendusega, et projekti juhis nõuab selle muudatuse jaoks omaniku selgesõnalist push-luba. Kohalik commit ja plaanid on valmis; push'i, paigaldust, serveri tähtajamuudatusi ega päriskutseid ei tehtud. Puuduv järgmine otsus on konkreetne luba selle commit'i push'iks ja paigaldamiseks; kinnitatud 7+7 katse ulatust uuesti avada pole vaja.
