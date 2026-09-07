@@ -61,8 +61,33 @@ Lõplik muudetud failide eslint, i18n:check, git diff --check ja tootmisbuild l�
 
 ## Omaniku tähtajamuudatus ja pärisvõrdluse ettevalmistus 07.09
 
+Hilisem tulemus: allpool kirjeldatud paigaldusblokeering lahendati omaniku vastusega „tegutse”; lõplik pärisvõrdlus on raporti lõpus.
+
 Omanik tühistas senise piloodi loa ja katseandmete tähtajapiiri ning palus alustada 7+7 pärisvõrdlust. Kohalik commit `4c7560f3ca47efa028ed577075966ce37401c534` lisab selgesõnalise `expiresAt=null` ja `retentionHours=null` toe ning M4 piloodikirje nullable aegumise migratsiooni. Üldine passiivsuskoristus ei kustuta tähtajata M4 kirjega vestlust; konto-, arhiivi-, kustutamis- ja katsepiirid säilivad. Vana tähtaeg ei ole enam omaniku kehtiv nõue. Olemasolevate serverikirjete tähtajad on seni tehniliselt muutmata, sest paigaldus jäi õiguste kontrolli taha.
 
 Fikseeritud pakettide rada kontrollib kinnitatud manifestiräsi ja küsimuse identiteeti ning jätab embedding'u ja uue otsingu vahele. Kohalikud sihtkontrollid läbisid: 25 DB testi ning 8 loa/kandidaadi testi, eslint, Prisma skeemikontroll ja tootmisbuild (19,1 s kompileerimine, exit 0). [Baasvariandi ettevalmistatud plaan](../../tmp/rag-v2-m4-comparison-real/baseline-prepared.json) ja [kandidaadi plaan](../../tmp/rag-v2-m4-comparison-real/candidate-prepared.json) fikseerivad kummalegi 7 katset ja 0,135 USD, kokku 14 katset / 0,27 USD, uusi embedding'uid 0, tähtaegu pole. Küsimused ja paketid on sama varem külmutatud võrdluse omad.
 
 Automaatne õiguste kontroll keeldus `origin/main` push'ist põhjendusega, et projekti juhis nõuab selle muudatuse jaoks omaniku selgesõnalist push-luba. Kohalik commit ja plaanid on valmis; push'i, paigaldust, serveri tähtajamuudatusi ega päriskutseid ei tehtud. Puuduv järgmine otsus on konkreetne luba selle commit'i push'iks ja paigaldamiseks; kinnitatud 7+7 katse ulatust uuesti avada pole vaja.
+
+## Pärisvõrdlus 07.09: kandidaat jääb välja
+
+Omaniku kinnituse järel jõudis GitHubi ja serverisse `5b9d0a233` (sisuline muudatus `4c7560f3c`). Serveri puhas tööpuu võimaldas tavalist deploy'd ilma `--discard-tracked` liputa. Serveri build läbis (30,6 s), nullable aegumise migratsioon rakendus ja frontend on aktiivne. 20 varasema M4 kirje ja nende kolme vestluse aegumine muudeti nulliks; tehingukontroll kinnitas sisu ning kululoendurite säilimise. Vana tähtajaga plaanifailid on ajaloolised tõendid, uued võrdlusload tähtajata.
+
+Päris brauseris, omaniku olemasoleva seansiga ja tavalisel vestluslehel tehti täpselt seitse baas- ning seitse kandidaatvastamiskutset. Embedding'uid, uut otsingut ja korduskatseid oli 0. Kõigi 14 salvestatud paketi räsi vastas enne katset külmutatud paketile; enne aktiveerimist kontrolliti mõlema haru 35 viidet kanooniliste allikate vastu. Rakenduse räsi oli `c681bd9bde135f808e7e25573ceb82e03e6ee04864ad6c041304090461e4f2ca`.
+
+| Mõõdik | V3 baas | Kandidaat |
+|---|---:|---:|
+| Avaldatud vastuseid | 7/7 | 0/7 |
+| Sisendtokenid | 31 134 | 32 611 |
+| Väljundtokenid | 2 101 | 3 350 |
+| Mudelivastuse kestuse mediaan | 2,485 s | 3,655 s |
+| Kasutuspõhine konservatiivne kuluhinnang | 0,01030470 USD | 0,01217275 USD |
+| Püsiv kulureserveering | 0,05056245 USD | 0,05265370 USD |
+
+Kasutuspõhine hinnang kokku on 0,02247745 USD, püsiv reserveering 0,10321615 USD ja kinnitatud piir 0,27 USD. Need on konservatiivsete ühikuhindadega arvutused, mitte arve. Kandidaat lisas 1477 sisendtokenit (211 igal kutsel) ja 1249 väljundtokenit; mudelivastuse mediaankestus kasvas ligikaudu 47%. Mõõdeti täieliku mudelivastuse saabumist, mitte kogu UI ooteaega.
+
+Kõik seitse kandidaati lõppesid `answer_rejected / evidence_excerpt_not_found`. 22 tsitaadist 19 muutusid leitavaks diagnostilisel tühikute/reavahetuste ühtlustamisel, kolm ei kattunud ka siis: lisatud kolm punkti või muudetud sõnastus. Diagnostika ei muutnud kontrollireeglit ega avaldanud vastuseid tagantjärele. Täpse tsitaadi kontroll toimis, kuid mudeli tegelik väljund ei täitnud lepingut üheski juhtumis.
+
+**Otsus: praegust kandidaati kasutusele ei võeta.** Avaldamise tingimus kukkus läbi nii kolmes teadaolevas kui neljas kontrolljuhtumis. Server lülitati tagasi tähtajata baasvõrdluse plaanile; mõlema haru seitsme kutse kvoot on täis. Baasi 7/7 avaldamine ei tõenda sisulist õigsust: nähtavates vastustes on endiselt kontrollimist vajavaid üldistusi, näiteks faktilehe „garanteerib” ja kohaliku kohustuslikkuse sõnastused. Kandidaadi semantiline paremus ning omaniku sõltumatu pimehindamine on NOT_PROVEN. Uut katset ega parandusringi ei lisatud.
+
+Privaatsed tõendid: `tmp/rag-v2-m4-comparison-real/results.json`, `summary.json` ja `review.md`. Tulemuste dokumenteerimine ei muutnud koodi ega nõudnud uut build'i.
