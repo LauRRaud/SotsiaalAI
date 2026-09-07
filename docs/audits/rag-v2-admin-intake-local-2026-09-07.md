@@ -108,3 +108,12 @@ Vastuses oli kolm viidatud lõiku ja kaks piirangut. Allikate paneel avas viis v
 Kulu: 1 värske küsimuse embedding ja 1 vastusekutse, korduskatseid 0, kokku 25 168 tokenit. Püsiv kuluregister arvestas 8 230 760 nano-USD ehk **0,008230760 USD**, alla 0,05 USD piiri; see on konservatiivne piloodiarvestus, mitte teenusepakkuja arve. Dokumendi lisamine/avaldamine ei teinud mudelikutseid.
 
 Katse lõpus taastati algne serveri keskkonnafail; selle ja privaatse varukoopia SHA-256 kattus (`a50c105cb5eab9a6fe78fd787574f551efcf059649276c4cf1c0aea2145a0dcf`). Frontend taaskäivitati ja on aktiivne. Ajutine admini/M4 konfiguratsioon pole enam teenuses valitud; avaldatud indeks jäi alles. Brauseri värskendamise tõend saadi enne katsekonfiguratsiooni sulgemist. Dokumentatsiooni uuendus ei muuda koodi; sama koodipuu rohelist tootmisbuildi ei korratud.
+
+
+### Rahastusseoste juhise parandus 07.09
+
+`m4-grounded-answer-5` lisab üldise seoste säilitamise nõude: rahastaja/meede peab jääma seotud selle konkreetse tegevusega, kaasrahastamine peab jääma kaasrahastamiseks ning elluviija roll ei muutu rahastajaks. Samas väljavõttes või programmis paiknemine ei ühenda eri meetmete rahastatavaid objekte. Teadaolevat objekti ja meetme seost ei tohi asendada üldise teadmatuse piiranguga, kui puudu on üksnes summad või haldaja. Reegel rakendub kõigile nähtavatele vastuseväljadele. Allikateksti, otsingut ega vana salvestatud vastust ei muudetud; väljundskeem jäi samaks.
+
+Kontroll: olemasolev konfiguratsiooni sihttest läbis UTC-s koos uue juhuga, mis lubab allkirjastatud v4 plaani lugeda, kuid keelab selle kasutamise v5 käivitamiseks ka siis, kui koodiräsi on ajakohane. Muudetud kahe koodifaili eslint, diff-check, i18n ja tootmisbuild läbisid. See tõendab versioonipiiri ja kompileerumist, mitte mudeli uut sõnastust.
+
+**Uue juhise semantiline runtime: NOT_PROVEN.** Eelmise katse ühe embedding-kutse ja ühe vastusekutse luba on kasutatud. Konkreetne järelkontroll: sama lukustatud küsimus, sama aktiivne kaheksa dokumendi indeks, üks värske küsimuse embedding ja üks vastusekutse (Luna low), korduskatseid 0, kuni 0,05 USD. Uus plaan tuleb siduda v5 juhise ja juurutatud koodiräsiga. Vastuvõtt nõuab mõlemat õiget objekti-meetme paari, kaasrahastamise säilimist, elluviijate eristamist, õige S1 teksti jõudmist päringusse ja viitesse ning salvestatud allika/tänase vooru eristuse säilimist. Pärast nähtava vastuse ja algallika kontrolli tuleb katsekonfiguratsioon jälle sulgeda. Püsivat uut kululuba ega korduskatset selle parandusega ei lisatud.
