@@ -112,6 +112,11 @@ export default function RagAdminIntakeWorkspace({ locale }) {
         {receipt ? <>
           <h3>{receipt.metadata.title}</h3>
           <div className={styles.metrics}><span><strong>{receipt.bundle.pages}</strong>{copy.pages}</span><span><strong>{receipt.bundle.chunks}</strong>{copy.chunks}</span><span><strong>{receipt.bundle.warnings.length}</strong>{copy.warnings}</span></div>
+          {receipt.bundle.knowledge?.cards > 0 ? <div className={styles.review}>
+            <h3>{copy.knowledge}</h3>
+            <p>{copy.claims}: <strong>{receipt.bundle.knowledge.cards}</strong> · {copy.dependencies}: <strong>{receipt.bundle.knowledge.dependencies}</strong></p>
+            <p className={styles.note}>{copy.knowledgeUnreviewed}</p>
+          </div> : null}
           <div className="ra-actions"><a href={assetUrl('pdf')}>{copy.downloadPdf}</a><a href={assetUrl('metadata')}>{copy.downloadMetadata}</a></div>
           {receipt.bundle.warnings.length ? <div className={styles.review}><h3>{copy.warnings}</h3><ul>{receipt.bundle.warnings.map((warning, index) =>
             <li key={warning.code + index}>{copy.warningText[warning.code] || warning.code.replaceAll('_', ' ')}</li>)}</ul></div> : null}

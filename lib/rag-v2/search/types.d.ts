@@ -9,10 +9,10 @@ export type EmbeddingConfig = EmbeddingBase & (
   { embedding_mode: 'real'; provider: 'openai'; model: 'text-embedding-3-large'; dimensions: 3072; endpoint: 'https://api.openai.com/v1/embeddings' }
 );
 export interface SearchQuery {
-  text: string; language: 'et' | 'en' | 'ru'; generation_id?: Id; graph?: boolean;
+  text: string; language: 'et' | 'en' | 'ru'; generation_id?: Id; graph?: boolean; semanticGraph?: boolean;
   method?: 'lexical' | 'vector' | 'hybrid'; contextMode?: 'audit' | 'compact'; includeDocumentLabels?: boolean; finalLimit?: number;
   filters?: { region?: string; publication_from?: string; publication_to?: string; valid_at?: string };
-  limits?: { topK?: number; perDocument?: number; candidates?: number; contextTokens?: number; graphSteps?: number; graphAdditions?: number };
+  limits?: { topK?: number; perDocument?: number; candidates?: number; contextTokens?: number; graphSteps?: number; graphAdditions?: number; dependencySteps?: number; dependencyAdditions?: number };
 }
 export interface Evidence {
   evidence_id: Id; document_id: Id; document_version_id: Id; unit_id: Id; chunk_id: Id;
@@ -20,7 +20,8 @@ export interface Evidence {
   bibliography: { title: string; authors: string[] | null; publication_date: string | null };
   source_metadata: Record<string, { value: unknown; provenance: unknown[]; review_state: string }>;
   search_aids: { heading_prefix: string; legacy_description: unknown; role: 'not_source_quote' };
-  selection: { reason: string | { type: 'structural_expansion'; seed_evidence_id: Id; via: string; edge_ids: Id[] };
+  selection: { reason: string | { type: 'structural_expansion'; seed_evidence_id: Id; via: string; edge_ids: Id[] }
+    | { type: 'semantic_dependency'; card_id: Id; dependency_id: Id | null; verification_state: 'source_anchored_unreviewed' };
     ranks: Record<string, number>; rrf_contributions: Record<string, number>; rrf_score: number | null };
   limitations: unknown[];
 }
@@ -29,15 +30,19 @@ export interface EvidenceBundle {
   embedding_mode: 'mock' | 'real'; state: 'ok' | 'empty' | 'degraded' | 'error'; error?: string;
   channels: string[]; warnings: string[]; evidence: Evidence[];
   model_context?: ModelContext | null; reference_map?: Record<string, ModelReference>;
+  dependency_context?: ModelContext['dependencies'];
   raw_rankings: Record<string, { id: Id; score: number }[]>;
   selection_trace: { unit_id: Id; reason: string }[];
   measurements: { timings_ms: Record<string, number>; candidate_counts: Record<string, number>;
     context_tokens: number; external_embedding_calls: 0; generation_calls: 0; mock_embedding_calls: number;
-    graph_steps?: number; graph_additions?: number };
+    graph_steps?: number; graph_additions?: number; dependency_steps?: number; dependency_additions?: number };
 }
 export interface ModelContext {
   schema_version: 'rag-v2/model-context-json-1'; sources: Record<string, Record<string, unknown>>;
   evidence: { ref: string; source: string; pdf_pages: number[]; text: string }[];
+  dependencies?: { schema_version: 'rag-v2/dependency-context-1'; known_context: 'included' | 'incomplete';
+    corpus_completeness: 'not_assessed'; verification_state: 'source_anchored_unreviewed';
+    claims: Record<string, unknown>[]; relations: Record<string, unknown>[]; unresolved: Record<string, unknown>[] };
 }
 export interface ModelReference {
   tenant: string; query_id: Id; generation_id: Id; evidence_id: Id; document_id: Id; document_version_id: Id;

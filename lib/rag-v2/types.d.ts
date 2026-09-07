@@ -52,12 +52,25 @@ export interface IngestReport {
   coverage: { pdf_pages: number; documents: number; corpus_completeness: 'not_assessed' };
   model_calls: 0; embedding_calls: 0; generation_calls: 0;
 }
+export interface KnowledgeAnchor { pdf_page: number; start: number; end: number; quote: string; span_ids: Id[] }
+export interface KnowledgeCard extends Scope {
+  id: Id; key: string; kind: 'assertion' | 'condition' | 'exception' | 'definition';
+  statement: string; scope: string; subject?: string; predicate?: string; object?: string;
+  anchors: KnowledgeAnchor[]; span_ids: Id[]; verification_state: 'source_anchored_unreviewed';
+  provenance: { kind: 'metadata'; asset_hash: string; schema_version: 'rag-v2/knowledge-input-1' };
+}
+export interface SemanticDependency extends Scope {
+  id: Id; key: string; type: 'MENTIONS' | 'RELATED_TOPIC' | 'CITES' | 'DESCRIBES' | 'REQUIRES' | 'EXCEPTION_TO' | 'DEFINES' | 'QUALIFIES' | 'SUPERSEDES';
+  from_card_id: Id; targets: { document_id: Id; document_version_id: Id; card_id: Id }[];
+  operator: 'all' | 'any'; scope: string; anchors: KnowledgeAnchor[]; span_ids: Id[];
+  verification_state: 'source_anchored_unreviewed'; provenance: KnowledgeCard['provenance'];
+}
 export interface Bundle {
   schema_version: 'rag-v2/1'; tenant_id: string; document: Document; version: DocumentVersion;
   assets: SourceAsset[]; pages: { raw_text: string; pdf_page: number; parser_page_index: number; items: unknown[] }[];
   spans: SourceSpan[]; sections: Section[]; chunks: Chunk[]; relations: Relation[];
   blocks: (Scope & { id: Id; kind: 'heading' | 'paragraph' | 'quote' | 'list_item'; span_ids: Id[] })[];
-  knowledge_cards: []; report: IngestReport;
+  knowledge_cards: KnowledgeCard[]; dependencies?: SemanticDependency[]; report: IngestReport;
 }
 export interface IngestJob {
   id: string; tenant_id: string;

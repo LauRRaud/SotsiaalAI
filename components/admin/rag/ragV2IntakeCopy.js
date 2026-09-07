@@ -1,4 +1,7 @@
 const et = {
+  knowledge: 'Allikaga seotud väited ja sõltuvused', claims: 'Väiteid', dependencies: 'Sõltuvusi',
+  knowledgeUnreviewed: 'Tekstikohad vastavad PDF-ile. Imporditud väidete ja seoste sisu ei ole veel kinnitatud; indeksi avaldamine seda ei kinnita.',
+  knowledgeInvalid: 'Kontrolli väite või seose PDF-lehekülge ja täpset tsitaati. Korduva tsitaadi korral lisa alguspositsioon.',
   title: 'Dokumendi lisamine', subtitle: 'PDF ja kontrollitud metaandmed valitud RAG v2 arenduskorpusesse.',
   pdf: 'PDF-fail', import: 'Impordi metaandmete JSON (valikuline)', prepare: 'Töötle dokumenti', publish: 'Avalda otsingus',
   preparing: 'Loen ja kontrollin dokumenti…', publishing: 'Avaldan indeksit…', loading: 'Kontrollin ligipääsu…',
@@ -23,6 +26,7 @@ const et = {
   notPrepared: 'Dokument säilis, kuid indeksi ettevalmistus vajab kontrolli.',
   warningText: {
     layout_coverage_limit: 'Kontrolli teksti lugemisjärjekorda. Tabelid, joonealused märkused ja mitmeveeruline sisu vajavad eraldi ülevaatust.',
+    knowledge_import_unreviewed: 'Väidete ja sõltuvuste tekstikohad on seotud PDF-iga, kuid imporditud sisu pole kinnitatud.',
     title_not_matched_in_pdf: 'Pealkirja täpset vastet PDF-i tekstist ei leitud.',
     authors_not_matched_in_pdf: 'Kõiki autorinimesid ei leitud PDF-i tekstist.',
     description_not_verified: 'Kirjeldus aitab otsida; seda pole algallika väitena kontrollitud.',
@@ -34,6 +38,9 @@ const et = {
   origins: { metadata: 'Metaandmefail', pdf_text: 'PDF-i tekst', normalization_policy: 'Puudub või pole tuletatud', parser: 'PDF-parser', pdf_metadata: 'PDF-faili omadused', ingest_clock: 'Töötlemise aeg', parser_margin: 'PDF-i servatekst', parser_comparison: 'Võrdlus PDF-i tekstiga', asset_review: 'Allika ülevaatus' }
 };
 const en = {
+  knowledge: 'Source-anchored claims and dependencies', claims: 'Claims', dependencies: 'Dependencies',
+  knowledgeUnreviewed: 'The text anchors match the PDF. Imported claims and relations have not been verified; publishing the index does not verify them.',
+  knowledgeInvalid: 'Check the claim or relation page number and exact quotation. For a repeated quotation, add its start offset.',
   title: 'Add a document', subtitle: 'PDF and reviewed metadata for the selected RAG v2 development corpus.',
   pdf: 'PDF file', import: 'Import metadata JSON (optional)', prepare: 'Process document', publish: 'Publish to search',
   preparing: 'Reading and validating…', publishing: 'Publishing the index…', loading: 'Checking access…',
@@ -58,6 +65,7 @@ const en = {
   notPrepared: 'The document was retained, but index preparation needs attention.',
   warningText: {
     layout_coverage_limit: 'Check reading order. Tables, footnotes and multiple columns require separate review.',
+    knowledge_import_unreviewed: 'Claims and dependencies are anchored to the PDF, but their imported content has not been verified.',
     title_not_matched_in_pdf: 'The exact title was not found in the PDF text.',
     authors_not_matched_in_pdf: 'Not all author names were found in the PDF text.',
     description_not_verified: 'The description is a search aid; it is not verified source evidence.',
@@ -69,7 +77,11 @@ const en = {
   origins: { metadata: 'Metadata file', pdf_text: 'PDF text', normalization_policy: 'Missing or not inferred', parser: 'PDF parser', pdf_metadata: 'PDF file properties', ingest_clock: 'Processing time', parser_margin: 'PDF margin text', parser_comparison: 'Compared with PDF text', asset_review: 'Source review' }
 };
 const ru = {
-  ...en, title: 'Добавление документа', subtitle: 'PDF и проверенные метаданные для выбранного корпуса RAG v2.',
+  ...en,
+  knowledge: 'Утверждения и зависимости с привязкой к источнику', claims: 'Утверждений', dependencies: 'Зависимостей',
+  knowledgeUnreviewed: 'Указанные фрагменты совпадают с PDF. Содержание импортированных утверждений и связей ещё не подтверждено; публикация индекса его не подтверждает.',
+  knowledgeInvalid: 'Проверьте страницу PDF и точную цитату утверждения или связи. Для повторяющейся цитаты укажите начальную позицию.',
+  title: 'Добавление документа', subtitle: 'PDF и проверенные метаданные для выбранного корпуса RAG v2.',
   pdf: 'Файл PDF', import: 'Импорт метаданных JSON (необязательно)', prepare: 'Обработать документ', publish: 'Опубликовать в поиске',
   preparing: 'Чтение и проверка…', publishing: 'Публикация индекса…', loading: 'Проверка доступа…',
   use: 'Подтверждаю разрешение на использование этого общедоступного источника в данном корпусе.',
@@ -93,6 +105,7 @@ const ru = {
   notPrepared: 'Документ сохранён, но подготовка индекса требует проверки.',
   warningText: {
     layout_coverage_limit: 'Проверьте порядок чтения. Таблицы, сноски и многоколоночный текст требуют отдельной проверки.',
+    knowledge_import_unreviewed: 'Утверждения и зависимости привязаны к PDF, но их содержание ещё не подтверждено.',
     title_not_matched_in_pdf: 'Точное совпадение заголовка в тексте PDF не найдено.',
     authors_not_matched_in_pdf: 'Не все имена авторов найдены в тексте PDF.',
     description_not_verified: 'Описание помогает поиску, но не является проверенным свидетельством источника.',
@@ -105,6 +118,7 @@ const ru = {
 };
 export function getRagV2IntakeCopy(locale) { return String(locale).startsWith('et') ? et : String(locale).startsWith('ru') ? ru : en; }
 export function intakeErrorText(copy, code) {
+  if (code.startsWith('knowledge_anchor_')) return copy.knowledgeInvalid;
   if (code === 'rag_v2_admin_disabled') return copy.disabled;
   if (/forbidden|unauthorized|access|job_scope/.test(code)) return copy.access;
   if (/source_changed|plan_changed|superseded|config_expired|job_expired/.test(code)) return copy.changed;
