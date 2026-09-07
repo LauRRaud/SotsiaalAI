@@ -133,3 +133,6 @@ Uued `vector-ranked-first-neighbors-v1` ja `hybrid-ranked-first-neighbors-v2` pr
 Kaks väikest tehnilist lepingukontrolli läbivad: uute profiilide indeksiservad lisavad naabrid kõigi viie põhileiu järel (servade eemaldamisel juurdekasvu pole), ning vana allkirjastatud juhisega saab lugeda ajalugu, kuid mitte käivitada uut juhist. Need ei ole mudelivastuse hindamine. Muudetud nelja koodifaili eslint ja diff-check läbisid; lõplik kohalik tootmisbuild läbis.
 
 Tööplaani kontroll leidis, et M1/M2 ja piiratud M4/M6 on edasi liikunud, kuid M3 sisulise sõltuvuse teostus puudub (`normalize.js` loob `knowledge_cards: []`). `indexing.js` piirab importi 5000 üksusega, `retrieval.js` ja piloodi eelkontroll laadivad lubatud korpuse tervikuna. Need on eraldi mahuga seotud arendustööd; käesolev profiili/juhise muudatus neid ei lahenda. Aktiivne järgmiste tööde järjestus ja etappide seis on SotsiaalAI.md S2-s, mitte käesolevas raportis.
+
+
+Universaalne juhis ja graafiprofiilid on serveris commitiga `0ddffe382805591b72e291e56648c6aee35de916`. Serveri tootmisbuild läbis; mõõdetud HEAD kattus, tööpuu oli puhas, frontend aktiivne ja `/vestlus` HTTP 200. Piloodi käivitusplaani ei aktiveeritud ning mudelikutseid ei tehtud. M3 ja mahutöö jäävad järgmisse arendusplokki.
