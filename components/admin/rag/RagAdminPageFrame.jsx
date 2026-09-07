@@ -7,7 +7,7 @@ import { localizePath } from "@/lib/localizePath";
 import { getRagAdminCopy } from "./ragAdminCopy";
 
 
-const NAV_ORDER = ["home", "kov", "organizations", "sourceFeedback"];
+const NAV_ORDER = ["home", "ingest", "kov", "organizations", "sourceFeedback"];
 
 const NAV_PATHS = {
   home: "/admin/rag",

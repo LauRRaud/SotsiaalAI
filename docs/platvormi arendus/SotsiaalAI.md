@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**07.09 M4 tõendiosadega kandidaat on serveris katsetatud; järgmine plokk on tegelik dokumendi/metadata lisamisvoog ja RAG v2 tervikahela vastuvõtt.** [Kuue paari võrdluses](../audits/rag-v2-evidence-segments-local-2026-09-07.md#pärisvõrdluse-tulemus-0709) avaldusid kõik vastused ning refresh ja allikavaatelt naasmine toimisid. Tekstiosa tunnused lahendasid tsitaadi kopeerimise tõrke ja parandasid tõendipiiri eristust, kuid kandidaati ei tõsteta vaikimisi vastajaks ega seota veel jätkuvestlusega: F1 arendustegevuse/alguse nüanss ja F4 oma järeldus allikaplokis jäävad osaliseks; F2 otsene rahastusviite juhtum läbis. Katse-eelne seadistus taastati. Piloodi lõpetamiseks tuleb läbida dokumendi ja metadata tegelik ettevalmistus, ingest, indekseerimine, värske otsing, assistendile jõudnud juhis/allikad ning nähtav vastus ja algallikas; admini lisamisvoo puuduvat ühendust CLI olemasolu ei asenda. T1/T5 täpsed vastunäited jäävad vastamisosa kontrolli. Omaniku juhisel kasutatakse automaatset kulupiiri ja lõppkoondit; F3/O1, isikupiiri ning muude baasi/M2/M4/M6 leidude tõendi ulatust ei laiendata.
+**07.09 dokumendi ja metadata tegelik lisamisvoog on kohalikult teostatud ning brauseris kontrollitud; järgmine samm on selle serverikatse.** Admin saab valida PDF-i, importida või täita metadata, vaadata läbi teksti/päritolu/hoiatused ja salvestatud ülevaatuse taastada. [Päris Tehnopoli PDF-i vastuvõtt](../audits/rag-v2-admin-intake-local-2026-09-07.md) läbis; indeksi avaldamise ühendus ja püsivad kulupiirid on teostatud, kuid päris indekseerimine → värske otsing → assistendi juhis/allikad → nähtav vastus/algallikas on veel `NOT_PROVEN`. Valmis serverikatse nõuab dokumendivektorite täielikku korduskasutust ning lubab ühe küsimuse embedding'u ja ühe vastuse kuni 0,05 USD kogupiiriga; push/deploy ja privaatse piloodiseadistuse kontroll ootavad omaniku selget luba. Varasem M4 tõendiosade kandidaat jääb katsevariandiks; T1/T5, F1/F4 ning isikupiiri semantilisi lahtisi otsi see plokk ei sulge.
 
 **Sotsiaaltöö 2016–2026 artiklivõrdlusest sündinud tootekaart on 28.08 vestluse tööjäljest
 kohalikult taastatud; Git-ajaloos seda ei olnud.** Taastatud on 11 algset `ST10-*`
@@ -3237,6 +3237,8 @@ Töökaust: `C:\Users\rauds\Desktop\SotsiaalAI`.
    failipiiridega sidus teema; omaniku ja teiste sessioonide pooleliolevad failid säilivad.
    Eraldi haru kasutatakse kokkuleppel. Ametlik DONE eeldab kontrollitud tulemust `main`-is;
    täpne töökord on `AGENTS.md`-s.
+   Omaniku 07.09 juhisel saab Luna ainult lugemist ja kontrolli nõudvaid ülesandeid, mis koodi ei muuda.
+   Luna tulemus vajab otsuse mõjuga proportsionaalset kontrollitavat tõendit; vastutav kirjutaja kontrollib kriitilised väited ise.
 2. **Teste luuakse ja käivitatakse ainult arenduseks vajalikus ulatuses**, vastavalt `AGENTS.md`-le.
    Iga sihttest tõendab konkreetse muudatuse riski või regressiooni; laia sviiti ega korduvaid
    smoke-/E2E-proove ei tehta, kui kitsam kontroll piisab. Ploki järel kasutatakse asjakohast
@@ -3294,7 +3296,7 @@ sviit fake-prismaga ei tõenda ligipääsupiiri.
 
 | Mis | Kus |
 |---|---|
-| **Viis kontot**, PIN **`45671234`** | `ai.admin` · `ai.specialist.a` · `ai.specialist.b` · `ai.client` · `ai.service-provider`, kõik `@sotsiaalai.test` |
+| **Viis testkontot**, algselt PIN **`45671234`**; admini PIN ei vasta sellele (mõõdetud 07.09) | `ai.admin` · `ai.specialist.a` · `ai.specialist.b` · `ai.client` · `ai.service-provider`, kõik `@sotsiaalai.test` |
 | **OTP-värav lahti** | `.env`-is `LOGIN_OTP_BYPASS_EMAILS` (varukoopia `.env.backup-2026-08-04`). NB **`LOGIN_ALLOW_DIRECT_PIN` ei ole vaja** — see gate'ib teist rada |
 | **Testandmestik** | üks eelpöördumine `ai.client` → `ai.specialist.a` + kolm `NetworkShare` kirjet |
 | **SK-V1 laud** (05.08) | Harku vallal on seadistatud `UrgentDesk` (mehitaja `ai.specialist.a`, lugemisaeg 2 h, aegumine 12 h) + kaks abipalvet seisudes `SENT` ja `DECLINED`. **Ainult lokaalselt** — serveris ühtegi lauda ei ole ja rada on seal peidus |

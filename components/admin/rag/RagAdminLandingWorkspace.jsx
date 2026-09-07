@@ -26,7 +26,7 @@ export default function RagAdminLandingWorkspace({ locale }) {
     }
   }
   return (
-    <RagAdminPageFrame locale={locale} activeKey="home" title={copy.heading} subtitle={t("api.rag.retired")}>
+    <RagAdminPageFrame locale={locale} activeKey="home" title={copy.heading} subtitle={copy.subtitle}>
       <section className="ra-card">
         <Button type="button" onClick={selftest} disabled={busy}>
           {t(busy ? "admin.rag.selftest.running" : "admin.rag.selftest.run")}

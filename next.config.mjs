@@ -26,6 +26,10 @@ const baseConfig = {
   poweredByHeader: false,
   productionBrowserSourceMaps: false,
   devIndicators: false,
+  // PDF extraction runs in an isolated Node child, outside the route bundle.
+  outputFileTracingIncludes: {
+    "/api/admin/rag/v2/intake": ["./lib/rag-v2/pdf-worker.js", "./node_modules/pdfjs-dist/**/*", "./node_modules/@napi-rs/canvas*/**/*"],
+  },
 
   compiler: { styledComponents: true },
 
