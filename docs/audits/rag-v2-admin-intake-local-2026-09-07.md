@@ -79,3 +79,9 @@ Järgmine kontroll on täpselt piiratud:
 See üks küsimus tõendab tervikahela rada. Varasemate T1/T5 vastunäidete, tõendipiiride ja isikupiiri semantilist vastuvõttu see ei asenda.
 
 Push ja deploy vajavad omaniku selget luba vastavalt [AGENTS.md](../../AGENTS.md). Serveri privaatse piloodiseadistuse väärtuste väljastamise katse lükkas automaatne heakskiidukontroll tagasi, kuna selle eraldi ulatuse luba polnud tuvastatud. Seda lugemist ei korratud ega tehtud kaudsel teel; serverikatse seadistus jääb selle loa ja serveris mõõdetud tulemuse ootele.
+
+### Serverikatse algus 07.09
+
+Omanik andis ülal kirjeldatud push'i/deploy, privaatse piloodiseadistuse kontrolli ja kuni 0,05 USD katse loa. `a8fc91ec7` jõudis serverisse; tootmisbuild läbis ja 204 migratsiooni hulgas polnud rakendamata migratsioone. Serveris kontrollitud korpus sisaldas kaheksat dokumenti ja 69 indeksiüksust; 68 erinevat dokumendisisendit olid olemasolevate päris vektoritega kaetud ning uusi embedding'u kutseid polnud vaja.
+
+Eelkontroll leidis uues adapteris ühendusvea: `reusableEmbeddingCatalog` annab päritolu väljal `embedding.provenance`, kuid adapter luges seda kataloogi juurest. Vale lugemine oleks tõkestanud päris vektorite korduskasutuse. Parandus kasutab teenuse tegelikku andmekuju ning sihttesti sisestatud transpordipäritolu paikneb nüüd samas väljas. Selle paranduse järel läbisid 10 sihttesti, sihitud eslint ja uus tootmisbuild. Katse pole selles etapis mudelikutseni jõudnud.

@@ -53,7 +53,11 @@ async function fixture(changes = {}) {
         usage: { prompt_tokens: tokenCount(text), total_tokens: tokenCount(text) } }, request_id: 'test-request', duration_ms: 1 };
     } }),
     // Only the transport-origin assertion is injected. Disk records, hashes and vector shape are still verified.
-    reuseCatalog: async (dirs, tenant) => ({ ...await reusableEmbeddingCatalog(dirs, tenant), provenance: 'openai_https' }),
+    reuseCatalog: async (dirs, tenant) => {
+      const catalog = await reusableEmbeddingCatalog(dirs, tenant);
+      catalog.embedding.provenance = 'openai_https';
+      return catalog;
+    },
     indexSnapshot: async ({ snapshot, hooks, embedding }) => {
       state.indexCalls++;
       assert.equal(embedding.source, 'persisted_vectors');
