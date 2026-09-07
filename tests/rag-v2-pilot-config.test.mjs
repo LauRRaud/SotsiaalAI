@@ -7,7 +7,8 @@ import { readPilotConfig } from '../lib/rag-v2/pilot/config.js';
 import { embeddingConfig } from '../lib/rag-v2/search/embedding.js';
 import { implementationManifest } from '../lib/rag-v2/pilot/provenance.js';
 import { PROMPT_VERSION, QUESTION_VERSION, digest } from '../lib/rag-v2/pilot/contracts.js';
-import { EVIDENCE_DRAFT_SCHEMA, EVIDENCE_DRAFT_PROMPT } from '../lib/rag-v2/pilot/evidence-draft.js';
+import { EVIDENCE_DRAFT_SCHEMA, EVIDENCE_DRAFT_PROMPT, EVIDENCE_DRAFT_V2_SCHEMA, EVIDENCE_DRAFT_V2_PROMPT,
+  HISTORICAL_EVIDENCE_DRAFT_V1_SCHEMA_HASH, HISTORICAL_EVIDENCE_DRAFT_V1_ANSWER_SCHEMA_HASH } from '../lib/rag-v2/pilot/evidence-draft.js';
 
 test('pilot switch, per-user grant, expiry, real-model config and approval gates fail closed despite key presence', async t => {
   const original = { ...process.env };
@@ -79,4 +80,17 @@ test('pilot switch, per-user grant, expiry, real-model config and approval gates
   await assert.rejects(readPilotConfig('tester'), { code: 'implementation_approval_mismatch' });
   await fs.writeFile(file, JSON.stringify({ ...approved, documents: { another: 'version' } }));
   await assert.rejects(readPilotConfig('tester'), { code: 'pilot_approval_required' });
+
+  const candidateV2 = { ...real, evidenceDraftVersion: 'm4-evidence-draft-2', evidenceDraftSchemaHash: digest(EVIDENCE_DRAFT_V2_SCHEMA), evidenceDraftPromptVersion: EVIDENCE_DRAFT_V2_PROMPT };
+  await fs.writeFile(file, JSON.stringify({ ...candidateV2, approval: { ...approved.approval, planHash: digest(candidateV2) } }));
+  assert.equal((await readPilotConfig('tester')).evidenceDraftVersion, 'm4-evidence-draft-2');
+  await fs.writeFile(file, JSON.stringify({ ...candidateV2, evidenceDraftPromptVersion: 'm4-evidence-first-1' }));
+  await assert.rejects(readPilotConfig('tester'), { code: 'evidence_draft_approval_mismatch' });
+
+  const historicalCandidate = { ...real, promptVersion: 'm4-grounded-answer-3', implementationHash: 'historical-immutable-code', answerVersion: 'm4-text-refs-3',
+    answerSchemaHash: HISTORICAL_EVIDENCE_DRAFT_V1_ANSWER_SCHEMA_HASH, evidenceDraftVersion: 'm4-evidence-draft-1',
+    evidenceDraftSchemaHash: HISTORICAL_EVIDENCE_DRAFT_V1_SCHEMA_HASH, evidenceDraftPromptVersion: EVIDENCE_DRAFT_PROMPT };
+  await fs.writeFile(file, JSON.stringify({ ...historicalCandidate, approval: { ...approved.approval, planHash: digest(historicalCandidate) } }));
+  assert.equal((await readPilotConfig('tester', { purpose: 'read' })).answerVersion, 'm4-text-refs-3');
+  await assert.rejects(readPilotConfig('tester'), { code: 'evidence_draft_approval_mismatch' });
 });

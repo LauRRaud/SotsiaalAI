@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**07.09 M4-C järelparandus on omaniku loal main-is ja serveris ning 12-pöördeline nähtava UI järelkatse tehtud.** Viitemärgistus paranes, Tartu parandus säilis ja üleliigne hinnatäpsustus ei kordunud; teemavalik, refresh ja allikavaatelt vestlusse naasmine läbisid. [Järelkatse analüüs](../audits/rag-v2-m4-c-real-analysis-2026-09-07.md#omaniku-loaga-12-pöördeline-järelkatse) jätab F1/F2 vastuvõtu osaliseks ja kinnitab F4 tõendipiiri puuduse kordumist; katse-eelne seadistus on taastatud. Järgmine plokk on F4 allikaväite ja oma tõendipiiri eristus koos F1/F2 otseste vastuvõtujuhtumite täpsustamisega. Uusi katsevõimalusi ei jäänud; varasemad isikupiiri tõendid ning baasi, M2/M2.3 ja kogu M4/M6 lahtised leiud säilivad.
+**07.09 M4 tõendiosadega kandidaat on kohalikult valmis; järgmine samm on kuue paari võrdluse käivitamisotsus.** Vastuse koostaja valib nüüd katsekandidaadis muutmata algteksti osi tunnustega, rakendus taastab nende tõendi ise; kopeeritud tsitaadi viga ei pea mudel enam vältima. [Kohalik kontroll ja täpne võrdlusplaan](../audits/rag-v2-evidence-segments-local-2026-09-07.md) on valmis, kuid pärismudeli sisuline kasu on tõendamata. Uut katset ega serveripaigaldust pole tehtud; F1/F2/F4 jäävad lahtiseks, F3/O1 ja varasema isikupiiri tõendi ulatus säilib. Jätkuvestlusega sidumine järgneb ainult soodsale võrdlustulemusele; baasi, M2/M2.3 ja kogu M4/M6 muud lahtised leiud säilivad.
 
 **Sotsiaaltöö 2016–2026 artiklivõrdlusest sündinud tootekaart on 28.08 vestluse tööjäljest
 kohalikult taastatud; Git-ajaloos seda ei olnud.** Taastatud on 11 algset `ST10-*`
