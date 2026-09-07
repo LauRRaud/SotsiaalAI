@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**07.09 M3 esimese arendusploki kood on serverisse juurutatud:** metadata kaudu imporditud väited ja sõltuvused seotakse PDF-i tekstikohtadega, säilitatakse indeksis ning eraldi valitav otsinguprofiil toob kaasa kauged tingimused ja erandid. Seosed jäävad sisuliselt kontrollimata; puuduva allika või kontekstiruumi korral säilib puudulikkuse märge. Uusi profiile pole suletud piloodis aktiveeritud, päris sõltuvusimpordi DB/UI vastuvõtt on lahti ning uut vastusehindamise ringi ei käivitata. Järgmine M3 plokk on väidete/seoste allikapõhine ettevalmistus, läbivaatamine ja parandamine; tuhande artikli jaoks tuleb eraldi kõrvaldada kogu korpuse korduslugemine ning teha suurte importide jätkatav töötlus. Etappide seis ja lahtised piirid on S2 RAG-lõigus; [andmeleping ja tõend](../rag-v2/adr-007-source-dependencies.md).
+**07.09 omaniku kinnitatud põhisiht on müüdav ja teise organisatsiooni juures kasutatav GraphRAG-toode; SotsiaalAI on selle esimene kliendirakendus ja katsekeskkond.** M1/M2, piiratud M4/M6 ühendus ja M3 ankurdatud sõltuvuste alus on teostatud; viimase kood on serveris, uus profiil aktiveerimata ning päris DB/UI vastuvõtt lahti. Järgmine sidus plokk määrab ja teostab korduvkasutatava tuuma liidese ning eraldab SotsiaalAI profiili, sessiooni ja vestluspüsistuse adapteriteks. Sellele jätkuvad M3 allikapõhine rikastamine/läbivaatus ja suure korpuse jätkatav indekseerimine. Uut vastusehindamise ringi ei käivitata. Toote piir, etappide seis ja tööjärjestus on S2 RAG-lõigus; [M3 andmeleping ja tõend](../rag-v2/adr-007-source-dependencies.md).
 
 **Sotsiaaltöö 2016–2026 artiklivõrdlusest sündinud tootekaart on 28.08 vestluse tööjäljest
 kohalikult taastatud; Git-ajaloos seda ei olnud.** Taastatud on 11 algset `ST10-*`
@@ -1833,6 +1833,16 @@ sisselülitamisele" reegli puhas rakendus. Vt „Lüliti" S2-s ja „Mis avab" S
 
 Vana RAG-i eemaldamise ulatus ja alles jäävad platvormifunktsioonid on koondatud [RAG masterisse](../audits/rag-susteem-master.md). Uue RAG v2 piiratud arendusrada on nüüd teostatud; varasem väide, et uut käitumist pole üldse olemas, on aegunud.
 
+**GraphRAG-toote siht (omaniku täpsustus 07.09).** Arendame korduvkasutatavat teadmistesüsteemi, mida saab müüa teisele organisatsioonile ja kasutada sama tuumaga SotsiaalAI-s. Kliendi materjalid, valdkonnaprofiil, õigused, mudeliseadistus ja kasutajaliides ühendatakse konfiguratsiooni ning adapterite kaudu. SotsiaalAI on esimene kliendirakendus ja tegeliku kasutuse keskkond; teise kliendi lisamine peab säilitama sama tuuma koodi. Müügi- ja majutusmudelit see ei lukusta.
+
+| Toote osa | Vastutus ja praegune piir |
+| --- | --- |
+| GraphRAG-tuum | Allikate vastuvõtt ja versioonid, indeks, allikaga põhjendatud seosed, otsing, tõendipakett ning vastuse/allikaviite leping. `lib/rag-v2` ingesti ja otsingu moodulid on suuresti eraldatud; eraldi paigaldatav tervik ning stabiilne kliendiliides on veel tegemata. |
+| Kliendiseadistus ja adapterid | Organisatsiooni/korpuse identiteet, materjalid, õiguspoliitika, valdkonnaprofiil, mudelid ja hoidlad. Praegune admini vastuvõtt kasutab vaikimisi SotsiaalAI profiili; piloodi püsistus tunneb SotsiaalAI `Conversation` ja `ChatTurn` tabeleid. Need sõltuvused peavad paiknema nimetatud adapterites. |
+| SotsiaalAI ühendus | Olemasolev sisselogimine, vestlus, haldus ja allikavaade kasutavad toote liidest. See annab esimese päriskasutuse raja ning peab jääma üheks sama tuuma tarbijaks. |
+
+Müügi arenduslik vahe-eesmärk on selge ulatusega teise organisatsiooni piloot sama väljalaske, eraldi korpuse ja õigustega. Selleks on vaja dokumenteeritud paigaldust/ühendamist, uuendamist ja taastamist, kasutuse/kulu arvestust ning kokkulepitud tuge. Kogu M5 ajalooline süntees ei pea eelnema esimesele piiratud tasulisele piloodile. Praegune tehniline alus ei võrdu veel müügivalmis tervikuga.
+
 **RAG v2 arenduse koht 07.09.** [Arendusteekaart](../SOTSIAALAI_RAG_GRAPH_ARENDUSTEEKAART_v0_1.md) määrab suuna; selle 05.09 seisu kirjeldavad lõigud on ajaloolised. Käesolev seis lähtub teostusest ja viimase serverikatse tulemusest.
 
 | Etapp | Tegelik seis |
@@ -1846,9 +1856,9 @@ Vana RAG-i eemaldamise ulatus ja alles jäävad platvormifunktsioonid on koondat
 
 **Järgmine arendusjärjestus:**
 
-1. **M3 teadmiste ettevalmistus:** olemasoleva ankurdatud sisendlepingu peale üldine allikast rikastamise, läbivaatamise ja parandamise voog. Algtekst ja tuletatud otsinguabi jäävad eraldi; automaatne rikastamine ei tohi muuta kontrollimata seost kinnitatud faktiks. Ühe artikli nimesid või õigeid vastuseid runtime-koodi ei kirjutata.
-2. **M3 päringuraja lõpetamine:** eraldi profiili päris DB/UI vastuvõtt, kontrollitud sõltuvuste ning kasutajafaktide/ajapiiride sidumine. Teostatud laiendus säilitab seose suuna ja JA/VÕI, kuid kasutajale kohaldumine on veel teadmata; puudulik graaf ei kinnita täielikkust.
-3. **Korpuse mahu käsitlemine:** päringusse ainult vajalikud indeksiüksused ja sõltuvused, mitte kogu korpuse korduv valideerimine/laadimine. Suurte importide osadeks jagamine ja jätkamine tuleb teha enne praeguse 5000 tekstiosa piiri muutmist; pelk piirangu tõstmine ei ole lahendus.
+1. **Toote tuuma liides ja SotsiaalAI adapter:** määrata ingesti, indeksi avaldamise, otsingu/tõendipaketi, vastamise ning allika lahendamise avalikud lepingud; eraldada kliendiprofiil ja platvormi vestluspüsistus adapteritesse. Vastuvõtukriteerium on sama tuuma kasutamine teise kliendiseadistusega ilma SotsiaalAI sessiooni või vestlustabeleid tuuma nõudeks tegemata. Alustame olemasolevas repos; eraldi repo ega teenuse lisamine ei ole iseseisev eesmärk.
+2. **M3 teadmiste ettevalmistus ja päringurada:** olemasoleva ankurdatud sisendlepingu peale üldine allikast rikastamise, läbivaatamise ja parandamise voog; kontrollitud sõltuvuste ning kasutajafaktide/ajapiiride sidumine. Algtekst ja tuletatud otsinguabi jäävad eraldi, kontrollimata seos ei muutu automaatselt kinnitatud faktiks. Teostatud laiendus säilitab seose suuna ja JA/VÕI, kuid kasutajale kohaldumine on veel teadmata; profiili päris DB/UI vastuvõtt on lahti.
+3. **Korpuse maht ja käitamine:** päringusse ainult vajalikud indeksiüksused ja sõltuvused, mitte kogu korpuse korduv valideerimine/laadimine. Suurte importide osadeks jagamine ja jätkamine tuleb teha enne praeguse 5000 tekstiosa piiri muutmist. Versioonitud paigaldus/uuendus, õiguste eraldatus, taastamine ja kuluarvestus peavad toetama sama toote järgmist klienti.
 
 Omaniku 07.09 juhis: praegu jätkub arendus, uut semantilist hindamisringi ega lubatud rahastusnäite korduskatset ei käivitata. Muudatuse enda vajalik väike tehniline kontroll jääb AGENTS.md ulatusse.
 
@@ -3252,6 +3262,8 @@ Töökaust: `C:\Users\rauds\Desktop\SotsiaalAI`.
 ### Reeglid
 
 **RAG universaalsus (omanik 07.09):** parandused peavad töötama kogu korpuses. Artikli nime, ID, küsimuse täpse sõnastuse või oodatud vastuse järgi runtime-erandeid ei lisata. Vajalik allikaline struktuur valmistatakse ette indekseerimisel ja kasutatakse vastava tähendusega graafis; mudeli juhis ei asenda puuduvat andmekihti.
+
+**GraphRAG-toote piir (omanik 07.09):** siht on müüdav korduvkasutatav toode; SotsiaalAI on esimene klient ja katsekeskkond. Iga RAG-ploki puhul määratakse, mis kuulub ühisesse tuuma ja mis kliendiseadistusse või SotsiaalAI adapterisse. Teise kliendi materjalid, profiil ja õigused peavad kasutama sama tuuma; SotsiaalAI sessiooni, vestlustabeleid ega sotsiaaltöö-spetsiifilisi eeldusi tuuma kohustuslikuks sõltuvuseks ei lisata.
 
 1. **Töö toimub omaniku 05.09.2026 juhisel otse põhikausta `main`-harus.**
    Eraldi parandustööpuu pole nõutud. Ühes tööpuus on korraga üks kirjutaja ja üks
