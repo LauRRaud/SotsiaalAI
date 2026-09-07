@@ -2,6 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { randomUUID } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
+import fs from 'node:fs/promises';
+import os from 'node:os';
+import path from 'node:path';
 import { PrismaClient } from '../generated/prisma/client.ts';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { PilotStore } from '../lib/rag-v2/pilot/store.js';
@@ -9,6 +12,7 @@ import { PilotService } from '../lib/rag-v2/pilot/service.js';
 import { digest, buildQuestion } from '../lib/rag-v2/pilot/contracts.js';
 import { embeddingConfig } from '../lib/rag-v2/search/embedding.js';
 import { retrievalProfile } from '../lib/rag-v2/search/profiles.js';
+import { hash } from '../lib/rag-v2/contracts.js';
 
 const url = new URL(process.env.M4_TEST_DATABASE_URL || 'postgres://invalid/invalid');
 if (!['localhost', '127.0.0.1'].includes(url.hostname) || url.pathname !== '/sotsiaal_ai_m4_dev') throw Error('explicit isolated M4_TEST_DATABASE_URL required');
@@ -343,4 +347,80 @@ test('v2 real DB: recovery of a synthetic historical nonfactual answer keeps its
   const result = await f.service.recover(row);
   assert.equal(result.state, 'completed'); assert.equal(result.answerVersion, 'm4-text-refs-2');
   assert.deepEqual(result.answer, answer); assert.deepEqual(f.calls, []);
+});
+
+test('evidence candidate: one call persists private quote bindings and exposes only the v3 projection', async t => {
+  const f = await fixture(t, { evidenceDraftVersion: 'm4-evidence-draft-1' }), call = f.service.call;
+  f.packet.generation_id = 'generation';
+  Object.assign(f.packet.reference_map.S1, { tenant: f.config.tenant, query_id: f.packet.query_id, generation_id: 'generation', source_text_sha256: hash('Allikatekst') });
+  f.service.call = async input => {
+    const result = await call(input);
+    if (input.stage === 'answer') result.value.blocks[0].evidence = [{ ref: 'S1', quote: 'Allikatekst' }];
+    return result;
+  };
+  const result = await f.service.run(f.user.id, f.input);
+  assert.equal(result.state, 'completed');
+  assert.equal(result.answerVersion, 'm4-text-refs-3');
+  assert.equal(result.answer.blocks[0].evidence, undefined);
+  const row = await db.m4PilotTurn.findFirst({ where: { pilotId: f.config.id } });
+  assert.equal(row.payload.evidenceDraftAudit.sourceBinding, 'pass');
+  assert.equal(row.payload.evidenceDraftAudit.semanticSupport, 'not_evaluated');
+  assert.equal(row.payload.evidenceDraftAudit.bindings[0].quotes[0].start, 0);
+  assert.equal(row.payload.evidenceDraftAudit.bindings[0].quotes[0].end, 11);
+  assert.ok(row.payload.responseAudit.draft.text.includes('"quote":"Allikatekst"'));
+  assert.equal(row.payload.requestAudit.evidenceDraftVersion, 'm4-evidence-draft-1');
+  assert.equal((await f.service.run(f.user.id, f.input)).state, 'completed');
+  assert.deepEqual(f.calls, ['embedding', 'answer']);
+  assert.equal(JSON.stringify(result).includes('quote'), false);
+  await db.m4PilotTurn.update({ where: { id: row.id }, data: { payload: { ...row.payload, answer: { ...row.payload.answer, blocks: [{ ...row.payload.answer.blocks[0], text: 'Tampered' }] } } } });
+  const tampered = await db.m4PilotTurn.findUnique({ where: { id: row.id } });
+  await assert.rejects(f.service.restore(tampered), { code: 'evidence_projection_mismatch' });
+  f.revoke(); await assert.rejects(f.service.restore(row), { code: 'revoked' });
+});
+
+test('evidence candidate: forged quote stays private, terminal and counted; expiry prevents audit resurrection', async t => {
+  const f = await fixture(t, { evidenceDraftVersion: 'm4-evidence-draft-1' }), call = f.service.call;
+  f.packet.generation_id = 'generation';
+  Object.assign(f.packet.reference_map.S1, { tenant: f.config.tenant, query_id: f.packet.query_id, generation_id: 'generation', source_text_sha256: hash('Allikatekst') });
+  f.service.call = async input => { const result = await call(input); if (input.stage === 'answer') result.value.blocks[0].evidence = [{ ref: 'S1', quote: 'PRIVATE_FORGED_QUOTE' }]; return result; };
+  await assert.rejects(f.service.run(f.user.id, f.input), { code: 'evidence_excerpt_not_found' });
+  const row = await db.m4PilotTurn.findFirst({ where: { pilotId: f.config.id } });
+  assert.equal(row.state, 'answer_rejected'); assert.ok(row.payload.responseAudit.draft.text.includes('PRIVATE_FORGED_QUOTE'));
+  const restored = await f.service.run(f.user.id, f.input); assert.equal(restored.state, 'answer_rejected');
+  assert.ok(!JSON.stringify(restored).includes('PRIVATE_FORGED_QUOTE')); assert.deepEqual(f.calls, ['embedding', 'answer']);
+  assert.equal((await db.m4PilotLedger.findUnique({ where: { id: f.config.id } })).totals.answerAttempts, 1);
+  await db.m4PilotTurn.update({ where: { id: row.id }, data: { expiresAt: new Date(0) } }); await f.store.purge();
+  await assert.rejects(f.store.save(f.config, row, 'completed', { evidenceDraftAudit: {} }), { code: 'turn_expired' });
+});
+
+test('explicit no-expiry pilot persists a null deadline and still enforces ownership and deletion', async t => {
+  const f = await fixture(t, { expiresAt: null, retentionHours: null });
+  await db.conversation.update({ where: { id: f.conv.id }, data: { expiresAt: null } });
+  const answer = await f.service.run(f.user.id, f.input);
+  const row = await db.m4PilotTurn.findUnique({ where: { id: answer.id } });
+  assert.equal(row.expiresAt, null);
+  await db.conversation.update({ where: { id: f.conv.id }, data: { lastActivityAt: new Date(0) } });
+  assert.equal(await db.conversation.count({ where: { id: f.conv.id, lastActivityAt: { lt: new Date() }, turns: { none: { m4Pilot: { is: { expiresAt: null } } } } } }), 0);
+  await f.store.purge(); assert.equal((await f.service.restore(row)).state, 'completed');
+  await assert.rejects(f.service.run('foreign-user', f.input), { code: 'conversation_unavailable' });
+  await db.conversation.delete({ where: { id: f.conv.id } });
+  await assert.rejects(f.service.restore(row), { code: 'conversation_unavailable' });
+  assert.equal((await db.m4PilotLedger.findUnique({ where: { id: f.config.id } })).totals.answerAttempts, 1);
+});
+
+test('fixed packet comparison skips embedding/search, binds the packet and preserves one-call idempotency', async t => {
+  const f = await fixture(t, { expiresAt: null, retentionHours: null, generationId: 'fixed-gen', budget: { attempts: 7, answerAttempts: 7, embeddingAttempts: 0, tokens: 200000, nanoUsd: 200000 } });
+  const directory = await fs.mkdtemp(path.join(os.tmpdir(), 'm4-fixed-'));
+  f.config.fixedPacketFile = path.join(directory, 'packets.json');
+  const manifest = { tenant: f.config.tenant, cases: [{ question: f.input.question, language: 'et', packet: { ...f.packet, generation_id: 'fixed-gen' } }] };
+  manifest.cases[0].packetHash = digest(manifest.cases[0].packet); f.config.fixedPacketHash = digest(manifest);
+  await fs.writeFile(f.config.fixedPacketFile, JSON.stringify(manifest));
+  t.after(async () => { await fs.unlink(f.config.fixedPacketFile); await fs.rmdir(directory); });
+  f.adapters.search = async () => { throw Error('search must not run'); };
+  assert.equal((await f.service.run(f.user.id, f.input)).state, 'completed');
+  assert.deepEqual(f.calls, ['answer']);
+  assert.equal((await f.service.run(f.user.id, f.input)).state, 'completed'); assert.deepEqual(f.calls, ['answer']);
+  await fs.writeFile(f.config.fixedPacketFile, JSON.stringify({ ...manifest, tenant: 'forged' }));
+  await assert.rejects(f.service.run(f.user.id, { ...f.input, clientTurnKey: randomUUID() }), { code: 'fixed_packet_manifest_mismatch' });
+  assert.deepEqual(f.calls, ['answer']);
 });

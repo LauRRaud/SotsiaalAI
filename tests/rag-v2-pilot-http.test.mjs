@@ -14,6 +14,7 @@ test('F03/F05/F09/F16: real local HTTP authorization and terminal retry preserve
   const fixture = process.env.M4_HTTP_FIXTURE ? JSON.parse(await fs.readFile(process.env.M4_HTTP_FIXTURE, 'utf8'))
     : { convId: 'm4-followup-browser-20260906-1', pilotId: 'm4-followup-local-20260906-1', expectedAttempts: 4, failureIndex: 1 };
   const { convId, pilotId, expectedAttempts, failureIndex } = fixture;
+  const failureMessageKey = fixture.failureMessageKey || 'm4Pilot.referenceFailed';
   const userId = 'm4-local-tester-20260906';
   const report = [];
   function client() {
@@ -49,12 +50,12 @@ test('F03/F05/F09/F16: real local HTTP authorization and terminal retry preserve
     }
     assert.equal((await request('/api/chat', { method: 'POST', headers: {...headers,origin:'https://foreign.invalid'}, body: JSON.stringify(input) })).status, 403);
     const repeat = await Promise.all([1,2].map(() => request('/api/chat', { method: 'POST', headers, body: JSON.stringify(input) }).then(async r => ({ status:r.status, body:await r.json() }))));
-    for (const r of repeat) { assert.equal(r.status,200); assert.equal(r.body.pilotState,'answer_rejected'); assert.equal(r.body.messageKey,'m4Pilot.referenceFailed'); }
+    for (const r of repeat) { assert.equal(r.status,200); assert.equal(r.body.pilotState,'answer_rejected'); assert.equal(r.body.messageKey,failureMessageKey); }
     const response = await request('/api/chat/pilot?format=chat&convId=' + convId); assert.match(response.headers.get('cache-control'), /no-store/);
     const data = await response.json(); assert.equal(data.messages.length,expectedAttempts * 2);
-    assert.equal(data.messages[failureIndex * 2 + 1].messageKey,'m4Pilot.referenceFailed');
+    assert.equal(data.messages[failureIndex * 2 + 1].messageKey,failureMessageKey);
     const publicJson = JSON.stringify(data);
-    for (const privateText of ['PRIVATE_INVALID_DRAFT','PRIVATE_V3_INVALID_DRAFT','PRIVATE_DIAGNOSTICS','requestAudit','responseAudit','S99']) assert.ok(!publicJson.includes(privateText));
+    for (const privateText of ['PRIVATE_INVALID_DRAFT','PRIVATE_V3_INVALID_DRAFT','PRIVATE_FORGED_QUOTE','PRIVATE_DIAGNOSTICS','requestAudit','responseAudit','evidenceDraftAudit','"quote":','S99']) assert.ok(!publicJson.includes(privateText));
     const source = new URL(data.messages[1].sources[0].url,base);
     const query = source.search;
     assert.equal((await request('/api/chat/pilot'+query)).status,200);

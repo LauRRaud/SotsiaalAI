@@ -7,6 +7,7 @@ import { readPilotConfig } from '../lib/rag-v2/pilot/config.js';
 import { embeddingConfig } from '../lib/rag-v2/search/embedding.js';
 import { implementationManifest } from '../lib/rag-v2/pilot/provenance.js';
 import { PROMPT_VERSION, QUESTION_VERSION, digest } from '../lib/rag-v2/pilot/contracts.js';
+import { EVIDENCE_DRAFT_SCHEMA, EVIDENCE_DRAFT_PROMPT } from '../lib/rag-v2/pilot/evidence-draft.js';
 
 test('pilot switch, per-user grant, expiry, real-model config and approval gates fail closed despite key presence', async t => {
   const original = { ...process.env };
@@ -37,6 +38,20 @@ test('pilot switch, per-user grant, expiry, real-model config and approval gates
   const approved = { ...real, approval: { approvedBy: 'synthetic-unit-test', approvedAt: new Date().toISOString(), planHash: digest(real), queryAndSourceEgress: true, dynamicQuestions: false } };
   await fs.writeFile(file, JSON.stringify(approved));
   assert.equal((await readPilotConfig('tester')).mode, 'real'); // Configuration only: no service/transport invocation.
+  const noDeadline = { ...real, expiresAt: null, retentionHours: null };
+  await fs.writeFile(file, JSON.stringify({ ...noDeadline, approval: approved.approval }));
+  await assert.rejects(readPilotConfig('tester'), { code: 'pilot_approval_required' });
+  await fs.writeFile(file, JSON.stringify({ ...noDeadline, approval: { ...approved.approval, planHash: digest(noDeadline) } }));
+  assert.equal((await readPilotConfig('tester')).expiresAt, null);
+  await fs.writeFile(file, JSON.stringify({ ...noDeadline, expiresAt: undefined }));
+  await assert.rejects(readPilotConfig('tester'), { code: 'not_configured' });
+  const candidate = { ...real, evidenceDraftVersion: 'm4-evidence-draft-1', evidenceDraftSchemaHash: digest(EVIDENCE_DRAFT_SCHEMA), evidenceDraftPromptVersion: EVIDENCE_DRAFT_PROMPT };
+  await fs.writeFile(file, JSON.stringify({ ...candidate, approval: approved.approval }));
+  await assert.rejects(readPilotConfig('tester'), { code: 'pilot_approval_required' });
+  await fs.writeFile(file, JSON.stringify({ ...candidate, approval: { ...approved.approval, planHash: digest(candidate) } }));
+  assert.equal((await readPilotConfig('tester')).evidenceDraftVersion, 'm4-evidence-draft-1');
+  await fs.writeFile(file, JSON.stringify({ ...candidate, evidenceDraftSchemaHash: 'old' }));
+  await assert.rejects(readPilotConfig('tester'), { code: 'evidence_draft_approval_mismatch' });
   const reusePlan = { ...real, budget: { ...real.budget, embeddingAttempts: 0 }, queryReuse: { pilotId: 'prior-pilot', configHash: 'a'.repeat(64),
     expiresAt: real.expiresAt, entries: [{ turnId: 'prior-turn', queryHash: 'b'.repeat(64), vectorHash: 'c'.repeat(64), embeddingBodyHash: 'd'.repeat(64) }] } };
   await fs.writeFile(file, JSON.stringify(reusePlan));

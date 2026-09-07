@@ -1577,7 +1577,7 @@ model M4PilotTurn {
   inputHash  String
   state      String
   payload    Json
-  expiresAt  DateTime
+  expiresAt  DateTime?
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
   chatTurn   ChatTurn @relation(fields: [chatTurnId], references: [id], onDelete: Cascade)
