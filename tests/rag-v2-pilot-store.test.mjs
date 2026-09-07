@@ -9,7 +9,7 @@ import { PrismaClient } from '../generated/prisma/client.ts';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { PilotStore } from '../lib/rag-v2/pilot/store.js';
 import { PilotService } from '../lib/rag-v2/pilot/service.js';
-import { digest, buildQuestion } from '../lib/rag-v2/pilot/contracts.js';
+import { digest, buildQuestion, ANSWER_VERSION } from '../lib/rag-v2/pilot/contracts.js';
 import { embeddingConfig } from '../lib/rag-v2/search/embedding.js';
 import { retrievalProfile } from '../lib/rag-v2/search/profiles.js';
 import { hash } from '../lib/rag-v2/contracts.js';
@@ -317,7 +317,31 @@ test('F07: an unknown answer outcome retains its pre-send packet and cannot beco
   assert.deepEqual((await db.m4PilotLedger.findUnique({ where: { id: f.config.id } })).totals, totals);
 });
 
-test('v3 real DB: citation-free clarification and unsupported answers publish and restore without extra attempts', async t => {
+test('v4 real DB: bare citation rejection preserves exact audit and never retries on restore', async t => {
+  const f = await fixture(t), call = f.service.call;
+  const text = 'Supported claim. S1';
+  f.service.call = async input => {
+    const result = await call(input);
+    if (input.stage === 'answer') result.value.blocks[0].text = text;
+    return result;
+  };
+  await assert.rejects(f.service.run(f.user.id, f.input), { code: 'inline_answer_reference' });
+  const row = await db.m4PilotTurn.findFirst({ where: { pilotId: f.config.id } });
+  assert.equal(row.state, 'answer_rejected');
+  assert.equal(row.payload.answerVersion, ANSWER_VERSION);
+  assert.equal(row.payload.responseAudit.validation.path, '$.blocks[0].text');
+  assert.equal(row.payload.responseAudit.validation.received.text, text);
+  assert.equal(JSON.parse(row.payload.responseAudit.draft.text).blocks[0].text, text);
+  assert.equal(await db.conversationMessage.count({ where: { conversationId: f.conv.id } }), 0);
+  const restored = await f.service.run(f.user.id, f.input);
+  assert.equal(restored.state, 'answer_rejected');
+  assert.equal(restored.answer, undefined);
+  assert.deepEqual(f.calls, ['embedding', 'answer']);
+  const ledger = await db.m4PilotLedger.findUnique({ where: { id: f.config.id } });
+  assert.equal(ledger.totals.answerAttempts, 1);
+});
+
+test('current answer real DB: citation-free clarification and unsupported answers publish and restore without extra attempts', async t => {
   const f = await fixture(t), call = f.service.call;
   const answers = [
     { kind: 'partial', blocks: [{ text: 'Source-backed part.', factual: true, refs: ['S1'] }], limitations: ['These excerpts do not support the whole comparison.'], clarification: null },
@@ -328,7 +352,7 @@ test('v3 real DB: citation-free clarification and unsupported answers publish an
     f.service.call = async input => { const result = await call(input); if (input.stage === 'answer') result.value = answer; return result; };
     const input = { ...f.input, question: 'Synthetic branch ' + index, clientTurnKey: randomUUID() };
     const result = await f.service.run(f.user.id, input);
-    assert.equal(result.state, 'completed'); assert.equal(result.answerVersion, 'm4-text-refs-3');
+    assert.equal(result.state, 'completed'); assert.equal(result.answerVersion, ANSWER_VERSION);
     assert.deepEqual(result.answer, answer);
     const calls = f.calls.length;
     assert.deepEqual((await f.service.run(f.user.id, input)).answer, answer);
@@ -349,7 +373,7 @@ test('v2 real DB: recovery of a synthetic historical nonfactual answer keeps its
   assert.deepEqual(result.answer, answer); assert.deepEqual(f.calls, []);
 });
 
-test('evidence candidate: one call persists private quote bindings and exposes only the v3 projection', async t => {
+test('evidence candidate: one call persists private quote bindings and exposes only the current answer projection', async t => {
   const f = await fixture(t, { evidenceDraftVersion: 'm4-evidence-draft-1' }), call = f.service.call;
   f.packet.generation_id = 'generation';
   Object.assign(f.packet.reference_map.S1, { tenant: f.config.tenant, query_id: f.packet.query_id, generation_id: 'generation', source_text_sha256: hash('Allikatekst') });
@@ -360,7 +384,7 @@ test('evidence candidate: one call persists private quote bindings and exposes o
   };
   const result = await f.service.run(f.user.id, f.input);
   assert.equal(result.state, 'completed');
-  assert.equal(result.answerVersion, 'm4-text-refs-3');
+  assert.equal(result.answerVersion, ANSWER_VERSION);
   assert.equal(result.answer.blocks[0].evidence, undefined);
   const row = await db.m4PilotTurn.findFirst({ where: { pilotId: f.config.id } });
   assert.equal(row.payload.evidenceDraftAudit.sourceBinding, 'pass');
