@@ -1,6 +1,8 @@
 # M4-C päriskatse sisuline analüüs
 
-07.09.2026. Hinnatud on nelja fikseeritud dialoogi 15 pärisvastust, nende tegelikku dialoogisisendit ja kõiki valitud allikakatkendeid. Analüüs ei teinud uusi mudelikutseid ega muutnud rakenduskoodi. Aktiivset tööseisu kannab `SotsiaalAI.md` S1.0; see fail on konkreetse jooksu hinnang.
+07.09.2026. Raport säilitab algse 15-pöördelise jooksu analüüsi ja sellele järgnenud kohaliku paranduse. [Allpool kirjeldatud 12-pöördeline järelkatse](#omaniku-loaga-12-pöördeline-järelkatse) tehti parandatud koodiga päris kasutajaliideses. Aktiivset tööseisu kannab `SotsiaalAI.md` S1.0.
+
+**Järelkatse järeldus:** F3 viitemärgistus ja O1 B3 üleliigne täpsustus on vaadeldud rajal parandatud; F1 ja F2 täisvastuvõtt jääb osaliseks ning F4 kordub A1-s ja D2-s. Kõik 12 vastust avaldusid, nähtav teemavalik, refresh ja allikavaatelt naasmine läbisid. Baas-konfiguratsioon taastati. Järgnevad algse jooksu tabelid kirjeldavad ajaloolist tulemust; nende puuduvat UI-rada ei märgita tagantjärele tehtuks.
 
 **Järeldus: piiratud jätkuvestluse kontekstimehhanism toimis selles katses. Sisulist lõppvastuvõttu ei saa anda.** Tartu parandus säilis, uue inimese andmed eraldusid ning tagasipöördumine valis õige varasema vastuse. Samal ajal muutus ühes vastuses kavandatud tegevus juba alanud tegevuseks, ühes lõigus ei toeta lisatud viide kõiki väiteid ning väljundis säilisid viite- ja tõendipiiri puudused. Tootmiskeskkonna kasutajaliidese plaanitud taastamisrada jäi tegemata.
 
@@ -57,7 +59,7 @@ Allpool on sisuline hinnang, mitte mudeli enda `kind`. „Puudus” võib puudut
 
 ### F1 — A4 muudab kavandatud tegevuse juba alanud tegevuseks
 
-**Seis: PARTIAL (07.09 järelparandus).** V4 vastamisjuhis ja skeemikirjeldus eristavad valimist, kavatsust, algust, lõpetamist ja mõõdetud mõju. Päris Luna uue vastuse semantika `NOT_PROVEN`; allpool tsiteeritud algvastus jääb muutmata.
+**Seis: PARTIAL (07.09 pärisjärelkatse).** Uus A1 eristab 20 projekti valimist ja eesmärki ega väida mõõdetud mõju. A4 küsib ainult puuduva teise punkti täpsustust, sest A3-l on üks väiteplokk; algse A4 ajalisusvea sisuline kordus jäi seetõttu katmata. A1 oma tõendipiir on endiselt allikaväite plokis (F4). Täielikku vastuvõttu ei anta; algvastus jääb muutmata.
 
 **Prioriteet P2.** A4 plokk 2, viide S4, „Käivitus „Heaolutehnoloogiate programm“”, PDF lk 1–5, `evidence_ad8ff083e7a6237ad8687f5ebac8abd107e5ad2e90fb581e11d0c8de9c3130fd`.
 
@@ -70,7 +72,7 @@ Vastuvõtukriteerium oleks säilitada eraldi projektide valimine, kavandatud teg
 
 ### F2 — A1 lõigu viide ei toeta rahastamisväidet
 
-**Seis: PARTIAL (07.09 järelparandus).** V4 nõuab iga ploki iga osaväite kontrolli ainult selles plokis viidatud katkendite suhtes ning eraldi rahastustuge. Kohalik kujuvalidaator ei tõenda viite semantilist sobivust; uus päriskatse `NOT_RUN`.
+**Seis: PARTIAL (07.09 pärisjärelkatse).** Uus A1 jätab rahastamisväite välja, mistõttu algse väite parandatud viiteseos ei saanud otsest kordust. A2 ploki 3 rahastatud projektide väidet toetab selle enda S2 („Toetust saanud 20 projektist…” ja rahastamise kirjeldus). See on positiivne kitsas tõend, kuid mitte A1 rahastusväite täielik järelvastuvõtt.
 
 **Prioriteet P2.** A1 plokk 4 ütleb „Tegemist on arendus- ja rahastusprogrammiga” ning viitab ainult S4-le: „Heaolu tehnoloogiate programm”, PDF lk 1, `evidence_cc32c9afcb936657dd82931657075b66bb773253486ca30ab9d941cddffcc00e`.
 
@@ -80,7 +82,7 @@ Vastuvõtukriteerium: rahastamisväitele lisandub seda toetav viide või see eri
 
 ### F3 — paljad S-tähised läbivad viitemärgistuse kontrolli
 
-**Seis: PARTIAL (07.09 järelparandus).** V4 blokeerib eraldiseisvad S-numbriga tähised kõigis nähtavates väljades; vigast teksti ei kustutata ega parandata automaatselt. Kohalikud lepingutestid ja PostgreSQL-i teenuserada läbisid; 15 ajaloolist v3 vastust taastusid muutmata. Päris vastuse kasulikkus ja tootmise esitlus `NOT_PROVEN`. Konservatiivne kontroll võib tagasi lükata ka samakujulise sisulise koodi; see piirang on järelkatse vastuvõtus eraldi nähtav.
+**Seis: DONE (07.09 pärisjärelkatse, v4 tähiseleping).** Kõigi 12 avaldatud v4 vastuse nähtavad väljad olid paljaste S-tähisteta; 21 väiteploki viited lisas UI ühe korra. Avaldus 11 sisulist vastust ja üks põhjendatud täpsustus, mitte üksnes veateated. Kohalikud lepingutestid, PostgreSQL-i rada ning 15 muutmata v3 vastuse taastamine olid varem kontrollitud. Konservatiivne leping võib endiselt tagasi lükata samakujulise sisulise koodi; see teadaolev piir ei ole universaalselt lahendatud ega esinenud selles valimis.
 
 **Prioriteet P3.** A1 kõigi nelja ploki tekst lõpeb palja `S3`, `S1`, `S2` või `S4` tähisega. Rakendus lisab seejärel `refs` põhjal oma viited, näiteks esimese ploki lõppu `S3 [S3, S4]`. D4 kasutab samuti `S1`/`S2` tähiseid proosas.
 
@@ -90,7 +92,7 @@ Vastuvõtukriteerium: viidete esitlus on üheselt rakenduse kontrolli all ning a
 
 ### F4 — oma tõendipiir seguneb allikaväitega; D2 ulatus laieneb
 
-**Seis: PARTIAL (07.09 järelparandus).** V4 juhis ja väljade kirjeldused eristavad allika sõnaselget piirangut ning vastaja enda tõendipiiri konkreetsete näidetega; katkendist ei laiendata puudumise väidet kogu artiklile. Uute vastuste sisuline vastuvõtt `NOT_PROVEN`.
+**Seis: PARTIAL (07.09 pärisjärelkatse; korduv puudus).** B1/B2/B4 eristavad faktilehe sõnaselget hinnapiiri ja Tartu/isiku kohta puuduvat tõendit paremini. Siiski jätab A1 plokk 4 oma tõendipiiri `factual=true` plokki ning D2 plokid järeldavad Eesti valdade juhise/nõutavuse puudumist allikaväitena. D2 õiguslik piirang on olemas, kuid ei paranda põhiteksti liiga laia ulatust. V4 prompt üksi seda leidu ei sulgenud.
 
 **Prioriteet P2, tõendipiiri täpsus.** B1/B2 teise ploki allikaks on H3 faktileht, PDF lk 2–3, `evidence_id` lõpuga `14beba5549` (täpne ID on toorandmes).
 
@@ -102,7 +104,7 @@ Vastuvõtukriteerium: allika sõnaselge piir ja vastaja enda puuduv teadmine jä
 
 ### O1 — B3 täpsustusküsimus vajab täpsemat põhjendust
 
-**Seis: PARTIAL (07.09 järelparandus).** Juhis nõuab teadaolevate ja parandatud asjaolude kasutamist enne täpsustusküsimust ning küsib üksnes puuduvat eristust. Päris Luna küsimuse kvaliteet `NOT_PROVEN`; kontekstivalikut ei muudetud.
+**Seis: DONE (07.09 pärisjärelkatse, B3 vaadeldud tähelepanek).** Uus B3 säilitab Tartu ja ütleb otse, et valitud tõendis isikupõhine hind puudub; omavalitsust uuesti ei küsita ega hinda leiutata. See lahendab selle jooksu üleliigse täpsustuse. Linna/valla või teenuseosutaja eristuse küsimise kvaliteet olukorras, kus seda päriselt vaja oleks, jäi katmata.
 
 **Kasutatavuse tähelepanek, mitte kinnitatud kontekstirike.** B3 küsib „What municipality or service provider should be checked for the current price in Tartu?” Tartu on nii sisendis kui vastuse piirangus alles. „Tartu” võib vajada linna/valla täpsustust ning teenuseosutaja pole antud; seetõttu ei saa küsimust täielikult põhjendamatuks lugeda. Küsimus peaks nimetama just puuduvat eristust, selle asemel et jätta mulje, et elukohta ei mäletata. Täiendav elukohatäpsustus ei tekitaks üksi praegusesse katkendipaketti puuduvat hinnatõendit.
 
@@ -187,7 +189,7 @@ Tsitaadikandidaati ei aktiveeritud. Üks olemasolev sünteetiline kandidaat-proj
 
 Järgmiseks on valmis [A/B/D nähtava brauseriraja järelkatse plaan](rag-v2-m4-c-fix-real-plan-2026-09-07.md): 12 + 12 katset, 0,24 USD ülempiir, kolm uut allkirjastamata konfiguratsiooni. Need tagastasid olemasoleva lugejaga `pilot_approval_required`. Uue jooksu tariifi, serverit, kõigi kaheksa allika seisundit ja baasi taastamist tuleb mõõta aktiveerimisel; ettevalmistus ei märgi neid tehtuks. Täielik M4-C vastuvõtt ja varem loetletud muud lahtised tõendid jäävad avatuks.
 
-## Pöörete tunnused toorandme kontrollimiseks
+## Algse jooksu pöörete tunnused toorandme kontrollimiseks
 
 | Pööre | Kaitstud pöörde ID |
 |---|---|
@@ -206,3 +208,71 @@ Järgmiseks on valmis [A/B/D nähtava brauseriraja järelkatse plaan](rag-v2-m4-
 | D2 | `6533d386-743a-4b8d-8849-3e09132796b6` |
 | D3 | `c7c43bce-1959-473f-8308-e386e6c5c57e` |
 | D4 | `c0866fc1-a030-4cd9-872a-e6c591689473` |
+
+## Omaniku loaga 12-pöördeline järelkatse
+
+07.09.2026, 11:41–11:54 UTC. Omaniku selge loa alusel viis Luna paranduse commit'i `98f80938a0d9db75570c8521fdbbe7e3edbb07ec` kaug-main'i ja serverisse; Codex tegi kõik küsimused in-app brauseri nähtavate juhtelementidega ning hindas vastuseid. [Lukustatud A/B/D plaan](rag-v2-m4-c-fix-real-plan-2026-09-07.md) täideti kolme eraldi vestlusena: 12 küsimust, 12 embedding'ut, 12 vastamiskatset, kordusi 0. Mudel oli kõigis kutsetes `gpt-5.6-luna`, vastus `m4-text-refs-4`, dialoogijuhis `m4-grounded-dialogue-2`. Sisu hindamiseks uusi mudelikutseid ei tehtud.
+
+### Jooksu ja loa kontroll
+
+- [Lõplik toorandmestik](../../tmp/rag-v2-m4-c-fix/server-real-run-raw.json), eksporditud `2026-09-07T11:56:11.096Z`, SHA-256 `bd9bef811705ddf5e04106bc101d534874d85426a4dc1234ff90be41107542ad`. Algse 15-pöördelise faili räsi jäi `daf45753cb09a9b38e990ee111e464c35dc01447a591c7d063e3a77aea438933`.
+- [Arvutus ja pöördepõhised seosed](../../tmp/rag-v2-m4-c-fix/analysis-verification.json), [katkenditekstid](../../tmp/rag-v2-m4-c-fix/analysis-evidence.json) ning [UI tõendiindeks](../../tmp/rag-v2-m4-c-fix/ui-evidence-index.json) on kaitstud kohaliku `tmp` kausta artefaktid. Hinnangus võrreldi kõigi 21 väiteploki väiteid nende oma viidatud katkenditega; avaldamine ja `kind` ei asenda seda hinnangut.
+- Kõik 12 sisendküsimust kattuvad kinnitatud plaaniga; igal pöördel on üks katse ja täpselt etapid `embedding,answer`. Kõik 12 pööret on `completed` / `COMPLETED`; kõik 24 provider-etappi `response_received`. Kõigi 60 paketi viite tekstiräsi ja lubatud dokumendiversioon kattuvad. Kõik 12 vastuseteksti koos piirangute ja täpsustustega esinevad oma UI salvestuses.
+- [Kaheksa allika eelkontroll](../../tmp/rag-v2-m4-c-fix/preflight-A-20260907.json) kontrollis iga lubatud dokumendi versiooni, pealkirja ja terviklust; aktiivne indeksipõlvkond oli `search_generation_386d51771eff1ece99cc354144ea589736a4c36c18101847dc57d6e3665d4e6e`, valmis 69 otsinguüksusega. [Värskete ledgerite kontrollis](../../tmp/rag-v2-m4-c-fix/ledger-check-A-20260907.json) olid A/B/D read enne esimest saatmist puudu. Iga aktiveeritud konfiguratsiooni lugemine, täitmisluba ja runtime-eelkontroll läbisid.
+- [Juurutuse tõend](../../tmp/rag-v2-m4-c-fix/deploy-evidence-2026-09-07.json) ja [plaaniseoste võrdlus](../../tmp/rag-v2-m4-c-fix/original-vruntime-binding-20260907.json): kohalik manifest `6147c1d4…`, serveri manifest `315e016e…`; 83 faili hulgas 26 toorbaitide erinevust, normaliseeritud sisuerinevusi 0. Põhjus oli CRLF/LF. Uued allkirjastatud plaanid seoti tegeliku commit'i ja serveri baitidega; küsimused, allikad, mudel ja kvoodid säilisid.
+- [Provider-eelkontroll](../../tmp/rag-v2-m4-c-fix/provider-preflight-20260907.json) leidis olemasoleva võtme/projekti ning autenditud mudeli metadata-päring sai HTTP 200; see ei teinud inference-kutset. [Avalike tariifide kontroll](../../tmp/rag-v2-m4-c-fix/tariff-check.json) kinnitas reservmäärade piisavuse: Luna sisendi konservatiivne määr 0,25 USD/M, väljund 1,20 USD/M, embedding 0,13 USD/M. Konto erikokkuleppe tariif ja arve jäävad `NOT_PROVEN`.
+- Kasutati olemasolevat autenditud pilootsessiooni. Uut OTP-möödapääsu ega env-muudatust ei tehtud. Tavapärase deploy-skripti env-lugemine vajas olemasoleva root-õigusega lugemise kasutamist; faili sisu ja õigusi selleks ei muudetud.
+
+### Sisuline hinnang kõigile uutele vastustele
+
+| Pööre | Väide ja viite tugi; kasulikkus ning piir |
+|---|---|
+| A1 | Plokid 1–3: eesmärgid S3/S4, seadmetüübid S1 ning lahendusnäited S2 on toetatud. Ploki 4 projektide valik ja kavandatud suund saavad toe S2/S3-st; tegelikku algust või mõõdetud mõju ei kuulutata. Oma lause „kirjeldus ei tõenda veel…” jääb aga samasse allikaväite plokki. F4 kordub. Rahastamisväidet enam pole: F2 otsene A1 kordus jäi katmata. |
+| A2 | Kõik kolm plokki on asjakohased: Eesti süsteemile kohandamise tingimus S3, viis lahendustüüpi S1 ning rahastatud projektide suunad S2. Rahastamise viide toetab nüüd oma lõigu väidet. Tehniliste detailide ja Harku kättesaadavuse puuduv tõend on piirangus. |
+| A3 | Üks väiteplokk vastab kohandamise küsimusele S3 toel. Konkreetseid tehnilisi või kohalikke kohandusi ei leiutata; nende ja Harku tegeliku kasutuselevõtu teadmatus on piirangus. |
+| A4 | Ainult põhjendatud täpsustusküsimus: A3-l pole teist väiteplokki. Puuduvat punkti ei mõelda välja. Eesmärgi/tegeliku tulemuse sisuline eristus jäi selles pöördes hindamata; uut küsimust ei saadetud. |
+| B1 | Mõlemad plokid vastavad H3 faktilehe S1-le: pöördumine, abivajaduse hindamine ja allika sõnaselgelt puuduv hind/aeg/garantii. Isiku, vanuse ja Harku kohta puuduv tõend on eraldi piirangus. |
+| B2 | Tartu parandus ja vanus/abivajadus säilivad sisendis. Üks plokk refereerib S1 protsessi ja sõnaselgeid piire; Tartu kohalikud detailid on piirangus. Piirangu sõnastus võiks veel ühtlasemalt öelda „valitud katkend”, mitte kogu faktileht. |
+| B3 | S1 toetab väidet, et faktileht hinda ei anna. Tartu isikupõhine hind jääb piirangusse. Uut omavalitsuse küsimust ega väljamõeldud hinda pole; O1 vaadeldud puudus ei kordu. |
+| B4 | Vastab vahetult eelnevale hinnaküsimusele: S1 sõnaselge hinnapiir ja eraldi Tartu/isiku kohta puuduv tõend. Asukoha parandamine ei muutu hinnatõendiks. |
+| D1 | Neli plokki annavad kasulikud töötaja toetamise, vastutaja määramise, riskihindamise ja proportsionaalsuse sammud. Põhisisu on S1/S2/S3-ga toetatud. Väike täpsusvaru: ploki 1 „otsustab koos töötajaga” lisab viidatud S1 otsustamise kirjeldusele osalusviisi, mida see katkend sõnaselgelt ei nimeta. Seda ei loeta eraldi tõendatud protseduurinõudeks. |
+| D2 | Riikide näited S2/S3, autori analüüsieesmärk S4 ja väärtusraamistik S3/S4/S5 on toetatud. Mõlema ploki Eesti valdade kohta käiv järeldus on aga vastaja tõlgendus, mitte katkendi sõnaselge väide. „Mitte juhis kõigile Eesti valdadele” laiendab ulatust; lõpu õiguslik piirang ei paranda seda. F4 kordub. |
+| D3 | UI-s valitud D1 punkt 2 selgitatakse õigel teemal ja uue S2 toel. S2 avanes ka kanoonilises allikavaates. Väike täpsusvaru: „kõigepealt… seejärel…” annab allika tegevusloetelule jäigema järjekorra kui katkend ise. Asutuse tegeliku rakenduse/mõju puuduv tõend on eraldi piirangus. |
+| D4 | Uue S2 katkendi kirjeldus toetab küsitud korralduslikke samme; paljaid S-tähiseid proosas pole. Aljona Kõpu nimi pärineb dokumendi bibliograafiast; sisuline osa on artiklis sisalduv eetikanõukoja kommentaar. Mitme sammu hulgast täpsustamine on vabatahtlik ja põhiline allikatugi antakse kohe. |
+
+F4 uus A1 puudus on pöördes `e1e7d15f-11f3-42d4-98a8-9bf5c94f285b`, plokk 4, S2/S3 (`…bdf247`, `…3130fd`). Lauses „kirjeldus ei tõenda veel, et need lahendused oleksid kõigi inimeste kodudes käivitunud või nende mõju oleks mõõdetud” kirjeldatakse vastaja tõendipiiri. Selle asukoht peaks olema `limitations`; viide ei muuda seda allika enda väiteks.
+
+F4 uus D2 puudus on pöördes `b918c7f0-0192-45ff-b2d0-276cecc07fa9`, plokid 1–2. S4 (`…48da67f`, PDF lk 2–3) kirjeldab autori näiteid ja analüüsieesmärki; S2/S3 kirjeldavad rakendusi, S5 väärtuspõhimõtteid. Ükski neist ei anna kogu artikli Eesti valdadele suunatud juhiste täielikku inventuuri. Sobiv piir oleks „Nendest väljavõtetest ei saa järeldada Eesti valdade kohustust.” See on parandussuund, mitte selles jooksus muudetud vastus ega hinnang kehtivale õigusele.
+
+### Nähtav tootmise UI ja kontekst
+
+**PASS selle plaani rajal.** A/B/D algasid eraldi vestlustena. B2 `correction` valiti nähtavalt, B3/B4 jätkasid sama ulatust ja `correctionRevision=1` säilis. D2 uus teema jättis D1 kontekstist välja. [D2 enne refresh'i](../../tmp/rag-v2-m4-c-fix/ui/D2-before-refresh.png), [pärast refresh'i](../../tmp/rag-v2-m4-c-fix/ui/D2-after-refresh.png) ja [taastatud valikud](../../tmp/rag-v2-m4-c-fix/ui/D2-restored-options.png) tõendavad vestluse ja mõlema teema taastumist.
+
+[D3 valikus](../../tmp/rag-v2-m4-c-fix/ui/D3-selected-before-send.png) määrati D1 teema, vastus ja „Punkt 2”. Salvestatud D3 `02f312ac-3493-4abc-9754-3579d8045243` sisaldab `explicit_scope`, `explicit_published_answer`, `assistantTurnId=2cd75d5d-1a21-4c0b-b7eb-c2839629ada9` ja `replyToBlock=2`; D2 kasutajasõnum on `different_scope` tõttu välja jäetud. Varasem assistent on endiselt `NOT_A_FACT_SOURCE` ning põhiväide toetub värskele S2-le.
+
+[D3 allikavaade](../../tmp/rag-v2-m4-c-fix/ui/D3-source-view.png) ja [nähtav toetuslõik](../../tmp/rag-v2-m4-c-fix/ui/D3-source-support.png) näitasid sama S2, PDF lk 4. „Sulge allikas” tõi [samasse vestlusse tagasi](../../tmp/rag-v2-m4-c-fix/ui/D3-returned-to-conversation.png); alles siis saadeti D4 `9421d134-28b9-4c00-b89c-3759607dccbe`. Selle assistendikontekstiks valiti D3. HTTP-päringuid kasutati serverijälje lugemiseks, mitte ühegi UI-sammu asendamiseks.
+
+Üks kohalik fail `D1-before-send` sai salvestusabifunktsiooni vana tabiviite tõttu B4 pildi; see on tõendiindeksis välistatud. D1 tegelik saatmine, `D1-after` ning kõik nõutud refresh'i, valiku ja allikavaate tõendid on õige D-vestluse omad. Serveri küsimust ei korratud. Vahe-ekspordi vale vana jooksu koondit ei kasutatud selle hinnangu alusena.
+
+### Kasutus ja taastamine
+
+| Mõõdik | Väärtus |
+|---|---:|
+| Embedding'u sisendtokenid | 1 126 |
+| Vastaja sisendtokenid | 67 559 |
+| Vastaja väljundtokenid | 4 066 |
+| Provider usage kokku | 72 751 tokenit |
+| Ledger'i reserveeritud tokenid | 318 713 |
+| Kasutuspõhine konservatiivne hinnang | 0,02191533 USD |
+| Ledger'i rahaline reserv | 0,10289033 USD |
+| Omaniku ülempiir | 0,24 USD |
+
+Hinnang on `(1126 × 130 + 67559 × 250 + 4066 × 1200) / 10^9`, mitte arvesumma. Sisendi alamnäitajaid `cachedInput=18 017` ja `cacheWriteInput=49 506` ning väljundi alamnäitajat `reasoning=892` uuesti ei liideta. Luna esialgse abikoondi `totalBillableLike=73 643` liitis reasoning'u ekslikult teist korda; ülaltoodud 72 751 ja `analysis-verification.json` on parandatud arvutus. Etappide rahalise hinnangu summa kattub 0,02191533 USD-ga. Katse kõik 12+12 võimalust kasutati; reservijääk ei anna uusi küsimusi. Salvestatud pöördekestuse mediaan oli 4,882 s, vahemik 3,425–8,504 s; see ei ole UI- ega koormustesti kiirusmõõdik.
+
+[Taastamise mõõtmine](../../tmp/rag-v2-m4-c-fix/restore-verification-20260907.json), 11:57 UTC: baas-konfiguratsiooni SHA-256 `f64f88a77247da0a1f05ed11e1fd795e34779ffebd6235bee7efa5be7b3b2292`, env SHA-256 `a50c105cb5eab9a6fe78fd787574f551efcf059649276c4cf1c0aea2145a0dcf`, mõlemad kattuvad backup'iga. Õigused on vastavalt `root:ubuntu:640` ja `root:root:600`; frontend on aktiivne ning `/vestlus` tagastas 200. Server ja kaug-main mõõdeti paranduse commit'ile `98f80938…`, serveri tööpuu oli puhas. Taastatud baasis on dialoog välja lülitatud ja vana plaan ei saa uuest koodist täitmisluba. Avalikku vastamist ei avatud.
+
+### Järgmine põhjendatud plokk
+
+Täielik M4-C vastuvõtt jääb avatuks. Järgmine sisuline töö on korduva F4 tõendipiiri eristamine A1/D2 näidetel ning F1/F2 otseseks vastuvõtuks sobivate juhtumite täpsustamine; D1/D3 väikesed lisatud protseduuritäpsustused kuuluvad samuti väite täpsuse juurde. Täiendavat koodimuudatust ega uut päriskatset selle hinnangu käigus ei tehtud. C isikuvahetuse varasem tulemus säilib ajaloolise tõendina; uue prompti venekeelne semantika, sünteetilise assistendigarantii tagasilükkamine, varasemad baasleiud ja kogu M4/M6 vastuvõtt jäävad eraldi avatuks. See teadaolevate juhtumite üks kordus ei ole pimevalim ega üldine kvaliteedimäär.
+
+Raporti, katseplaani ja S1.0 järelkanne muudab ainult dokumentatsiooni. Koodi lõpliku puu 14 sihttesti, ESLint, i18n ja tootmisbuild olid juba rohelised; neid dokumentatsiooni pärast ei korratud. Järelkande kontroll: `git diff --check`.

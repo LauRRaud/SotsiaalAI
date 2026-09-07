@@ -1,6 +1,6 @@
 # M4-C paranduste sihitud päriskatse plaan
 
-07.09.2026. **OWNER-AUTHORIZED FOR COMMIT/PUSH/DEPLOY AND THE 12-TURN TEST / NOT_RUN.** Kohalikud parandused on kontrollitud; omanik andis selles vestluses selge loa täpselt nimetatud paranduste commit'iks, `main`-i push'iks, kaitstud serverisse juurutamiseks ning selle plaani 12-pöördeliseks päriskatseks kuni 0,24 USD piiriga. See rida annab loa töövoole; ettevalmistatud konfiguratsioonid ei ole veel aktiveeritud ega anna iseseisvalt mudelikutsete luba. Aktiivne tööseis on `SotsiaalAI.md` S1.0. Alus: [päriskatse analüüsi F1–F4 ja O1](rag-v2-m4-c-real-analysis-2026-09-07.md).
+07.09.2026. **OWNER-AUTHORIZED / EXECUTED: 12/12 pööret; baas taastatud.** Omanik andis selles vestluses selge loa nimetatud paranduste commit'iks, `main`-i push'iks, kaitstud serverisse juurutamiseks ning täpselt selleks 12-pöördeliseks päriskatseks kuni 0,24 USD piiriga. Parandus `98f80938…` juurutati, kõik küsimused tehti nähtava UI kaudu ning katse-eelne konfiguratsioon taastati. Sisuline vastuvõtt on osaline: [järelkatse hinnang ja tõendid](rag-v2-m4-c-real-analysis-2026-09-07.md#omaniku-loaga-12-pöördeline-järelkatse). Aktiivne tööseis on `SotsiaalAI.md` S1.0. Allpool säilib kinnitatud plaan koos ettevalmistusaegsete mõõtmistega; selle allkirjastamata kohalikud failid ei ole uue jooksu luba.
 
 ## Ulatus ja vastuvõtt
 
@@ -38,7 +38,7 @@ Iga dialoog algab eraldi kaitstud pilootvestluses. Kasutatakse sama lubatud kont
 
 D2 järel värskendatakse lehte ja kontrollitakse vestluse ning kontekstivalikute taastumist enne uut saatmist. D3 jaoks valitakse nähtavas UI-s selle jooksu D1 teema, avaldatud vastus ja punkt 2. Kui D1 ei avaldu või punkti 2 pole, jäävad D3–D4 `SKIP`; uut küsimust ega kunstlikku teist punkti ei looda. D3 järel avatakse kasutatud viite kanooniline allikavaade, kontrollitakse nähtavat katkendit ja naasetakse vestlusse; alles seejärel saadetakse D4. Salvestatakse valiku-, refresh'i-, allika- ja naasmisetapi ekraanipildid ning vastavad pöörde-ID-d. A4 võimalik puuduva punkti täpsustusküsimus hinnatakse allikasisust eraldi.
 
-## Valmis kohalik teostus ja konfiguratsioonid
+## Ettevalmistusaegne kohalik teostus ja konfiguratsioonid
 
 Kohalik `main` HEAD ja `git ls-remote origin refs/heads/main` olid ettevalmistuses `3f8a1870c183826b520dd1ccf1b4b63a979efa00`. Parandus on selle peal commit'imata. Serverit selles kohalikus plokis ei kontrollitud ega muudetud.
 
@@ -71,3 +71,7 @@ Pärast luba, enne esimest mudelikutset:
 7. Taastada baas-konfiguratsioon ja env ning tõendada taastamine. Hinnata uued vastused eraldi, säilitada vanad vastused ja räsid ning uuendada analüüsi ja S1.0.
 
 Ka edukas tulemus ei sulge automaatselt varasemaid baasvastuste leide, vana assistendigarantii Luna-poolse tagasilükkamise puuduvat semantilist tõendit, kogu korpuse katvust, venekeelset uut järelkatset ega kogu M4/M6 vastuvõttu.
+
+## Täitmise järelkanne
+
+07.09.2026, 11:41–11:54 UTC: A4/B4/D4, kordusi 0, 12 embedding'u- ja 12 vastamiskatset. D2 refresh, D3 varasema teema/vastuse/punkti valik ja allikavaatelt samasse vestlusse naasmine läbisid. A4 küsis puuduva punkti kohta täpsustust, nii et algse ajalisusvea otsene kordus jäi katmata. Uue A1 rahastamisväite puudumine jätab F2 otsese korduse samuti osaliseks. F3 ja O1 vaadeldud puudused ei kordunud; F4 jäi A1-s ja D2-s alles. Kasutuspõhine konservatiivne hinnang oli 0,02191533 USD, rahaline reserv 0,10289033 USD, ülempiir 0,24 USD. Need pole arvesummad. Kõik katsevõimalused on kasutatud. Taastamine mõõdeti 11:57 UTC; üksikasjad ja püsitõendi viited on ülal lingitud analüüsis.
