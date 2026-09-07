@@ -65,12 +65,16 @@ export interface SemanticDependency extends Scope {
   operator: 'all' | 'any'; scope: string; anchors: KnowledgeAnchor[]; span_ids: Id[];
   verification_state: 'source_anchored_unreviewed'; provenance: KnowledgeCard['provenance'];
 }
+export interface KnowledgeGap extends Scope {
+  id: Id; key: string; from_card_id: Id | null; statement: string; reason: string;
+  anchors: KnowledgeAnchor[]; span_ids: Id[]; verification_state: 'source_anchored_unreviewed'; provenance: KnowledgeCard['provenance'];
+}
 export interface Bundle {
   schema_version: 'rag-v2/1'; tenant_id: string; document: Document; version: DocumentVersion;
   assets: SourceAsset[]; pages: { raw_text: string; pdf_page: number; parser_page_index: number; items: unknown[] }[];
   spans: SourceSpan[]; sections: Section[]; chunks: Chunk[]; relations: Relation[];
   blocks: (Scope & { id: Id; kind: 'heading' | 'paragraph' | 'quote' | 'list_item'; span_ids: Id[] })[];
-  knowledge_cards: KnowledgeCard[]; dependencies?: SemanticDependency[]; report: IngestReport;
+  knowledge_cards: KnowledgeCard[]; dependencies?: SemanticDependency[]; knowledge_gaps?: KnowledgeGap[]; report: IngestReport;
 }
 export interface IngestJob {
   id: string; tenant_id: string;

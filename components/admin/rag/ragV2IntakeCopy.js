@@ -1,4 +1,18 @@
 const et = {
+  preparation: {
+    title: 'Väidete ja seoste ettevalmistus', prepare: 'Koosta allikast väited ja seosed', preparing: 'Koostan allikapõhist mustandit…',
+    explain: 'Dokumendi tekst saadetakse seadistatud mudelile. Saadud väited ja seosed ilmuvad siin koos täpsete allikakohtadega läbivaatamiseks.',
+    cost: 'Mudel: {model}. Ühe koostamise kulupiir: {cost} USD.', review: 'Vaata väited, seoste suunad ja allikakohad üle. Jäta sobimatud välja; eemaldatud väitega seotud sõltuvused jäetakse samuti välja.',
+    empty: 'Selles koostamises ei saadud allikasse ankurdatud väiteid.', sources: 'Allikakohad', page: 'PDF lk',
+    gaps: 'Täpsustamist vajavad sõltuvused', selection: 'Valitud: {cards} väidet ja {dependencies} sõltuvust.',
+    confirm: 'Olen valiku ja selle allikakohad üle vaadanud. Salvestatud seosed jäävad kontrollimata otsinguabiks.',
+    apply: 'Salvesta valik uue versioonina', applying: 'Salvestan uut versiooni…', all: 'JA', any: 'VÕI', external: 'Teise dokumendi väide',
+    disabled: 'Allikapõhine koostamine vajab mudeli ja kulupiiri seadistust.', cap: 'Koostamine ületaks dokumendi või kogu töö kulupiiri. Kontrolli seadistatud mahtu.',
+    invalid: 'Koostatud mustandi tekstikoht või seos ei läbinud kontrolli. Mustandit allika uueks versiooniks ei lisatud.',
+    stopped: 'Koostamise tulemus vajab kontrolli. Sama töö uut mudelipäringut automaatselt ei tehta.',
+    kinds: { assertion: 'Väide', condition: 'Tingimus', exception: 'Erand', definition: 'Määratlus' },
+    relations: { MENTIONS: 'Mainib', RELATED_TOPIC: 'Seotud teema', CITES: 'Viitab', DESCRIBES: 'Kirjeldab', REQUIRES: 'Vajab tingimust', EXCEPTION_TO: 'Erand väitele', DEFINES: 'Määratleb', QUALIFIES: 'Täpsustab', SUPERSEDES: 'Asendab' }
+  },
   knowledge: 'Allikaga seotud väited ja sõltuvused', claims: 'Väiteid', dependencies: 'Sõltuvusi',
   knowledgeUnreviewed: 'Tekstikohad vastavad PDF-ile. Imporditud väidete ja seoste sisu ei ole veel kinnitatud; indeksi avaldamine seda ei kinnita.',
   knowledgeInvalid: 'Kontrolli väite või seose PDF-lehekülge ja täpset tsitaati. Korduva tsitaadi korral lisa alguspositsioon.',
@@ -38,6 +52,20 @@ const et = {
   origins: { metadata: 'Metaandmefail', pdf_text: 'PDF-i tekst', normalization_policy: 'Puudub või pole tuletatud', parser: 'PDF-parser', pdf_metadata: 'PDF-faili omadused', ingest_clock: 'Töötlemise aeg', parser_margin: 'PDF-i servatekst', parser_comparison: 'Võrdlus PDF-i tekstiga', asset_review: 'Allika ülevaatus' }
 };
 const en = {
+  preparation: {
+    title: 'Prepare claims and relations', prepare: 'Prepare claims from the source', preparing: 'Preparing a source-anchored draft…',
+    explain: 'The document text is sent to the configured model. Claims and relations appear here with exact source passages for review.',
+    cost: 'Model: {model}. Maximum cost for one preparation: {cost} USD.', review: 'Review claims, relation directions and source passages. Exclude unsuitable items; relations to excluded claims are also omitted.',
+    empty: 'This preparation produced no source-anchored claims.', sources: 'Source passages', page: 'PDF page',
+    gaps: 'Dependencies needing clarification', selection: 'Selected: {cards} claims and {dependencies} dependencies.',
+    confirm: 'I have reviewed the selection and its source passages. Saved relations remain unverified retrieval aids.',
+    apply: 'Save selection as a new version', applying: 'Saving a new version…', all: 'AND', any: 'OR', external: 'Claim in another document',
+    disabled: 'Source preparation needs a configured model and spending limit.', cap: 'Preparation would exceed the document or aggregate limit. Check the configured allowance.',
+    invalid: 'A draft source passage or relation failed validation. The draft was not added as a new source version.',
+    stopped: 'The preparation outcome needs attention. The same model request is not automatically sent again.',
+    kinds: { assertion: 'Claim', condition: 'Condition', exception: 'Exception', definition: 'Definition' },
+    relations: { MENTIONS: 'Mentions', RELATED_TOPIC: 'Related topic', CITES: 'Cites', DESCRIBES: 'Describes', REQUIRES: 'Requires condition', EXCEPTION_TO: 'Exception to', DEFINES: 'Defines', QUALIFIES: 'Qualifies', SUPERSEDES: 'Supersedes' }
+  },
   knowledge: 'Source-anchored claims and dependencies', claims: 'Claims', dependencies: 'Dependencies',
   knowledgeUnreviewed: 'The text anchors match the PDF. Imported claims and relations have not been verified; publishing the index does not verify them.',
   knowledgeInvalid: 'Check the claim or relation page number and exact quotation. For a repeated quotation, add its start offset.',
@@ -78,6 +106,20 @@ const en = {
 };
 const ru = {
   ...en,
+  preparation: {
+    title: 'Подготовка утверждений и связей', prepare: 'Подготовить утверждения из источника', preparing: 'Подготовка черновика с привязкой к источнику…',
+    explain: 'Текст документа передаётся настроенной модели. Утверждения и связи появятся здесь вместе с точными фрагментами источника для проверки.',
+    cost: 'Модель: {model}. Максимальная стоимость одной подготовки: {cost} USD.', review: 'Проверьте утверждения, направления связей и фрагменты источника. Исключите неподходящие элементы; связи с исключёнными утверждениями также будут пропущены.',
+    empty: 'В результате этой подготовки не получены утверждения с привязкой к источнику.', sources: 'Фрагменты источника', page: 'Страница PDF',
+    gaps: 'Зависимости, требующие уточнения', selection: 'Выбрано: {cards} утверждений и {dependencies} зависимостей.',
+    confirm: 'Я просмотрел выборку и её источники. Сохранённые связи останутся непроверенными подсказками для поиска.',
+    apply: 'Сохранить выборку как новую версию', applying: 'Сохранение новой версии…', all: 'И', any: 'ИЛИ', external: 'Утверждение в другом документе',
+    disabled: 'Для подготовки нужны настроенная модель и лимит расходов.', cap: 'Подготовка превысит лимит документа или общий лимит. Проверьте настройки.',
+    invalid: 'Фрагмент источника или связь в черновике не прошли проверку. Черновик не добавлен как новая версия источника.',
+    stopped: 'Результат подготовки требует проверки. Повторный запрос к модели для этой работы автоматически не отправляется.',
+    kinds: { assertion: 'Утверждение', condition: 'Условие', exception: 'Исключение', definition: 'Определение' },
+    relations: { MENTIONS: 'Упоминает', RELATED_TOPIC: 'Связанная тема', CITES: 'Ссылается', DESCRIBES: 'Описывает', REQUIRES: 'Требует условия', EXCEPTION_TO: 'Исключение к', DEFINES: 'Определяет', QUALIFIES: 'Уточняет', SUPERSEDES: 'Заменяет' }
+  },
   knowledge: 'Утверждения и зависимости с привязкой к источнику', claims: 'Утверждений', dependencies: 'Зависимостей',
   knowledgeUnreviewed: 'Указанные фрагменты совпадают с PDF. Содержание импортированных утверждений и связей ещё не подтверждено; публикация индекса его не подтверждает.',
   knowledgeInvalid: 'Проверьте страницу PDF и точную цитату утверждения или связи. Для повторяющейся цитаты укажите начальную позицию.',
@@ -118,6 +160,11 @@ const ru = {
 };
 export function getRagV2IntakeCopy(locale) { return String(locale).startsWith('et') ? et : String(locale).startsWith('ru') ? ru : en; }
 export function intakeErrorText(copy, code) {
+  if (/knowledge_preparation_(disabled|not_configured)/.test(code)) return copy.preparation.disabled;
+  if (/knowledge_preparation_.*cap/.test(code)) return copy.preparation.cap;
+  if (/knowledge_(preparation_)?(anchor|result|text|shape|selection)/.test(code)) return copy.preparation.invalid;
+  if (/knowledge_(preparation_)?(outcome|usage|failed)|knowledge_(budget|response)/.test(code)) return copy.preparation.stopped;
+  if (code === 'knowledge_draft_changed') return copy.changed;
   if (code.startsWith('knowledge_anchor_')) return copy.knowledgeInvalid;
   if (code === 'rag_v2_admin_disabled') return copy.disabled;
   if (/forbidden|unauthorized|access|job_scope/.test(code)) return copy.access;

@@ -50,6 +50,8 @@ Näide alloleva väljamõeldud PDF-i jaoks: leheküljel 1 on täpselt lause „N
 
 See objekt läheb olemasoleva metadata JSON-i `knowledge` väljale. Lubatud väiteliigid on `assertion`, `condition`, `exception`, `definition`. Osapoolte kolmik `subject/predicate/object` on valikuline tervik; kohaldamisala `scope` ja allikaankrud on kohustuslikud. Ajapiirid tuleb selles plokis säilitada väite/scope tekstis ja ankrus; eraldi ajaline järeldusmootor puudub.
 
+Valikulise ankurdatud `gaps` loendi ning allikast teadmismustandi koostamise lisaleping on [ADR-008](adr-008-source-knowledge-preparation.md). Puuduvad sõltuvused säilivad selle kaudu ka indeksis ja päringu piirangutes.
+
 Iga väide ja sõltuvus kannab oma ankrut. `pdf_page` on PDF-i 1-põhine lehekülg. `quote` peab vastama parseri `raw_text` täpsele lõigule. Korduva tsitaadi korral on nõutud `start`, 0-põhine JavaScripti UTF-16 nihe sama lehe tekstis. Kõik tsitaadi mittetühikud peavad kuuluma kanoonilistesse tekstispannidesse; eemaldatud päise või puuduva teksti ankur lükatakse tagasi. Ingest salvestab ka arvutatud lõppnihke, span-ID-d ja metadata vara räsi. Muudetud sõnastus, ankur või võltsitud kontrolliseis ei läbi bundle'i päritolukontrolli.
 
 Sisend on piiratud: 256 väidet, 512 sõltuvust, 16 sihtväidet ühe seose kohta ning 8 kuni 4000 märgi pikkust ankrut objekti kohta. Võõraid välju ei aktsepteerita. Sama dokumendi siht on `{key}`; välise sihi jaoks peavad koos esinema `{key, document_id, version_id}`. Viimased on kanoonilised `document_<sha256>` ja `version_<sha256>` ID-d. Seos ei kandu automaatselt dokumendi uuele versioonile. Sama tenant'i piires genereeritud objektide ID-d ning bundle'i ja indeksi võrdsuskontroll säilitavad päritolu.

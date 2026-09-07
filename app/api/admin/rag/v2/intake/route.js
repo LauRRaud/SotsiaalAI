@@ -35,11 +35,18 @@ export async function POST(request) {
     }
     if (!type.startsWith('application/json')) throw intakeError('json_required', 415);
     let payload;
-    try { payload = JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(await readBoundedBody(request, 4096))); }
+    try { payload = JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(await readBoundedBody(request, 65536))); }
     catch (error) { if (error.code) throw error; throw intakeError('invalid_json'); }
-    if (!payload || Object.keys(payload).sort().join(',') !== 'action,jobId,planHash' || payload.action !== 'publish'
-      || typeof payload.jobId !== 'string' || !/^[a-f0-9]{64}$/.test(payload.planHash || '')) throw intakeError('publish_action_invalid');
-    return json({ ok: true, receipt: await service.publish(payload.jobId, payload.planHash) });
+    if (!payload || Array.isArray(payload) || typeof payload.jobId !== 'string') throw intakeError('intake_action_invalid');
+    const fields = Object.keys(payload).sort().join(',');
+    if (fields === 'action,jobId,planHash' && /^[a-f0-9]{64}$/.test(payload.planHash || '')) {
+      if (payload.action === 'publish') return json({ ok: true, receipt: await service.publish(payload.jobId, payload.planHash) });
+      if (payload.action === 'prepareKnowledge') return json({ ok: true, receipt: await service.prepareKnowledge(payload.jobId, payload.planHash) });
+    }
+    if (fields === 'action,draftHash,jobId,selection' && payload.action === 'applyKnowledge' && /^[a-f0-9]{64}$/.test(payload.draftHash || '')) {
+      return json({ ok: true, receipt: await service.applyKnowledge(payload.jobId, payload.draftHash, payload.selection) });
+    }
+    throw intakeError('intake_action_invalid');
   } catch (error) { return failure(error); }
 }
 

@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Button from '@/components/ui/Button';
 import RagAdminPageFrame from './RagAdminPageFrame';
+import RagAdminKnowledgePanel from './RagAdminKnowledgePanel';
 import { getRagV2IntakeCopy, intakeErrorText } from './ragV2IntakeCopy';
 import { EMPTY_INTAKE_FIELDS, intakeFormFromMetadata, intakeMetadataFromForm } from './ragV2Metadata';
 import styles from './ragV2Intake.module.css';
@@ -82,6 +83,24 @@ export default function RagAdminIntakeWorkspace({ locale }) {
       } catch { /* Keep the original publication error if the receipt is no longer accessible. */ }
     } finally { setBusy(''); }
   }
+  async function knowledgeAction(action, data) {
+    setBusy(action === 'prepareKnowledge' ? 'knowledge' : 'knowledge-apply'); setError(''); setReviewed(false);
+    try {
+      const result = await fetch(endpoint, { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action, jobId: receipt.job_id, ...data }) }).then(responseJson);
+      setReceipt(result.receipt); setJobUrl(result.receipt.job_id);
+      if (action === 'applyKnowledge') {
+        const form = intakeFormFromMetadata(result.receipt.metadata); setFields(form.fields); setExtra(form.extra);
+      }
+      const current = await fetch(endpoint, { credentials: 'same-origin', cache: 'no-store' }).then(responseJson); setStatus(current.status);
+    } catch (cause) {
+      setError(cause.message);
+      try {
+        const saved = await fetch(endpoint + '?job=' + encodeURIComponent(receipt.job_id), { credentials: 'same-origin', cache: 'no-store' }).then(responseJson);
+        setReceipt(saved.receipt);
+      } catch { /* Preserve the operation error if the source is no longer accessible. */ }
+    } finally { setBusy(''); }
+  }
   const assetUrl = asset => endpoint + '?job=' + encodeURIComponent(receipt.job_id) + '&asset=' + asset;
   return <RagAdminPageFrame locale={locale} activeKey="ingest" title={copy.title} subtitle={copy.subtitle}>
     {loading ? <p role="status">{copy.loading}</p> : null}
@@ -118,6 +137,9 @@ export default function RagAdminIntakeWorkspace({ locale }) {
             <p className={styles.note}>{copy.knowledgeUnreviewed}</p>
           </div> : null}
           <div className="ra-actions"><a href={assetUrl('pdf')}>{copy.downloadPdf}</a><a href={assetUrl('metadata')}>{copy.downloadMetadata}</a></div>
+          <RagAdminKnowledgePanel key={receipt.job_id + (receipt.knowledge_preparation?.draft?.hash || '')} receipt={receipt} copy={copy} busy={busy}
+            onPrepare={planHash => knowledgeAction('prepareKnowledge', { planHash })}
+            onApply={(draftHash, selection) => knowledgeAction('applyKnowledge', { draftHash, selection })} />
           {receipt.bundle.warnings.length ? <div className={styles.review}><h3>{copy.warnings}</h3><ul>{receipt.bundle.warnings.map((warning, index) =>
             <li key={warning.code + index}>{copy.warningText[warning.code] || warning.code.replaceAll('_', ' ')}</li>)}</ul></div> : null}
           <details className={styles.review}><summary>{copy.details}</summary><dl className={styles.provenance}>

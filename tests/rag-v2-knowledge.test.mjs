@@ -199,3 +199,31 @@ test('cyclic local dependencies terminate and missing user facts remain unknown 
   assert.equal(conditionGroupState('any', ['true', 'false']), 'true');
   assert.equal(conditionGroupState('any', ['true', 'conflict']), 'conflict');
 });
+
+test('an anchored unresolved dependency remains visible in retrieval and is removed after live access revocation', async () => {
+  const quote = 'Further conditions for the fictional planting activity are in another handbook. That handbook is absent from this source fixture.';
+  const knowledge = structuredClone(base.document.legacy_metadata.knowledge);
+  knowledge.gaps = [{ key: 'missing-handbook', from: 'activity', statement: 'The activity has additional conditions that are not provided.',
+    reason: 'The referenced handbook is absent.', anchors: [anchor(quote, 3)] }];
+  const withGap = await importDocument('base', [texts.base, texts.relation, quote], knowledge), previous = base;
+  base = withGap;
+  try {
+    const f = searchFixture(), packet = await f.run();
+    assert.equal(packet.state, 'ok'); assert.equal(packet.model_context.dependencies.known_context, 'incomplete');
+    const missing = packet.model_context.dependencies.unresolved.find(item => item.reason === 'source_dependency_unresolved');
+    assert(missing); assert.equal(missing.verification_state, 'source_anchored_unreviewed');
+    assert.equal(packet.model_context.dependencies.claims.find(card => card.key === missing.from).statement, texts.base);
+    assert(missing.refs.every(ref => packet.reference_map[ref]));
+    assert(missing.refs.some(ref => packet.model_context.evidence.find(entry => entry.ref === ref).text === quote));
+    const limitedQuery = queryForProfile(retrievalProfile('vector-source-dependencies-v1'), { text: 'planting activity', language: 'en' });
+    limitedQuery.finalLimit = 1;
+    const limited = await f.run(undefined, { query: limitedQuery });
+    assert.equal(limited.model_context.dependencies.known_context, 'incomplete');
+    assert(limited.model_context.dependencies.unresolved.some(item => item.reason === 'source_dependency_context_missing'));
+    assert(!JSON.stringify(limited.model_context).includes(quote));
+    const revoked = searchFixture();
+    const late = await revoked.run(undefined, { hooks: { beforePolicyCheck: async () => revoked.restrict([guide.document.id]) } });
+    assert(!JSON.stringify(late.model_context).includes(quote));
+    assert(!JSON.stringify(late.model_context).includes(knowledge.gaps[0].statement));
+  } finally { base = previous; }
+});
