@@ -2,7 +2,7 @@
 
 07.09.2026. Raport säilitab algse 15-pöördelise jooksu analüüsi ja sellele järgnenud kohaliku paranduse. [Allpool kirjeldatud 12-pöördeline järelkatse](#omaniku-loaga-12-pöördeline-järelkatse) tehti parandatud koodiga päris kasutajaliideses. Aktiivset tööseisu kannab `SotsiaalAI.md` S1.0.
 
-**Järelkatse järeldus:** F3 viitemärgistus ja O1 B3 üleliigne täpsustus on vaadeldud rajal parandatud; F1 ja F2 täisvastuvõtt jääb osaliseks ning F4 kordub A1-s ja D2-s. Kõik 12 vastust avaldusid, nähtav teemavalik, refresh ja allikavaatelt naasmine läbisid. Baas-konfiguratsioon taastati. Järgnevad algse jooksu tabelid kirjeldavad ajaloolist tulemust; nende puuduvat UI-rada ei märgita tagantjärele tehtuks.
+**Viimane järelhinnang:** [kuue paari tõendiosade võrdlus](rag-v2-evidence-segments-local-2026-09-07.md#pärisvõrdluse-tulemus-0709) avaldas mõlemal variandil 6/6 vastust. F2 otsene rahastusviite kontroll läbis; F1 ja F4 jäävad osaliseks. Kandidaat parandas tõendipiiri paigutust, kuid T1 piirang on arendustegevuse kohta liiga lai ja T5 segab endiselt oma järelduse allikaväitega. F3 ja O1 varasem kitsas vastuvõtt säilib. Mõlema järelkatse refresh ja allikavaatelt naasmine kontrolliti UI-s ning katse-eelne konfiguratsioon taastati. Järgnevad algse jooksu tabelid kirjeldavad ajaloolist tulemust; nende puuduvat UI-rada ei märgita tagantjärele tehtuks.
 
 **Järeldus: piiratud jätkuvestluse kontekstimehhanism toimis selles katses. Sisulist lõppvastuvõttu ei saa anda.** Tartu parandus säilis, uue inimese andmed eraldusid ning tagasipöördumine valis õige varasema vastuse. Samal ajal muutus ühes vastuses kavandatud tegevus juba alanud tegevuseks, ühes lõigus ei toeta lisatud viide kõiki väiteid ning väljundis säilisid viite- ja tõendipiiri puudused. Tootmiskeskkonna kasutajaliidese plaanitud taastamisrada jäi tegemata.
 
@@ -59,7 +59,7 @@ Allpool on sisuline hinnang, mitte mudeli enda `kind`. „Puudus” võib puudut
 
 ### F1 — A4 muudab kavandatud tegevuse juba alanud tegevuseks
 
-**Seis: PARTIAL (07.09 pärisjärelkatse).** Uus A1 eristab 20 projekti valimist ja eesmärki ega väida mõõdetud mõju. A4 küsib ainult puuduva teise punkti täpsustust, sest A3-l on üks väiteplokk; algse A4 ajalisusvea sisuline kordus jäi seetõttu katmata. A1 oma tõendipiir on endiselt allikaväite plokis (F4). Täielikku vastuvõttu ei anta; algvastus jääb muutmata.
+**Seis: PARTIAL (07.09 kuue paari otsene järelkontroll).** T1 küsis otse 20 projekti algust ja mõõdetud mõju. Baas ja kandidaat säilitavad valiku faktid ega leiuta mõõdetud mõju; kandidaat eraldab tõendipiiri põhitekstist. Siiski ütleb valitud S2, et tervishoiuasutused „arendavad” lahendusi, mistõttu kandidaadi piirang „kõik või osa” projektide alguse tõendamata jäämisest on liiga üldine. Allikas kirjeldatud arendustegevus, kõigi projektide algus ja mõõdetud mõju tuleb lahus hoida. Ka baas jätab arendustegevuse nüansi ütlemata. Varasema A4 puuduva teise punkti täpsustus ei muutunud tagantjärele sisuliseks testiks. [Täielik tulemus](rag-v2-evidence-segments-local-2026-09-07.md#sisuline-hinnang).
 
 **Prioriteet P2.** A4 plokk 2, viide S4, „Käivitus „Heaolutehnoloogiate programm“”, PDF lk 1–5, `evidence_ad8ff083e7a6237ad8687f5ebac8abd107e5ad2e90fb581e11d0c8de9c3130fd`.
 
@@ -72,7 +72,7 @@ Vastuvõtukriteerium oleks säilitada eraldi projektide valimine, kavandatud teg
 
 ### F2 — A1 lõigu viide ei toeta rahastamisväidet
 
-**Seis: PARTIAL (07.09 pärisjärelkatse).** Uus A1 jätab rahastamisväite välja, mistõttu algse väite parandatud viiteseos ei saanud otsest kordust. A2 ploki 3 rahastatud projektide väidet toetab selle enda S2 („Toetust saanud 20 projektist…” ja rahastamise kirjeldus). See on positiivne kitsas tõend, kuid mitte A1 rahastusväite täielik järelvastuvõtt.
+**Seis: DONE (07.09 otsene T2 rahastusviite kontroll, piiratud juhtum).** Algse A1 muutmata allikapaketiga küsiti otse projektide ja arendusprogrammi rahastust koos eesmärgiga. Nii v4 baas kui ka tõendiosade kandidaat eristasid kahte EL-i kaasrahastuse meedet ja viitasid rahastamisväites seda sisaldavale S1-le; eesmärgi toe andsid S3/S4. Kandidaadi rahastuse täpne tekstiosa on `m4seg_S1_9442a7bb510f_10`. Kõik päringud ja paketid vastasid plaanile ning vastused avaldusid UI-s. See sulgeb selle väite/viite juhtumi, mitte ei tõenda universaalset viidete õigsust ega kandidaadi paremust juba õige baasi ees. [T2 hinnang](rag-v2-evidence-segments-local-2026-09-07.md#sisuline-hinnang).
 
 **Prioriteet P2.** A1 plokk 4 ütleb „Tegemist on arendus- ja rahastusprogrammiga” ning viitab ainult S4-le: „Heaolu tehnoloogiate programm”, PDF lk 1, `evidence_cc32c9afcb936657dd82931657075b66bb773253486ca30ab9d941cddffcc00e`.
 
@@ -92,7 +92,7 @@ Vastuvõtukriteerium: viidete esitlus on üheselt rakenduse kontrolli all ning a
 
 ### F4 — oma tõendipiir seguneb allikaväitega; D2 ulatus laieneb
 
-**Seis: PARTIAL (07.09 pärisjärelkatse; korduv puudus).** B1/B2/B4 eristavad faktilehe sõnaselget hinnapiiri ja Tartu/isiku kohta puuduvat tõendit paremini. Siiski jätab A1 plokk 4 oma tõendipiiri `factual=true` plokki ning D2 plokid järeldavad Eesti valdade juhise/nõutavuse puudumist allikaväitena. D2 õiguslik piirang on olemas, kuid ei paranda põhiteksti liiga laia ulatust. V4 prompt üksi seda leidu ei sulgenud.
+**Seis: PARTIAL (07.09 tõendiosade võrdlus; korduv puudus).** Baasis segunes oma tõendipiir allikaplokiga T1/T3/T4/T5 vastustes. Kandidaat eraldas selle T1/T3/T4 puhul, säilitades vajaliku põhisisu. T5 ploki 2 lõpp „mitte konkreetse ametikoha või isiku nimetamine” jäi aga endiselt `factual=true` plokki; valitud tekstiosad toetavad vastutuse kokkuleppimist, mitte vastaja üldist puudumisjäreldust. Kandidaadi 28/28 tehniliselt õiget tunnuseseost seda semantilist viga ei tõrjunud. T1 näitab lisaks, et õigesse välja paigutatud piirang võib ise olla liiga lai. [Juhtumite hinnang ja täpsed seosed](rag-v2-evidence-segments-local-2026-09-07.md#sisuline-hinnang).
 
 **Prioriteet P2, tõendipiiri täpsus.** B1/B2 teise ploki allikaks on H3 faktileht, PDF lk 2–3, `evidence_id` lõpuga `14beba5549` (täpne ID on toorandmes).
 
@@ -292,4 +292,4 @@ Raporti, katseplaani ja S1.0 järelkanne muudab ainult dokumentatsiooni. Koodi l
 
 Kohaliku ploki failipiir on kandidaadi skeem/päring/projektsioon, vajalik tõendilõikude koostamine ning konfiguratsiooni ja ajaloolise taastamise versioonitugi olemasolevas pilooditeenuses. Testida ainult uusi tunnuse-/vahemikuseoseid, vale või puuduva tunnuse tõrjet, tingimuste säilimist toortekstis ning vana mustandi taastamist; sisulised vastunäited jäävad käsitsi hindamiseks. Ploki lõpus sihtkontrollid ja üks build. Uut mudeliringi, mäluagenti, otsinguprofiili muudatust ega kasutajaliidese ümberkujundust see otsus ei vaja.
 
-Omaniku järgneva „jätka” järel valmis [tõendiosadega kohalik kandidaat ja kuue paari täpne plaan](rag-v2-evidence-segments-local-2026-09-07.md). 14 sihtkontrolli, ESLint ja tootmisbuild läbisid. Uut päriskatset ei tehtud: F1/F2/F4 semantiline vastuvõtt jääb lahtiseks ning F3/O1 senise tõendi ulatust ei muudeta.
+Omaniku järgneva „jätka” järel valmis [tõendiosadega kohalik kandidaat ja kuue paari täpne plaan](rag-v2-evidence-segments-local-2026-09-07.md). 14 sihtkontrolli, ESLint ja tootmisbuild läbisid. Hilisema kinnituse „okei, arendame edasi” alusel tehti deploy ja [6+6 pärisvõrdlus](rag-v2-evidence-segments-local-2026-09-07.md#pärisvõrdluse-tulemus-0709). Kandidaat jääb opt-in katseks, jätkuvestlusega seda veel ei seota. F2 otsene juhtum läbis, F1/F4 jäävad osaliseks. Järgmine sidus töö viib edasi dokumendi/metadata tegelikku lisamisvoogu ja kogu RAG v2 ahela vastuvõttu; T1/T5 jäävad vastamisosa täpseteks vastunäideteks. F3/O1 senise tõendi ulatust ei laiendata.
