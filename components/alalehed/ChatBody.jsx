@@ -14,6 +14,7 @@ import { useSpeech } from "../chat/hooks/useSpeech";
 import { useRealtimeVoice } from "../chat/hooks/useRealtimeVoice";
 import { useChatStream } from "@/components/chat/hooks/useChatStream";
 import { useChatConversationState } from "../chat/hooks/useChatConversationState";
+import { usePilotDialogue } from '../chat/hooks/usePilotDialogue';
 import { prettifyFileName } from "@/components/chat/utils/sources";
 import { collectMessageSources, useConversationSources } from "@/components/chat/hooks/useConversationSources";
 import { useChatAnalysisController } from "@/components/chat/hooks/useChatAnalysisController";
@@ -395,6 +396,7 @@ function resolveCssLengthPx(value, contextNode = null) {
 
 export default function ChatBody({
   pilotMode = null,
+  pilotDialogueEnabled = false,
   roomId = null,
   onBackHome = null,
   embedded = false,
@@ -1272,6 +1274,7 @@ export default function ChatBody({
     userRole: sessionUserRole,
     getVisibleMessages
   });
+  const pilotDialogue = usePilotDialogue({ enabled: pilotDialogueEnabled, convId });
   const journeyDraftScope = sessionUserId && convId
     ? `${sessionUserId}:${convId}`
     : "";
@@ -2177,6 +2180,10 @@ export default function ChatBody({
     retryLast
   } = useChatStream({
     pilotEnabled: !!pilotMode,
+    pilotDialogueEnabled,
+    pilotContext: pilotDialogue.selection,
+    pilotContextReady: pilotDialogue.ready,
+    onPilotSettled: pilotDialogue.refresh,
     convId,
     historyPayload,
     userRole,
@@ -2964,6 +2971,7 @@ export default function ChatBody({
   return <>
     <ChatBodyView
       pilotMode={pilotMode}
+      pilotDialogue={pilotDialogue}
       embedded={embedded}
       t={t}
       locale={locale}

@@ -1208,6 +1208,10 @@ export function useChatStream(config) {
     const text = String(rawText ?? "").trim();
     if (!text) return false;
     if (isGeneratingRef.current) return false;
+    if (cfg.pilotDialogueEnabled && !cfg.pilotContextReady) {
+      cfg.setErrorBanner?.(tr('m4Pilot.contextLoading'));
+      return false;
+    }
 
     cfg.setErrorBanner?.(null);
 
@@ -1562,12 +1566,14 @@ export function useChatStream(config) {
         convId: cfg.convId || null,
         roomId: cfg.isRoomMode ? cfg.roomId || null : null,
         text,
-        inputModality: options?.inputModality === "voice" ? "voice" : "text"
+        inputModality: options?.inputModality === "voice" ? "voice" : "text",
+        ...(cfg.pilotEnabled ? { pilotContext: cfg.pilotDialogueEnabled ? cfg.pilotContext : { contextMode: 'new' }, language: cfg.locale || 'et' } : {})
       })
     );
     let clientTurnKey = chatIntentRef.current.key;
     if (cfg.pilotEnabled) clientTurnKey = await rememberPilotIntent(window.sessionStorage, {
-      convId: cfg.convId, text, language: cfg.locale || 'et', key: clientTurnKey
+      convId: cfg.convId, text, language: cfg.locale || 'et', key: clientTurnKey,
+      ...(cfg.pilotDialogueEnabled ? cfg.pilotContext : {})
     });
 
     const turnStartedAtMs = Date.now();
@@ -1605,6 +1611,7 @@ export function useChatStream(config) {
       doPushVisibleText();
     };
 
+    let pilotContextAccepted = false;
     const runStream = async () => {
       try {
         const res = await fetch("/api/chat", {
@@ -1614,7 +1621,8 @@ export function useChatStream(config) {
             "Content-Type": "application/json"
           },
           body: JSON.stringify(cfg.pilotEnabled ? {
-            question: text, convId: cfg.convId, clientTurnKey, contextMode: 'new', language: cfg.locale || 'et'
+            question: text, convId: cfg.convId, clientTurnKey, contextMode: 'new', language: cfg.locale || 'et',
+            ...(cfg.pilotDialogueEnabled ? cfg.pilotContext : {})
           } : {
             message: text,
             history: cfg.historyPayload,
@@ -1723,6 +1731,7 @@ export function useChatStream(config) {
 
         if (!contentType.includes("text/event-stream")) {
           const data = await readJsonBody();
+          if (cfg.pilotDialogueEnabled && data?.pilotContext) pilotContextAccepted = true;
 
           if (!res.ok) {
             throw createLocalizedError(readApiErrorKey(data) || "chat.error.no_response");
@@ -1959,6 +1968,7 @@ export function useChatStream(config) {
 
         return false;
       } finally {
+        if (cfg.pilotDialogueEnabled) void cfg.onPilotSettled?.({ accepted: pilotContextAccepted });
         abortRef.current = null;
         isGeneratingRef.current = false;
         setIsGenerating(false);

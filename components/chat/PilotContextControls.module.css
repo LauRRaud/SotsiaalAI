@@ -1,0 +1,13 @@
+.controls { width: 100%; min-width: 0; flex: 0 0 auto; max-height: 45dvh; overflow: auto; padding: 8px 12px; box-sizing: border-box; color: inherit; font: inherit; }
+.controls summary { cursor: pointer; min-height: 32px; line-height: 1.5; }
+.controls p { margin: 6px 0; overflow-wrap: anywhere; font-size: .9rem; }
+.fields { display: flex; flex-wrap: wrap; gap: 10px; }
+.fields label { display: flex; flex: 1 1 200px; flex-direction: column; gap: 4px; min-width: 0; }
+.fields select { width: 100%; min-width: 0; max-width: 100%; min-height: 44px; padding: 6px 10px; border: 1px solid currentColor; border-radius: 6px; font: inherit; color: inherit; background: var(--panel-bg, #17251f); }
+.fields option { color: #eef4f0; background: #17251f; }
+.controls :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+/* The normal mobile composer is absolutely positioned above the panel bottom. */
+@media (max-width: 768px),
+  (max-width: 1024px) and (hover: none) and (pointer: coarse) and (orientation: portrait) {
+  :global(.chat-container) > .controls { margin-bottom: calc(var(--chat-composer-inset, 2.5rem) + var(--inputbar-h, 3.08rem) + var(--chat-vk-offset, 0px)); }
+}

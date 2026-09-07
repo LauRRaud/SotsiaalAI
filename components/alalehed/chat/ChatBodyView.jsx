@@ -9,9 +9,11 @@ import WorkspacePanel from "@/components/chat/WorkspacePanel";
 import RoleViewSwitcher from "@/components/workspace/RoleViewSwitcher";
 import { ChatRecordingNotice, ChatTopNotices } from "./view/ChatNotices";
 import VoiceAvatarBackdrop from "./VoiceAvatarBackdrop";
+import PilotContextControls from '@/components/chat/PilotContextControls';
 
 export default function ChatBodyView({
   pilotMode = null,
+  pilotDialogue = null,
   embedded: _embedded,
   t,
   locale,
@@ -195,6 +197,8 @@ export default function ChatBodyView({
               {showStandardChat ? <ConversationView t={t} chatWindowRef={chatWindowRef} isStreamingAny={isStreamingAny} hiddenCount={hiddenCount} pageSize={pageSize} onRevealOlder={onRevealOlder} canHideOlder={canHideOlder} onHideOlder={onHideOlder} onJumpToBottom={onJumpToBottom} messageItems={messageItems} onWindowDoubleClick={onWindowDoubleClick} focusActive={focusActive} isMobile={isMobile} isLightTheme={isLightTheme} hasConversationSources={hasConversationSources} conversationSourcesCount={conversationSources.length} toggleSourcesPanel={toggleSourcesPanel} showSourcesPanel={showSourcesPanel} sourcesPulse={sourcesPulse} sourcesButtonRef={sourcesButtonRef} /> : null}
 
               {showStandardChat && showVisibleAnalysisPanel && !analysis.uploadPreview ? <ChatAnalysisPanel {...chatAnalysisPanelProps} /> : null}
+
+              {showStandardChat && pilotDialogue?.enabled ? <PilotContextControls dialogue={pilotDialogue} disabled={isGenerating || isStreamingAny} t={t} /> : null}
 
               {showStandardChat && (isRoomMode || RAG_AVAILABLE || pilotMode) ? <ChatComposer key={roomId ? `room:${roomId}:${isHelpMatchRoom ? "help" : "standard"}` : "chat:default"} t={t} locale={locale} isLightTheme={isLightTheme} hideTools={hideComposerTools} inputGlow placeholderText={placeholderText} forcePlaceholderVisible={forcePlaceholderVisible} acceptAttr={analysis.acceptAttr} ensureAnalysisPanelVisible={analysis.ensureAnalysisPanelVisible} fileInputRef={analysis.fileInputRef} onFileChange={analysis.onFileChange} inputRowRef={inputRowRef} inputBarRef={inputBarRef} inputRef={inputRef} onFocusInput={onFocusComposer} onBlurInput={onBlurInput} isGenerating={isGenerating} isStreamingAny={isStreamingAny} isRoomMode={isRoomMode} roomBlocked={roomBlocked} roomAuthRequired={roomAuthRequired} onStop={onStop} onSend={onSend} onAuthRequired={onAuthRequired} onOpenVoiceMode={onOpenVoiceMode} onActivateInfoMode={onActivateInfoMode} onActivateDeepResearchMode={onActivateDeepResearchMode} onActivateHelpRequestMode={onActivateHelpRequestMode} onActivateHelpOfferMode={onActivateHelpOfferMode} showDocumentAttachButton={documentFlowActive} onPickDocumentFile={onPickDocumentFile} voiceEnabled={voiceEnabled} recording={recording} recordingPulse={recordingPulse} handleMic={handleMic} cancelRecording={cancelRecording} draftApiRef={composerDraftApiRef} onDraftStateChange={onDraftStateChange} onLayoutChange={onComposerLayoutChange} inputFocused={inputFocused} isMobile={isMobile} activeModeLabel={activeModeLabel} roomModeLabel={roomModeLabel} activeModeKey={activeModeKey} focusActive={focusActive} allowAssistantForward={allowAssistantForward} isHelpMatchRoom={isHelpMatchRoom} sendToAssistant={sendToAssistant} setSendToAssistant={setSendToAssistant} aiNote={aiNote} callControlsNode={roomCallNode} /> : null}
               {showStandardChat && !isRoomMode && !RAG_AVAILABLE && !pilotMode ? <p role="status">{t("api.rag.retired")}</p> : null}

@@ -84,7 +84,7 @@ function notifyDeletedConversations(ids) {
     }));
   } catch {}
 }
-export default function ChatSidebar() {
+export default function ChatSidebar({ pilotEnabled = false }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -472,12 +472,12 @@ export default function ChatSidebar() {
     setError("");
     const id = uuid();
     try {
-      const r = await fetch("/api/chat/conversations", {
+      const r = await fetch(pilotEnabled ? '/api/chat/pilot' : "/api/chat/conversations", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({
+        body: JSON.stringify(pilotEnabled ? { action: 'ensure', convId: id } : {
           id,
           role: conversationRole
         })
@@ -497,7 +497,7 @@ export default function ChatSidebar() {
       creatingRef.current = false;
       setCreating(false);
     }
-  }, [activateConversation, conversationRole, refreshAll, resolveErrorMessage, t]);
+  }, [activateConversation, conversationRole, refreshAll, resolveErrorMessage, t, pilotEnabled]);
 
   useEffect(() => {
     const onCreateConversation = () => {

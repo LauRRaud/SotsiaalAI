@@ -40,19 +40,20 @@ export default async function Page({ searchParams }) {
   const emailVerifiedEntry = reason === "email-verified";
   const roomIdRaw = resolvedSearchParams?.roomId;
   const roomId = typeof roomIdRaw === "string" ? roomIdRaw.trim() || null : null;
-  let pilotMode = null;
+  let pilotMode = null, pilotDialogueEnabled = false;
   if (!roomId && process.env.M4_PILOT_ENABLED === '1') {
     const auth = await requireChatUser({ includeSession: true });
     if (auth.ok && !auth.session?.authDegraded) {
-      try { pilotMode = (await readPilotConfig(auth.userId, { purpose: 'read' })).mode; } catch {}
+      try { const config = await readPilotConfig(auth.userId, { purpose: 'read' }); pilotMode = config.mode; pilotDialogueEnabled = !!config.dialogueVersion; } catch {}
     }
   }
   return <>
       <ConversationDrawer>
-        <ChatSidebar />
+        <ChatSidebar pilotEnabled={!!pilotMode} />
       </ConversationDrawer>
       <ChatBody
         pilotMode={pilotMode}
+        pilotDialogueEnabled={pilotDialogueEnabled}
         roomId={roomId}
         requestLoginOnOpen={loginRequested || emailVerifiedEntry}
         emailVerifiedEntry={emailVerifiedEntry}

@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { pilotChatResult } from '../lib/chat/m4PilotClientContract.js';
-import { rememberPilotIntent, forgetPilotIntent } from '../lib/chat/m4PilotIntent.js';
+import { rememberPilotIntent, forgetPilotIntent, readPilotIntentContext } from '../lib/chat/m4PilotIntent.js';
 test('normal chat adapter publishes only completed answers and binds every link to a turn', () => {
   assert.equal(pilotChatResult({ state: 'unknown' }, 'conv').ok, false);
   assert.equal(pilotChatResult({ state: 'needs_recovery' }, 'conv').answer, undefined);
@@ -23,6 +23,19 @@ test('pilot intent survives refresh without storing question text and clears onl
   assert.ok(![...map.values()][0].includes(input.text));
   forgetPilotIntent(storage, input.convId, 'other-key'); assert.equal(map.size, 1);
   forgetPilotIntent(storage, input.convId, 'first-key'); assert.equal(map.size, 0);
+});
+
+test('M4-C intent binds mode, scope and answer point; refresh restores only content-free selection', async () => {
+  const map = new Map(), storage = { getItem: k => map.get(k) || null, setItem: (k, v) => map.set(k, v), removeItem: k => map.delete(k) };
+  const input = { convId: 'conversation', text: 'PRIVATE CIRCUMSTANCE', language: 'et', key: 'key-a', contextMode: 'correction', contextTurnId: 'scope-a', replyToTurnId: 'turn-a', replyToBlock: 2 };
+  assert.equal(await rememberPilotIntent(storage, input), 'key-a');
+  assert.equal(await rememberPilotIntent(storage, { ...input, key: 'key-b' }), 'key-a');
+  assert.deepEqual(readPilotIntentContext(storage, input.convId), { contextMode: 'correction', contextTurnId: 'scope-a', replyToTurnId: 'turn-a', replyToBlock: 2 });
+  for (const change of [{ contextMode: 'same' }, { contextTurnId: 'scope-b' }, { replyToTurnId: 'turn-b' }, { replyToBlock: 1 }]) {
+    await rememberPilotIntent(storage, input);
+    assert.equal(await rememberPilotIntent(storage, { ...input, ...change, key: 'changed-key' }), 'changed-key');
+  }
+  assert.ok(![...map.values()].some(value => value.includes(input.text)));
 });
 
 
