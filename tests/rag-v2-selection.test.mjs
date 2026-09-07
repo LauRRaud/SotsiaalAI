@@ -81,6 +81,22 @@ test('explicit neighbors use remaining slots without displacing seeds and select
   assert(limited.selection_trace.some(r => r.reason === 'context_budget'));
 });
 
+test('expanded profiles use indexed structural relations after all five seeds within the same token bound', async () => {
+  for (const profile of ['hybrid-ranked-first-neighbors-v2', 'vector-ranked-first-neighbors-v1']) {
+    const f = fixture(), packet = await f.run(profile);
+    assert.equal(packet.state, 'ok');
+    assert.deepEqual(packet.evidence.slice(0, 5).map(e => e.chunk_id), ['c0', 'c2', 'c4', 'c6', 'c8']);
+    assert.equal(packet.evidence.length, 7);
+    assert.equal(packet.graph_audit.free_final_slots_at_start, 2);
+    assert.equal(packet.measurements.graph_additions, 2);
+    assert(packet.measurements.context_tokens <= 6000);
+    const edgeIds = new Set(f.bundle.relations.map(edge => edge.id));
+    assert(packet.evidence.slice(5).every(e => e.selection.reason.edge_ids.every(edge => edgeIds.has(edge))));
+    f.bundle.relations = [];
+    assert.equal((await f.run(profile)).evidence.length, 5);
+  }
+});
+
 test('neighbors retain relation, duplicate, document cap and version protections', async () => {
   const disconnected = fixture([0]); disconnected.bundle.relations = [];
   assert.equal((await disconnected.run()).evidence.length, 1);

@@ -120,3 +120,16 @@ Kontroll: olemasolev konfiguratsiooni sihttest läbis UTC-s koos uue juhuga, mis
 
 
 Parandus `e842888dac1c65f81f705f9db3cea9b1ebb715b5` on serverisse juurutatud varem antud sama töö deploy-loa alusel. Serveri tootmisbuild läbis, mõõdetud HEAD vastas commitile, tööpuu oli puhas, frontend aktiivne ja avalik `/vestlus` HTTP 200. Uusi mudelikutseid ei tehtud; eelmine ajutine katsekonfiguratsioon jäi suletuks.
+
+
+### Omaniku täpsustus: universaalsus, indeks, graaf ja tööjärjestus 07.09
+
+Omanik täpsustas, et artikleid tuleb ligi tuhat ning parandused peavad olema universaalsed, indekseerimine ja graaf peavad vastust toetama. Seejärel peatas ta uue hindamisringi; varem lubatud uut kahe kutse katset ei käivitatud. Mudelikulu selles plokis on 0.
+
+Juhis `m4-grounded-answer-6` asendab juhtumipõhise rahastuse näite üldise seose osapoolte, suuna, tingimuste ja ajalise ulatuse säilitamise reegliga; eemaldati ka eelmise juhtumi fraasinäide ja eraldi rahastusviite näide. Seose olemasolu ei järeldata ühisest teemast, allikast ega graafi naabrusest. Algteksti, salvestatud vastuseid ja väljundskeemi ei muudeta; v4/v5 plaanide lugemine säilib.
+
+Uued `vector-ranked-first-neighbors-v1` ja `hybrid-ranked-first-neighbors-v2` profiilid kasutavad olemasolevaid indeksisse salvestatud struktuurseoseid: kuni 5 järjestatud põhileidu + kuni 2 naabrit, lõpp- ja dokumendipiir 7, endiselt 6000 kontekstitokenit ja 8 graafisammu. Ajaloolised profiilid säilitavad oma täpse kuju; olemasolevat allkirjastatud piloodikonfiguratsiooni ega suletud katset ei muudeta. Uus profiil tuleb valida uues kasutusplaanis; praegune vaikeprofiil ei muutu vaikimisi graafiprofiiliks.
+
+Kaks väikest tehnilist lepingukontrolli läbivad: uute profiilide indeksiservad lisavad naabrid kõigi viie põhileiu järel (servade eemaldamisel juurdekasvu pole), ning vana allkirjastatud juhisega saab lugeda ajalugu, kuid mitte käivitada uut juhist. Need ei ole mudelivastuse hindamine. Muudetud nelja koodifaili eslint ja diff-check läbisid; lõplik kohalik tootmisbuild läbis.
+
+Tööplaani kontroll leidis, et M1/M2 ja piiratud M4/M6 on edasi liikunud, kuid M3 sisulise sõltuvuse teostus puudub (`normalize.js` loob `knowledge_cards: []`). `indexing.js` piirab importi 5000 üksusega, `retrieval.js` ja piloodi eelkontroll laadivad lubatud korpuse tervikuna. Need on eraldi mahuga seotud arendustööd; käesolev profiili/juhise muudatus neid ei lahenda. Aktiivne järgmiste tööde järjestus ja etappide seis on SotsiaalAI.md S2-s, mitte käesolevas raportis.

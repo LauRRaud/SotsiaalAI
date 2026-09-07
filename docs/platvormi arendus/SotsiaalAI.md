@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**07.09 rahastusseoste juhise parandus on serveris; uus pärisvastus vajab veel kontrolli.** Juhis nõuab iga rahastusmeetme sidumist konkreetse tegevusega ja kaasrahastamise eristuse säilitamist. Sihitud versioonipiiri kontroll ja tootmisbuild läbisid; varasema vastuse lugemine säilib. [Katseraport](../audits/rag-v2-admin-intake-local-2026-09-07.md) kirjeldab parandust ja ühe küsimuse järelkontrolli. Eelmine dokumendi/metadata serveri tervikahel läbis, kuid selle vastuse rahastusseos oli vale. Senine kahe mudelikutse luba on kasutatud ja katsekonfiguratsioon suletud; uue juhise semantiline runtime on NOT_PROVEN. Järgmine samm on sama küsimuse piiratud uus vastus. T1/T5, F1/F4 ja isikupiiri muud lahtised otsad säilivad.
+**07.09 jätkub universaalne RAG-arendus: M1/M2 indeks ja piiratud M4/M6 tervikahel on olemas, M3 sisuline sõltuvuskiht on tegemata.** Vastusejuhisest eemaldati juhtumipõhine rahastusnäide; üldine reegel säilitab seose osapooled, suuna ja tingimused. Lisatud graafiprofiilid lubavad viie põhileiu kõrvale kaks indeksis seotud tekstiosa, kuid ei loo sisulisi faktiseoseid. Omaniku juhisel uut vastusehindamise ringi ei käivitata. Järgmine arendusplokk on M3 jaoks allikaga seotud väidete/tingimuste ettevalmistus indekseerimisel ja nende sõltuvuste kasutamine päringus; tuhande artikli jaoks tuleb kõrvaldada ka päringuaegne kogu korpuse korduslugemine ja 5000 tekstiosa piir. Etappide tegelik seis ning tööjärjestus on S2 RAG-lõigus; [muudatuste detail](../audits/rag-v2-admin-intake-local-2026-09-07.md).
 
 **Sotsiaaltöö 2016–2026 artiklivõrdlusest sündinud tootekaart on 28.08 vestluse tööjäljest
 kohalikult taastatud; Git-ajaloos seda ei olnud.** Taastatud on 11 algset `ST10-*`
@@ -1831,7 +1831,26 @@ sisselülitamisele" reegli puhas rakendus. Vt „Lüliti" S2-s ja „Mis avab" S
 
 **Vestlus ja teadmusbaas.**
 
-Vana RAG-i seotud kasutajafunktsioonid ja lehed on koondatud [RAG masterisse](../audits/rag-susteem-master.md). Eemaldamisharus on uute assistendivastuste, failianalüüsi, süvauuringu ja seotud AI-mustandite loomine peatatud. Vestlusajalugu, salvestatud allikaviited, algfailide haldus ning käsitsi koostatud sisu jäävad eraldi platvormifunktsioonideks. Uue RAG-i käitumist ei ole veel teostatud; selle vana arhitektuur ja paranduskroonika on Git-ajaloos.
+Vana RAG-i eemaldamise ulatus ja alles jäävad platvormifunktsioonid on koondatud [RAG masterisse](../audits/rag-susteem-master.md). Uue RAG v2 piiratud arendusrada on nüüd teostatud; varasem väide, et uut käitumist pole üldse olemas, on aegunud.
+
+**RAG v2 arenduse koht 07.09.** [Arendusteekaart](../SOTSIAALAI_RAG_GRAPH_ARENDUSTEEKAART_v0_1.md) määrab suuna; selle 05.09 seisu kirjeldavad lõigud on ajaloolised. Käesolev seis lähtub teostusest ja viimase serverikatse tulemusest.
+
+| Etapp | Tegelik seis |
+| --- | --- |
+| M1: dokumendi ettevalmistus | PDF, metadata, algteksti leheküljed, päritolu ja muutumatud versioonid on olemas. Piiratud adminivoog lisab päris dokumenti. Mitmeveerulise paigutuse, tabelite ja OCR-i täielik tugi pole valmis. |
+| M2: indekseerimine ja otsing | PostgreSQL-i leksikaalne indeks, Qdranti vektorid, allikaviited ja struktuurseosed töötavad piiratud korpusel. Viimane serverikatse avaldas 8 dokumenti / 69 tekstiosa. Uued eraldi mahuga naabriprofiilid on üldised; ajalooliste profiilide valik ja piirid säilivad. |
+| M3: sisuline sõltuvuskiht | **Tegemata.** Ingest loob praegu struktuurseosed ja tühja knowledge_cards loendi. Allikaga kontrollitud väidete, tingimuste ja erandite indeks ning sõltuvusgraaf pole teostatud. Tekstide naabrus seda ei asenda. |
+| M4: vastamine | Piiratud Luna vastused, viited, algallikas ja vestluskontekst on teostatud. Sisulised lahtised otsad säilivad; ühe näite parandus ei tähenda kogu korpuse valmisolekut. |
+| M5: ajaline ja kogu korpuse süntees | Tegemata; kümnendi teema-/perioodikatvus ja tõendatud muutuste rada on eraldi töö. |
+| M6: haldus ja käitamine | Admini vastuvõtt ning piiratud juurutus on olemas. Tuhande artikli kasutusvalmidust pole saavutatud: indekseerimisel on 5000 tekstiosa piir, otsing/preflight loeb lubatud korpuse andmed tervikuna. Täielik taastamise, õiguste ja koormuse vastuvõtt jääb avatuks. |
+
+**Järgmine arendusjärjestus:**
+
+1. **M3 ettevalmistus indekseerimisel:** üldine allikaga seotud väite ja sõltuvuse andmeleping (algteksti ankrud, osapooled, seos, tingimus, aeg ja kontrolliseis). Algtekst ja tuletatud otsinguabi jäävad eraldi; ühe artikli nimesid või õigeid vastuseid ei kirjutata runtime-koodi. Automaatne rikastamine ei tohi muuta kontrollimata seost kinnitatud faktiks.
+2. **M3 päringurada:** leitud väitega seotud tingimused/erandid tuuakse indeksist graafi kaudu kaasa sama kasutaja, dokumendiversiooni ja õiguste piires. Struktuurseose ning sisulise sõltuvuse tähendus eristatakse; puudulik graaf ei kinnita täielikkust.
+3. **Korpuse mahu käsitlemine:** päringusse ainult vajalikud indeksiüksused ja sõltuvused, mitte kogu korpuse korduv valideerimine/laadimine. Suurte importide osadeks jagamine ja jätkamine tuleb teha enne praeguse 5000 tekstiosa piiri muutmist; pelk piirangu tõstmine ei ole lahendus.
+
+Omaniku 07.09 juhis: praegu jätkub arendus, uut semantilist hindamisringi ega lubatud rahastusnäite korduskatset ei käivitata. Muudatuse enda vajalik väike tehniline kontroll jääb AGENTS.md ulatusse.
 
 **Teekond.**
 Teekond on inimese enda lugu ühes kohas: mis mure on, mida on juba proovitud, kellega on
@@ -3231,6 +3250,8 @@ Uue teema väljastamiseks lisa lepingufaili nimi (nt `sotsiaalkiirabi-v1-arendus
 Töökaust: `C:\Users\rauds\Desktop\SotsiaalAI`.
 
 ### Reeglid
+
+**RAG universaalsus (omanik 07.09):** parandused peavad töötama kogu korpuses. Artikli nime, ID, küsimuse täpse sõnastuse või oodatud vastuse järgi runtime-erandeid ei lisata. Vajalik allikaline struktuur valmistatakse ette indekseerimisel ja kasutatakse vastava tähendusega graafis; mudeli juhis ei asenda puuduvat andmekihti.
 
 1. **Töö toimub omaniku 05.09.2026 juhisel otse põhikausta `main`-harus.**
    Eraldi parandustööpuu pole nõutud. Ühes tööpuus on korraga üks kirjutaja ja üks

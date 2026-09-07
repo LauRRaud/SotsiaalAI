@@ -72,13 +72,15 @@ test('pilot switch, per-user grant, expiry, real-model config and approval gates
   await fs.writeFile(file, JSON.stringify(historicalV2));
   assert.equal((await readPilotConfig('tester', { purpose: 'read' })).configHash, digest(historicalV2));
   await assert.rejects(readPilotConfig('tester'), { code: 'implementation_approval_mismatch' });
-  // The previous intake answer must stay readable. Even with the current code
-  // hash, its signed v4 prompt plan cannot authorize executing the v5 request.
-  const historicalV4Plan = { ...real, promptVersion: 'm4-grounded-answer-4' };
-  const historicalV4 = { ...historicalV4Plan, approval: { ...approved.approval, planHash: digest(historicalV4Plan) } };
-  await fs.writeFile(file, JSON.stringify(historicalV4));
-  assert.equal((await readPilotConfig('tester', { purpose: 'read' })).configHash, digest(historicalV4));
-  await assert.rejects(readPilotConfig('tester'), { code: 'implementation_approval_mismatch' });
+  // Historical answers stay readable. Even with the current code hash, their
+  // signed prompt plans cannot authorize execution with the new instructions.
+  for (const promptVersion of ['m4-grounded-answer-4', 'm4-grounded-answer-5']) {
+    const historicalPlan = { ...real, promptVersion };
+    const historicalConfig = { ...historicalPlan, approval: { ...approved.approval, planHash: digest(historicalPlan) } };
+    await fs.writeFile(file, JSON.stringify(historicalConfig));
+    assert.equal((await readPilotConfig('tester', { purpose: 'read' })).configHash, digest(historicalConfig));
+    await assert.rejects(readPilotConfig('tester'), { code: 'implementation_approval_mismatch' });
+  }
   await fs.writeFile(file, JSON.stringify({ ...historical, documents: { forged: 'v2' } }));
   await assert.rejects(readPilotConfig('tester', { purpose: 'read' }), { code: 'pilot_approval_required' });
   await fs.writeFile(file, JSON.stringify({ ...approved, prices: null }));
