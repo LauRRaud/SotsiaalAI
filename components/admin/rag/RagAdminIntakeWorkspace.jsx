@@ -106,6 +106,7 @@ export default function RagAdminIntakeWorkspace({ locale }) {
     {loading ? <p role="status">{copy.loading}</p> : null}
     {error ? <div className={styles.error} role="alert"><p>{intakeErrorText(copy, error)}</p><details><summary>{copy.code}</summary><code>{error}</code></details></div> : null}
     {status ? <p className={styles.note}>{copy.limit}: <strong>{status.cap_usd} USD</strong> · {copy.reserved}: {status.reserved_usd} USD</p> : null}
+    {status?.knowledge_preparation?.enabled ? <p className={styles.note}>{copy.preparation.budget}: <strong>{status.knowledge_preparation.cap_usd} USD</strong> · {copy.reserved}: {status.knowledge_preparation.reserved_usd} USD</p> : null}
     <div className={styles.layout}>
       <form className="ra-card ra-form" onSubmit={prepare}>
         <h2 className="ra-card-title">1. {copy.prepare}</h2>

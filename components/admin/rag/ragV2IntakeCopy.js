@@ -1,5 +1,6 @@
 const et = {
   preparation: {
+    budget: 'Teadmiste koostamise kulupiir',
     title: 'Väidete ja seoste ettevalmistus', prepare: 'Koosta allikast väited ja seosed', preparing: 'Koostan allikapõhist mustandit…',
     explain: 'Dokumendi tekst saadetakse seadistatud mudelile. Saadud väited ja seosed ilmuvad siin koos täpsete allikakohtadega läbivaatamiseks.',
     cost: 'Mudel: {model}. Ühe koostamise kulupiir: {cost} USD.', review: 'Vaata väited, seoste suunad ja allikakohad üle. Jäta sobimatud välja; eemaldatud väitega seotud sõltuvused jäetakse samuti välja.',
@@ -31,7 +32,7 @@ const et = {
   invalid: 'Kontrolli PDF-i ja metaandmete vormingut.', changed: 'Allikas või seadistus muutus. Töötle dokument uuesti ja vaata tulemus üle.',
   unavailable: 'Indekseerimise ühendus või seadistus pole valmis. Dokument on säilitatud.',
   stopped: 'Varasem avaldamine jäi pooleli. Uusi mudelipäringuid ei saadeta; administraator peab tulemuse kontrollima.',
-  capError: 'Avaldamine ületaks seadistatud kulupiiri.', code: 'Veakood', limit: 'Kogukulu ülempiir', reserved: 'Reserveeritud',
+  capError: 'Avaldamine ületaks seadistatud kulupiiri.', code: 'Veakood', limit: 'Vektorite kulupiir', reserved: 'Reserveeritud',
   review: 'Olen kontrollinud metaandmeid, hoiatusi ja teksti ning kinnitan selle versiooni avaldamise.',
   binding: 'Vestluses kasutamiseks tuleb avaldatud indeks siduda piloodi allikavalikuga.',
   downloadPdf: 'Laadi alla PDF', downloadMetadata: 'Laadi alla metaandmed', scope: 'Avaldamise ulatus',
@@ -53,6 +54,7 @@ const et = {
 };
 const en = {
   preparation: {
+    budget: 'Knowledge preparation spend cap',
     title: 'Prepare claims and relations', prepare: 'Prepare claims from the source', preparing: 'Preparing a source-anchored draft…',
     explain: 'The document text is sent to the configured model. Claims and relations appear here with exact source passages for review.',
     cost: 'Model: {model}. Maximum cost for one preparation: {cost} USD.', review: 'Review claims, relation directions and source passages. Exclude unsuitable items; relations to excluded claims are also omitted.',
@@ -84,7 +86,7 @@ const en = {
   invalid: 'Check the PDF and metadata format.', changed: 'The source or configuration changed. Process and review the document again.',
   unavailable: 'Indexing connections or configuration are not ready. The document was retained.',
   stopped: 'An earlier publication is incomplete. No new model requests are sent; an administrator must inspect the result.',
-  capError: 'Publication would exceed the configured cap.', code: 'Error code', limit: 'Total spend cap', reserved: 'Reserved',
+  capError: 'Publication would exceed the configured cap.', code: 'Error code', limit: 'Embedding spend cap', reserved: 'Reserved',
   review: 'I reviewed the metadata, warnings and text, and confirm publication of this version.',
   binding: 'The published index must be bound to the pilot source selection before it is used in chat.',
   downloadPdf: 'Download PDF', downloadMetadata: 'Download metadata', scope: 'Publication scope',
@@ -107,6 +109,7 @@ const en = {
 const ru = {
   ...en,
   preparation: {
+    budget: 'Лимит расходов на подготовку знаний',
     title: 'Подготовка утверждений и связей', prepare: 'Подготовить утверждения из источника', preparing: 'Подготовка черновика с привязкой к источнику…',
     explain: 'Текст документа передаётся настроенной модели. Утверждения и связи появятся здесь вместе с точными фрагментами источника для проверки.',
     cost: 'Модель: {model}. Максимальная стоимость одной подготовки: {cost} USD.', review: 'Проверьте утверждения, направления связей и фрагменты источника. Исключите неподходящие элементы; связи с исключёнными утверждениями также будут пропущены.',
@@ -138,7 +141,7 @@ const ru = {
   invalid: 'Проверьте формат PDF и метаданных.', changed: 'Источник или настройки изменились. Обработайте и проверьте документ заново.',
   unavailable: 'Подключения или настройки индексации не готовы. Документ сохранён.',
   stopped: 'Предыдущая публикация не завершена. Новые запросы модели не отправляются; администратор должен проверить результат.',
-  capError: 'Публикация превысит установленный лимит.', code: 'Код ошибки', limit: 'Общий лимит расходов', reserved: 'Зарезервировано',
+  capError: 'Публикация превысит установленный лимит.', code: 'Код ошибки', limit: 'Лимит расходов на векторы', reserved: 'Зарезервировано',
   review: 'Метаданные, предупреждения и текст проверены; подтверждаю публикацию этой версии.',
   binding: 'Для использования в чате опубликованный индекс необходимо связать с выбором источников пилота.',
   downloadPdf: 'Скачать PDF', downloadMetadata: 'Скачать метаданные', scope: 'Объём публикации',
