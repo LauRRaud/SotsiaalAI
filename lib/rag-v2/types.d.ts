@@ -1,5 +1,17 @@
-/** Persisted JSON contract, version rag-v2/1. Offsets are UTF-16 offsets in pages[].raw_text. */
+/** Persisted JSON contracts. Version 2 uses source_units[].raw_text UTF-16 offsets;
+ * historical version 1 uses pages[].raw_text. Source bytes remain in immutable assets. */
 export type Id = string;
+export type SourceFormat = 'pdf' | 'html' | 'xml' | 'json';
+export type SourceLocator = { kind: 'pdf'; pdf_page: number }
+  | { kind: 'html'; path: string; element_id?: string }
+  | { kind: 'xml'; path: string; element_id?: string; act_reference?: string }
+  | { kind: 'json'; path: string; record_id: string | null; source_keys: string[] };
+export type SourceLocation = SourceLocator & {
+  source_unit_id: Id; start: number; end: number; offset_basis: 'source_unit_text_utf16';
+};
+export interface SourceUnit {
+  id: Id; index: number; raw_text: string; locator: SourceLocator; offset_basis: 'source_unit_text_utf16';
+}
 export type LocalRights = { access: 'local_private'; usage: 'development_only' };
 export type Scope = { tenant_id: string; document_version_id: Id };
 export type Provenance = {
@@ -13,7 +25,7 @@ export type Field<T = unknown> = {
 };
 export interface SourceAsset {
   id: Id; tenant_id: string; sha256: string; mime_type: string;
-  size_bytes: number; path: 'original.pdf' | 'metadata.json'; rights: LocalRights;
+  size_bytes: number; path: 'original.pdf' | 'original.html' | 'original.xml' | 'original.json' | 'metadata.json'; rights: LocalRights;
 }
 export interface Document {
   id: Id; tenant_id: string; external_ids: Record<string, string | null>;
@@ -22,21 +34,23 @@ export interface Document {
   search_aids: Record<string, Field & { role: 'search_aid_only' }>;
 }
 export interface DocumentVersion {
-  id: Id; tenant_id: string; document_id: Id; pdf_hash: string; metadata_hash: string;
+  id: Id; tenant_id: string; document_id: Id; pdf_hash: string | null; metadata_hash: string;
+  source_format?: SourceFormat; source_hash?: string;
   processing_config: Record<string, string | number>; profile_hash: string;
   ingested_at: string; state: 'staged';
 }
 export interface SourceSpan extends Scope {
-  id: Id; pdf_page: number; parser_page_index: number; start: number; end: number;
+  id: Id; pdf_page: number | null; parser_page_index: number | null; source_unit_index?: number; start: number; end: number;
   bbox: number[]; item_indices: number[]; source_text: string; retrieval_text: string;
-  transformation: 'whitespace_only'; parent_section_id: Id; block_id: Id; height: number; y: number;
+  transformation: 'whitespace_only' | 'decoded_source_text' | 'pdf_nul_to_replacement_character_then_whitespace';
+  parent_section_id: Id; block_id: Id; height: number; y: number; rotation?: number; reading_lane?: number;
 }
 export interface Section extends Scope {
-  id: Id; title: string | null; parent_id: Id | null; span_ids: Id[];
+  id: Id; title: string | null; parent_id: Id | null; span_ids: Id[]; record_key?: string;
 }
 export interface Chunk extends Scope {
   id: Id; ordinal: number; parent_section_id: Id; section_path: string[];
-  span_ids: Id[]; pdf_pages: number[]; source_text: string; retrieval_text: string;
+  span_ids: Id[]; pdf_pages: number[]; source_locations?: SourceLocation[]; record_key?: string | null; source_text: string; retrieval_text: string;
   retrieval_mapping: { prefix_length: number; body_span_ids: Id[]; operation: 'join_normalized_lines_with_block_breaks' };
   embedding_input_hash: string; index_version: string; previous_id: Id | null; next_id: Id | null;
 }
@@ -52,12 +66,15 @@ export interface IngestReport {
   coverage: { pdf_pages: number; documents: number; corpus_completeness: 'not_assessed' };
   model_calls: 0; embedding_calls: 0; generation_calls: 0;
 }
-export interface KnowledgeAnchor { pdf_page: number; start: number; end: number; quote: string; span_ids: Id[] }
+export type KnowledgeAnchor = { start: number; end: number; quote: string; span_ids: Id[] } & (
+  { pdf_page: number; source_unit_index?: never; source_location?: never }
+  | { pdf_page?: never; source_unit_index: number; source_location: SourceLocator }
+);
 export interface KnowledgeCard extends Scope {
   id: Id; key: string; kind: 'assertion' | 'condition' | 'exception' | 'definition';
   statement: string; scope: string; subject?: string; predicate?: string; object?: string;
   anchors: KnowledgeAnchor[]; span_ids: Id[]; verification_state: 'source_anchored_unreviewed';
-  provenance: { kind: 'metadata'; asset_hash: string; schema_version: 'rag-v2/knowledge-input-1' };
+  provenance: { kind: 'metadata'; asset_hash: string; schema_version: 'rag-v2/knowledge-input-1' | 'rag-v2/knowledge-input-2' };
 }
 export interface SemanticDependency extends Scope {
   id: Id; key: string; type: 'MENTIONS' | 'RELATED_TOPIC' | 'CITES' | 'DESCRIBES' | 'REQUIRES' | 'EXCEPTION_TO' | 'DEFINES' | 'QUALIFIES' | 'SUPERSEDES';
@@ -69,13 +86,17 @@ export interface KnowledgeGap extends Scope {
   id: Id; key: string; from_card_id: Id | null; statement: string; reason: string;
   anchors: KnowledgeAnchor[]; span_ids: Id[]; verification_state: 'source_anchored_unreviewed'; provenance: KnowledgeCard['provenance'];
 }
-export interface Bundle {
-  schema_version: 'rag-v2/1'; tenant_id: string; document: Document; version: DocumentVersion;
-  assets: SourceAsset[]; pages: { raw_text: string; pdf_page: number; parser_page_index: number; items: unknown[] }[];
+export interface BundleContents {
+  tenant_id: string; document: Document;
+  assets: SourceAsset[]; pages: { raw_text: string; pdf_page: number; parser_page_index: number; view: number[]; lines: unknown[]; columns?: number }[];
   spans: SourceSpan[]; sections: Section[]; chunks: Chunk[]; relations: Relation[];
-  blocks: (Scope & { id: Id; kind: 'heading' | 'paragraph' | 'quote' | 'list_item'; span_ids: Id[] })[];
+  blocks: (Scope & { id: Id; kind: 'heading' | 'paragraph' | 'quote' | 'list_item' | 'table_row' | 'legal_unit'; span_ids: Id[]; record_key?: string })[];
   knowledge_cards: KnowledgeCard[]; dependencies?: SemanticDependency[]; knowledge_gaps?: KnowledgeGap[]; report: IngestReport;
 }
+export type Bundle = BundleContents & (
+  { schema_version: 'rag-v2/1'; version: DocumentVersion & { pdf_hash: string }; source_units?: never }
+  | { schema_version: 'rag-v2/2'; version: DocumentVersion & { source_format: SourceFormat; source_hash: string }; source_units: SourceUnit[] }
+);
 export interface IngestJob {
   id: string; tenant_id: string;
   state: 'received' | 'validated' | 'parsed' | 'staged' | 'published' | 'failed';

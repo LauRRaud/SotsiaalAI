@@ -130,6 +130,44 @@ test('another actor, changed config and revoked document access cannot read the 
   await assert.rejects(f.prepare(), /document_not_approved/);
   assert.equal(f.state.calls, 0);
 });
+test('asset reads enforce document revocation after reading bytes while the actor remains admin', async t => {
+  for (const asset of ['pdf', 'metadata']) {
+    await t.test(asset, async t => {
+      const f = await fixture(), receipt = await f.prepare();
+      const allowed = await f.service.get(receipt.job_id, asset);
+      assert.ok(allowed.bytes.length > 0);
+      assert.equal(allowed.type, asset === 'pdf' ? 'application/pdf' : 'application/json');
+      const readFile = fs.readFile;
+      let revoked = false;
+      t.mock.method(fs, 'readFile', async (file, ...args) => {
+        const bytes = await readFile(file, ...args);
+        if (path.basename(String(file)) === (asset === 'pdf' ? 'source.pdf' : 'metadata.json')) {
+          f.dependencies.policy.value.tenants['intake-test'].operator = [];
+          revoked = true;
+        }
+        return bytes;
+      });
+      await assert.rejects(f.service.get(receipt.job_id, asset), { code: 'rag_v2_document_not_allowed', status: 403 });
+      assert.equal(revoked, true);
+      assert.equal(f.state.denied, false);
+      assert.equal(f.state.calls, 0);
+    });
+  }
+});
+
+test('receipt reads still enforce document revocation after presentation', async t => {
+  const f = await fixture(), receipt = await f.prepare();
+  assert.equal((await f.service.get(receipt.job_id)).job_id, receipt.job_id);
+  const present = f.service.present.bind(f.service);
+  t.mock.method(f.service, 'present', async value => {
+    const result = await present(value);
+    f.dependencies.policy.value.tenants['intake-test'].operator = [];
+    return result;
+  });
+  await assert.rejects(f.service.get(receipt.job_id), { code: 'rag_v2_document_not_allowed', status: 403 });
+  assert.equal(f.state.denied, false);
+});
+
 test('a superseded source version or wrong reviewed plan is rejected before provider calls', async () => {
   const f = await fixture(), first = await f.prepare();
   await f.prepare('Changed title');

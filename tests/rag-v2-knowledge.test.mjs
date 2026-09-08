@@ -35,7 +35,8 @@ async function importDocument(name, pages, knowledge) {
   await fs.writeFile(path.join(dir, 'metadata.json'), JSON.stringify({ document_id: name, source_type: 'synthetic', title: `Synthetic ${name}`,
     language: 'en', source_path: 'source.pdf', knowledge }));
   return (await ingest({ tenant, inputRoot: dir, metadataFile: 'metadata.json', storeRoot: path.join(root, 'store'), rights,
-    profile: { id: 'synthetic', version: '1', months: [], categoryLabels: [] }, config: { chunkMaxChars: 100 } }, { parsePdf: async () => parsed(pages) })).bundle;
+    profile: { id: 'synthetic', version: '1', months: [], categoryLabels: [] }, // Each fixture source stays whole; splitting is covered by the source-structure tests.
+    config: { chunkMaxChars: 220 } }, { parsePdf: async () => parsed(pages) })).bundle;
 }
 before(async () => {
   globalThis.fetch = () => { throw Error('unexpected_network'); };

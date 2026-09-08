@@ -109,6 +109,7 @@
     "autoprefixer": "^10.4.23",
     "bcrypt": "6.0.0",
     "dotenv": "^17.3.1",
+    "htmlparser2": "12.0.0",
     "ioredis": "^5.8.2",
     "js-tiktoken": "1.0.21",
     "livekit-client": "^2.19.0",

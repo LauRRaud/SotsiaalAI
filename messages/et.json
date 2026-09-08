@@ -62,7 +62,7 @@
     "source": "Allikakoht",
     "closeSource": "Sulge allikas",
     "version": "Dokumendiversioon",
-    "sourceHint": "Viite avamisel kontrollitakse ligipääsu uuesti. Siin avaneb täpne algtekst ja PDF-i lehekülg.",
+    "sourceHint": "Viite avamisel kontrollitakse ligipääsu uuesti. Siin avaneb täpne algtekst koos allikakohaga.",
     "error": "Päring ebaõnnestus ({code}). Sama kavatsuse kordamine ei tee uut mudelikatset.",
     "metrics": "Katse aeg ja kasutus",
     "metricNote": "Kulu on konservatiivne hinnang. Teadmata kasutus jääb reserveerituks.",

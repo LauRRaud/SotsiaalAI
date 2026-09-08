@@ -1,4 +1,4 @@
-import type { Id, SourceSpan } from '../types';
+import type { Id, SourceSpan, SourceLocation } from '../types';
 export interface TrustedLocalContext { tenant: string; subject: string; usage: 'development_only' }
 interface EmbeddingBase {
   distance: 'Cosine';
@@ -16,7 +16,7 @@ export interface SearchQuery {
 }
 export interface Evidence {
   evidence_id: Id; document_id: Id; document_version_id: Id; unit_id: Id; chunk_id: Id;
-  span_ids: SourceSpan['id'][]; pdf_pages: number[]; source_text: string;
+  span_ids: SourceSpan['id'][]; pdf_pages: number[]; source_locations?: SourceLocation[]; source_text: string;
   bibliography: { title: string; authors: string[] | null; publication_date: string | null };
   source_metadata: Record<string, { value: unknown; provenance: unknown[]; review_state: string }>;
   search_aids: { heading_prefix: string; legacy_description: unknown; role: 'not_source_quote' };
@@ -39,12 +39,13 @@ export interface EvidenceBundle {
 }
 export interface ModelContext {
   schema_version: 'rag-v2/model-context-json-1'; sources: Record<string, Record<string, unknown>>;
-  evidence: { ref: string; source: string; pdf_pages: number[]; text: string }[];
+  evidence: { ref: string; source: string; pdf_pages: number[]; text: string;
+    source_locations?: { kind: 'html' | 'xml' | 'json'; path: string; act_reference?: string; record_id?: string }[] }[];
   dependencies?: { schema_version: 'rag-v2/dependency-context-1'; known_context: 'included' | 'incomplete';
     corpus_completeness: 'not_assessed'; verification_state: 'source_anchored_unreviewed';
     claims: Record<string, unknown>[]; relations: Record<string, unknown>[]; unresolved: Record<string, unknown>[] };
 }
 export interface ModelReference {
   tenant: string; query_id: Id; generation_id: Id; evidence_id: Id; document_id: Id; document_version_id: Id;
-  unit_id: Id; chunk_id: Id; span_ids: Id[]; pdf_pages: number[]; source_text_sha256: string;
+  unit_id: Id; chunk_id: Id; span_ids: Id[]; pdf_pages: number[]; source_locations?: SourceLocation[]; source_text_sha256: string;
 }

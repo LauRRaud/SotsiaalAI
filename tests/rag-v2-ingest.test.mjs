@@ -79,8 +79,10 @@ test('I-02: two distinct synthetic articles sharing issue docId survive', async 
 });
 test('I-03: publication, PDF creation, imported check and legal validity remain separate', provided, () => {
   const f = sample.bundle.document.fields;
-  assert.equal(f.publication_date.value, '2025-06-06');
-  assert.ok(f.publication_date.provenance[0].span_ids.every(s => sample.bundle.spans.find(x => x.id === s).pdf_page === 1));
+  // A date in the first page's text is a candidate; it must not silently become bibliography.
+  assert.equal(f.publication_date.value, null);
+  assert.equal(f.publication_date.candidates[0].value, '2025-06-06');
+  assert.ok(f.publication_date.candidates[0].provenance.span_ids.every(s => sample.bundle.spans.find(x => x.id === s).pdf_page === 1));
   assert.equal(f.asset_created_at.value, '2025-12-05T17:49:38+00:00');
   assert.equal(f.source_checked_at.value, '2026-04-26');
   assert.equal(f.source_checked_at.review_state, 'imported_not_verified');

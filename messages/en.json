@@ -62,7 +62,7 @@
     "source": "Source passage",
     "closeSource": "Close source",
     "version": "Document version",
-    "sourceHint": "Access is checked again when opening a reference. The exact source passage and PDF page appear here.",
+    "sourceHint": "Access is checked again when opening a reference. The exact source passage and its location appear here.",
     "error": "Request failed ({code}). Repeating the same intent does not make another model attempt.",
     "metrics": "Attempt timing and usage",
     "metricNote": "Cost is a conservative estimate. Unknown usage stays reserved.",

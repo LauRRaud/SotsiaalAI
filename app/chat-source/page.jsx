@@ -13,8 +13,11 @@ export default async function ChatSourcePage({ searchParams }) {
   const locale = (await cookies()).get('NEXT_LOCALE')?.value || 'et';
   const t = (key, values) => serverT(locale, `m4Pilot.${key}`, values);
   if (!response.ok) return <section><h1>{t('source')}</h1><p>{t('denied')}</p></section>;
-  return <section style={{ padding: 24, maxWidth: 900, margin: 'auto' }}><h1>{source.title}</h1><p>{t('pages', { pages: source.pages.join(', ') })} · {source.ref}</p>
+  const location = source.pages.length ? t('pages', { pages: source.pages.join(', ') })
+    : [...new Set((source.source_locations || []).map(item => item.kind.toUpperCase()))].join(', ');
+  return <section style={{ padding: 24, maxWidth: 900, margin: 'auto' }}><h1>{source.title}</h1><p>{[location, source.ref].filter(Boolean).join(' · ')}</p>
     <a href={`/vestlus?conversation=${encodeURIComponent(params.convId)}`}>{t('closeSource')}</a>
-    <details><summary>{t('version')}</summary><p style={{ overflowWrap: 'anywhere' }}>{source.version}</p></details>
+    <details><summary>{t('version')}</summary><p style={{ overflowWrap: 'anywhere' }}>{source.version}</p>
+      {!source.pages.length && source.source_locations?.map((item, index) => <p key={`${item.source_unit_id}/${index}`} style={{ overflowWrap: 'anywhere' }}>{item.path} [{item.start}–{item.end}]</p>)}</details>
     <p style={{ whiteSpace: 'pre-wrap' }}>{source.text}</p></section>;
 }

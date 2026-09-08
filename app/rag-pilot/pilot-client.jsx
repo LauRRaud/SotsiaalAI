@@ -15,6 +15,8 @@ async function api(url, body, pilot = false) {
 export default function PilotClient() {
   const { t: translate, locale } = useI18n();
   const t = (key, values) => translate(`m4Pilot.${key}`, values);
+  const locationLabel = source => source.pages.length ? t('pages', { pages: source.pages.join(', ') })
+    : [...new Set((source.source_locations || []).map(item => item.kind.toUpperCase()))].join(', ');
   const [status, setStatus] = useState(null), [convId, setConvId] = useState(''), [turns, setTurns] = useState([]);
   const [question, setQuestion] = useState(''), [contextMode, setContextMode] = useState('new'), [busy, setBusy] = useState(false), [error, setError] = useState(''), [source, setSource] = useState(null);
   const pending = useRef(null), submitting = useRef(false), sourceDialog = useRef(null);
@@ -68,7 +70,7 @@ export default function PilotClient() {
       {turns.map(turn => <article className={styles.turn} key={turn.id}><h2>{turn.question || t('pending')}</h2>
         {turn.answer ? <><p className={styles.eyebrow}>{t(turn.answer.kind)}</p>{turn.answer.blocks.map((block, i) => <div key={i}><p className={styles.text}>{block.text}</p>{block.refs.map(ref => <button key={ref} onClick={() => showSource(turn, ref)}>{t('open', { ref })}</button>)}</div>)}
           {turn.answer.limitations.map((limit, i) => <p key={i} className={styles.limit}>{limit}</p>)}{turn.answer.clarification && <p>{turn.answer.clarification}</p>}
-          <details><summary>{t('sources')}</summary>{turn.sources.map(s => <p key={s.ref}><button onClick={() => showSource(turn, s.ref)}>{s.ref} · {s.used ? t('used') : t('found')}</button> {s.title} · {t('pages', { pages: s.pages.join(', ') })}</p>)}</details></> : <p>{t('state', { state: turn.state })}</p>}
+          <details><summary>{t('sources')}</summary>{turn.sources.map(s => <p key={s.ref}><button onClick={() => showSource(turn, s.ref)}>{s.ref} · {s.used ? t('used') : t('found')}</button> {s.title} · {locationLabel(s)}</p>)}</details></> : <p>{t('state', { state: turn.state })}</p>}
         {turn.measurements && <details><summary>{t('metrics')}</summary><p>{t('metricNote')}</p><pre className={styles.text}>{JSON.stringify(turn.measurements, null, 2)}</pre></details>}
         {turn.recoverable && <button onClick={async () => { try { await api('/api/chat/pilot', { action: 'recover', convId, turnId: turn.id }); await loadConversation(convId); } catch (e) { setError(e.message); } }}>{t('recover')}</button>}</article>)}
       <form onSubmit={submit}>{dialogue.enabled ? <PilotContextControls dialogue={dialogue} disabled={busy} t={translate} /> : <><label htmlFor="m4-context">{t('context')}</label><select id="m4-context" value={contextMode} onChange={e => setContextMode(e.target.value)} disabled={busy}>
@@ -77,7 +79,8 @@ export default function PilotClient() {
         <label htmlFor="m4-question">{t('question')}</label><textarea id="m4-question" required maxLength={4000} value={question} onChange={e => setQuestion(e.target.value)} disabled={busy} rows={4} />
         <button type="submit" disabled={busy || !status || dialogue.enabled && !dialogue.ready}>{busy ? t('sending') : t('send')}</button><p role="status">{busy ? t('waiting') : ''}</p>
       </form>{convId && !busy && <button onClick={() => { sessionStorage.removeItem(`m4-intent/${convId}`); pending.current = null; setQuestion(''); setError(''); }} title={t('nextIntentHint')}>{t('nextIntent')}</button>}{error && <p role="alert" className={styles.error}>{t('error', { code: error })}</p>}</section>
-      {source && <dialog ref={sourceDialog} onCancel={() => setSource(null)} aria-label={t('source')} className={styles.source}><button onClick={() => setSource(null)}>{t('closeSource')}</button><h2>{source.title}</h2><p>{t('pages', { pages: source.pages.join(', ') })} · {source.ref}</p><details><summary>{t('version')}</summary><p>{source.version}</p></details><p className={styles.text}>{source.text}</p></dialog>}
+      {source && <dialog ref={sourceDialog} onCancel={() => setSource(null)} aria-label={t('source')} className={styles.source}><button onClick={() => setSource(null)}>{t('closeSource')}</button><h2>{source.title}</h2><p>{[locationLabel(source), source.ref].filter(Boolean).join(' · ')}</p><details><summary>{t('version')}</summary><p>{source.version}</p>
+        {!source.pages.length && source.source_locations?.map((item, index) => <p key={`${item.source_unit_id}/${index}`} className={styles.text}>{item.path} [{item.start}–{item.end}]</p>)}</details><p className={styles.text}>{source.text}</p></dialog>}
     </div>
     <p>{t('sourceHint')}</p>
   </div>;
