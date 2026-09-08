@@ -1,0 +1,1421 @@
+{
+  "schema_version": "rag-v2-release-integration/1",
+  "recorded_at": "2026-09-08T07:21:30.108Z",
+  "base_commit": "9780dee9c68b0ea699b4a4cee2f8257bb84ce5dd",
+  "code_commit": "ad44c302e64c2330002c8f482a740fe4c17c5e42",
+  "code_files": [
+    "lib/rag-v2/contracts.js",
+    "lib/rag-v2/parser.js",
+    "lib/rag-v2/pdf-worker.js",
+    "lib/rag-v2/normalize.js",
+    "lib/rag-v2/ingestion.js",
+    "lib/rag-v2/catalog.js",
+    "lib/rag-v2/knowledge.js",
+    "lib/rag-v2/knowledge-preparation.js",
+    "lib/rag-v2/source-locations.js",
+    "lib/rag-v2/text-source.js",
+    "lib/rag-v2/pdf-layout.js",
+    "lib/rag-v2/chunking.js",
+    "lib/rag-v2/metadata-adapter.js",
+    "lib/rag-v2/registered-source.js",
+    "lib/rag-v2/search/snapshot.js",
+    "lib/rag-v2/search/retrieval.js",
+    "lib/rag-v2/search/postgres.js",
+    "lib/rag-v2/search/model-context.js",
+    "lib/rag-v2/search/export.js",
+    "lib/rag-v2/pilot/retrieval.js",
+    "lib/rag-v2/pilot/service.js",
+    "lib/chat/m4PilotClientContract.js",
+    "lib/chat/m4PilotServer.js",
+    "app/chat-source/page.jsx",
+    "scripts/rag-v2-ingest-registered.mjs",
+    "tests/rag-v2-source-structure.test.mjs",
+    "tests/rag-v2-knowledge.test.mjs",
+    "tests/rag-v2-ingest.test.mjs",
+    "lib/rag-v2/types.d.ts",
+    "lib/rag-v2/search/types.d.ts",
+    "package.json",
+    "package-lock.json",
+    "app/layout.js",
+    "app/rag-pilot/pilot-client.jsx",
+    "lib/chat/questionRequirements.js",
+    "lib/chat/questionRequirementsContract.js",
+    "lib/chat/responsePolicy.js",
+    "lib/chat/responsePolicyContract.js",
+    "lib/chat/sourceSelection.js",
+    "lib/chat/sourceSelectionContract.js",
+    "lib/chat/ragDiagnostics.js",
+    "lib/rag-v2/admin/intake.js",
+    "tests/rag-v2-admin-intake.test.mjs",
+    "tests/chat-diagnostics-contract.test.mjs",
+    "messages/et.json",
+    "messages/en.json",
+    "messages/ru.json"
+  ],
+  "git_blob_sha256": {
+    "lib/rag-v2/contracts.js": "9c38599ea3b19b50a92581f4bee6c5a5e4887ee35eff8c27e6c181ab43e9a8ac",
+    "lib/rag-v2/parser.js": "71161d18b09d88ef6900d7f467abb0f47aed75d8e806a931ecdaa894b937cdfc",
+    "lib/rag-v2/pdf-worker.js": "6b9f16e77396a8cddf3e31b44527dcebe3c8e0cd5e899c1357d2f69a17f765b1",
+    "lib/rag-v2/normalize.js": "d7377fd823a6f55b8d2d4d3a77500a7f13fa9f7b6cf85fca290d37a151bcb803",
+    "lib/rag-v2/ingestion.js": "ffb195ae14918624da9e62406ae634e7163ad63014e5c06d2de208f3359a82ab",
+    "lib/rag-v2/catalog.js": "65a70e987886051bd68bcb4811fa42ba5b3f6560dca96576d39aaa0432fea87d",
+    "lib/rag-v2/knowledge.js": "f932ddd877e84962c317ba0d33fa3098826bf0aa5702e150c0d5a0743aa0cce6",
+    "lib/rag-v2/knowledge-preparation.js": "703f8483fed9d6bf91243f41eb89c0c3c531b4b588fab0a60fb1735c944a134f",
+    "lib/rag-v2/source-locations.js": "df231e583f478382e7f0abed12e13efbe09d19c8e99b1b92c11b73264b2d4c73",
+    "lib/rag-v2/text-source.js": "3c8dd63c30d8a1cdfe1ca08f04dc9d38ceb783f37c56ee72ea8c6f62c9cbe466",
+    "lib/rag-v2/pdf-layout.js": "d106875b97bfd61e70f5d402444a3105e78a4625d7dffbf768d15e034c253fc9",
+    "lib/rag-v2/chunking.js": "fe8374447990174ccd9c2b4d6ab794674d2b1679f3675cb7262199e3dde0dc99",
+    "lib/rag-v2/metadata-adapter.js": "cfa78fba64e5ebccb31161f5274cea664a63f3ce78329de58ae9c8c3f6998159",
+    "lib/rag-v2/registered-source.js": "aaf076b918a9858854084e7f04b0c044e042a67e0459c0dba52bd0878170044a",
+    "lib/rag-v2/search/snapshot.js": "624d2948e7301fc51ababcb9954aafb8b884880454ed1e48e0c3bdf7478c3678",
+    "lib/rag-v2/search/retrieval.js": "42f25a37198af79aa9601216a04b0523ca3d31ed2586143d1683878a4d270926",
+    "lib/rag-v2/search/postgres.js": "eff9e391644887d9ab36b53ed6e9f3ccc3e314fe2dbd35c1682e61eb129fdc46",
+    "lib/rag-v2/search/model-context.js": "ed23b8465a9016affe3c5da89356240556cc4f2c5328def621d35da47e5d758e",
+    "lib/rag-v2/search/export.js": "f6524c3d4fe633d20e7f6cda078a91550e896538ec2a312b2c1153bbfa2265f6",
+    "lib/rag-v2/pilot/retrieval.js": "9e0c88d5fa2b5b6b268cd317abe88603387bb3f0fa1127fc5ee64aa63a587f56",
+    "lib/rag-v2/pilot/service.js": "314a4925d31301a4a852abcd1405939c4814d6217b39e075817ada57a8463bfb",
+    "lib/chat/m4PilotClientContract.js": "cf9568152e06b10903f8ecece45a523a41076b38249ff70fbeb98c4e56484411",
+    "lib/chat/m4PilotServer.js": "9e42e1da182467341d1f435478523d3be715d7ee9045e274751d46e1423b531b",
+    "app/chat-source/page.jsx": "afa0cdbc4e379bd50fc37d088608cf72b633a995d7464c84ad7d99fa2fe94324",
+    "scripts/rag-v2-ingest-registered.mjs": "670937a67b0ce191ce0aed17f023a53907acc5c4e31296a8f39f957300bbd587",
+    "tests/rag-v2-source-structure.test.mjs": "7f1df81cd781016508c9550725621907a8859f0603b3905c896c3aae31285068",
+    "tests/rag-v2-knowledge.test.mjs": "11fd04c9bfc1784065150f765a3fdfa17a76b98898f8288c5d3159c72a116f26",
+    "tests/rag-v2-ingest.test.mjs": "16124557a1c5af7752703a88ab92a364b5572732529de104fbb88e0edd559bce",
+    "lib/rag-v2/types.d.ts": "5cdc7299ba165811a563b97bb7b07b2f85c44bb30ae8f794ac6d2b423ab678f6",
+    "lib/rag-v2/search/types.d.ts": "4e52664a6ca364e05c581564445a6927aedfb0e1a977077dc2eb7761a347f513",
+    "package.json": "e17bc51b9f949dcf45d352d6bf34b135514f864b9102045d64b481b0260938f7",
+    "package-lock.json": "4b36d5e9cf78fda99f10db76184d6d153ad218249f7bf93c2d4b960ad29b6a96",
+    "app/layout.js": "066e01689e75e6a0808f02ef19e9ebc9115797f2ad07f813ea61ebc5c402ad9f",
+    "app/rag-pilot/pilot-client.jsx": "19298ce56438d886daa1adc681397104de9f233da1798aa2c1072c16667bbcfd",
+    "lib/chat/questionRequirements.js": "28a530a5c90c9b04463335277e45cc9bfb1b692072c8307446bd543ceb362c1e",
+    "lib/chat/questionRequirementsContract.js": "1e82d833b29e9353bebfa76e205b3b26d3c4bd23fb346f81782a848ade2ad71d",
+    "lib/chat/responsePolicy.js": "1b43521283634866615d7846cbb2d180dca2ae9beadf4b42872481097725cff2",
+    "lib/chat/responsePolicyContract.js": "a66bf7a4ba2d8cc7324497f51afc148a1e25741d44ecc979bedf74e9120a0351",
+    "lib/chat/sourceSelection.js": "821708e4e00827066430e3ee36c54d6dca4c0ff56ec3dfc011f9123fcf3b2c19",
+    "lib/chat/sourceSelectionContract.js": "11d4030deb6a9c2af731cbe5b858cd1599fe51e6d0db1ad54b7bf5e925e80340",
+    "lib/chat/ragDiagnostics.js": "21966a6689e22d09e6d820f1cbc7df83abac58099b48ed594453911bc5c70266",
+    "lib/rag-v2/admin/intake.js": "29a2cd17d42f3e4dc03a4820c743cb1451db006e3c9962dd1aea504e2115dc98",
+    "tests/rag-v2-admin-intake.test.mjs": "f9fcb857a5593aea56c1f06fc8a9ffcd478e19b438019cfd4c2eea6534177808",
+    "tests/chat-diagnostics-contract.test.mjs": "1207e7f233579050ceb4575116cafba24c033a8f8321f013663463f83ecf8a45",
+    "messages/et.json": "d4548034a7309a54ce1f35924eeb68024aa51514c19cba868c0bfbdbe01c7954",
+    "messages/en.json": "566ec3f8736914385e176182115b3a19f020f64691ba6470576fc64bb83d5247",
+    "messages/ru.json": "0f0a1e7c8d1536002f45534729b2e1ba80d21d2f21e3701fd923938dda7d2bd7"
+  },
+  "checks": {
+    "timezone": "UTC",
+    "intake": {
+      "passed": 14,
+      "failed": 0,
+      "skipped": 0,
+      "red_before_fix": [
+        "pdf document revocation",
+        "metadata document revocation"
+      ]
+    },
+    "diagnostic_contract": {
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0
+    },
+    "cloudflare_layout": {
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    "eslint": "pass; 2 existing unrelated warnings",
+    "i18n": "pass",
+    "turbopack": "pass",
+    "webpack": "pass",
+    "github_actions": "not_run_for_local_commit",
+    "fresh_linux_npm_ci": "not_run",
+    "prisma": "not_applicable_no_schema_change",
+    "logs": [
+      {
+        "file": "build-turbopack-final.log",
+        "sha256": "3eab6888474334856c555fe5d4c91695dc72050e95b29666fb0ee7035b32b25f"
+      },
+      {
+        "file": "build-webpack-final.log",
+        "sha256": "3ad065a58550d7153daf9d48076cea8e1679da86f25329233f8189f56639bc97"
+      }
+    ]
+  },
+  "index": {
+    "measured_at": "2026-09-08T06:52:51.295Z",
+    "tenant": "m1-source-acceptance-20260908",
+    "generation": "search_generation_4e290603189d3ce8009a95fc0fdf32931c70e35eb932c5a9790cb036d2a6a2bd",
+    "source_generation": "generation_5ab02c308b9ee731261f54d9e72cec761530f5797dedb1541f9bc5a81768fe1b",
+    "embedding_mode": "mock",
+    "external_calls": 0,
+    "results": [
+      {
+        "format": "html",
+        "title": "„Nad on ju vanad, mis seksuaalsusest me siin enam räägime?!“ Eakate seksuaalse eneseteostuse võimalused hooldekodudes",
+        "document_id": "document_5d197a9978410e5a23b3778795434269ea470cf0959f2480d12d2acebef9db95",
+        "version_id": "version_bfce9b153986d46f005e4cd78292c6648d57ec0a6b8e0dcae742ed827890a158",
+        "canonical": {
+          "tenant": "m1-source-acceptance-20260908",
+          "query_id": "query_de146b6bab3ec955a4304c1185d662d96523f326eb4c7c6084ee952a667dff1d",
+          "generation_id": "search_generation_4e290603189d3ce8009a95fc0fdf32931c70e35eb932c5a9790cb036d2a6a2bd",
+          "evidence_id": "evidence_06f82420be2f1bdf5eccc4838aadfd49cf5f17a943dd8ac739bb590748cfc2a3",
+          "document_id": "document_5d197a9978410e5a23b3778795434269ea470cf0959f2480d12d2acebef9db95",
+          "document_version_id": "version_bfce9b153986d46f005e4cd78292c6648d57ec0a6b8e0dcae742ed827890a158",
+          "unit_id": "unit_041d436d8061efe03ad65d20b056fd3d23115c2fba0b07049847369bc1ffa5c2",
+          "chunk_id": "chunk_d49e78f48910b229f1276f4454352b6fa48b5be441a653a82d9a92d57649aa04",
+          "span_ids": [
+            "span_456ad1fda6e37d33f0efd84a18dcb4a839655fde538de9b4214286808ba2062b",
+            "span_c4c681b3a94affe7ffa03952c60870d3b4229ba202af4bebd8001a959f307d62",
+            "span_2f118de5e3adfe0dc1bf58d8037adad934e8fdac99600697072ba769e35f8a3c",
+            "span_88351562917ee8601746dfe515fc2cf75588546355ae0f9c21e79f4dbce2bef4",
+            "span_9dcd5fc471f26dcc5f2f450246bcd12af9926c81360a85b88f16041881847319",
+            "span_d6c39392f3c06450d417347960264b67a27e443fcab5aeda5c30d4231e87b567"
+          ],
+          "source_locations": [
+            {
+              "end": 28,
+              "kind": "html",
+              "path": "/html[1]/body[1]/article[1]/div[1]/div[1]/div[1]/div[1]/h3[2]",
+              "start": 0,
+              "offset_basis": "source_unit_text_utf16",
+              "source_unit_id": "source_unit_df4e85dde4c930e46f4693c47fbc3f8a350472206481f008d6f6b30c60ff8b57"
+            },
+            {
+              "end": 343,
+              "kind": "html",
+              "path": "/html[1]/body[1]/article[1]/div[1]/div[1]/div[1]/div[1]/p[10]",
+              "start": 0,
+              "offset_basis": "source_unit_text_utf16",
+              "source_unit_id": "source_unit_9c7359bc4dc610545af16c10289a10980fcac007a4a62c8ae4563ba2cc0a73a5"
+            },
+            {
+              "end": 459,
+              "kind": "html",
+              "path": "/html[1]/body[1]/article[1]/div[1]/div[1]/div[1]/div[1]/p[11]",
+              "start": 0,
+              "offset_basis": "source_unit_text_utf16",
+              "source_unit_id": "source_unit_b046efc9aa55c67224ff05b7d91abcb27e9e0d4f9efd37a571ef44c973fe80bf"
+            },
+            {
+              "end": 136,
+              "kind": "html",
+              "path": "/html[1]/body[1]/article[1]/div[1]/div[1]/div[1]/div[1]/blockquote[3]/p[1]",
+              "start": 0,
+              "offset_basis": "source_unit_text_utf16",
+              "source_unit_id": "source_unit_bccc579a8fee94bac8bd8f60427708a47b0e8cfcd06deb311d058fe863f96aa7"
+            },
+            {
+              "end": 686,
+              "kind": "html",
+              "path": "/html[1]/body[1]/article[1]/div[1]/div[1]/div[1]/div[1]/p[12]",
+              "start": 0,
+              "offset_basis": "source_unit_text_utf16",
+              "source_unit_id": "source_unit_5eaf931e7199f120538fec16fa23d1d2f24e7cdbe1c45f36c62ec091da28e59e"
+            },
+            {
+              "end": 527,
+              "kind": "html",
+              "path": "/html[1]/body[1]/article[1]/div[1]/div[1]/div[1]/div[1]/p[13]",
+              "start": 0,
+              "offset_basis": "source_unit_text_utf16",
+              "source_unit_id": "source_unit_fad5e7a5f33e1e7253d5b1409029c33276f3ef7321462741b50370aa6ee63fc6"
+            }
+          ],
+          "pdf_pages": [],
+          "source_text_sha256": "1f8721f012e83888a6811b2f28d9c57dde27dcb1cc949ddaf5584ddc7e53a5d6"
+        },
+        "source_excerpt": "Juhtide teadmised ja hoiakud\nUuringus küsitletud hooldekodujuhid möönsid, et on vanemaealiste seksuaalsusega seotud stereotüüpidest teadlikud, kuid kinnitasid, et nende asutustes nähakse seksuaalsuse ",
+        "bibliography": {
+          "title": "„Nad on ju vanad, mis seksuaalsusest me siin enam räägime?!“ Eakate seksuaalse eneseteostuse võimalused hooldekodudes",
+          "authors": [
+            "Raili Pütsepp"
+          ],
+          "publication_date": "2024-09-25"
+        },
+        "object_counts": [
+          {
+            "kind": "asset",
+            "count": 2
+          },
+          {
+            "kind": "block",
+            "count": 58
+          },
+          {
+            "kind": "chunk",
+            "count": 7
+          },
+          {
+            "kind": "document",
+            "count": 1
+          },
+          {
+            "kind": "relation",
+            "count": 77
+          },
+          {
+            "kind": "section",
+            "count": 7
+          },
+          {
+            "kind": "span",
+            "count": 58
+          },
+          {
+            "kind": "version",
+            "count": 1
+          }
+        ],
+        "bundle_exact_match": true
+      },
+      {
+        "format": "pdf",
+        "title": "Lastekaitse juhtumikorraldusest sotsiaalteenuste ja -toetuste andmeregistris",
+        "document_id": "document_9b8529158df188372799e502de377e15765a621f5a05fae7a8289f353f6e28f8",
+        "version_id": "version_70fcaa6d725a7374b3f24f4d96ba36455c9d21d50a19e9577c0c5edfc5c4bb28",
+        "canonical": {
+          "tenant": "m1-source-acceptance-20260908",
+          "query_id": "query_ca44fd0fd72737962b52b6b32a13e67916d876124577ef504cbeb339338bb0a3",
+          "generation_id": "search_generation_4e290603189d3ce8009a95fc0fdf32931c70e35eb932c5a9790cb036d2a6a2bd",
+          "evidence_id": "evidence_8d97fbfd542e0c34e825092dcd277e4cdd3bae13d706b9675cea7c6a031a0d93",
+          "document_id": "document_9b8529158df188372799e502de377e15765a621f5a05fae7a8289f353f6e28f8",
+          "document_version_id": "version_70fcaa6d725a7374b3f24f4d96ba36455c9d21d50a19e9577c0c5edfc5c4bb28",
+          "unit_id": "unit_b1075e4067afe2a1e90c7ba23d65abf3c7d5150ecbf0bff350054b4924c24132",
+          "chunk_id": "chunk_6c7b49283750462188e63c340eee52f87ff4e82bfd0327d59878d5bc289f00e4",
+          "span_ids": [
+            "span_0ebdd94d0258d99def0711dcd814395164bdaff293c4ae8ccc98fb8a860e9ca3",
+            "span_209d0b70d4e17ec85f4ea942c06404a1a9eb64c209186832e0e303314a0a3839",
+            "span_b85ecf5f335ce8e6245ce64c1396a69d6be1d8e45a5198797ba12618fb35382d",
+            "span_a49ca1b601978930874481b010661e64851bd2260f17ea0a19cc978c9ce19a4c",
+            "span_a3567142a380609c01f899f9a2244a7f7a0836297b6080949980fb7c42ee589c",
+            "span_5f90de7fcb9f41ec2a73f2885ee2a73df716c48a82aa048fd28b0b6204b51688",
+            "span_9279ba74f88e795e81714186a2fd896c591c4f8a680eb25656b00b2b3bb7e286",
+            "span_ffcc6579fb19973880a27618ff535475e2a429064bb4f9980b376573740b9ed7",
+            "span_b7493aa3b90d814f431840bab61783d27ffa3c2514cba8ddb184819f3453af8d",
+            "span_0f411b6629e59807e31d9dc3c053b2caac1cb40e2d834c5f71c018022b4440b3",
+            "span_a70aa9d7fa2ff8720e3a607ec0e855da6c1197e6ca07664bbcfcab2c02860f19",
+            "span_bf0bc3074a322e2cddd4f691e18ad1afc2eceb092e46c63842d45aa3c7d2fb5f",
+            "span_4f312966909a197fd90c8e8dc26bf75eefd5587d011ff909fbf761f643581301",
+            "span_daad96d6b1f00bbb9ab274bfe3710f84a3285d237de22f702444f768acd06ce9",
+            "span_f56a87eaa8355503b7e610c3276937251794bf415eca404a1c6201d19b5b43ce",
+            "span_34301aa9196606aaa4b34a8877cf44131d07896b6d1985fad9c0e22bcb8e3bd0",
+            "span_34cd46c02d16ebcedaafbd135a2cb86b044a389ea917f8beb234f75622044cea",
+            "span_a190106c4f9706a00fd70f81c0f69c3750537b28dbdc4def9dd3eb869c281dae",
+            "span_cf0ea3a9ce519178d0fbf30af285fb46f4617fd809f00980597362d3912a7d1f",
+            "span_8dcefa54e8d65c1a26d38705eadc635c0588ba72b8aa1377ab72cde31043e5e8",
+            "span_deeab796a7228ee2d9e42dd9d86c53dd6046a38a42db900d308798b1d2e770c6",
+            "span_9953d7c65f7321cfab8c9866dd8913b8927d2f6add9f3c32920b8146d7b3f6d7",
+            "span_6a8692cf3608ab8fd4d706179265aa92592b9a2a9badafbe8db1bddaf6f2efe8",
+            "span_ad0e377efb69152eab0b4282fff77782fa83396a41b46a56b44b623eb2f954f3",
+            "span_4271b6d3a5cf792effe4ac7404504b139ada17bbe5f873c2f171e9834606c41d",
+            "span_2745fbc4afe6f28da59b10cd586e566bbf87f1855b9e894852efe780fe5d350b",
+            "span_5875c22a0522af4db26c49ce8a74fcbf1f9ed414bbab97db6ba15c09177cb3de",
+            "span_386895ada6b8ec7b9bb681badd21a8ab87cc84cf98fd21b14ca4fa86597e26d3",
+            "span_374889f24a384a32dab5f4960eaf59737a1e65956383d0d3f948a7a1da01826c",
+            "span_82d5e62aff2483cea90dba0595b4e1c28bcfb7c8163a243d1a9d57adaa638085",
+            "span_0f42e211ee2258852d888f75639f90b98ce1cfe1f7b26bdb44f83d95f4a656b9",
+            "span_5e91706463deff18f4f7442ba16efec5826bc655382136e3c84bd1312d176323",
+            "span_5caf926409ce21588ecb168bc3e9f8d73ba8412a337528eb7d2b16024896828b",
+            "span_5f7c844ac04d727923c1741f7cd53a9088ccd92885b5c92d5a50077aac354774",
+            "span_e0e7c42c7781405016180c68f0195177f65ebd25dc140a9fa1523a775b6fa99c",
+            "span_2d753bef682c398d5163fb4d1e12e07cecae57903244db89208a2dc90c94f1df",
+            "span_5bf1893dd67923f3ffb381da2154b07737ceb4f5d994c5835cc856ffe9bfc414",
+            "span_448a221e3a45011ba6f06db7b44802b08964637a63acd294668fec4801a6e6c7",
+            "span_1104c046e7e39adeb9b334e2d85d7083c941475a33d8993b46303038a4061ce8",
+            "span_fd34342a1b69d4481d022b5ec1e9cc9b86d23007054c94a33204a82375301919",
+            "span_2c4a22e91abf0370b4333aa012d076f8a6b87b9e68a229d31b74a3987baab11d",
+            "span_e0756b634fe3d83dab28437373beac78a59153575c81289f96b5d6c4141deb71",
+            "span_fb3744cb4afa062008963be89cb26ac381789ee3b3d7ab3647da36c4bab093b2"
+          ],
+          "source_locations": [
+            {
+              "end": 3623,
+              "kind": "pdf",
+              "start": 1859,
+              "pdf_page": 3,
+              "offset_basis": "source_unit_text_utf16",
+              "source_unit_id": "source_unit_635b510f16bd8c573a1fbd8ee199b00c141ed308251a88e9e6262784fb0e3b09"
+            },
+            {
+              "end": 23,
+              "kind": "pdf",
+              "start": 0,
+              "pdf_page": 4,
+              "offset_basis": "source_unit_text_utf16",
+              "source_unit_id": "source_unit_59d18b621b64ba3de1aa94f877c4d513c06038ad5b0dc05290a6a623724c6be5"
+            }
+          ],
+          "pdf_pages": [
+            3,
+            4
+          ],
+          "source_text_sha256": "5396bc62884fef8a3b7d465ab2ac8f4541864cd91aadd945a01dd7e76aa6a0e3"
+        },
+        "source_excerpt": "Artikli kirjutamise ajaks on aasta esimene\nkuu lõppemas ning esimesed valud ja vaevad\nüle elatud STARi tiimile on laekunud palju\nküsimusi, kuid tuleb tunnistada, et enamasti\non tegu ikkagi juhtumikorr",
+        "bibliography": {
+          "title": "Lastekaitse juhtumikorraldusest sotsiaalteenuste ja -toetuste andmeregistris",
+          "authors": [
+            "Katrin Pedastsaar"
+          ],
+          "publication_date": null
+        },
+        "object_counts": [
+          {
+            "kind": "asset",
+            "count": 2
+          },
+          {
+            "kind": "block",
+            "count": 37
+          },
+          {
+            "kind": "chunk",
+            "count": 10
+          },
+          {
+            "kind": "document",
+            "count": 1
+          },
+          {
+            "kind": "relation",
+            "count": 335
+          },
+          {
+            "kind": "section",
+            "count": 5
+          },
+          {
+            "kind": "span",
+            "count": 312
+          },
+          {
+            "kind": "version",
+            "count": 1
+          }
+        ],
+        "bundle_exact_match": true
+      },
+      {
+        "format": "xml",
+        "title": "Sotsiaalhoolekandelise abi andmise kord",
+        "document_id": "document_c53245391b7ba67feaa277b9acf111b9546ee4b0ee942eac2400f22c3acf447f",
+        "version_id": "version_c3a79813dfdc6a57b6c4113351c1cf041cf57c4da436c040a91f509e7e65c134",
+        "canonical": {
+          "tenant": "m1-source-acceptance-20260908",
+          "query_id": "query_da05de7f054a5c4252aad243dbbd8001aaca86857842dfcd99b6b6d73877626a",
+          "generation_id": "search_generation_4e290603189d3ce8009a95fc0fdf32931c70e35eb932c5a9790cb036d2a6a2bd",
+          "evidence_id": "evidence_a30936ba93c47126942a78e264ebbbd6fde6a002c2ec1339de6af8a6a7aeb5f4",
+          "document_id": "document_c53245391b7ba67feaa277b9acf111b9546ee4b0ee942eac2400f22c3acf447f",
+          "document_version_id": "version_c3a79813dfdc6a57b6c4113351c1cf041cf57c4da436c040a91f509e7e65c134",
+          "unit_id": "unit_95c6ed1cbcd41f116e87949b95c44b08651d496d00662552b6db5398cf1c0342",
+          "chunk_id": "chunk_bd217416f6c0a86b3368f3d4673e696c0c3c5ea29bab08d09e3ef4b9e2d363b6",
+          "span_ids": [
+            "span_60ec13577224b4ef9a1d84e5fe3f422e697550c5b3eb4f7bfb6c9bff2eca9ada"
+          ],
+          "source_locations": [
+            {
+              "end": 2082,
+              "kind": "xml",
+              "path": "/oigusakt[1]/sisu[1]/peatykk[4]/paragrahv[3]",
+              "start": 0,
+              "element_id": "para22",
+              "offset_basis": "source_unit_text_utf16",
+              "act_reference": "401112019012",
+              "source_unit_id": "source_unit_9f7f7ac78299439e6abae662e4987669b31784b1b49c22102f2df882fcfa20eb"
+            }
+          ],
+          "pdf_pages": [],
+          "source_text_sha256": "5f5722c2a7147fb15bb2601a7ae9bbacddfd2da6f51a8db7a1682c47888113b2"
+        },
+        "source_excerpt": "22\n \n§ 22. \n\n Sotsiaalteenuseid osutavate ja sotsiaalvaldkonna sihtgruppe esindavate mittetulundusühingute tegevustoetus\n \n\n 1\n \n(1)\n\n \n \nTegevustoetuse andmise eesmärgiks on toetada sotsiaalteenuseid",
+        "bibliography": {
+          "title": "Sotsiaalhoolekandelise abi andmise kord",
+          "authors": null,
+          "publication_date": "2019-11-01"
+        },
+        "object_counts": [
+          {
+            "kind": "asset",
+            "count": 2
+          },
+          {
+            "kind": "block",
+            "count": 27
+          },
+          {
+            "kind": "chunk",
+            "count": 29
+          },
+          {
+            "kind": "document",
+            "count": 1
+          },
+          {
+            "kind": "relation",
+            "count": 87
+          },
+          {
+            "kind": "section",
+            "count": 28
+          },
+          {
+            "kind": "span",
+            "count": 29
+          },
+          {
+            "kind": "version",
+            "count": 1
+          }
+        ],
+        "bundle_exact_match": true
+      },
+      {
+        "format": "json",
+        "title": "Asendushooldusteenus",
+        "document_id": "document_eaa85c854fb9cd26779d01cfcdfc619adc7fb47f1445d422ccc8c550482fd6e3",
+        "version_id": "version_4e5095cc3a8f67205c5dbd8c211d7f12b062523ee9824483264be2f9a08fb3bb",
+        "canonical": {
+          "tenant": "m1-source-acceptance-20260908",
+          "query_id": "query_7a6b105bb6832cab46e504561f823e5ebf4f46fcb913b04c6be95161083ddc4c",
+          "generation_id": "search_generation_4e290603189d3ce8009a95fc0fdf32931c70e35eb932c5a9790cb036d2a6a2bd",
+          "evidence_id": "evidence_7fa1ec54565d9572e8a67c8c978507e8e9d1c9e995b1658225225f9a3469ca3d",
+          "document_id": "document_eaa85c854fb9cd26779d01cfcdfc619adc7fb47f1445d422ccc8c550482fd6e3",
+          "document_version_id": "version_4e5095cc3a8f67205c5dbd8c211d7f12b062523ee9824483264be2f9a08fb3bb",
+          "unit_id": "unit_12741182e584a1ac355c8ac5edc3f806bf515ed2908d7c4e28422c565ee9122f",
+          "chunk_id": "chunk_91675b2549427e67cbdf91f5ac83ce817d287cab1937d4b693ea7db83e8a8905",
+          "span_ids": [
+            "span_922af1938618abb7b79223464db541e62b7f8f1ee66227f2d459471f90458dba"
+          ],
+          "source_locations": [
+            {
+              "end": 96,
+              "kind": "json",
+              "path": "/items/0/conditions",
+              "start": 0,
+              "record_id": "alutaguse_vald_service_asendushooldusteenus",
+              "source_keys": [
+                "asendushooldusteenus_page",
+                "social_services_overview"
+              ],
+              "offset_basis": "source_unit_text_utf16",
+              "source_unit_id": "source_unit_91675b2549427e67cbdf91f5ac83ce817d287cab1937d4b693ea7db83e8a8905"
+            }
+          ],
+          "pdf_pages": [],
+          "source_text_sha256": "54dd66a91473db936dd644b627bdb55268a76b24e179f8d350d5a844c9a557f3"
+        },
+        "source_excerpt": "Laps paigutatakse asendushooldusele kuni 18. eluaastani. Kulud katab vald ja lapse sissetulekud.",
+        "bibliography": {
+          "title": "Asendushooldusteenus",
+          "authors": null,
+          "publication_date": null
+        },
+        "object_counts": [
+          {
+            "kind": "asset",
+            "count": 2
+          },
+          {
+            "kind": "block",
+            "count": 6
+          },
+          {
+            "kind": "chunk",
+            "count": 6
+          },
+          {
+            "kind": "document",
+            "count": 1
+          },
+          {
+            "kind": "relation",
+            "count": 23
+          },
+          {
+            "kind": "section",
+            "count": 7
+          },
+          {
+            "kind": "span",
+            "count": 6
+          },
+          {
+            "kind": "version",
+            "count": 1
+          }
+        ],
+        "bundle_exact_match": true
+      }
+    ]
+  },
+  "lifecycle": {
+    "measured_at": "2026-09-08T06:56:37.295Z",
+    "tenant": "m1-source-acceptance-20260908",
+    "embedding_mode": "mock",
+    "before": "search_generation_4e290603189d3ce8009a95fc0fdf32931c70e35eb932c5a9790cb036d2a6a2bd",
+    "failure": "deliberate_local_interruption",
+    "after_failure": "search_generation_4e290603189d3ce8009a95fc0fdf32931c70e35eb932c5a9790cb036d2a6a2bd",
+    "published": "search_generation_581c35371911741f1f52df4456eb4a85b8406eba869e05db0278bd1a33d89500",
+    "after_rollback": "search_generation_4e290603189d3ce8009a95fc0fdf32931c70e35eb932c5a9790cb036d2a6a2bd",
+    "historical_reference_unchanged": true,
+    "external_calls": 0,
+    "publish": {
+      "generation_id": "search_generation_581c35371911741f1f52df4456eb4a85b8406eba869e05db0278bd1a33d89500",
+      "config_id": "search_config_b7db5fd17c1ead0a536e0403648d8e481178b51cb60a09518ba2043391434a8e",
+      "embedding_mode": "mock",
+      "units": 52,
+      "knowledge_cards": 0,
+      "dependencies": 0,
+      "knowledge_gaps": 0,
+      "cache_hits": 45,
+      "mock_vectors_created": 7,
+      "stored_real_vectors_indexed": 0,
+      "external_embedding_calls": 0,
+      "generation_calls": 0
+    },
+    "requested_sequence_preserved": true,
+    "revision": "Explicit synthetic development HTML copy; original source unchanged",
+    "rollback": "Manual quiescent maintenance transaction with head lock, expected active generation and requested-sequence check; sequence preserved"
+  },
+  "ui": {
+    "scope": "Authenticated local browser, isolated development database, fixed local M4 test adapter; reads matching immutable bundles from file, not the PostgreSQL retrieval used by the separate index check",
+    "samples": [
+      {
+        "format": "html",
+        "canonical": {
+          "tenant": "m1-source-acceptance-20260908",
+          "unit_id": "chunk_5b5e65f86c6b2fd962bd1465d35ac5eb0d924fd7dc8a994867c4b9aed3487d1c",
+          "chunk_id": "chunk_5b5e65f86c6b2fd962bd1465d35ac5eb0d924fd7dc8a994867c4b9aed3487d1c",
+          "query_id": "query_b69f33655df2dfd7ab3a73ba8a1b01599d8b3dc7dfa0971b4957175e9a49c1da",
+          "span_ids": [
+            "span_b4c608cf94c386d03560b5babd5945f6152c57a017db406f9b96bd471821d037",
+            "span_f545758a09531ca3b8aa0be669de9f3071a71dc5ff887011f69eb8098fee0f60",
+            "span_0bfbdc6e18aa045d8b7621eed82ba61ab305922277cfb4cb1406e10e0b7824f1",
+            "span_c8bd2897eee3e95467567939d2ce1227c118a24efb3bbd954d14e8d7e1bd4a14",
+            "span_873701fbfcf213530d5f664326cfe2a3ae8c3955b07aa79260cf2b0ffeef167e",
+            "span_7f261458ff5de4a476493b85e22c5d23a7f54df1b467b90ed007c0ab844b4bb5",
+            "span_2081f20726dd27c6eb59dfa4ed579a88be1d7c578513dc4bacbb4bbc282df166",
+            "span_5ef46d82c599ee9eb4c92913a2b906de7bb86c5a448545608245efbd186c42b8",
+            "span_45ef5b54fb28548cab68c66210e30845e40221940ae14036437c38dd5939d626"
+          ],
+          "pdf_pages": [],
+          "document_id": "document_5d197a9978410e5a23b3778795434269ea470cf0959f2480d12d2acebef9db95",
+          "evidence_id": "evidence_7b3fad17fcea57c000e2daa52b7e0b16472b19ecc868566ea6e82ee23702376b",
+          "generation_id": "test-fixture-1",
+          "source_locations": [
+            {
+              "end": 17,
+              "kind": "html",
+              "path": "/html[1]/body[1]/article[1]/div[1]/div[1]/div[1]/div[1]/figure[1]/figcaption[1]/em[1]/text()[1]",
+              "start": 0,
+              "offset_basis": "source_unit_text_utf16",
+              "source_unit_id": "source_unit_5b5e65f86c6b2fd962bd1465d35ac5eb0d924fd7dc8a994867c4b9aed3487d1c"
+            },
+            {
+              "end": 9,
+              "kind": "html",
+              "path": "/html[1]/body[1]/article[1]/div[1]/div[1]/div[1]/div[1]/p[1]",
+              "start": 0,
+              "offset_basis": "source_unit_text_utf16",
+              "source_unit_id": "source_unit_8573f1e0db81af0fae7725a71a9cc76da07583149d386b7406dca865f739aaec"
+            },
+            {
+              "end": 476,
+              "kind": "html",
+              "path": "/html[1]/body[1]/article[1]/div[1]/div[1]/div[1]/div[1]/p[2]",
+              "start": 0,
+              "offset_basis": "source_unit_text_utf16",
+              "source_unit_id": "source_unit_d49e78f48910b229f1276f4454352b6fa48b5be441a653a82d9a92d57649aa04"
+            },
+            {
+              "end": 364,
+              "kind": "html",
+              "path": "/html[1]/body[1]/article[1]/div[1]/div[1]/div[1]/div[1]/p[3]",
+              "start": 0,
+              "offset_basis": "source_unit_text_utf16",
+              "source_unit_id": "source_unit_e6ad51d521a8071cb22df084d9beead1779bf39ee36143a56fa5ac258f584192"
+            },
+            {
+              "end": 9,
+              "kind": "html",
+              "path": "/html[1]/body[1]/article[1]/div[1]/div[1]/div[1]/div[1]/p[4]",
+              "start": 0,
+              "offset_basis": "source_unit_text_utf16",
+              "source_unit_id": "source_unit_f90e2466db1c3ed023313cfc89ddab8076caf1e40bf6c03a3bdf5c402a3772c1"
+            },
+            {
+              "end": 77,
+              "kind": "html",
+              "path": "/html[1]/body[1]/article[1]/div[1]/div[1]/div[1]/div[1]/p[5]",
+              "start": 0,
+              "offset_basis": "source_unit_text_utf16",
+              "source_unit_id": "source_unit_5ef520de29fcf0da3c99ebeaf645fea51b16e3b89e07d49a9a3b9696c6a35138"
+            },
+            {
+              "end": 471,
+              "kind": "html",
+              "path": "/html[1]/body[1]/article[1]/div[1]/div[1]/div[1]/div[1]/p[6]",
+              "start": 0,
+              "offset_basis": "source_unit_text_utf16",
+              "source_unit_id": "source_unit_3ef99a707cec2e7995738cb21ad8039d89cb9202b6c6aeae4f309828bbf981bf"
+            },
+            {
+              "end": 85,
+              "kind": "html",
+              "path": "/html[1]/body[1]/article[1]/div[1]/div[1]/div[1]/div[1]/blockquote[1]/p[1]",
+              "start": 0,
+              "offset_basis": "source_unit_text_utf16",
+              "source_unit_id": "source_unit_60f3fdde05ce41344df2cc926f980d147c6345f73d56f915e9ea541147b665ee"
+            },
+            {
+              "end": 443,
+              "kind": "html",
+              "path": "/html[1]/body[1]/article[1]/div[1]/div[1]/div[1]/div[1]/p[7]",
+              "start": 0,
+              "offset_basis": "source_unit_text_utf16",
+              "source_unit_id": "source_unit_cbcb50138a479c63590a5c95f85b9df10a2d535b79bbbc9bc4bf2d8d49186746"
+            }
+          ],
+          "source_text_sha256": "dbd8dd95c13b91017bb331f7de75392aa78e55d48e5cc4005b3c748305b5da4b",
+          "document_version_id": "version_bfce9b153986d46f005e4cd78292c6648d57ec0a6b8e0dcae742ed827890a158"
+        },
+        "totals": {
+          "tokens": 15268,
+          "nanoUsd": 0,
+          "attempts": 2,
+          "answerAttempts": 1,
+          "embeddingAttempts": 1
+        },
+        "dialog_visible": true,
+        "restored_visible": true,
+        "external_calls": 0,
+        "transport": "fixed_local_test"
+      },
+      {
+        "format": "xml",
+        "canonical": {
+          "tenant": "m1-source-acceptance-20260908",
+          "unit_id": "chunk_266d698acb00aea90f3990d258d39038033d4614c977cf8d556b77847764e333",
+          "chunk_id": "chunk_266d698acb00aea90f3990d258d39038033d4614c977cf8d556b77847764e333",
+          "query_id": "query_5e8ee46cd6e0d3d9e15433de128fe6f3b3c1681ef9f2691da19b55d3e9e95511",
+          "span_ids": [
+            "span_05d637e0737d0694fafed390b29dad019e9b6b16fc949e857c1dd049338c0e3f"
+          ],
+          "pdf_pages": [],
+          "document_id": "document_c53245391b7ba67feaa277b9acf111b9546ee4b0ee942eac2400f22c3acf447f",
+          "evidence_id": "evidence_d5c92239343c23d31e8543d68dd075a0d47a202c4a63baf28edc2a23d05777f9",
+          "generation_id": "test-fixture-1",
+          "source_locations": [
+            {
+              "end": 128,
+              "kind": "xml",
+              "path": "/oigusakt[1]/sisu[1]/preambul[1]/tavatekst[1]",
+              "start": 0,
+              "offset_basis": "source_unit_text_utf16",
+              "act_reference": "401112019012",
+              "source_unit_id": "source_unit_266d698acb00aea90f3990d258d39038033d4614c977cf8d556b77847764e333"
+            }
+          ],
+          "source_text_sha256": "2b68d4b778bf625ee322fbef16083438ae332d3c027c8c6c5e2e36db93870cc6",
+          "document_version_id": "version_c3a79813dfdc6a57b6c4113351c1cf041cf57c4da436c040a91f509e7e65c134"
+        },
+        "totals": {
+          "tokens": 12486,
+          "nanoUsd": 0,
+          "attempts": 2,
+          "answerAttempts": 1,
+          "embeddingAttempts": 1
+        },
+        "dialog_visible": true,
+        "restored_visible": true,
+        "external_calls": 0,
+        "transport": "fixed_local_test"
+      },
+      {
+        "format": "json",
+        "canonical": {
+          "tenant": "m1-source-acceptance-20260908",
+          "unit_id": "chunk_e7ce8dc2f84a53d2b9cc8d84c38d4c8e5afda8c954d9dd76d51637a025e061e8",
+          "chunk_id": "chunk_e7ce8dc2f84a53d2b9cc8d84c38d4c8e5afda8c954d9dd76d51637a025e061e8",
+          "query_id": "query_7e3b0dde2859a4d6623040a6fc22584d8cd73b3551b2e85d1e23ec98fe2097ab",
+          "span_ids": [
+            "span_b95bb1d09362c150f3784148bdeabea76b0a7b0707f94966b3f849a2dfe4f49b"
+          ],
+          "pdf_pages": [],
+          "document_id": "document_eaa85c854fb9cd26779d01cfcdfc619adc7fb47f1445d422ccc8c550482fd6e3",
+          "evidence_id": "evidence_fdd8823722fb85fdfd2b662517701aa2562a8366df64dce83ff9d8b3fd03011c",
+          "generation_id": "test-fixture-1",
+          "source_locations": [
+            {
+              "end": 20,
+              "kind": "json",
+              "path": "/items/0/title",
+              "start": 0,
+              "record_id": "alutaguse_vald_service_asendushooldusteenus",
+              "source_keys": [
+                "asendushooldusteenus_page",
+                "social_services_overview"
+              ],
+              "offset_basis": "source_unit_text_utf16",
+              "source_unit_id": "source_unit_e7ce8dc2f84a53d2b9cc8d84c38d4c8e5afda8c954d9dd76d51637a025e061e8"
+            }
+          ],
+          "source_text_sha256": "76d8df7c7625392b76f9061a575443c00e72a6bc359bf469f0c6d9bebdfc98cb",
+          "document_version_id": "version_4e5095cc3a8f67205c5dbd8c211d7f12b062523ee9824483264be2f9a08fb3bb"
+        },
+        "totals": {
+          "tokens": 12342,
+          "nanoUsd": 0,
+          "attempts": 2,
+          "answerAttempts": 1,
+          "embeddingAttempts": 1
+        },
+        "dialog_visible": true,
+        "restored_visible": true,
+        "external_calls": 0,
+        "transport": "fixed_local_test"
+      },
+      {
+        "format": "pdf",
+        "canonical": {
+          "tenant": "m1-source-acceptance-20260908",
+          "unit_id": "chunk_430433ec03e1251c49f0bbb8787c62f47cf03ed0aa718f1f0d59a6eba91d305f",
+          "chunk_id": "chunk_430433ec03e1251c49f0bbb8787c62f47cf03ed0aa718f1f0d59a6eba91d305f",
+          "query_id": "query_283de3c54ddf5e5035c37cf9e61e5bc08585301391d0abcd9333574d956b5d67",
+          "span_ids": [
+            "span_42618b954d42b404b9666582111f01848537b650c91e58bf039d070129caa9e9",
+            "span_478050a06d7e93e1931e831f9a681509855629936c531eb87a56e6ce4fc97f04",
+            "span_337a8dc3d9f732ba284c7bc3b639e9c1d670e4672a5d568ab47a4f32176d6d1e",
+            "span_d8e034e093e2175b29cabe383a12a25082d7c000e7090907eb04ff860bbb995f",
+            "span_90d35ffbf2d6ad66192141a13591d1d0af8c8b64afdd8e87062bead698c4be20",
+            "span_0ff5dec853a39a8e964268899272d626803f95119196940b8e6ed1bed0680580",
+            "span_e52c6bfe3762af2e52bbe4188a2704ba12bc889778acb0153bc02fef433b3426",
+            "span_b11934b3525e1e79476c8dd90f0ed7dbcc1837abef10cc3635164a56fc15741b",
+            "span_a43480f54a1ecbc51e5d76c696925030334e6b9c0a59af87d98bc73d790e1b6d",
+            "span_e7f9d2e663f7eec8b13c990b200f16844b3e8f126235f0a3813bdf62d8fc95ad",
+            "span_016aaaa5cd4e3c6cfc60c5b86bb2cfe9953eb43e22ef62744dc788b4e345baa3",
+            "span_ae7fe2774543103d31f6f610d2af3506a5da5769a8bece5e8229e77a899ff699",
+            "span_f1c9d8a174a5426df6c47fff4e151d839c53370f259889848daaf5d2bbbb2ef8",
+            "span_c1956da51dda306fd6a35ec06baaa66aab7fe4efe1397f36fecca884ab45fa00",
+            "span_0ec70eb658b7ad1f9edcc1de20751e178345b5755492f81b5079d901fd33c725",
+            "span_8de08abd7da09d667a66e6014fa8f943e576b55cdd2b257974b8c9a2b1d01467",
+            "span_b47973bcb620faea6925131b6381b1c02afdd913aa466bbd2f372e7260aac4a8",
+            "span_591c8f1c314c3ca2210dae8ddfd3fab51eb0df394db234d166c4c2fea369440e",
+            "span_e92dc60c9495d59e55c96ed8232732ee2882cbe4ea8815d44e12bcc11fa24195",
+            "span_9e379d9437b0107490199b47c2ed0e1b287205ed20d3242290b8e1ad771cd0fc",
+            "span_5538cddbfb80769b66389cc3212ae386cf02fddfd8f526fd7e1d00b356de0e85",
+            "span_3f07baf3e0e2258760592a5b4cf7afbcc6fcf40586d094a2040d67a15480c5bb",
+            "span_5c6dc12db757d0778c28d605c10f28b4cf9a6831b44525fe0f3ffc4cda71c903",
+            "span_6b33133823785328348925def8f94550d1d0b8a7ccb19efde84948ff2229b760",
+            "span_6e6bbd0476a9b0bd8fbe431ff07d1ccdb43530c875e98526c8bc2f13e95fe528",
+            "span_01df25efe3ecf608b388320244a484204e141bdd5e4452869fb7ccdfb09a02ce",
+            "span_1998aad71de01b55975b4975a3cdead799ee78e2f8c3c8612214bed258e2a80a",
+            "span_53c579ce295344ab7eea25e2e40ab35c067a866d18193b178a14a952e35ead62",
+            "span_48d834baa98862250b2be36efcce22460044fd5761436ac53cd8ee0c6f2f6530",
+            "span_bfae71bcc09497500200e6064f268e0053ac23e3fe6f082ed98380f437548453",
+            "span_0304ddfd89c02e804e91ecc222f9620bf7684fdc79e34655ce77a47b676ddb58",
+            "span_7941357766ccbfc62e9a8af951b7ba4cd8aa47c46542171c729f7a7a3b14c27f",
+            "span_a7622a313d61df571de1b0d988d02b093dd878c4c9fff736163e6871bea56506",
+            "span_ab9197e04cde4d36cd5af63d607862a7283cafa845b44ccf606d7355a1282f0c",
+            "span_8957136b73bbc57c013f563aa3109a2ccc6419a66dc686ab2a99c1c6626df024",
+            "span_e8a465742c6117cf89c3d53685d3d78089abecaec6fc4c7ba96f4df7477326dc",
+            "span_9755d5417cacff2f0a090b3b54f967ca337f3635dd0f871bbbe1556e05adf443",
+            "span_7c2a959ded311aba7dd1d9028ab9ac05fe9d1826d45bab4eb25e97a0479dc7e4",
+            "span_98f9405caf04b9fff2de895286916d6edd8bd0759cfff591c3ce1dac029fc19c",
+            "span_01ad34b4abb4ccbf3815c66e433277cffca3a15c4b72d3bff95d38ad1df1d844",
+            "span_12745795291b31d2b2c78ff87200e67ffe026217a8d140934736bad3451e1b42",
+            "span_f226ef48274273ae2199cab536136a091d3ed1395bb8ccc5465bd257e349b6ee"
+          ],
+          "pdf_pages": [
+            2
+          ],
+          "document_id": "document_9b8529158df188372799e502de377e15765a621f5a05fae7a8289f353f6e28f8",
+          "evidence_id": "evidence_9eee38ddc178eb3766c32068a86ace8c356c9a1c4ea1f74fee40cf28943458bf",
+          "generation_id": "test-fixture-1",
+          "source_locations": [
+            {
+              "end": 3707,
+              "kind": "pdf",
+              "start": 1820,
+              "pdf_page": 2,
+              "offset_basis": "source_unit_text_utf16",
+              "source_unit_id": "source_unit_edd67cdcaa99eb962876e976110832f16b035fb07e34ad1b9ee83186e0cab25f"
+            }
+          ],
+          "source_text_sha256": "62ab8bd3e405d43e87d1624063cc9b65e78089075fe9bcf2866e01be48648473",
+          "document_version_id": "version_70fcaa6d725a7374b3f24f4d96ba36455c9d21d50a19e9577c0c5edfc5c4bb28"
+        },
+        "totals": {
+          "tokens": 14277,
+          "nanoUsd": 0,
+          "attempts": 2,
+          "answerAttempts": 1,
+          "embeddingAttempts": 1
+        },
+        "dialog_visible": true,
+        "restored_visible": true,
+        "external_calls": 0,
+        "transport": "fixed_local_test"
+      }
+    ],
+    "manual_source_pages": {
+      "pdf": "pass: page 2 and source text visible",
+      "html": "pass: DOM paths and source text visible",
+      "revoked_user": "pass: source page denied after removing test user from local config",
+      "restored_user": "pass: same HTML source visible after restoring local config",
+      "initial_fixture_error": "stage_budget_not_configured before any provider call; corrected private fixture stage caps, then four successful turns"
+    }
+  },
+  "server": {
+    "measured_at": "2026-09-08T07:00:33.289915+00:00",
+    "server_commit": "9780dee9c68b0ea699b4a4cee2f8257bb84ce5dd",
+    "service": "active",
+    "admin_expires_at": "2026-09-08T00:00:00.000Z",
+    "source": {
+      "generation": "generation_71046a49e931530a218e57d9925439f7c5018d6ff7ac05c3996927fdd89bf13d",
+      "documents": {
+        "document_3a54519e9de596c56441155b83c5d6042bd51d213fd5622e7533899cb9a5a5bd": {
+          "version_id": "version_cb096c93c7ec37aaa354668421a45e1890de87fb2f84bc176bd478a613d42983",
+          "pdf_hash": "a41995721ca13aa78898116ccef466aedf3576e26bb30fce3c145f4d8b87828b",
+          "external_id": "m2multi-sotsiaaltoo-2-2025-ai"
+        },
+        "document_5f2172ae24d8915e6b0e68dda6fa1a5a51d282bd4dd84a7c6fba62281f50fd0d": {
+          "version_id": "version_8483b8d9286d1854ad9a875038bd67dca73e0a405447d85d4f5a020478de1f8e",
+          "pdf_hash": "1bee150c6c65e2a1a69a2324af16f3aa00b45bcab36cc0d9a11e527dd686834c",
+          "external_id": "m2multi-ai-sotsiaaltoos-osalejapakett-v0-3"
+        },
+        "document_20434601b6503c449b28a5efc21b9355bc81b3c4a0af55ef5f7a057af2fff3d1": {
+          "version_id": "version_e7a5cd4c960f653f6bedea67cb1ff02a0c8bd7cda1bea644f943c4585bfb108d",
+          "pdf_hash": "9bc020d12902f958b9084882af5bd224a3c38f14c1ff3be45c92115385c124de",
+          "external_id": "m2multi-esta-andmekaitse-eetilised-valikud-2026"
+        },
+        "document_85063bf990a32db3b63400800e7d02814960e936f49d876df349d0c6d1ef7e90": {
+          "version_id": "version_7865465dcea859a36e979a61e66cb6fae7d2c3e3a2bd77c89362f9bb1dd7b137",
+          "pdf_hash": "e27d064511e8a005826c1819dcb264b7ddc21227e1c799105a3957c73e8daf09",
+          "external_id": "m2multi-sotsiaaltoo-2-2026-tootajate-turvalisus"
+        },
+        "document_55f9870b4a411c23dbbbefa9dd2731977d62f93ccdc1ebdf83d165e7b3f93391": {
+          "version_id": "version_130b392b77ece6d66e288587501441af8393bda9e690efc2ed6551e7471c9f75",
+          "pdf_hash": "785d3e26329f5faca3b795e4e0387f98b0a45fe973cafdd79d12a8da81ee34a2",
+          "external_id": "m2multi-esta-hooldustootajate-eetika-enesehoid-2026"
+        },
+        "document_371352c97bb11082b9068197b936175710c3db4f02f9256483159ec3c88e09da": {
+          "version_id": "version_75a3c703c9324d4591d8da9f45df6fcf6a5d8f1828c90a8eb44468034236c2bf",
+          "pdf_hash": "2db90ecc6509a7c5118c4868b904efd254b3b6a62d004c6baab5e5b7d12aa182",
+          "external_id": "m2multi-tehnopol-heaolutehnoloogiate-programm-2026"
+        },
+        "document_42557e2733af816c80667d68e9e5e6fe2e9b37c7d4f480effcfa700af89ebb33": {
+          "version_id": "version_abede3f0544c1ae3706f2ac88f7c148bac1d1475463a4a0854fcabac4a31315b",
+          "pdf_hash": "d2f96860f073b4875111cd93696d2dc3673547ddbd268f87ea4a51e69bd5d927",
+          "external_id": "m2multi-eka-heaolutehnoloogiate-programm-2026"
+        },
+        "document_d0533a0a91ac63cf6e4f9578ac7a549c5c5e138c9ce47d69c9389a51f90df73e": {
+          "version_id": "version_c696f47d1ca4cbd10c9b7498f3f8dfb9f0dc2ad4cade387f8762cd5e8501d72f",
+          "pdf_hash": "42a0891809df1cc35ab0c19cd42abce78ff6e19e4186f772860bd6443acdad8c",
+          "external_id": "m2multi-esta-haigla-sotsiaaltoo-2026"
+        }
+      }
+    },
+    "m4": {
+      "id": "m4-evidence-comparison-baseline-20260907-1",
+      "mode": "real",
+      "tenant": "sotsiaalai-development",
+      "generationId": "search_generation_386d51771eff1ece99cc354144ea589736a4c36c18101847dc57d6e3665d4e6e",
+      "documents": {
+        "document_3a54519e9de596c56441155b83c5d6042bd51d213fd5622e7533899cb9a5a5bd": "version_cb096c93c7ec37aaa354668421a45e1890de87fb2f84bc176bd478a613d42983",
+        "document_5f2172ae24d8915e6b0e68dda6fa1a5a51d282bd4dd84a7c6fba62281f50fd0d": "version_8483b8d9286d1854ad9a875038bd67dca73e0a405447d85d4f5a020478de1f8e",
+        "document_20434601b6503c449b28a5efc21b9355bc81b3c4a0af55ef5f7a057af2fff3d1": "version_12ba5d1d7f9f90bf8deef75e1b56992473651506116451e40618dcde00498776",
+        "document_85063bf990a32db3b63400800e7d02814960e936f49d876df349d0c6d1ef7e90": "version_7865465dcea859a36e979a61e66cb6fae7d2c3e3a2bd77c89362f9bb1dd7b137",
+        "document_55f9870b4a411c23dbbbefa9dd2731977d62f93ccdc1ebdf83d165e7b3f93391": "version_130b392b77ece6d66e288587501441af8393bda9e690efc2ed6551e7471c9f75",
+        "document_371352c97bb11082b9068197b936175710c3db4f02f9256483159ec3c88e09da": "version_2a7643511f43a1321a94e7b5fdcf463b63946ec24b56c23c9a262f136b35b1c6",
+        "document_42557e2733af816c80667d68e9e5e6fe2e9b37c7d4f480effcfa700af89ebb33": "version_abede3f0544c1ae3706f2ac88f7c148bac1d1475463a4a0854fcabac4a31315b",
+        "document_d0533a0a91ac63cf6e4f9578ac7a549c5c5e138c9ce47d69c9389a51f90df73e": "version_c696f47d1ca4cbd10c9b7498f3f8dfb9f0dc2ad4cade387f8762cd5e8501d72f"
+      },
+      "profileId": "vector-ranked-first-v1",
+      "expiresAt": null
+    },
+    "head": {
+      "generation": "search_generation_cce615aba3a9fa3e5a6a0ab573dc655e660fcdb33eabc7918a18e6c6093ed4af",
+      "state": "ready",
+      "documents": {
+        "document_20434601b6503c449b28a5efc21b9355bc81b3c4a0af55ef5f7a057af2fff3d1": {
+          "pdf_hash": "9bc020d12902f958b9084882af5bd224a3c38f14c1ff3be45c92115385c124de",
+          "version_id": "version_e7a5cd4c960f653f6bedea67cb1ff02a0c8bd7cda1bea644f943c4585bfb108d",
+          "external_id": "m2multi-esta-andmekaitse-eetilised-valikud-2026"
+        },
+        "document_371352c97bb11082b9068197b936175710c3db4f02f9256483159ec3c88e09da": {
+          "pdf_hash": "2db90ecc6509a7c5118c4868b904efd254b3b6a62d004c6baab5e5b7d12aa182",
+          "version_id": "version_75a3c703c9324d4591d8da9f45df6fcf6a5d8f1828c90a8eb44468034236c2bf",
+          "external_id": "m2multi-tehnopol-heaolutehnoloogiate-programm-2026"
+        },
+        "document_3a54519e9de596c56441155b83c5d6042bd51d213fd5622e7533899cb9a5a5bd": {
+          "pdf_hash": "a41995721ca13aa78898116ccef466aedf3576e26bb30fce3c145f4d8b87828b",
+          "version_id": "version_cb096c93c7ec37aaa354668421a45e1890de87fb2f84bc176bd478a613d42983",
+          "external_id": "m2multi-sotsiaaltoo-2-2025-ai"
+        },
+        "document_42557e2733af816c80667d68e9e5e6fe2e9b37c7d4f480effcfa700af89ebb33": {
+          "pdf_hash": "d2f96860f073b4875111cd93696d2dc3673547ddbd268f87ea4a51e69bd5d927",
+          "version_id": "version_abede3f0544c1ae3706f2ac88f7c148bac1d1475463a4a0854fcabac4a31315b",
+          "external_id": "m2multi-eka-heaolutehnoloogiate-programm-2026"
+        },
+        "document_55f9870b4a411c23dbbbefa9dd2731977d62f93ccdc1ebdf83d165e7b3f93391": {
+          "pdf_hash": "785d3e26329f5faca3b795e4e0387f98b0a45fe973cafdd79d12a8da81ee34a2",
+          "version_id": "version_130b392b77ece6d66e288587501441af8393bda9e690efc2ed6551e7471c9f75",
+          "external_id": "m2multi-esta-hooldustootajate-eetika-enesehoid-2026"
+        },
+        "document_5f2172ae24d8915e6b0e68dda6fa1a5a51d282bd4dd84a7c6fba62281f50fd0d": {
+          "pdf_hash": "1bee150c6c65e2a1a69a2324af16f3aa00b45bcab36cc0d9a11e527dd686834c",
+          "version_id": "version_8483b8d9286d1854ad9a875038bd67dca73e0a405447d85d4f5a020478de1f8e",
+          "external_id": "m2multi-ai-sotsiaaltoos-osalejapakett-v0-3"
+        },
+        "document_85063bf990a32db3b63400800e7d02814960e936f49d876df349d0c6d1ef7e90": {
+          "pdf_hash": "e27d064511e8a005826c1819dcb264b7ddc21227e1c799105a3957c73e8daf09",
+          "version_id": "version_7865465dcea859a36e979a61e66cb6fae7d2c3e3a2bd77c89362f9bb1dd7b137",
+          "external_id": "m2multi-sotsiaaltoo-2-2026-tootajate-turvalisus"
+        },
+        "document_d0533a0a91ac63cf6e4f9578ac7a549c5c5e138c9ce47d69c9389a51f90df73e": {
+          "pdf_hash": "42a0891809df1cc35ab0c19cd42abce78ff6e19e4186f772860bd6443acdad8c",
+          "version_id": "version_c696f47d1ca4cbd10c9b7498f3f8dfb9f0dc2ad4cade387f8762cd5e8501d72f",
+          "external_id": "m2multi-esta-haigla-sotsiaaltoo-2026"
+        }
+      },
+      "units": 69
+    },
+    "preflight": {
+      "ok": false,
+      "code": "active_index_mismatch"
+    },
+    "external_calls": 0,
+    "server_writes": 0
+  },
+  "real_vector_batch": {
+    "schema_version": "rag-v2/reviewed-vector-scope-1",
+    "state": "draft_not_authorized_not_executed",
+    "tenant": "m1-source-acceptance-20260908",
+    "snapshot_hash": "0274a2686b517b10159b2a960d0f9930d363258ec4bcc09b3dd8c8feb0a4c9f4",
+    "embedding": {
+      "embedding_mode": "real",
+      "provider": "openai",
+      "model": "text-embedding-3-large",
+      "dimensions": 3072,
+      "distance": "Cosine",
+      "tokenizer": "js-tiktoken@1.0.21/cl100k_base",
+      "input_version": "title-section-text-v1",
+      "max_input_tokens": 8191,
+      "endpoint": "https://api.openai.com/v1/embeddings"
+    },
+    "files": [
+      {
+        "document_id": "document_5d197a9978410e5a23b3778795434269ea470cf0959f2480d12d2acebef9db95",
+        "version_id": "version_bfce9b153986d46f005e4cd78292c6648d57ec0a6b8e0dcae742ed827890a158",
+        "format": "html",
+        "asset": "original.html",
+        "source_sha256": "701cbb99b37101a08f760964ca5217702e2ed954de5b6334eecf2080e15678bf",
+        "metadata_sha256": "7fb3262b8a9255ca1368ac086834e8796d3d4719d336b9bc9157f275aa2fd3d4"
+      },
+      {
+        "document_id": "document_9b8529158df188372799e502de377e15765a621f5a05fae7a8289f353f6e28f8",
+        "version_id": "version_70fcaa6d725a7374b3f24f4d96ba36455c9d21d50a19e9577c0c5edfc5c4bb28",
+        "format": "pdf",
+        "asset": "original.pdf",
+        "source_sha256": "f79689e38be5f6186255751a629f2899c30f179c4ed12e2a56bda2b278020f6b",
+        "metadata_sha256": "99d463f3771195ddd169d535666f3fabbab01158becc08dab78ac17da7b3d472"
+      },
+      {
+        "document_id": "document_c53245391b7ba67feaa277b9acf111b9546ee4b0ee942eac2400f22c3acf447f",
+        "version_id": "version_c3a79813dfdc6a57b6c4113351c1cf041cf57c4da436c040a91f509e7e65c134",
+        "format": "xml",
+        "asset": "original.xml",
+        "source_sha256": "b2c49266a79d35f1d1ef0e09236ce07ede45dc592f110bbd3c3b2b4df9431006",
+        "metadata_sha256": "f19af5b16e173ac37924f3ff4e486b0fdca35dc8d0585dfac29ad1f9ec567197"
+      },
+      {
+        "document_id": "document_eaa85c854fb9cd26779d01cfcdfc619adc7fb47f1445d422ccc8c550482fd6e3",
+        "version_id": "version_4e5095cc3a8f67205c5dbd8c211d7f12b062523ee9824483264be2f9a08fb3bb",
+        "format": "json",
+        "asset": "original.json",
+        "source_sha256": "d73f9bc511dd7d679f6e14fcab0ca97a2da04eb91ff5c1ffe4f2e73920cda7cd",
+        "metadata_sha256": "1c325febfa88defb72e2bc5760c33a33eca5a185e452b43f181dc5bf6172ab42"
+      }
+    ],
+    "inputs": [
+      {
+        "document_id": "document_5d197a9978410e5a23b3778795434269ea470cf0959f2480d12d2acebef9db95",
+        "version_id": "version_bfce9b153986d46f005e4cd78292c6648d57ec0a6b8e0dcae742ed827890a158",
+        "chunk_id": "chunk_5b5e65f86c6b2fd962bd1465d35ac5eb0d924fd7dc8a994867c4b9aed3487d1c",
+        "input_hash": "2c2c9125e1552701be3dc4d62e50294ba530f8e60efa36dd14525294c2b1f0df",
+        "tokens": 824
+      },
+      {
+        "document_id": "document_5d197a9978410e5a23b3778795434269ea470cf0959f2480d12d2acebef9db95",
+        "version_id": "version_bfce9b153986d46f005e4cd78292c6648d57ec0a6b8e0dcae742ed827890a158",
+        "chunk_id": "chunk_8573f1e0db81af0fae7725a71a9cc76da07583149d386b7406dca865f739aaec",
+        "input_hash": "75bb95af6743bc61ef4e43803694ed6d7e188f7e375d76ee1aacea1f85f2caa3",
+        "tokens": 435
+      },
+      {
+        "document_id": "document_5d197a9978410e5a23b3778795434269ea470cf0959f2480d12d2acebef9db95",
+        "version_id": "version_bfce9b153986d46f005e4cd78292c6648d57ec0a6b8e0dcae742ed827890a158",
+        "chunk_id": "chunk_d49e78f48910b229f1276f4454352b6fa48b5be441a653a82d9a92d57649aa04",
+        "input_hash": "c5f178124e9c640060c6d25fc3de4d604bceb1fa01608c22066e32ec15214487",
+        "tokens": 899
+      },
+      {
+        "document_id": "document_5d197a9978410e5a23b3778795434269ea470cf0959f2480d12d2acebef9db95",
+        "version_id": "version_bfce9b153986d46f005e4cd78292c6648d57ec0a6b8e0dcae742ed827890a158",
+        "chunk_id": "chunk_e6ad51d521a8071cb22df084d9beead1779bf39ee36143a56fa5ac258f584192",
+        "input_hash": "6fcf77c55c06c16d67966422d1fad3a4ce4be4b19fe2326c8193a6ec246813fe",
+        "tokens": 667
+      },
+      {
+        "document_id": "document_5d197a9978410e5a23b3778795434269ea470cf0959f2480d12d2acebef9db95",
+        "version_id": "version_bfce9b153986d46f005e4cd78292c6648d57ec0a6b8e0dcae742ed827890a158",
+        "chunk_id": "chunk_f90e2466db1c3ed023313cfc89ddab8076caf1e40bf6c03a3bdf5c402a3772c1",
+        "input_hash": "9867ade4a8fa39518e5df217800d6a821ad97c759b0ad4e73bce717356e36767",
+        "tokens": 662
+      },
+      {
+        "document_id": "document_5d197a9978410e5a23b3778795434269ea470cf0959f2480d12d2acebef9db95",
+        "version_id": "version_bfce9b153986d46f005e4cd78292c6648d57ec0a6b8e0dcae742ed827890a158",
+        "chunk_id": "chunk_5ef520de29fcf0da3c99ebeaf645fea51b16e3b89e07d49a9a3b9696c6a35138",
+        "input_hash": "dd722c24880713823a3dafbc0cd5892e5b21510190bff70ceefdc44bcab7a6da",
+        "tokens": 859
+      },
+      {
+        "document_id": "document_5d197a9978410e5a23b3778795434269ea470cf0959f2480d12d2acebef9db95",
+        "version_id": "version_bfce9b153986d46f005e4cd78292c6648d57ec0a6b8e0dcae742ed827890a158",
+        "chunk_id": "chunk_3ef99a707cec2e7995738cb21ad8039d89cb9202b6c6aeae4f309828bbf981bf",
+        "input_hash": "2aaca606bd5e13449e4200bcd0e9d1e9425c33f0563868318bde46bded0073da",
+        "tokens": 740
+      },
+      {
+        "document_id": "document_9b8529158df188372799e502de377e15765a621f5a05fae7a8289f353f6e28f8",
+        "version_id": "version_70fcaa6d725a7374b3f24f4d96ba36455c9d21d50a19e9577c0c5edfc5c4bb28",
+        "chunk_id": "chunk_730f0241924ec3574d21467c134b522b382c62b47a43a79d5929a872f0fd2c43",
+        "input_hash": "39a7e6d3bde90cb1add04343dd1d00b24cb7d607a24a8c7e596a1edf809389fd",
+        "tokens": 53
+      },
+      {
+        "document_id": "document_9b8529158df188372799e502de377e15765a621f5a05fae7a8289f353f6e28f8",
+        "version_id": "version_70fcaa6d725a7374b3f24f4d96ba36455c9d21d50a19e9577c0c5edfc5c4bb28",
+        "chunk_id": "chunk_edd67cdcaa99eb962876e976110832f16b035fb07e34ad1b9ee83186e0cab25f",
+        "input_hash": "788f50473b3c559d3584796b139e554030fbcf87ca227379f49692fed2a4b36b",
+        "tokens": 49
+      },
+      {
+        "document_id": "document_9b8529158df188372799e502de377e15765a621f5a05fae7a8289f353f6e28f8",
+        "version_id": "version_70fcaa6d725a7374b3f24f4d96ba36455c9d21d50a19e9577c0c5edfc5c4bb28",
+        "chunk_id": "chunk_635b510f16bd8c573a1fbd8ee199b00c141ed308251a88e9e6262784fb0e3b09",
+        "input_hash": "f5e1fa1f2a9e4ade538a46051faad7ee47c4a5331423a92bb56f0c9411d52cb5",
+        "tokens": 45
+      },
+      {
+        "document_id": "document_9b8529158df188372799e502de377e15765a621f5a05fae7a8289f353f6e28f8",
+        "version_id": "version_70fcaa6d725a7374b3f24f4d96ba36455c9d21d50a19e9577c0c5edfc5c4bb28",
+        "chunk_id": "chunk_59d18b621b64ba3de1aa94f877c4d513c06038ad5b0dc05290a6a623724c6be5",
+        "input_hash": "63dbbeee9c9e976fb6036840105f3c3f245bdfd6e0996a65ca451d49e2f545b0",
+        "tokens": 839
+      },
+      {
+        "document_id": "document_9b8529158df188372799e502de377e15765a621f5a05fae7a8289f353f6e28f8",
+        "version_id": "version_70fcaa6d725a7374b3f24f4d96ba36455c9d21d50a19e9577c0c5edfc5c4bb28",
+        "chunk_id": "chunk_b81f2109edbc4e3cc1ebf5d73850af70dee35eb92b3b3d7306eb0034ece650b8",
+        "input_hash": "88b869766528073a7a3f32b281867b71b11c675254f18659c9bb9eb226130043",
+        "tokens": 928
+      },
+      {
+        "document_id": "document_9b8529158df188372799e502de377e15765a621f5a05fae7a8289f353f6e28f8",
+        "version_id": "version_70fcaa6d725a7374b3f24f4d96ba36455c9d21d50a19e9577c0c5edfc5c4bb28",
+        "chunk_id": "chunk_430433ec03e1251c49f0bbb8787c62f47cf03ed0aa718f1f0d59a6eba91d305f",
+        "input_hash": "08c51e5d7015e017b758caef88d56044ed61fc716f71c2ef007c33c1c6cb451f",
+        "tokens": 766
+      },
+      {
+        "document_id": "document_9b8529158df188372799e502de377e15765a621f5a05fae7a8289f353f6e28f8",
+        "version_id": "version_70fcaa6d725a7374b3f24f4d96ba36455c9d21d50a19e9577c0c5edfc5c4bb28",
+        "chunk_id": "chunk_1fd38934f7fd80a013a14bbec3396b9546af3c306f980be4249e55d5951adaf0",
+        "input_hash": "8337586a4fb7a2ce5b5c253ed6215c2e63f6f88681f9d4227c117e5db52f2cc3",
+        "tokens": 793
+      },
+      {
+        "document_id": "document_9b8529158df188372799e502de377e15765a621f5a05fae7a8289f353f6e28f8",
+        "version_id": "version_70fcaa6d725a7374b3f24f4d96ba36455c9d21d50a19e9577c0c5edfc5c4bb28",
+        "chunk_id": "chunk_6c7b49283750462188e63c340eee52f87ff4e82bfd0327d59878d5bc289f00e4",
+        "input_hash": "e5dcf423046a71bc26b9dd17bf0bc6b5c32c0272030fdefb3e22c71642f46737",
+        "tokens": 760
+      },
+      {
+        "document_id": "document_9b8529158df188372799e502de377e15765a621f5a05fae7a8289f353f6e28f8",
+        "version_id": "version_70fcaa6d725a7374b3f24f4d96ba36455c9d21d50a19e9577c0c5edfc5c4bb28",
+        "chunk_id": "chunk_52e6ad8e79313b7bb581ad2d21fabb27860e7445e5b78c15800d7db8919217e7",
+        "input_hash": "ef8d5d4432929694a1da409d9666134f29eacf7f86c97e66075c45fca78d6bf8",
+        "tokens": 694
+      },
+      {
+        "document_id": "document_9b8529158df188372799e502de377e15765a621f5a05fae7a8289f353f6e28f8",
+        "version_id": "version_70fcaa6d725a7374b3f24f4d96ba36455c9d21d50a19e9577c0c5edfc5c4bb28",
+        "chunk_id": "chunk_a492198873e2a4fc8176b21d5801c3acc4105a532991281d709c3b692e1d0400",
+        "input_hash": "26318aeff8dd8cad21b59c267403fe3f3cadf84f9b1e0e6560fb3fc87e094e4b",
+        "tokens": 746
+      },
+      {
+        "document_id": "document_c53245391b7ba67feaa277b9acf111b9546ee4b0ee942eac2400f22c3acf447f",
+        "version_id": "version_c3a79813dfdc6a57b6c4113351c1cf041cf57c4da436c040a91f509e7e65c134",
+        "chunk_id": "chunk_266d698acb00aea90f3990d258d39038033d4614c977cf8d556b77847764e333",
+        "input_hash": "7cf03362062354129c286d7da0003b3108ace489ec5065faf58b17c05b6a50d6",
+        "tokens": 70
+      },
+      {
+        "document_id": "document_c53245391b7ba67feaa277b9acf111b9546ee4b0ee942eac2400f22c3acf447f",
+        "version_id": "version_c3a79813dfdc6a57b6c4113351c1cf041cf57c4da436c040a91f509e7e65c134",
+        "chunk_id": "chunk_c634d98e8e33e3f8d6a4f38f541cc449082984dba8144138887ba37e67b82a1b",
+        "input_hash": "91e8d0792f5d03f769b2d11c9324054300e94b40d5399a4e89a141d89549498a",
+        "tokens": 110
+      },
+      {
+        "document_id": "document_c53245391b7ba67feaa277b9acf111b9546ee4b0ee942eac2400f22c3acf447f",
+        "version_id": "version_c3a79813dfdc6a57b6c4113351c1cf041cf57c4da436c040a91f509e7e65c134",
+        "chunk_id": "chunk_39908593cf5e9fb5b7a7ac16b45867a876fe8cad6fd4e5f88ddb4bc66565669f",
+        "input_hash": "caf2d83063e1549896061ed45bb2e3914726c333080ef60a9361a1fc437b2d99",
+        "tokens": 133
+      },
+      {
+        "document_id": "document_c53245391b7ba67feaa277b9acf111b9546ee4b0ee942eac2400f22c3acf447f",
+        "version_id": "version_c3a79813dfdc6a57b6c4113351c1cf041cf57c4da436c040a91f509e7e65c134",
+        "chunk_id": "chunk_03470aa8f52b4e64f6fe493c0213aa2e6ce4cd65ceeeed4af8819b4e6b6cc762",
+        "input_hash": "5a61f25edc68b0e3cbad39691cf5744763aa426384f971304f5acb2e94dddf4c",
+        "tokens": 98
+      },
+      {
+        "document_id": "document_c53245391b7ba67feaa277b9acf111b9546ee4b0ee942eac2400f22c3acf447f",
+        "version_id": "version_c3a79813dfdc6a57b6c4113351c1cf041cf57c4da436c040a91f509e7e65c134",
+        "chunk_id": "chunk_de6f1b73880e7478278350470c3f5f2ec979e7322c4b20488d4fb3a9a740ba9c",
+        "input_hash": "31f730da5f5cc317615597db813b9a3c3de7b7a560fa3e9b13a1516da27a0640",
+        "tokens": 119
+      },
+      {
+        "document_id": "document_c53245391b7ba67feaa277b9acf111b9546ee4b0ee942eac2400f22c3acf447f",
+        "version_id": "version_c3a79813dfdc6a57b6c4113351c1cf041cf57c4da436c040a91f509e7e65c134",
+        "chunk_id": "chunk_5c8608d4c6d5cfec22deb9c9672a3c99b620d44ad6982f8a9185e41bc4cdbc6d",
+        "input_hash": "50a6e6a7099768f063eac878e896ac64872f417d128375eedc8ea0ccc62c3246",
+        "tokens": 518
+      },
+      {
+        "document_id": "document_c53245391b7ba67feaa277b9acf111b9546ee4b0ee942eac2400f22c3acf447f",
+        "version_id": "version_c3a79813dfdc6a57b6c4113351c1cf041cf57c4da436c040a91f509e7e65c134",
+        "chunk_id": "chunk_655d607c8c27f8093224ec552e8849e994923fb04664c26d289d4ef8aaf7b5f9",
+        "input_hash": "8be2eec1d4eafde928c6b4740ddcb418a8d4489163f25c3e9e8e81c4dd6655d3",
+        "tokens": 806
+      },
+      {
+        "document_id": "document_c53245391b7ba67feaa277b9acf111b9546ee4b0ee942eac2400f22c3acf447f",
+        "version_id": "version_c3a79813dfdc6a57b6c4113351c1cf041cf57c4da436c040a91f509e7e65c134",
+        "chunk_id": "chunk_57ace2bacf2f4c5698482dd252d23d62cd4aed4b93b4b6d3cf3c3778c48ef522",
+        "input_hash": "190704e837980e8bb0b144debbbffd6aec5ee6b2e0b640842e43c263dd8b56fc",
+        "tokens": 547
+      },
+      {
+        "document_id": "document_c53245391b7ba67feaa277b9acf111b9546ee4b0ee942eac2400f22c3acf447f",
+        "version_id": "version_c3a79813dfdc6a57b6c4113351c1cf041cf57c4da436c040a91f509e7e65c134",
+        "chunk_id": "chunk_7490d13d0b45714d2ab08bcf08e5270d932ea3321a9634e64fff275e5072c354",
+        "input_hash": "99e8e83e7ebaf769677128e1fc0e22faf0c3b7ae20ed9da0024676dd1c9d5f02",
+        "tokens": 757
+      },
+      {
+        "document_id": "document_c53245391b7ba67feaa277b9acf111b9546ee4b0ee942eac2400f22c3acf447f",
+        "version_id": "version_c3a79813dfdc6a57b6c4113351c1cf041cf57c4da436c040a91f509e7e65c134",
+        "chunk_id": "chunk_33db758b9839f30f0991638bfe88a431096052d2cae62d0d597c35e07857328f",
+        "input_hash": "82f7a49ada8d2ba92fea94f17df3162e7094984dfb3d817402177a0a8a22fa2a",
+        "tokens": 539
+      },
+      {
+        "document_id": "document_c53245391b7ba67feaa277b9acf111b9546ee4b0ee942eac2400f22c3acf447f",
+        "version_id": "version_c3a79813dfdc6a57b6c4113351c1cf041cf57c4da436c040a91f509e7e65c134",
+        "chunk_id": "chunk_5ef438fc5c07348a3d067ec3d8bd7b1db543c11b6346252be3c921747b177a3a",
+        "input_hash": "ff20f39c219844af6fd9d81156d8abc9fd01dd88aeb845636105895342990bef",
+        "tokens": 654
+      },
+      {
+        "document_id": "document_c53245391b7ba67feaa277b9acf111b9546ee4b0ee942eac2400f22c3acf447f",
+        "version_id": "version_c3a79813dfdc6a57b6c4113351c1cf041cf57c4da436c040a91f509e7e65c134",
+        "chunk_id": "chunk_49f7835d7a28347a9e086e079b58b3b0651434ec48fec50d856a4398518014b7",
+        "input_hash": "ddaa9a3b267aeab9ae0395b8a3dde5011131497d94412d3610d428daf2d8d6a8",
+        "tokens": 264
+      },
+      {
+        "document_id": "document_c53245391b7ba67feaa277b9acf111b9546ee4b0ee942eac2400f22c3acf447f",
+        "version_id": "version_c3a79813dfdc6a57b6c4113351c1cf041cf57c4da436c040a91f509e7e65c134",
+        "chunk_id": "chunk_6cc7641badb7114b83c269c0337ad5dcf5197cf47e32b92d9749318e3236e4e1",
+        "input_hash": "f45c0463481c748e5ed2f6114cff99e3093d4771fa6628e09d4e22e4e41cbc38",
+        "tokens": 622
+      },
+      {
+        "document_id": "document_c53245391b7ba67feaa277b9acf111b9546ee4b0ee942eac2400f22c3acf447f",
+        "version_id": "version_c3a79813dfdc6a57b6c4113351c1cf041cf57c4da436c040a91f509e7e65c134",
+        "chunk_id": "chunk_2d45e6c6ed6d0267602679bb49b7caee36398caf13b5abaec365f58d5a10d91c",
+        "input_hash": "0335137ef3b76c2cc6c3f814c367f319d738b805158ce0629149600afc0a500e",
+        "tokens": 395
+      },
+      {
+        "document_id": "document_c53245391b7ba67feaa277b9acf111b9546ee4b0ee942eac2400f22c3acf447f",
+        "version_id": "version_c3a79813dfdc6a57b6c4113351c1cf041cf57c4da436c040a91f509e7e65c134",
+        "chunk_id": "chunk_dc331c2c59d6f7e0bfc518c2c6084135506bc5806a8ddfd090f5c111fab03481",
+        "input_hash": "fcf439ded7c10823db250f46a44b996d9a8afa9af8a8952d04f84a43a92ee534",
+        "tokens": 444
+      },
+      {
+        "document_id": "document_c53245391b7ba67feaa277b9acf111b9546ee4b0ee942eac2400f22c3acf447f",
+        "version_id": "version_c3a79813dfdc6a57b6c4113351c1cf041cf57c4da436c040a91f509e7e65c134",
+        "chunk_id": "chunk_c8ca073cb68e73044701c880bf631ed54864b372d5a95e1b62f7aeb869af0183",
+        "input_hash": "caa2580fbdbb3c936055c51bcd5a6db8cfdaea224c61ceaace5d83852e0e5582",
+        "tokens": 517
+      },
+      {
+        "document_id": "document_c53245391b7ba67feaa277b9acf111b9546ee4b0ee942eac2400f22c3acf447f",
+        "version_id": "version_c3a79813dfdc6a57b6c4113351c1cf041cf57c4da436c040a91f509e7e65c134",
+        "chunk_id": "chunk_7ddbc376a15cb624a27f080ec2159dd60a068abd467600dc24e66e91a51f9d2c",
+        "input_hash": "df206b5ef7f62c56d2d5d7ead8713079885cc43e0baa5071cb1e4ffcb7992382",
+        "tokens": 430
+      },
+      {
+        "document_id": "document_c53245391b7ba67feaa277b9acf111b9546ee4b0ee942eac2400f22c3acf447f",
+        "version_id": "version_c3a79813dfdc6a57b6c4113351c1cf041cf57c4da436c040a91f509e7e65c134",
+        "chunk_id": "chunk_9d58d44dfcf2390bda340d443a23ff24b1928135b536fc3145e60f1f1f956b66",
+        "input_hash": "2eae42ebf70a368f4a34013a9dbedff6bfe2797c237e61f62949af774cfebdd6",
+        "tokens": 301
+      },
+      {
+        "document_id": "document_c53245391b7ba67feaa277b9acf111b9546ee4b0ee942eac2400f22c3acf447f",
+        "version_id": "version_c3a79813dfdc6a57b6c4113351c1cf041cf57c4da436c040a91f509e7e65c134",
+        "chunk_id": "chunk_bc3395545525830c2a7e4f41b061032f7d1d89b866124f0c5d4cc7ce3ef00d8b",
+        "input_hash": "0a5bfbbf3c545dede29f34e57684cf4f26fa443debeff6434f39f034013b1e2e",
+        "tokens": 655
+      },
+      {
+        "document_id": "document_c53245391b7ba67feaa277b9acf111b9546ee4b0ee942eac2400f22c3acf447f",
+        "version_id": "version_c3a79813dfdc6a57b6c4113351c1cf041cf57c4da436c040a91f509e7e65c134",
+        "chunk_id": "chunk_87c857a7a32fe47f2eb0a3e252a565c1c3b148ceea6069c383a7dd80883c8578",
+        "input_hash": "e44ef1b70ec65cd42816fcb7aee7672437903aaf58792b795a27f9359f1907e4",
+        "tokens": 283
+      },
+      {
+        "document_id": "document_c53245391b7ba67feaa277b9acf111b9546ee4b0ee942eac2400f22c3acf447f",
+        "version_id": "version_c3a79813dfdc6a57b6c4113351c1cf041cf57c4da436c040a91f509e7e65c134",
+        "chunk_id": "chunk_92b1738107b06a0ff28fb2200482ac07b385020467d7bbcee9953f49e1dd6521",
+        "input_hash": "ab161aca24be0f957f723176279c764ce5ddbb7ccc3a4de9a5fc12787f99084d",
+        "tokens": 252
+      },
+      {
+        "document_id": "document_c53245391b7ba67feaa277b9acf111b9546ee4b0ee942eac2400f22c3acf447f",
+        "version_id": "version_c3a79813dfdc6a57b6c4113351c1cf041cf57c4da436c040a91f509e7e65c134",
+        "chunk_id": "chunk_ee6ec05cd7b0837bb4f0370bd5f5d64c9cce7476b6d04459601ec6e5d09d4ffa",
+        "input_hash": "069a0ffab6abcef2e5dfe4d202ca72297ff5a39b5922a9022fd3fe743e199ff3",
+        "tokens": 265
+      },
+      {
+        "document_id": "document_c53245391b7ba67feaa277b9acf111b9546ee4b0ee942eac2400f22c3acf447f",
+        "version_id": "version_c3a79813dfdc6a57b6c4113351c1cf041cf57c4da436c040a91f509e7e65c134",
+        "chunk_id": "chunk_9f7f7ac78299439e6abae662e4987669b31784b1b49c22102f2df882fcfa20eb",
+        "input_hash": "c189e54e805e7d48ee7ce6b8ad9aa4a3ab7ab82cd49f69e34efd68c50843a8e2",
+        "tokens": 461
+      },
+      {
+        "document_id": "document_c53245391b7ba67feaa277b9acf111b9546ee4b0ee942eac2400f22c3acf447f",
+        "version_id": "version_c3a79813dfdc6a57b6c4113351c1cf041cf57c4da436c040a91f509e7e65c134",
+        "chunk_id": "chunk_bd217416f6c0a86b3368f3d4673e696c0c3c5ea29bab08d09e3ef4b9e2d363b6",
+        "input_hash": "7dfe3fdfec48c8a5d558f6464132e2c78d0d8185bc7d783ab1a225f56e2907de",
+        "tokens": 810
+      },
+      {
+        "document_id": "document_c53245391b7ba67feaa277b9acf111b9546ee4b0ee942eac2400f22c3acf447f",
+        "version_id": "version_c3a79813dfdc6a57b6c4113351c1cf041cf57c4da436c040a91f509e7e65c134",
+        "chunk_id": "chunk_86149b252148406648ccfea69dfa0cfb1e4da6019879c37ee4b8c07ed70edc02",
+        "input_hash": "d7a9453b909a5d88b9b0a2b172d0e53369a51b885f5e31025271a876ea1a9fac",
+        "tokens": 396
+      },
+      {
+        "document_id": "document_c53245391b7ba67feaa277b9acf111b9546ee4b0ee942eac2400f22c3acf447f",
+        "version_id": "version_c3a79813dfdc6a57b6c4113351c1cf041cf57c4da436c040a91f509e7e65c134",
+        "chunk_id": "chunk_157c9efb98572d8f96cf0fee0b3bd4e40e2040c7426fe2accae16d94c58c69c3",
+        "input_hash": "78eee97341aab2f8d4b50b7954d215a99117550f25f0d18a2b2159073b49bdbe",
+        "tokens": 200
+      },
+      {
+        "document_id": "document_c53245391b7ba67feaa277b9acf111b9546ee4b0ee942eac2400f22c3acf447f",
+        "version_id": "version_c3a79813dfdc6a57b6c4113351c1cf041cf57c4da436c040a91f509e7e65c134",
+        "chunk_id": "chunk_aaa7f0514f5fdc344a2969eafadc1472ae78731b806635768002c56c693a6e06",
+        "input_hash": "e83cd3cdd67b753b235e477c9d811e28a1c7b5aa9749804fa97efa7b97f25d84",
+        "tokens": 279
+      },
+      {
+        "document_id": "document_c53245391b7ba67feaa277b9acf111b9546ee4b0ee942eac2400f22c3acf447f",
+        "version_id": "version_c3a79813dfdc6a57b6c4113351c1cf041cf57c4da436c040a91f509e7e65c134",
+        "chunk_id": "chunk_29bc8e01ca89564e7f4a3c0439dcc07c745db9de57708d08f2115c93e73f5099",
+        "input_hash": "fb127c58a6c332c4ec308ae91ba86ffe8e27d479fa9bd6dbd57d97c6f73a0af0",
+        "tokens": 87
+      },
+      {
+        "document_id": "document_c53245391b7ba67feaa277b9acf111b9546ee4b0ee942eac2400f22c3acf447f",
+        "version_id": "version_c3a79813dfdc6a57b6c4113351c1cf041cf57c4da436c040a91f509e7e65c134",
+        "chunk_id": "chunk_96a021635687d8d958e6917ac892bcf26469489fe7224a6a011d1718d2eb1924",
+        "input_hash": "7c3a92e68019003bd32d742f8464c340efee75571f189a177dd2dc2323ea2c74",
+        "tokens": 57
+      },
+      {
+        "document_id": "document_eaa85c854fb9cd26779d01cfcdfc619adc7fb47f1445d422ccc8c550482fd6e3",
+        "version_id": "version_4e5095cc3a8f67205c5dbd8c211d7f12b062523ee9824483264be2f9a08fb3bb",
+        "chunk_id": "chunk_e7ce8dc2f84a53d2b9cc8d84c38d4c8e5afda8c954d9dd76d51637a025e061e8",
+        "input_hash": "52b4efd16f886f8cf6f65802f165bdf8f4ec589516d3deae7db59463710588dc",
+        "tokens": 28
+      },
+      {
+        "document_id": "document_eaa85c854fb9cd26779d01cfcdfc619adc7fb47f1445d422ccc8c550482fd6e3",
+        "version_id": "version_4e5095cc3a8f67205c5dbd8c211d7f12b062523ee9824483264be2f9a08fb3bb",
+        "chunk_id": "chunk_2cd1a2f360393f7a40b47bcf2db7e0b9cd399deba615a4f1cb4b3624d6d88db5",
+        "input_hash": "03123d799a22c6e10356cab57910afbaba2c0c4a322293ee17256a7050779608",
+        "tokens": 21
+      },
+      {
+        "document_id": "document_eaa85c854fb9cd26779d01cfcdfc619adc7fb47f1445d422ccc8c550482fd6e3",
+        "version_id": "version_4e5095cc3a8f67205c5dbd8c211d7f12b062523ee9824483264be2f9a08fb3bb",
+        "chunk_id": "chunk_85a011429b096ff37141389412d04c210330482c4596cc58766aae68a92a1b20",
+        "input_hash": "858cf858a912856366531d434767cfa4d8c80c86109c3430a91841c8f70fce22",
+        "tokens": 133
+      },
+      {
+        "document_id": "document_eaa85c854fb9cd26779d01cfcdfc619adc7fb47f1445d422ccc8c550482fd6e3",
+        "version_id": "version_4e5095cc3a8f67205c5dbd8c211d7f12b062523ee9824483264be2f9a08fb3bb",
+        "chunk_id": "chunk_d55a1ae50d35bd79a8acdf117adae5e13eaa5904aed24c64b4d37423978800f2",
+        "input_hash": "3bc50d19ccf63ffad337ac7d39d8fe78ff6fd3026c6b71ca274d05ecfa1b4f80",
+        "tokens": 68
+      },
+      {
+        "document_id": "document_eaa85c854fb9cd26779d01cfcdfc619adc7fb47f1445d422ccc8c550482fd6e3",
+        "version_id": "version_4e5095cc3a8f67205c5dbd8c211d7f12b062523ee9824483264be2f9a08fb3bb",
+        "chunk_id": "chunk_91675b2549427e67cbdf91f5ac83ce817d287cab1937d4b693ea7db83e8a8905",
+        "input_hash": "29c5d9bfd6960b410f5ada29d05d87f5e041e77f3536c7cb3e56e2d166528b9c",
+        "tokens": 58
+      },
+      {
+        "document_id": "document_eaa85c854fb9cd26779d01cfcdfc619adc7fb47f1445d422ccc8c550482fd6e3",
+        "version_id": "version_4e5095cc3a8f67205c5dbd8c211d7f12b062523ee9824483264be2f9a08fb3bb",
+        "chunk_id": "chunk_91c7fab721680b792e639695c01015b657c0b8c75a441fb46adbab9b5c567d98",
+        "input_hash": "683a714d43316938b2156814b00fd2f22815536f04603766a2ffde5d9427a41d",
+        "tokens": 61
+      }
+    ],
+    "max_api_attempts": 52,
+    "total_input_tokens": 22197,
+    "retries": 0,
+    "generation_calls": 0,
+    "price_verification": "pending_before_real_execution",
+    "reusable_real_vectors": "not_assumed",
+    "approval": null,
+    "sha256": "870818e8f65b3d0d5ebccbab3c949d271773f46a021a5a3c5c10b3e99a7ca953"
+  },
+  "remaining": [
+    "Production deployment and coherent M4 plan approval/activation",
+    "Real-vector four-format semantic quality and end-to-end production model request",
+    "All-corpus ingestion, resumable batches, selective runtime loading",
+    "Non-PDF M3 anchor preparation and admin upload remain outside this acceptance"
+  ]
+}

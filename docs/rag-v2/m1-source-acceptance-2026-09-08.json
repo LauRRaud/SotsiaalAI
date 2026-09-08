@@ -1,0 +1,584 @@
+{
+  "measured_at": "2026-09-08T05:09:43.581Z",
+  "scope": "Seven local registered public-source files; immutable bundle and original-asset inspection; no database, model, or server operation.",
+  "snapshot_hash": "d0b5250b511572651d2474ab2765ba95db29c8789973f24e8cd4160bb5671ad7",
+  "source_generation": "generation_5ab02c308b9ee731261f54d9e72cec761530f5797dedb1541f9bc5a81768fe1b",
+  "samples": [
+    {
+      "sample": "journal-columns",
+      "source": "ajakiri_sotsiaaltoo/16-1/2016_1_artikkel_02_lastekaitse_juhtumikorraldusest_sotsiaalteenuste_ja.pdf",
+      "source_format": "pdf",
+      "source_sha256": "f79689e38be5f6186255751a629f2899c30f179c4ed12e2a56bda2b278020f6b",
+      "version_id": "version_70fcaa6d725a7374b3f24f4d96ba36455c9d21d50a19e9577c0c5edfc5c4bb28",
+      "pages": 4,
+      "columns": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "source_units": 4,
+      "chunks": 10,
+      "max_chunk_chars": 2194,
+      "resolved_source_paths": 0,
+      "resolved_metadata_paths": 15,
+      "resolved_xml_metadata_paths": 0,
+      "title": "Lastekaitse juhtumikorraldusest sotsiaalteenuste ja -toetuste andmeregistris",
+      "authors": [
+        "Katrin Pedastsaar"
+      ],
+      "publication_year": 2016,
+      "publication_date": null,
+      "journal_page_range": "3-6",
+      "pdf_page_range": [
+        1,
+        4
+      ],
+      "valid_from": null,
+      "valid_to": null,
+      "checked_at": null,
+      "retrieved_at": null,
+      "source_urls": [],
+      "audience": "BOTH",
+      "warnings": [
+        {
+          "code": "pdf_column_order_detected",
+          "detail": "Persistent gutter used to order two columns within vertical bands; complex tables and irregular layouts still require review."
+        },
+        {
+          "code": "title_not_matched_in_pdf"
+        },
+        {
+          "code": "description_not_verified",
+          "detail": "Imported description is not source evidence."
+        },
+        {
+          "code": "layout_coverage_limit",
+          "detail": "Text-layer single columns and persistent two-column gutters are supported; OCR, complex tables, footnotes and irregular layouts require review."
+        }
+      ],
+      "source_and_manifest_integrity": "pass",
+      "span_ranges": "pass",
+      "record_groups": 1,
+      "model_calls": 0
+    },
+    {
+      "sample": "journal-single",
+      "source": "ajakiri_sotsiaaltoo/25-2/Tehisintellekt sotsiaaltöös_2_2025.pdf",
+      "source_format": "pdf",
+      "source_sha256": "a41995721ca13aa78898116ccef466aedf3576e26bb30fce3c145f4d8b87828b",
+      "version_id": "version_3dc1981a40fb2beeaa6a1207814781ec1cf9dfe96c3b56af486af5e29577d981",
+      "pages": 13,
+      "columns": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "source_units": 13,
+      "chunks": 16,
+      "max_chunk_chars": 2196,
+      "resolved_source_paths": 0,
+      "resolved_metadata_paths": 20,
+      "resolved_xml_metadata_paths": 0,
+      "title": "Tehisintellekt sotsiaaltöös: praktika, kaalutlused ja väärtuspõhised piirid",
+      "authors": [
+        "Laur Raudsoo"
+      ],
+      "publication_year": 2025,
+      "publication_date": null,
+      "journal_page_range": "1–13",
+      "pdf_page_range": [
+        1,
+        13
+      ],
+      "valid_from": null,
+      "valid_to": null,
+      "checked_at": "2026-04-26",
+      "retrieved_at": null,
+      "source_urls": [
+        "https://www.tai.ee/et/sotsiaaltoo/tehisintellekt-sotsiaaltoos-praktika-kaalutlused-ja-vaartuspohised-piirid"
+      ],
+      "audience": "BOTH",
+      "warnings": [
+        {
+          "code": "description_not_verified",
+          "detail": "The supplied audit did not identify a clear source passage for enesejuhitud õppe toetamist. Review needed; this is not a semantic verdict on the article."
+        },
+        {
+          "code": "reference_list_not_visible",
+          "span_ids": [
+            "span_4915e1c35250a507cd3e999b8d2a3242574a81a67c7853ef7d42879be7cdd7d5"
+          ]
+        },
+        {
+          "code": "layout_coverage_limit",
+          "detail": "Text-layer single columns and persistent two-column gutters are supported; OCR, complex tables, footnotes and irregular layouts require review."
+        }
+      ],
+      "source_and_manifest_integrity": "pass",
+      "span_ranges": "pass",
+      "record_groups": 1,
+      "model_calls": 0
+    },
+    {
+      "sample": "guide",
+      "source": "juhendid_ja_uuringud/paasteamet_hoolekande_ja_tervishoiuasutuste_tuleohutus_pdf.pdf",
+      "source_format": "pdf",
+      "source_sha256": "3eab944a784e5260f636cff5778f08f6be3623fe970cbfee72536cf794dbef8a",
+      "version_id": "version_ffe2ff7b9189c0e307431eba39d6e637aba19d3082fe78a692cdd1200ad2886c",
+      "pages": 17,
+      "columns": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "source_units": 17,
+      "chunks": 13,
+      "max_chunk_chars": 2199,
+      "resolved_source_paths": 0,
+      "resolved_metadata_paths": 21,
+      "resolved_xml_metadata_paths": 0,
+      "title": "Hoolekande- ja tervishoiuasutuste tuleohutus",
+      "authors": [],
+      "publication_year": 2024,
+      "publication_date": "2024-03-03",
+      "journal_page_range": "1–17",
+      "pdf_page_range": [
+        1,
+        17
+      ],
+      "valid_from": null,
+      "valid_to": null,
+      "checked_at": "2026-05-03",
+      "retrieved_at": null,
+      "source_urls": [
+        "https://www.rescue.ee/files/Materjalid/2024-03-03-hoolekande-ja-tervishoiuasutuste-tuleohutus.pdf"
+      ],
+      "audience": "BOTH",
+      "warnings": [
+        {
+          "code": "title_not_matched_in_pdf"
+        },
+        {
+          "code": "description_not_verified",
+          "detail": "Imported description is not source evidence."
+        },
+        {
+          "code": "layout_coverage_limit",
+          "detail": "Text-layer single columns and persistent two-column gutters are supported; OCR, complex tables, footnotes and irregular layouts require review."
+        },
+        {
+          "code": "metadata_candidate_conflict",
+          "detail": "last_checked"
+        },
+        {
+          "code": "metadata_candidate_conflict",
+          "detail": "description"
+        },
+        {
+          "code": "metadata_candidate_conflict",
+          "detail": "collection_id"
+        },
+        {
+          "code": "metadata_candidate_conflict",
+          "detail": "audience"
+        }
+      ],
+      "source_and_manifest_integrity": "pass",
+      "span_ranges": "pass",
+      "record_groups": 1,
+      "model_calls": 0
+    },
+    {
+      "sample": "html",
+      "source": "ajakiri_sotsiaaltoo/24-3/nad-on-ju-vanad-eakate-seksuaalne-eneseteostus-hooldekodudes-2024-3.html",
+      "source_format": "html",
+      "source_sha256": "701cbb99b37101a08f760964ca5217702e2ed954de5b6334eecf2080e15678bf",
+      "version_id": "version_bfce9b153986d46f005e4cd78292c6648d57ec0a6b8e0dcae742ed827890a158",
+      "pages": 0,
+      "columns": [],
+      "source_units": 58,
+      "chunks": 7,
+      "max_chunk_chars": 2184,
+      "resolved_source_paths": 58,
+      "resolved_metadata_paths": 17,
+      "resolved_xml_metadata_paths": 0,
+      "title": "„Nad on ju vanad, mis seksuaalsusest me siin enam räägime?!“ Eakate seksuaalse eneseteostuse võimalused hooldekodudes",
+      "authors": [
+        "Raili Pütsepp"
+      ],
+      "publication_year": 2024,
+      "publication_date": "2024-09-25",
+      "journal_page_range": null,
+      "pdf_page_range": null,
+      "valid_from": null,
+      "valid_to": null,
+      "checked_at": null,
+      "retrieved_at": "2026-09-07T19:39:33.399474+00:00",
+      "source_urls": [
+        "https://sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/nad-ju-vanad-mis-seksuaalsusest-me-siin-enam-raagime-eakate-seksuaalse"
+      ],
+      "audience": "BOTH",
+      "warnings": [
+        {
+          "code": "non_text_media_not_extracted"
+        },
+        {
+          "code": "title_not_matched_in_pdf"
+        },
+        {
+          "code": "description_not_verified",
+          "detail": "Imported description is not source evidence."
+        }
+      ],
+      "source_and_manifest_integrity": "pass",
+      "span_ranges": "pass",
+      "record_groups": 1,
+      "model_calls": 0
+    },
+    {
+      "sample": "xml",
+      "source": "oigusaktid/401112019012.xml",
+      "source_format": "xml",
+      "source_sha256": "b2c49266a79d35f1d1ef0e09236ce07ede45dc592f110bbd3c3b2b4df9431006",
+      "version_id": "version_c3a79813dfdc6a57b6c4113351c1cf041cf57c4da436c040a91f509e7e65c134",
+      "pages": 0,
+      "columns": [],
+      "source_units": 27,
+      "chunks": 29,
+      "max_chunk_chars": 2108,
+      "resolved_source_paths": 27,
+      "resolved_metadata_paths": 10,
+      "resolved_xml_metadata_paths": 7,
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "authors": null,
+      "publication_year": null,
+      "publication_date": "2019-11-01",
+      "journal_page_range": null,
+      "pdf_page_range": null,
+      "valid_from": "2019-11-04",
+      "valid_to": "2020-05-10",
+      "checked_at": null,
+      "retrieved_at": null,
+      "source_urls": [
+        "https://www.riigiteataja.ee/akt/401112019012"
+      ],
+      "audience": null,
+      "warnings": [
+        {
+          "code": "source_metadata_conflict",
+          "detail": "valid_from"
+        },
+        {
+          "code": "source_metadata_conflict",
+          "detail": "valid_to"
+        }
+      ],
+      "source_and_manifest_integrity": "pass",
+      "span_ranges": "pass",
+      "record_groups": 27,
+      "model_calls": 0
+    },
+    {
+      "sample": "kov",
+      "source": "KOV/alutaguse-vald/alutaguse-vald.json",
+      "source_format": "json",
+      "source_sha256": "d73f9bc511dd7d679f6e14fcab0ca97a2da04eb91ff5c1ffe4f2e73920cda7cd",
+      "version_id": "version_4e5095cc3a8f67205c5dbd8c211d7f12b062523ee9824483264be2f9a08fb3bb",
+      "pages": 0,
+      "columns": [],
+      "source_units": 6,
+      "chunks": 6,
+      "max_chunk_chars": 290,
+      "resolved_source_paths": 6,
+      "resolved_metadata_paths": 15,
+      "resolved_xml_metadata_paths": 0,
+      "title": "Asendushooldusteenus",
+      "authors": null,
+      "publication_year": null,
+      "publication_date": null,
+      "journal_page_range": null,
+      "pdf_page_range": null,
+      "valid_from": null,
+      "valid_to": null,
+      "checked_at": "2026-04-12",
+      "retrieved_at": "2026-04-12",
+      "source_urls": [
+        "https://www.alutagusevald.ee/toiming/asendushooldusteenus"
+      ],
+      "audience": [
+        "CLIENT",
+        "SOCIAL_WORKER"
+      ],
+      "warnings": [
+        {
+          "code": "collected_package_text",
+          "detail": "JSON values preserve collected content; they are not a fresh retrieval of the referenced web pages."
+        },
+        {
+          "code": "description_not_verified",
+          "detail": "Imported description is not source evidence."
+        },
+        {
+          "code": "metadata_candidate_conflict",
+          "detail": "title"
+        }
+      ],
+      "source_and_manifest_integrity": "pass",
+      "span_ranges": "pass",
+      "record_groups": 1,
+      "model_calls": 0
+    },
+    {
+      "sample": "organization",
+      "source": "organisatsioonid/astangu.json",
+      "source_format": "json",
+      "source_sha256": "2e66b8391a9f85dca31f972681e90a3f9ee013219e7b6a66dfc890adafbb9468",
+      "version_id": "version_e3f6fbd3867863ade48e50b7d8acfd5b9814d6461833a61fe28a3a9401a4c17d",
+      "pages": 0,
+      "columns": [],
+      "source_units": 113,
+      "chunks": 113,
+      "max_chunk_chars": 454,
+      "resolved_source_paths": 113,
+      "resolved_metadata_paths": 13,
+      "resolved_xml_metadata_paths": 0,
+      "title": "Astangu Kutserehabilitatsiooni Keskus",
+      "authors": null,
+      "publication_year": null,
+      "publication_date": null,
+      "journal_page_range": null,
+      "pdf_page_range": null,
+      "valid_from": null,
+      "valid_to": null,
+      "checked_at": "2026-04-29",
+      "retrieved_at": null,
+      "source_urls": [
+        "https://www.astangu.ee/et"
+      ],
+      "audience": "BOTH",
+      "warnings": [
+        {
+          "code": "collected_package_text",
+          "detail": "JSON values preserve collected content; they are not a fresh retrieval of the referenced web pages."
+        },
+        {
+          "code": "description_not_verified",
+          "detail": "Imported description is not source evidence."
+        },
+        {
+          "code": "metadata_candidate_conflict",
+          "detail": "audience"
+        }
+      ],
+      "source_and_manifest_integrity": "pass",
+      "span_ranges": "pass",
+      "record_groups": 14,
+      "model_calls": 0
+    }
+  ],
+  "schema_version": "rag-v2/m1-local-acceptance-1",
+  "base_commit": "9780dee9c68b0ea699b4a4cee2f8257bb84ce5dd",
+  "branch": "main",
+  "source_code_sha256": {
+    "lib/rag-v2/contracts.js": "6753eeb1ee171366ab0c7a2d666f75285a767b6349f6f48698dc53a563f8429a",
+    "lib/rag-v2/parser.js": "71161d18b09d88ef6900d7f467abb0f47aed75d8e806a931ecdaa894b937cdfc",
+    "lib/rag-v2/pdf-worker.js": "4a7b5fbce9425821df8f5968981966c1a46eb0f86d6769858bfa0b8dd022f24b",
+    "lib/rag-v2/normalize.js": "d7377fd823a6f55b8d2d4d3a77500a7f13fa9f7b6cf85fca290d37a151bcb803",
+    "lib/rag-v2/ingestion.js": "ffb195ae14918624da9e62406ae634e7163ad63014e5c06d2de208f3359a82ab",
+    "lib/rag-v2/catalog.js": "65a70e987886051bd68bcb4811fa42ba5b3f6560dca96576d39aaa0432fea87d",
+    "lib/rag-v2/knowledge.js": "f932ddd877e84962c317ba0d33fa3098826bf0aa5702e150c0d5a0743aa0cce6",
+    "lib/rag-v2/knowledge-preparation.js": "703f8483fed9d6bf91243f41eb89c0c3c531b4b588fab0a60fb1735c944a134f",
+    "lib/rag-v2/source-locations.js": "df231e583f478382e7f0abed12e13efbe09d19c8e99b1b92c11b73264b2d4c73",
+    "lib/rag-v2/text-source.js": "3c8dd63c30d8a1cdfe1ca08f04dc9d38ceb783f37c56ee72ea8c6f62c9cbe466",
+    "lib/rag-v2/pdf-layout.js": "d106875b97bfd61e70f5d402444a3105e78a4625d7dffbf768d15e034c253fc9",
+    "lib/rag-v2/chunking.js": "fe8374447990174ccd9c2b4d6ab794674d2b1679f3675cb7262199e3dde0dc99",
+    "lib/rag-v2/metadata-adapter.js": "cfa78fba64e5ebccb31161f5274cea664a63f3ce78329de58ae9c8c3f6998159",
+    "lib/rag-v2/registered-source.js": "aaf076b918a9858854084e7f04b0c044e042a67e0459c0dba52bd0878170044a",
+    "lib/rag-v2/search/snapshot.js": "624d2948e7301fc51ababcb9954aafb8b884880454ed1e48e0c3bdf7478c3678",
+    "lib/rag-v2/search/retrieval.js": "42f25a37198af79aa9601216a04b0523ca3d31ed2586143d1683878a4d270926",
+    "lib/rag-v2/search/postgres.js": "eff9e391644887d9ab36b53ed6e9f3ccc3e314fe2dbd35c1682e61eb129fdc46",
+    "lib/rag-v2/search/model-context.js": "ed23b8465a9016affe3c5da89356240556cc4f2c5328def621d35da47e5d758e",
+    "lib/rag-v2/search/export.js": "f6524c3d4fe633d20e7f6cda078a91550e896538ec2a312b2c1153bbfa2265f6",
+    "lib/rag-v2/pilot/retrieval.js": "9e0c88d5fa2b5b6b268cd317abe88603387bb3f0fa1127fc5ee64aa63a587f56",
+    "lib/rag-v2/pilot/service.js": "314a4925d31301a4a852abcd1405939c4814d6217b39e075817ada57a8463bfb",
+    "lib/chat/m4PilotClientContract.js": "cf9568152e06b10903f8ecece45a523a41076b38249ff70fbeb98c4e56484411",
+    "lib/chat/m4PilotServer.js": "9e42e1da182467341d1f435478523d3be715d7ee9045e274751d46e1423b531b",
+    "app/chat-source/page.jsx": "afa0cdbc4e379bd50fc37d088608cf72b633a995d7464c84ad7d99fa2fe94324",
+    "scripts/rag-v2-ingest-registered.mjs": "670937a67b0ce191ce0aed17f023a53907acc5c4e31296a8f39f957300bbd587",
+    "scripts/lib/source-master-knowledge-docs.mjs": "df02ea9995210f977c73f59aa5c1b3e3b46e7ea2a06359d227f23e46ab3d7d02",
+    "tests/rag-v2-source-structure.test.mjs": "7f1df81cd781016508c9550725621907a8859f0603b3905c896c3aae31285068",
+    "tests/rag-v2-knowledge.test.mjs": "11fd04c9bfc1784065150f765a3fdfa17a76b98898f8288c5d3159c72a116f26",
+    "tests/rag-v2-ingest.test.mjs": "c6b5f4c6b64b6a88ec3f948cfdb21240d4dca0bcafc2be098b3c10b167a687f8",
+    "lib/rag-v2/types.d.ts": "2dde1649ce59d10db67e458185769535a0c71d3df0fed30e21ddd3a185d7c671",
+    "lib/rag-v2/search/types.d.ts": "4e52664a6ca364e05c581564445a6927aedfb0e1a977077dc2eb7761a347f513",
+    "package.json": "39089fc6be6d9e98a7bed0e3169f82c698c9b60c90a886a772be284170546c38",
+    "package-lock.json": "04030aa40c19ff0f96d63fdca7777c3fb673f9cd679249eb3fccb1c68e2d853e"
+  },
+  "tests": {
+    "timezone": "UTC",
+    "unique_cases_passed": 50,
+    "groups": [
+      {
+        "command": "node --test tests/rag-v2-source-structure.test.mjs",
+        "passed": 18,
+        "failed": 0,
+        "skipped": 0
+      },
+      {
+        "command": "node --test tests/rag-v2-knowledge.test.mjs tests/rag-v2-pilot-chat-adapter.test.mjs",
+        "passed": 12,
+        "failed": 0,
+        "skipped": 0
+      },
+      {
+        "command": "node --test --test-name-pattern='metadata import|superseded source|index failure|source preparation is explicit|model candidates|reviewed selection|source replacement' tests/rag-v2-admin-intake.test.mjs tests/rag-v2-knowledge-preparation.test.mjs",
+        "passed": 7,
+        "failed": 0,
+        "skipped": 0
+      },
+      {
+        "command": "node --test --test-name-pattern='I-0[13467]|I-1[124]|M1 versioning|M1 persistence|Audit:' tests/rag-v2-ingest.test.mjs",
+        "input_root": "tmp/rag-v2-source-acceptance-20260908/legacy-input",
+        "passed": 13,
+        "failed_after_correction": 0,
+        "skipped": 0,
+        "note": "The selected run initially passed 12 cases; I-03 still expected a first-page date to overwrite publication metadata. Its expectation was aligned with ADR-010 and the isolated I-03 rerun passed 1/1. The other 12 cases were not rerun without a new reason."
+      }
+    ]
+  },
+  "static_checks": {
+    "eslint": {
+      "result": "pass",
+      "files": [
+        "lib/rag-v2/contracts.js",
+        "lib/rag-v2/parser.js",
+        "lib/rag-v2/pdf-worker.js",
+        "lib/rag-v2/normalize.js",
+        "lib/rag-v2/ingestion.js",
+        "lib/rag-v2/catalog.js",
+        "lib/rag-v2/knowledge.js",
+        "lib/rag-v2/knowledge-preparation.js",
+        "lib/rag-v2/source-locations.js",
+        "lib/rag-v2/text-source.js",
+        "lib/rag-v2/pdf-layout.js",
+        "lib/rag-v2/chunking.js",
+        "lib/rag-v2/metadata-adapter.js",
+        "lib/rag-v2/registered-source.js",
+        "lib/rag-v2/search/snapshot.js",
+        "lib/rag-v2/search/retrieval.js",
+        "lib/rag-v2/search/postgres.js",
+        "lib/rag-v2/search/model-context.js",
+        "lib/rag-v2/search/export.js",
+        "lib/rag-v2/pilot/retrieval.js",
+        "lib/rag-v2/pilot/service.js",
+        "lib/chat/m4PilotClientContract.js",
+        "lib/chat/m4PilotServer.js",
+        "app/chat-source/page.jsx",
+        "scripts/rag-v2-ingest-registered.mjs",
+        "scripts/lib/source-master-knowledge-docs.mjs",
+        "tests/rag-v2-source-structure.test.mjs",
+        "tests/rag-v2-knowledge.test.mjs",
+        "tests/rag-v2-ingest.test.mjs"
+      ]
+    },
+    "types": {
+      "result": "pass",
+      "command": "npx tsc --noEmit --target es2022 --module esnext --moduleResolution bundler --types node lib/rag-v2/types.d.ts lib/rag-v2/search/types.d.ts"
+    },
+    "i18n": {
+      "result": "pass",
+      "via": "npm run build"
+    },
+    "build": {
+      "result": "pass",
+      "command": "npm run build",
+      "timezone": "UTC",
+      "exit_code": 0,
+      "compiled_seconds": 28,
+      "notes": [
+        "Local password-reset and email-verification transport-unavailable messages did not fail the build."
+      ]
+    },
+    "diff_check": {
+      "result": "pass",
+      "command": "git diff --check"
+    }
+  },
+  "manual_review": {
+    "pdf": {
+      "source": "ajakiri_sotsiaaltoo/16-1/2016_1_artikkel_02_lastekaitse_juhtumikorraldusest_sotsiaalteenuste_ja.pdf",
+      "rendered_pages_reviewed": [
+        1,
+        2
+      ],
+      "detected_columns": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "result": "Main body follows the left column and then the right column, including the sentence continued from page 1 left to right. Rotated DIGAR side text is preserved in source units and omitted from evidence with an audit entry.",
+      "limit": "Full footnote/header separation and irregular or complex layouts are not accepted."
+    },
+    "source_paths": {
+      "html": 58,
+      "xml": 27,
+      "json": 119,
+      "result": "Every path resolves to the original decoded source node or JSON value; all source-unit text and span ranges match."
+    },
+    "metadata": {
+      "json_paths": 111,
+      "xml_paths": 7,
+      "result": "Metadata JSON pointers resolve in the preserved metadata asset. XML calendar-date zones retain the original lexical value in provenance."
+    },
+    "legacy_read": {
+      "result": "pass",
+      "schema": "rag-v2/1",
+      "single_version": "version_912705546e9bee33095a27ab924e5023c6368b7f59435aa97e79163255a62635",
+      "single_version_chunks": 16,
+      "additional_existing_local_snapshot_documents": 8
+    }
+  },
+  "runtime": {
+    "local_registered_ingest": "pass",
+    "immutable_bundle_load_and_snapshot": "pass",
+    "postgres_qdrant_new_formats": "NOT_PROVEN",
+    "authenticated_browser_new_formats": "NOT_PROVEN",
+    "admin_intake_formats": "pdf_only",
+    "full_corpus": "not_run",
+    "paid_model_calls": 0,
+    "server_changes": false,
+    "commit_push_deploy": false
+  },
+  "remaining_acceptance": [
+    "OCR, complex tables, full footnote/header separation and irregular PDF layouts.",
+    "All local corpus items and conflicting metadata must pass per-source review in the later batch workflow.",
+    "Generic formats through real PostgreSQL/Qdrant and authenticated source-view runtime.",
+    "Resumable bulk processing and measured input/model budget before changing the 5000-unit cap."
+  ]
+}
