@@ -152,10 +152,16 @@ if systemctl is-active --quiet sotsiaalai-frontend.service; then
   frontend_was_active="1"
 fi
 
-if [ -f "$FRONTEND_ENV" ]; then
+if sudo -n test -r "$FRONTEND_ENV"; then
+  # The production env file is intentionally root-readable only. Read it
+  # through the same non-interactive sudo gate used by the service controls;
+  # never print or copy its contents to the deploy log.
   set -a
-  . "$FRONTEND_ENV"
+  source /dev/stdin < <(sudo -n cat -- "$FRONTEND_ENV")
   set +a
+elif [ -f "$FRONTEND_ENV" ]; then
+  echo "[deploy:server] Frontend env exists but is not readable via sudo: $FRONTEND_ENV" >&2
+  exit 5
 fi
 
 echo "[deploy:server] Installing locked dependencies"
