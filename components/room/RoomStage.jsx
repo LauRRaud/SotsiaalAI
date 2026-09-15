@@ -1596,11 +1596,9 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
                 ))}
               </div>
 
-              {/* Kerimisvihje: peen joon + libisev täpp + mikrosilt */}
+              {/* Kerimisvihje: kaks sügavusse taanduvat ristkülikut */}
               <div className="room-hint" ref={hintRef} aria-hidden="true">
-                <span className="room-hint-track">
-                  <span className="room-hint-dot" />
-                </span>
+                <span className="scroll-frames" />
                 <span className="room-hint-label">{t("room.scroll_label")}</span>
               </div>
 

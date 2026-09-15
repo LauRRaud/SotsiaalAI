@@ -300,7 +300,7 @@ export default function AccessibilityModal({
      OptionCardi puhul label → sisemine input). Ainult jaamavahetusel,
      mitte mount'il — seal teeb selle juba firstFocusRef. */
   const prevIndexRef = useRef(activeIndex);
-  /* Keri-vihje (sama sõnatu nooleke mis avalehel, room.css .room-hint):
+  /* Keri-vihje (samad sügavusraamid mis avalehel, room.css .room-hint):
      nähtav ainult ENNE esimest lendu ja kaob JÄÄDAVALT, niipea kui
      kasutaja on korra edasi liikunud (omanik 26.07: „kaob ära pärast
      esmast kerimist, kui on jõutud järgmise seadeni") — ei tule tagasi,
@@ -706,13 +706,11 @@ export default function AccessibilityModal({
         {/* Lennulava: jaamad seisavad sügavuses, kaamera lendab nende vahel.
             Plaanid peavad olema dolly OTSESED lapsed (perspective, §3). */}
         <div className="a11f-stage" data-mode={mode} ref={stageRef}>
-          {/* Keri-vihje: sama peen joon + libisev täpp + mikrosilt mis
+          {/* Keri-vihje: samad sügavusse taanduvad ristkülikud mis
               avalehel (room.css .room-hint), ainult enne esimest lendu. */}
           {!scrollHintDismissed ? (
             <div className="a11f-scroll-hint" aria-hidden="true">
-              <span className="a11f-scroll-hint-track">
-                <span className="a11f-scroll-hint-dot" />
-              </span>
+              <span className="scroll-frames" />
               <span className="a11f-scroll-hint-label">{t("room.scroll_label")}</span>
             </div>
           ) : null}
