@@ -34,12 +34,8 @@
   padding: clamp(1rem, 2.8cqi, 2rem);
   border: 1px solid color-mix(in srgb, var(--text-warm) 14%, transparent);
   border-radius: clamp(1.1rem, 2.5cqi, 1.7rem);
-  background:
-    linear-gradient(145deg, color-mix(in srgb, var(--text-warm) 5%, transparent), transparent 42%),
-    color-mix(in srgb, var(--surface-elevated, #232323) 76%, transparent);
-  box-shadow:
-    inset 0 1px 0 color-mix(in srgb, var(--text-warm) 10%, transparent),
-    0 1.4rem 3.8rem rgba(0, 0, 0, 0.22);
+  background: var(--card-glass-bg);
+  box-shadow: var(--card-glass-shadow);
 }
 
 .feature-page__surface::before {
@@ -48,16 +44,25 @@
   z-index: -1;
   inset: 0;
   border-radius: inherit;
-  background: radial-gradient(
-    circle at 12% 0%,
-    color-mix(in srgb, var(--dusk-sunset, #c59b77) 10%, transparent),
-    transparent 34%
-  );
+  background: var(--card-glass-sheen);
   pointer-events: none;
 }
 
 html[data-reduce-transparency="1"] .feature-page__surface {
   background: var(--surface-elevated, #232323);
+}
+
+/* PanelFrame on juba klaaspind. Teine täidetud kast tema sees kuhjas
+   läbipaistvuse halliks plaadiks ja kahekordistas sisu servavahed. */
+.panel-scrim:not([data-canvas="1"]):not([data-conversation="1"]) .panel .feature-page__surface {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+.panel-scrim:not([data-canvas="1"]):not([data-conversation="1"]) .panel .feature-page__surface::before {
+  content: none;
 }
 
 .feature-page :where(h1, h2, h3, h4, p, ul, ol, dl, blockquote, pre) {

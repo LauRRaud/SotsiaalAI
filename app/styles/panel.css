@@ -101,10 +101,9 @@ html[data-reduce-motion="1"] .panel-scrim[data-dock="1"] {
   /* Tellija 06.07 öö: paneelil EI ole oma backdrop-blurit — ruum
      hägustub paneeli taga niikuinii (data-room-mode=panel) ja kaart
      paistab läbi; blur elas topelt ja mattis ruumi ära. */
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  /* Leht on ka selge äärega matt pind, ilma ruumi peale hajuvat kumata. */
-  box-shadow: var(--glass-inner-light);
+  background: var(--card-glass-bg);
+  border: 1px solid transparent;
+  box-shadow: var(--card-glass-shadow);
   overflow: hidden;
 }
 /* Kuni kast mõõtu otsib, on ta paigas ja mõõdetav, aga nähtamatu —
@@ -131,9 +130,23 @@ html[data-reduce-motion="1"] .panel-scrim[data-dock="1"] {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(180deg, var(--glass-highlight), transparent 30%);
+  background: var(--card-glass-sheen);
   pointer-events: none;
   z-index: 1;
+}
+.panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--card-glass-rim);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 4;
 }
 
 /* Vestlus: aken nagu pildil 9 — EI täida ekraani, ruum jääb ümber */
@@ -191,7 +204,8 @@ html[data-reduce-motion="1"] .panel-scrim[data-dock="1"] {
   box-shadow: none;
   overflow: visible;
 }
-.panel-scrim[data-conversation="1"] .panel::before {
+.panel-scrim[data-conversation="1"] .panel::before,
+.panel-scrim[data-conversation="1"] .panel::after {
   content: none;
 }
 /* [data-conversation][data-chat] tõstab spetsiifilisust (0,4,0), et
@@ -219,25 +233,16 @@ html[data-reduce-motion="1"] .panel-scrim[data-dock="1"] {
   top: calc(clamp(1.1rem, 2.8lvh, 1.8rem) + var(--safe-top, 0px));
   width: 3rem;
   height: 3rem;
-  color: rgba(240, 240, 240, 0.92);
-  background-color: rgba(255, 255, 255, 0.04);
-  background-image: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.15) 0%,
-    rgba(255, 255, 255, 0.05) 36%,
-    rgba(255, 255, 255, 0.02) 62%,
-    rgba(255, 255, 255, 0.1) 100%
-  );
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow:
-    inset 0 1px 1px rgba(255, 255, 255, 0.28),
-    0 6px 20px rgba(5, 5, 5, 0.26);
-  -webkit-backdrop-filter: blur(16px) saturate(140%) brightness(1.07);
-  backdrop-filter: blur(16px) saturate(140%) brightness(1.07);
+  color: var(--text-warm);
+  background-color: var(--input-bg);
+  background-image: var(--input-sheen);
+  border: var(--input-border);
+  box-shadow: var(--input-highlight), var(--input-shadow);
+  -webkit-backdrop-filter: blur(var(--input-blur));
+  backdrop-filter: blur(var(--input-blur));
 }
 .panel-scrim[data-conversation="1"] :is(.panel-menu, .panel-close):hover {
-  background-color: rgba(255, 255, 255, 0.11);
-  border-color: rgba(255, 255, 255, 0.36);
+  background-color: var(--input-bg-hover);
 }
 .panel-scrim[data-conversation="1"] .panel-menu {
   left: clamp(1.1rem, 2.8vw, 2rem);
@@ -469,7 +474,8 @@ body:has(.panel-scrim[data-canvas="1"]) {
   background: transparent;
   box-shadow: none;
 }
-.panel-scrim[data-canvas="1"] .panel::before {
+.panel-scrim[data-canvas="1"] .panel::before,
+.panel-scrim[data-canvas="1"] .panel::after {
   content: none;
 }
 .panel-scrim[data-canvas="1"] .panel-body {
@@ -719,36 +725,19 @@ label[data-control-type][data-checked="true"],
    nurgad jäävad pehmeks ristkülikuks (pill'iks ei tee). Ainult
    tavarežiimis: hc/reduce-transparency jäävad token-baasi peale. */
 html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) :is(label[data-control-type], [role="radio"]) {
-  background-color: rgba(255, 255, 255, 0.04);
-  background-image: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.14) 0%,
-    rgba(255, 255, 255, 0.05) 40%,
-    rgba(255, 255, 255, 0.02) 66%,
-    rgba(255, 255, 255, 0.09) 100%
-  );
-  border-color: rgba(255, 255, 255, 0.2);
-  box-shadow:
-    inset 0 1px 1px rgba(255, 255, 255, 0.26),
-    inset 0 0 14px rgba(255, 255, 255, 0.04),
-    0 4px 14px rgba(0, 0, 0, 0.22);
+  background-color: var(--input-bg);
+  background-image: var(--input-sheen);
+  border: var(--input-border);
+  box-shadow: var(--input-highlight), var(--input-shadow);
 }
 html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) :is(label[data-control-type], [role="radio"]):hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.36);
-  box-shadow:
-    inset 0 1px 1.5px rgba(255, 255, 255, 0.38),
-    inset 0 0 18px rgba(255, 255, 255, 0.07),
-    0 6px 18px rgba(0, 0, 0, 0.26);
+  background-color: var(--input-bg-hover);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) :is(label[data-control-type][data-checked="true"], [role="radio"][data-checked="true"], [role="radio"][aria-checked="true"]) {
-  border-color: var(--glass-rim);
-  background-color: rgba(255, 255, 255, 0.14);
-  box-shadow:
-    inset 0 1px 1.5px rgba(255, 255, 255, 0.42),
-    inset 0 0 18px rgba(255, 255, 255, 0.08),
-    0 0 18px rgba(255, 255, 255, 0.14),
-    0 6px 18px rgba(0, 0, 0, 0.26);
+  border: var(--input-border-focus);
+  background-color: var(--glass-cell-bg-hover);
+  box-shadow: var(--input-highlight), var(--input-shadow);
 }
 label[data-control-type][data-focus-visible="true"] {
   box-shadow: var(--focus-ring);
@@ -1085,6 +1074,10 @@ label[data-control-type][data-checked="true"] > span[aria-hidden="true"] svg {
   .panel-body {
     padding: 1.1rem;
     padding-top: 3.6rem;
+  }
+  /* Täisekraani töölehel pole eraldi klaaskaardi kontuuri. */
+  .panel-scrim:not([data-compact="1"]) .panel::after {
+    content: none;
   }
   /* Mobiilis on aken servast servani — dokk ei kahanda akent, vaid seisab
      tema PEAL ja sisu jätab talle ruumi (allpool). Ilma --panel-max-h

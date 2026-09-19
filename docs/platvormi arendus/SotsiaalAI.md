@@ -92,6 +92,22 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**19.09 neutraalne klaas ja paneelisisene kerimine — kohalik muudatus.**
+Menüükaart, töölaud ja avatud paneel jagavad läbipaistvat neutraalset pinda,
+pehmet servapeegeldust ning üla- ja alanurga helki. Nupud, vormiväljad ja
+sulgemisnupud kasutavad ühist klaasiretsepti. Rippmenüü on tugevamalt hägustatud
+ja tihedama taustaga; valitud väärtust märgib linnuke. Kõrgkontrasti ja
+vähendatud läbipaistvuse pinnad säilivad. Tööleht ei lisa välise paneeli
+sisse teist halli klaaskasti. Manustatud töölehe polster kerib koos sisuga,
+mitte ei lõika seda paneeli servast 60–80 px seespool. Infolehe avamisel
+peidetud töölehte ei too flex-reegel enam nähtavale.
+Sihtkontroll: päris komponentidega isoleeritud Chromiumi UI-vaade (API
+näidisvastused), 1440 × 900 ja 390 × 844; kerimisala ulatub raami 1 px servani,
+lõpus on viimane sisu loetav ning külgülevoolu pole. Rippmenüü mahub mobiili
+ekraanile ja nooleklahv + Enter vahetab valikut. Muudetud JSX-i eslint ja
+diff-kontroll läbisid. Täisbuild ning päris iOS/runtime on NOT_PROVEN;
+omaniku soovil suuremat testiringi ei tehtud. Muudatus pole veel avaldatud.
+
 **19.09 avalehe ja mobiilimenüü parandused on serveris (`7f4365d5`).**
 Kerimisvihje kaks raami kasvavad koos vaataja poole ja hajuvad ühel ajal;
 sisemine raam ilmub hiljem. Saabumise lõpunupp töötab juba ilmumisel, viimane

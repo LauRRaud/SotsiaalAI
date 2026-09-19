@@ -48,8 +48,8 @@ export default function GlassFilters() {
           yChannelSelector="G"
           result="bent"
         />
-        <feGaussianBlur in="bent" stdDeviation="16" result="frost" />
-        <feColorMatrix in="frost" type="saturate" values="1.35" result="sat" />
+        <feGaussianBlur in="bent" stdDeviation="8" result="frost" />
+        <feColorMatrix in="frost" type="saturate" values="1" result="sat" />
         <feComponentTransfer in="sat">
           <feFuncR type="linear" slope="1.05" />
           <feFuncG type="linear" slope="1.05" />

@@ -74,6 +74,14 @@
   color: var(--room-text);
   animation: none;
 }
+.login-modal-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--card-glass-sheen);
+  pointer-events: none;
+}
 /* Liquid-serv nagu kaardil — vaikne, mitte helendav */
 .login-modal-shell::after {
   content: "";
@@ -111,8 +119,10 @@
   height: 2.4rem;
   border-radius: 50%;
   color: var(--text-soft);
-  background: var(--glass-cell-bg);
-  border: 1px solid var(--glass-cell-border);
+  background-color: var(--input-bg);
+  background-image: var(--input-sheen);
+  border: var(--input-border);
+  box-shadow: var(--input-highlight), var(--input-shadow);
   transition:
     color var(--dur-fast) var(--ease-soft),
     border-color var(--dur-fast) var(--ease-soft),
@@ -432,8 +442,10 @@
   min-block-size: var(--hit-target-min);
   border-radius: 50%;
   color: var(--text-soft);
-  background: rgba(255, 255, 255, 0.1); /* tellija 26.07: tumedal popoveril liiga hõre klaas mõjus katkisena */
-  border: 1px solid rgba(255, 255, 255, 0.28);
+  background-color: var(--input-bg);
+  background-image: var(--input-sheen);
+  border: var(--input-border);
+  box-shadow: var(--input-highlight), var(--input-shadow);
   font-size: 1.05rem;
   line-height: 1;
   transition:

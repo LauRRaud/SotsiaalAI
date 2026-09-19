@@ -86,7 +86,7 @@ button.specular-button[data-variant] {
   border: var(--input-border);
   border-radius: 999px;
   background-color: var(--input-bg);
-  background-image: none;
+  background-image: var(--input-sheen);
   -webkit-backdrop-filter: blur(var(--input-blur));
   backdrop-filter: blur(var(--input-blur));
   box-shadow: var(--input-highlight), var(--input-shadow);

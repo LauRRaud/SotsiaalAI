@@ -38,7 +38,7 @@
        specular jääb nuppude servale; välja sees muutus vana CSS-laik
        suureks valgeks plekiks ja mattis tumeda klaasi. */
     background-color: var(--input-bg);
-    background-image: none;
+    background-image: var(--input-sheen);
     border: var(--input-border);
     border-radius: var(--input-radius);
     color: var(--input-text);
@@ -273,7 +273,7 @@
     background-color: var(--input-bg);
     /* Vana kursorialune CSS-laik on eemaldatud. Päris React Bits'i
        SpecularButton joonistab servahelgi oma WebGL-canvasel. */
-    background-image: none;
+    background-image: var(--input-sheen);
     -webkit-backdrop-filter: blur(var(--input-blur));
     backdrop-filter: blur(var(--input-blur));
     border: var(--input-border);

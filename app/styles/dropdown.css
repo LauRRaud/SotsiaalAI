@@ -15,7 +15,7 @@
 
 /* Nupu ja loendi ÜHINE kuju — üks arv, kaks kasutust. */
 :root {
-  --dd-radius: 14px;
+  --dd-radius: 16px;
 }
 
 /* ---------- Kokkupandud nupp ---------- */
@@ -89,7 +89,7 @@
 .dd-panel {
   z-index: var(--z-modal);
   margin: 0;
-  padding: 0.35rem;
+  padding: 0.4rem;
   list-style: none;
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -99,7 +99,7 @@
   /* Prefiks ENNE standardit — Lightning CSS jätab duplikaadist viimase. */
   -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
   backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  box-shadow: var(--glass-shadow);
+  box-shadow: var(--glass-inner-light), 0 12px 32px rgba(0, 0, 0, 0.35);
   color: var(--text-soft);
   font-family: var(--font-ui);
   font-size: var(--fs-small);
@@ -129,7 +129,9 @@ html[data-contrast="hc"] .dd-panel {
   align-items: center;
   gap: 0.5em;
   padding: 0.5em 0.75em;
-  border-radius: 9px;
+  min-height: 2.6rem;
+  border: 1px solid transparent;
+  border-radius: 11px;
   cursor: var(--cursor-pointer);
   /* Pikk silt murdub, mitte ei lõigata ellipsiks — valikus peab olema
      näha, MIDA valid. */
@@ -138,28 +140,29 @@ html[data-contrast="hc"] .dd-panel {
 /* Aktiivne = klaviatuuri/hiire all olev rida. Tahtlikult sama märgistus
    mõlemal, muidu tekib kaks eri "praegust" rida. */
 .dd-option[data-active="true"] {
-  background: var(--glass-cell-bg-hover);
+  background: var(--input-sheen), var(--glass-cell-bg-hover);
+  border-color: var(--glass-border-soft);
+  box-shadow: var(--glass-inner-light);
   color: var(--text-warm);
 }
-/* Valitud = praegune väärtus. Märk on täpp, mitte taust — nii on korraga
-   näha ka see, kus klaviatuur seisab. */
+/* Linnuke märgib valitud väärtust, klaasrida klaviatuuri/hiire asukohta. */
 .dd-option[aria-selected="true"] {
   color: var(--text-warm);
 }
 .dd-option[aria-selected="true"]::before {
   content: "";
   flex: none;
-  width: 0.42em;
-  height: 0.42em;
-  border-radius: 50%;
-  background: var(--dusk-sunset);
-  box-shadow: 0 0 8px rgba(180, 180, 180, 0.75);
+  width: 0.7em;
+  height: 0.4em;
+  border-left: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-0.1em) rotate(-45deg);
 }
 .dd-option[aria-selected="false"]::before {
   content: "";
   flex: none;
-  width: 0.42em;
-  height: 0.42em;
+  width: 0.7em;
+  height: 0.4em;
 }
 .dd-option[aria-disabled="true"] {
   opacity: 0.45;

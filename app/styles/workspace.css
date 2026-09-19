@@ -34,6 +34,28 @@
   overflow-y: auto;
   overscroll-behavior: contain;
 }
+/* Töölehe kerimisala ulatub raamini. Polster kuulub kerivale pinnale,
+   mitte selle ümber seisvale panel-body'le: muidu lõigatakse tekst juba
+   60–80 px enne klaasi serva läbi. Vestluse komposer ja juurtöölaud
+   säilitavad oma paigutuse. */
+.panel-scrim[data-chat="1"][data-conversation="0"][data-info="0"]
+  .panel-body:has(.workspace-dashboard-panel[data-embedded-active="true"][data-visible="true"]) {
+  padding: 0;
+  overflow: hidden;
+  scrollbar-gutter: auto;
+}
+.panel-scrim[data-chat="1"][data-conversation="0"][data-info="0"]
+  .workspace-dashboard-panel[data-embedded-active="true"][data-visible="true"] {
+  padding: clamp(1.5rem, 3.5lvh, 2.25rem) clamp(1.25rem, 3.5vw, 2.75rem);
+  scroll-padding-block: 1.5rem;
+}
+@media (max-width: 768px) {
+  .panel-scrim[data-chat="1"][data-conversation="0"][data-info="0"]
+    .workspace-dashboard-panel[data-embedded-active="true"][data-visible="true"] {
+    padding: 1.5rem 1.1rem var(--room-dock-reserve);
+    scroll-padding-bottom: var(--room-dock-reserve);
+  }
+}
 /* Admini S/P/T vaatevalik lehtedel — ⓘ-nupust vahetult VASAKUL samal real.
    Komponent portaalib end .panel-i otseseks lapseks, seega absoluutne ankur
    on täpselt sama mis ⓘ ja × nuppudel ning lehe sisu kerimine seda ei liiguta. */
@@ -142,6 +164,10 @@
   min-height: 0;
   display: flex;
   flex-direction: column;
+}
+/* Flex-paigutus ei tohi tühistada infolehe ajal rakendatud hidden-olekut. */
+.panel-scrim[data-chat="1"] .panel-body .panel-info-page[hidden] {
+  display: none;
 }
 
 /* ---------- ⓘ — väike klaasnupp akna vasakus ülanurgas ---------- */
