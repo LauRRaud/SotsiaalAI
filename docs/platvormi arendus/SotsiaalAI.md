@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**19.09 neutraalne klaas ja paneelisisene kerimine — kohalik muudatus.**
+**19.09 neutraalne klaas ja paneelisisene kerimine — serveris (`a0c4db8b`).**
 Menüükaart, töölaud ja avatud paneel jagavad läbipaistvat neutraalset pinda,
 pehmet servapeegeldust ning üla- ja alanurga helki. Nupud, vormiväljad ja
 sulgemisnupud kasutavad ühist klaasiretsepti. Rippmenüü on tugevamalt hägustatud
@@ -105,8 +105,10 @@ Sihtkontroll: päris komponentidega isoleeritud Chromiumi UI-vaade (API
 näidisvastused), 1440 × 900 ja 390 × 844; kerimisala ulatub raami 1 px servani,
 lõpus on viimane sisu loetav ning külgülevoolu pole. Rippmenüü mahub mobiili
 ekraanile ja nooleklahv + Enter vahetab valikut. Muudetud JSX-i eslint ja
-diff-kontroll läbisid. Täisbuild ning päris iOS/runtime on NOT_PROVEN;
-omaniku soovil suuremat testiringi ei tehtud. Muudatus pole veel avaldatud.
+diff-kontroll läbisid. Serveri tootmisbuild ja i18n-kontroll läbisid; täielik lint
+lõpetas vigadeta (kaks olemasolevat hoiatust). Avaldatud 19.09 omaniku loal:
+frontend aktiivne, avaleht HTTP 200, serveri tööpuu puhas. Päris iOS/runtime
+on NOT_PROVEN; suuremat testiringi ei tehtud.
 
 **19.09 avalehe ja mobiilimenüü parandused on serveris (`7f4365d5`).**
 Kerimisvihje kaks raami kasvavad koos vaataja poole ja hajuvad ühel ajal;
