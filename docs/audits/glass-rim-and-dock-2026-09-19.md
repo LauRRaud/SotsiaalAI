@@ -4,7 +4,7 @@
 
 Lähtekoht `bbdc96c36` / kood `68fbb0b7e`. Kohalik Chromium,
 `http://localhost:3001`, eraldi brauserikontekst. Tootmisandmeid ega päris
-kasutaja kontot ei kasutatud. Tootmisse avaldamine ei kuulu sellesse kontrolli.
+kasutaja kontot ei kasutatud. Hilisem avaldamiskontroll on kirjas lõpus.
 
 ## Klaas
 
@@ -80,3 +80,15 @@ läbimine: **NOT_PROVEN**. Ühine raam ja tegelik manustatud kerimisrada kontrol
 - Muudetud JSX-i sihtlint: läbis.
 - Lõplik `npm run build` koos `i18n:check`-iga: läbis (`TZ=UTC`).
 - `git diff --check`: läbis.
+
+## Avaldamine
+
+19.09 omaniku korraldusel avaldatud `3a458822d25ba5ca2e3f2b9517bdb441c077e8fa`
+projekti `deploy:server` kaudu. Serveri tootmisbuild ja i18n-kontroll läbisid,
+ootel andmebaasimigratsioone ei olnud. Frontend on `active`, avaleht vastab
+HTTP 200-ga ja serveri tööpuu oli puhas. Build ID:
+`548f285a-99c6-4594-a773-4d000c7ee290`.
+
+Avaliku avalehe viiest CSS-failist kontrolliti uue `--room-dock-released`
+arvutuse ja materjali 0.5px silumise olemasolu. Kasutaja GPU visuaalne kontroll
+ning autentimist vajavate tootmislehtede läbimine jäävad NOT_PROVEN.
