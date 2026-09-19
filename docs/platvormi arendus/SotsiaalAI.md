@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**19.09 avalehe ja mobiilimenüü parandused on kontrollitud ning avaldamiseks valmis.**
+**19.09 avalehe ja mobiilimenüü parandused on serveris (`7f4365d5`).**
 Kerimisvihje kaks raami kasvavad koos vaataja poole ja hajuvad ühel ajal;
 sisemine raam ilmub hiljem. Saabumise lõpunupp töötab juba ilmumisel, viimane
 tekst püsib kauem loetav ning avatekst lõpeb „oled oodatud“. Puutel ootab
@@ -116,6 +116,9 @@ Kohalikud brauserikontrollid hõlmavad puute- ja rõhtvaadet, lõpunuppu,
 osakeste neeldumist, kiirmenüü kattumatust ning vähendatud liikumist.
 Päris iOS PWA olekuriba ja Gmaili kaudu sisselogimise lõpuni läbimine on
 NOT_PROVEN. Sisselogimise jätkamise kaks sihttesti läbisid.
+Kohalik lint läbis kahe varasema hoiatusega, tõlkekontroll ning kohalik ja serveri
+build läbisid. Avaldamise järel oli serveri tööpuu puhas, frontend aktiivne ja
+avaleht HTTP 200; tootmise brauseris kontrolliti 320 ms kiirmenüü üleminekut.
 
 **08.09 GraphRAG-i nelja vormingu kohalik ühendus ja väljalaskekood on kontrollitud (`ad44c302e`).** PDF/HTML/XML/JSON-i allikakohad säilisid päris kohalikus indeksis testvektoritega; autenditud testadapteri brauserirada näitas õigeid allikaid ja taastas vestluse. Parandatud on admini lugemise ajal eemaldatud dokumendiloa kontroll ning brauseripakki jõudnud serverikrüpto; mõlemad tootmisbuild'id läbisid. Serveris mõõdeti endiselt M4 ja aktiivse indeksi lahknevust (`active_index_mismatch`) ning aegunud adminiseadistust. Järgmine samm on omaniku loaga kontrollitud väljalase ja kooskõlaline M4 plaan, seejärel jätkatav mahutöötlus ja päringu valikuline lugemine. Push'i, deploy'd ega tasulist jooksu ei tehtud. [Raport ja vastuvõtupiir](../audits/rag-v2-release-integration-2026-09-08.md); täpsem seis on S2-s.
 
