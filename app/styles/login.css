@@ -135,7 +135,6 @@
 }
 .login-modal-close:hover {
   color: var(--text-warm);
-  border-color: rgba(255, 255, 255, 0.4);
   rotate: 90deg;
 }
 

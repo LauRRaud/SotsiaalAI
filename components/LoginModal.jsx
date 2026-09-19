@@ -136,15 +136,7 @@ export default function LoginModal({
   const [helpOpen, setHelpOpen] = useState(false);
   const helpButtonRef = useRef(null);
   const helpPopoverRef = useRef(null);
-  const [useNativeKeyboard, setUseNativeKeyboard] = useState(() => {
-    if (typeof window === "undefined") return false;
-    try {
-      const v = window.localStorage.getItem(LOGIN_NATIVE_KEYBOARD_KEY);
-      if (v === "true") return true;
-      if (v === "false") return false;
-    } catch {}
-    return false;
-  });
+  const [useNativeKeyboard, setUseNativeKeyboard] = useState(false);
   const [keypadLayout, setKeypadLayout] = useState(() => {
     if (typeof window === "undefined") return "phone";
     try {
@@ -202,7 +194,7 @@ export default function LoginModal({
   const keypadKeysPhone = useMemo(() => ["1", "2", "3", "4", "5", "6", "7", "8", "9", "help", "zero", "submit"], []);
   const keypadKeysNumpad = useMemo(() => ["7", "8", "9", "4", "5", "6", "1", "2", "3", "help", "zero", "submit"], []);
   const keypadKeys = useMemo(() => {
-    if (isMobile) return keypadKeysPhone;
+    if (isMobile) return keypadKeysNumpad;
     return keypadLayout === "numpad" ? keypadKeysNumpad : keypadKeysPhone;
   }, [isMobile, keypadLayout, keypadKeysNumpad, keypadKeysPhone]);
   const otpDeadlineLabel = useMemo(() => {
@@ -500,12 +492,7 @@ export default function LoginModal({
     try {
       const savedLayout = window.localStorage.getItem(LOGIN_KEYPAD_LAYOUT_KEY);
       if (savedLayout === "phone" || savedLayout === "numpad") setKeypadLayout(savedLayout);
-      const savedNative = window.localStorage.getItem(LOGIN_NATIVE_KEYBOARD_KEY);
-      if (savedNative === "true" || savedNative === "false") {
-        setUseNativeKeyboard(savedNative === "true");
-      } else if (isMobile) {
-        setUseNativeKeyboard(false);
-      }
+      if (isMobile) setUseNativeKeyboard(false);
     } catch {
       if (isMobile) setUseNativeKeyboard(false);
     }

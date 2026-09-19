@@ -1619,6 +1619,14 @@ html[data-reduce-motion="1"] .gc-shortcut-tooltip {
   filter: blur(3px);
 }
 
+/* Mobiili avatud akna taga ei paista karussell läbi. */
+@media (pointer: coarse), (max-width: 768px) {
+  .room:is([data-login-open="1"], [data-info-open="1"], [data-card-page="1"]) .room-carousel-wrap {
+    opacity: 0;
+    transition: none;
+  }
+}
+
 /* Kõrgkontrast: kuma maha, selged servad */
 html[data-contrast="hc"] .gc-card::after {
   background: rgba(255, 255, 255, 0.85);
@@ -1649,7 +1657,7 @@ html[data-contrast="hc"] .gc-shortcut[data-on="1"] {
   }
   .gc:not([data-desk="1"]) .gc-list {
     touch-action: pinch-zoom;
-    --gc-spacing: calc(var(--gc-w) * 0.9);
+    --gc-spacing: calc(var(--gc-w) * 1.04);
   }
   .gc:not([data-desk="1"]) .gc-item { top: 46%; }
   .gc-shortcuts { bottom: calc(env(safe-area-inset-bottom, 0px) + 0.65rem); }

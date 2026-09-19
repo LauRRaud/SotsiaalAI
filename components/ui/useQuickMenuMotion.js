@@ -1,6 +1,18 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+
+// Let the destination become visible before the dock switches its highlight.
+export function useQuickMenuIndex(activeKey, delay) {
+  const [shownKey, setShownKey] = useState(activeKey);
+  useEffect(() => {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      document.documentElement.dataset.reduceMotion === "1";
+    const timer = window.setTimeout(() => setShownKey(activeKey), reduced ? 0 : delay);
+    return () => window.clearTimeout(timer);
+  }, [activeKey, delay]);
+  return shownKey;
+}
 
 const timing = { duration: 320, easing: "cubic-bezier(0.22, 0.61, 0.36, 1)" };
 const measure = (el) => ({

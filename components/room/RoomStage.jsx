@@ -887,6 +887,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     // Puutel lõpetab oote VeilArt ise, kui kõik osakesed on neeldunud.
     // Varupiir hoiab sisenemise kasutatavana ka katkestatud canvas'e korral.
     enterFallbackRef.current = window.setTimeout(finishVeilEntry, animatedTouch ? 6000 : 0);
+    if (animatedTouch) veilRef.current?.dispatchEvent(new Event("room-enter"));
   }, [applyScene, readReduced, finishVeilEntry]);
 
   /* Loori all ei saa kerida (kõnd algab alles sisenemisel) */

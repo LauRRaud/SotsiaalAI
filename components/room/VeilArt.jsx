@@ -1178,6 +1178,17 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
       if (!touchLike) return;
       latchGate();
     };
+    const enterRequested = () => {
+      measureGate();
+      latchGate();
+      absorptionReported = false;
+      if (!still && !running) {
+        running = true;
+        lastTime = performance.now();
+        raf = requestAnimationFrame(render);
+      }
+    };
+    veil.addEventListener("room-enter", enterRequested);
 
     button?.addEventListener("pointerenter", inviteOn);
     button?.addEventListener("pointerleave", inviteOff);
@@ -1218,6 +1229,7 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
       button?.removeEventListener("pointerenter", inviteOn);
       button?.removeEventListener("pointerleave", inviteOff);
       button?.removeEventListener("click", gatePress);
+      veil.removeEventListener("room-enter", enterRequested);
       button?.removeEventListener("focus", focusOn);
       button?.removeEventListener("blur", inviteOff);
       delete veil.dataset.artText;

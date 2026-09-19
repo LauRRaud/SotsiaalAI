@@ -5,6 +5,7 @@
    ============================================================ */
 
 .room {
+  border-radius: 0;
   position: fixed;
   inset: 0;
   z-index: var(--z-room);
@@ -1200,7 +1201,9 @@ html[data-reduce-motion="1"] .room-walk-audio {
 /* ---------- Mobiil (brief §5: tekstid alanurkades, väiksemana) ---------- */
 @media (max-width: 768px) {
   .room-text {
-    max-width: min(26rem, 78vw);
+    box-sizing: border-box;
+    /* Lennu lõpus on perspektiivi ja skaala ühismõju kuni 1,34×. */
+    max-width: min(26rem, calc((100vw - 2rem) / 1.34));
   }
   .room-text--intro {
     left: 1.1rem;
@@ -1230,33 +1233,39 @@ html[data-reduce-motion="1"] .room-walk-audio {
     padding: 0.55em 1.1em;
     font-size: 0.72rem;
   }
-  /* "Jäta vahele" kattis kitsal ekraanil bottom-center kerimisvihje
-     (tellija 25.07). Nupp läheb kompaktsemaks ja madalamale, vihje tõuseb
-     tema kohale. */
+  /* Kõik kolm juhtnuppu jagavad sama alumist rida ja kõrgust. */
   .room-skip-wrap {
     right: 1rem;
     bottom: max(1.1rem, env(safe-area-inset-bottom, 0px) + 0.7rem);
   }
   .room .room-skip {
-    min-height: 2.6rem;
+    height: 3.1rem;
+    min-height: 3.1rem;
     padding: 0 1.2em;
   }
-  /* Helinupud on 3.1rem ja "Jäta vahele" 2.6rem kõrge. Alumist kaugust
-     korrigeerides paiknevad nende keskjooned samal real, ka safe-area'ga
-     telefonides. */
+  /* Ühine alusjoon arvestab ka telefoni safe-area'ga. */
   .room-walk-audio {
-    bottom: max(0.85rem, env(safe-area-inset-bottom, 0px) + 0.45rem);
+    bottom: max(1.1rem, env(safe-area-inset-bottom, 0px) + 0.7rem);
   }
   .room-hint {
-    bottom: max(4.5rem, env(safe-area-inset-bottom, 0px) + 4.1rem);
-    gap: 0.5rem;
+    bottom: max(1.1rem, env(safe-area-inset-bottom, 0px) + 0.7rem);
+    height: 3.1rem;
+    align-content: center;
+    gap: 0;
+  }
+  .room-hint .scroll-frames {
+    zoom: 0.65;
   }
   .room-hint-label {
-    font-size: 1rem;
+    font-size: 0.75rem;
   }
 }
 
 @media (pointer: coarse) {
+  html[data-room-mode="walk"],
+  html[data-room-mode="walk"] body {
+    background: #070707;
+  }
   .room { height: 100dvh; }
   html[data-room-mode="room"],
   html[data-room-mode="room"] body {
@@ -1271,7 +1280,8 @@ html[data-reduce-motion="1"] .room-walk-audio {
   }
   /* Puutel juhib avamist päris vajutus, mitte Safari kleepuv hover/fookus. */
   .room-topbar[data-open="0"] .room-quickbar {
-    transform: translate(-50%, calc(-100% + 2.75rem));
+    transform: translate(-50%, calc(-100% + 1.55rem));
+    box-shadow: none;
     pointer-events: none;
   }
   .room-topbar[data-open="0"] .room-quickbar-arrow svg { opacity: 0.7; }

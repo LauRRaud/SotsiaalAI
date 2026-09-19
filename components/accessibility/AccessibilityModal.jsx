@@ -33,7 +33,7 @@ import ChevronIcon from "@/components/brand/icons/ChevronIcon";
 import { BackArrowIcon } from "@/components/brand/icons/CardIcons";
 import InstallAppLink from "@/components/pwa/InstallAppLink";
 import useStationFlight from "@/components/register/useStationFlight";
-import useQuickMenuMotion from "@/components/ui/useQuickMenuMotion";
+import useQuickMenuMotion, { useQuickMenuIndex } from "@/components/ui/useQuickMenuMotion";
 import {
   AMBIENT_MODES,
   getAmbientMode,
@@ -176,7 +176,30 @@ export default function AccessibilityModal({
     durationScale: 1.2,
   });
   const activeIndexRef = useRef(activeIndex);
-  useQuickMenuMotion(dockTrackRef, activeIndex);
+  const dockIndex = useQuickMenuIndex(activeIndex, 280);
+  useQuickMenuMotion(dockTrackRef, dockIndex);
+  useEffect(() => {
+    const track = dockTrackRef.current;
+    if (!track) return;
+    const reveal = () => {
+      const active = track.querySelector('[data-on="1"]');
+      if (!active || track.scrollWidth <= track.clientWidth) return;
+      const item = active.getBoundingClientRect();
+      const bounds = track.getBoundingClientRect();
+      const left = track.scrollLeft + item.left - bounds.left + item.width / 2 - track.clientWidth / 2;
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+        document.documentElement.dataset.reduceMotion === "1";
+      track.scrollTo({ left: Math.max(0, left), behavior: reduced ? "auto" : "smooth" });
+    };
+    reveal();
+    // Recheck after the active label has expanded to its measured width.
+    const timer = window.setTimeout(reveal, 340);
+    window.addEventListener("resize", reveal);
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener("resize", reveal);
+    };
+  }, [dockIndex]);
   activeIndexRef.current = activeIndex;
   const goTo = useCallback(
     (index) => {
@@ -786,7 +809,7 @@ export default function AccessibilityModal({
           <div className="gc-shortcut-track" ref={dockTrackRef} onScroll={() => setDockTooltip(null)}>
             {STATIONS.map((station, index) => {
               const label = stationLabel(station);
-              const isActive = index === activeIndex;
+              const isActive = index === dockIndex;
               return (
                 <button
                   key={station.key}

@@ -31,7 +31,7 @@ import {
 /* Lõuend ulatub väljast üle, et helk tohiks servast välja hõõguda — sama
    marginaal mis nupul (.specular-button__fx inset: -20px). */
 const PAD = 20;
-const LOGIN_BUTTON_SELECTOR = ".login-keypad-btn:not(:disabled), .login-modal-close:not(:disabled), .login-help-close-btn:not(:disabled)";
+const LOGIN_BUTTON_SELECTOR = ".login-keypad-btn:not(:disabled), .login-help-close-btn:not(:disabled)";
 
 /* Väljad JA valikukaardid. Viimased (`label[data-control-type]` — OptionCard)
    on kasutaja silmis samuti „input lahtrid": ligipääsetavuse lennul ei ole
@@ -226,7 +226,8 @@ export default function SpecularHighlight() {
         }
       }
 
-      bright += (target - bright) * (1 - Math.exp(-dt * 8));
+      const fadeSpeed = target === 1 && active?.matches(LOGIN_BUTTON_SELECTOR) ? 4 : 8;
+      bright += (target - bright) * (1 - Math.exp(-dt * fadeSpeed));
       if (Math.abs(target - bright) < 0.004) bright = target;
 
       if (active && place()) {
