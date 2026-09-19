@@ -1665,6 +1665,16 @@ html[data-contrast="hc"] .gc-shortcut[data-on="1"] {
     --gc-spacing: calc(var(--gc-w) * 1.04);
   }
   .gc:not([data-desk="1"]) .gc-item { top: 46%; }
+  .gc:not([data-desk="1"]) .gc-icon svg {
+    width: clamp(4.5rem, 20vw, 5.75rem);
+    height: clamp(4.5rem, 20vw, 5.75rem);
+  }
+  .gc:not([data-desk="1"]) .gc-label {
+    font-size: clamp(1.08rem, 4.8vw, 1.35rem);
+  }
+  .gc:not([data-desk="1"]) .gc-label[data-long="1"] {
+    font-size: clamp(0.96rem, 4.2vw, 1.15rem);
+  }
   .gc-shortcuts { bottom: calc(env(safe-area-inset-bottom, 0px) + 0.65rem); }
 }
 @media (pointer: coarse) and (orientation: landscape) {
@@ -1674,13 +1684,17 @@ html[data-contrast="hc"] .gc-shortcut[data-on="1"] {
   .gc:not([data-desk="1"]) .gc-item { top: calc(50% - 0.5rem); }
   .gc:not([data-desk="1"]) .gc-label {
     max-width: 100%;
-    font-size: clamp(0.7rem, calc(var(--gc-w) * 0.06), 1rem);
+    font-size: clamp(0.92rem, 5.5dvh, 1.2rem);
     letter-spacing: 0.1em;
     overflow-wrap: anywhere;
   }
+  .gc:not([data-desk="1"]) .gc-label[data-long="1"] {
+    font-size: clamp(0.82rem, 4.8dvh, 1.04rem);
+    letter-spacing: 0.08em;
+  }
   .gc:not([data-desk="1"]) .gc-icon svg {
-    width: clamp(2rem, 12dvh, 4rem);
-    height: clamp(2rem, 12dvh, 4rem);
+    width: clamp(3rem, 18dvh, 4.75rem);
+    height: clamp(3rem, 18dvh, 4.75rem);
   }
   .gc-shortcuts { bottom: calc(env(safe-area-inset-bottom, 0px) + 0.35rem); }
 }

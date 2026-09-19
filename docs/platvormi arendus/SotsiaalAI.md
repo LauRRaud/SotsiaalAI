@@ -92,6 +92,11 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**19.09 mobiilimenüü ikoonid ja sildid — kohalik muudatus.**
+Puuteseadme kaartidel on ikoonid ja tekst suuremad. Rõhtvaates ei suru
+madal ekraan neid enam 2 rem / 0,7 rem mõõtu; pika sildi jaoks säilib
+eraldi veidi väiksem aste ja keskjoondus. Muudatus pole veel avaldatud.
+
 **19.09 ruumilisem klaasmaterjal — serveris (`03eab280`).**
 Kaartide ja paneelide keskosa on läbipaistvam; ka kaartide üla- ja alaosa
 läige on nõrgem, ruumiline helk jääb serva.
