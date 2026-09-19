@@ -745,22 +745,13 @@ html[data-reduce-motion="1"] .scroll-frames::after {
      kujuga ja ikoonid ilmuvad alles kui paneel on väljas (tellija 07.07). */
   padding: 0.45rem 0.95rem;
   border-radius: 1.5rem;
-  /* KLAAS, kerge häguga (omanik 03.08: „kas peidetud paneel saaks olla
-     läbipaistvam ja kerge blur?"). Materjal on JAGATUD kiirmenüüga —
-     `--control-glass-*` tokens.css'is, kus seisab ka põhjendus ja mõlema
-     ligipääsetavuse-vaste. Kaardi-token jääb KAARTIDELE; ülariba ei ole
-     kaart, vaid juhtpind.
-
-     Blur elab BAASreeglis, mitte avatud olekus: varasem „hägu alles pärast
-     liigutust, 220 ms hilinemisega" konstruktsioon oli möönduste jada ühe
-     efekti ümber, ja üks väike pill ei vaja seda. Prefiks ENNE standardit —
-     Lightning CSS jätab paarist viimase alles ja Chrome 148 ei tunne
-     -webkit- aliast (26.07 lõks). Läige (::before) ja serv (::after) jäävad. */
-  background: var(--control-glass-bg);
-  -webkit-backdrop-filter: var(--control-glass-blur);
-  backdrop-filter: var(--control-glass-blur);
+  /* Sama klaasitäide igas avatusolekus, ilma tausta hägustamiseta. */
+  background: var(--card-glass-bg);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
   /* Peidetud riba ei kanna kaardi välist sügavusvarju. */
-  box-shadow: var(--glass-inner-light);
+  box-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 0.2),
+    inset 0 -1px 1.5px rgba(255, 255, 255, 0.12);
   color: var(--room-text);
   /* Peidus: näha ~1.55rem klaasi alaserv (paneel veidi allpool), ikoonid
      jäävad serva taha peitu (peek < alaserva polster 1.9rem). Noole tükk
@@ -1282,7 +1273,6 @@ html[data-reduce-motion="1"] .room-walk-audio {
   /* Puutel juhib avamist päris vajutus, mitte Safari kleepuv hover/fookus. */
   .room-topbar[data-open="0"] .room-quickbar {
     transform: translate(-50%, calc(-100% + 1.55rem));
-    box-shadow: none;
     pointer-events: none;
   }
   .room-topbar[data-open="0"] .room-quickbar-arrow svg { opacity: 0.7; }

@@ -92,6 +92,18 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**19.09 paneelide ühine kerimiskäitumine — kohalik muudatus.**
+Kõik ruumi kiirmenüüga paneelid taandavad doki alla kerides igal ekraanil;
+üles kerides ning sisu alguses ja lõpus ilmub dokk tagasi. Sisu saab doki
+peitumisel rohkem kõrgust. Lehepõhine lugemislehtede erand on eemaldatud.
+Autenditud dokumentide ja materjalide pärisrada: NOT_PROVEN.
+
+**19.09 ühtlane VR-klaasi serv ja ülariba — kohalik muudatus.**
+Kaartide ja ruumi hiirejärgne liikumine säilib. Serv kasutab ühtlast nõrka
+kontuuri; kaardi hover ei tugevda läiget. Jagatud klaasipindadel, kaartidel,
+paneelidel ja sisenditel pole välist varju. Ülariba kasutab kaartide täidet
+ning sama sisemist helki avatud ja suletud olekus. Päris iOS: NOT_PROVEN.
+
 **19.09 vormiklaas, kaardiserv ja rõhtvaate ligipääsetavus — serveris (`7d5d775b`).**
 Nuppude ja väljade sisemine helk on teravam ning väiksema häguga; sisendvälja
 hover tumendab täidet ja liikuv servahelk on taas selgem. Kaartide püsiserv on

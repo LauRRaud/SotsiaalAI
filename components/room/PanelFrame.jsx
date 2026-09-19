@@ -18,7 +18,6 @@ import { readRoomHubPath } from "@/lib/roomHubReturn";
 import {
   isCanvasRoute,
   isWideRoute,
-  panelDockRecedesAnywhere,
   panelHasOwnExit,
   panelHasRoomDock
 } from "@/lib/roomDock";
@@ -375,17 +374,16 @@ export default function PanelFrame({ children }) {
     const END_ZONE = 24;
     let last = el.scrollTop;
     let raf = 0;
-    let bound = false;
 
     const apply = () => {
       raf = 0;
       const top = el.scrollTop;
       const delta = top - last;
-      if (Math.abs(delta) < NOISE) return;
-      last = top;
       const max = el.scrollHeight - el.clientHeight;
       const atEnd = max - top <= END_ZONE;
       const nearTop = top <= TOP_ZONE;
+      if (!atEnd && !nearTop && Math.abs(delta) < NOISE) return;
+      last = top;
       const hide = delta > 0 && !atEnd && !nearTop;
       root.dataset.dockRecessed = hide ? "1" : "0";
     };
@@ -394,42 +392,11 @@ export default function PanelFrame({ children }) {
       raf = requestAnimationFrame(apply);
     };
 
-    /* Kolm rada kasutavad sama ruumilist taandumist:
-       — LUGEMISLEHED (Teave-alamkomplekt, lib/roomDock READING_ROUTES):
-         dokk taandub igal ekraanil. Seal on pikk proosa, lugeja süveneb
-         ja tahvel kasvab doki asemele — see ongi selle lehetüübi keel.
-       — TÖÖLEHED, mille sisupind kannab `data-dock-scroll-behavior="recede"`:
-         dokk taandub samuti igal ekraanil. Nii ei kata kiirmenüü pikka vormi,
-         loendit ega tulemust ning kõik uued töövaated järgivad kasutusjuhendi
-         juba tuttavat käitumist.
-       — KÕIK MUU: ainult mobiilil („see peaks olema ainult mobiilis nii,
-         sest katab seal aknas teksti"). Laual on aken dokist kitsam ja
-         tema kohal, seega dokk ei kata midagi ja tema kadumine oleks
-         lihtsalt väljapääsu peitmine.
-       Piir 768px = sama, mis paneeli enda mobiilireeglitel (panel.css). */
-    const alwaysRecedes = panelDockRecedesAnywhere(normalized) || Boolean(
-      el.querySelector?.('[data-dock-scroll-behavior="recede"]')
-    );
-    const mq = window.matchMedia("(max-width: 768px)");
-    const sync = () => {
-      const want = alwaysRecedes || mq.matches;
-      if (want === bound) return;
-      bound = want;
-      if (want) {
-        last = el.scrollTop;
-        el.addEventListener("scroll", onScroll, { passive: true });
-        return;
-      }
-      el.removeEventListener("scroll", onScroll);
-      if (raf) cancelAnimationFrame(raf);
-      raf = 0;
-      delete root.dataset.dockRecessed;
-    };
-    sync();
-    mq.addEventListener?.("change", sync);
+    // Kõik ühise dokiga paneelid kasutavad sama kerimiskäitumist.
+    root.dataset.dockRecessed = "0";
+    el.addEventListener("scroll", onScroll, { passive: true });
 
     return () => {
-      mq.removeEventListener?.("change", sync);
       el.removeEventListener("scroll", onScroll);
       if (raf) cancelAnimationFrame(raf);
       /* Lehelt lahkudes EI tohi dokk taandunuks jääda — järgmine aken
