@@ -613,8 +613,10 @@
     opacity: 0;
   }
 }
-.room[data-power="igniting"] .gc-item:not([data-hidden="1"]),
-.room[data-power="on"] .gc-item:not([data-hidden="1"]) {
+/* Animatsioon kuulub mount'ile, mitte nähtavuse vahetusele. Peidetud kaardid
+   läbivad selle samuti (opacity 0 → 0), nii ei taaskäivitu saabumine svaibil. */
+.room[data-power="igniting"] .gc-item,
+.room[data-power="on"] .gc-item {
   animation: gc-ignite 1100ms var(--ease-soft) backwards;
   animation-delay: calc(var(--abs) * 240ms + var(--gc-ignite-hold, 0ms));
 }
@@ -641,7 +643,7 @@
    ilma külgsõidu, astaku või 1100 ms järelhelgita. Ühtlane 400 ms fade
    algab kohe, kuid ei hüppa ease-soft'i järsu alguse tõttu hetkega peaaegu
    täisheledusele — nii jääb vahetus rahulik, ilma hilise sheen'ita. */
-.room[data-power="on"] .gc[data-set-entry="1"] .gc-item:not([data-hidden="1"]) {
+.room[data-power="on"] .gc[data-set-entry="1"] .gc-item {
   animation: gc-set-enter 400ms linear backwards;
   animation-delay: 0ms;
 }
@@ -1232,6 +1234,7 @@ html[data-reduce-motion="1"] .gc-shortcuts {
   }
 }
 .gc-shortcut {
+  box-sizing: border-box;
   position: relative;
   display: flex;
   align-items: center;
@@ -1251,15 +1254,8 @@ html[data-reduce-motion="1"] .gc-shortcuts {
      tõusid varem hoveril 1 px — kursoriga üle riba libistades nõksatas
      terve menüü (omanik 25.07). Vastus hoverile on valgus (värv ja
      taust), mitte liikumine. */
-  transition:
-    color 220ms var(--ease-soft),
-    background-color 220ms var(--ease-soft),
-    box-shadow 220ms var(--ease-soft),
-    /* Polsterdus tuleb sisse koos nimega (jaamadokid, kus tekst on alles)
-       — sama kestus mis tekstil, muidu nõksatab pill enne, kui sisu jõuab
-       järele. Ruumi dokis on nupp alati sama lai, seega siin ei liigu
-       midagi. */
-    padding 300ms var(--ease-soft);
+  /* Kapsli pind vahetub koos mõõduga, et vana valik ei hajuks ringina. */
+  transition: color 160ms var(--ease-soft);
 }
 /* Tabamusala on nupust suurem kui nupp ise. Dokk istub ekraani allservas
    ja nupu ring on 36–42 px: serva pihta minek tähendas, et klikk kukkus
@@ -1318,6 +1314,8 @@ html[data-reduce-motion="1"] .gc-shortcuts {
   background: currentColor;
 }
 .gc-shortcut-text {
+  min-width: 0;
+  flex-shrink: 1;
   max-width: 0;
   overflow: hidden;
   opacity: 0;
@@ -1327,10 +1325,8 @@ html[data-reduce-motion="1"] .gc-shortcuts {
   font-weight: 520;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  transition:
-    max-width 300ms var(--ease-soft),
-    margin-left 300ms var(--ease-soft),
-    opacity 220ms var(--ease-soft);
+  transform: none;
+  transition: none;
 }
 .gc-shortcut[data-on="1"] .gc-shortcut-text {
   max-width: 11rem;
@@ -1645,6 +1641,35 @@ html[data-contrast="hc"] .gc-shortcut {
 }
 html[data-contrast="hc"] .gc-shortcut[data-on="1"] {
   box-shadow: inset 0 0 0 2px #ffffff;
+}
+
+@media (pointer: coarse) {
+  .gc:not([data-desk="1"]) {
+    --gc-w: min(72vw, 21rem, calc((100dvh - 10rem) * 0.72));
+  }
+  .gc:not([data-desk="1"]) .gc-list {
+    touch-action: pinch-zoom;
+    --gc-spacing: calc(var(--gc-w) * 0.9);
+  }
+  .gc:not([data-desk="1"]) .gc-item { top: 46%; }
+  .gc-shortcuts { bottom: calc(env(safe-area-inset-bottom, 0px) + 0.65rem); }
+}
+@media (pointer: coarse) and (orientation: landscape) {
+  .gc:not([data-desk="1"]) {
+    --gc-w: min(32vw, calc((100dvh - 7.5rem) * 0.72));
+  }
+  .gc:not([data-desk="1"]) .gc-item { top: calc(50% - 0.5rem); }
+  .gc:not([data-desk="1"]) .gc-label {
+    max-width: 100%;
+    font-size: clamp(0.7rem, calc(var(--gc-w) * 0.06), 1rem);
+    letter-spacing: 0.1em;
+    overflow-wrap: anywhere;
+  }
+  .gc:not([data-desk="1"]) .gc-icon svg {
+    width: clamp(2rem, 12dvh, 4rem);
+    height: clamp(2rem, 12dvh, 4rem);
+  }
+  .gc-shortcuts { bottom: calc(env(safe-area-inset-bottom, 0px) + 0.35rem); }
 }
 
 }

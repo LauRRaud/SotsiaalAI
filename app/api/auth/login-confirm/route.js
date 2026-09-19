@@ -17,9 +17,9 @@ const NO_STORE_HEADERS = {
 const COPY = {
   et: {
     okTitle: "Sisenemine kinnitatud",
-    okBody: "Sisselogimine jätkus automaatselt aknas, kus sisestasid PIN-koodi. Võid selle akna sulgeda.",
+    okBody: "Kinnitus on antud. Mine tagasi aknasse, kus sisestasid PIN-koodi — sisselogimine jätkub seal. E-kirja aken võib kasutada teist brauserit.",
     waitBody: "Avan SotsiaalAI …",
-    handoffBody: "Mine tagasi aknasse, kus sisselogimist alustasid — seal oled juba sees. Selle akna võid sulgeda.",
+    handoffBody: "Mine tagasi aknasse, kus sisestasid PIN-koodi — sisselogimine jätkub sinna naastes. Ära alusta uut sisselogimist.",
     invalidTitle: "Kinnituslink ei kehti",
     invalidBody: "Link on aegunud või juba kasutatud. Palun alusta sisselogimist uuesti.",
     openLabel: "Ava SotsiaalAI",
@@ -33,9 +33,9 @@ const COPY = {
   },
   en: {
     okTitle: "Sign-in confirmed",
-    okBody: "Sign-in continued automatically in the window where you entered your PIN. You can close this window.",
+    okBody: "Confirmation received. Return to the window where you entered your PIN to continue signing in. The email window may use a different browser.",
     waitBody: "Opening SotsiaalAI …",
-    handoffBody: "Go back to the window where you started signing in — you are already signed in there. You can close this window.",
+    handoffBody: "Return to the window where you entered your PIN — sign-in continues when you return. Do not start a new sign-in.",
     invalidTitle: "Confirmation link is invalid",
     invalidBody: "The link has expired or has already been used. Please start sign-in again.",
     openLabel: "Open SotsiaalAI",
@@ -49,9 +49,9 @@ const COPY = {
   },
   ru: {
     okTitle: "Вход подтвержден",
-    okBody: "Вход продолжился автоматически в окне, где вы ввели PIN-код. Это окно можно закрыть.",
+    okBody: "Подтверждение получено. Вернитесь в окно, где вы ввели PIN-код, чтобы продолжить вход. Письмо могло открыться в другом браузере.",
     waitBody: "Открываю SotsiaalAI …",
-    handoffBody: "Вернитесь в окно, где вы начали вход, — вы уже вошли там. Это окно можно закрыть.",
+    handoffBody: "Вернитесь в окно, где вы ввели PIN-код — вход продолжится после возвращения. Не начинайте вход заново.",
     invalidTitle: "Ссылка подтверждения недействительна",
     invalidBody: "Ссылка устарела или уже использована. Начните вход заново.",
     openLabel: "Открыть SotsiaalAI",
@@ -136,6 +136,16 @@ const REDIRECT_SCRIPT = `(function () {
     document.body.setAttribute("data-waiting", "1");
     poll();
   }
+  // Avalehele tohib minna alles siis, kui selles brauseris on sessioon.
+  btn.addEventListener("click", function (event) {
+    event.preventDefault();
+    fetch("/api/auth/session", { credentials: "same-origin", cache: "no-store" })
+      .then(function (res) { return res.ok ? res.json() : null; })
+      .then(function (data) {
+        if (data && data.user) { window.location.replace(home); return; }
+        giveUp();
+      }).catch(giveUp);
+  });
   if (!channel) { startWaiting(); return; }
   channel.addEventListener("message", function (event) {
     if (!event || !event.data || event.data.type !== "login-pin-tab") return;
@@ -184,9 +194,11 @@ function htmlResponse(locale, variant, homeUrl, { token = "", attempt = null } =
     <title>${escapeHtml(title)}</title>
     <style>
       :root { color-scheme: dark; }
+      *, *::before, *::after { box-sizing: border-box; }
       body {
         margin: 0;
         min-height: 100vh;
+        min-height: 100dvh;
         display: grid;
         place-items: center;
         padding: 24px;
@@ -199,6 +211,8 @@ function htmlResponse(locale, variant, homeUrl, { token = "", attempt = null } =
       }
       main {
         width: min(100%, 31rem);
+        min-width: 0;
+        overflow-wrap: anywhere;
         border-radius: 2rem;
         padding: clamp(2rem, 4vw, 2.4rem);
         background: linear-gradient(180deg, rgba(34,34,34,0.66) 0%, rgba(23,23,23,0.78) 100%);
@@ -263,7 +277,8 @@ function htmlResponse(locale, variant, homeUrl, { token = "", attempt = null } =
         justify-content: center;
         gap: 0.5em;
         min-height: 3.1rem;
-        min-width: 11rem;
+        min-width: min(11rem, 100%);
+        max-width: 100%;
         padding: 0 1.6rem;
         margin-top: 0.4rem;
         border-radius: 999px;

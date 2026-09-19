@@ -1883,6 +1883,11 @@
     }
   },
   "accessibility": {
+    "dock": {
+      "language": "Language", "contrast": "Contrast", "text_scale": "Text",
+      "theme": "Theme", "screen_profile": "Screen", "motion": "Motion",
+      "ambient": "Sound", "install": "App", "save": "Save"
+    },
     "language": "Language",
     "text_scale": "Text size",
     "contrast": "Contrast",
@@ -8045,7 +8050,7 @@
     "admin_rag": "RAG",
     "admin_service_availability": "Service freshness",
     "admin_acceptances": "Acceptances",
-    "walk_1": "Whether you come with a life question, as a social work specialist or as a service provider — step inside.",
+    "walk_1": "Whether you come with a life question, as a social work specialist or as a service provider — you are welcome here.",
     "walk_2a": "Welcome.",
     "walk_2b": "The platform is under development and will open soon.",
     "walk_3a": "Ask about services, benefits, rights or professional practice.",

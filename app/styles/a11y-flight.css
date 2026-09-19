@@ -377,6 +377,20 @@ html[data-reduce-motion="1"] .a11f-ambient-choice-label {
 .a11f-dock .gc-shortcut[data-state="open"] {
   color: rgba(239, 239, 239, 0.62);
 }
+.a11f-dock .gc-shortcut-text { display: block; }
+.a11f-dock .gc-shortcut[data-on="1"] .gc-shortcut-text {
+  max-width: 8rem;
+}
+/* Vihje on kerimisrajast väljas: kitsal ekraanil ei lõika overflow teda ära. */
+.gc-shortcut-tooltip.a11f-tooltip {
+  position: fixed;
+  display: block;
+  bottom: auto;
+  translate: -50% -100%;
+  max-width: min(13rem, calc(100vw - 1rem));
+  z-index: calc(var(--z-modal, 10000) + 1);
+  opacity: 1;
+}
 
 @media (max-width: 720px) {
   .a11f-dolly {

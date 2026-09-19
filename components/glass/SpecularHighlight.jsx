@@ -31,6 +31,7 @@ import {
 /* Lõuend ulatub väljast üle, et helk tohiks servast välja hõõguda — sama
    marginaal mis nupul (.specular-button__fx inset: -20px). */
 const PAD = 20;
+const LOGIN_BUTTON_SELECTOR = ".login-keypad-btn:not(:disabled), .login-modal-close:not(:disabled), .login-help-close-btn:not(:disabled)";
 
 /* Väljad JA valikukaardid. Viimased (`label[data-control-type]` — OptionCard)
    on kasutaja silmis samuti „input lahtrid": ligipääsetavuse lennul ei ole
@@ -50,6 +51,8 @@ const FIELD_SELECTOR = [
   ".dd-trigger",
   "label[data-control-type]",
   '[role="radio"]:not(.specular-button)',
+  // Klahvistik jagab üht lõuendit, mitte 12 eraldi WebGL-konteksti.
+  LOGIN_BUTTON_SELECTOR,
 ].join(",");
 
 /* Nupu vaikeväärtused annavad välja jaoks liiga jämeda joone. Need on need,
@@ -195,7 +198,10 @@ export default function SpecularHighlight() {
       const radius = parseFloat(getComputedStyle(active).borderTopLeftRadius) || 0;
       program.uniforms.uRadius.value =
         Math.min(radius * scale, Math.min(w, h) / 2) * dpr;
-      program.uniforms.uThickness.value = THICKNESS * scale * dpr;
+      const loginButton = active.matches(LOGIN_BUTTON_SELECTOR);
+      program.uniforms.uThickness.value = (loginButton ? 1 : THICKNESS) * scale * dpr;
+      program.uniforms.uShineSize.value = ((loginButton ? 10 : SHINE_SIZE) * Math.PI) / 180;
+      program.uniforms.uShineFade.value = ((loginButton ? 40 : SHINE_FADE) * Math.PI) / 180;
       program.uniforms.uBaseWidth.value = scale * dpr;
       return true;
     };
@@ -227,7 +233,7 @@ export default function SpecularHighlight() {
         const diff = ((pointerAngle - angle + Math.PI * 3) % (Math.PI * 2)) - Math.PI;
         angle += diff * (1 - Math.exp(-dt * 7));
         program.uniforms.uAngle.value = angle;
-        program.uniforms.uIntensity.value = INTENSITY * bright;
+        program.uniforms.uIntensity.value = (active.matches(LOGIN_BUTTON_SELECTOR) ? 0.7 : INTENSITY) * bright;
         host.style.opacity = "1";
         renderer.render({ scene: mesh });
       }

@@ -450,7 +450,7 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
 .glass-iconbtn.room-walk-sound,
 .glass-iconbtn.room-walk-next,
 .glass-iconbtn.room-quick-btn,
-.glass-btn.room-skip {
+.room .room-skip {
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
 }
@@ -547,11 +547,15 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
 }
 /* Avalehe ja ligipääsetavuse lennu ühine sügavusvihje. */
 .scroll-frames {
+  --scroll-duration: 4.4s;
   position: relative;
   display: block;
   width: 60px;
   height: 48px;
   color: rgba(255, 255, 255, 0.5);
+  transform-origin: 30px 30px;
+  will-change: transform, opacity;
+  animation: scroll-depth-travel var(--scroll-duration) linear infinite;
 }
 .scroll-frames::before,
 .scroll-frames::after {
@@ -566,15 +570,15 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
   border-radius: 1px;
   opacity: 0;
   transform-origin: center;
-  will-change: opacity, transform;
-  animation: scroll-depth-outer 3.8s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
+  animation: scroll-depth-outer var(--scroll-duration) linear infinite;
 }
 .scroll-frames::after {
-  top: 24px;
-  left: 18px;
-  width: 24px;
-  height: 12px;
-  /* Sisemine raam tuleb veidi hiljem, kuid kaob välimisega samal hetkel. */
+  top: 21px;
+  left: 13.2px;
+  width: 33.6px;
+  height: 18px;
+  /* Üks kadumispunkt: kaks raami eri sügavustel.
+     Hilisem ilmumine ei nihuta paari ühist ruumilist liikumist. */
   animation-name: scroll-depth-inner;
   animation-delay: 0s;
 }
@@ -582,39 +586,41 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
   0%,
   8% {
     opacity: 0;
-    transform: scale(1);
   }
-  18% {
-    opacity: 0.7;
-  }
-  54% {
-    opacity: 0.52;
-    transform: scale(0.74);
-  }
-  72%,
+  18%,
   100% {
-    opacity: 0;
-    transform: scale(0.58);
+    opacity: 0.7;
   }
 }
 @keyframes scroll-depth-inner {
   0%,
-  14% {
+  22% {
     opacity: 0;
-    transform: scale(1);
   }
-  28% {
+  32%,
+  100% {
     opacity: 0.7;
   }
-  54% {
-    opacity: 0.52;
-    transform: scale(0.74);
+}
+/* Kogu paar hajub ühe kihina; sisemine raam ei kustu eraldi. */
+@keyframes scroll-depth-travel {
+  0% {
+    transform: scale(0.4);
+    opacity: 1;
+  }
+  40% {
+    opacity: 1;
   }
   72%,
   100% {
+    transform: scale(1.3);
     opacity: 0;
-    transform: scale(0.58);
   }
+}
+html[data-reduce-motion="1"] .scroll-frames {
+  animation: none;
+  opacity: 1;
+  transform: none;
 }
 html[data-reduce-motion="1"] .scroll-frames::before,
 html[data-reduce-motion="1"] .scroll-frames::after {
@@ -623,6 +629,11 @@ html[data-reduce-motion="1"] .scroll-frames::after {
   transform: none;
 }
 @media (prefers-reduced-motion: reduce) {
+  .scroll-frames {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
   .scroll-frames::before,
   .scroll-frames::after {
     animation: none;
@@ -643,28 +654,16 @@ html[data-reduce-motion="1"] .scroll-frames::after {
   display: none;
 }
 
-/* ---------- Vahelejätt — GlassButton, kompaktne paigutus ---------- */
-/* Liquid glass materjal tuleb glass.css-ist; siin ainult paigutus.
-   NB: .glass-btn.room-skip (0-2-0) — pelk .room-skip kaotas position'i
-   osas glass-btn'i position:relative'ile ja nupp triivis üles vasakusse
-   nurka (tellija leitud artefakt, 06.07 öö). */
-.glass-btn.room-skip {
+/* ---------- Vahelejätt — ühine Button koos kursori servahelgiga ---------- */
+/* Materjal ja tüpograafia tulevad samast primitiivist kui „Salvesta“.
+   Paigutus on ümbrisel; nupu enda relative-ankur jääb servahelgile. */
+.room-skip-wrap {
   position: fixed;
   bottom: max(1.6rem, env(safe-area-inset-bottom, 0px) + 1rem);
   right: clamp(1.3rem, 3vw, 2.4rem);
   z-index: var(--z-home-ui);
-  min-height: 3.1rem;
-  padding: 0 1.9em;
-  font-size: var(--fs-small);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--room-text-soft);
-  opacity: 0.92;
 }
-.room-skip:hover {
-  color: var(--room-text);
-}
-.room[data-mode="room"] .room-skip {
+.room[data-mode="room"] .room-skip-wrap {
   display: none;
 }
 
@@ -1233,11 +1232,12 @@ html[data-reduce-motion="1"] .room-walk-audio {
   }
   /* "Jäta vahele" kattis kitsal ekraanil bottom-center kerimisvihje
      (tellija 25.07). Nupp läheb kompaktsemaks ja madalamale, vihje tõuseb
-     tema kohale. NB: .glass-btn.room-skip (0-2-0) — pelk .room-skip kaotas
-     baasreegli `right: clamp(...)` vastu ega nihkunudki. */
-  .glass-btn.room-skip {
+     tema kohale. */
+  .room-skip-wrap {
     right: 1rem;
     bottom: max(1.1rem, env(safe-area-inset-bottom, 0px) + 0.7rem);
+  }
+  .room .room-skip {
     min-height: 2.6rem;
     padding: 0 1.2em;
   }
@@ -1254,6 +1254,33 @@ html[data-reduce-motion="1"] .room-walk-audio {
   .room-hint-label {
     font-size: 1rem;
   }
+}
+
+@media (pointer: coarse) {
+  .room { height: 100dvh; }
+  html[data-room-mode="room"],
+  html[data-room-mode="room"] body {
+    height: 100dvh;
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+  .room-topbar { height: 2.75rem; }
+  .room-topbar .room-topbar-arrow {
+    height: 2.75rem;
+    touch-action: manipulation;
+  }
+  /* Puutel juhib avamist päris vajutus, mitte Safari kleepuv hover/fookus. */
+  .room-topbar[data-open="0"] .room-quickbar {
+    transform: translate(-50%, calc(-100% + 2.75rem));
+    pointer-events: none;
+  }
+  .room-topbar[data-open="0"] .room-quickbar-arrow svg { opacity: 0.7; }
+  .room-topbar[data-open="0"] .room-quick-btn { opacity: 0; }
+  .room-topbar .room-quickbar {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  .room-topbar .room-quickbar-arrow svg { filter: none; }
 }
 
 }

@@ -18,6 +18,7 @@
  */
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { inertOutside } from "@/lib/inertOutside";
 import Button from "@/components/ui/Button";
 import { useI18n } from "@/components/i18n/I18nProvider";
@@ -32,6 +33,7 @@ import ChevronIcon from "@/components/brand/icons/ChevronIcon";
 import { BackArrowIcon } from "@/components/brand/icons/CardIcons";
 import InstallAppLink from "@/components/pwa/InstallAppLink";
 import useStationFlight from "@/components/register/useStationFlight";
+import useQuickMenuMotion from "@/components/ui/useQuickMenuMotion";
 import {
   AMBIENT_MODES,
   getAmbientMode,
@@ -87,9 +89,16 @@ export default function AccessibilityModal({
   requireInitialSelection = false,
 }) {
   const boxRef = useRef(null);
+  const [dockTooltip, setDockTooltip] = useState(null);
+  const showDockTooltip = (event, label) => {
+    if (event.pointerType === "touch") return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    setDockTooltip({ label, x: Math.max(110, Math.min(window.innerWidth - 110, rect.left + rect.width / 2)), y: rect.top - 9 });
+  };
   const backdropRef = useRef(null);
   const firstFocusRef = useRef(null);
   const stageRef = useRef(null);
+  const dockTrackRef = useRef(null);
   const {
     t,
     locale,
@@ -161,8 +170,13 @@ export default function AccessibilityModal({
        34px-nihe (ja ka pool sellest) mõjus siin liiga tugevana (omanik
        24.07). Vaid veerand algsest: napp ruumivihje, lava jääb paigale. */
     parallaxRange: 8,
+    // Pehmem läbiliikumine: lahkuv jaam hajub pikemalt, enne kaamera lähedust.
+    fadeLength: 420,
+    smoothFade: true,
+    durationScale: 1.2,
   });
   const activeIndexRef = useRef(activeIndex);
+  useQuickMenuMotion(dockTrackRef, activeIndex);
   activeIndexRef.current = activeIndex;
   const goTo = useCallback(
     (index) => {
@@ -769,7 +783,7 @@ export default function AccessibilityModal({
             </span>
           </button>
           <span className="gc-shortcut-divider" aria-hidden="true" />
-          <div className="gc-shortcut-track">
+          <div className="gc-shortcut-track" ref={dockTrackRef} onScroll={() => setDockTooltip(null)}>
             {STATIONS.map((station, index) => {
               const label = stationLabel(station);
               const isActive = index === activeIndex;
@@ -782,22 +796,31 @@ export default function AccessibilityModal({
                   data-state={isActive ? "active" : "open"}
                   aria-current={isActive ? "step" : undefined}
                   aria-label={label}
-                  onClick={() => goTo(index)}
+                  onPointerEnter={event => showDockTooltip(event, label)}
+                  onPointerLeave={() => setDockTooltip(null)}
+                  onFocus={event => {
+                    if (event.currentTarget.matches(":focus-visible")) showDockTooltip(event, label);
+                  }}
+                  onBlur={() => setDockTooltip(null)}
+                  onClick={() => { setDockTooltip(null); goTo(index); }}
                 >
                   <span className="gc-shortcut-icon" aria-hidden="true">
                     <span className="gc-shortcut-mark" />
                   </span>
                   <span className="gc-shortcut-text" aria-hidden="true">
-                    {label}
-                  </span>
-                  <span className="gc-shortcut-tooltip" aria-hidden="true">
-                    {label}
+                    {t(`accessibility.dock.${station.key}`)}
                   </span>
                 </button>
               );
             })}
           </div>
         </nav>
+        {dockTooltip && createPortal(
+          <span className="gc-shortcut-tooltip a11f-tooltip" aria-hidden="true"
+            style={{ left: dockTooltip.x, top: dockTooltip.y }}>
+            {dockTooltip.label}
+          </span>, document.body
+        )}
       </div>
     </>;
 }

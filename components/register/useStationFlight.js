@@ -49,9 +49,7 @@ export const STATION_DEPTH = 1400;
 const FADE_OUT_START = 40;
 const FADE_OUT_LEN = 320;
 const FADE_IN_START = FADE_OUT_START - STATION_DEPTH;
-const FADE_IN_LEN = FADE_OUT_LEN;
 const VISIBLE_MIN = -1420;
-const VISIBLE_MAX = FADE_OUT_START + FADE_OUT_LEN + 40;
 /* Kaamera ajastus (omanik 25.07: „lendamise efekt … ei ole sujuv" ja
    „koledalt kaovad nupud ära kerides").
    Ajalugu: kaadripõhine lerp (kiirus suurim ESIMESEL kaadril → nõks) →
@@ -101,9 +99,13 @@ const ARRIVAL_DRIFT = 120;
 
 const clamp01 = (v) => (v < 0 ? 0 : v > 1 ? 1 : v);
 
-function envelope(rel) {
-  const fadeIn = clamp01((rel - FADE_IN_START) / FADE_IN_LEN);
-  const fadeOut = 1 - clamp01((rel - FADE_OUT_START) / FADE_OUT_LEN);
+function envelope(rel, fadeLength, smoothFade) {
+  const ramp = (value) => {
+    const t = clamp01(value);
+    return smoothFade ? t * t * (3 - 2 * t) : t;
+  };
+  const fadeIn = ramp((rel - FADE_IN_START) / fadeLength);
+  const fadeOut = 1 - ramp((rel - FADE_OUT_START) / fadeLength);
   return fadeIn * fadeOut;
 }
 
@@ -126,6 +128,9 @@ export default function useStationFlight({
   initialIndex = 0,
   parallax = false,
   parallaxRange = PARALLAX_RANGE,
+  fadeLength = FADE_OUT_LEN,
+  smoothFade = false,
+  durationScale = 1,
 }) {
   const dollyRef = useRef(null);
   const planesRef = useRef(new Map());
@@ -201,7 +206,7 @@ export default function useStationFlight({
 
     for (const entry of planesRef.current.values()) {
       const rel = entry.z + cam;
-      if (rel < VISIBLE_MIN || rel > VISIBLE_MAX) {
+      if (rel < VISIBLE_MIN || rel > FADE_OUT_START + fadeLength + 40) {
         if (entry.visible !== false) {
           entry.visible = false;
           entry.el.style.visibility = "hidden";
@@ -212,7 +217,7 @@ export default function useStationFlight({
         entry.visible = true;
         entry.el.style.visibility = "visible";
       }
-      const o = envelope(rel);
+      const o = envelope(rel, fadeLength, smoothFade);
       if (Math.abs(o - entry.lastO) > 0.002) {
         entry.lastO = o;
         entry.el.style.setProperty("--o", o.toFixed(3));
@@ -225,7 +230,7 @@ export default function useStationFlight({
       return;
     }
     frameRef.current = requestAnimationFrame(tick);
-  }, [parallax, parallaxRange]);
+  }, [parallax, parallaxRange, fadeLength, smoothFade]);
 
   const wake = useCallback(() => {
     if (runningRef.current || modeRef.current !== "3d") return;
@@ -266,10 +271,10 @@ export default function useStationFlight({
       from,
       to,
       start: performance.now(),
-      dur,
+      dur: dur * durationScale,
       ease: moving ? easeOutCubic : easeInOutCubic,
     };
-  }, []);
+  }, [durationScale]);
 
   const flyTo = useCallback(
     (index, { instant = false, drift = false } = {}) => {

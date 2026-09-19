@@ -918,9 +918,18 @@ export default function LoginModal({
 
     checkStatus();
     intervalId = window.setInterval(checkStatus, 2000);
+    const resume = () => {
+      if (document.visibilityState === "visible") checkStatus();
+    };
+    document.addEventListener("visibilitychange", resume);
+    window.addEventListener("pageshow", resume);
+    window.addEventListener("focus", resume);
     return () => {
       stopped = true;
       if (intervalId) window.clearInterval(intervalId);
+      document.removeEventListener("visibilitychange", resume);
+      window.removeEventListener("pageshow", resume);
+      window.removeEventListener("focus", resume);
     };
   }, [
     isOtpStep,

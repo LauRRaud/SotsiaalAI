@@ -20,6 +20,7 @@ import IconButton from "@/components/glass/IconButton";
 import GlassCard from "@/components/glass/GlassCard";
 import ChevronIcon from "@/components/brand/icons/ChevronIcon";
 import RoleViewSwitcher from "@/components/workspace/RoleViewSwitcher";
+import useQuickMenuMotion from "@/components/ui/useQuickMenuMotion";
 
 /* Sama brauserivaate eluea jooksul hoitav kiire mälu. sessionStorage on
    endiselt püsiv varuvariant (F5 ja route-remount), kuid seda saab lugeda
@@ -294,6 +295,7 @@ export default function GlassCarousel({
   const drag = useRef({ on: false, x0: 0, dx: 0, moved: false, pid: null });
   const itemRefs = useRef([]);
   const shortcutTrackRef = useRef(null);
+  useQuickMenuMotion(shortcutTrackRef, active);
 
   /* Kiirmenüü riba, mis ei mahu ära, PEAB seda ise ütlema. Mobiilil (390 px)
      mõõdab kaheksa otseteed 410 px, riba nähtav osa on 295 px — ülejäänu oli

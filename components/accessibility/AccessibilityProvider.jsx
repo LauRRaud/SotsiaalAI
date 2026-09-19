@@ -49,7 +49,7 @@ function syncThemeChrome(prefs) {
   ensureMetaTag("theme-color")?.setAttribute("content", themeColor);
   ensureMetaTag("apple-mobile-web-app-status-bar-style")?.setAttribute(
     "content",
-    theme === "light" ? "default" : "black-translucent"
+    theme === "light" ? "default" : "black"
   );
 }
 

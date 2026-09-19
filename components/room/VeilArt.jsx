@@ -55,8 +55,12 @@ function shouldBeStill() {
   );
 }
 
-export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT_LIMIT }) {
+export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT_LIMIT, onAbsorbed }) {
   const canvasRef = useRef(null);
+  const onAbsorbedRef = useRef(onAbsorbed);
+  useEffect(() => {
+    onAbsorbedRef.current = onAbsorbed;
+  }, [onAbsorbed]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -87,6 +91,7 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
     let gateInteractive = false;
     let gateNeedsReentry = false;
     let gateLatched = false;
+    let absorptionReported = false;
     let flowPhase = "phrase";
     let nextTextGlowAt = 5.05;
 
@@ -1076,6 +1081,10 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
       updateAndDrawText(dt);
       updateAndDrawRipples(dt);
       ctx.globalCompositeOperation = "source-over";
+      if (gateLatched && gateTime >= gateDuration && !absorptionReported) {
+        absorptionReported = true;
+        onAbsorbedRef.current?.();
+      }
     }
 
     function onPointerMove(event) {

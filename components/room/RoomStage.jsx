@@ -110,6 +110,7 @@ import PendingInviteBanner from "@/components/invites/PendingInviteBanner";
 import RoomQuickbar from "@/components/room/RoomQuickbar";
 import VeilArt, { VEIL_EFFECTS } from "@/components/room/VeilArt";
 import GlassButton from "@/components/glass/GlassButton";
+import Button from "@/components/ui/Button";
 import JourneyText from "@/components/glass/JourneyText";
 import MetallicPaint from "@/components/brand/MetallicPaint";
 import {
@@ -169,7 +170,8 @@ const CARDLESS_DOCK_LABELS = {
  * (paneeli avamine ja sulgemine) kõndi ei korrata. */
 let walkDoneThisLoad = false;
 
-const STANDBY_FROM = 0.958; // ooterežiimi elemendid pärast viimast teksti
+const STANDBY_FROM = 0.962; // ooterežiimi elemendid pärast viimast teksti
+const STANDBY_FULL = 0.985; // lõppseis saavutatakse enne kerimisala viimast pikslit
 
 /* ⏻-vajutuse ja esimese klaasi vaheline pimeduse hetk (omanik 10.08:
    „klaasid võiks sekund hiljem ilmuda"). SAMA arv on carousel.css-is
@@ -197,7 +199,7 @@ const TEXT_STOPS = [
   { keys: ["walk_3a", "walk_3b"], from: 0.372, to: 0.528, depth: 620 },
   { keys: ["walk_4a", "walk_4b"], from: 0.552, to: 0.708, depth: 620 },
   { keys: ["walk_5a", "walk_5b"], from: 0.732, to: 0.85, depth: 620 },
-  { keys: ["walk_6"], from: 0.875, to: 0.945, depth: 620 },
+  { keys: ["walk_6"], from: 0.86, to: 0.955, depth: 620, edge: 0.018 },
 ];
 
 const clamp01 = (v) => (v < 0 ? 0 : v > 1 ? 1 : v);
@@ -460,7 +462,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       const el = textRefs.current[s];
       if (!el) continue;
       const stop = TEXT_STOPS[s];
-      const alpha = fadeWindow(p, stop.from, stop.to, 0.022);
+      const alpha = fadeWindow(p, stop.from, stop.to, stop.edge ?? 0.022);
       if (alpha <= 0.001) {
         if (el.style.opacity !== "0") el.style.opacity = "0";
         continue;
@@ -495,15 +497,16 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
         sb =
           modeRef.current === "room"
             ? 1
-            : ease(clamp01((p - STANDBY_FROM) / (1 - STANDBY_FROM)));
+            : ease(clamp01((p - STANDBY_FROM) / (STANDBY_FULL - STANDBY_FROM)));
       }
       standbyRef.current.style.opacity = String(sb);
-      standbyRef.current.style.pointerEvents = sb > 0.9 ? "auto" : "none";
+      // Nähtav nupp peab juba töötama, ka pooleli jäänud kerimise korral.
+      standbyRef.current.style.pointerEvents = sb > 0 ? "auto" : "none";
     }
 
     // Kõnni läbimine → selle laadimise piires meelde (paneelilt naastes
     // ei korrata; värske laadimine alustab alati pimedusest)
-    if (p > 0.995 && !walkDoneRef.current) {
+    if (p >= STANDBY_FULL && !walkDoneRef.current) {
       walkDoneRef.current = true;
       walkDoneThisLoad = true;
       setWalkDone(true);
@@ -566,8 +569,11 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
 
   /* ---------- kerimine (walk) ---------- */
   const readTarget = useCallback(() => {
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    return max > 0 ? clamp01(window.scrollY / max) : 0;
+    const scroller = document.scrollingElement || document.documentElement;
+    const max = scroller.scrollHeight - scroller.clientHeight;
+    if (max <= 0) return 0;
+    // scrollTop võib olla murdarv; lõppu jõudmine ei nõua täpset pikslivõrdsust.
+    return max - scroller.scrollTop <= 1 ? 1 : clamp01(scroller.scrollTop / max);
   }, []);
 
   useEffect(() => {
@@ -850,7 +856,18 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     };
   }, [veilOwnsFocus]);
 
-  const enterRoom = useCallback(() => {
+  const enterFallbackRef = useRef(null);
+  const finishVeilEntry = useCallback(() => {
+    if (enterFallbackRef.current === null) return;
+    window.clearTimeout(enterFallbackRef.current);
+    enterFallbackRef.current = null;
+    setVeil("fading");
+    // Esmalt hajub jaluse logo (420 ms), seejärel loor ise (900 ms).
+    window.setTimeout(() => setVeil("gone"), 1320);
+  }, []);
+  useEffect(() => () => window.clearTimeout(enterFallbackRef.current), []);
+
+  const enterRoom = useCallback((event) => {
     if (enteringRef.current) return;
     enteringRef.current = true;
     // Saabumine algab ALATI pimedusest — ka siis, kui brauser jõudis
@@ -863,14 +880,14 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
        vajutus võib kohe loori hajutada. Puuteseadmel algab neeldumine
        alles vajutusest (VeilArt latchGate) — anname sellele oma hetke,
        enne kui loor kaob, muidu jääks žest nägemata. */
-    const coarse = window.matchMedia?.("(pointer: coarse)")?.matches === true;
-    const lead = coarse && !readReduced() ? 1250 : 0;
-    window.setTimeout(() => {
-      setVeil("fading");
-      // Esmalt hajub jaluse logo (420 ms), seejärel loor ise (900 ms).
-      window.setTimeout(() => setVeil("gone"), 1320);
-    }, lead);
-  }, [applyScene, readReduced]);
+    const touch = event?.nativeEvent?.pointerType === "touch" ||
+      window.matchMedia?.("(pointer: coarse)")?.matches === true;
+    const animatedTouch = touch && !readReduced() &&
+      veilRef.current?.querySelector(".room-veil-art")?.dataset.mode === "live";
+    // Puutel lõpetab oote VeilArt ise, kui kõik osakesed on neeldunud.
+    // Varupiir hoiab sisenemise kasutatavana ka katkestatud canvas'e korral.
+    enterFallbackRef.current = window.setTimeout(finishVeilEntry, animatedTouch ? 6000 : 0);
+  }, [applyScene, readReduced, finishVeilEntry]);
 
   /* Loori all ei saa kerida (kõnd algab alles sisenemisel) */
   useEffect(() => {
@@ -892,7 +909,8 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
      klaviatuur. Aknataseme klikipüüdjat enam ei ole. */
   const skipToEnd = useCallback(() => {
     if (modeRef.current !== "walk") return;
-    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const scroller = document.scrollingElement || document.documentElement;
+    const max = scroller.scrollHeight - scroller.clientHeight;
     lerpK.current = LERP_SKIP;
     window.scrollTo({ top: max, behavior: "auto" });
     target.current = 1;
@@ -905,8 +923,9 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       if (e.defaultPrevented) return;
       const tag = (e.target?.tagName || "").toLowerCase();
       if (tag === "input" || tag === "textarea" || e.target?.isContentEditable) return;
+      if (e.target?.closest?.("button, a[href], select, [role='button']")) return;
       if (["Enter", " ", "End", "Escape"].includes(e.key)) {
-        if (displayed.current < 0.985) {
+        if (displayed.current < STANDBY_FULL) {
           e.preventDefault();
           skipToEnd();
         }
@@ -1603,15 +1622,17 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
               </div>
 
               {/* Vahelejätt */}
-              <GlassButton
-                layoutClassName="room-skip"
+              <div
+                className="room-skip-wrap"
                 data-room-ui
                 ref={skipRef}
-                onClick={skipToEnd}
                 hidden={mode !== "walk"}
               >
-                {t("room.skip")}
-              </GlassButton>
+                <Button className="room-skip" onClick={skipToEnd}
+                  style={{ backdropFilter: "none", WebkitBackdropFilter: "none" }}>
+                  {t("room.skip")}
+                </Button>
+              </div>
 
               {/* Taustaheli juhtnupud elavad KÕNNIS "ukse peal" (tellija
                   07.07: muusika algab uksekaadrist, mitte loorilt):
@@ -1747,7 +1768,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
         {/* „Selguse väli“: hajus info koguneb lauseks ja muutub kasutaja
             kutsel läveks. Kunstikiht ei püüa sündmusi; päris tekst ja
             nupp jäävad selle kohal ligipääsetavaks. */}
-        {veil !== "gone" ? <VeilArt effect={VEIL_EFFECTS.DIRECT} /> : null}
+        {veil !== "gone" ? <VeilArt effect={VEIL_EFFECTS.DIRECT} onAbsorbed={finishVeilEntry} /> : null}
         <div
           className="room-veil-logo"
           /* Critical pre-CSS guard: SSR must never expose the default canvas

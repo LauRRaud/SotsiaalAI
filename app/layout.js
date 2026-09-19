@@ -155,7 +155,7 @@ const THEME_INIT_SCRIPT = `(function () {
   ensureMeta("theme-color").setAttribute("content", resolveChromeColor(theme, contrast));
   ensureMeta("apple-mobile-web-app-status-bar-style").setAttribute(
     "content",
-    theme === "light" ? "default" : "black-translucent"
+    theme === "light" ? "default" : "black"
   );
   applyHomeFlag();
 })();`;

@@ -1883,6 +1883,11 @@
     }
   },
   "accessibility": {
+    "dock": {
+      "language": "Keel", "contrast": "Kontrast", "text_scale": "Tekst",
+      "theme": "Teema", "screen_profile": "Ekraan", "motion": "Liikumine",
+      "ambient": "Heli", "install": "Rakendus", "save": "Salvesta"
+    },
     "language": "Keel",
     "text_scale": "Teksti suurus",
     "contrast": "Kontrast",
@@ -8045,7 +8050,7 @@
     "admin_rag": "RAG",
     "admin_service_availability": "Teenuste värskus",
     "admin_acceptances": "Kinnitused",
-    "walk_1": "Kui oled eluküsimusega pöörduja, sotsiaaltöö spetsialist või teenuseosutaja — astu sisse.",
+    "walk_1": "Kui oled eluküsimusega pöörduja, sotsiaaltöö spetsialist või teenuseosutaja — oled oodatud.",
     "walk_2a": "Tere tulemast.",
     "walk_2b": "Platvorm on arendamisjärgus ja avatakse peagi.",
     "walk_3a": "Küsi teenuste, toetuste, õiguste või tööpraktika kohta.",
