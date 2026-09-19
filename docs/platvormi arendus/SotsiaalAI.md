@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**19.09 vormiklaas, kaardiserv ja rõhtvaate ligipääsetavus — kohalik muudatus.**
+**19.09 vormiklaas, kaardiserv ja rõhtvaate ligipääsetavus — serveris (`7d5d775b`).**
 Nuppude ja väljade sisemine helk on teravam ning väiksema häguga; sisendvälja
 hover tumendab täidet ja liikuv servahelk on taas selgem. Kaartide püsiserv on
 0,8 px ning madalama kontrastiga, et sisu jääks esiplaanile. Konto seadete
@@ -100,10 +100,10 @@ hammasratta joon skaleerub nüüd teiste ikoonidega võrdselt. Madalas mobiili
 rõhtvaates mahub kolmas keelevalik tervikuna doki kohale; Chromiumi 844 × 390
 puutevaates lõpeb valik 273,5 px ja dokk algab 315 px juures.
 
-**19.09 mobiilimenüü ikoonid ja sildid — kohalik commit `6ff57051`.**
+**19.09 mobiilimenüü ikoonid ja sildid — serveris (`6ff57051`).**
 Puuteseadme kaartidel on ikoonid ja tekst suuremad. Rõhtvaates ei suru
 madal ekraan neid enam 2 rem / 0,7 rem mõõtu; pika sildi jaoks säilib
-eraldi veidi väiksem aste ja keskjoondus. Muudatus pole veel avaldatud.
+eraldi veidi väiksem aste ja keskjoondus.
 
 **19.09 ruumilisem klaasmaterjal — serveris (`03eab280`).**
 Kaartide ja paneelide keskosa on läbipaistvam; ka kaartide üla- ja alaosa
