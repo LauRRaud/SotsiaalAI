@@ -6,7 +6,7 @@
      nähtavalt üle rea (transform ilma üleminekuta);
    — fookuskaardi kuma süttib VIITEGA pärast settimist (mitte kahel
      kaardil korraga);
-   — klaasimaterjali serv silutakse enne 3D-pööret; sisu jääb teravaks;
+   — valmis klaasimaterjali serv silutakse pärast maski; sisu jääb teravaks;
    — kaartidel kontuurikoon + nimi;
    — käivitusfaasid: klaasid enne (faas 1), sisu järele (faas 2).
    Üks 3D-tasand: perspective siin, kaardid otse all (iOS).
@@ -651,13 +651,13 @@ html[data-reduce-motion="1"] .gc-item {
      tume toon ilma suure läiketa; ruum kumab selgelt läbi.
      ÜKS ühine ilme (tokens.css --card-glass-*), jagatud kaardilehe
      paneeliga (panel.css) — ei mingeid koopiaid. */
-  /* Materjal elab pseudokihtidel, et selle silumine ei hägustaks sisu. */
+  /* Eraldi materjalikiht jätab ikooni ja teksti silumisest välja. */
   background: transparent;
   border: none;
   box-shadow: none;
   color: var(--room-text);
   text-decoration: none;
-  /* Silutud välisserv vajab pool pikslit ruumi väljaspool piirdekasti. */
+  /* Serva antialias ei tohi piirdekasti äärel uuesti ära lõigata. */
   overflow: visible;
 }
 
@@ -691,22 +691,29 @@ html[data-reduce-motion="1"] .gc-item {
   }
 }
 
-.gc-card::before {
+.gc-card-surface {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  /* Filter peab olema maski VANEMAL: samal pseudokihil rakenduks blur
+     enne maski ning 0.8px rõngas lõigataks seejärel uuesti teravaks.
+     Täide, inset-helgid ja maskitud serv silutakse ühe komposiidina,
+     et nende kattuvad subpikslilised ääred ei vilguks pööramisel eraldi.
+     Klaasi tokenid, kursorikalle ja sisu renderdus jäävad samaks. */
+  filter: blur(0.75px);
+}
+
+.gc-card-surface::before {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
   background: var(--card-glass-sheen), var(--card-glass-bg);
   box-shadow: var(--card-glass-shadow);
-  /* Subpiksliline eelfilter silub kaldu pinna rasterserva. Filtrit ei
-     panda .gc-card-ile: ikoon ja tekst ei kuulu sellesse rasterkihti. */
-  filter: blur(0.5px);
-  pointer-events: none;
 }
 
-/* Mask määrab rõnga kuju, kuid ei silu selle hilisemat 3D-projektsiooni.
-   Sama eelfilter kui täitel väldib teravat, astmeliselt muutuvat äärepikslit. */
-.gc-card::after {
+.gc-card-surface::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -717,9 +724,6 @@ html[data-reduce-motion="1"] .gc-item {
   -webkit-mask-composite: xor;
   mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   mask-composite: exclude;
-  filter: blur(0.5px);
-  pointer-events: none;
-  transition: opacity var(--dur-med) var(--ease-soft);
 }
 
 /* Kaugusudu — ruumi enda õhk kaardi ja silma vahel. See ASENDAB varasema
@@ -1626,11 +1630,10 @@ html[data-reduce-motion="1"] .gc-shortcut-tooltip {
 }
 
 /* Kõrgkontrast: kuma maha, selged servad */
-html[data-contrast="hc"] .gc-card::before,
-html[data-contrast="hc"] .gc-card::after {
+html[data-contrast="hc"] .gc-card-surface {
   filter: none;
 }
-html[data-contrast="hc"] .gc-card::after {
+html[data-contrast="hc"] .gc-card-surface::after {
   background: rgba(255, 255, 255, 0.85);
   padding: 2px;
 }

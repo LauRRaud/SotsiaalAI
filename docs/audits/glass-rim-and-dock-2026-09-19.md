@@ -6,7 +6,7 @@ Lähtekoht `bbdc96c36` / kood `68fbb0b7e`. Kohalik Chromium,
 `http://localhost:3001`, eraldi brauserikontekst. Tootmisandmeid ega päris
 kasutaja kontot ei kasutatud. Hilisem avaldamiskontroll on kirjas lõpus.
 
-## Klaas
+## Klaas: esimene parandus (`3a458822`), ebapiisav
 
 Viimane muudatus oli asendanud varasema materjali õhukese ühetoonilise joonega,
 kuid säilitanud sama maski ja 3D-projektsiooni. See ei olnud serva vea parandus.
@@ -29,11 +29,66 @@ Lõplikus päris karussellis kontrolliti hiire asendit kaardi üla- ja alanurgas
 ning väljaspool. Transform muutus ja taastus identity'ks; tausta- ning
 servagradientide computed väärtused püsisid täpselt samad.
 
-Tõendipiir: kohalik katse toetab rasterserva aliasing'u diagnoosi ja silumise
-leevendavat mõju. See ei tõenda kogu kasutaja seadmes nähtud ajalise väreluse
-kadumist kõigil GPU-del, brauseritel ja suumidel. Päris iOS/GPU rada:
-**NOT_PROVEN**. Pildivõrdlused: `output/playwright/rim-fixed-*.png`,
+Kasutaja järgmine ekraanipilt kinnitas, et see ei kõrvaldanud sakilist,
+liikumisel heleduse poolest muutuvat serva. Varasema katse väide maskitud
+serva eelfiltreerimisest oli ebatäpne: samal elemendil lõikab mask pärast
+filtrit serva uuesti teravaks. Päris iOS/GPU rada:
+**NOT_PROVEN**. Esimese katse pildivõrdlused: `output/playwright/rim-fixed-*.png`,
 `rim-restored-*.png`, `rim-final-upper.png`, `rim-final-lower.png`.
+
+## Klaasiserva järelparandus, kohalik
+
+Põhjus ja muudatus:
+
+- Vana `::after` kasutas koos `filter: blur(.5px)` ja 0.8px XOR-maski.
+  [CSS-i renderdusjärjekorras](https://www.w3.org/TR/filter-effects-1/#module-interactions)
+  rakendatakse filter enne maski. Seega ei silunud see valmis rõnga ääri.
+- Kaadrivõrdlus näitas serva heledate/tumedate astmete muutumist ka siis,
+  kui materjali gradientide väärtused ei muutunud. Õhuke maskiserv ja
+  eraldi silutud inset-helgid rasterdati liikuvas projektsioonis.
+- `GlassCard` sisaldab nüüd ühte `aria-hidden` materjalikihti. Selle sees
+  joonistatakse sama täide, inset-helgid ja sama maskitud serv; vanemakihi
+  0.75px silumine rakendub valmis komposiidile. Ikoonid ja tekst on selle
+  kõrval, nende filter on `none`. Klaasitokeneid ega liikumist ei muudetud.
+
+1440 × 900, Chromium, DPR 1. Sama keskkaart 21 asendis:
+`rotateX(-4deg)`, `rotateY(-4.5deg…4.5deg)` 0.45° sammuga, üleminek katseks
+peatatud. Ülaserva 20–80% lõigu asukoht mõõdeti iga kaadri DOM-proovidest.
+Piksliveerust võeti serva ümbruse heleduse maksimum. Ruumilise ebatasasuse
+jaoks eemaldati profiilist sujuv kuuppolünoom; kaadritevaheliseks mõõduks
+joondati profiilid sama lõigu 101 suhtelisse punkti. Arvud on heleduse
+0–255 skaalal; need mõõdavad just selle katse serva, mitte kõiki GPU-sid.
+
+| Mõõt | Avaldatud eelmine kood | Lõplik komponent | Muutus |
+| --- | ---: | ---: | ---: |
+| Serva ruumilise heleduse ebaühtluse RMS | 5.15 | 1.85 | −64% |
+| Serva maksimumheleduse kaadritevaheline standardhälve | 7.30 | 2.30 | −68% |
+| Kaadri keskmise servamaksimumi vahemik | 64.22–77.76 | 56.30–60.72 | väiksem kõikumine |
+
+Serva üksiku piksli tipp muutub silumisel madalamaks. Täite tooni muutmist
+sellega ei peideta: sama asendi sisemisel 150 × 60px taustaalal olid enne
+ja pärast RGB-pikslid identsed (keskmine ja suurim erinevus 0).
+
+Kontrollitud päris karusselli pointermove'iga üla-/alanurgas ja väljumisel:
+kaart kaldub ning naaseb identity-transformile, tausta transform muutub,
+materjali ja serva computed gradiendid püsivad samad. Töölaual kontrollitud
+hoveri `translateZ(46px)`, kalle ning hit-test (uus dekoratiivkiht klikki ei
+püüa). Töölaua puhul kasutati eraldatud näidissessiooni API-asendusega.
+Kõrgkontrastis säilib 2px serv ja filter `none`; süsteemi reduced-motion
+režiimis on kaardi transform `none`. DPR 2 karussell kontrollitud eraldi
+brauserikontekstis, `devicePixelRatio === 2`.
+
+Tõendid: `output/playwright/rim-sequence-{baseline,implemented}-*.png`,
+`rim-sequence-metrics.json`, `rim-followup-live-*.png`, `rim-followup-desk.png`,
+`rim-followup-dpr2.png`. Mõõtmise skriptid samas kaustas: `rim-sequence.js`
+ja `rim-analyze.py`. Tegemist on kontrollitud leevendusega, mitte tõendiga
+väreluse täielikust kadumisest kasutaja seadmes. Kasutaja GPU ja päris iOS:
+**NOT_PROVEN**. Järelparandus ei ole veel tootmisse avaldatud.
+
+Järelparanduse kontrollid: muudetud JSX-i eslint läbis; kogu repo lint
+0 viga (kaks varasemat komponentide hoiatust ja katse ajal üks ajutise
+diagnostikaskripti unused-muutuja hoiatus; viimane parandatud ja sihtlint
+korratud). `TZ=UTC npm run build` koos i18n-kontrolliga läbis.
 
 ## Paneeli laienemine
 

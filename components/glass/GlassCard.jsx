@@ -16,6 +16,7 @@ const GlassCard = forwardRef(function GlassCard(
   const tagProps = Tag === "button" ? { type: "button" } : { href };
   return (
     <Tag ref={ref} className="gc-card" {...tagProps} {...props}>
+      <span className="gc-card-surface" aria-hidden="true" />
       {icon ? (
         <span className="gc-icon" aria-hidden="true">
           {icon}

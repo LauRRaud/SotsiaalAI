@@ -92,17 +92,18 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**19.09 klaasi taastamine ja paneeli tegelik laienemine — serveris (`3a458822`).**
-Varasem klaasimaterjal on taastatud sama neutraalse täitega ja väliste
-varjudeta. Kaldu rasterserva silumine rakendub ainult materjalikihile;
-kaartide ja tausta liikumine säilib. Kasutaja seadme kogu ajalise väreluse
-kadumine on veel NOT_PROVEN.
+**19.09 klaasiserva järelparandus — kohalikult kontrollitud, avaldamata.**
+Klaasi serv ja sisemised helgid silutakse koos pärast servamaski rakendamist.
+Sama neutraalne täide, läbipaistvus, terav sisu ning kaartide ja tausta
+liikumine säilivad. Kohalik kaadrite võrdlus kinnitab väiksemat servavärelust;
+kasutaja seadmes selle kadumine on veel NOT_PROVEN.
+Paneeli laienemise parandus on serveris (`3a458822`):
 Kontopere ja manustatud tööleht kasvavad nüüd doki taandumisel allapoole,
 ülaserv püsib paigal. Doki kuulaja jälgib ka manustatud tööpaneeli kerimist;
 parandatud on selle hiireratta topeltsamm. Päris dokumentide ja kasutuse
 komponendid kontrollitud eraldatud API-näidisandmetega. Tehniline tõend:
-`docs/audits/glass-rim-and-dock-2026-09-19.md`. Avaldatud omaniku loal;
-frontend aktiivne, avaleht HTTP 200 ja avalikus CSS-is uus materjal ning dokikasv.
+`docs/audits/glass-rim-and-dock-2026-09-19.md`. Varasem avaldamiskontroll kinnitas
+aktiivse frontendi, avalehe HTTP 200 ja dokikasvu olemasolu avalikus CSS-is.
 
 **19.09 paneelide ühine kerimiskäitumine — serveris (`68fbb0b7`).**
 Kõik ruumi kiirmenüüga paneelid taandavad doki alla kerides igal ekraanil;
