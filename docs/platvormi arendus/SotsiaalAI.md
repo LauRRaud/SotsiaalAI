@@ -92,6 +92,18 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**19.09 ruumilisem klaasmaterjal — kohalik eelvaade.**
+Omanik lükkas eelmise lameda ja diagonaalse gradiendiga variandi tagasi.
+Kaartidel ja paneelidel on nüüd ühtlane läbipaistev pind, mitmekihiline
+ümardatud serv, alaserva paksus ning külgedel kitsad valguspeegeldused.
+Nupud ja väljad kasutavad sama materjali väiksemas mõõdus; rippmenüü
+säilitab tihedama tausta. Peidetud ülaribale kaardi välist varju ei lisandu.
+Chromiumis kontrollitud menüü, sisupaneel ja login; 390 × 844 mõõdus login
+mahub ekraanile, külgülevooluta. Kõrgkontrasti ja vähendatud läbipaistvuse
+pinnad säilivad. Build, i18n ja diff-kontroll läbisid; lint lõpetas vigadeta
+(kahe olemasoleva hoiatusega). Päris iOS ning
+omaniku visuaalne heakskiit on NOT_PROVEN. Uus variant pole avaldatud.
+
 **19.09 neutraalne klaas ja paneelisisene kerimine — serveris (`a0c4db8b`).**
 Menüükaart, töölaud ja avatud paneel jagavad läbipaistvat neutraalset pinda,
 pehmet servapeegeldust ning üla- ja alanurga helki. Nupud, vormiväljad ja

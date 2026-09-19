@@ -759,7 +759,8 @@ html[data-reduce-motion="1"] .scroll-frames::after {
   background: var(--control-glass-bg);
   -webkit-backdrop-filter: var(--control-glass-blur);
   backdrop-filter: var(--control-glass-blur);
-  box-shadow: var(--card-glass-shadow);
+  /* Peidetud riba ei kanna kaardi välist sügavusvarju. */
+  box-shadow: var(--glass-inner-light);
   color: var(--room-text);
   /* Peidus: näha ~1.55rem klaasi alaserv (paneel veidi allpool), ikoonid
      jäävad serva taha peitu (peek < alaserva polster 1.9rem). Noole tükk

@@ -99,7 +99,7 @@
   /* Prefiks ENNE standardit — Lightning CSS jätab duplikaadist viimase. */
   -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
   backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  box-shadow: var(--glass-inner-light), 0 12px 32px rgba(0, 0, 0, 0.35);
+  box-shadow: var(--card-glass-shadow);
   color: var(--text-soft);
   font-family: var(--font-ui);
   font-size: var(--fs-small);

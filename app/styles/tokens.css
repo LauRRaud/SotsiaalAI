@@ -60,47 +60,58 @@
 
   /* ---- Klaas: NEUTRAALNE läbipaistvus, ilma toonita.
      Soojus tuleb ruumist klaasi tagant, mitte klaasi värvist. ---- */
-  --glass-bg:
-    linear-gradient(155deg, rgba(255, 255, 255, 0.065), transparent 42%, rgba(255, 255, 255, 0.018)),
-    rgba(20, 20, 20, 0.36);
-  --glass-bg-strong:
-    linear-gradient(155deg, rgba(255, 255, 255, 0.075), transparent 55%),
-    rgba(21, 21, 21, 0.82);
+  --glass-bg: rgba(170, 170, 170, 0.17);
+  --glass-bg-strong: rgba(30, 30, 30, 0.88);
   --glass-blur: 22px;
   --glass-saturate: 100%;
-  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-border: rgba(255, 255, 255, 0.24);
   --glass-border-soft: rgba(255, 255, 255, 0.1);
-  --glass-rim: rgba(249, 249, 249, 0.9); /* helendav serv (pilt 8) */
+  --glass-rim: rgba(249, 249, 249, 0.9);
   --glass-rim-glow:
     0 0 0.5px rgba(249, 249, 249, 0.9),
     0 0 22px rgba(242, 242, 242, 0.2),
     0 0 60px rgba(238, 238, 238, 0.1);
   --glass-inner-light:
-    inset 0 1px 1px rgba(255, 255, 255, 0.2),
-    inset 0 -1px 1px rgba(255, 255, 255, 0.07),
-    inset 1px 0 1px rgba(255, 255, 255, 0.06);
+    inset 0 1px 1px rgba(255, 255, 255, 0.3),
+    inset 1px 0 1px rgba(255, 255, 255, 0.12),
+    inset 0 -1.5px 1px rgba(255, 255, 255, 0.16);
   --glass-shadow:
     0 24px 70px rgba(5, 5, 5, 0.55),
     0 6px 22px rgba(5, 5, 5, 0.35);
   --glass-highlight: rgba(255, 255, 255, 0.07);
 
-  /* Üks klaasmaterjal menüükaartidele, töölauale ja avatud paneelidele. */
+  /* Klaasploki pind on ühtlane. Mahu annavad ümar faas, sisemine
+     valgus ja alaserva teine tasapind; üle pinna diagonaali ei ole. */
   --card-glass-bg: var(--glass-bg);
-  --card-glass-shadow: var(--glass-inner-light);
-  /* Klaasi sügavus: lai peegeldus üleval, kitsam vastupeegeldus all.
-     Mõlemad on neutraalsed; taust saab anda oma loomuliku värvi. */
+  --card-glass-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1),
+    inset 0 0 0 3px rgba(255, 255, 255, 0.025),
+    inset 0 0 0 3.5px rgba(255, 255, 255, 0.055),
+    inset 2px 3px 4px rgba(255, 255, 255, 0.2),
+    inset -1.5px -2.5px 3px rgba(255, 255, 255, 0.13),
+    inset 0 0 18px rgba(255, 255, 255, 0.06),
+    0 1px 0 rgba(255, 255, 255, 0.24),
+    0 4px 0 -1px rgba(180, 180, 180, 0.18),
+    0 6px 0 -2px rgba(70, 70, 70, 0.16),
+    0 16px 36px rgba(0, 0, 0, 0.38);
   --card-glass-sheen:
-    radial-gradient(100% 70% at 0% 0%, rgba(255, 255, 255, 0.09), transparent 65%),
-    radial-gradient(80% 45% at 100% 100%, rgba(255, 255, 255, 0.035), transparent 65%);
-  --card-glass-rim: linear-gradient(
-    145deg,
-    rgba(255, 255, 255, 0.62) 0%,
-    rgba(255, 255, 255, 0.22) 18%,
-    rgba(255, 255, 255, 0.07) 42%,
-    rgba(255, 255, 255, 0.1) 64%,
-    rgba(255, 255, 255, 0.38) 88%,
-    rgba(255, 255, 255, 0.22) 100%
-  );
+    radial-gradient(ellipse 90% 24% at 50% 0%, rgba(255, 255, 255, 0.07), transparent 100%),
+    radial-gradient(ellipse 7% 55% at 0% 38%, rgba(255, 255, 255, 0.11), transparent 100%),
+    radial-gradient(ellipse 7% 55% at 100% 65%, rgba(255, 255, 255, 0.08), transparent 100%),
+    radial-gradient(ellipse 70% 16% at 50% 100%, rgba(255, 255, 255, 0.035), transparent 100%);
+  /* Kaks kitsast peegeldust pole ühtlase heledusega kontuur. */
+  --card-glass-rim:
+    radial-gradient(ellipse 6px 75px at 0% 38%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(ellipse 6px 75px at 100% 65%, rgba(255, 255, 255, 0.65), transparent),
+    conic-gradient(from 210deg,
+      rgba(255, 255, 255, 0.16),
+      rgba(255, 255, 255, 0.58) 55deg,
+      rgba(255, 255, 255, 0.82) 105deg,
+      rgba(255, 255, 255, 0.22) 155deg,
+      rgba(255, 255, 255, 0.12) 205deg,
+      rgba(255, 255, 255, 0.5) 260deg,
+      rgba(255, 255, 255, 0.28) 305deg,
+      rgba(255, 255, 255, 0.16));
 
   /* ---- Juhtpind: peidetud ülariba (.room-quickbar) JA kiirmenüü/dokk
      (.gc-shortcut-menu). Omanik 03.08 küsis mõlemale sama: „läbipaistvam ja
@@ -224,15 +235,12 @@
   --btn-primary-text: var(--text-ink);
   /* Vormiväljad ja nupud jagavad läbipaistvat täidet ning peegeldust.
      Väiksel pinnal on serva paksus nähtavam kui suurel paneelil. */
-  --input-bg: rgba(255, 255, 255, 0.055);
-  --input-sheen: linear-gradient(155deg,
-    rgba(255, 255, 255, 0.085),
-    rgba(255, 255, 255, 0.012) 45%,
-    transparent 65%,
-    rgba(255, 255, 255, 0.035));
-  /* Hover/fookus tumendab täidet; fookust eristab heledam ääris. */
-  --input-bg-hover: rgba(255, 255, 255, 0.04);
-  --input-bg-focus: rgba(255, 255, 255, 0.025);
+  --input-bg: rgba(200, 200, 200, 0.08);
+  --input-sheen:
+    radial-gradient(ellipse 100% 90% at 50% 0%, rgba(255, 255, 255, 0.085), transparent 80%),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.035), transparent 30%);
+  --input-bg-hover: rgba(220, 220, 220, 0.11);
+  --input-bg-focus: rgba(200, 200, 200, 0.07);
   --input-text: var(--text-warm);
   --input-placeholder: rgba(255, 255, 255, 0.65);
   --input-border: 1px solid rgba(255, 255, 255, 0.18);
@@ -259,10 +267,13 @@
   --input-font-size: clamp(1rem, 0.97rem + 0.15vw, 1.08rem);
   --input-blur: 16px;
   --input-highlight:
-    inset 0 1px 1px rgba(255, 255, 255, 0.32),
-    inset 1px 0 1px rgba(255, 255, 255, 0.08),
-    inset 0 -1px 1px rgba(255, 255, 255, 0.1);
-  --input-shadow: 0 3px 8px rgba(0, 0, 0, 0.18);
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+    inset 1px 2px 3px rgba(255, 255, 255, 0.3),
+    inset -1px -2px 2px rgba(255, 255, 255, 0.14),
+    inset 0 0 8px rgba(255, 255, 255, 0.045);
+  --input-shadow:
+    0 2px 0 -1px rgba(255, 255, 255, 0.14),
+    0 5px 10px rgba(0, 0, 0, 0.24);
   /* Kursorit jälgiv SERVAHELK ei ole token ega CSS: väli kannab sama
      WebGL-shaderit mis nupp (components/SpecularButton/specularShader.js),
      joonistab components/glass/SpecularHighlight. CSS-i siia ei jää, sest
@@ -343,6 +354,7 @@ html.theme-dark:not([data-contrast="hc"]) {
    läbipaistmatuks, äärised tugevaks. Ortogonaalne teemale.
    ============================================================ */
 html[data-contrast="hc"] {
+  --card-glass-shadow: inset 0 0 0 1px #ffffff;
   --card-glass-sheen: none;
   --card-glass-rim: linear-gradient(#ffffff, #ffffff);
   --input-sheen: none;
@@ -385,6 +397,7 @@ html[data-contrast="hc"] {
 
 /* Läbipaistvuse vähendamine (kasutaja eelistus) */
 html[data-reduce-transparency="1"] {
+  --card-glass-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
   --card-glass-sheen: none;
   --input-sheen: none;
   --glass-blur: 0px;
