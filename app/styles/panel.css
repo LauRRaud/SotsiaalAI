@@ -49,7 +49,9 @@
      hõljuma (omanik 26.07: „tekstilehed veidi lähemale alumisele
      dokile"). Kitsam reserv = aken venib allapoole; dokk ise ei liigu,
      tema kõrguse otsustab --dock-bottom (tokens.css). */
-  --room-dock-reserve: clamp(4.9rem, 5.2lvh + 2.7rem, 6.9rem);
+  --room-dock-rest-reserve: clamp(4.9rem, 5.2lvh + 2.7rem, 6.9rem);
+  --room-dock-reserve: var(--room-dock-rest-reserve);
+  --room-dock-released: calc(var(--room-dock-rest-reserve) - var(--room-dock-reserve));
   --panel-max-h: calc(100lvh - var(--room-dock-reserve) - clamp(2.5rem, 5lvh, 4rem));
   padding-bottom: var(--room-dock-reserve);
   /* Ülapolstrit siin EI suurendata. Proovisin (26.07) ja see lükkas terve
@@ -118,7 +120,7 @@ html[data-reduce-motion="1"] .panel-scrim[data-dock="1"] {
    PanelFrame ootab (aeglane võrk), siis kast EI hüppa, vaid kasvab.
    Fikseeritud kõrgusega variandid jäävad välja — nende kõrgus tuleb
    ekraanist, mitte sisust, ja neil ei ole midagi animeerida. */
-.panel-scrim:not([data-chat="1"]):not([data-conversation="1"]):not([data-admin="1"]):not([data-canvas="1"]):not([data-wide="1"]):not([data-compact="1"])
+.panel-scrim:not([data-chat="1"]):not([data-conversation="1"]):not([data-admin="1"]):not([data-canvas="1"]):not([data-wide="1"]):not([data-compact="1"]):not([data-narrow="1"])
   .panel {
   /* auto ↔ auto kõrguse interpoleerimine (Chrome 129+); mujal jääb
      senine hüpe alles, aga PanelFrame'i ootamine katab tavajuhu. */
@@ -155,6 +157,17 @@ html[data-reduce-motion="1"] .panel-scrim[data-dock="1"] {
   height: calc(100lvh - clamp(9rem, 22lvh, 14rem));
   max-height: 47.5rem;
 }
+@media (min-width: 769px) {
+  /* Manustatud tööleht vabastab sama dokireservi kui lugemisleht.
+     Kõrgus kasvab täpselt polstri vähenemise võrra: ülaserv ei liigu. */
+  .panel-scrim[data-chat="1"][data-dock="1"] .panel {
+    height: min(
+      calc(min(47.5rem, 100lvh - clamp(9rem, 22lvh, 14rem)) + var(--room-dock-released)),
+      var(--panel-max-h)
+    );
+    max-height: var(--panel-max-h);
+  }
+}
 
 /* Konto-pere (Konto seaded, Minu kasutus, Tellimus): sisu on TEADLIKULT
    kitsas keskjoondatud veerg (.konto-actions 24rem, .usage-overview
@@ -177,13 +190,12 @@ html[data-reduce-motion="1"] .panel-scrim[data-dock="1"] {
    akna info-leht oli 527 px — omanik: „konto seaded aken peaks olema sama
    suur aken kui selle info aken… pidid just väiksemaks muutma, mitte
    suuremaks. info leht oli juba õige". Seega on konto-pere akna kõrgus
-   nüüd LUKUS info-lehe mõõtu (33rem ≈ 528 px, lagi jääb piiriks madalal
-   ekraanil): üks ja seesama kast Konto seadetel, Minu kasutusel,
-   Tellimusel ja ⓘ-lehel, olenemata sellest, kui pikk sisu on. Pikem sisu
-   kerib kasti sees (`.panel-body`), kast ei liigu. */
+   algmõõdus 33rem (lagi jääb piiriks madalal ekraanil). Doki taandumisel
+   lisandub vabanev reserv kõrgusele; ainult padding-bottom'i vähendamine
+   nihutaks keskjoondatud 33rem kasti alla, andmata sisule ruumi juurde. */
 .panel-scrim[data-narrow="1"] .panel {
   width: min(40rem, calc(100vw - clamp(2rem, 6vw, 5rem)));
-  height: min(33rem, var(--panel-max-h));
+  height: min(calc(33rem + var(--room-dock-released, 0px)), var(--panel-max-h));
 }
 /* Vestlus ei ole enam klaaspaneel, vaid ruumis hõljuv tööväli. Teekonna
    leht kasutab endiselt data-chat raami; uus raamita keel rakendub ainult
@@ -1086,6 +1098,11 @@ label[data-control-type][data-checked="true"] > span[aria-hidden="true"] svg {
   .panel-scrim[data-dock="1"] {
     padding-bottom: 0;
     --panel-max-h: var(--app-dynamic-block-size);
+  }
+  /* Töölaua 47.5rem desktopi-lagi ei tohi mobiili täisekraani kärpida. */
+  .panel-scrim[data-dock="1"]:not([data-compact="1"]) .panel {
+    height: var(--app-dynamic-block-size);
+    max-height: var(--panel-max-h);
   }
   .panel-scrim[data-dock="1"] .panel-body {
     padding-bottom: var(--room-dock-reserve);

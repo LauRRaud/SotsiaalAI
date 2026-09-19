@@ -6,8 +6,7 @@
      nähtavalt üle rea (transform ilma üleminekuta);
    — fookuskaardi kuma süttib VIITEGA pärast settimist (mitte kahel
      kaardil korraga);
-   — servad "liquid glass": pehme gradient-rõngas maskiga, mitte
-     kõva 1px joon, mis 3D-pöördel pikslisse läheb;
+   — klaasimaterjali serv silutakse enne 3D-pööret; sisu jääb teravaks;
    — kaartidel kontuurikoon + nimi;
    — käivitusfaasid: klaasid enne (faas 1), sisu järele (faas 2).
    Üks 3D-tasand: perspective siin, kaardid otse all (iOS).
@@ -552,14 +551,9 @@
   font-size: clamp(0.72rem, 7.4cqi, 1.08rem);
   letter-spacing: 0.06em;
 }
-/* Hõljuv ese varjab valgust: kaart tõuseb sõrme all päriselt ettepoole.
-   KÕIK, mis hoveril muutub, peab olema siin loetletud — muidu osa muutub
-   sujuvalt (tõus, vari) ja osa hetkega (sildi toon), ja liigutus loeb
-   nõksuna, mitte lähenemisena (omanik 25.07: "tee sujuv hover"). */
+/* Kaart läheneb kursorile; materjal ja servapeegeldused püsivad samad. */
 .gc[data-desk="1"] .gc-card {
-  transition:
-    transform 380ms var(--ease-soft),
-    box-shadow 380ms var(--ease-soft);
+  transition: transform 380ms var(--ease-soft);
 }
 .gc[data-desk="1"] .gc-icon,
 .gc[data-desk="1"] .gc-label {
@@ -571,11 +565,7 @@
 .gc[data-desk="1"] .gc-card:focus-visible .gc-haze {
   transition: background 380ms var(--ease-soft);
 }
-/* Kaart sõrme all EI OLE lihtsalt lähemal — ta on ka VALITUD, ja seda
-   peab nägema ilma kaardi mõõtu muutmata (omanik 25.07). Vastus tuleb
-   ruumi enda keelest: serv läheb valguse kätte (sama jahe-vasak /
-   soe-parem joon, ainult tugevam) ja kaardi alla tekib vari, sest ta
-   seisab pinnast eespool. Silt ja ikoon lähevad täistooni. */
+/* Valitud kaardi silt ja ikoon lähevad täistooni. */
 .gc[data-desk="1"] .gc-card:hover,
 .gc[data-desk="1"] .gc-card:focus-visible {
   /* translateZ ÜKSI kirjutas kursorikalde üle (see reegel on 0,2,1, kalde
@@ -583,7 +573,6 @@
      ühes transformis: kaart tuleb ette JA kaldub kursori järgi. */
   transform: translateZ(46px) rotateX(var(--tilt-x, 0deg))
     rotateY(var(--tilt-y, 0deg)) scale(var(--tilt-scale, 1));
-  box-shadow: var(--card-glass-shadow);
 }
 .gc[data-desk="1"] .gc-card:hover .gc-icon,
 .gc[data-desk="1"] .gc-card:hover .gc-label,
@@ -662,13 +651,14 @@ html[data-reduce-motion="1"] .gc-item {
      tume toon ilma suure läiketa; ruum kumab selgelt läbi.
      ÜKS ühine ilme (tokens.css --card-glass-*), jagatud kaardilehe
      paneeliga (panel.css) — ei mingeid koopiaid. */
-  background: var(--card-glass-bg);
+  /* Materjal elab pseudokihtidel, et selle silumine ei hägustaks sisu. */
+  background: transparent;
   border: none;
-  box-shadow: var(--card-glass-shadow);
+  box-shadow: none;
   color: var(--room-text);
   text-decoration: none;
-  overflow: hidden;
-  /* Välise kumata matt kaart: alles jääb vaid vaikne sisemine ülaserv. */
+  /* Silutud välisserv vajab pool pikslit ruumi väljaspool piirdekasti. */
+  overflow: visible;
 }
 
 /* Läige AINULT valguse-poolses ülanurgas (aknad üleval-vasakul),
@@ -680,7 +670,8 @@ html[data-reduce-motion="1"] .gc-item {
 .gc-card {
   transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg))
     scale(var(--tilt-scale, 1));
-  transform-style: preserve-3d;
+  /* Sama tasapinnaline komposiit kui varem overflow:hidden all. */
+  transform-style: flat;
   /* KALDE TEMPO (omanik 03.08: "karussellis tahan, et kaardid reageeriks
      hiirele aeglasemalt"). 220 → 420 ms.
 
@@ -705,12 +696,16 @@ html[data-reduce-motion="1"] .gc-item {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: var(--card-glass-sheen);
+  background: var(--card-glass-sheen), var(--card-glass-bg);
+  box-shadow: var(--card-glass-shadow);
+  /* Subpiksliline eelfilter silub kaldu pinna rasterserva. Filtrit ei
+     panda .gc-card-ile: ikoon ja tekst ei kuulu sellesse rasterkihti. */
+  filter: blur(0.5px);
   pointer-events: none;
 }
 
-/* Liquid-serv: pehme gradient-rõngas maskiga (sujuv ka 3D-pöördel);
-   heledaim valguse-poolne serv, ülejäänu vaikne (matt üldmulje) */
+/* Mask määrab rõnga kuju, kuid ei silu selle hilisemat 3D-projektsiooni.
+   Sama eelfilter kui täitel väldib teravat, astmeliselt muutuvat äärepikslit. */
 .gc-card::after {
   content: "";
   position: absolute;
@@ -722,6 +717,7 @@ html[data-reduce-motion="1"] .gc-item {
   -webkit-mask-composite: xor;
   mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   mask-composite: exclude;
+  filter: blur(0.5px);
   pointer-events: none;
   transition: opacity var(--dur-med) var(--ease-soft);
 }
@@ -1630,6 +1626,10 @@ html[data-reduce-motion="1"] .gc-shortcut-tooltip {
 }
 
 /* Kõrgkontrast: kuma maha, selged servad */
+html[data-contrast="hc"] .gc-card::before,
+html[data-contrast="hc"] .gc-card::after {
+  filter: none;
+}
 html[data-contrast="hc"] .gc-card::after {
   background: rgba(255, 255, 255, 0.85);
   padding: 2px;

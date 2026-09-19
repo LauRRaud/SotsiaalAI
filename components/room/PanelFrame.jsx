@@ -372,38 +372,48 @@ export default function PanelFrame({ children }) {
     const NOISE = 6;
     const TOP_ZONE = 48;
     const END_ZONE = 24;
-    let last = el.scrollTop;
+    let scrollEl = el;
+    const positions = new WeakMap([[el, el.scrollTop]]);
     let raf = 0;
 
     const apply = () => {
       raf = 0;
-      const top = el.scrollTop;
-      const delta = top - last;
-      const max = el.scrollHeight - el.clientHeight;
+      const top = scrollEl.scrollTop;
+      const delta = top - (positions.get(scrollEl) || 0);
+      const max = scrollEl.scrollHeight - scrollEl.clientHeight;
       const atEnd = max - top <= END_ZONE;
       const nearTop = top <= TOP_ZONE;
       if (!atEnd && !nearTop && Math.abs(delta) < NOISE) return;
-      last = top;
+      positions.set(scrollEl, top);
       const hide = delta > 0 && !atEnd && !nearTop;
       root.dataset.dockRecessed = hide ? "1" : "0";
     };
-    const onScroll = () => {
+    const onScroll = (event) => {
+      const target = event.target;
+      /* Embedded töölehe kerimisomanik on sisemine tööpaneel. Capture
+         jõuab selle scroll-sündmuseni ka siis, kui panel-body ei keri.
+         Tekstiväljade, valikmenüüde ja muude pisikerijate sündmused ei
+         tohi kogu lehe dokki liigutada. */
+      if (target !== el && !target?.matches?.(
+        '.workspace-dashboard-panel[data-embedded-active="true"][data-visible="true"]'
+      )) return;
+      scrollEl = target;
       if (raf) return;
       raf = requestAnimationFrame(apply);
     };
 
     // Kõik ühise dokiga paneelid kasutavad sama kerimiskäitumist.
     root.dataset.dockRecessed = "0";
-    el.addEventListener("scroll", onScroll, { passive: true });
+    el.addEventListener("scroll", onScroll, { passive: true, capture: true });
 
     return () => {
-      el.removeEventListener("scroll", onScroll);
+      el.removeEventListener("scroll", onScroll, true);
       if (raf) cancelAnimationFrame(raf);
       /* Lehelt lahkudes EI tohi dokk taandunuks jääda — järgmine aken
          avaneks ilma väljapääsuta. */
       delete root.dataset.dockRecessed;
     };
-  }, [isHome, hasRoomDock, normalized, bodyEl]);
+  }, [isHome, hasRoomDock, normalized, workspaceParam, showInfoView, bodyEl]);
 
   /* Töölaud: sr-only marker jääb DOM-i (ekraanilugeja, robotid), paneelikesta
      EI teki — nähtav navigatsioon on RoomStage'i töölaua-karussell. */

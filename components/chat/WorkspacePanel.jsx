@@ -282,7 +282,7 @@ export default function WorkspacePanel({
   const handleEmbeddedPanelWheelCapture = useCallback(event => {
     const panel = panelRef.current;
     if (!panel || !(embeddedPanelNode || activeEmbeddedFeature)) return;
-    if (event.defaultPrevented || event.ctrlKey || event.metaKey) return;
+    if (!event.cancelable || event.defaultPrevented || event.ctrlKey || event.metaKey) return;
 
     const maxTop = Math.max(0, panel.scrollHeight - panel.clientHeight);
     const maxLeft = Math.max(0, panel.scrollWidth - panel.clientWidth);
@@ -296,6 +296,17 @@ export default function WorkspacePanel({
     if (top) panel.scrollTop = clamp(panel.scrollTop + top, 0, maxTop);
     if (left) panel.scrollLeft = clamp(panel.scrollLeft + left, 0, maxLeft);
   }, [activeEmbeddedFeature, embeddedPanelNode]);
+
+  useEffect(() => {
+    const panel = panelRef.current;
+    if (!panel || !visible || !(embeddedPanelNode || activeEmbeddedFeature)) return undefined;
+    /* Reacti delegeeritud wheel-kuulaja on passiivne: preventDefault ei
+       peatanud brauserit ning käsitsi scrollTop + native scroll kerisid
+       sama sammu kaks korda. Ainult seda kerimist juhtiv kuulaja peab
+       saama vaikimisi tegevuse tühistada. */
+    panel.addEventListener("wheel", handleEmbeddedPanelWheelCapture, { capture: true, passive: false });
+    return () => panel.removeEventListener("wheel", handleEmbeddedPanelWheelCapture, true);
+  }, [activeEmbeddedFeature, embeddedPanelNode, handleEmbeddedPanelWheelCapture, visible]);
 
   const openInvite = useCallback(() => {
     setActiveEmbeddedFeature("invite");
@@ -570,7 +581,6 @@ export default function WorkspacePanel({
         data-embedded-active={embeddedPanelNode || activeEmbeddedFeature ? "true" : "false"}
         role="region"
         aria-labelledby={activeTitleId}
-        onWheelCapture={handleEmbeddedPanelWheelCapture}
       >
       {embeddedPanelNode ? (
         <>

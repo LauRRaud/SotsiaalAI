@@ -249,6 +249,15 @@
   height: calc(100lvh - clamp(9rem, 22lvh, 14rem));
   max-height: 47.5rem;
 }
+@media (min-width: 769px) {
+  .panel-scrim[data-dock="1"]:has(.workspace-dashboard-grid) .panel {
+    height: min(
+      calc(min(47.5rem, 100lvh - clamp(9rem, 22lvh, 14rem)) + var(--room-dock-released)),
+      var(--panel-max-h)
+    );
+    max-height: var(--panel-max-h);
+  }
+}
 .panel-scrim:has(.workspace-dashboard-grid) .panel-body {
   display: flex;
   flex-direction: column;
