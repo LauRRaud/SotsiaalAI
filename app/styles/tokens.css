@@ -83,17 +83,15 @@
   /* Klaasploki pind on ühtlane. Mahu annavad ümar faas, sisemine
      valgus ja alaserva teine tasapind; üle pinna diagonaali ei ole. */
   --card-glass-bg: var(--glass-bg);
+  --card-glass-rim-width: 0.8px;
   --card-glass-shadow:
-    inset 0 0 0 1px rgba(255, 255, 255, 0.1),
-    inset 0 0 0 3px rgba(255, 255, 255, 0.025),
-    inset 0 0 0 3.5px rgba(255, 255, 255, 0.055),
-    inset 2px 3px 4px rgba(255, 255, 255, 0.2),
-    inset -1.5px -2.5px 3px rgba(255, 255, 255, 0.13),
-    inset 0 0 18px rgba(255, 255, 255, 0.06),
-    0 1px 0 rgba(255, 255, 255, 0.24),
-    0 4px 0 -1px rgba(180, 180, 180, 0.18),
-    0 6px 0 -2px rgba(70, 70, 70, 0.16),
-    0 16px 36px rgba(0, 0, 0, 0.38);
+    inset 0 0 0 0.7px rgba(255, 255, 255, 0.08),
+    inset 1px 1.5px 2px rgba(255, 255, 255, 0.13),
+    inset -1px -1.5px 2px rgba(255, 255, 255, 0.075),
+    inset 0 0 10px rgba(255, 255, 255, 0.025),
+    0 1px 0 rgba(255, 255, 255, 0.12),
+    0 3px 0 -1px rgba(120, 120, 120, 0.1),
+    0 13px 30px rgba(0, 0, 0, 0.34);
   --card-glass-sheen:
     radial-gradient(ellipse 90% 24% at 50% 0%, rgba(255, 255, 255, 0.018), transparent 100%),
     radial-gradient(ellipse 7% 55% at 0% 38%, rgba(255, 255, 255, 0.11), transparent 100%),
@@ -101,17 +99,17 @@
     radial-gradient(ellipse 70% 16% at 50% 100%, rgba(255, 255, 255, 0.009), transparent 100%);
   /* Kaks kitsast peegeldust pole ühtlase heledusega kontuur. */
   --card-glass-rim:
-    radial-gradient(ellipse 6px 75px at 0% 38%, rgba(255, 255, 255, 0.8), transparent),
-    radial-gradient(ellipse 6px 75px at 100% 65%, rgba(255, 255, 255, 0.65), transparent),
+    radial-gradient(ellipse 5px 75px at 0% 38%, rgba(255, 255, 255, 0.54), transparent),
+    radial-gradient(ellipse 5px 75px at 100% 65%, rgba(255, 255, 255, 0.42), transparent),
     conic-gradient(from 210deg,
-      rgba(255, 255, 255, 0.16),
-      rgba(255, 255, 255, 0.58) 55deg,
-      rgba(255, 255, 255, 0.82) 105deg,
-      rgba(255, 255, 255, 0.22) 155deg,
-      rgba(255, 255, 255, 0.12) 205deg,
-      rgba(255, 255, 255, 0.5) 260deg,
-      rgba(255, 255, 255, 0.28) 305deg,
-      rgba(255, 255, 255, 0.16));
+      rgba(255, 255, 255, 0.09),
+      rgba(255, 255, 255, 0.32) 55deg,
+      rgba(255, 255, 255, 0.48) 105deg,
+      rgba(255, 255, 255, 0.14) 155deg,
+      rgba(255, 255, 255, 0.07) 205deg,
+      rgba(255, 255, 255, 0.28) 260deg,
+      rgba(255, 255, 255, 0.17) 305deg,
+      rgba(255, 255, 255, 0.09));
 
   /* Tekstipaneeli faas on pikslites: suur aken ei kasvata helki laiaks
      ribaks. Üks serv, ilma kaardi alaserva astmelise paksuseta. */
@@ -251,7 +249,9 @@
   --input-sheen:
     radial-gradient(ellipse 100% 90% at 50% 0%, rgba(255, 255, 255, 0.085), transparent 80%),
     linear-gradient(0deg, rgba(255, 255, 255, 0.035), transparent 30%);
-  --input-bg-hover: rgba(220, 220, 220, 0.08);
+  /* Hover peab välja täidet rahustama, mitte valge loorina heledamaks
+     tõstma. Serva tagasiside tuleb eraldi liikuvast specular-joonest. */
+  --input-bg-hover: rgba(0, 0, 0, 0.12);
   --input-bg-focus: rgba(200, 200, 200, 0.05);
   --input-text: var(--text-warm);
   --input-placeholder: rgba(255, 255, 255, 0.65);
@@ -277,15 +277,15 @@
      suureks". Väli ja nupp tulevad nüüd ALLA teineteise juurde, mitte
      nupp üles. Vana väärtus: clamp(1.05rem, 1rem + 0.45vw, 1.24rem). */
   --input-font-size: clamp(1rem, 0.97rem + 0.15vw, 1.08rem);
-  --input-blur: 16px;
+  --input-blur: 10px;
   --input-highlight:
-    inset 0 0 0 1px rgba(255, 255, 255, 0.06),
-    inset 1px 2px 3px rgba(255, 255, 255, 0.3),
-    inset -1px -2px 2px rgba(255, 255, 255, 0.14),
-    inset 0 0 8px rgba(255, 255, 255, 0.045);
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08),
+    inset 1px 0 0 rgba(255, 255, 255, 0.07),
+    inset -1px 0 0 rgba(255, 255, 255, 0.04);
   --input-shadow:
-    0 2px 0 -1px rgba(255, 255, 255, 0.14),
-    0 5px 10px rgba(0, 0, 0, 0.24);
+    0 1px 0 rgba(255, 255, 255, 0.08),
+    0 4px 8px rgba(0, 0, 0, 0.26);
   /* Kursorit jälgiv SERVAHELK ei ole token ega CSS: väli kannab sama
      WebGL-shaderit mis nupp (components/SpecularButton/specularShader.js),
      joonistab components/glass/SpecularHighlight. CSS-i siia ei jää, sest
@@ -366,6 +366,7 @@ html.theme-dark:not([data-contrast="hc"]) {
    läbipaistmatuks, äärised tugevaks. Ortogonaalne teemale.
    ============================================================ */
 html[data-contrast="hc"] {
+  --card-glass-rim-width: 2px;
   --panel-glass-shadow: inset 0 0 0 1px #ffffff;
   --panel-glass-sheen: none;
   --card-glass-shadow: inset 0 0 0 1px #ffffff;
@@ -411,6 +412,7 @@ html[data-contrast="hc"] {
 
 /* Läbipaistvuse vähendamine (kasutaja eelistus) */
 html[data-reduce-transparency="1"] {
+  --card-glass-rim-width: 1px;
   --panel-glass-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
   --panel-glass-sheen: none;
   --card-glass-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);

@@ -404,4 +404,22 @@ html[data-reduce-motion="1"] .a11f-ambient-choice-label {
   }
 }
 
+/* Madalas rõhtvaates mahtusid kolm keelevalikut sisuliselt ära, kuid
+   üldine `100lvh - 14rem` kerimispiir lõikas viimase rea keskelt katki.
+   Dokk võtab siin vähem vertikaalruumi kui portreevaates; anna jaamale
+   tegelik vaba kõrgus ning tõsta kerimisvihje laia ekraani paremasse
+   tühja serva, et see ei seisaks valikute peal. */
+@media (pointer: coarse) and (orientation: landscape) and (max-height: 32rem) {
+  .a11f-plane .csp-step > div {
+    max-height: calc(100dvh - 9rem);
+  }
+  .a11f-scroll-hint {
+    left: auto;
+    right: max(1rem, env(safe-area-inset-right, 0px));
+    bottom: 50%;
+    translate: 0 50%;
+    scale: 0.72;
+  }
+}
+
 }

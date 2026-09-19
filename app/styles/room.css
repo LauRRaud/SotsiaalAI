@@ -784,7 +784,7 @@ html[data-reduce-motion="1"] .scroll-frames::after {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  padding: 1.6px;
+  padding: var(--card-glass-rim-width);
   background: var(--card-glass-rim);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;

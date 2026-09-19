@@ -464,7 +464,7 @@
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    padding: 1.3px;
+    padding: var(--card-glass-rim-width);
     /* Serv loeb ruumi valgust (jahe vasak / soe parem) — sama joon mis
        kaardil. Varem valge 0.55 gradient: kõige heledam serv platvormil. */
     background: var(--card-glass-rim);

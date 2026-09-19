@@ -52,10 +52,9 @@ const Button = forwardRef(function Button({
         size={null}
         radius={999}
         proximity={1}
-        /* Servahelk oli vaikeväärtusel (1) ja luges nupu ümber kõva valge
-           joonena (omanik 03.08: „nupu läige on hetkel liiga tugev, veidi
-           vähemaks"). 0.7 hoiab liikuva helgi alles, aga võtab tipu maha. */
-        intensity={0.7}
+        /* Teravam sisemine klaasiserv ei tohi liikuvat helki ära süüa.
+           0.82 jätab tipu nähtavaks ilma püsiva valge halota. */
+        intensity={0.82}
         {...sharedProps}
       >
         {children}

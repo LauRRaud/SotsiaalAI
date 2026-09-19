@@ -60,10 +60,10 @@ const FIELD_SELECTOR = [
    nägi ja tellis kõikjale. */
 const LINE_COLOR = "#ffffff";
 const BASE_COLOR = "#525252";
-const INTENSITY = 0.8;
+const INTENSITY = 0.9;
 const SHINE_SIZE = 6; // kraadi
 const SHINE_FADE = 18; // kraadi
-const THICKNESS = 0.9;
+const THICKNESS = 1;
 
 export default function SpecularHighlight() {
   useEffect(() => {

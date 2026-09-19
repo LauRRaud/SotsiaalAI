@@ -163,7 +163,7 @@ a.ts-nav-link:hover {
   content: "";
   position: absolute;
   inset: 0;
-  padding: 1.25px;
+  padding: var(--card-glass-rim-width);
   border-radius: inherit;
   background: var(--card-glass-rim);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
@@ -350,7 +350,7 @@ a.ts-nav-link:hover {
   position: absolute;
   z-index: 2;
   inset: 0;
-  padding: 1.35px;
+  padding: var(--card-glass-rim-width);
   border-radius: inherit;
   background: var(--card-glass-rim);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
