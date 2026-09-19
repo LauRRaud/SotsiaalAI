@@ -98,28 +98,29 @@ sisemine raam ilmub hiljem. Saabumise lõpunupp töötab juba ilmumisel, viimane
 tekst püsib kauem loetav ning avatekst lõpeb „oled oodatud“. Puutel ootab
 sisenemine osakeste neeldumise lõpuni. „Jäta vahele“ ja login-klahvistik
 kasutavad tavanupu servahelki.
-Login-modali nuppude hover-helgi ilmumine on kohalikus järelparanduses kaks korda
-aeglasem; teiste väljade helgi tempo säilib. See järelparandus pole veel serveris.
-Login-modali sulgemisnupult on kohalikult eemaldatud hoveri servahelk ja
+**Järelparandused avaldatud 19.09 (`28cc8cde`).** Frontend on aktiivne, avaleht HTTP 200 ja serveri tööpuu puhas. Kohalik ning serveri build läbisid.
+Login-modali nuppude hover-helgi ilmumine on kaks korda
+aeglasem; teiste väljade helgi tempo säilib.
+Login-modali sulgemisnupult on eemaldatud hoveri servahelk ja
 äärise heledamaks muutumine, et nupu ümber ei tekiks lisaringi.
-Mobiili login avaneb kohalikus järelparanduses alati oma klahvistikuga (7–8–9
+Mobiili login avaneb alati oma klahvistikuga (7–8–9
 üleval, 1–2–3 all). „Vaheta klahvistik“ keskendab numbrilise sisendi telefoni
 enda klahvistiku avamiseks; varasem salvestatud eelistus ei peida algvaate nuppe.
-Kohalikus järelparanduses vahetub kiirmenüü aktiivne valik tavamenüüs 240 ms
+vahetub kiirmenüü aktiivne valik tavamenüüs 240 ms
 ja ligipääsetavuse lennul 280 ms pärast liikumise algust, et dokk ei jõuaks
 sisust ette. Uus valik tühistab eelmise oote; vähendatud liikumisel ooteaega pole.
-Ligipääsetavuse dokk kerib kohalikus järelparanduses aktiivse nupu nähtavale
+Ligipääsetavuse dokk kerib aktiivse nupu nähtavale
 ning kontrollib asukohta uuesti pärast sildi laienemist ja ekraani mõõdumuutust.
 Mobiilis peidab avatud login-, info- või kaardiaken kohalikus järelparanduses
 taustakarusselli täielikult; töölaua hägused küljekaardid säilivad.
-Mobiili karusselli samm on kohalikult suurendatud 0,9 kaardilaiuselt 1,04-le,
+Mobiili karusselli samm on suurendatud 0,9 kaardilaiuselt 1,04-le,
 et kesk- ja külgkaartidel oleks rohkem õhku ning liikumisel ei tekiks kattumist.
-Mobiili kerimisstseeni juhtnupud on kohalikult joondatud ühele alumisele reale:
+Mobiili kerimisstseeni juhtnupud on joondatud ühele alumisele reale:
 heli ja vahelejätt on 3,1 rem kõrged ning kompaktne kerimisvihje nende keskel.
 Ruumi nurgad on sirged ja kerimisvaate dokumenditaust tume.
 Mobiili saabumistekstide laius jätab varu lennu kuni 1,34-kordsele suurenemisele,
 et tekstimulli külgmised servad püsiksid ka lähenemisel ekraanil.
-Peidetud mobiiliülaribast jääb kohalikult nähtavale 1,55 rem serv, samas
+Peidetud mobiiliülaribast jääb nähtavale 1,55 rem serv, samas
 44 px puuteala säilib; suletud paneeli lai vari on eemaldatud. Puute-sisenemine
 käivitab neeldumise otse loori sündmusega ja äratab vajadusel animatsiooni.
 
