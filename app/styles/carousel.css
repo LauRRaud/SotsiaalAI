@@ -58,8 +58,8 @@
   perspective: 900px;
 }
 /* Rea peidus olevad kaardid: nähtamatud ja parkides serva taga
-   (--pos on JS-is klammerdatud ±1.4 peale) — liikumine võib olla
-   sujuv, sest opacity 0 katab ka ringi-ümberpaigutuse. Lahkuv kaart
+   (--pos on JS-is klammerdatud ühe sammu võrra nähtavast reast välja).
+   Liikumine võib olla sujuv, sest opacity 0 katab ka ringi-ümberpaigutuse. Lahkuv kaart
    hajub rahulikult (400 ms). */
 .gc-item[data-hidden="1"] {
   opacity: 0;
@@ -656,6 +656,7 @@ html[data-reduce-motion="1"] .gc-item {
   position: absolute;
   inset: 0;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   place-items: center;
   align-content: center;
   gap: 1.15rem;
@@ -764,6 +765,10 @@ html[data-reduce-motion="1"] .gc-item {
   color: var(--room-text-soft);
 }
 .gc-label {
+  /* Pikk silt ei tohi venitada kaardi ruudustikku ega lükata ikooni kõrvale. */
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
   font-family: var(--font-ui);
   font-weight: 480;
   font-size: clamp(0.98rem, 0.82rem + 0.65vw, 1.3rem);

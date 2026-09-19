@@ -103,7 +103,7 @@ html[data-reduce-motion="1"] .panel-scrim[data-dock="1"] {
      paistab läbi; blur elas topelt ja mattis ruumi ära. */
   background: var(--card-glass-bg);
   border: 1px solid transparent;
-  box-shadow: var(--card-glass-shadow);
+  box-shadow: var(--panel-glass-shadow);
   overflow: hidden;
 }
 /* Kuni kast mõõtu otsib, on ta paigas ja mõõdetav, aga nähtamatu —
@@ -130,7 +130,7 @@ html[data-reduce-motion="1"] .panel-scrim[data-dock="1"] {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: var(--card-glass-sheen);
+  background: var(--panel-glass-sheen);
   pointer-events: none;
   z-index: 1;
 }

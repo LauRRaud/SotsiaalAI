@@ -93,16 +93,23 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
 **19.09 ruumilisem klaasmaterjal — kohalik eelvaade.**
-Omanik lükkas eelmise lameda ja diagonaalse gradiendiga variandi tagasi.
-Kaartidel ja paneelidel on nüüd ühtlane läbipaistev pind, mitmekihiline
-ümardatud serv, alaserva paksus ning külgedel kitsad valguspeegeldused.
-Nupud ja väljad kasutavad sama materjali väiksemas mõõdus; rippmenüü
-säilitab tihedama tausta. Peidetud ülaribale kaardi välist varju ei lisandu.
-Chromiumis kontrollitud menüü, sisupaneel ja login; 390 × 844 mõõdus login
-mahub ekraanile, külgülevooluta. Kõrgkontrasti ja vähendatud läbipaistvuse
-pinnad säilivad. Build, i18n ja diff-kontroll läbisid; lint lõpetas vigadeta
-(kahe olemasoleva hoiatusega). Päris iOS ning
-omaniku visuaalne heakskiit on NOT_PROVEN. Uus variant pole avaldatud.
+Kaartide ja paneelide keskosa on läbipaistvam; ka kaartide üla- ja alaosa
+läige on nõrgem, ruumiline helk jääb serva.
+Suurel tekstipaneelil on eraldi kitsas, pikslites piiratud serv; alumised
+astmelised jooned on eemaldatud. Nupud ja väljad on kergema täitega,
+rippmenüü säilitab tihedama tausta. Kõrgkontrasti ja vähendatud
+läbipaistvuse pinnad säilivad. Peidetud ülaribale välist varju ei lisandu.
+Karusselli lahkuv kaart liigub terve sammu võrra nähtavast reast välja,
+nii et järgnev kaart ei jõua talle hajumise ajal peale. Esmase ilmumise
+viivitust ei muudetud. Chromiumi kaadrimõõtmine: varasem kattumine umbes
+64 px, pärast parandust 0 px (mõlemad suunad, töölaual täisring ja
+390 × 844 mõõdus kolm sammu). Menüü, login ja tekstipaneel visuaalselt
+kontrollitud. Pikk silt ei venita enam kaardi sisemist ruudustikku: vähemalt
+13 märgiga silt kasutab kompaktset kirjastiili, ikoon ja tekst jäävad keskele.
+Kasutusjuhendi keskjoondus kontrollitud 1052 ja 390 px laiusel (nihe < 0,01 px).
+Lint läbis kahe olemasoleva hoiatusega; viimase JSX-i sihtlint, i18n ja
+diff-kontroll ning lõplik build läbisid.
+Päris iOS ja omaniku visuaalne heakskiit on NOT_PROVEN. Uus variant pole avaldatud.
 
 **19.09 neutraalne klaas ja paneelisisene kerimine — serveris (`a0c4db8b`).**
 Menüükaart, töölaud ja avatud paneel jagavad läbipaistvat neutraalset pinda,

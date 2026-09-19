@@ -114,8 +114,9 @@ export default function GlassCarousel({
   }, [hasZones, visible]);
   const isDesk = hasZones && wideEnough;
   const shown = isDesk ? "desk" : visible === 5 && wideEnough && n >= 5 ? 5 : 3;
-  const posLimit = shown === 5 ? 2.4 : 1.4;
   const hideBeyond = shown === 5 ? 2 : 1;
+  // Lahkuvale kaardile jääb terve samm: hajumine ei tohi toimuda naabri sees.
+  const posLimit = hideBeyond + 1;
 
   /* ---------- Sügavuslaua astmed ----------
      Tsooni järjekord tuleb kutsujalt (lähim eespool); kaardi järjekord
@@ -728,7 +729,7 @@ export default function GlassCarousel({
                         href={item.href}
                         label={item.label}
                         icon={item.icon || null}
-                        longLabel={item.label.length > 13}
+                        longLabel={item.label.length >= 13}
                         badge={item.badge || null}
                         badgeTone={item.badgeTone || null}
                         tabIndex={0}
@@ -763,7 +764,7 @@ export default function GlassCarousel({
             const abs = Math.abs(pos);
             const isCenter = pos === 0;
             const isWarp = layout.warp[i] === true;
-            /* Peidus kaardid PARGIVAD kohe serva taga (±posLimit sammu),
+            /* Peidus kaardid PARGIVAD ühe täissammu võrra nähtavast reast väljas,
                mitte oma kaugel ringipositsioonil — sisenev kaart libiseb
                servast ühe sammu ega lenda üle rea; lahkuv libiseb serva
                taha ja hajub (tellija 06.07: "keritav, mitte lennuk"). */
@@ -789,7 +790,7 @@ export default function GlassCarousel({
                   href={item.href}
                   label={item.label}
                   icon={item.icon || null}
-                  longLabel={item.label.length > 13}
+                  longLabel={item.label.length >= 13}
                   badge={item.badge || null}
                   badgeTone={item.badgeTone || null}
                   tabIndex={isCenter ? 0 : -1}
