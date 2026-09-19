@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**19.09 ruumilisem klaasmaterjal — kohalik eelvaade.**
+**19.09 ruumilisem klaasmaterjal — serveris (`03eab280`).**
 Kaartide ja paneelide keskosa on läbipaistvam; ka kaartide üla- ja alaosa
 läige on nõrgem, ruumiline helk jääb serva.
 Suurel tekstipaneelil on eraldi kitsas, pikslites piiratud serv; alumised
@@ -109,7 +109,8 @@ kontrollitud. Pikk silt ei venita enam kaardi sisemist ruudustikku: vähemalt
 Kasutusjuhendi keskjoondus kontrollitud 1052 ja 390 px laiusel (nihe < 0,01 px).
 Lint läbis kahe olemasoleva hoiatusega; viimase JSX-i sihtlint, i18n ja
 diff-kontroll ning lõplik build läbisid.
-Päris iOS ja omaniku visuaalne heakskiit on NOT_PROVEN. Uus variant pole avaldatud.
+Avaldatud 19.09 omaniku loal: frontend aktiivne, avaleht HTTP 200 ja serveri
+tööpuu puhas. Päris iOS on NOT_PROVEN.
 
 **19.09 neutraalne klaas ja paneelisisene kerimine — serveris (`a0c4db8b`).**
 Menüükaart, töölaud ja avatud paneel jagavad läbipaistvat neutraalset pinda,
