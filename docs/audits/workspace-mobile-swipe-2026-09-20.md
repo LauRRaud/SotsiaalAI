@@ -37,10 +37,14 @@ history.pushState abil; tootmiskasutajate andmeid ei loeta.
 See tõendab pika svaibi animatsioonivea parandust. Omaniku telefonis teatatud
 täpse tõrke samasus selle veaga ning päris iOS 27 Safari/PWA runtime on
 **NOT_PROVEN**. Autenditud serverimarsruutide läbimine on **not_run**.
+Omanik palus edasise kontrollimise talle jätta; väljalaskejärgset brauseritesti
+ei käivitata, tootmise mobiilne kasutajarada jääb **not_run**.
 
 ## Väljalase
 
 Muudetud JSX-i eslint, täislint (kaks olemasolevat hoiatust), i18n ja
 tootmisbuild läbisid. Esimese täislindi kaks viga olid varasema kontrolli
 ajutise skripti puuduv process-globaal; parandatud skriptiga täislint läbis.
-git diff --check ja stage’itud diffi kontroll läbisid. Serveri avaldamine ootel.
+git diff --check ja stage’itud diffi kontroll läbisid. `npm run deploy:server` lõpetas edukalt ja avaldas `17ce8af9`.
+Serveri build ja i18n läbisid, ootel migratsioone ei olnud; skripti
+lõpus frontend active. Väljalaskejärgne brauseritest jäi omaniku soovil ära.
