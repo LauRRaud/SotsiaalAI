@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**20.09 püstvaate kiirmenüü — ühine kõrgus väljalaskeks.**
+**20.09 püstvaate kiirmenüü — ühine kõrgus serveris (`ce2c4700`).**
 Omaniku järelsoovil tõuseb menüü kiirmenüü veel 0,75 rem; kogu nihe on
 nüüd 1,5 rem varasemast alaservast. Sama ühine kõrgus rakendub avatud
 kaartidel, sisulehtedel ning keele/ligipääsetavuse modaalis. Paneelide
@@ -3464,7 +3464,7 @@ DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sise
 
 ### Tehtud
 
-**Ühine kiirmenüü kõrgus mobiili püstvaates (20.09, väljalaskeks).**
+**Ühine kiirmenüü kõrgus mobiili püstvaates (20.09, serveris `ce2c4700`).**
 Jagatud --dock-portrait-bottom tõstab kiirmenüü 1,5 rem varasemast
 alaservast (eelmise menüüparandusega võrreldes veel 0,75 rem). Kehtib
 menüüdes, avatud kaartidel/sisulehtedel ja keele/ligipääsetavuse modaalis;
