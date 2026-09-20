@@ -437,12 +437,20 @@ html[data-reduce-motion="1"] .pc-item {
     padding-bottom: 0.5rem;
   }
   .pc-stage {
-    --pc-w: min(80vw, 20rem);
-    flex: 0 1 calc(var(--pc-w) / 0.72 + 1rem);
+    --pc-w: min(87vw, 22.25rem);
+    /* Use the card's current width and a taller ratio for its vertical space. */
+    flex: 0 1 calc(var(--pc-w) / 0.66 + 1rem);
   }
   .pc-item {
     top: 50%;
+    aspect-ratio: 0.66;
     max-height: calc(100% - 1rem);
+  }
+  button.pc-cta.pc-cta.specular-button[data-variant] {
+    margin-top: 1.15rem;
+  }
+  .pc-toggle {
+    margin-top: 0.45rem;
   }
   .pc-dock {
     margin-top: auto;
