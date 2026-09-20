@@ -92,14 +92,14 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**20.09 mobiilivaate klaas, joondus ja kerimine — serveris (`202d63aa`).**
+**20.09 mobiilivaate klaas, joondus ja kerimine — serveris (`7fe01386`).**
 PWA-kaardil on eraldiseisva režiimi jaoks kihipõhine servasilumine, et klaasi
 peegeldused ei kaoks. Peidetud ülariba mõõdukas taustahägu on lõigatud ümara
 klaasipinna sisse ega tohi tekitada selle taha musta häguserva. Mobiilimenüü
 külgkaardid on keskkaardile lähemal, kuid nende sildid jäävad ekraani taha;
-390 px mõõtmisel jäi kaartide vahele 36 px ja dokumendi rõhtlaius püsis 390 px.
-Avastseeni kerimisvihje ja ruudumärk on mobiilis suuremad ning tekstikastid
-kasutavad ilma külgmise sisepolstrita kogu kasti laiust. Keel ja
+390 px mõõtmisel jäi kaartide vahele 33,74 px ja dokumendi rõhtlaius püsis 390 px.
+Avastseeni kerimisvihje ja ruudumärk on mobiilis suuremad; tekstimull on
+veidi laiem ja kasutab ainult kerget külgpolstrit. Keel ja
 ligipääsetavusvaate taustaheli rida püsib mobiilis ja desktopil keskteljel
 (mõõdetud nihe alla 1 px). Paneeli põhisisu kerib ainult püstsuunas ning laiad
 alamkomponendid kannavad oma rõhtkerimist ise. Chromiumi mobiili- ja
