@@ -92,14 +92,15 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**20.09 mobiili kaardiakende laiused — teine täpsustus avaldamisel.**
+**20.09 mobiili kaardiakende laiused — teine täpsustus serveris (`315eddc9`).**
 Kuni 768 px ekraanil on kõik hinnastuse klaaskaardid min(87vw, 22.25rem),
 nii ülevaates kui avatud võimalustega. Eelmine 21f785ab laiendas üksnes
 avatud kaarti 86vw/22rem-ni, tavaline kaart oli 80vw/20rem. Kompaktsed
 PIN/e-post/Ruumid/paroolitaaste kaardid on nüüd min(88vw, 22.5rem), eelmise
 90vw/23rem asemel. Hinnastuse kaart jääb neist pisut kitsamaks. Tavalehtede
 ja desktopi laiused säilivad. Lint (0 viga, 2 varasemat hoiatust), i18n ja
-build läbisid. Runtime not_run omaniku soovil.
+build läbisid. Deploy lõpetas edukalt, frontend active. Runtime not_run
+omaniku soovil.
 
 **20.09 hinnastuse linnukesed — serveris (`db237c7c`).**
 Kõik loendis olevad saadaolevad võimalused saavad paremasse serva linnukese,
@@ -3517,7 +3518,7 @@ DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sise
 
 ### Tehtud
 
-**Mobiili hinnastuse ja vormikaartide laiused (20.09, teine täpsustus avaldamisel).**
+**Mobiili hinnastuse ja vormikaartide laiused (20.09, serveris `315eddc9`).**
 Kõik hinnastuskaardid 87vw/22.25rem; kompaktsed vormi-/ruumikaardid
 88vw/22.5rem. Ülevaade ja avatud võimalused on sama laiad. Ainult kuni
 768 px meediapäringus, tavalehed ja desktop ei muutu. Runtime not_run
