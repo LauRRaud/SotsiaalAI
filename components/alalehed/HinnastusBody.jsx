@@ -59,21 +59,18 @@ const featureRows = [
 ];
 
 function PlanValue({ value, t }) {
-  if (value === "included") {
-    return (
-      <span className="pc-val pc-val--yes" aria-label={t("about.pricing.values.included")}>
-        &#10003;
-      </span>
-    );
-  }
-  if (value === "dash") {
-    return (
-      <span className="pc-val pc-val--no" aria-label={t("about.pricing.values.not_included")}>
-        &#8211;
-      </span>
-    );
-  }
-  return <span className="pc-val">{t(`about.pricing.values.${value}`)}</span>;
+  return (
+    <>
+      <dd>
+        <span className="pc-val pc-val--yes" aria-label={t("about.pricing.values.included")}>
+          &#10003;
+        </span>
+      </dd>
+      {value !== "included" ? (
+        <dd className="pc-value-note">{t(`about.pricing.values.${value}`)}</dd>
+      ) : null}
+    </>
+  );
 }
 
 export default function HinnastusBody() {
@@ -333,12 +330,9 @@ export default function HinnastusBody() {
                     <div className="pc-all">
                       <dl>
                         {featureRows.filter((row) => row.values[index] !== "dash").map((row) => (
-                          <div className="pc-all-row" key={row.key}
-                            data-description={row.values[index] !== "included" ? "1" : undefined}>
+                          <div className="pc-all-row" key={row.key}>
                             <dt>{t(`about.pricing.features.${row.key}`)}</dt>
-                            <dd>
-                              <PlanValue value={row.values[index]} t={t} />
-                            </dd>
+                            <PlanValue value={row.values[index]} t={t} />
                           </div>
                         ))}
                       </dl>
