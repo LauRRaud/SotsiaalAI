@@ -24,38 +24,9 @@
   overflow: hidden;
 }
 
-/* ---------- Päis ---------- */
-/* Tihe päis on TEADLIK (omanik 24.07: „vii pealkiri ja selle all tekst
-   üles poole, tee kaardid kõrgemaks"): iga siit võidetud piksel läheb
-   lavale, et „Vali …" nupp ja „Vaata kõiki võimalusi" jääksid kaardil
-   nähtavale ilma kerimata. */
-/* Pealkiri JULGELT üleval (omanik 26.07). Kaks polstrit hoidsid teda all:
-   lõuendi ühine ülariba-reserv (.panel-body, panel.css) ja päise enda oma.
-   Reserv on olemas kovisiooni etapiraja ja teemaseemnete navi pärast —
-   hinnastusel on üks tekstirida, mis mahub ülariba pilli alla palju
-   kõrgemale, seega saab ta siin kitsam olla. */
+/* Reserve space for the shared top controls. */
 .panel-scrim[data-canvas="1"] .panel-body:has(> .pc) {
   padding-top: clamp(2.5rem, 4lvh, 3rem);
-}
-.pc-head {
-  position: relative;
-  flex: 0 0 auto;
-  padding: 0 1.5rem 0.25rem;
-  text-align: center;
-}
-.pc-head h1 {
-  margin: 0;
-  font-family: var(--font-display);
-  font-weight: 430;
-  font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.1rem);
-  letter-spacing: 0.01em;
-}
-.pc-intro {
-  margin: 0.3rem auto 0;
-  max-width: 40rem;
-  font-size: clamp(0.86rem, 0.82rem + 0.2vw, 0.98rem);
-  line-height: 1.5;
-  color: var(--room-text-dim);
 }
 /* ---------- Lava: üks 3D-tasand (perspective siin, kaardid otse all) ---------- */
 .pc-stage {
@@ -142,10 +113,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* `safe` = kui sisu on kastist pikem (laiendatud pakett), langeb
-     joondus algusesse ega lõika ülaserva ära — tsentreeritud flexi
-     klassikaline kerimislõks. */
-  justify-content: safe center;
+  justify-content: flex-start;
   gap: 0.55rem;
   min-height: 0;
   padding: clamp(1.05rem, 2.2vh, 1.5rem) clamp(1.3rem, 2.4vw, 1.8rem) clamp(1rem, 2vh, 1.35rem);
@@ -238,10 +206,19 @@
   line-height: 1.5;
 }
 
-button.pc-cta.pc-cta.specular-button[data-variant] {
-  /* Nupp kuulub eeliste juurde, mitte eraldi plokki, aga vajab veidi
-     hingamisruumi (omanik 24.07: vahe vähemaks → „nupp alla poole veidi"). */
-  margin-top: 0.55rem;
+.pc-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  width: 100%;
+  /* Layout belongs to this group, not the button reset in unlayered CSS. */
+  margin-top: auto;
+  padding-top: 0.8rem;
+}
+.pc-actions > * {
+  flex-shrink: 0;
+  max-width: 100%;
 }
 
 /* ---------- Laienduse lüliti + täisvõrdlus ---------- */
@@ -434,16 +411,9 @@ html[data-reduce-motion="1"] .pc-item {
     margin: 0;
     padding-top: var(--safe-top, 0px);
   }
-  .pc-head {
-    margin-top: auto;
-    padding-bottom: 0.5rem;
-  }
-  .pc .pc-head h1 {
-    /* Move the reading-page heading margin above the title, not below it. */
-    margin: 0.9em 0 0;
-  }
   .pc-stage {
     flex: 0 1 calc(var(--pc-w) / 0.72 + 1rem);
+    margin-top: auto;
   }
   .pc-item {
     top: 50%;
@@ -456,13 +426,6 @@ html[data-reduce-motion="1"] .pc-item {
   }
   .pc-scroll .pc-highlights {
     margin-bottom: 0.6rem;
-  }
-  button.pc-cta.pc-cta.specular-button[data-variant] {
-    /* Free space belongs before the actions, not above the package name. */
-    margin-top: auto;
-  }
-  .pc-toggle {
-    margin-top: 0.45rem;
   }
   .pc-dock {
     margin-top: auto;

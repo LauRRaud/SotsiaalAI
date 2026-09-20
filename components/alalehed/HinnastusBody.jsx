@@ -229,16 +229,7 @@ export default function HinnastusBody() {
   );
 
   return (
-    <section className="pc" lang={locale} aria-labelledby="hinnastus-title">
-      {/* Ainult pealkiri. Sissejuhatav rida läks ära (omanik 26.07):
-          kaardid ütlevad sama asja ise ja iga siit võidetud piksel läheb
-          lavale. Võti about.pricing.intro jääb tõlkefailidesse kasutuseta
-          — teda kannab ainult see koht, aga ühest keelest kustutamine
-          lõhuks keelte pariteedi (i18n:check) ja tekst võib veel naasta. */}
-      <header className="pc-head">
-        <h1 id="hinnastus-title">{t("about.pricing.title")}</h1>
-      </header>
-
+    <section className="pc" lang={locale} aria-label={t("about.pricing.title")}>
       <p className="sr-only" aria-live="polite">
         {`${t(`about.pricing.columns.${planKeys[active]}`)} — ${positionLine}`}
       </p>
@@ -303,28 +294,30 @@ export default function HinnastusBody() {
                     ))}
                   </ul>
 
-                  <Button
-                    type="button"
-                    variant="primary"
-                    size="sm"
-                    className="pc-cta"
-                    tabIndex={isCenter ? 0 : -1}
-                    aria-disabled={!REGISTRATION_OPEN}
-                    onClick={goRegister}
-                  >
-                    {t(`about.pricing.actions.${key}`)}
-                  </Button>
+                  <div className="pc-actions">
+                    <Button
+                      type="button"
+                      variant="primary"
+                      size="sm"
+                      className="pc-cta"
+                      tabIndex={isCenter ? 0 : -1}
+                      aria-disabled={!REGISTRATION_OPEN}
+                      onClick={goRegister}
+                    >
+                      {t(`about.pricing.actions.${key}`)}
+                    </Button>
 
-                  <button
-                    type="button"
-                    className="pc-toggle"
-                    tabIndex={isCenter ? 0 : -1}
-                    aria-expanded={isOpen ? "true" : "false"}
-                    onClick={() => setExpanded((v) => !v)}
-                  >
-                    <span>{isOpen ? t("about.pricing.card.hide_all") : t("about.pricing.card.show_all")}</span>
-                    <ChevronIcon direction={isOpen ? "up" : "down"} strokeWidth={1.1} />
-                  </button>
+                    <button
+                      type="button"
+                      className="pc-toggle"
+                      tabIndex={isCenter ? 0 : -1}
+                      aria-expanded={isOpen ? "true" : "false"}
+                      onClick={() => setExpanded((v) => !v)}
+                    >
+                      <span>{isOpen ? t("about.pricing.card.hide_all") : t("about.pricing.card.show_all")}</span>
+                      <ChevronIcon direction={isOpen ? "up" : "down"} strokeWidth={1.1} />
+                    </button>
+                  </div>
 
                   {isOpen ? (
                     <div className="pc-all">
