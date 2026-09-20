@@ -409,6 +409,10 @@ html[data-reduce-motion="1"] .pc-item {
       rotateY(calc(var(--pos) * 12deg))
       scale(calc(1 - min(var(--abs), 2) * 0.14));
   }
+  /* Details get more reading width, still less than an opened form card. */
+  .pc-stage[data-expanded="1"] .pc-item[data-center="1"] {
+    width: min(86vw, 22rem);
+  }
   /* Väiksel ekraanil viib paketist paketti svaip ja dokk. */
   .pc-arrow {
     display: none;

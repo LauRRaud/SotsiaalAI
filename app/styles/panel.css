@@ -1147,13 +1147,10 @@ label[data-control-type][data-checked="true"] > span[aria-hidden="true"] svg {
      tühistas tema oma aspect-ratio — kaart venis 240×698 torniks (omanik
      26.07: „imelikult piklikud"). Kaks parandust ühes:
      1) height: auto → kõrguse otsustab jälle proportsioon, mitte ekraan;
-     2) laius ei tule enam karusselli kaardilt (--gc-w on mobiilil 15rem =
-        240 px, kuigi ekraanil on 352 px vaba) — avatud kaart võtab ekraani
-        laiuse peaaegu servani, nagu omanik palus. Servani ta EI lähe:
-        ümarad nurgad ja mõlemapoolne ääris hoiavad ta kaardiks, mitte
-        leheks — sama keel mis desktopil. */
+     2) laius ei tule karusselli kaardilt (--gc-w), vaid jätab mõlemale
+        küljele 5% õhku. See avatud vormikaardi laius ei puuduta tavalehti. */
   .panel-scrim[data-compact="1"] .panel {
-    width: min(94vw, 24rem);
+    width: min(90vw, 23rem);
     height: auto;
     /* Kaardist veidi laiem kui desktopil (0.72): kitsal ekraanil oleks
        0.72 andnud 489 px kõrge kasti, mis oleks doki peaaegu kinni katnud.
