@@ -501,9 +501,9 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
   letter-spacing: 0.045em;
   text-align: center;
   color: var(--room-text);
-  /* Tekst kasutab kasti kogu siselaiust: mobiilis tekitas külgpolster
-     tarbetuid reavahetusi. Üla- ja alaõhk ning kasti väline servavahe säilivad. */
-  padding: 0.9em 0 0.96em;
+  /* Ainult kerge küljeõhk: tekst ei istu klaasiserva vastas, kuid ei kaota
+     varasema suure polstri tõttu tarbetult reaalaiust. */
+  padding: 0.9em 0.35em 0.96em;
   border: 1px solid rgba(245, 245, 245, 0.15);
   border-radius: 16px;
   background:
@@ -1202,7 +1202,9 @@ html[data-reduce-motion="1"] .room-walk-audio {
   .room-text {
     box-sizing: border-box;
     /* Lennu lõpus on perspektiivi ja skaala ühismõju kuni 1,34×. */
-    max-width: min(26rem, calc((100vw - 2rem) / 1.34));
+    /* Veidi laiem mull annab 0.35em külgpolstri tagasi teksti arvelt ruumi
+       võtmata; lennu maksimaalse 1,34× skaala juures jääb servavahe alles. */
+    max-width: min(26rem, calc((100vw - 1rem) / 1.34));
   }
   .room-text--intro {
     left: 1.1rem;

@@ -1480,7 +1480,7 @@ html[data-reduce-motion="1"] .gc-shortcut-tooltip {
     --gc-w: min(60vw, 16.5rem); /* rem: allub ekraaniprofiilile */
   }
   .gc-list {
-    --gc-spacing: calc(var(--gc-w) * 1.02);
+    --gc-spacing: calc(var(--gc-w) * 1.01);
   }
   .gc-item {
     top: 44%;
@@ -1689,7 +1689,7 @@ html[data-contrast="hc"] .gc-shortcut[data-on="1"] {
     touch-action: pinch-zoom;
     /* Külgkaart on varasemast lähemal, kuid väike lisavahe hoiab selle
        pika sildi ekraani serva tagant väljas. */
-    --gc-spacing: calc(var(--gc-w) * 1.02);
+    --gc-spacing: calc(var(--gc-w) * 1.01);
   }
   .gc:not([data-desk="1"]) .gc-item { top: 46%; }
   .gc:not([data-desk="1"]) .gc-icon svg {
