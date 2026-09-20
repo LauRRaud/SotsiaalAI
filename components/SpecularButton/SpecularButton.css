@@ -112,18 +112,11 @@ button.specular-button[data-variant]:hover {
   border: var(--input-border-hover);
 }
 
-/* Keep the shared translucent material without backdrop-filter resampling
-   or color interpolation while the carousel moves. */
-button.specular-button.pc-cta[data-variant],
-button.specular-button.pc-cta[data-variant]:hover {
-  background-color: var(--input-bg);
-  border: var(--input-border);
+/* Retain the shared translucent material, hover and pointer shine.
+   Only backdrop resampling is disabled inside the moving pricing carousel. */
+button.specular-button.pc-cta[data-variant] {
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
-  transition: transform 0.15s ease;
-}
-button.specular-button.pc-cta[data-variant] .specular-button__fx {
-  display: none;
 }
 
 /* .specular-input on EEMALDATUD (03.08). See oli mähis, millega PIN-lehe
