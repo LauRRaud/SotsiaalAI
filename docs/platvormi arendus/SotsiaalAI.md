@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**20.09 mobiili kaardiakende laiused ja sisu — avaldamisel.** Hinnastuse kaardid paiknevad madalamal. Sisu moodustab tasakaalustatud terviku: paketinimi, hind ja kirjeldus on eraldi vahedega ning nupp ja link paiknevad eeliste järel piiratud vahega. Sama paigutus mobiilis ja desktopis, seniste seadmekohaste kaardimõõtudega. Pikk sisu kerib kaardi sees. Brauseri kontroll omaniku soovil `not_run`.
+**20.09 mobiili kaardiakende laiused ja sisu — serveris (`ff0baaec`).** Hinnastuse kaardid paiknevad madalamal. Sisu moodustab tasakaalustatud terviku: paketinimi, hind ja kirjeldus on eraldi vahedega ning nupp ja link paiknevad eeliste järel piiratud vahega. Sama paigutus mobiilis ja desktopis, seniste seadmekohaste kaardimõõtudega. Pikk sisu kerib kaardi sees. Brauseri kontroll omaniku soovil `not_run`.
 
 **20.09 hinnastuse linnukesed — serveris (`db237c7c`).**
 Kõik loendis olevad saadaolevad võimalused saavad paremasse serva linnukese,
@@ -3510,7 +3510,7 @@ DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sise
 
 ### Tehtud
 
-**Hinnastuse mobiilimõõdud ja sisupaigutus (20.09, avaldamisel).** Kaartide pealkiri, hind, kirjeldus, eelised ja tegevused on ühtse vahedega kompositsioonina nii mobiilis kui desktopis. Võimaluste link on valikunupust suurema vahega allpool. Eeliste loendi linnukesed on suuremad ja joondatud teksti esimese reaga. Nupp ja link jäävad eeliste lähedale; pikk sisu kerib algusest. Kaardid paiknevad madalamal ning säilitavad seadmekohased mõõdud. Visuaalne runtime `NOT_PROVEN` — omanik testib ise.
+**Hinnastuse mobiilimõõdud ja sisupaigutus (20.09, serveris `ff0baaec`).** Kaartide pealkiri, hind, kirjeldus, eelised ja tegevused on ühtse vahedega kompositsioonina nii mobiilis kui desktopis. Võimaluste link on valikunupust suurema vahega allpool. Eeliste loendi linnukesed on suuremad ja joondatud teksti esimese reaga. Nupp ja link jäävad eeliste lähedale; pikk sisu kerib algusest. Kaardid paiknevad madalamal ning säilitavad seadmekohased mõõdud. Visuaalne runtime `NOT_PROVEN` — omanik testib ise.
 
 **Linnukesed ka tingimusega paketivõimalustel (20.09, serveris `db237c7c`).**
 Igal kuvatud võimalusel on linnuke nime kõrval; tingimus/maht jääb eraldi
