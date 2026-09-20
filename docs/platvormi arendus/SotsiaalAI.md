@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**20.09 mobiili kaardiakende laiused ja sisu — avaldamisel.** Hinnastusel puudub nähtav lehepealkiri. Paketi tekst algab ülevalt ning nupp ja võimaluste link moodustavad allserva suunas joondatud ühise ploki nii mobiilis kui desktopis. Paigutust juhib ümbris, et nupu üldine nullitud margin seda üle ei kirjutaks. Kaartide senised seadmekohased mõõdud säilivad. Brauseri kontroll omaniku soovil `not_run`; visuaalse tulemuse testib omanik.
+**20.09 mobiili kaardiakende laiused ja sisu — serveris (`27e29417`).** Hinnastusel puudub nähtav lehepealkiri. Paketi tekst algab ülevalt ning nupp ja võimaluste link moodustavad allserva suunas joondatud ühise ploki nii mobiilis kui desktopis. Paigutust juhib ümbris, et nupu üldine nullitud margin seda üle ei kirjutaks. Kaartide senised seadmekohased mõõdud säilivad. Brauseri kontroll omaniku soovil `not_run`; visuaalse tulemuse testib omanik.
 
 **20.09 hinnastuse linnukesed — serveris (`db237c7c`).**
 Kõik loendis olevad saadaolevad võimalused saavad paremasse serva linnukese,
@@ -3510,7 +3510,7 @@ DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sise
 
 ### Tehtud
 
-**Hinnastuse mobiilimõõdud ja sisupaigutus (20.09, avaldamisel).** Kaardi paketinimi paikneb üleval; valikunupp ja võimaluste link on ühises allapoole joondatud plokis kõigil seadmetel. Eraldi nähtav „Hinnastus” pealkiri on eemaldatud. Mobiili ja desktopi kaardimõõdud jäävad eraldi. Visuaalne runtime `NOT_PROVEN` — omanik testib ise.
+**Hinnastuse mobiilimõõdud ja sisupaigutus (20.09, serveris `27e29417`).** Kaardi paketinimi paikneb üleval; valikunupp ja võimaluste link on ühises allapoole joondatud plokis kõigil seadmetel. Eraldi nähtav „Hinnastus” pealkiri on eemaldatud. Mobiili ja desktopi kaardimõõdud jäävad eraldi. Visuaalne runtime `NOT_PROVEN` — omanik testib ise.
 
 **Linnukesed ka tingimusega paketivõimalustel (20.09, serveris `db237c7c`).**
 Igal kuvatud võimalusel on linnuke nime kõrval; tingimus/maht jääb eraldi
