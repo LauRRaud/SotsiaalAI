@@ -438,6 +438,10 @@ html[data-reduce-motion="1"] .pc-item {
     margin-top: auto;
     padding-bottom: 0.5rem;
   }
+  .pc .pc-head h1 {
+    /* Move the reading-page heading margin above the title, not below it. */
+    margin: 0.9em 0 0;
+  }
   .pc-stage {
     flex: 0 1 calc(var(--pc-w) / 0.72 + 1rem);
   }
@@ -446,8 +450,16 @@ html[data-reduce-motion="1"] .pc-item {
     aspect-ratio: 0.72;
     max-height: calc(100% - 1rem);
   }
+  .pc-scroll {
+    justify-content: flex-start;
+    padding-block: clamp(1.1rem, 4dvh, 1.75rem);
+  }
+  .pc-scroll .pc-highlights {
+    margin-bottom: 0.6rem;
+  }
   button.pc-cta.pc-cta.specular-button[data-variant] {
-    margin-top: 1.15rem;
+    /* Free space belongs before the actions, not above the package name. */
+    margin-top: auto;
   }
   .pc-toggle {
     margin-top: 0.45rem;
