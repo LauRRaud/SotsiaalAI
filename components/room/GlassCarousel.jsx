@@ -519,7 +519,7 @@ export default function GlassCarousel({
     if (!wrap || wrap.inert) return false;
     const room = root.closest(".room");
     if (!room) return false;
-    if (room.dataset.loginOpen === "1" || room.dataset.cardPage === "1") return false;
+    if (room.dataset.departing === "1" || room.dataset.loginOpen === "1" || room.dataset.cardPage === "1") return false;
     // Ükski lahtiolev modal (ligipääsetavus, kontakt/paigalda) ei tohi
     // lasta rullikul/nooltel tagust karusselli pöörata (tellija 07.07).
     if (room.dataset.a11yOpen === "1" || room.dataset.infoOpen === "1") return false;

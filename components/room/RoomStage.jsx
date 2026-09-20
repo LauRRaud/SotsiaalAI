@@ -417,6 +417,9 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
   powerRef.current = power;
   /* "Välja" kaart profiililt → koju ooterežiimi (mitte kaartidele) */
   const pendingStandbyRef = useRef(false);
+  const [departing, setDeparting] = useState(false);
+  const [exitArrival, setExitArrival] = useState(false);
+  const [standbyAnchor, setStandbyAnchor] = useState(null);
   /* Interaktiivsus avaneb alles pärast käivituse MÕLEMAT faasi */
   const [cardsReady, setCardsReady] = useState(() => shouldResumeHome);
   /* Käivituse vahepala: pärast klaaside teket sähvatab keskele animeeritud
@@ -641,6 +644,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
      teekonnatekste ei saa kaartide all tagasi kerida (tellija 06.07). */
   const igniteOn = useCallback(() => {
     if (powerRef.current === "on" || powerRef.current === "igniting") return;
+    setExitArrival(false);
     if (reducedRef.current) {
       setPower("on");
       setCardsReady(true);
@@ -688,10 +692,21 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
      (tellija 07.07: OFF = logout, sama mis profiili "Välja"). Kodus
      rakendub standby kohe; mujalt karussellilt naaseb koju ja maandub
      standby'sse (pendingStandby). */
-  const powerOff = useCallback(async () => {
+  const powerOff = useCallback(async (source) => {
     // Block automatic login prompts before signOut broadcasts session loss.
     if (!beginLogoutTransition()) return;
     setIsLoginOpen(false);
+    const icon = source === "card"
+      ? carouselWrapRef.current?.querySelector('.gc-item[data-center="1"] .gc-icon svg')
+      : null;
+    const bounds = icon?.getBoundingClientRect();
+    setStandbyAnchor(bounds ? {
+      x: `${((bounds.left + bounds.width / 2) / window.innerWidth) * 100}vw`,
+      y: `calc(${((bounds.top + bounds.height / 2) / window.innerHeight) * 100}dvh - 2.2rem)`,
+    } : null);
+    setDeparting(true);
+    // Fade before session loss can replace the authenticated card set.
+    const faded = new Promise(resolve => window.setTimeout(resolve, readReduced() ? 0 : 220));
     if (isAuthed) {
       try {
         const res = await fetch("/api/profile/logout", {
@@ -704,16 +719,22 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
         });
         if (!res.ok) {
           console.error("room logout revocation rejected", { status: res.status });
+          setDeparting(false);
           endLogoutTransition();
           return;
         }
+        await faded;
         await signOut({ redirect: false });
       } catch (error) {
         console.error("room logout revocation failed", error);
+        setDeparting(false);
         endLogoutTransition();
         return;
       }
     }
+    await faded;
+    setExitArrival(true);
+    setDeparting(false);
     setInfoHub(false);
     clearCompletedArrival();
     setPower("standby");
@@ -729,7 +750,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       return;
     }
     window.scrollTo(0, 0);
-  }, [clearCompletedArrival, isHome, isAuthed, router, locale]);
+  }, [clearCompletedArrival, isHome, isAuthed, router, locale, readReduced]);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -1516,7 +1537,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       if (item.action === "valja") {
         // "Välja" = LOGI VÄLJA + seade puhkeseisu (tellija 06.07 öö;
         // ⏻ vajutus viib pärast sessiooni tühistamist otse ooterežiimi.
-        void powerOff();
+        void powerOff("card");
         return;
       }
       if (item.action === "tagasi") {
@@ -1568,7 +1589,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
      vahelejätmisjuhikud. Püsiv ülariba ilmub alles töötavas ruumis:
      karussellis pärast käivitust, paneelidel kohe. */
   const showQuickbar =
-    !isLoginOpen &&
+    !departing && !isLoginOpen &&
     (mode === "panel" || (mode === "room" && power === "on" && cardsReady));
 
   return (
@@ -1578,6 +1599,8 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
         data-mode={mode}
         data-veil={veil}
         data-power={power}
+        data-departing={departing ? "1" : "0"}
+        data-exit-arrival={exitArrival ? "1" : "0"}
         data-walk-done={walkDone ? "1" : "0"}
         data-login-open={isLoginOpen ? "1" : "0"}
         data-info-open={openInfoModal ? "1" : "0"}
@@ -1696,7 +1719,8 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
 
               {/* OOTEREŽIIM: toitelüliti ÜLEVAL, tekst selle ALL (tellija),
                   ilma klaasita ja ilma kumata. Ilma logout-linkita (tellija 06.07). */}
-              <div className="room-standby" ref={standbyRef} data-room-ui>
+              <div className="room-standby" ref={standbyRef} data-room-ui
+                style={standbyAnchor ? { "--standby-x": standbyAnchor.x, "--standby-y": standbyAnchor.y } : undefined}>
                 <IconButton
                   layoutClassName="room-power"
                   aria-label={t("room.power_on")}

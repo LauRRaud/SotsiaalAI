@@ -411,8 +411,8 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
 /* ---------- OOTEREŽIIM: tekst + ⏻ korpusel, ILMA klaasita ---------- */
 .room-standby {
   position: fixed;
-  left: 50%;
-  top: 34%; /* tellija 06.07: nupp + tekst kõrgemale */
+  left: var(--standby-x, 50%);
+  top: var(--standby-y, 34%);
   translate: -50%;
   z-index: var(--z-home-ui);
   display: grid;
@@ -471,6 +471,27 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
   pointer-events: auto;
 }
 
+
+/* Logout keeps the power glyph at the selected card's measured center. */
+@keyframes room-standby-arrive {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.room[data-exit-arrival="1"][data-mode="room"][data-power="standby"] .room-standby {
+  animation: room-standby-arrive 380ms var(--ease-soft) both;
+}
+.room[data-power][data-cards-ready][data-departing="1"] .room-carousel-wrap {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms var(--ease-soft);
+}
+html[data-reduce-motion="1"] .room[data-exit-arrival="1"] .room-standby {
+  animation: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .room[data-exit-arrival="1"] .room-standby { animation: none; }
+  .room[data-power][data-cards-ready][data-departing="1"] .room-carousel-wrap { transition: none; }
+}
 
 /* ---------- Tekstipeatused: üks kompaktne fookusväli ----------
    Lennuefekt (public/room/flight-effect.md): perspective elab OTSE
