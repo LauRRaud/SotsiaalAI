@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**20.09 mobiili kaardiakende laiused ja sisu — joondus avaldamisel.**
+**20.09 mobiili kaardiakende laiused ja sisu — serveris (`3082ae4e`).**
 Puutel liigub Hinnastuse h1 päritud 0.9em alumine veeris pealkirja kohale:
 pealkiri laskub kaardile lähemale sama päisekõrguse sees. Pc-scroll ei
 joonda enam kogu sisu keskele, vaid algusesse; paketinimi on kõrgemal.
@@ -100,7 +100,8 @@ CTA margin-top:auto suunab vaba ruumi tegevuste ette ning nupp ja link
 asuvad allpool. Ülevoolul auto-vahe taandub nulliks, sisu jääb keritavaks;
 eeliste järel säilib 0.6rem minimaalne vahe. Kaart 90vw/24rem, külgsuhe
 0.72 ja läbipaistev lehetaust säilivad. Lint (0 viga, 2 varasemat hoiatust),
-i18n ja build läbisid. Runtime not_run omaniku soovil.
+i18n ja build läbisid. Deploy lõpetas edukalt, frontend active.
+Runtime not_run omaniku soovil.
 
 **20.09 hinnastuse linnukesed — serveris (`db237c7c`).**
 Kõik loendis olevad saadaolevad võimalused saavad paremasse serva linnukese,
@@ -3518,7 +3519,7 @@ DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sise
 
 ### Tehtud
 
-**Hinnastuse mobiilimõõdud ja sisupaigutus (20.09, joondus avaldamisel).**
+**Hinnastuse mobiilimõõdud ja sisupaigutus (20.09, serveris `3082ae4e`).**
 Hinnastuse päise 0.9em vahe on pealkirja kohal, mitte kaardi ees.
 Kaardi sisurida algab ülevalt; CTA automaatne ülemine veeris viib nupu
 ja lingi allapoole. Pika sisu korral kerib kogu sisu tavaliselt.
