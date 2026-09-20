@@ -92,6 +92,14 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**20.09 töölaua svaibi tõksumine — järelparandus väljalaskeks.**
+Omanik kinnitas pärast `17ce8af9` avaldamist, et kaardid vahetuvad, kuid
+animatsioon tõksub endiselt. Kaardiasend uueneb nüüd enne brauseri järgmist
+kaadrit; laiuse mõõtmine toimub enne sõrmenihke nullimist. Kaugemad
+peidetud kaardid ei hoia enam renderdamiseks nähtavaid klaasikihte.
+Brauseri ja telefoni kontroll jääb omaniku soovil talle (NOT_PROVEN).
+Tõend: `docs/audits/workspace-mobile-swipe-2026-09-20.md`.
+
 **20.09 töölaua pikk mobiilisvaip — serveris (`17ce8af9`).**
 Omanik täpsustas, et katki on menüükaartide vahetamine. Laiupidi vaates
 kordus pika svaibi animatsioonihüpe: mitme sammu nihet loeti ekslikult
@@ -3448,6 +3456,11 @@ DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sise
 ## S10. Avalik pind ja release
 
 ### Tehtud
+
+**Töölaua svaibi tõksumise järelparandus (20.09, väljalaskeks).**
+Kaardi uus asend ja sõrmenihke eemaldamine jäävad samasse joonistuskaadrisse.
+Laiust ei mõõdeta enam vaheolekus ning kaugemad kaardid on visibility:hidden.
+Omanik kontrollib telefoni animatsiooni ise; runtime NOT_PROVEN.
 
 **Töölaua pika puutesvaibi animatsioon (20.09, serveris `17ce8af9`).**
 Mitme kaardi pikkune vedu ei lülita enam kogu rea liikumisanimatsiooni välja.

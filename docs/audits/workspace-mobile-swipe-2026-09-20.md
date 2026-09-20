@@ -48,3 +48,26 @@ ajutise skripti puuduv process-globaal; parandatud skriptiga täislint läbis.
 git diff --check ja stage’itud diffi kontroll läbisid. `npm run deploy:server` lõpetas edukalt ja avaldas `17ce8af9`.
 Serveri build ja i18n läbisid, ootel migratsioone ei olnud; skripti
 lõpus frontend active. Väljalaskejärgne brauseritest jäi omaniku soovil ära.
+
+## Järelparandus: animatsioon tõksub ka pärast esimest väljalaset
+
+Omaniku uus tagasiside: kaardid vahetuvad, kuid animatsioon tõksub ja on
+imelik. Eelmine animatsioonilipu parandus ei lahendanud kogu tõrget.
+
+Koodist leitud täiendavad üleminekukohad:
+
+- endDrag nullis --drag ja eemaldas data-dragging, seejärel luges offsetWidth.
+  See geomeetrialugemine võis arvutada vana kaardivaliku tagasiliikumise enne
+  uue valiku renderdust. Mõõtmine toimub nüüd enne stiilimuutusi.
+- Kaardipositsioonide olek uuendati useEffect-is, pärast võimalikku vahekaadrit.
+  useLayoutEffect teeb asendiuuenduse enne brauseri järgmist joonistust.
+- Pikk töölauakomplekt hoidis kõiki peidetud klaaskaarte transform-kihtidena.
+  Nähtava rea kõrval jääb üks ettevalmistatud kaart kummalegi poole;
+  kaugemad kasutavad visibility:hidden ja will-change:auto.
+
+Need on koodi põhjal tehtud parandused. Omaniku soovil ei käivitata uusi
+brauseriteste; iOS-i sujuvus ja selle muudatuse visuaalne runtime on
+**NOT_PROVEN**. Varasema jaotise brauseritulemused ei tõenda seda järelparandust.
+
+Järelparanduse sihitud eslint, täislint (samad kaks olemasolevat hoiatust),
+i18n ja tootmisbuild läbisid. git diff --check läbis. Avaldamine ootel.

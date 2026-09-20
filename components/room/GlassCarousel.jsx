@@ -15,7 +15,7 @@
  * Vt WORKSPACE_ZONES (RoomStage) ja .gc-desk (carousel.css).
  */
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import IconButton from "@/components/glass/IconButton";
 import GlassCard from "@/components/glass/GlassCard";
 import ChevronIcon from "@/components/brand/icons/ChevronIcon";
@@ -261,7 +261,9 @@ export default function GlassCarousel({
   }));
   const prevActiveRef = useRef(active);
 
-  useEffect(() => {
+  // Kaardi uus koht peab rakenduma enne järgmist brauserikaadrit.
+  // Muidu jõuab sõrmenihke nullimine korraks vana keskkaardi tagasi tuua.
+  useLayoutEffect(() => {
     const curPos = posRef.current;
     // Komplekt/pikkus vahetus (nt haldus↔töö) — algsea puhtalt.
     if (!curPos || curPos.length !== n) {
@@ -472,6 +474,9 @@ export default function GlassCarousel({
       if (!d.on) return;
       drag.current = { on: false, x0: 0, dx: 0, moved: d.moved, pid: null };
       const list = listRef.current;
+      // Mõõda enne sõrmenihke eemaldamist. offsetWidth pärast --drag=0
+      // sunniks brauserit arvutama vaheasendi veel vana kaardivalikuga.
+      const cardW = d.moved ? list?.querySelector(".gc-item")?.offsetWidth || 0 : 0;
       if (list) {
         delete list.dataset.dragging;
         list.style.setProperty("--drag", "0px");
@@ -488,7 +493,6 @@ export default function GlassCarousel({
            kaardikohta sõrm läbis (lagi 3 — rohkem ei ole enam kerimine,
            vaid ülelend). Lävi 48 -> 26 px: 48 px oli poole ekraani jagu
            liigutust, mille peale ei juhtunud MIDAGI. */
-        const cardW = list?.querySelector(".gc-item")?.offsetWidth || 0;
         const pitch = cardW > 0 ? cardW * 1.06 : 140;
         const hops = Math.max(1, Math.min(3, Math.round(Math.abs(d.dx) / pitch)));
         if (Math.abs(d.dx) > 26) step(d.dx < 0 ? 1 : -1, { count: hops, force: true });
@@ -784,6 +788,7 @@ export default function GlassCarousel({
                 }}
                 data-center={isCenter ? "1" : "0"}
                 data-hidden={abs > hideBeyond ? "1" : "0"}
+                data-parked={abs > posLimit ? "1" : "0"}
                 data-warp={isWarp ? "1" : "0"}
               >
                 <GlassCard
