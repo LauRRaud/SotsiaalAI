@@ -92,6 +92,20 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**20.09 peidetud ülariba puudutus ja libistamine — serveris (`a1f1ba27`).**
+Puutel juhib paneeli ja ikoonide nähtavust ühine avanemisolek; hover/fookuse
+eelvaade kehtib ainult hiirega seadmele. Nähtava serva puudutus või vähemalt
+24 px allapoole libistus avab paneeli, üles libistus sulgeb. Libistusele
+järgnev klõps ei tohi vajutada juhtnuppe ega paneeli uuesti sulgeda.
+Chromiumi 390 × 844 puutevaates kontrollitud: fookus ei näita peidetud ikoone,
+üks tap avab, alla/üles libistus töötab, külgsuunaline ei ava ning helinupult
+libistamine ei muuda heli olekut. Nupuvajutus, Enter ja desktopi hover läbisid.
+Avalikul lehel korduskontrollitud ühe puudutuse avamine, alla/üles libistamine
+ja fookusel peidetuks jäävad ikoonid. Serveri tööpuu puhas, frontend aktiivne,
+sisemine HTTP ja avalik HTTPS 200; taaskäivituse järel vealogi tühi.
+Lint (kaks olemasolevat hoiatust), i18n ja tootmisbuild läbisid; migratsioone
+polnud rakendada. Päris iPhone/PWA puutejada on NOT_PROVEN.
+
 **20.09 mobiilivaate klaas, joondus ja kerimine — serveris (`7fe01386`).**
 PWA-kaardil on eraldiseisva režiimi jaoks kihipõhine servasilumine, et klaasi
 peegeldused ei kaoks. Peidetud ülariba mõõdukas taustahägu on lõigatud ümara
