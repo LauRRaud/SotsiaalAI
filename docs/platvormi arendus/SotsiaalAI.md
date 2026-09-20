@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**20.09 mobiili saabumine, kerimisvihjed ja paneelid — kontrollitud, avaldamisel.**
+**20.09 mobiili saabumine, kerimisvihjed ja paneelid — serveris (`bcd7b4a5`).**
 Logo ei oota enam metallikihi valmimist; üks puutekoputus käivitab
 sisenemise ka ilma sünteetilise click-ita. Ülapaneeli hägu on 6 px.
 Suurem keelemodaali kerimisvihje asub püstasendis keskel, rõhtasendis
@@ -100,7 +100,9 @@ paremal; avastseeni vihje samuti suurendatud. Paneelide raam on paigal ja
 sisu kerib sees; kompaktne Ruumide kaart ei peida kerimisel dokki.
 Tööheaolu kasutab kõigil ekraanidel põhimenüü karusselli ning vana
 /tooheaolu menüütee suunab samasse komplekti. Brauseri sihtkontrollid
-läbisid; päris iOS 27 runtime on NOT_PROVEN.
+läbisid. Avalikus brauseris kontrollitud logo, üks puutekoputus, paneeli
+sisemine kerimine ja 6 px blur. Serveri tööpuu puhas, frontend aktiivne,
+sisemine HTTP ning avalik HTTPS 200; päris iOS 27 runtime on NOT_PROVEN.
 Tõend: `docs/audits/mobile-arrival-panels-2026-09-20.md`.
 
 **20.09 iOS 27 olekuriba, Sisenen ja ülapaneeli hägu — serveris (`1fb89c14`).**
@@ -3436,7 +3438,7 @@ DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sise
 
 ### Tehtud
 
-**Mobiili saabumine ja paneelide kerimine (20.09, avaldamisel).**
+**Mobiili saabumine ja paneelide kerimine (20.09, serveris `bcd7b4a5`).**
 SVG-logo ei sõltu WebGL-i valmimisest; puutega sisenemine ei sõltu Safari
 sünteetilisest click-ist. Kergem ülapaneeli blur, suuremad kerimisvihjed
 (keelemodaalis portrait keskel, landscape paremal), fikseeritud raamiga

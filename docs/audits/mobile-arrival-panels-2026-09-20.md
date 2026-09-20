@@ -71,3 +71,14 @@ dokk nähtav. Esimene mõõtmine tehti enne fikstuurandmete valmimist;
 Muudetud JS/JSX-i sihitud eslint, täislint (kaks olemasolevat hoiatust
 CurvedInput/TiltedCard), i18n ning lõpliku piiratud CSS-iga tootmisbuild
 läbisid. git diff --check ja stage'itud diffi kontroll läbisid.
+
+## Avaldamine
+
+`npm run deploy:server` avaldas `bcd7b4a5c0a0edb5db7dd586f092fd61f00e76dd`.
+Serveri build ja i18n läbisid, ootel migratsioone polnud. Serveri Git-puu
+puhas, frontend aktiivne ning sisemine HTTP ja avalik HTTPS vastasid 200.
+Avaliku lehe eraldatud brauseriseansis ilmus SVG-logo blokeeritud
+metallitekstuuriga ja üks puudutus viis edasi 2583 ms jooksul ka blokeeritud
+click-iga. Avaliku Meist-lehe 390 × 700 vaates oli sisemine scrollTop=180,
+väline scrollY=0, paneeli y=0 ja ülapaneeli blur=6 px. Tootmise päris
+kasutajasisu ega andmemuutmistoiminguid kontrollimiseks ei kasutatud.
