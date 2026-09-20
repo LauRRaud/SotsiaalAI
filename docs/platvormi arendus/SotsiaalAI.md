@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**20.09 püstvaate kiirmenüü — väljalaskeks.**
+**20.09 püstvaate kiirmenüü — serveris (`f3be088a`).**
 Menüükaartide kiirmenüü tõstetud puuteseadme portrait-vaates 0,75 rem
 (vaikekirjaga 12 px) kõrgemale. Turvaala arvestus säilib. Rõhtvaate ja
 avatud sisulehtede doki asend ei muutu. Telefoni visuaali kontrollib omanik.
@@ -3462,7 +3462,7 @@ DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sise
 
 ### Tehtud
 
-**Menüü kiirmenüü kõrgus mobiili püstvaates (20.09, väljalaskeks).**
+**Menüü kiirmenüü kõrgus mobiili püstvaates (20.09, serveris `f3be088a`).**
 Portrait + coarse pointer: menüükaarte saatev dokk 0,75 rem kõrgemal;
 landscape ja dock-only sisulehed endise asendiga. Visuaalne runtime not_run
 omaniku soovil. Muudatus ja tehnilised kontrollid vastavas commit’is.
