@@ -816,6 +816,16 @@ html:not([data-contrast="hc"])[data-display-mode="fullscreen"] .gc-card-surface:
   padding: 0 1em 0 calc(1em + 0.13em);
 }
 
+/* A slight content-only counter-yaw keeps side-card labels easier to read.
+   The card shell, carousel position and pointer tilt remain unchanged. */
+.gc:not([data-desk="1"]) :is(.gc-icon, .gc-label, .gc-card-badge) {
+  transform: perspective(1500px) rotateY(calc(clamp(-1, var(--pos, 0), 1) * -4deg));
+  transform-origin: center;
+}
+.gc[data-visible="5"] :is(.gc-icon, .gc-label, .gc-card-badge) {
+  transform: perspective(1500px) rotateY(calc(clamp(-1, var(--pos, 0), 1) * -2deg));
+}
+
 /* Faas 2: sisu ilmub pärast klaasi. VÄRAV = cardsReady, MITTE power
    (tellija 06.07): cardsReady lülitub alles SAI-vahepala kadumise järel,
    seega ikoonid/sildid EI kattu enam vahepala-logoga. Kest (gc-item)
@@ -827,7 +837,8 @@ html:not([data-contrast="hc"])[data-display-mode="fullscreen"] .gc-card-surface:
   opacity: 0;
   transition:
     opacity 620ms var(--ease-soft) calc(var(--abs) * 160ms + 80ms),
-    color 640ms var(--ease-soft) 0ms;
+    color 640ms var(--ease-soft) 0ms,
+    transform 480ms var(--ease-soft);
 }
 .room[data-power="on"][data-cards-ready="1"] .gc-icon,
 .room[data-power="on"][data-cards-ready="1"] .gc-label,

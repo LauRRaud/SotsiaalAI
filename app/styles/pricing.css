@@ -105,6 +105,10 @@
    Kerimisriba peidus; lennužesti ja sisemise kerimise koostöö elab
    HinnastusBody innerCanScroll'is (.pc-scroll). */
 .pc-scroll {
+  /* Counter only a small part of the shell yaw, as in menu card content. */
+  transform: perspective(1500px) rotateY(calc(clamp(-1, var(--pos, 0), 1) * -4deg));
+  transform-origin: center;
+  transition: transform 460ms var(--ease-soft);
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
@@ -363,6 +367,14 @@ html[data-reduce-motion="1"] .pc-item {
   .pc-item {
     transition: opacity 200ms linear;
   }
+}
+
+html[data-reduce-motion="1"] .pc-scroll {
+  transition: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pc-scroll { transition: none; }
+  .gc-icon, .gc-label, .gc-card-badge { transition: none; }
 }
 
 /* ---------- Mobiil ---------- */
