@@ -417,21 +417,54 @@ html[data-reduce-motion="1"] .a11f-ambient-choice-label {
   }
 }
 
-/* Madalas rõhtvaates mahtusid kolm keelevalikut sisuliselt ära, kuid
-   üldine `100lvh - 14rem` kerimispiir lõikas viimase rea keskelt katki.
-   Dokk võtab siin vähem vertikaalruumi kui portreevaates; anna jaamale
-   tegelik vaba kõrgus ning tõsta kerimisvihje laia ekraani paremasse
-   tühja serva, et see ei seisaks valikute peal. */
-@media (pointer: coarse) and (orientation: landscape) and (max-height: 32rem) {
-  .a11f-plane .csp-step > div {
-    max-height: calc(100dvh - 9rem);
+/* Puutel jagavad dokk ja jaam sama vaba kõrguse arvutust. Brauseri
+   tööriistaribad ning PWA turvaalad ei tohi viimast valikut varjata. */
+@media (pointer: coarse) {
+  [role="dialog"][aria-labelledby="a11y-title"] {
+    --a11f-dock-bottom: max(0.2rem, calc(env(safe-area-inset-bottom, 0px) - 0.42rem));
+    --a11f-content-top: calc(env(safe-area-inset-top, 0px) + 0.75rem);
+    --a11f-content-bottom: calc(var(--a11f-dock-bottom) + 3.59rem + 0.75rem);
+    height: 100dvh;
   }
+  .a11f-dock { bottom: var(--a11f-dock-bottom); }
+  .a11f-dolly {
+    top: var(--a11f-content-top);
+    bottom: var(--a11f-content-bottom);
+  }
+  .a11f-plane .csp-step > div {
+    max-height: calc(100dvh - var(--a11f-content-top) - var(--a11f-content-bottom) - 3rem);
+  }
+  /* Vihje jääb pöidlapoolsele vabale lavale. Sündmused saab lava ise,
+     nii et ka animatsiooni pealt alustatud svaip vahetab jaama. */
   .a11f-scroll-hint {
     left: auto;
-    right: max(1rem, env(safe-area-inset-right, 0px));
-    bottom: 50%;
-    translate: 0 50%;
-    scale: 0.72;
+    right: max(0.75rem, calc(env(safe-area-inset-right, 0px) + 0.5rem));
+    bottom: calc(var(--a11f-content-bottom) + 1rem);
+    translate: none;
+    scale: 0.85;
+    transform-origin: bottom right;
+  }
+}
+
+/* Madalas rõhtvaates mahub kolm vähemalt 44 px puutesihiga keelevalikut
+   doki kohale. Keri-vihje seisab valikute kõrval, mitte nende all. */
+@media (pointer: coarse) and (orientation: landscape) and (max-height: 32rem) {
+  .a11f-plane .csp-step > div {
+    max-height: calc(100dvh - var(--a11f-content-top) - var(--a11f-content-bottom) - 2.25rem);
+    gap: 0.35rem;
+  }
+  .a11f-plane .csp-step legend {
+    padding-bottom: 0.5rem;
+  }
+  .a11f-plane .csp-step label[data-control-type] {
+    min-height: 2.75rem;
+    padding-block: 0.5em;
+  }
+  .a11f-scroll-hint {
+    top: calc((100% + var(--a11f-content-top) - var(--a11f-content-bottom)) / 2);
+    bottom: auto;
+    translate: 0 -50%;
+    transform-origin: center right;
   }
 }
 

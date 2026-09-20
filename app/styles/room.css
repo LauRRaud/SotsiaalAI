@@ -1271,7 +1271,13 @@ html[data-reduce-motion="1"] .room-walk-audio {
     overflow: hidden;
     overscroll-behavior: none;
   }
-  .room-topbar { height: 2.75rem; }
+  .room-topbar {
+    height: 2.75rem;
+    /* Peidetud klaas ja backdrop-hägu lõpevad turvaala alumisel serval.
+       PWA-s jääks üles nihutatud paneel muidu iOS-i olekuriba alla.
+       Küljed ning avatud paneeli allserv jäävad lõikamata. */
+    clip-path: inset(0 -100vw -100dvh);
+  }
   .room-topbar .room-topbar-arrow {
     height: 2.75rem;
   }

@@ -28,7 +28,7 @@
   /* ---------- LIQUID GLASS INPUT — üks vormiväli kõikjal ----------
      Etalon: Plaan/"input näide.png" (tellija 07.07): hele klaas-pill,
      taustablur, sisemine helk üleval + õrn peegeldus all, pehme vari;
-     fookus = ere ääris + heledam täide. MATERJAL elab siin; feature-
+     fookus = nähtav ääris + hoveriga sama tume täide. MATERJAL elab siin; feature-
      failid juhivad ainult paigutust/mõõtu (:where() hoiab primitiivi
      spetsiifilisuse nullis, nii et iga hilisem reegel võidab).
      Checkbox/radio/range/file/color ja sr-only/peidetud väljad
@@ -79,10 +79,9 @@
     border-radius: 18px; /* mitmerealine pole pill */
     text-align: left;
   }
-  /* Hover: väli TUMENEB (omanik 03.08). Suund on ühine kogu interaktsioonil —
-     baas 0.10 → hover 0.07 → fookus 0.05 — ja see on taotluslik: heledust
-     lisab ainult kursorit jälgiv servahelk, täide läheb aina rahulikumaks.
-     Transition on juba baasreeglil; :not(:focus) hoiab fookuse oma seisu peal. */
+  /* Hover tumendab välja; fookus ja kirjutamine säilitavad sama täite.
+     Fookust eristab endiselt ääris ja servakuma, mitte heledam taust.
+     Transition on baasreeglil; :not(:focus) jätab fookuse äärise alles. */
   :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.sr-only), textarea, select, .dd-trigger):hover:not(:focus) {
     border: var(--input-border-hover);
     background-color: var(--input-bg-hover);

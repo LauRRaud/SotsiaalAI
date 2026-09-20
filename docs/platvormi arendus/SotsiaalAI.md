@@ -92,6 +92,20 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**20.09 sisestusväljade fookus — kohalikult parandatud, väljalase omaniku loal ettevalmistamisel.**
+Fookus ja kirjutamine säilitavad hoveriga sama tumeda täite; fookuseääris
+jääb nähtavaks. Sama leping kehtib kõrgkontrasti ja vähendatud
+läbipaistvusega. Väljalase hõlmab ka allolevaid mobiiliparandusi.
+
+**20.09 mobiilimenüü, ligipääsetavuse vaade ja PWA ülaserv — kohalikult parandatud, avaldamata.**
+Kiirmenüüd paiknevad mobiilis madalamal; rõhtvaate kaardid ja keelevalikud
+arvestavad doki kõrgust ning turvaala. Karusselli nooled säilivad ka alla
+768 px laiuses brauseris. Ligipääsetavuse kerimisvihje on mobiilis paremal
+ja sellelt alustatud üleslibistus vahetab jaama. Ülariba peidetud klaas ning
+hägu on lõigatud olekuriba turvaala piirilt. Chromiumi turvaaladega
+mõõtmised ja WebKiti rõhtvaade läbisid; päris iPhone'i PWA musta udu
+kadumine on NOT_PROVEN. Tõend: `docs/audits/mobile-menu-landscape-2026-09-20.md`.
+
 **20.09 peidetud ülariba puudutus ja libistamine — serveris (`a1f1ba27`).**
 Puutel juhib paneeli ja ikoonide nähtavust ühine avanemisolek; hover/fookuse
 eelvaade kehtib ainult hiirega seadmele. Nähtava serva puudutus või vähemalt
@@ -3395,6 +3409,14 @@ DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sise
 ## S10. Avalik pind ja release
 
 ### Tehtud
+
+**Mobiilimenüü, ligipääsetavuse vaade ja PWA ülaserv (20.09, kohalik, avaldamata).**
+Rõhtvaate kaardid kasutavad brauseris ja PWA-s sama vaba kõrguse arvutust;
+alumine kiirmenüü on madalamal ning mõlemad nooled nähtavad. Keelevalikute
+dokk on samuti madalamal, valikud mahuvad selle kohale ja kerimisvihje on
+mobiilis paremas servas. Peidetud ülariba klaas ning taustahägu on turvaala
+piirilt lõigatud. Päris iOS-i PWA visuaal on NOT_PROVEN.
+[Kontrolliraport](../audits/mobile-menu-landscape-2026-09-20.md).
 
 **Avalikud lehed.**
 Võimalused, kasutusjuhend, kasutustingimused, privaatsustingimused, tööalase kasutuse

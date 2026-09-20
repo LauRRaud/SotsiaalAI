@@ -1702,13 +1702,52 @@ html[data-contrast="hc"] .gc-shortcut[data-on="1"] {
   .gc:not([data-desk="1"]) .gc-label[data-long="1"] {
     font-size: clamp(0.96rem, 4.2vw, 1.15rem);
   }
-  .gc-shortcuts { bottom: calc(env(safe-area-inset-bottom, 0px) + 0.65rem); }
+  .gc-shortcuts {
+    /* Klaasi alumine polster võib ulatuda turvaalasse; nupud jäävad
+       selle kohale. Nii ei tõsta turvaala tervet pilli tarbetult üles. */
+    bottom: max(0.2rem, calc(env(safe-area-inset-bottom, 0px) - 0.42rem));
+  }
+  .gc-shortcut-menu { padding: 0.42rem; }
 }
 @media (pointer: coarse) and (orientation: landscape) {
   .gc:not([data-desk="1"]) {
-    --gc-w: min(32vw, calc((100dvh - 7.5rem) * 0.72));
+    /* Sama paigutus brauseris ja PWA-s: kaart täidab ülariba ning doki
+       vahele jääva ala. Turvaala vähendab kaarti, mitte ei tõsta dokki
+       kaardi peale. Doki kõrgus = puutenupp + mõlema serva polster. */
+    --gc-landscape-top: max(2.25rem, env(safe-area-inset-top, 0px));
+    --gc-landscape-dock-bottom: max(0.2rem, calc(env(safe-area-inset-bottom, 0px) - 0.42rem));
+    --gc-landscape-bottom: calc(var(--gc-landscape-dock-bottom) + 2.75rem + 0.84rem + 0.75rem);
+    --gc-landscape-center: calc((100% + var(--gc-landscape-top) - var(--gc-landscape-bottom)) / 2);
+    --gc-w: min(26vw, calc((100dvh - var(--gc-landscape-top) - var(--gc-landscape-bottom)) * 0.72));
   }
-  .gc:not([data-desk="1"]) .gc-item { top: calc(50% - 0.5rem); }
+  .gc:not([data-desk="1"]) .gc-item,
+  .gc:not([data-desk="1"]) .gc-arrow {
+    top: var(--gc-landscape-center);
+  }
+  /* Brauseri külgribad võivad viia laiuse alla 768 px. Rõhtvaate
+     nooled jäävad siiski alles ja mõlemad turvaalad jäävad vabaks. */
+  .gc:not([data-desk="1"]) .gc-arrow {
+    display: grid;
+    width: 3rem;
+    height: 3rem;
+  }
+  .gc:not([data-desk="1"]) .gc-arrow--left {
+    left: max(calc(env(safe-area-inset-left, 0px) + 0.5rem), calc(50% - var(--gc-w) * 1.56 - 3.9rem));
+    right: auto;
+  }
+  .gc:not([data-desk="1"]) .gc-arrow--right {
+    right: max(calc(env(safe-area-inset-right, 0px) + 0.5rem), calc(50% - var(--gc-w) * 1.56 - 3.9rem));
+    left: auto;
+  }
+  .gc:not([data-desk="1"]) .gc-shortcuts {
+    bottom: var(--gc-landscape-dock-bottom);
+  }
+  .gc:not([data-desk="1"]) .gc-shortcut-menu .gc-shortcut {
+    padding: 0;
+  }
+  .gc:not([data-desk="1"]) .gc-shortcut-menu .gc-shortcut[data-on="1"] {
+    padding: 0 0.62rem;
+  }
   .gc:not([data-desk="1"]) .gc-label {
     max-width: 100%;
     font-size: clamp(0.92rem, 5.5dvh, 1.2rem);
@@ -1720,10 +1759,9 @@ html[data-contrast="hc"] .gc-shortcut[data-on="1"] {
     letter-spacing: 0.08em;
   }
   .gc:not([data-desk="1"]) .gc-icon svg {
-    width: clamp(3rem, 18dvh, 4.75rem);
-    height: clamp(3rem, 18dvh, 4.75rem);
+    width: min(4.75rem, calc(var(--gc-w) * 0.36));
+    height: min(4.75rem, calc(var(--gc-w) * 0.36));
   }
-  .gc-shortcuts { bottom: calc(env(safe-area-inset-bottom, 0px) + 0.35rem); }
 }
 
 }
