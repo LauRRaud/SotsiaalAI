@@ -706,8 +706,6 @@ html[data-reduce-motion="1"] .scroll-frames::after {
 .room-topbar[data-visible="1"] {
   opacity: 1;
 }
-.room-topbar:hover,
-.room-topbar:focus-within,
 .room-topbar[data-open="1"] {
   height: 6rem;
 }
@@ -790,8 +788,6 @@ html[data-reduce-motion="1"] .scroll-frames::after {
   mask-composite: exclude;
   pointer-events: none;
 }
-.room-topbar:hover .room-quickbar,
-.room-topbar:focus-within .room-quickbar,
 .room-topbar[data-open="1"] .room-quickbar {
   transform: translate(-50%, 0.3rem);
   pointer-events: auto;
@@ -857,8 +853,6 @@ html[data-contrast="hc"] .room-quickbar {
    560 ms hõljumist ikoonide kohal luges viivitusena, mitte pehmusena
    (omanik 25.07: "nooleke kaob liiga aeglaselt ära"). Naasmine tohib
    olla aeglane — seal ta ei sega midagi. */
-.room-topbar:hover .room-quickbar-arrow svg,
-.room-topbar:focus-within .room-quickbar-arrow svg,
 .room-topbar[data-open="1"] .room-quickbar-arrow svg {
   opacity: 0;
   transition-duration: 120ms;
@@ -896,11 +890,30 @@ html[data-contrast="hc"] .room-quickbar {
     box-shadow var(--dur-fast) var(--ease-soft),
     scale 160ms var(--ease-soft);
 }
-.room-topbar:hover .glass-iconbtn.room-quick-btn,
-.room-topbar:focus-within .glass-iconbtn.room-quick-btn,
 .room-topbar[data-open="1"] .glass-iconbtn.room-quick-btn {
   opacity: 1;
   transform: translateY(0);
+}
+/* Hover/focus previews belong to mouse devices. Touch uses one shared
+   explicit state for the panel, arrow and icons, without a half-open state. */
+@media (hover: hover) and (pointer: fine) {
+  .room-topbar:hover,
+  .room-topbar:focus-within { height: 6rem; }
+  .room-topbar:hover .room-quickbar,
+  .room-topbar:focus-within .room-quickbar {
+    transform: translate(-50%, 0.3rem);
+    pointer-events: auto;
+  }
+  .room-topbar:hover .room-quickbar-arrow svg,
+  .room-topbar:focus-within .room-quickbar-arrow svg {
+    opacity: 0;
+    transition-duration: 120ms;
+  }
+  .room-topbar:hover .glass-iconbtn.room-quick-btn,
+  .room-topbar:focus-within .glass-iconbtn.room-quick-btn {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 .glass-iconbtn.room-quick-btn svg {
   width: 1.7rem;
@@ -1277,8 +1290,9 @@ html[data-reduce-motion="1"] .room-walk-audio {
   .room-topbar { height: 2.75rem; }
   .room-topbar .room-topbar-arrow {
     height: 2.75rem;
-    touch-action: manipulation;
   }
+  .room-topbar-arrow,
+  .room-quickbar { touch-action: pan-x pinch-zoom; }
   /* Puutel juhib avamist päris vajutus, mitte Safari kleepuv hover/fookus. */
   .room-topbar[data-open="0"] .room-quickbar {
     transform: translate(-50%, calc(-100% + 1.55rem));

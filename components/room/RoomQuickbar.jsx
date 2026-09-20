@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import IconButton from "@/components/glass/IconButton";
 import {
   LanguageAccessIcon,
@@ -25,6 +26,26 @@ export default function RoomQuickbar({
   t,
   visible,
 }) {
+  const gestureRef = useRef(null);
+  const suppressClickRef = useRef(false);
+
+  const finishGesture = (event) => {
+    const gesture = gestureRef.current;
+    if (!gesture || gesture.id !== event.pointerId) return;
+    gestureRef.current = null;
+    const dx = event.clientX - gesture.x;
+    const dy = event.clientY - gesture.y;
+    const swiped = Math.abs(dy) >= 24 && Math.abs(dy) > Math.abs(dx);
+    const tappedHandle = gesture.handle && Math.hypot(dx, dy) < 8;
+    // Handle touch directly; its compatibility click must not toggle twice
+    // or activate an icon revealed beneath the finger after a swipe.
+    if (swiped || tappedHandle || Math.hypot(dx, dy) >= 8) {
+      suppressClickRef.current = true;
+      event.preventDefault();
+      if ((swiped && (dy > 0) !== open) || tappedHandle) onToggleOpen();
+    }
+  };
+
   return (
     <div
       className="room-topbar"
@@ -32,6 +53,24 @@ export default function RoomQuickbar({
       data-room-ui
       data-visible={visible ? "1" : "0"}
       ref={containerRef}
+      onPointerDown={(event) => {
+        suppressClickRef.current = false;
+        if (event.pointerType === "mouse" || !event.isPrimary) return;
+        gestureRef.current = {
+          id: event.pointerId,
+          x: event.clientX,
+          y: event.clientY,
+          handle: event.target.closest?.(".room-topbar-arrow") != null,
+        };
+      }}
+      onPointerUp={finishGesture}
+      onPointerCancel={() => { gestureRef.current = null; }}
+      onClickCapture={(event) => {
+        if (!suppressClickRef.current || event.detail === 0) return;
+        suppressClickRef.current = false;
+        event.preventDefault();
+        event.stopPropagation();
+      }}
     >
       <button
         type="button"
