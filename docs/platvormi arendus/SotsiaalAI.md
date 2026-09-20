@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**20.09 mobiili kaardiakende laiused ja taust — täpsustus avaldamisel.**
+**20.09 mobiili kaardiakende laiused ja taust — serveris (`665752c7`).**
 Hinnastuskaardi laius kuni 768 px või puutel min(90vw, 24rem), senise
 87vw/22.25rem asemel. Laiust määrab ainult pc-stage, pc-list enam ei
 kirjuta seda üle. Puutel külgsuhe ja lava kõrguse jagaja taas 0.72
@@ -101,7 +101,7 @@ allapoole nihutatud vahed ning doki reserv säilivad. Hinnastuse pc-kesta
 eraldi radiaalgradient eemaldatud kõigis vaadetes: läbipaistev nagu menüü.
 Kaardi klaasmaterjal, PIN jt kompaktsete akende ning tavalehtede mõõdud
 säilivad. Lint (0 viga, 2 varasemat hoiatust), i18n ja build läbisid.
-Runtime not_run omaniku soovil.
+Deploy lõpetas edukalt, frontend active. Runtime not_run omaniku soovil.
 
 **20.09 hinnastuse linnukesed — serveris (`db237c7c`).**
 Kõik loendis olevad saadaolevad võimalused saavad paremasse serva linnukese,
@@ -3519,7 +3519,7 @@ DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sise
 
 ### Tehtud
 
-**Hinnastuse mobiilimõõdud ja läbipaistev taust (20.09, avaldamisel).**
+**Hinnastuse mobiilimõõdud ja läbipaistev taust (20.09, serveris `665752c7`).**
 Kaart 90vw/24rem ühelt pc-stage reeglilt, puutel külgsuhe 0.72: laiem ja
 lühem kui 3cbdeaec. Pc-kesta eraldi radiaalgradient eemaldatud kõigilt
 ekraanidelt. Klaasmaterjal, tegevuste vahed ja teiste lehtede mõõdud
