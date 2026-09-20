@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**20.09 töölaua svaibi tõksumine — järelparandus väljalaskeks.**
+**20.09 töölaua svaibi tõksumine — järelparandus serveris (`cc96c9e1`).**
 Omanik kinnitas pärast `17ce8af9` avaldamist, et kaardid vahetuvad, kuid
 animatsioon tõksub endiselt. Kaardiasend uueneb nüüd enne brauseri järgmist
 kaadrit; laiuse mõõtmine toimub enne sõrmenihke nullimist. Kaugemad
@@ -3457,7 +3457,7 @@ DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sise
 
 ### Tehtud
 
-**Töölaua svaibi tõksumise järelparandus (20.09, väljalaskeks).**
+**Töölaua svaibi tõksumise järelparandus (20.09, serveris `cc96c9e1`).**
 Kaardi uus asend ja sõrmenihke eemaldamine jäävad samasse joonistuskaadrisse.
 Laiust ei mõõdeta enam vaheolekus ning kaugemad kaardid on visibility:hidden.
 Omanik kontrollib telefoni animatsiooni ise; runtime NOT_PROVEN.

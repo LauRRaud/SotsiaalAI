@@ -70,4 +70,6 @@ brauseriteste; iOS-i sujuvus ja selle muudatuse visuaalne runtime on
 **NOT_PROVEN**. Varasema jaotise brauseritulemused ei tõenda seda järelparandust.
 
 Järelparanduse sihitud eslint, täislint (samad kaks olemasolevat hoiatust),
-i18n ja tootmisbuild läbisid. git diff --check läbis. Avaldamine ootel.
+i18n ja tootmisbuild läbisid. git diff --check läbis.
+`npm run deploy:server` avaldas `cc96c9e1`, lõpus frontend active ja
+serveri Git-staatus puhas. Uusi brauseriteste ei käivitatud omaniku soovil.
