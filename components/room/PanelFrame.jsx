@@ -355,7 +355,8 @@ export default function PanelFrame({ children }) {
      RUUMI ese, mitte ekraanikleeps — kui pilk läheb tekstitahvlile, jääb
      ta taha, hämardub ja läheb fookusest välja; tahvel ise kasvab vabaks
      jäänud ruumi. Tagasi tuleb ta kohe, kui pilk tõuseb (kerid üles) või
-     kui lugemine on läbi (jõuad põhja) — väljapääsu ei tohi otsida.
+     kui lugemine on läbi (jõuad põhja; ainult hiirevaates). Puutel jääb
+     dokk põhjas peitu, et lehe viimased toimingud oleksid vabalt kasutatavad.
 
      Olek elab <html> data-atribuudil, mitte Reacti olekus: teda vajavad
      KAKS eri puud (dokk elab RoomStage'is, aken siin) ja üleminek on
@@ -369,8 +370,9 @@ export default function PanelFrame({ children }) {
 
     /* Lävi on müravaigisti: puuteplaadi hoog annab ±1 px kaadreid, mis
        ilma selleta paneksid doki edasi-tagasi võbelema. */
-    const NOISE = 6;
-    const TOP_ZONE = 48;
+    const isTouch = window.matchMedia("(pointer: coarse)").matches;
+    const NOISE = isTouch ? 3 : 6;
+    const TOP_ZONE = isTouch ? 8 : 48;
     const END_ZONE = 24;
     let scrollEl = el;
     const positions = new WeakMap([[el, el.scrollTop]]);
@@ -378,10 +380,11 @@ export default function PanelFrame({ children }) {
 
     const apply = () => {
       raf = 0;
-      const top = scrollEl.scrollTop;
+      const max = Math.max(0, scrollEl.scrollHeight - scrollEl.clientHeight);
+      // iOS-i üle serva veniv kerimine ei ole kasutaja suunamuutus.
+      const top = Math.max(0, Math.min(max, scrollEl.scrollTop));
       const delta = top - (positions.get(scrollEl) || 0);
-      const max = scrollEl.scrollHeight - scrollEl.clientHeight;
-      const atEnd = max - top <= END_ZONE;
+      const atEnd = !isTouch && max - top <= END_ZONE;
       const nearTop = top <= TOP_ZONE;
       if (!atEnd && !nearTop && Math.abs(delta) < NOISE) return;
       positions.set(scrollEl, top);

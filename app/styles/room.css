@@ -972,8 +972,8 @@ html[data-contrast="hc"] .room-quickbar {
    Kui tekstitahvlis keritakse ALLA, ei kustu dokk lihtsalt ära — ta
    VAJUB RUUMI TAGASI: läheb kaugemale (Z), kahaneb perspektiivis,
    hämardub ja läheb fookusest välja, nagu ese, millelt pilk on ära
-   pööratud. Tagasi tuleb pilgu tõusuga (kerid üles) või lugemise lõpus
-   (jõuad põhja) — vt PanelFrame, kust `data-dock-recessed` tuleb.
+   pööratud. Tagasi tuleb pilgu tõusuga (kerid üles), hiirevaates ka
+   lugemise lõpus — vt PanelFrame, kust `data-dock-recessed` tuleb.
    Miks transform+blur, mitte pelk opacity: platvorm on ruum, mitte
    leht. Ekraanikleeps kaob, ese taandub — ja taandumine annab lugejale
    ka suunataju (dokk on ikka seal, lihtsalt kaugemal). */
@@ -1032,6 +1032,10 @@ html[data-reduce-motion="1"][data-dock-recessed="1"] .room-dock-wrap {
   --gc-shortcuts-opacity: 1;
   --gc-shortcuts-pointer: auto;
   --gc-shortcuts-offset: 0;
+}
+html[data-dock-recessed="1"] .room-dock-wrap .gc {
+  /* Ka doki lapsed peavad puudutused läbi laskma, mitte ainult mähis. */
+  --gc-shortcuts-pointer: none;
 }
 /* Pikk komplekt (töölaual 15+ kaarti) ei tohi dokist välja valguda —
    sama viga, mis ajas rolli-lüliti omal ajal riba alt välja. Riba keritav,

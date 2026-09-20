@@ -92,6 +92,14 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**20.09 mobiili kiirmenüü kerimisel — väljalaskeks.**
+Omanik märkis Tellimuse lehe „Telli” nupu võimalikku kattumist. Puutel
+peitub avatud sisulehe dokk pärast 8 px ülaserva tsooni (varem 48 px),
+suunalävi 3 px (varem 6). Põhja jõudmine ei too dokki automaatselt tagasi;
+üleskerimine toob. Peidetud doki alumine sisureserv säilib ja doki lapsed
+lasevad puudutused läbi. Kompaktsed Ruumid/PIN/e-post säilitavad püsidoki.
+Tellimuse ega maksete loogikat ei muudetud. Runtime not_run: omanik testib.
+
 **20.09 püstvaate kiirmenüü — ühine kõrgus serveris (`ce2c4700`).**
 Omaniku järelsoovil tõuseb menüü kiirmenüü veel 0,75 rem; kogu nihe on
 nüüd 1,5 rem varasemast alaservast. Sama ühine kõrgus rakendub avatud
@@ -3463,6 +3471,13 @@ DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sise
 ## S10. Avalik pind ja release
 
 ### Tehtud
+
+**Mobiili kiirmenüü tundlikum peitumine (20.09, väljalaskeks).**
+Puutel 8 px ülaserv + 3 px suunalävi, põhjas automaatset naasmist pole.
+Püsiv dokireserv võimaldab viimase toimingunupu doki kohale kerida ka siis,
+kui dokk üleskerimisel naaseb; peidetud dokk ei püüa puudutusi. iOS-i
+üle serva venitust ei loeta suunavahetuseks. Kompaktsete kaartide püsidokk
+säilib. Runtime not_run omaniku soovil; tehniline tõend vastavas commit’is.
 
 **Ühine kiirmenüü kõrgus mobiili püstvaates (20.09, serveris `ce2c4700`).**
 Jagatud --dock-portrait-bottom tõstab kiirmenüü 1,5 rem varasemast

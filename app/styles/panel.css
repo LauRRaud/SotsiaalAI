@@ -84,6 +84,13 @@
 html[data-dock-recessed="1"] .panel-scrim[data-dock="1"] {
   --room-dock-reserve: clamp(1.4rem, 2lvh + 0.6rem, 2.4rem);
 }
+@media (pointer: coarse) {
+  html[data-dock-recessed="1"] .panel-scrim[data-dock="1"] {
+    /* Püsiv kerimisruum jätab viimase nupu ka naasva doki kohale.
+       Peitumine ei muuda puutehoo ajal lehe pikkust ega kerimiskohta. */
+    --room-dock-reserve: var(--room-dock-rest-reserve);
+  }
+}
 @media (pointer: coarse) and (orientation: portrait) {
   .panel-scrim[data-dock="1"] {
     /* Kõrgemale tõstetud doki kohal peab ka viimane sisurida vabaks jääma. */
