@@ -729,7 +729,8 @@ html[data-reduce-motion="1"] .scroll-frames::after {
 /* ÜKS klaaspaneel — ikoonide alus. Materjal = SAMA mis karusselli
    klaaskaardil (.gc-card): neutraalne läbipaistev täide (--card-glass-*).
    Taustahägu teeb paneeli taga liikuva sisu pehmeks ka siis, kui nähtav on
-   ainult peidetud riba alaserv. Läige ::before'is, maskitud serv-rõngas ::after'is.
+   ainult peidetud riba alaserv. Täide, helgid ja serv kasutavad ühist
+   .gc-card-surface kihti; taustahägu jääb eraldi ::before-kihile.
    Vaikimisi peidetud ülaserva taha, näha ümar alaserv + nool. */
 .room-quickbar {
   position: absolute;
@@ -745,8 +746,8 @@ html[data-reduce-motion="1"] .scroll-frames::after {
      kujuga ja ikoonid ilmuvad alles kui paneel on väljas (tellija 07.07). */
   padding: 0.45rem 0.95rem;
   border-radius: 1.5rem;
-  /* Materjal elab piiritletud ::before-kihil. Nii ei valgu iOS PWA
-     komposiitoris hägu ümara pinna taha mustaks servaks. */
+  /* Taustahägu on piiratud ::before-kihile, kaartidega ühine materjal
+     asub selle kohal. Ikoonid ei kuulu kummagi filtrikihi sisse. */
   background: transparent;
   box-shadow: none;
   color: var(--room-text);
@@ -757,7 +758,7 @@ html[data-reduce-motion="1"] .scroll-frames::after {
   pointer-events: none;
   transition: transform var(--dur-med) var(--ease-soft);
 }
-/* Klaasitäide, mõõdukas taustahägu ja läige ühel ümara kujuga kihil.
+/* Ainult mõõdukas taustahägu: kaardi materjalikiht järgneb DOM-is sellele.
    clip-path piirab backdrop-filtri rasterala, kuid jätab paneeli all oleva
    noole nähtavaks (terve vanema overflow'd ei saa sellepärast peita). */
 .room-quickbar::before {
@@ -767,25 +768,8 @@ html[data-reduce-motion="1"] .scroll-frames::after {
   border-radius: inherit;
   -webkit-clip-path: inset(0 round 1.5rem);
   clip-path: inset(0 round 1.5rem);
-  background: var(--card-glass-sheen), var(--card-glass-bg);
   -webkit-backdrop-filter: var(--control-glass-blur);
   backdrop-filter: var(--control-glass-blur);
-  box-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 0.2),
-    inset 0 -1px 1.5px rgba(255, 255, 255, 0.12);
-  pointer-events: none;
-}
-/* Liquid-serv — pehme gradient-rõngas maskiga */
-.room-quickbar::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: var(--card-glass-rim-width);
-  background: var(--card-glass-rim);
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  mask-composite: exclude;
   pointer-events: none;
 }
 .room-topbar[data-open="1"] .room-quickbar {

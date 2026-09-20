@@ -90,6 +90,7 @@ export default function RoomQuickbar({
           }
         }}
       >
+        <span className="gc-card-surface" aria-hidden="true" />
         <span className="room-quickbar-arrow" aria-hidden="true">
           <svg
             viewBox="0 0 24 24"
