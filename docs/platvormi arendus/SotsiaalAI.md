@@ -92,12 +92,15 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**20.09 sisestusväljade fookus — kohalikult parandatud, väljalase omaniku loal ettevalmistamisel.**
+**20.09 sisestusväljade fookus — serveris (`4f78378b`).**
 Fookus ja kirjutamine säilitavad hoveriga sama tumeda täite; fookuseääris
 jääb nähtavaks. Sama leping kehtib kõrgkontrasti ja vähendatud
-läbipaistvusega. Väljalase hõlmab ka allolevaid mobiiliparandusi.
+läbipaistvusega. Avalikul lehel kontrollitud hover → klõps → kirjutamine;
+PIN-välja ja tekstiala taust jäi samaks kõigis kolmes režiimis. Serveri
+tööpuu puhas, frontend aktiivne, sisemine HTTP ja avalik HTTPS 200.
+Väljalase hõlmab ka allolevaid mobiiliparandusi.
 
-**20.09 mobiilimenüü, ligipääsetavuse vaade ja PWA ülaserv — kohalikult parandatud, avaldamata.**
+**20.09 mobiilimenüü, ligipääsetavuse vaade ja PWA ülaserv — serveris (`4f78378b`).**
 Kiirmenüüd paiknevad mobiilis madalamal; rõhtvaate kaardid ja keelevalikud
 arvestavad doki kõrgust ning turvaala. Karusselli nooled säilivad ka alla
 768 px laiuses brauseris. Ligipääsetavuse kerimisvihje on mobiilis paremal
@@ -3410,12 +3413,14 @@ DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sise
 
 ### Tehtud
 
-**Mobiilimenüü, ligipääsetavuse vaade ja PWA ülaserv (20.09, kohalik, avaldamata).**
+**Mobiilimenüü, ligipääsetavuse vaade ja PWA ülaserv (20.09, serveris `4f78378b`).**
 Rõhtvaate kaardid kasutavad brauseris ja PWA-s sama vaba kõrguse arvutust;
 alumine kiirmenüü on madalamal ning mõlemad nooled nähtavad. Keelevalikute
 dokk on samuti madalamal, valikud mahuvad selle kohale ja kerimisvihje on
 mobiilis paremas servas. Peidetud ülariba klaas ning taustahägu on turvaala
-piirilt lõigatud. Päris iOS-i PWA visuaal on NOT_PROVEN.
+piirilt lõigatud. Sisestusväljade kirjutamise taust säilitab hoveri tumeda
+täite; avalikus brauseris kontrollitud. Kõik uued stiilid on avalikus CSS-is.
+Päris iOS-i PWA visuaal on NOT_PROVEN.
 [Kontrolliraport](../audits/mobile-menu-landscape-2026-09-20.md).
 
 **Avalikud lehed.**

@@ -1,6 +1,6 @@
 # Mobiilimenüü, ligipääsetavuse vaade ja PWA ülaserv — 20.09.2026
 
-Seis: kohalik parandus, väljalase omaniku 20.09 loal ettevalmistamisel.
+Seis: avaldatud omaniku 20.09 loal, kood `4f78378b`.
 Mobiiliparandusele lisandus sisestusväljade fookuse tausta ühtlustamine.
 Varasemad ülesandega mitteseotud tööpuu muudatused säilitatud.
 
@@ -85,3 +85,19 @@ klõps → sisestamine → kursori eemaldamine. Kõigis kolmes režiimis peavad
 hoveri ja kirjutamise arvutatud taustavärvid kattuma. Kontopaneeli eksporti
 ei käivitata. Lõpliku CSS-i kohalik build koos i18n-kontrolliga läbis;
 JS-kood jäi eelneva läbitud lindi järel muutmata.
+
+Kõik kuus stiilikontrolli läbisid nii kohalikult kui avalikul lehel.
+Tavarežiimis jäi taustaks `rgba(0, 0, 0, 0.12)`, kõrgkontrastis
+`rgba(0, 0, 0, 0.92)` ja vähendatud läbipaistvusega
+`rgba(39, 39, 39, 0.96)`. Fookuseääris säilis.
+
+## Avaldamine
+
+`npm run deploy:server` lõpetas edukalt. Serveri build ja i18n läbisid;
+migratsioone ei olnud rakendada. Serveri Git-puu oli puhas ja koodi HEAD
+`4f78378bf499b315332821630a3dc79e618e7e20`, frontend aktiivne ning
+`http://127.0.0.1:3000` ja `https://sotsiaal.ai` vastasid HTTP 200.
+Avaliku lehe laaditud CSS-is kontrolliti fookusvärvi viidet, mõlema
+mobiilimenüü uusi paigutusmuutujaid ning ülariba lõikereeglit.
+Avalik brauserikontroll kasutas ainult anonüümset stiilifiksuuri;
+tootmiskasutaja sisu ei loetud ega päris toiminguid saadetud.
