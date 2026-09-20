@@ -211,15 +211,16 @@
 }
 .pc-hi-mark {
   color: var(--room-text-soft);
-  font-size: 0.86rem;
-  line-height: 1.5;
+  /* Match the first text line so the mark sits beside, not above it. */
+  font-size: 1.12rem;
+  line-height: 1.68;
 }
 
 .pc-actions {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.55rem;
+  gap: 1.05rem;
   width: 100%;
   /* A bounded gap keeps actions connected to the benefits on every screen. */
   margin-top: clamp(0.9rem, 2.5vh, 1.4rem);
