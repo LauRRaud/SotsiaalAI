@@ -92,6 +92,15 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**20.09 töölaua pikk mobiilisvaip — parandatud, väljalaske kontrollis.**
+Omanik täpsustas, et katki on menüükaartide vahetamine. Laiupidi vaates
+kordus pika svaibi animatsioonihüpe: mitme sammu nihet loeti ekslikult
+ringiõmbluse ületamiseks. Üleminek jäetakse nüüd ära ainult tegelikul
+ümbertõstmisel ringi tagaküljel. Lühikesed/pikad edasi-tagasi svaibid ja
+ringi sulgumine läbisid brauserikontrolli. Päris iOS 27 on NOT_PROVEN;
+omaniku täpne tõrkevariant pole veel lõplikult kinnitatud.
+Tõend: `docs/audits/workspace-mobile-swipe-2026-09-20.md`.
+
 **20.09 mobiili saabumine, kerimisvihjed ja paneelid — serveris (`bcd7b4a5`).**
 Logo ei oota enam metallikihi valmimist; üks puutekoputus käivitab
 sisenemise ka ilma sünteetilise click-ita. Ülapaneeli hägu on 6 px.
@@ -3437,6 +3446,12 @@ DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sise
 ## S10. Avalik pind ja release
 
 ### Tehtud
+
+**Töölaua pika puutesvaibi animatsioon (20.09, väljalaske kontrollis).**
+Mitme kaardi pikkune vedu ei lülita enam kogu rea liikumisanimatsiooni välja.
+Hetkeline ümbertõstmine jääb ainult ringi tagumise õmbluse kaartidele.
+Sihtkontroll hõlmab ka tööheaolu regressiooni ja admini teenuseosutaja vaadet.
+[Raport](../audits/workspace-mobile-swipe-2026-09-20.md); päris iOS NOT_PROVEN.
 
 **Mobiili saabumine ja paneelide kerimine (20.09, serveris `bcd7b4a5`).**
 SVG-logo ei sõltu WebGL-i valmimisest; puutega sisenemine ei sõltu Safari

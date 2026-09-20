@@ -286,7 +286,10 @@ export default function GlassCarousel({
       while (np > n / 2) np -= n;
       return np;
     });
-    const warp = pos.map((np, i) => Math.abs(np - curPos[i]) > 1.0001);
+    // Ainult ringi tagaküljelt üle õmbluse tõstmine on hetkeline.
+    // Pikk svaip võib liikuda 2–3 kohta: see on endiselt sujuv vedu,
+    // mitte kõigi kaartide ümbertõstmine (> 1 kontroll katkestas animatsiooni).
+    const warp = pos.map((np, i) => np !== curPos[i] - d);
     posRef.current = pos;
     setLayout({ pos, warp });
   }, [active, n, items]);
