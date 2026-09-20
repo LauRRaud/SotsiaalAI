@@ -92,13 +92,13 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**20.09 hinnastuse linnukesed — avaldamisel.**
+**20.09 hinnastuse linnukesed — serveris (`db237c7c`).**
 Kõik loendis olevad saadaolevad võimalused saavad paremasse serva linnukese,
 ka Tasuta paketi „Lihtne” / „Sobiva vaste korral” ja teiste pakettide
 „Piiratud” jms selgitusega read. Täpsustus säilib nime all täislaiuses;
 puuduvad võimalused jäävad peitu. Siht-eslint, lint (0 viga, 2 varasemat
-hoiatust), i18n ja build läbisid; runtime not_run omaniku soovil. Eelmise kiirmenüü järelparanduse deploy
-lõpetas edukalt, frontend active (`e587fff4`).
+hoiatust), i18n ja build läbisid; runtime not_run omaniku soovil. Deploy
+lõpetas edukalt, frontend active (`db237c7c`).
 
 **20.09 kiirmenüü tagasitulek ja lühemad vihjed — serveris (`e587fff4`).**
 Omaniku järelsoovil tuleb sisulehe kiirmenüü viimase 24 px sees tagasi ka
@@ -3508,7 +3508,7 @@ DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sise
 
 ### Tehtud
 
-**Linnukesed ka tingimusega paketivõimalustel (20.09, avaldamisel).**
+**Linnukesed ka tingimusega paketivõimalustel (20.09, serveris `db237c7c`).**
 Igal kuvatud võimalusel on linnuke nime kõrval; tingimus/maht jääb eraldi
 real nime alla. Sama renderdus kõigis neljas paketis. Puuduvad võimalused
 on endiselt välja filtreeritud. Runtime not_run omaniku soovil.
