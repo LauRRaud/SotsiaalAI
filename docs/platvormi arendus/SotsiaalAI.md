@@ -92,7 +92,14 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**20.09 hinnastuse mobiilivaade ja kiirmenüü nimed — serveris (`9066b8aa`).**
+**20.09 hinnastuse mobiilivaade ja kiirmenüü nimed — järelparandus avaldamisel.**
+Nime laiuse 320 ms animatsioon ja ellips eemaldatud: aktiivne paketinimi
+ilmub tervikuna kohe. Kitsal dokirajal tuuakse aktiivne nupp nähtavale
+riba sees, lehte kerimata. Võimaluse tekstiline tingimus on nüüd nime all
+oma täislaiuses real; linnuke jääb nime kõrvale. Sõnu ei murta enam
+suvalisest tähest. Siht-eslint, lint (0 viga, 2 varasemat hoiatust), i18n
+ja build läbisid; runtime not_run omaniku soovil. Varasem põhimuudatus serveris (`9066b8aa`).
+
 Hinnastuse lõuend järgib puutel nähtavat dünaamilist kõrgust; pealkiri asub
 kaardile lähemal ning dokk kasutab ühist püstvaate alumist vahet. Aktiivne
 pakett on dokis nimega (Tasuta/Pöörduja/Spetsialist/Osutaja). Kõigi ühiste
@@ -3482,6 +3489,12 @@ DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sise
 ## S10. Avalik pind ja release
 
 ### Tehtud
+
+**Hinnastuse täisnimed ja sõnamurdude järelparandus (20.09, avaldamisel).**
+Paketisilt ilmub kohe täispikkuses, ilma laiuseanimatsiooni ja ellipsita.
+Võimaluste tekstilised tingimused asuvad nime all eraldi real, linnukesed
+nime kõrval; overflow-wrap:anywhere eemaldatud. Kitsas dokk kerib ainult
+oma rada, et aktiivne silt nähtavale tuua. Runtime not_run omaniku soovil.
 
 **Hinnastuse mobiilivaade ja ühised puutevihjed (20.09, serveris `9066b8aa`).**
 Dünaamiline lõuendikõrgus ja ühine püstvaate dokivahe hoiavad hinnastuse

@@ -14,7 +14,7 @@
  * warp-loogikat). Klaas + 3D positsioonid: app/styles/pricing.css.
  */
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
@@ -25,7 +25,6 @@ import { usePanelExit } from "@/components/room/PanelExit";
 import { localizePath } from "@/lib/localizePath";
 import { REGISTRATION_OPEN } from "@/lib/publicRegistration";
 import { backWithTransition, pushWithTransition } from "@/lib/routeTransition";
-import useQuickMenuMotion from "@/components/ui/useQuickMenuMotion";
 
 const planKeys = ["free", "client", "worker", "provider"];
 
@@ -89,7 +88,16 @@ export default function HinnastusBody() {
   const dockTrackRef = useRef(null);
 
   const [active, setActive] = useState(0);
-  useQuickMenuMotion(dockTrackRef, active);
+  useLayoutEffect(() => {
+    const track = dockTrackRef.current;
+    const selected = track?.querySelector('[data-on="1"]');
+    if (!selected) return;
+    // Reveal the full label immediately, without scrolling the surrounding page.
+    const bounds = track.getBoundingClientRect();
+    const item = selected.getBoundingClientRect();
+    if (item.right > bounds.right) track.scrollLeft += item.right - bounds.right;
+    else if (item.left < bounds.left) track.scrollLeft -= bounds.left - item.left;
+  }, [active]);
   const activeRef = useRef(active);
   activeRef.current = active;
   /* Laiendus on AKTIIVSE kaardi oma; kaardivahetus sulgeb selle, et
@@ -325,7 +333,8 @@ export default function HinnastusBody() {
                     <div className="pc-all">
                       <dl>
                         {featureRows.filter((row) => row.values[index] !== "dash").map((row) => (
-                          <div className="pc-all-row" key={row.key}>
+                          <div className="pc-all-row" key={row.key}
+                            data-description={row.values[index] !== "included" ? "1" : undefined}>
                             <dt>{t(`about.pricing.features.${row.key}`)}</dt>
                             <dd>
                               <PlanValue value={row.values[index]} t={t} />

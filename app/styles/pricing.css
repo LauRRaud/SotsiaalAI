@@ -292,8 +292,8 @@ button.pc-cta.pc-cta.specular-button[data-variant] {
 }
 .pc-all-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, auto);
-  gap: 0.75rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.2rem 0.75rem;
   align-items: baseline;
   padding: 0.42rem 0;
   border-bottom: 1px solid rgba(247, 247, 247, 0.055);
@@ -306,12 +306,24 @@ button.pc-cta.pc-cta.specular-button[data-variant] {
 }
 .pc-all-row dt {
   color: var(--room-text);
-  overflow-wrap: anywhere;
 }
 .pc-all-row dd {
   margin: 0;
   color: var(--room-text-dim);
-  overflow-wrap: anywhere;
+}
+.pc-all-row dt,
+.pc-all-row dd {
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
+/* Conditions need a full line; they must not squeeze feature names into fragments. */
+.pc-all-row[data-description="1"] dt,
+.pc-all-row[data-description="1"] dd {
+  grid-column: 1 / -1;
+}
+.pc-all-row[data-description="1"] dd {
+  font-size: 0.9em;
 }
 .pc-val--yes {
   color: var(--room-text);
@@ -377,8 +389,9 @@ button.pc-cta.pc-cta.specular-button[data-variant] {
   display: block;
 }
 .pc-dock .gc-shortcut[data-on="1"] .gc-shortcut-text {
-  max-width: min(8rem, calc(100vw - 17rem));
-  text-overflow: ellipsis;
+  max-width: none;
+  flex-shrink: 0;
+  overflow: visible;
 }
 
 /* ---------- Liikumise vähendamine ---------- */
