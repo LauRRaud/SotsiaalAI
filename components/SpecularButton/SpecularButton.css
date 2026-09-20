@@ -112,18 +112,15 @@ button.specular-button[data-variant]:hover {
   border: var(--input-border-hover);
 }
 
-/* Do not resample the moving carousel behind a translucent button.
-   Keep the static sheen/rim while removing backdrop and color interpolation. */
+/* Keep the shared translucent material without backdrop-filter resampling
+   or color interpolation while the carousel moves. */
 button.specular-button.pc-cta[data-variant],
 button.specular-button.pc-cta[data-variant]:hover {
-  background-color: var(--pc-button-surface, #1c1c1c);
+  background-color: var(--input-bg);
   border: var(--input-border);
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
   transition: transform 0.15s ease;
-}
-html[data-contrast="hc"] button.specular-button.pc-cta[data-variant] {
-  --pc-button-surface: var(--input-bg);
 }
 button.specular-button.pc-cta[data-variant] .specular-button__fx {
   display: none;
