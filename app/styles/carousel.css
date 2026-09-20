@@ -43,7 +43,7 @@
   /* Sissepoole pööratud küljed; külgmised selgelt väiksemad */
   transform: translate(-50%, -50%)
     translate3d(calc(var(--pos) * var(--gc-spacing) + var(--drag)), 0, 0)
-    rotateY(calc(var(--pos) * 19deg))
+    rotateY(calc(var(--pos) * 15deg))
     scale(calc(1 - min(var(--abs), 2.2) * 0.19));
   /* Sisse-hajumine kiire (220 ms) — sisenev äärekaart ei tohi pöördest
      maha jääda; välja-hajumine elab [data-hidden] reeglis (sihtoleku
@@ -114,7 +114,7 @@
       0,
       0
     )
-    rotateY(calc(var(--pos) * 10deg))
+    rotateY(calc(var(--pos) * 8deg))
     scale(calc(1 - min(var(--abs), 2.6) * 0.07));
 }
 /* Sisu kahaneb kaardiga kaasa: väiksem ikoon + silt, mis MAHUB kaardile

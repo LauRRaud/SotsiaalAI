@@ -71,7 +71,7 @@
   display: flex;
   transform: translate(-50%, -50%)
     translate3d(calc(var(--pos) * var(--pc-spacing)), 0, 0)
-    rotateY(calc(var(--pos) * 19deg))
+    rotateY(calc(var(--pos) * 15deg))
     scale(calc(1 - min(var(--abs), 2.2) * 0.19));
   transition: transform 460ms var(--ease-soft), opacity 300ms var(--ease-soft);
   will-change: transform;
@@ -377,7 +377,7 @@ html[data-reduce-motion="1"] .pc-item {
   .pc-item {
     transform: translate(-50%, -50%)
       translate3d(calc(var(--pos) * var(--pc-spacing)), 0, 0)
-      rotateY(calc(var(--pos) * 12deg))
+      rotateY(calc(var(--pos) * 10deg))
       scale(calc(1 - min(var(--abs), 2) * 0.14));
   }
   /* Väiksel ekraanil viib paketist paketti svaip ja dokk. */
