@@ -2,8 +2,6 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
-import SubscriptionReadOnlyBanner from "@/components/ui/SubscriptionReadOnlyBanner";
-import WellbeingPage from "@/components/wellbeing/WellbeingPage";
 import { requireSubscription, resolveSessionRoleState } from "@/lib/authz";
 import { getLocaleFromCookies } from "@/lib/i18n";
 import { localizePath } from "@/lib/localizePath";
@@ -35,16 +33,12 @@ export default async function TooheaoluPage() {
   if (!gate.ok && gate.status !== 402) {
     redirect(localizePath(gate.redirect || "/tellimus", locale));
   }
-  const subscriptionInactive = !gate.ok;
 
   if (!canUseWellbeingRole(roleState.effectiveRole, Boolean(roleState.isAdmin))) {
     redirect(localizePath("/vestlus", locale));
   }
 
-  return (
-    <>
-      {subscriptionInactive ? <SubscriptionReadOnlyBanner /> : null}
-      <WellbeingPage locale={locale} />
-    </>
-  );
+  // Older workspace links and workflow back buttons use this entry point.
+  // Keep its access checks, then open the same card menu as the main workspace.
+  redirect(localizePath("/toolaud/tooheaolu", locale));
 }

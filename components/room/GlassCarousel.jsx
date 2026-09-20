@@ -106,7 +106,7 @@ export default function GlassCarousel({
   const [wideEnough, setWideEnough] = useState(false);
   useEffect(() => {
     if ((!hasZones && visible !== 5) || typeof window === "undefined") return undefined;
-    const mq = window.matchMedia("(min-width: 1200px)");
+    const mq = window.matchMedia("(min-width: 1200px) and (hover: hover) and (pointer: fine)");
     const update = () => setWideEnough(mq.matches);
     update();
     mq.addEventListener("change", update);

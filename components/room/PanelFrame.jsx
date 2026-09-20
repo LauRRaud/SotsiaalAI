@@ -362,7 +362,7 @@ export default function PanelFrame({ children }) {
      puhas CSS. Reacti kaudu tähendaks see konteksti läbi terve puu ja
      iga kerimiskaadri renderdust. */
   useEffect(() => {
-    if (isHome || !hasRoomDock) return undefined;
+    if (isHome || !hasRoomDock || isCompact) return undefined;
     const el = bodyEl;
     const root = document.documentElement;
     if (!el || !root) return undefined;
@@ -413,7 +413,7 @@ export default function PanelFrame({ children }) {
          avaneks ilma väljapääsuta. */
       delete root.dataset.dockRecessed;
     };
-  }, [isHome, hasRoomDock, normalized, workspaceParam, showInfoView, bodyEl]);
+  }, [isHome, hasRoomDock, isCompact, normalized, workspaceParam, showInfoView, bodyEl]);
 
   /* Töölaud: sr-only marker jääb DOM-i (ekraanilugeja, robotid), paneelikesta
      EI teki — nähtav navigatsioon on RoomStage'i töölaua-karussell. */

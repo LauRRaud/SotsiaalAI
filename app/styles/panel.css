@@ -34,6 +34,16 @@
   padding: clamp(1rem, 3.2lvh, 2.6rem) clamp(0.75rem, 2.5vw, 2rem);
 }
 
+/* Tavalise lehe/kaardi kerimisomanik on panel-body. Vestlusel ja
+   lõuenditel on eraldi kõrguse ning klaviatuuri käsitlus. */
+.panel-scrim:not([data-canvas="1"]):not([data-conversation="1"]) {
+  position: fixed;
+  inset: 0;
+  height: var(--app-dynamic-block-size);
+  min-height: 0;
+  overflow: hidden;
+}
+
 /* Aken avaneb ÜHE liigutusega ja oma lõplikus mõõdus.
    Varem oli avanemine kaks lahus sündmust: paneel ilmus tühja kestana
    (min-height 20rem), ja kui sisu lõpuks kohale jõudis, hüppas kast
@@ -156,6 +166,14 @@ html[data-reduce-motion="1"] .panel-scrim[data-dock="1"] {
   width: min(42.5rem, calc(100vw - clamp(3rem, 12vw, 10rem)));
   height: calc(100lvh - clamp(9rem, 22lvh, 14rem));
   max-height: 47.5rem;
+}
+
+html:has(.panel-scrim:not([data-canvas="1"]):not([data-conversation="1"])),
+html:has(.panel-scrim:not([data-canvas="1"]):not([data-conversation="1"])) body {
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  overscroll-behavior: none;
 }
 @media (min-width: 769px) {
   /* Manustatud tööleht vabastab sama dokireservi kui lugemisleht.
@@ -1058,6 +1076,7 @@ label[data-control-type][data-checked="true"] > span[aria-hidden="true"] svg {
   .panel-scrim {
     padding: 0;
   }
+  .panel-scrim:not([data-canvas="1"]):not([data-conversation="1"]) .panel { margin: 0; }
   /* `[data-narrow]` on siin nimeliselt kirjas, sest tema desktopi-reegel
      (0,2,0 — lukus 33rem kõrgus) võidaks paljast `.panel`-it (0,1,0) ka
      siin sees: meediapäring ei anna spetsiifilisust. Ilma temata jäi

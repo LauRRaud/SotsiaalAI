@@ -97,7 +97,6 @@ import {
 import {
   CLIENT_ZONE,
   WELLBEING_ZONE,
-  WELLBEING_ZONES,
   workspaceZonesForRole,
 } from "@/lib/deskZones";
 import { wellbeingTools } from "@/lib/wellbeingTools";
@@ -422,11 +421,12 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
   /* Käivituse vahepala: pärast klaaside teket sähvatab keskele animeeritud
      SAI-monogramm, alles siis laetakse kaartidele sisu (tellija 06.07) */
   const [introSai, setIntroSai] = useState(false);
-  /* Loori logo ilmub ühe tervikuna alles siis, kui nii sõnamärgi SVG kui
-     metallik-AI esimene WebGL-kaader on valmis. Vahepealseid kihte ei näidata. */
+  /* Sõnamärk ilmub SVG laadimisel. Metall lisandub pärast oma renderdust,
+     kuid selle viibimine ei tohi kogu logo peita. */
   const [veilMetalReady, setVeilMetalReady] = useState(false);
   const [veilWordmarkReady, setVeilWordmarkReady] = useState(false);
-  const veilLogoReady = veilMetalReady && veilWordmarkReady;
+  // The SVG is a complete logo; a delayed WebGL frame must not hide it on iOS.
+  const veilLogoReady = veilWordmarkReady;
 
   const displayed = useRef(0);
   const target = useRef(0);
@@ -439,6 +439,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
   const reducedRef = useRef(false);
   const walkDoneRef = useRef(false);
   const enteringRef = useRef(false);
+  const enterTouchRef = useRef(null);
 
   const readReduced = useCallback(() => {
     if (typeof window === "undefined") return false;
@@ -886,7 +887,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       veilRef.current?.querySelector(".room-veil-art")?.dataset.mode === "live";
     // Puutel lõpetab oote VeilArt ise, kui kõik osakesed on neeldunud.
     // Varupiir hoiab sisenemise kasutatavana ka katkestatud canvas'e korral.
-    enterFallbackRef.current = window.setTimeout(finishVeilEntry, animatedTouch ? 6000 : 0);
+    enterFallbackRef.current = window.setTimeout(finishVeilEntry, animatedTouch ? 1200 : 0);
     if (animatedTouch) veilRef.current?.dispatchEvent(new Event("room-enter"));
   }, [applyScene, readReduced, finishVeilEntry]);
 
@@ -1299,10 +1300,9 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
             : isAuthed
               ? workItems
               : publicItems;
-  /* Sügavuslaua astmed — ainult töölaual ja tööheaolul. Mujal (avaleht,
-     profiil, haldus, kovisioon) jääb pöörlev karussell. */
+  /* Sügavuslaud jääb töölaua hiirevaatesse. Tööheaolu kasutab kõigil
+     ekraanidel põhimenüüga sama pöörlevat karusselli. */
   const deskZones = useMemo(() => {
-    if (carouselSet === "wellbeing") return WELLBEING_ZONES;
     if (carouselSet !== "workspace") return null;
     return workspaceZonesForRole(effectiveRole);
   }, [carouselSet, effectiveRole]);
@@ -1719,9 +1719,8 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
                  kas ta sünnib põlevasse ruumi või ⏻-i ootavasse (vt
                  GlassCarousel isSetEntry). */
               roomPower={power}
-              /* Töölaud ja tööheaolu: sügavuslaud. Tsooniloendi olemasolu
-                 ONGI lauarežiimi signaal — kitsal ekraanil kukub tagasi
-                 kolme kaardi karusselliks (GlassCarousel wideEnough). */
+              /* Töölaua lai hiirevaade võib kasutada sügavuslauda;
+                 puutel jääb kõikjal sama karussell. */
               zones={deskZones}
             />
           </div>
@@ -1780,8 +1779,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
           <img
             ref={image => {
               // Cached SVG can already be complete before React receives onLoad.
-              // In that case mark it ready immediately, while the parent stays
-              // fully transparent until the metallic canvas is ready as well.
+              // In that case reveal the wordmark without waiting for WebGL.
               if (image?.complete && image.naturalWidth > 0) {
                 setVeilWordmarkReady(true);
               }
@@ -1794,13 +1792,12 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
             onLoad={() => setVeilWordmarkReady(true)}
           />
           {veil !== "gone" ? (
-            <div className="room-veil-logo-metal" aria-hidden="true">
+            <div className="room-veil-logo-metal" aria-hidden="true" style={{ opacity: veilMetalReady ? 1 : 0 }}>
               {/* Tähed = platina (jahe hõbe-valge põhitoon: light/dark);
                   liikuv sära = šampanja/kuld (tintColor) — tellija 06.07.
                   chromaticSpread ~0: RGB-kanalite lahknemine tegi ROHELISI
                   servi; blur/sharpness/noise pehmemaks (sujuvam helk).
-                  Kogu sõnamärk püsib LÄBIPAISTEV, kuni metall on renderdatud;
-                  seejärel ilmuvad SVG ja metall ühe tervikuna. */}
+                  Ainult metall ootab oma stabiilset WebGL-kaadrit. */}
               <MetallicPaint
                 imageSrc="/logo/ai-mark.svg"
                 onReady={() => setVeilMetalReady(true)}
@@ -1854,6 +1851,25 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
           layoutClassName="room-veil-enter"
           data-ready={veilReady ? "1" : "0"}
           disabled={!veilReady}
+          onPointerDown={(event) => {
+            if (event.pointerType === "touch") {
+              enterTouchRef.current = { x: event.clientX, y: event.clientY };
+            }
+          }}
+          onPointerCancel={() => { enterTouchRef.current = null; }}
+          onPointerUp={(event) => {
+            // Safari may consume the first synthesized click as hover.
+            const start = enterTouchRef.current;
+            enterTouchRef.current = null;
+            if (event.pointerType !== "touch" || !start) return;
+            const rect = event.currentTarget.getBoundingClientRect();
+            if (Math.hypot(event.clientX - start.x, event.clientY - start.y) <= 10 &&
+              event.clientX >= rect.left && event.clientX <= rect.right &&
+              event.clientY >= rect.top && event.clientY <= rect.bottom) {
+              event.preventDefault();
+              enterRoom(event);
+            }
+          }}
           onClick={enterRoom}
         >
           {t("room.enter")}

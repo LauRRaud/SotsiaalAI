@@ -766,9 +766,14 @@ html[data-reduce-motion="1"] .scroll-frames::after {
   border-radius: inherit;
   -webkit-clip-path: inset(0 round 1.5rem);
   clip-path: inset(0 round 1.5rem);
-  -webkit-backdrop-filter: var(--control-glass-blur);
-  backdrop-filter: var(--control-glass-blur);
+  -webkit-backdrop-filter: blur(6px) saturate(100%);
+  backdrop-filter: blur(6px) saturate(100%);
   pointer-events: none;
+}
+html[data-contrast="hc"] .room-quickbar::before,
+html[data-reduce-transparency="1"] .room-quickbar::before {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 .room-topbar[data-open="1"] .room-quickbar {
   transform: translate(-50%, 0.3rem);
@@ -1250,10 +1255,10 @@ html[data-reduce-motion="1"] .room-walk-audio {
     gap: 0;
   }
   .room-hint .scroll-frames {
-    zoom: 0.84;
+    zoom: 1.1;
   }
   .room-hint-label {
-    font-size: 0.9rem;
+    font-size: 1.05rem;
   }
 }
 
