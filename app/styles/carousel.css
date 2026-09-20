@@ -1716,9 +1716,8 @@ html[data-contrast="hc"] .gc-shortcut[data-on="1"] {
   .gc-shortcut-menu { padding: 0.42rem; }
 }
 @media (pointer: coarse) and (orientation: portrait) {
-  .gc:not([data-dock-only="1"]) .gc-shortcuts {
-    /* Menüüvaates veidi rohkem õhku alumise serva ja žestiriba kohal. */
-    bottom: calc(max(0.2rem, calc(env(safe-area-inset-bottom, 0px) - 0.42rem)) + 0.75rem);
+  .gc-shortcuts {
+    bottom: var(--dock-portrait-bottom);
   }
 }
 @media (pointer: coarse) and (orientation: landscape) {

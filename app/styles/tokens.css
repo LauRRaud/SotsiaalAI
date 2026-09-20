@@ -204,6 +204,8 @@
      eraldi (env), sest sisemine ja fikseeritud dokk mõõdavad eri
      põrandast. */
   --dock-bottom: clamp(1.1rem, 3.6vh, 2.1rem);
+  /* Ühine püstvaate kõrgus: menüüd, avatud kaardid ja ligipääsetavus. */
+  --dock-portrait-bottom: calc(max(0.2rem, calc(env(safe-area-inset-bottom, 0px) - 0.42rem)) + 1.5rem);
 
   /* ---- Paneeli mõõdud ---- */
   --panel-max-w: min(73.75rem, calc(100vw - clamp(1.25rem, 4vw, 4rem)));

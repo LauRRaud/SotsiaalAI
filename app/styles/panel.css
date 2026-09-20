@@ -84,6 +84,12 @@
 html[data-dock-recessed="1"] .panel-scrim[data-dock="1"] {
   --room-dock-reserve: clamp(1.4rem, 2lvh + 0.6rem, 2.4rem);
 }
+@media (pointer: coarse) and (orientation: portrait) {
+  .panel-scrim[data-dock="1"] {
+    /* Kõrgemale tõstetud doki kohal peab ka viimane sisurida vabaks jääma. */
+    --room-dock-rest-reserve: max(clamp(4.9rem, 5.2lvh + 2.7rem, 6.9rem), calc(var(--dock-portrait-bottom) + 3.59rem + 0.75rem));
+  }
+}
 html[data-reduce-motion="1"] .panel-scrim[data-dock="1"] {
   transition: none;
 }

@@ -446,6 +446,11 @@ html[data-reduce-motion="1"] .a11f-ambient-choice-label {
   }
   .a11f-scroll-hint-label { font-size: 1rem; }
 }
+@media (pointer: coarse) and (orientation: portrait) {
+  [role="dialog"][aria-labelledby="a11y-title"] {
+    --a11f-dock-bottom: var(--dock-portrait-bottom);
+  }
+}
 @media (pointer: coarse) and (orientation: landscape) {
   .a11f-scroll-hint {
     left: auto;

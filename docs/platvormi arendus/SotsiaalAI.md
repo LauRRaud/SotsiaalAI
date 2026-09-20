@@ -92,10 +92,12 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**20.09 püstvaate kiirmenüü — serveris (`f3be088a`).**
-Menüükaartide kiirmenüü tõstetud puuteseadme portrait-vaates 0,75 rem
-(vaikekirjaga 12 px) kõrgemale. Turvaala arvestus säilib. Rõhtvaate ja
-avatud sisulehtede doki asend ei muutu. Telefoni visuaali kontrollib omanik.
+**20.09 püstvaate kiirmenüü — ühine kõrgus väljalaskeks.**
+Omaniku järelsoovil tõuseb menüü kiirmenüü veel 0,75 rem; kogu nihe on
+nüüd 1,5 rem varasemast alaservast. Sama ühine kõrgus rakendub avatud
+kaartidel, sisulehtedel ning keele/ligipääsetavuse modaalis. Paneelide
+sisureserv ja modaali sisuala arvestavad tõstetud dokki. Rõhtvaade säilib.
+Telefoni visuaali kontrollib omanik; runtime not_run.
 
 **20.09 töölaua svaibi tõksumine — järelparandus serveris (`cc96c9e1`).**
 Omanik kinnitas pärast `17ce8af9` avaldamist, et kaardid vahetuvad, kuid
@@ -3462,9 +3464,11 @@ DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sise
 
 ### Tehtud
 
-**Menüü kiirmenüü kõrgus mobiili püstvaates (20.09, serveris `f3be088a`).**
-Portrait + coarse pointer: menüükaarte saatev dokk 0,75 rem kõrgemal;
-landscape ja dock-only sisulehed endise asendiga. Visuaalne runtime not_run
+**Ühine kiirmenüü kõrgus mobiili püstvaates (20.09, väljalaskeks).**
+Jagatud --dock-portrait-bottom tõstab kiirmenüü 1,5 rem varasemast
+alaservast (eelmise menüüparandusega võrreldes veel 0,75 rem). Kehtib
+menüüdes, avatud kaartidel/sisulehtedel ja keele/ligipääsetavuse modaalis;
+sisuala arvestab doki kõrgust. Landscape säilib. Visuaalne runtime not_run
 omaniku soovil. Muudatus ja tehnilised kontrollid vastavas commit’is.
 
 **Töölaua svaibi tõksumise järelparandus (20.09, serveris `cc96c9e1`).**
