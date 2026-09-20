@@ -4257,6 +4257,12 @@
         "worker": "For specialists",
         "provider": "For service providers"
       },
+      "dock": {
+        "free": "Free",
+        "client": "Client",
+        "worker": "Specialist",
+        "provider": "Provider"
+      },
       "rows": {
         "price": "Price",
         "start": "Start"

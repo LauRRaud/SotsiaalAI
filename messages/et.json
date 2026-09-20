@@ -4257,6 +4257,12 @@
         "worker": "Spetsialistile",
         "provider": "Teenuseosutajale"
       },
+      "dock": {
+        "free": "Tasuta",
+        "client": "Pöörduja",
+        "worker": "Spetsialist",
+        "provider": "Osutaja"
+      },
       "rows": {
         "price": "Hind",
         "start": "Alustamine"

@@ -1436,6 +1436,22 @@ html[data-reduce-motion="1"] .gc-shortcuts {
   opacity: 1;
   transition-delay: 90ms;
 }
+/* Touch labels are portalled outside docks with horizontal overflow. */
+.gc-shortcut-tooltip.gc-touch-tooltip {
+  position: fixed;
+  display: block;
+  bottom: auto;
+  translate: -50% -100%;
+  max-width: min(13rem, calc(100vw - 1rem));
+  z-index: calc(var(--z-modal, 10000) + 2);
+  opacity: 1;
+  transition: none;
+}
+@media (pointer: coarse) {
+  .gc-shortcut .gc-shortcut-tooltip {
+    display: none;
+  }
+}
 /* Jaamadokkides (a11f-/rgf-) näitab aktiivne nupp nime pillis — seal
    oleks tooltip sama sõna teist korda. */
 .a11f-dock .gc-shortcut[data-on="1"]:hover .gc-shortcut-tooltip,

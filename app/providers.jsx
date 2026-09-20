@@ -6,6 +6,7 @@ import { SessionProvider } from "next-auth/react";
 import AccessibilityProvider from "@/components/accessibility/AccessibilityProvider";
 import I18nProvider from "@/components/i18n/I18nProvider";
 import CardTilt from "@/components/glass/CardTilt";
+import QuickMenuTouchHint from "@/components/ui/QuickMenuTouchHint";
 import { clearStaleScrollLock } from "@/lib/scrollLock";
 
 function RouteScrollReset() {
@@ -49,6 +50,7 @@ export default function Providers({
           {/* Kursorikalle karussellikaardil (react-bits TiltedCard efekt
               olemasoleva klaaskaardi peal — vt CardTilt.jsx). */}
           <CardTilt />
+          <QuickMenuTouchHint />
           {children}
         </AccessibilityProvider>
       </I18nProvider>

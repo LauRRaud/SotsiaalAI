@@ -6,7 +6,7 @@
  * näidata"). Varem elasid neli paketti × 23 funktsiooni ühes suures
  * tabelis; nüüd on iga pakett oma keritav kaart, mis näitab ainult
  * olulist (nimi, hind, tagline, kolm võtmeeelist, „Vali"). Täisvõrdlus
- * avaneb kaardil „Vaata kõiki võimalusi" all (Google'i muster).
+ * avaneb kaardil „Vaata kõiki võimalusi" all; näidatakse paketi võimalusi.
  *
  * Kest = ruumimenüü DNA (täisekraan, nooled servades, alumine
  * otsetee-dokk). Karussell EI ole ringjas — neli paketti on hinna
@@ -25,6 +25,7 @@ import { usePanelExit } from "@/components/room/PanelExit";
 import { localizePath } from "@/lib/localizePath";
 import { REGISTRATION_OPEN } from "@/lib/publicRegistration";
 import { backWithTransition, pushWithTransition } from "@/lib/routeTransition";
+import useQuickMenuMotion from "@/components/ui/useQuickMenuMotion";
 
 const planKeys = ["free", "client", "worker", "provider"];
 
@@ -85,8 +86,10 @@ export default function HinnastusBody() {
   const closePanel = usePanelExit();
   const stageRef = useRef(null);
   const cardRefs = useRef([]);
+  const dockTrackRef = useRef(null);
 
   const [active, setActive] = useState(0);
+  useQuickMenuMotion(dockTrackRef, active);
   const activeRef = useRef(active);
   activeRef.current = active;
   /* Laiendus on AKTIIVSE kaardi oma; kaardivahetus sulgeb selle, et
@@ -139,9 +142,8 @@ export default function HinnastusBody() {
     });
   }, []);
 
-  /* Keris ja svaip lava kohal = eelmine/järgmine pakett. Kui aktiivse
-     kaardi laiendus on avatud ja seesmine sisu saab veel kerida, kerib
-     see enne (sama žest mis ligipääsetavuse jaamalennus). */
+  /* Rõhtne žest vahetab paketti ainult suletud laiendusega. Avatud
+     võimaluste lugemisel kerib sisu püstsuunas; paketi saab valida dokist. */
   useEffect(() => {
     const el = stageRef.current;
     if (!el) return undefined;
@@ -161,6 +163,7 @@ export default function HinnastusBody() {
        Vertikaalne rullik ei liiguta lava enam kunagi — pakett vahetub
        noole, doki, nooleklahvi või rõhtsa žestiga (puuteplaat/svaip). */
     const onWheel = (event) => {
+      if (expanded) return;
       if (Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
       if (Math.abs(event.deltaX) < 12) return;
       event.preventDefault();
@@ -174,6 +177,7 @@ export default function HinnastusBody() {
       startY = event.touches[0].clientY;
     };
     const onTouchEnd = (event) => {
+      if (expanded) return;
       const touch = event.changedTouches[0];
       if (!touch) return;
       const dx = startX - touch.clientX;
@@ -191,7 +195,7 @@ export default function HinnastusBody() {
       el.removeEventListener("touchstart", onTouchStart);
       el.removeEventListener("touchend", onTouchEnd);
     };
-  }, [step]);
+  }, [step, expanded]);
 
   const onStageKeyDown = useCallback(
     (event) => {
@@ -320,7 +324,7 @@ export default function HinnastusBody() {
                   {isOpen ? (
                     <div className="pc-all">
                       <dl>
-                        {featureRows.map((row) => (
+                        {featureRows.filter((row) => row.values[index] !== "dash").map((row) => (
                           <div className="pc-all-row" key={row.key}>
                             <dt>{t(`about.pricing.features.${row.key}`)}</dt>
                             <dd>
@@ -365,10 +369,10 @@ export default function HinnastusBody() {
           </span>
         </button>
         <span className="gc-shortcut-divider" aria-hidden="true" />
-        <div className="gc-shortcut-track">
+        <div className="gc-shortcut-track" ref={dockTrackRef}>
           {planKeys.map((key, index) => {
             const isActive = index === active;
-            const label = t(`about.pricing.columns.${key}`);
+            const label = t(`about.pricing.dock.${key}`);
             return (
               <button
                 key={key}

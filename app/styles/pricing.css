@@ -150,12 +150,19 @@
   gap: 0.55rem;
   min-height: 0;
   padding: clamp(1.05rem, 2.2vh, 1.5rem) clamp(1.3rem, 2.4vw, 1.8rem) clamp(1rem, 2vh, 1.35rem);
+  min-width: 0;
+  overflow-x: hidden;
   overflow-y: auto;
+  touch-action: pan-y;
   overscroll-behavior: contain;
   scrollbar-width: none;
 }
 .pc-scroll::-webkit-scrollbar {
   display: none;
+}
+.pc-scroll > * {
+  flex-shrink: 0;
+  max-width: 100%;
 }
 .pc-card::before {
   content: "";
@@ -285,7 +292,7 @@ button.pc-cta.pc-cta.specular-button[data-variant] {
 }
 .pc-all-row {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: minmax(0, 1fr) minmax(0, auto);
   gap: 0.75rem;
   align-items: baseline;
   padding: 0.42rem 0;
@@ -299,11 +306,12 @@ button.pc-cta.pc-cta.specular-button[data-variant] {
 }
 .pc-all-row dt {
   color: var(--room-text);
+  overflow-wrap: anywhere;
 }
 .pc-all-row dd {
   margin: 0;
   color: var(--room-text-dim);
-  white-space: nowrap;
+  overflow-wrap: anywhere;
 }
 .pc-val--yes {
   color: var(--room-text);
@@ -364,13 +372,13 @@ button.pc-cta.pc-cta.specular-button[data-variant] {
   margin-bottom: calc(env(safe-area-inset-bottom, 0px) + var(--dock-bottom));
   max-width: calc(100vw - 1.6rem);
 }
-/* Paketi nimi dokis on PEIDUS — täpselt samal põhjusel, mille pärast ta on
-   peidus ka ruumi karussellis: laienev caps-pill muudab iga kerimisega doki
-   laiust ja terve riba nihkub kaasa (omanik 26.07: „ei meeldi, kuidas
-   kiirmenüü tõmbleb, kui ma kerin kaarte"). Nimi ei kao kuhugi — ta seisab
-   suurelt kaardil eneses, doki kohal. Vihje (hover/fookus) jääb alles. */
+/* Aktiivse paketi nimi nagu keele ja ligipääsetavuse jaamadokis. */
 .pc-dock .gc-shortcut-text {
-  display: none;
+  display: block;
+}
+.pc-dock .gc-shortcut[data-on="1"] .gc-shortcut-text {
+  max-width: min(8rem, calc(100vw - 17rem));
+  text-overflow: ellipsis;
 }
 
 /* ---------- Liikumise vähendamine ---------- */
@@ -402,6 +410,48 @@ html[data-reduce-motion="1"] .pc-item {
   /* Kõrguse lae annab .pc-item (lava kõrgus) — eraldi mobiili-lage ei
      ole, muidu kirjutaks see max-height: 100% üle ja kaart kasvaks
      päise alla. */
+}
+
+@media (pointer: coarse) {
+  /* Safari toolbar height belongs to the viewport, not to the canvas. */
+  .panel-scrim[data-canvas="1"]:has(.pc) {
+    position: fixed;
+    inset: 0;
+    height: var(--app-dynamic-block-size);
+    min-height: 0;
+    overflow: hidden;
+  }
+  .panel-scrim[data-canvas="1"]:has(.pc) .panel {
+    height: var(--app-dynamic-block-size);
+    margin: 0;
+    padding-top: var(--safe-top, 0px);
+  }
+  .pc-head {
+    margin-top: auto;
+    padding-bottom: 0.5rem;
+  }
+  .pc-stage {
+    --pc-w: min(80vw, 20rem);
+    flex: 0 1 calc(var(--pc-w) / 0.72 + 1rem);
+  }
+  .pc-item {
+    top: 50%;
+    max-height: calc(100% - 1rem);
+  }
+  .pc-dock {
+    margin-top: auto;
+    margin-bottom: max(0.2rem, calc(env(safe-area-inset-bottom, 0px) - 0.42rem));
+  }
+  .pc-dock .gc-shortcut-track {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+  }
+}
+@media (pointer: coarse) and (orientation: portrait) {
+  .pc-dock {
+    margin-bottom: var(--dock-portrait-bottom);
+  }
 }
 
 }

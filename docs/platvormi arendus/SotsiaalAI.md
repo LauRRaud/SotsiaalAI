@@ -92,6 +92,17 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**20.09 hinnastuse mobiilivaade ja kiirmenüü nimed — kohalikult, avaldamisel.**
+Hinnastuse lõuend järgib puutel nähtavat dünaamilist kõrgust; pealkiri asub
+kaardile lähemal ning dokk kasutab ühist püstvaate alumist vahet. Aktiivne
+pakett on dokis nimega (Tasuta/Pöörduja/Spetsialist/Osutaja). Kõigi ühiste
+kiirmenüüde puutevajutus näitab nime nupu kohal 1,8 sekundit, ühe vajutuse
+tegevus säilib. Avatud hinnastuskaardi žest ei vaheta paketti; sisu kerib
+püstsuunas, pikad väärtused murduvad. Võimalustes puuduvad dash-read;
+piiratud mahud ja tingimused säilivad. Hinnad ega tellimisõigused ei muutu.
+Siht-eslint, täis-lint (0 viga, 2 varasemat hoiatust), i18n ja Turbopack-build
+läbisid. Runtime not_run omaniku soovil.
+
 **20.09 mobiili kiirmenüü kerimisel — serveris (`ca639a4a`).**
 Omanik märkis Tellimuse lehe „Telli” nupu võimalikku kattumist. Puutel
 peitub avatud sisulehe dokk pärast 8 px ülaserva tsooni (varem 48 px),
@@ -3471,6 +3482,14 @@ DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sise
 ## S10. Avalik pind ja release
 
 ### Tehtud
+
+**Hinnastuse mobiilivaade ja ühised puutevihjed (20.09, avaldamisel).**
+Dünaamiline lõuendikõrgus ja ühine püstvaate dokivahe hoiavad hinnastuse
+kiirmenüü nähtaval; päis ja kaart on lähestikku. Aktiivne paketinimi dokis
+ning üle doki kerimisraja portaalitud puutevihje kõigis ühistes menüüdes.
+Avatud võimaluste vaates puudub žestiga kaardivahetus ja rõhtne ülevool;
+loend näitab ainult kättesaadavaid võimalusi koos mahu/tingimustega.
+ET/EN/RU dokisildid lisatud. Runtime not_run: telefoni kontrollib omanik.
 
 **Mobiili kiirmenüü tundlikum peitumine (20.09, serveris `ca639a4a`).**
 Puutel 8 px ülaserv + 3 px suunalävi, põhjas automaatset naasmist pole.
