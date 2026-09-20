@@ -34,7 +34,7 @@
   flex: 1 1 auto;
   min-height: 0;
   perspective: 1600px;
-  perspective-origin: 50% 46%;
+  perspective-origin: 50% 50%;
   touch-action: pan-y;
   /* Kaardi mõõdud elavad LAVAL (mitte .pc-list'is), sest neid vajavad ka
      nooled — need seisavad külgkaardi kõrval, mitte ekraani servas.
@@ -55,9 +55,8 @@
 .pc-item {
   position: absolute;
   left: 50%;
-  /* Sama murd mis ruumi karussellil (.gc-item top: 46%) — kaart istub
-     lava keskmest pisut ülalpool, nii et alla jääb dokile õhku. */
-  top: 46%;
+  /* Center the cards in the space above the dock. */
+  top: 50%;
   width: var(--pc-w);
   /* Kaart ei tohi kasvada LAVAST välja: laiendatuna roniks ta muidu
      päise alla ja poolläbipaistvast klaasist kumaks pealkirja tekst
@@ -113,8 +112,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  gap: 0.55rem;
+  /* Center the composition; long expanded content starts at the top. */
+  justify-content: safe center;
+  gap: 0.65rem;
   min-height: 0;
   padding: clamp(1.05rem, 2.2vh, 1.5rem) clamp(1.3rem, 2.4vw, 1.8rem) clamp(1rem, 2vh, 1.35rem);
   min-width: 0;
@@ -176,6 +176,15 @@
   /* Kaardi sisu loeb, seega teisene toon (0.76), mitte vihje-toon (0.55). */
   color: var(--room-text-soft);
 }
+.pc-scroll .pc-name {
+  margin: 0 0 0.5rem;
+}
+.pc-scroll .pc-price {
+  margin: 0 0 0.45rem;
+}
+.pc-scroll .pc-tagline {
+  margin: 0 0 0.65rem;
+}
 /* NB: kaks klassi on VAJALIKUD — panel.css laaditakse globals.css-is
    pricing.css JÄREL ja selle üldine loendireegel lisaks muidu ~18px
    alumise veerise (nupp vajus allapoole; omanik 24.07 „nupp üles poole"). */
@@ -212,9 +221,8 @@
   align-items: center;
   gap: 0.55rem;
   width: 100%;
-  /* Layout belongs to this group, not the button reset in unlayered CSS. */
-  margin-top: auto;
-  padding-top: 0.8rem;
+  /* A bounded gap keeps actions connected to the benefits on every screen. */
+  margin-top: clamp(0.9rem, 2.5vh, 1.4rem);
 }
 .pc-actions > * {
   flex-shrink: 0;
@@ -416,16 +424,12 @@ html[data-reduce-motion="1"] .pc-item {
     margin-top: auto;
   }
   .pc-item {
-    top: 50%;
+    top: calc(50% + 0.75rem);
     aspect-ratio: 0.72;
     max-height: calc(100% - 1rem);
   }
   .pc-scroll {
-    justify-content: flex-start;
     padding-block: clamp(1.1rem, 4dvh, 1.75rem);
-  }
-  .pc-scroll .pc-highlights {
-    margin-bottom: 0.6rem;
   }
   .pc-dock {
     margin-top: auto;
