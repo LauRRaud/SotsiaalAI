@@ -92,14 +92,16 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**20.09 iOS 27 olekuriba, Sisenen ja ülapaneeli hägu — kontrollitud, avaldamisel.**
+**20.09 iOS 27 olekuriba, Sisenen ja ülapaneeli hägu — serveris (`1fb89c14`).**
 Omaniku iOS 27 pildid kinnitasid, et eelmine ülaserva lõikamine musta udu
 ei eemaldanud. PWA läbipaistmatu olekuriba määratakse nüüd serveri HTML-is
 (`appleWebApp.statusBarStyle=black`), mitte JavaScripti teemavahetusega.
 Varem paigaldatud PWA võib vajada avakuvale uuesti lisamist; tegelik iOS 27
 tulemus on NOT_PROVEN. Eemaldatud lõikereegel takistas ka ülapaneeli enda
-14 px taustahägu. Sisenen-hoover ei kirjuta enam mobiili tähevahet üle.
+14 px taustahägu. Nupu Sisenen hover ei kirjuta enam mobiili tähevahet üle.
 Chromiumi puutesisend, hägu visuaalne võrdlus, lint, i18n ja build läbisid.
+Avalikus HTML-is ja DOM-is üks `black` olekuriba määrang; Sisenen-puutekatse
+läbis ka tootmises. Serveri tööpuu puhas, frontend aktiivne, HTTP/HTTPS 200.
 Tõend: `docs/audits/mobile-menu-landscape-2026-09-20.md`.
 
 **20.09 sisestusväljade fookus — serveris (`4f78378b`).**
@@ -115,7 +117,7 @@ Kiirmenüüd paiknevad mobiilis madalamal; rõhtvaate kaardid ja keelevalikud
 arvestavad doki kõrgust ning turvaala. Karusselli nooled säilivad ka alla
 768 px laiuses brauseris. Ligipääsetavuse kerimisvihje on mobiilis paremal
 ja sellelt alustatud üleslibistus vahetab jaama. Ülariba peidetud klaas ning
-hägu lõikamise katse ei eemaldanud omaniku iOS 27 PWA udu ja asendatakse
+hägu lõikamise katse ei eemaldanud omaniku iOS 27 PWA udu ja asendati
 ülaltoodud järelparandusega. Muud Chromiumi turvaaladega mõõtmised ja
 WebKiti rõhtvaade läbisid. Tõend: `docs/audits/mobile-menu-landscape-2026-09-20.md`.
 
@@ -3423,11 +3425,12 @@ DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sise
 
 ### Tehtud
 
-**iOS 27 olekuriba ja mobiili ülapaneeli järelparandus (20.09, avaldamisel).**
+**iOS 27 olekuriba ja mobiili ülapaneeli järelparandus (20.09, serveris `1fb89c14`).**
 Serveri HTML sisaldab PWA läbipaistmatu olekuriba määrangut juba enne JS-i;
 teemavahetus seda ei muuda. iOS 27 visuaal ja vana paigalduse värskendumine
 on NOT_PROVEN. Ülapaneeli taustahägu töötab vanema lõikereeglita ja Sisenen
-tähevahe püsib mobiilis puudutamisel sama. Brauseri sihtkontrollid läbisid.
+tähevahe püsib mobiilis puudutamisel sama. Brauseri sihtkontrollid läbisid;
+tootmise HTML/DOM ning Sisenen-puutekatse kontrollitud, frontend aktiivne.
 
 **Mobiilimenüü, ligipääsetavuse vaade ja PWA ülaserv (20.09, serveris `4f78378b`).**
 Rõhtvaate kaardid kasutavad brauseris ja PWA-s sama vaba kõrguse arvutust;

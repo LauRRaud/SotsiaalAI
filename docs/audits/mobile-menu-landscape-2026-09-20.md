@@ -141,3 +141,13 @@ elavas DOM-is samuti üks. Muudetud JSX-i sihitud eslint läbis, täislint
 läbis kahe olemasoleva hoiatusega (CurvedInput ja TiltedCard). Lõpliku CSS-i
 `npm run build` koos i18n-kontrolliga läbis. `git diff --check` läbis.
 Kohaliku Cloudflare RUM-i CORS-vead ei puuduta neid radu.
+
+Järelparandus avaldati `npm run deploy:server` kaudu koodiga
+`1fb89c1484486faeb0a9d07e7164e997cf86623c`. Serveri build/i18n läbisid,
+ootel migratsioone polnud. Git-puu puhas, frontend aktiivne ning
+sisemine HTTP ja avalik HTTPS 200. Tootmise HTML-is ja hüdratsioonijärgses
+DOM-is kontrollitud täpselt üks `black` olekuriba määrang. Avalikul lehel
+korratud anonüümse Sisenen-puutekatse mõõdud kattusid kohaliku tulemusega
+ja sisenemine töötas. Ka avaliku ülapaneeli 14 px taustahägu, lõikamata
+vanem ja nelja ikooni filtrita olek läbisid sama brauserikontrolli.
+iOS 27 installitud PWA lõpptulemus jääb NOT_PROVEN.
