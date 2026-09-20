@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**20.09 mobiili kaardiakende laiused ja kõrgus — kõrguse täpsustus avaldamisel.**
+**20.09 mobiili kaardiakende laiused ja kõrgus — serveris (`3cbdeaec`).**
 Puutel arvutatakse hinnastuse lava kõrgus nüüd kehtivast kaardilaiusest
 min(87vw, 22.25rem), mitte varasemast 80vw/20rem-st. Kaardi külgsuhe
 0.66 (varem 0.72) kasutab rohkem vaba kõrgust; nähtava ala kõrguse piir
@@ -100,7 +100,8 @@ ja kiirmenüü reserv säilivad. Paketi valikunupu ülemine vahe 1.15rem
 (varem 0.55rem), võimaluste lingil 0.45rem (varem 0.15rem). Sama kõigil
 neljal paketil. Kompaktsed PIN/e-post/Ruumid/paroolitaaste kaardid jäävad
 88vw/22.5rem laiuseks; tavalehed ja desktop ei muutu. Lint (0 viga,
-2 varasemat hoiatust), i18n ja build läbisid. Runtime not_run omaniku soovil.
+2 varasemat hoiatust), i18n ja build läbisid. Deploy lõpetas edukalt,
+frontend active. Runtime not_run omaniku soovil.
 
 **20.09 hinnastuse linnukesed — serveris (`db237c7c`).**
 Kõik loendis olevad saadaolevad võimalused saavad paremasse serva linnukese,
@@ -3518,7 +3519,7 @@ DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sise
 
 ### Tehtud
 
-**Mobiili hinnastuse ja vormikaartide mõõdud (20.09, kõrguse täpsustus avaldamisel).**
+**Mobiili hinnastuse ja vormikaartide mõõdud (20.09, serveris `3cbdeaec`).**
 Hinnastuskaardi laius 87vw/22.25rem; puutel lava kõrgus sama laiuse ja
 0.66 külgsuhte järgi. Valikunupu ning võimaluste lingi ülemised vahed
 1.15rem ja 0.45rem. Väiksel ekraanil piirab kõrgust nähtav sisuala.
