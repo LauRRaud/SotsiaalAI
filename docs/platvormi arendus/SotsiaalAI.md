@@ -92,7 +92,17 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**20.09 hinnastuse mobiilivaade ja kiirmenüü nimed — järelparandus avaldamisel.**
+**20.09 kiirmenüü tagasitulek ja lühemad vihjed — avaldamisel.**
+Omaniku järelsoovil tuleb sisulehe kiirmenüü viimase 24 px sees tagasi ka
+puutel; 8 px ülaserva tsoon ja 3 px suunalävi säilivad. Püsiv alumine
+sisureserv hoiab viimase toimingu naasva doki kohal. Kompaktne kaardidokk
+jääb endiselt püsivaks. Tagasi-noolele ei looda puutevihjet; desktopi
+olemasolev tagasi-vihje peitmine säilib. Muud puutevihjed kestavad nüüd
+1,2 sekundit (varem 1,8). Siht-eslint, lint (0 viga, 2 varasemat hoiatust),
+i18n ja build läbisid; runtime not_run omaniku soovil. Eelmise hinnastuse järelparanduse deploy lõpetas edukalt,
+frontend active (`c74b08d7`).
+
+**20.09 hinnastuse mobiilivaade ja kiirmenüü nimed — järelparandus serveris (`c74b08d7`).**
 Nime laiuse 320 ms animatsioon ja ellips eemaldatud: aktiivne paketinimi
 ilmub tervikuna kohe. Kitsal dokirajal tuuakse aktiivne nupp nähtavale
 riba sees, lehte kerimata. Võimaluse tekstiline tingimus on nüüd nime all
@@ -3490,7 +3500,13 @@ DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sise
 
 ### Tehtud
 
-**Hinnastuse täisnimed ja sõnamurdude järelparandus (20.09, avaldamisel).**
+**Kiirmenüü naasmine mobiili lehe lõpus (20.09, avaldamisel).**
+Lõpu 24 px tsoon toob doki tagasi mõlemas sisestusrežiimis. Püsiv mobiili
+sisureserv ja tundlikum allakerimise peitumine säilivad. Puutevihje välistab
+tagasi-noole ning kestab 1,2 sekundit. Desktopi tagasi-vihje oli juba
+ühise CSS-iga peidetud. Runtime not_run omaniku soovil.
+
+**Hinnastuse täisnimed ja sõnamurdude järelparandus (20.09, serveris `c74b08d7`).**
 Paketisilt ilmub kohe täispikkuses, ilma laiuseanimatsiooni ja ellipsita.
 Võimaluste tekstilised tingimused asuvad nime all eraldi real, linnukesed
 nime kõrval; overflow-wrap:anywhere eemaldatud. Kitsas dokk kerib ainult

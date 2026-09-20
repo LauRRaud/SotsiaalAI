@@ -22,7 +22,7 @@ export default function QuickMenuTouchHint() {
     const down = (event) => {
       clear();
       if (event.pointerType !== "touch" || !event.isPrimary) return;
-      const button = event.target.closest?.(".gc-shortcut-menu .gc-shortcut");
+      const button = event.target.closest?.(".gc-shortcut-menu .gc-shortcut:not(.gc-shortcut--back)");
       if (!button || button.disabled || button.getAttribute("aria-disabled") === "true") return;
       start = { button, x: event.clientX, y: event.clientY, id: event.pointerId };
     };
@@ -42,7 +42,7 @@ export default function QuickMenuTouchHint() {
       frame = window.requestAnimationFrame(() => {
         const anchor = button.isConnected ? button.getBoundingClientRect() : rect;
         setHint({ label, x: anchor.left + anchor.width / 2, y: anchor.top - 9 });
-        timer = window.setTimeout(clear, 1800);
+        timer = window.setTimeout(clear, 1200);
       });
     };
     document.addEventListener("pointerdown", down, true);

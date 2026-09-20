@@ -355,8 +355,8 @@ export default function PanelFrame({ children }) {
      RUUMI ese, mitte ekraanikleeps — kui pilk läheb tekstitahvlile, jääb
      ta taha, hämardub ja läheb fookusest välja; tahvel ise kasvab vabaks
      jäänud ruumi. Tagasi tuleb ta kohe, kui pilk tõuseb (kerid üles) või
-     kui lugemine on läbi (jõuad põhja; ainult hiirevaates). Puutel jääb
-     dokk põhjas peitu, et lehe viimased toimingud oleksid vabalt kasutatavad.
+     kui lugemine on läbi (jõuad põhja). Puutel säiliv alumine sisureserv
+     jätab viimased toimingud nähtavale ka siis, kui dokk tagasi tuleb.
 
      Olek elab <html> data-atribuudil, mitte Reacti olekus: teda vajavad
      KAKS eri puud (dokk elab RoomStage'is, aken siin) ja üleminek on
@@ -384,7 +384,7 @@ export default function PanelFrame({ children }) {
       // iOS-i üle serva veniv kerimine ei ole kasutaja suunamuutus.
       const top = Math.max(0, Math.min(max, scrollEl.scrollTop));
       const delta = top - (positions.get(scrollEl) || 0);
-      const atEnd = !isTouch && max - top <= END_ZONE;
+      const atEnd = max - top <= END_ZONE;
       const nearTop = top <= TOP_ZONE;
       if (!atEnd && !nearTop && Math.abs(delta) < NOISE) return;
       positions.set(scrollEl, top);
