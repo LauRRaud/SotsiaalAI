@@ -24,6 +24,7 @@ import {
 import dynamic from "next/dynamic";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
+import { beginLogoutTransition, endLogoutTransition } from "@/lib/auth/logoutTransition";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { useAccessibility } from "@/components/accessibility/AccessibilityProvider";
 import { localizePath } from "@/lib/localizePath";
@@ -688,6 +689,9 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
      rakendub standby kohe; mujalt karussellilt naaseb koju ja maandub
      standby'sse (pendingStandby). */
   const powerOff = useCallback(async () => {
+    // Block automatic login prompts before signOut broadcasts session loss.
+    if (!beginLogoutTransition()) return;
+    setIsLoginOpen(false);
     if (isAuthed) {
       try {
         const res = await fetch("/api/profile/logout", {
@@ -700,27 +704,29 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
         });
         if (!res.ok) {
           console.error("room logout revocation rejected", { status: res.status });
+          endLogoutTransition();
           return;
         }
         await signOut({ redirect: false });
       } catch (error) {
         console.error("room logout revocation failed", error);
+        endLogoutTransition();
         return;
       }
     }
     setInfoHub(false);
     clearCompletedArrival();
-    if (!isHome) {
-      pendingStandbyRef.current = true;
-      router.push(localizePath("/", locale));
-      return;
-    }
     setPower("standby");
     setCardsReady(false);
     setIntroSai(false);
     if (standbyRef.current) {
       standbyRef.current.style.opacity = "";
       standbyRef.current.style.pointerEvents = "";
+    }
+    if (!isHome) {
+      pendingStandbyRef.current = true;
+      router.replace(localizePath("/", locale));
+      return;
     }
     window.scrollTo(0, 0);
   }, [clearCompletedArrival, isHome, isAuthed, router, locale]);
@@ -790,6 +796,14 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     }
     window.scrollTo(0, 0);
   }, [isHome]);
+
+  // Release only after the old protected page has left and standby is shown.
+  useEffect(() => {
+    if (isHome && power === "standby" && status === "unauthenticated") {
+      endLogoutTransition();
+    }
+  }, [isHome, power, status]);
+  useEffect(() => () => endLogoutTransition(), []);
 
   /* ---------- loor (laadimisekraan) ----------
      Tellija otsus: loor püsib, kuni kasutaja ISE vajutab "Sisenen" —
@@ -1501,8 +1515,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       }
       if (item.action === "valja") {
         // "Välja" = LOGI VÄLJA + seade puhkeseisu (tellija 06.07 öö;
-        // tühistab varasema "OFF ≠ logout" otsuse): ⏻ vajutusel avaneb
-        // AVALIK komplekt, keskel "Logi sisse".
+        // ⏻ vajutus viib pärast sessiooni tühistamist otse ooterežiimi.
         void powerOff();
         return;
       }

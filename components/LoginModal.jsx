@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { flushSync } from "react-dom";
 import { useRouter, useSearchParams } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
+import { useLogoutTransition } from "@/lib/auth/logoutTransition";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import { localizePath } from "@/lib/localizePath";
@@ -63,12 +64,14 @@ function renderOtpTitle(title) {
 }
 
 export default function LoginModal({
-  open,
+  open: requestedOpen,
   onClose,
   suppressRedirect = false,
   onAuthSuccess,
   prefillStoredEmail = true
 }) {
+  const leaving = useLogoutTransition();
+  const open = requestedOpen && !leaving;
   const router = useRouter();
   const searchParams = useSearchParams();
   const {
