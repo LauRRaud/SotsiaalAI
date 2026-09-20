@@ -19,8 +19,7 @@
   min-height: 0;
   display: flex;
   flex-direction: column;
-  /* Kerge sügavusvinjett — lava tunneb ruumi, taust jääb läbipaistvaks. */
-  background: radial-gradient(120% 90% at 50% 30%, rgba(38, 38, 44, 0.3), transparent 70%);
+  background: transparent;
   color: var(--room-text);
   overflow: hidden;
 }
@@ -398,11 +397,14 @@ html[data-reduce-motion="1"] .pc-item {
 }
 
 /* ---------- Mobiil ---------- */
-@media (max-width: 768px) {
-  .pc-list {
-    --pc-w: min(87vw, 22.25rem);
+@media (max-width: 768px), (pointer: coarse) {
+  /* One width on the stage drives both cards and their available height. */
+  .pc-stage {
+    --pc-w: min(90vw, 24rem);
     --pc-spacing: calc(var(--pc-w) * 1.14);
   }
+}
+@media (max-width: 768px) {
   .pc-item {
     transform: translate(-50%, -50%)
       translate3d(calc(var(--pos) * var(--pc-spacing)), 0, 0)
@@ -437,13 +439,11 @@ html[data-reduce-motion="1"] .pc-item {
     padding-bottom: 0.5rem;
   }
   .pc-stage {
-    --pc-w: min(87vw, 22.25rem);
-    /* Use the card's current width and a taller ratio for its vertical space. */
-    flex: 0 1 calc(var(--pc-w) / 0.66 + 1rem);
+    flex: 0 1 calc(var(--pc-w) / 0.72 + 1rem);
   }
   .pc-item {
     top: 50%;
-    aspect-ratio: 0.66;
+    aspect-ratio: 0.72;
     max-height: calc(100% - 1rem);
   }
   button.pc-cta.pc-cta.specular-button[data-variant] {
