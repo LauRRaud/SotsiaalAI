@@ -42,6 +42,7 @@
      „liiga suur erinevus lehtedel, muuda hinnastust ühtlasemaks"). Oma
      clamp(17rem, 34vw, 22rem) tegi kaardi ruumi omast laiemaks ja nihutas
      ühtlasi nooled teise kohta; nüüd on mõlemal lehel sama arv. */
+  --pc-center-y: 50%;
   --pc-w: var(--gc-w);
   --pc-spacing: calc(var(--pc-w) * 1.12);
 }
@@ -56,7 +57,7 @@
   position: absolute;
   left: 50%;
   /* Center the cards in the space above the dock. */
-  top: 50%;
+  top: var(--pc-center-y);
   width: var(--pc-w);
   /* Kaart ei tohi kasvada LAVAST välja: laiendatuna roniks ta muidu
      päise alla ja poolläbipaistvast klaasist kumaks pealkirja tekst
@@ -316,9 +317,8 @@
    mõõt, nagu carousel.css .gc-arrow. ---------- */
 .pc-arrow {
   position: absolute;
-  /* Sama kõrgus ja mõõt mis ruumi nooltel (.gc-arrow: top 46%, 3.6rem) —
-     omanik 26.07 tahtis lehed ühtlasemaks. */
-  top: 46%;
+  /* Share the card center instead of retaining a separate vertical offset. */
+  top: var(--pc-center-y);
   translate: 0 -50%;
   z-index: 60;
   width: 3.6rem;
@@ -421,11 +421,11 @@ html[data-reduce-motion="1"] .pc-item {
     padding-top: var(--safe-top, 0px);
   }
   .pc-stage {
+    --pc-center-y: calc(50% + 0.75rem);
     flex: 0 1 calc(var(--pc-w) / 0.72 + 1rem);
     margin-top: auto;
   }
   .pc-item {
-    top: calc(50% + 0.75rem);
     aspect-ratio: 0.72;
     max-height: calc(100% - 1rem);
   }

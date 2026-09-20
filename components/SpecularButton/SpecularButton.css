@@ -112,6 +112,16 @@ button.specular-button[data-variant]:hover {
   border: var(--input-border-hover);
 }
 
+/* Carousel motion can move a plan button under a stationary pointer.
+   Keep its glass material steady instead of entering a brighter hover state. */
+button.specular-button.pc-cta[data-variant]:hover {
+  background-color: var(--input-bg);
+  border: var(--input-border);
+}
+button.specular-button.pc-cta[data-variant] .specular-button__fx {
+  display: none;
+}
+
 /* .specular-input on EEMALDATUD (03.08). See oli mähis, millega PIN-lehe
    väljad said WebGL-servahelgi — ainsana platvormil. Helk on nüüd vormivälja
    vaikeomadus (tokens.css --input-spec + components/glass/SpecularHighlight),
