@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**20.09 mobiili kiirmenüü kerimisel — väljalaskeks.**
+**20.09 mobiili kiirmenüü kerimisel — serveris (`ca639a4a`).**
 Omanik märkis Tellimuse lehe „Telli” nupu võimalikku kattumist. Puutel
 peitub avatud sisulehe dokk pärast 8 px ülaserva tsooni (varem 48 px),
 suunalävi 3 px (varem 6). Põhja jõudmine ei too dokki automaatselt tagasi;
@@ -3472,7 +3472,7 @@ DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sise
 
 ### Tehtud
 
-**Mobiili kiirmenüü tundlikum peitumine (20.09, väljalaskeks).**
+**Mobiili kiirmenüü tundlikum peitumine (20.09, serveris `ca639a4a`).**
 Puutel 8 px ülaserv + 3 px suunalävi, põhjas automaatset naasmist pole.
 Püsiv dokireserv võimaldab viimase toimingunupu doki kohale kerida ka siis,
 kui dokk üleskerimisel naaseb; peidetud dokk ei püüa puudutusi. iOS-i
