@@ -287,8 +287,6 @@ html[data-reduce-motion="1"]
   border-color: transparent;
   box-shadow: none;
   color: #ebebeb;
-  letter-spacing: 0.32em;
-  text-indent: 0.32em;
   text-shadow: 0 0 0.62rem rgba(176, 176, 176, 0.1);
 }
 .glass-btn.room-veil-enter:active {
@@ -1273,10 +1271,9 @@ html[data-reduce-motion="1"] .room-walk-audio {
   }
   .room-topbar {
     height: 2.75rem;
-    /* Peidetud klaas ja backdrop-hägu lõpevad turvaala alumisel serval.
-       PWA-s jääks üles nihutatud paneel muidu iOS-i olekuriba alla.
-       Küljed ning avatud paneeli allserv jäävad lõikamata. */
-    clip-path: inset(0 -100vw -100dvh);
+    /* Ära lõika filtrikihi vanemat: clip-path moodustaks backdrop root'i
+       ning paneeli taustahägu ei ulatuks selle taga olevate kaartideni.
+       Hägu piiratakse .room-quickbar::before enda ümara kujuga. */
   }
   .room-topbar .room-topbar-arrow {
     height: 2.75rem;

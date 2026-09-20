@@ -47,10 +47,6 @@ function syncThemeChrome(prefs) {
   const theme = contrast === "hc" ? "dark" : normalizeTheme(prefs?.theme);
   const themeColor = resolveThemeChromeColor(theme, contrast);
   ensureMetaTag("theme-color")?.setAttribute("content", themeColor);
-  ensureMetaTag("apple-mobile-web-app-status-bar-style")?.setAttribute(
-    "content",
-    theme === "light" ? "default" : "black"
-  );
 }
 
 function parseUIScale(uiScale) {

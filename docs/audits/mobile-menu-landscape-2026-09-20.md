@@ -101,3 +101,43 @@ Avaliku lehe laaditud CSS-is kontrolliti fookusvärvi viidet, mõlema
 mobiilimenüü uusi paigutusmuutujaid ning ülariba lõikereeglit.
 Avalik brauserikontroll kasutas ainult anonüümset stiilifiksuuri;
 tootmiskasutaja sisu ei loetud ega päris toiminguid saadetud.
+
+## iOS 27 ja ülapaneeli järelparandus
+
+Omaniku 20.09 uued pildid näitavad endiselt olekuriba alla ulatuvat udu;
+omanik kinnitas iOS 27 kasutamist. Eelmine clip-path-katse ei lahendanud
+seda probleemi. Git-ajalugu kinnitab, et enne `7f4365d50` kasutati tumedas
+teemas `black-translucent` olekuriba. Hilisem `black` määrang lisati ainult
+JavaScriptiga, serveri HTML-i PWA paigaldusmetaandmed puudusid.
+
+`app/layout.js` väljastab nüüd `appleWebApp` metaandmed ja `black` olekuriba
+juba serveri HTML-is. Eemaldatud on mõlemad olekuriba meta kirjutused
+teemaalgatusest ja AccessibilityProviderist: installiseadistus on püsiv
+ning ei teki dubleerivaid meta-elemente. Teema `theme-color` jätkab tööd.
+Apple'i [metaandmete dokumentatsioon](https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html)
+kirjeldab `black` olekuriba all paiknevat sisu, `black-translucent` aga
+olekuriba taha ulatuvat sisu. Installitud vana PWA olek pole siin mõõdetav;
+avakuvale uuesti lisamine võib olla vajalik. Päris iOS 27 hägu kadumine
+on endiselt **NOT_PROVEN**, mitte brauseritestiga tõendatud.
+
+Ülapaneeli vanema clip-path eemaldati: see tekitas backdrop root'i ja
+takistas olemasoleval 14 px backdrop-filtril tagumiste kaartideni jõudmist.
+Filtrikihi enda ümar piirang säilib. Chromiumi 844 × 390 puuterežiimis
+avamine läbis; arvutatud hägu `blur(14px) saturate(1)`, vanema clip-path
+`none`, kõigi nelja nupu filter `none`. Visuaalne triibulise tausta võrdlus
+näitas uues variandis hajutatud tausta, vana lõikereegliga teravaid triipe.
+Pildid: `output/playwright/quickbar-blur-{fixed,stripes,stripes-old}.png`.
+
+Sisenen-nupu hover/focus-visible ei määra enam tähevahet ega teksti taanet:
+mobiili `.26em` säilib, senine `.32em` ülekirjutus põhjustas laiusemuutuse.
+Chromiumi 390 × 844 päris puutesündmustega enne vajutust, vajutuse ajal ja
+vabastamisel: 207,796875 × 54,453125 px; font 28,08 px, tähevahe/taane
+7,3008 px kõigis kolmes olekus. Sisenemine läbis. Kontroll kasutab
+anonüümset seanssi eelmääratud keeleeelistusega; esimene ilma eelistuseta
+katse aegus ligipääsetavuse esmakülastuse dialoogi tõttu.
+
+HTML-vastuses enne JS-i üks `apple-mobile-web-app-status-bar-style=black`,
+elavas DOM-is samuti üks. Muudetud JSX-i sihitud eslint läbis, täislint
+läbis kahe olemasoleva hoiatusega (CurvedInput ja TiltedCard). Lõpliku CSS-i
+`npm run build` koos i18n-kontrolliga läbis. `git diff --check` läbis.
+Kohaliku Cloudflare RUM-i CORS-vead ei puuduta neid radu.

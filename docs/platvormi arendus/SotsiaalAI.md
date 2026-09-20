@@ -92,6 +92,16 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**20.09 iOS 27 olekuriba, Sisenen ja ülapaneeli hägu — kontrollitud, avaldamisel.**
+Omaniku iOS 27 pildid kinnitasid, et eelmine ülaserva lõikamine musta udu
+ei eemaldanud. PWA läbipaistmatu olekuriba määratakse nüüd serveri HTML-is
+(`appleWebApp.statusBarStyle=black`), mitte JavaScripti teemavahetusega.
+Varem paigaldatud PWA võib vajada avakuvale uuesti lisamist; tegelik iOS 27
+tulemus on NOT_PROVEN. Eemaldatud lõikereegel takistas ka ülapaneeli enda
+14 px taustahägu. Sisenen-hoover ei kirjuta enam mobiili tähevahet üle.
+Chromiumi puutesisend, hägu visuaalne võrdlus, lint, i18n ja build läbisid.
+Tõend: `docs/audits/mobile-menu-landscape-2026-09-20.md`.
+
 **20.09 sisestusväljade fookus — serveris (`4f78378b`).**
 Fookus ja kirjutamine säilitavad hoveriga sama tumeda täite; fookuseääris
 jääb nähtavaks. Sama leping kehtib kõrgkontrasti ja vähendatud
@@ -105,9 +115,9 @@ Kiirmenüüd paiknevad mobiilis madalamal; rõhtvaate kaardid ja keelevalikud
 arvestavad doki kõrgust ning turvaala. Karusselli nooled säilivad ka alla
 768 px laiuses brauseris. Ligipääsetavuse kerimisvihje on mobiilis paremal
 ja sellelt alustatud üleslibistus vahetab jaama. Ülariba peidetud klaas ning
-hägu on lõigatud olekuriba turvaala piirilt. Chromiumi turvaaladega
-mõõtmised ja WebKiti rõhtvaade läbisid; päris iPhone'i PWA musta udu
-kadumine on NOT_PROVEN. Tõend: `docs/audits/mobile-menu-landscape-2026-09-20.md`.
+hägu lõikamise katse ei eemaldanud omaniku iOS 27 PWA udu ja asendatakse
+ülaltoodud järelparandusega. Muud Chromiumi turvaaladega mõõtmised ja
+WebKiti rõhtvaade läbisid. Tõend: `docs/audits/mobile-menu-landscape-2026-09-20.md`.
 
 **20.09 peidetud ülariba puudutus ja libistamine — serveris (`a1f1ba27`).**
 Puutel juhib paneeli ja ikoonide nähtavust ühine avanemisolek; hover/fookuse
@@ -3413,6 +3423,12 @@ DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sise
 
 ### Tehtud
 
+**iOS 27 olekuriba ja mobiili ülapaneeli järelparandus (20.09, avaldamisel).**
+Serveri HTML sisaldab PWA läbipaistmatu olekuriba määrangut juba enne JS-i;
+teemavahetus seda ei muuda. iOS 27 visuaal ja vana paigalduse värskendumine
+on NOT_PROVEN. Ülapaneeli taustahägu töötab vanema lõikereeglita ja Sisenen
+tähevahe püsib mobiilis puudutamisel sama. Brauseri sihtkontrollid läbisid.
+
 **Mobiilimenüü, ligipääsetavuse vaade ja PWA ülaserv (20.09, serveris `4f78378b`).**
 Rõhtvaate kaardid kasutavad brauseris ja PWA-s sama vaba kõrguse arvutust;
 alumine kiirmenüü on madalamal ning mõlemad nooled nähtavad. Keelevalikute
@@ -3420,7 +3436,7 @@ dokk on samuti madalamal, valikud mahuvad selle kohale ja kerimisvihje on
 mobiilis paremas servas. Peidetud ülariba klaas ning taustahägu on turvaala
 piirilt lõigatud. Sisestusväljade kirjutamise taust säilitab hoveri tumeda
 täite; avalikus brauseris kontrollitud. Kõik uued stiilid on avalikus CSS-is.
-Päris iOS-i PWA visuaal on NOT_PROVEN.
+Päris iOS 27 PWA udu jäi omaniku piltidel alles; vt ülal järelparandust.
 [Kontrolliraport](../audits/mobile-menu-landscape-2026-09-20.md).
 
 **Avalikud lehed.**

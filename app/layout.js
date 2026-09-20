@@ -153,10 +153,6 @@ const THEME_INIT_SCRIPT = `(function () {
   root.classList.toggle("theme-mid", contrast !== "hc" && theme === "mid");
   root.classList.toggle("theme-dark", contrast === "hc" || theme === "dark");
   ensureMeta("theme-color").setAttribute("content", resolveChromeColor(theme, contrast));
-  ensureMeta("apple-mobile-web-app-status-bar-style").setAttribute(
-    "content",
-    theme === "light" ? "default" : "black"
-  );
   applyHomeFlag();
 })();`;
 const LAYOUT_INIT_SCRIPT = `(function () {
@@ -238,6 +234,13 @@ export const metadata = {
   title: "SotsiaalAI",
   description: "Platvormil on kaks rollipõhist tehisintellekti assistenti: üks sotsiaalvaldkonna spetsialistidele ja teine eluküsimusega pöördujatele.",
   manifest: `/site.webmanifest?${ICON_VERSION}`,
+  // iOS reads installation metadata before client-side theme synchronization.
+  // Keep content below an opaque status bar instead of behind its native blur.
+  appleWebApp: {
+    capable: true,
+    title: "SotsiaalAI",
+    statusBarStyle: "black"
+  },
   icons: {
     icon: [{
       url: `/favicon-16x16.png?${ICON_VERSION}`,
