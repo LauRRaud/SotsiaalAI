@@ -576,8 +576,11 @@ button.panel-exit:hover > span {
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
-  overflow-x: auto;
-  overscroll-behavior-inline: contain;
+  /* Leheaken kerib ainult püstsuunas. Laiad tabelid ja filtriribad kannavad
+     omaenda lokaalseid overflow-x alasid; terve paneeli külgsuunas nihkumine
+     lõikas mobiilis sisu servast ära. */
+  overflow-x: hidden;
+  overscroll-behavior-inline: none;
   overscroll-behavior: contain;
   padding: var(--panel-pad);
   padding-top: calc(var(--panel-pad) + 0.6rem);

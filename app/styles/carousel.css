@@ -726,6 +726,31 @@ html[data-reduce-motion="1"] .gc-item {
   mask-composite: exclude;
 }
 
+/* iOS-i standalone-komposiitor võib 3D-teisenduse sees vanemale pandud
+   filtrikihi ära tasandada: PWA-s kaovad siis klaasi peegeldused, kuigi
+   sama pind Safari vahekaardil säilib. Silu seal kaks materjalikihti
+   eraldi. Sisu jääb endiselt filtrist välja ja brauserirežiimi renderdus
+   ei muutu. */
+html:not([data-contrast="hc"])[data-display-mode="standalone"] .gc-card-surface,
+html:not([data-contrast="hc"])[data-display-mode="fullscreen"] .gc-card-surface {
+  filter: none;
+}
+html:not([data-contrast="hc"])[data-display-mode="standalone"] .gc-card-surface::before,
+html:not([data-contrast="hc"])[data-display-mode="standalone"] .gc-card-surface::after,
+html:not([data-contrast="hc"])[data-display-mode="fullscreen"] .gc-card-surface::before,
+html:not([data-contrast="hc"])[data-display-mode="fullscreen"] .gc-card-surface::after {
+  filter: blur(0.5px);
+}
+@media (display-mode: standalone), (display-mode: fullscreen) {
+  html:not([data-contrast="hc"]) .gc-card-surface {
+    filter: none;
+  }
+  html:not([data-contrast="hc"]) .gc-card-surface::before,
+  html:not([data-contrast="hc"]) .gc-card-surface::after {
+    filter: blur(0.5px);
+  }
+}
+
 /* Kaugusudu — ruumi enda õhk kaardi ja silma vahel. See ASENDAB varasema
    mask-image'i: kaugem kaart ei ole lõigatud ega kunstlikult tuhm, ta on
    lihtsalt kaugemal, ja loor katab ka ikooni ning sildi (kaugusest ei
@@ -1455,7 +1480,7 @@ html[data-reduce-motion="1"] .gc-shortcut-tooltip {
     --gc-w: min(60vw, 16.5rem); /* rem: allub ekraaniprofiilile */
   }
   .gc-list {
-    --gc-spacing: calc(var(--gc-w) * 1.1);
+    --gc-spacing: calc(var(--gc-w) * 1.02);
   }
   .gc-item {
     top: 44%;
@@ -1662,7 +1687,9 @@ html[data-contrast="hc"] .gc-shortcut[data-on="1"] {
   }
   .gc:not([data-desk="1"]) .gc-list {
     touch-action: pinch-zoom;
-    --gc-spacing: calc(var(--gc-w) * 1.04);
+    /* Külgkaart on varasemast lähemal, kuid väike lisavahe hoiab selle
+       pika sildi ekraani serva tagant väljas. */
+    --gc-spacing: calc(var(--gc-w) * 1.02);
   }
   .gc:not([data-desk="1"]) .gc-item { top: 46%; }
   .gc:not([data-desk="1"]) .gc-icon svg {

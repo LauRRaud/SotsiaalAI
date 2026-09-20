@@ -221,15 +221,28 @@ html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) [role="dialog
    parasjagu mängiv valik; servanoolte ja klaviatuuri nooltega liigutakse
    samas ringis edasi-tagasi. Otsene laps EI tohi pärida jaama üldist
    vertikaalset kerimist — kogu karussell mahub ühele reale. */
+.a11f-plane .csp-step.a11f-ambient {
+  /* Fieldset'i brauseri vaikimisi min-content-laius võttis ülelaia rea
+     mõõdu üle ja nihutas terve jaama paremale. Jaam ise peab jääma oma
+     18,5/20 rem teljele; ainult sisemine rida võib temast võrdselt üle ulatuda. */
+  width: 100%;
+  min-inline-size: 0;
+  grid-template-columns: minmax(0, 1fr);
+}
 .a11f-plane .csp-step.a11f-ambient > .a11f-ambient-carousel {
   display: grid;
-  grid-template-columns: 3.6rem 12rem 3.6rem;
-  gap: 1.1rem;
+  grid-template-columns: 3.6rem minmax(0, 12rem) 3.6rem;
+  gap: clamp(0.45rem, 4vw, 1.1rem);
   align-items: center;
   justify-content: center;
-  width: max-content;
+  /* Rida on jaamast laiem. `margin-inline: auto` ei keskenda ülelaiust
+     LTR-kastis, vaid jätab algserva paika ja laseb lõpul paremale üle joosta.
+     Keskenda rida jaama teljele ning hoia ta ka suure tekstiskaalaga vaates
+     ekraani sees. Sama geomeetria töötab mobiilis ja desktopil. */
+  width: min(21.4rem, calc(100vw - 1rem));
   max-width: none;
-  margin-inline: auto;
+  justify-self: center;
+  margin-inline: 0;
   max-height: none;
   overflow: visible;
 }
