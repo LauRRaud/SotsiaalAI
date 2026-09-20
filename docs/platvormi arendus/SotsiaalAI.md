@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**20.09 hinnastuse mobiilivaade ja kiirmenüü nimed — kohalikult, avaldamisel.**
+**20.09 hinnastuse mobiilivaade ja kiirmenüü nimed — serveris (`9066b8aa`).**
 Hinnastuse lõuend järgib puutel nähtavat dünaamilist kõrgust; pealkiri asub
 kaardile lähemal ning dokk kasutab ühist püstvaate alumist vahet. Aktiivne
 pakett on dokis nimega (Tasuta/Pöörduja/Spetsialist/Osutaja). Kõigi ühiste
@@ -101,7 +101,7 @@ tegevus säilib. Avatud hinnastuskaardi žest ei vaheta paketti; sisu kerib
 püstsuunas, pikad väärtused murduvad. Võimalustes puuduvad dash-read;
 piiratud mahud ja tingimused säilivad. Hinnad ega tellimisõigused ei muutu.
 Siht-eslint, täis-lint (0 viga, 2 varasemat hoiatust), i18n ja Turbopack-build
-läbisid. Runtime not_run omaniku soovil.
+läbisid. Deploy lõpetas edukalt, frontend active. Runtime not_run omaniku soovil.
 
 **20.09 mobiili kiirmenüü kerimisel — serveris (`ca639a4a`).**
 Omanik märkis Tellimuse lehe „Telli” nupu võimalikku kattumist. Puutel
@@ -3483,7 +3483,7 @@ DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sise
 
 ### Tehtud
 
-**Hinnastuse mobiilivaade ja ühised puutevihjed (20.09, avaldamisel).**
+**Hinnastuse mobiilivaade ja ühised puutevihjed (20.09, serveris `9066b8aa`).**
 Dünaamiline lõuendikõrgus ja ühine püstvaate dokivahe hoiavad hinnastuse
 kiirmenüü nähtaval; päis ja kaart on lähestikku. Aktiivne paketinimi dokis
 ning üle doki kerimisraja portaalitud puutevihje kõigis ühistes menüüdes.
