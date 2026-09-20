@@ -160,19 +160,17 @@ export default function HinnastusBody() {
       cooldown.until = stamp + 520;
     };
 
-    /* TELGEDE REEGEL (omanik 24.07: „kaartide kerimine on vale loogikaga
-       scrollides üles ja alla; nooltega saan vasakule ja paremale").
-       Kaardid seisavad kõrvuti, seega:
-         püsttelg  (üles-alla)     = KAARDI SISU kerimine (brauseri oma),
-         rõhttelg  (vasak-parem)   = PAKETI vahetus.
-       Vertikaalne rullik ei liiguta lava enam kunagi — pakett vahetub
-       noole, doki, nooleklahvi või rõhtsa žestiga (puuteplaat/svaip). */
+    /* Collapsed cards use the wheel like the main menu. Expanded details
+       keep native vertical scrolling, including at the content boundaries. */
     const onWheel = (event) => {
-      if (expanded) return;
-      if (Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
-      if (Math.abs(event.deltaX) < 12) return;
+      if (expanded || event.defaultPrevented || event.ctrlKey) return;
+      const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY)
+        ? event.deltaX
+        : event.deltaY;
+      const pixels = delta * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? el.clientHeight : 1);
+      if (Math.abs(pixels) < 12) return;
       event.preventDefault();
-      fly(event.deltaX > 0 ? 1 : -1, event.timeStamp);
+      fly(pixels > 0 ? 1 : -1, event.timeStamp);
     };
 
     let startX = 0;
