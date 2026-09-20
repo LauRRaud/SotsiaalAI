@@ -1148,9 +1148,9 @@ label[data-control-type][data-checked="true"] > span[aria-hidden="true"] svg {
      26.07: „imelikult piklikud"). Kaks parandust ühes:
      1) height: auto → kõrguse otsustab jälle proportsioon, mitte ekraan;
      2) laius ei tule karusselli kaardilt (--gc-w), vaid jätab mõlemale
-        küljele 5% õhku. See avatud vormikaardi laius ei puuduta tavalehti. */
+        küljele 6% õhku. See avatud vormikaardi laius ei puuduta tavalehti. */
   .panel-scrim[data-compact="1"] .panel {
-    width: min(90vw, 23rem);
+    width: min(88vw, 22.5rem);
     height: auto;
     /* Kaardist veidi laiem kui desktopil (0.72): kitsal ekraanil oleks
        0.72 andnud 489 px kõrge kasti, mis oleks doki peaaegu kinni katnud.
