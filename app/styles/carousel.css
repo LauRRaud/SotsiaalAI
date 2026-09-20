@@ -1791,4 +1791,33 @@ html[data-contrast="hc"] .gc-shortcut[data-on="1"] {
   }
 }
 
+/* Shared screen anchors for menu navigation, independent of card/stage size.
+   Pricing arrows live outside its perspective stage so fixed means viewport. */
+:root {
+  --menu-arrow-y: 46dvh;
+  --menu-arrow-size: 3.6rem;
+  --menu-arrow-edge: max(1rem, calc(50vw - var(--gc-w) * 1.56 - 0.9rem - 3.6rem));
+}
+:is(.gc[data-visible], .pc) :is(.gc-arrow, .pc-arrow) {
+  position: fixed;
+  top: var(--menu-arrow-y);
+  width: var(--menu-arrow-size);
+  height: var(--menu-arrow-size);
+}
+:is(.gc[data-visible], .pc) :is(.gc-arrow--left, .pc-arrow--left) {
+  left: var(--menu-arrow-edge);
+  right: auto;
+}
+:is(.gc[data-visible], .pc) :is(.gc-arrow--right, .pc-arrow--right) {
+  right: var(--menu-arrow-edge);
+  left: auto;
+}
+@media (max-width: 768px), (pointer: coarse) {
+  :root {
+    --menu-arrow-y: 44dvh;
+    --menu-arrow-size: 3rem;
+    --menu-arrow-edge: max(0.45rem, env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px));
+  }
+}
+
 }

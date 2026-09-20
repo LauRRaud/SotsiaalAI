@@ -242,15 +242,6 @@ export default function HinnastusBody() {
         data-expanded={expanded ? "1" : "0"}
         onKeyDown={onStageKeyDown}
       >
-        <IconButton
-          layoutClassName="pc-arrow pc-arrow--left"
-          onClick={() => step(-1)}
-          disabled={active === 0}
-          aria-label={t("room.prev_panel")}
-        >
-          <ChevronIcon direction="left" strokeWidth={1.05} />
-        </IconButton>
-
         <ul className="pc-list">
           {planKeys.map((key, index) => {
             const rawPos = index - active;
@@ -337,16 +328,24 @@ export default function HinnastusBody() {
             );
           })}
         </ul>
-
-        <IconButton
-          layoutClassName="pc-arrow pc-arrow--right"
-          onClick={() => step(1)}
-          disabled={active === planKeys.length - 1}
-          aria-label={t("room.next_panel")}
-        >
-          <ChevronIcon direction="right" strokeWidth={1.05} />
-        </IconButton>
       </div>
+
+      <IconButton
+        layoutClassName="pc-arrow pc-arrow--left"
+        onClick={() => step(-1)}
+        disabled={active === 0}
+        aria-label={t("room.prev_panel")}
+      >
+        <ChevronIcon direction="left" strokeWidth={1.05} />
+      </IconButton>
+      <IconButton
+        layoutClassName="pc-arrow pc-arrow--right"
+        onClick={() => step(1)}
+        disabled={active === planKeys.length - 1}
+        aria-label={t("room.next_panel")}
+      >
+        <ChevronIcon direction="right" strokeWidth={1.05} />
+      </IconButton>
 
       {/* Otsetee-dokk = ruumi kaardimenüü DNA (carousel.css .gc-shortcut-*). */}
       <nav className="pc-dock gc-shortcut-menu" aria-label={t("about.pricing.title")}>

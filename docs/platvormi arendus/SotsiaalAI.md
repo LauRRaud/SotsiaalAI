@@ -3510,7 +3510,7 @@ DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sise
 
 ### Tehtud
 
-**Hinnastuse mobiilimõõdud ja sisupaigutus (20.09, avaldamisel).** Kaartide pealkiri, hind, kirjeldus, eelised ja tegevused on ühtse vahedega kompositsioonina nii mobiilis kui desktopis. Servanooled jagavad kaartidega sama keskjoont. Paketi valikunupu klaasilme püsib kursori all ühtlane: hover ei muuda tausta ega kuva liikuvat servahelki. Võimaluste link on valikunupust suurema vahega allpool. Eeliste loendi linnukesed on suuremad ja joondatud teksti esimese reaga. Nupp ja link jäävad eeliste lähedale; pikk sisu kerib algusest. Kaardid paiknevad madalamal ning säilitavad seadmekohased mõõdud. Visuaalne runtime `NOT_PROVEN` — omanik testib ise.
+**Hinnastuse mobiilimõõdud ja sisupaigutus (20.09, avaldamisel).** Kaartide pealkiri, hind, kirjeldus, eelised ja tegevused on ühtse vahedega kompositsioonina nii mobiilis kui desktopis. Hinnastuse desktopi külgkaartide samm, kalle ja vähendus järgivad tavamenüüd; perspektiiv on kaartide otsesel vanemal. Menüüde ja hinnastuse servanooled kasutavad ühiseid ekraanipõhiseid kõrguse ja külgserva ankruid, sõltumata kaartide või lava mõõdust. Paketi valikunupu klaasilme püsib kursori all ühtlane: hover ei muuda tausta ega kuva liikuvat servahelki. Võimaluste link on valikunupust suurema vahega allpool. Eeliste loendi linnukesed on suuremad ja joondatud teksti esimese reaga. Nupp ja link jäävad eeliste lähedale; pikk sisu kerib algusest. Kaardid paiknevad madalamal ning säilitavad seadmekohased mõõdud. Visuaalne runtime `NOT_PROVEN` — omanik testib ise.
 
 **Linnukesed ka tingimusega paketivõimalustel (20.09, serveris `db237c7c`).**
 Igal kuvatud võimalusel on linnuke nime kõrval; tingimus/maht jääb eraldi

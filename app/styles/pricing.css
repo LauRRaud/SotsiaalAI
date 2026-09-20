@@ -28,25 +28,21 @@
 .panel-scrim[data-canvas="1"] .panel-body:has(> .pc) {
   padding-top: clamp(2.5rem, 4lvh, 3rem);
 }
-/* ---------- Lava: üks 3D-tasand (perspective siin, kaardid otse all) ---------- */
+/* ---------- Stage layout; card perspective is on .pc-list ---------- */
 .pc-stage {
   position: relative;
   flex: 1 1 auto;
   min-height: 0;
-  perspective: 1600px;
-  perspective-origin: 50% 50%;
   touch-action: pan-y;
-  /* Kaardi mõõdud elavad LAVAL (mitte .pc-list'is), sest neid vajavad ka
-     nooled — need seisavad külgkaardi kõrval, mitte ekraani servas.
-     Laius tuleb RUUMI kaarditokenist, mitte omast valemist (omanik 26.07:
-     „liiga suur erinevus lehtedel, muuda hinnastust ühtlasemaks"). Oma
-     clamp(17rem, 34vw, 22rem) tegi kaardi ruumi omast laiemaks ja nihutas
-     ühtlasi nooled teise kohta; nüüd on mõlemal lehel sama arv. */
+  /* Stage width also determines the mobile height budget. */
   --pc-center-y: 50%;
   --pc-w: var(--gc-w);
-  --pc-spacing: calc(var(--pc-w) * 1.12);
+  --pc-spacing: calc(var(--pc-w) * 1.06);
 }
 .pc-list {
+  /* Perspective belongs on the direct parent of the transformed cards. */
+  perspective: 1500px;
+  perspective-origin: 50% 44%;
   position: absolute;
   inset: 0;
   list-style: none;
@@ -75,8 +71,8 @@
   display: flex;
   transform: translate(-50%, -50%)
     translate3d(calc(var(--pos) * var(--pc-spacing)), 0, 0)
-    rotateY(calc(var(--pos) * 15deg))
-    scale(calc(1 - min(var(--abs), 2) * 0.12));
+    rotateY(calc(var(--pos) * 19deg))
+    scale(calc(1 - min(var(--abs), 2.2) * 0.19));
   transition: transform 460ms var(--ease-soft), opacity 300ms var(--ease-soft);
   will-change: transform;
 }
@@ -327,20 +323,7 @@
   color: var(--room-text-soft);
   transition: opacity 220ms var(--ease-soft), transform 220ms var(--ease-soft);
 }
-/* Nool seisab külgkaardi kõrval, mitte ekraani servas. Arvutus kaardi
-   välisservast: keskjoon + 1.12 (samm) + 0.44 (poolik, 0.88-skaalaga
-   külgkaart) = 1.56 × kaardi laius. Konstandid on TÄPSELT samad mis
-   carousel.css .gc-arrow'l (1.56 + 0.9rem) — koos ühise --pc-w/--gc-w
-   laiusega maandub nool mõlemal lehel samasse kohta. Oma arv siin oli
-   see, mis lehed lahku ajas (omanik 26.07). */
-.pc-arrow--left {
-  left: auto;
-  right: calc(50% + var(--pc-w) * 1.56 + 0.9rem);
-}
-.pc-arrow--right {
-  right: auto;
-  left: calc(50% + var(--pc-w) * 1.56 + 0.9rem);
-}
+/* Screen anchors are shared with the menu arrows in carousel.css. */
 .pc-arrow:disabled {
   opacity: 0;
   pointer-events: none;
