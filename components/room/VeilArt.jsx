@@ -166,7 +166,7 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
     }
 
     function activateGate(x, y) {
-      if (!gateInteractive || gateNeedsReentry) return;
+      if (!gateInteractive || gateNeedsReentry || gateLatched) return;
       gateSink.x = x;
       gateSink.y = y;
       gateSink.shape = "cursor";
@@ -175,16 +175,17 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
       veil.dataset.invite = "1";
     }
 
-    /* Puutevajutus lukustab neeldumise: sõrm tõuseb kohe ekraanilt ja
-       järgnev pointerleave ei tohi lauset tagasi laiali saata. Sihiks on
-       kogu SISENEN-i kast, sest kursorinoolt puuteseadmel ei ole. */
-    function latchGate() {
+    /* Sisenemine lukustab neeldumise ka fookuse või kursori lahkumisel.
+       Puutel on sihiks SISENEN, töölaual säilib senine kursori sihtpunkt. */
+    function latchGate(touchLike = coarsePointer) {
       syncGateInteractivity();
       if (!gateInteractive || gateLatched) return;
       gateNeedsReentry = false;
-      gateSink.x = gate.x;
-      gateSink.y = gate.y;
-      gateSink.shape = "gate";
+      if (touchLike || !gateSink.ready) {
+        gateSink.x = gate.x;
+        gateSink.y = gate.y;
+      }
+      gateSink.shape = touchLike ? "gate" : "cursor";
       gateSink.ready = true;
       gateLatched = true;
       gateTarget = 1;
@@ -557,8 +558,10 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
         pointer.y = pointer.targetY = height / 2;
       }
       measureGate();
-      buildTextTargets();
-      seedText();
+      if (!gateLatched) {
+        buildTextTargets();
+        seedText();
+      }
       seedMotes();
       if (still) drawStill();
     }
@@ -1147,7 +1150,7 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
          seal ootame vajutust (latchGate). */
       if (event?.pointerType === "touch" || coarsePointer) return;
       syncGateInteractivity();
-      if (!gateInteractive || gateNeedsReentry) return;
+      if (!gateInteractive || gateNeedsReentry || gateLatched) return;
       const rect = veil.getBoundingClientRect();
       const x = Number.isFinite(event?.clientX)
         ? event.clientX - rect.left
@@ -1176,11 +1179,11 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
         event?.pointerType === "touch" ||
         (coarsePointer && event?.pointerType !== "mouse");
       if (!touchLike) return;
-      latchGate();
+      latchGate(true);
     };
-    const enterRequested = () => {
+    const enterRequested = (event) => {
       measureGate();
-      latchGate();
+      latchGate(event.detail?.touch ?? coarsePointer);
       absorptionReported = false;
       if (!still && !running) {
         running = true;
@@ -1200,8 +1203,10 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
     canvas.dataset.flow = flowPhase;
     document.fonts?.ready?.then?.(() => {
       if (cancelled) return;
-      buildTextTargets();
-      seedText();
+      if (!gateLatched) {
+        buildTextTargets();
+        seedText();
+      }
       measureGate();
       if (still) drawStill();
     });
