@@ -1069,9 +1069,15 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     let nextDockHub = readRoomHubPath("/");
     if (isHubRoute) nextDockHub = null;
     else if (isWorkspacePanelRoute) nextDockHub = "/toolaud";
-    else if (isAdminRoute && isAdmin) nextDockHub = "/admin";
+    else if (isAdminRoute && isAdmin) {
+      /* Halduskeskus ise avatakse peamenüü Haldus-kaardilt: tema tagasi-
+         nool peab viima peamenüüsse. Ainult halduse alamlehed naasevad
+         halduskeskusesse. Varem sai /admin omaenda sihtkohaks ja nupu
+         vajutus ei muutnud marsruuti. */
+      nextDockHub = normalized === "/admin" ? "/" : "/admin";
+    }
     setDockHub(nextDockHub);
-  }, [isHubRoute, isWorkspacePanelRoute, isAdminRoute, isAdmin, pathname]);
+  }, [isHubRoute, isWorkspacePanelRoute, isAdminRoute, isAdmin, normalized, pathname]);
 
   /* ---------- login-modali kest ---------- */
   useEffect(() => {

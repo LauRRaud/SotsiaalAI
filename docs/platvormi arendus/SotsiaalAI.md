@@ -92,6 +92,8 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**21.09 halduskeskuse tagasi-nupp — väljalaskmisel.** `/admin` kiirmenüü tagasi-siht ei ole enam sama `/admin` marsruut: halduskeskus naaseb peamenüüsse, halduse alamlehed endiselt halduskeskusse. Omaniku juhisel runtime/testid `not_run`.
+
 **21.09 paigalduskaart — serveris (`65531d58`).** Paigaldusaken kasutab mobiilimenüü kaardi mõõte; kõigil ekraanidel on keskpunkt otse vaateakna 50vw/46dvh ankrus. Seadme juhis avaneb kohe kaardil; eraldi hüpikteadet ega juhise avamise nuppu pole. Native-paigaldus säilib toetatud brauseris. Omaniku soovil runtime/testid `not_run`.
 
 **21.09 avastseeni neeldumine — serveris (`92100b3b`).** Sisenemise klõps lukustab teksti neeldumise ka desktopis; hilisem hover/fookuse muutus ei taasta lauset. Puutel säilib nupu sihtpunkt. Lukustatud osakesi ei külvata resize/font-ready korral uuesti. Omaniku juhisel kohalikke teste/linti/build’i ei käivitata; runtime `not_run`.
@@ -3515,6 +3517,8 @@ DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sise
 ## S10. Avalik pind ja release
 
 ### Tehtud
+
+**Halduskeskuse tagasi-nupp (21.09, väljalaskmisel).** RoomStage eristab halduse juurlehte alamlehtedest: `/admin` dokk sulgub `/` peamenüüsse, `/admin/*` dokk naaseb `/admin` keskusse. Diff kontrollitud; runtime `not_run`.
 
 **Paigalduskaart (21.09, serveris `65531d58`).** InstallAppLink `card` variant näitab juhiseid otse kaardil või native-paigaldusnuppu. GlassModal toetab nimelist kestaklassi; paigalduse mobiilimõõdud ühtlustatud menüüga ja kõigil ekraanidel fixed 50vw/46dvh asukoht. Diff üle vaadatud; runtime `not_run`.
 
