@@ -509,10 +509,11 @@ html[data-reduce-motion="1"] .room[data-exit-arrival="1"] .room-standby {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: min(42rem, calc(100vw - 3rem));
+  box-sizing: border-box;
+  width: max-content;
+  max-width: min(42rem, calc(100vw - 3rem));
   margin: 0;
   opacity: 0;
-  max-width: none;
   font-family: var(--font-display);
   font-weight: 390;
   font-size: clamp(1.05rem, 0.91rem + 0.62vw, 1.42rem);
