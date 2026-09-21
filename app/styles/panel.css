@@ -1212,6 +1212,32 @@ label[data-control-type][data-checked="true"] > span[aria-hidden="true"] svg {
 .reading-section {
   scroll-margin-top: 5.5rem;
 }
+/* Võimaluste kataloogis on funktsiooni nimi päris lugemisankur, mitte
+   põhiteksti sees olev rasvane rida. Üldine article-h3 oli isegi lõigust
+   väiksem (1.08 × body vs 1.12rem), mistõttu pikk kataloog sulas üheks
+   halliks tekstimassiks. */
+.voimalused-page > .reading-section > h2 {
+  font-size: clamp(1.45rem, 1.22rem + 0.55vw, 1.75rem);
+  line-height: 1.25;
+  margin-top: 2.35em;
+  margin-bottom: 0.55em;
+}
+.voimalused-feature-list {
+  display: grid;
+  gap: clamp(1.7rem, 2.5vw, 2.25rem);
+  margin-top: 1.8rem;
+}
+.panel-body article .voimalused-feature h3 {
+  margin: 0 0 0.55rem;
+  color: var(--text-warm);
+  font-size: clamp(1.2rem, 1.08rem + 0.28vw, 1.38rem);
+  font-weight: 650;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+}
+.panel-body article .voimalused-feature p {
+  margin: 0;
+}
 .guide-role-picker {
   margin: 0.85rem 0 1.1rem;
   padding: 0.8rem;
@@ -1241,26 +1267,32 @@ label[data-control-type][data-checked="true"] > span[aria-hidden="true"] svg {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: var(--input-border);
   border-radius: 0.85rem;
-  background: rgba(255, 255, 255, 0.035);
+  background-color: var(--input-bg);
+  background-image: var(--input-sheen);
+  -webkit-backdrop-filter: blur(var(--input-blur));
+  backdrop-filter: blur(var(--input-blur));
+  box-shadow: var(--input-highlight), var(--input-shadow);
   cursor: pointer;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
   transition:
-    transform 160ms ease,
-    border-color 160ms ease,
-    background-color 160ms ease;
+    border-color var(--dur-fast) var(--ease-soft),
+    background-color var(--dur-fast) var(--ease-soft),
+    box-shadow var(--dur-fast) var(--ease-soft);
 }
 .guide-role-option:hover {
-  transform: translateY(-2px);
-  border-color: rgba(255, 255, 255, 0.34);
-  background: rgba(255, 255, 255, 0.07);
+  border: var(--input-border-hover);
+  background-color: var(--input-bg-hover);
 }
 .guide-role-option:has(input:checked) {
-  border-color: var(--text-warm);
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  border: var(--input-border-focus);
+  background-color: var(--input-bg-focus);
+  box-shadow:
+    var(--input-highlight),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.09),
+    var(--input-shadow);
 }
 .guide-role-option:has(input:focus-visible) {
   outline: 2px solid var(--text-warm);
@@ -1315,14 +1347,5 @@ label[data-control-type][data-checked="true"] > span[aria-hidden="true"] svg {
   }
   .guide-role-option {
     min-height: 3.5rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .guide-role-option {
-    transition: border-color 160ms ease, background-color 160ms ease;
-  }
-  .guide-role-option:hover {
-    transform: none;
   }
 }

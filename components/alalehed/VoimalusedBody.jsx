@@ -101,7 +101,7 @@ export default function VoimalusedBody() {
   const { t } = useI18n();
 
   return (
-    <article aria-labelledby="voimalused-title">
+    <article className="voimalused-page" aria-labelledby="voimalused-title">
       <h1 id="voimalused-title">{t("voimalused.title")}</h1>
       <p>{t("voimalused.intro")}</p>
 
@@ -126,9 +126,13 @@ export default function VoimalusedBody() {
         >
           <h2 id={"voimalused-" + group.key}>{t(group.titleKey)}</h2>
           <p>{t(group.bodyKey)}</p>
-          <div>
+          <div className="voimalused-feature-list">
             {group.features.map((feature) => (
-              <section key={feature.key} aria-labelledby={"voimalused-" + feature.key}>
+              <section
+                key={feature.key}
+                className="voimalused-feature"
+                aria-labelledby={"voimalused-" + feature.key}
+              >
                 <h3 id={"voimalused-" + feature.key}>{t(feature.titleKey)}</h3>
                 <p>{t(feature.bodyKey)}</p>
               </section>

@@ -92,6 +92,10 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**21.09 lugemislehtede hierarhia ja rollinupud — väljalaskmisel.** Võimaluste funktsiooninimed on põhitekstist suuremad ja tugevamad ning plokkide vahed selgemad. Kasutusjuhendi rollinupud ei liigu hoveril; nende materjal, serv, helk ja vari tulevad nüüd platvormi input-/klaastokenitest. Omaniku juhisel runtime/testid `not_run`.
+
+**21.09 Võimaluste lehe loetavus — väljalaskmisel.** Funktsiooninimed on nüüd põhitekstist suuremad ja tugevamad; funktsiooniplokkide ning rühmapealkirjade vahed loovad selge hierarhia. Muutus on piiratud `.voimalused-page` lehele. Omaniku juhisel runtime/testid `not_run`.
+
 **21.09 halduskeskuse ja paigalduskaardi tagasi-nupp — väljalaskmisel.** `/admin` kiirmenüü tagasi-siht ei ole enam sama `/admin` marsruut: halduskeskus naaseb peamenüüsse, halduse alamlehed endiselt halduskeskusse. Paigalduskaardil eemaldati dokki dubleeriv nurgarist. Doki tagasi-noole hover-pinna alfa tõsteti selgelt nähtavaks ja lisati õrn siseserv; tekstivihjet ei ole. Omaniku juhisel runtime/testid `not_run`.
 
 **21.09 paigalduskaart — serveris (`65531d58`).** Paigaldusaken kasutab mobiilimenüü kaardi mõõte; kõigil ekraanidel on keskpunkt otse vaateakna 50vw/46dvh ankrus. Seadme juhis avaneb kohe kaardil; eraldi hüpikteadet ega juhise avamise nuppu pole. Native-paigaldus säilib toetatud brauseris. Omaniku soovil runtime/testid `not_run`.
@@ -3517,6 +3521,10 @@ DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sise
 ## S10. Avalik pind ja release
 
 ### Tehtud
+
+**Lugemislehtede hierarhia ja rollinupud (21.09, väljalaskmisel).** `VoimalusedBody` sai scoped h2/h3 astmed ja plokivahed. Kasutusjuhendi `.guide-role-option` kasutab `--input-*` materjalitokeneid ning hover ei rakenda enam transformi. Diff kontrollitud; runtime `not_run`.
+
+**Võimaluste lehe loetavus (21.09, väljalaskmisel).** `VoimalusedBody` sai lehe- ja funktsiooniplokkide klassid; scoped CSS suurendab h2/h3 astmeid, tugevdab funktsiooninimesid ning lisab plokkide vahele lugemisruumi. Diff kontrollitud; runtime `not_run`.
 
 **Halduskeskuse ja paigalduskaardi tagasi-nupp (21.09, väljalaskmisel).** RoomStage eristab halduse juurlehte alamlehtedest: `/admin` dokk sulgub `/` peamenüüsse, `/admin/*` dokk naaseb `/admin` keskusse. Paigaldusmodal kasutab dokki ainsa sulgemisteena. Tagasi-noole hover on nüüd nähtav hall pind (`.13`) koos siseservaga. Diff kontrollitud; runtime `not_run`.
 
