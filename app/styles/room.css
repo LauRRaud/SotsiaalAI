@@ -93,6 +93,15 @@ html[data-reduce-motion="1"] .room-stage {
   opacity: 1;
   transition: opacity 900ms var(--ease-soft);
 }
+/* Loor saab ekraanilugeja fookuse, et lugemisjärg algaks dialoogist.
+   Ta ei ole ise tegevusnupp: globaalne fookusrõngas ümardaks täisekraani
+   nurgad ja paljastaks nende alt lehe tausta. Nähtav fookus jääb Sisenen
+   nupule. */
+.room-veil:focus,
+.room-veil:focus-visible {
+  border-radius: 0;
+  box-shadow: none;
+}
 .room-veil[data-state="fading"] {
   opacity: 0;
   pointer-events: none;
@@ -521,9 +530,9 @@ html[data-reduce-motion="1"] .room[data-exit-arrival="1"] .room-standby {
   letter-spacing: 0.045em;
   text-align: center;
   color: var(--room-text);
-  /* Ainult kerge küljeõhk: tekst ei istu klaasiserva vastas, kuid ei kaota
-     varasema suure polstri tõttu tarbetult reaalaiust. */
-  padding: 0.9em 0.35em 0.96em;
+  /* Sisupõhine kast jääb kompaktne, kuid tekst ei istu klaasiserva vastas.
+     Küljeõhk kasvab desktopis mõõdukalt ja säilitab mobiili sisulaiuse. */
+  padding: 0.9em clamp(1rem, 1.5vw, 1.5rem) 0.96em;
   border: 1px solid rgba(245, 245, 245, 0.15);
   border-radius: 16px;
   background:
