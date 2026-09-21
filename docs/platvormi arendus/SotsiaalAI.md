@@ -92,6 +92,13 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**21.09 avalehe saabumistekstide kastid — serveris (`16cc1749`).**
+Kerimisstseeni tekstikastid võtavad nüüd laiuse sisu järgi; senine kõigile
+sunnitud 42 rem laius säilib ainult pika teksti ülempiirina. Chromiumis
+kontrollitud 1536×864 ja 390×844 vaated: lühikesed kastid tõmbuvad teksti
+ümber, pikad tekstid mahuvad olemasolevasse töölaua- ja mobiilipiiri. Serveri
+build ja migratsioonieelkontroll läbisid; frontend active, HTTP/HTTPS 200.
+
 **21.09 lugemislehtede hierarhia ja rollinupud — serveris (`d4e62a3c`).** Võimaluste funktsiooninimed on põhitekstist suuremad, kuid tagasiside järel kergema 580 kirjakaaluga; plokkide vahed jäävad selgeks. Kasutusjuhendi rollinupud ei liigu hoveril ning nende materjal tuleb platvormi input-/klaastokenitest. Omaniku juhisel runtime/testid `not_run`.
 
 **21.09 halduskeskuse ja paigalduskaardi tagasi-nupp — väljalaskmisel.** `/admin` kiirmenüü tagasi-siht ei ole enam sama `/admin` marsruut: halduskeskus naaseb peamenüüsse, halduse alamlehed endiselt halduskeskusse. Paigalduskaardil eemaldati dokki dubleeriv nurgarist. Doki tagasi-noole hover-pinna alfa tõsteti selgelt nähtavaks ja lisati õrn siseserv; tekstivihjet ei ole. Omaniku juhisel runtime/testid `not_run`.
@@ -3519,6 +3526,12 @@ DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sise
 ## S10. Avalik pind ja release
 
 ### Tehtud
+
+**Avalehe saabumistekstide sisupõhine laius (21.09, serveris `16cc1749`).**
+Kerimisstseeni tekstikast kasutab teksti järgi `max-content` laiust ning
+säilitab pika teksti 42 rem töölauapiiri ja senise mobiilipiiri. Chromiumis
+kontrollitud 1536×864 ja 390×844; serveri build läbis, frontend aktiivne ning
+sisemine HTTP ja avalik HTTPS vastasid 200.
 
 **Lugemislehtede hierarhia ja rollinupud (21.09, serveris `d4e62a3c`).** `VoimalusedBody` funktsioonipealkirjade kaal on 580; scoped suurus ja plokivahed säilitavad hierarhia. Kasutusjuhendi `.guide-role-option` kasutab `--input-*` materjalitokeneid ning hover ei rakenda transformi. Diff kontrollitud; runtime `not_run`.
 
