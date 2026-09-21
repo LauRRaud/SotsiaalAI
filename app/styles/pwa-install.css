@@ -305,6 +305,12 @@
 
 /* The install instructions belong to the opened carousel card. */
 .glass-modal-shell.pwa-install-card-shell {
+  position: fixed;
+  left: 50vw;
+  top: 46dvh;
+  transform: translate(-50%, -50%);
+  width: min(var(--gc-w), calc(100vw - 1.5rem));
+  aspect-ratio: 0.72;
   overflow-x: hidden;
 }
 .pwa-install-card-content {
@@ -331,6 +337,6 @@
 @media (pointer: coarse) {
   .glass-modal-shell.pwa-install-card-shell {
     width: min(72vw, 21rem, calc((100dvh - 10rem) * 0.72));
-    top: 46%;
+    top: 46dvh;
   }
 }
