@@ -551,6 +551,15 @@ html[data-reduce-motion="1"] .room[data-exit-arrival="1"] .room-standby {
   left: 50%;
 }
 
+/* Pikk avasõnum murdub kaheks, kuid 42 rem piir jätaks tema ümber teistest
+   peatustest märksa laiema tühja ala. Kitsam lugemismõõt hoiab mulli teksti
+   ligi ja säilitab kaks tasakaalus rida. */
+@media (min-width: 769px) {
+  .room-text[data-stop="stop-1"] {
+    max-width: min(37rem, calc(100vw - 3rem));
+  }
+}
+
 /* Kõik peatused ilmuvad ekraani keskele (galaktika-taustal pole enam
    fotokompositsiooni ankruid) — transformi -50%/-50% elab RoomStage'i
    rAF-tsüklis koos lennuefekti translateZ-iga. */
