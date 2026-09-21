@@ -1492,8 +1492,10 @@ html[data-reduce-motion="1"] .gc-shortcuts {
 .gc-shortcut--back:hover,
 .gc-shortcut--back:focus-visible {
   color: var(--room-text);
-  background: rgba(248, 248, 248, 0.075);
-  box-shadow: inset 0 0 0 1px rgba(248, 248, 248, 0.1);
+  background: rgba(248, 248, 248, 0.13);
+  box-shadow:
+    inset 0 0 0 1px rgba(248, 248, 248, 0.16),
+    0 0 1rem rgba(248, 248, 248, 0.035);
 }
 /* Tagasi-noolel EI OLE teksti — ei silti ega hover-vihjet (omanik 26.07:
    „tagasi nupult üldse tekstid ära"). Nool on ainus ikoon dokis, mille
