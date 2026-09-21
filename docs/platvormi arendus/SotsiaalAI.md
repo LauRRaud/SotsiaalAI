@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**21.09 avastseeni neeldumine — väljalaskmisel.** Sisenemise klõps lukustab teksti neeldumise ka desktopis; hilisem hover/fookuse muutus ei taasta lauset. Puutel säilib nupu sihtpunkt. Lukustatud osakesi ei külvata resize/font-ready korral uuesti. Omaniku juhisel kohalikke teste/linti/build’i ei käivitata; runtime `not_run`.
+**21.09 avastseeni neeldumine — serveris (`92100b3b`).** Sisenemise klõps lukustab teksti neeldumise ka desktopis; hilisem hover/fookuse muutus ei taasta lauset. Puutel säilib nupu sihtpunkt. Lukustatud osakesi ei külvata resize/font-ready korral uuesti. Omaniku juhisel kohalikke teste/linti/build’i ei käivitata; runtime `not_run`.
 
 **20.09 väljumise üleminek — serveris (`48b660ff`).** „Välja” kaart ja ülariba OFF hoiavad sisselogimisakna suletuna kogu väljumise vältel, kuni avalehe ooterežiim on nähtav. Sessiooni serveripoolne tühistamine toimub enne väljunuks märkimist; vea korral login-aken vabastatakse. Profiilist lahkumine asendab marsruudi ajaloos. Omaniku soovil kohe serverisse, eraldi kohalikud testid/build `not_run`.
 
@@ -3514,7 +3514,7 @@ DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sise
 
 ### Tehtud
 
-**Avastseeni neeldumine (21.09, väljalaskmisel).** `room-enter` lukustab neeldumise kõigil sisendviisidel, säilitades kursori või puutenupu sihtpunkti. Hilisem fookus ei kirjuta lukustatud sihti üle ja resize/font-ready ei loo lauset uuesti. Diff kontrollitud; visuaalne runtime `not_run`, kasutaja kontrollib.
+**Avastseeni neeldumine (21.09, serveris `92100b3b`).** `room-enter` lukustab neeldumise kõigil sisendviisidel, säilitades kursori või puutenupu sihtpunkti. Hilisem fookus ei kirjuta lukustatud sihti üle ja resize/font-ready ei loo lauset uuesti. Diff kontrollitud; visuaalne runtime `not_run`, kasutaja kontrollib.
 
 **Väljumise kasutajaliides (20.09, serveris `48b660ff`).** Tahtlikul väljumisel ei ava sessiooni kadumine vahepeal automaatset sisselogimisakent. Kaardid hajuvad 220 ms jooksul enne sessiooni vahetust; ühendamisvaade ilmub 380 ms jooksul. Kaardilt väljumisel joondub ühendamisnupu keskpunkt valitud kaardi ikooni mõõdetud asukohale. Vähendatud liikumisel hajumisajad puuduvad. Üleminek lõpeb avalehe ühendamisnupul; ebaõnnestunud väljumine vabastab piirangu. Visuaalne runtime `NOT_PROVEN`, omanik testib ise.
 
