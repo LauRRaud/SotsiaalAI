@@ -1952,6 +1952,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
         onClose={() => setOpenInfoModal(null)}
         title={t("room.install_card")}
         contentClassName="pwa-install-card-shell"
+        hideClose
       >
         <InstallAppLink variant="card" showWhenUnavailable showInstalledState />
       </GlassModal>
