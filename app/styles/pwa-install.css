@@ -302,3 +302,35 @@
     }
   }
 }
+
+/* The install instructions belong to the opened carousel card. */
+.glass-modal-shell.pwa-install-card-shell {
+  overflow-x: hidden;
+}
+.pwa-install-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  align-items: stretch;
+}
+.pwa-install-card-content > p {
+  text-align: center;
+  margin: 0;
+}
+.pwa-install-card-content > button {
+  align-self: center;
+}
+.pwa-install-card-content .pwa-install-help-body {
+  padding: 1.4rem 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  overflow-wrap: break-word;
+}
+.pwa-install-card-content .pwa-install-help-body ol {
+  gap: 1.1rem;
+}
+@media (pointer: coarse) {
+  .glass-modal-shell.pwa-install-card-shell {
+    width: min(72vw, 21rem, calc((100dvh - 10rem) * 0.72));
+    top: 46%;
+  }
+}

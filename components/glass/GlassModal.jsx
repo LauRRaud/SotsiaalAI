@@ -13,7 +13,7 @@ import IconButton from "@/components/glass/IconButton";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Modal from "@/components/ui/Modal";
 
-export default function GlassModal({ open, onClose, title, children }) {
+export default function GlassModal({ open, onClose, title, children, contentClassName = "" }) {
   const { t } = useI18n();
   const titleId = useId();
   return (
@@ -21,7 +21,7 @@ export default function GlassModal({ open, onClose, title, children }) {
       open={open}
       onClose={onClose}
       className="glass-modal-layer"
-      contentClassName="glass-modal-shell"
+      contentClassName={`glass-modal-shell ${contentClassName}`}
       aria-labelledby={title ? titleId : undefined}
       aria-label={title ? undefined : t("common.dialog", "Dialoog")}
     >

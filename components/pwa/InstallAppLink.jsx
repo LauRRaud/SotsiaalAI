@@ -430,6 +430,20 @@ export default function InstallAppLink({
       {isMobileInstallTarget ? mobileHintNode : desktopHintNode}
     </div>
   );
+  if (variant === "card") {
+    const nativeInstall = shouldUseNativeInstallPrompt({ deferredPrompt, isIOS });
+    return (
+      <div className="pwa-install-card-content">
+        <p>{t("pwa.fullscreen_body")}</p>
+        {nativeInstall ? (
+          <Button type="button" variant="primary" onClick={handleClick}>
+            {installCta}
+          </Button>
+        ) : helpBody}
+      </div>
+    );
+  }
+
   const helpInline =
     helpOpen && variant === "station" ? (
       <div ref={helpPopoverRef} className="pwa-install-inline-help" role="status">

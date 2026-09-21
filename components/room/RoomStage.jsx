@@ -1945,8 +1945,9 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
         open={openInfoModal === "paigalda"}
         onClose={() => setOpenInfoModal(null)}
         title={t("room.install_card")}
+        contentClassName="pwa-install-card-shell"
       >
-        <InstallAppLink />
+        <InstallAppLink variant="card" showWhenUnavailable showInstalledState />
       </GlassModal>
       </div>
       {/* Avatud akna dokk — sama komponent, ainult kiirmenüü osa.
