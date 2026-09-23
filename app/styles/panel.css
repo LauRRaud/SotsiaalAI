@@ -126,7 +126,7 @@ html[data-reduce-motion="1"] .panel-scrim[data-dock="1"] {
   /* Tellija 06.07 öö: paneelil EI ole oma backdrop-blurit — ruum
      hägustub paneeli taga niikuinii (data-room-mode=panel) ja kaart
      paistab läbi; blur elas topelt ja mattis ruumi ära. */
-  background: var(--card-glass-bg);
+  background: var(--panel-glass-bg);
   border: 1px solid transparent;
   box-shadow: var(--panel-glass-shadow);
   overflow: hidden;
@@ -286,6 +286,15 @@ html:has(.panel-scrim:not([data-canvas="1"]):not([data-conversation="1"])) body 
 }
 .panel-scrim[data-conversation="1"] :is(.panel-menu, .panel-close):hover {
   background-color: var(--input-bg-hover);
+}
+/* Vestluses on tuba terav (room.css), seega hägustavad nurganupud ise —
+   glass.css „üks hägu" reegel (paneeli sees backdrop-filter: none) eeldab,
+   et ruum on juba hägune, ja jätaks nupud siin täiesti läbipaistvaks
+   (omanik 23.09). Kõrgkontrastis ja vähendatud läbipaistvuses on
+   --input-blur 0. */
+html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .panel-scrim[data-conversation="1"] :is(.panel-menu, .panel-close) {
+  -webkit-backdrop-filter: blur(var(--input-blur));
+  backdrop-filter: blur(var(--input-blur));
 }
 .panel-scrim[data-conversation="1"] .panel-menu {
   left: clamp(1.1rem, 2.8vw, 2rem);

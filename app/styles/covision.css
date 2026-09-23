@@ -478,7 +478,7 @@
   color: rgba(228, 228, 228, 0.9);
 }
 .cvs-focus-hint[data-tone="ok"] {
-  color: rgba(228, 228, 228, 0.65);
+  color: var(--text-dim);
 }
 
 .cvs-coverage {

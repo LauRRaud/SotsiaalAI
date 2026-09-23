@@ -98,6 +98,7 @@ import {
 import {
   CLIENT_ZONE,
   WELLBEING_ZONE,
+  WELLBEING_ZONES,
   workspaceZonesForRole,
 } from "@/lib/deskZones";
 import { wellbeingTools } from "@/lib/wellbeingTools";
@@ -1342,9 +1343,12 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
             : isAuthed
               ? workItems
               : publicItems;
-  /* Sügavuslaud jääb töölaua hiirevaatesse. Tööheaolu kasutab kõigil
-     ekraanidel põhimenüüga sama pöörlevat karusselli. */
+  /* Sügavuslaud on laia hiirevaate töölaud JA tööheaolu (omanik 23.09:
+     tööheaolu väiksed kaardid nagu töölaual). Puutel ja kitsal ekraanil
+     jääb mõlemas põhimenüü suur karussell — värava annab GlassCarousel
+     (wideEnough). */
   const deskZones = useMemo(() => {
+    if (carouselSet === "wellbeing") return WELLBEING_ZONES;
     if (carouselSet !== "workspace") return null;
     return workspaceZonesForRole(effectiveRole);
   }, [carouselSet, effectiveRole]);
@@ -1627,8 +1631,9 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
           sessionEmail={session?.user?.email || ""}
         />
       ) : null}
-      {/* Lavastus: rahulik tume taust ilma tähistaevata */}
+      {/* Lavastus: ruumivaade süttib käivitusega; enne seda tume taust */}
       <div className="room-stage" ref={stageRef} aria-hidden="true">
+        <div className="room-view" />
         <div className="room-vignette" />
         <div className="room-dim" />
       </div>

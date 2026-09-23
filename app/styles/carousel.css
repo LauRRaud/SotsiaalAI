@@ -209,14 +209,16 @@
      iga astme fookustatuna on vaikseim astmetevaheline vahe 1.62 juures
      20 px ja 1.30 juures 18 px, dokini jääb vastavalt 163 ja 112 px —
      kattumist ega doki alla jooksmist ei teki kummalgi. */
-  --desk-card-ratio: max(1.08, calc(1.62 - (var(--desk-cols) - 5) * 0.17)); /* laius : kõrgus */
+  /* Omanik 23.09: töölaua kaardid veidi suuremaks — kalle 0.17 → 0.19 teeb
+     7 veeru kaardi ~9% kõrgemaks (1920×860 mahub dokini ära). */
+  --desk-card-ratio: max(1.08, calc(1.62 - (var(--desk-cols) - 5) * 0.19)); /* laius : kõrgus */
   /* Kaardi KÕRGUS nimega muutujana. Sama arv, mille `aspect-ratio` niikuinii
      välja arvutab — aga nimetatuna saab kaardi SISU (ikoon) temast lähtuda.
      Just see puudus: ikoon tuli `3.5vw`-st ja jäi 67 px peale ka siis, kui
      kaart oli 171 px kõrge, ehk kaardi seest jäi 76 px kasutamata. Jagamine
      `var()`-i abil on siin juba kasutusel muster (vt `--gc-w` kolmas piir). */
   --desk-card-h: calc(var(--gc-w) / var(--desk-card-ratio));
-  --desk-gap-x: clamp(0.75rem, 1.15vw, 1.4rem);
+  --desk-gap-x: clamp(0.6rem, 0.95vw, 1.2rem);
   /* Püstine vahe peab ületama kalde tekitatud levi: rotateX toob astme
      ALASERVA ettepoole (projitseerub madalamale) ja viib ülaserva taha.
      Liiga väike vahe → astmed kattuvad, mida nad tegid. */
@@ -314,7 +316,8 @@
      varu peab seda ületama, muidu silt astub fookuses ekraanilt maha.
      Kaartidele see midagi ei maksa: laiuse piiraja on kõrgus (14,5vw),
      mitte jääk. */
-  --desk-pad-x: clamp(1.25rem, 4.2vw, 5rem);
+  /* Kitsam külgvaru (4.2vw → 2.8vw, omanik 23.09): 7 veeru kaart ~6% laiem. */
+  --desk-pad-x: clamp(1rem, 2.8vw, 4rem);
 }
 
 .gc-desk {
@@ -549,12 +552,14 @@
   container-type: inline-size;
 }
 .gc[data-desk="1"] .gc-label {
-  font-size: clamp(0.8rem, 8.2cqi, 1.3rem);
+  /* 9.4cqi: töölaua 7 veeru kaardil jõuab silt sama 1.3rem laeni mis
+     tööheaolu 4 veeru kaardil (omanik 23.09: töölaual tekst liiga väike). */
+  font-size: clamp(0.8rem, 9.4cqi, 1.3rem);
   letter-spacing: 0.09em;
   padding: 0 0.6em 0 calc(0.6em + 0.09em);
 }
 .gc[data-desk="1"] .gc-label[data-long="1"] {
-  font-size: clamp(0.72rem, 7.4cqi, 1.08rem);
+  font-size: clamp(0.72rem, 7.8cqi, 1.15rem);
   letter-spacing: 0.06em;
 }
 /* Kaart läheneb kursorile; materjal ja servapeegeldused püsivad samad. */
@@ -769,6 +774,21 @@ html:not([data-contrast="hc"])[data-display-mode="fullscreen"] .gc-card-surface:
   background: rgba(26, 20, 16, var(--gc-haze, 0));
   transition: background 640ms var(--ease-soft);
 }
+/* Sisu seisab klaasipinna KOHAL. .gc-card-surface on absoluutne ja
+   joonistub muidu staatilise ikooni ja sildi PEALE. Karussellis peitis seda
+   sisu 3D-pööre (transform = oma kiht), laual pööret ei ole — ja kui
+   klaas sai suitsutooni (--card-glass-smoke), jäid laua ikoonid ja sildid
+   selle alla halliks (omanik 23.09). Loor jääb teadlikult sisust kõrgemale,
+   sest kaugusudu katab ka ikooni ja sildi. */
+.gc-icon,
+.gc-label,
+.gc-card-badge {
+  position: relative;
+  z-index: 1;
+}
+.gc-haze {
+  z-index: 2;
+}
 
 /* ---------- Ikoon + nimi (käivituse faas 2: sisu joonistub järele) ---------- */
 .gc-icon {
@@ -943,14 +963,43 @@ html[data-contrast="hc"] .gc-card-badge[data-tone="notice"] {
    siltidega. Alumine otseteede riba kasutab sama hetke kui ülaserva
    peidetud juhtpaneel. */
 .gc-shortcuts {
-  opacity: var(--gc-shortcuts-opacity, 0);
   pointer-events: var(--gc-shortcuts-pointer, none);
   /* X-telge siin EI ole: tsentreerimine käib margin-inline'iga (vt allpool).
      Jäänud on ainult sisenemise Y-nihe. */
   translate: 0 var(--gc-shortcuts-offset, 1rem);
-  transition:
-    opacity 520ms var(--ease-soft) 80ms,
-    translate 620ms var(--ease-soft) 80ms;
+  transition: translate 620ms var(--ease-soft) 80ms;
+}
+/* Doki klaas elab pilli ::before-kihil, mitte pillil endal (omanik 23.09).
+   Kaks backdrop root'i lõksu, mõlemad spetsist:
+   1) Element, millel on backdrop-filter, on oma laste backdrop root. Kui
+      hägu oli pillil, nägi vihje (.gc-shortcut-tooltip, pilli laps) ainult
+      pilli sisu ja ei saanud ise hägustada — ta pidi olema täistoon.
+   2) Vanem, mille opacity < 1, on samuti backdrop root. Kui sissehajumine
+      oli .gc-shortcuts'il või pillil, jäi hägu hajumise ajal tühjaks ja
+      hüppas sisse alles lõpus (kaardilehelt naastes).
+   Seega: pill ise on läbipaistmatu (opacity 1) ja häguta; hajuvad tema
+   lapsed ja ::before igaüks oma opacity'ga — oma opacity ei muuda elemendi
+   enda backdrop root'i. --gc-dock-alpha peidab doki akna ajaks (allpool). */
+.gc-shortcut-menu {
+  position: relative;
+  isolation: isolate;
+}
+.gc-shortcut-menu::before,
+.gc-shortcut-menu > * {
+  opacity: var(--gc-dock-alpha, var(--gc-shortcuts-opacity, 0));
+  transition: opacity 520ms var(--ease-soft) 80ms;
+}
+.gc-shortcut-menu::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--control-glass-bg);
+  -webkit-backdrop-filter: var(--control-glass-blur);
+  backdrop-filter: var(--control-glass-blur);
+  box-shadow: inset 0 1px rgba(247, 247, 247, 0.08);
+  pointer-events: none;
 }
 .room[data-power="on"][data-cards-ready="1"] .gc-arrow {
   --gc-nav-opacity: 0.85;
@@ -969,7 +1018,9 @@ html[data-contrast="hc"] .gc-card-badge[data-tone="notice"] {
   --gc-shortcuts-offset: 0;
 }
 html[data-reduce-motion="1"] .gc-arrow,
-html[data-reduce-motion="1"] .gc-shortcuts {
+html[data-reduce-motion="1"] .gc-shortcuts,
+html[data-reduce-motion="1"] .gc-shortcut-menu::before,
+html[data-reduce-motion="1"] .gc-shortcut-menu > * {
   transition: none;
 }
 
@@ -1032,19 +1083,10 @@ html[data-reduce-motion="1"] .gc-shortcuts {
 }
 /* Dokk on KLAAS, kerge häguga (omanik 03.08: „teeme kiirmenüüd ka" — sama
    soov mis ülaribal: läbipaistvam + kerge blur). Materjal on JAGATUD peidetud
-   ülaribaga: `--control-glass-*` tokens.css'is, kus seisab ka põhjendus ja
-   ligipääsetavuse-vasted. Kaks pilli seisavad samal ekraanil, seega üks
-   materjal — mitte kaks lähedast.
-
-   Mis 26.07 täisvärvi juurde viis ja mis sellest alles jääb:
-   1) LOETAVUS oli siis päris probleem — läbipaistev pill ILMA häguta võttis
-      oma tooni sellelt, mille peal seisis, ja kadus tekstitahvli kohal ära.
-      Hägu lahendab just selle: 14 px lõhub pilli taga oleva teksti laiguks.
-   2) HIND jääb alles. `backdrop-filter` sunnib brauserit iga kaadri jaoks
-      tausta uuesti sämplima — ruumis tähendab see animeeritud WebGL-tähevälja
-      ülelugemist doki pindala ulatuses. Kui mobiilil hakkab jõnksuma, on see
-      esimene koht, kust vaadata. Ilmumine/kadumine käib endiselt
-      opacity-fade'iga (--gc-shortcuts-opacity), mis on GPU-le peaaegu tasuta.
+   ülaribaga: `--control-glass-*` tokens.css'is, kus seisab ka põhjendus,
+   hind ja ligipääsetavuse-vasted. Kaks pilli seisavad samal ekraanil, seega
+   üks materjal — mitte kaks lähedast. Hägu töötab ainult siis, kui ükski
+   vanem ei ole backdrop root: sissehajumine elab pillil (vt .gc-shortcuts).
    Läige ja vari jäävad — nemad annavad serva, mitte blur. */
 .gc-shortcut-menu,
 .admin-role-view-cycle.admin-role-view-cycle--cards {
@@ -1070,6 +1112,12 @@ html[data-reduce-motion="1"] .gc-shortcuts {
    (.admin-role-view-cycle--cards) jagab ülalolevat välimusreeglit, aga
    MITTE seda mõõtu — tal on omad nupud ja oma polsterdus. */
 .gc-shortcut-menu {
+  /* Klaas (toon, hägu, läige) on ::before-kihil — vt ülal. Ülal jagatud
+     reegel annab selle rolli-lülitile otse, dokil tuleb see siin maha võtta. */
+  background: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: none;
   --gc-shortcut-size: 2.75rem;
   gap: 0.4rem;
   padding: 0.42rem;
@@ -1187,7 +1235,15 @@ html[data-reduce-motion="1"] .gc-shortcuts {
    .gc peal seisev deklaratsioon ei jõuaks dokini. Ikooni eraldi reeglit
    siin enam ei ole: ta tuletatakse mõõdust (.gc-shortcut-menu plokk). */
 .gc[data-desk="1"] .gc-shortcut-menu {
-  --gc-shortcut-size: 3.15rem;
+  /* Madalam pill (omanik 23.09: „tee vertikaalselt kitsam"): 3.15rem nupp
+     + 0.42rem polster tegi dokist ~64 px kõrguse riba. Laud on ainult
+     hiirevaates (GlassCarousel wideEnough), seega puutesiht ei kannata;
+     tsooninimede kiri jääb samaks. */
+  --gc-shortcut-size: 2.5rem;
+  padding-block: 0.3rem;
+}
+.gc[data-desk="1"] .gc-zone {
+  height: var(--gc-shortcut-size);
 }
 
 /* Otseteeriba (kolme kaardi karussell): overflow on nüüd ka desktopil,
@@ -1416,12 +1472,16 @@ html[data-reduce-motion="1"] .gc-shortcuts {
      vari, sama ümarus (999px pill, mitte pehme ristkülik). Vihje on doki
      jätk, mitte teine materjal tema kohal (omanik 25.07: "hover kast
      võiks kuju ja tonaalus olla nagu kiirmenüül ise"). Väärtused on
-     .gc-shortcut-menu omad; ainult polsterdus on tekstile kohane —
-     sealhulgas läbipaistmatus ja blur'i puudumine (vt sealset selgitust). */
+     .gc-shortcut-menu omad; ainult polsterdus on tekstile kohane.
+     Hägu töötab, sest pill ise ei kanna enam backdrop-filterit (see elab
+     pilli ::before-kihil) — varem oli vihje sunnitud olema täistoon ja
+     tumedama doki kõrval paistis ta võõra materjalina (omanik 23.09). */
   padding: 0.5rem 0.95rem;
   border: 0;
   border-radius: 999px;
-  background: linear-gradient(135deg, #1f1f1f, #0e0e0e);
+  background: var(--control-glass-bg);
+  -webkit-backdrop-filter: var(--control-glass-blur);
+  backdrop-filter: var(--control-glass-blur);
   color: var(--room-text);
   box-shadow: inset 0 1px rgba(247, 247, 247, 0.08);
   font-family: var(--font-ui);
@@ -1642,9 +1702,13 @@ html[data-reduce-motion="1"] .gc-shortcut-tooltip {
    loendites eraldi nimetada — varem taandus ta koos doki vanemaga. */
 .room[data-info-open="1"] .gc-arrow,
 .room[data-info-open="1"] .gc-dots,
-.room[data-info-open="1"] .gc-shortcuts,
 .room[data-info-open="1"] .admin-role-view-cycle--cards {
   opacity: 0;
+}
+/* Dokk peidetakse PILLI läbipaistvusega (--gc-dock-alpha → .gc-shortcut-menu),
+   mitte .gc-shortcuts'i omaga: vanema opacity jätaks naastes hägu tühjaks. */
+.room:is([data-info-open="1"], [data-login-open="1"], [data-card-page="1"]) .gc-shortcuts {
+  --gc-dock-alpha: 0;
 }
 .room[data-info-open="1"] .room-carousel-wrap {
   pointer-events: none !important;
@@ -1663,11 +1727,9 @@ html[data-reduce-motion="1"] .gc-shortcut-tooltip {
 }
 .room[data-login-open="1"] .gc-arrow,
 .room[data-login-open="1"] .gc-dots,
-.room[data-login-open="1"] .gc-shortcuts,
 .room[data-login-open="1"] .admin-role-view-cycle--cards,
 .room[data-card-page="1"] .gc-arrow,
 .room[data-card-page="1"] .gc-dots,
-.room[data-card-page="1"] .gc-shortcuts,
 .room[data-card-page="1"] .admin-role-view-cycle--cards {
   opacity: 0;
 }
@@ -1683,11 +1745,21 @@ html[data-reduce-motion="1"] .gc-shortcut-tooltip {
 /* Tellija: fookus-modal (login/info/kaardi-leht) avanedes lähevad
    KÜLJEKAARDID SAMUTI blurri — nagu taust (ruumi-lava). Varem jäid
    küljekaardid teravaks; nüüd taanduvad koos ruumiga. Login-kaart ise
-   elab eraldi kihis (#login-modal, portal body) ega blurru. */
-.room[data-login-open="1"] .room-carousel-wrap,
-.room[data-info-open="1"] .room-carousel-wrap,
-.room[data-card-page="1"] .room-carousel-wrap {
-  filter: blur(3px);
+   elab eraldi kihis (#login-modal, portal body) ega blurru.
+   Hägu on KAARTIDE loendil, mitte kogu mähisel: mähise filter teeks temast
+   doki backdrop root'i ja naastes jääks doki hägu tühjaks, kuni filter on
+   maha sulanud (omanik 23.09). .gc-list on ainult perspektiivikonteiner,
+   seega filter ei lamesta kaarte. Sügavuslaual lamestaks .gc-desk'i filter
+   astmed (vt ülal), seal jääb hägu mähisele. 1.5 px nagu ruumi-laval. */
+.gc-list {
+  transition: filter var(--dur-slow) var(--ease-soft);
+}
+.room:is([data-login-open="1"], [data-info-open="1"], [data-card-page="1"]) .gc-list,
+.room:is([data-login-open="1"], [data-info-open="1"], [data-card-page="1"]) .room-carousel-wrap:has(.gc-desk) {
+  filter: blur(1.5px);
+}
+html[data-reduce-motion="1"] .gc-list {
+  transition: none;
 }
 
 /* Mobiili avatud akna taga ei paista karussell läbi. */

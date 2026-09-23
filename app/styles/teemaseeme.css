@@ -240,7 +240,7 @@ a.ts-nav-link:hover {
 }
 .ts-filter-count {
   font-size: 0.84em;
-  color: rgba(249, 249, 249, 0.62);
+  color: var(--text-dim);
 }
 .ts-spatial-tools {
   display: flex;
@@ -579,7 +579,7 @@ a.ts-nav-link:hover {
 }
 .ts-card-wait {
   font-size: clamp(0.86rem, 0.82rem + 0.08vw, 0.92rem);
-  color: rgba(237, 237, 237, 0.68);
+  color: var(--text-dim);
 }
 .ts-card-actions {
   display: flex;

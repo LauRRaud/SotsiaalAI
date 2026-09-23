@@ -1,9 +1,9 @@
-/* Häälvestlus — pärlmutter, süsi ja šampanjakuldne energia. Violetne on
-   teadlikult välja jäetud: lilla taust tappis avatari preemiumtooni.
+/* Häälvestlus — pärlmutter, süsi ja šampanjakuldne energia.
 
    Pind on TAUSTATA (omanik 22.08): ei paneeli, ei raami, ei pealkirja, ei
-   olekumulli. Avatar seisab otse vestluse peal ja kogu navigatsioon elab
-   platvormi dokis (.room-dock-wrap) — tagasi-nool, üks olekunupp ja ⓘ. */
+   olekumulli. Avatar on eemaldatud (omanik 23.09); alles on olekurida ja
+   kogu navigatsioon elab platvormi dokis (.room-dock-wrap) — tagasi-nool,
+   üks olekunupp ja ⓘ. */
 .voice-mode {
   --voice-pearl: #e6dfd8;
   --voice-platinum: #a6a4aa;
@@ -17,17 +17,15 @@
   grid-template-rows: minmax(0, 1fr);
   min-height: 0;
   overflow: hidden;
-  /* Alumine polster hoiab avatari doki alt vabana. Olekuala on küll
-     absoluutne, et ta ei muudaks avatari mõõtu, kuid paikneb torso all
-     doki kohal, mitte keha peal. */
+  /* Alumine polster hoiab sisu doki alt vabana; olekuala paikneb doki kohal. */
   padding: clamp(0.75rem, 2vw, 1.4rem) clamp(0.75rem, 2vw, 1.4rem) clamp(5rem, 11vh, 7rem);
   color: var(--voice-pearl);
   background: none;
   border: 0;
 }
 
-/* Vestlus jääb avatari taha nähtavaks, aga ei konkureeri temaga: pehme
-   udu ilma servadeta. Kastiks teeks ta alles raam ja nurgaraadius. */
+/* Häälpinna kate: pehme udu ilma servadeta. Kastiks teeks ta alles raam ja
+   nurgaraadius. */
 .voice-mode::before {
   content: "";
   position: absolute;
@@ -35,72 +33,12 @@
   z-index: -1;
   pointer-events: none;
   /* Kate on servadeta, aga LÄBIPAISTMATU: pooleldi läbipaistva katte alt
-     luges vestluse tekst avatarist läbi — ka 0.957 alfa jättis ta loetavaks.
+     luges vestluse tekst läbi — ka 0.957 alfa jättis ta loetavaks.
      „Ilma kastita" ei tähenda „läbi paistev": kaob raam ja nurgaraadius,
      mitte kate ise. */
   background: radial-gradient(76% 60% at 50% 36%, #0d0d10, #08080a 70%);
   -webkit-backdrop-filter: blur(26px);
   backdrop-filter: blur(26px);
-}
-
-.voice-mode__stage {
-  position: absolute;
-  inset: 0;
-  min-height: 0;
-  z-index: 1;
-}
-
-/* Tavavaate ja häälvaate avatar peavad kasutama täpselt sama kaadriala.
-   Häälpinna sisemine polster kuulub tekstile ja dokile, mitte punktipilvele. */
-.voice-mode__stage > .voice-avatar {
-  inset: 0;
-}
-
-.voice-avatar {
-  position: absolute;
-  inset: -1.6rem 0 -1.3rem;
-  overflow: hidden;
-  cursor: crosshair;
-  touch-action: pan-y;
-}
-
-.voice-avatar canvas {
-  display: block;
-  width: 100%;
-  height: 100%;
-  filter: drop-shadow(0 0 26px rgba(214, 186, 146, 0.11));
-}
-
-.voice-avatar__fallback {
-  display: none;
-  position: absolute;
-  left: 50%;
-  top: 48%;
-  width: min(36vw, 13rem);
-  aspect-ratio: 0.76;
-  translate: -50% -50%;
-  border-radius: 48% 48% 38% 38% / 42% 42% 58% 58%;
-  background:
-    radial-gradient(circle at 28% 33%, var(--voice-pearl) 0 1px, transparent 1.7px) 0 0 / 8px 8px,
-    radial-gradient(circle at 68% 62%, var(--voice-smoke) 0 1px, transparent 1.7px) 0 0 / 9px 9px;
-  -webkit-mask-image: linear-gradient(#000 0 74%, transparent 96%);
-  mask-image: linear-gradient(#000 0 74%, transparent 96%);
-  opacity: 0.72;
-}
-
-/* Taustarežiim: kuju seisab vestluse taga, ei püüa klikke ega fookust.
-   Tekstimullide ja komposeri järjestuse annab chat.css-i otseste laste
-   kihistusleping; see fail ei tõsta enam kõiki main-elemente pimesi. */
-.voice-avatar[data-backdrop="true"] {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  cursor: default;
-}
-
-.voice-avatar[data-webgl="unavailable"] .voice-avatar__fallback {
-  display: block;
 }
 
 .voice-mode__caption {
@@ -203,7 +141,6 @@
   .voice-mode {
     padding: 0.9rem 0.9rem calc(max(4.6rem, env(safe-area-inset-bottom)) + 2.6rem);
   }
-  .voice-avatar { inset-inline: 0; }
 }
 
 html[data-contrast="hc"] .voice-mode::before {

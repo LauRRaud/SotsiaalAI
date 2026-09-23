@@ -89,10 +89,6 @@
   isolation: isolate;
 }
 
-[data-chat-container] > .voice-avatar[data-backdrop="true"] {
-  z-index: var(--chat-layer-backdrop);
-}
-
 [data-chat-container] > main {
   position: relative;
   z-index: var(--chat-layer-content);
@@ -538,7 +534,11 @@ html[data-contrast="hc"] .conv-tools-menu[role="menu"] {
   width: min(21rem, calc(92vw - clamp(2rem, 6vw, 3rem)));
   display: flex;
   flex-direction: column;
-  background: var(--glass-bg);
+  /* Sama tume suitsuklaas mis lugemispaneelil (.panel → --panel-glass-bg);
+     endine --glass-bg (0,085 hall) jättis fotoruumi läbi paistma
+     (omanik 23.09). Kõrgkontrast ja vähendatud läbipaistvus tulevad
+     tokeni kaudu kaasa. */
+  background: var(--panel-glass-bg);
   border: 1px solid var(--glass-border);
   border-radius: var(--panel-radius);
   /* Vestluste külgpaneel jääb selge raamiga, ilma ümbrusse hajuvat kumata. */
@@ -973,9 +973,11 @@ button[aria-controls="chat-window-scroll"] {
   padding: 0.82em 1.25em 0.82em 1.3em;
   border: 0;
   border-radius: 1.35rem 1.35rem 1.35rem 0.4rem;
+  /* Sama tihedus mis lugemispaneelil (--panel-glass-smoke 0,8): fotoruumi
+     männid ja pilved ei tohi teksti taga lugemist segada (omanik 23.09). */
   background:
-    radial-gradient(120% 90% at 14% 0%, rgba(245, 245, 245, 0.075), transparent 52%),
-    linear-gradient(165deg, rgba(29, 29, 29, 0.6) 0%, rgba(16, 16, 16, 0.68) 58%, rgba(12, 12, 12, 0.72) 100%);
+    radial-gradient(120% 90% at 14% 0%, rgba(245, 245, 245, 0.06), transparent 52%),
+    linear-gradient(165deg, rgba(14, 16, 20, 0.78) 0%, rgba(10, 12, 16, 0.82) 58%, rgba(10, 12, 16, 0.84) 100%);
   box-shadow:
     inset 0 1px 0 rgba(242, 242, 242, 0.1),
     0 18px 44px rgba(5, 5, 5, 0.3);
@@ -1047,15 +1049,8 @@ button[aria-controls="chat-window-scroll"] {
   mask-composite: exclude;
   pointer-events: none;
 }
-/* Hover: mull EI liigu ega kasva (tellija 16.07) — ainult õrn varjusüvendus
-   assistendi mullil. Kasutajamullil hover-efekti pole. */
-@media (hover: hover) {
-  .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"]:hover {
-    box-shadow:
-      inset 0 1px 0 rgba(242, 242, 242, 0.14),
-      0 24px 54px rgba(5, 5, 5, 0.38);
-  }
-}
+/* Hover: mull EI liigu, ei kasva ega saa varju (omanik 23.09: hover-vari
+   eemaldatud). */
 
 /* ---------- Ajatemplid ---------- */
 .panel-scrim[data-conversation="1"] [role="article"] time {
@@ -1074,7 +1069,7 @@ button[aria-controls="chat-window-scroll"] {
   margin-top: 0.28rem;
   white-space: nowrap;
   text-align: right;
-  color: rgba(233, 233, 233, 0.55);
+  color: var(--text-dim);
 }
 
 /* ---------- Assistendi tegevusrida: vaiksed ikoon-orbid ----------
@@ -1109,7 +1104,7 @@ button[aria-controls="chat-window-scroll"] {
   border: 0;
   border-radius: 50%;
   background: transparent;
-  color: rgba(234, 234, 234, 0.6);
+  color: var(--text-dim);
   opacity: 1;
   transition:
     color var(--dur-fast) var(--ease-soft),

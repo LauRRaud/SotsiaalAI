@@ -29,6 +29,29 @@
   will-change: transform;
 }
 
+/* Ruumivaade: metsajärv sinisel tunnil. Süttib ⏻-vajutusega (igniting),
+   et ühendamine paneks toa tuled põlema. Ülevõte katab lava −9/−7 px
+   kursoriparallaksi ja paneelirežiimi hägu servad. */
+/* Foto on tehtud kaugemalt: akna ümber on lagi, seinad ja põrand varuks.
+   Seega täidab ta ekraani alati (cover) — laias aknas lõigatakse lage ja
+   vaipa, kitsas aknas seinu, aken ise jääb terveks. Lõige on veidi
+   ülespoole (40%), et aknaraami ülaserv ei jookseks ekraani servast välja. */
+.room-view {
+  position: absolute;
+  inset: -16px;
+  pointer-events: none;
+  background: url("/room/tuba-hamar.webp") 50% 40% / cover no-repeat;
+  opacity: 0;
+  transition: opacity 1600ms var(--ease-soft);
+}
+.room[data-power="igniting"] .room-view,
+.room[data-power="on"] .room-view {
+  opacity: 1;
+}
+html[data-reduce-motion="1"] .room-view {
+  transition: none;
+}
+
 /* Vinjett istutab liidese ruumi ja parandab servade kontrasti */
 .room-vignette {
   position: absolute;
@@ -66,9 +89,16 @@
 .room[data-login-open="1"] .room-stage,
 .room[data-info-open="1"] .room-stage,
 .room[data-card-page="1"] .room-stage {
-  /* AINULT hägu (scale peidab hägu heledad servad); tumendust ei ole */
-  filter: blur(3px);
+  /* AINULT hägu (scale peidab hägu heledad servad); tumendust ei ole.
+     Fotoruumi taga piisab kergest hägust (omanik 23.09: 3 px oli liiga palju). */
+  filter: blur(1.5px);
   transform: scale(1.02);
+}
+/* Vestlus seisab otse ruumis: mullid on ise klaas, tuba nende taga jääb
+   teravaks (omanik 23.09). */
+html:has(.panel-scrim[data-conversation="1"]) .room-stage {
+  filter: none;
+  transform: none;
 }
 html[data-reduce-motion="1"] .room-stage {
   transition: none;

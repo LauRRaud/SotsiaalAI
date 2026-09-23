@@ -292,12 +292,14 @@ export const HelpOfferIcon = (props) => (
   </Svg>
 );
 
-/* Dokumendid — kaks lehte virnas */
+/* Dokumendid — leht ridade ja kirjaklambriga (omaniku valik 23.09).
+   Klamber eristab teda Tingimuste lehest (TermsDocIcon); kaust ei sobi,
+   see on juba Juhtumite (CaseWorkIcon) kuju. */
 export const DocumentsIcon = (props) => (
   <Svg {...props}>
-    <path {...P} d="M13.8 3.9H8.6a1.7 1.7 0 0 0-1.7 1.7v11a1.7 1.7 0 0 0 1.7 1.7h7a1.7 1.7 0 0 0 1.7-1.7V7.3l-3.5-3.4Z" />
-    <path {...P} d="M13.6 4v3.5h3.6" />
-    <path {...P} d="M9.6 20.4h6.1a2.6 2.6 0 0 0 2.6-2.6v-7" />
+    <path {...P} d="M7.9 4.6h8.2a1.8 1.8 0 0 1 1.8 1.8v11.8a1.8 1.8 0 0 1-1.8 1.8H7.9a1.8 1.8 0 0 1-1.8-1.8V6.4a1.8 1.8 0 0 1 1.8-1.8Z" />
+    <path {...P} d="M9.2 11.4h5.6M9.2 14.6h3.8" />
+    <path {...P} d="M13.4 3v5a1.4 1.4 0 0 0 2.8 0V4.2" />
   </Svg>
 );
 

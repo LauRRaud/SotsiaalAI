@@ -7,7 +7,6 @@ import GlassCarousel from "@/components/room/GlassCarousel";
 import ChevronIcon from "@/components/brand/icons/ChevronIcon";
 import { AboutInfoIcon } from "@/components/brand/icons/CardIcons";
 import { VOICE_SESSION_WARNING_MS } from "@/lib/chat/realtimeVoice";
-import VoicePointAvatar from "./VoicePointAvatar";
 
 const LIVE_STATES = ["connecting", "listening", "thinking", "speaking"];
 
@@ -17,9 +16,10 @@ function formatRemaining(milliseconds) {
 }
 
 /**
- * Häälpind on avatar läbipaistval taustal — ei paneeli, ei vastuse subtiitrit,
- * pealkirja, ei olekumulli. Navigatsioon käib platvormi DOKI kaudu
- * (tagasi-nool + üks olekunupp + ⓘ), täpselt nagu teistel avatud lehtedel.
+ * Häälpind on rahulik taust ilma avatarita (omanik 23.09) — ei paneeli, ei
+ * vastuse subtiitrit, pealkirja ega olekumulli; ainult lühike olekurida.
+ * Navigatsioon käib platvormi DOKI kaudu (tagasi-nool + üks olekunupp + ⓘ),
+ * täpselt nagu teistel avatud lehtedel.
  */
 export default function VoiceModeSurface({ t, voice, onClose }) {
   const surfaceRef = useRef(null);
@@ -119,30 +119,19 @@ export default function VoiceModeSurface({ t, voice, onClose }) {
           <p>{read("chat.voice.limit_copy", "Seanss sulgub automaatselt 5 minuti või 90 sekundi vaikuse järel.")}</p>
         </div>
       ) : (
-        <>
-          <div className="voice-mode__stage">
-            <VoicePointAvatar
-              status={voice.status}
-              audioLevel={voice.audioLevel}
-              label={read("chat.voice.avatar_label", "Täppidest digitaalne vestlusavatar")}
-            />
-          </div>
-
-          {/* Vastuse tekst jääb vestlusse. Lühike olek elab avatari all eraldi
-              rahulikus alas, et pikk RAG-paus oleks arusaadav ega muudaks
-              avatari mõõtu. Kell ilmub ainult siis, kui 45-sekundiline
-              lõpuhoiatus on juba kasutajale vajalik. */}
-          <div className="voice-mode__caption" aria-live="polite" aria-atomic="true">
-            {live ? <span className="voice-mode__state" role="status">{voice.stateLabel}</span> : null}
-            {voice.notice ? <span className="voice-mode__notice" role="status">{voice.notice}</span> : null}
-            {voice.error ? <span className="voice-mode__error" role="alert">{voice.error}</span> : null}
-            {showCountdown ? (
-              <time className="voice-mode__clock" aria-label={read("chat.voice.time_left", "Seansi lõpuni")}>
-                {formatRemaining(voice.remainingMs)}
-              </time>
-            ) : null}
-          </div>
-        </>
+        /* Vastuse tekst jääb vestlusse. Lühike olek elab doki kohal, et pikk
+           RAG-paus oleks arusaadav. Kell ilmub ainult siis, kui 45-sekundiline
+           lõpuhoiatus on juba kasutajale vajalik. */
+        <div className="voice-mode__caption" aria-live="polite" aria-atomic="true">
+          {live ? <span className="voice-mode__state" role="status">{voice.stateLabel}</span> : null}
+          {voice.notice ? <span className="voice-mode__notice" role="status">{voice.notice}</span> : null}
+          {voice.error ? <span className="voice-mode__error" role="alert">{voice.error}</span> : null}
+          {showCountdown ? (
+            <time className="voice-mode__clock" aria-label={read("chat.voice.time_left", "Seansi lõpuni")}>
+              {formatRemaining(voice.remainingMs)}
+            </time>
+          ) : null}
+        </div>
       )}
       {dock}
     </section>

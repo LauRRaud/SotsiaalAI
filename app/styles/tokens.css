@@ -40,8 +40,12 @@
 
   /* ---- Tekst: tavaline kiri, ilma toonita (tellija otsus) ---- */
   --text-warm: #f1f1f1; /* põhitekst */
-  --text-soft: rgba(241, 241, 241, 0.76); /* teisene tekst */
-  --text-dim: rgba(241, 241, 241, 0.55); /* summutatud / vihjed */
+  /* Teisene ja summutatud tekst on heledad (omanik 23.09): tume suitsuklaas
+     (--card-glass-smoke) tegi endisest 0,76/0,55 alfast halli teksti.
+     Hierarhia jääb 1 → 0,9 → 0,78; kohatäide (--input-placeholder 0,65)
+     jääb neist tumedamaks, et ta ei loeks sisestatud väärtusena. */
+  --text-soft: rgba(241, 241, 241, 0.9); /* teisene tekst */
+  --text-dim: rgba(241, 241, 241, 0.78); /* summutatud / vihjed */
   --text-ink: #1e1e1e; /* tekst heledal pinnal (primary-nupp) */
   --text-ink-soft: #444444;
 
@@ -79,7 +83,15 @@
   --glass-highlight: rgba(255, 255, 255, 0.07);
 
   /* Klaasi sisemine faas ja peegeldused; VR-pind ei heida välist varju. */
-  --card-glass-bg: var(--glass-bg);
+  /* Suitsutoon fotoruumi ees: hele tekst püsib loetav ka heleda taeva ja
+     udu kohal. Kiht on --glass-bg PEAL, nii et kõrgkontrasti ja vähendatud
+     läbipaistvuse klaasi-ülekirjutused kehtivad edasi. */
+  --card-glass-smoke: rgba(10, 12, 16, 0.5);
+  --card-glass-bg: linear-gradient(var(--card-glass-smoke), var(--card-glass-smoke)), var(--glass-bg);
+  /* Lugemispaneel on sama suitsuklaas, aga tihedam: pika teksti taga ei
+     tohi männitüved ja taevalaigud silma segada. Ruum jääb paneeli ümber. */
+  --panel-glass-smoke: rgba(10, 12, 16, 0.8);
+  --panel-glass-bg: linear-gradient(var(--panel-glass-smoke), var(--panel-glass-smoke)), var(--glass-bg);
   --card-glass-rim-width: 0.8px;
   --card-glass-shadow:
     inset 0 0 0 0.7px rgba(255, 255, 255, 0.08),
@@ -122,12 +134,16 @@
 
      See pöörab tagasi 26.07 täisvärvi-otsuse. Toona oli kaks põhjust:
      LOETAVUS (läbipaistev pill võttis tooni sellelt, mille peal seisis) ja
-     HIND (backdrop-filter sämplib ruumi animeeritud tähevälja iga kaadri).
-     Loetavuse vastu töötab nüüd hägu ise — 14 px lõhub pilli taga oleva
-     teksti loetamatuks, nii et pill ei „kao" enam tekstitahvli peal. Hind
-     jääb päriselt alles: kiirmenüü on püsiv pind ja ruumi-lava on WebGL.
-     Kui mobiilil hakkab kerimine jõnksuma, on esimene koht, kust vaadata,
-     just see kaks rida.
+     HIND (backdrop-filter sämplib ruumi tausta iga kaadri). Loetavuse vastu
+     töötab nüüd hägu ise — 14 px lõhub pilli taga oleva teksti loetamatuks,
+     nii et pill ei „kao" enam tekstitahvli peal. Hind jääb päriselt alles:
+     kui mobiilil hakkab kerimine jõnksuma, on esimene koht vaadata see kaks
+     rida.
+
+     Hägu vajab, et ÜKSKI pilli vanem ei oleks backdrop root (opacity < 1,
+     filter, mask, clip-path). Muidu näeb hägu ainult tühja vanemat ja pill
+     paistab läbipaistev — nii juhtus kaardilehelt naastes (omanik 23.09).
+     Sissehajumine elab seepärast pillil endal (carousel.css .gc-shortcut-menu).
 
      ÜHTLANE alfa, MITTE gradient — ja see on nõue, mitte maitse. Ülariba
      seisab suurema osa ajast peidus ja näha on ainult tema ALASERV; gradiendi
@@ -137,8 +153,10 @@
      ja serv on näha"). Ühtlase alfaga on iga tükk pillist sama läbipaistev —
      ükskõik kui palju teda parasjagu näha on. Sügavuse annab läige (ülariba
      ::before, kiirmenüü inset-joon), mitte alfa kalle. ---- */
-  --control-glass-bg: rgba(24, 24, 24, 0.4);
-  --control-glass-blur: blur(14px) saturate(100%);
+  /* Omanik 23.09: vähem hägu, rohkem tumedust — heleda vaiba kohal luges
+     0,4 hall pill beežina. */
+  --control-glass-bg: rgba(12, 13, 16, 0.62);
+  --control-glass-blur: blur(8px) saturate(100%);
 
   /* Klaasi sisepinnad (read, kaardid klaasi peal) — neutraalne alfa */
   --glass-cell-bg: rgba(255, 255, 255, 0.025);
@@ -375,7 +393,8 @@ html[data-contrast="hc"] {
   --glass-cell-border: rgba(255, 255, 255, 0.55);
   --text-warm: #ffffff;
   --text-soft: rgba(255, 255, 255, 0.92);
-  --text-dim: rgba(255, 255, 255, 0.75);
+  /* Ei tohi olla tavarežiimi --text-dim'ist (0,78) tumedam. */
+  --text-dim: rgba(255, 255, 255, 0.85);
   --glass-rim: #ffffff;
   --glass-rim-glow: none;
   --glass-highlight: transparent;

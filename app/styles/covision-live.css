@@ -1232,7 +1232,7 @@
 
 .cvl-private-note {
   margin: 0;
-  color: rgba(227, 227, 227, 0.62);
+  color: var(--text-dim);
   font-size: 0.7rem;
   line-height: 1.45;
 }
