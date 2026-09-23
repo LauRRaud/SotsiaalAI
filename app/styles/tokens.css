@@ -117,7 +117,7 @@
   /* Kaardi härmatis (omanik 23.09: „ei ole piisavalt klaasjad, paistavad
      liiga läbi"). Mõõdukas — 22 px oli liiga udune. Kõrgkontrastis ja
      vähendatud läbipaistvuses 0. */
-  --card-glass-blur: 12px;
+  --card-glass-blur: 8px; /* 12 → 8 px (omanik 23.09: „veidi väiksem blur") */
   --card-glass-bg: linear-gradient(var(--card-glass-smoke), var(--card-glass-smoke)), var(--glass-bg);
   /* Härmatis ILMA backdrop-filterita — vestluse mullide jaoks. Mullid on
      #chat-window-scroll'i sees, mille servamask on backdrop root: päris hägu
