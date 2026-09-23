@@ -103,7 +103,7 @@ html[data-reduce-motion="1"] .panel-scrim[data-dock="1"] {
 
 @keyframes panel-enter {
   from {
-    opacity: 0;
+    --panel-alpha: 0;
     /* Kaardilt aknaks: kast tekib SAMAST keskkohast, kus kaart seisis.
        Varasem 16 px tõus alt üles sõdis kasti kõrguse kasvuga samal
        teljel — kaks liikumist ühes suunas, kumbki poolik. */
@@ -123,10 +123,11 @@ html[data-reduce-motion="1"] .panel-scrim[data-dock="1"] {
   max-height: var(--panel-max-h);
   min-height: min(20rem, 60lvh);
   border-radius: var(--panel-radius);
-  /* Tellija 06.07 öö: paneelil EI ole oma backdrop-blurit — ruum
-     hägustub paneeli taga niikuinii (data-room-mode=panel) ja kaart
-     paistab läbi; blur elas topelt ja mattis ruumi ära. */
-  background: var(--panel-glass-bg);
+  /* Klaas (toon + härmatis) elab ::before-kihil (omanik 23.09: „proovime
+     tekstiakendele ka blur tausta"). MITTE paneelil endal: backdrop-filter
+     teeks paneelist position: fixed lastele sisaldusploki (nt vestluse
+     rollilüliti ja portaalid paneeli sees). */
+  background: none;
   /* ÜKS serv (omanik 23.09: „alalehtede servad on imelikud"). Tumeda
      suitsuklaasi peal lugesid kolm kihti topeltservana: 1 px läbipaistev
      äärisriba (taust paistis läbi), selle sees ::after klaasirant ja veel
@@ -138,8 +139,16 @@ html[data-reduce-motion="1"] .panel-scrim[data-dock="1"] {
 }
 /* Kuni kast mõõtu otsib, on ta paigas ja mõõdetav, aga nähtamatu —
    nii ei näe keegi tühja kesta, mis hetk hiljem suuremaks hüppab. */
+/* Läbipaistvus on registreeritud muutuja (tokens.css --panel-alpha), mitte
+   paneeli opacity: hajuv paneel oleks ::before-härmatise backdrop root ja
+   hägu hüppaks sisse alles avanemise lõpus. Kiht ja lapsed loevad seda ise. */
 .panel[data-enter="0"] {
-  opacity: 0;
+  --panel-alpha: 0;
+}
+.panel::before,
+.panel::after,
+:where(.panel) > * {
+  opacity: var(--panel-alpha, 1);
 }
 .panel[data-enter="1"] {
   animation: panel-enter var(--dur-med) var(--ease-soft) backwards;
@@ -160,9 +169,16 @@ html[data-reduce-motion="1"] .panel-scrim[data-dock="1"] {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: var(--panel-glass-sheen);
+  background: var(--panel-glass-bg);
+  -webkit-backdrop-filter: blur(var(--card-glass-blur));
+  backdrop-filter: blur(var(--card-glass-blur));
   pointer-events: none;
   z-index: 1;
+}
+/* Vana klaasiserv (rant) maha nagu kaartidel (omanik 23.09); kõrgkontrastis
+   jääb valge serv alles. */
+html:not([data-contrast="hc"]) .panel::after {
+  content: none;
 }
 .panel::after {
   content: "";
@@ -360,13 +376,13 @@ html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .panel-scrim[
      mis oli tokenist (40/29/22 @ .46/.52/.58) heledam ja läbipaistmatum —
      kaardile vajutades muutus kaardi toon (omanik 26.07). Kaart ei tohi
      avanedes visuaalselt muutuda, seega: mitte koopia, vaid token. */
-  background: var(--card-glass-bg);
+  background: none;
   border: none;
   box-shadow: var(--card-glass-shadow);
 }
-/* Läige + liquid-serv — sama allikas mis .gc-card::before/::after */
+/* Kaardi materjal (--card-glass-bg + härmatis) ::before-kihil nagu kaardil. */
 .panel-scrim[data-compact="1"] .panel::before {
-  background: var(--card-glass-sheen);
+  background: var(--card-glass-bg);
 }
 .panel-scrim[data-compact="1"] .panel::after {
   content: "";
@@ -388,15 +404,8 @@ html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .panel-scrim[
 html:not([data-contrast="hc"]) .panel-scrim[data-compact="1"] .panel::after {
   content: none;
 }
-html:not([data-contrast="hc"]) .panel-scrim[data-compact="1"] .panel::before {
-  background: none;
-}
 html:not([data-contrast="hc"]) .panel-scrim[data-compact="1"] .panel {
   box-shadow: none;
-}
-.panel-scrim[data-compact="1"] .panel {
-  -webkit-backdrop-filter: blur(var(--card-glass-blur));
-  backdrop-filter: blur(var(--card-glass-blur));
 }
 .panel-scrim[data-compact="1"] .panel-body {
   display: flex;

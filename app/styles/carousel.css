@@ -1018,6 +1018,18 @@ html[data-contrast="hc"] .gc-card-badge[data-tone="notice"] {
     opacity 520ms var(--ease-soft) 80ms,
     translate 620ms var(--ease-soft) 80ms;
 }
+/* Nooled = kiirmenüü materjal (omanik 23.09: „menüü nupud ei lähe kokku
+   kiirmenüüga"): sama --control-glass-* toon, hägu ja ülaserva läige, ilma
+   heleda klaasi ja läätseta. html:not(hc) prefiks võidab glass.css
+   baas-, läätse- ja „üks hägu" reeglid (kuni 0,3,1); kõrgkontrast jääb
+   glass.css-i hooleks. Kehtib ka hinnastuse noolele (.pc-arrow). */
+html:not([data-contrast="hc"]) :is(.gc, .pc) .glass-iconbtn:is(.gc-arrow, .pc-arrow) {
+  background: var(--control-glass-bg);
+  -webkit-backdrop-filter: var(--control-glass-blur);
+  backdrop-filter: var(--control-glass-blur);
+  border: 0;
+  box-shadow: inset 0 1px rgba(247, 247, 247, 0.08);
+}
 /* Optiline tsentreering (tellija): chevroni KOLMNURGA raskuskese
    nupu keskele — bbox-keskjoondus jätab tipu keskele ja keha kõrvale.
    Kolmnurga raskuskese on 1/6 glüüfi laiusest tipu poolt eemal.
@@ -1069,8 +1081,12 @@ html[data-contrast="hc"] .gc-card-badge[data-tone="notice"] {
   position: relative;
   isolation: isolate;
 }
-.gc-shortcut-menu::before,
-.gc-shortcut-menu > * {
+/* AINULT karusselli dokk (.gc-shortcuts'i sees) hajub käivitusega. Jaama-
+   dokid (a11f-, pc-, rgf-, cvf-stage-dock) kannavad sama .gc-shortcut-menu
+   klassi ilma .gc-shortcuts ümbriseta — laiema selektoriga langesid nad
+   vaikeväärtusele 0 ja olid nähtamatud (leitud 23.09). */
+.gc-shortcuts > .gc-shortcut-menu::before,
+.gc-shortcuts > .gc-shortcut-menu > * {
   opacity: var(--gc-dock-alpha, var(--gc-shortcuts-opacity, 0));
   transition: opacity 520ms var(--ease-soft) 80ms;
 }
@@ -1246,14 +1262,13 @@ html[data-reduce-motion="1"] .gc-shortcut-menu > * {
   top: auto;
   z-index: var(--z-floating);
   padding: 0.22rem;
-  /* TÄPSELT sama pind mis vestluse lülitil (workspace.css
-     .panel-scrim[data-chat] .admin-role-view-cycle — omanik 23.09: „rolli
-     nupud on vestluse lehel ilusad, aga mujal koledad"). Tume dokipill
-     (jagatud reegel ülal) sulas nuppudega üheks tumedaks laiguks. */
-  background: linear-gradient(135deg, rgba(38, 34, 31, 0.34), rgba(18, 16, 14, 0.28));
-  box-shadow: inset 0 1px rgba(247, 247, 247, 0.06);
-  -webkit-backdrop-filter: blur(12px) saturate(0.86);
-  backdrop-filter: blur(12px) saturate(0.86);
+  /* TAUSTATA (omanik 23.09: „imelik taust on rolli nuppudel, ei meeldi"):
+     nupud on ise klaas, konteiner ei lisa pilli. Sama mis vestluses
+     (workspace.css .panel-scrim[data-chat] .admin-role-view-cycle). */
+  background: none;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
   opacity: calc(var(--gc-shortcuts-opacity, 0) * 0.42);
   pointer-events: var(--gc-shortcuts-pointer, none);
   transition: opacity 260ms var(--ease-soft);

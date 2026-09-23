@@ -29,6 +29,13 @@
   inherits: true;
   initial-value: 1;
 }
+/* Tekstiakna (.panel) avanemine — sama põhjus: härmatis elab .panel::before
+   kihil ja hajuv paneel oleks tema backdrop root (panel.css). */
+@property --panel-alpha {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}
 /* Kaardi sisu (ikoon, silt, märk) ilmub käivituse faasis 2 — sama põhjus. */
 @property --gc-content-alpha {
   syntax: "<number>";
@@ -125,7 +132,9 @@
   --room-frost-position: 50% calc(40% - 3.2px);
   /* Lugemispaneel on sama suitsuklaas, aga tihedam: pika teksti taga ei
      tohi männitüved ja taevalaigud silma segada. Ruum jääb paneeli ümber. */
-  --panel-glass-smoke: rgba(10, 12, 16, 0.8);
+  /* 0,8 → 0,6 (omanik 23.09): paneelil on nüüd härmatis (::before), mis
+     peidab männitüved ise — toon ei pea enam kõike katma. */
+  --panel-glass-smoke: rgba(10, 12, 16, 0.6);
   --panel-glass-bg: linear-gradient(var(--panel-glass-smoke), var(--panel-glass-smoke)), var(--glass-bg);
   --card-glass-rim-width: 0.8px;
   --card-glass-shadow:

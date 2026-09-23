@@ -539,6 +539,8 @@ html[data-contrast="hc"] .conv-tools-menu[role="menu"] {
      (omanik 23.09). Kõrgkontrast ja vähendatud läbipaistvus tulevad
      tokeni kaudu kaasa. */
   background: var(--panel-glass-bg);
+  -webkit-backdrop-filter: blur(var(--card-glass-blur));
+  backdrop-filter: blur(var(--card-glass-blur));
   border: 1px solid var(--glass-border);
   border-radius: var(--panel-radius);
   /* Vestluste külgpaneel jääb selge raamiga, ilma ümbrusse hajuvat kumata. */

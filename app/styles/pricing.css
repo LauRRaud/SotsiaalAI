@@ -73,16 +73,18 @@
     translate3d(calc(var(--pos) * var(--pc-spacing)), 0, 0)
     rotateY(calc(var(--pos) * 15deg))
     scale(calc(1 - min(var(--abs), 2.2) * 0.19));
-  transition: transform 460ms var(--ease-soft), opacity 300ms var(--ease-soft);
+  /* Hajumine --gc-item-alpha kaudu nagu menüükaardil (tokens.css
+     @property): hajuv .pc-item oleks kaardi härmatise backdrop root. */
+  --gc-item-alpha: 1;
+  transition: transform 460ms var(--ease-soft), --gc-item-alpha 300ms var(--ease-soft);
   will-change: transform;
 }
-/* Kõrvalkaardid taanduvad (tuhmimad + fookuseta); rea peidus kaardid
+/* Kõrvalkaardid taanduvad nagu menüüs: klaas jääb täis (härmatis töötab),
+   tuhmub ainult sisu (omanik 23.09: endine 0,46 terve kaardi läbipaistvus
+   tegi küljekaardid kahvatuks ja vale kujundusega). Rea peidus kaardid
    pargivad serva taga nähtamatuna. */
-.pc-item[data-center="0"] {
-  opacity: 0.46;
-}
 .pc-item[data-hidden="1"] {
-  opacity: 0;
+  --gc-item-alpha: 0;
   pointer-events: none;
 }
 
@@ -95,7 +97,8 @@
   height: 100%;
   min-height: 0;
   border-radius: clamp(20px, 2.4vw, 30px);
-  background: var(--card-glass-bg);
+  /* Klaas on ::before-kihil (toon + härmatis) nagu menüükaardil. */
+  background: none;
   box-shadow: var(--card-glass-shadow);
   text-align: center;
   overflow: hidden;
@@ -109,6 +112,7 @@
   transform: perspective(1500px) rotateY(calc(clamp(-1, var(--pos, 0), 1) * -4deg));
   transform-origin: center;
   transition: transform 460ms var(--ease-soft);
+  opacity: var(--gc-item-alpha, 1);
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
@@ -137,8 +141,21 @@
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: var(--card-glass-sheen);
+  background: var(--card-glass-bg);
+  -webkit-backdrop-filter: blur(var(--card-glass-blur));
+  backdrop-filter: blur(var(--card-glass-blur));
+  opacity: var(--gc-item-alpha, 1);
   pointer-events: none;
+}
+.pc-item[data-center="0"] .pc-scroll {
+  opacity: calc(var(--gc-item-alpha, 1) * 0.72);
+}
+/* Servajoont ega sisehelke ei ole nagu menüükaardil; kõrgkontrastis jääb. */
+html:not([data-contrast="hc"]) .pc-card {
+  box-shadow: none;
+}
+html:not([data-contrast="hc"]) .pc-card::after {
+  content: none;
 }
 .pc-card::after {
   content: "";
@@ -361,11 +378,11 @@
 
 /* ---------- Liikumise vähendamine ---------- */
 html[data-reduce-motion="1"] .pc-item {
-  transition: opacity 200ms linear;
+  transition: --gc-item-alpha 200ms linear;
 }
 @media (prefers-reduced-motion: reduce) {
   .pc-item {
-    transition: opacity 200ms linear;
+    transition: --gc-item-alpha 200ms linear;
   }
 }
 

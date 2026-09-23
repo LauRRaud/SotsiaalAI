@@ -37,8 +37,12 @@
    Peaaegu läbipaistmatu ruumipimedus — mitte kerge hämardus. */
 /* Sama atribuudipaar mis a11y-modal.css baasreeglil + klass, muidu
    kaotaks see spetsiifilisuses ega kataks kaardirida. */
+/* 0,95 → 0,45 (omanik 23.09: „ei näinud keele ja ligipääsetavuse lehel
+   tausta"): kaardirida on allpool eraldi peidetud, seega loor ei pea enam
+   liikumist katma — tuba paistab härmatise taga nagu teistel lehtedel.
+   Esimesel külastusel (enne ⏻) on tuba niikuinii pime. */
 div[role="presentation"][aria-hidden="true"].a11f-veil {
-  background: rgba(7, 7, 7, 0.95);
+  background: rgba(7, 7, 7, 0.45);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
