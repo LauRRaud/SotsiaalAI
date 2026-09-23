@@ -39,3 +39,5 @@ Piloodi eelkontroll kontrollib põlvkonda, allikaversioone, väikest otsinguloen
 Opuse L1 on sihitud regressioonidega parandatud; L2, L4, L6 ja L7 on osalised. Struktureeritud `relatedContacts`/`relatedForms` seosed, telefoni/e-posti ajakohasus ning kasutaja täpsustatud omavalitsuse automaatne sidumine otsinguga vajavad veel teostust. Vastusemudeli juhis ja dialoogi säilitamine üksi ei tõenda, et olukorrakirjeldus jõuab õige abini. Päris vektorotsingu tähenduslik kvaliteet, kogu korpuse jõudlus ja ajaperioodide süntees on `NOT_PROVEN`.
 
 Läbiv järgmine kasutuskatse peab eristama „teame sobiva teenuse kirjet”, „teame kontrollitud kontaktandmeid” ja „kontakt puudub”. Puuduvat telefoni, e-posti, kehtivust või abikõlblikkust ei tohi tuletatud seosega välja mõelda. Admini käsitsi käivitatav RAG-enesetest säilib. Tasuline hindamisring ei ole arenduse jätkamise nõue.
+
+23.09 jätkuploki tehniline teostus ja piirid on [ADR-016-s](adr-016-structured-municipal-dialogue.md): allikaga seotud struktureeritud kirjed, piirkonnaga piiratud kataloog, kontaktiregistri värav ning piiratud jätkuvestluse kohalik ühendus.
