@@ -265,7 +265,7 @@ Graaf võib tuua kaugema tekstikoha, erandi või tingimuse, kuid säilitab selle
 | [evidence-segments.js](../../lib/rag-v2/pilot/evidence-segments.js) | Annab olemasolevale tõenditekstile serveri loodud segmendid ja tunnused, mida mustand saab valida täpse allikaseosega. |
 | [test-transport.js](../../lib/rag-v2/pilot/test-transport.js) | Deterministlik arenduse vastuseadapter; ei tee tasulist mudelikutset ega tõenda semantilist kvaliteeti. |
 
-M4 pärisraja praegune konfiguratsioon lubab koodis mudelit gpt-5.6-luna ning Responses API ranget struktureeritud vastust. Päringuvektor kasutab text-embedding-3-large mudelit ja 3072 mõõdet. Need on olemasoleva teostuse piirangud; master ei määra mudeli hetkehinda. Teadmismustandi mudel on eraldi adminiseadistuse osa.
+M4 pärisraja kood lubab uute vastuste jaoks mudelit `gpt-6-luna` ning Responses API ranget struktureeritud vastust; uue plaani mõtlemistase on `medium`. Varasema `gpt-5.6-luna` mudeliga kinnitatud plaan jääb ainult lugemiseks. Päringuvektor kasutab `text-embedding-3-large` mudelit ja 3072 mõõdet. Need on teostuse piirangud; serveri aktiveerimise seis on SotsiaalAI.md-s ja master ei määra mudeli hetkehinda. Teadmismustandi mudel on eraldi adminiseadistuse osa.
 
 Vastus on plokkidena, millel on tekst, väite liik ja viited. Allikast võetud fakt, piiratud järeldus ja täpsustust vajav osa peavad jääma eristatavaks. Kood kontrollib kuju, lubatud viiteid ja võimaliku tõendimustandi täpseid vasteid. Tsitaadi olemasolu või skeemi läbimine ei tõenda iseseisvalt, et vastuse kogu mõte tuleneb allikast.
 

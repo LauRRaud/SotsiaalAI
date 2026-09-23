@@ -4,7 +4,7 @@ import { providerCall } from '../lib/rag-v2/pilot/provider.js';
 import { answerRequest } from '../lib/rag-v2/pilot/contracts.js';
 import { embeddingConfig } from '../lib/rag-v2/search/embedding.js';
 
-const config = { mode: 'real', model: 'gpt-5.6-luna', accountProject: 'proj_test', timeoutMs: 100, maxOutputTokens: 1000, reasoning: 'low',
+const config = { mode: 'real', model: 'gpt-6-luna', accountProject: 'proj_test', timeoutMs: 100, maxOutputTokens: 1000, reasoning: 'medium',
   embedding: embeddingConfig({ embedding_mode: 'real', provider: 'openai', model: 'text-embedding-3-large', dimensions: 3072, endpoint: 'https://api.openai.com/v1/embeddings' }) };
 const answer = { kind: 'unsupported', blocks: [], limitations: ['The supplied excerpts do not establish a price.'], clarification: null };
 const good = { model: config.model, status: 'completed', output: [{ type: 'reasoning' }, { type: 'message', content: [{ type: 'output_text', text: JSON.stringify(answer) }] }],
@@ -16,6 +16,8 @@ test('Responses adapter sends exact endpoint, project, no store/tools/temperatur
       calls++; assert.equal(url, 'https://api.openai.com/v1/responses'); assert.equal(options.redirect, 'error');
       assert.equal(options.headers['OpenAI-Project'], 'proj_test'); assert.ok(options.signal);
       const body = JSON.parse(options.body); assert.equal(body.store, false); assert.equal(body.tools, undefined); assert.equal(body.temperature, undefined);
+      assert.equal(body.model, 'gpt-6-luna'); assert.deepEqual(body.reasoning, { effort: 'medium' });
+      assert.equal(body.top_p, undefined); assert.equal(body.text.format.strict, true);
       return Response.json(good, { headers: { 'x-request-id': 'test-response' } });
     } });
   assert.equal(calls, 1); assert.deepEqual(result.value, answer); assert.equal(result.usage.reasoning, 20); assert.ok(result.timings.firstDataMs >= 0);
@@ -34,6 +36,7 @@ test('refusal, malformed structured output, incomplete output, wrong model and u
     [{ ...good, output: [{ type: 'message', content: [{ type: 'output_text', text: '{broken' }] }] }, 'provider_invalid_json'],
     [{ ...good, status: 'incomplete' }, 'provider_incomplete'],
     [{ ...good, model: 'another-model' }, 'answer_model_mismatch'],
+    [{ ...good, model: 'gpt-5.6-luna' }, 'answer_model_mismatch'],
     [{ ...good, usage: {} }, 'provider_usage_unknown'],
   ];
   for (const [body, code] of cases) {

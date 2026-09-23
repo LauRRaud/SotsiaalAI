@@ -163,9 +163,12 @@ test('knowledge preparation and imported knowledge bind HTML quotes to source un
   const quote = 'The source describes a fictional condition.';
   const options = await source('html-knowledge', 'html', `<article><p>${quote}</p></article>`);
   const { bundle: b } = await ingest(options);
-  const config = { enabled: true, model: 'gpt-5.6-luna', accountProject: 'proj_fixture', reasoning: 'low', timeoutMs: 10000,
-    maxOutputTokens: 1000, maxDocumentInputTokens: 40000, maxInputTokens: 40000, maxApiAttempts: 1, maxSpendUsd: '1', prices: { input: 250, output: 1200 } };
+  const config = { enabled: true, model: 'gpt-6-luna', accountProject: 'proj_fixture', reasoning: 'medium', timeoutMs: 10000,
+    maxOutputTokens: 1000, maxDocumentInputTokens: 40000, maxInputTokens: 40000, maxApiAttempts: 1, maxSpendUsd: '1', prices: { input: 125, output: 500 } };
   const plan = knowledgePreparationPlan(b, config);
+  assert.equal(plan.body.model, 'gpt-6-luna'); assert.deepEqual(plan.body.reasoning, { effort: 'medium' });
+  assert.equal(plan.body.store, false); assert.equal(plan.body.text.format.strict, true);
+  assert.equal(BigInt(plan.manifest.reserved_nano_usd), BigInt(plan.manifest.input_tokens_reserved) * 125n + 500000n);
   assert.equal(plan.sources[0].source_unit_index, 0); assert.equal(plan.sources[0].pdf_page, undefined);
   const draft = knowledgePreparationDraft({ cards: [{ key: 'condition', kind: 'condition', statement: quote, scope: 'Fixture', subject: null, predicate: null, object: null,
     anchors: [{ source_id: plan.sources[0].source_id, quote }] }], dependencies: [], unresolved: [] }, plan, b);

@@ -92,6 +92,16 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**23.09 assistendi mudeliuuendus — kohalikult valmis, serverisse viimata.**
+Omaniku valik on `gpt-6-luna` ja `medium`. Ühine tekstimudel, kokkuvõtted
+ja uute RAG-plaanide vaikeseaded on uuendatud; vana mudeli plaanid jäävad ainult
+lugemiseks. 16 sihttesti, kokkuvõtete kolme kutse testadapter ja ESLint läbisid.
+Serveri seadistusfailide lugemine näitas veel Luna 5.6-t üld-, piloodi- ja
+teadmiste ettevalmistuse seadistuses; uued kandidaadid on privaatses
+`tmp/rag-v2-luna6-upgrade/` kaustas, kinnitamata ja aktiveerimata.
+Järgmine samm on push/deploy ning serveriseadistuste rakendamine; aegunud admini
+vastuvõtuluba ei pikendata. Päris API ligipääs ja sisuline kvaliteet `NOT_PROVEN`.
+
 **23.09 struktureeritud KOV-vestlus — kohalik commit `1ececb72`.**
 Teenused, toetused, vormid ja nende kontaktiseosed säilivad allikakohtadega.
 Piiratud KOV-piloot kasutab valla kataloogi ja EstNLTK-põhist nimevastendust;
@@ -2211,6 +2221,8 @@ sisselülitamisele" reegli puhas rakendus. Vt „Lüliti" S2-s ja „Mis avab" S
 
 **Vestlus ja teadmusbaas.**
 
+**Assistendi mudel (23.09, omaniku valik; kohalikult valmis).** Ühine tekstimudel, kokkuvõtted ja uued RAG-piloodi plaanid kasutavad `gpt-6-luna` / `medium`. Responses API ja väljundileping säilivad; vana mudeli plaan jääb loetavaks, kuid ei luba uusi vastuseid. Uue mudeli standardhinnad on plaanis uuendatud. Serveri üld-, piloodi- ja teadmiste ettevalmistuse seadistuste kandidaadid on privaatses `tmp/rag-v2-luna6-upgrade/` kaustas; kasutajad, korpus, kvoodid ja aegumised säilivad. Vana konfiguratsiooniräsiga vestluspöördeid ei liideta automaatselt uue plaaniga. 16 sihttesti ning kokkuvõtte- ja konfiguratsioonikontrollid läbisid testadapteritega; tõendid on muudatuse commit'is. Serveris on mõõdetult veel Luna 5.6. Push/deploy ning uue mudeli konto ligipääs ja sisuline kvaliteet on `not_run`/`NOT_PROVEN`.
+
 Vana RAG-i eemaldamise ulatus ja alles jäävad platvormifunktsioonid on koondatud [RAG masterisse](../audits/rag-susteem-master.md). Uue RAG v2 piiratud arendusrada on nüüd teostatud; varasem väide, et uut käitumist pole üldse olemas, on aegunud.
 
 **GraphRAG-toote siht (omaniku täpsustus 07.09).** Arendame korduvkasutatavat teadmistesüsteemi, mida saab müüa teisele organisatsioonile ja kasutada sama tuumaga SotsiaalAI-s. Kliendi materjalid, valdkonnaprofiil, õigused, mudeliseadistus ja kasutajaliides ühendatakse konfiguratsiooni ning adapterite kaudu. SotsiaalAI on esimene kliendirakendus ja tegeliku kasutuse keskkond; teise kliendi lisamine peab säilitama sama tuuma koodi. Müügi- ja majutusmudelit see ei lukusta.
@@ -2432,7 +2444,7 @@ Realtime on ainult kuulamisliides: spetsiaalne `type: "transcription"` WebRTC-se
 sisendkeele (`et`/`en`/`ru`), annab samas keeles täpsusjuhise ning kasutab tavapärase veebiseadme
 mikrofoni jaoks `far_field` müravähendust. Transkript saadetakse
 sama RAG-i, allikate, kriisi-, privaatsus- ja kvoodilepinguga vestlusse nagu kirjutatud küsimus;
-vastuse vaikemudel on `gpt-5.6-luna`. Valmis kontrollitud vastusest loetakse kuni kolme lause
+vastuse kohalik vaikemudel on `gpt-6-luna` / `medium` (23.09; serveriuuendus ootel). Valmis kontrollitud vastusest loetakse kuni kolme lause
 pikkune tuum eesti keeles ette TartuNLP `kylli` häälega, inglise ja vene keel jäävad olemasoleva
 tasuta brauserihääle reegli alla. Vahele rääkimine peatab ettelugemise ja poolelioleva vastuse.
 Mikrofon avaneb alles nupust „Alusta“. Seansil on 5 minuti kõvapiir, hoiatus 45 sekundit enne

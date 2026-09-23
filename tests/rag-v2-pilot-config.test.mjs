@@ -28,17 +28,27 @@ test('pilot switch, per-user grant, expiry, real-model config and approval gates
   await assert.rejects(readPilotConfig('tester'), { code: 'not_configured' });
   await fs.writeFile(file, JSON.stringify({ ...config, mode: 'real' }));
   await assert.rejects(readPilotConfig('tester'), { code: 'not_configured' });
-  process.env.OPENAI_MODEL = 'gpt-5.6-luna';
+  process.env.OPENAI_MODEL = 'gpt-6-luna';
   const real = { ...config, mode: 'real', model: process.env.OPENAI_MODEL, accountProject: 'proj_synthetic', endpoint: 'https://api.openai.com/v1/responses',
-    modelContract: 'responses-strict-reasoning-v1', maxInputTokens: 64000, maxOutputTokens: 2048, reasoning: 'low', generationId: 'synthetic-generation',
+    modelContract: 'responses-strict-reasoning-v1', maxInputTokens: 64000, maxOutputTokens: 2048, reasoning: 'medium', generationId: 'synthetic-generation',
     promptVersion: PROMPT_VERSION, questionVersion: QUESTION_VERSION, implementationHash: (await implementationManifest()).hash,
     embedding: embeddingConfig({ embedding_mode: 'real', provider: 'openai', model: 'text-embedding-3-large', dimensions: 3072, endpoint: 'https://api.openai.com/v1/embeddings' }),
-    prices: { embeddingInput: 130, answerInput: 250, answerOutput: 1200 }, questionPolicy: { mode: 'locked', inputs: [{ question: 'Sünteetiline', contextMode: 'new', language: 'et' }] } };
+    prices: { embeddingInput: 130, answerInput: 125, answerOutput: 500 }, questionPolicy: { mode: 'locked', inputs: [{ question: 'Sünteetiline', contextMode: 'new', language: 'et' }] } };
   await fs.writeFile(file, JSON.stringify(real));
   await assert.rejects(readPilotConfig('tester'), { code: 'pilot_approval_required' });
   const approved = { ...real, approval: { approvedBy: 'synthetic-unit-test', approvedAt: new Date().toISOString(), planHash: digest(real), queryAndSourceEgress: true, dynamicQuestions: false } };
   await fs.writeFile(file, JSON.stringify(approved));
   assert.equal((await readPilotConfig('tester')).mode, 'real'); // Configuration only: no service/transport invocation.
+  process.env.OPENAI_MODEL = 'gpt-5.6-luna';
+  await assert.rejects(readPilotConfig('tester'), { code: 'not_configured' });
+  process.env.OPENAI_MODEL = 'gpt-6-luna';
+  const legacyPlan = { ...real, model: 'gpt-5.6-luna', reasoning: 'low', prices: { embeddingInput: 130, answerInput: 250, answerOutput: 1200 } };
+  const legacy = { ...legacyPlan, approval: { ...approved.approval, planHash: digest(legacyPlan) } };
+  await fs.writeFile(file, JSON.stringify(legacy));
+  assert.equal((await readPilotConfig('tester', { purpose: 'read' })).configHash, digest(legacy));
+  await assert.rejects(readPilotConfig('tester'), { code: 'not_configured' });
+  await fs.writeFile(file, JSON.stringify({ ...legacy, model: 'gpt-6-luna' }));
+  await assert.rejects(readPilotConfig('tester'), { code: 'pilot_approval_required' });
   const noDeadline = { ...real, expiresAt: null, retentionHours: null };
   await fs.writeFile(file, JSON.stringify({ ...noDeadline, approval: approved.approval }));
   await assert.rejects(readPilotConfig('tester'), { code: 'pilot_approval_required' });
