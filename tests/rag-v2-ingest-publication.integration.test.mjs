@@ -11,13 +11,14 @@ import { IngestBatchQueue } from '../lib/rag-v2/ingest-batch-postgres.js';
 import { planIngestBatch, prepareNextBatchItem } from '../lib/rag-v2/ingest-batch.js';
 import { createBatchReview, publishReviewedBatch } from '../lib/rag-v2/ingest-publication.js';
 import { ingest } from '../lib/rag-v2/ingestion.js';
+import { registeredSource } from '../lib/rag-v2/registered-source.js';
 import { openCatalog, readActive, readJson, writeJson } from '../lib/rag-v2/catalog.js';
 import { hash, id } from '../lib/rag-v2/contracts.js';
 import { loadSnapshot } from '../lib/rag-v2/search/snapshot.js';
 import { QdrantIndex } from '../lib/rag-v2/search/qdrant.js';
 import { MockEmbedding } from '../lib/rag-v2/search/embedding.js';
 import { indexSnapshot } from '../lib/rag-v2/search/indexing.js';
-import { MORPHOLOGY_LEXICAL } from '../lib/rag-v2/search/morphology.js';
+import { ESTNLTK_LEXICAL, MORPHOLOGY_LEXICAL } from '../lib/rag-v2/search/morphology.js';
 import { retrieve } from '../lib/rag-v2/search/retrieval.js';
 import { LocalPolicy } from '../lib/rag-v2/search/policy.js';
 
@@ -126,7 +127,7 @@ test('pending decisions and unacknowledged warnings stop publication; review evi
 });
 
 test('conflicting metadata cannot be approved away; exclusion permits independent sources', async () => {
-  const options = await fixture(2, inputs => inputs.map((item, index) => index ? item : { ...item, name: 'Conflicting title' }));
+  const options = await fixture(2, inputs => inputs.map((item, index) => index ? item : { ...item, metadata_variants: [{ metadata: { title: 'Conflicting title' } }] }));
   const review = await reviewed(options), conflict = review.items.find(item => item.blockers.length);
   assert(conflict.blockers.includes('metadata_candidate_conflict'));
   conflict.note = 'Attempt to bypass the conflict.';
@@ -135,6 +136,51 @@ test('conflicting metadata cannot be approved away; exclusion permits independen
   const result = await publishReviewedBatch({ ...options, review });
   assert.equal(result.included, 1); assert.equal(result.excluded, 1);
   assert.equal((await active(options)).documents[conflict.document_id], undefined);
+});
+
+test('registered municipal packages and zoned XML pass review/publication and stay in the requested municipality', async () => {
+  const tenant = `publication-kov-${randomUUID()}`; tenants.push(tenant);
+  const inputRoot = path.join(root, tenant); await fs.mkdir(inputRoot);
+  const inputs = [];
+  for (const municipality of ['example_a', 'example_b']) {
+    const item = { id: `${municipality}_home`, document_id: `${municipality}_home`, title: 'Koduteenus',
+      municipality_id: municipality, municipality_name: `Näidisvald ${municipality}`, source_type: 'municipal_service', language: 'et',
+      summary: 'Koduteenus toetab igapäevast toimetulekut kodus.', application: `Pöördu ${municipality} nõustaja poole.` };
+    const bytes = JSON.stringify({ items: [item] }), file = `${municipality}.json`;
+    await fs.writeFile(path.join(inputRoot, file), bytes);
+    inputs.push(await registeredSource(inputRoot, { role: 'source', path: file, sha256: hash(bytes) }, { itemId: item.id }));
+  }
+  const xml = '<oigusakt><metaandmed><globaalID>fixture-publication-act</globaalID><kehtivus><kehtivuseAlgus>2025-01-01+02:00</kehtivuseAlgus><kehtivuseLopp>2026-12-31Z</kehtivuseLopp></kehtivus></metaandmed><aktinimi><nimi><pealkiri>Näidiseeskiri</pealkiri></nimi></aktinimi><sisu><paragrahv id="p1"><kuvatavNr>1</kuvatavNr><loige><tavatekst>See on üksnes testandmetes kasutatav näidis.</tavatekst></loige></paragrahv></sisu></oigusakt>';
+  await fs.writeFile(path.join(inputRoot, 'example.xml'), xml);
+  inputs.push(await registeredSource(inputRoot, { role: 'source', path: 'example.xml', sha256: hash(xml) }));
+  const plan = await planIngestBatch({ tenant, inputRoot, inputs, profile, rights }); await queue.enqueue(plan);
+  const options = { queue, tenant, batchId: plan.id, inputRoot, storeRoot: path.join(inputRoot, 'store') };
+  while (await prepareNextBatchItem(options)) { /* isolated local fixture */ }
+  const review = await createBatchReview(options);
+  assert.equal(review.items.length, 3); assert(review.items.every(item => item.state === 'prepared' && !item.blockers.length));
+  review.reviewed_by = 'synthetic-test-operator';
+  for (const item of review.items) {
+    item.decision = 'include';
+    item.note = 'Fictional fixture: collected package/title warnings acknowledged; no real-world eligibility or freshness claimed.';
+  }
+  assert.equal((await publishReviewedBatch({ ...options, review })).included, 3);
+  const documents = review.items.map(item => item.document_id), snapshot = await loadSnapshot(options.storeRoot, tenant, documents);
+  const legal = snapshot.bundles.find(b => b.document.fields.source_type.value === 'legal_act');
+  assert.equal(legal.document.fields.valid_from.value, '2025-01-01');
+  assert.equal(legal.document.fields.valid_from.provenance[0].raw, '2025-01-01+02:00');
+  const embedding = new MockEmbedding();
+  await indexSnapshot({ snapshot, postgres: queue, qdrant, embedding, lexical: ESTNLTK_LEXICAL });
+  collections.push((await queue.active(tenant)).collection);
+  const policy = new LocalPolicy({ tenants: { [tenant]: { operator: documents } } }), callsBefore = embedding.calls;
+  for (const municipality of ['example_a', 'example_b']) {
+    const packet = await retrieve({ postgres: queue, qdrant, embedding, policy, context: { tenant, subject: 'operator', usage: 'development_only' },
+      query: { text: 'koduteenuseid', language: 'et', method: 'lexical', semanticGraph: true, contextMode: 'compact', filters: { region: municipality } } });
+    assert.equal(packet.state, 'ok', packet.error); assert(packet.evidence.length);
+    assert(packet.evidence.every(e => e.source_metadata.municipality_id.value === municipality));
+    assert(Object.values(packet.model_context.sources).every(s => s.municipality_id.value === municipality));
+    assert(packet.evidence.every(e => e.source_locations.some(location => location.kind === 'json')));
+  }
+  assert.equal(embedding.calls, callsBefore);
 });
 
 test('failed input can be excluded without resetting its queue state or blocking a ready sibling', async () => {

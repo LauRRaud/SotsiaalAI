@@ -8,10 +8,14 @@ import { ingest } from '../lib/rag-v2/ingestion.js';
 import { hash, configuration, validateBundle } from '../lib/rag-v2/contracts.js';
 import { structure } from '../lib/rag-v2/parser.js';
 import { loadSnapshot } from '../lib/rag-v2/search/snapshot.js';
-import { modelProjection, resolveModelReference } from '../lib/rag-v2/search/model-context.js';
+import { modelProjection, modelSourceMetadata, resolveModelReference } from '../lib/rag-v2/search/model-context.js';
 import { KNOWLEDGE_SCHEMA } from '../lib/rag-v2/knowledge.js';
 import { knowledgePreparationPlan, knowledgePreparationDraft } from '../lib/rag-v2/knowledge-preparation.js';
 import { adaptMetadata } from '../lib/rag-v2/metadata-adapter.js';
+import { metadataValue } from '../lib/rag-v2/metadata-values.js';
+import { filtersMatch } from '../lib/rag-v2/search/ranking.js';
+import { directoryScope, retrievalDirectory } from '../lib/rag-v2/search/discovery.js';
+import { embeddingConfig } from '../lib/rag-v2/search/embedding.js';
 import { registeredSource } from '../lib/rag-v2/registered-source.js';
 import { textRanges, unitForSpan, chunkSourceLocations } from '../lib/rag-v2/source-locations.js';
 import { verifiedBundle } from '../lib/rag-v2/search/snapshot.js';
@@ -190,6 +194,58 @@ test('XML declarations and calendar-date zones preserve legal text and original 
   assert.equal(bundle.document.fields.valid_from.value, '2025-01-01');
   assert.equal(bundle.document.fields.valid_from.provenance[0].raw, '2025-01-01+02:00');
   assert(bundle.source_units.some(unit => unit.raw_text.includes('§ 1.')));
+});
+
+test('municipality names title unnamed packages but do not conflict with service/contact titles', () => {
+  for (const title of ['Koduteenus', 'Sotsiaaltöötaja']) {
+    const metadata = adaptMetadata({ title, municipality_name: 'Näidisvald', municipality_id: 'example_vald' });
+    assert.equal(metadata.title, title); assert.deepEqual(metadata.metadata_adaptation.conflicts, []);
+    assert.equal(metadata.metadata_adaptation.origins.title, '/title');
+  }
+  const packageMetadata = adaptMetadata({ municipality: { name: 'Näidisvald' }, items: [] }, 'package.json');
+  assert.equal(packageMetadata.title, 'Näidisvald'); assert.equal(packageMetadata.metadata_adaptation.origins.title, '/municipality/name');
+  const named = adaptMetadata({ title: 'Näidisvalla üldkontakt', name: 'Näidisvallavalitsus', municipality_name: 'Näidisvald' });
+  assert.deepEqual(named.metadata_adaptation.conflicts, []); assert.equal(named.name, 'Näidisvallavalitsus');
+  const conflict = adaptMetadata({ title: 'Koduteenus', metadata_variants: [{ metadata: { title: 'Teine teenus' } }], municipality_name: 'Näidisvald' });
+  assert.deepEqual(conflict.metadata_adaptation.conflicts.map(c => c.field), ['title']);
+});
+
+test('calendar-date comparison removes only lexical zones and retains genuine date conflicts', async () => {
+  for (const raw of ['2025-01-01', '2025-01-01Z', '2025-01-01+02:00', '2025-01-01-14:00']) {
+    assert.equal(metadataValue('valid_from', raw), '2025-01-01');
+    assert.equal(metadataValue('source_checked_at', raw), raw);
+  }
+  for (const invalid of ['2025-02-30Z', '2025-01-01+20:00', '2025-01-01T00:00:00Z']) assert.equal(metadataValue('valid_from', invalid), invalid);
+  const equivalent = adaptMetadata({ valid_from: '2025-01-01+02:00', effective_start: '2025-01-01' });
+  assert.equal(equivalent.valid_from, '2025-01-01+02:00'); assert.deepEqual(equivalent.metadata_adaptation.conflicts, []);
+  const differing = adaptMetadata({ valid_from: '2025-01-01+02:00', effective_start: '2025-01-02' });
+  assert(differing.metadata_adaptation.conflicts.some(c => c.field === 'valid_from'));
+  const document = xml.replace('2025-01-01</', '2025-01-01+02:00</');
+  const options = await source('xml-equal-date', 'xml', document, { title: 'Fictional garden rules', valid_from: '2025-01-01+02:00' });
+  const { bundle } = await ingest(options);
+  assert(!bundle.report.warnings.some(w => w.code === 'source_metadata_conflict' && w.detail === 'valid_from'));
+  assert.equal(bundle.document.fields.valid_from.value, '2025-01-01');
+  assert.equal(bundle.document.fields.valid_from.candidates[0].value, '2025-01-01+02:00');
+  const changed = await ingest({ ...options, metadata: { ...options.metadata, valid_from: '2025-01-02' } });
+  assert(changed.bundle.report.warnings.some(w => w.code === 'source_metadata_conflict' && w.detail === 'valid_from'));
+});
+
+test('canonical municipality IDs reach directory filters and model metadata without guessing from names', async () => {
+  const options = await source('municipality-scope', 'html', '<article><h1>Koduteenus</h1><p>Abi igapäevatoimingutega.</p></article>',
+    { title: 'Koduteenus', municipality_id: 'example_vald', municipality_name: 'Näidisvald' });
+  const { bundle } = await ingest(options);
+  assert.deepEqual(bundle.document.fields.regions.value, ['example_vald']);
+  assert.equal(filtersMatch(bundle, { region: 'example_vald' }), true);
+  assert.equal(filtersMatch(bundle, { region: 'other_vald' }), false);
+  assert.equal(filtersMatch(bundle, { valid_at: '2026-09-23' }), false, 'Unknown validity must not become current merely because municipality is known');
+  const directory = retrievalDirectory(bundle, embeddingConfig());
+  assert.equal(directoryScope([directory], { filters: { region: 'example_vald' }, includeDocumentLabels: false }).documentIds.length, 1);
+  assert.equal(directoryScope([directory], { filters: { region: 'other_vald' } }).documentIds.length, 0);
+  const metadata = modelSourceMetadata(bundle);
+  assert.equal(metadata.municipality_name.value, 'Näidisvald'); assert.equal(metadata.municipality_id.value, 'example_vald');
+  assert(metadata.regions.provenance.some(p => p.path === '/municipality_id'));
+  const unknown = await ingest({ ...options, metadata: { ...options.metadata, municipality_id: undefined } });
+  assert.equal(filtersMatch(unknown.bundle, { region: 'example_vald' }), false);
 });
 
 test('registered municipal records retain audience lists, collection dates and canonical URLs with provenance', async () => {

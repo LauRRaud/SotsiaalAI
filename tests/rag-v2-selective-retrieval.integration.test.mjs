@@ -184,7 +184,9 @@ test('dependency loading respects its budget and reports an incomplete context',
   const packet = await run({ limits: { topK: 1, candidates: 1, perDocument: 9, contextTokens: 6000, dependencySteps: 1, dependencyAdditions: 8 } });
   assert.equal(packet.state, 'ok', packet.error); assert(packet.measurements.loading.loaded_documents <= 2);
   assert.equal(packet.model_context.dependencies.known_context, 'incomplete');
-  assert(packet.model_context.dependencies.unresolved.some(item => item.reason === 'dependency_document_limit'));
+  // Edge IDs include the random fixture tenant. If the reverse edge sorts
+  // first, the edge budget stops traversal before another document is loaded.
+  assert(packet.model_context.dependencies.unresolved.some(item => ['dependency_document_limit', 'dependency_edge_limit'].includes(item.reason)));
 });
 test('legacy directories fall back safely and reindexing upgrades them without generating new vectors', async () => {
   await postgres.pool.query('UPDATE rag_v2_generation_document SET retrieval_directory=NULL,retrieval_hash=NULL WHERE tenant=$1 AND generation_id=$2', [tenant, generation.id]);
