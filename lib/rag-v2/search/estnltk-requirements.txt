@@ -1,0 +1,3 @@
+# The analyzer contract includes both packages and uses their bundled Vabamorf lexicon.
+estnltk==1.7.5
+estnltk-core==1.7.5

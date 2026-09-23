@@ -6,7 +6,7 @@ import { readJson, writeJson } from '../lib/rag-v2/catalog.js';
 import { FilePolicy } from '../lib/rag-v2/search/policy.js';
 import { MockEmbedding } from '../lib/rag-v2/search/embedding.js';
 import { reusableEmbeddingCatalog } from '../lib/rag-v2/search/pilot-runner.js';
-import { MORPHOLOGY_LEXICAL } from '../lib/rag-v2/search/morphology.js';
+import { ESTNLTK_LEXICAL } from '../lib/rag-v2/search/morphology.js';
 import { QdrantIndex } from '../lib/rag-v2/search/qdrant.js';
 import { IndexJobStore } from '../lib/rag-v2/search/index-jobs-postgres.js';
 import { planIndexJob, runIndexJob, validateIndexPlan } from '../lib/rag-v2/search/index-jobs.js';
@@ -15,7 +15,7 @@ let postgres;
 try {
   const { values } = parseArgs({ options: {
     mode: { type: 'string' }, tenant: { type: 'string' }, subject: { type: 'string' }, policy: { type: 'string' },
-    store: { type: 'string' }, manifest: { type: 'string' }, lexical: { type: 'string', default: MORPHOLOGY_LEXICAL },
+    store: { type: 'string' }, manifest: { type: 'string' }, lexical: { type: 'string', default: ESTNLTK_LEXICAL },
     vectors: { type: 'string', multiple: true },
     connections: { type: 'string', default: 'tmp/rag-v2-services/connections.json' },
     'batch-size': { type: 'string', default: '100' }, 'max-batches': { type: 'string', default: '100' },

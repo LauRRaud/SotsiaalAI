@@ -73,7 +73,7 @@ test('selective retrieval excludes publication labels before the channel candida
 test('ranked-first profile preserves the fifth seed, full unit cap and historical 3+2 behavior', async () => {
   const f = fixture(), historical = await f.run(undefined, { query: {
     ...queryForProfile(retrievalProfile('hybrid-ranked-first-neighbors-v1'), { text: 'gardening', language: 'en' }),
-    limits: { ...retrievalProfile().query.limits, topK: 3 },
+    limits: { ...retrievalProfile('hybrid-ranked-first-v1').query.limits, topK: 3 },
   } });
   const plain = await f.run('hybrid-ranked-first-v1'), candidate = await f.run();
   assert.equal(candidate.state, 'ok'); assert.equal(historical.state, 'ok');
@@ -96,7 +96,7 @@ test('explicit neighbors use remaining slots without displacing seeds and select
   assert.equal(a.measurements.graph_additions, 2); assert(a.measurements.graph_steps <= 8);
   assert(a.evidence.slice(1).every(e => e.selection.reason.edge_ids.length && e.selection.reason.seed_evidence_id));
   const limited = await f.run(undefined, { query: { ...queryForProfile(retrievalProfile('hybrid-ranked-first-neighbors-v1'),
-    { text: 'gardening', language: 'en' }), limits: { ...retrievalProfile().query.limits, contextTokens: plain.measurements.context_tokens } } });
+    { text: 'gardening', language: 'en' }), limits: { ...retrievalProfile('hybrid-ranked-first-v1').query.limits, contextTokens: plain.measurements.context_tokens } } });
   assert.deepEqual(limited.model_context, plain.model_context);
   assert(limited.selection_trace.some(r => r.reason === 'context_budget'));
 });
@@ -134,7 +134,7 @@ test('neighbors retain relation, duplicate, document cap and version protections
   assert.equal((await missing.run()).error, 'missing_generation_units');
   const capped = fixture([0]);
   const capResult = await capped.run(undefined, { query: { ...queryForProfile(retrievalProfile('hybrid-ranked-first-neighbors-v1'),
-    { text: 'gardening', language: 'en' }), limits: { ...retrievalProfile().query.limits, perDocument: 1 } } });
+    { text: 'gardening', language: 'en' }), limits: { ...retrievalProfile('hybrid-ranked-first-v1').query.limits, perDocument: 1 } } });
   assert.equal(capResult.evidence.length, 1); assert(capResult.selection_trace.some(r => r.reason === 'document_cap'));
 });
 
@@ -146,8 +146,8 @@ test('revocation outranks seed preservation; an ungranted channel result is reje
   assert.equal((await forbidden.run()).error, 'channel_result_outside_scope');
 });
 
-test('versioned profile defaults to graph off and rejects silent budget/ranking overrides', () => {
-  const profile = retrievalProfile(); assert.equal(profile.query.graph, false);
+test('legacy ranked-first profile keeps graph off and rejects silent budget/ranking overrides', () => {
+  const profile = retrievalProfile('hybrid-ranked-first-v1'); assert.equal(profile.query.graph, false);
   assert.equal(profile.query.limits.perDocument, 5); assert.equal(profile.query.finalLimit, 5);
   assert.equal(profile.query.limits.topK, profile.query.finalLimit);
   assert.throws(() => queryForProfile(profile, { text: 'x', language: 'en', limits: { topK: 3 } }), /profile_query_override/);
