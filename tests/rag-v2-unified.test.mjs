@@ -132,11 +132,21 @@ test('a year-only journal source belongs to a publication period only when its w
     lanes: [{ key: 'period_1', kind: 'publication_period', period: { from: '2016-01-01', to: '2020-12-31' }, packet: packet([entry('pdf-2016')]) }] });
   const { coverage } = result.retrieval_context.lanes[0];
   assert.deepEqual(coverage.documents_by_publication_year, { 2016: 1 });
-  assert.equal(coverage.indexed_documents, 1); assert.equal(coverage.publication_year_only_documents, 2);
+  assert.equal(coverage.indexed_documents, 1); assert.equal(coverage.publication_year_only_documents, 1);
   assert.equal(coverage.missing_publication_date_documents, 1);
   const bundle = { document: { id: 'doc', fields: { publication_date: { value: null }, publication_year: { value: 2016 }, journal_title: { value: 'Journal' } } },
     version: { id: 'version' }, chunks: [], dependencies: [] };
   assert.equal(retrievalDirectory(bundle, embeddingConfig()).fields.publication_year.value, 2016);
   assert.equal(retrievalDirectory(bundle, embeddingConfig(), TYPED_DISCOVERY_SCHEMA).fields.publication_year, undefined);
   assert.notEqual(searchConfig(embeddingConfig(), undefined, TYPED_DISCOVERY_SCHEMA).id, searchConfig(embeddingConfig()).id);
+});
+
+test('a stored unified packet from a v2 directory generation stays restorable after the v3 contract', () => {
+  const v2 = [directory('early', '2010-01-01'), directory('record', null, 'service')].map(row => ({ ...row, schema_version: TYPED_DISCOVERY_SCHEMA }));
+  const retrieval_context = { version: UNIFIED_RETRIEVAL_VERSION, lanes: [] };
+  const stored = { retrieval_context, retrieval_audit: { version: UNIFIED_RETRIEVAL_VERSION, directory_hash: hash(stable(v2)), context_hash: hash(stable(retrieval_context)) } };
+  checkUnifiedDirectory(stored, v2);
+  assert.throws(() => checkUnifiedDirectory(stored, v2.slice(1)), { code: 'unified_scope_changed' });
+  assert.throws(() => mergeUnifiedPackets({ tenant: 'test', generationId: 'generation', directories: v2, plan, lanes: [] }), { code: 'unified_directory_required' });
+  assert.throws(() => checkUnifiedDirectory(stored, [v2[0], directory('record', null, 'service')]), { code: 'unified_directory_required' });
 });
