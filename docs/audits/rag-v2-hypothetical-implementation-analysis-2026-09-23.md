@@ -2,6 +2,8 @@
 
 Kuupäev: 23.09.2026. Teine läbivaatus omaniku täpsustatud kasutuseesmärgi järgi; lisatud vestlusliku assistendi põhinõue.
 
+**Üleandmise täiendus 23.09:** §12 sisaldab nüüd Opuse iseseisva arhitektuuri- ja koodiülevaatuse ülesannet pärast kohalikke commit'e `22193e7af`, `a407fb6d0` ja `e2540b998`. Algse analüüsi lähteolukorda kirjeldavad lõigud ei ole kõik enam praeguse teostuse kirjeldused: jätkatav indekseerimine ja valikuline dokumendilaadimine lisandusid ADR-012/013-s. Aktiivne tööseis jääb SotsiaalAI.md-sse.
+
 ## Dokumendi eesmärk ja staatus
 
 See dokument kirjeldab, kuidas võiks olemasolevast RAG v2 teostusest ehitada ühe tugeva teadmistesüsteemi ajakirjainfo leidmiseks, teemade ja seoste uurimiseks eri ajaperioodidel ning KOV-i toetuste, teenuste ja kontaktisikute leidmiseks. Omanik kinnitas selle kasutuseesmärgi 23.09 ning lisas põhinõude: RAG-i kasutamine peab tunduma loomuliku vestlusena assistendiga. Otsing on assistendi taustal kasutatav võime. Dokument on terviklahenduse analüüs. Omaniku hilisema arendusloa järel teostati esimene kohalik vastuvõtu- ja keeleotsingu plokk; täpne ulatus ja piirid on [ADR-011-s](../rag-v2/adr-011-resumable-intake-and-language-search.md). Ülejäänud kirjeldatud lisavõimed on ettepanekud, mitte valmisolekuväited.
@@ -352,23 +354,106 @@ Esimese konkreetse arendusülesande piiraksin jätkatava vastuvõtu ning ühise 
 
 Tähtaega või lõplikku hinda sellest analüüsist ei tuletata. Esimese ploki täpne töömaht sõltub olemasoleva vastuvõtu, kirjutusluku, kuluregistri ja indeksi avaldamise ühendamise lahendusest.
 
-## 12. Opuse läbivaatuse fookus
+## 12. Opusele: ülesanne hüpoteesi ja tehtud töö kriitiliseks ülevaatuseks
 
-Omanik soovis esmalt hüpoteetilist analüüsi ning täpsustas ühe süsteemi kolm põhikasutust. Läbivaatuses tuleb eristada kinnitatud kasutuseesmärki, olemasoleva koodi fakti, analüüsi järeldust ja uut teostusettepanekut:
+Palun tutvu SotsiaalAI RAG v2 / GraphRAG arendusega, hinda Codexi hüpoteesi sõltumatult ja vaata tehtud kood üle. Eesmärk on saada põhjendatud otsus, mida säilitada, parandada, lihtsustada või ümber teha. Käsitle analüüsi, ADR-e ja allolevat teostuskokkuvõtet kontrollitavate väidetena. Läbitud sihttestidest ei järeldu automaatselt arhitektuuri sobivus ega kasutaja probleemi lahendamine.
 
-1. Kas kirjeldatud muudatused kasutavad olemasolevat arhitektuuri mõistlikult ning kas mõni osa on juba teostatud?
-2. Kas üks ühine tuum koos eri päringuviisidega katab ajakirjaotsingu, ajalise seoseanalüüsi ja KOV-i teenuse/toetuse/kontakti leidmise? Milline väikseim läbiv valim seda tõendaks?
-3. Kuidas ühendada väljalaskekirje, allikaregister ja praegune indeksi/M4 leping ilma uue vastuolulise seisuallikata?
-4. Milliseid tervikluse ja õiguste kontrolle tuleb valikulise lugemise juures säilitada ning kuidas neid tõendada?
-5. Kas allikaversiooni ja tuletatud tulemuste eristamine on kohe vajalik või saab seda teha väiksema muutusega?
-6. Kuidas kontrollida testadapteriga väliskutse järel taastamist, teadmata tulemuse käsitlust ja vana töötleja hilinenud kirjutamise tõkestamist?
-7. Milline on sisulise graafiseose kinnitamise minimaalne usaldusväärne leping ning kuidas eristada tõendatud sõltuvust, temaatilist seost ja uurimishüpoteesi hallatava inimülevaatuse mahuga?
-8. Kas teenuse/toetuse, KOV-i, kontaktrolli ja allikaversiooni eristus on piisav? Kuidas vastendada olemasolevad paketid ja kontaktikoond duplikaate või valeidentiteete tekitamata?
-9. Kuidas tõendada ajakohasust, avatud/teadmata kehtivust ja perioodide katvust? Kuidas vältida vanast artiklist praeguse kontakti või tingimuse tuletamist?
-10. Kas assistent suudab pidada sidusat vestlust, valida uue otsingu ja olemasoleva tõendi kasutamise vahel ning käsitleda jätkuküsimusi ja parandusi ilma kasutajat otsinguvormi rolli surumata?
-11. Milline on väikseim sidus esimene arendusplokk ning millised ettepanekud võivad jääda hilisemaks, säilitades kõik kolm kasutuseesmärki ja vestlusliku kasutuskogemuse?
+See ülesanne on esmalt läbivaatus ja soovitused. Ära alusta selle raames ulatuslikku ümberkirjutust ega väljalaset. Omaniku varasem arendusluba on olemas; ülevaatuse eesmärk on täpsustada edasist tööd, mitte küsida arenduse alustamiseks uut luba.
 
-Läbivaatuse järeldus võiks nimetada tugevad osad, konkreetsed puudused, põhjendatud alternatiivid ning järgmise arendusploki vastuvõtupiiri. Teostus on omaniku 23.09 juhisel alanud; läbivaatus täpsustab jätkuvat tööd ega nõua arenduse alustamiseks uut luba.
+### 12.1. Omaniku eesmärk ja piirangud
+
+Soovime üht väga head vestluslikku assistenti, mis:
+
+- leiab ajakirjadest teadmisi koos täpsete allikate ja bibliograafiaga;
+- aitab võrrelda teemasid ja seoseid eri ajaperioodidel, näidates katvuse lünki ning eristades seost põhjuslikkusest;
+- leiab õige kohaliku omavalitsuse toetused, teenused, taotlemisviisi ja vastutavad kontaktisikud;
+- mõistab vaba olukorrakirjeldust, näiteks „Olen üksi kodus, raske on toimetulek, tööd ei ole”, ilma et kasutaja peaks teadma õige teenuse nime;
+- peab loomulikku jätkuvestlust: „kellele helistan?”, asukoha parandamine või „selgita lihtsamalt” ei tohiks nõuda kasutajalt uue otsingupäringu koostamist;
+- töötab eesti ja inglise keeles, käändevormide ja eri sõnastustega, ilma käsitsi kirjutatud sõnade/käänete promptiloenditeta. Praegune lisakanal hõlmab ka vene keelt;
+- kasutab AI-d mõistliku kuluga. Eraldi planeeriv, ümberkirjutav, ümberjärjestav ja vastav mudel igal pöördel ei ole eesmärk;
+- säilitab allikate päritolu, versioonid, kehtivuse ja õigused. Allikad peavad olema kasutajale avatavad;
+- kasutab korduvkasutatavat tuuma: SotsiaalAI on esimene klient, kliendi eripärad kuuluvad adapterisse või seadistusse.
+
+Tasulised mudelitestid ega eraldi tasuline AI-hindamisring **ei ole nõue**. Tehnilist käitumist saab kontrollida kohalike testide, testadapterite ja olemasolevate tõenditega. Kontrollimata sisulist kvaliteeti tuleb nimetada piiranguna. Admini käsitsi käivitatav RAG-enesetest peab säilima. Allika ID, nime või oodatud vastuse järgi runtime-erandeid ei lisata.
+
+### 12.2. Lugemisjärjekord ja ülevaatuse piir
+
+Töökaust on `C:\Users\rauds\Desktop\Sotsiaal.ee`. Alusta praegusest `AGENTS.md`-st, Giti seisust ning [SotsiaalAI.md](../platvormi%20arendus/SotsiaalAI.md) S1.0 ja S2 RAG-i osast. Ära loe kogu suurt seisufaili. Käesoleva analüüsi §1–11 kirjeldavad hüpoteesi; keele, olukorra, vestluse ja kulu küsimused on eriti §8.1 ning §8.3–8.5-s, perioodid §9-s.
+
+Seejärel loe teostus ja selle tõendi piirid:
+
+1. [ADR-011: jätkatav vastuvõtt, keel ja partii avaldamine](../rag-v2/adr-011-resumable-intake-and-language-search.md) ning [kohalik koondtõend](../rag-v2/adr-011-local-evidence.json).
+2. [ADR-012: jätkatav indekseerimine](../rag-v2/adr-012-resumable-indexing.md).
+3. [ADR-013: valikuline otsingulaadimine](../rag-v2/adr-013-selective-retrieval.md).
+4. Vajadusel ADR-007/008/010 ja 08.09 väljalaskeraporti täpne seotud lõik; need kirjeldavad varasemat alust, mitte tingimata praegust serveriseisu.
+
+Üleandmise koostamisel kontrollitud kohalik HEAD on `e2540b998`. Ülevaadatavad arenduscommit'id:
+
+| Commit | Ulatus |
+| --- | --- |
+| `22193e7af` | Jätkatav vastuvõtt, ülevaatus/avaldamine ja indekseerimine; Snowball ET/EN/RU lisakanal; olukorrapõhise vastuse üldjuhis; analüüs ja tehnilised tõendid. |
+| `a407fb6d0` | Väike indeksi aadressiloend, kandidaatide ja sõltuvusdokumentide valikuline laadimine ning selle kontrollid. |
+| `e2540b998` | Omaniku arendusloa ja tasulise testiringi mittenõutavuse täpsustus tööjuhises. |
+
+Koodi lähtepunkt on `00fb25ac0`; vaata näiteks `git diff 00fb25ac0..e2540b998 -- lib/rag-v2 prisma/rag-v2 scripts tests`. See ei asenda vajalike kutsujate lugemist. Käesoleva üleandmise dokumentatsioonitäiendus tuleb neist hiljem.
+
+Tööpuus on palju varasemaid muudatusi, sealhulgas algmaterjalide ümberpaigutusi ning tööjuhiste ja seisufaili muudatusi. Need ei kuulu automaatselt sellesse koodiülevaatusse. Säilita need; ära puhasta tööpuud ega kirjuta algallikaid ümber. `AGENTS.md` ja SotsiaalAI.md sisaldasid eri tööde muudatusi, mistõttu commit'idesse valiti ainult selle ülesande lõigud. Praegune tööjuhis tuleb lugeda tööpuust.
+
+### 12.3. Codexi hüpotees, mida tuleb vaidlustada
+
+Ühine PostgreSQL-i, Qdranti ja muutumatute allikaversioonide tuum võiks teenindada kolme kasutusrada. Artikliotsing kombineeriks täpse teksti, automaatse keeletöötluse ja mitmekeelse tähendusotsingu. KOV-i teenused/kontaktid vajaksid lisaks struktureeritud kirjeid, identiteete ja värskust. Graaf tooks kaasa allikates kirjeldatud tingimused ja erandid. Perioodivõrdlus vajaks katvust arvestavat tõendivalikut ja koondamist.
+
+Tavaline vestluspööre võiks kasutada kohalikku otsingut, vajadusel üht küsimuse embedding'ut ja üht vastust koostavat mudelikutset. RAG ei pea olema eraldi vestlus teise AI-ga. Teadmiste koostamine ja vektoriseerimine saaksid suuresti toimuda allikate ettevalmistamisel. Ühe vastusekutse eeldus on siiski hüpotees: hinda, kas see katab tegeliku päringu mõistmise, mitte ainult juba leitud teksti sõnastamise.
+
+Eelkõige vasta järgmistele küsimustele:
+
+1. **Kas arhitektuur vastab kasutuseesmärgile?** Võrdle praegust lähenemist lihtsama hübriidotsingu ja struktureeritud kirjete lahendusega. Millise konkreetse ülesande puhul annab graaf kasu? Kas järjekorrad, versioonid ja läbivaatusetapid on proportsionaalsed või on mõni osa tarbetult keerukas?
+2. **Kuidas jõuab vaba mure õige allikani?** Kui olukorra mõistmise juhis rakendub alles vastusemudelis pärast otsingut, võib vajalik tõend juba puududa. Jälgi näidet „üksi kodus / raske toimetulek / tööd ei ole” päringu sisendist kandidaatide ja vastuseni. Erista kasutaja öeldud fakt, oletatud vajadus ja teadmata asjaolu; pelk empaatiline vastus ei tõenda asjakohase abi leidmist.
+3. **Kas keelelahendus on piisav?** Snowball on tüvestaja, mitte täielik lemmatiseerija ega tähenduse mõistja. Võrdle rolle: täpne tekst, tüvestamine, vajadusel morfoloogiline analüüs ja mitmekeelne embedding. Arvesta liitsõnu, eitust, kirjavigu, nimesid, segakeelt ja EN→ET otsingut. Hinda lisakeerukust ja kasu, mitte ainult tehnoloogia nime.
+4. **Kas vestlus on sisuliselt ühendatud?** Kuidas mõistetakse viiteid „see” ja „seal”, parandatud KOV-i, muutunud perioodi ning vajadust uut tõendit otsida? Kas „selgita lihtsamalt” saab kasutada olemasolevat tõendit ilma õiguste ja ajakohasuse kontrolli kaotamata? Praegune üldjuhis ja vestluse taastamine ei tõenda veel neid võimeid.
+5. **Kas AI-kulu ja lihtsus on hinnatud õigel alusel?** Erista mudelikutsed, embedding'ud, konteksti tokenid, kohalik arvutus ja eeltöötlus. Kontrolli tegelikku serveri/piloodi rada ning suvalise uue päringu embedding'u hankimist: CLI salvestatud vektorite nõue ei kirjelda automaatselt kogu veebirada. Kui soovitad lisamudelietappi, näita millal seda vaja on ja mis lubaks enamiku pöördeid lihtsamana hoida.
+6. **Kas KOV ja aeg vajavad teistsugust mudelit?** Kuidas hoida teenus, kohalik variant, kontaktroll ja allikaversioon eraldi? Kuidas käsitleda vana kontakti, avatud või teadmata kehtivust, eri tüüpi kuupäevi ja katvuslünki? Tavaline top-k vastus ei tõenda „kõiki teenuseid” ega perioodi üldist arengut.
+
+### 12.4. Mida on tehtud ja mida kontrollida koodis
+
+Alljärgnev kirjeldab kohalikke teostusväiteid, mida pead kontrollima commit'i ja koodi järgi.
+
+| Teostus | Olulised failid ja kontrollküsimused |
+| --- | --- |
+| Külmutatud vastuvõtupartii ja püsiv edenemine | `lib/rag-v2/ingest-batch.js`, `ingest-batch-postgres.js`, `ingestion.js`, `catalog.js`, `scripts/rag-v2-ingest-batch.mjs`. Kas sisendi muutumine, sama töö kordamine, tööõiguse aegumine ja katkestus pärast väljundi kirjutamist on käsitletud? Kas protsessi sundlõpetamisel jäänud faililukk vajab eraldi taastamist? |
+| Ülevaatus ja atomaarne avaldamine | `lib/rag-v2/ingest-publication.js`. Kas kinnitatud otsus seostub täpse allika, hoiatuste ja baaspõlvkonnaga? Kas hilinenud kordus võib uuemat kataloogi üle kirjutada? Väljajätmine säilitab varasema avaldatud dokumendi: hinda seda eraldi dokumendi tühistamise vajadusest. |
+| Jätkatav indekseerimine | `lib/rag-v2/search/index-jobs.js`, `index-jobs-postgres.js`, `indexing.js`, `postgres.js`, `qdrant.js`, `snapshot.js`, `scripts/rag-v2-index-batch.mjs`. Kontrolli edenemisjärjekorda, vana töötleja kirjutuskaitset, PostgreSQL/Qdranti kooskõla ja aktiveerimist. Arvesta pika lõppkontrolli kestust, tööõiguse uuendamist ning juba lõpetatud töö kordamise tähendust. |
+| Keelekanal | `lib/rag-v2/search/morphology.js`, `profiles.js`, `postgres.js`, `lib/rag-v2/vendor/snowball-3.1.1/`. Kas indeksi ja päringu töötlus kattuvad, vana indeks jääb loetavaks, täpsed nimed/numbrid säilivad ning tüved ei jõua allikatsitaati? Hinda ka järjestuse kaalude põhjendatust. |
+| Valikuline laadimine ja sõltuvused | `lib/rag-v2/search/discovery.js`, `retrieval.js`, `dependencies.js`, `postgres.js`. Kas filtrid ja õigused rakenduvad enne kandidaatide piiri? Kas puuduva allika/üksuse, vale versiooni või rikutud aadressiloendi korral käitumine on põhjendatud? Kas sisse tulev erand, JA/VÕI ja puudulik kontekst säilivad? Kas otsingu ajafilter võib ekslikult eemaldada vajaliku teises perioodis avaldatud tingimuse? |
+| Üks vastusekutse ja jätkuvestlus | `lib/rag-v2/pilot/contracts.js`, `dialogue.js` ning nende tegelikud teenusekutsujad. Muudeti üldjuhiseid ja lepingute versioone, mitte ei ehitatud valmis uut olukorra mõistmise mootorit. Kontrolli ühilduvust ning seda, milline kasutajarada uut otsinguprofiili tegelikult kasutab. |
+| Migratsioonid ja halduspiir | `prisma/rag-v2/schema.prisma`, migratsioonid `202609230001`–`202609230004` ning seotud testid. Need puudutavad eraldi RAG-i andmebaasi. Kohalik usaldatud operaator ei asenda HTTP-liidese autentimist, õigusi ega kliendi eraldatust. |
+
+Valikulisel lugemisel kontrollitakse laaditud dokumente; iga päring ei tee enam kogu korpuse terviklusauditit. Uuri selle mõju leidvusele, rikete nähtavusele ja käitamisele. Aadressiloendi kontrollräsi ei ole sõltumatu allkiri pahatahtliku andmebaasimuutuse vastu. Ära nimeta seda tugevamaks tagatiseks, kui kood annab.
+
+### 12.5. Olemasolev tõend ja ausad piirid
+
+- ADR-011: kuue kohaliku allika vastuvõtt neljas vormingus, 73 tekstiosa ja 28405 embedding'u sisendtokenit; kolm leksikaalset päringut leidsid täpsed allikakohad. Valimil oli **0 semantilist teadmiskirjet ja 0 semantilist sõltuvust**. See ei tõenda olukorra mõistmist ega keelteülest tähendusotsingut.
+- ADR-012: 42 sihttesti, neist 11 uut, katavad jätkamist, tööõigusi, teksti/vektori rikkumist ja aktiveerimist. 3072-mõõtmelise salvestatud arhiivi katses olid vektorid sünteetilised.
+- ADR-013: 50 eri sihttesti; viimase täpsustuse järel 19 asjakohast kordust läbisid. 12 sünteetilise dokumendi näites laaditi varasema 12 dokumendi / 13 üksuse asemel 3 dokumenti / 4 üksust, sama tõendi ja mudelikontekstiga. See mõõdab loetud andmehulka, mitte tootmise latentsust ega sisulist kvaliteeti. Eri raportite testiarvud kattuvad ja neid ei saa sõltumatute testidena kokku liita.
+- Varasemast laiemast artikli/otsingu jooksust jäi 3 testi 39-st punaseks: metaandme räsi, avaldamisaja filter ja tokenite arv. Need kordusid varasema `ingestion.js`/`catalog.js` koopiaga. Kontrolli ADR-011 selgitust kriitiliselt; see oli piiratud baasivõrdlus, mitte kogu vana commit'i täielik tõestus. Oodatud väärtusi ei muudeta pelgalt rohelise tulemuse saamiseks.
+- Sihtlint, eraldi RAG-i Prisma kontrollid ja kohalikud migratsioonid läbisid. Uut tootmisbuild'i ega brauseri/mudeli tervikrada neis arendusplokkides ei käivitatud. Üleandmise koostamine ei tähenda testide uut käivitamist.
+- Arendusplokkides tasulisi mudelikutseid, push'i ega deploy'd ei tehtud. Serveri ja `origin/main`-i praegust seisu üleandmisel ei mõõdetud.
+- 5000 tekstiosa piir säilib. Valitud dokumendi pakett ja üksused laaditakse veel tervikuna; kõigi lubatud dokumentide aadressiloendid loetakse endiselt. Indekseerimise lõppkontroll käib kogu valimi üle ja pole täielikult piiratud `--max-batches` väärtusega; vektoriarhiivilugeja hoiab kataloogi mälus.
+- Teadmiskandidaatide ja puuduvate pärisvektorite mahttöö, kogu korpus, uute partiivoogude adminiliides, kontaktide värskus, täielik olukorrapõhine abi ning perioodisüntees pole valmis. Olemasolev piiratud vestlus- ja adminirada ei tähenda uute plokkide täielikku ühendust.
+
+Kasuta konkreetse kahtluse kontrolliks väikseimat vajalikku testi, vajadusel eraldatud kohaliku PostgreSQL/Qdranti andmetega ja `TZ=UTC` all. Ära korda kogu muutumatu koodi testikomplekti ainult raporti jaoks. Ära kasuta tootmiskasutajate sisu ega väljasta ühendussaladusi. Testvektori edu ja tegeliku embedding'u semantiline kvaliteet peavad jääma eraldi väideteks.
+
+### 12.6. Oodatud ülevaatuse tulemus
+
+Esita eestikeelne põhjendatud ülevaatus järgmiste tulemustega:
+
+1. **Hinnang eesmärgile vastavusele:** mis töötab tehniliselt, mida kasutaja saab juba teha ja milline lubadus jääb veel katmata. Jälgi vähemalt artikliküsimust, kahe perioodi võrdlust ja olukorrakirjeldusest KOV-i kontakti jõudvat jätkuvestlust.
+2. **Järjestatud konkreetsed leiud:** tõsidus, fail/rida, käivitav olukord, mõju, olemasolev tõend või väike reprodutseerimiskatse ning minimaalne parandussuund. Erista uus regressioon, varasem puudus, kontrollimata eeldus ja arhitektuurieelistus. Kui mõnes alas viga ei leidnud, ütle seda koos kontrolli ulatusega.
+3. **Hüpoteesi kriitika:** millised eeldused on põhjendatud, millised nõrgad või valed; mida säilitada, lihtsustada, asendada või edasi lükata. Paku alternatiiv ainult koos probleemi, eelise, kulu ja ülemineku mõjuga. Praegune teostus ei ole põhjus nõrga lahenduse säilitamiseks.
+4. **Kolm järgmist arendusplokki prioriteedi järjekorras:** kasutajale nähtav tulemus, ulatus, vajalik sõltuvus ja väike kontrollitav vastuvõtupiir. Hinda iseseisvalt ka Codexi senist ettepanekut jätkata mahutöötluse/admini ühendusega: võib-olla annab enne seda suurema väärtuse üks päriselt läbiv olukorrapõhise vestluse rada.
+5. **Alles jääv ebakindlus:** milliseid järeldusi olemasolev kood ja tõend ei võimalda. Ära muuda tasulist mudelihindamist automaatselt arenduse jätkamise tingimuseks.
+
+Aktiivse töö seisu kannab endiselt ainult SotsiaalAI.md. Käesolev jaotis on omaniku soovitud ülevaatuse lähteülesanne, mitte uus paralleelne tööjärjekord.
 
 ## Seotud projekti alusmaterjalid
 
