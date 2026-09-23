@@ -199,7 +199,7 @@ export default function ChatBodyView({
               {showStandardChat ? <ChatRecordingNotice recordingError={recordingError} voiceNotice={voiceNotice} floating /> : null}
 
               {showStandardChat ? <footer /> : null}
-              {showStandardChat && pilotMode ? <p role="status">{t(pilotMode === 'test' ? 'm4Pilot.test' : 'm4Pilot.real')}</p> : null}
+              {showStandardChat && pilotMode === 'test' ? <p role="status">{t('m4Pilot.test')}</p> : null}
               {showStandardChat ? <ChatSourcesPanel
                 open={showSourcesPanel}
                 t={t}
