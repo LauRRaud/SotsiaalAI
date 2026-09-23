@@ -30,6 +30,9 @@ test('M4-C approval: dialogue needs its own contract and egress grant; old v3 re
   await assert.rejects(readPilotConfig('tester'), { code: 'pilot_approval_required' });
   await write(dialogue, { dialogueEgress: true });
   assert.equal((await readPilotConfig('tester')).dialogueVersion, DIALOGUE_VERSION);
+  await write({ ...dialogue, questionVersion: 'm4-user-scope-search-1' }, { dialogueEgress: true });
+  assert.equal((await readPilotConfig('tester', { purpose: 'read' })).questionVersion, 'm4-user-scope-search-1');
+  await assert.rejects(readPilotConfig('tester'), { code: 'implementation_approval_mismatch' });
   // A new prompt may read still-authorized old turns, never execute an old grant.
   await write({ ...dialogue, promptVersion: 'm4-grounded-dialogue-1' }, { dialogueEgress: true });
   assert.equal((await readPilotConfig('tester', { purpose: 'read' })).promptVersion, 'm4-grounded-dialogue-1');

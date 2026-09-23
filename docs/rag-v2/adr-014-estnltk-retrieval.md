@@ -43,4 +43,4 @@ Tööl on 30 sekundi tähtaeg ja vastuse suuruse piir. Rikutud protokoll, vale p
 
 ## Allesjäävad piirid
 
-EstNLTK parandab sõnavormide leidmist. See ei lahenda üksinda sõnalise kanali üldsõnamüra, KOV-i ulatuse määramist, teenuse-kontakti seoseid, eitust ega vestluse mõistmist. Vektorotsingu ja päris vastusemudeli kvaliteeti siin ei hinnatud. Opuse L1/L2/L4/L6 jäävad järgmisteks eraldi parandusteks. Uus põlvkond nõuab uuesti indekseerimist; varem salvestatud pärisvektoreid saab taaskasutada uute embedding'u kutseteta. Serveri indeks, piloodiseadistus ja vestlusrada on `not_run`.
+EstNLTK parandab sõnavormide leidmist. See ei lahenda üksinda sõnalise kanali üldsõnamüra, KOV-i ulatuse määramist, teenuse-kontakti seoseid, eitust ega vestluse mõistmist. Vektorotsingu ja päris vastusemudeli kvaliteeti siin ei hinnatud. Opuse L1/L2/L4/L6 järelparandused ja nende piirid on [ADR-015-s](adr-015-opus-review-followup.md). Uus põlvkond nõuab uuesti indekseerimist; varem salvestatud pärisvektoreid saab taaskasutada uute embedding'u kutseteta. Serveri indeks, piloodiseadistus ja vestlusrada on `not_run`.

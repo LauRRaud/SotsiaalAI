@@ -21,6 +21,8 @@ import { indexSnapshot } from '../lib/rag-v2/search/indexing.js';
 import { ESTNLTK_LEXICAL, MORPHOLOGY_LEXICAL } from '../lib/rag-v2/search/morphology.js';
 import { retrieve } from '../lib/rag-v2/search/retrieval.js';
 import { LocalPolicy } from '../lib/rag-v2/search/policy.js';
+import { runtimeAdapters } from '../lib/rag-v2/pilot/retrieval.js';
+import { retrievalProfile } from '../lib/rag-v2/search/profiles.js';
 
 let root, queue, connections, qdrant;
 const tenants = [], collections = [], fetch = globalThis.fetch, connect = net.Socket.prototype.connect;
@@ -138,7 +140,10 @@ test('conflicting metadata cannot be approved away; exclusion permits independen
   assert.equal((await active(options)).documents[conflict.document_id], undefined);
 });
 
-test('registered municipal packages and zoned XML pass review/publication and stay in the requested municipality', async () => {
+test('registered municipal packages and zoned XML pass review/publication and stay in the requested municipality', async t => {
+  const runtimeEnvironment = { RAG_V2_QDRANT_URL: process.env.RAG_V2_QDRANT_URL, RAG_V2_QDRANT_KEY: process.env.RAG_V2_QDRANT_KEY };
+  process.env.RAG_V2_QDRANT_URL = connections.qdrantUrl; process.env.RAG_V2_QDRANT_KEY = connections.qdrantKey;
+  t.after(() => { for (const [key, value] of Object.entries(runtimeEnvironment)) { if (value === undefined) delete process.env[key]; else process.env[key] = value; } });
   const tenant = `publication-kov-${randomUUID()}`; tenants.push(tenant);
   const inputRoot = path.join(root, tenant); await fs.mkdir(inputRoot);
   const inputs = [];
@@ -181,6 +186,20 @@ test('registered municipal packages and zoned XML pass review/publication and st
     assert(packet.evidence.every(e => e.source_locations.some(location => location.kind === 'json')));
   }
   assert.equal(embedding.calls, callsBefore);
+  let fullReads = 0;
+  class Catalog extends IngestBatchQueue {
+    constructor() { super(connections.postgresUrl); }
+    async bundles(...args) { fullReads++; return super.bundles(...args); }
+  }
+  const generation = await queue.active(tenant);
+  const config = { mode: 'real', tenant, configHash: 'synthetic-runtime-config', generationId: generation.id,
+    embedding: embedding.config, documents: Object.fromEntries(snapshot.bundles.map(b => [b.document.id, b.version.id])), profile: retrievalProfile() };
+  const adapters = runtimeAdapters(async () => config, 'operator', { Catalog });
+  await adapters.preflight(config); assert.equal(fullReads, 0);
+  const packet = await adapters.search(config, { text: 'koduteenuseid', language: 'et', strictFilters: { region: 'example_a' } },
+    await embedding.embed('koduteenuseid'));
+  assert.equal(packet.state, 'ok'); assert.equal(fullReads, 1);
+  assert(packet.evidence.every(e => e.source_metadata.municipality_id.value === 'example_a'));
 });
 
 test('failed input can be excluded without resetting its queue state or blocking a ready sibling', async () => {

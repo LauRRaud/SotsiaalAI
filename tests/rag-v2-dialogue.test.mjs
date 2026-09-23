@@ -29,7 +29,8 @@ test('dialogue contract: ET/EN/RU preserve four user turns and correction proven
     assert.equal(fourth.context.correctionRevision, 1);
     assert.equal(fourth.context.scopeId, correction.context.scopeId);
     const query = buildDialogueQuery(fourth, config);
-    assert.ok(messages.every(text => query.text.includes(text)));
+    assert.equal(query.text, messages.join('\n\n'));
+    assert.doesNotMatch(query.text, /USER MESSAGE|USER CORRECTION|Active topic and person/);
     assert.deepEqual(query.strictFilters, {}); // No stale location becomes a hard filter.
     const topic = f.next('Different topic', 'new');
     assert.equal(topic.userTurns.length, 1); assert.equal(topic.context.personId, first.context.personId);
@@ -71,7 +72,9 @@ test('synthetic guarantee: old assistant is explicitly unverified dialogue, its 
   assert.match(body.instructions, /same-named references in the new evidence packet/);
   assert.doesNotMatch(buildDialogueQuery(current, config, assistant).text, /GUARANTEE/);
   const explicit = { ...current, selection: { ...current.selection, replyToBlock: 2 } };
-  assert.match(buildDialogueQuery(explicit, config, assistant).text, /unverified dialogue.*\nSYNTHETIC UNSUPPORTED GUARANTEE/);
+  assert(buildDialogueQuery(explicit, config, assistant).text.endsWith(assistant.blocks[1].text));
+  assert.doesNotMatch(buildDialogueQuery(explicit, config, assistant).text, /User-selected prior answer point/);
+  assert.equal(data.dialogue.publishedAssistant.evidenceStatus, 'NOT_A_FACT_SOURCE');
   assert.equal(data.dialogue.version, DIALOGUE_VERSION);
   // This is a prompt/input contract assertion, NOT a Luna semantic-quality assertion.
 });
