@@ -1,6 +1,6 @@
 # ADR-020 — Täpne omavalitsuse tuvastus, artikli bibliograafia ja aastapõhine perioodivalik
 
-24.09.2026. Kohalik teostus (Claude Opus 5.5); commit, push ja deploy `not_run`. Põhjendused ja mõõtmised: [terviklik analüüs](../audits/rag-v2-opus-terviklik-analuus-2026-09-24.md).
+24.09.2026. Teostus Claude Opus 5.5; kood commit'is `fe1101ff`. Serveris aktiveeritud piloodiplaani ega v3 indeksit see ei muuda. Põhjendused ja mõõtmised: [terviklik analüüs](../audits/rag-v2-opus-terviklik-analuus-2026-09-24.md).
 
 ## Probleemid
 
