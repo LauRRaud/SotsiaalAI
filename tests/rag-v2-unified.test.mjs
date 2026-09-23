@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import { dateCandidates, retrievalPlan } from '../lib/rag-v2/pilot/retrieval-plan.js';
 import { validateDialogueState, TYPED_DIALOGUE_STATE_VERSION, TYPED_DIALOGUE_ANSWER_SCHEMA, dialogueStateContract } from '../lib/rag-v2/pilot/dialogue-state.js';
 import { UNIFIED_RETRIEVAL_VERSION, mergeUnifiedPackets, checkUnifiedDirectory } from '../lib/rag-v2/search/unified.js';
-import { retrievalDirectory, DISCOVERY_SCHEMA, LEGACY_DISCOVERY_SCHEMA, verifyDirectory } from '../lib/rag-v2/search/discovery.js';
+import { retrievalDirectory, DISCOVERY_SCHEMA, LEGACY_DISCOVERY_SCHEMA, TYPED_DISCOVERY_SCHEMA, verifyDirectory } from '../lib/rag-v2/search/discovery.js';
+import { filtersMatch } from '../lib/rag-v2/search/ranking.js';
 import { searchConfig, verifySearchConfig } from '../lib/rag-v2/search/indexing.js';
 import { embeddingConfig } from '../lib/rag-v2/search/embedding.js';
 import { hash, stable } from '../lib/rag-v2/contracts.js';
@@ -115,4 +116,27 @@ test('typed source directory creates a new search configuration while legacy gen
     const row = { document_id: 'doc', version_id: 'version', bundle_hash: value.bundle_hash, retrieval_directory: value, retrieval_hash: hash(stable(value)) };
     assert.deepEqual(verifyDirectory(row, { config, snapshot: { documents: { doc: { version_id: 'version' } } } }), value);
   }
+});
+
+test('a year-only journal source belongs to a publication period only when its whole year lies inside it', () => {
+  const yearOnly = (document, year) => ({ ...directory(document, null),
+    fields: { publication_date: { value: null }, publication_year: { value: year }, regions: { value: [] } } });
+  const source = row => ({ document: { fields: row.fields } });
+  assert.equal(filtersMatch(source(yearOnly('pdf', 2016)), { publication_from: '2016-01-01', publication_to: '2020-12-31' }), true);
+  assert.equal(filtersMatch(source(yearOnly('pdf', 2016)), { publication_from: '2016-06-01', publication_to: '2020-12-31' }), false);
+  assert.equal(filtersMatch(source(yearOnly('pdf', '2016')), { publication_to: '2015-12-31' }), false);
+  assert.equal(filtersMatch(source(yearOnly('none', null)), { publication_from: '2016-01-01' }), false);
+  assert.equal(filtersMatch(source(yearOnly('none', null)), {}), true);
+  const directories = [yearOnly('pdf-2016', 2016), yearOnly('pdf-2021', '2021'), directory('dated', '2022-03-01'), directory('undated', null)];
+  const result = mergeUnifiedPackets({ tenant: 'test', generationId: 'generation', directories, plan,
+    lanes: [{ key: 'period_1', kind: 'publication_period', period: { from: '2016-01-01', to: '2020-12-31' }, packet: packet([entry('pdf-2016')]) }] });
+  const { coverage } = result.retrieval_context.lanes[0];
+  assert.deepEqual(coverage.documents_by_publication_year, { 2016: 1 });
+  assert.equal(coverage.indexed_documents, 1); assert.equal(coverage.publication_year_only_documents, 2);
+  assert.equal(coverage.missing_publication_date_documents, 1);
+  const bundle = { document: { id: 'doc', fields: { publication_date: { value: null }, publication_year: { value: 2016 }, journal_title: { value: 'Journal' } } },
+    version: { id: 'version' }, chunks: [], dependencies: [] };
+  assert.equal(retrievalDirectory(bundle, embeddingConfig()).fields.publication_year.value, 2016);
+  assert.equal(retrievalDirectory(bundle, embeddingConfig(), TYPED_DISCOVERY_SCHEMA).fields.publication_year, undefined);
+  assert.notEqual(searchConfig(embeddingConfig(), undefined, TYPED_DISCOVERY_SCHEMA).id, searchConfig(embeddingConfig()).id);
 });

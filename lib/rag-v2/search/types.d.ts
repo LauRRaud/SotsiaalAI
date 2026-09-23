@@ -17,7 +17,8 @@ export interface SearchQuery {
 export interface Evidence {
   evidence_id: Id; document_id: Id; document_version_id: Id; unit_id: Id; chunk_id: Id;
   span_ids: SourceSpan['id'][]; pdf_pages: number[]; source_locations?: SourceLocation[]; source_text: string;
-  bibliography: { title: string; authors: string[] | null; publication_date: string | null };
+  bibliography: { title: string; authors: string[] | null; publication_date: string | null;
+    publication_year?: number | string; journal_title?: string; issue_label?: string; page_range?: string };
   source_metadata: Record<string, { value: unknown; provenance: unknown[]; review_state: string }>;
   search_aids: { heading_prefix: string; legacy_description: unknown; role: 'not_source_quote' };
   selection: { reason: string | { type: 'structural_expansion'; seed_evidence_id: Id; via: string; edge_ids: Id[] }
@@ -52,7 +53,7 @@ export interface ModelContext {
     lanes: { key: string; kind: 'knowledge' | 'local_records' | 'publication_period'; state: 'selected' | 'no_evidence'; refs: string[];
       period?: DialoguePeriod; filters?: SearchQuery['filters']; coverage?: {
         counting_unit: 'indexed_source_document'; indexed_documents: number; selected_documents: number;
-        missing_publication_date_documents: number; documents_by_publication_year: Record<string, number>;
+        missing_publication_date_documents: number; publication_year_only_documents: number; documents_by_publication_year: Record<string, number>;
         article_deduplication: 'not_assessed'; corpus_completeness: 'not_assessed'; selection: 'bounded_excerpts_not_exhaustive_reading';
       } }[] };
 }

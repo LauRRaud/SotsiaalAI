@@ -108,7 +108,8 @@ test('the PostgreSQL importer persists cards and dependencies as immutable scope
     if (sql.startsWith('SELECT retrieval_directory')) return { rows: [directories.get(p[2])] };
     return { rows: [] };
   } };
-  const postgres = Object.create(PostgresCatalog.prototype); postgres.transaction = fn => fn(client);
+  // The importer reads the generation (and runs lexical analysis) before its write transaction.
+  const postgres = Object.create(PostgresCatalog.prototype); postgres.transaction = fn => fn(client); postgres.pool = client;
   await postgres.importSnapshot({ tenant, documents: f.snapshot.documents, bundles: [base, guide], assets: { [base.version.id]: {}, [guide.version.id]: {} } }, 'synthetic-generation', f.units);
   assert.equal([...objects.values()].filter(row => row.kind === 'knowledge_card').length, 3);
   const dependency = [...objects.values()].find(row => row.kind === 'dependency');

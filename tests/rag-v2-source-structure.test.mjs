@@ -15,7 +15,8 @@ import { adaptMetadata } from '../lib/rag-v2/metadata-adapter.js';
 import { metadataValue } from '../lib/rag-v2/metadata-values.js';
 import { filtersMatch } from '../lib/rag-v2/search/ranking.js';
 import { directoryScope, retrievalDirectory } from '../lib/rag-v2/search/discovery.js';
-import { embeddingConfig } from '../lib/rag-v2/search/embedding.js';
+import { embeddingConfig, indexUnit } from '../lib/rag-v2/search/embedding.js';
+import { sourceEntry } from '../lib/rag-v2/search/retrieval.js';
 import { registeredSource } from '../lib/rag-v2/registered-source.js';
 import { textRanges, unitForSpan, chunkSourceLocations } from '../lib/rag-v2/source-locations.js';
 import { verifiedBundle } from '../lib/rag-v2/search/snapshot.js';
@@ -276,6 +277,23 @@ test('complete source metadata still adapts published dates and URLs without dro
   assert.equal(bundle.document.fields.authority.value, 'Example Publisher');
   assert.equal(bundle.document.legacy_metadata.published, '2024-09-25');
   assert.deepEqual(bundle.document.legacy_metadata, options.metadata);
+});
+
+test('evidence bibliography carries journal year, issue and pages without inventing a publication date', async () => {
+  const options = await source('journal-bibliography', 'html', '<article><p>A journal source paragraph.</p></article>',
+    { journalTitle: 'Fixture Journal', issueLabel: '1/2016', pageRange: '3-6', year: 2016 });
+  const { bundle } = await ingest(options);
+  const chunk = bundle.chunks.find(item => item.source_text.includes('journal source'));
+  const entry = sourceEntry(indexUnit(chunk, bundle, embeddingConfig()), bundle, 'ranked_seed', null);
+  assert.equal(entry.bibliography.publication_date, null);
+  assert.deepEqual({ ...entry.bibliography, title: undefined, authors: undefined, publication_date: undefined },
+    { title: undefined, authors: undefined, publication_date: undefined, publication_year: 2016, journal_title: 'Fixture Journal', issue_label: '1/2016', page_range: '3-6' });
+  const projection = modelProjection([entry], { tenant, query_id: 'query-fixture', generation_id: 'generation-fixture' });
+  assert.equal(projection.context.sources.D1.issue_label, '1/2016');
+  const plain = await ingest(await source('plain-bibliography', 'html', '<article><p>A plain source paragraph.</p></article>'));
+  const plainChunk = plain.bundle.chunks.find(item => item.source_text.includes('plain source'));
+  const plainEntry = sourceEntry(indexUnit(plainChunk, plain.bundle, embeddingConfig()), plain.bundle, 'ranked_seed', null);
+  assert.deepEqual(Object.keys(plainEntry.bibliography).sort(), ['authors', 'publication_date', 'title']);
 });
 
 test('metadata provenance resolves in the immutable metadata asset, including absent optional fields', async () => {
