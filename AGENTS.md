@@ -24,6 +24,14 @@ olekut ei kanna. Vana kroonika on gitis: `git show db514ba0:"docs/platvormi aren
 **Ära usu seisu mälu järgi — mõõda.** Serveri ja `origin/main`-i seis loetakse käsuga, mitte
 dokumendist. Seda reeglit on siin rikutud ja ta on maksnud vale väite omanikule.
 
+## Omaniku arendusloa täpsustus (23.09.2026)
+
+- Omaniku arendusülesanne annab loa selle täitmiseks vajalikele kohalikele ja tagasipööratavatele muudatustele. Vali olemasoleva arhitektuuriga sobiv lahendus, teosta see ja kontrolli tulemust; ära peatu iga tavapärase teostusotsuse juures kinnituse küsimiseks.
+- Push, merge, deploy ja päris sõnumite saatmine vajavad omaniku selget luba. Juba antud luba kehtib kokkulepitud ulatuses; ära küsi seda uuesti. Valmista ülevaadatav tulemus enne loaküsimust ette.
+- Tasuliste teenuste kasutamisel järgi kokkulepitud ulatust ja kulupiiri. Uus tasuline teenus või kokkuleppimata mahutöö vajab eraldi kokkulepet; selle puudumine ei peata sõltumatut kohalikku arendust.
+- Puuduva tooteotsuse korral tee sõltumatu töö valmis ja küsi ainult vajalik otsus. Lahenda tagasipööratavad teostusvalikud ise ning nimeta oluline eeldus tulemuse juures. Jätka ülesande piires järgmise vajaliku sammuga, kui takistus puudutab ainult üht tööosa.
+- Tasulised mudelitestid ega eraldi AI-hindamisring ei ole arenduse või töö valmimise nõue. Ära lisa neid kohustuslikuks järgmiseks sammuks ega peata tööd nende loa ootamiseks. Kasuta tehnilise käitumise kontrollimiseks kohalikke sihtteste, testadaptereid ja olemasolevaid tõendeid; kirjelda ausalt sisulise kvaliteedi kontrollimata osa.
+
 ## Kiire plokipõhine tööring
 
 Auditiparandusi on palju; vaikimisi tööühik on **sidus PLOKK**, mitte üks leid ega terve
