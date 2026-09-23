@@ -31,6 +31,7 @@ import { municipalDirectoryAdapter } from '../lib/rag-v2/adapters/municipal-dire
 import { resolveModelReferences } from '../lib/rag-v2/search/model-context.js';
 import { prepareMunicipalContactExport, CONTACT_MAPPING_SCHEMA } from '../lib/rag-v2/adapters/municipal-contact-export.js';
 import { structuralRole } from '../lib/rag-v2/search/structural-role.js';
+import { DIALOGUE_STATE_VERSION, validateStateRegion } from '../lib/rag-v2/pilot/dialogue-state.js';
 
 const appUrl = new URL(process.env.M4_TEST_DATABASE_URL || 'postgres://invalid/invalid');
 if (!['localhost', '127.0.0.1'].includes(appUrl.hostname) || appUrl.pathname !== '/sotsiaal_ai_m4_dev') throw Error('isolated M4 database required');
@@ -179,27 +180,47 @@ test('EstNLTK resolves canonical locality forms, preserves ambiguity and clears 
   const tartu = [{ region: 'tartu_linn', names: ['Tartu linn', 'Tartu'] }, { region: 'tartu_vald', names: ['Tartu vald', 'Tartu'] }];
   assert.equal((await resolveRecordScope(turns(['Tartus']), tartu)).state, 'ambiguous_region');
   assert.equal((await resolveRecordScope(turns(['Tartu vallas']), tartu)).region, 'tartu_vald');
+  const region = { id: 'harku_vald', status: 'reported', support: [{ turn: 1, quote: 'Elan Harkus.' }] };
+  await validateStateRegion({ region }, { regions: directory });
+  await assert.rejects(validateStateRegion({ region: { ...region, id: 'kose_vald' } }, { regions: directory }), { code: 'dialogue_state_region_unanchored' });
+  const previous = { sourceTurnIds: ['0'], value: { region } };
+  assert.equal((await resolveRecordScope(turns(['Elan Harkus.', 'Kellele helistan?']), directory, undefined, previous)).region, 'harku_vald');
+  assert.equal((await resolveRecordScope(turns(['Elan Harkus.', 'Kellele helistan?']), directory.filter(row => row.region !== 'harku_vald'), undefined, previous)).region, null);
+  assert.equal((await resolveRecordScope([{ turnId: '0', text: 'Elan Harkus.', mode: 'same' },
+    { turnId: '1', text: 'Elukoht on muutunud.', mode: 'correction' }], directory, undefined, previous)).region, null);
 });
 
-test('real local dialogue store uses one answer call per turn, carries source focus and switches municipality without query embeddings', async t => {
+test('real local dialogue stores quoted state in one answer call, switches municipality and never resurrects a retracted locality', async t => {
   const user = await db.user.create({ data: { email: `record-dialogue-${randomUUID()}@example.invalid` } });
   const conversation = await db.conversation.create({ data: { userId: user.id, role: 'CLIENT', metadata: { m4: true }, expiresAt: null } });
   const config = { id: randomUUID(), configHash: randomUUID(), tenant, mode: 'real', users: [user.id],
     documents: Object.fromEntries(snapshot.bundles.map(bundle => [bundle.document.id, bundle.version.id])), generationId: generation.id,
     profile: retrievalProfile('hybrid-ranked-first-v1'), recordCatalogue: RECORD_RETRIEVAL_VERSION, dialogueVersion: DIALOGUE_VERSION,
+    dialogueStateVersion: DIALOGUE_STATE_VERSION,
     embedding: embedding.config, model: 'test-transport', reasoning: 'low', maxInputTokens: 128000, maxOutputTokens: 1000,
     expiresAt: null, retentionHours: null, prices: { embeddingInput: 1, answerInput: 1, answerOutput: 1 },
     budget: { attempts: 20, embeddingAttempts: 0, answerAttempts: 20, tokens: 3000000, nanoUsd: 3000000 } };
   t.after(async () => { contactAllowed = true; await db.user.delete({ where: { id: user.id } }); await db.m4PilotLedger.deleteMany({ where: { id: config.id } }); });
   class Catalog extends IngestBatchQueue { constructor() { super(connections.postgresUrl); } }
   const adapters = runtimeAdapters(async () => config, user.id, { Catalog, loadRegions: async () => directory, authorizeContact });
+  // Fixed outputs prove storage/routing, not a model's understanding of these sentences.
+  const unknown = { id: null, status: 'unknown', support: [] };
+  const harku = { id: 'harku_vald', status: 'reported', support: [{ turn: 2, quote: 'Elan Harkus.' }] };
+  const kose = { id: 'kose_vald', status: 'reported', support: [{ turn: 4, quote: 'Kose vallas' }] };
+  const states = [unknown, harku, harku, kose, kose, unknown, unknown,
+    { id: null, status: 'ambiguous', support: [{ turn: 8, quote: 'Mina Harkus, ema Koses.' }] }]
+    .map(region => ({ facts: [{ topic: 'daily coping', subject: 'self', status: 'current', superseded_by: null,
+      support: [{ turn: 1, quote: 'Olen üksi ja kodus on raske toime tulla.' }] }],
+    needs: [{ candidate: 'Possible help with daily activities', based_on: [1] }],
+    unknowns: region.id ? [] : [{ question: 'Which locality is relevant to this request?', based_on: [1] }], region, period: null, language_hint: 'et' }));
   const service = new PilotService({ store: new PilotStore(db), readConfig: async () => config, adapters, call: async ({ stage, body }) => {
     assert.equal(stage, 'answer');
     const input = JSON.parse(body.input[0].content), records = input.evidence.records;
     requests.push(input);
     const entry = records.entries.find(entry => entry.kind === 'service');
-    return { value: entry ? { kind: 'grounded', blocks: [{ text: 'Sünteetilise näidisteenuse kirjeldus.', factual: true, refs: entry.fields.summary.refs }], limitations: [], clarification: null }
-      : { kind: 'clarification', blocks: [], limitations: [], clarification: 'Millises omavalitsuses abi otsid?' },
+    const dialogue_state = states[requests.length - 1];
+    return { value: { ...(entry && dialogue_state.region.id ? { kind: 'grounded', blocks: [{ text: 'Sünteetilise näidisteenuse kirjeldus.', factual: true, refs: entry.fields.summary.refs }], limitations: [], clarification: null }
+      : { kind: 'clarification', blocks: [], limitations: [], clarification: 'Millises omavalitsuses abi otsid?' }), dialogue_state },
     usage: { input: 20, output: 20 }, requestId: 'synthetic-answer' };
   } });
   const run = (question, contextMode = 'same') => service.run(user.id, { question, contextMode, convId: conversation.id,
@@ -220,6 +241,17 @@ test('real local dialogue store uses one answer call per turn, carries source fo
     const old = first.payload.packet.reference_map[ref];
     assert(second.payload.packet.evidence.some(entry => entry.evidence_id === old.evidence_id));
   }
+  assert.deepEqual(second.payload.dialogueState.value, states[4]);
+  assert.deepEqual(requests[4].dialogue.previousState, states[3]);
+  await run('See oli näide, ma ei küsi enam selle valla kohta.');
+  const afterRetraction = await run('Aga kust abi saada?');
+  await run('Mina Harkus, ema Koses.');
+  assert.equal(requests.length, 8); assert.equal(embedding.calls, initialCalls);
+  assert.equal(requests[6].evidence.records.scope.region, null);
+  assert.deepEqual(requests[6].evidence.records.entries, []);
+  assert.equal(afterRetraction.answer.kind, 'clarification');
+  assert.equal(requests[7].evidence.records.scope.state, 'ambiguous_region');
+  assert.deepEqual(requests[7].evidence.records.entries, []);
   contactAllowed = false;
   await assert.rejects(service.restore(second), { code: 'record_contact_access_changed' });
 });

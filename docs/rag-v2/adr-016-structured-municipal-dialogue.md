@@ -22,7 +22,7 @@ Tuuma üldleping on `rag-v2/structured-record-1`. SotsiaalAI paketikujude teisen
 
 Omavalitsuste nimed tulevad aktiivsest `Municipality` loendist. Adapter vastendab `slug`-i praeguse paketikorpuse `municipality_id` kujule (`-` → `_`). EstNLTK analüüsib nime ja kasutaja teksti; käsitsi käändevormide loendit pole. Täpsustatud „Tartu vallas” eristub mitmetähenduslikust „Tartus”. Eri valdade mainimine jääb mitmetähenduslikuks; tuvastamata asukohaga selgesõnaline paranduspööre tühjendab vana ulatuse.
 
-Kohanime mainimine valib võimaliku allikaulatuse, **mitte tõendatud elukoha**. Eituse, hüpoteetilise asukoha ja teise inimese eristamine jääb vastusemudeli ülesandeks ning on juhises selgesõnaline. Deterministlik nimetuvastus ei ole täielik olukorra mõistmine. Opuse pakutud vajadusi, teadmata asjaolusid ja perioodi sisaldav `dialogue_state` väljund on endiselt edasine töö.
+Kohanime mainimine valib võimaliku allikaulatuse, **mitte tõendatud elukoha**. Eituse, hüpoteetilise asukoha ja teise inimese eristamine jääb vastusemudeli ülesandeks ning on juhises selgesõnaline. Deterministlik nimetuvastus ei ole täielik olukorra mõistmine. Opuse pakutud vajadusi, teadmata asjaolusid ja perioodi sisaldav `dialogue_state` väljund lisandus kohalikult [ADR-018-ga](adr-018-quoted-dialogue-state.md); see ei ole veel pärismudeli mõistmise tõend.
 
 Kui piirkond puudub või on mitmetähenduslik, saab sama vastusekutse täpsustuse märke ja tühja kataloogi. Kui piirkond on teada, saab see tema teenusekataloogi ning lubatud seotud kontaktid/vormid. Selle raja päring ei vaja küsimuse embedding'ut ega eraldi planeerivat mudelikutset. Vektorid on praeguses teostuses endiselt indeksi lepingu osa; nende loomise vajadust allikate ettevalmistuses see ei eemalda.
 
@@ -65,4 +65,4 @@ Veebipiloot annab adapterile olemasoleva Prisma kliendi; tuum põhirakenduse and
 
 ## Järelejäänud tervikpiir
 
-See on Opuse P1 tehniline esimene läbiv teostus. Ühine artikli/KOV/perioodi päringuvalik, täielik vestluse sisuline seis, päris teenusekirjete seostamine ajakohaste kanalitega ja suurema omavalitsuse kontekstieelarve on veel lahti. Kontaktikanalite päritolu ning erinevate registri-/paketi-ID-de kohalik teostus ja tõend on nüüd [ADR-017-s](adr-017-verified-contact-export.md); päris valimi vastendus ja ülevaatus on veel tegemata. Aktiivne arendusjärjestus jääb SotsiaalAI.md-sse.
+See on Opuse P1 tehniline esimene läbiv teostus. Ühine artikli/KOV/perioodi päringuvalik, päris teenusekirjete seostamine ajakohaste kanalitega ja suurema omavalitsuse kontekstieelarve on veel lahti. Kontaktikanalite päritolu ning erinevate registri-/paketi-ID-de kohalik teostus ja tõend on nüüd [ADR-017-s](adr-017-verified-contact-export.md); päris valimi vastendus ja ülevaatus on veel tegemata. Piiratud vestluse sisuline seis lisandus [ADR-018-ga](adr-018-quoted-dialogue-state.md). Aktiivne arendusjärjestus jääb SotsiaalAI.md-sse.

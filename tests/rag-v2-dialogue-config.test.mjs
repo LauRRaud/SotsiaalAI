@@ -9,6 +9,7 @@ import { implementationManifest } from '../lib/rag-v2/pilot/provenance.js';
 import { PROMPT_VERSION, QUESTION_VERSION, digest } from '../lib/rag-v2/pilot/contracts.js';
 import { DIALOGUE_VERSION, DIALOGUE_PROMPT_VERSION, DIALOGUE_SEARCH_VERSION } from '../lib/rag-v2/pilot/dialogue.js';
 import { RECORD_RETRIEVAL_VERSION } from '../lib/rag-v2/search/structured-record-source.js';
+import { DIALOGUE_STATE_VERSION, DIALOGUE_ANSWER_SCHEMA } from '../lib/rag-v2/pilot/dialogue-state.js';
 
 test('M4-C approval: dialogue needs its own contract and egress grant; old v3 remains readable and fixed-packet/reuse experiments cannot activate it', async t => {
   const original = { ...process.env }, dir = await fs.mkdtemp(path.join(os.tmpdir(), 'm4c-config-')), file = path.join(dir, 'config.json');
@@ -31,6 +32,18 @@ test('M4-C approval: dialogue needs its own contract and egress grant; old v3 re
   await assert.rejects(readPilotConfig('tester'), { code: 'pilot_approval_required' });
   await write(dialogue, { dialogueEgress: true });
   assert.equal((await readPilotConfig('tester')).dialogueVersion, DIALOGUE_VERSION);
+  const withState = { ...dialogue, dialogueStateVersion: DIALOGUE_STATE_VERSION, dialogueStateSchemaHash: digest(DIALOGUE_ANSWER_SCHEMA) };
+  await write(withState, { dialogueEgress: true });
+  assert.equal((await readPilotConfig('tester')).dialogueStateVersion, DIALOGUE_STATE_VERSION);
+  for (const change of [{ dialogueVersion: undefined }, { dialogueStateSchemaHash: 'wrong' }, { dialogueStateSchemaHash: undefined }]) {
+    await write({ ...withState, ...change }, { dialogueEgress: true });
+    await assert.rejects(readPilotConfig('tester'), { code: 'invalid_dialogue_state_plan' });
+  }
+  await write({ ...withState, dialogueStateVersion: 'unknown' }, { dialogueEgress: true });
+  await assert.rejects(readPilotConfig('tester'), { code: 'unsupported_dialogue_state_version' });
+  await write({ ...dialogue, promptVersion: 'm4-grounded-dialogue-4', questionVersion: 'm4-user-scope-search-3' }, { dialogueEgress: true });
+  assert.equal((await readPilotConfig('tester', { purpose: 'read' })).promptVersion, 'm4-grounded-dialogue-4');
+  await assert.rejects(readPilotConfig('tester'), { code: 'implementation_approval_mismatch' });
   await write({ ...dialogue, recordCatalogue: RECORD_RETRIEVAL_VERSION, budget: { ...dialogue.budget, embeddingAttempts: 0 } }, { dialogueEgress: true });
   assert.equal((await readPilotConfig('tester')).recordCatalogue, RECORD_RETRIEVAL_VERSION);
   await write({ ...dialogue, recordCatalogue: 'unknown' }, { dialogueEgress: true });

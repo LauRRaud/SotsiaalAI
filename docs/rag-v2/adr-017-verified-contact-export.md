@@ -65,4 +65,4 @@ Vektorid ja olemasoleva vestluskatse mudelitransport kasutavad testadaptereid. U
 
 ## Alles jääv piir
 
-Ekspordirada on kasutatav, kuid päris 2–3 valla kontaktide vastendust ja ajakohasuse ülevaatust selles plokis ei tehtud. Aegunud registrikontakti see töö ise ei kinnita. Teenuse tegelik kehtivus ja inimesele sobivus ei tulene kontakti värskusest. Täielik vestluse sisuline seis ning artikli/KOV/perioodi päringuvalik on järgmised arendusosad; vana serveripiloodi kasutusse võtmine ei ole selle ploki eesmärk. Aktiivne tööjärjekord jääb SotsiaalAI.md-sse.
+Ekspordirada on kasutatav, kuid päris 2–3 valla kontaktide vastendust ja ajakohasuse ülevaatust selles plokis ei tehtud. Aegunud registrikontakti see töö ise ei kinnita. Teenuse tegelik kehtivus ja inimesele sobivus ei tulene kontakti värskusest. Piiratud vestluse sisuline seis lisandus hiljem [ADR-018-ga](adr-018-quoted-dialogue-state.md); artikli/KOV/perioodi ühine päringuvalik on veel lahti. Vana serveripiloodi kasutusse võtmine ei ole selle ploki eesmärk. Aktiivne tööjärjekord jääb SotsiaalAI.md-sse.

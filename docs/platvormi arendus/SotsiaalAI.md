@@ -92,20 +92,22 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**23.09 KOV-kontaktide päritolu ja registri-ID — kohalik teostus.**
-Uus ekspordirada seob KOV-paketi kontakti kindla kontrollitud registrikirjega ning
-loob telefonide/e-postidega muutumatu allika. Teenuse viide säilitab paketi ID;
-kontakti revisjon, väärtused ja värskus kontrollitakse kasutamisel uuesti.
-CLI loeb registrit ega avalda allikat automaatselt. Kahe sünteetilise valla läbiv
-katse ja regressioonid: 29 sihttesti, sihtlint ja diff-check läbisid.
-[ADR-017](../rag-v2/adr-017-verified-contact-export.md) sisaldab lepingut,
-kasutamist ja tõendit Opuse ülevaatuseks. Päris kontaktide vastendus/eksport,
-mudelivastuse kvaliteet ja deploy on `not_run` / `NOT_PROVEN`.
-Järgmine arendus on vestluse sisuline seis samas vastusekutses: inimese öeldud
-asjaolud, teadmata vajadused, omavalitsus ja paranduste mõju. Pärisvalimi kontaktide
-vastendus ja ülevaatus tuleb teha enne raja kasutusele võtmist.
-Omaniku täpsustus: vestlus ei pea veel kasutatav olema; vana piloodi käivitamine
-ei ole praegune arenduseesmärk.
+**23.09 vestluse sisuline seis — kohalik teostus.**
+Sama vastusekutse tagastab kasutaja tsitaatidega seotud asjaolud, võimalikud
+abivajadused, lahtised küsimused, kanonilise piirkonna, perioodi ja keelevihje.
+Parandus asendab seotud asjaolu; muu säilib. Vana vastuse selgitamine ei taasta
+vanemat seisu ning uuel teemal/inimesel alustatakse tühjalt. Piirkonna
+tagasivõtmine takistab vana kohanime taasleidmist järgmisel pöördel.
+31 sihttesti, sihtlint ja diff-check läbisid. Kahe näidisvalla 8-pöördeline
+katseseeria tegi 8 vastusekutset testadapterile, päringu embedding'uid 0.
+[ADR-018](../rag-v2/adr-018-quoted-dialogue-state.md) kirjeldab lepingut,
+konfiguratsiooni, taastamist ning tõendipiire Opuse ülevaatuseks. Tasulisi
+kutseid 0; pärismudeli sisuline kvaliteet ja serveris aktiveerimine `NOT_PROVEN` / `not_run`.
+Järgmine arendusosa on artikli/KOV/perioodi ühine päringuvalik ja perioodi
+tähenduse säilitamine otsingus. Enne kasutuselevõttu tuleb teha ka
+[ADR-017](../rag-v2/adr-017-verified-contact-export.md) päris kontaktide vastendus
+ja ülevaatus ning kooskõlastada piloodiplaan indeksiga. Omaniku täpsustus:
+vestlus ei pea veel kasutatav olema; vana piloodi käivitamine ei ole praegune eesmärk.
 
 **23.09 assistendi mudeliuuendus ja vestlusjalus — serveris (`59a17b77`).**
 Üldine tekstimudel, piloot ja teadmiste ettevalmistus kasutavad `gpt-6-luna` /
@@ -128,8 +130,8 @@ kontakt läbib olemasoleva avaldamise/värskuse reegli ning täpse ID/väärtuse
 49 sihttesti läbisid; viie pöörde katses oli viis vastusekutset testadapterile
 ja null päringu embedding'ut. [ADR-016](../rag-v2/adr-016-structured-municipal-dialogue.md)
 kirjeldab tõendit ja kasutamist. Kontaktikanalite päritolu ja registri-ID-de
-vastenduse teostus lisandus ADR-017-ga; päris valim on veel lahti. Ühine päringuvalik, täielik vestluse
-sisuline seis ja pärismudeli kvaliteet on veel lahti. Kood avaldati 23.09 koos
+vastenduse teostus lisandus ADR-017-ga; päris valim on veel lahti. Piiratud vestluse
+sisuline seis lisandus kohalikult ADR-018-ga; ühine päringuvalik ja pärismudeli kvaliteet on veel lahti. Kood avaldati 23.09 koos
 mudeliuuendusega; serveri aktiivses piloodis kataloogirada pole sisse lülitatud.
 
 **23.09 RAG/GraphRAG-i põhisuund kinnitatud — kood serveris.**
@@ -2242,7 +2244,9 @@ sisselülitamisele" reegli puhas rakendus. Vt „Lüliti" S2-s ja „Mis avab" S
 
 **Vestlus ja teadmusbaas.**
 
-**Kontrollitud kontaktiallikad (23.09, kohalik teostus).** [ADR-017](../rag-v2/adr-017-verified-contact-export.md): eraldi lugemiseks mõeldud registriadapter ja CLI loovad selgesõnalise paketi-ID → registrikirje-ID vastenduse alusel uue kontaktiallika. KOV-i teenuse seos säilib ning telefon/e-post koos päritoluga tuleb kontrollitud registrist. Muutunud või aegunud registririda välistab vana ekspordi; kontroll kehtib ka kataloogita piloodi tõendipaketile. Tuum sai allikaga seotud üldise `bindings` välja, klient eraldi kontrolliadapteri. JSONB võtmejärjestus ei põhjusta enam sama struktureeritud väärtuse tagasilükkamist. 29 sihttesti läbisid päris kohaliku PostgreSQL/Qdranti ja eraldatud rakenduse andmebaasiga; vektorid ja olemasolev vestlustransport olid testadapteritega. CLI, allikaviited, piirkonna piir, kontaktimuutus ja muutus ekspordi ajal on kontrollitud. Tasulisi kutseid 0. Päris kontaktide vastendus/eksport, deploy ja mudeli sisuline kvaliteet `not_run` / `NOT_PROVEN`. Omaniku täpsustuse järgi jätkub RAG-i arendus; vana serveripiloodi käivitamine ei ole praegune eesmärk. Järgmine arendusosa on vestluse sisuline seis ja paranduste käsitlemine samas vastusekutses.
+**Vestluse sisuline seis (23.09, kohalik teostus).** [ADR-018](../rag-v2/adr-018-quoted-dialogue-state.md): sama vastusekutse annab nähtava vastuse kõrval kasutaja täpsete tsitaatidega asjaolukirjed, võimalikud vajadused, lahtised küsimused, kanonilise piirkonna, perioodi ja keelevihje. Seis on mudeli tõlgendus; server kontrollib tsitaadipäritolu, asenduse kronoloogiat, muutumatute asjaolude säilimist ja teema/isiku piiri. Vana vastuse valimine ei pöördu vana seisu juurde tagasi. Seis ja vastus salvestuvad koos, katkestus taastub lisakutseta ning kustutamine eemaldab mõlemad. Järgmise pöörde KOV-valik kasutab uusi sõnumeid ja viimast seisu; tagasivõetud piirkonda vanast tekstist uuesti ei leita. 31 kohalikku sihttesti läbisid, sealhulgas 8-pöördeline rada päris kohaliku PostgreSQL/Qdranti, EstNLTK ja eraldatud rakenduse andmebaasiga; mudel ja vektorid olid testadapterid. Seis ei vaja lisamudelikutsena planeerijat, kuid lisab sama päringu/vastuse tokeneid. Uus leping on konfiguratsiooniga valitav; serveris seda ei aktiveeritud. Tasulisi kutseid 0; sisuline pärismudeli kvaliteet `NOT_PROVEN`. Periood salvestub tõlgendusena, range ajafiltriga seda veel ei võrdsustata. Järgmine arendus on ühine artikli/KOV/perioodi päringuvalik.
+
+**Kontrollitud kontaktiallikad (23.09, kohalik teostus).** [ADR-017](../rag-v2/adr-017-verified-contact-export.md): eraldi lugemiseks mõeldud registriadapter ja CLI loovad selgesõnalise paketi-ID → registrikirje-ID vastenduse alusel uue kontaktiallika. KOV-i teenuse seos säilib ning telefon/e-post koos päritoluga tuleb kontrollitud registrist. Muutunud või aegunud registririda välistab vana ekspordi; kontroll kehtib ka kataloogita piloodi tõendipaketile. Tuum sai allikaga seotud üldise `bindings` välja, klient eraldi kontrolliadapteri. JSONB võtmejärjestus ei põhjusta enam sama struktureeritud väärtuse tagasilükkamist. 29 sihttesti läbisid päris kohaliku PostgreSQL/Qdranti ja eraldatud rakenduse andmebaasiga; vektorid ja olemasolev vestlustransport olid testadapteritega. CLI, allikaviited, piirkonna piir, kontaktimuutus ja muutus ekspordi ajal on kontrollitud. Tasulisi kutseid 0. Päris kontaktide vastendus/eksport, deploy ja mudeli sisuline kvaliteet `not_run` / `NOT_PROVEN`. Omaniku täpsustuse järgi jätkub RAG-i arendus; vana serveripiloodi käivitamine ei ole praegune eesmärk. Vestluse sisuline seis ja paranduste käsitlemine lisandusid kohalikult ADR-018-ga.
 
 **Assistendi mudel ja jalus (23.09; serveris `59a17b77`).** Ühine tekstimudel, kokkuvõtted, RAG-piloot ja teadmiste ettevalmistus on `gpt-6-luna` / `medium`. Responses API ja väljundileping säilivad; vana mudeli plaan jääb loetavaks. Töötava teenuse keskkond ja uue plaani lepingukontroll läbisid; mudeli konto ligipääs on metaandmete päringuga tõendatud (HTTP 200). Kasutajad, kinnitatud allikaversioonid, kvoodid ja aegumised säilisid; vana konfiguratsiooniräsiga pöördeid ei liideta automaatselt uue plaaniga. 16 sihttesti, kokkuvõtte testadapter, sihtlint, serveri build/i18n ja põhiandmebaasi migratsioonieelkontroll läbisid; teenus active ja HTTPS 200. Vestluse jalust „Piiratud pärisrežiim · arenduskorpus” enam ei renderdata; päris komponendi ET/EN/RU eraldatud brauserikontroll läbis ning testrežiimi märgis säilis. Autenditud tootmisvestlust ei loetud. EstNLTK 1.7.5 paigaldati `/opt/sotsiaalai/rag-v2-estnltk-1.7.5` keskkonda; käändevormide native-kontroll läbis. Aktiivset indeksit EstNLTK-le ei teisendatud.
 

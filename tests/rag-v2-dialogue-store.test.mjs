@@ -7,6 +7,7 @@ import { PilotStore } from '../lib/rag-v2/pilot/store.js';
 import { PilotService } from '../lib/rag-v2/pilot/service.js';
 import { DIALOGUE_VERSION, DIALOGUE_LIMITS } from '../lib/rag-v2/pilot/dialogue.js';
 import { embeddingConfig } from '../lib/rag-v2/search/embedding.js';
+import { DIALOGUE_STATE_VERSION } from '../lib/rag-v2/pilot/dialogue-state.js';
 
 const url = new URL(process.env.M4_TEST_DATABASE_URL || 'postgres://invalid/invalid');
 if (!['localhost', '127.0.0.1'].includes(url.hostname) || url.pathname !== '/sotsiaal_ai_m4_dev') throw Error('explicit isolated M4_TEST_DATABASE_URL required');
@@ -16,11 +17,12 @@ const originalFetch = globalThis.fetch;
 globalThis.fetch = async () => { throw Error('NETWORK_FORBIDDEN_IN_TEST'); };
 test.after(() => { globalThis.fetch = originalFetch; });
 
-async function fixture(t) {
+async function fixture(t, stateFor = null) {
   const user = await db.user.create({ data: { email: `m4c-${randomUUID()}@example.invalid` } });
   const conv = await db.conversation.create({ data: { userId: user.id, role: 'CLIENT', metadata: { m4: true }, expiresAt: null } });
   const config = { id: randomUUID(), configHash: randomUUID(), tenant: 'm4c-test', mode: 'real', users: [user.id], documents: { doc: 'v1' },
-    dialogueVersion: DIALOGUE_VERSION, embedding: embeddingConfig({ embedding_mode: 'real', provider: 'openai', model: 'text-embedding-3-large', dimensions: 3072, endpoint: 'https://api.openai.com/v1/embeddings' }),
+    dialogueVersion: DIALOGUE_VERSION, ...(stateFor ? { dialogueStateVersion: DIALOGUE_STATE_VERSION } : {}),
+    embedding: embeddingConfig({ embedding_mode: 'real', provider: 'openai', model: 'text-embedding-3-large', dimensions: 3072, endpoint: 'https://api.openai.com/v1/embeddings' }),
     model: 'gpt-5.6-luna', reasoning: 'low', maxInputTokens: 64000, maxOutputTokens: 1000, expiresAt: null, retentionHours: null,
     prices: { embeddingInput: 1, answerInput: 1, answerOutput: 1 }, budget: { attempts: 24, embeddingAttempts: 12, answerAttempts: 12, tokens: 1000000, nanoUsd: 1000000 } };
   const calls = [], queries = [];
@@ -30,11 +32,13 @@ async function fixture(t) {
     return { tenant: c.tenant, query_id: randomUUID(), reference_map: { S1: { document_id: 'doc', document_version_id: 'v1', evidence_id: `e${++generation}`, pdf_pages: [generation] } },
       evidence: [{ evidence_id: `e${generation}`, source_text: `Fresh source ${generation}`, bibliography: { title: `Source ${generation}` } }], model_context: { evidence: [{ ref: 'S1', text: `Fresh source ${generation}` }] } };
   }, canonical: async () => { if (denied) throw Object.assign(Error('reference_access_denied'), { code: 'reference_access_denied', status: 403 }); } };
+  if (stateFor) adapters.records = adapters.search;
   const store = new PilotStore(db);
   const service = new PilotService({ store, readConfig: async () => config, adapters, call: async ({ stage, body }) => {
     calls.push({ stage, body });
     return { value: stage === 'embedding' ? Array.from({ length: 3072 }, (_, i) => i === 0 ? 1 : 0)
-      : { kind: 'grounded', blocks: [{ text: 'Synthetic first point', factual: true, refs: ['S1'] }, { text: 'Synthetic second point', factual: true, refs: [fail ? 'S99' : 'S1'] }], limitations: [], clarification: null },
+      : { kind: 'grounded', blocks: [{ text: 'Synthetic first point', factual: true, refs: ['S1'] }, { text: 'Synthetic second point', factual: true, refs: [fail ? 'S99' : 'S1'] }], limitations: [], clarification: null,
+        ...(stateFor ? { dialogue_state: stateFor(JSON.parse(body.input[0].content).dialogue) } : {}) },
     usage: { input: 20, output: stage === 'answer' ? 30 : 0 }, requestId: 'synthetic-transport' };
   } });
   const input = (question, contextMode = 'same', extra = {}) => ({ question, contextMode, convId: conv.id, clientTurnKey: randomUUID(), language: 'et', ...extra });
@@ -59,6 +63,90 @@ test('M4-C real DB: four turns retain first circumstances; old S1 is dialogue on
   assert.notEqual(row.payload.packet.reference_map.S1.evidence_id, (await f.row(first.id)).payload.packet.reference_map.S1.evidence_id);
   assert.deepEqual(f.calls.map(c => c.stage), ['embedding', 'answer', 'embedding', 'answer', 'embedding', 'answer', 'embedding', 'answer']);
   assert.equal((await f.service.restore(row)).context.userTurns, 4);
+});
+
+const userFact = (topic, turn, quote) => ({ topic, subject: 'self', status: 'current', support: [{ turn, quote }], superseded_by: null });
+const dialogueState = facts => ({ facts, needs: [], unknowns: [], region: { id: null, status: 'unknown', support: [] }, period: null, language_hint: 'et' });
+
+test('dialogue state DB: one call per turn, old answer selection keeps newer corrections, topic/person switches clear state', async t => {
+  const initial = dialogueState([userFact('living', 1, 'Elan üksi.'), userFact('work', 1, 'Tööd ei ole.')]);
+  let draft = initial;
+  const f = await fixture(t, () => draft);
+  const first = await f.run('Elan üksi. Tööd ei ole.', 'new');
+  const corrected = structuredClone(initial);
+  corrected.facts[1].status = 'superseded'; corrected.facts[1].superseded_by = 3;
+  corrected.facts.push(userFact('work', 2, 'Nüüd töötan.'));
+  draft = corrected;
+  const correction = await f.run('Nüüd töötan.', 'correction');
+  const oldReply = await f.run('Selgita teist punkti.', 'same', { replyToTurnId: first.id, replyToBlock: 2 });
+  const row = await f.row(oldReply.id);
+  assert.equal(row.payload.contextAudit.selection.stateTurnId, correction.id);
+  assert.equal(row.payload.dialogue.publishedAssistant.turnId, first.id);
+  assert.deepEqual(row.payload.dialogue.previousState, corrected);
+  assert.deepEqual(row.payload.dialogueState.value, corrected);
+  assert.equal(oldReply.answer.dialogue_state, undefined);
+  assert.equal(oldReply.dialogueState, undefined);
+  await assert.rejects(f.service.run(f.user.id, { ...f.input('Inject state'), dialogue_state: initial }), { code: 'invalid_shape' });
+  draft = dialogueState([]);
+  const topic = await f.run('Uus teema: artiklite võrdlus.', 'new');
+  const person = await f.run('Nüüd küsin oma ema kohta.', 'new_person');
+  for (const turn of [topic, person]) {
+    const switched = await f.row(turn.id);
+    assert.equal(switched.payload.dialogue.previousState, null);
+    assert.equal(switched.payload.contextAudit.selection.stateTurnId, null);
+    assert.doesNotMatch(JSON.stringify(switched.payload.dialogue), /Elan üksi|Tööd ei ole|Nüüd töötan/);
+  }
+  draft = corrected;
+  const back = await f.run('Jätkan enda asjaga.', 'same', { contextTurnId: first.id });
+  assert.deepEqual((await f.row(back.id)).payload.dialogue.previousState, corrected);
+  assert.equal(f.calls.length, 6);
+  assert(f.calls.every(call => call.stage === 'answer'));
+});
+
+test('dialogue state DB: invalid model state never publishes or replaces memory; accepted correction survives into the next turn', async t => {
+  let draft = dialogueState([userFact('work', 1, 'Tööd ei ole.')]);
+  const f = await fixture(t, () => draft);
+  const first = await f.run('Tööd ei ole.', 'new');
+  draft = dialogueState([userFact('invented', 2, 'Unsaid fact')]);
+  const input = f.input('Nüüd töötan.', 'correction');
+  await assert.rejects(f.service.run(f.user.id, input), { code: 'invalid_dialogue_state' });
+  const failed = await f.store.existing(f.config, f.user.id, input);
+  assert.equal(failed.state, 'answer_rejected');
+  assert.equal(failed.payload.dialogueState, undefined);
+  assert.equal(failed.payload.messageId, undefined);
+  await f.service.run(f.user.id, input);
+  assert.equal(f.calls.length, 2);
+  const corrected = dialogueState([{ ...userFact('work', 1, 'Tööd ei ole.'), status: 'superseded', superseded_by: 2 }, userFact('work', 2, 'Nüüd töötan.')]);
+  draft = corrected;
+  const next = await f.run('Aga muu abi?');
+  const row = await f.row(next.id);
+  assert.equal(row.payload.contextAudit.selection.stateTurnId, first.id);
+  assert.equal(row.payload.dialogue.userTurns[1].text, input.question);
+  assert.deepEqual(row.payload.dialogueState.value, corrected);
+});
+
+test('dialogue state DB: validated answer and state recover together without another model call; altered projection fails closed', async t => {
+  const draft = dialogueState([userFact('living', 1, 'Elan üksi.')]);
+  const f = await fixture(t, () => draft), publish = f.store.publish.bind(f.store);
+  f.store.publish = async () => { throw Error('synthetic publication failure'); };
+  const input = f.input('Elan üksi.', 'new');
+  await assert.rejects(f.service.run(f.user.id, input), /synthetic publication failure/);
+  const pending = await f.store.existing(f.config, f.user.id, input);
+  assert.equal(pending.state, 'needs_recovery');
+  assert.deepEqual(pending.payload.dialogueState.value, draft);
+  const altered = structuredClone(pending);
+  altered.payload.dialogueState.value.facts[0].topic = 'altered';
+  await assert.rejects(f.service.recover(altered), { code: 'dialogue_state_projection_mismatch' });
+  f.store.publish = publish;
+  const recovered = await f.service.recover(pending);
+  assert.equal(recovered.state, 'completed');
+  assert.equal(f.calls.length, 1);
+  assert.deepEqual((await f.row(pending.id)).payload.dialogueState, pending.payload.dialogueState);
+  const ledger = await db.m4PilotLedger.findUnique({ where: { id: f.config.id } });
+  await db.conversation.delete({ where: { id: f.conv.id } });
+  assert.equal(await f.row(pending.id), null);
+  await assert.rejects(f.service.restore({ ...pending, state: 'completed' }), { code: 'conversation_unavailable' });
+  assert.deepEqual((await db.m4PilotLedger.findUnique({ where: { id: f.config.id } })).totals, ledger.totals);
 });
 
 test('M4-C real DB: failed correction is accepted once and remains alongside unchanged user circumstances', async t => {
