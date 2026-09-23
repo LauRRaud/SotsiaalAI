@@ -92,17 +92,21 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**23.09 assistendi mudeliuuendus — kohalikult valmis, serverisse viimata.**
-Omaniku valik on `gpt-6-luna` ja `medium`. Ühine tekstimudel, kokkuvõtted
-ja uute RAG-plaanide vaikeseaded on uuendatud; vana mudeli plaanid jäävad ainult
-lugemiseks. 16 sihttesti, kokkuvõtete kolme kutse testadapter ja ESLint läbisid.
-Serveri seadistusfailide lugemine näitas veel Luna 5.6-t üld-, piloodi- ja
-teadmiste ettevalmistuse seadistuses; uued kandidaadid on privaatses
-`tmp/rag-v2-luna6-upgrade/` kaustas, kinnitamata ja aktiveerimata.
-Järgmine samm on push/deploy ning serveriseadistuste rakendamine; aegunud admini
-vastuvõtuluba ei pikendata. Päris API ligipääs ja sisuline kvaliteet `NOT_PROVEN`.
+**23.09 assistendi mudeliuuendus ja vestlusjalus — serveris (`59a17b77`).**
+Üldine tekstimudel, piloot ja teadmiste ettevalmistus kasutavad `gpt-6-luna` /
+`medium`; kontrollitud ka töötava protsessi keskkond. Omaniku ligipääsumuudatuse
+järel vastab mudeli metaandmete API 200. Vestluse arenduskorpuse jalus eemaldatud.
+16 sihttesti, sihtlint, serveri tootmisbuild ja i18n läbisid; põhiandmebaasi
+migratsioone polnud ootel. Teenus active ja avalik `/vestlus` HTTPS 200.
+EstNLTK 1.7.5 on eraldi serverikeskkonnas; viie käändevormi kohalik analüüs läbis.
+**RAG-piloot on endiselt blokeeritud:** selle kinnitatud allikaversioonid ja
+indeksipõlvkond erinevad aktiivsest indeksist (`active_index_mismatch`), sama
+viga kordub vana plaaniga. Taaskäivitatud PostgreSQL/Qdrant konteinerid olid
+peatatud. Järgmine töö on piloodi allikaversioonide ja fikseeritud tõendipaketi
+kooskõlastamine aktiivse indeksiga. Korpuse ulatust, kvoote ega aegunud adminiluba
+ei laiendatud. Tasulisi vastusekutseid 0; päris vastuserada ja kvaliteet `NOT_PROVEN`.
 
-**23.09 struktureeritud KOV-vestlus — kohalik commit `1ececb72`.**
+**23.09 struktureeritud KOV-vestlus — kood serveris (`1ececb72`).**
 Teenused, toetused, vormid ja nende kontaktiseosed säilivad allikakohtadega.
 Piiratud KOV-piloot kasutab valla kataloogi ja EstNLTK-põhist nimevastendust;
 kontakt läbib olemasoleva avaldamise/värskuse reegli ning täpse ID/väärtuse kontrolli.
@@ -110,9 +114,10 @@ kontakt läbib olemasoleva avaldamise/värskuse reegli ning täpse ID/väärtuse
 ja null päringu embedding'ut. [ADR-016](../rag-v2/adr-016-structured-municipal-dialogue.md)
 kirjeldab tõendit ja kasutamist. Järgmine töö on päris kontaktikanalite päritoluga
 allikaversioon ning registri-ID-de vastendus. Ühine päringuvalik, täielik vestluse
-sisuline seis ja pärismudeli kvaliteet on veel lahti; push/deploy `not_run`.
+sisuline seis ja pärismudeli kvaliteet on veel lahti. Kood avaldati 23.09 koos
+mudeliuuendusega; serveri aktiivses piloodis kataloogirada pole sisse lülitatud.
 
-**23.09 RAG/GraphRAG-i põhisuund kinnitatud — kohalik teostus.**
+**23.09 RAG/GraphRAG-i põhisuund kinnitatud — kood serveris.**
 Omaniku valikul arendatakse edasi RAG v2 koos EstNLTK-ga päringu ja indeksi
 ühises otsingukihis. Uute päringu- ja indeksiplaanide vaikeprofiil kasutab
 EstNLTK-d ning allikaga seotud graafi; vanad põlvkonnad säilivad.
@@ -121,7 +126,8 @@ piirkonnaväljad, eemaldati vestluse otsingupäised ning kogu korpuse laadimine
 eelkontrollist. Kood: `25d10366`, `ad453e8b`, `379885ad`.
 [ADR-014](../rag-v2/adr-014-estnltk-retrieval.md) ja
 [ADR-015](../rag-v2/adr-015-opus-review-followup.md) sisaldavad kohalikke
-sihttõendeid; tasulisi mudelikutseid 0, selle ploki push/deploy `not_run`.
+sihttõendeid; tasulisi mudelikutseid 0. Kood avaldati 23.09 koos mudeliuuendusega;
+olemasoleva serveri indeksi profiili ei muudetud.
 Järgmine põhitöö on olukorrast KOV-i teenuse ja kontrollitud kontaktini
 jõudev vestlusrada; kogu korpuse mahutöö ei asenda selle valmimist.
 
@@ -2221,7 +2227,9 @@ sisselülitamisele" reegli puhas rakendus. Vt „Lüliti" S2-s ja „Mis avab" S
 
 **Vestlus ja teadmusbaas.**
 
-**Assistendi mudel (23.09, omaniku valik; kohalikult valmis).** Ühine tekstimudel, kokkuvõtted ja uued RAG-piloodi plaanid kasutavad `gpt-6-luna` / `medium`. Responses API ja väljundileping säilivad; vana mudeli plaan jääb loetavaks, kuid ei luba uusi vastuseid. Uue mudeli standardhinnad on plaanis uuendatud. Serveri üld-, piloodi- ja teadmiste ettevalmistuse seadistuste kandidaadid on privaatses `tmp/rag-v2-luna6-upgrade/` kaustas; kasutajad, korpus, kvoodid ja aegumised säilivad. Vana konfiguratsiooniräsiga vestluspöördeid ei liideta automaatselt uue plaaniga. 16 sihttesti ning kokkuvõtte- ja konfiguratsioonikontrollid läbisid testadapteritega; tõendid on muudatuse commit'is. Serveris on mõõdetult veel Luna 5.6. Push/deploy ning uue mudeli konto ligipääs ja sisuline kvaliteet on `not_run`/`NOT_PROVEN`.
+**Assistendi mudel ja jalus (23.09; serveris `59a17b77`).** Ühine tekstimudel, kokkuvõtted, RAG-piloot ja teadmiste ettevalmistus on `gpt-6-luna` / `medium`. Responses API ja väljundileping säilivad; vana mudeli plaan jääb loetavaks. Töötava teenuse keskkond ja uue plaani lepingukontroll läbisid; mudeli konto ligipääs on metaandmete päringuga tõendatud (HTTP 200). Kasutajad, kinnitatud allikaversioonid, kvoodid ja aegumised säilisid; vana konfiguratsiooniräsiga pöördeid ei liideta automaatselt uue plaaniga. 16 sihttesti, kokkuvõtte testadapter, sihtlint, serveri build/i18n ja põhiandmebaasi migratsioonieelkontroll läbisid; teenus active ja HTTPS 200. Vestluse jalust „Piiratud pärisrežiim · arenduskorpus” enam ei renderdata; päris komponendi ET/EN/RU eraldatud brauserikontroll läbis ning testrežiimi märgis säilis. Autenditud tootmisvestlust ei loetud. EstNLTK 1.7.5 paigaldati `/opt/sotsiaalai/rag-v2-estnltk-1.7.5` keskkonda; käändevormide native-kontroll läbis. Aktiivset indeksit EstNLTK-le ei teisendatud.
+
+**Jätkutöö: serveri RAG-piloodi ja indeksi vastuolu.** Olemasolevad RAG v2 PostgreSQL/Qdrant konteinerid olid 11 päeva peatatud ning käivitati samu andmemahte kasutades. Piloodi põlvkond `search_generation_386d51771eff1ece99cc354144ea589736a4c36c18101847dc57d6e3665d4e6e` erineb aktiivsest `search_generation_cce615aba3a9fa3e5a6a0ab573dc655e660fcdb33eabc7918a18e6c6093ed4af`; mõlemas on 8 dokumenti, kuid kinnitatud versioonid ei kattu. Eelkontroll keeldub veaga `active_index_mismatch` nii vana kui uue mudeliplaaniga. Mudeliseadistus aktiveeriti selle varasema vea eraldi fikseerimisega; runtime-kontrolli ei nõrgendatud. Edasi tuleb kontrollida RAG v2 skeemi ning viia kinnitatud dokumendiversioonid ja fikseeritud tõendipakett kooskõlla valitud indeksiga; indeksit ei pööratud tagasi ega korpust vaikimisi laiendatud. Tasulisi mudelikutseid 0, vastuserada ja sisuline kvaliteet `NOT_PROVEN`. Serveriseadistuste varukoopia: `/etc/sotsiaalai/luna6-rollout-20260923-59a17b77`.
 
 Vana RAG-i eemaldamise ulatus ja alles jäävad platvormifunktsioonid on koondatud [RAG masterisse](../audits/rag-susteem-master.md). Uue RAG v2 piiratud arendusrada on nüüd teostatud; varasem väide, et uut käitumist pole üldse olemas, on aegunud.
 
@@ -2444,7 +2452,7 @@ Realtime on ainult kuulamisliides: spetsiaalne `type: "transcription"` WebRTC-se
 sisendkeele (`et`/`en`/`ru`), annab samas keeles täpsusjuhise ning kasutab tavapärase veebiseadme
 mikrofoni jaoks `far_field` müravähendust. Transkript saadetakse
 sama RAG-i, allikate, kriisi-, privaatsus- ja kvoodilepinguga vestlusse nagu kirjutatud küsimus;
-vastuse kohalik vaikemudel on `gpt-6-luna` / `medium` (23.09; serveriuuendus ootel). Valmis kontrollitud vastusest loetakse kuni kolme lause
+vastuse mudel on `gpt-6-luna` / `medium` (23.09 serveris; RAG-i indeksivastuolu vt S2). Valmis kontrollitud vastusest loetakse kuni kolme lause
 pikkune tuum eesti keeles ette TartuNLP `kylli` häälega, inglise ja vene keel jäävad olemasoleva
 tasuta brauserihääle reegli alla. Vahele rääkimine peatab ettelugemise ja poolelioleva vastuse.
 Mikrofon avaneb alles nupust „Alusta“. Seansil on 5 minuti kõvapiir, hoiatus 45 sekundit enne
