@@ -293,10 +293,13 @@ html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) [role="dialog
 /* Nooled = menüü nooled ja kiirmenüü (carousel.css .gc-arrow): sama
    --control-glass-* toon, hägu ja läige, ilma heleda klaasi ja läätseta.
    Kõrgkontrast jääb allpool oma reeglile. */
+/* Hägu EI OLE: plaanid liiguvad iga kaadriga (lend + parallaks) ja selle
+   faili leping ütleb, et blur-kihti ei transformita — hägu tegi nooled
+   hoveril tõmblevaks (omanik 23.09). Toon ja läige jäävad. */
 html:not([data-contrast="hc"]) .glass-iconbtn.a11f-ambient-arrow {
   background: var(--control-glass-bg);
-  -webkit-backdrop-filter: var(--control-glass-blur);
-  backdrop-filter: var(--control-glass-blur);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
   border: 0;
   box-shadow: inset 0 1px rgba(247, 247, 247, 0.08);
 }
