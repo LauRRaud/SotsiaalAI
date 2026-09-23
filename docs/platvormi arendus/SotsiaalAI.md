@@ -92,6 +92,16 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**23.09 maalisein ja ühtne nupumaterjal — serveris (`20e3a75c`).**
+Ruumivaade on nüüd valgustatud maalisein (`tuba-hamar.webp`, mullide
+`tuba-hamar-haga.webp` uuendatud). Hele maal langetas kaardisildid
+4,35:1-ni, `--card-glass-smoke` 0,4 → 0,48 (nähtavad sildid 5,0–12,6:1).
+Ligipääsetavuse valikud, Salvesta ja taustaheli valik kasutavad ühist
+`--input-*` materjali ja pill-kuju; nende nooled dokiklaasi; üherealised
+väljad on pill-kujulised. Omaniku nähtud hele parem serv jäi korratamata
+(kerimisriba 0, pildi servad tumedad) — ootab täpsustust. Deploy edukas,
+HTTPS 200; nupud ja väljad brauseris `not_run`.
+
 **23.09 härmas klaas kogu ruumis ja jaamadokkide parandus — serveris (`f3300297`).**
 `c57eb2c3` viis doki sissehajumise `.gc-shortcut-menu` peale vaikeväärtusega
 0, mistõttu ligipääsetavuse, hinnastuse, registreerimise ja kovisiooni
