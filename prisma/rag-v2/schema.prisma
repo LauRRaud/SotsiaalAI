@@ -56,6 +56,8 @@ model RagV2GenerationDocument {
   generation_id String
   document_id String
   version_id String
+  retrieval_directory Json?
+  retrieval_hash String?
   @@id([tenant, generation_id, document_id])
   @@unique([tenant, generation_id, document_id, version_id])
   @@map("rag_v2_generation_document")

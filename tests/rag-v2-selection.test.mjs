@@ -8,6 +8,7 @@ import { MockEmbedding, indexUnit, tokenCount, embeddingConfig, OPENAI_EMBEDDING
 import { LocalPolicy } from '../lib/rag-v2/search/policy.js';
 import { searchConfig } from '../lib/rag-v2/search/indexing.js';
 import { retrieve } from '../lib/rag-v2/search/retrieval.js';
+import { retrievalDirectory } from '../lib/rag-v2/search/discovery.js';
 import { retrievalProfile, queryForProfile, assertProfileGeneration } from '../lib/rag-v2/search/profiles.js';
 import { CombinedStoredEmbedding } from '../lib/rag-v2/search/pilot-runner.js';
 import { assessContext, canonicalContext, contextId } from '../lib/rag-v2/evaluation/rubric-v2.js';
@@ -49,6 +50,25 @@ function fixture(order = [0, 2, 4, 6, 8]) {
   };
   return { bundle, generation, units, rows, context, policy, embedding, postgres, qdrant, run };
 }
+
+test('selective retrieval excludes publication labels before the channel candidate limit', async () => {
+  const f = fixture([0, 2]);
+  f.bundle.document.fields.journal_title = { value: f.bundle.chunks[0].source_text };
+  f.bundle.sections.push({ id: 'article', parent_id: 'section', title: f.bundle.document.fields.title.value, span_ids: ['s1'] });
+  f.postgres.retrievalDirectory = async () => [retrievalDirectory(f.bundle, f.embedding.config)];
+  const included = [];
+  f.postgres.lexical = async (_tenant, _generation, _docs, _text, limit, ids) => {
+    included.push(ids); return f.rows.filter(row => ids.includes(row.id)).slice(0, limit);
+  };
+  const query = { text: 'gardening', language: 'en', method: 'lexical', includeDocumentLabels: false, limits: { candidates: 1 } };
+  const selected = await f.run(undefined, { query });
+  assert.equal(selected.state, 'ok', selected.error); assert.equal(selected.evidence[0].chunk_id, 'c2');
+  assert(!included[0].includes(f.units[0].id));
+  assert(selected.selection_trace.some(row => row.unit_id === f.units[0].id && row.reason === 'structural_document_label'));
+  f.postgres.retrievalDirectory = undefined;
+  const eager = await f.run(undefined, { query });
+  assert.deepEqual(selected.evidence, eager.evidence); assert.deepEqual(selected.raw_rankings, eager.raw_rankings);
+});
 
 test('ranked-first profile preserves the fifth seed, full unit cap and historical 3+2 behavior', async () => {
   const f = fixture(), historical = await f.run(undefined, { query: {

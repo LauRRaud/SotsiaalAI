@@ -35,6 +35,7 @@ export interface EvidenceBundle {
   selection_trace: { unit_id: Id; reason: string }[];
   measurements: { timings_ms: Record<string, number>; candidate_counts: Record<string, number>;
     context_tokens: number; external_embedding_calls: 0; generation_calls: 0; mock_embedding_calls: number;
+    loading?: { strategy: 'candidate_documents' | 'legacy_eager'; directory_documents: number; loaded_documents: number; loaded_units: number };
     graph_steps?: number; graph_additions?: number; dependency_steps?: number; dependency_additions?: number };
 }
 export interface ModelContext {

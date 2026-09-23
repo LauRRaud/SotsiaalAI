@@ -95,19 +95,21 @@ test('knowledge ingestion preserves exact anchors and unreviewed provenance; cha
 });
 
 test('the PostgreSQL importer persists cards and dependencies as immutable scoped index objects', async () => {
-  const versions = new Map(), objects = new Map(), rows = new Map();
+  const versions = new Map(), objects = new Map(), rows = new Map(), directories = new Map(), f = searchFixture();
   const client = { async query(sql, p) {
+    if (sql.startsWith('SELECT config,snapshot')) return { rows: [{ config: searchConfig(new MockEmbedding().config), snapshot: f.snapshot }] };
     if (sql.startsWith('INSERT INTO rag_v2_version')) versions.set(p[1], { bundle_hash: p[4], bundle: p[3] });
     if (sql.startsWith('SELECT bundle_hash')) return { rows: [versions.get(p[1])] };
     if (sql.startsWith('INSERT INTO rag_v2_object')) objects.set(`${p[1]}/${p[2]}`, { version: p[1], id: p[2], kind: p[3], data: p[4], from: p[5], to: p[6] });
     if (sql.startsWith('SELECT id,data FROM rag_v2_object')) return { rows: [...objects.values()].filter(row => row.version === p[1]) };
-    if (sql.startsWith('INSERT INTO rag_v2_unit')) rows.set(p[2], { id: p[2], data: p[7] });
-    if (sql.startsWith('SELECT id,data FROM rag_v2_unit')) return { rows: [...rows.values()] };
+    if (sql.startsWith('INSERT INTO rag_v2_unit')) rows.set(p[2], { id: p[2], data: p[7], morphology: p[12] });
+    if (sql.startsWith('SELECT id,data,morphology FROM rag_v2_unit')) return { rows: [...rows.values()] };
+    if (sql.startsWith('UPDATE rag_v2_generation_document')) directories.set(p[2], { retrieval_directory: p[3], retrieval_hash: p[4] });
+    if (sql.startsWith('SELECT retrieval_directory')) return { rows: [directories.get(p[2])] };
     return { rows: [] };
   } };
   const postgres = Object.create(PostgresCatalog.prototype); postgres.transaction = fn => fn(client);
-  const f = searchFixture();
-  await postgres.importSnapshot({ tenant, bundles: [base, guide], assets: { [base.version.id]: {}, [guide.version.id]: {} } }, 'synthetic-generation', f.units);
+  await postgres.importSnapshot({ tenant, documents: f.snapshot.documents, bundles: [base, guide], assets: { [base.version.id]: {}, [guide.version.id]: {} } }, 'synthetic-generation', f.units);
   assert.equal([...objects.values()].filter(row => row.kind === 'knowledge_card').length, 3);
   const dependency = [...objects.values()].find(row => row.kind === 'dependency');
   assert.deepEqual(dependency.data, base.dependencies[0]); assert.equal(dependency.from, null); assert.equal(dependency.to, null);
