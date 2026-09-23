@@ -92,6 +92,25 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**23.09 härmas klaas kogu ruumis ja jaamadokkide parandus — serveris (`f3300297`).**
+`c57eb2c3` viis doki sissehajumise `.gc-shortcut-menu` peale vaikeväärtusega
+0, mistõttu ligipääsetavuse, hinnastuse, registreerimise ja kovisiooni
+jaamadokid olid serveris nähtamatud — nüüd hajub ainult karusselli dokk.
+Kaardid, kaardileht, lugemispaneelid, hinnastuse kaardid ja vestluste
+sahtel on härmas klaas (`--card-glass-blur` 12 px) ilma vana randita;
+hajumine käib registreeritud `--gc-item-alpha`/`--panel-alpha` kaudu, sest
+hajuv vanem on backdrop root. Laud on `transform-style: flat` (Chrome ei
+joonista härmatist preserve-3d sees). Vestlusmullid kannavad kerimisala
+maski tõttu eelhägustatud toa koopiat (`tuba-hamar-haga.webp`, fixed).
+Tekst, väljad ja nupud on tumedamal klaasil heledamad; nooled ja
+ülariba on dokiga üks materjal; rollinupud on taustata ja samas nurgas.
+NB: sama push viis tootmisse ka 4 RAG-commitit (`22193e7a`…`4590c5dc`),
+mille kirje ütleb „tootmisse viimata" — omaniku luba kõik pushida.
+Kontrollid: siht-eslint, diff-check; Playwright mõõtis kaardi härmatise
+süttimisel/pööramisel, laua siltide mahtumise ja mullitausta joonduse.
+Laud, vestlus, rollinupud ja hinnastuse kaardid brauseris `not_run`
+(testkonto login 401). Deploy edukas, frontend active, HTTPS 200.
+
 **23.09 RAG-i arendus taaskäivitatud — kohalik teostus, tootmisse viimata.**
 Omanik lubas arendust alustada ning täpsustas keele-, olukorra mõistmise ja kulu nõuet.
 Püsiv jätkatav vastuvõtupartii, failide järelkontroll ning automaatne ET/EN/RU
