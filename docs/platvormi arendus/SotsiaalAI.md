@@ -92,6 +92,24 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**23.09 ruumivaade, klaas ja loetavus — serveris (`c57eb2c3`).**
+Karussell ja paneelid seisavad nüüd metsajärve vaatega toas
+(`public/room/tuba-hamar.webp`), mis süttib ⏻-vajutusega; pilt täidab
+ekraani `cover`-iga (lõige 50% 40%). Kaardid said suitsutooni
+(`--card-glass-smoke` 0,5), lugemispaneelid, vestluste sahtel ja AI-mull
+tihedama (`--panel-glass-smoke` 0,8); `--text-soft`/`--text-dim` tõusid
+0,9/0,78 peale. Doki hägu vilkus kaardilehelt naastes läbipaistvaks, sest
+hajuv või filtriga vanem on backdrop root: hajumine elab nüüd doki
+kihtidel, kaardilehe hägu kaardiloendil ning doki klaas `::before`-kihil,
+nii et ka vihje saab hägu. Laua kaardisisu oli klaaspinna all hall — nüüd
+pinnast kõrgemal. Tööheaolu kasutab laias hiirevaates sügavuslauda (mobiil
+jääb karusselliks), laua kaardid ja sildid on suuremad, laua dokk madalam,
+Dokumentide ikoon on leht klambriga ja vestluse avatar on eemaldatud.
+Kohalikult: siht-eslint, i18n ja diff-check läbisid; kontrast mõõdetud
+Playwrightiga (kaardisildid 7,4–11,7:1, Meist-paneel 9,7–15,5:1). Deploy
+lõpetas edukalt, frontend active, avalik HTTPS 200. Omaniku brauseritest
+peale viimaseid dokk-/vihje-/sahtlimuudatusi `not_run`.
+
 **21.09 avalehe saabumistekstide kastid — serveris (`16cc1749`).**
 Kerimisstseeni tekstikastid võtavad nüüd laiuse sisu järgi; senine kõigile
 sunnitud 42 rem laius säilib ainult pika teksti ülempiirina. Chromiumis
