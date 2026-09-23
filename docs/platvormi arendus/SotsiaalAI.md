@@ -92,6 +92,18 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**24.09 RAG: valla tuvastus, bibliograafia ja aastapõhine periood — serveris (`82404cfb`).**
+Deploy tõi serverisse ADR-017–020 koodi. Valla nimi tuvastatakse kanoonilise
+kuju järgi; tõendis on aasta, ajakiri, number ja leheküljed; ainult aastaga
+artikkel kuulub perioodi, kui kogu aasta mahub sinna (aadressiloend v3).
+Serveri build ja migratsioonieelkontroll läbisid, frontend active, HTTPS 200.
+**Serveri RAG v2 andmebaasis pole 23.09 migratsioone (0/4; puuduvad
+`morphology` ja `retrieval_directory` veerud).** See on piloodi ja
+indekseerimise eeltingimus; praegu varjab seda `active_index_mismatch`.
+Omaniku loal tehtud olukorramõõtmine (28 622 tokenit): vektor 12/12,
+hübriid 10/12, EstNLTK-sõnaline 4/12. Järelparandus `c7006e8d` on
+origin/main-is, serverisse viimata (ühine rada pole serveris sisse lülitatud).
+
 **24.09 Opuse kahe commit'i ülevaatus — parandused põhjendatud, kolm lahtist leidu.**
 `fe1101ffa` parandab kohanimevastendust, bibliograafiat ja aastapõhist perioodi;
 `82404cfb4` salvestab analüüsid. Korduskontrollis läbis 47 sihttesti.

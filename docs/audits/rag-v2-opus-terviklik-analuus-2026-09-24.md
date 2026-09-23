@@ -26,7 +26,7 @@ Tasulisi kutseid 0, tootmisandmeid ei loetud ja alamagente ei kasutatud.
 | Ajakirjast teadmise leidmine | **Õigel teel ja nüüd mõõdetud.** Omaniku päris võrdlusandmestikul on EstNLTK-hübriid parim rada: 17/18, kontrollosas 6/7. Puhas vektor saab 15/18 ja vana hübriid 13/18. Mudel saab nüüd ka aasta, ajakirja, numbri ja lehekülje (ADR-020). Kasutajaliidese allikapaneel näitab piloodis endiselt ainult pealkirja. |
 | Kahe perioodi võrdlus | **Oli päris korpusel praktiliselt tühi.** 848/892 artiklil on ainult aasta ja filter nõudis täpset kuupäeva. ADR-020 lubab aastat siis, kui kogu aasta mahub perioodi. Võrdlus põhineb endiselt valimil (2 algkatkendit perioodi kohta) ning artiklite deduplitseerimine puudub. |
 | KOV-i teenus ja kontakt | **Arhitektuur on õige, päris andmetel ei tööta.** Kataloogi projektsioon on päris valla puhul 70–136 tuhat tokenit (piir 12 000) ja pööre ebaõnnestub. Kontaktid on usaldusväärsed ainult kontrollitud registrieksportimise kaudu, mille päris vastendus on tegemata. |
-| Vabast olukorrakirjeldusest abini | **Osad on olemas, rada ei ole kasutajakõlblik.** Valla tuvastus on nüüd täpne (ADR-020) ning vestluse seis ja parandused töötavad. Puudu on kataloogi mahulahendus, kriisikaitse ja vestluse seisu mahe tõrge. Olukorralausete semantilise otsingu kvaliteet on mõõtmata. |
+| Vabast olukorrakirjeldusest abini | **Osad on olemas, rada ei ole kasutajakõlblik.** Valla tuvastus on nüüd täpne (ADR-020) ning vestluse seis ja parandused töötavad. Puudu on kataloogi mahulahendus, kriisikaitse ja vestluse seisu mahe tõrge. Päris vektoritega olukorramõõtmises (§2.7) leidis vektor asjakohase allika 12/12 ja hübriid 10/12. |
 
 Kokkuvõttes pole süsteem valmis päris kasutajatele, kuid ülejäänud takistused on konkreetsed ja mõõdetavad. Suurim protsessiõppetund: **kolm blokeerivat viga peitusid ainult sünteetilistel andmetel tehtud vastuvõtu taha**:
 - 98% KOV-kirjeid oli avaldamisel blokeeritud;
@@ -63,9 +63,9 @@ Näitaja on „kogu vajalik tugi lõppkontekstis”. Hübriidi top-1/3/5 EstNLTK
 
 **Järeldused:**
 - Vana sõnaline kanal halvendas hübriidi vektorist nõrgemaks. EstNLTK-kanal teeb hübriidist parima raja. `hybrid-estnltk-dependencies-v1` vaikeprofiilina on põhjendatud.
-- Struktuurinaabrite lisamine (topK 3 + naabrid) kahjustab igal lepingul, sest tõrjub õige seemne välja. Naabriprofiile ei tasu kasutada.
+- Ajalooline naabrivalik (topK 3 + naabrid) jäi igal lepingul alla. Mõõtmine ei erista naabrite mõju kahe algtulemuse kaotamisest ning praegust `hybrid-ranked-first-neighbors-v2` profiili (5 algtulemust, kuni 7 lõppkatkendit) ei mõõdetud. Järeldus kehtib ainult ajaloolise valiku kohta (Codexi ülevaatuse täpsustus).
 - Top-1 ei paranenud. Õige lõik tuleb top-5 hulka, seega peab vastusekontekst jääma 5–9 lõigu juurde.
-- **Parandus minu esimesele ülevaatusele:** väide, et sõnaline kanal kahjustab hübriidi, kehtis vana kanali kohta. Hästi sõnastatud küsimuste puhul EstNLTK-kanal aitab. Vaba olukorrakirjelduse stoppsõnamüra jääb alles (järelülevaatuse U6), kuid selle semantiline mõju on mõõtmata, sest olukorralausetele salvestatud vektoreid pole.
+- **Parandus minu esimesele ülevaatusele:** väide, et sõnaline kanal kahjustab hübriidi, kehtis vana kanali kohta. Hästi sõnastatud küsimuste puhul EstNLTK-kanal aitab. Vaba olukorrakirjelduse korral jääb stoppsõnamüra alles (järelülevaatuse U6) ja see halvendab hübriidi (§2.7).
 - Valim on väike (18 küsimust, kontrollosas 7). Otsuse kinnitamiseks on vaja suuremat märgistatud valimit (§6.3).
 
 ### 2.2. Ajakirjade metaandmed ja perioodid
@@ -114,6 +114,18 @@ Anija 70k tokenist moodustavad 39k iga kirje-dokumendi korratud metaandmed koos 
 - **`rag-v2-knowledge.test.mjs`** oli alates `25d103663` punane (importeri mockil puudus `pool`). Ükski hilisem ADR-i testiloend seda faili ei sisaldanud, seega jäi viga märkamata. Parandatud.
 - **Testide käivitamine:** mitu komplekti vajab keskkonnamuutujaid (`RAG_V2_ESTNLTK_PYTHON`, `M4_TEST_DATABASE_URL`, `RAG_V2_INPUT_ROOT`) ja iga ADR loetleb eri alamhulga. „Läbinud testid” ei ole seetõttu üheselt korratav. Soovitus: üks dokumenteeritud RAG-i sihtkomplekti käsk koos nõutud keskkonnaga.
 
+### 2.7. Vaba olukorrakirjeldus päris vektoritega (omaniku loal, 24.09)
+
+Tekstid saadeti embedding'uks serveri teenusekeskkonna kaudu: 1 kutse, 85 sisendit, 28 622 tokenit, umbes 0,0037 USD. Võtit välja ei loetud ega trükitud. Korpus oli ADR-011 valim (73 tekstiosa: kaks artiklit, KOV-i määrus ning Anija teenus, toetus ja kontakt). Hinnati 12 ET/EN/RU olukorra- või teemalauset; asjakohased allikad määrasin mina.
+
+| Rada | Asjakohane allikas top-5-s | Märkus |
+| --- | ---: | --- |
+| Vektor | **12/12** | 11 korral esimesel kohal, sh EN ja RU laused |
+| EstNLTK-hübriid | 10/12 | „Kellega vallas rääkida…” 22. kohal, „…transporti?” 6. kohal |
+| EstNLTK-sõnaline | 4/12 | vene lause ja kontaktiküsimus ei leidnud midagi |
+
+**Järeldus:** hästi sõnastatud artikliküsimustes aitab EstNLTK-kanal (§2.1). Vaba olukorrakirjelduse korral tõrjub sõnaline kanal RRF-is vektori õiged vasted madalamale. Olukorra- ja kohaliku abi pööretes tuleks vektorit kaaluda rohkem, näiteks kanalipõhise RRF-kaaluga, või kasutada sõnalist kanalit peamiselt nimede ja numbrite jaoks. Valim on väike ja otsus vajab märgistatud komplekti (§6.3).
+
 ## 3. Kolm kasutusjuhtu praeguse koodiga
 
 **Ajakiri: „Milliseid lahendusi on kirjeldatud omastehooldajate koormuse vähendamiseks?”**
@@ -161,7 +173,7 @@ Anija 70k tokenist moodustavad 39k iga kirje-dokumendi korratud metaandmed koos 
 - kriisirada.
 
 **Loobu või lükka edasi:**
-- struktuurinaabrite profiilid, mis kahjustavad mõõdetult;
+- ajalooline `topK 3 + naabrid` valik; praegust naabriprofiili võrdle enne otsust sama algtulemuste kvoodiga;
 - LLM-väitegraafi laiendamine, sest andmeid pole ja kasu pole näidatud;
 - uued lepinguversioonid ilma aegumispoliitikata. Koodis on juba 82 lepingu- ja versioonitunnust. Hoia loetavana ainult versioonid, millele salvestatud vestlused veel viitavad.
 
@@ -200,11 +212,13 @@ Kontroll:
 - päris vektorite järjestus jäi samaks;
 - ESLint ja `git diff --check` läbisid.
 
+Järelparandus `c7006e8d` Codexi ülevaatuse põhjal: v2 ühise paketi taastamine töötab ja perioodi katvus loendab ainult aastaga allikaid perioodi ulatuses. v2 → v3 vahemälu lugemine (ainult v1 nimeruum) on veel lahti.
+
 Muudatused puudutavad piloodi teostusmanifesti, seega vajab päris plaan uut kinnitust. Uus v3 indeks on vajalik ühise raja jaoks.
 
 ## 8. Alles jääv ebakindlus
 
-- Olukorralausete semantilise otsingu kvaliteet on mõõtmata; vajalik oleks omaniku luba väikeseks tasuliseks embedding'uks.
+- Olukorralausete otsing on mõõdetud ainult 12 lausel ja 73 tekstiosal (§2.7); asjakohasuse sildid on minu omad.
 - Võrdlusandmestik on väike. EstNLTK-hübriidi eelis (17 vs 15) põhineb 18 küsimusel.
 - Pärismudeli olukorra mõistmine, täpsustuste kvaliteet ja vestluse seisu tõrkemäär on mõõtmata.
 - Serveri RAG v2 skeem, Python-keskkond ja piloodi plaan on mõõtmata.
