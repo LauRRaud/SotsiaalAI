@@ -92,6 +92,16 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**23.09 struktureeritud KOV-vestlus — kohalik commit `1ececb72`.**
+Teenused, toetused, vormid ja nende kontaktiseosed säilivad allikakohtadega.
+Piiratud KOV-piloot kasutab valla kataloogi ja EstNLTK-põhist nimevastendust;
+kontakt läbib olemasoleva avaldamise/värskuse reegli ning täpse ID/väärtuse kontrolli.
+49 sihttesti läbisid; viie pöörde katses oli viis vastusekutset testadapterile
+ja null päringu embedding'ut. [ADR-016](../rag-v2/adr-016-structured-municipal-dialogue.md)
+kirjeldab tõendit ja kasutamist. Järgmine töö on päris kontaktikanalite päritoluga
+allikaversioon ning registri-ID-de vastendus. Ühine päringuvalik, täielik vestluse
+sisuline seis ja pärismudeli kvaliteet on veel lahti; push/deploy `not_run`.
+
 **23.09 RAG/GraphRAG-i põhisuund kinnitatud — kohalik teostus.**
 Omaniku valikul arendatakse edasi RAG v2 koos EstNLTK-ga päringu ja indeksi
 ühises otsingukihis. Uute päringu- ja indeksiplaanide vaikeprofiil kasutab
@@ -2256,10 +2266,14 @@ Uued partii/keeletöötluse kontrollid ja olemasoleva vestluse 38 isoleeritud an
 
 See plokk ei tõenda veel loomuliku olukorrakirjelduse täielikku mõistmist, värske kontakti leidmist ega ajaperioodide sünteesi. Opuse L1 on parandatud; L2/L4/L6/L7 on osalised. Vanad allikad vajavad parandatud väljade saamiseks uut vastuvõttu ja indeksit. Tasulisi mudelikutseid, push'i ega deploy'd selles plokis ei tehtud; serveri praegust seisu ja `origin/main`-i ei mõõdetud.
 
+**23.09 Opuse P1 esimene läbiv tehniline teostus — `1ececb72`:** [ADR-016](../rag-v2/adr-016-structured-municipal-dialogue.md) kirjeldab struktureeritud kirjete allikalist vastuvõttu, piirkonna kataloogi ja selle vestlusühendust. EstNLTK kasutab kanonilisi omavalitsusnimesid; mitmetähenduslik nimi küsitakse üle, mainimist ei loeta tõendatud elukohaks. Teenuse–kontakti–vormi seosed säilivad; kontrollimata, aegunud või teise piirkonna kontakt jääb välja. Varem viidatud kirjete detailid tulevad sama piirkonna jätkupöördes kaasa ning valla parandus vahetab ulatuse. Viidete kontroll toimub paketi kaupa, säilitades allika- ja õiguskontrollid.
+
+Kohalikud 49 sihttesti läbisid. Viie pöörde katses kasutati päris PostgreSQL-i/Qdranti/EstNLTK-d ning vastuse testadapterit: viis vastusekutset, null päringu embedding'ut. Päris kontaktide puuduvaid kanaleid ei täidetud automaatselt; uus adapter nõuab registriga sama allika-ID-d ja täpseid väärtusi. Vajalik uus kontaktiallikas, päris ID-de vastendus, ühine artikli/KOV/perioodi päringuvalik ning vajadusi ja ajapiire kandev vestluse sisuline seis jäävad lahti. KOV-rada on uue plaani valikuline `recordCatalogue` võime; olemasolevat pilooti ega serverit selle tööga ei muudetud. Normaliseerimisversioon v7 vajab uut vastuvõttu ja indeksit. Tasulisi kutseid 0, push/deploy `not_run`.
+
 **Järgmine arendusjärjestus — täpsustatud Opuse ülevaatuse järel 23.09:**
 
-1. **Olukorrast teenuse ja kontaktini:** säilitada teenuse–kontakti–taotlusvormi allikalised seosed, tuua kontrollitud kontaktandmed sobiva adapteri kaudu ja siduda kasutaja täpsustatud omavalitsus vestluse seisuga. Kontrollida 2–3 omavalitsuse läbivat rada, piirkonna parandamist ja puuduva kontakti ausat käsitlemist. Tavalisele pöördele ei lisata vaikimisi eraldi planeerivat mudelikutset.
-2. **Otsingu ja vestluse kvaliteet:** vähendada sõnalise kanali üldsõnamüra, eristada kasutaja parandusi varasemast infost ning kontrollida EstNLTK, tähendusotsingu ja graafi koosmõju. Keelemorfoloogia ei asenda abivajaduse mõistmist. Tasuline hindamisring pole arenduse eeltingimus.
+1. **Päris teenusest kontrollitud kontaktini:** tuua avaldatud ja värskuskontrolli läbinud kontaktiregistri kanalid eraldi päritoluga allikaversiooni, siduda need teenusekirje stabiilse kontaktiviitega ning kontrollida 2–3 valla päris ID-de vastavust. Praegune adapter lubab ainult täpse allika-ID/nime/kanalite vaste; ta ei ühenda puuduvaid välju oletuse järgi. Tehniline kataloogi- ja vestlusrada on ADR-016-s; sisuline pärismudeli kvaliteet jääb sellest eraldi.
+2. **Ühine päringuvalik ja vestluse kvaliteet:** siduda artikli-, KOV- ja perioodirada ühe assistendiga, täiendada samas vastusekutses vestluse sisulist seisu ning kontrollida eitust, teist inimest ja asukoha parandust. Vähendada hübriidotsingu üldsõnamüra ning mõõta EstNLTK, tähendusotsingu ja graafi koosmõju. Tasuline hindamisring pole arenduse eeltingimus.
 3. **Ajakirjad ja ajaperioodid:** ühendada mahutöö/adminirada, lahendada 5000 tekstiosa piir ning lisada perioodide katvust arvestav tõendivalik. Puuduvate pärisvektorite mahttöö vajab mõõdetud mahtu ja kokkulepitud kulu. Väljalaske eel mõõta serveri RAG-skeem ning kooskõlastada uus indeks ja piloodiplaan.
 
 **Käituse ja mahutöö taust ning säilivad sõltuvused:**
