@@ -92,6 +92,16 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**24.09 Opuse kahe commit'i ülevaatus — parandused põhjendatud, kolm lahtist leidu.**
+`fe1101ffa` parandab kohanimevastendust, bibliograafiat ja aastapõhist perioodi;
+`82404cfb4` salvestab analüüsid. Korduskontrollis läbis 47 sihttesti.
+Taasesitus kinnitas v2 vestluspaketi taastamise regressiooni ning perioodi
+ja kogu korpuse arvude segunemist. Naabriprofiilidest loobumise soovitus
+ületab ajaloolise topK=3 katse tõendit. [ADR-020 ülevaatus](../rag-v2/adr-020-municipality-scope-bibliography-periods.md#codexi-commit-ülevaatus-24092026)
+kirjeldab leide; koodi selles ringis ei parandatud. Soovitatud järgmine
+teostus on need järelparandused ja päris KOV-kataloogi mahu lahendamine;
+artikli jätkupöörde fookus jääb samuti lahti. Tasulisi kutseid 0.
+
 **23.09 artikli/KOV/perioodi ühine tõendivalik — kohalik teostus.**
 Üks vestluspööre ühendab üldteadmiste hübriidotsingu, piirkonna kontrollitud
 kataloogi ja kuni kaks ajakirjade avaldamisperioodi. Sama päringuvektor
@@ -2322,6 +2332,8 @@ See plokk ei tõenda veel loomuliku olukorrakirjelduse täielikku mõistmist, v�
 Kohalikud 49 sihttesti läbisid. Viie pöörde katses kasutati päris PostgreSQL-i/Qdranti/EstNLTK-d ning vastuse testadapterit: viis vastusekutset, null päringu embedding'ut. Päris kontaktide puuduvaid kanaleid ei täidetud automaatselt; uus adapter nõuab registriga sama allika-ID-d ja täpseid väärtusi. Kontaktiallika adapter, vajadusi/ajapiire kandev seis ning ühine artikli/KOV/perioodi tõendivalik lisandusid hiljem ADR-017/018/019-ga; päris ID-de vastendus ja sisuline kvaliteet jäävad lahti. KOV-rada on uue plaani valikuline `recordCatalogue` võime; olemasolevat pilooti ega serverit selle tööga ei muudetud. Normaliseerimisversioon v7 vajab uut vastuvõttu ja indeksit. Tasulisi kutseid 0, push/deploy `not_run`.
 
 **23.09 Opuse järelülevaatus (`6119865f..995b0990`):** [raport](../audits/rag-v2-opus-followup-review-2026-09-23.md). L1/L5/L6/L7 on parandatud, L2/L3/L9 tehniliselt teostatud. Uued sihttestid läbisid kohalikult EstNLTK ja eraldatud M4 andmebaasiga. Päris KOV-pakettidega (Anija, Harku, Kose, Tallinn, Jõhvi, Pärnu) ületab kataloog 12 000 tokeni piiri 70–136 tuhande tokeniga või Pärnu puhul 100 kirje piiri; pööre ebaõnnestub, ühisel rajal ka järgnevad ajakirjaküsimused. Piloodirajal puudub kriisituvastus. Piirkonnatuvastus seob muu hulgas lause „Tahan end tappa” Tapa vallaga ega tunne ära „Lääne-Harju vallas”. Vestluse seisu viga lükkab tagasi kogu vastuse. EstNLTK külmkäivitus on ~4,8 s ja iga päring analüüsib laaditud dokumendid uuesti. Soovitatud järjekord: KOV päris andmetel (kompaktne kataloog, osaline tulemus, dokumendipiir), turvalisus ja vastupidavus, EstNLTK käitus ja otsingumüra.
+
+**24.09 Codexi ülevaatus Opuse commit'idele (`995b0990b..82404cfb4`).** [ADR-020 ülevaatus](../rag-v2/adr-020-municipality-scope-bibliography-periods.md#codexi-commit-ülevaatus-24092026): kohanime-, bibliograafia- ja aastaparandused on põhjendatud. 47 kohalikku sihttesti läbisid. Kolm P2 leidu: v2 ühise vestluspaketi taastamine katkeb ka muutumatu indeksi korral; ainult aastaga dokumentide loendur kasutab perioodi asemel kogu korpust; kõigist naabriprofiilidest loobumise järeldus ei tulene topK=3 ajaloolisest katsest, sest praegune laiendatud profiil säilitab viis algtulemust. V2 vahemälunimeruum jääb v3 üleminekul kontrollimata, kuid see ei tähenda tõendatud tasulist lisakutset. Opuse täpseid otsingu-, nimevormi- ja KOV-mahumõõtmisi selles ringis ei korratud. Käituskoodi ei muudetud, serverit ei mõõdetud. Soovitatud järgmine teostus on leitud regressioonide kõrvaldamine ja kompaktne KOV-kataloog päris kohalike allikatega; seisu mahe tõrge peab säilitama uuema kasutajaparanduse ja allikaõiguste kontrolli.
 
 **24.09 Opuse terviklik analüüs ja ADR-020 (`fe1101ff`):** [analüüs](../audits/rag-v2-opus-terviklik-analuus-2026-09-24.md). 05.09 päris vektorite võrdlus taasesitati kohalikult ilma tasuliste kutseteta. EstNLTK-hübriid on parim rada: 17/18, kontrollosas 6/7; puhas vektor 15/18, vana hübriid 13/18; struktuurinaabrid kahjustavad. 848 ajakirjaartiklil 892-st on ainult aasta, mistõttu perioodirada jättis need välja ning mudel ei näinud aastat ega väljaannet. [ADR-020](../rag-v2/adr-020-municipality-scope-bibliography-periods.md) parandab valla tuvastuse (156 nimevormist 0 vale, varem 34), lisab tõendi bibliograafiasse aasta, ajakirja, numbri ja lehekülje ning võimaldab aastapõhise perioodi (aadressiloend v3, vajab uut indeksit). Normaliseerimise muutused tühistasid 05.09 vektoritest 28/69; vana 12 420 tokeni test on selle päris signaal. Unit- ja 45 integratsioonitesti läbisid. KOV-kataloogi maht, kriisirada ja vestluse seisu mahe tõrge on endiselt järgmised plokid.
 
