@@ -1,0 +1,287 @@
+{
+  "schema_version": "rag-v2/adr-011-evidence-1",
+  "created_at": "2026-09-23T14:21:47.022Z",
+  "base_commit": "00fb25ac0",
+  "batch_id": "ingest_batch_7386c3ebb0bc108471aa71223a920b1e35b3b9c570756a9e8d0d11a3d58ad573",
+  "tenant": "batch-acceptance-20260923",
+  "files": {
+    "selection.json": "7723d1b314cd8683efbf2cc3968feae35518648f4b80c903641e9d4deb70a621",
+    "manifest.json": "d286ab4026534ac75c4cc7fb764512bd3ac3ccd7e310fb472743f12811eae1ad",
+    "first-status.json": "d6e3d1abd9171876b376878652385c6fc7d8a1260209253842374e390d4a9fa1",
+    "status.json": "10151c8d7e39638ecd634464476281c75654a45395e88507908e9c1457094d6e",
+    "local-evidence.json": "ecd828df6e15c78a328c8ce0cb68c5f6a220ad8b3346e8deb9d8144f08bff2d4",
+    "exercise.mjs": "8aaa24f923c749594d49e76b9d70fd8e922c6a4394ffbf03318c45feb5486ffc"
+  },
+  "inputs": [
+    {
+      "id": "ingest_item_395089591e1d2d043f2d5689a9f6b587dc3635aeb01856cac1c2215e4ca5bb2c",
+      "document_id": "document_181c306532c04185a75976b2527c41d0ca1fd0daecffba1b9e3ca2a248121444",
+      "source_sha256": "439db90970e11b76de46348573e12445a260da7d7c56ecfaf179c7f0dceff346",
+      "metadata_sha256": "20faae95b28446508dc3d4d63fcbdd23a09fc3721a5b0e2071ea2d6f4cc3eff9",
+      "source_bytes": 116495
+    },
+    {
+      "id": "ingest_item_4375b6a95d202f88774c359261c216eecd74b047eb997cf6946c748d1e9da7e7",
+      "document_id": "document_16341c5c198e368f371719dc6c6e2ff7889104c96db870ef2dd959de36fd5529",
+      "source_sha256": "439db90970e11b76de46348573e12445a260da7d7c56ecfaf179c7f0dceff346",
+      "metadata_sha256": "d547e2f24de9d56497f2c3a40227419d9e7052319a76aafa2136c2d5255d92f6",
+      "source_bytes": 116495
+    },
+    {
+      "id": "ingest_item_4b2d1a2957679f70395891287c5b05c2c10a081c45be520f39e97368c4fae8ff",
+      "document_id": "document_0409c7404369089849990258a3449f1fea22349c17abc74c9abebe0ac8e18eea",
+      "source_sha256": "f79689e38be5f6186255751a629f2899c30f179c4ed12e2a56bda2b278020f6b",
+      "metadata_sha256": "7c622aed7c9b7e81b4005b314d2a1d80853c24252d46baf5c02de69dbd0eae12",
+      "source_bytes": 603751
+    },
+    {
+      "id": "ingest_item_8e296de8f9898b185256ba3d7ec18e62873980886b03c9a9c81f91a3b75f0bcf",
+      "document_id": "document_64f57256f771d7c189df59bf0f76743d0f91f50fa5a30b7e9689f4409f2b90e7",
+      "source_sha256": "b2c49266a79d35f1d1ef0e09236ce07ede45dc592f110bbd3c3b2b4df9431006",
+      "metadata_sha256": "41b01d01600e810d336552d240733eea0f9f486d079d1b012f34fa12a9ab8008",
+      "source_bytes": 87199
+    },
+    {
+      "id": "ingest_item_93bc0c583a27381a07150c5a68ff881635da11aa0e18c67812184607f885ce1e",
+      "document_id": "document_6bdc586d69852118e28238b40bb4e412822548d57670ee6a559838d7466edbc3",
+      "source_sha256": "439db90970e11b76de46348573e12445a260da7d7c56ecfaf179c7f0dceff346",
+      "metadata_sha256": "5421f25f11f86e83c72116cdf44ad08be8905dca36d1671810d5d52bcee95078",
+      "source_bytes": 116495
+    },
+    {
+      "id": "ingest_item_c65f01cf4d4975315c75c2d062a897007fc5259f44829389e47fe8f3ac6081d3",
+      "document_id": "document_30d51c3289f43b05e1a48f1b80ca6172451bbba0a26d01e16193d2ac88f0a111",
+      "source_sha256": "990fdb3073ac736fc6a85514eb2cc23bd2ae8fc9251f20cc79229d894cabe0d8",
+      "metadata_sha256": "d4c8576e9aa5cc0d7ebd78075ef2e58f055f055926fccfc714361581ed4733e0",
+      "source_bytes": 33290
+    }
+  ],
+  "measurements": [
+    {
+      "chunks": 7,
+      "warnings": [
+        "collected_package_text",
+        "description_not_verified",
+        "metadata_candidate_conflict"
+      ],
+      "tokenizer": "js-tiktoken@1.0.21/cl100k_base",
+      "version_id": "version_1489a618372b50698f3194cb74ac9ae9ac7c429c5481c0c5df8ca15bb45b7c41",
+      "document_id": "document_181c306532c04185a75976b2527c41d0ca1fd0daecffba1b9e3ca2a248121444",
+      "model_calls": 0,
+      "search_index": "not_run",
+      "source_chars": 883,
+      "source_units": 7,
+      "source_format": "json",
+      "embedding_calls": 0,
+      "knowledge_preparation": "not_run",
+      "embedding_input_tokens": 467,
+      "embedding_input_version": "title-section-text-v1"
+    },
+    {
+      "chunks": 4,
+      "warnings": [
+        "collected_package_text",
+        "description_not_verified",
+        "metadata_candidate_conflict"
+      ],
+      "tokenizer": "js-tiktoken@1.0.21/cl100k_base",
+      "version_id": "version_dc12df4e707dfeb74c1336a7712943589bc25bfce68f475da3af82a0671f0d66",
+      "document_id": "document_16341c5c198e368f371719dc6c6e2ff7889104c96db870ef2dd959de36fd5529",
+      "model_calls": 0,
+      "search_index": "not_run",
+      "source_chars": 448,
+      "source_units": 4,
+      "source_format": "json",
+      "embedding_calls": 0,
+      "knowledge_preparation": "not_run",
+      "embedding_input_tokens": 223,
+      "embedding_input_version": "title-section-text-v1"
+    },
+    {
+      "chunks": 10,
+      "warnings": [
+        "description_not_verified",
+        "layout_coverage_limit",
+        "pdf_column_order_detected",
+        "title_not_matched_in_pdf"
+      ],
+      "tokenizer": "js-tiktoken@1.0.21/cl100k_base",
+      "version_id": "version_61118a50f2cce399544214d60bb96b4ae46135daee2803ed9fbef23d4c68cebe",
+      "document_id": "document_0409c7404369089849990258a3449f1fea22349c17abc74c9abebe0ac8e18eea",
+      "model_calls": 0,
+      "search_index": "not_run",
+      "source_chars": 13460,
+      "source_units": 4,
+      "source_format": "pdf",
+      "embedding_calls": 0,
+      "knowledge_preparation": "not_run",
+      "embedding_input_tokens": 5673,
+      "embedding_input_version": "title-section-text-v1"
+    },
+    {
+      "chunks": 29,
+      "warnings": [
+        "source_metadata_conflict"
+      ],
+      "tokenizer": "js-tiktoken@1.0.21/cl100k_base",
+      "version_id": "version_474cc7ef15fa04a8cbc01343208e204d0f15b83376db82d108679153c9f0ae17",
+      "document_id": "document_64f57256f771d7c189df59bf0f76743d0f91f50fa5a30b7e9689f4409f2b90e7",
+      "model_calls": 0,
+      "search_index": "not_run",
+      "source_chars": 28622,
+      "source_units": 27,
+      "source_format": "xml",
+      "embedding_calls": 0,
+      "knowledge_preparation": "not_run",
+      "embedding_input_tokens": 11069,
+      "embedding_input_version": "title-section-text-v1"
+    },
+    {
+      "chunks": 4,
+      "warnings": [
+        "collected_package_text",
+        "metadata_candidate_conflict"
+      ],
+      "tokenizer": "js-tiktoken@1.0.21/cl100k_base",
+      "version_id": "version_e50d4a0a49474875c8d279af8478993133ba4eb21725c2d903706c33ff315d05",
+      "document_id": "document_6bdc586d69852118e28238b40bb4e412822548d57670ee6a559838d7466edbc3",
+      "model_calls": 0,
+      "search_index": "not_run",
+      "source_chars": 798,
+      "source_units": 4,
+      "source_format": "json",
+      "embedding_calls": 0,
+      "knowledge_preparation": "not_run",
+      "embedding_input_tokens": 341,
+      "embedding_input_version": "title-section-text-v1"
+    },
+    {
+      "chunks": 19,
+      "warnings": [
+        "description_not_verified",
+        "non_text_media_not_extracted",
+        "title_not_matched_in_pdf"
+      ],
+      "tokenizer": "js-tiktoken@1.0.21/cl100k_base",
+      "version_id": "version_4e7a587a402c99767b268cab3f78f7348b3a299a66da41a11f304068e4dd1a57",
+      "document_id": "document_30d51c3289f43b05e1a48f1b80ca6172451bbba0a26d01e16193d2ac88f0a111",
+      "model_calls": 0,
+      "search_index": "not_run",
+      "source_chars": 25594,
+      "source_units": 73,
+      "source_format": "html",
+      "embedding_calls": 0,
+      "knowledge_preparation": "not_run",
+      "embedding_input_tokens": 10632,
+      "embedding_input_version": "title-section-text-v1"
+    }
+  ],
+  "local_run": {
+    "verified": {
+      "batch_id": "ingest_batch_7386c3ebb0bc108471aa71223a920b1e35b3b9c570756a9e8d0d11a3d58ad573",
+      "verified": 6,
+      "chunks": 73,
+      "embedding_input_tokens": 28405,
+      "publication": "not_run",
+      "model_calls": 0
+    },
+    "indexed": {
+      "generation_id": "search_generation_8f94cd3cab4b4f752888ee18b22f2c5712507d3eb9af0edb71a0d8abb0e7354d",
+      "config_id": "search_config_22a69b035ad4fd5bf065c1276520e78df1d8664ffc6ffdd4bc0720ad5bbe057f",
+      "embedding_mode": "mock",
+      "units": 73,
+      "knowledge_cards": 0,
+      "dependencies": 0,
+      "knowledge_gaps": 0,
+      "cache_hits": 0,
+      "mock_vectors_created": 73,
+      "stored_real_vectors_indexed": 0,
+      "external_embedding_calls": 0,
+      "generation_calls": 0
+    },
+    "checks": [
+      {
+        "query": "koduteenust",
+        "state": "ok",
+        "documents": [
+          {
+            "id": "document_64f57256f771d7c189df59bf0f76743d0f91f50fa5a30b7e9689f4409f2b90e7",
+            "title": "Sotsiaalhoolekandelise abi andmise kord"
+          },
+          {
+            "id": "document_16341c5c198e368f371719dc6c6e2ff7889104c96db870ef2dd959de36fd5529",
+            "title": "Koduteenus"
+          },
+          {
+            "id": "document_16341c5c198e368f371719dc6c6e2ff7889104c96db870ef2dd959de36fd5529",
+            "title": "Koduteenus"
+          },
+          {
+            "id": "document_16341c5c198e368f371719dc6c6e2ff7889104c96db870ef2dd959de36fd5529",
+            "title": "Koduteenus"
+          },
+          {
+            "id": "document_6bdc586d69852118e28238b40bb4e412822548d57670ee6a559838d7466edbc3",
+            "title": "Airi Hõrrak"
+          }
+        ],
+        "model_calls": 0,
+        "query_embedding_calls": 0,
+        "source_locations_preserved": true
+      },
+      {
+        "query": "erakorralist toetust",
+        "state": "ok",
+        "documents": [
+          {
+            "id": "document_181c306532c04185a75976b2527c41d0ca1fd0daecffba1b9e3ca2a248121444",
+            "title": "Erakorraline toetus"
+          },
+          {
+            "id": "document_181c306532c04185a75976b2527c41d0ca1fd0daecffba1b9e3ca2a248121444",
+            "title": "Erakorraline toetus"
+          },
+          {
+            "id": "document_181c306532c04185a75976b2527c41d0ca1fd0daecffba1b9e3ca2a248121444",
+            "title": "Erakorraline toetus"
+          },
+          {
+            "id": "document_64f57256f771d7c189df59bf0f76743d0f91f50fa5a30b7e9689f4409f2b90e7",
+            "title": "Sotsiaalhoolekandelise abi andmise kord"
+          },
+          {
+            "id": "document_64f57256f771d7c189df59bf0f76743d0f91f50fa5a30b7e9689f4409f2b90e7",
+            "title": "Sotsiaalhoolekandelise abi andmise kord"
+          }
+        ],
+        "model_calls": 0,
+        "query_embedding_calls": 0,
+        "source_locations_preserved": true
+      },
+      {
+        "query": "kuuluvustunne",
+        "state": "ok",
+        "documents": [
+          {
+            "id": "document_30d51c3289f43b05e1a48f1b80ca6172451bbba0a26d01e16193d2ac88f0a111",
+            "title": "Kuuluvustunne ja naabruskonna solidaarsus. Uued teadmised projektist LOCUS"
+          },
+          {
+            "id": "document_30d51c3289f43b05e1a48f1b80ca6172451bbba0a26d01e16193d2ac88f0a111",
+            "title": "Kuuluvustunne ja naabruskonna solidaarsus. Uued teadmised projektist LOCUS"
+          },
+          {
+            "id": "document_30d51c3289f43b05e1a48f1b80ca6172451bbba0a26d01e16193d2ac88f0a111",
+            "title": "Kuuluvustunne ja naabruskonna solidaarsus. Uued teadmised projektist LOCUS"
+          }
+        ],
+        "model_calls": 0,
+        "query_embedding_calls": 0,
+        "source_locations_preserved": true
+      }
+    ],
+    "answer_quality": "NOT_PROVEN",
+    "cross_language_quality": "NOT_PROVEN",
+    "contacts_current": "NOT_PROVEN"
+  }
+}

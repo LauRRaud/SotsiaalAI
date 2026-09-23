@@ -14,7 +14,7 @@ import { structuralRole } from '../lib/rag-v2/search/structural-role.js';
 import { tokenCount } from '../lib/rag-v2/search/embedding.js';
 import { PostgresCatalog } from '../lib/rag-v2/search/postgres.js';
 import { QdrantIndex } from '../lib/rag-v2/search/qdrant.js';
-import { indexSnapshot } from '../lib/rag-v2/search/indexing.js';
+import { indexSnapshot, searchConfig } from '../lib/rag-v2/search/indexing.js';
 import { evaluateRetrieval, resolveAnchorGroups } from '../lib/rag-v2/search/evaluator.js';
 import { pilotReport } from '../lib/rag-v2/search/pilot-report.js';
 import { artifactProvenance, gitProvenance } from '../lib/rag-v2/search/artifact-provenance.js';
@@ -29,8 +29,10 @@ try {
     'baseline-audit': { type: 'string', default: 'tmp/rag-v2-query/evidence.json' },
     questions: { type: 'string', default: 'tests/evaluation/rag-v2-queries.json' }, groups: { type: 'string', default: 'tests/evaluation/rag-v2-anchor-groups.json' },
     approval: { type: 'string' }, price: { type: 'string' }, execute: { type: 'boolean', default: false },
+    lexical: { type: 'string', default: 'pg-simple-weighted-or-v1' },
     'verification-output': { type: 'string' },
   } });
+  searchConfig(undefined, values.lexical); // Reject invalid index choices before any paid work.
   const root = path.resolve('tmp/rag-v2-m2-2'); await fs.mkdir(root, { recursive: true, mode: 0o700 });
   const context = { tenant: values.tenant, subject: values.subject, usage: 'development_only' }, policy = new FilePolicy(values.policy);
   const allowed = await policy.allowed(context), snapshot = await loadSnapshot(values.store, values.tenant, allowed.documents);
@@ -76,7 +78,7 @@ try {
   if (run.state === 'complete') {
     const embeddings = await StoredEmbedding.load(run.directory,values.tenant), config=await readJson(values.connections);
     postgres=new PostgresCatalog(config.postgresUrl); const qdrant=new QdrantIndex(config.qdrantUrl,config.qdrantKey);
-    const indexed=await indexSnapshot({snapshot,postgres,qdrant,embedding:embeddings});
+    const indexed=await indexSnapshot({snapshot,postgres,qdrant,embedding:embeddings,lexical:values.lexical});
     const results=await evaluateRetrieval({snapshot,questions,groups,postgres,qdrant,embedding:embeddings,policy,context});
     results.index=indexed; results.usage=summary.usage;
     const resultPath=path.join(root,'pilot-results.json');

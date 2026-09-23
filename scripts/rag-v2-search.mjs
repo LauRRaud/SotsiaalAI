@@ -17,6 +17,7 @@ try {
   const { values } = parseArgs({ options: { mode: { type: 'string' }, tenant: { type: 'string' }, subject: { type: 'string' },
     store: { type: 'string' }, policy: { type: 'string' }, query: { type: 'string' }, language: { type: 'string', default: 'et' },
     connections: { type: 'string', default: 'tmp/rag-v2-services/connections.json' }, output: { type: 'string' }, graph: { type: 'boolean', default: false },
+    lexical: { type: 'string', default: 'pg-simple-weighted-or-v1' }, method: { type: 'string', default: 'hybrid' },
     'development-only': { type: 'boolean', default: false } } });
   if (!values['development-only'] || !['index', 'retrieve'].includes(values.mode) || !values.policy) throw new Error('local_cli_arguments_required');
   const connections = await readJson(values.connections), context = { tenant: values.tenant, subject: values.subject, usage: 'development_only' };
@@ -25,12 +26,12 @@ try {
   const qdrant = new QdrantIndex(connections.qdrantUrl, connections.qdrantKey), embedding = new MockEmbedding();
   if (values.mode === 'index') {
     const snapshot = await loadSnapshot(values.store, context.tenant, allowed.documents);
-    console.log(JSON.stringify(await indexSnapshot({ snapshot, postgres, qdrant, embedding }), null, 2));
+    console.log(JSON.stringify(await indexSnapshot({ snapshot, postgres, qdrant, embedding, lexical: values.lexical }), null, 2));
   } else {
     if (!values.output) throw new Error('private_output_required');
     const out = path.resolve(values.output), privateRoot = path.resolve('tmp');
     if (!out.startsWith(privateRoot + path.sep)) throw new Error('output_must_be_under_tmp');
-    const bundle = await retrieve({ postgres, qdrant, embedding, policy, context, query: { text: values.query, language: values.language, graph: values.graph } });
+    const bundle = await retrieve({ postgres, qdrant, embedding, policy, context, query: { text: values.query, language: values.language, graph: values.graph, method: values.method } });
     const versions = await Promise.allSettled([postgres.pool.query('SHOW server_version'), qdrant.request('/')]);
     bundle.measurements.environment = { node: process.version, platform: process.platform, arch: process.arch, measured_query_runs: 1,
       postgres: versions[0].status === 'fulfilled' ? versions[0].value.rows[0].server_version : 'unavailable',

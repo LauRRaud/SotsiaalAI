@@ -74,6 +74,8 @@ model RagV2Unit {
   body String
   search_aids String
   search_vector Unsupported("tsvector")?
+  morphology Json @default("{}")
+  morphology_vector Unsupported("tsvector")?
   @@id([tenant, generation_id, id])
   @@map("rag_v2_unit")
 }
@@ -85,4 +87,48 @@ model RagV2VectorCache {
   vector Json
   @@id([tenant, key])
   @@map("rag_v2_vector_cache")
+}
+
+model RagV2IndexJob {
+  tenant String
+  generation_id String
+  plan Json
+  plan_hash String
+  storage_root String
+  document_offset Int @default(0)
+  unit_offset Int @default(0)
+  completed_units Int @default(0)
+  state String @default("pending")
+  lease_token String? @db.Uuid
+  lease_until DateTime? @db.Timestamptz
+  @@id([tenant, generation_id])
+  @@map("rag_v2_index_job")
+}
+
+model RagV2IngestBatch {
+  tenant String
+  id String
+  manifest Json
+  manifest_hash String
+  item_count Int
+  storage_root String?
+  created_at DateTime @default(now()) @db.Timestamptz
+  @@id([tenant, id])
+  @@map("rag_v2_ingest_batch")
+}
+model RagV2IngestItem {
+  tenant String
+  batch_id String
+  id String
+  document_id String
+  state String @default("queued")
+  attempts Int @default(0)
+  lease_token String? @db.Uuid
+  lease_until DateTime? @db.Timestamptz
+  result Json?
+  error_code String?
+  @@id([tenant, batch_id, id])
+  @@unique([tenant, batch_id, document_id])
+  @@index([tenant, batch_id, state, id], map: "rag_v2_ingest_item_claim_idx")
+  @@map("rag_v2_ingest_item")
 }
