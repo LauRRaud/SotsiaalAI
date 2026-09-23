@@ -272,23 +272,33 @@ html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) [role="dialog
   gap: 0.42rem;
   align-items: center;
   padding: 0.55rem 0.9rem;
-  border: 1px solid rgba(250, 250, 250, 0.34);
-  border-radius: 16px;
+  /* Tavanupu materjal ja pill-kuju (omanik 23.09) — sama --input-* mis
+     valikunuppudel ja Salvesta'l; heledat oma gradienti enam ei ole. */
+  border: var(--input-border);
+  border-radius: 999px;
   outline: none;
-  background-color: rgba(255, 255, 255, 0.065);
-  background-image: linear-gradient(
-    165deg,
-    rgba(251, 251, 251, 0.12) 0%,
-    rgba(255, 255, 255, 0.04) 50%,
-    rgba(246, 246, 246, 0.065) 100%
-  );
+  background-color: var(--input-bg);
+  background-image: var(--input-sheen);
   color: var(--room-text);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.21), inset 0 -1px 2px rgba(0, 0, 0, 0.11);
+  box-shadow: var(--input-highlight), var(--input-shadow);
   font: inherit;
   text-align: center;
   user-select: none;
   cursor: var(--cursor-pointer);
   touch-action: manipulation;
+}
+.a11f-ambient-choice:hover {
+  background-color: var(--input-bg-hover);
+}
+/* Nooled = menüü nooled ja kiirmenüü (carousel.css .gc-arrow): sama
+   --control-glass-* toon, hägu ja läige, ilma heleda klaasi ja läätseta.
+   Kõrgkontrast jääb allpool oma reeglile. */
+html:not([data-contrast="hc"]) .glass-iconbtn.a11f-ambient-arrow {
+  background: var(--control-glass-bg);
+  -webkit-backdrop-filter: var(--control-glass-blur);
+  backdrop-filter: var(--control-glass-blur);
+  border: 0;
+  box-shadow: inset 0 1px rgba(247, 247, 247, 0.08);
 }
 .a11f-ambient-choice:focus-visible {
   outline: 2px solid rgba(250, 250, 250, 0.82);

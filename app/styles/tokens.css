@@ -112,7 +112,8 @@
   /* Suitsutoon fotoruumi ees: hele tekst püsib loetav ka heleda taeva ja
      udu kohal. Kiht on --glass-bg PEAL, nii et kõrgkontrasti ja vähendatud
      läbipaistvuse klaasi-ülekirjutused kehtivad edasi. */
-  --card-glass-smoke: rgba(10, 12, 16, 0.4);
+  /* 0,4 → 0,48 heleda maaliseina tõttu (23.09): sildid langesid 4,35:1-ni. */
+  --card-glass-smoke: rgba(10, 12, 16, 0.48);
   /* Kaardi härmatis (omanik 23.09: „ei ole piisavalt klaasjad, paistavad
      liiga läbi"). Mõõdukas — 22 px oli liiga udune. Kõrgkontrastis ja
      vähendatud läbipaistvuses 0. */
