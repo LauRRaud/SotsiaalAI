@@ -1351,15 +1351,14 @@ html[data-reduce-motion="1"] .gc-shortcut-menu > * {
    .gc peal seisev deklaratsioon ei jõuaks dokini. Ikooni eraldi reeglit
    siin enam ei ole: ta tuletatakse mõõdust (.gc-shortcut-menu plokk). */
 .gc[data-desk="1"] .gc-shortcut-menu {
-  /* Madalam pill (omanik 23.09: „tee vertikaalselt kitsam"): 3.15rem nupp
-     + 0.42rem polster tegi dokist ~64 px kõrguse riba. Laud on ainult
-     hiirevaates (GlassCarousel wideEnough), seega puutesiht ei kannata;
-     tsooninimede kiri jääb samaks. */
-  --gc-shortcut-size: 2.5rem;
-  padding-block: 0.3rem;
+  /* SAMA kõrgus mis tavamenüü dokil (omanik 23.09: madalam laua-dokk oli
+     tavamenüüst liiga erinev). Mõõt tuleb baasist (2.75rem + 0.42rem
+     polster); tsooninimi on selle asemel suurem. */
+  --gc-shortcut-size: 2.75rem;
 }
 .gc[data-desk="1"] .gc-zone {
   height: var(--gc-shortcut-size);
+  font-size: clamp(0.92rem, 0.8rem + 0.28vw, 1.1rem);
 }
 
 /* Otseteeriba (kolme kaardi karussell): overflow on nüüd ka desktopil,
