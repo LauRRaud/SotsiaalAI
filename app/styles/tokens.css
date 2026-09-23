@@ -301,13 +301,15 @@
   --btn-primary-text: var(--text-ink);
   /* Vormiväljad ja nupud jagavad läbipaistvat täidet ning peegeldust.
      Väiksel pinnal on serva paksus nähtavam kui suurel paneelil. */
-  --input-bg: rgba(200, 200, 200, 0.055);
+  /* Tume suitsuklaas nagu kiirmenüü (omanik 23.09: väljad ja nupud liiga
+     heledad, hover-tumedus meeldis) — hover on veel tumedam. */
+  --input-bg: rgba(10, 12, 16, 0.42);
   --input-sheen:
-    radial-gradient(ellipse 100% 90% at 50% 0%, rgba(255, 255, 255, 0.085), transparent 80%),
+    radial-gradient(ellipse 100% 90% at 50% 0%, rgba(255, 255, 255, 0.045), transparent 80%),
     linear-gradient(0deg, rgba(255, 255, 255, 0.035), transparent 30%);
   /* Hover peab välja täidet rahustama, mitte valge loorina heledamaks
      tõstma. Serva tagasiside tuleb eraldi liikuvast specular-joonest. */
-  --input-bg-hover: rgba(0, 0, 0, 0.12);
+  --input-bg-hover: rgba(6, 7, 10, 0.58);
   --input-bg-focus: var(--input-bg-hover);
   --input-text: var(--text-warm);
   --input-placeholder: rgba(255, 255, 255, 0.65);
