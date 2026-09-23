@@ -31,6 +31,8 @@ export interface EvidenceBundle {
   channels: string[]; warnings: string[]; evidence: Evidence[];
   model_context?: ModelContext | null; reference_map?: Record<string, ModelReference>;
   dependency_context?: ModelContext['dependencies'];
+  retrieval_context?: ModelContext['retrieval'];
+  retrieval_audit?: { version: 'rag-v2/unified-retrieval-1'; directory_hash: string; context_hash: string };
   raw_rankings: Record<string, { id: Id; score: number }[]>;
   selection_trace: { unit_id: Id; reason: string }[];
   measurements: { timings_ms: Record<string, number>; candidate_counts: Record<string, number>;
@@ -45,6 +47,18 @@ export interface ModelContext {
   dependencies?: { schema_version: 'rag-v2/dependency-context-1'; known_context: 'included' | 'incomplete';
     corpus_completeness: 'not_assessed'; verification_state: 'source_anchored_unreviewed';
     claims: Record<string, unknown>[]; relations: Record<string, unknown>[]; unresolved: Record<string, unknown>[] };
+  retrieval?: { version: 'rag-v2/unified-retrieval-1'; interpretation: string; semantic_quality: 'NOT_PROVEN';
+    temporal: { state: string; periods: DialoguePeriod[] };
+    lanes: { key: string; kind: 'knowledge' | 'local_records' | 'publication_period'; state: 'selected' | 'no_evidence'; refs: string[];
+      period?: DialoguePeriod; filters?: SearchQuery['filters']; coverage?: {
+        counting_unit: 'indexed_source_document'; indexed_documents: number; selected_documents: number;
+        missing_publication_date_documents: number; documents_by_publication_year: Record<string, number>;
+        article_deduplication: 'not_assessed'; corpus_completeness: 'not_assessed'; selection: 'bounded_excerpts_not_exhaustive_reading';
+      } }[] };
+}
+export interface DialoguePeriod {
+  basis: 'publication' | 'event' | 'validity' | 'unspecified'; from: string | null; to: string | null;
+  support: { turn: number; quote: string }[];
 }
 export interface ModelReference {
   tenant: string; query_id: Id; generation_id: Id; evidence_id: Id; document_id: Id; document_version_id: Id;

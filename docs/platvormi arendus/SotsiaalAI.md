@@ -92,22 +92,28 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**23.09 vestluse sisuline seis — kohalik teostus.**
-Sama vastusekutse tagastab kasutaja tsitaatidega seotud asjaolud, võimalikud
-abivajadused, lahtised küsimused, kanonilise piirkonna, perioodi ja keelevihje.
-Parandus asendab seotud asjaolu; muu säilib. Vana vastuse selgitamine ei taasta
-vanemat seisu ning uuel teemal/inimesel alustatakse tühjalt. Piirkonna
-tagasivõtmine takistab vana kohanime taasleidmist järgmisel pöördel.
-31 sihttesti, sihtlint ja diff-check läbisid. Kahe näidisvalla 8-pöördeline
-katseseeria tegi 8 vastusekutset testadapterile, päringu embedding'uid 0.
-[ADR-018](../rag-v2/adr-018-quoted-dialogue-state.md) kirjeldab lepingut,
-konfiguratsiooni, taastamist ning tõendipiire Opuse ülevaatuseks. Tasulisi
-kutseid 0; pärismudeli sisuline kvaliteet ja serveris aktiveerimine `NOT_PROVEN` / `not_run`.
-Järgmine arendusosa on artikli/KOV/perioodi ühine päringuvalik ja perioodi
-tähenduse säilitamine otsingus. Enne kasutuselevõttu tuleb teha ka
-[ADR-017](../rag-v2/adr-017-verified-contact-export.md) päris kontaktide vastendus
-ja ülevaatus ning kooskõlastada piloodiplaan indeksiga. Omaniku täpsustus:
-vestlus ei pea veel kasutatav olema; vana piloodi käivitamine ei ole praegune eesmärk.
+**23.09 artikli/KOV/perioodi ühine tõendivalik — kohalik teostus.**
+Üks vestluspööre ühendab üldteadmiste hübriidotsingu, piirkonna kontrollitud
+kataloogi ja kuni kaks ajakirjade avaldamisperioodi. Sama päringuvektor
+teenindab tekstivalikuid; sama vastusekutse annab ka tsitaatidega vestluse seisu.
+Planeerija lisakutset ei ole. Ajavahemiku liik eristab avaldamist, sündmust
+ja kehtivust; üldteadmisi numbrilise kuupäeva tõttu tervikuna ei filtreerita.
+Katvus loendab indekseeritud dokumente, mitte unikaalseid artikleid ega
+korpuseülest trendi. Allikaviited ja kogu loendatud ulatus kontrollitakse uuesti.
+69 eri sihttesti, sihtlint ja diff-check läbisid. Seitsme pöörde läbiv kohalik
+katse tegi 7 embedding'u ja 7 vastusekutset testadapterile. Tasulisi kutseid 0.
+Uus loendiversioon vajab uut indeksipõlvkonda; vanu vektoreid taaskasutatakse.
+[ADR-019](../rag-v2/adr-019-unified-retrieval-and-periods.md) kirjeldab teostust,
+konfiguratsiooni ja tõendipiire Opuse ülevaatuseks; varasem seisuleping on
+[ADR-018-s](../rag-v2/adr-018-quoted-dialogue-state.md). Pärismudeli sisuline
+kvaliteet ja serveris aktiveerimine on `NOT_PROVEN` / `not_run`.
+Järgmine kohalik plokk on artikli tõendifookuse säilitamine jätkupöördes
+(„selgita seda / teist punkti”) koos paranduste ja allikaõiguste kontrolliga.
+Korpuse deduplitseerimine, mahutöö ja ammendav ajaline süntees jäävad lahti.
+Enne kasutuselevõttu tuleb teha ka [ADR-017](../rag-v2/adr-017-verified-contact-export.md)
+päris kontaktide vastendus/ülevaatus ning kooskõlastada uus indeks ja piloodiplaan.
+Omaniku täpsustus: vestlus ei pea veel kasutatav olema; vana piloodi käivitamine
+ei ole praegune eesmärk.
 
 **23.09 assistendi mudeliuuendus ja vestlusjalus — serveris (`59a17b77`).**
 Üldine tekstimudel, piloot ja teadmiste ettevalmistus kasutavad `gpt-6-luna` /
@@ -131,7 +137,7 @@ kontakt läbib olemasoleva avaldamise/värskuse reegli ning täpse ID/väärtuse
 ja null päringu embedding'ut. [ADR-016](../rag-v2/adr-016-structured-municipal-dialogue.md)
 kirjeldab tõendit ja kasutamist. Kontaktikanalite päritolu ja registri-ID-de
 vastenduse teostus lisandus ADR-017-ga; päris valim on veel lahti. Piiratud vestluse
-sisuline seis lisandus kohalikult ADR-018-ga; ühine päringuvalik ja pärismudeli kvaliteet on veel lahti. Kood avaldati 23.09 koos
+sisuline seis ja ühine päringuvalik lisandusid kohalikult ADR-018/019-ga; pärismudeli kvaliteet on veel lahti. Kood avaldati 23.09 koos
 mudeliuuendusega; serveri aktiivses piloodis kataloogirada pole sisse lülitatud.
 
 **23.09 RAG/GraphRAG-i põhisuund kinnitatud — kood serveris.**
@@ -2244,7 +2250,9 @@ sisselülitamisele" reegli puhas rakendus. Vt „Lüliti" S2-s ja „Mis avab" S
 
 **Vestlus ja teadmusbaas.**
 
-**Vestluse sisuline seis (23.09, kohalik teostus).** [ADR-018](../rag-v2/adr-018-quoted-dialogue-state.md): sama vastusekutse annab nähtava vastuse kõrval kasutaja täpsete tsitaatidega asjaolukirjed, võimalikud vajadused, lahtised küsimused, kanonilise piirkonna, perioodi ja keelevihje. Seis on mudeli tõlgendus; server kontrollib tsitaadipäritolu, asenduse kronoloogiat, muutumatute asjaolude säilimist ja teema/isiku piiri. Vana vastuse valimine ei pöördu vana seisu juurde tagasi. Seis ja vastus salvestuvad koos, katkestus taastub lisakutseta ning kustutamine eemaldab mõlemad. Järgmise pöörde KOV-valik kasutab uusi sõnumeid ja viimast seisu; tagasivõetud piirkonda vanast tekstist uuesti ei leita. 31 kohalikku sihttesti läbisid, sealhulgas 8-pöördeline rada päris kohaliku PostgreSQL/Qdranti, EstNLTK ja eraldatud rakenduse andmebaasiga; mudel ja vektorid olid testadapterid. Seis ei vaja lisamudelikutsena planeerijat, kuid lisab sama päringu/vastuse tokeneid. Uus leping on konfiguratsiooniga valitav; serveris seda ei aktiveeritud. Tasulisi kutseid 0; sisuline pärismudeli kvaliteet `NOT_PROVEN`. Periood salvestub tõlgendusena, range ajafiltriga seda veel ei võrdsustata. Järgmine arendus on ühine artikli/KOV/perioodi päringuvalik.
+**Ühine artikli/KOV/perioodi tõendivalik (23.09, kohalik teostus).** [ADR-019](../rag-v2/adr-019-unified-retrieval-and-periods.md): üldteadmiste tekstivalik, piirkonna kontrollitud kirjete kataloog ja kuni kaks ajakirjade avaldamisperioodi jõuavad samasse vastusekutsesse. Üks päringuvektor taaskasutatakse tekstivalikutes; planeerimismudeli lisakutset ei ole. Seisu v2 eristab avaldamist, sündmust ja kehtivust; numbrilised ajad on esialgsed kandidaadid ning üldteadmiste rada jääb ajaliselt piiramata. Perioodidel on eraldi tõendikvoot ja lubatud indekseeritud dokumentide katvus, mitte unikaalsete artiklite ega teemade esinemissageduse loendus. S-viited, kirjete seosed ja graaf teisendatakse ühisesse paketti. Kogu loendatud ulatust kontrollitakse uuesti ka taastamisel, sealhulgas valimata dokumendi ligipääsu kadumist. Uus loendiskeem vajab uut indeksipõlvkonda, vanad vektorid taaskasutatakse ja v1 põlvkond jääb loetavaks. 69 eri sihttesti läbisid; seitse pööret päris kohaliku PostgreSQL/Qdranti/EstNLTK ja eraldatud vestlusandmebaasiga tegid 7 embedding'u ja 7 vastusekutset testadapterile. Tasulisi kutseid 0. Konfiguratsioon on valikuline, serveris aktiveerimine `not_run`, semantiline kvaliteet `NOT_PROVEN`. Järgmine kohalik ühik on artiklitõendi fookuse säilitamine jätkupöördes; kogu korpuse deduplitseerimine, mahutöö/admini ühendus ja ammendav ajaline süntees jäävad eraldi tööks.
+
+**Vestluse sisuline seis (23.09, kohalik teostus).** [ADR-018](../rag-v2/adr-018-quoted-dialogue-state.md): sama vastusekutse annab nähtava vastuse kõrval kasutaja täpsete tsitaatidega asjaolukirjed, võimalikud vajadused, lahtised küsimused, kanonilise piirkonna, perioodi ja keelevihje. Seis on mudeli tõlgendus; server kontrollib tsitaadipäritolu, asenduse kronoloogiat, muutumatute asjaolude säilimist ja teema/isiku piiri. Vana vastuse valimine ei pöördu vana seisu juurde tagasi. Seis ja vastus salvestuvad koos, katkestus taastub lisakutseta ning kustutamine eemaldab mõlemad. Järgmise pöörde KOV-valik kasutab uusi sõnumeid ja viimast seisu; tagasivõetud piirkonda vanast tekstist uuesti ei leita. 31 kohalikku sihttesti läbisid, sealhulgas 8-pöördeline rada päris kohaliku PostgreSQL/Qdranti, EstNLTK ja eraldatud rakenduse andmebaasiga; mudel ja vektorid olid testadapterid. Seis ei vaja lisamudelikutsena planeerijat, kuid lisab sama päringu/vastuse tokeneid. Uus leping on konfiguratsiooniga valitav; serveris seda ei aktiveeritud. Tasulisi kutseid 0; sisuline pärismudeli kvaliteet `NOT_PROVEN`. Periood salvestub mudeli tõlgendusena. V2 ajaliigid ja ühine artikli/KOV/perioodi tõendivalik lisandusid ADR-019-ga.
 
 **Kontrollitud kontaktiallikad (23.09, kohalik teostus).** [ADR-017](../rag-v2/adr-017-verified-contact-export.md): eraldi lugemiseks mõeldud registriadapter ja CLI loovad selgesõnalise paketi-ID → registrikirje-ID vastenduse alusel uue kontaktiallika. KOV-i teenuse seos säilib ning telefon/e-post koos päritoluga tuleb kontrollitud registrist. Muutunud või aegunud registririda välistab vana ekspordi; kontroll kehtib ka kataloogita piloodi tõendipaketile. Tuum sai allikaga seotud üldise `bindings` välja, klient eraldi kontrolliadapteri. JSONB võtmejärjestus ei põhjusta enam sama struktureeritud väärtuse tagasilükkamist. 29 sihttesti läbisid päris kohaliku PostgreSQL/Qdranti ja eraldatud rakenduse andmebaasiga; vektorid ja olemasolev vestlustransport olid testadapteritega. CLI, allikaviited, piirkonna piir, kontaktimuutus ja muutus ekspordi ajal on kontrollitud. Tasulisi kutseid 0. Päris kontaktide vastendus/eksport, deploy ja mudeli sisuline kvaliteet `not_run` / `NOT_PROVEN`. Omaniku täpsustuse järgi jätkub RAG-i arendus; vana serveripiloodi käivitamine ei ole praegune eesmärk. Vestluse sisuline seis ja paranduste käsitlemine lisandusid kohalikult ADR-018-ga.
 
@@ -2309,13 +2317,13 @@ See plokk ei tõenda veel loomuliku olukorrakirjelduse täielikku mõistmist, v�
 
 **23.09 Opuse P1 esimene läbiv tehniline teostus — `1ececb72`:** [ADR-016](../rag-v2/adr-016-structured-municipal-dialogue.md) kirjeldab struktureeritud kirjete allikalist vastuvõttu, piirkonna kataloogi ja selle vestlusühendust. EstNLTK kasutab kanonilisi omavalitsusnimesid; mitmetähenduslik nimi küsitakse üle, mainimist ei loeta tõendatud elukohaks. Teenuse–kontakti–vormi seosed säilivad; kontrollimata, aegunud või teise piirkonna kontakt jääb välja. Varem viidatud kirjete detailid tulevad sama piirkonna jätkupöördes kaasa ning valla parandus vahetab ulatuse. Viidete kontroll toimub paketi kaupa, säilitades allika- ja õiguskontrollid.
 
-Kohalikud 49 sihttesti läbisid. Viie pöörde katses kasutati päris PostgreSQL-i/Qdranti/EstNLTK-d ning vastuse testadapterit: viis vastusekutset, null päringu embedding'ut. Päris kontaktide puuduvaid kanaleid ei täidetud automaatselt; uus adapter nõuab registriga sama allika-ID-d ja täpseid väärtusi. Vajalik uus kontaktiallikas, päris ID-de vastendus, ühine artikli/KOV/perioodi päringuvalik ning vajadusi ja ajapiire kandev vestluse sisuline seis jäävad lahti. KOV-rada on uue plaani valikuline `recordCatalogue` võime; olemasolevat pilooti ega serverit selle tööga ei muudetud. Normaliseerimisversioon v7 vajab uut vastuvõttu ja indeksit. Tasulisi kutseid 0, push/deploy `not_run`.
+Kohalikud 49 sihttesti läbisid. Viie pöörde katses kasutati päris PostgreSQL-i/Qdranti/EstNLTK-d ning vastuse testadapterit: viis vastusekutset, null päringu embedding'ut. Päris kontaktide puuduvaid kanaleid ei täidetud automaatselt; uus adapter nõuab registriga sama allika-ID-d ja täpseid väärtusi. Kontaktiallika adapter, vajadusi/ajapiire kandev seis ning ühine artikli/KOV/perioodi tõendivalik lisandusid hiljem ADR-017/018/019-ga; päris ID-de vastendus ja sisuline kvaliteet jäävad lahti. KOV-rada on uue plaani valikuline `recordCatalogue` võime; olemasolevat pilooti ega serverit selle tööga ei muudetud. Normaliseerimisversioon v7 vajab uut vastuvõttu ja indeksit. Tasulisi kutseid 0, push/deploy `not_run`.
 
 **Järgmine arendusjärjestus — täpsustatud Opuse ülevaatuse järel 23.09:**
 
-1. **Päris teenusest kontrollitud kontaktini:** tuua avaldatud ja värskuskontrolli läbinud kontaktiregistri kanalid eraldi päritoluga allikaversiooni, siduda need teenusekirje stabiilse kontaktiviitega ning kontrollida 2–3 valla päris ID-de vastavust. Praegune adapter lubab ainult täpse allika-ID/nime/kanalite vaste; ta ei ühenda puuduvaid välju oletuse järgi. Tehniline kataloogi- ja vestlusrada on ADR-016-s; sisuline pärismudeli kvaliteet jääb sellest eraldi.
-2. **Ühine päringuvalik ja vestluse kvaliteet:** siduda artikli-, KOV- ja perioodirada ühe assistendiga, täiendada samas vastusekutses vestluse sisulist seisu ning kontrollida eitust, teist inimest ja asukoha parandust. Vähendada hübriidotsingu üldsõnamüra ning mõõta EstNLTK, tähendusotsingu ja graafi koosmõju. Tasuline hindamisring pole arenduse eeltingimus.
-3. **Ajakirjad ja ajaperioodid:** ühendada mahutöö/adminirada, lahendada 5000 tekstiosa piir ning lisada perioodide katvust arvestav tõendivalik. Puuduvate pärisvektorite mahttöö vajab mõõdetud mahtu ja kokkulepitud kulu. Väljalaske eel mõõta serveri RAG-skeem ning kooskõlastada uus indeks ja piloodiplaan.
+1. **Jätkuvestluse tõendifookus:** säilitada varasema artiklivastuse või valitud punkti kanoonilised tõendid „selgita seda” pöördes, seadmata vana vastust faktiallikaks. Parandatud asjaolud jäävad uuemast seisust; allikaõigused ja versioonid kontrollitakse uuesti. Ühine artikli/KOV/perioodi rada ja seisu ajaliigid on ADR-018/019-ga kohalikult olemas.
+2. **Päris teenusest kontrollitud kontaktini ja valiku kvaliteet:** kontrollida 2–3 valla teenuse- ja kontaktikirjete päris ID-de vastavust ADR-017 ekspordiadapteriga ning teha olemasolevate allikatega kohalikud vastuvõtukontrollid. Vähendada hübriidotsingu üldsõnamüra, kontrollida eitust/teist inimest ja mõõta EstNLTK, tähendusotsingu ning graafi koosmõju. Tsitaadipäritolu kontroll ei tõenda semantilist mõistmist; tasuline hindamisring pole eeltingimus.
+3. **Ajakirjad ja ajaperioodid:** ühendada mahutöö/adminirada, lahendada 5000 tekstiosa piir ning eristada sama artikli eri allikad. ADR-019 loendab dokumentide katvust ja valib kummastki perioodist piiratud tõendid; ammendav ajaline süntees pole teostatud. Puuduvate pärisvektorite mahttöö vajab mõõdetud mahtu ja kokkulepitud kulu. Väljalaske eel mõõta serveri RAG-skeem ning kooskõlastada uus indeks ja piloodiplaan.
 
 **Käituse ja mahutöö taust ning säilivad sõltuvused:**
 

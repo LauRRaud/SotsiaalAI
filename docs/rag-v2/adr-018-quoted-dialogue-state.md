@@ -2,6 +2,8 @@
 
 23.09.2026. Kohalik teostus ja kontroll; serveris aktiveerimine ning pärismudeli sisuline kvaliteet `not_run` / `NOT_PROVEN`.
 
+Jätkuteostus: [ADR-019](adr-019-unified-retrieval-and-periods.md) lisab v2 seisu kahe eri tähendusega ajavahemikuga ning artikli/KOV/perioodi ühise tõendivaliku. Siin kirjeldatud v1 leping säilib ajalooliste plaanide jaoks.
+
 ## Probleem ja lahendus
 
 [Opuse L9/P1](../audits/rag-v2-opus-review-2026-09-23.md) osutas, et sõnumite järjekord üksi ei ole vestluse sisuline seis. Näiteks „elan üksi, tööd ei ole” järel peab töö leidmise parandus asendama tööga seotud asjaolu, säilitades muu asjakohase info. Vana vastuse selgitamine ei tohi uuemat parandust tagasi pöörata.
