@@ -445,6 +445,8 @@ Kasuta konkreetse kahtluse kontrolliks väikseimat vajalikku testi, vajadusel er
 
 ### 12.6. Oodatud ülevaatuse tulemus
 
+Salvesta oma analüüs ja koodiülevaatus faili `docs/audits/rag-v2-opus-review-2026-09-23.md` (töökaustas `C:\Users\rauds\Desktop\Sotsiaal.ee`). See on tehniline auditiraport; aktiivne tööseis jääb SotsiaalAI.md-sse. Vestluses anna lühikokkuvõte olulisematest leidudest ja viide raportile. Kui raport on juba olemas, loe see enne täiendamist läbi ja säilita varasemad põhjendatud leiud.
+
 Esita eestikeelne põhjendatud ülevaatus järgmiste tulemustega:
 
 1. **Hinnang eesmärgile vastavusele:** mis töötab tehniliselt, mida kasutaja saab juba teha ja milline lubadus jääb veel katmata. Jälgi vähemalt artikliküsimust, kahe perioodi võrdlust ja olukorrakirjeldusest KOV-i kontakti jõudvat jätkuvestlust.
