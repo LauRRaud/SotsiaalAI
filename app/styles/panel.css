@@ -127,8 +127,13 @@ html[data-reduce-motion="1"] .panel-scrim[data-dock="1"] {
      hägustub paneeli taga niikuinii (data-room-mode=panel) ja kaart
      paistab läbi; blur elas topelt ja mattis ruumi ära. */
   background: var(--panel-glass-bg);
-  border: 1px solid transparent;
-  box-shadow: var(--panel-glass-shadow);
+  /* ÜKS serv (omanik 23.09: „alalehtede servad on imelikud"). Tumeda
+     suitsuklaasi peal lugesid kolm kihti topeltservana: 1 px läbipaistev
+     äärisriba (taust paistis läbi), selle sees ::after klaasirant ja veel
+     sees --panel-glass-shadow sisekuma. Alles jääb ainult rant (::after),
+     mis kannab ka kõrgkontrasti valget serva. */
+  border: 0;
+  box-shadow: none;
   overflow: hidden;
 }
 /* Kuni kast mõõtu otsib, on ta paigas ja mõõdetav, aga nähtamatu —
@@ -376,6 +381,22 @@ html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .panel-scrim[
   mask-composite: exclude;
   pointer-events: none;
   z-index: 2;
+}
+/* Kaardileht ON kaart — sama proov mis karussellis (carousel.css): ei
+   servajoont, sisehelke ega servaläiget, klaas on härmas. Kõrgkontrastis
+   jääb rant. */
+html:not([data-contrast="hc"]) .panel-scrim[data-compact="1"] .panel::after {
+  content: none;
+}
+html:not([data-contrast="hc"]) .panel-scrim[data-compact="1"] .panel::before {
+  background: none;
+}
+html:not([data-contrast="hc"]) .panel-scrim[data-compact="1"] .panel {
+  box-shadow: none;
+}
+.panel-scrim[data-compact="1"] .panel {
+  -webkit-backdrop-filter: blur(var(--card-glass-blur));
+  backdrop-filter: blur(var(--card-glass-blur));
 }
 .panel-scrim[data-compact="1"] .panel-body {
   display: flex;

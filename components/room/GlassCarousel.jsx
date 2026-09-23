@@ -165,8 +165,15 @@ export default function GlassCarousel({
   useEffect(() => {
     setJumpZone(null);
   }, [setKey]);
+  /* Hüppe vastus rea kaartidel: lühike ühekordne laine (omanik 23.09:
+     „kiirmenüül vajutan nuppu, kaardid ise ei tee midagi" — hiirevajutuse
+     järel programmiline fookus ei paista). Laud ei muutu püsivalt, 03.08
+     otsus jääb. `n` vaheldab animatsiooni nime, et kordusvajutus käivitaks
+     laine uuesti. */
+  const [jumpPulse, setJumpPulse] = useState({ id: null, n: 0 });
   const jumpToZone = useCallback((id) => {
     setJumpZone(id);
+    setJumpPulse((p) => ({ id, n: p.n + 1 }));
     const list = deskRef.current?.querySelector(`[data-zone-list="${CSS.escape(id)}"]`);
     const first = list?.querySelector("a, button");
     first?.focus?.();
@@ -706,6 +713,7 @@ export default function GlassCarousel({
                 className="gc-tier"
                 data-zone={group.id}
                 data-d={d}
+                data-jump={jumpPulse.id === group.id ? (jumpPulse.n % 2 ? "a" : "b") : undefined}
                 /* data-focus / data-dimmed on 03.08 KADUNUD: aste ei tõuse
                    ega tuhmu enam kellegi teise arvelt. Alles on ainult
                    `data-d` — puhkesügavus, mis kannab tähendust. */
@@ -730,8 +738,8 @@ export default function GlassCarousel({
                   data-zone-list={group.id}
                   aria-label={zoneLabel(group.id, "name") || undefined}
                 >
-                  {group.items.map((item) => (
-                    <li key={item.key} className="gc-item" data-hidden="0">
+                  {group.items.map((item, i) => (
+                    <li key={item.key} className="gc-item" data-hidden="0" style={{ "--i": i }}>
                       <GlassCard
                         href={item.href}
                         label={item.label}

@@ -48,8 +48,11 @@
   /* Sisse-hajumine kiire (220 ms) — sisenev äärekaart ei tohi pöördest
      maha jääda; välja-hajumine elab [data-hidden] reeglis (sihtoleku
      transition võidab). */
-  transition: transform 480ms var(--ease-soft), opacity 220ms var(--ease-soft);
-  opacity: 1;
+  /* Hajumine käib --gc-item-alpha kaudu, MITTE opacity'ga: hajuv ümbris
+     oleks klaasi härmatise backdrop root ja hägu kaoks iga hajumise ajaks
+     (tokens.css @property). Klaasikiht ja sisu loevad muutujat ise. */
+  transition: transform 480ms var(--ease-soft), --gc-item-alpha 220ms var(--ease-soft);
+  --gc-item-alpha: 1;
   will-change: transform;
   /* Oma perspektiiv sisemisele kaardile: raja `perspective: 1500px`
      kehtib LASTELE (.gc-item), mitte lapselastele. Ilma selleta jääks
@@ -61,9 +64,9 @@
    Liikumine võib olla sujuv, sest opacity 0 katab ka ringi-ümberpaigutuse. Lahkuv kaart
    hajub rahulikult (400 ms). */
 .gc-item[data-hidden="1"] {
-  opacity: 0;
+  --gc-item-alpha: 0;
   pointer-events: none;
-  transition: transform 480ms var(--ease-soft), opacity 400ms var(--ease-soft);
+  transition: transform 480ms var(--ease-soft), --gc-item-alpha 400ms var(--ease-soft);
 }
 /* Hoia nähtava rea kõrval üks saabuv/lahkuv kaart. Pikema töölauamenüü
    ülejäänud klaasikihte pole tarvis iga sõrmeliigutusega komposiitida. */
@@ -76,7 +79,7 @@
    endiselt sujuvalt. Nii ei näe väikeses komplektis (haldus) äärmise
    kaardi ülelendu, vaid ta lihtsalt taandub/hajub oma poolel. */
 .gc-item[data-warp="1"] {
-  transition: opacity 400ms var(--ease-soft);
+  transition: --gc-item-alpha 400ms var(--ease-soft);
 }
 /* Komplekti mälust taastamine pole karusselli pööramine. Uus komplekt
    hajub gc-ignite'iga oma lõppasendisse, kuid initialKey → salvestatud
@@ -346,7 +349,14 @@
      transformi sees), ei loeks nad ühe pinnana. */
   perspective: var(--desk-perspective);
   perspective-origin: var(--room-vp-x) var(--room-vp-y);
-  transform-style: preserve-3d;
+  /* LAMEDAKS (omanik 23.09: töölaua ja tööheaolu kaardid härmas nagu
+     karussellis). Chrome ei joonista backdrop-filterit preserve-3d ahela
+     sees, ja see ahel (laud → aste → rida) kandis ainult astmete sügavust ja
+     kallet, mis on 03.08-st null. Kaardi tõus hoveril (translateZ) tuleb
+     .gc-item'i enda perspektiivist (900 px), mitte lauast — see jääb.
+     Tagasitee endisele sügavale lauale: need kolm tagasi preserve-3d-ks
+     JA --desk-tier-z-num 90 + --desk-tilt 3deg (härmatis kaob siis laualt). */
+  transform-style: flat;
   /* Laud ise EI püüa klõpse. .gc-desk on täisekraani kastiga preserve-3d
      vanem, ja Z-teljel TAHA lükatud astmed jäävad tema enda tasapinna
      taha — tabamustestil võidab siis vanem ja tagumiste ridade kaardid
@@ -377,7 +387,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transform-style: preserve-3d;
+  transform-style: flat; /* vt .gc-desk */
   transform: rotateX(var(--desk-tilt))
     translate3d(0, 0, calc(var(--d) * -1 * var(--desk-tier-z)));
   /* 03.08: aste ei kasva enam. Varem oli siin `scale: var(--desk-scale)`
@@ -442,7 +452,10 @@
   font-weight: 560;
   /* Väiksem kui lamades: püstine silt loeb ääremärkusena ja tema pikkus
      võistleb kaardi kõrgusega, mitte laiusega. */
-  font-size: clamp(0.82rem, 0.62rem + 0.42vw, 1.06rem);
+  /* Veidi suurem (omanik 23.09): 1920 px ekraanil ~17 → ~19 px, 1200 px
+     juures ~15 → ~16 px — kitsal ekraanil kasvab vähe, sest nime pikkus
+     võistleb kaardi kõrgusega (vt [data-long] allpool). */
+  font-size: clamp(0.9rem, 0.66rem + 0.46vw, 1.2rem);
   /* Hõredam tähevahe on siltide keel — püstises sildis eriti, seal ta
      annab tähtedele õhku ilma veergu laiendamata. */
   letter-spacing: 0.14em;
@@ -450,8 +463,9 @@
   text-transform: uppercase;
   /* Astme nimi ütleb, MIS see rida on — see on orientiir, mitte allmärkus.
      Oli --room-text-dim (alfa .55) ja luges hallina (omanik 25.07). */
-  color: var(--room-text-soft);
-  text-shadow: 0 1px 12px rgba(6, 5, 4, 0.8);
+  color: var(--room-text); /* täistoon nagu kaardisildid (omanik 23.09) */
+  /* Varjuta (omanik 23.09: puhas kiri nagu kaartidel). */
+  text-shadow: none;
   pointer-events: none;
   transition: color 400ms var(--ease-soft);
 }
@@ -487,7 +501,7 @@
   align-items: center;
   justify-content: center;
   gap: var(--desk-gap-x);
-  transform-style: preserve-3d;
+  transform-style: flat; /* vt .gc-desk */
 }
 
 /* Kaardid tulevad absoluutsest karussellipaigutusest tavavoolu. */
@@ -505,7 +519,7 @@
   transform: none;
   transition: none;
   will-change: auto;
-  opacity: 1;
+  --gc-item-alpha: 1;
 }
 /* Laual ei ole "külgkaarti": iga kaart on täies toonis. Kauguse annab
    loor, mitte tuhmim tekst. */
@@ -558,9 +572,13 @@
   letter-spacing: 0.09em;
   padding: 0 0.6em 0 calc(0.6em + 0.09em);
 }
+/* Pikk silt (13+ tähte) lähemale tavasildi mõõdule (omanik 23.09: „osad
+   tekstid võiks veel suuremad olla"). Ruumi annab kitsam tähevahe ja
+   polster: ORGANISATSIOONID täidab ~91% kaardi laiusest. */
 .gc[data-desk="1"] .gc-label[data-long="1"] {
-  font-size: clamp(0.72rem, 7.8cqi, 1.15rem);
-  letter-spacing: 0.06em;
+  font-size: clamp(0.72rem, 8.6cqi, 1.22rem);
+  letter-spacing: 0.04em;
+  padding: 0 0.5em 0 calc(0.5em + 0.04em);
 }
 /* Kaart läheneb kursorile; materjal ja servapeegeldused püsivad samad. */
 .gc[data-desk="1"] .gc-card {
@@ -575,6 +593,29 @@
 .gc[data-desk="1"] .gc-card:hover .gc-haze,
 .gc[data-desk="1"] .gc-card:focus-visible .gc-haze {
   transition: background 380ms var(--ease-soft);
+}
+/* Doki tsooninupu vastus: rea kaardid tõusevad lainena korraks ette ja
+   laskuvad tagasi (GlassCarousel jumpPulse). Ühekordne — laud ei jää
+   muutunuks. Kaks sama sisuga nime, et kordusvajutus alustaks uuesti. */
+@keyframes gc-zone-pulse-a {
+  40% { transform: translateZ(40px); }
+}
+@keyframes gc-zone-pulse-b {
+  40% { transform: translateZ(40px); }
+}
+.gc[data-desk="1"] .gc-tier[data-jump="a"] .gc-card {
+  animation: gc-zone-pulse-a 620ms var(--ease-soft) calc(var(--i, 0) * 55ms);
+}
+.gc[data-desk="1"] .gc-tier[data-jump="b"] .gc-card {
+  animation: gc-zone-pulse-b 620ms var(--ease-soft) calc(var(--i, 0) * 55ms);
+}
+html[data-reduce-motion="1"] .gc[data-desk="1"] .gc-tier[data-jump] .gc-card {
+  animation: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .gc[data-desk="1"] .gc-tier[data-jump] .gc-card {
+    animation: none;
+  }
 }
 /* Valitud kaardi silt ja ikoon lähevad täistooni. */
 .gc[data-desk="1"] .gc-card:hover,
@@ -602,12 +643,12 @@
    keskmine esimesena (~180 ms sammuga viide). MITTE libisemist. ---------- */
 @keyframes gc-ignite {
   from {
-    opacity: 0;
+    --gc-item-alpha: 0;
   }
 }
 @keyframes gc-set-enter {
   from {
-    opacity: 0;
+    --gc-item-alpha: 0;
   }
 }
 /* Animatsioon kuulub mount'ile, mitte nähtavuse vahetusele. Peidetud kaardid
@@ -712,7 +753,28 @@ html[data-reduce-motion="1"] .gc-item {
      Täide, inset-helgid ja maskitud serv silutakse ühe komposiidina,
      et nende kattuvad subpikslilised ääred ei vilguks pööramisel eraldi.
      Klaasi tokenid, kursorikalle ja sisu renderdus jäävad samaks. */
-  filter: blur(0.75px);
+  /* 0.75 → 0.35 px (omanik 23.09: „servad on hägused"). Silub endiselt
+     pööramisel vilkuvaid subpikslilisi ääri, aga serv jääb teravaks. */
+  filter: blur(0.35px);
+  /* Härmatis: fotoruum pehmeneb klaasi taga, nii et kaart loeb klaasina,
+     mitte toonitud kilena. Töötab ka hajumise ajal, sest ükski vanem ei
+     hajugi opacity'ga (--gc-item-alpha, tokens.css). */
+  -webkit-backdrop-filter: blur(var(--card-glass-blur));
+  backdrop-filter: blur(var(--card-glass-blur));
+  opacity: var(--gc-item-alpha, 1);
+  transition: filter var(--dur-slow) var(--ease-soft);
+}
+html[data-reduce-motion="1"] .gc-card-surface {
+  transition: none;
+}
+/* Ülemine juhtpaneel on kiirmenüüga SAMA materjal (omanik 23.09) — see
+   elab .room-quickbar::before'il (room.css), kaardi klaasi seal ei ole. */
+.room-quickbar .gc-card-surface {
+  display: none;
+}
+/* Laual kaart ei pöörle — silumist ei ole vaja, serv jääb täiesti teravaks. */
+.gc[data-desk="1"] .gc-card-surface {
+  filter: none;
 }
 
 .gc-card-surface::before {
@@ -735,6 +797,21 @@ html[data-reduce-motion="1"] .gc-item {
   -webkit-mask-composite: xor;
   mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   mask-composite: exclude;
+}
+/* PROOV (omanik 23.09): kaardil ei ole servajoont ega halli serva.
+   Pööratud kaardil läks 0,8 px rant ja 0,7 px sisejoon sakiliseks, ja
+   tumeda härmatise peal lugesid ka valged sisehelgid (inset) ning
+   servaläige (--card-glass-sheen külgmised ribad) halli servana. Kaart on
+   nüüd puhas härmas klaas — ruumist eristab teda härmatis ise.
+   Kõrgkontrastis jääb valge serv (html[data-contrast="hc"]
+   .gc-card-surface::after allpool). Kaardileht (panel.css [data-compact])
+   kordab sama. */
+html:not([data-contrast="hc"]) .gc-card > .gc-card-surface::after {
+  content: none;
+}
+html:not([data-contrast="hc"]) .gc-card > .gc-card-surface::before {
+  background: var(--card-glass-bg);
+  box-shadow: none;
 }
 
 /* iOS-i standalone-komposiitor võib 3D-teisenduse sees vanemale pandud
@@ -772,6 +849,7 @@ html:not([data-contrast="hc"])[data-display-mode="fullscreen"] .gc-card-surface:
   border-radius: inherit;
   pointer-events: none;
   background: rgba(26, 20, 16, var(--gc-haze, 0));
+  opacity: var(--gc-item-alpha, 1);
   transition: background 640ms var(--ease-soft);
 }
 /* Sisu seisab klaasipinna KOHAL. .gc-card-surface on absoluutne ja
@@ -825,7 +903,10 @@ html:not([data-contrast="hc"])[data-display-mode="fullscreen"] .gc-card-surface:
   text-align: center;
   text-wrap: balance;
   padding: 0 1.1em 0 calc(1.1em + var(--track-caps));
-  text-shadow: 0 1px 14px rgba(6, 6, 6, 0.55);
+  /* Puhas kiri ilma varjuta (omanik 23.09). Vari hoidis silti läbipaistva
+     klaasi taga heleda taeva vastu loetavana; härmas tume klaas teeb seda
+     nüüd ise. */
+  text-shadow: none;
 }
 .gc-item[data-center="0"] .gc-label {
   color: var(--room-text-soft);
@@ -851,25 +932,29 @@ html:not([data-contrast="hc"])[data-display-mode="fullscreen"] .gc-card-surface:
    seega ikoonid/sildid EI kattu enam vahepala-logoga. Kest (gc-item)
    ilmub varem (power igniting/on); sisu siin, väikese kese-esimese
    astaki (var(--abs)) ja lühikese üldviitega. Toon sulab viiteta kaasa. */
+/* Nähtavus = kaardi hajumine × sisu faas; mõlemad registreeritud muutujad
+   (tokens.css), et ükski kaardi osa ei hajuks vanema opacity kaudu. */
 .gc-icon,
 .gc-label,
 .gc-card-badge {
-  opacity: 0;
+  --gc-content-alpha: 0;
+  opacity: calc(var(--gc-item-alpha, 1) * var(--gc-content-alpha));
   transition:
-    opacity 620ms var(--ease-soft) calc(var(--abs) * 160ms + 80ms),
+    --gc-content-alpha 620ms var(--ease-soft) calc(var(--abs) * 160ms + 80ms),
     color 640ms var(--ease-soft) 0ms,
-    transform 480ms var(--ease-soft);
+    transform 480ms var(--ease-soft),
+    filter var(--dur-slow) var(--ease-soft);
 }
 .room[data-power="on"][data-cards-ready="1"] .gc-icon,
 .room[data-power="on"][data-cards-ready="1"] .gc-label,
 .room[data-power="on"][data-cards-ready="1"] .gc-card-badge {
-  opacity: 1;
+  --gc-content-alpha: 1;
 }
 html[data-reduce-motion="1"] .gc-icon,
 html[data-reduce-motion="1"] .gc-label,
 html[data-reduce-motion="1"] .gc-card-badge {
   transition: none;
-  opacity: 1;
+  --gc-content-alpha: 1;
 }
 
 /* A11: "Parimad praktikad" leht on veel ehitamisel — aus märgis
@@ -1161,6 +1246,14 @@ html[data-reduce-motion="1"] .gc-shortcut-menu > * {
   top: auto;
   z-index: var(--z-floating);
   padding: 0.22rem;
+  /* TÄPSELT sama pind mis vestluse lülitil (workspace.css
+     .panel-scrim[data-chat] .admin-role-view-cycle — omanik 23.09: „rolli
+     nupud on vestluse lehel ilusad, aga mujal koledad"). Tume dokipill
+     (jagatud reegel ülal) sulas nuppudega üheks tumedaks laiguks. */
+  background: linear-gradient(135deg, rgba(38, 34, 31, 0.34), rgba(18, 16, 14, 0.28));
+  box-shadow: inset 0 1px rgba(247, 247, 247, 0.06);
+  -webkit-backdrop-filter: blur(12px) saturate(0.86);
+  backdrop-filter: blur(12px) saturate(0.86);
   opacity: calc(var(--gc-shortcuts-opacity, 0) * 0.42);
   pointer-events: var(--gc-shortcuts-pointer, none);
   transition: opacity 260ms var(--ease-soft);
@@ -1172,9 +1265,17 @@ html[data-reduce-motion="1"] .gc-shortcut-menu > * {
 .admin-role-view-cycle--cards .workspace-role-switch {
   gap: 0.12rem;
 }
-.admin-role-view-cycle--cards .workspace-role-switch button {
+/* Nupud nagu vestluses: sama mõõt (puutesiht) ja ilma läätse-backdropita.
+   Vestluses istuvad nad paneeli sees, kus glass.css „üks hägu" reegel
+   võtab #lg-bend'i maha; siin tegi bend häguse pilli sees nupud moonutatud
+   tumedateks ringideks. (0,3,1) võidab glass.css (0,2,1) reegli. */
+.admin-role-view-cycle.admin-role-view-cycle--cards .workspace-role-switch button {
   width: 1.85rem;
   height: 1.85rem;
+  min-inline-size: var(--hit-target-min);
+  min-block-size: var(--hit-target-min);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 
 /* ---------- Sügavuslaua dokk: tsooninimed ----------
@@ -1200,7 +1301,7 @@ html[data-reduce-motion="1"] .gc-shortcut-menu > * {
   border-radius: 999px;
   appearance: none;
   background: transparent;
-  color: rgba(239, 239, 239, 0.66);
+  color: var(--text-dim); /* heledam (omanik 23.09); aktiivse eristab taust */
   font-family: var(--font-ui);
   font-size: clamp(0.8rem, 0.7rem + 0.22vw, 0.95rem);
   font-weight: 520;
@@ -1688,7 +1789,7 @@ html[data-reduce-motion="1"] .gc-shortcut-tooltip {
 .room[data-login-open="1"] .gc-item[data-center="1"],
 .room[data-info-open="1"] .gc-item[data-center="1"],
 .room[data-card-page="1"] .gc-item[data-center="1"] {
-  opacity: 0;
+  --gc-item-alpha: 0;
   transition: none;
 }
 /* KOKKULEPE (tellija 07.07): uue akna (login/info/kaardi-leht) avanedes
@@ -1746,20 +1847,16 @@ html[data-reduce-motion="1"] .gc-shortcut-tooltip {
    KÜLJEKAARDID SAMUTI blurri — nagu taust (ruumi-lava). Varem jäid
    küljekaardid teravaks; nüüd taanduvad koos ruumiga. Login-kaart ise
    elab eraldi kihis (#login-modal, portal body) ega blurru.
-   Hägu on KAARTIDE loendil, mitte kogu mähisel: mähise filter teeks temast
-   doki backdrop root'i ja naastes jääks doki hägu tühjaks, kuni filter on
-   maha sulanud (omanik 23.09). .gc-list on ainult perspektiivikonteiner,
-   seega filter ei lamesta kaarte. Sügavuslaual lamestaks .gc-desk'i filter
-   astmed (vt ülal), seal jääb hägu mähisele. 1.5 px nagu ruumi-laval. */
-.gc-list {
-  transition: filter var(--dur-slow) var(--ease-soft);
-}
-.room:is([data-login-open="1"], [data-info-open="1"], [data-card-page="1"]) .gc-list,
+   Hägu on KAARDI OSADEL (klaas, ikoon, silt, märk), mitte loendil ega
+   mähisel: filtriga vanem on backdrop root nii doki kui kaardi enda
+   härmatise jaoks, ja naastes hüppaks hägu sisse alles siis, kui filter on
+   maha sulanud (omanik 23.09). Elemendi oma filter tema härmatist ei
+   katkesta. Sügavuslaual jääb hägu mähisele (.gc-desk'i filter lamestaks
+   astmed, vt ülal) — seal puudub härmatis naastes hetkeks. 1.5 px nagu
+   ruumi-laval. */
+.room:is([data-login-open="1"], [data-info-open="1"], [data-card-page="1"]) .gc-list :is(.gc-card-surface, .gc-icon, .gc-label, .gc-card-badge),
 .room:is([data-login-open="1"], [data-info-open="1"], [data-card-page="1"]) .room-carousel-wrap:has(.gc-desk) {
   filter: blur(1.5px);
-}
-html[data-reduce-motion="1"] .gc-list {
-  transition: none;
 }
 
 /* Mobiili avatud akna taga ei paista karussell läbi. */

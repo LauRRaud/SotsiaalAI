@@ -17,6 +17,25 @@
   initial-value: 0px;
 }
 
+/* Karusselli kaardi hajumine (omanik 23.09). Kaardi klaas kannab
+   backdrop-filterit, ja vanem, mille opacity < 1, on spetsi järgi backdrop
+   root — hägu jääks iga hajumise ajal tühjaks ja hüppaks sisse alles lõpus
+   (süttimine, pööre, komplekti vahetus). Seega .gc-item ise ei hajugi:
+   ta animeerib seda muutujat ja klaasikiht ning sisu loevad seda oma
+   opacity'ks. Registreeritud <number> on interpoleeritav, nii et
+   üleminekud ja @keyframes töötavad nagu opacity'l. */
+@property --gc-item-alpha {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}
+/* Kaardi sisu (ikoon, silt, märk) ilmub käivituse faasis 2 — sama põhjus. */
+@property --gc-content-alpha {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 :root {
   color-scheme: dark;
   /* 1rem säilitab brauseri kasutaja valitud baasfondi. See token on
@@ -39,13 +58,13 @@
   --dusk-cream: #dadada; /* tugitooli samet */
 
   /* ---- Tekst: tavaline kiri, ilma toonita (tellija otsus) ---- */
-  --text-warm: #f1f1f1; /* põhitekst */
+  --text-warm: #fafafa; /* põhitekst — heledam (omanik 23.09), tume härmas klaas kannab puhast valget */
   /* Teisene ja summutatud tekst on heledad (omanik 23.09): tume suitsuklaas
      (--card-glass-smoke) tegi endisest 0,76/0,55 alfast halli teksti.
      Hierarhia jääb 1 → 0,9 → 0,78; kohatäide (--input-placeholder 0,65)
      jääb neist tumedamaks, et ta ei loeks sisestatud väärtusena. */
-  --text-soft: rgba(241, 241, 241, 0.9); /* teisene tekst */
-  --text-dim: rgba(241, 241, 241, 0.78); /* summutatud / vihjed */
+  --text-soft: rgba(250, 250, 250, 0.92); /* teisene tekst */
+  --text-dim: rgba(250, 250, 250, 0.8); /* summutatud / vihjed */
   --text-ink: #1e1e1e; /* tekst heledal pinnal (primary-nupp) */
   --text-ink-soft: #444444;
 
@@ -86,8 +105,24 @@
   /* Suitsutoon fotoruumi ees: hele tekst püsib loetav ka heleda taeva ja
      udu kohal. Kiht on --glass-bg PEAL, nii et kõrgkontrasti ja vähendatud
      läbipaistvuse klaasi-ülekirjutused kehtivad edasi. */
-  --card-glass-smoke: rgba(10, 12, 16, 0.5);
+  --card-glass-smoke: rgba(10, 12, 16, 0.4);
+  /* Kaardi härmatis (omanik 23.09: „ei ole piisavalt klaasjad, paistavad
+     liiga läbi"). Mõõdukas — 22 px oli liiga udune. Kõrgkontrastis ja
+     vähendatud läbipaistvuses 0. */
+  --card-glass-blur: 12px;
   --card-glass-bg: linear-gradient(var(--card-glass-smoke), var(--card-glass-smoke)), var(--glass-bg);
+  /* Härmatis ILMA backdrop-filterita — vestluse mullide jaoks. Mullid on
+     #chat-window-scroll'i sees, mille servamask on backdrop root: päris hägu
+     näeks seal ainult kerimisala sisu, mitte tuba. Seega kannab mull ise
+     sama toa eelhägustatud koopiat (public/room/tuba-hamar-haga.webp),
+     ekraani külge kinnitatuna (background-attachment: fixed) täpselt sinna,
+     kus .room-view pilti näitab: kast on vaade + 2×16px, cover, 50% 40%.
+     Mõõdetud 23.09 (1567×856, 1280×1000): serv ei paista. Taustapildi
+     vahetusel tuleb uuendada ka see fail ja suhe 1672/941.
+     iOS Safari ei toeta fixed tausta — seal liigub hägus pilt mulliga kaasa. */
+  --room-frost-image: url("/room/tuba-hamar-haga.webp");
+  --room-frost-size: max(calc(100vw + 32px), calc((100vh + 32px) * 1672 / 941)) auto;
+  --room-frost-position: 50% calc(40% - 3.2px);
   /* Lugemispaneel on sama suitsuklaas, aga tihedam: pika teksti taga ei
      tohi männitüved ja taevalaigud silma segada. Ruum jääb paneeli ümber. */
   --panel-glass-smoke: rgba(10, 12, 16, 0.8);
@@ -377,6 +412,7 @@ html.theme-dark:not([data-contrast="hc"]) {
    ============================================================ */
 html[data-contrast="hc"] {
   --card-glass-rim-width: 2px;
+  --card-glass-blur: 0px;
   --panel-glass-shadow: inset 0 0 0 1px #ffffff;
   --panel-glass-sheen: none;
   --card-glass-shadow: inset 0 0 0 1px #ffffff;
@@ -424,6 +460,7 @@ html[data-contrast="hc"] {
 /* Läbipaistvuse vähendamine (kasutaja eelistus) */
 html[data-reduce-transparency="1"] {
   --card-glass-rim-width: 1px;
+  --card-glass-blur: 0px;
   --panel-glass-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
   --panel-glass-sheen: none;
   --card-glass-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);

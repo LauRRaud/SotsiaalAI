@@ -973,11 +973,18 @@ button[aria-controls="chat-window-scroll"] {
   padding: 0.82em 1.25em 0.82em 1.3em;
   border: 0;
   border-radius: 1.35rem 1.35rem 1.35rem 0.4rem;
-  /* Sama tihedus mis lugemispaneelil (--panel-glass-smoke 0,8): fotoruumi
-     männid ja pilved ei tohi teksti taga lugemist segada (omanik 23.09). */
+  /* Härmas klaaspaneel nagu kaardid (omanik 23.09: „vestluse mulli taha ka
+     blur paneeliks"): suitsutoon eelhägustatud toa peal (--room-frost-*,
+     tokens.css — päris backdrop-filter kerimisala maski all ei tööta).
+     Toon on kaartide omast (0,4) tihedam, sest mullis on pikk tekst. */
   background:
-    radial-gradient(120% 90% at 14% 0%, rgba(245, 245, 245, 0.06), transparent 52%),
-    linear-gradient(165deg, rgba(14, 16, 20, 0.78) 0%, rgba(10, 12, 16, 0.82) 58%, rgba(10, 12, 16, 0.84) 100%);
+    radial-gradient(120% 90% at 14% 0%, rgba(245, 245, 245, 0.05), transparent 52%),
+    linear-gradient(165deg, rgba(14, 16, 20, 0.5) 0%, rgba(10, 12, 16, 0.56) 58%, rgba(10, 12, 16, 0.6) 100%),
+    var(--room-frost-image);
+  background-repeat: no-repeat;
+  background-attachment: scroll, scroll, fixed;
+  background-size: auto, auto, var(--room-frost-size);
+  background-position: 0 0, 0 0, var(--room-frost-position);
   box-shadow:
     inset 0 1px 0 rgba(242, 242, 242, 0.1),
     0 18px 44px rgba(5, 5, 5, 0.3);
@@ -1020,11 +1027,18 @@ button[aria-controls="chat-window-scroll"] {
   padding: 0.78em 1.15em;
   border: 0;
   border-radius: 1.35rem 1.35rem 0.45rem 1.35rem;
+  /* Hele klaas härmas toa peal. Endine backdrop-filter: blur(30px) ei
+     hägustanud tegelikult midagi — #chat-window-scroll'i servamask on
+     backdrop root — seega sama eelhägustatud toa koopia mis AI-mullil
+     (--room-frost-*, tokens.css), kerge valge klaas ja õrn suits loetavuseks. */
   background:
-    linear-gradient(160deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.04) 55%, rgba(255, 255, 255, 0.055) 100%);
-  /* Tugevam blur (tellija 12.07: "blur võiks suurem olla") */
-  -webkit-backdrop-filter: blur(30px) saturate(122%);
-  backdrop-filter: blur(30px) saturate(122%);
+    linear-gradient(160deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.04) 55%, rgba(255, 255, 255, 0.055) 100%),
+    linear-gradient(rgba(10, 12, 16, 0.3), rgba(10, 12, 16, 0.3)),
+    var(--room-frost-image);
+  background-repeat: no-repeat;
+  background-attachment: scroll, scroll, fixed;
+  background-size: auto, auto, var(--room-frost-size);
+  background-position: 0 0, 0 0, var(--room-frost-position);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.16),
     0 12px 32px rgba(5, 5, 5, 0.22);
@@ -1073,20 +1087,18 @@ button[aria-controls="chat-window-scroll"] {
 }
 
 /* ---------- Assistendi tegevusrida: vaiksed ikoon-orbid ----------
-   Kuula / kopeeri / allikad on alati nähtavad mulli all. Mull reserveerib
-   reale eraldi ruumi, et järgmine sõnum ei saaks tegevusi katta. */
-.panel-scrim[data-conversation="1"] [role="article"][data-role="ai"]:has(> div[aria-label]) {
-  margin-bottom: 3.25rem;
-}
+   Kuula / kopeeri / allikad on MULLI SEES, tema viimane rida (omanik 23.09:
+   „vii tekstimulli sisse"). Varem seisid nad mulli all (absoluutne,
+   top: 100%) ja mull reserveeris neile 3,25rem varu. Negatiivne vasak- ja
+   alamarginaal: nupu 44 px tabamusala ulatub mulli polstrisse, aga glüüf
+   joondub teksti vasaku servaga ega jäta mulli alla tühja riba. */
 .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] > div[aria-label] {
-  position: absolute;
-  top: 100%;
-  left: 0.55rem;
+  position: static;
   display: flex;
   align-items: center;
   gap: 0.15rem;
-  margin-top: 0;
-  padding-top: 0.18rem;
+  margin: 0.25rem 0 -0.6rem -0.82rem;
+  padding-top: 0;
   opacity: 1;
   pointer-events: auto;
   z-index: 1;
@@ -1603,6 +1615,13 @@ html[data-contrast="hc"] .panel-scrim[data-conversation="1"] [role="article"][da
 html[data-contrast="hc"] .panel-scrim[data-conversation="1"] [role="article"][data-role="user"] {
   background: #1e1e1e;
   border: 1px solid rgba(255, 255, 255, 0.8);
+}
+/* Vähendatud läbipaistvus: härmatise pilti ei ole, mull on läbipaistmatu. */
+html[data-reduce-transparency="1"] .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] {
+  background: rgba(16, 17, 20, 0.97);
+}
+html[data-reduce-transparency="1"] .panel-scrim[data-conversation="1"] [role="article"][data-role="user"] {
+  background: rgba(34, 35, 38, 0.97);
 }
 html[data-contrast="hc"] .panel-scrim[data-conversation="1"] [role="article"][data-role]::after {
   content: none;
