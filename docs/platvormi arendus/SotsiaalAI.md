@@ -92,6 +92,19 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**23.09 RAG/GraphRAG-i põhisuund kinnitatud — kohalik teostus.**
+Omaniku valikul arendatakse edasi RAG v2 koos EstNLTK-ga päringu ja indeksi
+ühises otsingukihis. Uute päringu- ja indeksiplaanide vaikeprofiil kasutab
+EstNLTK-d ning allikaga seotud graafi; vanad põlvkonnad säilivad.
+Opuse ülevaatuse järel parandati KOV-i metaandmete valekonfliktid ja
+piirkonnaväljad, eemaldati vestluse otsingupäised ning kogu korpuse laadimine
+eelkontrollist. Kood: `25d10366`, `ad453e8b`, `379885ad`.
+[ADR-014](../rag-v2/adr-014-estnltk-retrieval.md) ja
+[ADR-015](../rag-v2/adr-015-opus-review-followup.md) sisaldavad kohalikke
+sihttõendeid; tasulisi mudelikutseid 0, selle ploki push/deploy `not_run`.
+Järgmine põhitöö on olukorrast KOV-i teenuse ja kontrollitud kontaktini
+jõudev vestlusrada; kogu korpuse mahutöö ei asenda selle valmimist.
+
 **23.09 maalisein ja ühtne nupumaterjal — serveris (`20e3a75c`).**
 Ruumivaade on nüüd valgustatud maalisein (`tuba-hamar.webp`, mullide
 `tuba-hamar-haga.webp` uuendatud). Hele maal langetas kaardisildid
@@ -2237,7 +2250,19 @@ Uued partii/keeletöötluse kontrollid ja olemasoleva vestluse 38 isoleeritud an
 
 **23.09 valikuline otsingulaadimine:** [ADR-013](../rag-v2/adr-013-selective-retrieval.md) kirjeldab indeksi väikest aadressi-/filtriloendit ja ainult kandidaatide ning vajalike sõltuvusdokumentide laadimist. 12 dokumendi kohalikus katses loeti 3 vajalikku dokumenti / 4 üksust; tulemusteta päring ei laadinud täisteksti. Vana ja uue raja järjestus, tõendid ning mudelikontekst kattusid. Sisse tulevad erandid, versioonipiirid ja õiguse hilisem eemaldamine on sihttestidega kontrollitud. Kokku läbis 50 eri testi; sihtlint, Prisma ja kohaliku RAG-andmebaasi migratsioon läbisid. Vanad indeksid kasutavad loendi puudumisel varasemat lugemisrada. Ühe valitud dokumendi pakett/üksused laaditakse veel tervikuna ning aadressiloendid loetakse kõigi lubatud dokumentide kohta; 5000 tekstiosa piir säilib. Tasulisi kutseid, push’i ega deploy’d pole tehtud.
 
-**Järgmine arendusjärjestus:**
+**23.09 omaniku kinnitatud põhisuund ja Opuse järelparandused:** RAG v2 / GraphRAG koos EstNLTK-ga on edasise arenduse alus. EstNLTK/Vabamorf töötab päringu ja indeksi ühises kihis; selleks ei taastatud vana RAG-teenust. Uute plaanide vaikeprofiil on `hybrid-estnltk-dependencies-v1`. Olemasolevaid indeksipõlvkondi ega kinnitatud piloodiseadistusi vaikimisi ei muudeta. [ADR-014](../rag-v2/adr-014-estnltk-retrieval.md) kirjeldab analüsaatori käitamist ja kontrollitud käändevorme. Commit: `25d10366`.
+
+[ADR-015](../rag-v2/adr-015-opus-review-followup.md) kirjeldab Opuse leidude järelparandusi. Pealkiri, kirje nimi ja omavalitsus on eristatud; ajavööndiga kuupäevi võrreldakse kalendripäevana ning päris vastuolud säilivad. Uue vastuvõtu piirkonna-ID jõuab indeksi filtrisse ja tõendi metaandmetesse. 4876 kohaliku KOV-kirje kontrollis jäi üks URL-ide vastuolu. Vestluse tehnilised päised ei lähe enam otsingusse ning eelkontroll kasutab väikest otsinguloendit ja kohaliku analüsaatori valmisolekukontrolli. Kohalik läbiv katse läbis uue ülevaatuse/avaldamise raja kahe näidisomavalitsusega ja XML-allikaga; käitusadapter säilitas piirkonnafiltri. Eraldatud vestlusandmebaasis läbisid 12 jätkuvestluse regressioonitesti. Sihttestide täpne ulatus ja kattuvus on ADR-ides; mudelitransport ja vektorid olid testadapteritega. Commit'id: `ad453e8b`, `379885ad`.
+
+See plokk ei tõenda veel loomuliku olukorrakirjelduse täielikku mõistmist, värske kontakti leidmist ega ajaperioodide sünteesi. Opuse L1 on parandatud; L2/L4/L6/L7 on osalised. Vanad allikad vajavad parandatud väljade saamiseks uut vastuvõttu ja indeksit. Tasulisi mudelikutseid, push'i ega deploy'd selles plokis ei tehtud; serveri praegust seisu ja `origin/main`-i ei mõõdetud.
+
+**Järgmine arendusjärjestus — täpsustatud Opuse ülevaatuse järel 23.09:**
+
+1. **Olukorrast teenuse ja kontaktini:** säilitada teenuse–kontakti–taotlusvormi allikalised seosed, tuua kontrollitud kontaktandmed sobiva adapteri kaudu ja siduda kasutaja täpsustatud omavalitsus vestluse seisuga. Kontrollida 2–3 omavalitsuse läbivat rada, piirkonna parandamist ja puuduva kontakti ausat käsitlemist. Tavalisele pöördele ei lisata vaikimisi eraldi planeerivat mudelikutset.
+2. **Otsingu ja vestluse kvaliteet:** vähendada sõnalise kanali üldsõnamüra, eristada kasutaja parandusi varasemast infost ning kontrollida EstNLTK, tähendusotsingu ja graafi koosmõju. Keelemorfoloogia ei asenda abivajaduse mõistmist. Tasuline hindamisring pole arenduse eeltingimus.
+3. **Ajakirjad ja ajaperioodid:** ühendada mahutöö/adminirada, lahendada 5000 tekstiosa piir ning lisada perioodide katvust arvestav tõendivalik. Puuduvate pärisvektorite mahttöö vajab mõõdetud mahtu ja kokkulepitud kulu. Väljalaske eel mõõta serveri RAG-skeem ning kooskõlastada uus indeks ja piloodiplaan.
+
+**Käituse ja mahutöö taust ning säilivad sõltuvused:**
 
 0. **Kontrollitud väljalase:** üle vaadatud koodi paigaldus, valmis indeksi ja uue M4 plaani kooskõlastamine ning taastamise kontroll [väljalaskeraporti hooldustoimingu](../audits/rag-v2-release-integration-2026-09-08.md#minimaalne-väljalaskemanifest-ja-hooldustoiming) järgi. Push/deploy vajab selle ulatust katvat omaniku luba; väljalaske ootel jätkub järgmiste plokkide kohalik arendus. Tasulise mahutöö ulatus ja kulupiir lepitakse eraldi kokku; tasuline testiring ei ole eeltingimus.
 
