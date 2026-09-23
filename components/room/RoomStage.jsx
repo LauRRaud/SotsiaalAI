@@ -1634,7 +1634,6 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       {/* Lavastus: ruumivaade süttib käivitusega; enne seda tume taust */}
       <div className="room-stage" ref={stageRef} aria-hidden="true">
         <div className="room-view" />
-        <div className="room-vignette" />
         <div className="room-dim" />
       </div>
       <div className="grain-veil" aria-hidden="true" />

@@ -52,28 +52,11 @@ html[data-reduce-motion="1"] .room-view {
   transition: none;
 }
 
-/* Vinjett istutab liidese ruumi ja parandab servade kontrasti */
-.room-vignette {
-  position: absolute;
-  /* Sama ülevõte mis .room-view'l: lava nihkub kursoriga (parallaks) ja
-     inset: 0 jättis ekraani serva riba, kuhu vinjett ei ulatunud — see
-     paistis heleda servana (omanik 23.09: „alla tekib hele serv"). */
-  inset: -16px;
-  pointer-events: none;
-  background:
-    radial-gradient(
-      120% 90% at 50% 42%,
-      transparent 52%,
-      rgba(3, 3, 4, 0.34) 82%,
-      rgba(3, 3, 4, 0.62) 100%
-    );
-}
-
 /* Paneelirežiimi hämardus + hägu: ruum astub sammu tagasi (brief §6).
    Avatud paneeli taga läheb kogu ruum pehmeks (pilt 9/10 etalon). */
 .room-dim {
   position: absolute;
-  inset: -16px; /* sama ülevõte mis .room-view/.room-vignette */
+  inset: -16px; /* sama ülevõte mis .room-view */
   pointer-events: none;
   background: rgba(8, 7, 6, 0.3);
   opacity: 0;
