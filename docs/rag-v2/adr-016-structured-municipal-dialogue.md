@@ -34,7 +34,7 @@ Kogutud paketi kontakt jääb vaikimisi kasutamata. SotsiaalAI adapter kasutab o
 
 Puuduv, teise piirkonna, õigusteta või kontrollimata siht jääb neutraalseks `unavailable` seoseks; selle nime ega kanalit mudelile ei anta. Kontroll kordub enne vastuse saatmist, pärast vastust ja ajaloolise vestluse taastamisel. Kontakti roll ja osakond on endiselt kogutud väljad, mille ajakohasust see adapter eraldi ei kinnita.
 
-Adapter **ei täida** vanade KOV-pakettide puuduvaid telefone/e-poste registri väärtustega. See vajab eraldi päritoluga uut allikakirjet või üle vaadatud eksporti; lubamatu vana üleriigiline kontaktikoond jääb peidetuks. Päris paketi-ID-de vastavust avaldatud kontaktiregistri `sourceDocId` väärtustele selles plokis ei mõõdetud. Ühenduse puudumisel on tulemus ausalt puuduv kontakt, mitte automaatne heakskiit.
+Adapter **ei täida** vanade KOV-pakettide puuduvaid telefone/e-poste registri väärtustega. [ADR-017](adr-017-verified-contact-export.md) lisab selleks eraldi päritoluga uue kontaktiallikaga ekspordiraja ja kontrollitud registri-ID vastenduse. Lubamatu vana üleriigiline kontaktikoond jääb peidetuks. Päris paketi-ID-de vastavust avaldatud kontaktiregistrile pole veel mõõdetud. Ühenduse puudumisel on tulemus ausalt puuduv kontakt, mitte automaatne heakskiit.
 
 ## Käitusleping
 
@@ -65,4 +65,4 @@ Veebipiloot annab adapterile olemasoleva Prisma kliendi; tuum põhirakenduse and
 
 ## Järelejäänud tervikpiir
 
-See on Opuse P1 tehniline esimene läbiv teostus. Ühine artikli/KOV/perioodi päringuvalik, täielik vestluse sisuline seis, päris teenusekirjete seostamine ajakohaste kanalitega ja suurema omavalitsuse kontekstieelarve on veel lahti. Järgmine sisendiplokk peab tooma üle vaadatud kontaktikanalid koos päritoluga uude allikaversiooni ning tõendama selle vastavuse registri identiteedile. Aktiivne arendusjärjestus jääb SotsiaalAI.md-sse.
+See on Opuse P1 tehniline esimene läbiv teostus. Ühine artikli/KOV/perioodi päringuvalik, täielik vestluse sisuline seis, päris teenusekirjete seostamine ajakohaste kanalitega ja suurema omavalitsuse kontekstieelarve on veel lahti. Kontaktikanalite päritolu ning erinevate registri-/paketi-ID-de kohalik teostus ja tõend on nüüd [ADR-017-s](adr-017-verified-contact-export.md); päris valimi vastendus ja ülevaatus on veel tegemata. Aktiivne arendusjärjestus jääb SotsiaalAI.md-sse.

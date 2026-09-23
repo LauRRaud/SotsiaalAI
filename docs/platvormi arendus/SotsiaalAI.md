@@ -92,6 +92,21 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**23.09 KOV-kontaktide päritolu ja registri-ID — kohalik teostus.**
+Uus ekspordirada seob KOV-paketi kontakti kindla kontrollitud registrikirjega ning
+loob telefonide/e-postidega muutumatu allika. Teenuse viide säilitab paketi ID;
+kontakti revisjon, väärtused ja värskus kontrollitakse kasutamisel uuesti.
+CLI loeb registrit ega avalda allikat automaatselt. Kahe sünteetilise valla läbiv
+katse ja regressioonid: 29 sihttesti, sihtlint ja diff-check läbisid.
+[ADR-017](../rag-v2/adr-017-verified-contact-export.md) sisaldab lepingut,
+kasutamist ja tõendit Opuse ülevaatuseks. Päris kontaktide vastendus/eksport,
+mudelivastuse kvaliteet ja deploy on `not_run` / `NOT_PROVEN`.
+Järgmine arendus on vestluse sisuline seis samas vastusekutses: inimese öeldud
+asjaolud, teadmata vajadused, omavalitsus ja paranduste mõju. Pärisvalimi kontaktide
+vastendus ja ülevaatus tuleb teha enne raja kasutusele võtmist.
+Omaniku täpsustus: vestlus ei pea veel kasutatav olema; vana piloodi käivitamine
+ei ole praegune arenduseesmärk.
+
 **23.09 assistendi mudeliuuendus ja vestlusjalus — serveris (`59a17b77`).**
 Üldine tekstimudel, piloot ja teadmiste ettevalmistus kasutavad `gpt-6-luna` /
 `medium`; kontrollitud ka töötava protsessi keskkond. Omaniku ligipääsumuudatuse
@@ -102,8 +117,8 @@ EstNLTK 1.7.5 on eraldi serverikeskkonnas; viie käändevormi kohalik analüüs 
 **RAG-piloot on endiselt blokeeritud:** selle kinnitatud allikaversioonid ja
 indeksipõlvkond erinevad aktiivsest indeksist (`active_index_mismatch`), sama
 viga kordub vana plaaniga. Taaskäivitatud PostgreSQL/Qdrant konteinerid olid
-peatatud. Järgmine töö on piloodi allikaversioonide ja fikseeritud tõendipaketi
-kooskõlastamine aktiivse indeksiga. Korpuse ulatust, kvoote ega aegunud adminiluba
+peatatud. Enne hilisemat kasutusele võtmist tuleb piloodi allikaversioonid ja
+fikseeritud tõendipakett indeksiga kooskõlastada. Korpuse ulatust, kvoote ega aegunud adminiluba
 ei laiendatud. Tasulisi vastusekutseid 0; päris vastuserada ja kvaliteet `NOT_PROVEN`.
 
 **23.09 struktureeritud KOV-vestlus — kood serveris (`1ececb72`).**
@@ -112,8 +127,8 @@ Piiratud KOV-piloot kasutab valla kataloogi ja EstNLTK-põhist nimevastendust;
 kontakt läbib olemasoleva avaldamise/värskuse reegli ning täpse ID/väärtuse kontrolli.
 49 sihttesti läbisid; viie pöörde katses oli viis vastusekutset testadapterile
 ja null päringu embedding'ut. [ADR-016](../rag-v2/adr-016-structured-municipal-dialogue.md)
-kirjeldab tõendit ja kasutamist. Järgmine töö on päris kontaktikanalite päritoluga
-allikaversioon ning registri-ID-de vastendus. Ühine päringuvalik, täielik vestluse
+kirjeldab tõendit ja kasutamist. Kontaktikanalite päritolu ja registri-ID-de
+vastenduse teostus lisandus ADR-017-ga; päris valim on veel lahti. Ühine päringuvalik, täielik vestluse
 sisuline seis ja pärismudeli kvaliteet on veel lahti. Kood avaldati 23.09 koos
 mudeliuuendusega; serveri aktiivses piloodis kataloogirada pole sisse lülitatud.
 
@@ -2227,9 +2242,11 @@ sisselülitamisele" reegli puhas rakendus. Vt „Lüliti" S2-s ja „Mis avab" S
 
 **Vestlus ja teadmusbaas.**
 
+**Kontrollitud kontaktiallikad (23.09, kohalik teostus).** [ADR-017](../rag-v2/adr-017-verified-contact-export.md): eraldi lugemiseks mõeldud registriadapter ja CLI loovad selgesõnalise paketi-ID → registrikirje-ID vastenduse alusel uue kontaktiallika. KOV-i teenuse seos säilib ning telefon/e-post koos päritoluga tuleb kontrollitud registrist. Muutunud või aegunud registririda välistab vana ekspordi; kontroll kehtib ka kataloogita piloodi tõendipaketile. Tuum sai allikaga seotud üldise `bindings` välja, klient eraldi kontrolliadapteri. JSONB võtmejärjestus ei põhjusta enam sama struktureeritud väärtuse tagasilükkamist. 29 sihttesti läbisid päris kohaliku PostgreSQL/Qdranti ja eraldatud rakenduse andmebaasiga; vektorid ja olemasolev vestlustransport olid testadapteritega. CLI, allikaviited, piirkonna piir, kontaktimuutus ja muutus ekspordi ajal on kontrollitud. Tasulisi kutseid 0. Päris kontaktide vastendus/eksport, deploy ja mudeli sisuline kvaliteet `not_run` / `NOT_PROVEN`. Omaniku täpsustuse järgi jätkub RAG-i arendus; vana serveripiloodi käivitamine ei ole praegune eesmärk. Järgmine arendusosa on vestluse sisuline seis ja paranduste käsitlemine samas vastusekutses.
+
 **Assistendi mudel ja jalus (23.09; serveris `59a17b77`).** Ühine tekstimudel, kokkuvõtted, RAG-piloot ja teadmiste ettevalmistus on `gpt-6-luna` / `medium`. Responses API ja väljundileping säilivad; vana mudeli plaan jääb loetavaks. Töötava teenuse keskkond ja uue plaani lepingukontroll läbisid; mudeli konto ligipääs on metaandmete päringuga tõendatud (HTTP 200). Kasutajad, kinnitatud allikaversioonid, kvoodid ja aegumised säilisid; vana konfiguratsiooniräsiga pöördeid ei liideta automaatselt uue plaaniga. 16 sihttesti, kokkuvõtte testadapter, sihtlint, serveri build/i18n ja põhiandmebaasi migratsioonieelkontroll läbisid; teenus active ja HTTPS 200. Vestluse jalust „Piiratud pärisrežiim · arenduskorpus” enam ei renderdata; päris komponendi ET/EN/RU eraldatud brauserikontroll läbis ning testrežiimi märgis säilis. Autenditud tootmisvestlust ei loetud. EstNLTK 1.7.5 paigaldati `/opt/sotsiaalai/rag-v2-estnltk-1.7.5` keskkonda; käändevormide native-kontroll läbis. Aktiivset indeksit EstNLTK-le ei teisendatud.
 
-**Jätkutöö: serveri RAG-piloodi ja indeksi vastuolu.** Olemasolevad RAG v2 PostgreSQL/Qdrant konteinerid olid 11 päeva peatatud ning käivitati samu andmemahte kasutades. Piloodi põlvkond `search_generation_386d51771eff1ece99cc354144ea589736a4c36c18101847dc57d6e3665d4e6e` erineb aktiivsest `search_generation_cce615aba3a9fa3e5a6a0ab573dc655e660fcdb33eabc7918a18e6c6093ed4af`; mõlemas on 8 dokumenti, kuid kinnitatud versioonid ei kattu. Eelkontroll keeldub veaga `active_index_mismatch` nii vana kui uue mudeliplaaniga. Mudeliseadistus aktiveeriti selle varasema vea eraldi fikseerimisega; runtime-kontrolli ei nõrgendatud. Edasi tuleb kontrollida RAG v2 skeemi ning viia kinnitatud dokumendiversioonid ja fikseeritud tõendipakett kooskõlla valitud indeksiga; indeksit ei pööratud tagasi ega korpust vaikimisi laiendatud. Tasulisi mudelikutseid 0, vastuserada ja sisuline kvaliteet `NOT_PROVEN`. Serveriseadistuste varukoopia: `/etc/sotsiaalai/luna6-rollout-20260923-59a17b77`.
+**Enne hilisemat kasutuselevõttu: serveri RAG-piloodi ja indeksi vastuolu.** Olemasolevad RAG v2 PostgreSQL/Qdrant konteinerid olid 11 päeva peatatud ning käivitati samu andmemahte kasutades. Piloodi põlvkond `search_generation_386d51771eff1ece99cc354144ea589736a4c36c18101847dc57d6e3665d4e6e` erineb aktiivsest `search_generation_cce615aba3a9fa3e5a6a0ab573dc655e660fcdb33eabc7918a18e6c6093ed4af`; mõlemas on 8 dokumenti, kuid kinnitatud versioonid ei kattu. Eelkontroll keeldub veaga `active_index_mismatch` nii vana kui uue mudeliplaaniga. Mudeliseadistus aktiveeriti selle varasema vea eraldi fikseerimisega; runtime-kontrolli ei nõrgendatud. Edasi tuleb kontrollida RAG v2 skeemi ning viia kinnitatud dokumendiversioonid ja fikseeritud tõendipakett kooskõlla valitud indeksiga; indeksit ei pööratud tagasi ega korpust vaikimisi laiendatud. Tasulisi mudelikutseid 0, vastuserada ja sisuline kvaliteet `NOT_PROVEN`. Serveriseadistuste varukoopia: `/etc/sotsiaalai/luna6-rollout-20260923-59a17b77`.
 
 Vana RAG-i eemaldamise ulatus ja alles jäävad platvormifunktsioonid on koondatud [RAG masterisse](../audits/rag-susteem-master.md). Uue RAG v2 piiratud arendusrada on nüüd teostatud; varasem väide, et uut käitumist pole üldse olemas, on aegunud.
 

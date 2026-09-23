@@ -5,6 +5,8 @@ import os from 'node:os';
 import path from 'node:path';
 import net from 'node:net';
 import { randomUUID } from 'node:crypto';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
 import { PrismaClient } from '../generated/prisma/client.ts';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { IngestBatchQueue } from '../lib/rag-v2/ingest-batch-postgres.js';
@@ -27,6 +29,8 @@ import { PilotService } from '../lib/rag-v2/pilot/service.js';
 import { PilotStore } from '../lib/rag-v2/pilot/store.js';
 import { municipalDirectoryAdapter } from '../lib/rag-v2/adapters/municipal-directory.js';
 import { resolveModelReferences } from '../lib/rag-v2/search/model-context.js';
+import { prepareMunicipalContactExport, CONTACT_MAPPING_SCHEMA } from '../lib/rag-v2/adapters/municipal-contact-export.js';
+import { structuralRole } from '../lib/rag-v2/search/structural-role.js';
 
 const appUrl = new URL(process.env.M4_TEST_DATABASE_URL || 'postgres://invalid/invalid');
 if (!['localhost', '127.0.0.1'].includes(appUrl.hostname) || appUrl.pathname !== '/sotsiaal_ai_m4_dev') throw Error('isolated M4 database required');
@@ -247,4 +251,151 @@ test('municipal adapter uses the public verification policy and exact source ide
   meta.contactDecisionObservedAt[contact.id] = '2000-01-01T00:00:00.000Z';
   await db.dataAuditLog.update({ where: { id: audit.id }, data: { meta } });
   assert.equal(await adapter.authorizeContact({ record }), false);
+});
+
+test('verified registry export bridges explicit package IDs, publishes anchored channels and revokes changed snapshots', async t => {
+  const suffix = randomUUID(), exportTenant = `export-${suffix}`, checkedAt = new Date();
+  const municipalities = [], contacts = [], extraCollections = [];
+  let audit;
+  t.after(async () => {
+    for (const collection of extraCollections) await qdrant.request(`/collections/${collection}`, 'DELETE');
+    for (const table of ['rag_v2_ingest_item', 'rag_v2_ingest_batch', 'rag_v2_unit', 'rag_v2_generation_document', 'rag_v2_head',
+      'rag_v2_generation', 'rag_v2_object', 'rag_v2_version', 'rag_v2_document', 'rag_v2_vector_cache']) await postgres.pool.query(`DELETE FROM ${table} WHERE tenant=$1`, [exportTenant]);
+    if (audit) await db.dataAuditLog.delete({ where: { id: audit.id } });
+    for (const contact of contacts) await db.serviceMapEntry.delete({ where: { id: contact.id } });
+    for (const municipality of municipalities) await db.municipality.delete({ where: { id: municipality.id } });
+  });
+  for (const area of ['alpha', 'beta']) {
+    const municipality = await db.municipality.create({ data: { slug: `${area}-${suffix}`, baseName: area, displayName: area, type: 'VALD' } });
+    municipalities.push(municipality);
+    contacts.push(await db.serviceMapEntry.create({ data: { title: 'Same synthetic contact name', type: 'KOV_SOCIAL_CONTACT',
+      municipalityId: municipality.id, status: 'PUBLISHED', sourceNamespace: 'OFFICIAL_KOV_CONTACT', sourceDocId: `different-register-id-${area}`,
+      checkedAt, revision: 1, phone: area === 'alpha' ? '+372 0000001' : '+372 0000002',
+      email: `${area}@example.invalid`, sourceUrl: `https://example.invalid/${area}/contact` } }));
+  }
+  const meta = { contactVerificationVersion: 4, verifiedContactIds: contacts.map(row => row.id),
+    contactDecisionObservedAt: Object.fromEntries(contacts.map(row => [row.id, checkedAt.toISOString()])),
+    contactDecisionRevision: Object.fromEntries(contacts.map(row => [row.id, 1])) };
+  audit = await db.dataAuditLog.create({ data: { action: 'SERVICE_MAP_CONTACT_FRESHNESS_CHECK', resourceType: 'ServiceMapContactRegistry', meta } });
+  const original = { items: municipalities.flatMap((municipality, i) => [
+    { id: `package-service-${i}`, canonical_item_id: `service:${i}`, itemType: 'service', title: 'Synthetic home service',
+      summary: 'Fictional assistance at home.', conditions: { income: { amount: 123, currency: 'EUR' }, resident: true },
+      municipality_id: municipality.slug.replaceAll('-', '_'), relatedContacts: [`package-contact-${i}`] },
+    { id: `package-contact-${i}`, canonical_item_id: `contact:${i}`, itemType: 'contact', name: 'Old collected name',
+      municipality_id: municipality.slug.replaceAll('-', '_'), role: 'OUTDATED_ROLE_SENTINEL', phone: 'OUTDATED_PHONE_SENTINEL',
+      checked_at: '2000-01-01', relatedTo: [`package-service-${i}`] },
+  ]) };
+  const file = 'export-package.json', originalBytes = JSON.stringify(original);
+  await fs.writeFile(path.join(root, file), originalBytes);
+  const mapping = { schema_version: CONTACT_MAPPING_SCHEMA, entries: contacts.map((row, i) => ({ path: file,
+    sha256: hash(originalBytes), item_id: `package-contact-${i}`, registry_entry_id: row.id })) };
+  const prepare = (extra = {}) => prepareMunicipalContactExport({ db, inputRoot: root, mapping, ...extra });
+  const wrongRegion = structuredClone(mapping); wrongRegion.entries[0].registry_entry_id = contacts[1].id;
+  await assert.rejects(prepare({ mapping: wrongRegion }), { code: 'contact_not_verified' });
+  const wrongHash = structuredClone(mapping); wrongHash.entries[0].sha256 = '0'.repeat(64);
+  await assert.rejects(prepare({ mapping: wrongHash }), { code: 'contact_mapping_source_changed' });
+  const escape = structuredClone(mapping); escape.entries[0].path = '../outside.json';
+  await assert.rejects(prepare({ mapping: escape }), { code: 'source_path_outside_root' });
+  await assert.rejects(prepare({ mapping: { ...mapping, entries: [mapping.entries[0], mapping.entries[0]] } }), { code: 'duplicate_contact_mapping' });
+  await db.serviceMapEntry.update({ where: { id: contacts[0].id }, data: { status: 'DRAFT' } });
+  await assert.rejects(prepare(), { code: 'contact_not_verified' });
+  await db.serviceMapEntry.update({ where: { id: contacts[0].id }, data: { status: 'PUBLISHED' } });
+  const exported = await prepare();
+  assert.equal(exported.items.length, 2);
+  assert.doesNotMatch(JSON.stringify(exported), /OUTDATED_|relatedTo/);
+  assert.equal(exported.items[0].canonical_item_id, 'contact:0');
+  assert.equal(exported.items[0].registry_binding.source_record.sha256, hash(originalBytes));
+  assert.equal(exported.items[0].registry_binding.source_record.pointer, '/items/1');
+  assert.equal(exported.items[0].email, 'alpha@example.invalid');
+  const mappingFile = path.join(root, 'contact-mapping.json'), cliOut = path.join(root, 'cli-export');
+  await fs.writeFile(mappingFile, JSON.stringify(mapping));
+  const cliArgs = ['scripts/rag-v2-contact-export.mjs', '--mapping', mappingFile, '--input-root', root, '--out', cliOut];
+  const cliOptions = { env: { ...process.env, RAG_CONTACT_EXPORT_DATABASE_URL: appUrl.href }, timeout: 30000, windowsHide: true };
+  const cli = await promisify(execFile)(process.execPath, cliArgs, cliOptions);
+  assert.deepEqual({ ...JSON.parse(cli.stdout), source_sha256: undefined },
+    { contacts: 2, source_sha256: undefined, registry_writes: 0, model_calls: 0, publication: 'not_run' });
+  const cliSource = await fs.readFile(path.join(cliOut, 'contacts.json'));
+  const cliRegistry = JSON.parse(await fs.readFile(path.join(cliOut, 'REGISTER.json'), 'utf8'));
+  assert.equal(cliRegistry.entries[0].sha256, hash(cliSource));
+  assert.equal((JSON.parse(await fs.readFile(path.join(cliOut, 'selection.json'), 'utf8'))).length, 2);
+  await assert.rejects(promisify(execFile)(process.execPath, cliArgs, cliOptions), error => /contact_export_destination_exists/.test(error.stderr));
+  const exportedBytes = JSON.stringify(exported), exportedFile = 'verified-contacts.json';
+  await fs.writeFile(path.join(root, exportedFile), exportedBytes);
+  const inputs = [];
+  for (let i = 0; i < 2; i++) {
+    inputs.push(await registeredSource(root, { role: 'source', path: file, sha256: hash(originalBytes) }, { itemId: `package-service-${i}` }));
+    inputs.push(await registeredSource(root, { role: 'source', path: exportedFile, sha256: hash(exportedBytes) }, { itemId: `package-contact-${i}` }));
+  }
+  const plan = await planIngestBatch({ tenant: exportTenant, inputRoot: root, inputs,
+    rights: { access: 'local_private', usage: 'development_only' }, profile: { id: 'generic', version: '1', months: [], categoryLabels: [] } });
+  await postgres.enqueue(plan);
+  const options = { tenant: exportTenant, inputRoot: root, storeRoot: path.join(root, 'export-store'), queue: postgres, batchId: plan.id };
+  while (await prepareNextBatchItem(options)) { /* isolated reviewed export */ }
+  const review = await createBatchReview(options);
+  assert(review.items.every(item => !item.blockers.length), JSON.stringify(review.items.map(item => item.blockers)));
+  review.reviewed_by = 'synthetic-export-reviewer';
+  for (const item of review.items) { item.decision = 'include'; item.note = 'Fictional public registry export, no real contacts.'; }
+  await publishReviewedBatch({ ...options, review });
+  const exportedSnapshot = await loadSnapshot(options.storeRoot, exportTenant, review.items.map(item => item.document_id));
+  const exportEmbedding = new MockEmbedding();
+  await indexSnapshot({ snapshot: exportedSnapshot, postgres, qdrant, embedding: exportEmbedding });
+  const exportedGeneration = await postgres.active(exportTenant); extraCollections.push(exportedGeneration.collection);
+  const exportedPolicy = new LocalPolicy({ tenants: { [exportTenant]: { reader: Object.keys(exportedSnapshot.documents) } } });
+  const adapter = municipalDirectoryAdapter(db), exportedContext = { ...context, tenant: exportTenant };
+  const retrieval = new StructuredRecordSource({ postgres, policy: exportedPolicy, authorizeContact: adapter.authorizeContact });
+  const query = { context: exportedContext, region: exported.items[0].municipality_id, generationId: exportedGeneration.id };
+  const callCount = exportEmbedding.calls;
+  const packet = await retrieval.retrieve(query);
+  assert.equal(exportEmbedding.calls, callCount);
+  assert.equal(packet.record_context.catalogue_count, 1);
+  const contact = packet.record_context.entries.find(entry => entry.kind === 'contact');
+  assert.equal(contact.record_id, 'contact:0');
+  assert.equal(contact.fields.phone.value, '+372 0000001');
+  assert.equal(contact.fields.email.value, 'alpha@example.invalid');
+  assert(packet.record_context.relations.some(link => link.to === contact.key && link.refs.length));
+  assert.doesNotMatch(JSON.stringify(packet), /0000002|beta@example|OUTDATED_|projection_sha256|registry_binding|different-register-id/);
+  await resolveModelReferences({ packet, context: exportedContext, policy: exportedPolicy,
+    sourceResolver: refs => postgres.canonicalReferences(refs) });
+  const bundle = exportedSnapshot.bundles.find(bundle => bundle.document.fields.structured_record?.value.id === 'contact:0');
+  const record = bundle.document.fields.structured_record.value;
+  assert.equal(await adapter.authorizeContact({ record }), true);
+  assert.equal(await adapter.authorizeContact({ record: { ...record, bindings: {} } }), false);
+  const badChannel = structuredClone(record); delete badChannel.fields.phone;
+  assert.equal(await adapter.authorizeContact({ record: badChannel }), false);
+  const badRegion = { ...record, region: exported.items[1].municipality_id };
+  assert.equal(await adapter.authorizeContact({ record: badRegion }), false);
+  assert(bundle.chunks.some(chunk => structuralRole(chunk, bundle).role === 'record_binding'));
+  assert(bundle.chunks.filter(chunk => chunk.source_locations.some(location => location.path.endsWith('/registry_binding')))
+    .every(chunk => structuralRole(chunk, bundle).evidence_eligible === false));
+  const forged = structuredClone(bundle); forged.document.fields.structured_record.value.bindings.service_map.value.entry_id = contacts[1].id;
+  assert.throws(() => validateBundle(forged), { code: 'record_binding_source_mismatch' });
+  // A modified registry value invalidates the exported snapshot even if a writer
+  // incorrectly forgot to increment its revision.
+  await db.serviceMapEntry.update({ where: { id: contacts[0].id }, data: { phone: '+372 0000099' } });
+  assert.equal(await adapter.authorizeContact({ record }), false);
+  const hidden = await retrieval.retrieve(query);
+  assert(!hidden.record_context.entries.some(entry => entry.kind === 'contact'));
+  assert.doesNotMatch(JSON.stringify(hidden), /0000001|0000099|alpha@example/);
+  class Catalog extends IngestBatchQueue { constructor() { super(connections.postgresUrl); } }
+  const config = { mode: 'real', recordCatalogue: RECORD_RETRIEVAL_VERSION, tenant: exportTenant,
+    documents: Object.fromEntries(exportedSnapshot.bundles.map(bundle => [bundle.document.id, bundle.version.id])) };
+  await assert.rejects(runtimeAdapters(async () => config, 'reader', { Catalog, authorizeContact: adapter.authorizeContact }).canonicalPacket(config, packet),
+    { code: 'record_contact_access_changed' });
+  const nonCatalogue = { ...config }; delete nonCatalogue.recordCatalogue;
+  await assert.rejects(runtimeAdapters(async () => nonCatalogue, 'reader', { Catalog, authorizeContact: adapter.authorizeContact }).canonicalPacket(nonCatalogue, packet),
+    { code: 'record_contact_access_changed' });
+  await db.serviceMapEntry.update({ where: { id: contacts[0].id }, data: { phone: contacts[0].phone, revision: 2 } });
+  meta.contactDecisionRevision[contacts[0].id] = 2;
+  await db.dataAuditLog.update({ where: { id: audit.id }, data: { meta } });
+  assert.equal(await adapter.authorizeContact({ record }), false); // Newly verified revision still needs a new immutable export.
+  const newer = await prepare();
+  assert.equal(newer.items[0].registry_binding.revision, 2);
+  assert.notEqual(newer.items[0].registry_binding.projection_sha256, exported.items[0].registry_binding.projection_sha256);
+  let reads = 0;
+  const racingDb = { dataAuditLog: db.dataAuditLog, serviceMapEntry: { async findFirst(args) {
+    const result = await db.serviceMapEntry.findFirst(args);
+    if (++reads === 2) await db.serviceMapEntry.update({ where: { id: contacts[0].id }, data: { tombstonedAt: new Date() } });
+    return result;
+  } } };
+  await assert.rejects(prepare({ db: racingDb }), { code: 'contact_changed_during_export' });
 });
