@@ -16,7 +16,7 @@ import { registeredSource } from '../lib/rag-v2/registered-source.js';
 import { hash, validateBundle } from '../lib/rag-v2/contracts.js';
 import { loadSnapshot } from '../lib/rag-v2/search/snapshot.js';
 import { QdrantIndex } from '../lib/rag-v2/search/qdrant.js';
-import { MockEmbedding } from '../lib/rag-v2/search/embedding.js';
+import { MockEmbedding, indexUnit } from '../lib/rag-v2/search/embedding.js';
 import { indexSnapshot } from '../lib/rag-v2/search/indexing.js';
 import { LocalPolicy } from '../lib/rag-v2/search/policy.js';
 import { resolveModelReference } from '../lib/rag-v2/search/model-context.js';
@@ -182,6 +182,23 @@ test('question relevance orders, never filters, the catalogue: the matching reco
   const onlyStopwords = await source().retrieve(query({ question: 'Kas mul on?', limits: budget }));
   assert.deepEqual(onlyStopwords.record_context.entries.map(entry => entry.record_id), cutPlain.record_context.entries.map(entry => entry.record_id));
   await assert.rejects(source().retrieve(query({ question: '' })), { code: 'invalid_record_query' });
+});
+
+test('ADR-026: the query vector ranks a service the wording never names; without a vector the order is unchanged', async () => {
+  const bundle = snapshot.bundles.find(b => b.document.fields.structured_record?.value.id === 'harku_vald:service_3');
+  const summary = bundle.chunks.find(chunk => chunk.source_locations?.some(location => location.path.endsWith('/summary')));
+  // The mock embedding is not semantic, but the unit's own text reproduces the unit's indexed vector exactly.
+  const queryVector = await embedding.embed(indexUnit(summary, bundle, generation.config.embedding).input_text);
+  const full = await source().retrieve(query());
+  const budget = { contextTokens: full.measurements.model_context_tokens - 1 };
+  const lexicalOnly = await source().retrieve(query({ question: 'Kus saab abi?', limits: budget }));
+  const withVector = await source({ qdrant }).retrieve(query({ question: 'Kus saab abi?', queryVector, limits: budget }));
+  assert.deepEqual(lexicalOnly.record_context.relevance_channels, []);
+  assert.deepEqual(withVector.record_context.relevance_channels, ['vector']);
+  assert.equal(lexicalOnly.record_context.entries.find(e => e.record_id === 'harku_vald:service_3').detail, 'catalogue');
+  assert.equal(withVector.record_context.entries.find(e => e.record_id === 'harku_vald:service_3').detail, 'relevant_summary');
+  assert.equal(withVector.record_context.listed_count, withVector.record_context.catalogue_count);
+  await assert.rejects(source().retrieve(query({ queryVector })), { code: 'invalid_record_query' });
 });
 
 test('catalogue budgets fail explicitly; permission and contact revocation during retrieval cannot publish a packet', async () => {
