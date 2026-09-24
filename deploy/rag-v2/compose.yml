@@ -3,7 +3,7 @@ services:
   postgres:
     # Come back after a host reboot (the VPS is rebooted for platform updates).
     restart: unless-stopped
-    image: postgres:16.13-alpine@sha256:4e6e670bb069649261c9c18031f0aded7bb249a5b6664ddec29c013a89310d50
+    image: postgres:16.15-alpine@sha256:721873c34ceb9f8d8fc265984940dc982404c105f19ad51be9fdc5970a6080ea
     ports: ["127.0.0.1:55432:5432"]
     environment:
       POSTGRES_USER: rag_v2_dev
@@ -17,7 +17,7 @@ services:
       retries: 20
   qdrant:
     restart: unless-stopped
-    image: qdrant/qdrant:v1.15.5@sha256:0fb8897412abc81d1c0430a899b9a81eb8328aa634e7242d1bc804c1fe8fe863
+    image: qdrant/qdrant:v1.19.1@sha256:12364fe851b9f17356fc88189fc06d1b521262e04659ec7345975b00c9246a10
     ports: ["127.0.0.1:56333:6333"]
     environment:
       QDRANT__SERVICE__API_KEY: ${RAG_V2_QDRANT_KEY:?Run the local setup CLI}
