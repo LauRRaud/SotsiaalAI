@@ -9,6 +9,28 @@ Mõlemad failid on loetavad ainult root'ile. `sotsiaalai-frontend.service` loeb 
 
 Vestluspiloodi plaan on seotud täpse käituskoodiga (`implementationHash`). Kui deploy muudab seda koodi, kirjutab deploy logisse ja GitHubi hoiatuse: vestluspiloot uusi vastuseid ei anna, kuni uus plaan on kinnitatud.
 
+## LiveKit, egress ja OSRM
+
+Unit-failid on repos, et nende versioonid ja käsuread oleksid näha ning muudatused läbiksid ülevaatuse. Saladusi failides pole: need tulevad failidest `/etc/livekit/livekit.yaml` ja `/etc/livekit/egress.env`.
+
+- `livekit.service` käivitab binaari `/usr/local/bin/livekit-server` (25.09 seisuga 1.13.7). Binaar paigaldatakse eraldi GitHubi väljalaskest ja räsi kontrollitakse `checksums.txt` vastu.
+- `livekit-egress.service` kasutab tõmmist `livekit/egress`, mis on lukustatud versiooni ja räsiga (`v1.14.1@sha256:…`), mitte sildiga `latest`.
+- `sotsiaalai-osrm.service` kasutab tõmmist `ghcr.io/project-osrm/osrm-backend:v26.9.0-debian@sha256:…` ja kaarti kaustas `/home/ubuntu/osrm-26.9`.
+
+Deploy paigaldab muudetud unit-failid ja käivitab `daemon-reload`, aga neid teenuseid ei taaskäivita. Pärast muudatust tuleb teenus käsitsi taaskäivitada (`sudo systemctl restart <teenus>`).
+
+OSRM-i kaardi uuendamiseks tehakse uus graaf kõrvalkausta, seda testitakse pordil 5001 ja alles siis vahetatakse unit-failis kaust:
+
+```sh
+NEW=/home/ubuntu/osrm-<versioon>; IMG=ghcr.io/project-osrm/osrm-backend:<silt>
+curl -fsSLO https://download.geofabrik.de/europe/estonia-latest.osm.pbf  # kontrolli ka .md5 faili
+sudo docker run --rm -v "$NEW:/data" "$IMG" osrm-extract -p /opt/car.lua /data/estonia-latest.osm.pbf
+sudo docker run --rm -v "$NEW:/data" "$IMG" osrm-partition /data/estonia-latest.osrm
+sudo docker run --rm -v "$NEW:/data" "$IMG" osrm-customize /data/estonia-latest.osrm
+```
+
+Kaart töödeldakse auto profiiliga (`routability`), sest sõidupäevik vajab autoteekondi. OSRM-i andmefailid on seotud versiooniga, millega need tehti. Uue OSRM-i versiooniga tuleb kaart alati uuesti töödelda.
+
 ## Materjalide isoleeritud hoidla (SOL-MAT-08)
 
 `var-lib-sotsiaalai-materials.mount` on repo-hallatav leping eraldi LUKS2 + ext4 köitele:

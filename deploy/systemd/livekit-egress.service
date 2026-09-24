@@ -1,0 +1,16 @@
+[Unit]
+Description=SotsiaalAI self-hosted LiveKit Egress service
+After=docker.service redis-server.service livekit.service
+Requires=docker.service redis-server.service livekit.service
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/livekit/egress.env
+Restart=always
+RestartSec=5
+ExecStartPre=-/usr/bin/docker rm -f livekit-egress
+ExecStart=/usr/bin/docker run --name livekit-egress --network host --cap-add SYS_ADMIN -e LIVEKIT_API_KEY -e LIVEKIT_API_SECRET -e EGRESS_CONFIG_FILE=/etc/livekit/egress.yaml -v /etc/livekit/egress.yaml:/etc/livekit/egress.yaml:ro -v /var/lib/sotsiaalai/recordings:/var/lib/sotsiaalai/recordings livekit/egress:v1.14.1@sha256:bf2b648b947349c3e9ff7aa8c718f00378d5c06af7624652a3653318e00333ce
+ExecStop=/usr/bin/docker stop livekit-egress
+
+[Install]
+WantedBy=multi-user.target
