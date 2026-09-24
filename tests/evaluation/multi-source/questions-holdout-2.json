@@ -1,0 +1,288 @@
+{
+  "schema_version": "rag-v2/retrieval-evaluation-2",
+  "purpose": "Holdout-2 (24.09.2026): new questions written from the source texts before any retrieval run, to confirm or reject decisions measured on the 05.09 set. Expected sources and anchors are evaluator-only data.",
+  "comparisons": [
+    "lexical",
+    "real_vector",
+    "hybrid",
+    "hybrid_with_structure"
+  ],
+  "top_k": [
+    1,
+    3,
+    5
+  ],
+  "context_tokens": 6000,
+  "cases": [
+    {
+      "id": "magic-notes-documentation-et",
+      "family": "magic-notes-documentation",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Millist Ühendkuningriigis kasutatavat rakendust artikkel kirjeldab, mis teeb vestlustest juhtumiaruande, ja millist ohtu selle juures nähakse?"
+    },
+    {
+      "id": "trelleborg-rpa-et",
+      "family": "trelleborg-rpa",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Milline omavalitsus automatiseeris esimesena sotsiaaltoetuste menetlemise ja kes lahendab seal keerulisemad juhtumid?"
+    },
+    {
+      "id": "ott-unemployment-risk-et",
+      "family": "ott-unemployment-risk",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Mitme näitaja põhjal hindab töötukassa OTT pikaajalise töötuse riski ja milliseid puudusi selle kasutajad nägid?"
+    },
+    {
+      "id": "hester-logs-et",
+      "family": "hester-logs",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Kui kaua hoiab Helsingi vestlusrobot Hester vestluste logisid alles?"
+    },
+    {
+      "id": "hester-logs-en",
+      "family": "hester-logs",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "en",
+      "query": "How long does the Helsinki chatbot Hester keep its conversation logs?"
+    },
+    {
+      "id": "consent-service-gap-et",
+      "family": "consent-service-gap",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Kui suur osa Eesti avaliku sektori asutustest ei kasuta nõusolekuteenust?"
+    },
+    {
+      "id": "consent-service-gap-en",
+      "family": "consent-service-gap",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "en",
+      "query": "What share of Estonian public-sector organisations do not use a consent service?"
+    },
+    {
+      "id": "syri-criticism-et",
+      "family": "syri-criticism",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Miks sattusid Hollandi andmepõhised sekkumisprogrammid SyRI ja Top400 kriitika alla?"
+    },
+    {
+      "id": "risk-model-data-density-et",
+      "family": "risk-model-data-density",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Kas lapse väärkohtlemist ennustavad riskimudelid võivad mõnda peret põhjendamatult rohkem ohtlikuks pidada?"
+    },
+    {
+      "id": "wellbeing-norway-method-et",
+      "family": "wellbeing-norway-method",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Millise riigi kogemusest ja millisest metoodikast lähtuti heaolutehnoloogiate programmi kujundamisel?"
+    },
+    {
+      "id": "wellbeing-first-round-selection-et",
+      "family": "wellbeing-first-round-selection",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Mitu ideed jõudis heaolutehnoloogiate programmi eelnõustamisele ja mitmele projektile anti esimeses voorus raha?"
+    },
+    {
+      "id": "wellbeing-first-round-selection-ru",
+      "family": "wellbeing-first-round-selection",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "ru",
+      "query": "Сколько идей прошло предварительную консультацию в программе технологий благополучия и сколько проектов получили финансирование в первом раунде?"
+    },
+    {
+      "id": "privacy-day-speaker-et",
+      "family": "privacy-day-speaker",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Kes rääkis ESTA teemapäeval eraelu puutumatusest ja andmekaitse põhitõdedest?"
+    },
+    {
+      "id": "hospital-day-units-et",
+      "family": "hospital-day-units",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Milliste haiglaosakondade sotsiaaltöötajad jagasid teemapäeval oma igapäevatöö kogemust?"
+    },
+    {
+      "id": "worker-support-programme-et",
+      "family": "worker-support-programme",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Millist tuge hakkab ESTA koos sotsiaalministeeriumiga sotsiaalvaldkonna töötajatele pakkuma?"
+    },
+    {
+      "id": "pre-visit-questions-et",
+      "family": "pre-visit-questions",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Mille üle peaks töötaja enne rasket kohtumist või kodukülastust mõtlema?"
+    },
+    {
+      "id": "output-numbers-deadlines-et",
+      "family": "output-numbers-deadlines",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Kuidas tuleb AI koostatud teksti kvaliteedikontrollis käsitleda numbreid ja tähtaegu?"
+    },
+    {
+      "id": "vendor-training-use-et",
+      "family": "vendor-training-use",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Mida peaks asutus enne AI-teenuse kasutuselevõttu välja selgitama selle kohta, kas teenusepakkuja õpetab meie andmetel oma mudelit?"
+    },
+    {
+      "id": "appeal-deadline-exercise-et",
+      "family": "appeal-deadline-exercise",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Kui palju aega on õppejuhtumis koduteenusest keeldumise vaidlustamiseks ja kellele vaie esitatakse?"
+    },
+    {
+      "id": "online-defamation-case-et",
+      "family": "online-defamation-case",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Minu kolleegi kohta hakkas pahane lapsevanem netis võltskontodelt halba levitama. Kas selliseid lugusid on kirjeldatud ja mida politsei tegi?"
+    },
+    {
+      "id": "palliative-robots-conditions-et",
+      "family": "palliative-robots-conditions",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Kas robotid saavad surija hooldamisel abiks olla ja millega peab seejuures arvestama?"
+    },
+    {
+      "id": "constant-monitoring-harm-et",
+      "family": "constant-monitoring-harm",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Kas eakat kodus pidevalt anduritega jälgida võib talle hoopis kahju teha?"
+    },
+    {
+      "id": "silence-culture-et",
+      "family": "silence-culture",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Miks sotsiaaltöötajad ei taha rääkida sellest, et klient neid ähvardas?"
+    },
+    {
+      "id": "silence-culture-ru",
+      "family": "silence-culture",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "ru",
+      "query": "Почему социальные работники часто молчат об угрозах со стороны клиентов?"
+    },
+    {
+      "id": "loneliness-detection-et",
+      "family": "loneliness-detection",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Kuidas saaks tehnoloogia aidata märgata, et vanainimene on jäänud üksildaseks?"
+    },
+    {
+      "id": "fact-sheet-unknowns-et",
+      "family": "fact-sheet-unknowns",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Tahan lasta AI-l kirjutada kirja koduteenuse kohta. Mida minu faktileht tegelikult ei ütle?"
+    },
+    {
+      "id": "team-rule-exception-et",
+      "family": "team-rule-exception",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Kes võib meeskonna AI kasutamise reeglist erandi lubada?"
+    },
+    {
+      "id": "care-worker-burnout-training-et",
+      "family": "care-worker-burnout-training",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Töötan hooldekodus ja töö kurnab mind emotsionaalselt. Kas on olnud koolitusi, kus sellest räägiti?"
+    },
+    {
+      "id": "home-longer-with-technology-et",
+      "family": "home-longer-with-technology",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "et",
+      "query": "Kas vanaema saaks nutilahenduste abil kauem kodus hakkama ja kes selliseid arendusi korraldab?"
+    },
+    {
+      "id": "palliative-monitoring-robots-en",
+      "family": "palliative-monitoring-robots",
+      "split": "control",
+      "kind": "answerable_in_selected_corpus",
+      "expected_support": "full",
+      "language": "en",
+      "query": "Which robots in palliative care track patients’ health indicators and handle medication?"
+    }
+  ]
+}
