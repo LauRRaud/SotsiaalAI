@@ -6,12 +6,17 @@ import net from 'node:net';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { fileURLToPath } from 'node:url';
+import { existsSync } from 'node:fs';
 import { prepareRubric, verifyRubric, hasAtom, digest, canonicalContext, contextId,
   makeReviewPacket, regrade, verifyInputs } from '../lib/rag-v2/evaluation/rubric-v2.js';
 import { tokenCount } from '../lib/rag-v2/search/embedding.js';
 import { readJson } from '../lib/rag-v2/catalog.js';
 import { loadSnapshot } from '../lib/rag-v2/search/snapshot.js';
 import { rubricProposal } from '../scripts/lib/rag-v2-rubric-proposal.mjs';
+
+// Salvestatud serveri-hindamise andmed on privaatsed ja git-ignored; CI-s neid pole.
+const savedRun = fileURLToPath(new URL('../tmp/rag-v2-multi-source/server-real-9526a805-1/corpus-manifest.json', import.meta.url));
+const noSavedRun = !existsSync(savedRun) && 'local tmp/rag-v2-multi-source data missing';
 
 let calls = 0;
 const savedFetch = globalThis.fetch, savedConnect = net.Socket.prototype.connect;
@@ -123,7 +128,7 @@ test('rubric: altered source atom, v1 payload and context cannot pass identity v
   results.rows[0].packet.evidence[0].source_text = 'forged';
   assert.throws(() => verifyInputs(results, f.questions, f.snapshot, groups), /v1_payload_mismatch/);
 });
-test('rubric review revisions: independent count evidence, scoped partial support and related excerpt survive resolution', async () => {
+test('rubric review revisions: independent count evidence, scoped partial support and related excerpt survive resolution', { skip: noSavedRun }, async () => {
   const base = 'tmp/rag-v2-multi-source/server-real-9526a805-1';
   const cm = await readJson(`${base}/corpus-manifest.json`);
   const snapshot = await loadSnapshot('tmp/rag-v2-multi-source/store', cm.tenant, cm.documents.map(d => d.document_id));
@@ -153,7 +158,7 @@ test('rubric review revisions: independent count evidence, scoped partial suppor
   const tehnopol = rubric.families['wellbeing-two-source-roles'].requirements.find(r => r.id === 'tehnopol-implementers');
   assert.ok(tehnopol.evidence_sets.every(s => s.all.every(a => a.pdf_sha256 === rubric.sources.tehnopol)));
 });
-test('rubric: offline CLI covers all 84 saved rows, keeps v1 bytes and rejects overwriting output', async () => {
+test('rubric: offline CLI covers all 84 saved rows, keeps v1 bytes and rejects overwriting output', { skip: noSavedRun }, async () => {
   const cwd = fileURLToPath(new URL('../', import.meta.url)), base = path.join(cwd, 'tmp/rag-v2-m2-3');
   await fs.mkdir(base, { recursive: true });
   const testDir = await fs.mkdtemp(path.join(base, 'test-'));

@@ -58,6 +58,7 @@
     "dup:check:ci": "jscpd . --pattern \"**/*.css\" --ignore \"**/node_modules/**,**/.next/**,**/reports/**,**/coverage/**,**/.git/**\" --reporters console --threshold 7.5",
     "clean:next": "node scripts/clean-next.mjs",
     "lint": "eslint .",
+    "test": "node scripts/run-unit-tests.mjs",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "check": "prisma generate && npm run i18n:check && npm run lint && npm run dup:check:ci",
