@@ -367,3 +367,62 @@ Test ootab nüüd 12 429 tokenit. Lisaks kontrollib ta kolme lehevahetusel jätk
 **Parandus minu §2.3 väitele:** selle artikli puhul ei tulnud erinevus tühikutest ega reavahetustest, vaid lõikude ümberpaigutusest tükkide vahel. Kordustöötlus ei maksa midagi, kui embedding'u sisend ei muutu: sama sisendi ja konfiguratsiooni korral uusi kutseid pole, nagu Codex kontrollis. Tasu tuleb ainult muutunud tükkidele.
 
 Kontrollid: vahemälutestid 3/3. Päris andmebaasi ja EstNLTK integratsioonid (otsing, EstNLTK, ühine rada, kirjekataloog, indeksitööd) 36/36 ja otsingu integratsioon 13/13. Kogu RAG v2 komplektis pole enam punast testi.
+
+## 12. Codexi uue koodi ülevaatus (24.09.2026)
+
+**Järeldus:** läbivaadatud uues koodis ei leitud uut kinnitatud parandamist
+vajavat viga. See on piiratud koodiülevaatuse tulemus, mitte kogu süsteemi
+veatuse ega vastusekvaliteedi kinnitus.
+
+### Ulatus
+
+- `6ea89a308`: ADR-023 küsimuspõhine kataloogijärjestus ja asjakohaste kirjete
+  kokkuvõtete valimine. Sama commit'i EstNLTK parandust eraldi ei hinnatud.
+- `db9b6a98a` / PR #134: ADR-024 üldsõnad, valikuline põhiotsingu parameeter
+  ja selle viimine hindamisse.
+- `c58e5a0be` / PR #136: uued hindamisküsimused ja võrdlusskript.
+- PR #138 muutumatu tipp `b493b4508881e408ddc5ed3047729b1938de3660`:
+  ADR-025 kompaktne mudelivaade. Ülevaatuse ajal liideti see `main`-i
+  commit'ina `10ddf57524fcc7461c52086f1afc17d705522e4f`.
+
+Varasemad R1–R4 leiud, vektorivahemälu parandus, 12 429 tokeni testi parandus
+ja bibliograafiaküsimuse väljundi parandus ei olnud selle ülevaatuse teemad.
+
+### Kontrollitud käitumine
+
+- Küsimuspõhine skoor ei filtreeri kataloogi. Mahupiiril on valitud detailid
+  esimesed ja küsimusega sobiv kirje säilib; ainult üldsõnadest päring jätab
+  stabiilse järjestuse. Põhiotsingus jääb üldsõnade eemaldamine valikuliseks
+  ning ei muuda vektorikanali sisendit.
+- ADR-025 muudab mudeli projektsiooni. Kanooniliste viidete identiteedid ja
+  allikakohad jäävad `reference_map`-i; kirje-ID ja piirkond säilivad täielikus
+  `record_context`-is, kust tuletatakse vestluse kirjefookus. Ühised
+  allikaväärtused tõstetakse välja ainult siis, kui need on kõigil
+  struktureeritud kirjete allikakaartidel olemas ja võrdsed.
+- Ühisraja kohalik integratsioon läbis artiklite, KOV-i ja avaldamisperioodide
+  vahel liikumise ning viidete kanoonilise kontrolli. Kontaktide kontroll ja
+  ligipääsu tagasivõtmine jäid jõusse. Salvestatud viite kontroll võrdleb
+  viitekaarti, mille lepingut uus projektsioon ei muuda.
+
+### Tõendid ja piirid
+
+`TZ=UTC` all läbis **25/25 testi**:
+`rag-v2-record-catalogue-compact` (3), `rag-v2-query-stopwords` (2),
+`rag-v2-structured-records.integration` (8), `rag-v2-unified.integration` (2)
+ja `rag-v2-selection` (10). PR-i viit muudetud JS/MJS-faili laaditi esmalt
+muutumatu commit'i sisuga ajutise Node'i laaduri kaudu; põhikausta faile
+testimiseks ümber ei kirjutatud. Pärast merge'i toodi sama muudatus kohalikku
+`main`-i fast-forward'iga. PR-i `git diff --check` läbis.
+
+Integratsioonid kasutasid eraldatud kohalikke andmebaase, Qdranti, EstNLTK-d
+ja mudeli testadaptereid. Tasulisi kutseid ei tehtud. Serveri versiooni ega
+tootmisvestlust selles ringis ei kontrollitud (`not_run`).
+
+45/48 võrdleb allikaankrute jõudmist lõppkonteksti. See ei tõenda veel
+vastuste sisulist kvaliteeti ega kaalu 2 piloodiprofiili tervikut:
+võrdluse `hybrid` kasutab viit tulemust ilma graafilaienduseta. Opuse
+53 KOV-juhu mahumõõtmist selles ringis ei korratud. Dokumenteeritud
+sõnalise kattuvuse puudumine seitsmel juhul on jätkuv võimekuspiir, mitte
+siin avastatud tihendamise regressioon. Selle järgmine arenduskoht on
+olukorrakirjelduse semantiline sidumine KOV-kirjetega; tasuline mudelitest
+ei ole kohaliku arenduse eeltingimus.

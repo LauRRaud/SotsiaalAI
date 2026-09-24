@@ -92,6 +92,13 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**24.09 Codexi ülevaatus Opuse uuest koodist (ADR-023–025, PR #134/#136/#138).**
+Uut kinnitatud koodiviga ei leitud; varasemaid parandatud leide uuesti ei
+hinnatud. Küsimuspõhine kataloog, üldsõnade valik ja kompaktne mudelivaade
+läbisid 25/25 sihttesti, sh kohaliku ühise vestlusraja. [Ulatus ja tõendid](../audits/rag-v2-opus-terviklik-analuus-2026-09-24.md#12-codexi-uue-koodi-ülevaatus-24092026).
+45/48 tõendab allikakatkete leidmist, mitte vastusekvaliteeti; järgmine sisuline
+töökoht on olukorrakirjelduse semantiline sidumine KOV-kataloogiga.
+
 **24.09 KOV-kataloogi kompaktne mudelivaade — [ADR-025](../rag-v2/adr-025-compact-record-model-context.md).**
 Pärnu pealkirjadest oli ainult 6% sisu, ülejäänu ümbris (JSON-teed, ID-d,
 korduvad metaandmed). Mudelivaade on nüüd kompaktne ja auditipakett jääb
