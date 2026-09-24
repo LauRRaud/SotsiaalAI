@@ -270,9 +270,9 @@ test('real local dialogue stores quoted state in one answer call, switches munic
   const simpler = await run('Selgita lihtsamalt.');
   assert.equal(requests.length, 5); assert.equal(embedding.calls, initialCalls);
   assert.equal(requests[0].evidence.records.scope.state, 'region_required');
-  assert(requests[1].evidence.records.entries.every(entry => entry.region === 'harku_vald'));
+  assert(requests[1].evidence.records.region === 'harku_vald' && requests[1].evidence.records.entries.every(entry => !('region' in entry)));
   assert(requests[2].evidence.records.entries.some(entry => entry.detail === 'selected_detail' && entry.fields.application));
-  assert(requests[3].evidence.records.entries.every(entry => entry.region === 'kose_vald'));
+  assert(requests[3].evidence.records.region === 'kose_vald');
   const first = await db.m4PilotTurn.findUnique({ where: { id: switched.id } }), second = await db.m4PilotTurn.findUnique({ where: { id: simpler.id } });
   for (const block of first.payload.answer.blocks) for (const ref of block.refs) {
     const old = first.payload.packet.reference_map[ref];

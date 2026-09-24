@@ -161,8 +161,8 @@ test('one dialogue moves from journals to local support to two publication perio
   assert.deepEqual(f.calls, Array.from({ length: 7 }, () => ['embedding', 'answer']).flat());
   assert(f.inputs.every(input => /^\d{4}-\d{2}-\d{2}$/.test(input.dialogue.stateContext.asOfDateUTC)));
   assert(f.inputs[0].evidence.retrieval.lanes[0].refs.length > 0);
-  assert(f.inputs[1].evidence.records.entries.every(entry => entry.region === 'harku_vald'));
-  assert(f.inputs[2].evidence.records.entries.every(entry => entry.region === 'kose_vald'));
+  assert(f.inputs[1].evidence.records.region === 'harku_vald');
+  assert(f.inputs[2].evidence.records.region === 'kose_vald');
   assert(f.inputs[3].evidence.retrieval.lanes.filter(lane => lane.kind === 'publication_period').every(lane => lane.refs.length > 0));
   const compared = f.inputs[3].evidence.retrieval.lanes.filter(lane => lane.kind === 'publication_period');
   assert.deepEqual(compared.map(lane => lane.coverage.indexed_documents), [2, 2]);
