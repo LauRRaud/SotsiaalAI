@@ -100,6 +100,12 @@ olukorrasõnastus) 05.09 korpusel. Päringuvektorid telliti ühe kutsega
 kandidaadi; üldsõnad jäävad põhiotsingus välja. Kordamine:
 `scripts/rag-v2-query-variants.mjs`.
 
+**24.09 v2 → v3 vektorite taaskasutus ja `12429 ≠ 12420` — [analüüs §11](../audits/rag-v2-opus-terviklik-analuus-2026-09-24.md).**
+v3 indeks kasutab nüüd ka v2 nimeruumis olevaid vektoreid, mis varem jäeti
+kasutamata ja telliti uuesti. Tokeni erinevuse põhjus on `ad44c302e`: lehel
+jätkuv lõik ei jagune enam kahe tüki vahel keset lauset. Test kontrollib seda
+nüüd otse. RAG v2 komplektis pole enam punast testi.
+
 **24.09 Päringu üldsõnad — [ADR-024](../rag-v2/adr-024-query-stopwords.md).**
 KOV-kataloog eemaldab järjestamisel üldsõnad. Kõik asjakohased teenused on
 kataloogis 52/53 paaris (ID järjekorras 46), ADR-023 kaks halvenemist kadusid.

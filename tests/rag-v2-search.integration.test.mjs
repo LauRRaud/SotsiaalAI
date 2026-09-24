@@ -267,13 +267,19 @@ test('Audit: compact reference resolution reloads its canonical generation, unit
 test('E-01/07/11/13: four local routes use the same stored 3072-dimensional fixture vectors, no provider calls', async () => {
   const questions = await readJson('tests/evaluation/rag-v2-queries.json'), groups = await readJson('tests/evaluation/rag-v2-anchor-groups.json');
   const baseline = evaluationPlan(sample, questions), prepared = buildPilotManifest(sample, questions, baseline);
-  assert.equal(prepared.matches_baseline, true); assert.equal(prepared.manifest.total_input_tokens, 12420);
+  // 12420 -> 12429 since ad44c302e (08.09): a paragraph continuing on the next PDF page is no longer
+  // split between two chunks mid-sentence; it moves whole into the next section's chunk.
+  const texts = sample.bundles.flatMap(b => b.chunks.map(c => c.source_text));
+  for (const joined of ['millega tuleb\neriti arvestada', 'Katselahenduse\nväljatöötamisel', 'analüüsivad\nnäoilmeid']) {
+    assert(texts.some(text => text.includes(joined)), joined);
+  }
+  assert.equal(prepared.matches_baseline, true); assert.equal(prepared.manifest.total_input_tokens, 12429);
   const now = new Date().toISOString();
   const price = { input_per_million:'0.13',currency:'USD',version:'synthetic-local-price',source:'https://developers.openai.com/api/docs/models/text-embedding-3-large',checked_at:now };
   const approval = {schema_version:'rag-v2/pilot-approval-1',state:'approved',material_egress_approved:true,spend_cap_approved:true,
     approved_by:'synthetic-test-owner',approved_at:now,approval_basis:'Synthetic transport fixture only',source_plan_id:prepared.manifest.source_plan_id,
     egress_manifest_sha256:prepared.manifest_sha256,tenant:sample.tenant,config:prepared.manifest.config,files:prepared.manifest.files,
-    max_api_attempts:25,max_total_input_tokens:12420,retries:0,generation_calls:0,currency:'USD',approved_spend_cap:'0.05'};
+    max_api_attempts:25,max_total_input_tokens:12429,retries:0,generation_calls:0,currency:'USD',approved_spend_cap:'0.05'};
   let transportCalls = 0;
   const run = await runPilot({prepared,approval,price,policy,context:context(sample.tenant),root:path.join(tmp,'synthetic-pilot'),execute:true,
     transport:async({text,config})=>{transportCalls++;return {body:{model:config.model,data:[{object:'embedding',index:0,embedding:Array.from({length:3072},(_,i)=>i===0?1:0)}],
