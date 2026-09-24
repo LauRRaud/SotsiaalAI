@@ -1,0 +1,89 @@
+name: auto-merge
+
+# Lülitab PR-il sisse GitHubi auto-merge'i: PR merge'itakse `main`-i siis, kui
+# branch protection'i nõutud kontrollid (quality-gate, webpack-build) on rohelised.
+#
+# `pull_request_target`, mitte `pull_request`: workflow jookseb `main`-i versioonist,
+# nii et PR ei saa seda faili muutes kaitset enda jaoks maha võtta. PR-i koodi siin
+# EI käivitata ega checkout'ita — ainult loetakse muudetud failide nimesid.
+on:
+  pull_request_target:
+    types: [opened, reopened, synchronize, ready_for_review]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: auto-merge-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    # Ainult selle repo harud (mitte fork'id) ja mitte mustandid.
+    if: >-
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.draft == false &&
+      github.event.pull_request.base.ref == 'main'
+    env:
+      GH_REPO: ${{ github.repository }}
+      PR: ${{ github.event.pull_request.number }}
+      # Merge peab käima isikliku tokeniga: GITHUB_TOKEN-iga tehtud merge ei
+      # käivita `main`-i quality-gate'i ega seega ka deploy'd.
+      AUTOMERGE_TOKEN: ${{ secrets.AUTOMERGE_TOKEN }}
+    steps:
+      - name: Check protected paths
+        id: paths
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          # Muudatused, mida inimene peab enne merge'i nägema: CI/deploy/server,
+          # andmebaasi skeem, sõltuvused, agentide reeglid, autentimine ja õigused,
+          # maksed, privaatsus ja kriisiabi.
+          protected='^(\.github/|prisma/|deploy/|ops/|\.env|scripts/(deploy-server|ai-deploy)\.mjs$|package(-lock)?\.json$|(AGENTS|CLAUDE)\.md$|(auth|proxy)\.js$|next\.config\.mjs$|lib/authz\.js$|lib/auth/|pages/api/auth/|app/api/auth/|lib/payments/|app/api/subscription/|lib/privacy/|app/api/privacy/|app/api/data-export/|lib/chat/safety\.js$|lib/field/safety\.js$|lib/urgent/|app/api/urgent-requests/)'
+          gh pr diff "$PR" --name-only > changed.txt
+          if grep -E "$protected" changed.txt > hits.txt; then
+            echo "protected=true" >> "$GITHUB_OUTPUT"
+            {
+              echo "### Auto-merge välja lülitatud: PR puudutab kaitstud teid"
+              echo '```'
+              cat hits.txt
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "protected=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Disable auto-merge for protected paths
+        if: steps.paths.outputs.protected == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          # Kui varasem push lülitas auto-merge'i sisse, võta see maha.
+          gh pr merge "$PR" --disable-auto 2>/dev/null || true
+          marker='<!-- auto-merge-protected -->'
+          if ! gh pr view "$PR" --json comments --jq '.comments[].body' | grep -qF "$marker"; then
+            {
+              echo "$marker"
+              echo "Automaatset merge'i ei tehta: PR muudab kaitstud teid ja vajab omaniku ülevaatust."
+              echo
+              echo '```'
+              cat hits.txt
+              echo '```'
+            } > comment.md
+            gh pr comment "$PR" --body-file comment.md
+          fi
+
+      - name: Enable auto-merge
+        if: steps.paths.outputs.protected == 'false'
+        run: |
+          set -euo pipefail
+          if [ -z "$AUTOMERGE_TOKEN" ]; then
+            echo "::warning::AUTOMERGE_TOKEN secret puudub; auto-merge jääb sisse lülitamata."
+            exit 0
+          fi
+          GH_TOKEN="$AUTOMERGE_TOKEN" gh pr merge "$PR" --auto --squash --delete-branch
