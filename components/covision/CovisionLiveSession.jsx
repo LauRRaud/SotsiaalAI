@@ -406,6 +406,8 @@ function InvitationAcceptance({ participant, me, busy, dispatchAction, copy }) {
         <small>{copyValue(copy, "invitation.reload_notice")}</small>
         <button type="button" disabled={busy} onClick={async () => {
           const result = await dispatchAction(ACTIONS.declineInvitation, {});
+          // Täislaadimine on teadlik: ligipääs lõppes, see sulgeb LiveKiti seansi ja tühjendab ligipääsu oleku.
+          // eslint-disable-next-line @next/next/no-location-assign-relative-destination
           if (result?.accessEnded) window.location.assign("/kovisioon");
         }}>
           {copyValue(copy, "actions.decline_invitation")}

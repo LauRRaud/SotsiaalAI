@@ -1444,6 +1444,8 @@ export function useChatStream(config) {
               const params = new URLSearchParams({
                 callbackUrl
               });
+              // /api/auth/signin on API-marsruut: kliendi ruuter sinna ei jõua, vaja on täislaadimist.
+              // eslint-disable-next-line @next/next/no-location-assign-relative-destination
               window.location.href = `/api/auth/signin?${params.toString()}`;
             }
             return true;
@@ -1697,6 +1699,8 @@ export function useChatStream(config) {
             const params = new URLSearchParams({
               callbackUrl
             });
+            // /api/auth/signin on API-marsruut: kliendi ruuter sinna ei jõua, vaja on täislaadimist.
+            // eslint-disable-next-line @next/next/no-location-assign-relative-destination
             window.location.href = `/api/auth/signin?${params.toString()}`;
           }
           return true;
