@@ -231,6 +231,14 @@ schema_migrated="1"
 rm -f -- "$migration_state_file"
 migration_state_file=""
 
+# The RAG v2 pilot catalogue is a separate database with its own migrations. Without
+# this step the 23.09 migrations stayed unapplied on the server while the code needed them.
+if [ -n "\${RAG_V2_POSTGRES_URL:-}" ]; then
+  echo "[deploy:server] Applying RAG v2 catalogue migrations with bounded locks"
+  RAG_V2_DATABASE_URL="$RAG_V2_POSTGRES_URL" PGOPTIONS="\${PGOPTIONS:-} -c lock_timeout=5s -c statement_timeout=15min" \\
+    npx prisma migrate deploy --config prisma/rag-v2/prisma.config.mjs
+fi
+
 # HALLATAVAD AJASTUSED (SOL-CW-14). Unit-failid elavad repositooriumis
 # (\`deploy/systemd/\`), sest ajastus, mis elab ainult ühe masina crontabis, ei ole
 # platvormi oma — ja just tema puudumine jäi märkamatuks: koodis olev

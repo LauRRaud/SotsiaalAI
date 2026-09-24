@@ -103,26 +103,60 @@ test('dialogue state DB: one call per turn, old answer selection keeps newer cor
   assert(f.calls.every(call => call.stage === 'answer'));
 });
 
-test('dialogue state DB: invalid model state never publishes or replaces memory; accepted correction survives into the next turn', async t => {
+test('dialogue state DB: invalid model state publishes the validated answer but never replaces memory; the correction survives into the next turn', async t => {
   let draft = dialogueState([userFact('work', 1, 'Tööd ei ole.')]);
   const f = await fixture(t, () => draft);
   const first = await f.run('Tööd ei ole.', 'new');
+  const firstState = (await f.row(first.id)).payload.dialogueState;
   draft = dialogueState([userFact('invented', 2, 'Unsaid fact')]);
   const input = f.input('Nüüd töötan.', 'correction');
-  await assert.rejects(f.service.run(f.user.id, input), { code: 'invalid_dialogue_state' });
-  const failed = await f.store.existing(f.config, f.user.id, input);
-  assert.equal(failed.state, 'answer_rejected');
-  assert.equal(failed.payload.dialogueState, undefined);
-  assert.equal(failed.payload.messageId, undefined);
-  await f.service.run(f.user.id, input);
+  const soft = await f.service.run(f.user.id, input);
+  assert.equal(soft.state, 'completed');
+  const stored = await f.row(soft.id);
+  assert.deepEqual(stored.payload.dialogueState, firstState);
+  assert.deepEqual(stored.payload.dialogueStateFallback, { code: 'invalid_dialogue_state', carriedHash: firstState.hash });
+  assert.ok(stored.payload.messageId);
+  assert.equal((await f.service.run(f.user.id, input)).id, soft.id);
   assert.equal(f.calls.length, 2);
+  // A recorded fallback must reproduce; it cannot hide a state that validates or change the carried memory.
+  for (const change of [row => { row.payload.dialogueStateFallback.code = 'dialogue_state_region_unanchored'; }, row => { row.payload.dialogueState = null; }]) {
+    const forged = structuredClone(stored); change(forged);
+    await assert.rejects(f.service.restore(forged), { code: 'dialogue_state_projection_mismatch' });
+  }
   const corrected = dialogueState([{ ...userFact('work', 1, 'Tööd ei ole.'), status: 'superseded', superseded_by: 2 }, userFact('work', 2, 'Nüüd töötan.')]);
   draft = corrected;
   const next = await f.run('Aga muu abi?');
   const row = await f.row(next.id);
-  assert.equal(row.payload.contextAudit.selection.stateTurnId, first.id);
+  assert.equal(row.payload.contextAudit.selection.stateTurnId, soft.id);
+  assert.deepEqual(row.payload.dialogue.previousState, firstState.value);
   assert.equal(row.payload.dialogue.userTurns[1].text, input.question);
   assert.deepEqual(row.payload.dialogueState.value, corrected);
+  assert.equal(row.payload.dialogueStateFallback, undefined);
+});
+
+test('dialogue state DB: an invalid first state publishes without memory; an invalid answer still fails closed', async t => {
+  let draft = dialogueState([userFact('invented', 1, 'Unsaid fact')]);
+  const f = await fixture(t, () => draft);
+  const first = await f.run('Elan üksi.', 'new');
+  assert.equal(first.state, 'completed');
+  const row = await f.row(first.id);
+  assert.equal(row.payload.dialogueState, null);
+  assert.deepEqual(row.payload.dialogueStateFallback, { code: 'invalid_dialogue_state', carriedHash: null });
+  draft = dialogueState([userFact('living', 1, 'Elan üksi.')]);
+  const next = await f.row((await f.run('Mis abi on?')).id);
+  assert.equal(next.payload.dialogue.previousState, null);
+  assert.deepEqual(next.payload.dialogueState.value, draft);
+  f.fail(true); draft = dialogueState([userFact('invented', 1, 'Unsaid fact')]);
+  const input = f.input('Veel üks küsimus.');
+  await assert.rejects(f.service.run(f.user.id, input), { code: 'invalid_answer_reference' });
+  assert.equal((await f.store.existing(f.config, f.user.id, input)).state, 'answer_rejected');
+  // The asynchronous region check fails softly too; restore accepts it only for a structurally valid state.
+  f.fail(false); draft = dialogueState([userFact('living', 1, 'Elan üksi.')]);
+  f.service.adapters.validateDialogueStateRegion = async () => { throw Object.assign(Error('dialogue_state_region_unanchored'), { code: 'dialogue_state_region_unanchored', status: 422 }); };
+  const regional = await f.row((await f.run('Kus abi saab?')).id);
+  assert.deepEqual(regional.payload.dialogueStateFallback, { code: 'dialogue_state_region_unanchored', carriedHash: next.payload.dialogueState.hash });
+  assert.deepEqual(regional.payload.dialogueState, next.payload.dialogueState);
+  assert.equal((await f.service.restore(regional)).state, 'completed');
 });
 
 test('dialogue state DB: validated answer and state recover together without another model call; altered projection fails closed', async t => {

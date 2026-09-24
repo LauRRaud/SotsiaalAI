@@ -92,6 +92,15 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**24.09 Piloodi kriisirada, vestluse seisu mahe tõrge ja serveri RAG v2 migratsioonid.**
+Serveri RAG v2 andmebaasis puudusid 23.09 neli migratsiooni (morfoloogia,
+aadressiloend, partiid, indeksitööd). Need rakendati pärast varukoopiat ja
+`deploy:server` rakendab need nüüd ise. Piloodi vestlusrada näitab kriisilause
+korral kriisikontakte ka siis, kui otsing või vastus ebaõnnestub. Detektor tunneb
+nüüd ka vorme „enesetapumõtted", „tahan end tappa" ja „lõpetada oma elu".
+Kontrollimata vestluse seis ei lükka enam kehtivat vastust tagasi: vastus
+avaldatakse, eelmine kontrollitud seis jääb ja parandus jõuab järgmisse pöördesse.
+
 **24.09 KOV-kataloog mahub päris valla andmetega — [ADR-021](../rag-v2/adr-021-compact-municipal-catalogue.md).**
 Kataloog loobub tõendis korduvast metaandmete ballastist ja vahetab mahu
 ületamisel täisvaate pealkirjade vaateks või märgistatud osaliseks loendiks.

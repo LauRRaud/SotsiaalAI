@@ -44,7 +44,7 @@ Enne hoidla failitaseme varundamist peata selle CLI kirjutused ja kopeeri **kogu
 
 ```powershell
 $env:TZ = 'UTC'
-$env:RAG_V2_INPUT_ROOT = 'C:/Users/rauds/Desktop/SotsiaalAI/docs/CODEX_RAG_GRAPH_v0_1/rag-spec-v0.1/inputs'
+$env:RAG_V2_INPUT_ROOT = 'C:/Users/rauds/Desktop/Sotsiaal.ee/docs/CODEX_RAG_GRAPH_v0_1/rag-spec-v0.1/inputs'
 node --test tests/rag-v2-ingest.test.mjs
 ```
 
@@ -106,7 +106,7 @@ M2.1 sihttestid kasutavad olemasolevat Node'i testikäivitajat:
 
 ```powershell
 $env:TZ = 'UTC'
-$env:RAG_V2_INPUT_ROOT = 'C:/Users/rauds/Desktop/SotsiaalAI/docs/CODEX_RAG_GRAPH_v0_1/rag-spec-v0.1/inputs'
+$env:RAG_V2_INPUT_ROOT = 'C:/Users/rauds/Desktop/Sotsiaal.ee/docs/CODEX_RAG_GRAPH_v0_1/rag-spec-v0.1/inputs'
 node --test tests/rag-v2-ingest.test.mjs
 node --test tests/rag-v2-search.test.mjs tests/rag-v2-search.integration.test.mjs
 ```
@@ -162,7 +162,7 @@ Kontrollid:
 
 ```powershell
 $env:TZ = 'UTC'
-$env:RAG_V2_INPUT_ROOT = 'C:/Users/rauds/Desktop/SotsiaalAI/docs/CODEX_RAG_GRAPH_v0_1/rag-spec-v0.1/inputs'
+$env:RAG_V2_INPUT_ROOT = 'C:/Users/rauds/Desktop/Sotsiaal.ee/docs/CODEX_RAG_GRAPH_v0_1/rag-spec-v0.1/inputs'
 node --test tests/rag-v2-ingest.test.mjs tests/rag-v2-search.test.mjs tests/rag-v2-search.integration.test.mjs tests/rag-v2-pilot.test.mjs
 npx eslint lib/rag-v2/search/*.js scripts/rag-v2-pilot.mjs tests/rag-v2-pilot.test.mjs tests/rag-v2-search.integration.test.mjs
 git diff --check
