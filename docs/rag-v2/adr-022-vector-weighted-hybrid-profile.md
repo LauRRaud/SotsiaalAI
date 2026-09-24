@@ -30,3 +30,20 @@ Kaal 2 on mõlemal valimil parem või võrdne; kaal 3 kaotab kontrollosas ühe k
 
 - Valimid on väikesed (18 + 12) ja olukorralausete asjakohasuse märgistas üks hindaja. Kinnitamiseks on vaja suuremat märgistatud komplekti.
 - „Kellega vallas rääkida, kui vajan sotsiaalabi?” jääb 18. kohale. Kontaktikirje ei ole sõnalises kanalis ja mõlemas kanalis olevad üldsõnatabamused jäävad ette. Selle lahendus on sõnalise kanali stoppsõnade käsitlus, mitte suurem kaal.
+
+## Kinnitus holdout-2 valimil (24.09)
+
+Enne ühtegi mõõtmist kinnitati Git'is 30 uut küsimust: 26 perekonda, ET/EN/RU, sh kümme igapäevases või olukorrasõnastuses. Päringuvektorid telliti ühe kutsega: 1027 tokenit, ~0,00013 USD, omaniku loal.
+
+Õige allikas lõppkontekstis, hübriid:
+
+| Variant | Holdout-2 (30) | 05.09 (18) | Kokku (48) |
+| --- | ---: | ---: | ---: |
+| Alus | 26 | 17 | 43 |
+| **Vektor ×2** | **28** | **17** | **45** |
+
+Kaal 2 võitis kaks küsimust („vaide tähtaeg”, „hooldaja läbipõlemise koolitus”), kus vektor leidis allika, kuid sõnaline kanal mitte. Ühtegi küsimust see ei kaotanud. Kaks küsimust jäid kõigis variantides saamata:
+- kahe allikaga „vanaema + tehnoloogia”: puhas vektor tõi mõlemad allikad lõppkonteksti, hübriid (ka kaaluga 2) kaotas ühe;
+- ingliskeelne küsimus Eesti nõusolekuteenuse kohta.
+
+Kordamine: `node scripts/rag-v2-query-variants.mjs --set 05-09 --set holdout-2 --query-vectors tmp/rag-v2-multi-source/holdout-2-query-vectors.json`. Vektorifail on kohalik (`tmp/`).

@@ -1,0 +1,438 @@
+{
+  "schema_version": "rag-v2/anchor-groups-2",
+  "basis": "Evaluator-only source spans selected from the immutable PDFs before retrieval (holdout-2). Alternatives allow equivalent source locations; they are never query filters.",
+  "families": {
+    "magic-notes-documentation": [
+      {
+        "id": "magic-notes-documentation-1",
+        "alternatives": [
+          {
+            "pdf_sha256": "a41995721ca13aa78898116ccef466aedf3576e26bb30fce3c145f4d8b87828b",
+            "pdf_page": 3,
+            "contains": "Ühendkuningriigi sotsiaaltöös on laialt kasutusel rakendus Magic Notes"
+          }
+        ]
+      },
+      {
+        "id": "magic-notes-documentation-2",
+        "alternatives": [
+          {
+            "pdf_sha256": "a41995721ca13aa78898116ccef466aedf3576e26bb30fce3c145f4d8b87828b",
+            "pdf_page": 3,
+            "contains": "masingeneraatori koostatud tekst ei"
+          }
+        ]
+      }
+    ],
+    "trelleborg-rpa": [
+      {
+        "id": "trelleborg-rpa-1",
+        "alternatives": [
+          {
+            "pdf_sha256": "a41995721ca13aa78898116ccef466aedf3576e26bb30fce3c145f4d8b87828b",
+            "pdf_page": 3,
+            "contains": "Rootsi Trelleborgi omavalitsus oli esimene, kus rakendati robotprotsesside"
+          }
+        ]
+      },
+      {
+        "id": "trelleborg-rpa-2",
+        "alternatives": [
+          {
+            "pdf_sha256": "a41995721ca13aa78898116ccef466aedf3576e26bb30fce3c145f4d8b87828b",
+            "pdf_page": 3,
+            "contains": "iseseisvalt otsuseid rutiinsetes juhtumites, jättes keerulisemad olukorrad"
+          }
+        ]
+      }
+    ],
+    "ott-unemployment-risk": [
+      {
+        "id": "ott-unemployment-risk-1",
+        "alternatives": [
+          {
+            "pdf_sha256": "a41995721ca13aa78898116ccef466aedf3576e26bb30fce3c145f4d8b87828b",
+            "pdf_page": 3,
+            "contains": "hindab pikaajalise töötuse riski 45 näitaja alusel"
+          }
+        ]
+      },
+      {
+        "id": "ott-unemployment-risk-2",
+        "alternatives": [
+          {
+            "pdf_sha256": "a41995721ca13aa78898116ccef466aedf3576e26bb30fce3c145f4d8b87828b",
+            "pdf_page": 3,
+            "contains": "taustatööriistaks, kitsaskohad ilmnesid seoses tööotsijate motivatsiooni ja"
+          }
+        ]
+      }
+    ],
+    "hester-logs": [
+      {
+        "id": "hester-logs-1",
+        "alternatives": [
+          {
+            "pdf_sha256": "a41995721ca13aa78898116ccef466aedf3576e26bb30fce3c145f4d8b87828b",
+            "pdf_page": 4,
+            "contains": "delikaatne teave ja logid kustutatakse süsteemist kuue kuu möödudes"
+          }
+        ]
+      }
+    ],
+    "consent-service-gap": [
+      {
+        "id": "consent-service-gap-1",
+        "alternatives": [
+          {
+            "pdf_sha256": "a41995721ca13aa78898116ccef466aedf3576e26bb30fce3c145f4d8b87828b",
+            "pdf_page": 11,
+            "contains": "organisatsioonidest ei rakenda nõusolekuteenust ja 70% ei kasuta"
+          }
+        ]
+      }
+    ],
+    "syri-criticism": [
+      {
+        "id": "syri-criticism-1",
+        "alternatives": [
+          {
+            "pdf_sha256": "a41995721ca13aa78898116ccef466aedf3576e26bb30fce3c145f4d8b87828b",
+            "pdf_page": 9,
+            "contains": "SyRI ja Top400/Top600 , mille eesmärk oli ennetada sotsiaaltoetuste"
+          }
+        ]
+      },
+      {
+        "id": "syri-criticism-2",
+        "alternatives": [
+          {
+            "pdf_sha256": "a41995721ca13aa78898116ccef466aedf3576e26bb30fce3c145f4d8b87828b",
+            "pdf_page": 9,
+            "contains": "delikaatseid andmeid (nt rahvus, koolikohustuse eiramine, elukoht), ilma"
+          }
+        ]
+      }
+    ],
+    "risk-model-data-density": [
+      {
+        "id": "risk-model-data-density-1",
+        "alternatives": [
+          {
+            "pdf_sha256": "a41995721ca13aa78898116ccef466aedf3576e26bb30fce3c145f4d8b87828b",
+            "pdf_page": 8,
+            "contains": "Pered, kelle kohta on süsteemis rohkem andmeid, sageli madalama"
+          }
+        ]
+      },
+      {
+        "id": "risk-model-data-density-2",
+        "alternatives": [
+          {
+            "pdf_sha256": "a41995721ca13aa78898116ccef466aedf3576e26bb30fce3c145f4d8b87828b",
+            "pdf_page": 8,
+            "contains": "satuvad suurema riskihinnangu alla ka otsese ohuta."
+          }
+        ]
+      }
+    ],
+    "wellbeing-norway-method": [
+      {
+        "id": "wellbeing-norway-method-1",
+        "alternatives": [
+          {
+            "pdf_sha256": "2db90ecc6509a7c5118c4868b904efd254b3b6a62d004c6baab5e5b7d12aa182",
+            "pdf_page": 2,
+            "contains": "Programmi väljatöötamisel oleme tuginenud Norra"
+          }
+        ]
+      },
+      {
+        "id": "wellbeing-norway-method-2",
+        "alternatives": [
+          {
+            "pdf_sha256": "2db90ecc6509a7c5118c4868b904efd254b3b6a62d004c6baab5e5b7d12aa182",
+            "pdf_page": 2,
+            "contains": "metoodikale Roadmap for Service Innovation"
+          }
+        ]
+      }
+    ],
+    "wellbeing-first-round-selection": [
+      {
+        "id": "wellbeing-first-round-selection-1",
+        "alternatives": [
+          {
+            "pdf_sha256": "d2f96860f073b4875111cd93696d2dc3673547ddbd268f87ea4a51e69bd5d927",
+            "pdf_page": 4,
+            "contains": "Eelnõustamisel käis 81"
+          }
+        ]
+      },
+      {
+        "id": "wellbeing-first-round-selection-2",
+        "alternatives": [
+          {
+            "pdf_sha256": "d2f96860f073b4875111cd93696d2dc3673547ddbd268f87ea4a51e69bd5d927",
+            "pdf_page": 5,
+            "contains": "välja 20 nutikat projekti,"
+          }
+        ]
+      }
+    ],
+    "privacy-day-speaker": [
+      {
+        "id": "privacy-day-speaker-1",
+        "alternatives": [
+          {
+            "pdf_sha256": "9bc020d12902f958b9084882af5bd224a3c38f14c1ff3be45c92115385c124de",
+            "pdf_page": 1,
+            "contains": "Andmekaitse Inspektsiooni jurist Liis Köster sisuka"
+          }
+        ]
+      }
+    ],
+    "hospital-day-units": [
+      {
+        "id": "hospital-day-units-1",
+        "alternatives": [
+          {
+            "pdf_sha256": "42a0891809df1cc35ab0c19cd42abce78ff6e19e4186f772860bd6443acdad8c",
+            "pdf_page": 1,
+            "contains": "Kuulda sai nii õendusabi, neuroloogia, sõltuvusravi, nakkuskliiniku, naistekliiniku kui ka teiste"
+          }
+        ]
+      }
+    ],
+    "worker-support-programme": [
+      {
+        "id": "worker-support-programme-1",
+        "alternatives": [
+          {
+            "pdf_sha256": "e27d064511e8a005826c1819dcb264b7ddc21227e1c799105a3957c73e8daf09",
+            "pdf_page": 5,
+            "contains": "koostööprogrammi raames töötab ESTA sotsiaalministeeriumi partnerina välja töökohapõhise tugiprogrammi"
+          }
+        ]
+      }
+    ],
+    "pre-visit-questions": [
+      {
+        "id": "pre-visit-questions-1",
+        "alternatives": [
+          {
+            "pdf_sha256": "e27d064511e8a005826c1819dcb264b7ddc21227e1c799105a3957c73e8daf09",
+            "pdf_page": 4,
+            "contains": "Enne iga keerulist kohtumist, kodukülastust, teenusele suunamist või teenuse lõpetamist tuleb küsida"
+          }
+        ]
+      }
+    ],
+    "output-numbers-deadlines": [
+      {
+        "id": "output-numbers-deadlines-1",
+        "alternatives": [
+          {
+            "pdf_sha256": "1bee150c6c65e2a1a69a2324af16f3aa00b45bcab36cc0d9a11e527dd686834c",
+            "pdf_page": 10,
+            "contains": "Numbrid ja tähtajad: kas need on allikast sõna-sõnalt kontrollitud"
+          }
+        ]
+      }
+    ],
+    "vendor-training-use": [
+      {
+        "id": "vendor-training-use-1",
+        "alternatives": [
+          {
+            "pdf_sha256": "1bee150c6c65e2a1a69a2324af16f3aa00b45bcab36cc0d9a11e527dd686834c",
+            "pdf_page": 8,
+            "contains": "Kas meie sisendeid või väljundeid kasutatakse mudeli treenimiseks või"
+          }
+        ]
+      }
+    ],
+    "appeal-deadline-exercise": [
+      {
+        "id": "appeal-deadline-exercise-1",
+        "alternatives": [
+          {
+            "pdf_sha256": "1bee150c6c65e2a1a69a2324af16f3aa00b45bcab36cc0d9a11e527dd686834c",
+            "pdf_page": 3,
+            "contains": "tähtaeg on 30 päeva teadasaamisest"
+          }
+        ]
+      },
+      {
+        "id": "appeal-deadline-exercise-2",
+        "alternatives": [
+          {
+            "pdf_sha256": "1bee150c6c65e2a1a69a2324af16f3aa00b45bcab36cc0d9a11e527dd686834c",
+            "pdf_page": 3,
+            "contains": "vaie esitatakse vallavalitsusele"
+          }
+        ]
+      }
+    ],
+    "online-defamation-case": [
+      {
+        "id": "online-defamation-case-1",
+        "alternatives": [
+          {
+            "pdf_sha256": "e27d064511e8a005826c1819dcb264b7ddc21227e1c799105a3957c73e8daf09",
+            "pdf_page": 2,
+            "contains": "rahulolematu lapsevanem anonüümsete kontode kaudu internetis spetsialisti kohta negatiivseid postitusi levitama"
+          }
+        ]
+      },
+      {
+        "id": "online-defamation-case-2",
+        "alternatives": [
+          {
+            "pdf_sha256": "e27d064511e8a005826c1819dcb264b7ddc21227e1c799105a3957c73e8daf09",
+            "pdf_page": 2,
+            "contains": "otsustas politsei menetlust mitte alustada"
+          }
+        ]
+      }
+    ],
+    "palliative-robots-conditions": [
+      {
+        "id": "palliative-robots-conditions-1",
+        "alternatives": [
+          {
+            "pdf_sha256": "a41995721ca13aa78898116ccef466aedf3576e26bb30fce3c145f4d8b87828b",
+            "pdf_page": 7,
+            "contains": "Palliatiivses hoolduses rakendatavad TI-robotid toetavad patsiente mitmel"
+          }
+        ]
+      },
+      {
+        "id": "palliative-robots-conditions-2",
+        "alternatives": [
+          {
+            "pdf_sha256": "a41995721ca13aa78898116ccef466aedf3576e26bb30fce3c145f4d8b87828b",
+            "pdf_page": 8,
+            "contains": "elulõpu hoolduses peaks põhinema inimkesksusel, nii et säiliks"
+          }
+        ]
+      }
+    ],
+    "constant-monitoring-harm": [
+      {
+        "id": "constant-monitoring-harm-1",
+        "alternatives": [
+          {
+            "pdf_sha256": "a41995721ca13aa78898116ccef466aedf3576e26bb30fce3c145f4d8b87828b",
+            "pdf_page": 9,
+            "contains": "Kuid uuringud on näidanud, et pidev jälgimine võib tekitada ärevust ja"
+          }
+        ]
+      }
+    ],
+    "silence-culture": [
+      {
+        "id": "silence-culture-1",
+        "alternatives": [
+          {
+            "pdf_sha256": "e27d064511e8a005826c1819dcb264b7ddc21227e1c799105a3957c73e8daf09",
+            "pdf_page": 3,
+            "contains": "Paljud töötajad ei räägi oma kogemustest, sest kardetakse näida nõrga või ebaprofessionaalsena"
+          }
+        ]
+      }
+    ],
+    "loneliness-detection": [
+      {
+        "id": "loneliness-detection-1",
+        "alternatives": [
+          {
+            "pdf_sha256": "a41995721ca13aa78898116ccef466aedf3576e26bb30fce3c145f4d8b87828b",
+            "pdf_page": 6,
+            "contains": "analüüsib kasutajate käitumismustreid, et kindlaks teha eraldatuse riske"
+          }
+        ]
+      }
+    ],
+    "fact-sheet-unknowns": [
+      {
+        "id": "fact-sheet-unknowns-1",
+        "alternatives": [
+          {
+            "pdf_sha256": "1bee150c6c65e2a1a69a2324af16f3aa00b45bcab36cc0d9a11e527dd686834c",
+            "pdf_page": 2,
+            "contains": "Faktileht ei ütle, kui kiiresti ühendust võetakse, kas teenus kindlasti määratakse ega kui palju see"
+          }
+        ]
+      }
+    ],
+    "team-rule-exception": [
+      {
+        "id": "team-rule-exception-1",
+        "alternatives": [
+          {
+            "pdf_sha256": "1bee150c6c65e2a1a69a2324af16f3aa00b45bcab36cc0d9a11e527dd686834c",
+            "pdf_page": 12,
+            "contains": "Erandi otsustab [roll], vajaduse korral koos andmekaitsespetsialisti, infoturbe või"
+          }
+        ]
+      },
+      {
+        "id": "team-rule-exception-2",
+        "alternatives": [
+          {
+            "pdf_sha256": "1bee150c6c65e2a1a69a2324af16f3aa00b45bcab36cc0d9a11e527dd686834c",
+            "pdf_page": 12,
+            "contains": "juristiga. Üksiktöötaja ei anna endale ise erandit."
+          }
+        ]
+      }
+    ],
+    "care-worker-burnout-training": [
+      {
+        "id": "care-worker-burnout-training-1",
+        "alternatives": [
+          {
+            "pdf_sha256": "785d3e26329f5faca3b795e4e0387f98b0a45fe973cafdd79d12a8da81ee34a2",
+            "pdf_page": 1,
+            "contains": "emotsionaalsele koormusele, läbipõlemise ennetamisele ning praktilistele enesehoiu"
+          }
+        ]
+      }
+    ],
+    "home-longer-with-technology": [
+      {
+        "id": "home-longer-with-technology-1",
+        "alternatives": [
+          {
+            "pdf_sha256": "d2f96860f073b4875111cd93696d2dc3673547ddbd268f87ea4a51e69bd5d927",
+            "pdf_page": 2,
+            "contains": "neil kauem turvaliselt"
+          }
+        ]
+      },
+      {
+        "id": "home-longer-with-technology-2",
+        "alternatives": [
+          {
+            "pdf_sha256": "2db90ecc6509a7c5118c4868b904efd254b3b6a62d004c6baab5e5b7d12aa182",
+            "pdf_page": 1,
+            "contains": "Sotsiaalministeeriumi algatatud programmi viivad ellu"
+          }
+        ]
+      }
+    ],
+    "palliative-monitoring-robots": [
+      {
+        "id": "palliative-monitoring-robots-1",
+        "alternatives": [
+          {
+            "pdf_sha256": "a41995721ca13aa78898116ccef466aedf3576e26bb30fce3c145f4d8b87828b",
+            "pdf_page": 7,
+            "contains": "Care-o-bot ja RoboNurse jälgivad"
+          }
+        ]
+      }
+    ]
+  }
+}
