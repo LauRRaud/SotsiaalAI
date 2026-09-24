@@ -100,6 +100,11 @@ korral kriisikontakte ka siis, kui otsing või vastus ebaõnnestub. Detektor tun
 nüüd ka vorme „enesetapumõtted", „tahan end tappa" ja „lõpetada oma elu".
 Kontrollimata vestluse seis ei lükka enam kehtivat vastust tagasi: vastus
 avaldatakse, eelmine kontrollitud seis jääb ja parandus jõuab järgmisse pöördesse.
+[ADR-022](../rag-v2/adr-022-vector-weighted-hybrid-profile.md): uus profiil
+`hybrid-estnltk-vector2-dependencies-v1` annab vektorile RRF-is kaalu 2 ja kasutab
+sama generatsiooni ilma uue indeksita. Olukorralaused paranesid 10/12 → 11/12,
+05.09 võrdlus jäi 17/18 (top-3 10 → 12). Vaikeprofiil ei muutunud; vahetus vajab
+piloodiplaani kinnitust.
 
 **24.09 KOV-kataloog mahub päris valla andmetega — [ADR-021](../rag-v2/adr-021-compact-municipal-catalogue.md).**
 Kataloog loobub tõendis korduvast metaandmete ballastist ja vahetab mahu

@@ -37,6 +37,12 @@ test('EstNLTK uses a distinct generation/profile; old contracts are still readab
   assertProfileGeneration(profile, { config: configs[2] });
   for (const config of configs.slice(0, 2)) assert.throws(() => assertProfileGeneration(profile, { config }), { code: 'profile_generation_mismatch' });
   assertProfileGeneration(retrievalProfile('hybrid-multilingual-dependencies-v1'), { config: configs[1] });
+  // ADR-022: the vector-weighted profile reads the same EstNLTK generation; only query-time ranking differs.
+  const vector2 = retrievalProfile('hybrid-estnltk-vector2-dependencies-v1');
+  assertProfileGeneration(vector2, { config: configs[2] });
+  assert.deepEqual(vector2.query.channelWeights, { lexical: 1, vector: 2 });
+  assert.deepEqual({ ...vector2, id: profile.id, query: { ...vector2.query, channelWeights: undefined } }, { ...profile, query: { ...profile.query, channelWeights: undefined } });
+  assert.equal(profile.query.channelWeights, undefined);
   const manifest = await implementationManifest();
   assert(manifest.files['lib/rag-v2/search/estnltk-worker.py']);
   assert(manifest.files['lib/rag-v2/search/estnltk-requirements.txt']);

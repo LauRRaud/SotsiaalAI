@@ -56,6 +56,17 @@ test('M2.1-12: RRF uses ranks, de-duplicates channels and orders ties by ID', ()
   assert.deepEqual(rrf({ lexical: [], vector: [] }), []);
   assert.equal(rrf({ lexical: [{ id: 'a' }], vector: [] })[0].score, 1 / 61);
 });
+test('ADR-022: query-time channel weights scale contributions without changing the unweighted default', () => {
+  const channels = { lexical: [{ id: 'noise' }, { id: 'relevant' }], vector: [{ id: 'relevant' }, { id: 'other' }, { id: 'noise' }] };
+  assert.deepEqual(rrf(channels).map(x => x.id), rrf(channels, 60, {}).map(x => x.id));
+  const weighted = rrf({ lexical: [{ id: 'noise' }], vector: [{ id: 'relevant' }] }, 60, { vector: 2 });
+  assert.deepEqual(weighted.map(x => x.id), ['relevant', 'noise']);
+  assert.equal(weighted[0].contributions.vector, 2 / 61);
+  for (const weights of [{ graph: 2 }, { vector: 0 }, { vector: 5 }, { vector: Number.NaN }, [2]])
+    assert.throws(() => rrf(channels, 60, weights), { code: 'invalid_channel_weights' });
+  assert.throws(() => validateQuery({ text: 'abi', language: 'et', channelWeights: { vector: -1 } }), { code: 'invalid_channel_weights' });
+  assert.deepEqual(validateQuery({ text: 'abi', language: 'et', channelWeights: { lexical: 1, vector: 2 } }).channelWeights, { lexical: 1, vector: 2 });
+});
 test('M2.1-05/08: explicit local context, tenant and live revocation', async () => {
   const policy = new LocalPolicy({ tenants: { a: { worker: ['doc'] }, b: { worker: ['other'] } } });
   const ctx = { tenant: 'a', subject: 'worker', usage: 'development_only' };
