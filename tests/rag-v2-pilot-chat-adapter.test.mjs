@@ -82,3 +82,19 @@ test('crisis sentences reach the crisis notice on the pilot chat path, including
   const messages = pilotChatMessages([{ id: 't3', state: 'stopped', question: 'Mul on enesetapumõtted' }], 'conv');
   assert.equal(messages.at(-1).isCrisis, true);
 });
+
+test('source panel label carries the checkable origin: authors, journal, issue, year and printed pages', async () => {
+  const { citationLine } = await import('../lib/chat/m4PilotClientContract.js');
+  assert.equal(citationLine({ authors: ['Laur Raudsoo'], journal: 'Sotsiaaltöö', issue: '2/2025', year: '2025', pageRange: '3–6' }), 'Laur Raudsoo · Sotsiaaltöö 2/2025, lk 3–6');
+  assert.equal(citationLine({ journal: 'Sotsiaaltöö', issue: '1', year: '2016' }), 'Sotsiaaltöö 1 2016');
+  assert.equal(citationLine({ authors: ['A', 'B', 'C', 'D'] }), 'A; B; C jt');
+  assert.equal(citationLine({}), '');
+  const answer = { kind: 'grounded', blocks: [{ text: 'Vastus [S1]', refs: ['S1'] }], limitations: [], clarification: null };
+  const result = pilotChatResult({ id: 't', state: 'completed', question: 'Q', answer, sources: [
+    { ref: 'S1', title: 'Tehisintellekt sotsiaaltöös', authors: ['Laur Raudsoo'], journal: 'Sotsiaaltöö', issue: '2/2025', pageRange: '3–6', pages: [9], used: true },
+    { ref: 'S2', title: 'Koduteenus', pages: [], used: false }] }, 'conv');
+  assert.equal(result.sources[0].label, 'S1 · Tehisintellekt sotsiaaltöös · Laur Raudsoo · Sotsiaaltöö 2/2025, lk 3–6 · Vastuses kasutatud');
+  assert.equal(result.sources[0].journalTitle, 'Sotsiaaltöö');
+  // A source without bibliographic fields keeps the old label.
+  assert.equal(result.sources[1].label, 'S2 · Koduteenus · Ainult otsingus leitud');
+});
