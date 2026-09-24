@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Checkbox from "@/components/ui/Checkbox";
@@ -72,6 +73,7 @@ export default function SupportRequestPanel({
   onNavigate
 }) {
   const { t } = useI18n();
+  const router = useRouter();
   const [selected, setSelected] = useState(null);
   const [draft, setDraft] = useState(null);
   const [editedText, setEditedText] = useState("");
@@ -318,7 +320,7 @@ export default function SupportRequestPanel({
       const href = `/kovisioon?case=${encodeURIComponent(payload.covisionCaseId)}`;
       setStatus("covision_started");
       if (typeof onNavigate === "function") onNavigate(href);
-      else window.location.assign(href);
+      else router.push(href);
     } catch (error) {
       if (isAbortError(error) || !request.isCurrent()) return;
       const identifiersDetected = error?.message === "wellbeing.errors.identifiers_detected";

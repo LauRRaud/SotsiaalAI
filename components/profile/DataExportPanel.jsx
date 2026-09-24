@@ -86,6 +86,7 @@ export default function DataExportPanel({ active = true }) {
             <p>{t(`profile.data_export.${job.status}`)}</p>
             {job.status === "ready" && job.expiresAt ? <p className="konto-hint">{t("profile.data_export.ready", { date: formatDate(job.expiresAt, locale) })}</p> : null}
           </div>
+          {/* eslint-disable-next-line @next/next/no-location-assign-relative-destination -- allalaadimine tuleb API-marsruudilt, vaja on täislaadimist */}
           {job.canDownload ? <Button type="button" onClick={() => { window.location.assign(`/api/data-export/${encodeURIComponent(job.id)}/download`); }}>{t("profile.data_export.download")}</Button> : null}
           {job.canCancel ? <Button type="button" onClick={() => cancel(job.id)} disabled={busy}>{t("profile.data_export.cancel")}</Button> : null}
         </article>
