@@ -92,6 +92,13 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**24.09 Vestluskäigu stsenaariumid — [aruanne](../rag-v2/dialogue-scenarios-2026-09-24.md).**
+Kuus mitmepöördelist vestlust päris KOV-andmetel (Kose, Harku, Tallinn) päris
+pilooditeenusega ühisel rajal, ainult vastusmudel asendatud: 6/6 läbis (täpsustus,
+vald, teenus kokkuvõttega, detailid, parandus, uus isik, kriisilipp). Leid: ükski
+68 paketikontaktist ei seostu kontrollitud registriga, mistõttu tootmises ei jõuaks
+„Kellele helistan?” korral kontakt mudelini. Vaja on kinnitatud kontaktivastavust.
+
 **24.09 KOV-kataloog leiab abi olukorrakirjelduse järgi — [ADR-026](../rag-v2/adr-026-semantic-municipal-catalogue.md).**
 Ühisel rajal järjestab pöörde päringuvektor valla teenused tähenduse järgi,
 sõnaline järjestus jääb varuks. 53 päris valla ja olukorralause paaris sai
