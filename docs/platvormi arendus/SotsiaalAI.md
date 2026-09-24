@@ -92,6 +92,20 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**24.09 Codexi järelülevaatus: kataloog ja kriisirada vajavad nelja parandust.**
+Commit’ide `95572f1ec`, `9404c167f` ja `9bd702645` kontrollis läbis 44/44
+sihttesti, kuid taasesitus kinnitas kriisiteate katkemise mõnel tõrketeel,
+allikate kehtivusinfo kadumise tihendamisel, vana kataloogiplaani lugemistõrke
+ja kriisimustri valepositiivse tulemuse elukindlustuse küsimusele.
+[Leiud R1–R4 ja tõendid](../audits/rag-v2-opus-terviklik-analuus-2026-09-24.md#9-codexi-järelülevaatus-24092026-kataloog-kriisirada-ja-kaalutud-otsing).
+Vestlusseisu parandus ja kaalu 2 profiili teostus läbisid sihtkontrolli.
+Serverist kinnitati `9bd702645`, frontend active, HTTPS 200 ja 5/5 lõpetatud
+RAG-migratsiooni; allpool olev 0/4 märge kirjeldab varasemat seisu.
+Järgmine töö: R1–R4 parandused ja nende regressioonitestid, seejärel osalisest
+kataloogist välja jäänud kirjete leidmine. Käituskoodi siin ei muudetud;
+tasulisi kutseid ega deploy’d ei tehtud. Hilisemad CI/deploy commit’id jäävad
+selle ülevaatuse ulatusest välja.
+
 **24.09 Piloodi kriisirada, vestluse seisu mahe tõrge ja serveri RAG v2 migratsioonid.**
 Serveri RAG v2 andmebaasis puudusid 23.09 neli migratsiooni (morfoloogia,
 aadressiloend, partiid, indeksitööd). Need rakendati pärast varukoopiat ja

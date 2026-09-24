@@ -223,3 +223,116 @@ Muudatused puudutavad piloodi teostusmanifesti, seega vajab päris plaan uut kin
 - Pärismudeli olukorra mõistmine, täpsustuste kvaliteet ja vestluse seisu tõrkemäär on mõõtmata.
 - Serveri RAG v2 skeem, Python-keskkond ja piloodi plaan on mõõtmata.
 - ADR-020 periooditugi on kontrollitud metaandmete ja sünteetiliste testidega; päris v3 indeksit ajakirjadega ei ehitatud.
+
+## 9. Codexi järelülevaatus 24.09.2026: kataloog, kriisirada ja kaalutud otsing
+
+Ülevaatuse ulatus on commit'id `95572f1ec`, `9404c167f` ja `9bd702645`.
+Opuse lisatud töökirjeldust kontrolliti koodi ja kohalike katsetega. Selle
+ülevaatuse ajal lisandunud `fab928a92` ja `6d8fc8256` (CI, health endpoint ja
+automaatne deploy) ei kuulu siinsesse hinnangusse. Käituskoodi ei parandatud.
+
+### Parandamist vajavad leiud
+
+**R1 — P1: kriisiteade ei ole kõigil tõrketeedel tagatud.**
+`lib/chat/m4PilotServer.js:53–70`: `pilotSession()` loeb RAG-i konfiguratsiooni
+enne küsimuse ja kriisisignaali töötlemist. Lisaks võivad vea taastamise ajal
+`service.access()` ja `service.restore()` visata uue vea väljaspool kriisiteate
+varuteed. `pilotHandler` tagastab siis üldise veavastuse ilma `isCrisis`-eta;
+`components/chat/hooks/useChatStream.js:1736` katkestab enne kriisiseisu määramist.
+Seega ei vasta väide „alati, ka otsingu või vastuse ebaõnnestumisel” teostusele.
+
+Taasesitus käivitas tegelikud `pilotPost` ja `pilotHandler` funktsioonid,
+asendades ainult sessiooni/teenuse piirid kohalike testadapteritega. Sisend
+„Tahan end tappa” andis konfiguratsiooni-, taastamise ligipääsu- ja taastamise
+allikatõrke korral HTTP 500, `ok:false`, ilma `isCrisis`-eta. Kontrolljuhtum,
+tavaline teenuseviga ilma salvestatud pöördeta, andis HTTP 200 ja kriisiteate.
+HTTP 500 oli adapterivea vaikestaatus; tegelik staatus sõltub visatud veast.
+Olemasolev adapteritest kontrollib tulemuse teisendust, mitte neid POST-i harusid.
+
+Parandus: hoida autentimine ja päringu valideerimine alles, aga eraldada
+kriisikontaktide nähtavus RAG-i konfiguratsiooni, otsingu ja taastamise edust.
+Lisada POST-i sihttestid nende kolme tõrke jaoks. Praegu ootab teade ka
+`service.run()` lõppu; detektori käivitamine enne otsingut ei tähenda, et teade
+oleks kasutajale enne otsingut nähtav.
+
+**R2 — P2: tihendamine kaotab allikapõhise kehtivusinfo.**
+`lib/rag-v2/search/structured-record-source.js:17–21`: `compactEntry` säilitab
+`source_metadata`-st ainult `source_type` ja `source_checked_at`. Varem mudelile
+edastatud `historical`, `source_status`, `valid_from` ja `valid_to` kaovad.
+KOV-adapter ei lisa neid eraldi teenuse detailiväljadeks ning kataloog filtreerib
+piirkonna, mitte kehtivusaja järgi. Üldine `collected_not_verified_current` ei
+asenda konkreetse allika teadaolevat lõppkuupäeva või ajaloolisuse märget.
+
+Taasesitus kasutas tegelikku `compactEntry` funktsiooni ja `modelProjection`-it:
+sünteetilise allika `historical:true`, `source_status:repealed` ja kehtivus
+2019-01-01–2020-12-31 olid algses mudelikontekstis olemas, tihendatud kontekstis
+puudusid kõik neli välja. Hiljutine kontrollikuupäev jäi alles. See tõendab info
+kadu, mitte pärismudeli ekslikku vastust. Ka kanoonilisse auditipaketti alles
+jäänud teave ei aita mudelit, kui tema sisendist see eemaldatakse.
+
+Parandus: säilitada sisulised kehtivus- ja staatusväljad kompaktselt kord allika
+kohta. Hoida hoiatused allikaga seotuna, kui eri kirjete hoiatused erinevad;
+praegune ainult koodi järgi koondamine säilitab samuti vaid esimese detaili.
+
+**R3 — P2: kataloogi versioonitõstmine katkestab vana plaani lugemise.**
+`lib/rag-v2/search/structured-record-source.js:10` tõstab lepingu versioonile
+`rag-v2/record-catalogue-2`, kuid `lib/rag-v2/pilot/config.js:32–35` nõuab uut
+konstanti ka `purpose:'read'` puhul. Endiselt lubatud ja aegumata v1 kataloogiga
+plaan ei pääse seega enam vestlusajaloo ega allikate taastamiseni. Ühise raja
+plaan võib samal põhjusel katkeda juba veaga `invalid_unified_retrieval_plan`.
+Vana plaani lihtsalt uueks kirjutamine ei ole lugemissobivuse parandus: see
+muudab konfiguratsiooniräsi ja nõusoleku lepingut.
+
+Kohalik konfiguratsioonikatse: muus osas identne kehtiv testrežiimi plaan
+tagastas v1 ja `purpose:'read'` korral `invalid_record_catalogue_plan`, v2 korral
+lugemine õnnestus. Kontroll asub enne päris- ja testrežiimi harunemist.
+Parandus: eristada loetavaid ja käivitatavaid kataloogilepinguid ning kontrollida
+ajaloo/allikate taastamist muutmata v1 plaaniga. Vana leping ei pea saama õigust
+uut mudelikutset käivitada. Serveris sellise ajaloo olemasolu ei kontrollitud.
+
+**R4 — P2: uus kriisimuster tabab ka elukindlustust ja eluasemelaenu.**
+`lib/chat/safety.js:28` muster `l[õo]petada (oma )?elu` lõpeb sõna keskel.
+Mõlemad kohalikud kontrolllaused „Soovin lõpetada oma elukindlustuse” ja
+„Soovin lõpetada oma eluasemelaenu lepingu” annavad `detectCrisis(...) === true`.
+Vana detektor neid kaht lauset ei tabanud. Mõju pole ainult vestluse lisateade:
+`components/urgent/UrgentRequestForm.jsx:213` viib sama tulemuse peale kasutaja
+erakorralise abi ekraanile ja katkestab tavapärase taotluse ülevaatuse.
+Parandus: piirata elule viitava väljendi lõpp ning lisada need mittekriitilised
+vastunäited koos tegelike kriisilausetega regressioonitesti.
+
+### Mis on põhjendatud ja kontrollitud
+
+- Kompaktne kataloog lahendab varasema mahuületuse praktiliselt: valitud
+  detailid ja allikaviited säilivad, osalisus märgitakse. Tallinna 66/71 ja
+  Jõhvi 64/65 on siiski osalised loendid, mitte täielik teenusevalik. Stabiilses
+  ID-järjestuses välja jäävad kirjed vajavad edaspidi küsimuspõhist eelvalikut
+  või sirvimise mehhanismi; nähtud kirjete `recordFocus` üksi neid ei avasta.
+- Vigase vestlusseisu mahe tõrge on põhjendatud. Integratsioonitest tõendas
+  eelmise kontrollitud seisu säilimist, kasutaja paranduse jõudmist järgmisse
+  pöördesse ja esimese pöörde vigase seisu talumist. Vigast vastust ei avaldata.
+- Kaalu 2 profiil rakendab RRF-i panustele õiged kaalud ning jätab vaikeprofiili
+  muutmata. EstNLTK jääb nii indeksi kui päringu keelekihiks. Sama indeksit saab
+  taaskasutada. Opuse 17/18 ja 11/12 on väikesel, valikuks kasutatud valimil saadud
+  tulemused; neid ei korratud siin ega tõlgendata üldise vestluskvaliteedina.
+- Serverist loeti ülevaatuse ajal Git HEAD `9bd702645`, frontend oli `active` ja
+  õige saidi `https://sotsiaal.ai` HTTPS HEAD vastas 200. RAG-i eraldi andmebaasi
+  `_prisma_migrations` sisaldas kõiki viit migratsiooni: `local_search`,
+  `ingest_batches`, `morphology`, `index_jobs`, `retrieval_directory`; kõigil
+  `finished=true`, `rolled_back=false`. Tootmiskasutajate sisu ei loetud.
+  See kinnitab rakendatud migratsioonide registrit, mitte piloodi läbitud vestlust.
+
+### Kontrollide ulatus ja tõendipiir
+
+`TZ=UTC` all läbisid **44/44 testi** järgmistes failides:
+`rag-v2-dialogue-store`, `rag-v2-structured-records.integration`,
+`rag-v2-unified.integration`, `rag-v2-pilot-chat-adapter`, `rag-v2-search` ja
+`rag-v2-estnltk`. Kasutati eraldatud kohalikku andmebaasi, Qdranti, EstNLTK-d ja
+testadaptereid. Lisaks tehti eespool kirjeldatud sihitud regressioonide
+taasesitused; kohalik skript on `tmp/opus-review-20260924.mjs` (Gitist välja jäetud).
+R4 võrreldi ka commit'i `9404c167f` eelse detektoriga.
+
+Tasulisi kutseid **0**, deploy'd **0**, migratsioonide rakendamisi **0**.
+Opuse kogu komplekti tulemust 297/3/1 ei korratud. Pärismudeli vastuse kvaliteet,
+serveri aktiivse piloodi täielik rada ja uue profiili sõltumatu hindamine on
+`NOT_PROVEN` / `not_run`. Järgmine põhjendatud teostus on R1–R4 parandamine koos
+sihitud regressioonitestidega, seejärel kataloogi välja jäänud kirjete leidmine.
