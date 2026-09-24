@@ -18,3 +18,6 @@ Arhiiv/** -text -whitespace
 
 # Windows scripts
 *.{ps1,bat,cmd} text eol=crlf
+
+# Evaluation data packages (hash-checked archives)
+*.tar.gz binary
