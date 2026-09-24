@@ -355,3 +355,15 @@ Kontrollid: `npm test` (CI komplekt) 188 läbis, 17 vahele jäetud, 0 ebaõnnest
 Piirid:
 - Klientpoolset kohest kriisiteadet brauseris ei kontrollitud, sest piloodi sisselogitud rada pole kohalikus arenduskeskkonnas seadistatud. Kliendikood kasutab sama `detectCrisis()` ja `resolveCrisisStateAfterEvent()` funktsiooni.
 - v1 plaaniga salvestatud pöörde täielikku taastamist andmebaasist ei testitud, ainult konfiguratsiooni lugemist. Taastamine ei ehita kataloogi uuesti.
+
+## 11. Codexi järjekorra tööd 1–2 (24.09.2026)
+
+**v2 → v3 vektorite taaskasutus.** `cachedIndexVector` otsis v3 aadressiloendi korral varuna ainult kõige vanemat nimeruumi, kus aadressiloendit polnud. v2 (`retrieval-directory-2`) nimeruumis olev vektor jäi leidmata ja v3 oleks makstud vektori uuesti tellinud. Nüüd otsitakse kõiki varasemaid aadressiloendi skeeme, uuemast vanemani. Leitud vektor imporditakse uude muutumatusse nimeruumi, kontrollides seda sama moodi kui varem. Kirjutuskaitstud kontrollpunkt ei impordi. Test `rag-v2-vector-cache` ebaõnnestus enne parandust v2 juhtumil ja läbib pärast seda.
+
+**`12429 ≠ 12420`.** Põhjus leiti bisect'iga, arvutades näidisartikli embedding'u sisendi viies commit'is. Muutus on commit'is `ad44c302e` (08.09): uus plokipõhine tükeldus ja PDF-i veergude käsitlus. Järgmisel PDF-lehel jätkuv lõik ei jagune enam kahe tüki vahel keset lauset („…millega tuleb | eriti arvestada…”); see liigub tervikuna järgmise pealkirja tükki. Kõik 16 tükki jäävad, sisendi maht kasvab 9 tokeni võrra. See on parandus, mitte triiv. Test oli punane alates 08.09, sest `RAG_V2_INPUT_ROOT` puudus ja README tee oli vale.
+
+Test ootab nüüd 12 429 tokenit. Lisaks kontrollib ta kolme lehevahetusel jätkuvat lõiku; ükski neist ei ole terviklik ühegi 08.09-eelse commit'i tükis.
+
+**Parandus minu §2.3 väitele:** selle artikli puhul ei tulnud erinevus tühikutest ega reavahetustest, vaid lõikude ümberpaigutusest tükkide vahel. Kordustöötlus ei maksa midagi, kui embedding'u sisend ei muutu: sama sisendi ja konfiguratsiooni korral uusi kutseid pole, nagu Codex kontrollis. Tasu tuleb ainult muutunud tükkidele.
+
+Kontrollid: vahemälutestid 3/3. Päris andmebaasi ja EstNLTK integratsioonid (otsing, EstNLTK, ühine rada, kirjekataloog, indeksitööd) 36/36 ja otsingu integratsioon 13/13. Kogu RAG v2 komplektis pole enam punast testi.
