@@ -87,21 +87,24 @@ try {
   for (const name of values.set) {
     if (!SETS[name]) throw Error(`unknown set ${name}; known: ${Object.keys(SETS).join(', ')}`);
     const [questions, groups] = await Promise.all(SETS[name].map(readJson));
-    const passed = {};
-    console.log(`\n${name}: correct source in the final context (full-support questions)`);
+    const passed = {}, metadata = {};
+    console.log(`\n${name}: correct source passage in the final context (full-support questions; source finding, not answer quality)`);
     for (const [variant, queryOptions] of Object.entries(VARIANTS)) {
       const { rows } = await evaluateRetrieval({ snapshot, questions, groups, postgres, qdrant, embedding, policy, context, queryOptions });
       const full = rows.filter(r => r.expected_support === 'full' && r.all_required_in_final_context !== null);
       const cell = method => { const own = full.filter(r => r.method === method);
         return `${own.filter(r => r.all_required_in_final_context).length}/${own.length} (top-1 ${own.filter(r => r.top_k[1].all_required).length})`; };
       passed[variant] = new Set(full.filter(r => r.method === 'hybrid' && r.all_required_in_final_context).map(r => r.question_id));
+      // Bibliography questions have no source anchors; their success is the resolved metadata field.
+      for (const row of rows.filter(r => r.method === 'hybrid' && r.outcome.startsWith('metadata_'))) (metadata[row.question_id] ||= {})[variant] = row.outcome;
       const errors = rows.filter(r => r.outcome === 'technical_error').length;
       console.log(`  ${variant.padEnd(18)} lexical ${cell('lexical')}  vector ${cell('vector')}  hybrid ${cell('hybrid')}${errors ? `  technical errors ${errors}` : ''}`);
     }
-    const ids = [...new Set(questions.cases.filter(c => c.expected_support === 'full').map(c => c.id))];
-    for (const question of ids) {
+    const anchored = [...new Set(questions.cases.filter(c => c.expected_support === 'full' && !c.expected_metadata).map(c => c.id))];
+    for (const question of anchored) {
       const marks = Object.keys(VARIANTS).map(v => (passed[v].has(question) ? '✓' : '·'));
       if (marks.some(mark => mark !== marks[0]) || marks[0] === '·') console.log(`    ${question.padEnd(40)} hybrid ${Object.keys(VARIANTS).map((v, i) => `${v} ${marks[i]}`).join(', ')}`);
     }
+    for (const [question, outcomes] of Object.entries(metadata)) console.log(`    ${question.padEnd(40)} metadata ${Object.entries(outcomes).map(([v, o]) => `${v} ${o}`).join(', ')}`);
   }
 } finally { await client.end(); defaultEstnltkAnalyzer().close(); }
