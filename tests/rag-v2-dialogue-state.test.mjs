@@ -54,6 +54,16 @@ test('supersession rejects cycles, same-turn replacements, malformed later facts
   assert.deepEqual(validateDialogueState({ ...value, period }, input, context).period, period);
 });
 
+test('a rejected state names the failed check for diagnosis', () => {
+  const input = accepted(['Elan Harkus.']), value = state([fact('location', 1, 'Elan Harkus.')]);
+  const reason = fn => { try { fn(); } catch (error) { assert.equal(error.code, 'invalid_dialogue_state'); return error.reason; } };
+  assert.equal(reason(() => validateDialogueState(state([fact('invented', 1, 'Elan Tallinnas.')]), input, context)), 'fact_quote_not_in_turn');
+  assert.equal(reason(() => validateDialogueState({ ...value, region: { id: 'invented', status: 'reported', support: [{ turn: 1, quote: 'Harkus' }] } }, input, context)), 'region_id');
+  assert.equal(reason(() => validateDialogueState({ ...value, region: { id: 'harku_vald', status: 'reported', support: [] } }, input, context)), 'region_support_count');
+  assert.equal(reason(() => validateDialogueState({ ...value, needs: [{ candidate: 'Abi', based_on: [2] }] }, input, context)), 'needs_based_on');
+  assert.equal(reason(() => projectDialogueAnswer({ kind: 'clarification', blocks: [], limitations: [], clarification: 'Kus?' }, { reference_map: {} }, input, context, null)), 'state_missing');
+});
+
 test('state reuse is bound to the exact accepted prefix, person and topic, including failed user turns', () => {
   const first = accepted(['Elan üksi.']), value = state([fact('living', 1, 'Elan üksi.')]), previous = stateAudit(value, first);
   const next = accepted(['Elan üksi.', 'Parandus.', 'Jätka.']);

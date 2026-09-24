@@ -6,6 +6,9 @@ After=network.target postgresql.service
 User=ubuntu
 WorkingDirectory=/home/ubuntu/apps/sotsiaalai
 EnvironmentFile=/etc/sotsiaalai/frontend.env
+# RAG v2 connections and the admin and chat pilot plans (ADR-028). Read after
+# frontend.env; optional, so the site still starts on a server without RAG v2.
+EnvironmentFile=-/etc/sotsiaalai/rag.env
 ExecStart=/usr/bin/npm run start
 Restart=always
 RestartSec=5

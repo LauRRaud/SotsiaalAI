@@ -19,7 +19,7 @@ import { retrievalProfile } from '../lib/rag-v2/search/profiles.js';
 import { RECORD_RETRIEVAL_VERSION } from '../lib/rag-v2/search/structured-record-source.js';
 import { runtimeAdapters } from '../lib/rag-v2/pilot/retrieval.js';
 import { DIALOGUE_VERSION } from '../lib/rag-v2/pilot/dialogue.js';
-import { TYPED_DIALOGUE_STATE_VERSION } from '../lib/rag-v2/pilot/dialogue-state.js';
+import { TYPED_DIALOGUE_STATE_VERSION, projectDialogueAnswer } from '../lib/rag-v2/pilot/dialogue-state.js';
 import { UNIFIED_RETRIEVAL_VERSION } from '../lib/rag-v2/pilot/retrieval-plan.js';
 import { PilotService } from '../lib/rag-v2/pilot/service.js';
 import { PilotStore } from '../lib/rag-v2/pilot/store.js';
@@ -166,7 +166,8 @@ for (const scenario of scenarios.scenarios) {
       const records = input.evidence.records || {}, entries = records.entries || [], expect = turn.expect || {};
       const scope = records.scope?.region ?? null;
       const summarized = entries.filter(entry => entry.fields.summary && entry.detail !== 'selected_detail');
-      const detail = entries.find(entry => entry.detail === 'selected_detail');
+      // Every service the previous answer cited is a selected detail, not only the first one.
+      const details = entries.filter(entry => entry.detail === 'selected_detail');
       // Contact persons come from the packages; phone/e-mail channels only from the verified municipal registry,
       // which this harness does not load (the packages carry no channels: 0 of 68 contacts in six municipalities).
       const contacts = entries.filter(entry => entry.kind === 'contact');
@@ -175,20 +176,29 @@ for (const scenario of scenarios.scenarios) {
       check(result.state === 'completed', `state ${result.state}`);
       if ('region' in expect) check(scope === expect.region, `region ${scope}, expected ${expect.region}`);
       if (expect.service_summary) check(summarized.some(entry => new RegExp(expect.service_summary, 'i').test(titleOf(entry))), `no summary for /${expect.service_summary}/`);
-      if (expect.details) check(detail && new RegExp(expect.details, 'i').test(titleOf(detail)), `details for /${expect.details}/ missing`);
+      if (expect.details) check(details.some(entry => new RegExp(expect.details, 'i').test(titleOf(entry))), `details for /${expect.details}/ missing`);
       if (expect.contacts) check(contacts.length > 0, 'no contact person for the focused service in context');
       if ('crisis' in expect) check(crisis === expect.crisis, `crisis ${crisis}, expected ${expect.crisis}`);
       if (expect.previous_state_cleared) check(input.dialogue.previousState === null, 'previous state leaked into the new person');
       report.push(`- ${index + 1}. [${turn.mode}] "${turn.text}" -> region ${scope ?? '-'}, catalogue ${records.listed_count ?? 0}/${records.catalogue_count ?? 0}`
-        + `, summaries ${summarized.length}${detail ? `, details: ${titleOf(detail)}` : ''}${contacts.length ? `, contact persons ${contacts.map(titleOf).join(' & ')} (phone/e-mail channels ${channels.length})` : ''}`
+        + `, summaries ${summarized.length}${details.length ? `, details: ${details.map(titleOf).join(' & ')}` : ''}${contacts.length ? `, contact persons ${contacts.map(titleOf).join(' & ')} (phone/e-mail channels ${channels.length})` : ''}`
         + `, answer ${row.payload.answer.kind}${crisis ? ', CRISIS NOTICE' : ''}${approximated ? ' (query vector approximated)' : ''}`);
       // Real runs: the model's own answer, its state and cited services, for human review.
       if (REAL_MODEL) {
         const answer = row.payload.answer, citedRefs = new Set(answer.blocks.flatMap(block => block.refs));
         const citedServices = entries.filter(entry => Object.values(entry.fields).some(field => field.refs?.some(ref => citedRefs.has(ref)))).map(titleOf);
-        const text = [...answer.blocks.map(block => block.text), answer.clarification].filter(Boolean).join(' ').replace(/s+/g, ' ');
+        const text = [...answer.blocks.map(block => block.text), answer.clarification].filter(Boolean).join(' ').replace(/\s+/g, ' ');
         report.push(`     model: ${text.slice(0, 700)}${text.length > 700 ? '…' : ''}`);
         report.push(`     cites: ${citedServices.join(', ') || '-'} | state region: ${row.payload.dialogueState?.value?.region?.id ?? '-'}${row.payload.dialogueStateFallback ? ` (state fallback ${row.payload.dialogueStateFallback.code})` : ''}`);
+        // A rejected state is reproduced from the stored draft (as recovery does) to name the failed check.
+        if (row.payload.dialogueStateFallback) {
+          const draft = JSON.parse(row.payload.responseAudit.draft.text);
+          let reason = 'reproduced as valid';
+          try { projectDialogueAnswer(draft, row.payload.packet, row.payload.contextAudit, row.payload.dialogueStateContext, row.payload.previousDialogueState ?? null, TYPED_DIALOGUE_STATE_VERSION); }
+          catch (error) { reason = error.reason || error.code; }
+          const proposed = draft.dialogue_state || {};
+          report.push(`     rejected state: ${reason} | proposed region ${JSON.stringify(proposed.region ?? null)}, facts ${JSON.stringify((proposed.facts || []).map(fact => [fact.topic, fact.status, fact.support?.map(source => source.turn)]))}`);
+        }
       }
     }
     report.push(problems.length ? `  PROBLEMS: ${problems.join('; ')}` : '  all expectations met');

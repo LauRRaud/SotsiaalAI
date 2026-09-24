@@ -33,9 +33,33 @@
 2. **Ülevaatus jättis ühe kirje välja.** Tallinna „Õigusnõustamine vähekindlustatud Tallinna elanikele” sisaldab vastuolulist `source_url` kandidaati; ülevaataja ei saa seda kaasata.
 3. **Vallata olukorralause jõuab õigesti täpsustuseni:** kataloogi ulatus on tühi ja mudeli juhis palub valla küsida.
 
+## Päris mudel: gpt-6-luna serveris (24.09.2026)
+
+Samad kuus vestlust ja 17 pööret jooksid serveris päris vastusmudeli ja päris päringuvektoritega (`SCENARIO_ANSWER_MODEL=gpt-6-luna`).
+
+- **Kõik 17 vastust läbisid kontrolli.** Ühtki vastust ei lükatud tagasi.
+- **Mõõtmine andis 5/6, kuid ainus viga oli raamistikus, mitte piloodis.**
+  - Esimese vestluse 2. pöördes tsiteeris mudel kolme teenust: toidupank, Rimi toidukaart ja toimetulekutoetus.
+  - 3. pöördes jõudsid kõigi kolme detailid mudelini. Mudel nimetas ka toimetulekutoetuse kontaktisikud.
+  - Raamistik kontrollis aga ainult esimest valitud detaili. See on parandatud: nüüd kontrollitakse kõiki. Kohalik kordus asendusmudeliga annab 6/6.
+- **Täpsustus:** kõigis kuues vestluses küsis mudel esimeses pöördes ainult valda või linna, eesti keeles ja kaastundlikult.
+- **Parandus ja uus isik:**
+  - Kose → Harku vahetas nii kataloogi kui vastuse Harku koduteenusele.
+  - Uus isik tühjendas seisu. Kose võlanõustamine ja erakorraline toetus tulid õigesti.
+- **Kriis:**
+  - Kriisilause sai kriisilipu. Mudel küsis vahetu ohu kohta ja suunas hädaabi poole.
+  - Pärast „Elan Tallinnas” pakkus mudel Tallinna kriisiabi nõustamist ja kordas ohuküsimust.
+- **Kontakt:** mudel nimetas isikud, kuid telefoni ega e-posti ei andnud, sest pakettides neid pole. See on eespool kirjeldatud registrilünk (leid 1).
+- **Vestluse seis lükati tagasi 2 pöördes 17-st** (`invalid_dialogue_state`: „Isa elab Tallinnas.” ja Kose transpordipööre).
+  - Mõlemas avaldati kontrollitud vastus pehme tagasilangusega. Eelmine kinnitatud seis kanti edasi.
+  - Põhjust jooksust ei saa: raamistik kustutab pöörded pärast iga vestlust.
+  - Nüüd nimetab kontroll vea põhjuse (`error.reason`, nt `region_quote_not_in_turn`). Põhjust ei salvestata, seega audit ja räsi ei muutu.
+  - Raamistik taastab tagasilükatud seisu salvestatud mustandist ja näitab põhjust ning mudeli pakutud piirkonda.
+  - Seis jääb teadmata, kuni päris mudeliga jooks on korratud.
+
 ## Piirid
 
-- Asendusmudel järgib stsenaariumi seisu. Päris mudeli võime seisu, täpsustust ja järgmist sammu õigesti sõnastada on mõõtmata; see on järgmine, tasuline samm piloodiplaani alusel.
+- Asendusmudel järgib stsenaariumi seisu. Päris mudeli jooks (ülal) on üks jooks 17 pöördel. Vastuse kvaliteedi hindamiseks see ei piisa.
 - Järgpööretes on päringuvektor lähendatud.
 - Serveri registrit loendati ainult; isikuandmeid ei loetud.
 - Käivitamiseks on vaja kohalikke teenuseid, M4 andmebaasi, EstNLTK-d ja `tmp/rag-v2-scenarios` vektoreid (85 MB). Neid pole mõõtmispaketis.
