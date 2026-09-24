@@ -63,6 +63,27 @@ Päris mudeli võrdluses jälgitakse:
 - tsiteeritud teenuseid;
 - seisu tagasilükkamisi (nüüd põhjusega).
 
+## Keskkond ja deploy
+
+Serveris oli kaks RAG-i seadistust:
+- `rag.env` kuulus vanale Chroma-teenusele `sotsiaalai-rag`. See teenus on keelatud ja kood vastab tavavestluses „RAG on välja lülitatud” teatega.
+- RAG v2 luges oma ühendused `frontend.env`-ist. Sealsamas oli 26 vana `RAG_*`/`AGENT_*` muutujat, mida kood ei loe.
+
+Otsus:
+- `rag.env` muutub RAG v2 failiks: Postgres, Qdrant, EstNLTK, admin-RAG-i ja vestluspiloodi lülitid ning plaanid.
+- Veebiteenus loeb pärast `frontend.env`-i ka `rag.env`-i ([unit-fail](../../deploy/systemd/sotsiaalai-frontend.service)). Deploy loeb need samas järjekorras. Muidu jääksid RAG v2 migratsioonid pärast muutujate ümbertõstmist vaikselt vahele.
+- Deploy kontrollib pärast migratsioone, kas vestluspiloodi plaan vastab uuele koodile ([rag-v2-plan-freshness.mjs](../../scripts/rag-v2-plan-freshness.mjs)). Kui ei vasta, tuleb logisse ja GitHubi hoiatus.
+
+Põhjus: 24.09 lõpetasid RAG v2 koodi deploy'd märkamatult 23.09 kinnitatud plaani töö.
+
+Vana indeks (3,6 GB) ja Pythoni keskkond (1,1 GB) ei ole RAG v2 jaoks vajalikud:
+- Kõik 808 PDF-i on kohalikus `Andmebaasi` kaustas baithaaval olemas.
+- 254 lihtteksti algallikad (211 PDF-i ja 43 HTML-i) on kohalikult olemas.
+- KOV-paketid on kõigi omavalitsuste kohta olemas.
+- Vana register on varundatud kausta `Arhiiv/rag-v1-registry-2026-09-24/`.
+
+Kustutamise teeb omanik.
+
 ## Tootmisse viimine
 
 Tootmises kehtib v10 alles uue piloodiplaaniga, milles on `promptVersion` ja `implementationHash`. Plaani kinnitab omanik.

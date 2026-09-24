@@ -6,6 +6,7 @@ const remote = process.env.DEPLOY_SSH_HOST || "sotsiaalai";
 const appDir = process.env.DEPLOY_APP_DIR || "/home/ubuntu/apps/sotsiaalai";
 const branch = process.env.DEPLOY_BRANCH || "main";
 const frontendEnv = process.env.DEPLOY_FRONTEND_ENV || "/etc/sotsiaalai/frontend.env";
+const ragEnv = process.env.DEPLOY_RAG_ENV || "/etc/sotsiaalai/rag.env";
 const buildTimeoutSeconds = Number.parseInt(String(process.env.DEPLOY_BUILD_TIMEOUT_SECONDS || "900"), 10) || 900;
 const artifactBackupKeep = Number.parseInt(String(process.env.DEPLOY_ARTIFACT_BACKUP_KEEP || "1"), 10) || 1;
 const buildLogKeep = Number.parseInt(String(process.env.DEPLOY_BUILD_LOG_KEEP || "1"), 10) || 1;
@@ -28,6 +29,7 @@ set -euo pipefail
 APP_DIR=${shellEscape(appDir)}
 BRANCH=${shellEscape(branch)}
 FRONTEND_ENV=${shellEscape(frontendEnv)}
+RAG_ENV=${shellEscape(ragEnv)}
 BUILD_TIMEOUT_SECONDS=${Math.max(60, buildTimeoutSeconds)}
 ARTIFACT_BACKUP_KEEP=${Math.max(1, artifactBackupKeep)}
 BUILD_LOG_KEEP=${Math.max(1, buildLogKeep)}
@@ -152,17 +154,21 @@ if systemctl is-active --quiet sotsiaalai-frontend.service; then
   frontend_was_active="1"
 fi
 
-if sudo -n test -r "$FRONTEND_ENV"; then
-  # The production env file is intentionally root-readable only. Read it
-  # through the same non-interactive sudo gate used by the service controls;
-  # never print or copy its contents to the deploy log.
-  set -a
-  source /dev/stdin < <(sudo -n cat -- "$FRONTEND_ENV")
-  set +a
-elif [ -f "$FRONTEND_ENV" ]; then
-  echo "[deploy:server] Frontend env exists but is not readable via sudo: $FRONTEND_ENV" >&2
-  exit 5
-fi
+# The production env files are intentionally root-readable only. Read them
+# through the same non-interactive sudo gate used by the service controls;
+# never print or copy their contents to the deploy log. rag.env holds the
+# RAG v2 connections and plans (ADR-028) and is read after frontend.env, in the
+# same order as the frontend unit.
+for env_file in "$FRONTEND_ENV" "$RAG_ENV"; do
+  if sudo -n test -r "$env_file"; then
+    set -a
+    source /dev/stdin < <(sudo -n cat -- "$env_file")
+    set +a
+  elif [ -f "$env_file" ]; then
+    echo "[deploy:server] Env file exists but is not readable via sudo: $env_file" >&2
+    exit 5
+  fi
+done
 
 echo "[deploy:server] Installing locked dependencies"
 npm ci --include=dev --no-audit --no-fund
@@ -237,6 +243,20 @@ if [ -n "\${RAG_V2_POSTGRES_URL:-}" ]; then
   echo "[deploy:server] Applying RAG v2 catalogue migrations with bounded locks"
   RAG_V2_DATABASE_URL="$RAG_V2_POSTGRES_URL" PGOPTIONS="\${PGOPTIONS:-} -c lock_timeout=5s -c statement_timeout=15min" \\
     npx prisma migrate deploy --config prisma/rag-v2/prisma.config.mjs
+fi
+
+# An approved chat pilot plan is bound to the exact runtime code (implementationHash).
+# A release that changes that code stops new pilot answers until a new plan is approved;
+# on 24.09 that happened unnoticed (ADR-028). Say so in the log and as a GitHub warning.
+if [ "\${M4_PILOT_ENABLED:-}" = "1" ] && [ -n "\${M4_PILOT_CONFIG:-}" ]; then
+  pilot_plan_state="$( (sudo -n cat -- "$M4_PILOT_CONFIG" 2>/dev/null || true) | node scripts/rag-v2-plan-freshness.mjs 2>/dev/null || true)"
+  [ -n "$pilot_plan_state" ] || pilot_plan_state="invalid"
+  if [ "$pilot_plan_state" = "current" ]; then
+    echo "[deploy:server] RAG v2 pilot plan matches this release"
+  else
+    echo "[deploy:server] WARNING: RAG v2 pilot plan is $pilot_plan_state for this release; the chat pilot gives no new answers until a new plan is approved" >&2
+    echo "::warning title=RAG v2 pilot plan $pilot_plan_state::The approved chat pilot plan does not match this release. New pilot answers stay stopped until a new plan is approved."
+  fi
 fi
 
 # HALLATAVAD AJASTUSED (SOL-CW-14). Unit-failid elavad repositooriumis

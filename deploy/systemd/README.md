@@ -1,5 +1,14 @@
 # Hallatavad ajastused
 
+## Keskkonnafailid (ADR-028)
+
+- `/etc/sotsiaalai/frontend.env`: rakenduse seaded ja saladused, sh OpenAI võti.
+- `/etc/sotsiaalai/rag.env`: RAG v2 ühendused (Postgres, Qdrant, EstNLTK), admin-RAG-i ja vestluspiloodi lülitid ning plaanid.
+
+Mõlemad failid on loetavad ainult root'ile. `sotsiaalai-frontend.service` loeb need samas järjekorras, `rag.env` on valikuline. `scripts/deploy-server.mjs` loeb neid samas järjekorras. Vana RAG-teenuse (`sotsiaalai-rag`, Chroma) seadeid seal enam pole.
+
+Vestluspiloodi plaan on seotud täpse käituskoodiga (`implementationHash`). Kui deploy muudab seda koodi, kirjutab deploy logisse ja GitHubi hoiatuse: vestluspiloot uusi vastuseid ei anna, kuni uus plaan on kinnitatud.
+
 ## Materjalide isoleeritud hoidla (SOL-MAT-08)
 
 `var-lib-sotsiaalai-materials.mount` on repo-hallatav leping eraldi LUKS2 + ext4 köitele:
