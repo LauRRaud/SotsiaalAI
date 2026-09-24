@@ -1,0 +1,24 @@
+[Unit]
+Description=OSRM marsruudimootor (Eesti) — teenuspaeviku soidupaevik
+Documentation=https://project-osrm.org
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=5
+# AINULT 127.0.0.1. Marsruudimootor ei tohi olla avalikust vorgust
+# kattesaadav: ta ei autendi kedagi ja tema paringud kannavad klientide
+# kodukoordinaate.
+ExecStartPre=-/usr/bin/docker rm -f osrm-routed
+ExecStart=/usr/bin/docker run --rm --name osrm-routed \
+  -p 127.0.0.1:5000:5000 \
+  --memory=1g \
+  -v /home/ubuntu/osrm-26.9:/data \
+  ghcr.io/project-osrm/osrm-backend:v26.9.0-debian@sha256:8a1b1bc938412f15f9b5b32d794c4ec6bf4a85dfbbabfa0a014b70b187edb53b \
+  osrm-routed --algorithm mld --max-table-size 1000 /data/estonia-latest.osrm
+ExecStop=/usr/bin/docker stop osrm-routed
+
+[Install]
+WantedBy=multi-user.target
