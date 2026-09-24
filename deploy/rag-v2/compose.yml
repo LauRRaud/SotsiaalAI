@@ -1,6 +1,8 @@
 name: sotsiaalai-rag-v2
 services:
   postgres:
+    # Come back after a host reboot (the VPS is rebooted for platform updates).
+    restart: unless-stopped
     image: postgres:16.13-alpine@sha256:4e6e670bb069649261c9c18031f0aded7bb249a5b6664ddec29c013a89310d50
     ports: ["127.0.0.1:55432:5432"]
     environment:
@@ -14,6 +16,7 @@ services:
       timeout: 3s
       retries: 20
   qdrant:
+    restart: unless-stopped
     image: qdrant/qdrant:v1.15.5@sha256:0fb8897412abc81d1c0430a899b9a81eb8328aa634e7242d1bc804c1fe8fe863
     ports: ["127.0.0.1:56333:6333"]
     environment:
