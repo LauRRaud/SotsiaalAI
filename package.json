@@ -120,7 +120,7 @@
     "next": "^16.2.3",
     "next-auth": "^4.24.13",
     "ogl": "^1.0.11",
-    "openai": "^6.34.0",
+    "openai": "^7.23.0",
     "pdf-parse": "^2.4.5",
     "pdfjs-dist": "5.4.296",
     "pg": "^8.16.3",
@@ -157,7 +157,7 @@
     "not ie <= 11"
   ],
   "engines": {
-    "node": ">=18.18 <25"
+    "node": ">=24 <25"
   },
   "allowScripts": {
     "@prisma/engines": true,
