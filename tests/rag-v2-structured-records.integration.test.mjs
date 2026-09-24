@@ -163,6 +163,19 @@ test('unverified or unauthorized contacts stay unavailable; detail selection ret
 test('catalogue budgets fail explicitly; permission and contact revocation during retrieval cannot publish a packet', async () => {
   await assert.rejects(source().retrieve(query({ limits: { records: 1 } })), { code: 'record_count_budget_exceeded' });
   await assert.rejects(source().retrieve(query({ limits: { contextTokens: 1 } })), { code: 'record_context_budget_exceeded' });
+  // A real municipality can exceed the budget: summaries give way to titles, then to a
+  // marked partial title list that still keeps the requested detail.
+  const full = await source().retrieve(query({ recordIds: ['service_0'] }));
+  assert.equal(full.record_context.view, 'summary');
+  const titles = await source().retrieve(query({ recordIds: ['service_0'], limits: { contextTokens: full.measurements.model_context_tokens - 1 } }));
+  assert.equal(titles.record_context.view, 'titles');
+  assert.equal(titles.record_context.completeness, 'complete_within_authorized_indexed_scope');
+  assert(titles.record_context.entries.filter(entry => entry.detail === 'catalogue' && ['service', 'benefit', 'resource'].includes(entry.kind)).every(entry => Object.keys(entry.fields).every(key => ['title', 'name'].includes(key))));
+  const partial = await source().retrieve(query({ recordIds: ['service_0'], limits: { contextTokens: titles.measurements.model_context_tokens - 1 } }));
+  assert.equal(partial.record_context.completeness, 'partial_context_budget');
+  assert(partial.record_context.listed_count < partial.record_context.catalogue_count);
+  assert(partial.record_context.entries.some(entry => entry.record_id === 'harku_vald:service_0' && entry.fields.conditions));
+  assert(!JSON.stringify(partial.model_context).includes('provenance'));
   let reads = 0;
   await assert.rejects(source({ policy: { allowed: async () => ({ documents: Object.keys(snapshot.documents), revision: ++reads }) } }).retrieve(query()),
     { code: 'access_changed_during_retrieval' });

@@ -92,6 +92,12 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**24.09 KOV-kataloog mahub päris valla andmetega — [ADR-021](../rag-v2/adr-021-compact-municipal-catalogue.md).**
+Kataloog loobub tõendis korduvast metaandmete ballastist ja vahetab mahu
+ületamisel täisvaate pealkirjade vaateks või märgistatud osaliseks loendiks.
+Päris paketid: Anija 70k → 6,1k tokenit, Tallinn 136k → 11,9k (66/71);
+kõik kuus mõõdetud valda mahuvad 12k piiri, varem ebaõnnestusid kõik.
+
 **24.09 RAG: valla tuvastus, bibliograafia ja aastapõhine periood — serveris (`82404cfb`).**
 Deploy tõi serverisse ADR-017–020 koodi. Valla nimi tuvastatakse kanoonilise
 kuju järgi; tõendis on aasta, ajakiri, number ja leheküljed; ainult aastaga
