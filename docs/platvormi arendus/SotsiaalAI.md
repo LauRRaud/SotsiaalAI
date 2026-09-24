@@ -92,6 +92,12 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**24.09 Codexi leiud R1–R4 parandatud — [analüüs §10](../audits/rag-v2-opus-terviklik-analuus-2026-09-24.md).**
+Kriisiteade ei sõltu enam RAG-i konfiguratsioonist, otsingust ega taastamisest ning
+ilmub kliendis kohe. Kataloog säilitab allika kehtivuse ja ajaloolisuse. v1
+kataloogiplaan jääb loetavaks. „Lõpetada oma elukindlustus" ei käivita kriisirada.
+Kõigil neljal leiul on sihttest; CI komplekt on roheline.
+
 **24.09 Codexi järelülevaatus: kataloog ja kriisirada vajavad nelja parandust.**
 Commit’ide `95572f1ec`, `9404c167f` ja `9bd702645` kontrollis läbis 44/44
 sihttesti, kuid taasesitus kinnitas kriisiteate katkemise mõnel tõrketeel,

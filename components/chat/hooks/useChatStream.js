@@ -6,6 +6,7 @@ import { createLatestRequestGate, withRequestTimeout } from "@/lib/client/latest
 import { buildIntentSignature, resolveIntentKey } from "@/lib/usage/intentKey";
 import { ensureConversationBeforeSend } from "@/lib/chat/conversationBootstrap";
 import { rememberPilotIntent, forgetPilotIntent } from '@/lib/chat/m4PilotIntent';
+import { detectCrisis } from "@/lib/chat/safety";
 
 function formatI18n(template, values) {
   if (!values) return template;
@@ -1612,6 +1613,11 @@ export function useChatStream(config) {
     };
 
     let pilotContextAccepted = false;
+    // Kriisilause korral ilmub kriisiteade kohe, mitte alles pärast otsingut ja vastust; ka
+    // võrgu- või serveritõrge ei peida seda (server kinnitab sama tulemuse vastuses).
+    if (cfg.pilotEnabled && detectCrisis(text)) {
+      cfg.setIsCrisis?.(currentIsCrisis => resolveCrisisStateAfterEvent(currentIsCrisis, { phase: "meta", isCrisis: true }));
+    }
     const runStream = async () => {
       try {
         const res = await fetch("/api/chat", {

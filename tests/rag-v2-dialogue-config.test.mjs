@@ -45,6 +45,10 @@ test('M4-C approval: dialogue needs its own contract and egress grant; old v3 re
     await write({ ...unified, ...change }, { dialogueEgress: true });
     await assert.rejects(readPilotConfig('tester'), { code: 'invalid_unified_retrieval_plan' });
   }
+  // A historical v1 catalogue plan restores history but cannot start a new model call.
+  await write({ ...unified, recordCatalogue: 'rag-v2/record-catalogue-1' }, { dialogueEgress: true });
+  assert.equal((await readPilotConfig('tester', { purpose: 'read' })).recordCatalogue, 'rag-v2/record-catalogue-1');
+  await assert.rejects(readPilotConfig('tester'), { code: 'invalid_unified_retrieval_plan' });
   await write({ ...unified, retrievalRouting: 'unknown' }, { dialogueEgress: true });
   await assert.rejects(readPilotConfig('tester'), { code: 'unsupported_retrieval_routing' });
   await write({ ...dialogue, promptVersion: 'm4-grounded-dialogue-5', questionVersion: 'm4-user-scope-search-4' }, { dialogueEgress: true });
@@ -61,8 +65,11 @@ test('M4-C approval: dialogue needs its own contract and egress grant; old v3 re
   await assert.rejects(readPilotConfig('tester'), { code: 'implementation_approval_mismatch' });
   await write({ ...dialogue, recordCatalogue: RECORD_RETRIEVAL_VERSION, budget: { ...dialogue.budget, embeddingAttempts: 0 } }, { dialogueEgress: true });
   assert.equal((await readPilotConfig('tester')).recordCatalogue, RECORD_RETRIEVAL_VERSION);
-  await write({ ...dialogue, recordCatalogue: 'unknown' }, { dialogueEgress: true });
+  await write({ ...dialogue, recordCatalogue: 'rag-v2/record-catalogue-1', budget: { ...dialogue.budget, embeddingAttempts: 0 } }, { dialogueEgress: true });
+  assert.equal((await readPilotConfig('tester', { purpose: 'read' })).recordCatalogue, 'rag-v2/record-catalogue-1');
   await assert.rejects(readPilotConfig('tester'), { code: 'invalid_record_catalogue_plan' });
+  await write({ ...dialogue, recordCatalogue: 'unknown' }, { dialogueEgress: true });
+  await assert.rejects(readPilotConfig('tester', { purpose: 'read' }), { code: 'invalid_record_catalogue_plan' });
   await write({ ...base, recordCatalogue: RECORD_RETRIEVAL_VERSION });
   await assert.rejects(readPilotConfig('tester'), { code: 'invalid_record_catalogue_plan' });
   await write({ ...dialogue, promptVersion: 'm4-grounded-dialogue-3', questionVersion: 'm4-user-scope-search-2' }, { dialogueEgress: true });

@@ -37,3 +37,10 @@ Testid (`TZ=UTC`): struktureeritud kirjete integratsioon 7/7 uue vaatevahetuse k
 ## Piirid
 
 Pealkirjade vaates valib mudel teenuse pealkirja järgi. Kokkuvõte ja tingimused tulevad järgmises pöördes viidatud kirje detailina. Suure valla loend võib jääda osaliseks, mis on märgistatud. Semantiline eelvalik, kus kõige asjakohasemad kirjed saaksid kokkuvõtte, on järgmine võimalik samm. Kataloog pole serveri piloodiplaanis sisse lülitatud.
+
+## Täiendus 24.09 (Codexi R2/R3)
+
+- Tihendatud tõend säilitab allika enda `historical`, `source_status`, `valid_from` ja `valid_to`, kui need on deklareeritud. Üldine `collected_not_verified_current` ei asenda allika teadaolevat lõppkuupäeva.
+- Kõigil allikatel ühesugune hoiatus on üks kord `source_limitations` all. Allikapõhine hoiatus jääb allika juurde.
+- Leping jääb versiooniks `rag-v2/record-catalogue-2`, sest v2 kataloogi pole üheski kinnitatud plaanis kasutatud. `rag-v2/record-catalogue-1` plaan on loetav, kuid mitte käivitatav.
+- Mõõtmine pärast täiendust: Anija 6 348, Tallinn 11 908 (63/71), Jõhvi 11 953 (62/65).

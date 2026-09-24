@@ -69,9 +69,11 @@ test('F05: mixed historical/completed/failed/unknown turns retain chronological 
 test('crisis sentences reach the crisis notice on the pilot chat path, including failed turns and history', async () => {
   const { detectCrisis } = await import('../lib/chat/safety.js');
   const { pilotChatMessages } = await import('../lib/chat/m4PilotClientContract.js');
-  for (const text of ['Mul on enesetapumõtted', 'Tahan end tappa', 'mõtlen enesetapule', 'tahan oma elu lõpetada', 'Olen üksi kodus, ei jaksa enam elada, tööd ei ole', 'lõikun ennast', 'suitsiidimõtted'])
+  for (const text of ['Mul on enesetapumõtted', 'Tahan end tappa', 'mõtlen enesetapule', 'tahan oma elu lõpetada', 'Olen üksi kodus, ei jaksa enam elada, tööd ei ole', 'lõikun ennast', 'suitsiidimõtted', 'tahan lõpetada oma elu.', 'lõikasin end eile'])
     assert.equal(detectCrisis(text), true, text);
-  for (const text of ['Olen üksi kodus, raske on toimetulek, tööd ei ole', 'Kuidas taotleda toimetulekutoetust Tapa vallas?', 'Mu vend tahab aega tappa', 'Pean töölepingu lõpetama', 'Tahan lõpetada õpingud'])
+  for (const text of ['Olen üksi kodus, raske on toimetulek, tööd ei ole', 'Kuidas taotleda toimetulekutoetust Tapa vallas?', 'Mu vend tahab aega tappa', 'Pean töölepingu lõpetama', 'Tahan lõpetada õpingud',
+    // R4: a compound word is not a crisis (the urgent-help form would otherwise jump to the emergency screen).
+    'Soovin lõpetada oma elukindlustuse', 'Soovin lõpetada oma eluasemelaenu lepingu', 'Tahan tööelu lõpetada', 'lõikasin endale leiba'])
     assert.equal(detectCrisis(text), false, text);
   const answer = { kind: 'grounded', blocks: [{ text: 'Vastus [S1]', refs: ['S1'] }], limitations: [], clarification: null };
   assert.equal(pilotChatResult({ id: 't1', state: 'completed', question: 'Tahan end tappa', answer, sources: [] }, 'conv').isCrisis, true);

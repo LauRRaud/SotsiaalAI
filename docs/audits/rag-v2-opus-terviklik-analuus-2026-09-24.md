@@ -336,3 +336,22 @@ Opuse kogu komplekti tulemust 297/3/1 ei korratud. Pärismudeli vastuse kvalitee
 serveri aktiivse piloodi täielik rada ja uue profiili sõltumatu hindamine on
 `NOT_PROVEN` / `not_run`. Järgmine põhjendatud teostus on R1–R4 parandamine koos
 sihitud regressioonitestidega, seejärel kataloogi välja jäänud kirjete leidmine.
+
+## 10. Opuse parandused R1–R4 (24.09.2026)
+
+Kõik neli leidu said taasesitatava parandusega sihttesti.
+
+| Leid | Parandus | Test |
+| --- | --- | --- |
+| R1 | `pilotPost` teeb enne kõike muud autentimise ja päringu kontrolli. Seejärel annab iga hilisem tõrge kriisilause korral HTTP 200, `isCrisis:true` ja kriisiteate: konfiguratsioon, `service.run`, taastamise `access`, `restore` või lõpetamata pööre. Tavaline küsimus saab endise veavastuse. Klient näitab kriisiteadet kohe saatmisel ega peida seda võrgu- või serveritõrke korral. | `rag-v2-pilot-crisis-route` kutsub päris POST-käsitlejat. Asendatud on ainult autentimise ja RAG-i seansi piirid: viis tõrketeed, tavaküsimuse kontroll, lõpetatud kriisivastus, autentimise järjekord. |
+| R2 | `compactEntry` säilitab allika enda `historical`, `source_status`, `valid_from` ja `valid_to`, kui need on deklareeritud. Kõigil allikatel ühesugune hoiatus on üks kord `source_limitations` all. Allikapõhine hoiatus jääb allika juurde, erineva detailiga hoiatused eraldi. | `rag-v2-record-catalogue-compact`: kehtetu allika neli välja jõuavad mudeli konteksti, erinevad hoiatuse detailid jäävad oma allika juurde. |
+| R3 | `READABLE_RECORD_RETRIEVAL_VERSIONS` (v1, v2): muutmata v1 plaan on loetav (`purpose:'read'`) nii kirje- kui ühisrajal; käivitada saab ainult v2. | `rag-v2-dialogue-config`: v1 lugemine õnnestub, käivitus annab `invalid_record_catalogue_plan` / `invalid_unified_retrieval_plan`. |
+| R4 | Uued eesti mustrid on liitsõna piiridega (`(?:^|[^a-zõäöüšž])` / `(?![a-zõäöüšž])`). Lookbehind'i ei kasutata, sest `safety.js` laaditakse ka brauseris ja vanem Safari ei parsi seda. | „elukindlustuse”, „eluasemelaenu”, „tööelu lõpetada”, „lõikasin endale leiba” ei ole kriis; „lõpetada oma elu.” ja „lõikasin end” on. |
+
+Päris KOV-paketid pärast R2 (piir 12 000): Anija 6 348, Harku 7 557, Kose 9 604, Pärnu 11 737 (62/62), Jõhvi 11 953 (62/65), Tallinn 11 908 (63/71). Säilitatud kehtivus- ja hoiatusinfo kasvatab mahtu. Osaline loend jääb märgistatuks.
+
+Kontrollid: `npm test` (CI komplekt) 188 läbis, 17 vahele jäetud, 0 ebaõnnestus. Kohaliku andmebaasi ja EstNLTK-ga integratsioonitestid 53/53 (`dialogue-store`, `pilot-store`, `record-scope`, `structured-records`, `unified`). Tasulisi kutseid 0.
+
+Piirid:
+- Klientpoolset kohest kriisiteadet brauseris ei kontrollitud, sest piloodi sisselogitud rada pole kohalikus arenduskeskkonnas seadistatud. Kliendikood kasutab sama `detectCrisis()` ja `resolveCrisisStateAfterEvent()` funktsiooni.
+- v1 plaaniga salvestatud pöörde täielikku taastamist andmebaasist ei testitud, ainult konfiguratsiooni lugemist. Taastamine ei ehita kataloogi uuesti.
