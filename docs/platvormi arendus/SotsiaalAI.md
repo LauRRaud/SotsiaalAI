@@ -92,6 +92,13 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**24.09 KOV-kataloog leiab abi olukorrakirjelduse järgi — [ADR-026](../rag-v2/adr-026-semantic-municipal-catalogue.md).**
+Ühisel rajal järjestab pöörde päringuvektor valla teenused tähenduse järgi,
+sõnaline järjestus jääb varuks. 53 päris valla ja olukorralause paaris sai
+asjakohane teenus kokkuvõtte 53 korral (sõnaliselt 46) ja oli esimene 27 korral
+(varem 16). „Raha otsas” leiab toimetulekutoetuse kõigis kuues vallas. RRF-iga
+ühendamine halvendas järjestust, seda ei kasutata. Mõõtmisvektorid ~0,036 USD.
+
 **24.09 Codexi ülevaatus Opuse uuest koodist (ADR-023–025, PR #134/#136/#138).**
 Uut kinnitatud koodiviga ei leitud; varasemaid parandatud leide uuesti ei
 hinnatud. Küsimuspõhine kataloog, üldsõnade valik ja kompaktne mudelivaade

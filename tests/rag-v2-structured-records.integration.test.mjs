@@ -184,7 +184,7 @@ test('question relevance orders, never filters, the catalogue: the matching reco
   await assert.rejects(source().retrieve(query({ question: '' })), { code: 'invalid_record_query' });
 });
 
-test('ADR-026: the query vector ranks a service the wording never names; without a vector the order is unchanged', async () => {
+test('ADR-026: the query vector ranks a service the wording never names; lexical ranking is only the fallback', async () => {
   const bundle = snapshot.bundles.find(b => b.document.fields.structured_record?.value.id === 'harku_vald:service_3');
   const summary = bundle.chunks.find(chunk => chunk.source_locations?.some(location => location.path.endsWith('/summary')));
   // The mock embedding is not semantic, but the unit's own text reproduces the unit's indexed vector exactly.
@@ -198,6 +198,10 @@ test('ADR-026: the query vector ranks a service the wording never names; without
   assert.equal(lexicalOnly.record_context.entries.find(e => e.record_id === 'harku_vald:service_3').detail, 'catalogue');
   assert.equal(withVector.record_context.entries.find(e => e.record_id === 'harku_vald:service_3').detail, 'relevant_summary');
   assert.equal(withVector.record_context.listed_count, withVector.record_context.catalogue_count);
+  // A content question with a vector still ranks by the vector only; the lexical channel is the fallback.
+  const both = await source({ qdrant }).retrieve(query({ question: 'Näidisteenus 5', queryVector, limits: budget }));
+  assert.deepEqual(both.record_context.relevance_channels, ['vector']);
+  assert.equal(both.record_context.entries.find(e => e.record_id === 'harku_vald:service_3').relevance_rank, 1);
   await assert.rejects(source().retrieve(query({ queryVector })), { code: 'invalid_record_query' });
 });
 
