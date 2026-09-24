@@ -58,3 +58,16 @@ Sõnaline päring ühendab kõik sõnad VÕI-tingimusega. Olukorralause üldsõn
 - Kataloogis on kasu selge ja halvenemist pole.
 - Loend on põhimõtteline, mitte selle valimi järgi häälestatud; küsisõnade lisamine halvendas artiklivõrdlust ja see on siin avaldatud.
 - Valimid on väikesed ja kataloogi asjakohasus on pealkirjamuster, mitte inimhinnang.
+
+## Kinnitus holdout-2 valimil (24.09)
+
+Kolmkümmend uut, enne mõõtmist külmutatud küsimust (vt ADR-022 kinnitus):
+
+| Variant | Sõnaline | Hübriid | Hübriid top-1 |
+| --- | ---: | ---: | ---: |
+| Alus | 19/30 | 26/30 | 15 |
+| Üldsõnad eemaldatud | **23/30** | 26/30 | 19 |
+| Vektor ×2 | 19/30 | **28/30** | 18 |
+| Vektor ×2 + üldsõnad | 23/30 | 26/30 | 17 |
+
+Üldsõnade eemaldamine parandab sõnalist kanalit selgelt ja tõstab esimese koha tabamusi, kuid hübriidi lõpptulemust mitte. Samas kaotas see kaks küsimust („sotsiaaltöötajad ei taha rääkida”, „vanainimene üksildane”). Kokku 48 küsimusel: alus 43, üldsõnad 41, vektor ×2 45, mõlemad 42. Otsus jätta põhiotsingus välja jääb kehtima. Kataloogis (ADR-023) jääb see sisse.

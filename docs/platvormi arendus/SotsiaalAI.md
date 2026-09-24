@@ -92,6 +92,14 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**24.09 Holdout-2: 30 uut RAG-testküsimust.**
+Enne mõõtmist Git'is külmutatud 30 küsimust (ET/EN/RU, sh igapäevane ja
+olukorrasõnastus) 05.09 korpusel. Päringuvektorid telliti ühe kutsega
+(~0,00013 USD, omaniku loal). Hübriid 48 küsimusel: alus 43, vektor ×2 45,
+üldsõnade eemaldamine 41. See kinnitab ADR-022 profiili kui piloodi
+kandidaadi; üldsõnad jäävad põhiotsingus välja. Kordamine:
+`scripts/rag-v2-query-variants.mjs`.
+
 **24.09 Päringu üldsõnad — [ADR-024](../rag-v2/adr-024-query-stopwords.md).**
 KOV-kataloog eemaldab järjestamisel üldsõnad. Kõik asjakohased teenused on
 kataloogis 52/53 paaris (ID järjekorras 46), ADR-023 kaks halvenemist kadusid.
