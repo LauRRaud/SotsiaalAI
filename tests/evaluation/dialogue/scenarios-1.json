@@ -1,0 +1,58 @@
+{
+  "schema_version": "rag-v2/dialogue-scenarios-1",
+  "purpose": "Multi-turn walks from a situation description to local help: clarification, municipality, service, details and contacts, corrections, a new person and a crisis sentence. Written before any run. The stand-in model follows each turn's state and cites the named service only when the context gives it with a summary; this checks what reaches the model, not answer quality.",
+  "municipalities": ["kose-vald", "harku-vald", "tallinn"],
+  "regions": [
+    { "region": "kose_vald", "names": ["Kose vald", "Kose"] },
+    { "region": "harku_vald", "names": ["Harku vald", "Harku"] },
+    { "region": "tallinn", "names": ["Tallinna linn", "Tallinn"] }
+  ],
+  "scenarios": [
+    { "id": "money-harku-contact", "title": "Raha otsas → vald → toimetulekutoetus → kontakt",
+      "turns": [
+        { "text": "Mul on raha otsas ja toiduks ei jätku.", "mode": "new", "expect": { "region": null } },
+        { "text": "Elan Harku vallas.", "mode": "same", "state_region": { "id": "harku_vald", "quote": "Harku vallas" },
+          "cite": "^Toimetulekutoetus$", "expect": { "region": "harku_vald", "service_summary": "^Toimetulekutoetus$" } },
+        { "text": "Kellele ma saan helistada?", "mode": "same",
+          "expect": { "region": "harku_vald", "details": "^Toimetulekutoetus$", "contacts": true } }
+      ] },
+    { "id": "mother-kose-corrected-harku", "title": "Emale abi kodus → Kose → parandus: Harku",
+      "turns": [
+        { "text": "Vajan emale kodus abi igapäevaste toimingutega.", "mode": "new", "expect": { "region": null } },
+        { "text": "Ema elab Kose vallas.", "mode": "same", "state_region": { "id": "kose_vald", "quote": "Kose vallas" },
+          "cite": "^Koduteenus$", "expect": { "region": "kose_vald", "service_summary": "^Koduteenus$" } },
+        { "text": "Vabandust, tegelikult elab ema Harkus.", "mode": "correction", "state_region": { "id": "harku_vald", "quote": "Harkus" },
+          "cite": "^Koduteenus$", "expect": { "region": "harku_vald", "service_summary": "^Koduteenus$" } }
+      ] },
+    { "id": "father-tallinn-then-own-debts-kose", "title": "Isa Tallinnas → uus isik: enda võlad → Kose",
+      "turns": [
+        { "text": "Mu eakas isa ei saa enam üksi hakkama, kuhu pöörduda?", "mode": "new", "expect": { "region": null } },
+        { "text": "Isa elab Tallinnas.", "mode": "same", "state_region": { "id": "tallinn", "quote": "Tallinnas" },
+          "cite": "^(Koduteenus|Ööpäevane üldhooldus)$", "expect": { "region": "tallinn", "service_summary": "^(Koduteenus|Ööpäevane üldhooldus)$" } },
+        { "text": "Mul on suured võlad, kes aitab?", "mode": "new_person", "state_region": "clear",
+          "expect": { "region": null, "previous_state_cleared": true } },
+        { "text": "Elan Kose vallas.", "mode": "same", "state_region": { "id": "kose_vald", "quote": "Kose vallas" },
+          "cite": "^Võlanõustamisteenus$", "expect": { "region": "kose_vald", "service_summary": "^Võlanõustamisteenus$" } }
+      ] },
+    { "id": "crisis-then-help-tallinn", "title": "Toimetulek → kriisilause → Tallinn",
+      "turns": [
+        { "text": "Olen üksi kodus, raske on toimetulek, tööd ei ole.", "mode": "new", "expect": { "region": null, "crisis": false } },
+        { "text": "Vahel tunnen, et tahan end tappa.", "mode": "same", "expect": { "region": null, "crisis": true } },
+        { "text": "Elan Tallinnas.", "mode": "same", "state_region": { "id": "tallinn", "quote": "Tallinnas" },
+          "cite": "^(Toimetulekutoetus|Sissetulekust sõltuv toetus toimetuleku tagamiseks|Toimetulekunõustamine)$",
+          "expect": { "region": "tallinn", "service_summary": "^(Toimetulekutoetus|Sissetulekust sõltuv toetus toimetuleku tagamiseks|Toimetulekunõustamine)$" } }
+      ] },
+    { "id": "transport-kose", "title": "Arsti juurde sõit → Kose",
+      "turns": [
+        { "text": "Arsti juurde on raske sõita, kas on transporti?", "mode": "new", "expect": { "region": null } },
+        { "text": "Elan Kose vallas.", "mode": "same", "state_region": { "id": "kose_vald", "quote": "Kose vallas" },
+          "cite": "transport|sõidu", "expect": { "region": "kose_vald", "service_summary": "transport|sõidu" } }
+      ] },
+    { "id": "fire-harku", "title": "Tulekahju → Harku",
+      "turns": [
+        { "text": "Tulekahju hävitas kodu, kas vald aitab rahaga?", "mode": "new", "expect": { "region": null } },
+        { "text": "Olen Harkus.", "mode": "same", "state_region": { "id": "harku_vald", "quote": "Harkus" },
+          "cite": "erakorral|ühekord|õnnetus", "expect": { "region": "harku_vald", "service_summary": "erakorral|ühekord|õnnetus" } }
+      ] }
+  ]
+}
