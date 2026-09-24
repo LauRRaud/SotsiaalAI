@@ -12,6 +12,7 @@ import { retrievalDirectory } from '../lib/rag-v2/search/discovery.js';
 import { retrievalProfile, queryForProfile, assertProfileGeneration } from '../lib/rag-v2/search/profiles.js';
 import { CombinedStoredEmbedding } from '../lib/rag-v2/search/pilot-runner.js';
 import { assessContext, canonicalContext, contextId } from '../lib/rag-v2/evaluation/rubric-v2.js';
+import { QUERY_STOPWORDS_VERSION } from '../lib/rag-v2/search/query-stopwords.js';
 
 const savedFetch = globalThis.fetch, savedConnect = net.Socket.prototype.connect;
 let network = 0;
@@ -50,6 +51,15 @@ function fixture(order = [0, 2, 4, 6, 8]) {
   };
   return { bundle, generation, units, rows, context, policy, embedding, postgres, qdrant, run };
 }
+
+test('ADR-024: query stopwords are opt-in and change only the lexical channel text', async () => {
+  const f = fixture([0, 2]), texts = [];
+  f.postgres.lexical = async (_tenant, _generation, _docs, text) => { texts.push(text); return f.rows; };
+  const query = queryForProfile(retrievalProfile('hybrid-ranked-first-neighbors-v1'), { text: 'Kellega saan rääkida gardening kohta?', language: 'et' });
+  await f.run(undefined, { query });
+  await f.run(undefined, { query: { ...query, lexicalStopwords: QUERY_STOPWORDS_VERSION } });
+  assert.deepEqual(texts, ['Kellega saan rääkida gardening kohta?', 'rääkida gardening']);
+});
 
 test('selective retrieval excludes publication labels before the channel candidate limit', async () => {
   const f = fixture([0, 2]);

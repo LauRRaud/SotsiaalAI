@@ -92,6 +92,13 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**24.09 Päringu üldsõnad — [ADR-024](../rag-v2/adr-024-query-stopwords.md).**
+KOV-kataloog eemaldab järjestamisel üldsõnad. Kõik asjakohased teenused on
+kataloogis 52/53 paaris (ID järjekorras 46), ADR-023 kaks halvenemist kadusid.
+Põhiotsingus parandas see olukorralauseid (sõnaline 4 → 8, hübriid 10 → 11),
+kuid artiklivõrdlus langes 17/18 → 15/18. Seepärast on see seal ainult mõõdetav
+päringuvalik, mitte profiilis sisse lülitatud.
+
 **24.09 Kohalik töö koondatakse Gitisse Claude’i pilvetöö jaoks.**
 Omaniku selgel soovil kuuluvad commit’i ka `Andmebaasi/` PDF-id ja kogu
 `Arhiiv/`; lähtefailide baidid säilitatakse räside kontrolliks. Kaasa lähevad

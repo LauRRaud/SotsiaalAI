@@ -178,6 +178,9 @@ test('question relevance orders, never filters, the catalogue: the matching reco
   assert.equal(cutPlain.record_context.completeness, 'partial_context_budget');
   assert(!cutPlain.record_context.entries.some(entry => entry.record_id === 'harku_vald:service_5'));
   assert(cutAsked.record_context.entries.some(entry => entry.record_id === 'harku_vald:service_5'));
+  // ADR-024: function words alone carry no relevance; the order stays the stable one.
+  const onlyStopwords = await source().retrieve(query({ question: 'Kas mul on?', limits: budget }));
+  assert.deepEqual(onlyStopwords.record_context.entries.map(entry => entry.record_id), cutPlain.record_context.entries.map(entry => entry.record_id));
   await assert.rejects(source().retrieve(query({ question: '' })), { code: 'invalid_record_query' });
 });
 
