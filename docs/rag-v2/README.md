@@ -73,7 +73,7 @@ node scripts/rag-v2-local.mjs migrate
 node scripts/rag-v2-local.mjs validate
 ```
 
-`up` loob eraldi `sotsiaalai-rag-v2` compose-projekti, teenused ja andmeköited. PostgreSQL 16.13 kuulab ainult `127.0.0.1:55432`, Qdrant 1.15.5 ainult `127.0.0.1:56333`. Pildid on digestiga lukustatud. Paroolid/võti genereeritakse kohalikku ignoreeritud `tmp/rag-v2-services/` kausta; neid ei lisata Gitti. `migrate` kasutab Prisma eraldi kohalikku konfiguratsiooni ega loe platvormi `DATABASE_URL` väärtust. `stop` peatab ainult need teenused ja säilitab köited. Olemasoleva platvormi konteinerid jäävad puutumata.
+`up` loob eraldi `sotsiaalai-rag-v2` compose-projekti, teenused ja andmeköited. PostgreSQL 16.15 kuulab ainult `127.0.0.1:55432`, Qdrant 1.19.1 ainult `127.0.0.1:56333`. Pildid on digestiga lukustatud ja konteinerid käivituvad pärast masina taaskäivitust uuesti. Qdranti uuendatakse ühe alamversiooni kaupa (1.15 → 1.16 → 1.17 → 1.18 → 1.19), iga sammu järel kontrollitakse kogusid ja punktide arvu. Paroolid/võti genereeritakse kohalikku ignoreeritud `tmp/rag-v2-services/` kausta; neid ei lisata Gitti. `migrate` kasutab Prisma eraldi kohalikku konfiguratsiooni ega loe platvormi `DATABASE_URL` väärtust. `stop` peatab ainult need teenused ja säilitab köited. Olemasoleva platvormi konteinerid jäävad puutumata.
 
 Kohalik usaldatud poliitikafail kirjeldab eksplitsiitselt tenant'i, operaatorit ja lubatud dokumendi-ID-sid. Näidise jaoks on kasutatud `tmp/rag-v2-services/sample-policy.json`:
 
