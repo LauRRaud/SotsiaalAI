@@ -57,7 +57,10 @@ def analyze(texts):
                     candidates.extend(alternative.get("root_tokens", [])[:16])
                 for candidate in candidates:
                     token = unicodedata.normalize("NFC", str(candidate)).lower()
-                    if WORD.fullmatch(token):
+                    # Python's \w also accepts non-decimal numerals such as "²" in "m²"; the
+                    # protocol carries letters, marks and hyphens only. Such a token used to
+                    # fail the whole batch, so no previously successful output changes.
+                    if WORD.fullmatch(token) and all(char == "-" or unicodedata.category(char)[0] in "LM" for char in token):
                         terms.add("vmet" + token)
         output.append(" ".join(sorted(terms)))
     return output

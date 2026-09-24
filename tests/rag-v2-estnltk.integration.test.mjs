@@ -38,6 +38,10 @@ test('real EstNLTK resolves inflections, preserves ambiguity and names, and keep
     assert.deepEqual(await analyzer.analyze(['TÖÖTAN', 'TO\u0308O\u0308TAN']), [
       ...(await analyzer.analyze(['TÖÖTAN'])), ...(await analyzer.analyze(['TÖÖTAN'])),
     ]);
+    // Real Kose record text: "m²" is a Python \w word but not a protocol letter; it used to fail the batch.
+    const [area, fraction] = await analyzer.analyze(['Üüripiirmäär 2 eurot/m² kuus', 'pool ½ ja Ⅻ peatükk']);
+    assert(area.includes('vmeteuro') && !/[²\d]/.test(area));
+    assert(fraction.includes('vmetpeatükk') && !/[½Ⅻ]/.test(fraction));
     for (const [document, query] of [['Services', 'service'], ['работа', 'работы']]) {
       const fields = await lexicalFields([{ title: '', body: document, search_aids: '' }], ESTNLTK_LEXICAL, analyzer);
       assert(overlap(fields[0].body, await lexicalQuery(query, ESTNLTK_LEXICAL, analyzer)));

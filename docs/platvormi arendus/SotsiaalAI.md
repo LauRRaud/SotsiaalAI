@@ -92,6 +92,13 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**24.09 KOV-kataloog järjestub küsimuse järgi — [ADR-023](../rag-v2/adr-023-question-ranked-municipal-catalogue.md).**
+Sõnaline kanal järjestab valla kirjed ja kõige asjakohasemad saavad kokkuvõtte.
+53 päris valla ja olukorralause paaris: kõik asjakohased teenused kataloogis
+46 → 51, kokkuvõte asjakohasel teenusel 0 → 19. Kaks osalist loendit halvenes
+üldsõnade müra tõttu, järgmine samm on üldsõnade käsitlus. Parandatud EstNLTK
+viga: „m²” nurjas kogu analüüsipartii (Kose indekseerimine ja „m²” päringud).
+
 **24.09 Codexi leiud R1–R4 parandatud — [analüüs §10](../audits/rag-v2-opus-terviklik-analuus-2026-09-24.md).**
 Kriisiteade ei sõltu enam RAG-i konfiguratsioonist, otsingust ega taastamisest ning
 ilmub kliendis kohe. Kataloog säilitab allika kehtivuse ja ajaloolisuse. v1

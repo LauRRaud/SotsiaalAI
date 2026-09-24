@@ -160,6 +160,27 @@ test('unverified or unauthorized contacts stay unavailable; detail selection ret
   assert(!restricted.evidence.some(entry => entry.document_id === denied));
 });
 
+test('question relevance orders, never filters, the catalogue: the matching record gets a summary and survives a budget cut', async () => {
+  const full = await source().retrieve(query());
+  const plain = await source().retrieve(query({ limits: { contextTokens: full.measurements.model_context_tokens - 1 } }));
+  const asked = await source().retrieve(query({ question: 'Näidisteenus 5', limits: { contextTokens: full.measurements.model_context_tokens - 1 } }));
+  assert.equal(plain.record_context.selection, 'stable_id');
+  assert.equal(plain.record_context.relevant_summaries, 0);
+  assert.equal(asked.record_context.selection, 'question_relevance');
+  const five = asked.record_context.entries.find(entry => entry.record_id === 'harku_vald:service_5');
+  assert.equal(five.detail, 'relevant_summary');
+  assert(five.fields.summary.refs.length);
+  assert(asked.record_context.relevant_summaries >= 1);
+  assert.equal(asked.record_context.listed_count, asked.record_context.catalogue_count);
+  // Below the titles budget the stable order drops the last ID; relevance keeps the asked-for record.
+  const budget = { contextTokens: plain.measurements.model_context_tokens - 40 };
+  const cutPlain = await source().retrieve(query({ limits: budget })), cutAsked = await source().retrieve(query({ question: 'Näidisteenus 5', limits: budget }));
+  assert.equal(cutPlain.record_context.completeness, 'partial_context_budget');
+  assert(!cutPlain.record_context.entries.some(entry => entry.record_id === 'harku_vald:service_5'));
+  assert(cutAsked.record_context.entries.some(entry => entry.record_id === 'harku_vald:service_5'));
+  await assert.rejects(source().retrieve(query({ question: '' })), { code: 'invalid_record_query' });
+});
+
 test('catalogue budgets fail explicitly; permission and contact revocation during retrieval cannot publish a packet', async () => {
   await assert.rejects(source().retrieve(query({ limits: { records: 1 } })), { code: 'record_count_budget_exceeded' });
   await assert.rejects(source().retrieve(query({ limits: { contextTokens: 1 } })), { code: 'record_context_budget_exceeded' });
