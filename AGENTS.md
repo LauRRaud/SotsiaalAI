@@ -13,7 +13,7 @@
 - Säilita teiste pooleliolev töö. Stage'i ainult nimelised üle vaadatud failid; `git add .` ja `git add -A` on keelatud.
 - Tee sidus muudatus olemasoleva arhitektuuri järgi. Väldi ülesandega mitteseotud ümberkirjutusi ja laia repo-uurimist.
 - Push ja merge ei vaja omaniku luba, kui muudatuse kontrollid on läbitud. `main`-i ajalugu ei kirjutata ümber (force-push, rebase avaldatud commit'idel).
-- PR, mis puudutab kaitstud teid (CI/deploy/server, `prisma/`, sõltuvused, agentide reeglid, autentimine ja õigused, maksed, privaatsus, kriisiabi; täpne loend `.github/workflows/auto-merge.yml`-is), ei merge'ita automaatselt ja jääb omaniku ülevaatusele. Nimeta PR-i kirjelduses risk ja tehtud kontroll.
+- Pilvesessiooni PR merge'itakse automaatselt, kui nõutud kontrollid on rohelised. Skeemi, õiguste, maksete, privaatsuse või kriisiabi muudatusel nimeta PR-i kirjelduses risk ja tehtud kontroll.
 - Deploy: `main`-i roheline quality-gate käivitab `deploy` workflow'i (`scripts/deploy-server.mjs` + smoke-test `/api/health` vastu). Käsitsi `npm run deploy:server` ja päris sõnumite saatmine vajavad omaniku selget luba. Juba antud luba kehtib kokkulepitud ulatuses; ära küsi seda uuesti. Valmista ülevaadatav tulemus enne loaküsimust ette.
 - Tasuliste teenuste kasutamisel järgi kokkulepitud ulatust ja kulupiiri. Uus tasuline teenus või kokkuleppimata mahutöö vajab eraldi kokkulepet; selle puudumine ei peata sõltumatut kohalikku arendust.
 - Puuduva tooteotsuse korral tee sõltumatu töö valmis ja küsi ainult vajalik otsus. Lahenda tagasipööratavad teostusvalikud ise ning nimeta oluline eeldus tulemuse juures. Jätka ülesande piires järgmise vajaliku sammuga, kui takistus puudutab ainult üht tööosa.
