@@ -24,10 +24,15 @@ import { UNIFIED_RETRIEVAL_VERSION } from '../lib/rag-v2/pilot/retrieval-plan.js
 import { PilotService } from '../lib/rag-v2/pilot/service.js';
 import { PilotStore } from '../lib/rag-v2/pilot/store.js';
 import { pilotChatResult } from '../lib/chat/m4PilotClientContract.js';
+import { providerCall } from '../lib/rag-v2/pilot/provider.js';
 
 // Real pilot service on the unified route over real municipal packages and real service vectors
-// (bought once, tmp/rag-v2-scenarios). Only the answer model is a stand-in, so this checks what
-// reaches the model at each turn, not answer quality. No network except local services.
+// (bought once, tmp/rag-v2-scenarios). By default only the answer model is a stand-in, so this checks
+// what reaches the model at each turn, not answer quality; no network except local services.
+// SCENARIO_ANSWER_MODEL=gpt-6-luna (with OPENAI_API_KEY and SCENARIO_ACCOUNT_PROJECT) makes paid real
+// calls instead: real query embeddings and real answers, reported per turn, capped by the budget below.
+const REAL_MODEL = process.env.SCENARIO_ANSWER_MODEL || null;
+if (REAL_MODEL && (!process.env.OPENAI_API_KEY || !/^proj_[A-Za-z0-9_-]+$/.test(process.env.SCENARIO_ACCOUNT_PROJECT || ''))) throw Error('real scenario run needs OPENAI_API_KEY and SCENARIO_ACCOUNT_PROJECT');
 const appUrl = new URL(process.env.M4_TEST_DATABASE_URL || 'postgres://invalid/invalid');
 if (!['localhost', '127.0.0.1'].includes(appUrl.hostname) || appUrl.pathname !== '/sotsiaal_ai_m4_dev') throw Error('isolated app database required');
 const db = new PrismaClient({ adapter: new PrismaPg({ connectionString: appUrl.href }), log: [] });
@@ -40,7 +45,10 @@ let root, postgres, qdrant, snapshot, generation, connections;
 const unitVectors = new Map(), queryVectors = new Map(), report = [];
 
 before(async () => {
-  connections = JSON.parse(await fs.readFile('tmp/rag-v2-services/connections.json', 'utf8'));
+  // On the server the RAG services come from the service environment; locally from tmp/rag-v2-services.
+  connections = process.env.RAG_V2_POSTGRES_URL && process.env.RAG_V2_QDRANT_URL
+    ? { postgresUrl: process.env.RAG_V2_POSTGRES_URL, qdrantUrl: process.env.RAG_V2_QDRANT_URL, qdrantKey: process.env.RAG_V2_QDRANT_KEY }
+    : JSON.parse(await fs.readFile('tmp/rag-v2-services/connections.json', 'utf8'));
   process.env.RAG_V2_QDRANT_URL = connections.qdrantUrl; process.env.RAG_V2_QDRANT_KEY = connections.qdrantKey || '';
   const inputs = JSON.parse(await fs.readFile(`${DATA}/kov-unit-inputs.json`, 'utf8')).input;
   for (const line of (await fs.readFile(`${DATA}/kov-unit-vectors.ndjson`, 'utf8')).trim().split('\n').map(JSON.parse)) {
@@ -102,16 +110,23 @@ async function conversation(t) {
     documents: Object.fromEntries(snapshot.bundles.map(bundle => [bundle.document.id, bundle.version.id])),
     profile: retrievalProfile(), recordCatalogue: RECORD_RETRIEVAL_VERSION, dialogueVersion: DIALOGUE_VERSION,
     dialogueStateVersion: TYPED_DIALOGUE_STATE_VERSION, retrievalRouting: UNIFIED_RETRIEVAL_VERSION,
-    embedding, model: 'scenario-stand-in', reasoning: 'medium', maxInputTokens: 128000, maxOutputTokens: 4096,
-    retentionHours: null, expiresAt: null, prices: { embeddingInput: 1, answerInput: 1, answerOutput: 1 },
-    budget: { attempts: 40, embeddingAttempts: 20, answerAttempts: 20, tokens: 10000000, nanoUsd: 100000000 } };
+    embedding, model: REAL_MODEL || 'scenario-stand-in', reasoning: 'medium', maxInputTokens: 128000, maxOutputTokens: 4096,
+    retentionHours: null, expiresAt: null, timeoutMs: 60000, accountProject: process.env.SCENARIO_ACCOUNT_PROJECT,
+    // Real runs use the server pilot's approved prices (nano-USD per token) and a 1 USD cap per conversation.
+    prices: REAL_MODEL ? { embeddingInput: 130, answerInput: 125, answerOutput: 500 } : { embeddingInput: 1, answerInput: 1, answerOutput: 1 },
+    budget: { attempts: 40, embeddingAttempts: 20, answerAttempts: 20, tokens: 10000000, nanoUsd: REAL_MODEL ? 1000000000 : 100000000 } };
   t.after(async () => { await db.user.delete({ where: { id: user.id } }); await db.m4PilotLedger.deleteMany({ where: { id: config.id } }); });
   class Catalog extends IngestBatchQueue { constructor() { super(connections.postgresUrl); } }
   // Stand-in for the municipal contact registry: every published contact counts as verified here.
   const adapters = runtimeAdapters(async () => config, user.id, { Catalog, loadRegions: async () => scenarios.regions,
     authorizeContact: async ({ record }) => record.kind === 'contact' });
   let turn = null, scopeFirst = null, region = null, lastInput = null, approximated = false;
-  const service = new PilotService({ store: new PilotStore(db), readConfig: async () => config, adapters, call: async ({ stage, body }) => {
+  const realCall = async args => {
+    if (args.stage === 'answer') lastInput = JSON.parse(args.body.input[0].content);
+    approximated = false;
+    return providerCall(args);
+  };
+  const service = new PilotService({ store: new PilotStore(db), readConfig: async () => config, adapters, call: REAL_MODEL ? realCall : async ({ stage, body }) => {
     if (stage === 'embedding') {
       // Follow-up query texts join the scope's turns and have no bought vector: reuse the scope's first sentence.
       approximated = !queryVectors.has(body.input);
@@ -133,7 +148,9 @@ async function conversation(t) {
   return async (scenarioTurn, index) => {
     turn = scenarioTurn;
     if (['new', 'new_person'].includes(turn.mode)) { scopeFirst = turn.text; region = null; }
-    const result = await service.run(user.id, { question: turn.text, contextMode: turn.mode, convId: conv.id, clientTurnKey: randomUUID(), language: 'et' });
+    let result;
+    try { result = await service.run(user.id, { question: turn.text, contextMode: turn.mode, convId: conv.id, clientTurnKey: randomUUID(), language: 'et' }); }
+    catch (error) { return { index, error: error.code || 'turn_failed', input: lastInput }; } // A rejected real answer is a finding, not a crash.
     const row = await db.m4PilotTurn.findUnique({ where: { id: result.id } });
     return { index, result, row, input: lastInput, approximated, crisis: pilotChatResult(result, conv.id).isCrisis };
   };
@@ -144,7 +161,8 @@ for (const scenario of scenarios.scenarios) {
     const run = await conversation(t), problems = [];
     report.push(`\n## ${scenario.title}`);
     for (const [index, turn] of scenario.turns.entries()) {
-      const { result, row, input, approximated, crisis } = await run(turn, index);
+      const { result, row, input, approximated, crisis, error } = await run(turn, index);
+      if (error) { problems.push(`turn ${index + 1}: ${error}`); report.push(`- ${index + 1}. [${turn.mode}] "${turn.text}" -> FAILED ${error}`); continue; }
       const records = input.evidence.records || {}, entries = records.entries || [], expect = turn.expect || {};
       const scope = records.scope?.region ?? null;
       const summarized = entries.filter(entry => entry.fields.summary && entry.detail !== 'selected_detail');
@@ -164,6 +182,14 @@ for (const scenario of scenarios.scenarios) {
       report.push(`- ${index + 1}. [${turn.mode}] "${turn.text}" -> region ${scope ?? '-'}, catalogue ${records.listed_count ?? 0}/${records.catalogue_count ?? 0}`
         + `, summaries ${summarized.length}${detail ? `, details: ${titleOf(detail)}` : ''}${contacts.length ? `, contact persons ${contacts.map(titleOf).join(' & ')} (phone/e-mail channels ${channels.length})` : ''}`
         + `, answer ${row.payload.answer.kind}${crisis ? ', CRISIS NOTICE' : ''}${approximated ? ' (query vector approximated)' : ''}`);
+      // Real runs: the model's own answer, its state and cited services, for human review.
+      if (REAL_MODEL) {
+        const answer = row.payload.answer, citedRefs = new Set(answer.blocks.flatMap(block => block.refs));
+        const citedServices = entries.filter(entry => Object.values(entry.fields).some(field => field.refs?.some(ref => citedRefs.has(ref)))).map(titleOf);
+        const text = [...answer.blocks.map(block => block.text), answer.clarification].filter(Boolean).join(' ').replace(/s+/g, ' ');
+        report.push(`     model: ${text.slice(0, 700)}${text.length > 700 ? '…' : ''}`);
+        report.push(`     cites: ${citedServices.join(', ') || '-'} | state region: ${row.payload.dialogueState?.value?.region?.id ?? '-'}${row.payload.dialogueStateFallback ? ` (state fallback ${row.payload.dialogueStateFallback.code})` : ''}`);
+      }
     }
     report.push(problems.length ? `  PROBLEMS: ${problems.join('; ')}` : '  all expectations met');
     assert.deepEqual(problems, []);
