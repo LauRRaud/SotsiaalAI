@@ -28,11 +28,17 @@ const SETS = {
   'holdout-2': ['tests/evaluation/multi-source/questions-holdout-2.json', 'tests/evaluation/multi-source/anchor-groups-holdout-2.json'],
 };
 const VARIANTS = { base: {}, stopwords: { lexicalStopwords: QUERY_STOPWORDS_VERSION }, vector2: { channelWeights: { lexical: 1, vector: 2 } },
-  'vector2+stopwords': { channelWeights: { lexical: 1, vector: 2 }, lexicalStopwords: QUERY_STOPWORDS_VERSION } };
+  'vector2+stopwords': { channelWeights: { lexical: 1, vector: 2 }, lexicalStopwords: QUERY_STOPWORDS_VERSION },
+  // Multi-source (ADR-027): a hard per-document cap lost 9 of 48 questions; one more seed chunk gained 2-3.
+  perdoc2: { limits: { perDocument: 2 } }, seeds6: { finalLimit: 6, limits: { topK: 6 } },
+  'vector2+seeds6': { channelWeights: { lexical: 1, vector: 2 }, finalLimit: 6, limits: { topK: 6 } } };
 const CORPUS_VECTORS = ['tmp/rag-v2-m2-2/usage/pilot_e14470663fbf87b5ad1b1313e2f9945bf7e9afd96ec43a15c0dce380b95e2508',
   'tmp/rag-v2-multi-source/usage/pilot_2be546a0b998b304f89bb42d0a46d41efaf8bca48cafeba7e4a22c0a48687d40'];
 
-const { values } = parseArgs({ options: { set: { type: 'string', multiple: true, default: ['05-09'] }, 'query-vectors': { type: 'string' } } });
+const { values } = parseArgs({ options: { set: { type: 'string', multiple: true, default: ['05-09'] }, 'query-vectors': { type: 'string' },
+  variant: { type: 'string', multiple: true } } });
+const chosen = values.variant ?? ['base', 'stopwords', 'vector2', 'vector2+stopwords'];
+for (const name of chosen) if (!VARIANTS[name]) throw Error(`unknown variant ${name}; known: ${Object.keys(VARIANTS).join(', ')}`);
 const readJson = async file => JSON.parse(await fs.readFile(file, 'utf8'));
 const corpus = await readJson('tests/evaluation/multi-source/corpus.json'), tenant = corpus.tenant, storeRoot = 'tmp/rag-v2-multi-source/store';
 const active = await readActive(path.join(storeRoot, id('tenant', tenant)));
@@ -89,7 +95,7 @@ try {
     const [questions, groups] = await Promise.all(SETS[name].map(readJson));
     const passed = {}, metadata = {};
     console.log(`\n${name}: correct source passage in the final context (full-support questions; source finding, not answer quality)`);
-    for (const [variant, queryOptions] of Object.entries(VARIANTS)) {
+    for (const [variant, queryOptions] of Object.entries(VARIANTS).filter(([name]) => chosen.includes(name))) {
       const { rows } = await evaluateRetrieval({ snapshot, questions, groups, postgres, qdrant, embedding, policy, context, queryOptions });
       const full = rows.filter(r => r.expected_support === 'full' && r.all_required_in_final_context !== null);
       const cell = method => { const own = full.filter(r => r.method === method);
@@ -102,8 +108,8 @@ try {
     }
     const anchored = [...new Set(questions.cases.filter(c => c.expected_support === 'full' && !c.expected_metadata).map(c => c.id))];
     for (const question of anchored) {
-      const marks = Object.keys(VARIANTS).map(v => (passed[v].has(question) ? '✓' : '·'));
-      if (marks.some(mark => mark !== marks[0]) || marks[0] === '·') console.log(`    ${question.padEnd(40)} hybrid ${Object.keys(VARIANTS).map((v, i) => `${v} ${marks[i]}`).join(', ')}`);
+      const marks = chosen.map(v => (passed[v].has(question) ? '✓' : '·'));
+      if (marks.some(mark => mark !== marks[0]) || marks[0] === '·') console.log(`    ${question.padEnd(40)} hybrid ${chosen.map((v, i) => `${v} ${marks[i]}`).join(', ')}`);
     }
     for (const [question, outcomes] of Object.entries(metadata)) console.log(`    ${question.padEnd(40)} metadata ${Object.entries(outcomes).map(([v, o]) => `${v} ${o}`).join(', ')}`);
   }
