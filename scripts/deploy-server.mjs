@@ -47,6 +47,8 @@ migration_started="0"
 migration_state_file=""
 build_log=""
 artifact_backup=""
+previous_rev=""
+deps_installed="0"
 
 restore_frontend_on_failure() {
   status="$?"
@@ -64,6 +66,14 @@ restore_frontend_on_failure() {
       if [ "$APP_DIR" = "/" ] || [ -z "$APP_DIR" ]; then
         echo "[deploy:server] Unsafe APP_DIR; refusing artifact restore" >&2
         exit 90
+      fi
+      # The old artifact only runs with the old dependencies. On 24.09 a failed build left the
+      # previous .next on the new node_modules and the site answered 500 until the next deploy.
+      if [ "$deps_installed" = "1" ] && [ -n "$previous_rev" ] && [ "$previous_rev" != "$(git rev-parse HEAD)" ]; then
+        echo "[deploy:server] Returning the checkout and dependencies to $previous_rev" >&2
+        if ! { git reset --hard "$previous_rev" && npm ci --include=dev --no-audit --no-fund >&2; }; then
+          echo "[deploy:server] Dependency rollback failed; the restored artifact may not start" >&2
+        fi
       fi
       rm -rf -- "$APP_DIR/.next"
       tar -xzf "$artifact_backup" -C "$APP_DIR"
@@ -136,9 +146,26 @@ if [ "\${#untracked_files[@]}" -gt 0 ]; then
   printf '%s\\0' "\${untracked_files[@]}" | xargs -0 rm -f --
 fi
 
+# Next 16.3 Turbopack reads the whole project while tracing the proxy, ignored folders included.
+# One root-owned file under tmp/ failed the 24.09 build. Files in the app directory belong to
+# the deploy user, so repair ownership before anything changes and stop if a file stays unreadable.
+deploy_user="$(id -un)"
+foreign_files="$(sudo -n find "$APP_DIR" \\( -path "$APP_DIR/node_modules" -o -path "$APP_DIR/.git" \\) -prune -o ! -user "$deploy_user" -print 2>/dev/null | wc -l || true)"
+if [ "$foreign_files" != "0" ]; then
+  sudo -n find "$APP_DIR" \\( -path "$APP_DIR/node_modules" -o -path "$APP_DIR/.git" \\) -prune -o ! -user "$deploy_user" -exec chown "$deploy_user:$deploy_user" {} +
+  echo "[deploy:server] Returned $foreign_files files in the app directory to $deploy_user"
+fi
+unreadable_files="$(find "$APP_DIR" \\( -path "$APP_DIR/node_modules" -o -path "$APP_DIR/.git" \\) -prune -o ! -readable -print 2>/dev/null | head -5 || true)"
+if [ -n "$unreadable_files" ]; then
+  echo "[deploy:server] Files the build cannot read; stopped before changing anything:" >&2
+  printf '%s\\n' "$unreadable_files" >&2
+  exit 7
+fi
+
 local_rev="$(git rev-parse HEAD)"
 remote_rev="$(git rev-parse "origin/$BRANCH")"
 base_rev="$(git merge-base HEAD "origin/$BRANCH")"
+previous_rev="$local_rev"
 
 if [ "$local_rev" = "$remote_rev" ]; then
   echo "[deploy:server] Already up to date at $(git rev-parse --short HEAD)"
@@ -170,6 +197,8 @@ for env_file in "$FRONTEND_ENV" "$RAG_ENV"; do
   fi
 done
 
+# From here node_modules may no longer match the previous release, even if npm ci fails midway.
+deps_installed="1"
 echo "[deploy:server] Installing locked dependencies"
 npm ci --include=dev --no-audit --no-fund
 
