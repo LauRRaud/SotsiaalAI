@@ -92,6 +92,13 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**24.09 KOV-kataloogi kompaktne mudelivaade — [ADR-025](../rag-v2/adr-025-compact-record-model-context.md).**
+Pärnu pealkirjadest oli ainult 6% sisu, ülejäänu ümbris (JSON-teed, ID-d,
+korduvad metaandmed). Mudelivaade on nüüd kompaktne ja auditipakett jääb
+täielikuks. Pärnu 11 748 → 4 067 tokenit, Tallinn 71/71 ja Jõhvi 65/65 teenust
+loendis. 53 valla ja olukorralause paaris jõudis asjakohase teenuse kokkuvõte
+mudelini 46 korral (varem 18). Ülejäänud 7 on sõnalise järjestuse piir.
+
 **24.09 Holdout-2: 30 uut RAG-testküsimust.**
 Enne mõõtmist Git'is külmutatud 30 küsimust (ET/EN/RU, sh igapäevane ja
 olukorrasõnastus) 05.09 korpusel. Päringuvektorid telliti ühe kutsega
